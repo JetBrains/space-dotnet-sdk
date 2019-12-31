@@ -1,6 +1,6 @@
 # SpaceDotNet
 
-Short project description goes here.
+A .NET Library to talk to JetBrains Space.
 
 ## Getting Started
 
@@ -10,21 +10,15 @@ SSH clone URL: ssh://git@git.jetbrains.team/SpaceDotNet.git
 
 HTTPS clone URL: https://git.jetbrains.team/SpaceDotNet.git
 
+## Generating an API client
 
+1) Set the following environment variables:
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+  * `SPACE_SERVERURL`
+  * `SPACE_CLIENTID`
+  * `SPACE_CLIENTSECRET`
 
-## Prerequisites
-
-What things you need to install the software and how to install them.
-
-```
-Examples
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a production system.
+2) Run `SpaceDotNet.Generator`
 
 ## Resources
 
