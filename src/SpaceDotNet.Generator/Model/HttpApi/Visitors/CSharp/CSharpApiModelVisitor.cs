@@ -15,7 +15,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
         protected ImmutableSortedDictionary<string, ApiEnum> IdToEnumMap = ImmutableSortedDictionary<string, ApiEnum>.Empty;
         protected ImmutableSortedDictionary<string, ApiDto> IdToDtoMap = ImmutableSortedDictionary<string, ApiDto>.Empty;
-        protected readonly SortedDictionary<string, ApiDto> IdToAnonymousClassMap = new SortedDictionary<string,ApiDto>();
+        protected readonly SortedDictionary<string, ApiDto> IdToAnonymousClassMap = new SortedDictionary<string, ApiDto>();
 
         public CSharpApiModelVisitor(StringBuilder builder)
         {
@@ -75,11 +75,26 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 Visit(apiResource);
             }
-            
-            foreach (var (_, anonymousDto) in IdToAnonymousClassMap.ToImmutableSortedDictionary())
+
+            var currentIdToAnonymousClassMap = IdToAnonymousClassMap.ToImmutableSortedDictionary();
+            var writtenIdToAnonymousClassMap = new SortedDictionary<string, ApiDto>();
+            do
             {
-                Visit(anonymousDto);
-            }
+                // Write output
+                foreach (var (anonymousDtoKey, anonymousDto) in currentIdToAnonymousClassMap)
+                {
+                    Visit(anonymousDto);
+                    writtenIdToAnonymousClassMap.Add(anonymousDtoKey, anonymousDto);
+                }
+                
+                // See if new classes have been generated?
+                var temp = IdToAnonymousClassMap
+                    .Where(it => !writtenIdToAnonymousClassMap.ContainsKey(it.Key))
+                    .ToImmutableSortedDictionary();
+
+                currentIdToAnonymousClassMap = temp;
+
+            } while (currentIdToAnonymousClassMap.Count > 0);
 
             Indent.Decrement();
             
@@ -253,6 +268,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         }
 
         private string _baseEndpointPath = string.Empty;
+        private string _baseMethodName = string.Empty;
         
         public override void Visit(ApiResource apiResource)
         {
@@ -276,17 +292,48 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             foreach (var apiEndpoint in apiResource.Endpoints)
             {
                 _baseEndpointPath = apiResource.Path.Segments.ToPath();
+                _baseMethodName = string.Empty;
                 Visit(apiResource, apiEndpoint);
+                _baseMethodName = string.Empty;
                 _baseEndpointPath = string.Empty;
             }
             
+            // Nested resources
             foreach (var apiNestedResource in apiResource.NestedResources)
             {
                 foreach (var apiEndpoint in apiNestedResource.Endpoints)
                 {
                     _baseEndpointPath = apiResource.Path.Segments.Union(apiNestedResource.Path.Segments).ToPath();
+                    _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier();
                     Visit(apiNestedResource, apiEndpoint);
+                    _baseMethodName = string.Empty;
                     _baseEndpointPath = string.Empty;
+                }
+
+                // Nested nested resources
+                foreach (var apiNestedResourceNestedResource in apiNestedResource.NestedResources)
+                {
+                    foreach (var apiEndpoint in apiNestedResourceNestedResource.Endpoints)
+                    {
+                        _baseEndpointPath = apiResource.Path.Segments.Union(apiNestedResource.Path.Segments).Union(apiNestedResourceNestedResource.Path.Segments).ToPath();
+                        _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier() + apiNestedResourceNestedResource.DisplayPlural.ToSafeIdentifier();
+                        Visit(apiNestedResourceNestedResource, apiEndpoint);
+                        _baseMethodName = string.Empty;
+                        _baseEndpointPath = string.Empty;
+                    }
+                    
+                    // Nested nested nested resources
+                    foreach (var apiNestedResourceNestedResourceNestedResource in apiNestedResourceNestedResource.NestedResources)
+                    {
+                        foreach (var apiEndpoint in apiNestedResourceNestedResourceNestedResource.Endpoints)
+                        {
+                            _baseEndpointPath = apiResource.Path.Segments.Union(apiNestedResource.Path.Segments).Union(apiNestedResourceNestedResource.Path.Segments).Union(apiNestedResourceNestedResourceNestedResource.Path.Segments).ToPath();
+                            _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier() + apiNestedResourceNestedResource.DisplayPlural.ToSafeIdentifier() + apiNestedResourceNestedResourceNestedResource.DisplayPlural.ToSafeIdentifier();
+                            Visit(apiNestedResourceNestedResourceNestedResource, apiEndpoint);
+                            _baseMethodName = string.Empty;
+                            _baseEndpointPath = string.Empty;
+                        }
+                    }
                 }
             }
 
@@ -300,7 +347,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             var endpointPath = (_baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
 
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
-            var clientMethodName = apiResource.DisplayPlural.ToSafeIdentifier() + apiEndpoint.DisplayName.ToSafeIdentifier();
+            var clientMethodName = _baseMethodName + apiEndpoint.DisplayName.ToSafeIdentifier();
             
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
             {
@@ -409,71 +456,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 Builder.AppendLine($"{Indent}#warning UNSUPPORTED CASE - " + apiEndpoint.DisplayName.ToSafeIdentifier() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
             }
-            
-            // if (apiEndpoint.Method == ApiMethod.HTTP_GET && apiEndpoint.ResponseBody != null)
-            // {
-            //     // HTTP GET
-            //     Builder.Append($"{Indent}public async Task<");
-            //     Visit(apiEndpoint.ResponseBody);
-            //     Builder.Append(">");
-            //     Builder.Append(" " + apiEndpoint.DisplayName.ToSafeIdentifier() + "(");
-            //
-            //     var methodParameters = apiEndpoint.Parameters.Where(it => it.Path).ToList();
-            //     foreach (var apiEndpointParameter in methodParameters)
-            //     {
-            //         Visit(apiEndpointParameter.Field.Type);
-            //         Builder.Append(" ");
-            //         Builder.Append(apiEndpointParameter.Field.Name);
-            //         if (apiEndpointParameter != methodParameters.Last())
-            //         {
-            //             Builder.Append(", ");
-            //         }
-            //     }
-            //     
-            //     Builder.Append(") => await _connection.RequestResourceAsync<");
-            //     Visit(apiEndpoint.ResponseBody);
-            //     Builder.Append(">");
-            //     Builder.Append("($\"api/http/" + endpointPath + "?$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
-            //     Visit(apiEndpoint.ResponseBody);
-            //     Builder.Append(")));");
-            //     //Builder.Append($"{Indent}public async Task<JObject> Get" + apiEndpoint.DisplayName.ToSafeIdentifier() + "() => await _client.GetObjectAsync<JObject>(\"https://jetbrains.team/api/http/" + endpointPath + "\");");
-            //     Builder.AppendLine($"{Indent}");
-            // }
-            // else if (apiEndpoint.Method == ApiMethod.HTTP_POST && apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody != null)
-            // {
-            //     // HTTP POST
-            //     Builder.Append($"{Indent}public async Task<");
-            //     Visit(apiEndpoint.ResponseBody);
-            //     Builder.Append(">");
-            //     Builder.Append(" " + apiEndpoint.DisplayName.ToSafeIdentifier() + "(");
-            //
-            //     var methodParameters = apiEndpoint.Parameters.Where(it => it.Path).ToList();
-            //     foreach (var apiEndpointParameter in methodParameters)
-            //     {
-            //         Visit(apiEndpointParameter.Field.Type);
-            //         Builder.Append(" ");
-            //         Builder.Append(apiEndpointParameter.Field.Name);
-            //         Builder.Append(", ");
-            //     }
-            //     
-            //     Visit(apiEndpoint.RequestBody);
-            //     Builder.Append(" data");
-            //     
-            //     Builder.Append(") => await _connection.RequestResourceAsync<");
-            //     Visit(apiEndpoint.RequestBody);
-            //     Builder.Append(", ");
-            //     Visit(apiEndpoint.ResponseBody);
-            //     Builder.Append(">");
-            //     Builder.Append("($\"api/http/" + endpointPath + "?$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
-            //     Visit(apiEndpoint.ResponseBody);
-            //     Builder.Append(")), data);");
-            //     //Builder.Append($"{Indent}public async Task<JObject> Get" + apiEndpoint.DisplayName.ToSafeIdentifier() + "() => await _client.GetObjectAsync<JObject>(\"https://jetbrains.team/api/http/" + endpointPath + "\");");
-            //     Builder.AppendLine($"{Indent}");
-            // }
-            // else
-            // {
-            //     Builder.AppendLine($"{Indent}// " + apiEndpoint.DisplayName.ToSafeIdentifier() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
-            // }
             
             Builder.AppendLine($"{Indent}");
         }
