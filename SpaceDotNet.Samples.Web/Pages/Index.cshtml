@@ -1,0 +1,107 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="row">
+    <div class="col-4">
+        <div class="row mb-2">
+            <div class="col-12">
+                <img src="@User.Identity.GetClaimValue("urn:space:profilePicture")" width="200" height="200" />
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="col-12">
+                <h4>Contact details</h4>
+                <ul>
+                    @foreach (var profileMessenger in Model.MemberProfile.Messengers)
+                    {
+                        <li>@profileMessenger</li>
+                    }
+                    @foreach (var profilePhone in Model.MemberProfile.Phones)
+                    {
+                        <li>@profilePhone</li>
+                    }
+                    @foreach (var profileEmail in Model.MemberProfile.Emails)
+                    {
+                        <li>@profileEmail.Email</li>
+                    }
+                    @foreach (var profileLink in Model.MemberProfile.Links)
+                    {
+                        <li>@profileLink</li>
+                    }
+                </ul>
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="col-12">
+                <h4>Personal data</h4>
+                @if (Model.MemberProfile.Birthday != null)
+                {
+                    <small>Birthday</small><br/>
+                    @Model.MemberProfile.Birthday.AsDateTime().ToString("yyyy-MM-dd")<br/>
+                }
+                
+                <small>Languages</small><br/>
+                @string.Join(", ", Model.MemberProfile.Languages.Select(l => l.Language.Name)), English
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-6">
+        <div class="row mb-2">
+            <div class="col-12">
+                <h2>@Model.MemberProfile.Name.FirstName @Model.MemberProfile.Name.LastName</h2>
+                @Model.MemberProfile.Locations[0].Location.Name
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="col-12">
+                <h4>Absences</h4>
+                <ul class="list-group">
+                    @{
+                        var absences = Model.MemberProfile.Absences;
+                        absences.Reverse();
+                    }
+                    @foreach (var absence in absences.Take(5))
+                    {
+                        <li class="list-group-item">
+                            <small>@absence.Since.AsDateTime().ToString("yyyy-MM-dd") - @absence.Till.AsDateTime().ToString("yyyy-MM-dd")</small><br/>
+                            @absence.Description
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="col-12">
+                <h4>Teams</h4>
+                <ul class="list-group">
+                    @foreach (var membership in Model.MemberProfile.Memberships)
+                    {
+                        <li class="list-group-item">
+                            @if (membership.Since != null)
+                            {
+                                <small>
+                                    @membership.Since.AsDateTime().ToString("yyyy-MM-dd")
+                                    
+                                    @if (membership.Till != null)
+                                    {
+                                        <text>- @membership.Till?.AsDateTime().ToString("yyyy-MM-dd")</text>
+                                    }
+                                 </small><br/>
+                            }
+                            
+                            @membership.Role.Name in @membership.Team.Name
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
