@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace SpaceDotNet.Client
@@ -14,9 +13,8 @@ namespace SpaceDotNet.Client
     /// <see cref="T:System.Net.Http.HttpClient" /> that uses a bearer token retrieved using the Client Credentials flow.
     /// </summary>
     public class ClientCredentialsConnection 
-        : Connection
+        : BearerTokenConnection
     {
-        private readonly HttpClient _httpClient;
         private OAuthToken? _authToken;
         
         private readonly string _clientId;
@@ -33,148 +31,13 @@ namespace SpaceDotNet.Client
         /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
         /// </exception>
         public ClientCredentialsConnection(string serverUrl, string clientId, string clientSecret, HttpClient? httpClient = null)
-            : base(serverUrl)
+            : base(serverUrl, null, httpClient)
         {
             _clientId = clientId;
             _clientSecret = clientSecret;
-            _httpClient = httpClient ?? new HttpClient();
         }
 
-        /// <inheritdoc />
-        public override async Task RequestResourceAsync(string httpMethod, string urlPath)
-        {
-            await EnsureAuthenticatedAsync();
-            
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUri + urlPath)
-            {
-                Headers =
-                {
-                    Authorization = AuthenticationHeaderValue.Parse("Bearer " + _authToken.AccessToken),
-                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
-                }
-            };
-
-            var response = await _httpClient.SendAsync(request);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
-                }
-                catch (JsonException )
-                {
-                    // Intentional.
-                }
-                
-                throw exception;
-            }
-        }
-
-        /// <inheritdoc />
-        public override async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath)
-        {
-            await EnsureAuthenticatedAsync();
-            
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUri + urlPath)
-            {
-                Headers =
-                {
-                    Authorization = AuthenticationHeaderValue.Parse("Bearer " + _authToken.AccessToken),
-                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
-                }
-            };
-
-            var response = await _httpClient.SendAsync(request);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
-                }
-                catch (JsonException )
-                {
-                    // Intentional.
-                }
-                
-                throw exception;
-            }
-            
-            return JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
-        }
-
-        /// <inheritdoc />
-        public override async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
-        {
-            await EnsureAuthenticatedAsync();
-            
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUri + urlPath)
-            {
-                Headers =
-                {
-                    Authorization = AuthenticationHeaderValue.Parse("Bearer " + _authToken.AccessToken),
-                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
-                },
-                Content = new StringContent(JsonConvert.SerializeObject(payload, Formatting.None), Encoding.UTF8, "application/json")
-            };
-
-            var response = await _httpClient.SendAsync(request);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
-                }
-                catch (JsonException )
-                {
-                    // Intentional.
-                }
-                
-                throw exception;
-            }
-        }
-        
-        /// <inheritdoc />
-        public override async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
-        {
-            await EnsureAuthenticatedAsync();
-            
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUri + urlPath)
-            {
-                Headers =
-                {
-                    Authorization = AuthenticationHeaderValue.Parse("Bearer " + _authToken.AccessToken),
-                    Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
-                },
-                Content = new StringContent(JsonConvert.SerializeObject(payload, Formatting.None), Encoding.UTF8, "application/json")
-            };
-
-            var response = await _httpClient.SendAsync(request);
-            if (!response.IsSuccessStatusCode)
-            {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
-                }
-                catch (JsonException )
-                {
-                    // Intentional.
-                }
-                
-                throw exception;
-            }
-            
-            return JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
-        }
-
-        protected async Task EnsureAuthenticatedAsync()
+        protected override async Task EnsureAuthenticatedAsync()
         {
             // Authenticate?
             if (_authToken == null || _authToken.HasExpired())
@@ -194,7 +57,7 @@ namespace SpaceDotNet.Client
                     })
                 };
 
-                var spaceTokenResponse = await _httpClient.SendAsync(spaceTokenRequest);
+                var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest);
                 var spaceToken = JObject.Parse(await spaceTokenResponse.Content.ReadAsStringAsync());
 
                 _authToken = new OAuthToken
@@ -203,6 +66,8 @@ namespace SpaceDotNet.Client
                     RefreshToken = spaceToken.Value<string>("refresh_token"),
                     Expires = DateTimeOffset.UtcNow.AddSeconds(spaceToken.Value<int>("expires_in"))
                 };
+
+                BearerToken = _authToken.AccessToken;
             }
         }
     }

@@ -13,6 +13,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Include="..\SpaceDotNet.Client\BearerTokenConnection.cs">
+        <Link>Linked\BearerTokenConnection.cs</Link>
+      </Compile>
       <Compile Include="..\SpaceDotNet.Client\ClientCredentialsConnection.cs">
         <Link>Linked\ClientCredentialsConnection.cs</Link>
       </Compile>
