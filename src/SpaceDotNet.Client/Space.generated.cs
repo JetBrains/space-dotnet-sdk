@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-01-03T09:12:30.2926286+00:00
+//     Generated: 2020-01-08T14:57:25.9427165+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -14,8 +14,8 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace SpaceDotNet.Client
 {
@@ -23,7 +23,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class AbsenceListMode : Enumeration
     {
-        public AbsenceListMode(string value) : base(value) { }
+        private AbsenceListMode(string value) : base(value) { }
         
         public static readonly AbsenceListMode All = new AbsenceListMode("All");
         public static readonly AbsenceListMode WithAccessibleReasonUnapproved = new AbsenceListMode("WithAccessibleReasonUnapproved");
@@ -34,7 +34,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class AccessType : Enumeration
     {
-        public AccessType(string value) : base(value) { }
+        private AccessType(string value) : base(value) { }
         
         public static readonly AccessType PUBLIC = new AccessType("PUBLIC");
         public static readonly AccessType CONFIDENTIAL = new AccessType("CONFIDENTIAL");
@@ -45,7 +45,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewParticipantRole : Enumeration
     {
-        public CodeReviewParticipantRole(string value) : base(value) { }
+        private CodeReviewParticipantRole(string value) : base(value) { }
         
         public static readonly CodeReviewParticipantRole Reviewer = new CodeReviewParticipantRole("Reviewer");
         public static readonly CodeReviewParticipantRole Watcher = new CodeReviewParticipantRole("Watcher");
@@ -55,7 +55,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewParticipantState : Enumeration
     {
-        public CodeReviewParticipantState(string value) : base(value) { }
+        private CodeReviewParticipantState(string value) : base(value) { }
         
         public static readonly CodeReviewParticipantState Accepted = new CodeReviewParticipantState("Accepted");
         public static readonly CodeReviewParticipantState Rejected = new CodeReviewParticipantState("Rejected");
@@ -65,7 +65,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewState : Enumeration
     {
-        public CodeReviewState(string value) : base(value) { }
+        private CodeReviewState(string value) : base(value) { }
         
         public static readonly CodeReviewState Opened = new CodeReviewState("Opened");
         public static readonly CodeReviewState Closed = new CodeReviewState("Closed");
@@ -76,7 +76,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DiffLineType : Enumeration
     {
-        public DiffLineType(string value) : base(value) { }
+        private DiffLineType(string value) : base(value) { }
         
         public static readonly DiffLineType ADDED = new DiffLineType("ADDED");
         public static readonly DiffLineType DELETED = new DiffLineType("DELETED");
@@ -89,7 +89,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class EventParticipationStatus : Enumeration
     {
-        public EventParticipationStatus(string value) : base(value) { }
+        private EventParticipationStatus(string value) : base(value) { }
         
         public static readonly EventParticipationStatus GOING = new EventParticipationStatus("GOING");
         public static readonly EventParticipationStatus NOTGOING = new EventParticipationStatus("NOT_GOING");
@@ -101,7 +101,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ExecutionStatus : Enumeration
     {
-        public ExecutionStatus(string value) : base(value) { }
+        private ExecutionStatus(string value) : base(value) { }
         
         public static readonly ExecutionStatus SCHEDULED = new ExecutionStatus("SCHEDULED");
         public static readonly ExecutionStatus PENDING = new ExecutionStatus("PENDING");
@@ -119,7 +119,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class Gender : Enumeration
     {
-        public Gender(string value) : base(value) { }
+        private Gender(string value) : base(value) { }
         
         public static readonly Gender Female = new Gender("Female");
         public static readonly Gender Male = new Gender("Male");
@@ -131,7 +131,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitCommitChangeType : Enumeration
     {
-        public GitCommitChangeType(string value) : base(value) { }
+        private GitCommitChangeType(string value) : base(value) { }
         
         public static readonly GitCommitChangeType ADDED = new GitCommitChangeType("ADDED");
         public static readonly GitCommitChangeType DELETED = new GitCommitChangeType("DELETED");
@@ -142,7 +142,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitEntryType : Enumeration
     {
-        public GitEntryType(string value) : base(value) { }
+        private GitEntryType(string value) : base(value) { }
         
         public static readonly GitEntryType FILE = new GitEntryType("FILE");
         public static readonly GitEntryType DIR = new GitEntryType("DIR");
@@ -154,7 +154,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitGraphEdgeLineStyle : Enumeration
     {
-        public GitGraphEdgeLineStyle(string value) : base(value) { }
+        private GitGraphEdgeLineStyle(string value) : base(value) { }
         
         public static readonly GitGraphEdgeLineStyle SOLID = new GitGraphEdgeLineStyle("SOLID");
         public static readonly GitGraphEdgeLineStyle DASHED = new GitGraphEdgeLineStyle("DASHED");
@@ -165,7 +165,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitGraphEdgeType : Enumeration
     {
-        public GitGraphEdgeType(string value) : base(value) { }
+        private GitGraphEdgeType(string value) : base(value) { }
         
         public static readonly GitGraphEdgeType UP = new GitGraphEdgeType("UP");
         public static readonly GitGraphEdgeType DOWN = new GitGraphEdgeType("DOWN");
@@ -175,7 +175,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HAMethod : Enumeration
     {
-        public HAMethod(string value) : base(value) { }
+        private HAMethod(string value) : base(value) { }
         
         public static readonly HAMethod RESTCREATE = new HAMethod("REST_CREATE");
         public static readonly HAMethod RESTQUERY = new HAMethod("REST_QUERY");
@@ -193,7 +193,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HAPrimitive : Enumeration
     {
-        public HAPrimitive(string value) : base(value) { }
+        private HAPrimitive(string value) : base(value) { }
         
         public static readonly HAPrimitive Byte = new HAPrimitive("Byte");
         public static readonly HAPrimitive Short = new HAPrimitive("Short");
@@ -211,7 +211,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HATypeObjectKind : Enumeration
     {
-        public HATypeObjectKind(string value) : base(value) { }
+        private HATypeObjectKind(string value) : base(value) { }
         
         public static readonly HATypeObjectKind PAIR = new HATypeObjectKind("PAIR");
         public static readonly HATypeObjectKind TRIPLE = new HATypeObjectKind("TRIPLE");
@@ -225,7 +225,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HierarchyRole : Enumeration
     {
-        public HierarchyRole(string value) : base(value) { }
+        private HierarchyRole(string value) : base(value) { }
         
         public static readonly HierarchyRole SEALED = new HierarchyRole("SEALED");
         public static readonly HierarchyRole OPEN = new HierarchyRole("OPEN");
@@ -238,7 +238,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class InterpolatedLineState : Enumeration
     {
-        public InterpolatedLineState(string value) : base(value) { }
+        private InterpolatedLineState(string value) : base(value) { }
         
         public static readonly InterpolatedLineState Normal = new InterpolatedLineState("Normal");
         public static readonly InterpolatedLineState Deleted = new InterpolatedLineState("Deleted");
@@ -249,7 +249,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class IssuesSorting : Enumeration
     {
-        public IssuesSorting(string value) : base(value) { }
+        private IssuesSorting(string value) : base(value) { }
         
         public static readonly IssuesSorting UPDATED = new IssuesSorting("UPDATED");
         public static readonly IssuesSorting CREATED = new IssuesSorting("CREATED");
@@ -260,7 +260,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class LdapModuleType : Enumeration
     {
-        public LdapModuleType(string value) : base(value) { }
+        private LdapModuleType(string value) : base(value) { }
         
         public static readonly LdapModuleType AD = new LdapModuleType("AD");
         public static readonly LdapModuleType OPENLDAP = new LdapModuleType("OPEN_LDAP");
@@ -270,7 +270,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class LimitUnit : Enumeration
     {
-        public LimitUnit(string value) : base(value) { }
+        private LimitUnit(string value) : base(value) { }
         
         public static readonly LimitUnit BYTES = new LimitUnit("BYTES");
         public static readonly LimitUnit ENTITIES = new LimitUnit("ENTITIES");
@@ -280,7 +280,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2Access : Enumeration
     {
-        public M2Access(string value) : base(value) { }
+        private M2Access(string value) : base(value) { }
         
         public static readonly M2Access Private = new M2Access("Private");
         public static readonly M2Access Public = new M2Access("Public");
@@ -290,7 +290,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2EmailNotificationType : Enumeration
     {
-        public M2EmailNotificationType(string value) : base(value) { }
+        private M2EmailNotificationType(string value) : base(value) { }
         
         public static readonly M2EmailNotificationType INSTANT = new M2EmailNotificationType("INSTANT");
         public static readonly M2EmailNotificationType DELAYED = new M2EmailNotificationType("DELAYED");
@@ -301,7 +301,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2ObsoleteCause : Enumeration
     {
-        public M2ObsoleteCause(string value) : base(value) { }
+        private M2ObsoleteCause(string value) : base(value) { }
         
         public static readonly M2ObsoleteCause PermissionsDenied = new M2ObsoleteCause("PermissionsDenied");
     }
@@ -310,7 +310,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class MergeRequestBranchType : Enumeration
     {
-        public MergeRequestBranchType(string value) : base(value) { }
+        private MergeRequestBranchType(string value) : base(value) { }
         
         public static readonly MergeRequestBranchType SOURCE = new MergeRequestBranchType("SOURCE");
         public static readonly MergeRequestBranchType TARGET = new MergeRequestBranchType("TARGET");
@@ -320,7 +320,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class NormalizedTestServiceMessageStatus : Enumeration
     {
-        public NormalizedTestServiceMessageStatus(string value) : base(value) { }
+        private NormalizedTestServiceMessageStatus(string value) : base(value) { }
         
         public static readonly NormalizedTestServiceMessageStatus START = new NormalizedTestServiceMessageStatus("START");
         public static readonly NormalizedTestServiceMessageStatus PASSED = new NormalizedTestServiceMessageStatus("PASSED");
@@ -332,7 +332,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class NotificationFilter : Enumeration
     {
-        public NotificationFilter(string value) : base(value) { }
+        private NotificationFilter(string value) : base(value) { }
         
         public static readonly NotificationFilter ALLMESSAGES = new NotificationFilter("ALL_MESSAGES");
         public static readonly NotificationFilter MENTIONS = new NotificationFilter("MENTIONS");
@@ -344,7 +344,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class OAuthServiceType : Enumeration
     {
-        public OAuthServiceType(string value) : base(value) { }
+        private OAuthServiceType(string value) : base(value) { }
         
         public static readonly OAuthServiceType Server = new OAuthServiceType("Server");
         public static readonly OAuthServiceType WebClient = new OAuthServiceType("WebClient");
@@ -356,7 +356,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class PasswordStrength : Enumeration
     {
-        public PasswordStrength(string value) : base(value) { }
+        private PasswordStrength(string value) : base(value) { }
         
         public static readonly PasswordStrength NOPOLICY = new PasswordStrength("NO_POLICY");
         public static readonly PasswordStrength FAIR = new PasswordStrength("FAIR");
@@ -368,7 +368,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ProfileOrder : Enumeration
     {
-        public ProfileOrder(string value) : base(value) { }
+        private ProfileOrder(string value) : base(value) { }
         
         public static readonly ProfileOrder DEFAULT = new ProfileOrder("DEFAULT");
         public static readonly ProfileOrder FULLNAME = new ProfileOrder("FULL_NAME");
@@ -378,7 +378,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class RepositoryState : Enumeration
     {
-        public RepositoryState(string value) : base(value) { }
+        private RepositoryState(string value) : base(value) { }
         
         public static readonly RepositoryState READY = new RepositoryState("READY");
         public static readonly RepositoryState INPROGRESS = new RepositoryState("IN_PROGRESS");
@@ -389,7 +389,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewRevisionsChangedType : Enumeration
     {
-        public ReviewRevisionsChangedType(string value) : base(value) { }
+        private ReviewRevisionsChangedType(string value) : base(value) { }
         
         public static readonly ReviewRevisionsChangedType Created = new ReviewRevisionsChangedType("Created");
         public static readonly ReviewRevisionsChangedType Added = new ReviewRevisionsChangedType("Added");
@@ -400,7 +400,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewSorting : Enumeration
     {
-        public ReviewSorting(string value) : base(value) { }
+        private ReviewSorting(string value) : base(value) { }
         
         public static readonly ReviewSorting CreatedAtAsc = new ReviewSorting("CreatedAtAsc");
         public static readonly ReviewSorting CreatedAtDesc = new ReviewSorting("CreatedAtDesc");
@@ -412,7 +412,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewType : Enumeration
     {
-        public ReviewType(string value) : base(value) { }
+        private ReviewType(string value) : base(value) { }
         
         public static readonly ReviewType CommitSetReview = new ReviewType("CommitSetReview");
         public static readonly ReviewType MergeRequest = new ReviewType("MergeRequest");
@@ -422,7 +422,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewerChangedType : Enumeration
     {
-        public ReviewerChangedType(string value) : base(value) { }
+        private ReviewerChangedType(string value) : base(value) { }
         
         public static readonly ReviewerChangedType Joined = new ReviewerChangedType("Joined");
         public static readonly ReviewerChangedType Left = new ReviewerChangedType("Left");
@@ -432,7 +432,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class SyntaxMarkupType : Enumeration
     {
-        public SyntaxMarkupType(string value) : base(value) { }
+        private SyntaxMarkupType(string value) : base(value) { }
         
         public static readonly SyntaxMarkupType KEYWORD = new SyntaxMarkupType("KEYWORD");
         public static readonly SyntaxMarkupType COMMENT = new SyntaxMarkupType("COMMENT");
@@ -448,7 +448,7 @@ namespace SpaceDotNet.Client
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class TextMessageSeverity : Enumeration
     {
-        public TextMessageSeverity(string value) : base(value) { }
+        private TextMessageSeverity(string value) : base(value) { }
         
         public static readonly TextMessageSeverity INFO = new TextMessageSeverity("INFO");
         public static readonly TextMessageSeverity WARN = new TextMessageSeverity("WARN");
@@ -459,7 +459,7 @@ namespace SpaceDotNet.Client
     public class ATimeZoneDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
     }
@@ -468,11 +468,11 @@ namespace SpaceDotNet.Client
     public class ATimeZoneWithOffsetDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("offset")]
+        [JsonPropertyName("offset")]
         public int Offset { get; set; }
 
     }
@@ -481,15 +481,15 @@ namespace SpaceDotNet.Client
     public class AbsenceApprovalDto
     {
         [Required]
-        [JsonProperty("approved")]
+        [JsonPropertyName("approved")]
         public bool Approved { get; set; }
 
         [Required]
-        [JsonProperty("approvedBy")]
+        [JsonPropertyName("approvedBy")]
         public TDMemberProfileDto ApprovedBy { get; set; }
 
         [Required]
-        [JsonProperty("approvedAt")]
+        [JsonPropertyName("approvedAt")]
         public SpaceTime ApprovedAt { get; set; }
 
     }
@@ -498,11 +498,11 @@ namespace SpaceDotNet.Client
     public class AbsenceEventDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberWithTeamDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("events")]
+        [JsonPropertyName("events")]
         public List<AbsenceRecordDto> Events { get; set; }
 
     }
@@ -511,31 +511,31 @@ namespace SpaceDotNet.Client
     public class AbsenceReasonRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
         [Required]
-        [JsonProperty("defaultAvailability")]
+        [JsonPropertyName("defaultAvailability")]
         public bool DefaultAvailability { get; set; }
 
         [Required]
-        [JsonProperty("approvalRequired")]
+        [JsonPropertyName("approvalRequired")]
         public bool ApprovalRequired { get; set; }
 
         [Required]
-        [JsonProperty("icon")]
+        [JsonPropertyName("icon")]
         public string Icon { get; set; }
 
     }
@@ -544,46 +544,46 @@ namespace SpaceDotNet.Client
     public class AbsenceRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("member")]
+        [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
 
         [Required]
-        [JsonProperty("icon")]
+        [JsonPropertyName("icon")]
         public string Icon { get; set; }
 
-        [JsonProperty("reason")]
+        [JsonPropertyName("reason")]
         public AbsenceReasonRecordDto? Reason { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
         [Required]
-        [JsonProperty("since")]
+        [JsonPropertyName("since")]
         public SpaceDate Since { get; set; }
 
         [Required]
-        [JsonProperty("till")]
+        [JsonPropertyName("till")]
         public SpaceDate Till { get; set; }
 
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto? Location { get; set; }
 
         [Required]
-        [JsonProperty("available")]
+        [JsonPropertyName("available")]
         public bool Available { get; set; }
 
-        [JsonProperty("approval")]
+        [JsonPropertyName("approval")]
         public AbsenceApprovalDto? Approval { get; set; }
 
-        [JsonProperty("customFields")]
+        [JsonPropertyName("customFields")]
         public List<CustomColumnValuesWithSchemaDataDto>? CustomFields { get; set; }
 
     }
@@ -592,14 +592,14 @@ namespace SpaceDotNet.Client
     public class AccessRecordDto
     {
         [Required]
-        [JsonProperty("time")]
+        [JsonPropertyName("time")]
         public SpaceTime Time { get; set; }
 
         [Required]
-        [JsonProperty("address")]
+        [JsonPropertyName("address")]
         public string Address { get; set; }
 
-        [JsonProperty("userAgent")]
+        [JsonPropertyName("userAgent")]
         public string? UserAgent { get; set; }
 
     }
@@ -608,11 +608,11 @@ namespace SpaceDotNet.Client
     public class AllReactionsToItemRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("reactions")]
+        [JsonPropertyName("reactions")]
         public List<CertainReactionToItemRecordDto> Reactions { get; set; }
 
     }
@@ -621,23 +621,23 @@ namespace SpaceDotNet.Client
     public class ArticleChannelRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("channel")]
+        [JsonPropertyName("channel")]
         public M2ChannelRecordDto Channel { get; set; }
 
         [Required]
-        [JsonProperty("channelContent")]
+        [JsonPropertyName("channelContent")]
         public M2ChannelContentRecordDto ChannelContent { get; set; }
 
         [Required]
-        [JsonProperty("reactions")]
+        [JsonPropertyName("reactions")]
         public AllReactionsToItemRecordDto Reactions { get; set; }
 
     }
@@ -646,15 +646,15 @@ namespace SpaceDotNet.Client
     public class ArticleContentRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("content")]
+        [JsonPropertyName("content")]
         public string Content { get; set; }
 
     }
@@ -663,23 +663,23 @@ namespace SpaceDotNet.Client
     public class ArticleDetailsRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonProperty("event")]
+        [JsonPropertyName("event")]
         public MeetingRecordDto? Event { get; set; }
 
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto? Team { get; set; }
 
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public PRProjectDto? Project { get; set; }
 
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto? Location { get; set; }
 
     }
@@ -688,11 +688,11 @@ namespace SpaceDotNet.Client
     public class ArticleMarkdownImageDto
     {
         [Required]
-        [JsonProperty("alt")]
+        [JsonPropertyName("alt")]
         public string Alt { get; set; }
 
         [Required]
-        [JsonProperty("src")]
+        [JsonPropertyName("src")]
         public string Src { get; set; }
 
     }
@@ -701,67 +701,67 @@ namespace SpaceDotNet.Client
     public class ArticleRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public TDMemberProfileDto Author { get; set; }
 
         [Required]
-        [JsonProperty("aliases")]
+        [JsonPropertyName("aliases")]
         public List<BGArticleAliasDto> Aliases { get; set; }
 
         [Required]
-        [JsonProperty("channel")]
+        [JsonPropertyName("channel")]
         public M2ChannelRecordDto Channel { get; set; }
 
         [Required]
-        [JsonProperty("channelContent")]
+        [JsonPropertyName("channelContent")]
         public M2ChannelContentRecordDto ChannelContent { get; set; }
 
         [Required]
-        [JsonProperty("reactions")]
+        [JsonPropertyName("reactions")]
         public AllReactionsToItemRecordDto Reactions { get; set; }
 
         [Required]
-        [JsonProperty("content")]
+        [JsonPropertyName("content")]
         public string Content { get; set; }
 
-        [JsonProperty("event")]
+        [JsonPropertyName("event")]
         public MeetingRecordDto? Event { get; set; }
 
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto? Team { get; set; }
 
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public PRProjectDto? Project { get; set; }
 
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto? Location { get; set; }
 
         [Required]
-        [JsonProperty("editable")]
+        [JsonPropertyName("editable")]
         public bool Editable { get; set; }
 
         [Required]
-        [JsonProperty("previewImages")]
+        [JsonPropertyName("previewImages")]
         public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
 
         [Required]
-        [JsonProperty("preview")]
+        [JsonPropertyName("preview")]
         public string Preview { get; set; }
 
     }
@@ -774,7 +774,7 @@ namespace SpaceDotNet.Client
     // Source: attachmentinfo
     public class AttachmentInfoDto
     {
-        [JsonProperty("details")]
+        [JsonPropertyName("details")]
         public AttachmentDto? Details { get; set; }
 
     }
@@ -783,11 +783,11 @@ namespace SpaceDotNet.Client
     public class AuthModuleUsageDto
     {
         [Required]
-        [JsonProperty("authModule")]
+        [JsonPropertyName("authModule")]
         public ESAuthModuleDto AuthModule { get; set; }
 
         [Required]
-        [JsonProperty("profiles")]
+        [JsonPropertyName("profiles")]
         public int Profiles { get; set; }
 
     }
@@ -796,15 +796,15 @@ namespace SpaceDotNet.Client
     public class AvatarCropSquareDto
     {
         [Required]
-        [JsonProperty("x")]
+        [JsonPropertyName("x")]
         public int X { get; set; }
 
         [Required]
-        [JsonProperty("y")]
+        [JsonPropertyName("y")]
         public int Y { get; set; }
 
         [Required]
-        [JsonProperty("length")]
+        [JsonPropertyName("length")]
         public int Length { get; set; }
 
     }
@@ -813,17 +813,17 @@ namespace SpaceDotNet.Client
     public class AwsReportEcsContainerInfoDto
     {
         [Required]
-        [JsonProperty("arn")]
+        [JsonPropertyName("arn")]
         public string Arn { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("exitCode")]
+        [JsonPropertyName("exitCode")]
         public int? ExitCode { get; set; }
 
-        [JsonProperty("reason")]
+        [JsonPropertyName("reason")]
         public string? Reason { get; set; }
 
     }
@@ -832,11 +832,11 @@ namespace SpaceDotNet.Client
     public class BGArticleAliasDto
     {
         [Required]
-        [JsonProperty("alias")]
+        [JsonPropertyName("alias")]
         public string Alias { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
     }
@@ -845,7 +845,7 @@ namespace SpaceDotNet.Client
     public class BGArticleIdDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
     }
@@ -854,11 +854,11 @@ namespace SpaceDotNet.Client
     public class BGDatesDto
     {
         [Required]
-        [JsonProperty("first")]
+        [JsonPropertyName("first")]
         public SpaceTime First { get; set; }
 
         [Required]
-        [JsonProperty("last")]
+        [JsonPropertyName("last")]
         public SpaceTime Last { get; set; }
 
     }
@@ -867,20 +867,20 @@ namespace SpaceDotNet.Client
     public class BGStatsDto
     {
         [Required]
-        [JsonProperty("totalBlogs")]
+        [JsonPropertyName("totalBlogs")]
         public int TotalBlogs { get; set; }
 
         [Required]
-        [JsonProperty("teams")]
+        [JsonPropertyName("teams")]
         public List<Object0Dto> Teams { get; set; }
 
         [Required]
-        [JsonProperty("projects")]
-        public List<Object1Dto> Projects { get; set; }
+        [JsonPropertyName("projects")]
+        public List<Object0Dto> Projects { get; set; }
 
         [Required]
-        [JsonProperty("locations")]
-        public List<Object2Dto> Locations { get; set; }
+        [JsonPropertyName("locations")]
+        public List<Object0Dto> Locations { get; set; }
 
     }
     
@@ -888,11 +888,11 @@ namespace SpaceDotNet.Client
     public class BirthdayEventDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberWithTeamDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("birthday")]
+        [JsonPropertyName("birthday")]
         public SpaceDate Birthday { get; set; }
 
     }
@@ -907,7 +907,7 @@ namespace SpaceDotNet.Client
     public class BooleanCFValueDto
          : CFValueDto
     {
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public bool? Value { get; set; }
 
     }
@@ -916,11 +916,11 @@ namespace SpaceDotNet.Client
     public class BranchInfoDto
     {
         [Required]
-        [JsonProperty("head")]
+        [JsonPropertyName("head")]
         public string Head { get; set; }
 
         [Required]
-        [JsonProperty("ref")]
+        [JsonPropertyName("ref")]
         public string Ref { get; set; }
 
     }
@@ -930,11 +930,11 @@ namespace SpaceDotNet.Client
          : ServiceMessageDto
     {
         [Required]
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -943,15 +943,15 @@ namespace SpaceDotNet.Client
     public class CAutomationTaskPrincipalDetailsDto
     {
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public PRProjectDto Project { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
     }
@@ -960,7 +960,7 @@ namespace SpaceDotNet.Client
     public class CBuiltInServicePrincipalDetailsDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
     }
@@ -969,7 +969,7 @@ namespace SpaceDotNet.Client
     public class CExternalServicePrincipalDetailsDto
     {
         [Required]
-        [JsonProperty("service")]
+        [JsonPropertyName("service")]
         public ESServiceDto Service { get; set; }
 
     }
@@ -993,10 +993,10 @@ namespace SpaceDotNet.Client
     public class CPrincipalDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("details")]
+        [JsonPropertyName("details")]
         public CPrincipalDetailsDto? Details { get; set; }
 
     }
@@ -1010,7 +1010,7 @@ namespace SpaceDotNet.Client
     public class CUserPrincipalDetailsDto
     {
         [Required]
-        [JsonProperty("user")]
+        [JsonPropertyName("user")]
         public TDMemberProfileDto User { get; set; }
 
     }
@@ -1019,11 +1019,11 @@ namespace SpaceDotNet.Client
     public class CUserWithEmailPrincipalDetailsDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
 
     }
@@ -1032,30 +1032,30 @@ namespace SpaceDotNet.Client
     public class CertainReactionToItemRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("itemId")]
+        [JsonPropertyName("itemId")]
         public string ItemId { get; set; }
 
         [Required]
-        [JsonProperty("reaction")]
+        [JsonPropertyName("reaction")]
         public ReactionTypeRecordDto Reaction { get; set; }
 
         [Required]
-        [JsonProperty("count")]
+        [JsonPropertyName("count")]
         public int Count { get; set; }
 
         [Required]
-        [JsonProperty("meReacted")]
+        [JsonPropertyName("meReacted")]
         public bool MeReacted { get; set; }
 
         [Required]
-        [JsonProperty("principals")]
+        [JsonPropertyName("principals")]
         public List<CPrincipalDto> Principals { get; set; }
 
-        [JsonProperty("order")]
+        [JsonPropertyName("order")]
         public long? Order { get; set; }
 
     }
@@ -1064,15 +1064,15 @@ namespace SpaceDotNet.Client
     public class ChangeInReviewDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("change")]
+        [JsonPropertyName("change")]
         public GitCommitChangeDto Change { get; set; }
 
         [Required]
-        [JsonProperty("read")]
+        [JsonPropertyName("read")]
         public bool Read { get; set; }
 
     }
@@ -1081,48 +1081,48 @@ namespace SpaceDotNet.Client
     public class ChannelItemRecordDto
     {
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
-        [JsonProperty("details")]
+        [JsonPropertyName("details")]
         public M2ItemContentDetailsDto? Details { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public CPrincipalDto Author { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
         [Required]
-        [JsonProperty("time")]
+        [JsonPropertyName("time")]
         public long Time { get; set; }
 
-        [JsonProperty("reactions")]
+        [JsonPropertyName("reactions")]
         public AllReactionsToItemRecordDto? Reactions { get; set; }
 
-        [JsonProperty("thread")]
+        [JsonPropertyName("thread")]
         public M2ChannelRecordDto? Thread { get; set; }
 
-        [JsonProperty("projectedItem")]
+        [JsonPropertyName("projectedItem")]
         public ChannelItemRecordDto? ProjectedItem { get; set; }
 
-        [JsonProperty("attachments")]
+        [JsonPropertyName("attachments")]
         public List<AttachmentInfoDto>? Attachments { get; set; }
 
-        [JsonProperty("attachmentsInfos")]
+        [JsonPropertyName("attachmentsInfos")]
         public List<AttachmentInfoDto>? AttachmentsInfos { get; set; }
 
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonProperty("edited")]
+        [JsonPropertyName("edited")]
         public SpaceTime? Edited { get; set; }
 
     }
@@ -1131,32 +1131,32 @@ namespace SpaceDotNet.Client
     public class ChannelItemSnapshotDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("channelId")]
+        [JsonPropertyName("channelId")]
         public string? ChannelId { get; set; }
 
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
-        [JsonProperty("details")]
+        [JsonPropertyName("details")]
         public M2ItemContentDetailsDto? Details { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public CPrincipalDto Author { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
         [Required]
-        [JsonProperty("time")]
+        [JsonPropertyName("time")]
         public long Time { get; set; }
 
-        [JsonProperty("attachments")]
+        [JsonPropertyName("attachments")]
         public List<AttachmentInfoDto>? Attachments { get; set; }
 
     }
@@ -1165,11 +1165,11 @@ namespace SpaceDotNet.Client
     public class ChannelParticipantDto
     {
         [Required]
-        [JsonProperty("principal")]
+        [JsonPropertyName("principal")]
         public CPrincipalDto Principal { get; set; }
 
         [Required]
-        [JsonProperty("messageCount")]
+        [JsonPropertyName("messageCount")]
         public int MessageCount { get; set; }
 
     }
@@ -1178,15 +1178,15 @@ namespace SpaceDotNet.Client
     public class ChannelSpecificDefaultsDto
     {
         [Required]
-        [JsonProperty("filter")]
+        [JsonPropertyName("filter")]
         public NotificationFilter Filter { get; set; }
 
         [Required]
-        [JsonProperty("push")]
+        [JsonPropertyName("push")]
         public bool Push { get; set; }
 
         [Required]
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public M2EmailNotificationType Email { get; set; }
 
     }
@@ -1195,41 +1195,41 @@ namespace SpaceDotNet.Client
     public class ChecklistDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string? ProjectId { get; set; }
 
-        [JsonProperty("owner")]
+        [JsonPropertyName("owner")]
         public TDMemberProfileDto? Owner { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("root")]
+        [JsonPropertyName("root")]
         public PlanItemDto? Root { get; set; }
 
-        [JsonProperty("rootTag")]
+        [JsonPropertyName("rootTag")]
         public PlanningTagDto? RootTag { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
         [Required]
-        [JsonProperty("totalItemsCount")]
+        [JsonPropertyName("totalItemsCount")]
         public int TotalItemsCount { get; set; }
 
         [Required]
-        [JsonProperty("doneItemsCount")]
+        [JsonPropertyName("doneItemsCount")]
         public int DoneItemsCount { get; set; }
 
-        [JsonProperty("updatedTime")]
+        [JsonPropertyName("updatedTime")]
         public SpaceTime? UpdatedTime { get; set; }
 
     }
@@ -1238,11 +1238,11 @@ namespace SpaceDotNet.Client
     public class CodeDiscussionAddedFeedEventDto
     {
         [Required]
-        [JsonProperty("codeDiscussion")]
+        [JsonPropertyName("codeDiscussion")]
         public CodeDiscussionRecordDto CodeDiscussion { get; set; }
 
         [Required]
-        [JsonProperty("codeReview")]
+        [JsonPropertyName("codeReview")]
         public CodeReviewRecordDto CodeReview { get; set; }
 
     }
@@ -1251,27 +1251,27 @@ namespace SpaceDotNet.Client
     public class CodeDiscussionAnchorDto
     {
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public ProjectKeyDto Project { get; set; }
 
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
-        [JsonProperty("filename")]
+        [JsonPropertyName("filename")]
         public string? Filename { get; set; }
 
-        [JsonProperty("line")]
+        [JsonPropertyName("line")]
         public int? Line { get; set; }
 
-        [JsonProperty("oldLine")]
+        [JsonPropertyName("oldLine")]
         public int? OldLine { get; set; }
 
-        [JsonProperty("interpolatedLineState")]
+        [JsonPropertyName("interpolatedLineState")]
         public InterpolatedLineState? InterpolatedLineState { get; set; }
 
     }
@@ -1280,40 +1280,40 @@ namespace SpaceDotNet.Client
     public class CodeDiscussionRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("anchor")]
+        [JsonPropertyName("anchor")]
         public CodeDiscussionAnchorDto Anchor { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
         [Required]
-        [JsonProperty("channel")]
+        [JsonPropertyName("channel")]
         public M2ChannelRecordDto Channel { get; set; }
 
         [Required]
-        [JsonProperty("resolved")]
+        [JsonPropertyName("resolved")]
         public bool Resolved { get; set; }
 
-        [JsonProperty("snippet")]
+        [JsonPropertyName("snippet")]
         public CodeDiscussionSnippetDto? Snippet { get; set; }
 
-        [JsonProperty("review")]
+        [JsonPropertyName("review")]
         public CodeReviewRecordDto? Review { get; set; }
 
-        [JsonProperty("reviews")]
+        [JsonPropertyName("reviews")]
         public List<CodeReviewRecordDto>? Reviews { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
     }
@@ -1328,7 +1328,7 @@ namespace SpaceDotNet.Client
          : CodeDiscussionSnippetDto
     {
         [Required]
-        [JsonProperty("lines")]
+        [JsonPropertyName("lines")]
         public List<InlineDiffLineDto> Lines { get; set; }
 
     }
@@ -1338,7 +1338,7 @@ namespace SpaceDotNet.Client
          : CodeDiscussionSnippetDto
     {
         [Required]
-        [JsonProperty("lines")]
+        [JsonPropertyName("lines")]
         public List<CodeLineDto> Lines { get; set; }
 
     }
@@ -1347,14 +1347,14 @@ namespace SpaceDotNet.Client
     public class CodeLineDto
     {
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
         [Required]
-        [JsonProperty("offset")]
+        [JsonPropertyName("offset")]
         public int Offset { get; set; }
 
-        [JsonProperty("syntax")]
+        [JsonPropertyName("syntax")]
         public List<SyntaxMarkupDto>? Syntax { get; set; }
 
     }
@@ -1363,31 +1363,31 @@ namespace SpaceDotNet.Client
     public class CodeReviewDetailedInfoDto
     {
         [Required]
-        [JsonProperty("shortInfo")]
+        [JsonPropertyName("shortInfo")]
         public CodeReviewRecordDto ShortInfo { get; set; }
 
         [Required]
-        [JsonProperty("commits")]
+        [JsonPropertyName("commits")]
         public List<RevisionsInReviewDto> Commits { get; set; }
 
         [Required]
-        [JsonProperty("lostCommits")]
+        [JsonPropertyName("lostCommits")]
         public List<RevisionsInReviewDto> LostCommits { get; set; }
 
         [Required]
-        [JsonProperty("participants")]
+        [JsonPropertyName("participants")]
         public List<CodeReviewParticipantDto> Participants { get; set; }
 
         [Required]
-        [JsonProperty("branches")]
+        [JsonPropertyName("branches")]
         public List<TrackedBranchesInReviewDto> Branches { get; set; }
 
         [Required]
-        [JsonProperty("unresolvedDiscussions")]
+        [JsonPropertyName("unresolvedDiscussions")]
         public int UnresolvedDiscussions { get; set; }
 
         [Required]
-        [JsonProperty("projectHasMembers")]
+        [JsonPropertyName("projectHasMembers")]
         public bool ProjectHasMembers { get; set; }
 
     }
@@ -1396,7 +1396,7 @@ namespace SpaceDotNet.Client
     public class CodeReviewDiscussionAddedFeedEventDto
     {
         [Required]
-        [JsonProperty("discussion")]
+        [JsonPropertyName("discussion")]
         public CodeReviewDiscussionRecordDto Discussion { get; set; }
 
     }
@@ -1405,23 +1405,23 @@ namespace SpaceDotNet.Client
     public class CodeReviewDiscussionRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("review")]
+        [JsonPropertyName("review")]
         public CodeReviewRecordDto Review { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
         [Required]
-        [JsonProperty("channel")]
+        [JsonPropertyName("channel")]
         public M2ChannelRecordDto Channel { get; set; }
 
         [Required]
-        [JsonProperty("resolved")]
+        [JsonPropertyName("resolved")]
         public bool Resolved { get; set; }
 
     }
@@ -1430,14 +1430,14 @@ namespace SpaceDotNet.Client
     public class CodeReviewParticipantDto
     {
         [Required]
-        [JsonProperty("user")]
+        [JsonPropertyName("user")]
         public TDMemberProfileDto User { get; set; }
 
         [Required]
-        [JsonProperty("role")]
+        [JsonPropertyName("role")]
         public CodeReviewParticipantRole Role { get; set; }
 
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         public CodeReviewParticipantState? State { get; set; }
 
     }
@@ -1451,15 +1451,15 @@ namespace SpaceDotNet.Client
     public class CodeReviewWithCountDto
     {
         [Required]
-        [JsonProperty("review")]
+        [JsonPropertyName("review")]
         public CodeReviewRecordDto Review { get; set; }
 
         [Required]
-        [JsonProperty("messagesCount")]
+        [JsonPropertyName("messagesCount")]
         public int MessagesCount { get; set; }
 
         [Required]
-        [JsonProperty("authors")]
+        [JsonPropertyName("authors")]
         public List<GitCommitterProfileDto> Authors { get; set; }
 
     }
@@ -1468,27 +1468,27 @@ namespace SpaceDotNet.Client
     public class CodeSnippetAnchorDto
     {
         [Required]
-        [JsonProperty("projectKey")]
+        [JsonPropertyName("projectKey")]
         public ProjectKeyDto ProjectKey { get; set; }
 
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
         [Required]
-        [JsonProperty("filename")]
+        [JsonPropertyName("filename")]
         public string Filename { get; set; }
 
         [Required]
-        [JsonProperty("lineStart")]
+        [JsonPropertyName("lineStart")]
         public int LineStart { get; set; }
 
         [Required]
-        [JsonProperty("lineEnd")]
+        [JsonPropertyName("lineEnd")]
         public int LineEnd { get; set; }
 
     }
@@ -1498,45 +1498,45 @@ namespace SpaceDotNet.Client
          : CodeReviewRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public ProjectKeyDto Project { get; set; }
 
         [Required]
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("number")]
+        [JsonPropertyName("number")]
         public int Number { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         public CodeReviewState State { get; set; }
 
-        [JsonProperty("canBeReopened")]
+        [JsonPropertyName("canBeReopened")]
         public bool? CanBeReopened { get; set; }
 
         [Required]
-        [JsonProperty("createdAt")]
+        [JsonPropertyName("createdAt")]
         public long CreatedAt { get; set; }
 
         [Required]
-        [JsonProperty("createdBy")]
+        [JsonPropertyName("createdBy")]
         public TDMemberProfileDto CreatedBy { get; set; }
 
         [Required]
-        [JsonProperty("participants")]
+        [JsonPropertyName("participants")]
         public List<CodeReviewParticipantDto> Participants { get; set; }
 
-        [JsonProperty("feedChannel")]
+        [JsonPropertyName("feedChannel")]
         public M2ChannelRecordDto? FeedChannel { get; set; }
 
     }
@@ -1545,46 +1545,46 @@ namespace SpaceDotNet.Client
     public class CommitStatusDTODto
     {
         [Required]
-        [JsonProperty("projectKey")]
+        [JsonPropertyName("projectKey")]
         public ProjectKeyDto ProjectKey { get; set; }
 
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("branch")]
+        [JsonPropertyName("branch")]
         public string Branch { get; set; }
 
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
         [Required]
-        [JsonProperty("executionStatus")]
+        [JsonPropertyName("executionStatus")]
         public ExecutionStatus ExecutionStatus { get; set; }
 
         [Required]
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
         [Required]
-        [JsonProperty("externalServiceName")]
+        [JsonPropertyName("externalServiceName")]
         public string ExternalServiceName { get; set; }
 
         [Required]
-        [JsonProperty("taskName")]
+        [JsonPropertyName("taskName")]
         public string TaskName { get; set; }
 
         [Required]
-        [JsonProperty("taskId")]
+        [JsonPropertyName("taskId")]
         public string TaskId { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public long Timestamp { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
     }
@@ -1594,11 +1594,11 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -1608,11 +1608,11 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -1621,7 +1621,7 @@ namespace SpaceDotNet.Client
     public class ContainerPackageTypeDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
     }
@@ -1630,11 +1630,11 @@ namespace SpaceDotNet.Client
     public class CounterDto
     {
         [Required]
-        [JsonProperty("resolved")]
+        [JsonPropertyName("resolved")]
         public int Resolved { get; set; }
 
         [Required]
-        [JsonProperty("unresolved")]
+        [JsonPropertyName("unresolved")]
         public int Unresolved { get; set; }
 
     }
@@ -1648,49 +1648,49 @@ namespace SpaceDotNet.Client
     public class CustomFieldDto
     {
         [Required]
-        [JsonProperty("extendedType")]
+        [JsonPropertyName("extendedType")]
         public ExtendedTypeDto ExtendedType { get; set; }
 
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public string Key { get; set; }
 
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public CFTypeDto Type { get; set; }
 
-        [JsonProperty("constraint")]
+        [JsonPropertyName("constraint")]
         public CFConstraintDto? Constraint { get; set; }
 
         [Required]
-        [JsonProperty("required")]
+        [JsonPropertyName("required")]
         public bool Required { get; set; }
 
         [Required]
-        [JsonProperty("private")]
+        [JsonPropertyName("private")]
         public bool Private { get; set; }
 
-        [JsonProperty("access")]
+        [JsonPropertyName("access")]
         public AccessType? Access { get; set; }
 
         [Required]
-        [JsonProperty("defaultValue")]
+        [JsonPropertyName("defaultValue")]
         public CFValueDto DefaultValue { get; set; }
 
         [Required]
-        [JsonProperty("order")]
+        [JsonPropertyName("order")]
         public int Order { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
     }
@@ -1699,11 +1699,11 @@ namespace SpaceDotNet.Client
     public class CustomFieldValueDto
     {
         [Required]
-        [JsonProperty("field")]
+        [JsonPropertyName("field")]
         public CustomFieldDto Field { get; set; }
 
         [Required]
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public CFValueDto Value { get; set; }
 
     }
@@ -1712,11 +1712,11 @@ namespace SpaceDotNet.Client
     public class CustomFieldsRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public List<CustomFieldValueDto> Values { get; set; }
 
     }
@@ -1725,49 +1725,49 @@ namespace SpaceDotNet.Client
     public class DRDraftDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
         [Required]
-        [JsonProperty("modified")]
+        [JsonPropertyName("modified")]
         public SpaceTime Modified { get; set; }
 
-        [JsonProperty("published")]
+        [JsonPropertyName("published")]
         public ArticleRecordDto? Published { get; set; }
 
         [Required]
-        [JsonProperty("shared")]
+        [JsonPropertyName("shared")]
         public bool Shared { get; set; }
 
         [Required]
-        [JsonProperty("accessOrdinal")]
+        [JsonPropertyName("accessOrdinal")]
         public int AccessOrdinal { get; set; }
 
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto? Team { get; set; }
 
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public PRProjectDto? Project { get; set; }
 
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto? Location { get; set; }
 
         [Required]
-        [JsonProperty("calendarEvent")]
+        [JsonPropertyName("calendarEvent")]
         public bool CalendarEvent { get; set; }
 
-        [JsonProperty("meeting")]
+        [JsonPropertyName("meeting")]
         public MeetingRecordDto? Meeting { get; set; }
 
-        [JsonProperty("version")]
+        [JsonPropertyName("version")]
         public long? Version { get; set; }
 
     }
@@ -1776,7 +1776,7 @@ namespace SpaceDotNet.Client
     public class DRDraftIdDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
     }
@@ -1785,16 +1785,16 @@ namespace SpaceDotNet.Client
     public class DTOAbsenceSubscriptionDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto? Location { get; set; }
 
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto? Team { get; set; }
 
-        [JsonProperty("reason")]
+        [JsonPropertyName("reason")]
         public AbsenceReasonRecordDto? Reason { get; set; }
 
     }
@@ -1803,21 +1803,21 @@ namespace SpaceDotNet.Client
     public class DTOFullRightWithoutTypeDto
     {
         [Required]
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
         [Required]
-        [JsonProperty("grantedForUsers")]
+        [JsonPropertyName("grantedForUsers")]
         public bool GrantedForUsers { get; set; }
 
-        [JsonProperty("featureFlag")]
+        [JsonPropertyName("featureFlag")]
         public FeatureFlagDto? FeatureFlag { get; set; }
 
     }
@@ -1826,21 +1826,21 @@ namespace SpaceDotNet.Client
     public class DTOLimitDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("unit")]
+        [JsonPropertyName("unit")]
         public LimitUnit Unit { get; set; }
 
         [Required]
-        [JsonProperty("estimate")]
+        [JsonPropertyName("estimate")]
         public long Estimate { get; set; }
 
-        [JsonProperty("softCap")]
+        [JsonPropertyName("softCap")]
         public long? SoftCap { get; set; }
 
-        [JsonProperty("hardCap")]
+        [JsonPropertyName("hardCap")]
         public long? HardCap { get; set; }
 
     }
@@ -1849,11 +1849,11 @@ namespace SpaceDotNet.Client
     public class DTORightDto
     {
         [Required]
-        [JsonProperty("typeCode")]
+        [JsonPropertyName("typeCode")]
         public string TypeCode { get; set; }
 
         [Required]
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
     }
@@ -1862,11 +1862,11 @@ namespace SpaceDotNet.Client
     public class DTORightTypeDto
     {
         [Required]
-        [JsonProperty("typeCode")]
+        [JsonPropertyName("typeCode")]
         public string TypeCode { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
     }
@@ -1875,11 +1875,11 @@ namespace SpaceDotNet.Client
     public class DTORightTypeRightDto
     {
         [Required]
-        [JsonProperty("rightType")]
+        [JsonPropertyName("rightType")]
         public DTORightTypeDto RightType { get; set; }
 
         [Required]
-        [JsonProperty("rights")]
+        [JsonPropertyName("rights")]
         public List<DTOFullRightWithoutTypeDto> Rights { get; set; }
 
     }
@@ -1888,7 +1888,7 @@ namespace SpaceDotNet.Client
     public class DTORightsDto
     {
         [Required]
-        [JsonProperty("rights")]
+        [JsonPropertyName("rights")]
         public List<DTORightDto> Rights { get; set; }
 
     }
@@ -1897,11 +1897,11 @@ namespace SpaceDotNet.Client
     public class DTORightsDepsDto
     {
         [Required]
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
         [Required]
-        [JsonProperty("deps")]
+        [JsonPropertyName("deps")]
         public List<string> Deps { get; set; }
 
     }
@@ -1910,15 +1910,15 @@ namespace SpaceDotNet.Client
     public class DTORightsGroupDto
     {
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("priority")]
+        [JsonPropertyName("priority")]
         public int Priority { get; set; }
 
         [Required]
-        [JsonProperty("rights")]
+        [JsonPropertyName("rights")]
         public List<DTORightDto> Rights { get; set; }
 
     }
@@ -1927,15 +1927,15 @@ namespace SpaceDotNet.Client
     public class DTORightsWithHierarchyDto
     {
         [Required]
-        [JsonProperty("rights")]
+        [JsonPropertyName("rights")]
         public List<DTORightTypeRightDto> Rights { get; set; }
 
         [Required]
-        [JsonProperty("rightsGroups")]
+        [JsonPropertyName("rightsGroups")]
         public List<DTORightsGroupDto> RightsGroups { get; set; }
 
         [Required]
-        [JsonProperty("deps")]
+        [JsonPropertyName("deps")]
         public List<DTORightsDepsDto> Deps { get; set; }
 
     }
@@ -1944,13 +1944,13 @@ namespace SpaceDotNet.Client
     public class DateCFConstraintDto
          : CFConstraintDto
     {
-        [JsonProperty("min")]
+        [JsonPropertyName("min")]
         public SpaceDate? Min { get; set; }
 
-        [JsonProperty("max")]
+        [JsonPropertyName("max")]
         public SpaceDate? Max { get; set; }
 
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string? Message { get; set; }
 
     }
@@ -1965,7 +1965,7 @@ namespace SpaceDotNet.Client
     public class DateCFValueDto
          : CFValueDto
     {
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public SpaceDate? Value { get; set; }
 
     }
@@ -1974,7 +1974,7 @@ namespace SpaceDotNet.Client
     public class DeletedAttachmentDto
     {
         [Required]
-        [JsonProperty("deletedIdentity")]
+        [JsonPropertyName("deletedIdentity")]
         public string DeletedIdentity { get; set; }
 
     }
@@ -1982,11 +1982,11 @@ namespace SpaceDotNet.Client
     // Source: diffcontext
     public class DiffContextDto
     {
-        [JsonProperty("left")]
+        [JsonPropertyName("left")]
         public DiffSideDto? Left { get; set; }
 
         [Required]
-        [JsonProperty("right")]
+        [JsonPropertyName("right")]
         public DiffSideDto Right { get; set; }
 
     }
@@ -2001,7 +2001,7 @@ namespace SpaceDotNet.Client
          : DiffSideDto
     {
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
     }
@@ -2011,11 +2011,11 @@ namespace SpaceDotNet.Client
          : DiffSideDto
     {
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
         [Required]
-        [JsonProperty("path")]
+        [JsonPropertyName("path")]
         public string Path { get; set; }
 
     }
@@ -2024,15 +2024,15 @@ namespace SpaceDotNet.Client
     public class EMavenRepositorySettingsDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("permissions")]
+        [JsonPropertyName("permissions")]
         public List<string> Permissions { get; set; }
 
     }
@@ -2041,22 +2041,22 @@ namespace SpaceDotNet.Client
     public class EMavenSettingsDto
     {
         [Required]
-        [JsonProperty("organizationId")]
+        [JsonPropertyName("organizationId")]
         public long OrganizationId { get; set; }
 
         [Required]
-        [JsonProperty("principalName")]
+        [JsonPropertyName("principalName")]
         public string PrincipalName { get; set; }
 
         [Required]
-        [JsonProperty("principalInfo")]
+        [JsonPropertyName("principalInfo")]
         public string PrincipalInfo { get; set; }
 
         [Required]
-        [JsonProperty("repositories")]
-        public List<Object3Dto> Repositories { get; set; }
+        [JsonPropertyName("repositories")]
+        public List<Object1Dto> Repositories { get; set; }
 
-        [JsonProperty("storageLimit")]
+        [JsonPropertyName("storageLimit")]
         public DTOLimitDto? StorageLimit { get; set; }
 
     }
@@ -2065,22 +2065,22 @@ namespace SpaceDotNet.Client
     public class ERegistrySettingsDto
     {
         [Required]
-        [JsonProperty("organizationId")]
+        [JsonPropertyName("organizationId")]
         public long OrganizationId { get; set; }
 
         [Required]
-        [JsonProperty("principalName")]
+        [JsonPropertyName("principalName")]
         public string PrincipalName { get; set; }
 
         [Required]
-        [JsonProperty("principalInfo")]
+        [JsonPropertyName("principalInfo")]
         public string PrincipalInfo { get; set; }
 
         [Required]
-        [JsonProperty("repositories")]
-        public List<Object4Dto> Repositories { get; set; }
+        [JsonPropertyName("repositories")]
+        public List<Object1Dto> Repositories { get; set; }
 
-        [JsonProperty("storageLimit")]
+        [JsonPropertyName("storageLimit")]
         public DTOLimitDto? StorageLimit { get; set; }
 
     }
@@ -2089,19 +2089,19 @@ namespace SpaceDotNet.Client
     public class ERepositorySettingsDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public long Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("immutableTags")]
+        [JsonPropertyName("immutableTags")]
         public bool ImmutableTags { get; set; }
 
         [Required]
-        [JsonProperty("permissions")]
+        [JsonPropertyName("permissions")]
         public List<string> Permissions { get; set; }
 
     }
@@ -2110,30 +2110,30 @@ namespace SpaceDotNet.Client
     public class ESAuthModuleDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public string Key { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("ordinal")]
+        [JsonPropertyName("ordinal")]
         public int Ordinal { get; set; }
 
         [Required]
-        [JsonProperty("enabled")]
+        [JsonPropertyName("enabled")]
         public bool Enabled { get; set; }
 
-        [JsonProperty("iconDataURI")]
+        [JsonPropertyName("iconDataURI")]
         public string? IconDataURI { get; set; }
 
         [Required]
-        [JsonProperty("settings")]
+        [JsonPropertyName("settings")]
         public ESAuthModuleSettingsDto Settings { get; set; }
 
     }
@@ -2148,10 +2148,10 @@ namespace SpaceDotNet.Client
          : ESPasswordAuthModuleSettingsDto
     {
         [Required]
-        [JsonProperty("passwordStrengthPolicy")]
+        [JsonPropertyName("passwordStrengthPolicy")]
         public PasswordStrength PasswordStrengthPolicy { get; set; }
 
-        [JsonProperty("domains")]
+        [JsonPropertyName("domains")]
         public List<string>? Domains { get; set; }
 
     }
@@ -2161,10 +2161,10 @@ namespace SpaceDotNet.Client
          : ESProfileLoginDetailsDto
     {
         [Required]
-        [JsonProperty("passwordName")]
+        [JsonPropertyName("passwordName")]
         public string PasswordName { get; set; }
 
-        [JsonProperty("passwordChangeRequest")]
+        [JsonPropertyName("passwordChangeRequest")]
         public string? PasswordChangeRequest { get; set; }
 
     }
@@ -2173,23 +2173,23 @@ namespace SpaceDotNet.Client
     public class ESDefaultProfileLoginDetailsDto
          : ESProfileLoginDetailsDto
     {
-        [JsonProperty("login")]
+        [JsonPropertyName("login")]
         public string? Login { get; set; }
 
-        [JsonProperty("firstName")]
+        [JsonPropertyName("firstName")]
         public string? FirstName { get; set; }
 
-        [JsonProperty("lastName")]
+        [JsonPropertyName("lastName")]
         public string? LastName { get; set; }
 
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string? Email { get; set; }
 
         [Required]
-        [JsonProperty("emailVerified")]
+        [JsonPropertyName("emailVerified")]
         public bool EmailVerified { get; set; }
 
-        [JsonProperty("avatarUrl")]
+        [JsonPropertyName("avatarUrl")]
         public string? AvatarUrl { get; set; }
 
     }
@@ -2211,23 +2211,23 @@ namespace SpaceDotNet.Client
          : ESOAuth2AuthModuleSettingsDto
     {
         [Required]
-        [JsonProperty("githubUrl")]
+        [JsonPropertyName("githubUrl")]
         public string GithubUrl { get; set; }
 
         [Required]
-        [JsonProperty("clientId")]
+        [JsonPropertyName("clientId")]
         public string ClientId { get; set; }
 
         [Required]
-        [JsonProperty("clientSecret")]
+        [JsonPropertyName("clientSecret")]
         public string ClientSecret { get; set; }
 
         [Required]
-        [JsonProperty("registerNewUsers")]
+        [JsonPropertyName("registerNewUsers")]
         public bool RegisterNewUsers { get; set; }
 
         [Required]
-        [JsonProperty("organizations")]
+        [JsonPropertyName("organizations")]
         public List<string> Organizations { get; set; }
 
     }
@@ -2236,26 +2236,26 @@ namespace SpaceDotNet.Client
     public class ESGithubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto
     {
-        [JsonProperty("login")]
+        [JsonPropertyName("login")]
         public string? Login { get; set; }
 
-        [JsonProperty("firstName")]
+        [JsonPropertyName("firstName")]
         public string? FirstName { get; set; }
 
-        [JsonProperty("lastName")]
+        [JsonPropertyName("lastName")]
         public string? LastName { get; set; }
 
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string? Email { get; set; }
 
         [Required]
-        [JsonProperty("emailVerified")]
+        [JsonPropertyName("emailVerified")]
         public bool EmailVerified { get; set; }
 
-        [JsonProperty("avatarUrl")]
+        [JsonPropertyName("avatarUrl")]
         public string? AvatarUrl { get; set; }
 
-        [JsonProperty("organizations")]
+        [JsonPropertyName("organizations")]
         public List<string>? Organizations { get; set; }
 
     }
@@ -2265,19 +2265,19 @@ namespace SpaceDotNet.Client
          : ESOAuth2AuthModuleSettingsDto
     {
         [Required]
-        [JsonProperty("clientId")]
+        [JsonPropertyName("clientId")]
         public string ClientId { get; set; }
 
         [Required]
-        [JsonProperty("clientSecret")]
+        [JsonPropertyName("clientSecret")]
         public string ClientSecret { get; set; }
 
         [Required]
-        [JsonProperty("registerNewUsers")]
+        [JsonPropertyName("registerNewUsers")]
         public bool RegisterNewUsers { get; set; }
 
         [Required]
-        [JsonProperty("domains")]
+        [JsonPropertyName("domains")]
         public List<string> Domains { get; set; }
 
     }
@@ -2293,24 +2293,24 @@ namespace SpaceDotNet.Client
          : ESOAuth2AuthModuleSettingsDto
     {
         [Required]
-        [JsonProperty("hubUrl")]
+        [JsonPropertyName("hubUrl")]
         public string HubUrl { get; set; }
 
         [Required]
-        [JsonProperty("clientId")]
+        [JsonPropertyName("clientId")]
         public string ClientId { get; set; }
 
         [Required]
-        [JsonProperty("clientSecret")]
+        [JsonPropertyName("clientSecret")]
         public string ClientSecret { get; set; }
 
-        [JsonProperty("registerNewUsers")]
+        [JsonPropertyName("registerNewUsers")]
         public bool? RegisterNewUsers { get; set; }
 
-        [JsonProperty("orgAuthProviderName")]
+        [JsonPropertyName("orgAuthProviderName")]
         public string? OrgAuthProviderName { get; set; }
 
-        [JsonProperty("groups")]
+        [JsonPropertyName("groups")]
         public List<string>? Groups { get; set; }
 
     }
@@ -2319,26 +2319,26 @@ namespace SpaceDotNet.Client
     public class ESHubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto
     {
-        [JsonProperty("login")]
+        [JsonPropertyName("login")]
         public string? Login { get; set; }
 
-        [JsonProperty("hubAuthModuleLogin")]
+        [JsonPropertyName("hubAuthModuleLogin")]
         public string? HubAuthModuleLogin { get; set; }
 
-        [JsonProperty("firstName")]
+        [JsonPropertyName("firstName")]
         public string? FirstName { get; set; }
 
-        [JsonProperty("lastName")]
+        [JsonPropertyName("lastName")]
         public string? LastName { get; set; }
 
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string? Email { get; set; }
 
         [Required]
-        [JsonProperty("emailVerified")]
+        [JsonPropertyName("emailVerified")]
         public bool EmailVerified { get; set; }
 
-        [JsonProperty("avatarUrl")]
+        [JsonPropertyName("avatarUrl")]
         public string? AvatarUrl { get; set; }
 
     }
@@ -2346,16 +2346,16 @@ namespace SpaceDotNet.Client
     // Source: es_ldapattributenames
     public class ESLdapAttributeNamesDto
     {
-        [JsonProperty("fullNameAttributeName")]
+        [JsonPropertyName("fullNameAttributeName")]
         public string? FullNameAttributeName { get; set; }
 
-        [JsonProperty("usernameAttributeName")]
+        [JsonPropertyName("usernameAttributeName")]
         public string? UsernameAttributeName { get; set; }
 
-        [JsonProperty("emailAttributeName")]
+        [JsonPropertyName("emailAttributeName")]
         public string? EmailAttributeName { get; set; }
 
-        [JsonProperty("groupsAttributeName")]
+        [JsonPropertyName("groupsAttributeName")]
         public string? GroupsAttributeName { get; set; }
 
     }
@@ -2365,50 +2365,50 @@ namespace SpaceDotNet.Client
          : ESExternalPasswordAuthModuleSettingsDto
     {
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public LdapModuleType Type { get; set; }
 
         [Required]
-        [JsonProperty("registerNewUsers")]
+        [JsonPropertyName("registerNewUsers")]
         public bool RegisterNewUsers { get; set; }
 
         [Required]
-        [JsonProperty("serverUrl")]
+        [JsonPropertyName("serverUrl")]
         public string ServerUrl { get; set; }
 
         [Required]
-        [JsonProperty("connectionTimeout")]
+        [JsonPropertyName("connectionTimeout")]
         public int ConnectionTimeout { get; set; }
 
         [Required]
-        [JsonProperty("readTimeout")]
+        [JsonPropertyName("readTimeout")]
         public int ReadTimeout { get; set; }
 
-        [JsonProperty("sslKeystore")]
+        [JsonPropertyName("sslKeystore")]
         public SSLKeystoreDto? SslKeystore { get; set; }
 
         [Required]
-        [JsonProperty("teamMappings")]
+        [JsonPropertyName("teamMappings")]
         public List<ESTeamMappingDto> TeamMappings { get; set; }
 
         [Required]
-        [JsonProperty("referralIgnored")]
+        [JsonPropertyName("referralIgnored")]
         public bool ReferralIgnored { get; set; }
 
         [Required]
-        [JsonProperty("filter")]
+        [JsonPropertyName("filter")]
         public string Filter { get; set; }
 
         [Required]
-        [JsonProperty("bindUserDN")]
+        [JsonPropertyName("bindUserDN")]
         public string BindUserDN { get; set; }
 
         [Required]
-        [JsonProperty("bindUserPassword")]
+        [JsonPropertyName("bindUserPassword")]
         public string BindUserPassword { get; set; }
 
         [Required]
-        [JsonProperty("attributeNames")]
+        [JsonPropertyName("attributeNames")]
         public ESLdapAttributeNamesDto AttributeNames { get; set; }
 
     }
@@ -2429,18 +2429,18 @@ namespace SpaceDotNet.Client
     public class ESProfileLoginDto
     {
         [Required]
-        [JsonProperty("identifier")]
+        [JsonPropertyName("identifier")]
         public string Identifier { get; set; }
 
         [Required]
-        [JsonProperty("authModule")]
+        [JsonPropertyName("authModule")]
         public ESAuthModuleDto AuthModule { get; set; }
 
         [Required]
-        [JsonProperty("details")]
+        [JsonPropertyName("details")]
         public ESProfileLoginDetailsDto Details { get; set; }
 
-        [JsonProperty("access")]
+        [JsonPropertyName("access")]
         public AccessRecordDto? Access { get; set; }
 
     }
@@ -2454,33 +2454,33 @@ namespace SpaceDotNet.Client
     public class ESServiceDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("owner")]
+        [JsonPropertyName("owner")]
         public TDMemberProfileDto? Owner { get; set; }
 
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public OAuthServiceType Type { get; set; }
 
         [Required]
-        [JsonProperty("clientId")]
+        [JsonPropertyName("clientId")]
         public string ClientId { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("redirectURIs")]
+        [JsonPropertyName("redirectURIs")]
         public string RedirectURIs { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonProperty("lastClientCredentialsAccess")]
+        [JsonPropertyName("lastClientCredentialsAccess")]
         public AccessRecordDto? LastClientCredentialsAccess { get; set; }
 
     }
@@ -2489,11 +2489,11 @@ namespace SpaceDotNet.Client
     public class ESTeamMappingDto
     {
         [Required]
-        [JsonProperty("teamId")]
+        [JsonPropertyName("teamId")]
         public string TeamId { get; set; }
 
         [Required]
-        [JsonProperty("externalGroupName")]
+        [JsonPropertyName("externalGroupName")]
         public string ExternalGroupName { get; set; }
 
     }
@@ -2503,7 +2503,7 @@ namespace SpaceDotNet.Client
          : CFTypeDto
     {
         [Required]
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public List<EnumValueDataDto> Values { get; set; }
 
     }
@@ -2512,7 +2512,7 @@ namespace SpaceDotNet.Client
     public class EnumCFValueDto
          : CFValueDto
     {
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public EnumValueDataDto? Value { get; set; }
 
     }
@@ -2522,7 +2522,7 @@ namespace SpaceDotNet.Client
          : CFTypeDto
     {
         [Required]
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public List<EnumValueDataDto> Values { get; set; }
 
     }
@@ -2532,7 +2532,7 @@ namespace SpaceDotNet.Client
          : CFValueDto
     {
         [Required]
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public List<EnumValueDataDto> Values { get; set; }
 
     }
@@ -2540,11 +2540,11 @@ namespace SpaceDotNet.Client
     // Source: enumvaluedata
     public class EnumValueDataDto
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string? Id { get; set; }
 
         [Required]
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public string Value { get; set; }
 
     }
@@ -2554,11 +2554,11 @@ namespace SpaceDotNet.Client
          : ServiceMessageDto
     {
         [Required]
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -2567,11 +2567,11 @@ namespace SpaceDotNet.Client
     public class ExtendedTypeDto
     {
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public string Key { get; set; }
 
         [Required]
-        [JsonProperty("displayName")]
+        [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
 
     }
@@ -2580,26 +2580,26 @@ namespace SpaceDotNet.Client
     public class FTSBlogDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public TDMemberProfileDto Author { get; set; }
 
         [Required]
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public SpaceTime Date { get; set; }
 
         [Required]
-        [JsonProperty("snippets")]
+        [JsonPropertyName("snippets")]
         public List<FTSSnippetDto> Snippets { get; set; }
 
-        [JsonProperty("comments")]
+        [JsonPropertyName("comments")]
         public List<FTSBlogCommentDto>? Comments { get; set; }
 
     }
@@ -2608,15 +2608,15 @@ namespace SpaceDotNet.Client
     public class FTSBlogCommentDto
     {
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public TDMemberProfileDto Author { get; set; }
 
         [Required]
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public SpaceTime Date { get; set; }
 
         [Required]
-        [JsonProperty("snippets")]
+        [JsonPropertyName("snippets")]
         public List<string> Snippets { get; set; }
 
     }
@@ -2625,23 +2625,23 @@ namespace SpaceDotNet.Client
     public class FTSDraftDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public TDMemberProfileDto Author { get; set; }
 
         [Required]
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public SpaceTime Date { get; set; }
 
         [Required]
-        [JsonProperty("snippets")]
+        [JsonPropertyName("snippets")]
         public List<FTSSnippetDto> Snippets { get; set; }
 
     }
@@ -2650,15 +2650,15 @@ namespace SpaceDotNet.Client
     public class FTSProfileDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public FTSUserDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("snippets")]
+        [JsonPropertyName("snippets")]
         public List<FTSSnippetDto> Snippets { get; set; }
 
         [Required]
-        [JsonProperty("member")]
+        [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
 
     }
@@ -2667,11 +2667,11 @@ namespace SpaceDotNet.Client
     public class FTSSnippetDto
     {
         [Required]
-        [JsonProperty("field")]
+        [JsonPropertyName("field")]
         public string Field { get; set; }
 
         [Required]
-        [JsonProperty("snippet")]
+        [JsonPropertyName("snippet")]
         public List<string> Snippet { get; set; }
 
     }
@@ -2680,18 +2680,18 @@ namespace SpaceDotNet.Client
     public class FTSTeamDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
         [Required]
-        [JsonProperty("snippets")]
+        [JsonPropertyName("snippets")]
         public List<FTSSnippetDto> Snippets { get; set; }
 
     }
@@ -2700,25 +2700,25 @@ namespace SpaceDotNet.Client
     public class FTSUserDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("username")]
+        [JsonPropertyName("username")]
         public string Username { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public TDProfileNameDto Name { get; set; }
 
-        [JsonProperty("avatar")]
+        [JsonPropertyName("avatar")]
         public string? Avatar { get; set; }
 
         [Required]
-        [JsonProperty("languages")]
+        [JsonPropertyName("languages")]
         public List<TDProfileNameDto> Languages { get; set; }
 
-        [JsonProperty("notAMember")]
+        [JsonPropertyName("notAMember")]
         public bool? NotAMember { get; set; }
 
     }
@@ -2727,11 +2727,11 @@ namespace SpaceDotNet.Client
     public class FeatureFlagDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
     }
@@ -2745,15 +2745,15 @@ namespace SpaceDotNet.Client
     public class FileAttachmentDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("sizeBytes")]
+        [JsonPropertyName("sizeBytes")]
         public long SizeBytes { get; set; }
 
         [Required]
-        [JsonProperty("filename")]
+        [JsonPropertyName("filename")]
         public string Filename { get; set; }
 
     }
@@ -2761,11 +2761,11 @@ namespace SpaceDotNet.Client
     // Source: filewithcount
     public class FileWithCountDto
     {
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string? Name { get; set; }
 
         [Required]
-        [JsonProperty("count")]
+        [JsonPropertyName("count")]
         public CounterDto Count { get; set; }
 
     }
@@ -2774,11 +2774,11 @@ namespace SpaceDotNet.Client
     public class FractionDto
     {
         [Required]
-        [JsonProperty("numerator")]
+        [JsonPropertyName("numerator")]
         public int Numerator { get; set; }
 
         [Required]
-        [JsonProperty("denominator")]
+        [JsonPropertyName("denominator")]
         public int Denominator { get; set; }
 
     }
@@ -2793,7 +2793,7 @@ namespace SpaceDotNet.Client
     public class FractionCFValueDto
          : CFValueDto
     {
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public FractionDto? Value { get; set; }
 
     }
@@ -2802,13 +2802,13 @@ namespace SpaceDotNet.Client
     public class GeneralPageHtmlMetadataDto
     {
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("image")]
+        [JsonPropertyName("image")]
         public string? Image { get; set; }
 
     }
@@ -2817,11 +2817,11 @@ namespace SpaceDotNet.Client
     public class GitAuthorInfoDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
 
     }
@@ -2830,17 +2830,17 @@ namespace SpaceDotNet.Client
     public class GitCommitChangeDto
     {
         [Required]
-        [JsonProperty("changeType")]
+        [JsonPropertyName("changeType")]
         public GitCommitChangeType ChangeType { get; set; }
 
-        [JsonProperty("old")]
+        [JsonPropertyName("old")]
         public GitFileDto? Old { get; set; }
 
-        [JsonProperty("new")]
+        [JsonPropertyName("new")]
         public GitFileDto? New { get; set; }
 
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
     }
@@ -2849,46 +2849,46 @@ namespace SpaceDotNet.Client
     public class GitCommitInfoDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("repositoryName")]
+        [JsonPropertyName("repositoryName")]
         public string RepositoryName { get; set; }
 
         [Required]
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
         [Required]
-        [JsonProperty("authorDate")]
+        [JsonPropertyName("authorDate")]
         public long AuthorDate { get; set; }
 
         [Required]
-        [JsonProperty("commitDate")]
+        [JsonPropertyName("commitDate")]
         public long CommitDate { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public GitAuthorInfoDto Author { get; set; }
 
         [Required]
-        [JsonProperty("committer")]
+        [JsonPropertyName("committer")]
         public GitAuthorInfoDto Committer { get; set; }
 
-        [JsonProperty("authorProfile")]
+        [JsonPropertyName("authorProfile")]
         public TDMemberProfileDto? AuthorProfile { get; set; }
 
         [Required]
-        [JsonProperty("parents")]
+        [JsonPropertyName("parents")]
         public List<string> Parents { get; set; }
 
         [Required]
-        [JsonProperty("tags")]
+        [JsonPropertyName("tags")]
         public List<string> Tags { get; set; }
 
         [Required]
-        [JsonProperty("branches")]
+        [JsonPropertyName("branches")]
         public List<BranchInfoDto> Branches { get; set; }
 
     }
@@ -2897,14 +2897,14 @@ namespace SpaceDotNet.Client
     public class GitCommitWithGraphDto
     {
         [Required]
-        [JsonProperty("commit")]
+        [JsonPropertyName("commit")]
         public GitCommitInfoDto Commit { get; set; }
 
         [Required]
-        [JsonProperty("reviews")]
+        [JsonPropertyName("reviews")]
         public List<CodeReviewRecordDto> Reviews { get; set; }
 
-        [JsonProperty("layout")]
+        [JsonPropertyName("layout")]
         public GitGraphLayoutLineDto? Layout { get; set; }
 
     }
@@ -2913,14 +2913,14 @@ namespace SpaceDotNet.Client
     public class GitCommitterProfileDto
     {
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public string Author { get; set; }
 
         [Required]
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
 
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto? Profile { get; set; }
 
     }
@@ -2929,19 +2929,19 @@ namespace SpaceDotNet.Client
     public class GitFileDto
     {
         [Required]
-        [JsonProperty("commit")]
+        [JsonPropertyName("commit")]
         public string Commit { get; set; }
 
         [Required]
-        [JsonProperty("path")]
+        [JsonPropertyName("path")]
         public string Path { get; set; }
 
         [Required]
-        [JsonProperty("blob")]
+        [JsonPropertyName("blob")]
         public string Blob { get; set; }
 
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public GitEntryType Type { get; set; }
 
     }
@@ -2950,27 +2950,27 @@ namespace SpaceDotNet.Client
     public class GitGraphLayoutEdgeDto
     {
         [Required]
-        [JsonProperty("from")]
+        [JsonPropertyName("from")]
         public int From { get; set; }
 
         [Required]
-        [JsonProperty("to")]
+        [JsonPropertyName("to")]
         public int To { get; set; }
 
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public GitGraphEdgeType Type { get; set; }
 
         [Required]
-        [JsonProperty("style")]
+        [JsonPropertyName("style")]
         public GitGraphEdgeLineStyle Style { get; set; }
 
         [Required]
-        [JsonProperty("hasArrow")]
+        [JsonPropertyName("hasArrow")]
         public bool HasArrow { get; set; }
 
         [Required]
-        [JsonProperty("color")]
+        [JsonPropertyName("color")]
         public int Color { get; set; }
 
     }
@@ -2979,11 +2979,11 @@ namespace SpaceDotNet.Client
     public class GitGraphLayoutLineDto
     {
         [Required]
-        [JsonProperty("nodes")]
+        [JsonPropertyName("nodes")]
         public List<GitGraphLayoutNodeDto> Nodes { get; set; }
 
         [Required]
-        [JsonProperty("edges")]
+        [JsonPropertyName("edges")]
         public List<GitGraphLayoutEdgeDto> Edges { get; set; }
 
     }
@@ -2992,11 +2992,11 @@ namespace SpaceDotNet.Client
     public class GitGraphLayoutNodeDto
     {
         [Required]
-        [JsonProperty("pos")]
+        [JsonPropertyName("pos")]
         public int Pos { get; set; }
 
         [Required]
-        [JsonProperty("color")]
+        [JsonPropertyName("color")]
         public int Color { get; set; }
 
     }
@@ -3005,15 +3005,15 @@ namespace SpaceDotNet.Client
     public class HADeprecationDto
     {
         [Required]
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
         [Required]
-        [JsonProperty("since")]
+        [JsonPropertyName("since")]
         public string Since { get; set; }
 
         [Required]
-        [JsonProperty("forRemoval")]
+        [JsonPropertyName("forRemoval")]
         public bool ForRemoval { get; set; }
 
     }
@@ -3022,37 +3022,37 @@ namespace SpaceDotNet.Client
     public class HADtoDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("fields")]
+        [JsonPropertyName("fields")]
         public List<HADtoFieldDto> Fields { get; set; }
 
         [Required]
-        [JsonProperty("hierarchyRole")]
+        [JsonPropertyName("hierarchyRole")]
         public HierarchyRole HierarchyRole { get; set; }
 
-        [JsonProperty("extends")]
+        [JsonPropertyName("extends")]
         public HADtoDto? Extends { get; set; }
 
         [Required]
-        [JsonProperty("implements")]
+        [JsonPropertyName("implements")]
         public List<HADtoDto> Implements { get; set; }
 
         [Required]
-        [JsonProperty("inheritors")]
+        [JsonPropertyName("inheritors")]
         public List<HADtoDto> Inheritors { get; set; }
 
-        [JsonProperty("deprecation")]
+        [JsonPropertyName("deprecation")]
         public HADeprecationDto? Deprecation { get; set; }
 
         [Required]
-        [JsonProperty("record")]
+        [JsonPropertyName("record")]
         public bool Record { get; set; }
 
     }
@@ -3061,11 +3061,11 @@ namespace SpaceDotNet.Client
     public class HADtoFieldDto
     {
         [Required]
-        [JsonProperty("field")]
+        [JsonPropertyName("field")]
         public HAFieldDto Field { get; set; }
 
         [Required]
-        [JsonProperty("extension")]
+        [JsonPropertyName("extension")]
         public bool Extension { get; set; }
 
     }
@@ -3074,35 +3074,35 @@ namespace SpaceDotNet.Client
     public class HAEndpointDto
     {
         [Required]
-        [JsonProperty("resource")]
+        [JsonPropertyName("resource")]
         public HAResourceDto Resource { get; set; }
 
         [Required]
-        [JsonProperty("method")]
+        [JsonPropertyName("method")]
         public HAMethod Method { get; set; }
 
         [Required]
-        [JsonProperty("parameters")]
+        [JsonPropertyName("parameters")]
         public List<HAParameterDto> Parameters { get; set; }
 
-        [JsonProperty("requestBody")]
+        [JsonPropertyName("requestBody")]
         public HATypeObjectDto? RequestBody { get; set; }
 
-        [JsonProperty("responseBody")]
+        [JsonPropertyName("responseBody")]
         public HATypeDto? ResponseBody { get; set; }
 
         [Required]
-        [JsonProperty("path")]
+        [JsonPropertyName("path")]
         public HAPathDto Path { get; set; }
 
         [Required]
-        [JsonProperty("displayName")]
+        [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
 
-        [JsonProperty("doc")]
+        [JsonPropertyName("doc")]
         public string? Doc { get; set; }
 
-        [JsonProperty("deprecation")]
+        [JsonPropertyName("deprecation")]
         public HADeprecationDto? Deprecation { get; set; }
 
     }
@@ -3111,18 +3111,18 @@ namespace SpaceDotNet.Client
     public class HAEnumDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public List<string> Values { get; set; }
 
-        [JsonProperty("deprecation")]
+        [JsonPropertyName("deprecation")]
         public HADeprecationDto? Deprecation { get; set; }
 
     }
@@ -3131,14 +3131,14 @@ namespace SpaceDotNet.Client
     public class HAFieldDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public HATypeDto Type { get; set; }
 
-        [JsonProperty("deprecation")]
+        [JsonPropertyName("deprecation")]
         public HADeprecationDto? Deprecation { get; set; }
 
     }
@@ -3147,15 +3147,15 @@ namespace SpaceDotNet.Client
     public class HAModelDto
     {
         [Required]
-        [JsonProperty("dto")]
+        [JsonPropertyName("dto")]
         public List<HADtoDto> Dto { get; set; }
 
         [Required]
-        [JsonProperty("enums")]
+        [JsonPropertyName("enums")]
         public List<HAEnumDto> Enums { get; set; }
 
         [Required]
-        [JsonProperty("resources")]
+        [JsonPropertyName("resources")]
         public List<HAResourceDto> Resources { get; set; }
 
     }
@@ -3164,11 +3164,11 @@ namespace SpaceDotNet.Client
     public class HAParameterDto
     {
         [Required]
-        [JsonProperty("field")]
+        [JsonPropertyName("field")]
         public HAFieldDto Field { get; set; }
 
         [Required]
-        [JsonProperty("path")]
+        [JsonPropertyName("path")]
         public bool Path { get; set; }
 
     }
@@ -3177,7 +3177,7 @@ namespace SpaceDotNet.Client
     public class HAPathDto
     {
         [Required]
-        [JsonProperty("segments")]
+        [JsonPropertyName("segments")]
         public List<HAPathSegmentDto> Segments { get; set; }
 
     }
@@ -3192,7 +3192,7 @@ namespace SpaceDotNet.Client
          : HAPathSegmentDto
     {
         [Required]
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public string Value { get; set; }
 
     }
@@ -3202,11 +3202,11 @@ namespace SpaceDotNet.Client
          : HAPathSegmentDto
     {
         [Required]
-        [JsonProperty("prefix")]
+        [JsonPropertyName("prefix")]
         public string Prefix { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
     }
@@ -3216,7 +3216,7 @@ namespace SpaceDotNet.Client
          : HAPathSegmentDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
     }
@@ -3225,30 +3225,30 @@ namespace SpaceDotNet.Client
     public class HAResourceDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("path")]
+        [JsonPropertyName("path")]
         public HAPathDto Path { get; set; }
 
         [Required]
-        [JsonProperty("displaySingular")]
+        [JsonPropertyName("displaySingular")]
         public string DisplaySingular { get; set; }
 
         [Required]
-        [JsonProperty("displayPlural")]
+        [JsonPropertyName("displayPlural")]
         public string DisplayPlural { get; set; }
 
-        [JsonProperty("parentResource")]
+        [JsonPropertyName("parentResource")]
         public HAResourceDto? ParentResource { get; set; }
 
         [Required]
-        [JsonProperty("nestedResources")]
+        [JsonPropertyName("nestedResources")]
         public List<HAResourceDto> NestedResources { get; set; }
 
         [Required]
-        [JsonProperty("endpoints")]
+        [JsonPropertyName("endpoints")]
         public List<HAEndpointDto> Endpoints { get; set; }
 
     }
@@ -3263,15 +3263,15 @@ namespace SpaceDotNet.Client
          : HATypeDto
     {
         [Required]
-        [JsonProperty("elementType")]
+        [JsonPropertyName("elementType")]
         public HATypeDto ElementType { get; set; }
 
         [Required]
-        [JsonProperty("nullable")]
+        [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
 
         [Required]
-        [JsonProperty("optional")]
+        [JsonPropertyName("optional")]
         public bool Optional { get; set; }
 
     }
@@ -3281,15 +3281,15 @@ namespace SpaceDotNet.Client
          : HATypeDto
     {
         [Required]
-        [JsonProperty("dto")]
+        [JsonPropertyName("dto")]
         public HADtoDto Dto { get; set; }
 
         [Required]
-        [JsonProperty("nullable")]
+        [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
 
         [Required]
-        [JsonProperty("optional")]
+        [JsonPropertyName("optional")]
         public bool Optional { get; set; }
 
     }
@@ -3299,15 +3299,15 @@ namespace SpaceDotNet.Client
          : HATypeDto
     {
         [Required]
-        [JsonProperty("enum")]
+        [JsonPropertyName("enum")]
         public HAEnumDto Enum { get; set; }
 
         [Required]
-        [JsonProperty("nullable")]
+        [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
 
         [Required]
-        [JsonProperty("optional")]
+        [JsonPropertyName("optional")]
         public bool Optional { get; set; }
 
     }
@@ -3317,19 +3317,19 @@ namespace SpaceDotNet.Client
          : HATypeDto
     {
         [Required]
-        [JsonProperty("fields")]
+        [JsonPropertyName("fields")]
         public List<HAFieldDto> Fields { get; set; }
 
         [Required]
-        [JsonProperty("kind")]
+        [JsonPropertyName("kind")]
         public HATypeObjectKind Kind { get; set; }
 
         [Required]
-        [JsonProperty("nullable")]
+        [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
 
         [Required]
-        [JsonProperty("optional")]
+        [JsonPropertyName("optional")]
         public bool Optional { get; set; }
 
     }
@@ -3339,15 +3339,15 @@ namespace SpaceDotNet.Client
          : HATypeDto
     {
         [Required]
-        [JsonProperty("primitive")]
+        [JsonPropertyName("primitive")]
         public HAPrimitive Primitive { get; set; }
 
         [Required]
-        [JsonProperty("nullable")]
+        [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
 
         [Required]
-        [JsonProperty("optional")]
+        [JsonPropertyName("optional")]
         public bool Optional { get; set; }
 
     }
@@ -3357,15 +3357,15 @@ namespace SpaceDotNet.Client
          : HATypeDto
     {
         [Required]
-        [JsonProperty("dto")]
+        [JsonPropertyName("dto")]
         public HADtoDto Dto { get; set; }
 
         [Required]
-        [JsonProperty("nullable")]
+        [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
 
         [Required]
-        [JsonProperty("optional")]
+        [JsonPropertyName("optional")]
         public bool Optional { get; set; }
 
     }
@@ -3379,21 +3379,21 @@ namespace SpaceDotNet.Client
     public class ImageAttachmentDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string? Name { get; set; }
 
         [Required]
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int Width { get; set; }
 
         [Required]
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int Height { get; set; }
 
-        [JsonProperty("previewBytes")]
+        [JsonPropertyName("previewBytes")]
         public string? PreviewBytes { get; set; }
 
     }
@@ -3402,33 +3402,33 @@ namespace SpaceDotNet.Client
     public class InlineDiffLineDto
     {
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public DiffLineType? Type { get; set; }
 
-        [JsonProperty("oldLineNum")]
+        [JsonPropertyName("oldLineNum")]
         public int? OldLineNum { get; set; }
 
-        [JsonProperty("newLineNum")]
+        [JsonPropertyName("newLineNum")]
         public int? NewLineNum { get; set; }
 
         [Required]
-        [JsonProperty("oldFileOffset")]
+        [JsonPropertyName("oldFileOffset")]
         public int OldFileOffset { get; set; }
 
         [Required]
-        [JsonProperty("newFileOffset")]
+        [JsonPropertyName("newFileOffset")]
         public int NewFileOffset { get; set; }
 
-        [JsonProperty("syntax")]
+        [JsonPropertyName("syntax")]
         public List<SyntaxMarkupDto>? Syntax { get; set; }
 
-        [JsonProperty("deletes")]
+        [JsonPropertyName("deletes")]
         public List<TextRangeDto>? Deletes { get; set; }
 
-        [JsonProperty("inserts")]
+        [JsonPropertyName("inserts")]
         public List<TextRangeDto>? Inserts { get; set; }
 
     }
@@ -3437,13 +3437,13 @@ namespace SpaceDotNet.Client
     public class IntCFConstraintDto
          : CFConstraintDto
     {
-        [JsonProperty("min")]
+        [JsonPropertyName("min")]
         public int? Min { get; set; }
 
-        [JsonProperty("max")]
+        [JsonPropertyName("max")]
         public int? Max { get; set; }
 
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string? Message { get; set; }
 
     }
@@ -3458,7 +3458,7 @@ namespace SpaceDotNet.Client
     public class IntCFValueDto
          : CFValueDto
     {
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public int? Value { get; set; }
 
     }
@@ -3474,7 +3474,7 @@ namespace SpaceDotNet.Client
          : CFValueDto
     {
         [Required]
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public List<int> Values { get; set; }
 
     }
@@ -3483,44 +3483,44 @@ namespace SpaceDotNet.Client
     public class InvitationDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("expiresAt")]
+        [JsonPropertyName("expiresAt")]
         public SpaceTime ExpiresAt { get; set; }
 
         [Required]
-        [JsonProperty("inviteeEmail")]
+        [JsonPropertyName("inviteeEmail")]
         public string InviteeEmail { get; set; }
 
         [Required]
-        [JsonProperty("inviteeEmailBlocked")]
+        [JsonPropertyName("inviteeEmailBlocked")]
         public bool InviteeEmailBlocked { get; set; }
 
-        [JsonProperty("inviteeEmailBlockedReason")]
+        [JsonPropertyName("inviteeEmailBlockedReason")]
         public string? InviteeEmailBlockedReason { get; set; }
 
-        [JsonProperty("inviteeFirstName")]
+        [JsonPropertyName("inviteeFirstName")]
         public string? InviteeFirstName { get; set; }
 
-        [JsonProperty("inviteeLastName")]
+        [JsonPropertyName("inviteeLastName")]
         public string? InviteeLastName { get; set; }
 
-        [JsonProperty("invitee")]
+        [JsonPropertyName("invitee")]
         public TDMemberProfileDto? Invitee { get; set; }
 
         [Required]
-        [JsonProperty("inviter")]
+        [JsonPropertyName("inviter")]
         public CPrincipalDto Inviter { get; set; }
 
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto? Team { get; set; }
 
-        [JsonProperty("role")]
+        [JsonPropertyName("role")]
         public TDRoleDto? Role { get; set; }
 
-        [JsonProperty("revoked")]
+        [JsonPropertyName("revoked")]
         public bool? Revoked { get; set; }
 
     }
@@ -3529,56 +3529,56 @@ namespace SpaceDotNet.Client
     public class IssueDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("number")]
+        [JsonPropertyName("number")]
         public int Number { get; set; }
 
         [Required]
-        [JsonProperty("createdBy")]
+        [JsonPropertyName("createdBy")]
         public CPrincipalDto CreatedBy { get; set; }
 
         [Required]
-        [JsonProperty("creationTime")]
+        [JsonPropertyName("creationTime")]
         public SpaceTime CreationTime { get; set; }
 
-        [JsonProperty("assignee")]
+        [JsonPropertyName("assignee")]
         public TDMemberProfileDto? Assignee { get; set; }
 
         [Required]
-        [JsonProperty("status")]
+        [JsonPropertyName("status")]
         public IssueStatusDto Status { get; set; }
 
-        [JsonProperty("dueDate")]
+        [JsonPropertyName("dueDate")]
         public SpaceDate? DueDate { get; set; }
 
         [Required]
-        [JsonProperty("tags")]
+        [JsonPropertyName("tags")]
         public List<PlanningTagDto> Tags { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
         [Required]
-        [JsonProperty("channel")]
+        [JsonPropertyName("channel")]
         public M2ChannelRecordDto Channel { get; set; }
 
         [Required]
-        [JsonProperty("attachments")]
+        [JsonPropertyName("attachments")]
         public List<AttachmentInfoDto> Attachments { get; set; }
 
     }
@@ -3586,10 +3586,10 @@ namespace SpaceDotNet.Client
     // Source: issueassigneechangeddetails
     public class IssueAssigneeChangedDetailsDto
     {
-        [JsonProperty("oldAssignee")]
+        [JsonPropertyName("oldAssignee")]
         public TDMemberProfileDto? OldAssignee { get; set; }
 
-        [JsonProperty("newAssignee")]
+        [JsonPropertyName("newAssignee")]
         public TDMemberProfileDto? NewAssignee { get; set; }
 
     }
@@ -3597,10 +3597,10 @@ namespace SpaceDotNet.Client
     // Source: issueattachmentschangeddetails
     public class IssueAttachmentsChangedDetailsDto
     {
-        [JsonProperty("addedNames")]
+        [JsonPropertyName("addedNames")]
         public List<string>? AddedNames { get; set; }
 
-        [JsonProperty("removedNames")]
+        [JsonPropertyName("removedNames")]
         public List<string>? RemovedNames { get; set; }
 
     }
@@ -3623,10 +3623,10 @@ namespace SpaceDotNet.Client
     // Source: issuedescriptionchangeddetails
     public class IssueDescriptionChangedDetailsDto
     {
-        [JsonProperty("oldDescription")]
+        [JsonPropertyName("oldDescription")]
         public string? OldDescription { get; set; }
 
-        [JsonProperty("newDescription")]
+        [JsonPropertyName("newDescription")]
         public string? NewDescription { get; set; }
 
     }
@@ -3634,10 +3634,10 @@ namespace SpaceDotNet.Client
     // Source: issueduedatechangeddetails
     public class IssueDueDateChangedDetailsDto
     {
-        [JsonProperty("oldDueDate")]
+        [JsonPropertyName("oldDueDate")]
         public SpaceDate? OldDueDate { get; set; }
 
-        [JsonProperty("newDueDate")]
+        [JsonPropertyName("newDueDate")]
         public SpaceDate? NewDueDate { get; set; }
 
     }
@@ -3646,23 +3646,23 @@ namespace SpaceDotNet.Client
     public class IssueStatusDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("resolved")]
+        [JsonPropertyName("resolved")]
         public bool Resolved { get; set; }
 
         [Required]
-        [JsonProperty("color")]
+        [JsonPropertyName("color")]
         public string Color { get; set; }
 
     }
@@ -3671,11 +3671,11 @@ namespace SpaceDotNet.Client
     public class IssueStatusChangedDetailsDto
     {
         [Required]
-        [JsonProperty("oldStatus")]
+        [JsonPropertyName("oldStatus")]
         public IssueStatusDto OldStatus { get; set; }
 
         [Required]
-        [JsonProperty("newStatus")]
+        [JsonPropertyName("newStatus")]
         public IssueStatusDto NewStatus { get; set; }
 
     }
@@ -3683,19 +3683,19 @@ namespace SpaceDotNet.Client
     // Source: issuestatusdata
     public class IssueStatusDataDto
     {
-        [JsonProperty("existingId")]
+        [JsonPropertyName("existingId")]
         public string? ExistingId { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("resolved")]
+        [JsonPropertyName("resolved")]
         public bool Resolved { get; set; }
 
         [Required]
-        [JsonProperty("color")]
+        [JsonPropertyName("color")]
         public string Color { get; set; }
 
     }
@@ -3704,11 +3704,11 @@ namespace SpaceDotNet.Client
     public class IssueStatusWithUsagesDto
     {
         [Required]
-        [JsonProperty("status")]
+        [JsonPropertyName("status")]
         public IssueStatusDto Status { get; set; }
 
         [Required]
-        [JsonProperty("usages")]
+        [JsonPropertyName("usages")]
         public int Usages { get; set; }
 
     }
@@ -3716,10 +3716,10 @@ namespace SpaceDotNet.Client
     // Source: issuetagschangeddetails
     public class IssueTagsChangedDetailsDto
     {
-        [JsonProperty("addedTags")]
+        [JsonPropertyName("addedTags")]
         public List<PlanningTagDto>? AddedTags { get; set; }
 
-        [JsonProperty("removedTags")]
+        [JsonPropertyName("removedTags")]
         public List<PlanningTagDto>? RemovedTags { get; set; }
 
     }
@@ -3728,11 +3728,11 @@ namespace SpaceDotNet.Client
     public class IssueTitleChangedDetailsDto
     {
         [Required]
-        [JsonProperty("oldTitle")]
+        [JsonPropertyName("oldTitle")]
         public string OldTitle { get; set; }
 
         [Required]
-        [JsonProperty("newTitle")]
+        [JsonPropertyName("newTitle")]
         public string NewTitle { get; set; }
 
     }
@@ -3741,11 +3741,11 @@ namespace SpaceDotNet.Client
     public class JobInfoDto
     {
         [Required]
-        [JsonProperty("parentExecutionId")]
+        [JsonPropertyName("parentExecutionId")]
         public string ParentExecutionId { get; set; }
 
         [Required]
-        [JsonProperty("jobExecutionId")]
+        [JsonPropertyName("jobExecutionId")]
         public string JobExecutionId { get; set; }
 
     }
@@ -3754,11 +3754,11 @@ namespace SpaceDotNet.Client
     public class LastChangesDto
     {
         [Required]
-        [JsonProperty("lastChanges")]
+        [JsonPropertyName("lastChanges")]
         public List<RevisionInfoDto> LastChanges { get; set; }
 
         [Required]
-        [JsonProperty("totalChanges")]
+        [JsonPropertyName("totalChanges")]
         public int TotalChanges { get; set; }
 
     }
@@ -3772,15 +3772,15 @@ namespace SpaceDotNet.Client
     public class M2AbsenceItemApproveDeletedContentDto
     {
         [Required]
-        [JsonProperty("absence")]
+        [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
 
         [Required]
-        [JsonProperty("by")]
+        [JsonPropertyName("by")]
         public TDMemberProfileDto By { get; set; }
 
         [Required]
-        [JsonProperty("approve")]
+        [JsonPropertyName("approve")]
         public bool Approve { get; set; }
 
     }
@@ -3789,15 +3789,15 @@ namespace SpaceDotNet.Client
     public class M2AbsenceItemApprovedContentDto
     {
         [Required]
-        [JsonProperty("absence")]
+        [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
 
         [Required]
-        [JsonProperty("by")]
+        [JsonPropertyName("by")]
         public TDMemberProfileDto By { get; set; }
 
         [Required]
-        [JsonProperty("approve")]
+        [JsonPropertyName("approve")]
         public bool Approve { get; set; }
 
     }
@@ -3806,7 +3806,7 @@ namespace SpaceDotNet.Client
     public class M2AbsenceItemContentDto
     {
         [Required]
-        [JsonProperty("absence")]
+        [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
 
     }
@@ -3815,7 +3815,7 @@ namespace SpaceDotNet.Client
     public class M2AbsenceItemDeletedContentDto
     {
         [Required]
-        [JsonProperty("absence")]
+        [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
 
     }
@@ -3824,19 +3824,19 @@ namespace SpaceDotNet.Client
     public class M2AbsenceItemUpdatedContentDto
     {
         [Required]
-        [JsonProperty("absence")]
+        [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
 
-        [JsonProperty("reason")]
+        [JsonPropertyName("reason")]
         public Modification<AbsenceReasonRecordDto>? Reason { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public Modification<string>? Description { get; set; }
 
-        [JsonProperty("since")]
+        [JsonPropertyName("since")]
         public Modification<SpaceDate>? Since { get; set; }
 
-        [JsonProperty("till")]
+        [JsonPropertyName("till")]
         public Modification<SpaceDate>? Till { get; set; }
 
     }
@@ -3845,19 +3845,19 @@ namespace SpaceDotNet.Client
     public class M2BlogItemContentDto
     {
         [Required]
-        [JsonProperty("article")]
+        [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
 
         [Required]
-        [JsonProperty("articleContent")]
+        [JsonPropertyName("articleContent")]
         public ArticleContentRecordDto ArticleContent { get; set; }
 
         [Required]
-        [JsonProperty("articleDetails")]
+        [JsonPropertyName("articleDetails")]
         public ArticleDetailsRecordDto ArticleDetails { get; set; }
 
         [Required]
-        [JsonProperty("articleChannel")]
+        [JsonPropertyName("articleChannel")]
         public ArticleChannelRecordDto ArticleChannel { get; set; }
 
     }
@@ -3871,14 +3871,14 @@ namespace SpaceDotNet.Client
     public class M2ChannelContactDto
     {
         [Required]
-        [JsonProperty("defaultName")]
+        [JsonPropertyName("defaultName")]
         public string DefaultName { get; set; }
 
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public string Key { get; set; }
 
-        [JsonProperty("ext")]
+        [JsonPropertyName("ext")]
         public M2ChannelContactInfoDto? Ext { get; set; }
 
     }
@@ -3887,11 +3887,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContactArticleDto
     {
         [Required]
-        [JsonProperty("article")]
+        [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
     }
@@ -3904,7 +3904,7 @@ namespace SpaceDotNet.Client
     // Source: m2channelcontactobsolete
     public class M2ChannelContactObsoleteDto
     {
-        [JsonProperty("cause")]
+        [JsonPropertyName("cause")]
         public M2ObsoleteCause? Cause { get; set; }
 
     }
@@ -3913,11 +3913,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContactQuickInfoDefaultDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public string Key { get; set; }
 
     }
@@ -3926,22 +3926,22 @@ namespace SpaceDotNet.Client
     public class M2ChannelContactThreadDto
     {
         [Required]
-        [JsonProperty("parent")]
+        [JsonPropertyName("parent")]
         public M2ChannelRecordDto Parent { get; set; }
 
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string? Text { get; set; }
 
-        [JsonProperty("messageId")]
+        [JsonPropertyName("messageId")]
         public string? MessageId { get; set; }
 
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public TDMemberProfileDto? Author { get; set; }
 
-        [JsonProperty("messageAuthor")]
+        [JsonPropertyName("messageAuthor")]
         public CPrincipalDto? MessageAuthor { get; set; }
 
-        [JsonProperty("attachments")]
+        [JsonPropertyName("attachments")]
         public string? Attachments { get; set; }
 
     }
@@ -3950,11 +3950,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentArticleDto
     {
         [Required]
-        [JsonProperty("article")]
+        [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
 
         [Required]
-        [JsonProperty("articleContent")]
+        [JsonPropertyName("articleContent")]
         public ArticleContentRecordDto ArticleContent { get; set; }
 
     }
@@ -3963,14 +3963,14 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentCodeDiscussionDto
     {
         [Required]
-        [JsonProperty("codeDiscussionId")]
+        [JsonPropertyName("codeDiscussionId")]
         public string CodeDiscussionId { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
-        [JsonProperty("codeDiscussion")]
+        [JsonPropertyName("codeDiscussion")]
         public CodeDiscussionRecordDto? CodeDiscussion { get; set; }
 
     }
@@ -3979,11 +3979,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentCodeReviewDiscussionDto
     {
         [Required]
-        [JsonProperty("codeReviewDiscussion")]
+        [JsonPropertyName("codeReviewDiscussion")]
         public string CodeReviewDiscussion { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
     }
@@ -3992,14 +3992,14 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentCodeReviewFeedDto
     {
         [Required]
-        [JsonProperty("codeReviewId")]
+        [JsonPropertyName("codeReviewId")]
         public string CodeReviewId { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
-        [JsonProperty("codeReview")]
+        [JsonPropertyName("codeReview")]
         public CodeReviewRecordDto? CodeReview { get; set; }
 
     }
@@ -4013,11 +4013,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentLocationDto
     {
         [Required]
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto Location { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
     }
@@ -4026,17 +4026,17 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentMemberDto
     {
         [Required]
-        [JsonProperty("member")]
+        [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
-        [JsonProperty("memberAbsences")]
+        [JsonPropertyName("memberAbsences")]
         public ProfileAbsencesRecordDto? MemberAbsences { get; set; }
 
-        [JsonProperty("memberTeams")]
+        [JsonPropertyName("memberTeams")]
         public ProfileMembershipRecordDto? MemberTeams { get; set; }
 
     }
@@ -4050,11 +4050,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentMentionDto
     {
         [Required]
-        [JsonProperty("record")]
+        [JsonPropertyName("record")]
         public ChannelItemRecordDto Record { get; set; }
 
         [Required]
-        [JsonProperty("parent")]
+        [JsonPropertyName("parent")]
         public M2ChannelRecordDto Parent { get; set; }
 
     }
@@ -4063,10 +4063,10 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentNamedPrivateChannelDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
 
     }
@@ -4075,11 +4075,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("content")]
+        [JsonPropertyName("content")]
         public M2ChannelContentInfoDto Content { get; set; }
 
     }
@@ -4088,11 +4088,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentTeamDto
     {
         [Required]
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
     }
@@ -4101,11 +4101,11 @@ namespace SpaceDotNet.Client
     public class M2ChannelContentThreadDto
     {
         [Required]
-        [JsonProperty("record")]
+        [JsonPropertyName("record")]
         public ChannelItemRecordDto Record { get; set; }
 
         [Required]
-        [JsonProperty("parent")]
+        [JsonPropertyName("parent")]
         public M2ChannelRecordDto Parent { get; set; }
 
     }
@@ -4123,15 +4123,15 @@ namespace SpaceDotNet.Client
     // Source: m2channelissueinfo
     public class M2ChannelIssueInfoDto
     {
-        [JsonProperty("projectKey")]
+        [JsonPropertyName("projectKey")]
         public ProjectKeyDto? ProjectKey { get; set; }
 
         [Required]
-        [JsonProperty("issue")]
+        [JsonPropertyName("issue")]
         public IssueDto Issue { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
     }
@@ -4140,38 +4140,38 @@ namespace SpaceDotNet.Client
     public class M2ChannelRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("contact")]
+        [JsonPropertyName("contact")]
         public M2ChannelContactDto Contact { get; set; }
 
         [Required]
-        [JsonProperty("totalMessages")]
+        [JsonPropertyName("totalMessages")]
         public int TotalMessages { get; set; }
 
-        [JsonProperty("lastMessage")]
+        [JsonPropertyName("lastMessage")]
         public MessageInfoDto? LastMessage { get; set; }
 
-        [JsonProperty("authors")]
+        [JsonPropertyName("authors")]
         public List<TDMemberProfileDto>? Authors { get; set; }
 
-        [JsonProperty("commentAuthors")]
+        [JsonPropertyName("commentAuthors")]
         public List<CPrincipalDto>? CommentAuthors { get; set; }
 
-        [JsonProperty("participants")]
+        [JsonPropertyName("participants")]
         public List<ChannelParticipantDto>? Participants { get; set; }
 
-        [JsonProperty("channelArchived")]
+        [JsonPropertyName("channelArchived")]
         public bool? ChannelArchived { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("content")]
+        [JsonPropertyName("content")]
         public M2ChannelContentInfoDto Content { get; set; }
 
     }
@@ -4185,11 +4185,11 @@ namespace SpaceDotNet.Client
     public class M2DraftEditorAddedItemContentDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
     }
@@ -4198,15 +4198,15 @@ namespace SpaceDotNet.Client
     public class M2DraftEditorTeamAddedItemContentDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
     }
@@ -4214,39 +4214,39 @@ namespace SpaceDotNet.Client
     // Source: m2externalstatusfailureitemcontent
     public class M2ExternalStatusFailureItemContentDto
     {
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string? ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("branch")]
+        [JsonPropertyName("branch")]
         public string Branch { get; set; }
 
-        [JsonProperty("revisionInfo")]
+        [JsonPropertyName("revisionInfo")]
         public RevisionAuthorInfoDto? RevisionInfo { get; set; }
 
-        [JsonProperty("changesInfo")]
+        [JsonPropertyName("changesInfo")]
         public LastChangesDto? ChangesInfo { get; set; }
 
         [Required]
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
         [Required]
-        [JsonProperty("externalServiceName")]
+        [JsonPropertyName("externalServiceName")]
         public string ExternalServiceName { get; set; }
 
         [Required]
-        [JsonProperty("taskName")]
+        [JsonPropertyName("taskName")]
         public string TaskName { get; set; }
 
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public long? Timestamp { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
     }
@@ -4254,39 +4254,39 @@ namespace SpaceDotNet.Client
     // Source: m2externalstatussucceeditemcontent
     public class M2ExternalStatusSucceedItemContentDto
     {
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string? ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("branch")]
+        [JsonPropertyName("branch")]
         public string Branch { get; set; }
 
-        [JsonProperty("revisionInfo")]
+        [JsonPropertyName("revisionInfo")]
         public RevisionAuthorInfoDto? RevisionInfo { get; set; }
 
-        [JsonProperty("changesInfo")]
+        [JsonPropertyName("changesInfo")]
         public LastChangesDto? ChangesInfo { get; set; }
 
         [Required]
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
         [Required]
-        [JsonProperty("externalServiceName")]
+        [JsonPropertyName("externalServiceName")]
         public string ExternalServiceName { get; set; }
 
         [Required]
-        [JsonProperty("taskName")]
+        [JsonPropertyName("taskName")]
         public string TaskName { get; set; }
 
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public long? Timestamp { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
     }
@@ -4300,15 +4300,15 @@ namespace SpaceDotNet.Client
     public class M2MaintenanceActionContentDto
     {
         [Required]
-        [JsonProperty("action")]
+        [JsonPropertyName("action")]
         public string Action { get; set; }
 
         [Required]
-        [JsonProperty("success")]
+        [JsonPropertyName("success")]
         public bool Success { get; set; }
 
         [Required]
-        [JsonProperty("details")]
+        [JsonPropertyName("details")]
         public string Details { get; set; }
 
     }
@@ -4323,7 +4323,7 @@ namespace SpaceDotNet.Client
          : M2MemberContentDto
     {
         [Required]
-        [JsonProperty("member")]
+        [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
 
     }
@@ -4333,7 +4333,7 @@ namespace SpaceDotNet.Client
          : M2MemberContentDto
     {
         [Required]
-        [JsonProperty("member")]
+        [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
 
     }
@@ -4348,7 +4348,7 @@ namespace SpaceDotNet.Client
          : M2MembershipContentDto
     {
         [Required]
-        [JsonProperty("membership")]
+        [JsonPropertyName("membership")]
         public TDMembershipDto Membership { get; set; }
 
     }
@@ -4358,11 +4358,11 @@ namespace SpaceDotNet.Client
          : M2MembershipContentDto
     {
         [Required]
-        [JsonProperty("membership")]
+        [JsonPropertyName("membership")]
         public TDMembershipDto Membership { get; set; }
 
         [Required]
-        [JsonProperty("leave")]
+        [JsonPropertyName("leave")]
         public bool Leave { get; set; }
 
     }
@@ -4372,7 +4372,7 @@ namespace SpaceDotNet.Client
          : M2MembershipContentDto
     {
         [Required]
-        [JsonProperty("membership")]
+        [JsonPropertyName("membership")]
         public TDMembershipDto Membership { get; set; }
 
     }
@@ -4386,7 +4386,7 @@ namespace SpaceDotNet.Client
     public class M2PackageCreatedDetailsDto
     {
         [Required]
-        [JsonProperty("pkg")]
+        [JsonPropertyName("pkg")]
         public PackageVersionInfoDto Pkg { get; set; }
 
     }
@@ -4395,7 +4395,7 @@ namespace SpaceDotNet.Client
     public class M2PackageDeletedDetailsDto
     {
         [Required]
-        [JsonProperty("pkg")]
+        [JsonPropertyName("pkg")]
         public PackageVersionInfoDto Pkg { get; set; }
 
     }
@@ -4404,7 +4404,7 @@ namespace SpaceDotNet.Client
     public class M2PollContentDto
     {
         [Required]
-        [JsonProperty("poll")]
+        [JsonPropertyName("poll")]
         public PollRecordDto Poll { get; set; }
 
     }
@@ -4413,32 +4413,32 @@ namespace SpaceDotNet.Client
     public class M2SharedChannelContentDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("group")]
+        [JsonPropertyName("group")]
         public string Group { get; set; }
 
         [Required]
-        [JsonProperty("access")]
+        [JsonPropertyName("access")]
         public M2Access Access { get; set; }
 
         [Required]
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("membersCounter")]
+        [JsonPropertyName("membersCounter")]
         public int? MembersCounter { get; set; }
 
         [Required]
-        [JsonProperty("notificationDefaults")]
+        [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
 
-        [JsonProperty("teams")]
+        [JsonPropertyName("teams")]
         public List<TDTeamDto>? Teams { get; set; }
 
-        [JsonProperty("canEdit")]
+        [JsonPropertyName("canEdit")]
         public bool? CanEdit { get; set; }
 
     }
@@ -4447,30 +4447,30 @@ namespace SpaceDotNet.Client
     public class M2TaskExecutionFailureItemContentDto
     {
         [Required]
-        [JsonProperty("taskExecutionId")]
+        [JsonPropertyName("taskExecutionId")]
         public string TaskExecutionId { get; set; }
 
         [Required]
-        [JsonProperty("taskName")]
+        [JsonPropertyName("taskName")]
         public string TaskName { get; set; }
 
-        [JsonProperty("taskId")]
+        [JsonPropertyName("taskId")]
         public string? TaskId { get; set; }
 
         [Required]
-        [JsonProperty("repoName")]
+        [JsonPropertyName("repoName")]
         public string RepoName { get; set; }
 
         [Required]
-        [JsonProperty("branchName")]
+        [JsonPropertyName("branchName")]
         public string BranchName { get; set; }
 
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public ProjectKeyDto Project { get; set; }
 
         [Required]
-        [JsonProperty("testsSummary")]
+        [JsonPropertyName("testsSummary")]
         public TestsSummaryDto TestsSummary { get; set; }
 
     }
@@ -4479,26 +4479,26 @@ namespace SpaceDotNet.Client
     public class M2TaskExecutionSucceedItemContentDto
     {
         [Required]
-        [JsonProperty("taskExecutionId")]
+        [JsonPropertyName("taskExecutionId")]
         public string TaskExecutionId { get; set; }
 
         [Required]
-        [JsonProperty("taskName")]
+        [JsonPropertyName("taskName")]
         public string TaskName { get; set; }
 
-        [JsonProperty("taskId")]
+        [JsonPropertyName("taskId")]
         public string? TaskId { get; set; }
 
         [Required]
-        [JsonProperty("repoName")]
+        [JsonPropertyName("repoName")]
         public string RepoName { get; set; }
 
         [Required]
-        [JsonProperty("branchName")]
+        [JsonPropertyName("branchName")]
         public string BranchName { get; set; }
 
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public ProjectKeyDto Project { get; set; }
 
     }
@@ -4507,7 +4507,7 @@ namespace SpaceDotNet.Client
     public class M2TextItemContentDto
     {
         [Required]
-        [JsonProperty("markdown")]
+        [JsonPropertyName("markdown")]
         public bool Markdown { get; set; }
 
     }
@@ -4521,7 +4521,7 @@ namespace SpaceDotNet.Client
     public class MavenPackageTypeDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
     }
@@ -4530,29 +4530,29 @@ namespace SpaceDotNet.Client
     public class MeInfoDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
-        [JsonProperty("profilePic")]
+        [JsonPropertyName("profilePic")]
         public string? ProfilePic { get; set; }
 
         [Required]
-        [JsonProperty("preferredLanguage")]
+        [JsonPropertyName("preferredLanguage")]
         public TDLanguageDto PreferredLanguage { get; set; }
 
         [Required]
-        [JsonProperty("englishLanguage")]
+        [JsonPropertyName("englishLanguage")]
         public TDLanguageDto EnglishLanguage { get; set; }
 
         [Required]
-        [JsonProperty("navBarProjects")]
+        [JsonPropertyName("navBarProjects")]
         public List<string> NavBarProjects { get; set; }
 
         [Required]
-        [JsonProperty("firstDayOfWeek")]
+        [JsonPropertyName("firstDayOfWeek")]
         public int FirstDayOfWeek { get; set; }
 
-        [JsonProperty("themeName")]
+        [JsonPropertyName("themeName")]
         public string? ThemeName { get; set; }
 
     }
@@ -4561,37 +4561,37 @@ namespace SpaceDotNet.Client
     public class MeetingRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("starts")]
+        [JsonPropertyName("starts")]
         public SpaceTime Starts { get; set; }
 
         [Required]
-        [JsonProperty("finishes")]
+        [JsonPropertyName("finishes")]
         public SpaceTime Finishes { get; set; }
 
-        [JsonProperty("timezone")]
+        [JsonPropertyName("timezone")]
         public ATimeZoneDto? Timezone { get; set; }
 
         [Required]
-        [JsonProperty("allDay")]
+        [JsonPropertyName("allDay")]
         public bool AllDay { get; set; }
 
         [Required]
-        [JsonProperty("rooms")]
+        [JsonPropertyName("rooms")]
         public List<TDLocationDto> Rooms { get; set; }
 
         [Required]
-        [JsonProperty("participants")]
+        [JsonPropertyName("participants")]
         public List<ParticipantDto> Participants { get; set; }
 
-        [JsonProperty("article")]
+        [JsonPropertyName("article")]
         public ArticleRecordDto? Article { get; set; }
 
     }
@@ -4600,11 +4600,11 @@ namespace SpaceDotNet.Client
     public class MembersAddedItemDetailsDto
     {
         [Required]
-        [JsonProperty("principals")]
+        [JsonPropertyName("principals")]
         public List<CPrincipalDto> Principals { get; set; }
 
         [Required]
-        [JsonProperty("othersDisplayNames")]
+        [JsonPropertyName("othersDisplayNames")]
         public List<string> OthersDisplayNames { get; set; }
 
     }
@@ -4613,11 +4613,11 @@ namespace SpaceDotNet.Client
     public class MembershipEventDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("membership")]
+        [JsonPropertyName("membership")]
         public List<TDMembershipDto> Membership { get; set; }
 
     }
@@ -4626,15 +4626,15 @@ namespace SpaceDotNet.Client
     public class MergeRequestBranchDto
     {
         [Required]
-        [JsonProperty("displayName")]
+        [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
 
         [Required]
-        [JsonProperty("ref")]
+        [JsonPropertyName("ref")]
         public string Ref { get; set; }
 
         [Required]
-        [JsonProperty("deleted")]
+        [JsonPropertyName("deleted")]
         public bool Deleted { get; set; }
 
     }
@@ -4643,15 +4643,15 @@ namespace SpaceDotNet.Client
     public class MergeRequestBranchDeletedEventDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("branch")]
+        [JsonPropertyName("branch")]
         public string Branch { get; set; }
 
         [Required]
-        [JsonProperty("branchType")]
+        [JsonPropertyName("branchType")]
         public MergeRequestBranchType BranchType { get; set; }
 
     }
@@ -4660,25 +4660,25 @@ namespace SpaceDotNet.Client
     public class MergeRequestBranchPairDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("sourceBranch")]
+        [JsonPropertyName("sourceBranch")]
         public string SourceBranch { get; set; }
 
         [Required]
-        [JsonProperty("targetBranch")]
+        [JsonPropertyName("targetBranch")]
         public string TargetBranch { get; set; }
 
         [Required]
-        [JsonProperty("sourceBranchRef")]
+        [JsonPropertyName("sourceBranchRef")]
         public string SourceBranchRef { get; set; }
 
-        [JsonProperty("sourceBranchInfo")]
+        [JsonPropertyName("sourceBranchInfo")]
         public MergeRequestBranchDto? SourceBranchInfo { get; set; }
 
-        [JsonProperty("targetBranchInfo")]
+        [JsonPropertyName("targetBranchInfo")]
         public MergeRequestBranchDto? TargetBranchInfo { get; set; }
 
     }
@@ -4687,15 +4687,15 @@ namespace SpaceDotNet.Client
     public class MergeRequestBranchRestoredEventDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("branch")]
+        [JsonPropertyName("branch")]
         public string Branch { get; set; }
 
         [Required]
-        [JsonProperty("branchType")]
+        [JsonPropertyName("branchType")]
         public MergeRequestBranchType BranchType { get; set; }
 
     }
@@ -4704,15 +4704,15 @@ namespace SpaceDotNet.Client
     public class MergeRequestMergedEventDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("sourceBranch")]
+        [JsonPropertyName("sourceBranch")]
         public string SourceBranch { get; set; }
 
         [Required]
-        [JsonProperty("targetBranch")]
+        [JsonPropertyName("targetBranch")]
         public string TargetBranch { get; set; }
 
     }
@@ -4722,49 +4722,49 @@ namespace SpaceDotNet.Client
          : CodeReviewRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public ProjectKeyDto Project { get; set; }
 
         [Required]
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("number")]
+        [JsonPropertyName("number")]
         public int Number { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         public CodeReviewState State { get; set; }
 
-        [JsonProperty("canBeReopened")]
+        [JsonPropertyName("canBeReopened")]
         public bool? CanBeReopened { get; set; }
 
         [Required]
-        [JsonProperty("createdAt")]
+        [JsonPropertyName("createdAt")]
         public long CreatedAt { get; set; }
 
         [Required]
-        [JsonProperty("createdBy")]
+        [JsonPropertyName("createdBy")]
         public TDMemberProfileDto CreatedBy { get; set; }
 
         [Required]
-        [JsonProperty("participants")]
+        [JsonPropertyName("participants")]
         public List<CodeReviewParticipantDto> Participants { get; set; }
 
-        [JsonProperty("feedChannel")]
+        [JsonPropertyName("feedChannel")]
         public M2ChannelRecordDto? FeedChannel { get; set; }
 
         [Required]
-        [JsonProperty("branchPairs")]
+        [JsonPropertyName("branchPairs")]
         public List<MergeRequestBranchPairDto> BranchPairs { get; set; }
 
     }
@@ -4773,22 +4773,22 @@ namespace SpaceDotNet.Client
     public class MessageInfoDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
         [Required]
-        [JsonProperty("time")]
+        [JsonPropertyName("time")]
         public long Time { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public CPrincipalDto Author { get; set; }
 
-        [JsonProperty("attachments")]
+        [JsonPropertyName("attachments")]
         public string? Attachments { get; set; }
 
     }
@@ -4803,19 +4803,19 @@ namespace SpaceDotNet.Client
     public class NonWorkingDaysDto
     {
         [Required]
-        [JsonProperty("since")]
+        [JsonPropertyName("since")]
         public SpaceDate Since { get; set; }
 
         [Required]
-        [JsonProperty("till")]
+        [JsonPropertyName("till")]
         public SpaceDate Till { get; set; }
 
         [Required]
-        [JsonProperty("startsEarlier")]
+        [JsonPropertyName("startsEarlier")]
         public bool StartsEarlier { get; set; }
 
         [Required]
-        [JsonProperty("endsLater")]
+        [JsonPropertyName("endsLater")]
         public bool EndsLater { get; set; }
 
     }
@@ -4824,11 +4824,11 @@ namespace SpaceDotNet.Client
     public class NonWorkingDaysEventDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("days")]
+        [JsonPropertyName("days")]
         public List<NonWorkingDaysDto> Days { get; set; }
 
     }
@@ -4838,30 +4838,30 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("status")]
+        [JsonPropertyName("status")]
         public NormalizedTestServiceMessageStatus Status { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public long? Duration { get; set; }
 
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string? Message { get; set; }
 
-        [JsonProperty("stackTrace")]
+        [JsonPropertyName("stackTrace")]
         public string? StackTrace { get; set; }
 
-        [JsonProperty("expected")]
+        [JsonPropertyName("expected")]
         public string? Expected { get; set; }
 
-        [JsonProperty("actual")]
+        [JsonPropertyName("actual")]
         public string? Actual { get; set; }
 
     }
@@ -4869,29 +4869,29 @@ namespace SpaceDotNet.Client
     // Source: opengraph
     public class OpenGraphDto
     {
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string? Url { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("image")]
+        [JsonPropertyName("image")]
         public OpenGraphImageDto? Image { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("determiner")]
+        [JsonPropertyName("determiner")]
         public string? Determiner { get; set; }
 
-        [JsonProperty("siteName")]
+        [JsonPropertyName("siteName")]
         public string? SiteName { get; set; }
 
-        [JsonProperty("video")]
+        [JsonPropertyName("video")]
         public OpenGraphVideoDto? Video { get; set; }
 
-        [JsonProperty("audio")]
+        [JsonPropertyName("audio")]
         public OpenGraphAudioDto? Audio { get; set; }
 
     }
@@ -4900,10 +4900,10 @@ namespace SpaceDotNet.Client
     public class OpenGraphAudioDto
     {
         [Required]
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
-        [JsonProperty("mime")]
+        [JsonPropertyName("mime")]
         public string? Mime { get; set; }
 
     }
@@ -4912,19 +4912,19 @@ namespace SpaceDotNet.Client
     public class OpenGraphImageDto
     {
         [Required]
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
-        [JsonProperty("mime")]
+        [JsonPropertyName("mime")]
         public string? Mime { get; set; }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int? Width { get; set; }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int? Height { get; set; }
 
-        [JsonProperty("alt")]
+        [JsonPropertyName("alt")]
         public string? Alt { get; set; }
 
     }
@@ -4933,16 +4933,16 @@ namespace SpaceDotNet.Client
     public class OpenGraphVideoDto
     {
         [Required]
-        [JsonProperty("url")]
+        [JsonPropertyName("url")]
         public string Url { get; set; }
 
-        [JsonProperty("mime")]
+        [JsonPropertyName("mime")]
         public string? Mime { get; set; }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int? Width { get; set; }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int? Height { get; set; }
 
     }
@@ -4951,19 +4951,19 @@ namespace SpaceDotNet.Client
     public class PRPrivateProjectDto
     {
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public ProjectKeyDto Key { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("accessAllowed")]
+        [JsonPropertyName("accessAllowed")]
         public bool AccessAllowed { get; set; }
 
         [Required]
-        [JsonProperty("admins")]
+        [JsonPropertyName("admins")]
         public List<TDMemberProfileDto> Admins { get; set; }
 
     }
@@ -4972,28 +4972,28 @@ namespace SpaceDotNet.Client
     public class PRProjectDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public ProjectKeyDto Key { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("private")]
+        [JsonPropertyName("private")]
         public bool Private { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("icon")]
+        [JsonPropertyName("icon")]
         public string? Icon { get; set; }
 
-        [JsonProperty("latestRepositoryActivity")]
+        [JsonPropertyName("latestRepositoryActivity")]
         public SpaceTime? LatestRepositoryActivity { get; set; }
 
     }
@@ -5002,35 +5002,35 @@ namespace SpaceDotNet.Client
     public class PRProjectFullDto
     {
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public PRProjectDto Project { get; set; }
 
         [Required]
-        [JsonProperty("teams")]
+        [JsonPropertyName("teams")]
         public List<TDTeamDto> Teams { get; set; }
 
         [Required]
-        [JsonProperty("members")]
+        [JsonPropertyName("members")]
         public List<TDMemberProfileDto> Members { get; set; }
 
         [Required]
-        [JsonProperty("administratorsTeams")]
+        [JsonPropertyName("administratorsTeams")]
         public List<TDTeamDto> AdministratorsTeams { get; set; }
 
         [Required]
-        [JsonProperty("administrators")]
+        [JsonPropertyName("administrators")]
         public List<TDMemberProfileDto> Administrators { get; set; }
 
         [Required]
-        [JsonProperty("repos")]
+        [JsonPropertyName("repos")]
         public List<PRRepositoryInfoDto> Repos { get; set; }
 
         [Required]
-        [JsonProperty("tags")]
+        [JsonPropertyName("tags")]
         public List<string> Tags { get; set; }
 
         [Required]
-        [JsonProperty("permissions")]
+        [JsonPropertyName("permissions")]
         public DTORightsDto Permissions { get; set; }
 
     }
@@ -5039,11 +5039,11 @@ namespace SpaceDotNet.Client
     public class PRProjectTagsDto
     {
         [Required]
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("tags")]
+        [JsonPropertyName("tags")]
         public List<string> Tags { get; set; }
 
     }
@@ -5052,30 +5052,30 @@ namespace SpaceDotNet.Client
     public class PRRepositoryInfoDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("latestActivity")]
+        [JsonPropertyName("latestActivity")]
         public SpaceTime? LatestActivity { get; set; }
 
-        [JsonProperty("proxyPushNotification")]
+        [JsonPropertyName("proxyPushNotification")]
         public SpaceTime? ProxyPushNotification { get; set; }
 
         [Required]
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         public RepositoryState State { get; set; }
 
-        [JsonProperty("initProgress")]
+        [JsonPropertyName("initProgress")]
         public string? InitProgress { get; set; }
 
-        [JsonProperty("readmeName")]
+        [JsonPropertyName("readmeName")]
         public string? ReadmeName { get; set; }
 
-        [JsonProperty("monthlyActivity")]
+        [JsonPropertyName("monthlyActivity")]
         public RepositoryActivityDto? MonthlyActivity { get; set; }
 
     }
@@ -5084,11 +5084,11 @@ namespace SpaceDotNet.Client
     public class PRTagDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("projectCount")]
+        [JsonPropertyName("projectCount")]
         public int ProjectCount { get; set; }
 
     }
@@ -5102,22 +5102,22 @@ namespace SpaceDotNet.Client
     public class PackageVersionInfoDto
     {
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public PackageTypeDto Type { get; set; }
 
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("version")]
+        [JsonPropertyName("version")]
         public string Version { get; set; }
 
-        [JsonProperty("tags")]
+        [JsonPropertyName("tags")]
         public List<string>? Tags { get; set; }
 
     }
@@ -5126,11 +5126,11 @@ namespace SpaceDotNet.Client
     public class ParticipantDto
     {
         [Required]
-        [JsonProperty("user")]
+        [JsonPropertyName("user")]
         public TDMemberProfileDto User { get; set; }
 
         [Required]
-        [JsonProperty("status")]
+        [JsonPropertyName("status")]
         public EventParticipationStatus Status { get; set; }
 
     }
@@ -5139,28 +5139,28 @@ namespace SpaceDotNet.Client
     public class PlanItemDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("checklistId")]
+        [JsonPropertyName("checklistId")]
         public string ChecklistId { get; set; }
 
-        [JsonProperty("tag")]
+        [JsonPropertyName("tag")]
         public PlanningTagDto? Tag { get; set; }
 
-        [JsonProperty("plainText")]
+        [JsonPropertyName("plainText")]
         public string? PlainText { get; set; }
 
-        [JsonProperty("done")]
+        [JsonPropertyName("done")]
         public bool? Done { get; set; }
 
         [Required]
-        [JsonProperty("hasChildren")]
+        [JsonPropertyName("hasChildren")]
         public bool HasChildren { get; set; }
 
         [Required]
-        [JsonProperty("children")]
+        [JsonPropertyName("children")]
         public List<PlanItemDto> Children { get; set; }
 
     }
@@ -5169,11 +5169,11 @@ namespace SpaceDotNet.Client
     public class PlanItemChildrenDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("children")]
+        [JsonPropertyName("children")]
         public List<PlanItemDto> Children { get; set; }
 
     }
@@ -5182,18 +5182,18 @@ namespace SpaceDotNet.Client
     public class PlanningTagDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("projectId")]
+        [JsonPropertyName("projectId")]
         public string ProjectId { get; set; }
 
-        [JsonProperty("parent")]
+        [JsonPropertyName("parent")]
         public PlanningTagDto? Parent { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
     }
@@ -5202,50 +5202,50 @@ namespace SpaceDotNet.Client
     public class PollRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("owner")]
+        [JsonPropertyName("owner")]
         public TDMemberProfileDto Owner { get; set; }
 
         [Required]
-        [JsonProperty("question")]
+        [JsonPropertyName("question")]
         public string Question { get; set; }
 
         [Required]
-        [JsonProperty("meVote")]
+        [JsonPropertyName("meVote")]
         public bool MeVote { get; set; }
 
         [Required]
-        [JsonProperty("countPeople")]
+        [JsonPropertyName("countPeople")]
         public int CountPeople { get; set; }
 
         [Required]
-        [JsonProperty("anonymous")]
+        [JsonPropertyName("anonymous")]
         public bool Anonymous { get; set; }
 
         [Required]
-        [JsonProperty("closed")]
+        [JsonPropertyName("closed")]
         public bool Closed { get; set; }
 
         [Required]
-        [JsonProperty("extendable")]
+        [JsonPropertyName("extendable")]
         public bool Extendable { get; set; }
 
         [Required]
-        [JsonProperty("multiChoice")]
+        [JsonPropertyName("multiChoice")]
         public bool MultiChoice { get; set; }
 
         [Required]
-        [JsonProperty("ended")]
+        [JsonPropertyName("ended")]
         public bool Ended { get; set; }
 
-        [JsonProperty("expirationTime")]
+        [JsonPropertyName("expirationTime")]
         public SpaceTime? ExpirationTime { get; set; }
 
         [Required]
-        [JsonProperty("votes")]
+        [JsonPropertyName("votes")]
         public List<VoteGroupDto> Votes { get; set; }
 
     }
@@ -5254,11 +5254,11 @@ namespace SpaceDotNet.Client
     public class ProfileAbsencesRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("absences")]
+        [JsonPropertyName("absences")]
         public List<AbsenceRecordDto> Absences { get; set; }
 
     }
@@ -5273,7 +5273,7 @@ namespace SpaceDotNet.Client
     public class ProfileCFValueDto
          : CFValueDto
     {
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto? Profile { get; set; }
 
     }
@@ -5282,7 +5282,7 @@ namespace SpaceDotNet.Client
     public class ProfileLinkPreviewDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
     }
@@ -5298,7 +5298,7 @@ namespace SpaceDotNet.Client
          : CFValueDto
     {
         [Required]
-        [JsonProperty("profiles")]
+        [JsonPropertyName("profiles")]
         public List<TDMemberProfileDto> Profiles { get; set; }
 
     }
@@ -5307,11 +5307,11 @@ namespace SpaceDotNet.Client
     public class ProfileMembershipRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("memberships")]
+        [JsonPropertyName("memberships")]
         public List<TDMembershipDto> Memberships { get; set; }
 
     }
@@ -5320,18 +5320,18 @@ namespace SpaceDotNet.Client
     public class ProjectForProfilePageDto
     {
         [Required]
-        [JsonProperty("project")]
+        [JsonPropertyName("project")]
         public PRProjectDto Project { get; set; }
 
         [Required]
-        [JsonProperty("tags")]
+        [JsonPropertyName("tags")]
         public List<string> Tags { get; set; }
 
         [Required]
-        [JsonProperty("responsibilities")]
+        [JsonPropertyName("responsibilities")]
         public List<string> Responsibilities { get; set; }
 
-        [JsonProperty("lastUpdated")]
+        [JsonPropertyName("lastUpdated")]
         public SpaceTime? LastUpdated { get; set; }
 
     }
@@ -5340,7 +5340,7 @@ namespace SpaceDotNet.Client
     public class ProjectKeyDto
     {
         [Required]
-        [JsonProperty("key")]
+        [JsonPropertyName("key")]
         public string Key { get; set; }
 
     }
@@ -5349,11 +5349,11 @@ namespace SpaceDotNet.Client
     public class PropagatedCodeDiscussionDto
     {
         [Required]
-        [JsonProperty("anchor")]
+        [JsonPropertyName("anchor")]
         public CodeDiscussionAnchorDto Anchor { get; set; }
 
         [Required]
-        [JsonProperty("discussion")]
+        [JsonPropertyName("discussion")]
         public CodeDiscussionRecordDto Discussion { get; set; }
 
     }
@@ -5362,23 +5362,23 @@ namespace SpaceDotNet.Client
     public class PublicHolidayDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("calendar")]
+        [JsonPropertyName("calendar")]
         public PublicHolidayCalendarRecordDto Calendar { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public SpaceDate Date { get; set; }
 
         [Required]
-        [JsonProperty("workingDay")]
+        [JsonPropertyName("workingDay")]
         public bool WorkingDay { get; set; }
 
     }
@@ -5387,29 +5387,29 @@ namespace SpaceDotNet.Client
     public class PublicHolidayCalendarRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("firstDate")]
+        [JsonPropertyName("firstDate")]
         public SpaceDate? FirstDate { get; set; }
 
-        [JsonProperty("lastDate")]
+        [JsonPropertyName("lastDate")]
         public SpaceDate? LastDate { get; set; }
 
         [Required]
-        [JsonProperty("eventsCount")]
+        [JsonPropertyName("eventsCount")]
         public int EventsCount { get; set; }
 
         [Required]
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto Location { get; set; }
 
     }
@@ -5418,15 +5418,15 @@ namespace SpaceDotNet.Client
     public class ReactionDataDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("symbol")]
+        [JsonPropertyName("symbol")]
         public string Symbol { get; set; }
 
         [Required]
-        [JsonProperty("emoji")]
+        [JsonPropertyName("emoji")]
         public string Emoji { get; set; }
 
     }
@@ -5435,26 +5435,26 @@ namespace SpaceDotNet.Client
     public class ReactionTypeRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("data")]
+        [JsonPropertyName("data")]
         public ReactionDataDto Data { get; set; }
 
         [Required]
-        [JsonProperty("provider")]
+        [JsonPropertyName("provider")]
         public CPrincipalDto Provider { get; set; }
 
         [Required]
-        [JsonProperty("addedAt")]
+        [JsonPropertyName("addedAt")]
         public SpaceDate AddedAt { get; set; }
 
-        [JsonProperty("order")]
+        [JsonPropertyName("order")]
         public int? Order { get; set; }
 
     }
@@ -5463,8 +5463,8 @@ namespace SpaceDotNet.Client
     public class RepositoryActivityDto
     {
         [Required]
-        [JsonProperty("lastActivity")]
-        public List<Object5Dto> LastActivity { get; set; }
+        [JsonPropertyName("lastActivity")]
+        public List<Object0Dto> LastActivity { get; set; }
 
     }
     
@@ -5472,41 +5472,41 @@ namespace SpaceDotNet.Client
     public class RepositoryCommitRecordDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("repositoryId")]
+        [JsonPropertyName("repositoryId")]
         public string RepositoryId { get; set; }
 
         [Required]
-        [JsonProperty("repositoryName")]
+        [JsonPropertyName("repositoryName")]
         public string RepositoryName { get; set; }
 
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string? Message { get; set; }
 
         [Required]
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public SpaceTime Date { get; set; }
 
-        [JsonProperty("authorName")]
+        [JsonPropertyName("authorName")]
         public string? AuthorName { get; set; }
 
-        [JsonProperty("authorEmail")]
+        [JsonPropertyName("authorEmail")]
         public string? AuthorEmail { get; set; }
 
-        [JsonProperty("committerName")]
+        [JsonPropertyName("committerName")]
         public string? CommitterName { get; set; }
 
-        [JsonProperty("committerEmail")]
+        [JsonPropertyName("committerEmail")]
         public string? CommitterEmail { get; set; }
 
-        [JsonProperty("authorProfile")]
+        [JsonPropertyName("authorProfile")]
         public TDMemberProfileDto? AuthorProfile { get; set; }
 
     }
@@ -5515,15 +5515,15 @@ namespace SpaceDotNet.Client
     public class ReviewBranchTrackEventDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("branch")]
+        [JsonPropertyName("branch")]
         public string Branch { get; set; }
 
         [Required]
-        [JsonProperty("track")]
+        [JsonPropertyName("track")]
         public bool Track { get; set; }
 
     }
@@ -5532,7 +5532,7 @@ namespace SpaceDotNet.Client
     public class ReviewCompletionStateChangedEventDto
     {
         [Required]
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         public CodeReviewParticipantState State { get; set; }
 
     }
@@ -5541,19 +5541,19 @@ namespace SpaceDotNet.Client
     public class ReviewCountsDto
     {
         [Required]
-        [JsonProperty("opened")]
+        [JsonPropertyName("opened")]
         public int Opened { get; set; }
 
         [Required]
-        [JsonProperty("closed")]
+        [JsonPropertyName("closed")]
         public int Closed { get; set; }
 
         [Required]
-        [JsonProperty("authoredByMe")]
+        [JsonPropertyName("authoredByMe")]
         public int AuthoredByMe { get; set; }
 
         [Required]
-        [JsonProperty("reviewedByMe")]
+        [JsonPropertyName("reviewedByMe")]
         public int ReviewedByMe { get; set; }
 
     }
@@ -5562,17 +5562,17 @@ namespace SpaceDotNet.Client
     public class ReviewRevisionsChangedEventDto
     {
         [Required]
-        [JsonProperty("commits")]
+        [JsonPropertyName("commits")]
         public List<RepositoryCommitRecordDto> Commits { get; set; }
 
         [Required]
-        [JsonProperty("changeType")]
+        [JsonPropertyName("changeType")]
         public ReviewRevisionsChangedType ChangeType { get; set; }
 
-        [JsonProperty("projectKey")]
+        [JsonPropertyName("projectKey")]
         public string? ProjectKey { get; set; }
 
-        [JsonProperty("review")]
+        [JsonPropertyName("review")]
         public CodeReviewRecordDto? Review { get; set; }
 
     }
@@ -5581,10 +5581,10 @@ namespace SpaceDotNet.Client
     public class ReviewStateChangedEventDto
     {
         [Required]
-        [JsonProperty("state")]
+        [JsonPropertyName("state")]
         public CodeReviewState State { get; set; }
 
-        [JsonProperty("review")]
+        [JsonPropertyName("review")]
         public CodeReviewRecordDto? Review { get; set; }
 
     }
@@ -5593,11 +5593,11 @@ namespace SpaceDotNet.Client
     public class ReviewTitleChangedEventDto
     {
         [Required]
-        [JsonProperty("oldTitle")]
+        [JsonPropertyName("oldTitle")]
         public string OldTitle { get; set; }
 
         [Required]
-        [JsonProperty("newTitle")]
+        [JsonPropertyName("newTitle")]
         public string NewTitle { get; set; }
 
     }
@@ -5606,11 +5606,11 @@ namespace SpaceDotNet.Client
     public class ReviewerChangedEventDto
     {
         [Required]
-        [JsonProperty("uid")]
+        [JsonPropertyName("uid")]
         public TDMemberProfileDto Uid { get; set; }
 
         [Required]
-        [JsonProperty("changeType")]
+        [JsonPropertyName("changeType")]
         public ReviewerChangedType ChangeType { get; set; }
 
     }
@@ -5619,10 +5619,10 @@ namespace SpaceDotNet.Client
     public class RevisionAuthorDto
     {
         [Required]
-        [JsonProperty("authorName")]
+        [JsonPropertyName("authorName")]
         public string AuthorName { get; set; }
 
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto? Profile { get; set; }
 
     }
@@ -5631,11 +5631,11 @@ namespace SpaceDotNet.Client
     public class RevisionAuthorInfoDto
     {
         [Required]
-        [JsonProperty("revisionInfo")]
+        [JsonPropertyName("revisionInfo")]
         public RevisionInfoDto RevisionInfo { get; set; }
 
         [Required]
-        [JsonProperty("author")]
+        [JsonPropertyName("author")]
         public RevisionAuthorDto Author { get; set; }
 
     }
@@ -5644,11 +5644,11 @@ namespace SpaceDotNet.Client
     public class RevisionDiscussionsCounterDto
     {
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
         [Required]
-        [JsonProperty("filesWithCounts")]
+        [JsonPropertyName("filesWithCounts")]
         public List<FileWithCountDto> FilesWithCounts { get; set; }
 
     }
@@ -5657,11 +5657,11 @@ namespace SpaceDotNet.Client
     public class RevisionInReviewDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("commit")]
+        [JsonPropertyName("commit")]
         public string Commit { get; set; }
 
     }
@@ -5670,7 +5670,7 @@ namespace SpaceDotNet.Client
     public class RevisionInReviewIdentifierDto
     {
         [Required]
-        [JsonProperty("identifier")]
+        [JsonPropertyName("identifier")]
         public string Identifier { get; set; }
 
     }
@@ -5679,15 +5679,15 @@ namespace SpaceDotNet.Client
     public class RevisionInfoDto
     {
         [Required]
-        [JsonProperty("revision")]
+        [JsonPropertyName("revision")]
         public string Revision { get; set; }
 
         [Required]
-        [JsonProperty("date")]
+        [JsonPropertyName("date")]
         public long Date { get; set; }
 
         [Required]
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string Message { get; set; }
 
     }
@@ -5696,11 +5696,11 @@ namespace SpaceDotNet.Client
     public class RevisionsInReviewDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("commits")]
+        [JsonPropertyName("commits")]
         public List<GitCommitWithGraphDto> Commits { get; set; }
 
     }
@@ -5709,11 +5709,11 @@ namespace SpaceDotNet.Client
     public class SSLKeystoreDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceDate Created { get; set; }
 
     }
@@ -5728,11 +5728,11 @@ namespace SpaceDotNet.Client
          : ServiceMessageDto
     {
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -5741,17 +5741,17 @@ namespace SpaceDotNet.Client
     public class StickerDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("symbol")]
+        [JsonPropertyName("symbol")]
         public string? Symbol { get; set; }
 
-        [JsonProperty("attachmentId")]
+        [JsonPropertyName("attachmentId")]
         public string? AttachmentId { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
     }
@@ -5760,7 +5760,7 @@ namespace SpaceDotNet.Client
     public class StickerContentDetailsDto
     {
         [Required]
-        [JsonProperty("sticker")]
+        [JsonPropertyName("sticker")]
         public StickerDto Sticker { get; set; }
 
     }
@@ -5769,16 +5769,16 @@ namespace SpaceDotNet.Client
     public class StringCFConstraintDto
          : CFConstraintDto
     {
-        [JsonProperty("min")]
+        [JsonPropertyName("min")]
         public int? Min { get; set; }
 
-        [JsonProperty("max")]
+        [JsonPropertyName("max")]
         public int? Max { get; set; }
 
-        [JsonProperty("pattern")]
+        [JsonPropertyName("pattern")]
         public string? Pattern { get; set; }
 
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string? Message { get; set; }
 
     }
@@ -5793,7 +5793,7 @@ namespace SpaceDotNet.Client
     public class StringCFValueDto
          : CFValueDto
     {
-        [JsonProperty("value")]
+        [JsonPropertyName("value")]
         public string? Value { get; set; }
 
     }
@@ -5809,7 +5809,7 @@ namespace SpaceDotNet.Client
          : CFValueDto
     {
         [Required]
-        [JsonProperty("values")]
+        [JsonPropertyName("values")]
         public List<string> Values { get; set; }
 
     }
@@ -5818,11 +5818,11 @@ namespace SpaceDotNet.Client
     public class SupportProfileDTODto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("adminPermissionsGranted")]
+        [JsonPropertyName("adminPermissionsGranted")]
         public bool AdminPermissionsGranted { get; set; }
 
     }
@@ -5831,11 +5831,11 @@ namespace SpaceDotNet.Client
     public class SyntaxMarkupDto
     {
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public SyntaxMarkupType Type { get; set; }
 
         [Required]
-        [JsonProperty("range")]
+        [JsonPropertyName("range")]
         public TextRangeDto Range { get; set; }
 
     }
@@ -5844,27 +5844,27 @@ namespace SpaceDotNet.Client
     public class TDLanguageDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("code")]
+        [JsonPropertyName("code")]
         public string Code { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("nativeName")]
+        [JsonPropertyName("nativeName")]
         public string NativeName { get; set; }
 
         [Required]
-        [JsonProperty("firstNameTitle")]
+        [JsonPropertyName("firstNameTitle")]
         public string FirstNameTitle { get; set; }
 
         [Required]
-        [JsonProperty("lastNameTitle")]
+        [JsonPropertyName("lastNameTitle")]
         public string LastNameTitle { get; set; }
 
     }
@@ -5873,54 +5873,54 @@ namespace SpaceDotNet.Client
     public class TDLocationDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("timezone")]
+        [JsonPropertyName("timezone")]
         public ATimeZoneWithOffsetDto? Timezone { get; set; }
 
-        [JsonProperty("tz")]
+        [JsonPropertyName("tz")]
         public string? Tz { get; set; }
 
-        [JsonProperty("workdays")]
+        [JsonPropertyName("workdays")]
         public List<int>? Workdays { get; set; }
 
         [Required]
-        [JsonProperty("phones")]
+        [JsonPropertyName("phones")]
         public List<string> Phones { get; set; }
 
         [Required]
-        [JsonProperty("emails")]
+        [JsonPropertyName("emails")]
         public List<string> Emails { get; set; }
 
-        [JsonProperty("equipment")]
+        [JsonPropertyName("equipment")]
         public List<string>? Equipment { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("address")]
+        [JsonPropertyName("address")]
         public string? Address { get; set; }
 
-        [JsonProperty("parent")]
+        [JsonPropertyName("parent")]
         public TDLocationDto? Parent { get; set; }
 
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
-        [JsonProperty("mapId")]
+        [JsonPropertyName("mapId")]
         public string? MapId { get; set; }
 
-        [JsonProperty("channelId")]
+        [JsonPropertyName("channelId")]
         public string? ChannelId { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
     }
@@ -5929,11 +5929,11 @@ namespace SpaceDotNet.Client
     public class TDLocationEquipmentTypeDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
     }
@@ -5942,21 +5942,21 @@ namespace SpaceDotNet.Client
     public class TDLocationMapDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("picture")]
+        [JsonPropertyName("picture")]
         public string Picture { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int? Width { get; set; }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int? Height { get; set; }
 
     }
@@ -5965,28 +5965,28 @@ namespace SpaceDotNet.Client
     public class TDLocationMapPointDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("mapId")]
+        [JsonPropertyName("mapId")]
         public string? MapId { get; set; }
 
         [Required]
-        [JsonProperty("x")]
+        [JsonPropertyName("x")]
         public int X { get; set; }
 
         [Required]
-        [JsonProperty("y")]
+        [JsonPropertyName("y")]
         public int Y { get; set; }
 
         [Required]
-        [JsonProperty("created")]
+        [JsonPropertyName("created")]
         public SpaceTime Created { get; set; }
 
-        [JsonProperty("memberLocation")]
+        [JsonPropertyName("memberLocation")]
         public string? MemberLocation { get; set; }
 
-        [JsonProperty("deleted")]
+        [JsonPropertyName("deleted")]
         public bool? Deleted { get; set; }
 
     }
@@ -5995,15 +5995,15 @@ namespace SpaceDotNet.Client
     public class TDLocationWithTimeZoneDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timezone")]
+        [JsonPropertyName("timezone")]
         public ATimeZoneWithOffsetDto Timezone { get; set; }
 
     }
@@ -6012,14 +6012,14 @@ namespace SpaceDotNet.Client
     public class TDMemberInLocationMapListDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("memberLocation")]
+        [JsonPropertyName("memberLocation")]
         public TDMemberLocationDto MemberLocation { get; set; }
 
-        [JsonProperty("locationMapPoint")]
+        [JsonPropertyName("locationMapPoint")]
         public TDLocationMapPointDto? LocationMapPoint { get; set; }
 
     }
@@ -6028,28 +6028,28 @@ namespace SpaceDotNet.Client
     public class TDMemberLocationDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("location")]
+        [JsonPropertyName("location")]
         public TDLocationDto Location { get; set; }
 
-        [JsonProperty("locationMapPoints")]
+        [JsonPropertyName("locationMapPoints")]
         public List<TDLocationMapPointDto>? LocationMapPoints { get; set; }
 
-        [JsonProperty("since")]
+        [JsonPropertyName("since")]
         public SpaceDate? Since { get; set; }
 
-        [JsonProperty("till")]
+        [JsonPropertyName("till")]
         public SpaceDate? Till { get; set; }
 
         [Required]
-        [JsonProperty("member")]
+        [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
     }
@@ -6058,97 +6058,97 @@ namespace SpaceDotNet.Client
     public class TDMemberProfileDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("username")]
+        [JsonPropertyName("username")]
         public string Username { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public TDProfileNameDto Name { get; set; }
 
         [Required]
-        [JsonProperty("speaksEnglish")]
+        [JsonPropertyName("speaksEnglish")]
         public bool SpeaksEnglish { get; set; }
 
-        [JsonProperty("smallAvatar")]
+        [JsonPropertyName("smallAvatar")]
         public string? SmallAvatar { get; set; }
 
-        [JsonProperty("avatar")]
+        [JsonPropertyName("avatar")]
         public string? Avatar { get; set; }
 
-        [JsonProperty("profilePicture")]
+        [JsonPropertyName("profilePicture")]
         public string? ProfilePicture { get; set; }
 
         [Required]
-        [JsonProperty("languages")]
+        [JsonPropertyName("languages")]
         public List<TDProfileLanguageDto> Languages { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
         [Required]
-        [JsonProperty("notAMember")]
+        [JsonPropertyName("notAMember")]
         public bool NotAMember { get; set; }
 
-        [JsonProperty("joined")]
+        [JsonPropertyName("joined")]
         public SpaceDate? Joined { get; set; }
 
-        [JsonProperty("left")]
+        [JsonPropertyName("left")]
         public SpaceDate? Left { get; set; }
 
-        [JsonProperty("leftAt")]
+        [JsonPropertyName("leftAt")]
         public SpaceTime? LeftAt { get; set; }
 
         [Required]
-        [JsonProperty("absences")]
+        [JsonPropertyName("absences")]
         public List<AbsenceRecordDto> Absences { get; set; }
 
         [Required]
-        [JsonProperty("emails")]
+        [JsonPropertyName("emails")]
         public List<TDProfileEmailDto> Emails { get; set; }
 
         [Required]
-        [JsonProperty("phones")]
+        [JsonPropertyName("phones")]
         public List<string> Phones { get; set; }
 
         [Required]
-        [JsonProperty("messengers")]
+        [JsonPropertyName("messengers")]
         public List<string> Messengers { get; set; }
 
         [Required]
-        [JsonProperty("links")]
+        [JsonPropertyName("links")]
         public List<string> Links { get; set; }
 
         [Required]
-        [JsonProperty("locations")]
+        [JsonPropertyName("locations")]
         public List<TDMemberLocationDto> Locations { get; set; }
 
         [Required]
-        [JsonProperty("managers")]
+        [JsonPropertyName("managers")]
         public List<TDMemberProfileDto> Managers { get; set; }
 
         [Required]
-        [JsonProperty("membershipHistory")]
+        [JsonPropertyName("membershipHistory")]
         public List<TDMembershipDto> MembershipHistory { get; set; }
 
         [Required]
-        [JsonProperty("memberships")]
+        [JsonPropertyName("memberships")]
         public List<TDMembershipDto> Memberships { get; set; }
 
-        [JsonProperty("about")]
+        [JsonPropertyName("about")]
         public string? About { get; set; }
 
-        [JsonProperty("avatarCropSquare")]
+        [JsonPropertyName("avatarCropSquare")]
         public AvatarCropSquareDto? AvatarCropSquare { get; set; }
 
-        [JsonProperty("gender")]
+        [JsonPropertyName("gender")]
         public Gender? Gender { get; set; }
 
-        [JsonProperty("birthday")]
+        [JsonPropertyName("birthday")]
         public SpaceDate? Birthday { get; set; }
 
     }
@@ -6157,11 +6157,11 @@ namespace SpaceDotNet.Client
     public class TDMemberWithTeamDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
         [Required]
-        [JsonProperty("teams")]
+        [JsonPropertyName("teams")]
         public List<TDTeamDto> Teams { get; set; }
 
     }
@@ -6170,54 +6170,54 @@ namespace SpaceDotNet.Client
     public class TDMembershipDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("member")]
+        [JsonPropertyName("member")]
         public TDMemberProfileDto? Member { get; set; }
 
         [Required]
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
 
         [Required]
-        [JsonProperty("role")]
+        [JsonPropertyName("role")]
         public TDRoleDto Role { get; set; }
 
         [Required]
-        [JsonProperty("lead")]
+        [JsonPropertyName("lead")]
         public bool Lead { get; set; }
 
-        [JsonProperty("manager")]
+        [JsonPropertyName("manager")]
         public TDMemberProfileDto? Manager { get; set; }
 
-        [JsonProperty("since")]
+        [JsonPropertyName("since")]
         public SpaceDate? Since { get; set; }
 
-        [JsonProperty("till")]
+        [JsonPropertyName("till")]
         public SpaceDate? Till { get; set; }
 
-        [JsonProperty("activeSince")]
+        [JsonPropertyName("activeSince")]
         public SpaceTime? ActiveSince { get; set; }
 
-        [JsonProperty("activeTill")]
+        [JsonPropertyName("activeTill")]
         public SpaceTime? ActiveTill { get; set; }
 
         [Required]
-        [JsonProperty("requiresApproval")]
+        [JsonPropertyName("requiresApproval")]
         public bool RequiresApproval { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonProperty("editFor")]
+        [JsonPropertyName("editFor")]
         public TDMembershipDto? EditFor { get; set; }
 
-        [JsonProperty("pendingEdit")]
+        [JsonPropertyName("pendingEdit")]
         public TDMembershipDto? PendingEdit { get; set; }
 
-        [JsonProperty("approver")]
+        [JsonPropertyName("approver")]
         public TDMemberProfileDto? Approver { get; set; }
 
     }
@@ -6226,11 +6226,11 @@ namespace SpaceDotNet.Client
     public class TDMergedEventDto
     {
         [Required]
-        [JsonProperty("events")]
-        public List<Object6Dto> Events { get; set; }
+        [JsonPropertyName("events")]
+        public List<Object0Dto> Events { get; set; }
 
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
     }
@@ -6239,11 +6239,11 @@ namespace SpaceDotNet.Client
     public class TDProfileEmailDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("email")]
+        [JsonPropertyName("email")]
         public string Email { get; set; }
 
     }
@@ -6251,14 +6251,14 @@ namespace SpaceDotNet.Client
     // Source: td_profilelanguage
     public class TDProfileLanguageDto
     {
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public TDProfileNameDto? Name { get; set; }
 
         [Required]
-        [JsonProperty("language")]
+        [JsonPropertyName("language")]
         public TDLanguageDto Language { get; set; }
 
-        [JsonProperty("languageCode")]
+        [JsonPropertyName("languageCode")]
         public string? LanguageCode { get; set; }
 
     }
@@ -6267,11 +6267,11 @@ namespace SpaceDotNet.Client
     public class TDProfileNameDto
     {
         [Required]
-        [JsonProperty("firstName")]
+        [JsonPropertyName("firstName")]
         public string FirstName { get; set; }
 
         [Required]
-        [JsonProperty("lastName")]
+        [JsonPropertyName("lastName")]
         public string LastName { get; set; }
 
     }
@@ -6280,18 +6280,18 @@ namespace SpaceDotNet.Client
     public class TDRoleDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("parent")]
+        [JsonPropertyName("parent")]
         public TDRoleDto? Parent { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
     }
@@ -6300,20 +6300,20 @@ namespace SpaceDotNet.Client
     public class TDStatsDto
     {
         [Required]
-        [JsonProperty("totalMembers")]
+        [JsonPropertyName("totalMembers")]
         public int TotalMembers { get; set; }
 
         [Required]
-        [JsonProperty("teams")]
+        [JsonPropertyName("teams")]
         public List<Object0Dto> Teams { get; set; }
 
         [Required]
-        [JsonProperty("roles")]
-        public List<Object7Dto> Roles { get; set; }
+        [JsonPropertyName("roles")]
+        public List<Object0Dto> Roles { get; set; }
 
         [Required]
-        [JsonProperty("locations")]
-        public List<Object2Dto> Locations { get; set; }
+        [JsonPropertyName("locations")]
+        public List<Object0Dto> Locations { get; set; }
 
     }
     
@@ -6321,38 +6321,38 @@ namespace SpaceDotNet.Client
     public class TDTeamDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string Description { get; set; }
 
-        [JsonProperty("parent")]
+        [JsonPropertyName("parent")]
         public TDTeamDto? Parent { get; set; }
 
-        [JsonProperty("emails")]
+        [JsonPropertyName("emails")]
         public List<string>? Emails { get; set; }
 
-        [JsonProperty("channelId")]
+        [JsonPropertyName("channelId")]
         public string? ChannelId { get; set; }
 
         [Required]
-        [JsonProperty("archived")]
+        [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonProperty("disbanded")]
+        [JsonPropertyName("disbanded")]
         public bool? Disbanded { get; set; }
 
-        [JsonProperty("disbandedAt")]
+        [JsonPropertyName("disbandedAt")]
         public SpaceDate? DisbandedAt { get; set; }
 
         [Required]
-        [JsonProperty("memberships")]
+        [JsonPropertyName("memberships")]
         public List<TDMembershipDto> Memberships { get; set; }
 
     }
@@ -6361,17 +6361,17 @@ namespace SpaceDotNet.Client
     public class TDWorkingDaysDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("dateStart")]
+        [JsonPropertyName("dateStart")]
         public SpaceDate? DateStart { get; set; }
 
-        [JsonProperty("dateEnd")]
+        [JsonPropertyName("dateEnd")]
         public SpaceDate? DateEnd { get; set; }
 
         [Required]
-        [JsonProperty("workingDaysSpec")]
+        [JsonPropertyName("workingDaysSpec")]
         public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
 
     }
@@ -6381,11 +6381,11 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6395,11 +6395,11 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6408,7 +6408,7 @@ namespace SpaceDotNet.Client
     public class TeamAddedItemDetailsDto
     {
         [Required]
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
 
     }
@@ -6418,27 +6418,27 @@ namespace SpaceDotNet.Client
          : TestServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public long Duration { get; set; }
 
-        [JsonProperty("message")]
+        [JsonPropertyName("message")]
         public string? Message { get; set; }
 
-        [JsonProperty("stackTrace")]
+        [JsonPropertyName("stackTrace")]
         public string? StackTrace { get; set; }
 
-        [JsonProperty("expected")]
+        [JsonPropertyName("expected")]
         public string? Expected { get; set; }
 
-        [JsonProperty("actual")]
+        [JsonPropertyName("actual")]
         public string? Actual { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6448,11 +6448,11 @@ namespace SpaceDotNet.Client
          : TestServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6462,15 +6462,15 @@ namespace SpaceDotNet.Client
          : TestServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("duration")]
+        [JsonPropertyName("duration")]
         public long Duration { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6486,11 +6486,11 @@ namespace SpaceDotNet.Client
          : TestServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6500,15 +6500,15 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("output")]
+        [JsonPropertyName("output")]
         public string Output { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6518,15 +6518,15 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("output")]
+        [JsonPropertyName("output")]
         public string Output { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6536,11 +6536,11 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6550,11 +6550,11 @@ namespace SpaceDotNet.Client
          : NamedServiceMessageDto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6563,15 +6563,15 @@ namespace SpaceDotNet.Client
     public class TestsSummaryDto
     {
         [Required]
-        [JsonProperty("passedTests")]
+        [JsonPropertyName("passedTests")]
         public long PassedTests { get; set; }
 
         [Required]
-        [JsonProperty("ignoredTests")]
+        [JsonPropertyName("ignoredTests")]
         public long IgnoredTests { get; set; }
 
         [Required]
-        [JsonProperty("failedTests")]
+        [JsonPropertyName("failedTests")]
         public long FailedTests { get; set; }
 
     }
@@ -6580,11 +6580,11 @@ namespace SpaceDotNet.Client
     public class TextRangeDto
     {
         [Required]
-        [JsonProperty("start")]
+        [JsonPropertyName("start")]
         public int Start { get; set; }
 
         [Required]
-        [JsonProperty("length")]
+        [JsonPropertyName("length")]
         public int Length { get; set; }
 
     }
@@ -6594,15 +6594,15 @@ namespace SpaceDotNet.Client
          : ServiceMessageDto
     {
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
         [Required]
-        [JsonProperty("severity")]
+        [JsonPropertyName("severity")]
         public TextMessageSeverity Severity { get; set; }
 
         [Required]
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public TimestampDto Timestamp { get; set; }
 
     }
@@ -6611,11 +6611,11 @@ namespace SpaceDotNet.Client
     public class TimestampDto
     {
         [Required]
-        [JsonProperty("millis")]
+        [JsonPropertyName("millis")]
         public long Millis { get; set; }
 
         [Required]
-        [JsonProperty("microFraction")]
+        [JsonPropertyName("microFraction")]
         public int MicroFraction { get; set; }
 
     }
@@ -6624,11 +6624,11 @@ namespace SpaceDotNet.Client
     public class TrackedBranchesInReviewDto
     {
         [Required]
-        [JsonProperty("repository")]
+        [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonProperty("branches")]
+        [JsonPropertyName("branches")]
         public List<BranchInfoDto> Branches { get; set; }
 
     }
@@ -6637,36 +6637,36 @@ namespace SpaceDotNet.Client
     public class TwitterPlayerCardDto
     {
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("site")]
+        [JsonPropertyName("site")]
         public string Site { get; set; }
 
         [Required]
-        [JsonProperty("player")]
+        [JsonPropertyName("player")]
         public string Player { get; set; }
 
         [Required]
-        [JsonProperty("playerWidth")]
+        [JsonPropertyName("playerWidth")]
         public int PlayerWidth { get; set; }
 
         [Required]
-        [JsonProperty("playerHeight")]
+        [JsonPropertyName("playerHeight")]
         public int PlayerHeight { get; set; }
 
         [Required]
-        [JsonProperty("image")]
+        [JsonPropertyName("image")]
         public string Image { get; set; }
 
-        [JsonProperty("playerStream")]
+        [JsonPropertyName("playerStream")]
         public string? PlayerStream { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("imageAlt")]
+        [JsonPropertyName("imageAlt")]
         public string? ImageAlt { get; set; }
 
     }
@@ -6675,23 +6675,23 @@ namespace SpaceDotNet.Client
     public class TwitterSummaryCardDto
     {
         [Required]
-        [JsonProperty("card")]
+        [JsonPropertyName("card")]
         public string Card { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("description")]
+        [JsonPropertyName("description")]
         public string? Description { get; set; }
 
-        [JsonProperty("site")]
+        [JsonPropertyName("site")]
         public string? Site { get; set; }
 
-        [JsonProperty("image")]
+        [JsonPropertyName("image")]
         public string? Image { get; set; }
 
-        [JsonProperty("imageAlt")]
+        [JsonPropertyName("imageAlt")]
         public string? ImageAlt { get; set; }
 
     }
@@ -6700,48 +6700,48 @@ namespace SpaceDotNet.Client
     public class UnfurlDto
     {
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
         [Required]
-        [JsonProperty("link")]
+        [JsonPropertyName("link")]
         public string Link { get; set; }
 
         [Required]
-        [JsonProperty("text")]
+        [JsonPropertyName("text")]
         public string Text { get; set; }
 
-        [JsonProperty("details")]
+        [JsonPropertyName("details")]
         public UnfurlDetailsDto? Details { get; set; }
 
-        [JsonProperty("sitename")]
+        [JsonPropertyName("sitename")]
         public string? Sitename { get; set; }
 
-        [JsonProperty("image")]
+        [JsonPropertyName("image")]
         public string? Image { get; set; }
 
-        [JsonProperty("imageMime")]
+        [JsonPropertyName("imageMime")]
         public string? ImageMime { get; set; }
 
-        [JsonProperty("imageWidth")]
+        [JsonPropertyName("imageWidth")]
         public int? ImageWidth { get; set; }
 
-        [JsonProperty("imageHeight")]
+        [JsonPropertyName("imageHeight")]
         public int? ImageHeight { get; set; }
 
-        [JsonProperty("video")]
+        [JsonPropertyName("video")]
         public string? Video { get; set; }
 
-        [JsonProperty("videoMime")]
+        [JsonPropertyName("videoMime")]
         public string? VideoMime { get; set; }
 
-        [JsonProperty("videoHeight")]
+        [JsonPropertyName("videoHeight")]
         public int? VideoHeight { get; set; }
 
-        [JsonProperty("videoWidth")]
+        [JsonPropertyName("videoWidth")]
         public int? VideoWidth { get; set; }
 
-        [JsonProperty("favicon")]
+        [JsonPropertyName("favicon")]
         public string? Favicon { get; set; }
 
     }
@@ -6750,7 +6750,7 @@ namespace SpaceDotNet.Client
     public class UnfurlAttachmentDto
     {
         [Required]
-        [JsonProperty("unfurl")]
+        [JsonPropertyName("unfurl")]
         public UnfurlDto Unfurl { get; set; }
 
     }
@@ -6764,15 +6764,15 @@ namespace SpaceDotNet.Client
     public class UnfurlDetailsArticleDto
     {
         [Required]
-        [JsonProperty("article")]
+        [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
 
         [Required]
-        [JsonProperty("content")]
+        [JsonPropertyName("content")]
         public ArticleContentRecordDto Content { get; set; }
 
         [Required]
-        [JsonProperty("channel")]
+        [JsonPropertyName("channel")]
         public ArticleChannelRecordDto Channel { get; set; }
 
     }
@@ -6781,11 +6781,11 @@ namespace SpaceDotNet.Client
     public class UnfurlDetailsCodeSnippetDto
     {
         [Required]
-        [JsonProperty("anchor")]
+        [JsonPropertyName("anchor")]
         public CodeSnippetAnchorDto Anchor { get; set; }
 
         [Required]
-        [JsonProperty("lines")]
+        [JsonPropertyName("lines")]
         public List<CodeLineDto> Lines { get; set; }
 
     }
@@ -6794,11 +6794,11 @@ namespace SpaceDotNet.Client
     public class UnfurlDetailsDraftDto
     {
         [Required]
-        [JsonProperty("draft")]
+        [JsonPropertyName("draft")]
         public string Draft { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
     }
@@ -6807,7 +6807,7 @@ namespace SpaceDotNet.Client
     public class UnfurlDetailsProfileDto
     {
         [Required]
-        [JsonProperty("profile")]
+        [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
 
     }
@@ -6816,7 +6816,7 @@ namespace SpaceDotNet.Client
     public class UnfurlDetailsTeamDto
     {
         [Required]
-        [JsonProperty("team")]
+        [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
 
     }
@@ -6831,7 +6831,7 @@ namespace SpaceDotNet.Client
     public class UrlCFValueDto
          : CFValueDto
     {
-        [JsonProperty("href")]
+        [JsonPropertyName("href")]
         public string? Href { get; set; }
 
     }
@@ -6840,10 +6840,10 @@ namespace SpaceDotNet.Client
     public class VcsHostingPasswordDto
     {
         [Required]
-        [JsonProperty("fingerprint")]
+        [JsonPropertyName("fingerprint")]
         public string Fingerprint { get; set; }
 
-        [JsonProperty("lastUsed")]
+        [JsonPropertyName("lastUsed")]
         public SpaceTime? LastUsed { get; set; }
 
     }
@@ -6852,23 +6852,23 @@ namespace SpaceDotNet.Client
     public class VideoAttachmentDto
     {
         [Required]
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
 
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string? Name { get; set; }
 
-        [JsonProperty("width")]
+        [JsonPropertyName("width")]
         public int? Width { get; set; }
 
-        [JsonProperty("height")]
+        [JsonPropertyName("height")]
         public int? Height { get; set; }
 
         [Required]
-        [JsonProperty("sizeBytes")]
+        [JsonPropertyName("sizeBytes")]
         public long SizeBytes { get; set; }
 
-        [JsonProperty("previewBytes")]
+        [JsonPropertyName("previewBytes")]
         public string? PreviewBytes { get; set; }
 
     }
@@ -6877,22 +6877,22 @@ namespace SpaceDotNet.Client
     public class VoteGroupDto
     {
         [Required]
-        [JsonProperty("variantName")]
+        [JsonPropertyName("variantName")]
         public string VariantName { get; set; }
 
         [Required]
-        [JsonProperty("count")]
+        [JsonPropertyName("count")]
         public int Count { get; set; }
 
         [Required]
-        [JsonProperty("meVote")]
+        [JsonPropertyName("meVote")]
         public bool MeVote { get; set; }
 
         [Required]
-        [JsonProperty("lastUsers")]
+        [JsonPropertyName("lastUsers")]
         public List<TDMemberProfileDto> LastUsers { get; set; }
 
-        [JsonProperty("owner")]
+        [JsonPropertyName("owner")]
         public TDMemberProfileDto? Owner { get; set; }
 
     }
@@ -6901,15 +6901,15 @@ namespace SpaceDotNet.Client
     public class WorkdayDto
     {
         [Required]
-        [JsonProperty("weekday")]
+        [JsonPropertyName("weekday")]
         public string Weekday { get; set; }
 
         [Required]
-        [JsonProperty("working")]
+        [JsonPropertyName("working")]
         public bool Working { get; set; }
 
         [Required]
-        [JsonProperty("hours")]
+        [JsonPropertyName("hours")]
         public int Hours { get; set; }
 
     }
@@ -6918,7 +6918,7 @@ namespace SpaceDotNet.Client
     public class WorkingDaysSpecDto
     {
         [Required]
-        [JsonProperty("days")]
+        [JsonPropertyName("days")]
         public List<WorkdayDto> Days { get; set; }
 
     }
@@ -6927,38 +6927,38 @@ namespace SpaceDotNet.Client
     public class YoutubeOEmbedDto
     {
         [Required]
-        [JsonProperty("thumbnailUrl")]
+        [JsonPropertyName("thumbnailUrl")]
         public string ThumbnailUrl { get; set; }
 
         [Required]
-        [JsonProperty("thumbnailWidth")]
+        [JsonPropertyName("thumbnailWidth")]
         public int ThumbnailWidth { get; set; }
 
         [Required]
-        [JsonProperty("thumbnailHeight")]
+        [JsonPropertyName("thumbnailHeight")]
         public int ThumbnailHeight { get; set; }
 
         [Required]
-        [JsonProperty("authorName")]
+        [JsonPropertyName("authorName")]
         public string AuthorName { get; set; }
 
         [Required]
-        [JsonProperty("authorUrl")]
+        [JsonPropertyName("authorUrl")]
         public string AuthorUrl { get; set; }
 
         [Required]
-        [JsonProperty("title")]
+        [JsonPropertyName("title")]
         public string Title { get; set; }
 
-        [JsonProperty("html")]
+        [JsonPropertyName("html")]
         public string? Html { get; set; }
 
         [Required]
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         public string Type { get; set; }
 
         [Required]
-        [JsonProperty("version")]
+        [JsonPropertyName("version")]
         public string Version { get; set; }
 
     }
@@ -6973,25 +6973,25 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<AbsenceRecordDto> CreateAbsence(Object8Dto data) => await _connection.RequestResourceAsync<Object8Dto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
+        public async Task<AbsenceRecordDto> CreateAbsence(Object2Dto data) => await _connection.RequestResourceAsync<Object2Dto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
         
-        public async Task ApproveAbsence(string id, Object9Dto data) => await _connection.RequestResourceAsync<Object9Dto>("POST", $"api/http/absences/{id}/approve", data);        
+        public async Task ApproveAbsence(string id, Object3Dto data) => await _connection.RequestResourceAsync<Object3Dto>("POST", $"api/http/absences/{id}/approve", data);        
         
-        public async Task<Object10Dto> GetAllAbsences() => await _connection.RequestResourceAsync<Object10Dto>("GET", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object10Dto)));        
+        public async Task<Object4Dto> GetAllAbsences() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<List<AbsenceRecordDto>> GetAllAbsencesByMember(string member) => await _connection.RequestResourceAsync<List<AbsenceRecordDto>>("GET", $"api/http/absences/member:{member}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceRecordDto>)));        
         
         public async Task<AbsenceRecordDto> GetAbsence(string id) => await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)));        
         
-        public async Task<AbsenceRecordDto> UpdateAbsence(string id, Object11Dto data) => await _connection.RequestResourceAsync<Object11Dto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
+        public async Task<AbsenceRecordDto> UpdateAbsence(string id, Object5Dto data) => await _connection.RequestResourceAsync<Object5Dto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
         
         public async Task DeleteAbsence(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}");        
         
         public async Task DeleteAbsenceApproval(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");        
         
-        public async Task<AbsenceReasonRecordDto> AbsenceReasonsCreateAbsenceReason(Object12Dto data) => await _connection.RequestResourceAsync<Object12Dto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);        
+        public async Task<AbsenceReasonRecordDto> AbsenceReasonsCreateAbsenceReason(Object6Dto data) => await _connection.RequestResourceAsync<Object6Dto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);        
         
-        public async Task<AbsenceReasonRecordDto> AbsenceReasonsCreateAbsenceReason(string id, Object12Dto data) => await _connection.RequestResourceAsync<Object12Dto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);        
+        public async Task<AbsenceReasonRecordDto> AbsenceReasonsCreateAbsenceReason(string id, Object6Dto data) => await _connection.RequestResourceAsync<Object6Dto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);        
         
         public async Task<List<AbsenceReasonRecordDto>> AbsenceReasonsGetAllAbsenceReasons() => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceReasonRecordDto>)));        
         
@@ -6999,11 +6999,11 @@ namespace SpaceDotNet.Client
         
         public async Task AbsenceReasonsDeleteAbsenceReason(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}");        
         
-        public async Task<DTOAbsenceSubscriptionDto> SubscriptionsCreateSubscription(Object13Dto data) => await _connection.RequestResourceAsync<Object13Dto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);        
+        public async Task<DTOAbsenceSubscriptionDto> SubscriptionsCreateSubscription(Object7Dto data) => await _connection.RequestResourceAsync<Object7Dto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);        
         
         public async Task<List<DTOAbsenceSubscriptionDto>> SubscriptionsGetAllSubscriptions() => await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<DTOAbsenceSubscriptionDto>)));        
         
-        public async Task<DTOAbsenceSubscriptionDto> SubscriptionsUpdateSubscription(string id, Object14Dto data) => await _connection.RequestResourceAsync<Object14Dto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);        
+        public async Task<DTOAbsenceSubscriptionDto> SubscriptionsUpdateSubscription(string id, Object8Dto data) => await _connection.RequestResourceAsync<Object8Dto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);        
         
         public async Task SubscriptionsDeleteSubscription(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");        
         
@@ -7033,15 +7033,15 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ESAuthModuleDto> CreateAuthModule(Object15Dto data) => await _connection.RequestResourceAsync<Object15Dto, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)), data);        
+        public async Task<ESAuthModuleDto> CreateAuthModule(Object9Dto data) => await _connection.RequestResourceAsync<Object9Dto, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)), data);        
         
-        public async Task Reorder(Object16Dto data) => await _connection.RequestResourceAsync<Object16Dto>("POST", $"api/http/auth-modules/reorder", data);        
+        public async Task Reorder(Object10Dto data) => await _connection.RequestResourceAsync<Object10Dto>("POST", $"api/http/auth-modules/reorder", data);        
         
         public async Task<List<ESAuthModuleDto>> GetAllAuthModules() => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthModuleDto>)));        
         
         public async Task<ESAuthModuleDto> GetAuthModuleByKey(string key) => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)));        
         
-        public async Task UpdateAuthModule(string id, Object17Dto data) => await _connection.RequestResourceAsync<Object17Dto>("PATCH", $"api/http/auth-modules/{id}", data);        
+        public async Task UpdateAuthModule(string id, Object11Dto data) => await _connection.RequestResourceAsync<Object11Dto>("PATCH", $"api/http/auth-modules/{id}", data);        
         
         public async Task DeleteAuthModule(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}");        
         
@@ -7073,11 +7073,11 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> ConvertMarkdownToHTML(Object18Dto data) => await _connection.RequestResourceAsync<Object18Dto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
+        public async Task<string> ConvertMarkdownToHTML(Object12Dto data) => await _connection.RequestResourceAsync<Object12Dto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
         
-        public async Task<ArticleRecordDto> ArticlesCreateArticle(Object19Dto data) => await _connection.RequestResourceAsync<Object19Dto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);        
+        public async Task<ArticleRecordDto> ArticlesCreateArticle(Object13Dto data) => await _connection.RequestResourceAsync<Object13Dto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);        
         
-        public async Task<Object20Dto> ArticlesGetAllArticles() => await _connection.RequestResourceAsync<Object20Dto>("GET", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object20Dto)));        
+        public async Task<Object4Dto> ArticlesGetAllArticles() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<ArticleRecordDto> ArticlesGetArticleByAlias(string alias) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));        
         
@@ -7105,7 +7105,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<bool> ChannelsIsNameFree(Object21Dto data) => await _connection.RequestResourceAsync<Object21Dto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);        
+        public async Task<bool> ChannelsIsNameFree(Object14Dto data) => await _connection.RequestResourceAsync<Object14Dto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);        
         
         public async Task ChannelsRestoreArchivedChannel(string channel) => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/restore-archived");        
         
@@ -7113,7 +7113,7 @@ namespace SpaceDotNet.Client
         
         public async Task ChannelsArchiveChannel(string channel) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/archive");        
         
-        public async Task MessagesSendMessage(Object22Dto data) => await _connection.RequestResourceAsync<Object22Dto>("POST", $"api/http/chats/messages/send", data);        
+        public async Task MessagesSendMessage(Object15Dto data) => await _connection.RequestResourceAsync<Object15Dto>("POST", $"api/http/chats/messages/send", data);        
         
     }
     
@@ -7129,9 +7129,9 @@ namespace SpaceDotNet.Client
         
         public async Task<List<ExtendedTypeDto>> ExtendedTypesGetAllExtendedTypes() => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ExtendedTypeDto>)));        
         
-        public async Task<CustomFieldDto> FieldsCreateField(string typeKey, Object23Dto data) => await _connection.RequestResourceAsync<Object23Dto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);        
+        public async Task<CustomFieldDto> FieldsCreateField(string typeKey, Object16Dto data) => await _connection.RequestResourceAsync<Object16Dto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);        
         
-        public async Task FieldsReorder(string typeKey, Object24Dto data) => await _connection.RequestResourceAsync<Object24Dto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);        
+        public async Task FieldsReorder(string typeKey, Object17Dto data) => await _connection.RequestResourceAsync<Object17Dto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);        
         
         public async Task FieldsArchive(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");        
         
@@ -7139,15 +7139,15 @@ namespace SpaceDotNet.Client
         
         public async Task<List<CustomFieldDto>> FieldsGetAllFields(string typeKey) => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));        
         
-        public async Task FieldsUpdateField(string typeKey, string id, Object25Dto data) => await _connection.RequestResourceAsync<Object25Dto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);        
+        public async Task FieldsUpdateField(string typeKey, string id, Object18Dto data) => await _connection.RequestResourceAsync<Object18Dto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);        
         
         public async Task FieldsDeleteField(string typeKey, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");        
         
-        public async Task<Object26Dto> ValuesGetAllValues(string typeKey) => await _connection.RequestResourceAsync<Object26Dto>("GET", $"api/http/custom-fields/{typeKey}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object26Dto)));        
+        public async Task<Object4Dto> ValuesGetAllValues(string typeKey) => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/custom-fields/{typeKey}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<CustomFieldsRecordDto> ValuesGetValue(string typeKey, string entityId) => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldsRecordDto)));        
         
-        public async Task ValuesUpdateValue(string entityId, string typeKey, Object27Dto data) => await _connection.RequestResourceAsync<Object27Dto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);        
+        public async Task ValuesUpdateValue(string entityId, string typeKey, Object19Dto data) => await _connection.RequestResourceAsync<Object19Dto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);        
         
     }
     
@@ -7161,21 +7161,21 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<DRDraftDto> DraftsCreateDraft(Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);        
+        public async Task<DRDraftDto> DraftsCreateDraft(Object20Dto data) => await _connection.RequestResourceAsync<Object20Dto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);        
         
         public async Task<DRDraftDto> DraftsGetDraft(string id) => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)));        
         
-        public async Task<DRDraftDto> DraftsUpdateDraft(string id, Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);        
+        public async Task<DRDraftDto> DraftsUpdateDraft(string id, Object20Dto data) => await _connection.RequestResourceAsync<Object20Dto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);        
         
         public async Task DraftsDeleteDraft(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");        
         
-        public async Task DraftsEditorsProfilesCreateProfile(string id, Object29Dto data) => await _connection.RequestResourceAsync<Object29Dto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);        
+        public async Task DraftsEditorsProfilesCreateProfile(string id, Object21Dto data) => await _connection.RequestResourceAsync<Object21Dto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);        
         
         public async Task<List<TDMemberProfileDto>> DraftsEditorsProfilesGetAllProfiles(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));        
         
         public async Task DraftsEditorsProfilesDeleteProfile(string id, string editorId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");        
         
-        public async Task DraftsEditorsTeamsCreateTeam(string id, Object30Dto data) => await _connection.RequestResourceAsync<Object30Dto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);        
+        public async Task DraftsEditorsTeamsCreateTeam(string id, Object22Dto data) => await _connection.RequestResourceAsync<Object22Dto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);        
         
         public async Task<List<TDTeamDto>> DraftsEditorsTeamsGetAllTeams(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));        
         
@@ -7193,13 +7193,13 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<Object31Dto> BlogsGetAllBlogs() => await _connection.RequestResourceAsync<Object31Dto>("GET", $"api/http/full-text-search/blogs?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object31Dto)));        
+        public async Task<Object4Dto> BlogsGetAllBlogs() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/full-text-search/blogs?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<Object32Dto> DraftsGetAllDrafts() => await _connection.RequestResourceAsync<Object32Dto>("GET", $"api/http/full-text-search/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object32Dto)));        
+        public async Task<Object4Dto> DraftsGetAllDrafts() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/full-text-search/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<Object33Dto> ProfilesGetAllProfiles() => await _connection.RequestResourceAsync<Object33Dto>("GET", $"api/http/full-text-search/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object33Dto)));        
+        public async Task<Object4Dto> ProfilesGetAllProfiles() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/full-text-search/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<Object34Dto> TeamsGetAllTeams() => await _connection.RequestResourceAsync<Object34Dto>("GET", $"api/http/full-text-search/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object34Dto)));        
+        public async Task<Object4Dto> TeamsGetAllTeams() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/full-text-search/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
     }
     
@@ -7257,11 +7257,11 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<PRProjectDto> CreateProject(Object35Dto data) => await _connection.RequestResourceAsync<Object35Dto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
+        public async Task<PRProjectDto> CreateProject(Object23Dto data) => await _connection.RequestResourceAsync<Object23Dto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
         
         public async Task RequestAccessToProject(string projectKey) => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/request-access");        
         
-        public async Task<Object36Dto> GetAllProjects() => await _connection.RequestResourceAsync<Object36Dto>("GET", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object36Dto)));        
+        public async Task<Object4Dto> GetAllProjects() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<PRProjectDto> GetProjectByKey(string projectKey) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));        
         
@@ -7271,7 +7271,7 @@ namespace SpaceDotNet.Client
         
         public async Task<List<PRProjectDto>> GetAllProjectsByTeam(string team) => await _connection.RequestResourceAsync<List<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRProjectDto>)));        
         
-        public async Task<PRProjectDto> UpdateProject(string projectId, Object37Dto data) => await _connection.RequestResourceAsync<Object37Dto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
+        public async Task<PRProjectDto> UpdateProject(string projectId, Object24Dto data) => await _connection.RequestResourceAsync<Object24Dto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
         
         public async Task DeleteProject(string projectId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");        
         
@@ -7283,15 +7283,15 @@ namespace SpaceDotNet.Client
         
         public async Task<PRProjectFullDto> FullProjectsGetFullProject(string id) => await _connection.RequestResourceAsync<PRProjectFullDto>("GET", $"api/http/projects/full-projects/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectFullDto)));        
         
-        public async Task<ChecklistDto> PlanningChecklistsCreateChecklist(Object38Dto data) => await _connection.RequestResourceAsync<Object38Dto, ChecklistDto>("POST", $"api/http/projects/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);        
+        public async Task<ChecklistDto> PlanningChecklistsCreateChecklist(Object25Dto data) => await _connection.RequestResourceAsync<Object25Dto, ChecklistDto>("POST", $"api/http/projects/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);        
         
-        public async Task<ChecklistDto> PlanningChecklistsImportChecklist(Object39Dto data) => await _connection.RequestResourceAsync<Object39Dto, ChecklistDto>("POST", $"api/http/projects/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);        
+        public async Task<ChecklistDto> PlanningChecklistsImportChecklist(Object26Dto data) => await _connection.RequestResourceAsync<Object26Dto, ChecklistDto>("POST", $"api/http/projects/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);        
         
-        public async Task PlanningChecklistsImportChecklistLines(string checklistId, Object40Dto data) => await _connection.RequestResourceAsync<Object40Dto>("POST", $"api/http/projects/planning/checklists/{checklistId}/import", data);        
+        public async Task PlanningChecklistsImportChecklistLines(string checklistId, Object27Dto data) => await _connection.RequestResourceAsync<Object27Dto>("POST", $"api/http/projects/planning/checklists/{checklistId}/import", data);        
         
         public async Task<List<ChecklistDto>> PlanningChecklistsGetAllChecklists() => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));        
         
-        public async Task PlanningChecklistsUpdateChecklist(string checklistId, Object41Dto data) => await _connection.RequestResourceAsync<Object41Dto>("PATCH", $"api/http/projects/planning/checklists/{checklistId}", data);        
+        public async Task PlanningChecklistsUpdateChecklist(string checklistId, Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto>("PATCH", $"api/http/projects/planning/checklists/{checklistId}", data);        
         
         public async Task PlanningChecklistsDeleteChecklist(string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/checklists/{checklistId}");        
         
@@ -7299,13 +7299,13 @@ namespace SpaceDotNet.Client
         
         public async Task<List<PlanItemChildrenDto>> PlanningChecklistsFullChecklistTreeGetFullChecklistTree(string checklistId) => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/planning/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));        
         
-        public async Task PlanningIssuesToggleIssueResolved(string issueId, Object42Dto data) => await _connection.RequestResourceAsync<Object42Dto>("POST", $"api/http/projects/planning/issues/{issueId}/toggle-resolved", data);        
+        public async Task PlanningIssuesToggleIssueResolved(string issueId, Object29Dto data) => await _connection.RequestResourceAsync<Object29Dto>("POST", $"api/http/projects/planning/issues/{issueId}/toggle-resolved", data);        
         
-        public async Task PlanningIssuesUpdateIssue(string issueId, Object43Dto data) => await _connection.RequestResourceAsync<Object43Dto>("PATCH", $"api/http/projects/planning/issues/{issueId}", data);        
+        public async Task PlanningIssuesUpdateIssue(string issueId, Object30Dto data) => await _connection.RequestResourceAsync<Object30Dto>("PATCH", $"api/http/projects/planning/issues/{issueId}", data);        
         
         public async Task PlanningIssuesDeleteIssue(string issueId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/issues/{issueId}");        
         
-        public async Task PlanningIssuesAttachmentsAddAttachments(string issueId, Object44Dto data) => await _connection.RequestResourceAsync<Object44Dto>("POST", $"api/http/projects/planning/issues/{issueId}/attachments", data);        
+        public async Task PlanningIssuesAttachmentsAddAttachments(string issueId, Object31Dto data) => await _connection.RequestResourceAsync<Object31Dto>("POST", $"api/http/projects/planning/issues/{issueId}/attachments", data);        
         
         public async Task PlanningIssuesAttachmentsRemoveAttachments(string issueId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/planning/issues/{issueId}/attachments");        
         
@@ -7317,7 +7317,7 @@ namespace SpaceDotNet.Client
         
         public async Task<List<ProjectForProfilePageDto>> ProjectsWithDetailsGetAllProjectsWithDetailsByMember(string member) => await _connection.RequestResourceAsync<List<ProjectForProfilePageDto>>("GET", $"api/http/projects/projects-with-details/member:{member}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ProjectForProfilePageDto>)));        
         
-        public async Task TagsTrackTagAccess(Object45Dto data) => await _connection.RequestResourceAsync<Object45Dto>("POST", $"api/http/projects/tags/track-access", data);        
+        public async Task TagsTrackTagAccess(Object32Dto data) => await _connection.RequestResourceAsync<Object32Dto>("POST", $"api/http/projects/tags/track-access", data);        
         
         public async Task<List<PRTagDto>> TagsGetAllTags() => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRTagDto>)));        
         
@@ -7325,7 +7325,7 @@ namespace SpaceDotNet.Client
         
         public async Task CodeReviewsMarkReviewAsRead(string projectKey, string reviewId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/mark-as-read");        
         
-        public async Task<Object46Dto> CodeReviewsGetAllCodeReviews(string projectKey) => await _connection.RequestResourceAsync<Object46Dto>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object46Dto)));        
+        public async Task<Object4Dto> CodeReviewsGetAllCodeReviews(string projectKey) => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<ReviewCountsDto> CodeReviewsGetReviewCounts(string projectKey) => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ReviewCountsDto)));        
         
@@ -7337,73 +7337,73 @@ namespace SpaceDotNet.Client
         
         public async Task<CodeReviewDetailedInfoDto> CodeReviewsDetailsGetReviewDetails(string projectKey, string reviewId) => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewDetailedInfoDto)));        
         
-        public async Task CodeReviewsParticipantsEditReviewParticipant(string projectKey, string reviewId, string user, Object47Dto data) => await _connection.RequestResourceAsync<Object47Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);        
+        public async Task CodeReviewsParticipantsEditReviewParticipant(string projectKey, string reviewId, string user, Object33Dto data) => await _connection.RequestResourceAsync<Object33Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);        
         
-        public async Task CodeReviewsRevisionsAddRevisionsToReview(string projectKey, string reviewId, Object48Dto data) => await _connection.RequestResourceAsync<Object48Dto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);        
+        public async Task CodeReviewsRevisionsAddRevisionsToReview(string projectKey, string reviewId, Object34Dto data) => await _connection.RequestResourceAsync<Object34Dto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);        
         
         public async Task CodeReviewsRevisionsRemoveRevisionsFromReview(string projectKey, string reviewId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions");        
         
-        public async Task CodeReviewsStateEditReviewState(string projectKey, string reviewId, Object49Dto data) => await _connection.RequestResourceAsync<Object49Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);        
+        public async Task CodeReviewsStateEditReviewState(string projectKey, string reviewId, Object35Dto data) => await _connection.RequestResourceAsync<Object35Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);        
         
         public async Task<List<TDMemberProfileDto>> CodeReviewsSuggestedReviewersGetAllSuggestedReviewers(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));        
         
-        public async Task CodeReviewsTitleEditReviewTitle(string projectKey, string reviewId, Object50Dto data) => await _connection.RequestResourceAsync<Object50Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);        
+        public async Task CodeReviewsTitleEditReviewTitle(string projectKey, string reviewId, Object36Dto data) => await _connection.RequestResourceAsync<Object36Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);        
         
         public async Task<List<RevisionInReviewDto>> CodeReviewsUnreadRevisionsGetAllUnreadRevisions(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionInReviewDto>)));        
         
-        public async Task<Object51Dto> MembersGetAllMembers(string projectKey) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/projects/key:{projectKey}/members?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));        
+        public async Task<Object4Dto> MembersGetAllMembers(string projectKey) => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/projects/key:{projectKey}/members?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<List<PropagatedCodeDiscussionDto>> RepositoriesCodeDiscussionsGetAllCodeDiscussionsByChange(string projectKey, string repository, Object52Dto data) => await _connection.RequestResourceAsync<Object52Dto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);        
+        public async Task<List<PropagatedCodeDiscussionDto>> RepositoriesCodeDiscussionsGetAllCodeDiscussionsByChange(string projectKey, string repository, Object37Dto data) => await _connection.RequestResourceAsync<Object37Dto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);        
         
         public async Task<List<PropagatedCodeDiscussionDto>> RepositoriesCodeDiscussionsGetAllCodeDiscussions(string projectKey, string repository) => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)));        
         
         public async Task<List<RevisionDiscussionsCounterDto>> RepositoriesCodeDiscussionsDiscussionsCountersGetAllDiscussionsCounters(string projectKey, string repository) => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/code-discussions/discussions-counters?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionDiscussionsCounterDto>)));        
         
-        public async Task RepositoriesCodeReviewsBranchTrackingStartTrackingBranch(string projectKey, string reviewId, string repository, Object53Dto data) => await _connection.RequestResourceAsync<Object53Dto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/code-reviews/{reviewId}/branch-tracking", data);        
+        public async Task RepositoriesCodeReviewsBranchTrackingStartTrackingBranch(string projectKey, string reviewId, string repository, Object38Dto data) => await _connection.RequestResourceAsync<Object38Dto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/code-reviews/{reviewId}/branch-tracking", data);        
         
         public async Task RepositoriesCodeReviewsBranchTrackingStopTrackingBranch(string projectKey, string reviewId, string repository) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/repositories/{repository}/code-reviews/{reviewId}/branch-tracking");        
         
-        public async Task<CommitSetReviewRecordDto> RepositoriesCommitSetReviewsCreateCommitSetReview(string projectKey, string repository, Object54Dto data) => await _connection.RequestResourceAsync<Object54Dto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);        
+        public async Task<CommitSetReviewRecordDto> RepositoriesCommitSetReviewsCreateCommitSetReview(string projectKey, string repository, Object39Dto data) => await _connection.RequestResourceAsync<Object39Dto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);        
         
-        public async Task<MergeRequestRecordDto> RepositoriesMergeRequestsCreateMergeRequest(string projectKey, string repository, Object55Dto data) => await _connection.RequestResourceAsync<Object55Dto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);        
+        public async Task<MergeRequestRecordDto> RepositoriesMergeRequestsCreateMergeRequest(string projectKey, string repository, Object40Dto data) => await _connection.RequestResourceAsync<Object40Dto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);        
         
-        public async Task<CodeDiscussionRecordDto> RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussion(string projectKey, string repository, string revision, Object56Dto data) => await _connection.RequestResourceAsync<Object56Dto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);        
+        public async Task<CodeDiscussionRecordDto> RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussion(string projectKey, string repository, string revision, Object41Dto data) => await _connection.RequestResourceAsync<Object41Dto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);        
         
         public async Task<List<PropagatedCodeDiscussionDto>> RepositoriesRevisionsCodeDiscussionsGetDiscussionInFile(string projectKey, string repository, string revision) => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)));        
         
-        public async Task RepositoriesRevisionsCommitStatusesPushCommitStatus(string projectKey, string repository, string revision, Object57Dto data) => await _connection.RequestResourceAsync<Object57Dto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);        
+        public async Task RepositoriesRevisionsCommitStatusesPushCommitStatus(string projectKey, string repository, string revision, Object42Dto data) => await _connection.RequestResourceAsync<Object42Dto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);        
         
         public async Task<List<CommitStatusDTODto>> RepositoriesRevisionsCommitStatusesGetCommitStatusesForCommit(string projectKey, string repository, string revision) => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CommitStatusDTODto>)));        
         
-        public async Task AdministratorsMembersAddAdministrator(string projectId, Object58Dto data) => await _connection.RequestResourceAsync<Object58Dto>("POST", $"api/http/projects/{projectId}/administrators/members", data);        
+        public async Task AdministratorsMembersAddAdministrator(string projectId, Object43Dto data) => await _connection.RequestResourceAsync<Object43Dto>("POST", $"api/http/projects/{projectId}/administrators/members", data);        
         
         public async Task AdministratorsMembersRemoveAdministrator(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/administrators/members/{profileId}");        
         
-        public async Task AdministratorsTeamsAddAdministratorsTeam(string projectId, Object30Dto data) => await _connection.RequestResourceAsync<Object30Dto>("POST", $"api/http/projects/{projectId}/administrators/teams", data);        
+        public async Task AdministratorsTeamsAddAdministratorsTeam(string projectId, Object22Dto data) => await _connection.RequestResourceAsync<Object22Dto>("POST", $"api/http/projects/{projectId}/administrators/teams", data);        
         
         public async Task AdministratorsTeamsRemoveAdministratorsTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/administrators/teams/{teamId}");        
         
-        public async Task MembersAddMember(string projectId, Object58Dto data) => await _connection.RequestResourceAsync<Object58Dto>("POST", $"api/http/projects/{projectId}/members", data);        
+        public async Task MembersAddMember(string projectId, Object43Dto data) => await _connection.RequestResourceAsync<Object43Dto>("POST", $"api/http/projects/{projectId}/members", data);        
         
         public async Task MembersRemoveMember(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/members/{profileId}");        
         
-        public async Task<Object51Dto> MembersWhoCanViewGetAllMembersWhoCanView(string projectId) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/projects/{projectId}/members-who-can-view?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));        
+        public async Task<Object4Dto> MembersWhoCanViewGetAllMembersWhoCanView(string projectId) => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/projects/{projectId}/members-who-can-view?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<IssueDto> PlanningIssuesCreateIssue(string projectId, Object59Dto data) => await _connection.RequestResourceAsync<Object59Dto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);        
+        public async Task<IssueDto> PlanningIssuesCreateIssue(string projectId, Object44Dto data) => await _connection.RequestResourceAsync<Object44Dto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);        
         
-        public async Task<Object60Dto> PlanningIssuesGetAllIssues(string projectId) => await _connection.RequestResourceAsync<Object60Dto>("GET", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object60Dto)));        
+        public async Task<Object4Dto> PlanningIssuesGetAllIssues(string projectId) => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<IssueDto> PlanningIssuesGetIssueByNumber(string projectId, int number) => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));        
         
         public async Task<List<IssueStatusDto>> PlanningIssuesStatusesGetAllIssueStatuses(string projectId) => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusDto>)));        
         
-        public async Task PlanningIssuesStatusesUpdateStatus(string projectId, Object61Dto data) => await _connection.RequestResourceAsync<Object61Dto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);        
+        public async Task PlanningIssuesStatusesUpdateStatus(string projectId, Object45Dto data) => await _connection.RequestResourceAsync<Object45Dto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);        
         
-        public async Task<PlanningTagDto> PlanningTagsCreateHierarchicalTag(string projectId, Object62Dto data) => await _connection.RequestResourceAsync<Object62Dto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);        
+        public async Task<PlanningTagDto> PlanningTagsCreateHierarchicalTag(string projectId, Object46Dto data) => await _connection.RequestResourceAsync<Object46Dto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);        
         
-        public async Task<Object63Dto> PlanningTagsGetAllHierarchicalTags(string projectId) => await _connection.RequestResourceAsync<Object63Dto>("GET", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object63Dto)));        
+        public async Task<Object4Dto> PlanningTagsGetAllHierarchicalTags(string projectId) => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task TeamsAddTeam(string projectId, Object30Dto data) => await _connection.RequestResourceAsync<Object30Dto>("POST", $"api/http/projects/{projectId}/teams", data);        
+        public async Task TeamsAddTeam(string projectId, Object22Dto data) => await _connection.RequestResourceAsync<Object22Dto>("POST", $"api/http/projects/{projectId}/teams", data);        
         
         public async Task TeamsRemoveTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/teams/{teamId}");        
         
@@ -7419,25 +7419,25 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<PublicHolidayCalendarRecordDto> CalendarsCreateCalendar(Object64Dto data) => await _connection.RequestResourceAsync<Object64Dto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);        
+        public async Task<PublicHolidayCalendarRecordDto> CalendarsCreateCalendar(Object47Dto data) => await _connection.RequestResourceAsync<Object47Dto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);        
         
-        public async Task<string> CalendarsImport(Object65Dto data) => await _connection.RequestResourceAsync<Object65Dto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
+        public async Task<string> CalendarsImport(Object48Dto data) => await _connection.RequestResourceAsync<Object48Dto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
         
-        public async Task<Object66Dto> CalendarsGetAllCalendars() => await _connection.RequestResourceAsync<Object66Dto>("GET", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object66Dto)));        
+        public async Task<Object4Dto> CalendarsGetAllCalendars() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<PublicHolidayCalendarRecordDto> CalendarsUpdateCalendar(string id, Object64Dto data) => await _connection.RequestResourceAsync<Object64Dto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);        
+        public async Task<PublicHolidayCalendarRecordDto> CalendarsUpdateCalendar(string id, Object47Dto data) => await _connection.RequestResourceAsync<Object47Dto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);        
         
         public async Task CalendarsDeleteCalendar(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");        
         
-        public async Task<PublicHolidayDto> HolidaysCreateHoliday(Object67Dto data) => await _connection.RequestResourceAsync<Object67Dto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);        
+        public async Task<PublicHolidayDto> HolidaysCreateHoliday(Object49Dto data) => await _connection.RequestResourceAsync<Object49Dto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);        
         
-        public async Task<Object68Dto> HolidaysGetAllHolidays() => await _connection.RequestResourceAsync<Object68Dto>("GET", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object68Dto)));        
+        public async Task<Object4Dto> HolidaysGetAllHolidays() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<PublicHolidayDto> HolidaysUpdateHoliday(string id, Object69Dto data) => await _connection.RequestResourceAsync<Object69Dto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);        
+        public async Task<PublicHolidayDto> HolidaysUpdateHoliday(string id, Object50Dto data) => await _connection.RequestResourceAsync<Object50Dto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);        
         
         public async Task HolidaysDeleteHoliday(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");        
         
-        public async Task<Object68Dto> HolidaysRelatedHolidaysGetAllRelatedHolidays() => await _connection.RequestResourceAsync<Object68Dto>("GET", $"api/http/public-holidays/holidays/related-holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object68Dto)));        
+        public async Task<Object4Dto> HolidaysRelatedHolidaysGetAllRelatedHolidays() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/public-holidays/holidays/related-holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
     }
     
@@ -7461,17 +7461,17 @@ namespace SpaceDotNet.Client
         
         public async Task<List<BirthdayEventDto>> CalendarEventsBirthdayEventsStarredGetAllStarredBirthdayEvents() => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));        
         
-        public async Task<MeetingRecordDto> CalendarEventsMeetingParticipationsUpdateMeetingParticipation(string id, Object70Dto data) => await _connection.RequestResourceAsync<Object70Dto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);        
+        public async Task<MeetingRecordDto> CalendarEventsMeetingParticipationsUpdateMeetingParticipation(string id, Object51Dto data) => await _connection.RequestResourceAsync<Object51Dto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);        
         
         public async Task<List<MembershipEventDto>> CalendarEventsMembershipEventsGetAllMembershipEvents() => await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/calendar-events/membership-events?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MembershipEventDto>)));        
         
         public async Task<List<NonWorkingDaysEventDto>> CalendarEventsNonWorkingDaysEventsGetAllNonWorkingDaysEvents() => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<NonWorkingDaysEventDto>)));        
         
-        public async Task<InvitationDto> InvitationsCreateInvitation(Object71Dto data) => await _connection.RequestResourceAsync<Object71Dto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);        
+        public async Task<InvitationDto> InvitationsCreateInvitation(Object52Dto data) => await _connection.RequestResourceAsync<Object52Dto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);        
         
-        public async Task<Object72Dto> InvitationsGetAllInvitations() => await _connection.RequestResourceAsync<Object72Dto>("GET", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object72Dto)));        
+        public async Task<Object4Dto> InvitationsGetAllInvitations() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task InvitationsUpdateInvitation(string id, Object73Dto data) => await _connection.RequestResourceAsync<Object73Dto>("PATCH", $"api/http/team-directory/invitations/{id}", data);        
+        public async Task InvitationsUpdateInvitation(string id, Object53Dto data) => await _connection.RequestResourceAsync<Object53Dto>("PATCH", $"api/http/team-directory/invitations/{id}", data);        
         
         public async Task InvitationsDeleteInvitation(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}");        
         
@@ -7481,9 +7481,9 @@ namespace SpaceDotNet.Client
         
         public async Task LocationEquipmentTypesDeleteLocationEquipmentTypeByName(string name) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}");        
         
-        public async Task<TDLocationDto> LocationsCreateLocation(Object74Dto data) => await _connection.RequestResourceAsync<Object74Dto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);        
+        public async Task<TDLocationDto> LocationsCreateLocation(Object54Dto data) => await _connection.RequestResourceAsync<Object54Dto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);        
         
-        public async Task<List<TDLocationDto>> LocationsRestoreMultiple(Object75Dto data) => await _connection.RequestResourceAsync<Object75Dto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);        
+        public async Task<List<TDLocationDto>> LocationsRestoreMultiple(Object55Dto data) => await _connection.RequestResourceAsync<Object55Dto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);        
         
         public async Task<TDLocationDto> LocationsRestore(string id) => await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));        
         
@@ -7491,57 +7491,57 @@ namespace SpaceDotNet.Client
         
         public async Task<TDLocationDto> LocationsGetLocation(string id) => await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));        
         
-        public async Task<TDLocationDto> LocationsUpdateLocation(string id, Object76Dto data) => await _connection.RequestResourceAsync<Object76Dto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);        
+        public async Task<TDLocationDto> LocationsUpdateLocation(string id, Object56Dto data) => await _connection.RequestResourceAsync<Object56Dto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);        
         
         public async Task<List<TDLocationDto>> LocationsArchiveLocation(string id) => await _connection.RequestResourceAsync<List<TDLocationDto>>("DELETE", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));        
         
         public async Task<TDLocationMapDto> LocationsMapGetMap(string id) => await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/locations/map/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)));        
         
-        public async Task<TDLocationMapDto> LocationsMapUpdateMap(string id, Object77Dto data) => await _connection.RequestResourceAsync<Object77Dto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);        
+        public async Task<TDLocationMapDto> LocationsMapUpdateMap(string id, Object57Dto data) => await _connection.RequestResourceAsync<Object57Dto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);        
         
         public async Task<List<TDMemberInLocationMapListDto>> LocationsMapMembersGetAllMembers(string id) => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));        
         
         public async Task<List<TDLocationWithTimeZoneDto>> LocationsWithTimezoneGetAllLocationsWithTimezone() => await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationWithTimeZoneDto>)));        
         
-        public async Task<Object51Dto> ManagerCandidatesGetAllManagerCandidates() => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/manager-candidates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));        
+        public async Task<Object4Dto> ManagerCandidatesGetAllManagerCandidates() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/manager-candidates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<TDMemberLocationDto> MemberLocationsCreateMemberLocation(Object78Dto data) => await _connection.RequestResourceAsync<Object78Dto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);        
+        public async Task<TDMemberLocationDto> MemberLocationsCreateMemberLocation(Object58Dto data) => await _connection.RequestResourceAsync<Object58Dto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);        
         
-        public async Task<Object79Dto> MemberLocationsGetAllMemberLocations() => await _connection.RequestResourceAsync<Object79Dto>("GET", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object79Dto)));        
+        public async Task<Object4Dto> MemberLocationsGetAllMemberLocations() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<TDMemberLocationDto> MemberLocationsUpdateMemberLocation(string id, Object80Dto data) => await _connection.RequestResourceAsync<Object80Dto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);        
+        public async Task<TDMemberLocationDto> MemberLocationsUpdateMemberLocation(string id, Object59Dto data) => await _connection.RequestResourceAsync<Object59Dto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);        
         
         public async Task MemberLocationsDeleteMemberLocation(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}");        
         
         public async Task MemberLocationsPointsDeletePoint(string locationPointId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/points/{locationPointId}");        
         
-        public async Task<TDLocationMapPointDto> MemberLocationsPointsCreatePoint(string id, Object81Dto data) => await _connection.RequestResourceAsync<Object81Dto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);        
+        public async Task<TDLocationMapPointDto> MemberLocationsPointsCreatePoint(string id, Object60Dto data) => await _connection.RequestResourceAsync<Object60Dto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);        
         
-        public async Task<TDLocationMapPointDto> MemberLocationsPointsUpdatePoint(string locationPointId, string id, Object82Dto data) => await _connection.RequestResourceAsync<Object82Dto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);        
+        public async Task<TDLocationMapPointDto> MemberLocationsPointsUpdatePoint(string locationPointId, string id, Object61Dto data) => await _connection.RequestResourceAsync<Object61Dto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);        
         
-        public async Task<Object83Dto> MembershipEventsGetAllMembershipEvents() => await _connection.RequestResourceAsync<Object83Dto>("GET", $"api/http/team-directory/membership-events?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object83Dto)));        
+        public async Task<Object4Dto> MembershipEventsGetAllMembershipEvents() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/membership-events?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<TDMembershipDto> MembershipsCreateMembership(Object84Dto data) => await _connection.RequestResourceAsync<Object84Dto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);        
+        public async Task<TDMembershipDto> MembershipsCreateMembership(Object62Dto data) => await _connection.RequestResourceAsync<Object62Dto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);        
         
-        public async Task<Object85Dto> MembershipsGetAllMemberships() => await _connection.RequestResourceAsync<Object85Dto>("GET", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object85Dto)));        
+        public async Task<Object4Dto> MembershipsGetAllMemberships() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<TDMembershipDto> MembershipsUpdateMembership(string id, Object86Dto data) => await _connection.RequestResourceAsync<Object86Dto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);        
+        public async Task<TDMembershipDto> MembershipsUpdateMembership(string id, Object63Dto data) => await _connection.RequestResourceAsync<Object63Dto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);        
         
         public async Task MembershipsDeleteMembership(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}");        
         
         public async Task MembershipsRevoke(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke");        
         
-        public async Task<Object87Dto> MembershipsRequestsGetAllRequests() => await _connection.RequestResourceAsync<Object87Dto>("GET", $"api/http/team-directory/memberships/requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object87Dto)));        
+        public async Task<Object4Dto> MembershipsRequestsGetAllRequests() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/memberships/requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task MembershipsRequestsUpdateRequest(string id, Object88Dto data) => await _connection.RequestResourceAsync<Object88Dto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);        
+        public async Task MembershipsRequestsUpdateRequest(string id, Object64Dto data) => await _connection.RequestResourceAsync<Object64Dto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);        
         
         public async Task<TDMembershipDto> MembershipsRequestsDeleteRequest(string id) => await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/memberships/requests/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)));        
         
-        public async Task MembershipsRequestRevokeUpdateRequestRevoke(string id, Object89Dto data) => await _connection.RequestResourceAsync<Object89Dto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);        
+        public async Task MembershipsRequestRevokeUpdateRequestRevoke(string id, Object65Dto data) => await _connection.RequestResourceAsync<Object65Dto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);        
         
-        public async Task<TDMemberProfileDto> ProfilesCreateProfile(Object90Dto data) => await _connection.RequestResourceAsync<Object90Dto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);        
+        public async Task<TDMemberProfileDto> ProfilesCreateProfile(Object66Dto data) => await _connection.RequestResourceAsync<Object66Dto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);        
         
-        public async Task<Object51Dto> ProfilesGetAllProfiles() => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));        
+        public async Task<Object4Dto> ProfilesGetAllProfiles() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<List<string>> ProfilesCheckProfileUsernamesExistence() => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)));        
         
@@ -7551,7 +7551,7 @@ namespace SpaceDotNet.Client
         
         public async Task<bool> ProfilesCheckIfProfileIsTeamMember(string id) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));        
         
-        public async Task<TDMemberProfileDto> ProfilesUpdateProfile(string id, Object91Dto data) => await _connection.RequestResourceAsync<Object91Dto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);        
+        public async Task<TDMemberProfileDto> ProfilesUpdateProfile(string id, Object67Dto data) => await _connection.RequestResourceAsync<Object67Dto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);        
         
         public async Task<TDMemberProfileDto> ProfilesDeleteProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));        
         
@@ -7563,29 +7563,29 @@ namespace SpaceDotNet.Client
         
         public async Task<MeInfoDto> ProfilesMeInfoGetInfo() => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/me/info?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeInfoDto)));        
         
-        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysUpdateWorkingDays(string id, Object92Dto data) => await _connection.RequestResourceAsync<Object92Dto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/working-days/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);        
+        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysUpdateWorkingDays(string id, Object68Dto data) => await _connection.RequestResourceAsync<Object68Dto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/working-days/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);        
         
         public async Task ProfilesWorkingDaysDeleteWorkingDays(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/working-days/{id}");        
         
         public async Task<List<TDMemberProfileDto>> ProfilesLeadsGetAllLeads(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles/{id}/leads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));        
         
-        public async Task<TDProfileLanguageDto> ProfilesSpokenLanguagesUpdateSpokenLanguage(string id, Object93Dto data) => await _connection.RequestResourceAsync<Object93Dto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);        
+        public async Task<TDProfileLanguageDto> ProfilesSpokenLanguagesUpdateSpokenLanguage(string id, Object69Dto data) => await _connection.RequestResourceAsync<Object69Dto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);        
         
         public async Task ProfilesSpokenLanguagesDeleteSpokenLanguage(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/spoken-languages");        
         
         public async Task<VcsHostingPasswordDto> ProfilesVcsPasswordGetVcsPassword(string id) => await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/profiles/{id}/vcs-password?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(VcsHostingPasswordDto)));        
         
-        public async Task ProfilesVcsPasswordUpdateVcsPassword(string id, Object94Dto data) => await _connection.RequestResourceAsync<Object94Dto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);        
+        public async Task ProfilesVcsPasswordUpdateVcsPassword(string id, Object70Dto data) => await _connection.RequestResourceAsync<Object70Dto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);        
         
         public async Task ProfilesVcsPasswordDeleteVcsPassword(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/vcs-password");        
         
-        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysAddWorkingDays(string id, Object95Dto data) => await _connection.RequestResourceAsync<Object95Dto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);        
+        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysAddWorkingDays(string id, Object71Dto data) => await _connection.RequestResourceAsync<Object71Dto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);        
         
         public async Task<List<TDWorkingDaysDto>> ProfilesWorkingDaysGetAllWorkingDays(string id) => await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDWorkingDaysDto>)));        
         
-        public async Task<Object51Dto> ReportingsGetAllReportings() => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/reportings?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));        
+        public async Task<Object4Dto> ReportingsGetAllReportings() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/reportings?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
-        public async Task<TDRoleDto> RolesCreateRole(Object96Dto data) => await _connection.RequestResourceAsync<Object96Dto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);        
+        public async Task<TDRoleDto> RolesCreateRole(Object72Dto data) => await _connection.RequestResourceAsync<Object72Dto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);        
         
         public async Task<TDRoleDto> RolesRestore(string id) => await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));        
         
@@ -7593,31 +7593,31 @@ namespace SpaceDotNet.Client
         
         public async Task<TDRoleDto> RolesGetRole(string id) => await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));        
         
-        public async Task<TDRoleDto> RolesUpdateRole(string id, Object97Dto data) => await _connection.RequestResourceAsync<Object97Dto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);        
+        public async Task<TDRoleDto> RolesUpdateRole(string id, Object73Dto data) => await _connection.RequestResourceAsync<Object73Dto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);        
         
         public async Task RolesArchiveRole(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}");        
         
         public async Task<TDStatsDto> StatsGetAllStats() => await _connection.RequestResourceAsync<TDStatsDto>("GET", $"api/http/team-directory/stats?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDStatsDto)));        
         
-        public async Task<TDTeamDto> TeamsCreateTeam(Object98Dto data) => await _connection.RequestResourceAsync<Object98Dto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);        
+        public async Task<TDTeamDto> TeamsCreateTeam(Object74Dto data) => await _connection.RequestResourceAsync<Object74Dto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);        
         
-        public async Task<List<TDTeamDto>> TeamsRestoreMultiple(Object75Dto data) => await _connection.RequestResourceAsync<Object75Dto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);        
+        public async Task<List<TDTeamDto>> TeamsRestoreMultiple(Object55Dto data) => await _connection.RequestResourceAsync<Object55Dto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);        
         
         public async Task<TDTeamDto> TeamsRestore(string id) => await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));        
         
-        public async Task<Object99Dto> TeamsGetAllTeams() => await _connection.RequestResourceAsync<Object99Dto>("GET", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object99Dto)));        
+        public async Task<Object4Dto> TeamsGetAllTeams() => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
         public async Task<TDTeamDto> TeamsGetTeamByName(string name) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));        
         
         public async Task<TDTeamDto> TeamsGetTeam(string id) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));        
         
-        public async Task<TDTeamDto> TeamsUpdateTeam(string id, Object100Dto data) => await _connection.RequestResourceAsync<Object100Dto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);        
+        public async Task<TDTeamDto> TeamsUpdateTeam(string id, Object75Dto data) => await _connection.RequestResourceAsync<Object75Dto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);        
         
         public async Task<List<TDTeamDto>> TeamsArchiveTeam(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));        
         
         public async Task<List<TDTeamDto>> TeamsDisband(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));        
         
-        public async Task<Object51Dto> TeamsDirectMembersGetAllDirectMembers(string id) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/teams/{id}/direct-members?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));        
+        public async Task<Object4Dto> TeamsDirectMembersGetAllDirectMembers(string id) => await _connection.RequestResourceAsync<Object4Dto>("GET", $"api/http/team-directory/teams/{id}/direct-members?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object4Dto)));        
         
     }
     
@@ -7625,11 +7625,11 @@ namespace SpaceDotNet.Client
     public class Object0Dto
     {
         [Required]
-        [JsonProperty("first")]
+        [JsonPropertyName("first")]
         public TDTeamDto First { get; set; }
 
         [Required]
-        [JsonProperty("second")]
+        [JsonPropertyName("second")]
         public int Second { get; set; }
 
     }
@@ -7638,12 +7638,12 @@ namespace SpaceDotNet.Client
     public class Object1Dto
     {
         [Required]
-        [JsonProperty("first")]
-        public PRProjectDto First { get; set; }
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
 
         [Required]
-        [JsonProperty("second")]
-        public int Second { get; set; }
+        [JsonPropertyName("value")]
+        public EMavenRepositorySettingsDto Value { get; set; }
 
     }
     
@@ -7651,65 +7651,25 @@ namespace SpaceDotNet.Client
     public class Object10Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<AbsenceRecordDto> Data { get; set; }
-
-    }
-    
-    // Source: Object100
-    public class Object100Dto
-    {
-        [JsonProperty("teamNameRaw")]
-        public string? TeamNameRaw { get; set; }
-
-        [JsonProperty("teamDescription")]
-        public string? TeamDescription { get; set; }
-
-        [JsonProperty("teamEmails")]
-        public List<string>? TeamEmails { get; set; }
-
-        [JsonProperty("parentId")]
-        public string? ParentId { get; set; }
+        [JsonPropertyName("order")]
+        public List<string> Order { get; set; }
 
     }
     
     // Source: Object11
     public class Object11Dto
     {
-        [JsonProperty("member")]
-        public string? Member { get; set; }
+        [JsonPropertyName("key")]
+        public string? Key { get; set; }
 
-        [JsonProperty("reason")]
-        public string? Reason { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
 
-        [JsonProperty("description")]
-        public string? Description { get; set; }
+        [JsonPropertyName("enabled")]
+        public bool? Enabled { get; set; }
 
-        [JsonProperty("location")]
-        public string? Location { get; set; }
-
-        [JsonProperty("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonProperty("till")]
-        public SpaceDate? Till { get; set; }
-
-        [Required]
-        [JsonProperty("available")]
-        public bool Available { get; set; }
-
-        [JsonProperty("icon")]
-        public string? Icon { get; set; }
-
-        [JsonProperty("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+        [JsonPropertyName("settings")]
+        public ESAuthModuleSettingsDto? Settings { get; set; }
 
     }
     
@@ -7717,51 +7677,39 @@ namespace SpaceDotNet.Client
     public class Object12Dto
     {
         [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [Required]
-        [JsonProperty("defaultAvailability")]
-        public bool DefaultAvailability { get; set; }
-
-        [Required]
-        [JsonProperty("approvalRequired")]
-        public bool ApprovalRequired { get; set; }
-
-        [JsonProperty("icon")]
-        public string? Icon { get; set; }
+        [JsonPropertyName("markdown")]
+        public string Markdown { get; set; }
 
     }
     
     // Source: Object13
     public class Object13Dto
     {
-        [JsonProperty("locationId")]
-        public string? LocationId { get; set; }
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
 
-        [JsonProperty("teamId")]
-        public string? TeamId { get; set; }
+        [Required]
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
 
-        [JsonProperty("reasonId")]
-        public string? ReasonId { get; set; }
+        [JsonPropertyName("created")]
+        public SpaceTime? Created { get; set; }
+
+        [JsonPropertyName("team")]
+        public string? Team { get; set; }
+
+        [JsonPropertyName("location")]
+        public string? Location { get; set; }
 
     }
     
     // Source: Object14
     public class Object14Dto
     {
-        [JsonProperty("locationId")]
-        public string? LocationId { get; set; }
-
-        [JsonProperty("teamId")]
-        public string? TeamId { get; set; }
-
-        [JsonProperty("reasonId")]
-        public string? ReasonId { get; set; }
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
     }
     
@@ -7769,20 +7717,15 @@ namespace SpaceDotNet.Client
     public class Object15Dto
     {
         [Required]
-        [JsonProperty("key")]
-        public string Key { get; set; }
+        [JsonPropertyName("channel")]
+        public string Channel { get; set; }
 
         [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
 
-        [Required]
-        [JsonProperty("enabled")]
-        public bool Enabled { get; set; }
-
-        [Required]
-        [JsonProperty("settings")]
-        public ESAuthModuleSettingsDto Settings { get; set; }
+        [JsonPropertyName("temporaryId")]
+        public string? TemporaryId { get; set; }
 
     }
     
@@ -7790,34 +7733,72 @@ namespace SpaceDotNet.Client
     public class Object16Dto
     {
         [Required]
-        [JsonProperty("order")]
-        public List<string> Order { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
+
+        [Required]
+        [JsonPropertyName("type")]
+        public CFTypeDto Type { get; set; }
+
+        [JsonPropertyName("constraint")]
+        public CFConstraintDto? Constraint { get; set; }
+
+        [Required]
+        [JsonPropertyName("required")]
+        public bool Required { get; set; }
+
+        [Required]
+        [JsonPropertyName("private")]
+        public bool Private { get; set; }
+
+        [JsonPropertyName("access")]
+        public AccessType? Access { get; set; }
+
+        [Required]
+        [JsonPropertyName("defaultValue")]
+        public CFValueDto DefaultValue { get; set; }
 
     }
     
     // Source: Object17
     public class Object17Dto
     {
-        [JsonProperty("key")]
-        public string? Key { get; set; }
-
-        [JsonProperty("name")]
-        public string? Name { get; set; }
-
-        [JsonProperty("enabled")]
-        public bool? Enabled { get; set; }
-
-        [JsonProperty("settings")]
-        public ESAuthModuleSettingsDto? Settings { get; set; }
+        [Required]
+        [JsonPropertyName("customFieldOrder")]
+        public List<string> CustomFieldOrder { get; set; }
 
     }
     
     // Source: Object18
     public class Object18Dto
     {
-        [Required]
-        [JsonProperty("markdown")]
-        public string Markdown { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [JsonPropertyName("key")]
+        public string? Key { get; set; }
+
+        [JsonPropertyName("constraint")]
+        public CFConstraintDto? Constraint { get; set; }
+
+        [JsonPropertyName("required")]
+        public bool? Required { get; set; }
+
+        [JsonPropertyName("private")]
+        public bool? Private { get; set; }
+
+        [JsonPropertyName("access")]
+        public AccessType? Access { get; set; }
+
+        [JsonPropertyName("defaultValue")]
+        public CFValueDto? DefaultValue { get; set; }
+
+        [JsonPropertyName("enumValues")]
+        public List<EnumValueDataDto>? EnumValues { get; set; }
 
     }
     
@@ -7825,21 +7806,8 @@ namespace SpaceDotNet.Client
     public class Object19Dto
     {
         [Required]
-        [JsonProperty("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonProperty("content")]
-        public string Content { get; set; }
-
-        [JsonProperty("created")]
-        public SpaceTime? Created { get; set; }
-
-        [JsonProperty("team")]
-        public string? Team { get; set; }
-
-        [JsonProperty("location")]
-        public string? Location { get; set; }
+        [JsonPropertyName("values")]
+        public List<CustomFieldValueDto> Values { get; set; }
 
     }
     
@@ -7847,28 +7815,76 @@ namespace SpaceDotNet.Client
     public class Object2Dto
     {
         [Required]
-        [JsonProperty("first")]
-        public TDLocationDto First { get; set; }
+        [JsonPropertyName("member")]
+        public string Member { get; set; }
 
         [Required]
-        [JsonProperty("second")]
-        public int Second { get; set; }
+        [JsonPropertyName("reason")]
+        public string Reason { get; set; }
+
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        [JsonPropertyName("location")]
+        public string? Location { get; set; }
+
+        [Required]
+        [JsonPropertyName("since")]
+        public SpaceDate Since { get; set; }
+
+        [Required]
+        [JsonPropertyName("till")]
+        public SpaceDate Till { get; set; }
+
+        [Required]
+        [JsonPropertyName("available")]
+        public bool Available { get; set; }
+
+        [Required]
+        [JsonPropertyName("icon")]
+        public string Icon { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
 
     }
     
     // Source: Object20
     public class Object20Dto
     {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }
 
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("text")]
+        public string? Text { get; set; }
 
-        [Required]
-        [JsonProperty("data")]
-        public List<ArticleRecordDto> Data { get; set; }
+        [JsonPropertyName("textVersion")]
+        public long? TextVersion { get; set; }
+
+        [JsonPropertyName("location")]
+        public string? Location { get; set; }
+
+        [JsonPropertyName("team")]
+        public string? Team { get; set; }
+
+        [JsonPropertyName("calendarEvent")]
+        public bool? CalendarEvent { get; set; }
+
+        [JsonPropertyName("start")]
+        public SpaceTime? Start { get; set; }
+
+        [JsonPropertyName("end")]
+        public SpaceTime? End { get; set; }
+
+        [JsonPropertyName("timezone")]
+        public string? Timezone { get; set; }
+
+        [JsonPropertyName("rooms")]
+        public List<string>? Rooms { get; set; }
+
+        [JsonPropertyName("allDay")]
+        public bool? AllDay { get; set; }
 
     }
     
@@ -7876,8 +7892,8 @@ namespace SpaceDotNet.Client
     public class Object21Dto
     {
         [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("editorId")]
+        public string EditorId { get; set; }
 
     }
     
@@ -7885,15 +7901,8 @@ namespace SpaceDotNet.Client
     public class Object22Dto
     {
         [Required]
-        [JsonProperty("channel")]
-        public string Channel { get; set; }
-
-        [Required]
-        [JsonProperty("text")]
-        public string Text { get; set; }
-
-        [JsonProperty("temporaryId")]
-        public string? TemporaryId { get; set; }
+        [JsonPropertyName("teamId")]
+        public string TeamId { get; set; }
 
     }
     
@@ -7901,88 +7910,72 @@ namespace SpaceDotNet.Client
     public class Object23Dto
     {
         [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("key")]
+        public ProjectKeyDto Key { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [Required]
-        [JsonProperty("key")]
-        public string Key { get; set; }
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
-        [Required]
-        [JsonProperty("type")]
-        public CFTypeDto Type { get; set; }
+        [JsonPropertyName("private")]
+        public bool? Private { get; set; }
 
-        [JsonProperty("constraint")]
-        public CFConstraintDto? Constraint { get; set; }
-
-        [Required]
-        [JsonProperty("required")]
-        public bool Required { get; set; }
-
-        [Required]
-        [JsonProperty("private")]
-        public bool Private { get; set; }
-
-        [JsonProperty("access")]
-        public AccessType? Access { get; set; }
-
-        [Required]
-        [JsonProperty("defaultValue")]
-        public CFValueDto DefaultValue { get; set; }
+        [JsonPropertyName("tags")]
+        public List<string>? Tags { get; set; }
 
     }
     
     // Source: Object24
     public class Object24Dto
     {
-        [Required]
-        [JsonProperty("customFieldOrder")]
-        public List<string> CustomFieldOrder { get; set; }
+        [JsonPropertyName("key")]
+        public ProjectKeyDto? Key { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("private")]
+        public bool? Private { get; set; }
+
+        [JsonPropertyName("tags")]
+        public List<string>? Tags { get; set; }
+
+        [JsonPropertyName("icon")]
+        public string? Icon { get; set; }
 
     }
     
     // Source: Object25
     public class Object25Dto
     {
-        [JsonProperty("name")]
-        public string? Name { get; set; }
+        [JsonPropertyName("projectId")]
+        public string? ProjectId { get; set; }
 
-        [JsonProperty("key")]
-        public string? Key { get; set; }
-
-        [JsonProperty("constraint")]
-        public CFConstraintDto? Constraint { get; set; }
-
-        [JsonProperty("required")]
-        public bool? Required { get; set; }
-
-        [JsonProperty("private")]
-        public bool? Private { get; set; }
-
-        [JsonProperty("access")]
-        public AccessType? Access { get; set; }
-
-        [JsonProperty("defaultValue")]
-        public CFValueDto? DefaultValue { get; set; }
-
-        [JsonProperty("enumValues")]
-        public List<EnumValueDataDto>? EnumValues { get; set; }
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
     }
     
     // Source: Object26
     public class Object26Dto
     {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("projectId")]
+        public string? ProjectId { get; set; }
 
         [Required]
-        [JsonProperty("data")]
-        public List<CustomFieldsRecordDto> Data { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("tabIndentedLines")]
+        public string TabIndentedLines { get; set; }
 
     }
     
@@ -7990,46 +7983,32 @@ namespace SpaceDotNet.Client
     public class Object27Dto
     {
         [Required]
-        [JsonProperty("values")]
-        public List<CustomFieldValueDto> Values { get; set; }
+        [JsonPropertyName("targetParentId")]
+        public string TargetParentId { get; set; }
+
+        [JsonPropertyName("afterItemId")]
+        public string? AfterItemId { get; set; }
+
+        [Required]
+        [JsonPropertyName("tabIndentedLines")]
+        public string TabIndentedLines { get; set; }
 
     }
     
     // Source: Object28
     public class Object28Dto
     {
-        [JsonProperty("title")]
-        public string? Title { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
-        [JsonProperty("text")]
-        public string? Text { get; set; }
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
-        [JsonProperty("textVersion")]
-        public long? TextVersion { get; set; }
+        [JsonPropertyName("owner")]
+        public string? Owner { get; set; }
 
-        [JsonProperty("location")]
-        public string? Location { get; set; }
-
-        [JsonProperty("team")]
-        public string? Team { get; set; }
-
-        [JsonProperty("calendarEvent")]
-        public bool? CalendarEvent { get; set; }
-
-        [JsonProperty("start")]
-        public SpaceTime? Start { get; set; }
-
-        [JsonProperty("end")]
-        public SpaceTime? End { get; set; }
-
-        [JsonProperty("timezone")]
-        public string? Timezone { get; set; }
-
-        [JsonProperty("rooms")]
-        public List<string>? Rooms { get; set; }
-
-        [JsonProperty("allDay")]
-        public bool? AllDay { get; set; }
+        [JsonPropertyName("tag")]
+        public string? Tag { get; set; }
 
     }
     
@@ -8037,8 +8016,8 @@ namespace SpaceDotNet.Client
     public class Object29Dto
     {
         [Required]
-        [JsonProperty("editorId")]
-        public string EditorId { get; set; }
+        [JsonPropertyName("resolved")]
+        public bool Resolved { get; set; }
 
     }
     
@@ -8046,21 +8025,28 @@ namespace SpaceDotNet.Client
     public class Object3Dto
     {
         [Required]
-        [JsonProperty("key")]
-        public string Key { get; set; }
-
-        [Required]
-        [JsonProperty("value")]
-        public EMavenRepositorySettingsDto Value { get; set; }
+        [JsonPropertyName("approve")]
+        public bool Approve { get; set; }
 
     }
     
     // Source: Object30
     public class Object30Dto
     {
-        [Required]
-        [JsonProperty("teamId")]
-        public string TeamId { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("assignee")]
+        public string? Assignee { get; set; }
+
+        [JsonPropertyName("status")]
+        public string Status { get; set; }
+
+        [JsonPropertyName("dueDate")]
+        public SpaceDate? DueDate { get; set; }
 
     }
     
@@ -8068,15 +8054,8 @@ namespace SpaceDotNet.Client
     public class Object31Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<FTSBlogDto> Data { get; set; }
+        [JsonPropertyName("attachments")]
+        public List<AttachmentDto> Attachments { get; set; }
 
     }
     
@@ -8084,31 +8063,19 @@ namespace SpaceDotNet.Client
     public class Object32Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<FTSDraftDto> Data { get; set; }
+        [JsonPropertyName("tag")]
+        public string Tag { get; set; }
 
     }
     
     // Source: Object33
     public class Object33Dto
     {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
+        [JsonPropertyName("role")]
+        public CodeReviewParticipantRole? Role { get; set; }
 
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<FTSProfileDto> Data { get; set; }
+        [JsonPropertyName("state")]
+        public CodeReviewParticipantState? State { get; set; }
 
     }
     
@@ -8116,15 +8083,8 @@ namespace SpaceDotNet.Client
     public class Object34Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<FTSTeamDto> Data { get; set; }
+        [JsonPropertyName("revisions")]
+        public List<RevisionInReviewDto> Revisions { get; set; }
 
     }
     
@@ -8132,21 +8092,8 @@ namespace SpaceDotNet.Client
     public class Object35Dto
     {
         [Required]
-        [JsonProperty("key")]
-        public ProjectKeyDto Key { get; set; }
-
-        [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("description")]
-        public string? Description { get; set; }
-
-        [JsonProperty("private")]
-        public bool? Private { get; set; }
-
-        [JsonProperty("tags")]
-        public List<string>? Tags { get; set; }
+        [JsonPropertyName("state")]
+        public CodeReviewState State { get; set; }
 
     }
     
@@ -8154,66 +8101,42 @@ namespace SpaceDotNet.Client
     public class Object36Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<PRProjectDto> Data { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
 
     }
     
     // Source: Object37
     public class Object37Dto
     {
-        [JsonProperty("key")]
-        public ProjectKeyDto? Key { get; set; }
+        [Required]
+        [JsonPropertyName("revisions")]
+        public List<string> Revisions { get; set; }
 
-        [JsonProperty("name")]
-        public string? Name { get; set; }
-
-        [JsonProperty("description")]
-        public string? Description { get; set; }
-
-        [JsonProperty("private")]
-        public bool? Private { get; set; }
-
-        [JsonProperty("tags")]
-        public List<string>? Tags { get; set; }
-
-        [JsonProperty("icon")]
-        public string? Icon { get; set; }
+        [Required]
+        [JsonPropertyName("change")]
+        public GitCommitChangeDto Change { get; set; }
 
     }
     
     // Source: Object38
     public class Object38Dto
     {
-        [JsonProperty("projectId")]
-        public string? ProjectId { get; set; }
-
         [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("branch")]
+        public string Branch { get; set; }
 
     }
     
     // Source: Object39
     public class Object39Dto
     {
-        [JsonProperty("projectId")]
-        public string? ProjectId { get; set; }
-
         [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("revisions")]
+        public List<string> Revisions { get; set; }
 
-        [Required]
-        [JsonProperty("tabIndentedLines")]
-        public string TabIndentedLines { get; set; }
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }
 
     }
     
@@ -8221,12 +8144,15 @@ namespace SpaceDotNet.Client
     public class Object4Dto
     {
         [Required]
-        [JsonProperty("key")]
-        public string Key { get; set; }
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
 
         [Required]
-        [JsonProperty("value")]
-        public ERepositorySettingsDto Value { get; set; }
+        [JsonPropertyName("data")]
+        public List<AbsenceRecordDto> Data { get; set; }
 
     }
     
@@ -8234,61 +8160,83 @@ namespace SpaceDotNet.Client
     public class Object40Dto
     {
         [Required]
-        [JsonProperty("targetParentId")]
-        public string TargetParentId { get; set; }
-
-        [JsonProperty("afterItemId")]
-        public string? AfterItemId { get; set; }
+        [JsonPropertyName("sourceBranch")]
+        public string SourceBranch { get; set; }
 
         [Required]
-        [JsonProperty("tabIndentedLines")]
-        public string TabIndentedLines { get; set; }
+        [JsonPropertyName("targetBranch")]
+        public string TargetBranch { get; set; }
+
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
 
     }
     
     // Source: Object41
     public class Object41Dto
     {
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
 
-        [JsonProperty("description")]
-        public string? Description { get; set; }
+        [JsonPropertyName("diffContext")]
+        public DiffContextDto? DiffContext { get; set; }
 
-        [JsonProperty("owner")]
-        public string? Owner { get; set; }
+        [JsonPropertyName("filename")]
+        public string? Filename { get; set; }
 
-        [JsonProperty("tag")]
-        public string? Tag { get; set; }
+        [JsonPropertyName("line")]
+        public int? Line { get; set; }
+
+        [JsonPropertyName("oldLine")]
+        public int? OldLine { get; set; }
 
     }
     
     // Source: Object42
     public class Object42Dto
     {
+        [JsonPropertyName("branch")]
+        public string? Branch { get; set; }
+
+        [JsonPropertyName("changes")]
+        public List<string>? Changes { get; set; }
+
         [Required]
-        [JsonProperty("resolved")]
-        public bool Resolved { get; set; }
+        [JsonPropertyName("executionStatus")]
+        public ExecutionStatus ExecutionStatus { get; set; }
+
+        [Required]
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+
+        [Required]
+        [JsonPropertyName("externalServiceName")]
+        public string ExternalServiceName { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskName")]
+        public string TaskName { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskId")]
+        public string TaskId { get; set; }
+
+        [JsonPropertyName("timestamp")]
+        public long? Timestamp { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
     }
     
     // Source: Object43
     public class Object43Dto
     {
-        [JsonProperty("title")]
-        public string Title { get; set; }
-
-        [JsonProperty("description")]
-        public string? Description { get; set; }
-
-        [JsonProperty("assignee")]
-        public string? Assignee { get; set; }
-
-        [JsonProperty("status")]
-        public string Status { get; set; }
-
-        [JsonProperty("dueDate")]
-        public SpaceDate? DueDate { get; set; }
+        [Required]
+        [JsonPropertyName("profileId")]
+        public string ProfileId { get; set; }
 
     }
     
@@ -8296,8 +8244,28 @@ namespace SpaceDotNet.Client
     public class Object44Dto
     {
         [Required]
-        [JsonProperty("attachments")]
-        public List<AttachmentDto> Attachments { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("assignee")]
+        public string? Assignee { get; set; }
+
+        [Required]
+        [JsonPropertyName("status")]
+        public string Status { get; set; }
+
+        [JsonPropertyName("dueDate")]
+        public SpaceDate? DueDate { get; set; }
+
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get; set; }
+
+        [JsonPropertyName("attachments")]
+        public List<AttachmentDto>? Attachments { get; set; }
 
     }
     
@@ -8305,35 +8273,33 @@ namespace SpaceDotNet.Client
     public class Object45Dto
     {
         [Required]
-        [JsonProperty("tag")]
-        public string Tag { get; set; }
+        [JsonPropertyName("statuses")]
+        public List<IssueStatusDataDto> Statuses { get; set; }
 
     }
     
     // Source: Object46
     public class Object46Dto
     {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("parentTagId")]
+        public string? ParentTagId { get; set; }
 
         [Required]
-        [JsonProperty("data")]
-        public List<CodeReviewWithCountDto> Data { get; set; }
+        [JsonPropertyName("path")]
+        public List<string> Path { get; set; }
 
     }
     
     // Source: Object47
     public class Object47Dto
     {
-        [JsonProperty("role")]
-        public CodeReviewParticipantRole? Role { get; set; }
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
-        [JsonProperty("state")]
-        public CodeReviewParticipantState? State { get; set; }
+        [Required]
+        [JsonPropertyName("location")]
+        public string Location { get; set; }
 
     }
     
@@ -8341,8 +8307,12 @@ namespace SpaceDotNet.Client
     public class Object48Dto
     {
         [Required]
-        [JsonProperty("revisions")]
-        public List<RevisionInReviewDto> Revisions { get; set; }
+        [JsonPropertyName("calendar")]
+        public string Calendar { get; set; }
+
+        [Required]
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
 
     }
     
@@ -8350,30 +8320,70 @@ namespace SpaceDotNet.Client
     public class Object49Dto
     {
         [Required]
-        [JsonProperty("state")]
-        public CodeReviewState State { get; set; }
+        [JsonPropertyName("calendar")]
+        public string Calendar { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("date")]
+        public SpaceDate Date { get; set; }
+
+        [Required]
+        [JsonPropertyName("workingDay")]
+        public bool WorkingDay { get; set; }
 
     }
     
     // Source: Object5
     public class Object5Dto
     {
-        [Required]
-        [JsonProperty("first")]
-        public SpaceDate First { get; set; }
+        [JsonPropertyName("member")]
+        public string? Member { get; set; }
+
+        [JsonPropertyName("reason")]
+        public string? Reason { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("location")]
+        public string? Location { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
 
         [Required]
-        [JsonProperty("second")]
-        public int Second { get; set; }
+        [JsonPropertyName("available")]
+        public bool Available { get; set; }
+
+        [JsonPropertyName("icon")]
+        public string? Icon { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
 
     }
     
     // Source: Object50
     public class Object50Dto
     {
-        [Required]
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        [JsonPropertyName("calendar")]
+        public string? Calendar { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [JsonPropertyName("date")]
+        public SpaceDate? Date { get; set; }
+
+        [JsonPropertyName("workingDay")]
+        public bool? WorkingDay { get; set; }
 
     }
     
@@ -8381,15 +8391,8 @@ namespace SpaceDotNet.Client
     public class Object51Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<TDMemberProfileDto> Data { get; set; }
+        [JsonPropertyName("newStatus")]
+        public EventParticipationStatus NewStatus { get; set; }
 
     }
     
@@ -8397,21 +8400,42 @@ namespace SpaceDotNet.Client
     public class Object52Dto
     {
         [Required]
-        [JsonProperty("revisions")]
-        public List<string> Revisions { get; set; }
+        [JsonPropertyName("inviteeEmail")]
+        public string InviteeEmail { get; set; }
 
         [Required]
-        [JsonProperty("change")]
-        public GitCommitChangeDto Change { get; set; }
+        [JsonPropertyName("inviteeFirstName")]
+        public string InviteeFirstName { get; set; }
+
+        [Required]
+        [JsonPropertyName("inviteeLastName")]
+        public string InviteeLastName { get; set; }
+
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }
+
+        [JsonPropertyName("role")]
+        public TDRoleDto? Role { get; set; }
 
     }
     
     // Source: Object53
     public class Object53Dto
     {
-        [Required]
-        [JsonProperty("branch")]
-        public string Branch { get; set; }
+        [JsonPropertyName("inviteeEmail")]
+        public string? InviteeEmail { get; set; }
+
+        [JsonPropertyName("inviteeFirstName")]
+        public string? InviteeFirstName { get; set; }
+
+        [JsonPropertyName("inviteeLastName")]
+        public string? InviteeLastName { get; set; }
+
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }
+
+        [JsonPropertyName("role")]
+        public TDRoleDto? Role { get; set; }
 
     }
     
@@ -8419,11 +8443,35 @@ namespace SpaceDotNet.Client
     public class Object54Dto
     {
         [Required]
-        [JsonProperty("revisions")]
-        public List<string> Revisions { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
-        [JsonProperty("title")]
-        public string? Title { get; set; }
+        [JsonPropertyName("timezone")]
+        public string? Timezone { get; set; }
+
+        [JsonPropertyName("workdays")]
+        public List<int>? Workdays { get; set; }
+
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }
+
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }
+
+        [JsonPropertyName("equipment")]
+        public List<string>? Equipment { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("address")]
+        public string? Address { get; set; }
+
+        [JsonPropertyName("type")]
+        public string? Type { get; set; }
+
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
 
     }
     
@@ -8431,74 +8479,58 @@ namespace SpaceDotNet.Client
     public class Object55Dto
     {
         [Required]
-        [JsonProperty("sourceBranch")]
-        public string SourceBranch { get; set; }
-
-        [Required]
-        [JsonProperty("targetBranch")]
-        public string TargetBranch { get; set; }
-
-        [Required]
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        [JsonPropertyName("ids")]
+        public List<string> Ids { get; set; }
 
     }
     
     // Source: Object56
     public class Object56Dto
     {
-        [Required]
-        [JsonProperty("text")]
-        public string Text { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
 
-        [JsonProperty("diffContext")]
-        public DiffContextDto? DiffContext { get; set; }
+        [JsonPropertyName("timezone")]
+        public string? Timezone { get; set; }
 
-        [JsonProperty("filename")]
-        public string? Filename { get; set; }
+        [JsonPropertyName("customWorkdays")]
+        public bool? CustomWorkdays { get; set; }
 
-        [JsonProperty("line")]
-        public int? Line { get; set; }
+        [JsonPropertyName("workdays")]
+        public List<int>? Workdays { get; set; }
 
-        [JsonProperty("oldLine")]
-        public int? OldLine { get; set; }
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }
+
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }
+
+        [JsonPropertyName("equipment")]
+        public List<string>? Equipment { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("address")]
+        public string? Address { get; set; }
+
+        [JsonPropertyName("type")]
+        public string? Type { get; set; }
+
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
+
+        [JsonPropertyName("mapId")]
+        public string? MapId { get; set; }
 
     }
     
     // Source: Object57
     public class Object57Dto
     {
-        [JsonProperty("branch")]
-        public string? Branch { get; set; }
-
-        [JsonProperty("changes")]
-        public List<string>? Changes { get; set; }
-
         [Required]
-        [JsonProperty("executionStatus")]
-        public ExecutionStatus ExecutionStatus { get; set; }
-
-        [Required]
-        [JsonProperty("url")]
-        public string Url { get; set; }
-
-        [Required]
-        [JsonProperty("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
-        [Required]
-        [JsonProperty("taskName")]
-        public string TaskName { get; set; }
-
-        [Required]
-        [JsonProperty("taskId")]
-        public string TaskId { get; set; }
-
-        [JsonProperty("timestamp")]
-        public long? Timestamp { get; set; }
-
-        [JsonProperty("description")]
-        public string? Description { get; set; }
+        [JsonPropertyName("mapPictureId")]
+        public string MapPictureId { get; set; }
 
     }
     
@@ -8506,37 +8538,41 @@ namespace SpaceDotNet.Client
     public class Object58Dto
     {
         [Required]
-        [JsonProperty("profileId")]
-        public string ProfileId { get; set; }
+        [JsonPropertyName("member")]
+        public string Member { get; set; }
+
+        [Required]
+        [JsonPropertyName("location")]
+        public string Location { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
+
+        [JsonPropertyName("previousLocation")]
+        public string? PreviousLocation { get; set; }
 
     }
     
     // Source: Object59
     public class Object59Dto
     {
-        [Required]
-        [JsonProperty("title")]
-        public string Title { get; set; }
+        [JsonPropertyName("member")]
+        public string? Member { get; set; }
 
-        [JsonProperty("description")]
-        public string? Description { get; set; }
+        [JsonPropertyName("location")]
+        public string? Location { get; set; }
 
-        [JsonProperty("assignee")]
-        public string? Assignee { get; set; }
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
 
-        [Required]
-        [JsonProperty("status")]
-        public string Status { get; set; }
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
 
-        [JsonProperty("dueDate")]
-        public SpaceDate? DueDate { get; set; }
-
-        [Required]
-        [JsonProperty("tags")]
-        public List<string> Tags { get; set; }
-
-        [JsonProperty("attachments")]
-        public List<AttachmentDto>? Attachments { get; set; }
+        [JsonPropertyName("previousLocation")]
+        public string? PreviousLocation { get; set; }
 
     }
     
@@ -8544,12 +8580,23 @@ namespace SpaceDotNet.Client
     public class Object6Dto
     {
         [Required]
-        [JsonProperty("first")]
-        public TDMembershipDto First { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         [Required]
-        [JsonProperty("second")]
-        public int Second { get; set; }
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        [Required]
+        [JsonPropertyName("defaultAvailability")]
+        public bool DefaultAvailability { get; set; }
+
+        [Required]
+        [JsonPropertyName("approvalRequired")]
+        public bool ApprovalRequired { get; set; }
+
+        [JsonPropertyName("icon")]
+        public string? Icon { get; set; }
 
     }
     
@@ -8557,52 +8604,118 @@ namespace SpaceDotNet.Client
     public class Object60Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("x")]
+        public int X { get; set; }
 
         [Required]
-        [JsonProperty("data")]
-        public List<IssueDto> Data { get; set; }
+        [JsonPropertyName("y")]
+        public int Y { get; set; }
+
+        [Required]
+        [JsonPropertyName("mapId")]
+        public string MapId { get; set; }
 
     }
     
     // Source: Object61
     public class Object61Dto
     {
-        [Required]
-        [JsonProperty("statuses")]
-        public List<IssueStatusDataDto> Statuses { get; set; }
+        [JsonPropertyName("x")]
+        public int? X { get; set; }
+
+        [JsonPropertyName("y")]
+        public int? Y { get; set; }
+
+        [JsonPropertyName("mapId")]
+        public string? MapId { get; set; }
 
     }
     
     // Source: Object62
     public class Object62Dto
     {
-        [JsonProperty("parentTagId")]
-        public string? ParentTagId { get; set; }
+        [Required]
+        [JsonPropertyName("memberId")]
+        public string MemberId { get; set; }
 
         [Required]
-        [JsonProperty("path")]
-        public List<string> Path { get; set; }
+        [JsonPropertyName("teamId")]
+        public string TeamId { get; set; }
+
+        [Required]
+        [JsonPropertyName("roleId")]
+        public string RoleId { get; set; }
+
+        [Required]
+        [JsonPropertyName("lead")]
+        public bool Lead { get; set; }
+
+        [JsonPropertyName("managerId")]
+        public string? ManagerId { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
+
+        [JsonPropertyName("activeSince")]
+        public SpaceTime? ActiveSince { get; set; }
+
+        [JsonPropertyName("activeTill")]
+        public SpaceTime? ActiveTill { get; set; }
+
+        [JsonPropertyName("previousMembershipId")]
+        public string? PreviousMembershipId { get; set; }
+
+        [Required]
+        [JsonPropertyName("requiresApproval")]
+        public bool RequiresApproval { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
 
     }
     
     // Source: Object63
     public class Object63Dto
     {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
+        [JsonPropertyName("memberId")]
+        public string? MemberId { get; set; }
 
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("teamId")]
+        public string? TeamId { get; set; }
+
+        [JsonPropertyName("roleId")]
+        public string? RoleId { get; set; }
+
+        [JsonPropertyName("lead")]
+        public bool? Lead { get; set; }
+
+        [JsonPropertyName("managerId")]
+        public string? ManagerId { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
+
+        [JsonPropertyName("activeSince")]
+        public SpaceTime? ActiveSince { get; set; }
+
+        [JsonPropertyName("activeTill")]
+        public SpaceTime? ActiveTill { get; set; }
+
+        [JsonPropertyName("previousMembershipId")]
+        public string? PreviousMembershipId { get; set; }
 
         [Required]
-        [JsonProperty("data")]
-        public List<PlanningTagDto> Data { get; set; }
+        [JsonPropertyName("requiresApproval")]
+        public bool RequiresApproval { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
 
     }
     
@@ -8610,12 +8723,8 @@ namespace SpaceDotNet.Client
     public class Object64Dto
     {
         [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonProperty("location")]
-        public string Location { get; set; }
+        [JsonPropertyName("approved")]
+        public bool Approved { get; set; }
 
     }
     
@@ -8623,12 +8732,8 @@ namespace SpaceDotNet.Client
     public class Object65Dto
     {
         [Required]
-        [JsonProperty("calendar")]
-        public string Calendar { get; set; }
-
-        [Required]
-        [JsonProperty("url")]
-        public string Url { get; set; }
+        [JsonPropertyName("till")]
+        public SpaceTime Till { get; set; }
 
     }
     
@@ -8636,82 +8741,161 @@ namespace SpaceDotNet.Client
     public class Object66Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("username")]
+        public string Username { get; set; }
 
         [Required]
-        [JsonProperty("data")]
-        public List<PublicHolidayCalendarRecordDto> Data { get; set; }
+        [JsonPropertyName("firstName")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [JsonPropertyName("lastName")]
+        public string LastName { get; set; }
+
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }
+
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }
+
+        [JsonPropertyName("birthday")]
+        public SpaceDate? Birthday { get; set; }
+
+        [JsonPropertyName("about")]
+        public string? About { get; set; }
+
+        [JsonPropertyName("gender")]
+        public Gender? Gender { get; set; }
+
+        [JsonPropertyName("messengers")]
+        public List<string>? Messengers { get; set; }
+
+        [JsonPropertyName("links")]
+        public List<string>? Links { get; set; }
+
+        [JsonPropertyName("notAMember")]
+        public bool? NotAMember { get; set; }
+
+        [JsonPropertyName("joined")]
+        public SpaceDate? Joined { get; set; }
+
+        [JsonPropertyName("left")]
+        public SpaceDate? Left { get; set; }
+
+        [JsonPropertyName("speaksEnglish")]
+        public bool? SpeaksEnglish { get; set; }
+
+        [JsonPropertyName("pictureAttachmentId")]
+        public string? PictureAttachmentId { get; set; }
+
+        [JsonPropertyName("avatarCropSquare")]
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
 
     }
     
     // Source: Object67
     public class Object67Dto
     {
-        [Required]
-        [JsonProperty("calendar")]
-        public string Calendar { get; set; }
+        [JsonPropertyName("username")]
+        public string? Username { get; set; }
 
-        [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }
 
-        [Required]
-        [JsonProperty("date")]
-        public SpaceDate Date { get; set; }
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }
 
-        [Required]
-        [JsonProperty("workingDay")]
-        public bool WorkingDay { get; set; }
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }
+
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }
+
+        [JsonPropertyName("birthday")]
+        public SpaceDate? Birthday { get; set; }
+
+        [JsonPropertyName("about")]
+        public string? About { get; set; }
+
+        [JsonPropertyName("gender")]
+        public Gender? Gender { get; set; }
+
+        [JsonPropertyName("messengers")]
+        public List<string>? Messengers { get; set; }
+
+        [JsonPropertyName("links")]
+        public List<string>? Links { get; set; }
+
+        [JsonPropertyName("notAMember")]
+        public bool? NotAMember { get; set; }
+
+        [JsonPropertyName("joined")]
+        public SpaceDate? Joined { get; set; }
+
+        [JsonPropertyName("left")]
+        public SpaceDate? Left { get; set; }
+
+        [JsonPropertyName("speaksEnglish")]
+        public bool? SpeaksEnglish { get; set; }
+
+        [JsonPropertyName("pictureAttachmentId")]
+        public string? PictureAttachmentId { get; set; }
+
+        [JsonPropertyName("avatarCropSquare")]
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
 
     }
     
     // Source: Object68
     public class Object68Dto
     {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
+        [JsonPropertyName("profile")]
+        public string? Profile { get; set; }
 
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("dateStart")]
+        public SpaceDate? DateStart { get; set; }
+
+        [JsonPropertyName("dateEnd")]
+        public SpaceDate? DateEnd { get; set; }
 
         [Required]
-        [JsonProperty("data")]
-        public List<PublicHolidayDto> Data { get; set; }
+        [JsonPropertyName("workingDaysSpec")]
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
 
     }
     
     // Source: Object69
     public class Object69Dto
     {
-        [JsonProperty("calendar")]
-        public string? Calendar { get; set; }
+        [Required]
+        [JsonPropertyName("language")]
+        public string Language { get; set; }
 
-        [JsonProperty("name")]
-        public string? Name { get; set; }
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }
 
-        [JsonProperty("date")]
-        public SpaceDate? Date { get; set; }
-
-        [JsonProperty("workingDay")]
-        public bool? WorkingDay { get; set; }
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }
 
     }
     
     // Source: Object7
     public class Object7Dto
     {
-        [Required]
-        [JsonProperty("first")]
-        public TDRoleDto First { get; set; }
+        [JsonPropertyName("locationId")]
+        public string? LocationId { get; set; }
 
-        [Required]
-        [JsonProperty("second")]
-        public int Second { get; set; }
+        [JsonPropertyName("teamId")]
+        public string? TeamId { get; set; }
+
+        [JsonPropertyName("reasonId")]
+        public string? ReasonId { get; set; }
 
     }
     
@@ -8719,31 +8903,23 @@ namespace SpaceDotNet.Client
     public class Object70Dto
     {
         [Required]
-        [JsonProperty("newStatus")]
-        public EventParticipationStatus NewStatus { get; set; }
+        [JsonPropertyName("password")]
+        public string Password { get; set; }
 
     }
     
     // Source: Object71
     public class Object71Dto
     {
-        [Required]
-        [JsonProperty("inviteeEmail")]
-        public string InviteeEmail { get; set; }
+        [JsonPropertyName("dateStart")]
+        public SpaceDate? DateStart { get; set; }
+
+        [JsonPropertyName("dateEnd")]
+        public SpaceDate? DateEnd { get; set; }
 
         [Required]
-        [JsonProperty("inviteeFirstName")]
-        public string InviteeFirstName { get; set; }
-
-        [Required]
-        [JsonProperty("inviteeLastName")]
-        public string InviteeLastName { get; set; }
-
-        [JsonProperty("team")]
-        public TDTeamDto? Team { get; set; }
-
-        [JsonProperty("role")]
-        public TDRoleDto? Role { get; set; }
+        [JsonPropertyName("workingDaysSpec")]
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
 
     }
     
@@ -8751,35 +8927,22 @@ namespace SpaceDotNet.Client
     public class Object72Dto
     {
         [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<InvitationDto> Data { get; set; }
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
 
     }
     
     // Source: Object73
     public class Object73Dto
     {
-        [JsonProperty("inviteeEmail")]
-        public string? InviteeEmail { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
 
-        [JsonProperty("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }
-
-        [JsonProperty("inviteeLastName")]
-        public string? InviteeLastName { get; set; }
-
-        [JsonProperty("team")]
-        public TDTeamDto? Team { get; set; }
-
-        [JsonProperty("role")]
-        public TDRoleDto? Role { get; set; }
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
 
     }
     
@@ -8787,34 +8950,16 @@ namespace SpaceDotNet.Client
     public class Object74Dto
     {
         [Required]
-        [JsonProperty("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("teamNameRaw")]
+        public string TeamNameRaw { get; set; }
 
-        [JsonProperty("timezone")]
-        public string? Timezone { get; set; }
+        [JsonPropertyName("teamDescription")]
+        public string? TeamDescription { get; set; }
 
-        [JsonProperty("workdays")]
-        public List<int>? Workdays { get; set; }
+        [JsonPropertyName("teamEmails")]
+        public List<string>? TeamEmails { get; set; }
 
-        [JsonProperty("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonProperty("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonProperty("equipment")]
-        public List<string>? Equipment { get; set; }
-
-        [JsonProperty("description")]
-        public string? Description { get; set; }
-
-        [JsonProperty("address")]
-        public string? Address { get; set; }
-
-        [JsonProperty("type")]
-        public string? Type { get; set; }
-
-        [JsonProperty("parentId")]
+        [JsonPropertyName("parentId")]
         public string? ParentId { get; set; }
 
     }
@@ -8822,341 +8967,31 @@ namespace SpaceDotNet.Client
     // Source: Object75
     public class Object75Dto
     {
-        [Required]
-        [JsonProperty("ids")]
-        public List<string> Ids { get; set; }
+        [JsonPropertyName("teamNameRaw")]
+        public string? TeamNameRaw { get; set; }
 
-    }
-    
-    // Source: Object76
-    public class Object76Dto
-    {
-        [JsonProperty("name")]
-        public string? Name { get; set; }
+        [JsonPropertyName("teamDescription")]
+        public string? TeamDescription { get; set; }
 
-        [JsonProperty("timezone")]
-        public string? Timezone { get; set; }
+        [JsonPropertyName("teamEmails")]
+        public List<string>? TeamEmails { get; set; }
 
-        [JsonProperty("customWorkdays")]
-        public bool? CustomWorkdays { get; set; }
-
-        [JsonProperty("workdays")]
-        public List<int>? Workdays { get; set; }
-
-        [JsonProperty("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonProperty("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonProperty("equipment")]
-        public List<string>? Equipment { get; set; }
-
-        [JsonProperty("description")]
-        public string? Description { get; set; }
-
-        [JsonProperty("address")]
-        public string? Address { get; set; }
-
-        [JsonProperty("type")]
-        public string? Type { get; set; }
-
-        [JsonProperty("parentId")]
+        [JsonPropertyName("parentId")]
         public string? ParentId { get; set; }
-
-        [JsonProperty("mapId")]
-        public string? MapId { get; set; }
-
-    }
-    
-    // Source: Object77
-    public class Object77Dto
-    {
-        [Required]
-        [JsonProperty("mapPictureId")]
-        public string MapPictureId { get; set; }
-
-    }
-    
-    // Source: Object78
-    public class Object78Dto
-    {
-        [Required]
-        [JsonProperty("member")]
-        public string Member { get; set; }
-
-        [Required]
-        [JsonProperty("location")]
-        public string Location { get; set; }
-
-        [JsonProperty("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonProperty("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonProperty("previousLocation")]
-        public string? PreviousLocation { get; set; }
-
-    }
-    
-    // Source: Object79
-    public class Object79Dto
-    {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<TDMemberLocationDto> Data { get; set; }
 
     }
     
     // Source: Object8
     public class Object8Dto
     {
-        [Required]
-        [JsonProperty("member")]
-        public string Member { get; set; }
+        [JsonPropertyName("locationId")]
+        public string? LocationId { get; set; }
 
-        [Required]
-        [JsonProperty("reason")]
-        public string Reason { get; set; }
-
-        [Required]
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("location")]
-        public string? Location { get; set; }
-
-        [Required]
-        [JsonProperty("since")]
-        public SpaceDate Since { get; set; }
-
-        [Required]
-        [JsonProperty("till")]
-        public SpaceDate Till { get; set; }
-
-        [Required]
-        [JsonProperty("available")]
-        public bool Available { get; set; }
-
-        [Required]
-        [JsonProperty("icon")]
-        public string Icon { get; set; }
-
-        [JsonProperty("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-    
-    // Source: Object80
-    public class Object80Dto
-    {
-        [JsonProperty("member")]
-        public string? Member { get; set; }
-
-        [JsonProperty("location")]
-        public string? Location { get; set; }
-
-        [JsonProperty("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonProperty("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonProperty("previousLocation")]
-        public string? PreviousLocation { get; set; }
-
-    }
-    
-    // Source: Object81
-    public class Object81Dto
-    {
-        [Required]
-        [JsonProperty("x")]
-        public int X { get; set; }
-
-        [Required]
-        [JsonProperty("y")]
-        public int Y { get; set; }
-
-        [Required]
-        [JsonProperty("mapId")]
-        public string MapId { get; set; }
-
-    }
-    
-    // Source: Object82
-    public class Object82Dto
-    {
-        [JsonProperty("x")]
-        public int? X { get; set; }
-
-        [JsonProperty("y")]
-        public int? Y { get; set; }
-
-        [JsonProperty("mapId")]
-        public string? MapId { get; set; }
-
-    }
-    
-    // Source: Object83
-    public class Object83Dto
-    {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<TDMergedEventDto> Data { get; set; }
-
-    }
-    
-    // Source: Object84
-    public class Object84Dto
-    {
-        [Required]
-        [JsonProperty("memberId")]
-        public string MemberId { get; set; }
-
-        [Required]
-        [JsonProperty("teamId")]
-        public string TeamId { get; set; }
-
-        [Required]
-        [JsonProperty("roleId")]
-        public string RoleId { get; set; }
-
-        [Required]
-        [JsonProperty("lead")]
-        public bool Lead { get; set; }
-
-        [JsonProperty("managerId")]
-        public string? ManagerId { get; set; }
-
-        [JsonProperty("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonProperty("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonProperty("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
-        [JsonProperty("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
-        [JsonProperty("previousMembershipId")]
-        public string? PreviousMembershipId { get; set; }
-
-        [Required]
-        [JsonProperty("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
-        [JsonProperty("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-    
-    // Source: Object85
-    public class Object85Dto
-    {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<TDMembershipDto> Data { get; set; }
-
-    }
-    
-    // Source: Object86
-    public class Object86Dto
-    {
-        [JsonProperty("memberId")]
-        public string? MemberId { get; set; }
-
-        [JsonProperty("teamId")]
+        [JsonPropertyName("teamId")]
         public string? TeamId { get; set; }
 
-        [JsonProperty("roleId")]
-        public string? RoleId { get; set; }
-
-        [JsonProperty("lead")]
-        public bool? Lead { get; set; }
-
-        [JsonProperty("managerId")]
-        public string? ManagerId { get; set; }
-
-        [JsonProperty("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonProperty("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonProperty("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
-        [JsonProperty("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
-        [JsonProperty("previousMembershipId")]
-        public string? PreviousMembershipId { get; set; }
-
-        [Required]
-        [JsonProperty("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
-        [JsonProperty("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-    
-    // Source: Object87
-    public class Object87Dto
-    {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonProperty("data")]
-        public List<Object101Dto> Data { get; set; }
-
-    }
-    
-    // Source: Object88
-    public class Object88Dto
-    {
-        [Required]
-        [JsonProperty("approved")]
-        public bool Approved { get; set; }
-
-    }
-    
-    // Source: Object89
-    public class Object89Dto
-    {
-        [Required]
-        [JsonProperty("till")]
-        public SpaceTime Till { get; set; }
+        [JsonPropertyName("reasonId")]
+        public string? ReasonId { get; set; }
 
     }
     
@@ -9164,250 +8999,20 @@ namespace SpaceDotNet.Client
     public class Object9Dto
     {
         [Required]
-        [JsonProperty("approve")]
-        public bool Approve { get; set; }
-
-    }
-    
-    // Source: Object90
-    public class Object90Dto
-    {
-        [Required]
-        [JsonProperty("username")]
-        public string Username { get; set; }
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
 
         [Required]
-        [JsonProperty("firstName")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [JsonProperty("lastName")]
-        public string LastName { get; set; }
-
-        [JsonProperty("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonProperty("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonProperty("birthday")]
-        public SpaceDate? Birthday { get; set; }
-
-        [JsonProperty("about")]
-        public string? About { get; set; }
-
-        [JsonProperty("gender")]
-        public Gender? Gender { get; set; }
-
-        [JsonProperty("messengers")]
-        public List<string>? Messengers { get; set; }
-
-        [JsonProperty("links")]
-        public List<string>? Links { get; set; }
-
-        [JsonProperty("notAMember")]
-        public bool? NotAMember { get; set; }
-
-        [JsonProperty("joined")]
-        public SpaceDate? Joined { get; set; }
-
-        [JsonProperty("left")]
-        public SpaceDate? Left { get; set; }
-
-        [JsonProperty("speaksEnglish")]
-        public bool? SpeaksEnglish { get; set; }
-
-        [JsonProperty("pictureAttachmentId")]
-        public string? PictureAttachmentId { get; set; }
-
-        [JsonProperty("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
-
-        [JsonProperty("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-    
-    // Source: Object91
-    public class Object91Dto
-    {
-        [JsonProperty("username")]
-        public string? Username { get; set; }
-
-        [JsonProperty("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonProperty("lastName")]
-        public string? LastName { get; set; }
-
-        [JsonProperty("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonProperty("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonProperty("birthday")]
-        public SpaceDate? Birthday { get; set; }
-
-        [JsonProperty("about")]
-        public string? About { get; set; }
-
-        [JsonProperty("gender")]
-        public Gender? Gender { get; set; }
-
-        [JsonProperty("messengers")]
-        public List<string>? Messengers { get; set; }
-
-        [JsonProperty("links")]
-        public List<string>? Links { get; set; }
-
-        [JsonProperty("notAMember")]
-        public bool? NotAMember { get; set; }
-
-        [JsonProperty("joined")]
-        public SpaceDate? Joined { get; set; }
-
-        [JsonProperty("left")]
-        public SpaceDate? Left { get; set; }
-
-        [JsonProperty("speaksEnglish")]
-        public bool? SpeaksEnglish { get; set; }
-
-        [JsonProperty("pictureAttachmentId")]
-        public string? PictureAttachmentId { get; set; }
-
-        [JsonProperty("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
-
-        [JsonProperty("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-    
-    // Source: Object92
-    public class Object92Dto
-    {
-        [JsonProperty("profile")]
-        public string? Profile { get; set; }
-
-        [JsonProperty("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
-        [JsonProperty("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
-        [Required]
-        [JsonProperty("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
-    }
-    
-    // Source: Object93
-    public class Object93Dto
-    {
-        [Required]
-        [JsonProperty("language")]
-        public string Language { get; set; }
-
-        [JsonProperty("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonProperty("lastName")]
-        public string? LastName { get; set; }
-
-    }
-    
-    // Source: Object94
-    public class Object94Dto
-    {
-        [Required]
-        [JsonProperty("password")]
-        public string Password { get; set; }
-
-    }
-    
-    // Source: Object95
-    public class Object95Dto
-    {
-        [JsonProperty("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
-        [JsonProperty("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
-        [Required]
-        [JsonProperty("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
-    }
-    
-    // Source: Object96
-    public class Object96Dto
-    {
-        [Required]
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonProperty("parentId")]
-        public string? ParentId { get; set; }
-
-    }
-    
-    // Source: Object97
-    public class Object97Dto
-    {
-        [JsonProperty("name")]
-        public string? Name { get; set; }
-
-        [JsonProperty("parentId")]
-        public string? ParentId { get; set; }
-
-    }
-    
-    // Source: Object98
-    public class Object98Dto
-    {
         [Required]
-        [JsonProperty("teamNameRaw")]
-        public string TeamNameRaw { get; set; }
-
-        [JsonProperty("teamDescription")]
-        public string? TeamDescription { get; set; }
-
-        [JsonProperty("teamEmails")]
-        public List<string>? TeamEmails { get; set; }
-
-        [JsonProperty("parentId")]
-        public string? ParentId { get; set; }
-
-    }
-    
-    // Source: Object99
-    public class Object99Dto
-    {
-        [Required]
-        [JsonProperty("next")]
-        public string Next { get; set; }
-
-        [JsonProperty("totalCount")]
-        public int? TotalCount { get; set; }
+        [JsonPropertyName("enabled")]
+        public bool Enabled { get; set; }
 
         [Required]
-        [JsonProperty("data")]
-        public List<TDTeamDto> Data { get; set; }
-
-    }
-    
-    // Source: Object101
-    public class Object101Dto
-    {
-        [Required]
-        [JsonProperty("first")]
-        public TDMemberProfileDto First { get; set; }
-
-        [Required]
-        [JsonProperty("second")]
-        public TDMembershipDto Second { get; set; }
+        [JsonPropertyName("settings")]
+        public ESAuthModuleSettingsDto Settings { get; set; }
 
     }
     

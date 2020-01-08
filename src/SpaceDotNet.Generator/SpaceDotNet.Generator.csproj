@@ -9,7 +9,6 @@
 
     <ItemGroup>
       <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
-      <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     </ItemGroup>
 
     <ItemGroup>
@@ -21,6 +20,15 @@
       </Compile>
       <Compile Include="..\SpaceDotNet.Client\Connection.cs">
         <Link>Linked\Connection.cs</Link>
+      </Compile>
+      <Compile Include="..\SpaceDotNet.Client\Enumeration.cs">
+        <Link>Linked\Enumeration.cs</Link>
+      </Compile>
+      <Compile Include="..\SpaceDotNet.Client\EnumerationConverter.cs">
+        <Link>Linked\EnumerationConverter.cs</Link>
+      </Compile>
+      <Compile Include="..\SpaceDotNet.Client\JsonElementExtensions.cs">
+        <Link>Linked\JsonElementExtensions.cs</Link>
       </Compile>
       <Compile Include="..\SpaceDotNet.Client\OAuthToken.cs">
         <Link>Linked\OAuthToken.cs</Link>

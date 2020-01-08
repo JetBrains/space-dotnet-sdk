@@ -1,10 +1,10 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public class ApiDtoField
     {
-        [JsonProperty("field")]
+        [JsonPropertyName("field")]
         public ApiField Field { get; set; }
     }
 }

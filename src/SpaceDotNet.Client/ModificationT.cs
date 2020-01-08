@@ -1,13 +1,13 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Client
 {
     public class Modification<T>
     {
-        [JsonProperty("old")]
+        [JsonPropertyName("old")]
         public T Old { get; set; }
         
-        [JsonProperty("new")]
+        [JsonPropertyName("new")]
         public T New { get; set; }
     }
 }

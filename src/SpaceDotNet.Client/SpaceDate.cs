@@ -1,20 +1,20 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Client
 {
     public class SpaceDate
     {
-        [JsonProperty("iso")]
+        [JsonPropertyName("iso")]
         public string Iso { get; set; }
         
-        [JsonProperty("year")]
+        [JsonPropertyName("year")]
         public int Year { get; set; }
         
-        [JsonProperty("month")]
+        [JsonPropertyName("month")]
         public int Month { get; set; }
         
-        [JsonProperty("day")]
+        [JsonPropertyName("day")]
         public int Day { get; set; }
 
         public DateTime AsDateTime() => new DateTime(Year, Month, Day);

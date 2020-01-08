@@ -1,49 +1,43 @@
 using System;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using SpaceDotNet.Client;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 {
-    public class ApiResourcePathSegmentConverter : JsonConverter
+    public class ApiResourcePathSegmentConverter : JsonConverter<ApiResourcePathSegment>
     {
         public override bool CanConvert(Type objectType) => typeof(ApiResourcePathSegment).IsAssignableFrom(objectType);
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        public override ApiResourcePathSegment Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonToken.Null) return null;
-            
-            var jsonObject = JObject.Load(reader);
+            if (reader.TokenType == JsonTokenType.Null) return null;
 
-            var className = jsonObject.Value<string>("className");
+            using var jsonDocument = JsonDocument.ParseValue(ref reader);
+            var jsonObject = jsonDocument.RootElement;
+
+            var className = jsonObject.GetStringValue("className");
             if (string.Equals(className, "HA_PathSegment.Const", StringComparison.OrdinalIgnoreCase))
             {
-                var item = new ApiResourcePathSegment.Const();
-                serializer.Populate(jsonObject.CreateReader(), item);
-                return item;
+                return JsonSerializer.Deserialize<ApiResourcePathSegment.Const>(jsonObject.GetRawText());
             } 
             else if (string.Equals(className, "HA_PathSegment.Var", StringComparison.OrdinalIgnoreCase))
             {
-                var item = new ApiResourcePathSegment.Var();
-                serializer.Populate(jsonObject.CreateReader(), item);
-                return item;
+                return JsonSerializer.Deserialize<ApiResourcePathSegment.Var>(jsonObject.GetRawText());
             }
             else if (string.Equals(className, "HA_PathSegment.PrefixedVar", StringComparison.OrdinalIgnoreCase))
             {
-                var item = new ApiResourcePathSegment.PrefixedVar();
-                serializer.Populate(jsonObject.CreateReader(), item);
-                return item;
+                return JsonSerializer.Deserialize<ApiResourcePathSegment.PrefixedVar>(jsonObject.GetRawText());
             }
             else
             {
-                throw new NotSupportedException("Could not deserialize object from JSON: " + jsonObject.ToString());
+                throw new NotSupportedException("Could not deserialize object from JSON: " + jsonObject);
             }
         }
 
-        public override bool CanWrite => false;
-
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        public override void Write(Utf8JsonWriter writer, ApiResourcePathSegment value, JsonSerializerOptions options)
         {
-            serializer.Serialize(writer, value);
+            JsonSerializer.Serialize(writer, value, options);
         }
     }
 }

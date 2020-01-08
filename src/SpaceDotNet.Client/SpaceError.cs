@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Client
 {
@@ -10,13 +10,13 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Short description of the error.
         /// </summary>
-        [JsonProperty("error")]
+        [JsonPropertyName("error")]
         public string Error { get; set; }
         
         /// <summary>
         /// Full description of the error.
         /// </summary>
-        [JsonProperty("error_description")]
+        [JsonPropertyName("error_description")]
         public string Description { get; set; }
     }
 }

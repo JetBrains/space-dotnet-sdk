@@ -1,35 +1,35 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using SpaceDotNet.Generator.Model.HttpApi.Converters;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public class ApiEndpoint
     {
-        [JsonProperty("resource")]
+        [JsonPropertyName("resource")]
         public ApiResource Resource { get; set; }
         
-        [JsonProperty("method")]
+        [JsonPropertyName("method")]
         public ApiMethod Method { get; set; }
         
-        [JsonProperty("parameters")]
+        [JsonPropertyName("parameters")]
         public List<ApiParameter> Parameters { get; set; } = new List<ApiParameter>();
         
-        [JsonProperty("requestBody")]
+        [JsonPropertyName("requestBody")]
         [JsonConverter(typeof(ApiFieldTypeConverter))]
         public ApiFieldType.Object? RequestBody { get; set; }
         
-        [JsonProperty("responseBody")]
+        [JsonPropertyName("responseBody")]
         [JsonConverter(typeof(ApiFieldTypeConverter))]
         public ApiFieldType? ResponseBody { get; set; }
         
-        [JsonProperty("path")]
+        [JsonPropertyName("path")]
         public ApiResourcePath Path { get; set; }
         
-        [JsonProperty("displayName")]
+        [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
         
-        [JsonProperty("doc")]
+        [JsonPropertyName("doc")]
         public string? Documentation { get; set; }
     }
 }

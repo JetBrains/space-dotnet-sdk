@@ -1,26 +1,26 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public class ApiResource
     {
-        [JsonProperty("id")]
+        [JsonPropertyName("id")]
         public string Id { get; set; }
         
-        [JsonProperty("path")]
+        [JsonPropertyName("path")]
         public ApiResourcePath Path { get; set; }
         
-        [JsonProperty("displaySingular")]
+        [JsonPropertyName("displaySingular")]
         public string DisplaySingular { get; set; }
         
-        [JsonProperty("displayPlural")]
+        [JsonPropertyName("displayPlural")]
         public string DisplayPlural { get; set; }
         
-        [JsonProperty("nestedResources")]
+        [JsonPropertyName("nestedResources")]
         public List<ApiResource> NestedResources { get; set; } = new List<ApiResource>();
         
-        [JsonProperty("endpoints")]
+        [JsonPropertyName("endpoints")]
         public List<ApiEndpoint> Endpoints { get; set; } = new List<ApiEndpoint>();
     }
 }

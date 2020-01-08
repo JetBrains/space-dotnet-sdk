@@ -1,27 +1,26 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Client
 {
-    public class EnumerationConverter : JsonConverter
+    public class EnumerationConverter : JsonConverter<Enumeration>
     {
         public override bool CanConvert(Type objectType) => typeof(Enumeration).IsAssignableFrom(objectType);
 
-        public override object? ReadJson(JsonReader reader, Type objectType, object? existingValue, JsonSerializer serializer)
+        public override Enumeration Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonToken.String)
+            if (reader.TokenType == JsonTokenType.String)
             {
-                return Enumeration.FromValue(objectType, reader.Value.ToString());
+                return Enumeration.FromValue(typeToConvert, reader.GetString());
             }
 
             return null;
         }
 
-        public override bool CanWrite => true;
-
-        public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+        public override void Write(Utf8JsonWriter writer, Enumeration value, JsonSerializerOptions options)
         {
-            serializer.Serialize(writer, (value as Enumeration)?.Value);
+            writer.WriteStringValue(value?.Value);
         }
     }
 }

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json.Linq;
 
 namespace SpaceDotNet.Client
 {
@@ -58,13 +58,14 @@ namespace SpaceDotNet.Client
                 };
 
                 var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest);
-                var spaceToken = JObject.Parse(await spaceTokenResponse.Content.ReadAsStringAsync());
-
+                using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync());
+                var spaceToken = spaceTokenDocument.RootElement;
+                
                 _authToken = new OAuthToken
                 {
-                    AccessToken = spaceToken.Value<string>("access_token"),
-                    RefreshToken = spaceToken.Value<string>("refresh_token"),
-                    Expires = DateTimeOffset.UtcNow.AddSeconds(spaceToken.Value<int>("expires_in"))
+                    AccessToken = spaceToken.GetStringValue("access_token"),
+                    RefreshToken = spaceToken.GetStringValue("refresh_token"),
+                    Expires = DateTimeOffset.UtcNow.AddSeconds(spaceToken.GetInt32Value("expires_in"))
                 };
 
                 BearerToken = _authToken.AccessToken;

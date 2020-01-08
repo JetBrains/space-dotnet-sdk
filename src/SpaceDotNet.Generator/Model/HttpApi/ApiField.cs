@@ -1,14 +1,14 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using SpaceDotNet.Generator.Model.HttpApi.Converters;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public class ApiField
     {
-        [JsonProperty("name")]
+        [JsonPropertyName("name")]
         public string Name { get; set; }
         
-        [JsonProperty("type")]
+        [JsonPropertyName("type")]
         [JsonConverter(typeof(ApiFieldTypeConverter))]
         public ApiFieldType Type { get; set; }
     }

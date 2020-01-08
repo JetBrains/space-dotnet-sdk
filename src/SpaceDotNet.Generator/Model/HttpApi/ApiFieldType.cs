@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using SpaceDotNet.Client;
 using SpaceDotNet.Generator.Model.HttpApi.Converters;
 
@@ -8,59 +8,62 @@ namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public abstract class ApiFieldType
     {
-        [JsonProperty("nullable")]
+        [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
         
-        [JsonProperty("optional")]
+        [JsonPropertyName("optional")]
         public bool Optional { get; set; }
 
         public class Primitive : ApiFieldType
         {
-            [JsonProperty("primitive")]
+            [JsonPropertyName("primitive")]
             public string Type { get; set; }
         }
         
         public class Array : ApiFieldType
         {
-            [JsonProperty("elementType")]
+            [JsonPropertyName("elementType")]
             [JsonConverter(typeof(ApiFieldTypeConverter))]
             public ApiFieldType ElementType { get; set; }
         }
         
         public class Object : ApiFieldType
         {
-            [JsonProperty("fields")]
+            [JsonPropertyName("fields")]
             public List<ApiField> Fields { get; set; } = new List<ApiField>();
             
-            [JsonProperty("kind")]
+            [JsonPropertyName("kind")]
             public ObjectKind Kind { get; set; }
             
             [SuppressMessage("ReSharper", "InconsistentNaming")]
-            public enum ObjectKind {
-                PAIR,
-                TRIPLE, 
-                MAP_ENTRY, 
-                BATCH, 
-                MOD, 
-                REQUEST_BODY
+            [JsonConverter(typeof(EnumerationConverter))]
+            public sealed class ObjectKind : Enumeration {
+                private ObjectKind(string value) : base(value) { }
+                
+                public static readonly ObjectKind PAIR = new ObjectKind("PAIR");
+                public static readonly ObjectKind TRIPLE = new ObjectKind("TRIPLE");
+                public static readonly ObjectKind MAP_ENTRY = new ObjectKind("MAP_ENTRY");
+                public static readonly ObjectKind BATCH = new ObjectKind("BATCH");
+                public static readonly ObjectKind MOD = new ObjectKind("MOD");
+                public static readonly ObjectKind REQUEST_BODY = new ObjectKind("REQUEST_BODY");
             }
         }
         
         public class Enum : ApiFieldType
         {
-            [JsonProperty("enum")]
+            [JsonPropertyName("enum")]
             public Reference<ApiEnum>? EnumRef { get; set; }
         }
         
         public class Dto : ApiFieldType
         {
-            [JsonProperty("dto")]
+            [JsonPropertyName("dto")]
             public Reference<ApiDto>? DtoRef { get; set; }
         }
         
         public class Ref : ApiFieldType
         {
-            [JsonProperty("dto")]
+            [JsonPropertyName("dto")]
             public Reference<ApiDto>? DtoRef { get; set; }
         }
     }

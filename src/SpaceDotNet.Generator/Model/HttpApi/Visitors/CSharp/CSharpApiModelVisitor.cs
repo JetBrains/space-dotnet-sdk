@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
-using Newtonsoft.Json;
+using System.Text.Json;
 using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}using System;");
             Builder.AppendLine($"{Indent}using System.Collections.Generic;");
             Builder.AppendLine($"{Indent}using System.ComponentModel.DataAnnotations;");
+            Builder.AppendLine($"{Indent}using System.Text.Json.Serialization;");
             Builder.AppendLine($"{Indent}using System.Threading.Tasks;");
-            Builder.AppendLine($"{Indent}using Newtonsoft.Json;");
             Builder.AppendLine($"{Indent}");
             Builder.AppendLine($"{Indent}namespace SpaceDotNet.Client");
             Builder.AppendLine($"{Indent}{{");
@@ -109,7 +109,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}{{");
                 
             Indent.Increment();
-            Builder.AppendLine($"{Indent}public " + apiEnum.Name.ToSafeIdentifier() + "(string value) : base(value) { }");
+            Builder.AppendLine($"{Indent}private " + apiEnum.Name.ToSafeIdentifier() + "(string value) : base(value) { }");
             Builder.AppendLine($"{Indent}");
             
             foreach (var value in apiEnum.Values)
@@ -165,7 +165,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 Builder.AppendLine($"{Indent}[Required]");
             }
-            Builder.AppendLine($"{Indent}[JsonProperty(\"{apiField.Name}\")]");
+            Builder.AppendLine($"{Indent}[JsonPropertyName(\"{apiField.Name}\")]");
             
             Builder.Append($"{Indent}public ");
             Visit(apiField.Type);
@@ -226,8 +226,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         var anonymousClassFields = apiFieldTypeObject.Fields.Select(it => new ApiDtoField { Field = it }).ToList();
 
                         // TODO: make this check less expensive, serializing N times is probably not the best idea
-                        var anonymousClassSignature = JsonConvert.SerializeObject(anonymousClassFields);
-                        var anonymousClass = IdToAnonymousClassMap.Values.FirstOrDefault(it => anonymousClassSignature == JsonConvert.SerializeObject(it.Fields));
+                        var anonymousClassSignature = JsonSerializer.Serialize(anonymousClassFields);
+                        var anonymousClass = IdToAnonymousClassMap.Values.FirstOrDefault(it => anonymousClassSignature == JsonSerializer.Serialize(it.Fields));
                         if (anonymousClass == null)
                         {
                             var anonymousClassId = "Object" + IdToAnonymousClassMap.Count;

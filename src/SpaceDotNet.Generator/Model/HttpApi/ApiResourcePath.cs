@@ -1,11 +1,11 @@
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public class ApiResourcePath
     {
-        [JsonProperty("segments")]
+        [JsonPropertyName("segments")]
         public List<ApiResourcePathSegment> Segments { get; set; } = new List<ApiResourcePathSegment>();
     }
 }

@@ -1,18 +1,17 @@
-using System;
 using System.Collections.Generic;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public class ApiModel
     {
-        [JsonProperty("dto")]
+        [JsonPropertyName("dto")]
         public List<ApiDto> Dto { get; set; } = new List<ApiDto>();
         
-        [JsonProperty("enums")]
+        [JsonPropertyName("enums")]
         public List<ApiEnum> Enums { get; set; } = new List<ApiEnum>();
         
-        [JsonProperty("resources")]
+        [JsonPropertyName("resources")]
         public List<ApiResource> Resources { get; set; } = new List<ApiResource>();
     }
 }

@@ -2,8 +2,8 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
 
 namespace SpaceDotNet.Client
 {
@@ -54,9 +54,9 @@ namespace SpaceDotNet.Client
                 
                 try
                 {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
                 }
-                catch (JsonException )
+                catch (JsonException)
                 {
                     // Intentional.
                 }
@@ -86,7 +86,7 @@ namespace SpaceDotNet.Client
                 
                 try
                 {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
                 }
                 catch (JsonException )
                 {
@@ -96,7 +96,7 @@ namespace SpaceDotNet.Client
                 throw exception;
             }
             
-            return JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
+            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync());
         }
 
         /// <inheritdoc />
@@ -111,7 +111,7 @@ namespace SpaceDotNet.Client
                     Authorization = AuthenticationHeaderValue.Parse("Bearer " + BearerToken),
                     Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
                 },
-                Content = new StringContent(JsonConvert.SerializeObject(payload, Formatting.None), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json")
             };
 
             var response = await HttpClient.SendAsync(request);
@@ -121,7 +121,7 @@ namespace SpaceDotNet.Client
                 
                 try
                 {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
                 }
                 catch (JsonException )
                 {
@@ -144,7 +144,7 @@ namespace SpaceDotNet.Client
                     Authorization = AuthenticationHeaderValue.Parse("Bearer " + BearerToken),
                     Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
                 },
-                Content = new StringContent(JsonConvert.SerializeObject(payload, Formatting.None), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json")
             };
 
             var response = await HttpClient.SendAsync(request);
@@ -154,7 +154,7 @@ namespace SpaceDotNet.Client
                 
                 try
                 {
-                    exception.Error = JsonConvert.DeserializeObject<SpaceError>(await response.Content.ReadAsStringAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
                 }
                 catch (JsonException )
                 {
@@ -164,7 +164,7 @@ namespace SpaceDotNet.Client
                 throw exception;
             }
             
-            return JsonConvert.DeserializeObject<TResult>(await response.Content.ReadAsStringAsync());
+            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync());
         }
         
         protected virtual Task EnsureAuthenticatedAsync()

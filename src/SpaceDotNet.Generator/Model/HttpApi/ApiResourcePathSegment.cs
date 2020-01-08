@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 using SpaceDotNet.Generator.Model.HttpApi.Converters;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
@@ -8,22 +8,22 @@ namespace SpaceDotNet.Generator.Model.HttpApi
     {
         public class Var : ApiResourcePathSegment
         {
-            [JsonProperty("name")]
+            [JsonPropertyName("name")]
             public string Name { get; set; }
         }
         
         public class PrefixedVar : ApiResourcePathSegment
         {
-            [JsonProperty("prefix")]
+            [JsonPropertyName("prefix")]
             public string Prefix { get; set; }
             
-            [JsonProperty("name")]
+            [JsonPropertyName("name")]
             public string Name { get; set; }
         }
         
         public class Const : ApiResourcePathSegment
         {
-            [JsonProperty("value")]
+            [JsonPropertyName("value")]
             public string Value { get; set; }
         }
     }

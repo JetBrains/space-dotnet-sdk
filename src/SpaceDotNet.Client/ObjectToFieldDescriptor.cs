@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Client
 {
@@ -14,9 +14,9 @@ namespace SpaceDotNet.Client
 
             foreach (var propertyInfo in forType.GetProperties())
             {
-                if (propertyInfo.GetCustomAttribute(typeof(JsonPropertyAttribute)) is JsonPropertyAttribute jsonNameProperty)
+                if (propertyInfo.GetCustomAttribute(typeof(JsonPropertyNameAttribute)) is JsonPropertyNameAttribute jsonPropertyName)
                 {
-                    var fieldNameToAdd = jsonNameProperty.PropertyName;
+                    var fieldNameToAdd = jsonPropertyName.Name;
                     var innerType = propertyInfo.PropertyType;
                     if (innerType.IsGenericType)
                     {

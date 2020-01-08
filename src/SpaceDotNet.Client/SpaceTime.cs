@@ -1,14 +1,14 @@
 using System;
-using Newtonsoft.Json;
+using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Client
 {
     public class SpaceTime
     {
-        [JsonProperty("iso")]
+        [JsonPropertyName("iso")]
         public string Iso { get; set; }
         
-        [JsonProperty("timestamp")]
+        [JsonPropertyName("timestamp")]
         public long Timestamp { get; set; }
 
         public DateTime AsDateTime() => DateTimeOffset.FromUnixTimeSeconds(Timestamp).DateTime;
