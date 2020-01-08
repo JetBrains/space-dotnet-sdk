@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Client.Tests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{1E220DAF-BE55-4503-9372-FF930F4225BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.Web", "SpaceDotNet.Samples.Web\SpaceDotNet.Samples.Web.csproj", "{C9911DA0-E395-47BF-BFCB-FF319F1F545B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.Web", "src\SpaceDotNet.Samples.Web\SpaceDotNet.Samples.Web.csproj", "{C9911DA0-E395-47BF-BFCB-FF319F1F545B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

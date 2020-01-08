@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
     </ItemGroup>
 
 </Project>
