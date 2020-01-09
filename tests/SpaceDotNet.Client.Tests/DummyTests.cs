@@ -18,6 +18,7 @@ namespace SpaceDotNet.Client.Tests
 
             var teamDirectoryClient = new TeamDirectoryClient(connection);
 
+            // ReSharper disable once UnusedVariable
             var memberProfile = await teamDirectoryClient.ProfilesGetProfileByUsername("Maarten.Balliauw");
         }
     }

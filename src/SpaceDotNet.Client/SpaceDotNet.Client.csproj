@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Description>A .NET library to talk to JetBrains Space.</Description>
     </PropertyGroup>
 
     <ItemGroup>

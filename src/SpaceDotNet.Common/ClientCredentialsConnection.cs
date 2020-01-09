@@ -47,7 +47,7 @@ namespace SpaceDotNet.Common
             if (AuthenticationTokens == null || AuthenticationTokens.HasExpired())
             {
                 // Get new token
-                var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, ServerUri + "oauth/token")
+                var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, ServerUrl + "oauth/token")
                 {
                     Headers =
                     {

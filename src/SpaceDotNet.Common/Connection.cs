@@ -12,7 +12,7 @@ namespace SpaceDotNet.Common
         /// <summary>
         /// Space organization URL that will be connected against.
         /// </summary>
-        protected Uri ServerUri { get; }
+        protected Uri ServerUrl { get; }
         
         /// <summary>
         /// Creates an instance of the <see cref="Connection" /> class.
@@ -29,7 +29,7 @@ namespace SpaceDotNet.Common
                 throw new ArgumentException("The Space organization URL is invalid.", nameof(serverUrl));
             }
 
-            ServerUri = serverUri;
+            ServerUrl = serverUri;
         }
         
         /// <summary>

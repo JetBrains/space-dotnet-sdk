@@ -57,6 +57,7 @@ namespace SpaceDotNet.Common.Types
 
         public override int GetHashCode()
         {
+            // ReSharper disable once NonReadonlyMemberInGetHashCode
             return StringComparer.OrdinalIgnoreCase.GetHashCode(Value);
         }
 

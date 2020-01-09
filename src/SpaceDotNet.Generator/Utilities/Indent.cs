@@ -2,7 +2,7 @@ namespace SpaceDotNet.Generator.Utilities
 {
     public class Indent
     {
-        public int Level { get; private set; } = 0;
+        public int Level { get; private set; }
 
         public void Increment()
         {

@@ -11,6 +11,7 @@ namespace SpaceDotNet.Generator
 {
     class Program
     {
+        // ReSharper disable once UnusedParameter.Local
         static async Task Main(string[] args)
         {
             // Metadata
