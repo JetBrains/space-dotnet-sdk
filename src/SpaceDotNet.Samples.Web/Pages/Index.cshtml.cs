@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SpaceDotNet.Client;
+using SpaceDotNet.Common;
 
 namespace SpaceDotNet.Samples.Web.Pages
 {
@@ -28,9 +29,11 @@ namespace SpaceDotNet.Samples.Web.Pages
 
         public async Task OnGet()
         {
+            var bearerToken = await HttpContext.GetTokenAsync("access_token");
+            
             var connection = new BearerTokenConnection(
                 _configuration["Space:BaseUrl"], 
-                await HttpContext.GetTokenAsync("access_token"));
+                bearerToken);
 
             var teamDirectoryClient = new TeamDirectoryClient(connection);
 

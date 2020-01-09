@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.Text.Json.Serialization;
-using SpaceDotNet.Client;
+using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Generator.Model.HttpApi
 {

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common.Types
 {
     /// <summary>
     /// Represents an error retrieved from Space.

@@ -1,8 +1,8 @@
 using System.Text.Json;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common.Json.Serialization
 {
-    internal static class JsonElementExtensions
+    public static class JsonElementExtensions
     {
         public static string? GetStringValue(this JsonElement jsonElement, string propertyName) 
             => jsonElement.TryGetProperty(propertyName, out var propertyElement) ? propertyElement.GetString() : null;

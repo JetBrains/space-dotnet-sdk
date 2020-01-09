@@ -1,6 +1,6 @@
 using System;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common
 {
     public class OAuthToken
     {

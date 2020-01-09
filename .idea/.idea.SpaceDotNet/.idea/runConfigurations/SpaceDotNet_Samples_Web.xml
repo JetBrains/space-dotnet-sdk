@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="SpaceDotNet.Samples.Web" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
-    <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/SpaceDotNet.Samples.Web/SpaceDotNet.Samples.Web.csproj" />
+    <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/SpaceDotNet.Samples.Web/SpaceDotNet.Samples.Web.csproj" />
     <option name="LAUNCH_PROFILE_TFM" value=".NETCoreApp,Version=v3.0" />
     <option name="LAUNCH_PROFILE_NAME" value="SpaceDotNet.Samples.Web" />
     <option name="USE_EXTERNAL_CONSOLE" value="0" />

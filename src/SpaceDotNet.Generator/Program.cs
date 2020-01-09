@@ -3,7 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using SpaceDotNet.Client;
+using SpaceDotNet.Common;
 using SpaceDotNet.Generator.Model.HttpApi;
 using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
 

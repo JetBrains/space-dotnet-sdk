@@ -5,7 +5,7 @@
 {
     <li class="nav-item">
         <img src="@User.Identity.GetClaimValue("urn:space:smallAvatar")" width="32" height="32" />
-        @User.Identity.GetClaimValue("urn:space:fullName")
+        @User.Identity.GetClaimValue("urn:space:firstName") @User.Identity.GetClaimValue("urn:space:lastName")
     </li>
 }
 </ul>

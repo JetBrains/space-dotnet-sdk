@@ -4,13 +4,9 @@
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     </PropertyGroup>
-
+    
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" PrivateAssets="All" />
+        <PackageReference Include="JetBrains.Annotations" Version="2019.1.3" />
     </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
-    </ItemGroup>
-
+    
 </Project>

@@ -3,8 +3,6 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <LangVersion>8</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -12,39 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Include="..\SpaceDotNet.Client\BearerTokenConnection.cs">
-        <Link>Linked\BearerTokenConnection.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\ClientCredentialsConnection.cs">
-        <Link>Linked\ClientCredentialsConnection.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\Connection.cs">
-        <Link>Linked\Connection.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\Enumeration.cs">
-        <Link>Linked\Enumeration.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\EnumerationConverter.cs">
-        <Link>Linked\EnumerationConverter.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\JsonElementExtensions.cs">
-        <Link>Linked\JsonElementExtensions.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\OAuthToken.cs">
-        <Link>Linked\OAuthToken.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\ObjectToFieldDescriptor.cs">
-        <Link>Linked\ObjectToFieldDescriptor.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\Reference.cs">
-        <Link>Linked\Reference.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\ResourceException.cs">
-        <Link>Linked\ResourceException.cs</Link>
-      </Compile>
-      <Compile Include="..\SpaceDotNet.Client\SpaceError.cs">
-        <Link>Linked\SpaceError.cs</Link>
-      </Compile>
+      <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
     </ItemGroup>
 
 </Project>

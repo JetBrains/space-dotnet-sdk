@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common.Types
 {
     public class Reference<T>
     {

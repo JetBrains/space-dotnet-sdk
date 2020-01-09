@@ -1,0 +1,28 @@
+<Project>
+    <PropertyGroup>
+        <LangVersion>8</LangVersion>
+        <Nullable>enable</Nullable>
+    
+        <!-- NuGet -->
+        <IncludeSymbols>True</IncludeSymbols>
+        <IncludeSource>True</IncludeSource>
+        <PackageIconUrl>https://pbs.twimg.com/profile_images/1202638201002835975/LDQWGLj3_400x400.png</PackageIconUrl>
+        <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
+        <PackageProjectUrl>https://jetbrains.team/p/evan/code/SpaceDotNet/</PackageProjectUrl>
+        <RepositoryUrl>https://git.jetbrains.team/SpaceDotNet.git</RepositoryUrl>
+        <RepositoryType>Git</RepositoryType>
+        <PackageTags>JetBrains Space SDK</PackageTags>
+        <AssemblyVersion>0.0.1</AssemblyVersion>
+        <FileVersion>0.0.1</FileVersion>
+        <VersionPrefix>0.0.1</VersionPrefix>
+        <Description>A .NET Library to talk to JetBrains Space.</Description>
+        <!--        <Authors>JetBrains</Authors>-->
+        <!--        <Company>JetBrains</Company>-->
+        <!--        <Copyright>JetBrains</Copyright>-->
+        <Authors>Maarten Balliauw</Authors>
+        <Company>Maarten Balliauw</Company>
+        <Copyright>Maarten Balliauw</Copyright>
+    
+        <Product>SpaceDotNet</Product>
+    </PropertyGroup>
+</Project>

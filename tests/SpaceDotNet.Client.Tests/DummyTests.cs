@@ -1,5 +1,6 @@
 using System.Net.Http;
 using System.Threading.Tasks;
+using SpaceDotNet.Common;
 using Xunit;
 
 namespace SpaceDotNet.Client.Tests

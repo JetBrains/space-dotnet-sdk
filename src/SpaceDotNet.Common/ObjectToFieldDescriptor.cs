@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common
 {
     public static class ObjectToFieldDescriptor
     {

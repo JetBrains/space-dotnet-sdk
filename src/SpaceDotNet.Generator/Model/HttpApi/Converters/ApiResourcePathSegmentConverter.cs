@@ -1,7 +1,7 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using SpaceDotNet.Client;
+using SpaceDotNet.Common.Json.Serialization;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 {

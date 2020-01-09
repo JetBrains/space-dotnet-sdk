@@ -1,8 +1,9 @@
 using System;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common.Json.Serialization
 {
     public class EnumerationConverter : JsonConverter<Enumeration>
     {

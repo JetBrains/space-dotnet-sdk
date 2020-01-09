@@ -15,6 +15,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
     </ItemGroup>
 
 </Project>

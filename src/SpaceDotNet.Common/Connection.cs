@@ -1,7 +1,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common
 {
     /// <summary>
     /// Abstract base class that represents a connection against a Space organization and provides

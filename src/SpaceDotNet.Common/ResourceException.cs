@@ -1,8 +1,9 @@
 using System;
 using System.Net;
 using JetBrains.Annotations;
+using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common
 {
     /// <summary>
     /// Represents an exception thrown by <see cref="T:Connection" /> when a resource can not be accessed.

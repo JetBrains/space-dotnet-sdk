@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json.Serialization;
-using SpaceDotNet.Client;
+using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Types;
 using SpaceDotNet.Generator.Model.HttpApi.Converters;
 
 namespace SpaceDotNet.Generator.Model.HttpApi

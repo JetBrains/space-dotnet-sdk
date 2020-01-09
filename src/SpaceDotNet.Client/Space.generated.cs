@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-01-08T14:57:25.9427165+00:00
+//     Generated: 2020-01-09T06:44:27.1262943+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -16,6 +16,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
+using SpaceDotNet.Common;
+using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
@@ -6126,6 +6129,10 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("locations")]
         public List<TDMemberLocationDto> Locations { get; set; }
+
+        [Required]
+        [JsonPropertyName("logins")]
+        public List<ESProfileLoginDto> Logins { get; set; }
 
         [Required]
         [JsonPropertyName("managers")]

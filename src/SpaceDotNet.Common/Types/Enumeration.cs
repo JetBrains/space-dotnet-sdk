@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common.Types
 {
     public abstract class Enumeration : IComparable
     {

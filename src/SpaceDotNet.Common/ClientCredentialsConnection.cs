@@ -5,8 +5,9 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
+using SpaceDotNet.Common.Json.Serialization;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Common
 {
     /// <summary>
     /// A class that represents a connection against a Space organization and provides an authenticated

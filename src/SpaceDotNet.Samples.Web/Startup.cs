@@ -2,6 +2,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Claims;
+using System.Text.Json;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OAuth;
@@ -11,7 +12,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Newtonsoft.Json.Linq;
 
 namespace SpaceDotNet.Samples.Web
 {
@@ -54,6 +54,26 @@ namespace SpaceDotNet.Samples.Web
 
                     options.ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
                     options.ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
+                    options.ClaimActions.MapJsonKey("urn:space:userid", "id");
+                    options.ClaimActions.MapJsonKey("urn:space:username", "username");
+                    options.ClaimActions.MapCustomJson("urn:space:smallAvatar", element => element.TryGetProperty("smallAvatar", out var p) ? Configuration["Space:BaseUrl"] + "/d/" + p.GetString() : null);
+                    options.ClaimActions.MapCustomJson("urn:space:profilePicture", element => element.TryGetProperty("profilePicture", out var p) ? Configuration["Space:BaseUrl"] + "/d/" + p.GetString() : null);
+                    options.ClaimActions.MapJsonSubKey("urn:space:firstName", "name", "firstName");
+                    options.ClaimActions.MapJsonSubKey("urn:space:lastName", "name", "lastName");
+                    options.ClaimActions.MapCustomJson("urn:space:email", element =>
+                    {
+                        if (element.TryGetProperty("emails", out var emailElements))
+                        {
+                            var emailElement = emailElements.EnumerateArray().FirstOrDefault();
+                            if (emailElement.TryGetProperty("email", out var email))
+                            {
+                                return email.GetString();
+                            }
+                        }
+
+                        return null;
+                    });
+
 
                     options.Events = new OAuthEvents
                     {
@@ -66,26 +86,10 @@ namespace SpaceDotNet.Samples.Web
                             var response = await context.Backchannel.SendAsync(request, context.HttpContext.RequestAborted);
                             response.EnsureSuccessStatusCode();
                             
-                            var me = JObject.Parse(await response.Content.ReadAsStringAsync());
+                            using var meDocument = await JsonDocument.ParseAsync(await response.Content.ReadAsStreamAsync());
+                            var me = meDocument.RootElement;
                             
-                            if (me["id"] != null) context.Identity.AddClaim(new Claim("urn:space:userid", me.Value<string>("id")));
-                            if (me["username"] != null) context.Identity.AddClaim(new Claim("urn:space:username", me.Value<string>("username")));
-                            if (me["smallAvatar"] != null) context.Identity.AddClaim(new Claim("urn:space:smallAvatar", Configuration["Space:BaseUrl"] + "/d/" + me.Value<string>("smallAvatar")));
-                            if (me["profilePicture"] != null) context.Identity.AddClaim(new Claim("urn:space:profilePicture", Configuration["Space:BaseUrl"] + "/d/" +me.Value<string>("profilePicture")));
-
-                            if (me["name"] != null)
-                            {
-                                context.Identity.AddClaim(new Claim("urn:space:firstName", me["name"].Value<string>("firstName")));
-                                context.Identity.AddClaim(new Claim("urn:space:lastName", me["name"].Value<string>("lastName")));
-                                context.Identity.AddClaim(new Claim("urn:space:fullName", me["name"].Value<string>("firstName") + " " + me["name"].Value<string>("lastName")));
-                            }
-                            
-                            if (me["emails"] != null)
-                            {
-                                context.Identity.AddClaim(new Claim("urn:space:emails", me["emails"].AsJEnumerable().First().Value<string>("email")));
-                            }
-                            
-                            context.RunClaimActions();
+                            context.RunClaimActions(me);
                         }
                     };
                 });
