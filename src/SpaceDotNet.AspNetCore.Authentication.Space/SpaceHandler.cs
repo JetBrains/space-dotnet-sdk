@@ -125,7 +125,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
         {
             var output = new StringBuilder();
             output.Append("Status: " + response.StatusCode + ";");
-            output.Append("Headers: " + response.Headers.ToString() + ";");
+            output.Append("Headers: " + response.Headers + ";");
             output.Append("Body: " + await response.Content.ReadAsStringAsync() + ";");
             return output.ToString();
         }

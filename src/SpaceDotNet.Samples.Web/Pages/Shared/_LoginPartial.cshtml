@@ -1,11 +1,10 @@
-﻿@using Microsoft.AspNetCore.Identity
-
+﻿@using SpaceDotNet.AspNetCore.Authentication.Space
 <ul class="navbar-nav">
 @if (User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
-        <img src="@User.Identity.GetClaimValue("urn:space:smallAvatar")" width="32" height="32" />
-        @User.Identity.GetClaimValue("urn:space:firstName") @User.Identity.GetClaimValue("urn:space:lastName")
+        <img src="@User.Identity.GetClaimValue(SpaceClaimTypes.SmallAvatar)" width="32" height="32" />
+        @User.Identity.GetClaimValue(SpaceClaimTypes.FirstName) @User.Identity.GetClaimValue(SpaceClaimTypes.LastName)
     </li>
 }
 </ul>
