@@ -7,7 +7,9 @@ namespace SpaceDotNet.Common.Json.Serialization
 {
     public class EnumerationConverter : JsonConverter<Enumeration>
     {
-        public override bool CanConvert(Type objectType) => typeof(Enumeration).IsAssignableFrom(objectType);
+        private static Type _enumerationType = typeof(Enumeration);
+        
+        public override bool CanConvert(Type objectType) => objectType != _enumerationType && _enumerationType.IsAssignableFrom(objectType);
 
         public override Enumeration Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {

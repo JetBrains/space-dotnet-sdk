@@ -25,7 +25,7 @@ namespace SpaceDotNet.Common.Types
         
         public static T? FromValue<T>(string value) where T : Enumeration, new()
         {
-            var matchingItem = GetAll<T>().FirstOrDefault(it => it.Value == value);
+            var matchingItem = GetAll<T>().FirstOrDefault(it => string.Equals(it.Value, value, StringComparison.OrdinalIgnoreCase));
             return matchingItem;
         }
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Common.Types
             var matchingItem = fields
                 .Select(f => f.GetValue(null))
                 .Cast<Enumeration>()
-                .FirstOrDefault(it => it.Value == value);
+                .FirstOrDefault(it => string.Equals(it.Value, value, StringComparison.OrdinalIgnoreCase));
             return matchingItem;
         }
 
