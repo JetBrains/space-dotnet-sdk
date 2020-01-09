@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
@@ -29,15 +30,25 @@ namespace SpaceDotNet.Samples.Web.Pages
 
         public async Task OnGet()
         {
-            var bearerToken = await HttpContext.GetTokenAsync("access_token");
+            var authenticationInfo = await HttpContext.AuthenticateAsync();
             
-            var connection = new BearerTokenConnection(
+            var authenticationTokens = new AuthenticationTokens(
+                authenticationInfo.Properties.GetTokenValue("access_token"),
+                authenticationInfo.Properties.GetTokenValue("refresh_token"),
+                DateTimeOffset.UtcNow);
+            
+            var connection = new RefreshTokenConnection(
                 _configuration["Space:BaseUrl"], 
-                bearerToken);
-
+                _configuration["Space:ClientId"],
+                _configuration["Space:ClientSecret"],
+                authenticationTokens);
+            
             var teamDirectoryClient = new TeamDirectoryClient(connection);
-
+            
             MemberProfile = await teamDirectoryClient.ProfilesMeGetMe();
+
+            authenticationInfo.Properties.UpdateTokenValue("access_token", connection.AuthenticationTokens.AccessToken);
+            authenticationInfo.Properties.UpdateTokenValue("refresh_token", connection.AuthenticationTokens.RefreshToken);
         }
     }
 }

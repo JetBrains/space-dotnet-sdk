@@ -10,29 +10,37 @@ using SpaceDotNet.Common.Json.Serialization;
 namespace SpaceDotNet.Common
 {
     /// <summary>
-    /// A class which represents a connection against a Space organization and uses the Client Credentials flow.
+    /// A class which represents a connection against a Space organization and uses the Refresh Token flow.
     /// </summary>
-    public class ClientCredentialsConnection 
+    public class RefreshTokenConnection 
         : BearerTokenConnection
     {
         private readonly string _clientId;
         private readonly string _clientSecret;
 
         /// <summary>
-        /// Creates an instance of the <see cref="ClientCredentialsConnection" /> class.
+        /// Creates an instance of the <see cref="RefreshTokenConnection" /> class.
         /// </summary>
         /// <param name="serverUrl">Space organization URL that will be connected against.</param>
-        /// <param name="clientId">The client id to use while authenticating.</param>
-        /// <param name="clientSecret">The client secret to use while authenticating.</param>
+        /// <param name="clientId">The client id to use when refreshing tokens.</param>
+        /// <param name="clientSecret">The client secret to use when refreshing tokens.</param>
+        /// <param name="authenticationTokens">Authentication tokens to use while authenticating.</param>
         /// <param name="httpClient">HTTP client to use for communication.</param>
         /// <exception cref="ArgumentException">
         /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
         /// </exception>
-        public ClientCredentialsConnection(string serverUrl, string clientId, string clientSecret, HttpClient? httpClient = null)
+        public RefreshTokenConnection(string serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
             : base(serverUrl, httpClient)
         {
             _clientId = clientId;
             _clientSecret = clientSecret;
+
+            if (string.IsNullOrEmpty(authenticationTokens.RefreshToken))
+            {
+                throw new ArgumentException("The authentications do not contain a valid refresh token. Make sure the refresh token is not null or an empty string.", nameof(authenticationTokens));
+            }
+            
+            AuthenticationTokens = authenticationTokens;
         }
 
         /// <summary>
@@ -44,7 +52,7 @@ namespace SpaceDotNet.Common
         protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request)
         {
             // Authenticate?
-            if (AuthenticationTokens == null || AuthenticationTokens.HasExpired())
+            if (AuthenticationTokens != null && AuthenticationTokens.HasExpired())
             {
                 // Get new token
                 var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, ServerUri + "oauth/token")
@@ -56,7 +64,8 @@ namespace SpaceDotNet.Common
                     },
                     Content = new FormUrlEncodedContent(new []
                     {
-                        new KeyValuePair<string, string>("grant_type", "client_credentials"),
+                        new KeyValuePair<string, string>("grant_type", "refresh_token"),
+                        new KeyValuePair<string, string>("refresh_token", AuthenticationTokens.RefreshToken),
                         new KeyValuePair<string, string>("scope", Scope)
                     })
                 };
@@ -67,7 +76,7 @@ namespace SpaceDotNet.Common
                 
                 AuthenticationTokens = new AuthenticationTokens(
                     accessToken: spaceToken.GetStringValue("access_token"),
-                    refreshToken: spaceToken.GetStringValue("refresh_token") ?? AuthenticationTokens?.RefreshToken,
+                    refreshToken: spaceToken.GetStringValue("refresh_token") ?? AuthenticationTokens.RefreshToken,
                     expires: DateTimeOffset.UtcNow.AddSeconds(spaceToken.GetInt32Value("expires_in"))
                 );
             }

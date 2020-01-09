@@ -6,7 +6,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Common
 {
     /// <summary>
-    /// Represents an exception thrown by <see cref="T:Connection" /> when a resource can not be accessed.
+    /// Represents an exception thrown by <see cref="T:Connection" /> when a resource cannot be accessed.
     /// </summary>
     [PublicAPI]
     public class ResourceException 
@@ -35,7 +35,7 @@ namespace SpaceDotNet.Common
         /// </summary>
         /// <param name="message">A message that describes the current exception.</param>
         /// <param name="statusCode">The <see cref="T:System.Net.Http.HttpStatusCode" /> that was received from the server.</param>
-        /// <param name="response">The HTTP response body that was received from the server.</param>
+        /// <param name="response">The HTTP response body which was received from the server.</param>
         public ResourceException(string message, HttpStatusCode statusCode, string response) 
             : base(message)
         {
@@ -49,7 +49,7 @@ namespace SpaceDotNet.Common
         public HttpStatusCode? StatusCode { get; }
         
         /// <summary>
-        /// The HTTP response body that was received from the server.
+        /// The HTTP response body which was received from the server.
         /// </summary>
         public string? Response { get; }
 

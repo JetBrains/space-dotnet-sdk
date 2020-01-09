@@ -2,8 +2,15 @@ using System;
 
 namespace SpaceDotNet.Common
 {
-    public class OAuthToken
+    public class AuthenticationTokens
     {
+        public AuthenticationTokens(string? accessToken, string? refreshToken, DateTimeOffset? expires)
+        {
+            AccessToken = accessToken;
+            RefreshToken = refreshToken;
+            Expires = expires;
+        }
+
         public string? AccessToken { get; set; }
         public string? RefreshToken { get; set; }
         public DateTimeOffset? Expires { get; set; }
