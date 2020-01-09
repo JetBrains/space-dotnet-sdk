@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-01-09T06:44:27.1262943+00:00
+//     Generated: 2020-01-09T06:49:14.4905677+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -6129,10 +6129,6 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("locations")]
         public List<TDMemberLocationDto> Locations { get; set; }
-
-        [Required]
-        [JsonPropertyName("logins")]
-        public List<ESProfileLoginDto> Logins { get; set; }
 
         [Required]
         [JsonPropertyName("managers")]
