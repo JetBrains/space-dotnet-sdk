@@ -7,7 +7,7 @@ namespace SpaceDotNet.Client.Tests
 {
     public class DummyTests
     {
-        [Fact]
+        [Fact(Skip = "Skipped as it has no use yet.")]
         public async Task DummyTestAsync()
         {
             var connection = new ClientCredentialsConnection(

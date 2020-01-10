@@ -86,11 +86,8 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             var inputs = new Dictionary<string, SampleEnumeration>
             {
                 {"\"Value1\"", SampleEnumeration.Value1},
-                {"\"valuE1\"", SampleEnumeration.Value1},
                 {"\"Value2\"", SampleEnumeration.Value2},
-                {"\"value2\"", SampleEnumeration.Value2},
-                {"\"Value3\"", SampleEnumeration.Value3},
-                {"\"value3\"", SampleEnumeration.Value3}
+                {"\"Value3\"", SampleEnumeration.Value3}
             };
                 
             var target = new EnumerationConverter();
