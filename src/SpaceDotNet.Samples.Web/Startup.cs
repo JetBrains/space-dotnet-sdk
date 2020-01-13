@@ -1,4 +1,3 @@
-using System;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,9 +29,9 @@ namespace SpaceDotNet.Samples.Web
                 .AddCookie()
                 .AddSpace(options => Configuration.Bind("Space", options));
 
+            // The below is only needed when refresh token support is desired
             services.Configure<SpaceOptions>(SpaceDefaults.AuthenticationScheme, options =>
             {
-                options.Scope.Add("**");
                 options.AccessType = AccessType.Offline;
                 options.SaveTokens = true;
             });

@@ -1,5 +1,7 @@
 using System;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Options;
 using SpaceDotNet.AspNetCore.Authentication.Space;
 
 // ReSharper disable once CheckNamespace
@@ -18,6 +20,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static AuthenticationBuilder AddSpace(this AuthenticationBuilder builder, string authenticationScheme, string displayName, Action<SpaceOptions> configureOptions)
         {
+            builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<SpaceOptions>, SpacePostConfigureOptions>());
+            
             builder.Services.AddOptions<SpaceOptions>(authenticationScheme)
                 .Validate(o => o.ServerUrl != null, "Space.ServerUrl is required.")
                 .Validate(o => !string.IsNullOrEmpty(o.ClientId), "Space.ClientId is required.")
