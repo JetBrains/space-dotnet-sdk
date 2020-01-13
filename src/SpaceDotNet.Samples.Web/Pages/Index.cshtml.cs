@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -45,7 +45,7 @@ namespace SpaceDotNet.Samples.Web.Pages
 
             authenticationInfo.Properties.UpdateTokenValue("access_token", connection.AuthenticationTokens.AccessToken);
             authenticationInfo.Properties.UpdateTokenValue("refresh_token", connection.AuthenticationTokens.RefreshToken);
-            authenticationInfo.Properties.UpdateTokenValue("expires_at", connection.AuthenticationTokens.Expires?.ToString("O"));
+            authenticationInfo.Properties.UpdateTokenValue("expires_at", connection.AuthenticationTokens.Expires?.ToString("o"));
         }
     }
 }
