@@ -25,7 +25,7 @@ namespace SpaceDotNet.Samples.Web
                 {
                     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                    options.DefaultChallengeScheme = "Space";
+                    options.DefaultChallengeScheme = SpaceDefaults.AuthenticationScheme;
                 })
                 .AddCookie()
                 .AddSpace(options =>
