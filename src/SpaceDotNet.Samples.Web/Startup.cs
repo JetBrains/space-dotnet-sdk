@@ -28,16 +28,26 @@ namespace SpaceDotNet.Samples.Web
                     options.DefaultChallengeScheme = SpaceDefaults.AuthenticationScheme;
                 })
                 .AddCookie()
-                .AddSpace(options =>
-                {
-                    options.ServerUrl = new Uri(Configuration["Space:BaseUrl"]);
-                    options.ClientId = Configuration["Space:ClientId"];
-                    options.ClientSecret = Configuration["Space:ClientSecret"];
+                .AddSpace(options => Configuration.Bind("Space", options));
 
-                    options.Scope.Add("**");
-                    options.AccessType = AccessType.Offline;
-                    options.SaveTokens = true;
-                });
+            services.Configure<SpaceOptions>(SpaceDefaults.AuthenticationScheme, options =>
+            {
+                options.Scope.Add("**");
+                options.AccessType = AccessType.Offline;
+                options.SaveTokens = true;
+            });
+            
+                // - or: -
+                // .AddSpace(options =>
+                // {
+                //     options.ServerUrl = new Uri(Configuration["Space:ServerUrl"]);
+                //     options.ClientId = Configuration["Space:ClientId"];
+                //     options.ClientSecret = Configuration["Space:ClientSecret"];
+                //
+                //     options.Scope.Add("**");
+                //     options.AccessType = AccessType.Offline;
+                //     options.SaveTokens = true;
+                // });
             
             services.AddRazorPages();
         }

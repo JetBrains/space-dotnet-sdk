@@ -34,7 +34,7 @@ namespace SpaceDotNet.Samples.Web.Pages
                 DateTimeOffset.Parse(authenticationInfo.Properties.GetTokenValue("expires_at")));
             
             var connection = new RefreshTokenConnection(
-                _configuration["Space:BaseUrl"], 
+                _configuration["Space:ServerUrl"], 
                 _configuration["Space:ClientId"],
                 _configuration["Space:ClientSecret"],
                 authenticationTokens);

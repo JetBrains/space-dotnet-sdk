@@ -17,6 +17,13 @@ namespace Microsoft.Extensions.DependencyInjection
             => builder.AddSpace(authenticationScheme, SpaceDefaults.DisplayName, configureOptions);
 
         public static AuthenticationBuilder AddSpace(this AuthenticationBuilder builder, string authenticationScheme, string displayName, Action<SpaceOptions> configureOptions)
-            => builder.AddOAuth<SpaceOptions, SpaceHandler>(authenticationScheme, displayName, configureOptions);
+        {
+            builder.Services.AddOptions<SpaceOptions>(authenticationScheme)
+                .Validate(o => o.ServerUrl != null, "Space.ServerUrl is required.")
+                .Validate(o => !string.IsNullOrEmpty(o.ClientId), "Space.ClientId is required.")
+                .Validate(o => !string.IsNullOrEmpty(o.ClientSecret), "Space.ClientSecret is required.");
+
+            return builder.AddOAuth<SpaceOptions, SpaceHandler>(authenticationScheme, displayName, configureOptions);
+        }
     }
 }
