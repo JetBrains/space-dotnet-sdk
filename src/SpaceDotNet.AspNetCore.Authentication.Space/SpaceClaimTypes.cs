@@ -11,6 +11,5 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
         public const string ProfilePicture = "urn:space:profilePicture";
         public const string FirstName = "urn:space:firstName";
         public const string LastName = "urn:space:lastName";
-        public const string Email = "urn:space:email";
     }
 }

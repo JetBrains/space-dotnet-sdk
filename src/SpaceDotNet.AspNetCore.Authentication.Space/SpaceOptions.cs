@@ -29,14 +29,25 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
             UserInformationEndpoint = SpaceDefaults.UserInformationEndpointPath;
             
             ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
-            ClaimActions.MapJsonKey(ClaimTypes.Name, "name");
             ClaimActions.MapJsonKey(SpaceClaimTypes.UserId, "id");
             ClaimActions.MapJsonKey(SpaceClaimTypes.UserName, "username");
             ClaimActions.MapCustomJson(SpaceClaimTypes.SmallAvatar, element => element.TryGetProperty("smallAvatar", out var p) ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
             ClaimActions.MapCustomJson(SpaceClaimTypes.ProfilePicture, element => element.TryGetProperty("profilePicture", out var p) ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
             ClaimActions.MapJsonSubKey(SpaceClaimTypes.FirstName, "name", "firstName");
             ClaimActions.MapJsonSubKey(SpaceClaimTypes.LastName, "name", "lastName");
-            ClaimActions.MapCustomJson(SpaceClaimTypes.Email, element =>
+            ClaimActions.MapCustomJson(ClaimTypes.Name, element =>
+            {
+                if (element.TryGetProperty("name", out var nameElement) && nameElement.ValueKind == JsonValueKind.Object)
+                {
+                    return nameElement.TryGetProperty("firstName", out var firstName) &&
+                           nameElement.TryGetProperty("lastName", out var lastName)
+                        ? $"{firstName} {lastName}"
+                        : null;
+                }
+
+                return null;
+            });
+            ClaimActions.MapCustomJson(ClaimTypes.Email, element =>
             {
                 if (element.TryGetProperty("emails", out var emailElements) && emailElements.ValueKind == JsonValueKind.Array)
                 {
