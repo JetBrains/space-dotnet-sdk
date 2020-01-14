@@ -231,6 +231,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         // TODO: make this check less expensive, serializing N times is probably not the best idea
                         var anonymousClassSignature = JsonSerializer.Serialize(anonymousClassFields);
                         var anonymousClass = IdToAnonymousClassMap.Values.FirstOrDefault(it => anonymousClassSignature == JsonSerializer.Serialize(it.Fields));
+                        anonymousClass = null;
                         if (anonymousClass == null)
                         {
                             var anonymousClassId = "Object" + IdToAnonymousClassMap.Count;
