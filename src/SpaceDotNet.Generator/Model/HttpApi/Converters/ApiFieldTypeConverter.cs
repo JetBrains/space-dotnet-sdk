@@ -50,7 +50,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 
         public override void Write(Utf8JsonWriter writer, ApiFieldType value, JsonSerializerOptions options)
         {
-            JsonSerializer.Serialize(writer, value, options);
+            JsonSerializer.Serialize(writer, value, value.GetType(), options);
         }
     }
 }
