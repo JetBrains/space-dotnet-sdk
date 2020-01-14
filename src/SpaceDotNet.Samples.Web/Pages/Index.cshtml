@@ -26,11 +26,11 @@
                     }
                     @foreach (var profileEmail in Model.MemberProfile.Emails)
                     {
-                        <li>@profileEmail.Email</li>
+                        <li><a href="mailto:@Html.Raw(profileEmail.Email)">@profileEmail.Email</a></li>
                     }
                     @foreach (var profileLink in Model.MemberProfile.Links)
                     {
-                        <li>@profileLink</li>
+                        <li><a href="@Html.Raw(profileLink)">@profileLink</a></li>
                     }
                 </ul>
             </div>
@@ -97,7 +97,7 @@
                                  </small><br/>
                             }
                             
-                            @membership.Role.Name in @membership.Team.Name
+                            <em>@membership.Role.Name</em> in <em>@membership.Team.Name</em>
                         </li>
                     }
                 </ul>

@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpaceDotNet.AspNetCore.Authentication.Space;
+using SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement;
+using SpaceDotNet.Client;
 
 namespace SpaceDotNet.Samples.Web
 {
@@ -20,6 +22,8 @@ namespace SpaceDotNet.Samples.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<TeamDirectoryClient>();
+
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -27,16 +31,10 @@ namespace SpaceDotNet.Samples.Web
                     options.DefaultChallengeScheme = SpaceDefaults.AuthenticationScheme;
                 })
                 .AddCookie()
-                .AddSpace(options => Configuration.Bind("Space", options));
+                .AddSpace(options => Configuration.Bind("Space", options))
+                .AddSpaceTokenManagement(); // auto-refreshes tokens in the background and provides a Space connection
 
-            // The below is only needed when refresh token support is desired
-            services.Configure<SpaceOptions>(SpaceDefaults.AuthenticationScheme, options =>
-            {
-                options.AccessType = AccessType.Offline;
-                options.SaveTokens = true;
-            });
-            
-                // - or: -
+            // - or: -
                 // .AddSpace(options =>
                 // {
                 //     options.ServerUrl = new Uri(Configuration["Space:ServerUrl"]);

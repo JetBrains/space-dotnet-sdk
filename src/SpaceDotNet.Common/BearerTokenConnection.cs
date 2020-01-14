@@ -11,7 +11,7 @@ namespace SpaceDotNet.Common
     /// <summary>
     /// A class which represents a connection against a Space organization and uses a bearer token to authenticate.
     /// </summary>
-    public abstract class BearerTokenConnection 
+    public class BearerTokenConnection 
         : Connection
     {
         protected readonly HttpClient HttpClient;
@@ -28,6 +28,22 @@ namespace SpaceDotNet.Common
         protected BearerTokenConnection(string serverUrl, HttpClient? httpClient = null)
             : base(serverUrl)
         {
+            HttpClient = httpClient ?? new HttpClient();
+        }
+
+        /// <summary>
+        /// Creates an instance of the <see cref="BearerTokenConnection" /> class.
+        /// </summary>
+        /// <param name="serverUrl">Space organization URL that will be connected against.</param>
+        /// <param name="authenticationTokens">Authentication tokens to use.</param>
+        /// <param name="httpClient">HTTP client to use for communication.</param>
+        /// <exception cref="ArgumentException">
+        /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
+        /// </exception>
+        public BearerTokenConnection(string serverUrl, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
+            : base(serverUrl)
+        {
+            AuthenticationTokens = authenticationTokens;
             HttpClient = httpClient ?? new HttpClient();
         }
 
@@ -84,7 +100,7 @@ namespace SpaceDotNet.Common
                 {
                     exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
                 }
-                catch (JsonException )
+                catch (JsonException)
                 {
                     // Intentional.
                 }
@@ -118,7 +134,7 @@ namespace SpaceDotNet.Common
                 {
                     exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
                 }
-                catch (JsonException )
+                catch (JsonException)
                 {
                     // Intentional.
                 }
@@ -150,7 +166,7 @@ namespace SpaceDotNet.Common
                 {
                     exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
                 }
-                catch (JsonException )
+                catch (JsonException)
                 {
                     // Intentional.
                 }

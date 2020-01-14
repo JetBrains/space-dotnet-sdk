@@ -30,17 +30,15 @@ namespace SpaceDotNet.Common
         /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
         /// </exception>
         public RefreshTokenConnection(string serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
-            : base(serverUrl, httpClient)
+            : base(serverUrl, authenticationTokens, httpClient)
         {
-            _clientId = clientId;
-            _clientSecret = clientSecret;
-
             if (string.IsNullOrEmpty(authenticationTokens.RefreshToken))
             {
                 throw new ArgumentException("The authentications do not contain a valid refresh token. Make sure the refresh token is not null or an empty string.", nameof(authenticationTokens));
             }
             
-            AuthenticationTokens = authenticationTokens;
+            _clientId = clientId;
+            _clientSecret = clientSecret;
         }
 
         /// <summary>
