@@ -18,5 +18,10 @@ namespace SpaceDotNet.Common.Types
         public int Day { get; set; }
 
         public DateTime AsDateTime() => new DateTime(Year, Month, Day);
+
+        public override string ToString()
+        {
+            return AsDateTime().ToString("o");
+        }
     }
 }

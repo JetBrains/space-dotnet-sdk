@@ -351,26 +351,69 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
             var clientMethodName = _baseMethodName + apiEndpoint.DisplayName.ToSafeIdentifier();
-            
-            if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
+
+            bool AppendParameterList(ApiEndpoint apiEndpoint1)
             {
-                Builder.Append($"{Indent}public async Task " + clientMethodName + "(");
-            
-                var methodParameters = apiEndpoint.Parameters.Where(it => it.Path).ToList();
+                var methodParameters = apiEndpoint1.Parameters.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
                 foreach (var apiEndpointParameter in methodParameters)
                 {
                     Visit(apiEndpointParameter.Field.Type);
+                    if (apiEndpointParameter.Field.Type.Nullable)
+                    {
+                        Builder.Append("?");
+                    }
                     Builder.Append(" ");
-                    Builder.Append(apiEndpointParameter.Field.Name);
+                    Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                    if (apiEndpointParameter.Field.Type.Nullable)
+                    {
+                        Builder.Append(" = null");
+                    }
+
                     if (apiEndpointParameter != methodParameters.Last())
                     {
                         Builder.Append(", ");
                     }
                 }
+
+                return methodParameters.Count > 0;
+            }
+
+            bool AppendRequestParameterList(ApiEndpoint apiEndpoint1)
+            {
+                var methodParameters = apiEndpoint1.Parameters.Where(it => !it.Path).ToList();
+                if (methodParameters.Count > 0)
+                {
+                    Builder.Append("?");
+                }
                 
+                foreach (var apiEndpointParameter in methodParameters)
+                {
+                    Builder.Append(apiEndpointParameter.Field.Name);
+                    Builder.Append("=");
+                    Builder.Append("{");
+                    Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                    Builder.Append("}");
+                    
+                    if (apiEndpointParameter != methodParameters.Last())
+                    {
+                        Builder.Append("&");
+                    }
+                }
+
+                return methodParameters.Count > 0;
+            }
+
+            if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
+            {
+                Builder.Append($"{Indent}public async Task " + clientMethodName + "(");
+            
+                AppendParameterList(apiEndpoint);
+
                 Builder.Append(") => await _connection.RequestResourceAsync");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
-                Builder.Append("$\"api/http/" + endpointPath + "\");");
+                Builder.Append("$\"api/http/" + endpointPath);
+                AppendRequestParameterList(apiEndpoint);
+                Builder.Append("\");");
                 Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody != null)
@@ -380,23 +423,15 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append(" " + clientMethodName + "(");
             
-                var methodParameters = apiEndpoint.Parameters.Where(it => it.Path).ToList();
-                foreach (var apiEndpointParameter in methodParameters)
-                {
-                    Visit(apiEndpointParameter.Field.Type);
-                    Builder.Append(" ");
-                    Builder.Append(apiEndpointParameter.Field.Name);
-                    if (apiEndpointParameter != methodParameters.Last())
-                    {
-                        Builder.Append(", ");
-                    }
-                }
+                AppendParameterList(apiEndpoint);
                 
                 Builder.Append(") => await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
-                Builder.Append("$\"api/http/" + endpointPath + "?$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
+                Builder.Append("$\"api/http/" + endpointPath);
+                Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
+                Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")));");
                 Builder.AppendLine($"{Indent}");
@@ -406,12 +441,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append($"{Indent}public async Task");
                 Builder.Append(" " + clientMethodName + "(");
             
-                var methodParameters = apiEndpoint.Parameters.Where(it => it.Path).ToList();
-                foreach (var apiEndpointParameter in methodParameters)
+                if (AppendParameterList(apiEndpoint))
                 {
-                    Visit(apiEndpointParameter.Field.Type);
-                    Builder.Append(" ");
-                    Builder.Append(apiEndpointParameter.Field.Name);
                     Builder.Append(", ");
                 }
                 
@@ -422,7 +453,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
-                Builder.Append("$\"api/http/" + endpointPath + "\", data);");
+                Builder.Append("$\"api/http/" + endpointPath);
+                AppendRequestParameterList(apiEndpoint);
+                Builder.Append("\", data);");
                 Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody != null)
@@ -431,16 +464,12 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
                 Builder.Append(" " + clientMethodName + "(");
-            
-                var methodParameters = apiEndpoint.Parameters.Where(it => it.Path).ToList();
-                foreach (var apiEndpointParameter in methodParameters)
+
+                if (AppendParameterList(apiEndpoint))
                 {
-                    Visit(apiEndpointParameter.Field.Type);
-                    Builder.Append(" ");
-                    Builder.Append(apiEndpointParameter.Field.Name);
                     Builder.Append(", ");
                 }
-                
+
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(" data");
                 
@@ -450,7 +479,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
-                Builder.Append("$\"api/http/" + endpointPath + "?$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
+                Builder.Append("$\"api/http/" + endpointPath);
+                Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
+                Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")), data);");
                 Builder.AppendLine($"{Indent}");

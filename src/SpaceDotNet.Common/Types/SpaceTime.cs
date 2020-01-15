@@ -12,5 +12,10 @@ namespace SpaceDotNet.Common.Types
         public long Timestamp { get; set; }
 
         public DateTime AsDateTime() => DateTimeOffset.FromUnixTimeSeconds(Timestamp).DateTime;
+
+        public override string ToString()
+        {
+            return AsDateTime().ToString("o");
+        }
     }
 }

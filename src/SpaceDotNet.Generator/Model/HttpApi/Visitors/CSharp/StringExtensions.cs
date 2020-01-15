@@ -11,9 +11,17 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         {
             if (string.IsNullOrEmpty(subject)) return subject;
 
-            return string.Join("", subject
-                .Split(IdentifierSeparators)
-                .Select(it => it.ToUppercaseFirst()));
+            return string.Join("", 
+                    subject
+                        .Split(IdentifierSeparators)
+                        .Select(it => it.ToUppercaseFirst()));
+        }
+        
+        public static string? ToSafeVariableIdentifier(this string? subject)
+        {
+            if (string.IsNullOrEmpty(subject)) return subject;
+
+            return subject.Replace("$", string.Empty);
         }
 
         public static string? ToCSharpPrimitiveType(this string? subject) =>
