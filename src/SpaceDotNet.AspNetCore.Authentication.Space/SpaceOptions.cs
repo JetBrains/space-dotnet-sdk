@@ -31,8 +31,8 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
             ClaimActions.MapJsonKey(ClaimTypes.NameIdentifier, "id");
             ClaimActions.MapJsonKey(SpaceClaimTypes.UserId, "id");
             ClaimActions.MapJsonKey(SpaceClaimTypes.UserName, "username");
-            ClaimActions.MapCustomJson(SpaceClaimTypes.SmallAvatar, element => element.TryGetProperty("smallAvatar", out var p) ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
-            ClaimActions.MapCustomJson(SpaceClaimTypes.ProfilePicture, element => element.TryGetProperty("profilePicture", out var p) ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
+            ClaimActions.MapCustomJson(SpaceClaimTypes.SmallAvatar, element => element.TryGetProperty("smallAvatar", out var p) && ServerUrl != null ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
+            ClaimActions.MapCustomJson(SpaceClaimTypes.ProfilePicture, element => element.TryGetProperty("profilePicture", out var p) && ServerUrl != null ? ServerUrl.ToString().TrimEnd('/') + "/d/" + p.GetString() : null);
             ClaimActions.MapJsonSubKey(SpaceClaimTypes.FirstName, "name", "firstName");
             ClaimActions.MapJsonSubKey(SpaceClaimTypes.LastName, "name", "lastName");
             ClaimActions.MapCustomJson(ClaimTypes.Name, element =>
@@ -78,19 +78,22 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
             {
                 _serverUrl = value;
 
-                if (AuthorizationEndpoint == SpaceDefaults.AuthorizationEndpointPath)
+                if (_serverUrl != null)
                 {
-                    AuthorizationEndpoint = _serverUrl.ToString().TrimEnd('/') + SpaceDefaults.AuthorizationEndpointPath;
-                }
-                
-                if (TokenEndpoint == SpaceDefaults.TokenEndpointPath)
-                {
-                    TokenEndpoint = _serverUrl.ToString().TrimEnd('/') + SpaceDefaults.TokenEndpointPath;
-                }
-                
-                if (UserInformationEndpoint == SpaceDefaults.UserInformationEndpointPath)
-                {
-                    UserInformationEndpoint = _serverUrl.ToString().TrimEnd('/') + SpaceDefaults.UserInformationEndpointPath;
+                    if (AuthorizationEndpoint == SpaceDefaults.AuthorizationEndpointPath)
+                    {
+                        AuthorizationEndpoint = _serverUrl.ToString().TrimEnd('/') + SpaceDefaults.AuthorizationEndpointPath;
+                    }
+
+                    if (TokenEndpoint == SpaceDefaults.TokenEndpointPath)
+                    {
+                        TokenEndpoint = _serverUrl.ToString().TrimEnd('/') + SpaceDefaults.TokenEndpointPath;
+                    }
+
+                    if (UserInformationEndpoint == SpaceDefaults.UserInformationEndpointPath)
+                    {
+                        UserInformationEndpoint = _serverUrl.ToString().TrimEnd('/') + SpaceDefaults.UserInformationEndpointPath;
+                    }
                 }
             }
         }

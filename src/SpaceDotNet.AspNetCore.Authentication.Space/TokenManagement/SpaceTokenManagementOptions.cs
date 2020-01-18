@@ -7,7 +7,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement
     /// </remarks>
     public class SpaceTokenManagementOptions
     {
-        public string Scheme { get; set; }
+        public string? Scheme { get; set; }
         public TimeSpan RefreshBeforeExpiration { get; set; } = TimeSpan.FromMinutes(1);
     }
 }

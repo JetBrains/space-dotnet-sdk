@@ -14,7 +14,7 @@ namespace SpaceDotNet.Samples.Web.Pages
         private readonly ILogger<IndexModel> _logger;
         private readonly TeamDirectoryClient _teamDirectoryClient;
 
-        public TDMemberProfileDto MemberProfile { get; set; }
+        public TDMemberProfileDto? MemberProfile { get; set; }
 
         public IndexModel(IConfiguration configuration, ILogger<IndexModel> logger, TeamDirectoryClient teamDirectoryClient)
         {

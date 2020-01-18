@@ -29,7 +29,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement
             _logger = logger;
         }
         
-        public async Task<BearerTokenConnection> CreateAsync()
+        public async Task<BearerTokenConnection?> CreateAsync()
         {
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext == null)
