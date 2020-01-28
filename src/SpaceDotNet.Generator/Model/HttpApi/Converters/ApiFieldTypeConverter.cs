@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization;
@@ -7,6 +9,16 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 {
     public class ApiFieldTypeConverter : JsonConverter<ApiFieldType>
     {
+        private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "HA_Type.Array", typeof(ApiFieldType.Array) },
+            { "HA_Type.Dto", typeof(ApiFieldType.Dto) },
+            { "HA_Type.Enum", typeof(ApiFieldType.Enum) },
+            { "HA_Type.Object", typeof(ApiFieldType.Object) },
+            { "HA_Type.Primitive", typeof(ApiFieldType.Primitive) },
+            { "HA_Type.Ref", typeof(ApiFieldType.Ref) }
+        };
+        
         public override bool CanConvert(Type objectType) => typeof(ApiFieldType).IsAssignableFrom(objectType);
 
         public override ApiFieldType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -17,39 +29,20 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
             var jsonObject = jsonDocument.RootElement;
 
             var className = jsonObject.GetStringValue("className");
-            if (string.Equals(className, "HA_Type.Array", StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrEmpty(className) && TypeMap.TryGetValue(className, out var targetType))
             {
-                return JsonSerializer.Deserialize<ApiFieldType.Array>(jsonObject.GetRawText());
-            } 
-            else if (string.Equals(className, "HA_Type.Dto", StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonSerializer.Deserialize<ApiFieldType.Dto>(jsonObject.GetRawText());
+                return JsonSerializer.Deserialize(jsonObject.GetRawText(), targetType, options) as ApiFieldType;
             }
-            else if (string.Equals(className, "HA_Type.Enum", StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonSerializer.Deserialize<ApiFieldType.Enum>(jsonObject.GetRawText());
-            }
-            else if (string.Equals(className, "HA_Type.Object", StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonSerializer.Deserialize<ApiFieldType.Object>(jsonObject.GetRawText());
-            }
-            else if (string.Equals(className, "HA_Type.Primitive", StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonSerializer.Deserialize<ApiFieldType.Primitive>(jsonObject.GetRawText());
-            }
-            else if (string.Equals(className, "HA_Type.Ref", StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonSerializer.Deserialize<ApiFieldType.Ref>(jsonObject.GetRawText());
-            }
-            else
-            {
-                // Default to object
-                return JsonSerializer.Deserialize<ApiFieldType.Object>(jsonObject.GetRawText());
-            }
+            
+            return JsonSerializer.Deserialize<ApiFieldType.Object>(jsonObject.GetRawText());
         }
 
         public override void Write(Utf8JsonWriter writer, ApiFieldType value, JsonSerializerOptions options)
         {
+            if (string.IsNullOrEmpty(value.ClassName))
+            {
+                value.ClassName = TypeMap.First(it => it.Value == value.GetType()).Key;
+            }
             JsonSerializer.Serialize(writer, value, value.GetType(), options);
         }
     }

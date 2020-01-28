@@ -6,6 +6,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi
     [JsonConverter(typeof(ApiResourcePathSegmentConverter))]
     public abstract class ApiResourcePathSegment
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
         public class Var : ApiResourcePathSegment
         {
             [JsonPropertyName("name")]

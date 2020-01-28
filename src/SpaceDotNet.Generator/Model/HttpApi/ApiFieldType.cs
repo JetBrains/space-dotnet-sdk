@@ -9,6 +9,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi
 {
     public abstract class ApiFieldType
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
         [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
         

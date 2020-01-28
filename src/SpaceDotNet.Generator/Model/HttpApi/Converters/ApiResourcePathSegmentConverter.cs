@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization;
@@ -7,6 +9,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 {
     public class ApiResourcePathSegmentConverter : JsonConverter<ApiResourcePathSegment>
     {
+        private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
+        {
+            { "HA_PathSegment.Const", typeof(ApiResourcePathSegment.Const) },
+            { "HA_PathSegment.Var", typeof(ApiResourcePathSegment.Var) },
+            { "HA_PathSegment.PrefixedVar", typeof(ApiResourcePathSegment.PrefixedVar) }
+        };
+        
         public override bool CanConvert(Type objectType) => typeof(ApiResourcePathSegment).IsAssignableFrom(objectType);
 
         public override ApiResourcePathSegment Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
@@ -17,26 +26,20 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
             var jsonObject = jsonDocument.RootElement;
 
             var className = jsonObject.GetStringValue("className");
-            if (string.Equals(className, "HA_PathSegment.Const", StringComparison.OrdinalIgnoreCase))
+            if (!string.IsNullOrEmpty(className) && TypeMap.TryGetValue(className, out var targetType))
             {
-                return JsonSerializer.Deserialize<ApiResourcePathSegment.Const>(jsonObject.GetRawText());
-            } 
-            else if (string.Equals(className, "HA_PathSegment.Var", StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonSerializer.Deserialize<ApiResourcePathSegment.Var>(jsonObject.GetRawText());
+                return JsonSerializer.Deserialize(jsonObject.GetRawText(), targetType, options) as ApiResourcePathSegment;
             }
-            else if (string.Equals(className, "HA_PathSegment.PrefixedVar", StringComparison.OrdinalIgnoreCase))
-            {
-                return JsonSerializer.Deserialize<ApiResourcePathSegment.PrefixedVar>(jsonObject.GetRawText());
-            }
-            else
-            {
-                throw new NotSupportedException("Could not deserialize object from JSON: " + jsonObject);
-            }
+            
+            throw new NotSupportedException("Could not deserialize object from JSON: " + jsonObject);
         }
 
         public override void Write(Utf8JsonWriter writer, ApiResourcePathSegment value, JsonSerializerOptions options)
         {
+            if (string.IsNullOrEmpty(value.ClassName))
+            {
+                value.ClassName = TypeMap.First(it => it.Value == value.GetType()).Key;
+            }
             JsonSerializer.Serialize(writer, value, value.GetType(), options);
         }
     }

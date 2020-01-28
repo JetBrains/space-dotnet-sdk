@@ -16,6 +16,7 @@
     <ItemGroup>
       <ProjectReference Include="..\..\src\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
       <ProjectReference Include="..\..\src\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
+      <ProjectReference Include="..\..\src\SpaceDotNet.Generator\SpaceDotNet.Generator.csproj" />
     </ItemGroup>
 
 </Project>
