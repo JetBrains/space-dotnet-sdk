@@ -9,6 +9,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         [JsonPropertyName("resource")]
         public ApiResource Resource { get; set; }
         
+        [JsonPropertyName("deprecation")]
+        public ApiDeprecation? Deprecation { get; set; }
+        
         [JsonPropertyName("method")]
         public ApiMethod Method { get; set; }
         

@@ -48,9 +48,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}//     Generated: {DateTimeOffset.UtcNow:O}");
             Builder.AppendLine($"{Indent}// </auto-generated>");
             Builder.AppendLine($"{Indent}// ------------------------------------------------------------------------------");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
             Builder.AppendLine($"{Indent}#nullable enable");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
             Builder.AppendLine($"{Indent}using System;");
             Builder.AppendLine($"{Indent}using System.Collections.Generic;");
             Builder.AppendLine($"{Indent}using System.ComponentModel.DataAnnotations;");
@@ -59,7 +59,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Json.Serialization;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Types;");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
             Builder.AppendLine($"{Indent}namespace SpaceDotNet.Client");
             Builder.AppendLine($"{Indent}{{");
             
@@ -113,7 +113,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 
             Indent.Increment();
             Builder.AppendLine($"{Indent}private " + apiEnum.Name.ToSafeIdentifier() + "(string value) : base(value) { }");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
             
             foreach (var value in apiEnum.Values)
             {
@@ -123,7 +123,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Indent.Decrement();
                 
             Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
         }
 
         public override void Visit(ApiDto apiDto)
@@ -159,7 +159,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
             Indent.Decrement();
             Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
         }
         
         public override void Visit(ApiField apiField)
@@ -281,7 +281,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Indent.Increment();
 
             Builder.AppendLine($"{Indent}private readonly Connection _connection;");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
             Builder.AppendLine($"{Indent}public " + apiResource.DisplaySingular.ToSafeIdentifier() + "Client(Connection connection)");
             Builder.AppendLine($"{Indent}{{");
             Indent.Increment();
@@ -290,7 +290,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             
             Indent.Decrement();
             Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
         
             foreach (var apiEndpoint in apiResource.Endpoints)
             {
@@ -342,7 +342,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
             Indent.Decrement();
             Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
         }
 
         public override void Visit(ApiResource apiResource, ApiEndpoint apiEndpoint)
@@ -403,6 +403,25 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 return methodParameters.Count > 0;
             }
 
+            if (apiEndpoint.Deprecation != null)
+            {
+                Builder.Append($"{Indent}[Obsolete(\"");
+                if (!string.IsNullOrEmpty(apiEndpoint.Deprecation.Message))
+                {
+                    Builder.Append(apiEndpoint.Deprecation.Message);
+                }
+                else
+                {
+                    Builder.Append("This API is obsolete");
+                }
+                if (!string.IsNullOrEmpty(apiEndpoint.Deprecation.Since))
+                {
+                    Builder.Append(" (since " + apiEndpoint.Deprecation.Since + ")");
+                }
+                Builder.Append("\")]");
+                Builder.AppendLine();
+            }
+            
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
             {
                 Builder.Append($"{Indent}public async Task " + clientMethodName + "(");
@@ -414,7 +433,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$\"api/http/" + endpointPath);
                 AppendRequestParameterList(apiEndpoint);
                 Builder.Append("\");");
-                Builder.AppendLine($"{Indent}");
+                Builder.AppendLine();
             }
             else if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody != null)
             {
@@ -434,7 +453,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")));");
-                Builder.AppendLine($"{Indent}");
+                Builder.AppendLine();
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody == null)
             {
@@ -456,7 +475,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$\"api/http/" + endpointPath);
                 AppendRequestParameterList(apiEndpoint);
                 Builder.Append("\", data);");
-                Builder.AppendLine($"{Indent}");
+                Builder.AppendLine();
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody != null)
             {
@@ -484,14 +503,14 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")), data);");
-                Builder.AppendLine($"{Indent}");
+                Builder.AppendLine();
             }
             else
             {
                 Builder.AppendLine($"{Indent}#warning UNSUPPORTED CASE - " + apiEndpoint.DisplayName.ToSafeIdentifier() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
             }
             
-            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine();
         }
     }
 }
