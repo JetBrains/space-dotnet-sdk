@@ -25,16 +25,18 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
         {
             if (reader.TokenType == JsonTokenType.Null) return null;
 
+            var readerAtStart = reader;
+            
             using var jsonDocument = JsonDocument.ParseValue(ref reader);
             var jsonObject = jsonDocument.RootElement;
 
             var className = jsonObject.GetStringValue("className");
             if (!string.IsNullOrEmpty(className) && TypeMap.TryGetValue(className, out var targetType))
             {
-                return JsonSerializer.Deserialize(jsonObject.GetRawText(), targetType, options) as ApiFieldType;
+                return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as ApiFieldType;
             }
             
-            return JsonSerializer.Deserialize<ApiFieldType.Object>(jsonObject.GetRawText());
+            return JsonSerializer.Deserialize<ApiFieldType.Object>(ref readerAtStart);
         }
 
         public override void Write(Utf8JsonWriter writer, ApiFieldType value, JsonSerializerOptions options)

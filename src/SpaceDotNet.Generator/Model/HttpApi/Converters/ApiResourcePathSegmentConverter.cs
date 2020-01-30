@@ -22,13 +22,15 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
         {
             if (reader.TokenType == JsonTokenType.Null) return null;
 
+            var readerAtStart = reader;
+            
             using var jsonDocument = JsonDocument.ParseValue(ref reader);
             var jsonObject = jsonDocument.RootElement;
 
             var className = jsonObject.GetStringValue("className");
             if (!string.IsNullOrEmpty(className) && TypeMap.TryGetValue(className, out var targetType))
             {
-                return JsonSerializer.Deserialize(jsonObject.GetRawText(), targetType, options) as ApiResourcePathSegment;
+                return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as ApiResourcePathSegment;
             }
             
             throw new NotSupportedException("Could not deserialize object from JSON: " + jsonObject);
