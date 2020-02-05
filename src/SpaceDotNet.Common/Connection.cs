@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -47,19 +48,25 @@ namespace SpaceDotNet.Common
         /// <returns>A <see cref="T:System.String" /> that does not contain valueless query string parameters.</returns>
         private static string CleanValuelessQueryStringParameters(string urlPath)
         {
-            var builder = new UriBuilder(urlPath);
+            var pathAndQuery = urlPath.Split('?', StringSplitOptions.RemoveEmptyEntries);
 
-            var queryStringCollection = HttpUtility.ParseQueryString(builder.Query);
-            foreach (var key in queryStringCollection.AllKeys)
+            if (pathAndQuery.Length > 1)
             {
-                if (string.IsNullOrEmpty(queryStringCollection[key]))
+                // Strip empty entries
+                var queryStringCollection = HttpUtility.ParseQueryString(pathAndQuery[1]);
+                foreach (var key in queryStringCollection.AllKeys)
                 {
-                    queryStringCollection.Remove(key);
+                    if (string.IsNullOrEmpty(queryStringCollection[key]))
+                    {
+                        queryStringCollection.Remove(key);
+                    }
                 }
+
+                // ReSharper disable once AssignNullToNotNullAttribute
+                return pathAndQuery[0].TrimStart('/') + "?" + queryStringCollection;
             }
 
-            // ReSharper disable once AssignNullToNotNullAttribute
-            return builder.Path.TrimStart('/') + queryStringCollection;
+            return urlPath;
         }
 
         /// <summary>
