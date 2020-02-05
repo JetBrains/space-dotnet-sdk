@@ -34,7 +34,7 @@ namespace SpaceDotNet.Common
         {
             if (string.IsNullOrEmpty(authenticationTokens.RefreshToken))
             {
-                throw new ArgumentException("The authentications do not contain a valid refresh token. Make sure the refresh token is not null or an empty string.", nameof(authenticationTokens));
+                throw new ArgumentException("The authentication tokens do not contain a valid refresh token. Make sure the refresh token is not null or an empty string.", nameof(authenticationTokens));
             }
             
             _clientId = clientId;

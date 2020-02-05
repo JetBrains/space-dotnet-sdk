@@ -40,13 +40,27 @@ namespace SpaceDotNet.Common
         private static string EnsureTrailingSlash(string url) => !url.EndsWith("/") ? url + "/" : url;
 
         /// <summary>
+        /// Clean $skip and $top values - Space API requires null values to not be present as part of the URL.
+        /// </summary>
+        /// <param name="url">URL to clean.</param>
+        /// <returns>A <see cref="T:System.String" /> that does not contain $skip/$top if their value was not specified.</returns>
+        private static string CleanSkipTop(string url) => url
+            .Replace("?$skip=&", "?")
+            .Replace("&$skip=&", "&")
+            .Replace("?$top=&", "?")
+            .Replace("&$top=&", "&");
+
+        /// <summary>
         /// Requests a resource at a given URL.
         /// </summary>
         /// <param name="httpMethod">The HTTP method to use.</param>
         /// <param name="urlPath">The path to access the resource.</param>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public abstract Task RequestResourceAsync(string httpMethod, string urlPath);
-
+        public async Task RequestResourceAsync(string httpMethod, string urlPath)
+        {
+            await RequestResourceInternalAsync(httpMethod, CleanSkipTop(urlPath));
+        }
+        
         /// <summary>
         /// Requests a resource at a given URL.
         /// </summary>
@@ -54,7 +68,10 @@ namespace SpaceDotNet.Common
         /// <param name="urlPath">The path to access the resource.</param>
         /// <returns>The requested resource.</returns>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public abstract Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath);
+        public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath)
+        {
+            return await RequestResourceInternalAsync<TResult>(httpMethod, CleanSkipTop(urlPath));
+        }
 
         /// <summary>
         /// Sends a payload to a resource at a given URL.
@@ -63,8 +80,11 @@ namespace SpaceDotNet.Common
         /// <param name="urlPath">The path to access the resource.</param>
         /// <param name="payload">The payload to send to the resource.</param>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public abstract Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload);
-
+        public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
+        {
+            await RequestResourceInternalAsync<TPayload>(httpMethod, CleanSkipTop(urlPath), payload);
+        }
+        
         /// <summary>
         /// Sends a payload to a resource at a given URL.
         /// </summary>
@@ -73,6 +93,14 @@ namespace SpaceDotNet.Common
         /// <param name="payload">The payload to send to the resource.</param>
         /// <returns>The requested resource.</returns>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public abstract Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload);
+        public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
+        {
+            return await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanSkipTop(urlPath), payload);
+        }
+        
+        protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath);
+        protected abstract Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath);
+        protected abstract Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload);
+        protected abstract Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload);
     }
 }

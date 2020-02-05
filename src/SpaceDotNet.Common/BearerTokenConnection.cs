@@ -47,8 +47,7 @@ namespace SpaceDotNet.Common
             HttpClient = httpClient ?? new HttpClient();
         }
 
-        /// <inheritdoc />
-        public override async Task RequestResourceAsync(string httpMethod, string urlPath)
+        protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
             {
@@ -78,8 +77,7 @@ namespace SpaceDotNet.Common
             }
         }
 
-        /// <inheritdoc />
-        public override async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath)
+        protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
             {
@@ -111,8 +109,7 @@ namespace SpaceDotNet.Common
             return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync());
         }
 
-        /// <inheritdoc />
-        public override async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
+        protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
             {
@@ -143,8 +140,7 @@ namespace SpaceDotNet.Common
             }
         }
         
-        /// <inheritdoc />
-        public override async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
+        protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
         {
             var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
             {
