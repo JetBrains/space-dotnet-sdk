@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-02-04T17:31:39.9642683+00:00
+//     Generated: 2020-02-05T14:52:03.0686898+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -7407,7 +7407,7 @@ namespace SpaceDotNet.Client
 
         public async Task<AbsenceRecordDto> UpdateAbsence(string id, Object12Dto data) => await _connection.RequestResourceAsync<Object12Dto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);
 
-        public async Task DeleteAbsence(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete}");
+        public async Task DeleteAbsence(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete? "true" : "false"}");
 
         public async Task DeleteAbsenceApproval(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");
 
@@ -7415,11 +7415,11 @@ namespace SpaceDotNet.Client
 
         public async Task<AbsenceReasonRecordDto> AbsenceReasonsCreateAbsenceReason(string id, Object13Dto data) => await _connection.RequestResourceAsync<Object13Dto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);
 
-        public async Task<List<AbsenceReasonRecordDto>> AbsenceReasonsGetAllAbsenceReasons(bool withArchived) => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceReasonRecordDto>)));
+        public async Task<List<AbsenceReasonRecordDto>> AbsenceReasonsGetAllAbsenceReasons(bool withArchived) => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceReasonRecordDto>)));
 
         public async Task<AbsenceReasonRecordDto> AbsenceReasonsGetAbsenceReason(string id) => await _connection.RequestResourceAsync<AbsenceReasonRecordDto>("GET", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)));
 
-        public async Task AbsenceReasonsDeleteAbsenceReason(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete}");
+        public async Task AbsenceReasonsDeleteAbsenceReason(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete? "true" : "false"}");
 
         public async Task<DTOAbsenceSubscriptionDto> SubscriptionsCreateSubscription(Object14Dto data) => await _connection.RequestResourceAsync<Object14Dto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);
 
@@ -7459,7 +7459,7 @@ namespace SpaceDotNet.Client
 
         public async Task Reorder(Object17Dto data) => await _connection.RequestResourceAsync<Object17Dto>("POST", $"api/http/auth-modules/reorder", data);
 
-        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled) => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthModuleDto>)));
+        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled) => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthModuleDto>)));
 
         public async Task<ESAuthModuleDto> GetAuthModuleByKey(string key) => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)));
 
@@ -7552,7 +7552,7 @@ namespace SpaceDotNet.Client
 
         public async Task FieldsRestore(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/restore");
 
-        public async Task<List<CustomFieldDto>> FieldsGetAllFields(string typeKey, bool withArchived) => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));
+        public async Task<List<CustomFieldDto>> FieldsGetAllFields(string typeKey, bool withArchived) => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));
 
         public async Task FieldsUpdateField(string typeKey, string id, Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);
 
@@ -7640,7 +7640,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<ERegistrySettingsDto> ContainerRegistrySettingsGetAllSettings(string method, string? name = null, bool? all = null) => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method}&name={name}&all={all}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));
+        public async Task<ERegistrySettingsDto> ContainerRegistrySettingsGetAllSettings(string method, string? name = null, bool? all = null) => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method}&name={name}&all={all? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));
 
         public async Task<EMavenSettingsDto> MavenRepositorySettingsGetAllSettings(string method, string? name = null) => await _connection.RequestResourceAsync<EMavenSettingsDto>("GET", $"api/http/packages/maven-repository/settings?method={method}&name={name}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(EMavenSettingsDto)));
 
@@ -7682,7 +7682,7 @@ namespace SpaceDotNet.Client
 
         public async Task<PRProjectDto> CreateProject(Object37Dto data) => await _connection.RequestResourceAsync<Object37Dto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);
 
-        public async Task<Object38Dto> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null) => await _connection.RequestResourceAsync<Object38Dto>("GET", $"api/http/projects?$skip={skip}&$top={top}&term={term}&tag={tag}&starred={starred}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object38Dto)));
+        public async Task<Object38Dto> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null) => await _connection.RequestResourceAsync<Object38Dto>("GET", $"api/http/projects?$skip={skip}&$top={top}&term={term}&tag={tag}&starred={starred? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object38Dto)));
 
         public async Task<PRProjectDto> GetProjectByKey(string projectKey) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));
 
@@ -7720,7 +7720,7 @@ namespace SpaceDotNet.Client
 
         public async Task<List<PRTagDto>> TagsGetAllTags() => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRTagDto>)));
 
-        public async Task<Object44Dto> AccessMemberProfilesGetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object44Dto>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip}&$top={top}&query={query}&includingAdmins={includingAdmins}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object44Dto)));
+        public async Task<Object44Dto> AccessMemberProfilesGetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object44Dto>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip}&$top={top}&query={query}&includingAdmins={includingAdmins? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object44Dto)));
 
         public async Task<Object45Dto> CodeReviewsGetAllCodeReviews(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewState? state = null, string? text = null, string? authorProfileId = null, string? authorGitName = null, string? authorGitEmail = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null) => await _connection.RequestResourceAsync<Object45Dto>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip}&$top={top}&state={state}&text={text}&authorProfileId={authorProfileId}&authorGitName={authorGitName}&authorGitEmail={authorGitEmail}&from={from}&to={to}&sort={sort}&reviewer={reviewer}&type={type}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object45Dto)));
 
@@ -7796,7 +7796,7 @@ namespace SpaceDotNet.Client
 
         public async Task PlanningIssuesToggleIssueResolved(string projectId, string issueId, Object59Dto data) => await _connection.RequestResourceAsync<Object59Dto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);
 
-        public async Task<Object60Dto> PlanningIssuesGetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null) => await _connection.RequestResourceAsync<Object60Dto>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip}&$top={top}&assigneeId={assigneeId}&statuses={statuses}&tagId={tagId}&query={query}&sorting={sorting}&descending={descending}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object60Dto)));
+        public async Task<Object60Dto> PlanningIssuesGetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null) => await _connection.RequestResourceAsync<Object60Dto>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip}&$top={top}&assigneeId={assigneeId}&statuses={statuses}&tagId={tagId}&query={query}&sorting={sorting}&descending={descending? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object60Dto)));
 
         public async Task<IssueDto> PlanningIssuesGetIssueByNumber(string projectId, int number) => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));
 
@@ -7900,9 +7900,9 @@ namespace SpaceDotNet.Client
 
         public async Task<List<TDLanguageDto>> LanguagesGetAllLanguages() => await _connection.RequestResourceAsync<List<TDLanguageDto>>("GET", $"api/http/team-directory/languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLanguageDto>)));
 
-        public async Task<List<TDLocationEquipmentTypeDto>> LocationEquipmentTypesGetAllLocationEquipmentTypes(bool withArchived) => await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationEquipmentTypeDto>)));
+        public async Task<List<TDLocationEquipmentTypeDto>> LocationEquipmentTypesGetAllLocationEquipmentTypes(bool withArchived) => await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationEquipmentTypeDto>)));
 
-        public async Task LocationEquipmentTypesDeleteLocationEquipmentTypeByName(string name, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete}");
+        public async Task LocationEquipmentTypesDeleteLocationEquipmentTypeByName(string name, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete? "true" : "false"}");
 
         public async Task<TDLocationDto> LocationsCreateLocation(Object78Dto data) => await _connection.RequestResourceAsync<Object78Dto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);
 
@@ -7910,7 +7910,7 @@ namespace SpaceDotNet.Client
 
         public async Task<TDLocationDto> LocationsRestore(string id) => await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));
 
-        public async Task<List<TDLocationDto>> LocationsGetAllLocations(string query, bool withArchived, string? type = null) => await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query}&type={type}&withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));
+        public async Task<List<TDLocationDto>> LocationsGetAllLocations(string query, bool withArchived, string? type = null) => await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query}&type={type}&withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));
 
         public async Task<TDLocationDto> LocationsGetLocation(string id) => await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));
 
@@ -7922,7 +7922,7 @@ namespace SpaceDotNet.Client
 
         public async Task<TDLocationMapDto> LocationsMapUpdateMap(string id, Object81Dto data) => await _connection.RequestResourceAsync<Object81Dto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);
 
-        public async Task<List<TDMemberInLocationMapListDto>> LocationsMapMembersGetAllMembers(string id, bool includeUnmarked) => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));
+        public async Task<List<TDMemberInLocationMapListDto>> LocationsMapMembersGetAllMembers(string id, bool includeUnmarked) => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));
 
         public async Task<List<TDLocationWithTimeZoneDto>> LocationsWithTimezoneGetAllLocationsWithTimezone() => await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationWithTimeZoneDto>)));
 
@@ -7930,31 +7930,31 @@ namespace SpaceDotNet.Client
 
         public async Task<TDMemberLocationDto> MemberLocationsCreateMemberLocation(Object82Dto data) => await _connection.RequestResourceAsync<Object82Dto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
 
-        public async Task<Object83Dto> MemberLocationsGetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Object83Dto>("GET", $"api/http/team-directory/member-locations?$skip={skip}&$top={top}&profiles={profiles}&locations={locations}&since={since}&till={till}&withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object83Dto)));
+        public async Task<Object83Dto> MemberLocationsGetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Object83Dto>("GET", $"api/http/team-directory/member-locations?$skip={skip}&$top={top}&profiles={profiles}&locations={locations}&since={since}&till={till}&withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object83Dto)));
 
         public async Task<TDMemberLocationDto> MemberLocationsUpdateMemberLocation(string id, Object84Dto data) => await _connection.RequestResourceAsync<Object84Dto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
 
-        public async Task MemberLocationsDeleteMemberLocation(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete}");
+        public async Task MemberLocationsDeleteMemberLocation(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete? "true" : "false"}");
 
         public async Task<TDLocationMapPointDto> MemberLocationsPointsCreatePoint(string id, Object85Dto data) => await _connection.RequestResourceAsync<Object85Dto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
 
         public async Task<TDLocationMapPointDto> MemberLocationsPointsUpdatePoint(string locationPointId, string id, Object86Dto data) => await _connection.RequestResourceAsync<Object86Dto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
 
-        public async Task MemberLocationsPointsDeletePoint(string id, string locationPointId, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete}");
+        public async Task MemberLocationsPointsDeletePoint(string id, string locationPointId, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete? "true" : "false"}");
 
         public async Task<Object87Dto> MembershipEventsGetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<Object87Dto>("GET", $"api/http/team-directory/membership-events?$skip={skip}&$top={top}&teamId={teamId}&locationId={locationId}&roleId={roleId}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object87Dto)));
 
         public async Task<TDMembershipDto> MembershipsCreateMembership(Object88Dto data) => await _connection.RequestResourceAsync<Object88Dto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
 
-        public async Task<Object89Dto> MembershipsGetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null) => await _connection.RequestResourceAsync<Object89Dto>("GET", $"api/http/team-directory/memberships?$skip={skip}&$top={top}&profiles={profiles}&teams={teams}&directTeams={directTeams}&roles={roles}&directRoles={directRoles}&since={since}&till={till}&requiresApproval={requiresApproval}&withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object89Dto)));
+        public async Task<Object89Dto> MembershipsGetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null) => await _connection.RequestResourceAsync<Object89Dto>("GET", $"api/http/team-directory/memberships?$skip={skip}&$top={top}&profiles={profiles}&teams={teams}&directTeams={directTeams? "true" : "false"}&roles={roles}&directRoles={directRoles? "true" : "false"}&since={since}&till={till}&requiresApproval={requiresApproval? "true" : "false"}&withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object89Dto)));
 
         public async Task<TDMembershipDto> MembershipsUpdateMembership(string id, Object90Dto data) => await _connection.RequestResourceAsync<Object90Dto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
 
-        public async Task MembershipsDeleteMembership(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete}");
+        public async Task MembershipsDeleteMembership(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete? "true" : "false"}");
 
         public async Task MembershipsRevoke(string id, SpaceTime? till = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke?till={till}");
 
-        public async Task<Object91Dto> MembershipsRequestsGetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null) => await _connection.RequestResourceAsync<Object91Dto>("GET", $"api/http/team-directory/memberships/requests?$skip={skip}&$top={top}&teamId={teamId}&direct={direct}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object91Dto)));
+        public async Task<Object91Dto> MembershipsRequestsGetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null) => await _connection.RequestResourceAsync<Object91Dto>("GET", $"api/http/team-directory/memberships/requests?$skip={skip}&$top={top}&teamId={teamId}&direct={direct? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object91Dto)));
 
         public async Task MembershipsRequestsUpdateRequest(string id, Object92Dto data) => await _connection.RequestResourceAsync<Object92Dto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);
 
@@ -7964,7 +7964,7 @@ namespace SpaceDotNet.Client
 
         public async Task<TDMemberProfileDto> ProfilesCreateProfile(Object94Dto data) => await _connection.RequestResourceAsync<Object94Dto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
 
-        public async Task<Object44Dto> ProfilesGetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null) => await _connection.RequestResourceAsync<Object44Dto>("GET", $"api/http/team-directory/profiles?$skip={skip}&$top={top}&query={query}&reportPastMembers={reportPastMembers}&teamId={teamId}&locationId={locationId}&roleId={roleId}&meOnTop={meOnTop}&order={order}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object44Dto)));
+        public async Task<Object44Dto> ProfilesGetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null) => await _connection.RequestResourceAsync<Object44Dto>("GET", $"api/http/team-directory/profiles?$skip={skip}&$top={top}&query={query}&reportPastMembers={reportPastMembers? "true" : "false"}&teamId={teamId}&locationId={locationId}&roleId={roleId}&meOnTop={meOnTop? "true" : "false"}&order={order}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object44Dto)));
 
         public async Task<List<string>> ProfilesCheckProfileUsernamesExistence(List<string> usernames) => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)));
 
@@ -8018,13 +8018,13 @@ namespace SpaceDotNet.Client
 
         public async Task ProfilesWorkingDaysDeleteWorkingDays(string id, string workingDaysId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");
 
-        public async Task<Object44Dto> ReportingsGetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null) => await _connection.RequestResourceAsync<Object44Dto>("GET", $"api/http/team-directory/reportings?$skip={skip}&$top={top}&query={query}&withManager={withManager}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object44Dto)));
+        public async Task<Object44Dto> ReportingsGetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null) => await _connection.RequestResourceAsync<Object44Dto>("GET", $"api/http/team-directory/reportings?$skip={skip}&$top={top}&query={query}&withManager={withManager? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object44Dto)));
 
         public async Task<TDRoleDto> RolesCreateRole(Object101Dto data) => await _connection.RequestResourceAsync<Object101Dto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);
 
         public async Task<TDRoleDto> RolesRestore(string id) => await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));
 
-        public async Task<List<TDRoleDto>> RolesGetAllRoles(string query, bool withArchived) => await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query}&withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDRoleDto>)));
+        public async Task<List<TDRoleDto>> RolesGetAllRoles(string query, bool withArchived) => await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query}&withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDRoleDto>)));
 
         public async Task<TDRoleDto> RolesGetRole(string id) => await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));
 
@@ -8042,7 +8042,7 @@ namespace SpaceDotNet.Client
 
         public async Task<TDTeamDto> TeamsRestore(string id) => await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
 
-        public async Task<Object104Dto> TeamsGetAllTeams(string query, bool withArchived, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object104Dto>("GET", $"api/http/team-directory/teams?$skip={skip}&$top={top}&query={query}&withArchived={withArchived}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object104Dto)));
+        public async Task<Object104Dto> TeamsGetAllTeams(string query, bool withArchived, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object104Dto>("GET", $"api/http/team-directory/teams?$skip={skip}&$top={top}&query={query}&withArchived={withArchived? "true" : "false"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object104Dto)));
 
         public async Task<TDTeamDto> TeamsGetTeamByName(string name) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
 

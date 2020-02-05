@@ -388,11 +388,25 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 
                 foreach (var apiEndpointParameter in methodParameters)
                 {
-                    Builder.Append(apiEndpointParameter.Field.Name);
-                    Builder.Append("=");
-                    Builder.Append("{");
-                    Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
-                    Builder.Append("}");
+                    if (apiEndpointParameter.Field.Type is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Boolean needs lowercase value
+                        Builder.Append(apiEndpointParameter.Field.Name);
+                        Builder.Append("=");
+                        Builder.Append("{");
+                        Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                        Builder.Append("? \"true\" : \"false\"");
+                        Builder.Append("}");
+                    }
+                    else
+                    {
+                        // Normal flow
+                        Builder.Append(apiEndpointParameter.Field.Name);
+                        Builder.Append("=");
+                        Builder.Append("{");
+                        Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                        Builder.Append("}");
+                    }
                     
                     if (apiEndpointParameter != methodParameters.Last())
                     {
