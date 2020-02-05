@@ -59,7 +59,7 @@ namespace SpaceDotNet.Common
             }
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            return builder.Path + queryStringCollection;
+            return builder.Path.TrimStart('/') + queryStringCollection;
         }
 
         /// <summary>
