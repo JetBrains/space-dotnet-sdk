@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using System.Web;
 
 namespace SpaceDotNet.Common
 {
@@ -40,15 +41,28 @@ namespace SpaceDotNet.Common
         private static string EnsureTrailingSlash(string url) => !url.EndsWith("/") ? url + "/" : url;
 
         /// <summary>
-        /// Clean $skip and $top values - Space API requires null values to not be present as part of the URL.
+        /// Clean valueless query string parameters - Space API requires null values to not be present as part of the URL.
         /// </summary>
         /// <param name="url">URL to clean.</param>
-        /// <returns>A <see cref="T:System.String" /> that does not contain $skip/$top if their value was not specified.</returns>
-        private static string CleanSkipTop(string url) => url
-            .Replace("?$skip=&", "?")
-            .Replace("&$skip=&", "&")
-            .Replace("?$top=&", "?")
-            .Replace("&$top=&", "&");
+        /// <returns>A <see cref="T:System.String" /> that does not contain valueless query string parameters.</returns>
+        private static string CleanValuelessQueryStringParameters(string url)
+        {    
+            var builder = new UriBuilder(url);
+
+            var queryStringCollection = HttpUtility.ParseQueryString(builder.Query);
+            foreach (var key in queryStringCollection.AllKeys)
+            {
+                if (string.IsNullOrEmpty(queryStringCollection[key]))
+                {
+                    queryStringCollection.Remove(key);
+                }
+            }
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            builder.Query = queryStringCollection.ToString();
+
+            return builder.ToString();
+        }
 
         /// <summary>
         /// Requests a resource at a given URL.
@@ -58,7 +72,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task RequestResourceAsync(string httpMethod, string urlPath)
         {
-            await RequestResourceInternalAsync(httpMethod, CleanSkipTop(urlPath));
+            await RequestResourceInternalAsync(httpMethod, CleanValuelessQueryStringParameters(urlPath));
         }
         
         /// <summary>
@@ -70,7 +84,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath)
         {
-            return await RequestResourceInternalAsync<TResult>(httpMethod, CleanSkipTop(urlPath));
+            return await RequestResourceInternalAsync<TResult>(httpMethod, CleanValuelessQueryStringParameters(urlPath));
         }
 
         /// <summary>
@@ -82,7 +96,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
         {
-            await RequestResourceInternalAsync<TPayload>(httpMethod, CleanSkipTop(urlPath), payload);
+            await RequestResourceInternalAsync<TPayload>(httpMethod, CleanValuelessQueryStringParameters(urlPath), payload);
         }
         
         /// <summary>
@@ -95,7 +109,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
         {
-            return await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanSkipTop(urlPath), payload);
+            return await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanValuelessQueryStringParameters(urlPath), payload);
         }
         
         protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath);
