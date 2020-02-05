@@ -395,7 +395,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         Builder.Append("=");
                         Builder.Append("{");
                         Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
-                        Builder.Append("? \"true\" : \"false\"");
+                        Builder.Append(".ToString().ToLowerInvariant()");
                         Builder.Append("}");
                     }
                     else
