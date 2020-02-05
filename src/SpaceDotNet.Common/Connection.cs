@@ -43,11 +43,11 @@ namespace SpaceDotNet.Common
         /// <summary>
         /// Clean valueless query string parameters - Space API requires null values to not be present as part of the URL.
         /// </summary>
-        /// <param name="url">URL to clean.</param>
+        /// <param name="urlPath">URL path to clean.</param>
         /// <returns>A <see cref="T:System.String" /> that does not contain valueless query string parameters.</returns>
-        private static string CleanValuelessQueryStringParameters(string url)
-        {    
-            var builder = new UriBuilder(url);
+        private static string CleanValuelessQueryStringParameters(string urlPath)
+        {
+            var builder = new UriBuilder(urlPath);
 
             var queryStringCollection = HttpUtility.ParseQueryString(builder.Query);
             foreach (var key in queryStringCollection.AllKeys)
@@ -59,9 +59,7 @@ namespace SpaceDotNet.Common
             }
 
             // ReSharper disable once AssignNullToNotNullAttribute
-            builder.Query = queryStringCollection.ToString();
-
-            return builder.ToString();
+            return builder.Path + queryStringCollection;
         }
 
         /// <summary>
