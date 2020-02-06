@@ -12,6 +12,11 @@ namespace SpaceDotNet.Common
         {
             var fieldNames = new List<string>();
 
+            if (forType.IsGenericType)
+            {
+                forType = forType.GetGenericArguments().First();
+            }
+
             foreach (var propertyInfo in forType.GetProperties())
             {
                 if (propertyInfo.GetCustomAttribute(typeof(JsonPropertyNameAttribute)) is JsonPropertyNameAttribute jsonPropertyName)
