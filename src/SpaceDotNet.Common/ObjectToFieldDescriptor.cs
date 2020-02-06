@@ -3,9 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using System.Web;
 
 namespace SpaceDotNet.Common
 {
+    public static class QueryStringHelper
+    {
+        public static string Nullable(string queryString)
+        {
+            var queryStringCollection = HttpUtility.ParseQueryString(queryString);
+            foreach (var key in queryStringCollection.AllKeys)
+            {
+                if (string.IsNullOrEmpty(queryStringCollection[key]))
+                {
+                    queryStringCollection.Remove(key);
+                }
+            }
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            return queryStringCollection.ToString() ?? string.Empty;
+        }
+    }
     public static class ObjectToFieldDescriptor
     {
         public static string FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)

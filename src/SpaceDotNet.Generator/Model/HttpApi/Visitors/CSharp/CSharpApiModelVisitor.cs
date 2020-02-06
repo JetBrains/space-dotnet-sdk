@@ -388,25 +388,28 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 
                 foreach (var apiEndpointParameter in methodParameters)
                 {
+                    Builder.Append(apiEndpointParameter.Field.Name);
+                    Builder.Append("=");
+                    Builder.Append("{");
+                    Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                    Builder.Append(!apiEndpointParameter.Field.Type.Nullable
+                        ? ".ToString()"
+                        : "?.ToString()");
+                    
                     if (apiEndpointParameter.Field.Type is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
                     {
                         // Boolean needs lowercase value
-                        Builder.Append(apiEndpointParameter.Field.Name);
-                        Builder.Append("=");
-                        Builder.Append("{");
-                        Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
-                        Builder.Append(".ToString().ToLowerInvariant()");
-                        Builder.Append("}");
+                        Builder.Append(!apiEndpointParameter.Field.Type.Nullable
+                            ? ".ToLowerInvariant()"
+                            : "?.ToLowerInvariant()");
                     }
-                    else
+                    
+                    if (apiEndpointParameter.Field.Type.Nullable)
                     {
-                        // Normal flow
-                        Builder.Append(apiEndpointParameter.Field.Name);
-                        Builder.Append("=");
-                        Builder.Append("{");
-                        Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
-                        Builder.Append("}");
+                        // Used to be able to filter out nullable query string parameters in Connection.CleanNullableNullQueryStringParameters
+                        Builder.Append(" ?? \"null\"");
                     }
+                    Builder.Append("}");
                     
                     if (apiEndpointParameter != methodParameters.Last())
                     {

@@ -42,11 +42,11 @@ namespace SpaceDotNet.Common
         private static string EnsureTrailingSlash(string url) => !url.EndsWith("/") ? url + "/" : url;
 
         /// <summary>
-        /// Clean valueless query string parameters - Space API requires null values to not be present as part of the URL.
+        /// Clean nullable null query string parameters - Space API requires nullable null values to not be present as part of the URL.
         /// </summary>
         /// <param name="urlPath">URL path to clean.</param>
         /// <returns>A <see cref="T:System.String" /> that does not contain valueless query string parameters.</returns>
-        private static string CleanValuelessQueryStringParameters(string urlPath)
+        private static string CleanNullableNullQueryStringParameters(string urlPath)
         {
             var pathAndQuery = urlPath.Split('?', StringSplitOptions.RemoveEmptyEntries);
 
@@ -56,7 +56,7 @@ namespace SpaceDotNet.Common
                 var queryStringCollection = HttpUtility.ParseQueryString(pathAndQuery[1]);
                 foreach (var key in queryStringCollection.AllKeys)
                 {
-                    if (string.IsNullOrEmpty(queryStringCollection[key]))
+                    if (queryStringCollection[key] == "null")
                     {
                         queryStringCollection.Remove(key);
                     }
@@ -77,7 +77,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task RequestResourceAsync(string httpMethod, string urlPath)
         {
-            await RequestResourceInternalAsync(httpMethod, CleanValuelessQueryStringParameters(urlPath));
+            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath));
         }
         
         /// <summary>
@@ -89,7 +89,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath)
         {
-            return await RequestResourceInternalAsync<TResult>(httpMethod, CleanValuelessQueryStringParameters(urlPath));
+            return await RequestResourceInternalAsync<TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath));
         }
 
         /// <summary>
@@ -101,7 +101,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
         {
-            await RequestResourceInternalAsync<TPayload>(httpMethod, CleanValuelessQueryStringParameters(urlPath), payload);
+            await RequestResourceInternalAsync<TPayload>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
         }
         
         /// <summary>
@@ -114,7 +114,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
         {
-            return await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanValuelessQueryStringParameters(urlPath), payload);
+            return await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
         }
         
         protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath);
