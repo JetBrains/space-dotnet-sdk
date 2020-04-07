@@ -3,9 +3,7 @@
         <LangVersion>8</LangVersion>
         <Nullable>enable</Nullable>
     
-        <!-- NuGet -->
-        <IncludeSymbols>True</IncludeSymbols>
-        <IncludeSource>True</IncludeSource>
+        <!-- NuGet -->        
         <PackageIconUrl>https://pbs.twimg.com/profile_images/1202638201002835975/LDQWGLj3_400x400.png</PackageIconUrl>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageProjectUrl>https://jetbrains.team/p/evan/code/SpaceDotNet/</PackageProjectUrl>
@@ -21,6 +19,12 @@
         <Authors>Maarten Balliauw</Authors>
         <Company>Maarten Balliauw</Company>
         <Copyright>Maarten Balliauw</Copyright>
+        
+        <!-- Symbols -->
+        <IncludeSymbols>True</IncludeSymbols>
+        <IncludeSource>True</IncludeSource>
+        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     
         <Product>SpaceDotNet</Product>
     </PropertyGroup>
