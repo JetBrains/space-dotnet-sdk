@@ -17,7 +17,7 @@ $BuildProjectFile = "$PSScriptRoot\build\_build.csproj"
 $TempDirectory = "$PSScriptRoot\\.tmp"
 
 $DotNetGlobalFile = "$PSScriptRoot\\global.json"
-$DotNetInstallUrl = "https://dot.net/v1/dotnet-install.ps1"
+$DotNetInstallUrl = "https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.ps1"
 $DotNetChannel = "Current"
 
 $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = 1
@@ -41,17 +41,17 @@ if (Test-Path $DotNetGlobalFile) {
 }
 
 # If dotnet is installed locally, and expected version is not set or installation matches the expected version
-#if ($null -ne (Get-Command "dotnet" -ErrorAction SilentlyContinue) -and `
-#     (!(Test-Path variable:DotNetVersion) -or $(& dotnet --version) -eq $DotNetVersion)) {
-#    $env:DOTNET_EXE = (Get-Command "dotnet").Path
-#}
-#else {
+if ($null -ne (Get-Command "dotnet" -ErrorAction SilentlyContinue) -and `
+     (!(Test-Path variable:DotNetVersion) -or $(& dotnet --version) -eq $DotNetVersion)) {
+    $env:DOTNET_EXE = (Get-Command "dotnet").Path
+}
+else {
     $DotNetDirectory = "$TempDirectory\dotnet-win"
     $env:DOTNET_EXE = "$DotNetDirectory\dotnet.exe"
 
     # Download install script
     $DotNetInstallFile = "$TempDirectory\dotnet-install.ps1"
-    New-Item -ItemType Directory -Path $TempDirectory | Out-Null
+    New-Item -ItemType Directory -Path $TempDirectory -Force | Out-Null
     (New-Object System.Net.WebClient).DownloadFile($DotNetInstallUrl, $DotNetInstallFile)
 
     # Install by channel or version
@@ -60,9 +60,9 @@ if (Test-Path $DotNetGlobalFile) {
     } else {
         ExecSafe { & $DotNetInstallFile -InstallDir $DotNetDirectory -Version $DotNetVersion -NoPath }
     }
-#}
+}
 
 Write-Output "Microsoft (R) .NET Core SDK version $(& $env:DOTNET_EXE --version)"
 
-ExecSafe { & $env:DOTNET_EXE build $BuildProjectFile /nodeReuse:false }
+ExecSafe { & $env:DOTNET_EXE build $BuildProjectFile /nodeReuse:false -nologo -clp:NoSummary --verbosity quiet }
 ExecSafe { & $env:DOTNET_EXE run --project $BuildProjectFile --no-build -- $BuildArguments }
