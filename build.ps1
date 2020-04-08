@@ -41,11 +41,11 @@ if (Test-Path $DotNetGlobalFile) {
 }
 
 # If dotnet is installed locally, and expected version is not set or installation matches the expected version
-if ($null -ne (Get-Command "dotnet" -ErrorAction SilentlyContinue) -and `
-     (!(Test-Path variable:DotNetVersion) -or $(& dotnet --version) -eq $DotNetVersion)) {
-    $env:DOTNET_EXE = (Get-Command "dotnet").Path
-}
-else {
+#if ($null -ne (Get-Command "dotnet" -ErrorAction SilentlyContinue) -and `
+#     (!(Test-Path variable:DotNetVersion) -or $(& dotnet --version) -eq $DotNetVersion)) {
+#    $env:DOTNET_EXE = (Get-Command "dotnet").Path
+#}
+#else {
     $DotNetDirectory = "$TempDirectory\dotnet-win"
     $env:DOTNET_EXE = "$DotNetDirectory\dotnet.exe"
 
@@ -60,7 +60,7 @@ else {
     } else {
         ExecSafe { & $DotNetInstallFile -InstallDir $DotNetDirectory -Version $DotNetVersion -NoPath }
     }
-}
+#}
 
 Write-Output "Microsoft (R) .NET Core SDK version $(& $env:DOTNET_EXE --version)"
 
