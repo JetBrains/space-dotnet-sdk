@@ -14,15 +14,14 @@ $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 ###########################################################################
 
 $BuildProjectFile = "$PSScriptRoot\build\_build.csproj"
-$TempDirectory = "$PSScriptRoot\.tmp"
+$TempDirectory = "$PSScriptRoot\\.tmp"
 
-$DotNetGlobalFile = "$PSScriptRoot\global.json"
+$DotNetGlobalFile = "$PSScriptRoot\\global.json"
 $DotNetInstallUrl = "https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.ps1"
 $DotNetChannel = "Current"
 
 $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = 1
 $env:DOTNET_CLI_TELEMETRY_OPTOUT = 1
-$env:NUGET_XMLDOC_MODE = "skip"
 
 ###########################################################################
 # EXECUTION
@@ -31,14 +30,6 @@ $env:NUGET_XMLDOC_MODE = "skip"
 function ExecSafe([scriptblock] $cmd) {
     & $cmd
     if ($LASTEXITCODE) { exit $LASTEXITCODE }
-}
-
-# Print environment variables
-Get-Item -Path Env:*
-
-# Check if any dotnet is installed
-if ($null -ne (Get-Command "dotnet" -ErrorAction SilentlyContinue)) {
-    ExecSafe { & dotnet --info }
 }
 
 # If global.json exists, load expected version
@@ -50,17 +41,17 @@ if (Test-Path $DotNetGlobalFile) {
 }
 
 # If dotnet is installed locally, and expected version is not set or installation matches the expected version
-#if ($null -ne (Get-Command "dotnet" -ErrorAction SilentlyContinue) -and `
-#     (!(Test-Path variable:DotNetVersion) -or $(& dotnet --version | Select-Object -First 1) -eq $DotNetVersion)) {
-#    $env:DOTNET_EXE = (Get-Command "dotnet").Path
-#}
-#else {
+if ($null -ne (Get-Command "dotnet" -ErrorAction SilentlyContinue) -and `
+     (!(Test-Path variable:DotNetVersion) -or $(& dotnet --version) -eq $DotNetVersion)) {
+    $env:DOTNET_EXE = (Get-Command "dotnet").Path
+}
+else {
     $DotNetDirectory = "$TempDirectory\dotnet-win"
     $env:DOTNET_EXE = "$DotNetDirectory\dotnet.exe"
 
     # Download install script
     $DotNetInstallFile = "$TempDirectory\dotnet-install.ps1"
-    New-Item -ItemType Directory -Path $TempDirectory -Force | Out-Null
+    New-Item -ItemType Directory -Path $TempDirectory | Out-Null
     (New-Object System.Net.WebClient).DownloadFile($DotNetInstallUrl, $DotNetInstallFile)
 
     # Install by channel or version
@@ -69,10 +60,9 @@ if (Test-Path $DotNetGlobalFile) {
     } else {
         ExecSafe { & $DotNetInstallFile -InstallDir $DotNetDirectory -Version $DotNetVersion -NoPath }
     }
-    ExecSafe { & $DotNetInstallFile -InstallDir $DotNetDirectory -Version "2.2.101" -NoPath }
-#}
+}
 
 Write-Output "Microsoft (R) .NET Core SDK version $(& $env:DOTNET_EXE --version)"
 
-ExecSafe { & $env:DOTNET_EXE build $BuildProjectFile /nodeReuse:false --ignore-failed-sources }
+ExecSafe { & $env:DOTNET_EXE build $BuildProjectFile /nodeReuse:false }
 ExecSafe { & $env:DOTNET_EXE run --project $BuildProjectFile --no-build -- $BuildArguments }
