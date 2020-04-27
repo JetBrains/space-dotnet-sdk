@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-03-23T10:55:54.6476420+00:00
+//     Generated: 2020-04-27T13:20:29.7946467+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -22,120 +22,60 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    // Source: gender
+    // Source: absencelistmode
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class Gender : Enumeration
+    public sealed class AbsenceListMode : Enumeration
     {
-        private Gender(string value) : base(value) { }
+        private AbsenceListMode(string value) : base(value) { }
 
-        public static readonly Gender Female = new Gender("Female");
-        public static readonly Gender Male = new Gender("Male");
-        public static readonly Gender Other = new Gender("Other");
-        public static readonly Gender NotSpecified = new Gender("NotSpecified");
+        public static readonly AbsenceListMode All = new AbsenceListMode("All");
+        public static readonly AbsenceListMode WithAccessibleReasonUnapproved = new AbsenceListMode("WithAccessibleReasonUnapproved");
+        public static readonly AbsenceListMode WithAccessibleReasonAll = new AbsenceListMode("WithAccessibleReasonAll");
     }
 
-    // Source: repositorystate
+    // Source: accesstype
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class RepositoryState : Enumeration
+    public sealed class AccessType : Enumeration
     {
-        private RepositoryState(string value) : base(value) { }
+        private AccessType(string value) : base(value) { }
 
-        public static readonly RepositoryState READY = new RepositoryState("READY");
-        public static readonly RepositoryState INPROGRESS = new RepositoryState("IN_PROGRESS");
-        public static readonly RepositoryState ERROR = new RepositoryState("ERROR");
+        public static readonly AccessType PUBLIC = new AccessType("PUBLIC");
+        public static readonly AccessType CONFIDENTIAL = new AccessType("CONFIDENTIAL");
+        public static readonly AccessType RESTRICTED = new AccessType("RESTRICTED");
     }
 
-    // Source: eventparticipationstatus
+    // Source: codereviewparticipantrole
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class EventParticipationStatus : Enumeration
+    public sealed class CodeReviewParticipantRole : Enumeration
     {
-        private EventParticipationStatus(string value) : base(value) { }
+        private CodeReviewParticipantRole(string value) : base(value) { }
 
-        public static readonly EventParticipationStatus GOING = new EventParticipationStatus("GOING");
-        public static readonly EventParticipationStatus NOTGOING = new EventParticipationStatus("NOT_GOING");
-        public static readonly EventParticipationStatus NOTSURE = new EventParticipationStatus("NOT_SURE");
-        public static readonly EventParticipationStatus WAITINGFORRESPONSE = new EventParticipationStatus("WAITING_FOR_RESPONSE");
+        public static readonly CodeReviewParticipantRole Reviewer = new CodeReviewParticipantRole("Reviewer");
+        public static readonly CodeReviewParticipantRole Author = new CodeReviewParticipantRole("Author");
+        public static readonly CodeReviewParticipantRole Watcher = new CodeReviewParticipantRole("Watcher");
     }
 
-    // Source: notificationfilter
+    // Source: codereviewstate
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class NotificationFilter : Enumeration
+    public sealed class CodeReviewState : Enumeration
     {
-        private NotificationFilter(string value) : base(value) { }
+        private CodeReviewState(string value) : base(value) { }
 
-        public static readonly NotificationFilter ALLMESSAGES = new NotificationFilter("ALL_MESSAGES");
-        public static readonly NotificationFilter MENTIONS = new NotificationFilter("MENTIONS");
-        public static readonly NotificationFilter NOTHING = new NotificationFilter("NOTHING");
-        public static readonly NotificationFilter MUTE = new NotificationFilter("MUTE");
+        public static readonly CodeReviewState Opened = new CodeReviewState("Opened");
+        public static readonly CodeReviewState Closed = new CodeReviewState("Closed");
+        public static readonly CodeReviewState Deleted = new CodeReviewState("Deleted");
     }
 
-    // Source: m2emailnotificationtype
+    // Source: codereviewstatefilter
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class M2EmailNotificationType : Enumeration
+    public sealed class CodeReviewStateFilter : Enumeration
     {
-        private M2EmailNotificationType(string value) : base(value) { }
+        private CodeReviewStateFilter(string value) : base(value) { }
 
-        public static readonly M2EmailNotificationType INSTANT = new M2EmailNotificationType("INSTANT");
-        public static readonly M2EmailNotificationType DELAYED = new M2EmailNotificationType("DELAYED");
-        public static readonly M2EmailNotificationType NONE = new M2EmailNotificationType("NONE");
-    }
-
-    // Source: oauthservicetype
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class OAuthServiceType : Enumeration
-    {
-        private OAuthServiceType(string value) : base(value) { }
-
-        public static readonly OAuthServiceType Server = new OAuthServiceType("Server");
-        public static readonly OAuthServiceType WebClient = new OAuthServiceType("WebClient");
-        public static readonly OAuthServiceType Mobile = new OAuthServiceType("Mobile");
-        public static readonly OAuthServiceType ServiceAccount = new OAuthServiceType("ServiceAccount");
-    }
-
-    // Source: m2obsoletecause
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class M2ObsoleteCause : Enumeration
-    {
-        private M2ObsoleteCause(string value) : base(value) { }
-
-        public static readonly M2ObsoleteCause PermissionsDenied = new M2ObsoleteCause("PermissionsDenied");
-    }
-
-    // Source: m2.access
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class M2Access : Enumeration
-    {
-        private M2Access(string value) : base(value) { }
-
-        public static readonly M2Access Private = new M2Access("Private");
-        public static readonly M2Access Public = new M2Access("Public");
-    }
-
-    // Source: interpolatedlinestate
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class InterpolatedLineState : Enumeration
-    {
-        private InterpolatedLineState(string value) : base(value) { }
-
-        public static readonly InterpolatedLineState Normal = new InterpolatedLineState("Normal");
-        public static readonly InterpolatedLineState Deleted = new InterpolatedLineState("Deleted");
-        public static readonly InterpolatedLineState Modified = new InterpolatedLineState("Modified");
-    }
-
-    // Source: syntaxmarkuptype
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class SyntaxMarkupType : Enumeration
-    {
-        private SyntaxMarkupType(string value) : base(value) { }
-
-        public static readonly SyntaxMarkupType KEYWORD = new SyntaxMarkupType("KEYWORD");
-        public static readonly SyntaxMarkupType COMMENT = new SyntaxMarkupType("COMMENT");
-        public static readonly SyntaxMarkupType IDENTIFIER = new SyntaxMarkupType("IDENTIFIER");
-        public static readonly SyntaxMarkupType DECLARATION = new SyntaxMarkupType("DECLARATION");
-        public static readonly SyntaxMarkupType NUMLITERAL = new SyntaxMarkupType("NUM_LITERAL");
-        public static readonly SyntaxMarkupType STRINGLITERAL = new SyntaxMarkupType("STRING_LITERAL");
-        public static readonly SyntaxMarkupType ANNOTATION = new SyntaxMarkupType("ANNOTATION");
-        public static readonly SyntaxMarkupType HIGHLIGHT = new SyntaxMarkupType("HIGHLIGHT");
+        public static readonly CodeReviewStateFilter Opened = new CodeReviewStateFilter("Opened");
+        public static readonly CodeReviewStateFilter Closed = new CodeReviewStateFilter("Closed");
+        public static readonly CodeReviewStateFilter RequiresAuthorAttention = new CodeReviewStateFilter("RequiresAuthorAttention");
+        public static readonly CodeReviewStateFilter NeedsReview = new CodeReviewStateFilter("NeedsReview");
     }
 
     // Source: difflinetype
@@ -151,123 +91,6 @@ namespace SpaceDotNet.Client
         public static readonly DiffLineType CONFLICTNEW = new DiffLineType("CONFLICT_NEW");
     }
 
-    // Source: codereviewstate
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class CodeReviewState : Enumeration
-    {
-        private CodeReviewState(string value) : base(value) { }
-
-        public static readonly CodeReviewState Opened = new CodeReviewState("Opened");
-        public static readonly CodeReviewState Closed = new CodeReviewState("Closed");
-        public static readonly CodeReviewState Deleted = new CodeReviewState("Deleted");
-    }
-
-    // Source: codereviewparticipantrole
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class CodeReviewParticipantRole : Enumeration
-    {
-        private CodeReviewParticipantRole(string value) : base(value) { }
-
-        public static readonly CodeReviewParticipantRole Reviewer = new CodeReviewParticipantRole("Reviewer");
-        public static readonly CodeReviewParticipantRole Author = new CodeReviewParticipantRole("Author");
-        public static readonly CodeReviewParticipantRole Watcher = new CodeReviewParticipantRole("Watcher");
-    }
-
-    // Source: reviewerstate
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ReviewerState : Enumeration
-    {
-        private ReviewerState(string value) : base(value) { }
-
-        public static readonly ReviewerState Accepted = new ReviewerState("Accepted");
-        public static readonly ReviewerState Rejected = new ReviewerState("Rejected");
-    }
-
-    // Source: mergerequestbranchtype
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class MergeRequestBranchType : Enumeration
-    {
-        private MergeRequestBranchType(string value) : base(value) { }
-
-        public static readonly MergeRequestBranchType SOURCE = new MergeRequestBranchType("SOURCE");
-        public static readonly MergeRequestBranchType TARGET = new MergeRequestBranchType("TARGET");
-    }
-
-    // Source: reviewrevisionschangedtype
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ReviewRevisionsChangedType : Enumeration
-    {
-        private ReviewRevisionsChangedType(string value) : base(value) { }
-
-        public static readonly ReviewRevisionsChangedType Created = new ReviewRevisionsChangedType("Created");
-        public static readonly ReviewRevisionsChangedType Added = new ReviewRevisionsChangedType("Added");
-        public static readonly ReviewRevisionsChangedType Removed = new ReviewRevisionsChangedType("Removed");
-    }
-
-    // Source: reviewerchangedtype
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ReviewerChangedType : Enumeration
-    {
-        private ReviewerChangedType(string value) : base(value) { }
-
-        public static readonly ReviewerChangedType Joined = new ReviewerChangedType("Joined");
-        public static readonly ReviewerChangedType Left = new ReviewerChangedType("Left");
-    }
-
-    // Source: ldapmoduletype
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class LdapModuleType : Enumeration
-    {
-        private LdapModuleType(string value) : base(value) { }
-
-        public static readonly LdapModuleType AD = new LdapModuleType("AD");
-        public static readonly LdapModuleType OPENLDAP = new LdapModuleType("OPEN_LDAP");
-    }
-
-    // Source: passwordstrength
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class PasswordStrength : Enumeration
-    {
-        private PasswordStrength(string value) : base(value) { }
-
-        public static readonly PasswordStrength NOPOLICY = new PasswordStrength("NO_POLICY");
-        public static readonly PasswordStrength FAIR = new PasswordStrength("FAIR");
-        public static readonly PasswordStrength GOOD = new PasswordStrength("GOOD");
-        public static readonly PasswordStrength STRONG = new PasswordStrength("STRONG");
-    }
-
-    // Source: accesstype
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class AccessType : Enumeration
-    {
-        private AccessType(string value) : base(value) { }
-
-        public static readonly AccessType PUBLIC = new AccessType("PUBLIC");
-        public static readonly AccessType CONFIDENTIAL = new AccessType("CONFIDENTIAL");
-        public static readonly AccessType RESTRICTED = new AccessType("RESTRICTED");
-    }
-
-    // Source: profileorder
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ProfileOrder : Enumeration
-    {
-        private ProfileOrder(string value) : base(value) { }
-
-        public static readonly ProfileOrder DEFAULT = new ProfileOrder("DEFAULT");
-        public static readonly ProfileOrder FULLNAME = new ProfileOrder("FULL_NAME");
-    }
-
-    // Source: absencelistmode
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class AbsenceListMode : Enumeration
-    {
-        private AbsenceListMode(string value) : base(value) { }
-
-        public static readonly AbsenceListMode All = new AbsenceListMode("All");
-        public static readonly AbsenceListMode WithAccessibleReasonUnapproved = new AbsenceListMode("WithAccessibleReasonUnapproved");
-        public static readonly AbsenceListMode WithAccessibleReasonAll = new AbsenceListMode("WithAccessibleReasonAll");
-    }
-
     // Source: draftdocumenttype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DraftDocumentType : Enumeration
@@ -278,19 +101,108 @@ namespace SpaceDotNet.Client
         public static readonly DraftDocumentType MARKDOWN = new DraftDocumentType("MARKDOWN");
     }
 
-    // Source: weekday
+    // Source: eventparticipationstatus
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class Weekday : Enumeration
+    public sealed class EventParticipationStatus : Enumeration
     {
-        private Weekday(string value) : base(value) { }
+        private EventParticipationStatus(string value) : base(value) { }
 
-        public static readonly Weekday SUNDAY = new Weekday("SUNDAY");
-        public static readonly Weekday MONDAY = new Weekday("MONDAY");
-        public static readonly Weekday TUESDAY = new Weekday("TUESDAY");
-        public static readonly Weekday WEDNESDAY = new Weekday("WEDNESDAY");
-        public static readonly Weekday THURSDAY = new Weekday("THURSDAY");
-        public static readonly Weekday FRIDAY = new Weekday("FRIDAY");
-        public static readonly Weekday SATURDAY = new Weekday("SATURDAY");
+        public static readonly EventParticipationStatus GOING = new EventParticipationStatus("GOING");
+        public static readonly EventParticipationStatus NOTGOING = new EventParticipationStatus("NOT_GOING");
+        public static readonly EventParticipationStatus NOTSURE = new EventParticipationStatus("NOT_SURE");
+        public static readonly EventParticipationStatus WAITINGFORRESPONSE = new EventParticipationStatus("WAITING_FOR_RESPONSE");
+    }
+
+    // Source: executionstatus
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class ExecutionStatus : Enumeration
+    {
+        private ExecutionStatus(string value) : base(value) { }
+
+        public static readonly ExecutionStatus SCHEDULED = new ExecutionStatus("SCHEDULED");
+        public static readonly ExecutionStatus PENDING = new ExecutionStatus("PENDING");
+        public static readonly ExecutionStatus READYTOSTART = new ExecutionStatus("READY_TO_START");
+        public static readonly ExecutionStatus FAILEDTOSTART = new ExecutionStatus("FAILED_TO_START");
+        public static readonly ExecutionStatus RUNNING = new ExecutionStatus("RUNNING");
+        public static readonly ExecutionStatus FAILING = new ExecutionStatus("FAILING");
+        public static readonly ExecutionStatus SUCCEEDED = new ExecutionStatus("SUCCEEDED");
+        public static readonly ExecutionStatus TERMINATED = new ExecutionStatus("TERMINATED");
+        public static readonly ExecutionStatus FAILED = new ExecutionStatus("FAILED");
+        public static readonly ExecutionStatus HANGING = new ExecutionStatus("HANGING");
+    }
+
+    // Source: gender
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class Gender : Enumeration
+    {
+        private Gender(string value) : base(value) { }
+
+        public static readonly Gender Female = new Gender("Female");
+        public static readonly Gender Male = new Gender("Male");
+        public static readonly Gender Other = new Gender("Other");
+        public static readonly Gender NotSpecified = new Gender("NotSpecified");
+    }
+
+    // Source: gitcommitchangetype
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class GitCommitChangeType : Enumeration
+    {
+        private GitCommitChangeType(string value) : base(value) { }
+
+        public static readonly GitCommitChangeType ADDED = new GitCommitChangeType("ADDED");
+        public static readonly GitCommitChangeType DELETED = new GitCommitChangeType("DELETED");
+        public static readonly GitCommitChangeType MODIFIED = new GitCommitChangeType("MODIFIED");
+    }
+
+    // Source: gitentrytype
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class GitEntryType : Enumeration
+    {
+        private GitEntryType(string value) : base(value) { }
+
+        public static readonly GitEntryType FILE = new GitEntryType("FILE");
+        public static readonly GitEntryType DIR = new GitEntryType("DIR");
+        public static readonly GitEntryType GITLINK = new GitEntryType("GIT_LINK");
+        public static readonly GitEntryType SYMLINK = new GitEntryType("SYM_LINK");
+    }
+
+    // Source: gitgraphedgelinestyle
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class GitGraphEdgeLineStyle : Enumeration
+    {
+        private GitGraphEdgeLineStyle(string value) : base(value) { }
+
+        public static readonly GitGraphEdgeLineStyle SOLID = new GitGraphEdgeLineStyle("SOLID");
+        public static readonly GitGraphEdgeLineStyle DASHED = new GitGraphEdgeLineStyle("DASHED");
+        public static readonly GitGraphEdgeLineStyle DOTTED = new GitGraphEdgeLineStyle("DOTTED");
+    }
+
+    // Source: gitgraphedgetype
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class GitGraphEdgeType : Enumeration
+    {
+        private GitGraphEdgeType(string value) : base(value) { }
+
+        public static readonly GitGraphEdgeType UP = new GitGraphEdgeType("UP");
+        public static readonly GitGraphEdgeType DOWN = new GitGraphEdgeType("DOWN");
+    }
+
+    // Source: ha_method
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class HAMethod : Enumeration
+    {
+        private HAMethod(string value) : base(value) { }
+
+        public static readonly HAMethod RESTCREATE = new HAMethod("REST_CREATE");
+        public static readonly HAMethod RESTQUERY = new HAMethod("REST_QUERY");
+        public static readonly HAMethod RESTGET = new HAMethod("REST_GET");
+        public static readonly HAMethod RESTUPDATE = new HAMethod("REST_UPDATE");
+        public static readonly HAMethod RESTDELETE = new HAMethod("REST_DELETE");
+        public static readonly HAMethod HTTPGET = new HAMethod("HTTP_GET");
+        public static readonly HAMethod HTTPPOST = new HAMethod("HTTP_POST");
+        public static readonly HAMethod HTTPPATCH = new HAMethod("HTTP_PATCH");
+        public static readonly HAMethod HTTPPUT = new HAMethod("HTTP_PUT");
+        public static readonly HAMethod HTTPDELETE = new HAMethod("HTTP_DELETE");
     }
 
     // Source: ha_primitive
@@ -338,33 +250,37 @@ namespace SpaceDotNet.Client
         public static readonly HierarchyRole INTERFACE = new HierarchyRole("INTERFACE");
     }
 
-    // Source: ha_method
+    // Source: interpolatedlinestate
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class HAMethod : Enumeration
+    public sealed class InterpolatedLineState : Enumeration
     {
-        private HAMethod(string value) : base(value) { }
+        private InterpolatedLineState(string value) : base(value) { }
 
-        public static readonly HAMethod RESTCREATE = new HAMethod("REST_CREATE");
-        public static readonly HAMethod RESTQUERY = new HAMethod("REST_QUERY");
-        public static readonly HAMethod RESTGET = new HAMethod("REST_GET");
-        public static readonly HAMethod RESTUPDATE = new HAMethod("REST_UPDATE");
-        public static readonly HAMethod RESTDELETE = new HAMethod("REST_DELETE");
-        public static readonly HAMethod HTTPGET = new HAMethod("HTTP_GET");
-        public static readonly HAMethod HTTPPOST = new HAMethod("HTTP_POST");
-        public static readonly HAMethod HTTPPATCH = new HAMethod("HTTP_PATCH");
-        public static readonly HAMethod HTTPPUT = new HAMethod("HTTP_PUT");
-        public static readonly HAMethod HTTPDELETE = new HAMethod("HTTP_DELETE");
+        public static readonly InterpolatedLineState Normal = new InterpolatedLineState("Normal");
+        public static readonly InterpolatedLineState Deleted = new InterpolatedLineState("Deleted");
+        public static readonly InterpolatedLineState Modified = new InterpolatedLineState("Modified");
     }
 
-    // Source: packagespermission
+    // Source: issuessorting
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class PackagesPermission : Enumeration
+    public sealed class IssuesSorting : Enumeration
     {
-        private PackagesPermission(string value) : base(value) { }
+        private IssuesSorting(string value) : base(value) { }
 
-        public static readonly PackagesPermission Read = new PackagesPermission("Read");
-        public static readonly PackagesPermission Write = new PackagesPermission("Write");
-        public static readonly PackagesPermission Admin = new PackagesPermission("Admin");
+        public static readonly IssuesSorting UPDATED = new IssuesSorting("UPDATED");
+        public static readonly IssuesSorting CREATED = new IssuesSorting("CREATED");
+        public static readonly IssuesSorting TITLE = new IssuesSorting("TITLE");
+        public static readonly IssuesSorting DUE = new IssuesSorting("DUE");
+    }
+
+    // Source: ldapmoduletype
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class LdapModuleType : Enumeration
+    {
+        private LdapModuleType(string value) : base(value) { }
+
+        public static readonly LdapModuleType AD = new LdapModuleType("AD");
+        public static readonly LdapModuleType OPENLDAP = new LdapModuleType("OPEN_LDAP");
     }
 
     // Source: limitunit
@@ -378,60 +294,123 @@ namespace SpaceDotNet.Client
         public static readonly LimitUnit ENTITIES = new LimitUnit("ENTITIES");
     }
 
-    // Source: gitcommitchangetype
+    // Source: m2.access
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitCommitChangeType : Enumeration
+    public sealed class M2Access : Enumeration
     {
-        private GitCommitChangeType(string value) : base(value) { }
+        private M2Access(string value) : base(value) { }
 
-        public static readonly GitCommitChangeType ADDED = new GitCommitChangeType("ADDED");
-        public static readonly GitCommitChangeType DELETED = new GitCommitChangeType("DELETED");
-        public static readonly GitCommitChangeType MODIFIED = new GitCommitChangeType("MODIFIED");
+        public static readonly M2Access Private = new M2Access("Private");
+        public static readonly M2Access Public = new M2Access("Public");
     }
 
-    // Source: gitentrytype
+    // Source: m2emailnotificationtype
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitEntryType : Enumeration
+    public sealed class M2EmailNotificationType : Enumeration
     {
-        private GitEntryType(string value) : base(value) { }
+        private M2EmailNotificationType(string value) : base(value) { }
 
-        public static readonly GitEntryType FILE = new GitEntryType("FILE");
-        public static readonly GitEntryType DIR = new GitEntryType("DIR");
-        public static readonly GitEntryType GITLINK = new GitEntryType("GIT_LINK");
-        public static readonly GitEntryType SYMLINK = new GitEntryType("SYM_LINK");
+        public static readonly M2EmailNotificationType INSTANT = new M2EmailNotificationType("INSTANT");
+        public static readonly M2EmailNotificationType DELAYED = new M2EmailNotificationType("DELAYED");
+        public static readonly M2EmailNotificationType NONE = new M2EmailNotificationType("NONE");
     }
 
-    // Source: gitgraphedgetype
+    // Source: m2obsoletecause
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitGraphEdgeType : Enumeration
+    public sealed class M2ObsoleteCause : Enumeration
     {
-        private GitGraphEdgeType(string value) : base(value) { }
+        private M2ObsoleteCause(string value) : base(value) { }
 
-        public static readonly GitGraphEdgeType UP = new GitGraphEdgeType("UP");
-        public static readonly GitGraphEdgeType DOWN = new GitGraphEdgeType("DOWN");
+        public static readonly M2ObsoleteCause PermissionsDenied = new M2ObsoleteCause("PermissionsDenied");
     }
 
-    // Source: gitgraphedgelinestyle
+    // Source: mergerequestbranchtype
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitGraphEdgeLineStyle : Enumeration
+    public sealed class MergeRequestBranchType : Enumeration
     {
-        private GitGraphEdgeLineStyle(string value) : base(value) { }
+        private MergeRequestBranchType(string value) : base(value) { }
 
-        public static readonly GitGraphEdgeLineStyle SOLID = new GitGraphEdgeLineStyle("SOLID");
-        public static readonly GitGraphEdgeLineStyle DASHED = new GitGraphEdgeLineStyle("DASHED");
-        public static readonly GitGraphEdgeLineStyle DOTTED = new GitGraphEdgeLineStyle("DOTTED");
+        public static readonly MergeRequestBranchType SOURCE = new MergeRequestBranchType("SOURCE");
+        public static readonly MergeRequestBranchType TARGET = new MergeRequestBranchType("TARGET");
     }
 
-    // Source: codereviewstatefilter
+    // Source: notificationfilter
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class CodeReviewStateFilter : Enumeration
+    public sealed class NotificationFilter : Enumeration
     {
-        private CodeReviewStateFilter(string value) : base(value) { }
+        private NotificationFilter(string value) : base(value) { }
 
-        public static readonly CodeReviewStateFilter Opened = new CodeReviewStateFilter("Opened");
-        public static readonly CodeReviewStateFilter Closed = new CodeReviewStateFilter("Closed");
-        public static readonly CodeReviewStateFilter NeedsAuthorAttention = new CodeReviewStateFilter("NeedsAuthorAttention");
-        public static readonly CodeReviewStateFilter NeedsReviewerAttention = new CodeReviewStateFilter("NeedsReviewerAttention");
+        public static readonly NotificationFilter ALLMESSAGES = new NotificationFilter("ALL_MESSAGES");
+        public static readonly NotificationFilter MENTIONS = new NotificationFilter("MENTIONS");
+        public static readonly NotificationFilter NOTHING = new NotificationFilter("NOTHING");
+        public static readonly NotificationFilter MUTE = new NotificationFilter("MUTE");
+    }
+
+    // Source: oauthservicetype
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class OAuthServiceType : Enumeration
+    {
+        private OAuthServiceType(string value) : base(value) { }
+
+        public static readonly OAuthServiceType Server = new OAuthServiceType("Server");
+        public static readonly OAuthServiceType WebClient = new OAuthServiceType("WebClient");
+        public static readonly OAuthServiceType Mobile = new OAuthServiceType("Mobile");
+        public static readonly OAuthServiceType ServiceAccount = new OAuthServiceType("ServiceAccount");
+    }
+
+    // Source: packagespermission
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class PackagesPermission : Enumeration
+    {
+        private PackagesPermission(string value) : base(value) { }
+
+        public static readonly PackagesPermission Read = new PackagesPermission("Read");
+        public static readonly PackagesPermission Write = new PackagesPermission("Write");
+        public static readonly PackagesPermission Admin = new PackagesPermission("Admin");
+    }
+
+    // Source: passwordstrength
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class PasswordStrength : Enumeration
+    {
+        private PasswordStrength(string value) : base(value) { }
+
+        public static readonly PasswordStrength NOPOLICY = new PasswordStrength("NO_POLICY");
+        public static readonly PasswordStrength FAIR = new PasswordStrength("FAIR");
+        public static readonly PasswordStrength GOOD = new PasswordStrength("GOOD");
+        public static readonly PasswordStrength STRONG = new PasswordStrength("STRONG");
+    }
+
+    // Source: profileorder
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class ProfileOrder : Enumeration
+    {
+        private ProfileOrder(string value) : base(value) { }
+
+        public static readonly ProfileOrder DEFAULT = new ProfileOrder("DEFAULT");
+        public static readonly ProfileOrder FULLNAME = new ProfileOrder("FULL_NAME");
+    }
+
+    // Source: repositorystate
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class RepositoryState : Enumeration
+    {
+        private RepositoryState(string value) : base(value) { }
+
+        public static readonly RepositoryState READY = new RepositoryState("READY");
+        public static readonly RepositoryState INPROGRESS = new RepositoryState("IN_PROGRESS");
+        public static readonly RepositoryState ERROR = new RepositoryState("ERROR");
+    }
+
+    // Source: reviewrevisionschangedtype
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class ReviewRevisionsChangedType : Enumeration
+    {
+        private ReviewRevisionsChangedType(string value) : base(value) { }
+
+        public static readonly ReviewRevisionsChangedType Created = new ReviewRevisionsChangedType("Created");
+        public static readonly ReviewRevisionsChangedType Added = new ReviewRevisionsChangedType("Added");
+        public static readonly ReviewRevisionsChangedType Removed = new ReviewRevisionsChangedType("Removed");
     }
 
     // Source: reviewsorting
@@ -456,604 +435,55 @@ namespace SpaceDotNet.Client
         public static readonly ReviewType MergeRequest = new ReviewType("MergeRequest");
     }
 
-    // Source: executionstatus
+    // Source: reviewerchangedtype
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class ExecutionStatus : Enumeration
+    public sealed class ReviewerChangedType : Enumeration
     {
-        private ExecutionStatus(string value) : base(value) { }
+        private ReviewerChangedType(string value) : base(value) { }
 
-        public static readonly ExecutionStatus SCHEDULED = new ExecutionStatus("SCHEDULED");
-        public static readonly ExecutionStatus PENDING = new ExecutionStatus("PENDING");
-        public static readonly ExecutionStatus READYTOSTART = new ExecutionStatus("READY_TO_START");
-        public static readonly ExecutionStatus FAILEDTOSTART = new ExecutionStatus("FAILED_TO_START");
-        public static readonly ExecutionStatus RUNNING = new ExecutionStatus("RUNNING");
-        public static readonly ExecutionStatus FAILING = new ExecutionStatus("FAILING");
-        public static readonly ExecutionStatus SUCCEEDED = new ExecutionStatus("SUCCEEDED");
-        public static readonly ExecutionStatus TERMINATED = new ExecutionStatus("TERMINATED");
-        public static readonly ExecutionStatus FAILED = new ExecutionStatus("FAILED");
-        public static readonly ExecutionStatus HANGING = new ExecutionStatus("HANGING");
+        public static readonly ReviewerChangedType Joined = new ReviewerChangedType("Joined");
+        public static readonly ReviewerChangedType Left = new ReviewerChangedType("Left");
     }
 
-    // Source: normalizedtestservicemessage.status
+    // Source: reviewerstate
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class NormalizedTestServiceMessageStatus : Enumeration
+    public sealed class ReviewerState : Enumeration
     {
-        private NormalizedTestServiceMessageStatus(string value) : base(value) { }
+        private ReviewerState(string value) : base(value) { }
 
-        public static readonly NormalizedTestServiceMessageStatus START = new NormalizedTestServiceMessageStatus("START");
-        public static readonly NormalizedTestServiceMessageStatus PASSED = new NormalizedTestServiceMessageStatus("PASSED");
-        public static readonly NormalizedTestServiceMessageStatus IGNORED = new NormalizedTestServiceMessageStatus("IGNORED");
-        public static readonly NormalizedTestServiceMessageStatus FAILED = new NormalizedTestServiceMessageStatus("FAILED");
+        public static readonly ReviewerState Accepted = new ReviewerState("Accepted");
+        public static readonly ReviewerState Rejected = new ReviewerState("Rejected");
     }
 
-    // Source: textmessageseverity
+    // Source: syntaxmarkuptype
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class TextMessageSeverity : Enumeration
+    public sealed class SyntaxMarkupType : Enumeration
     {
-        private TextMessageSeverity(string value) : base(value) { }
+        private SyntaxMarkupType(string value) : base(value) { }
 
-        public static readonly TextMessageSeverity INFO = new TextMessageSeverity("INFO");
-        public static readonly TextMessageSeverity WARN = new TextMessageSeverity("WARN");
-        public static readonly TextMessageSeverity ERROR = new TextMessageSeverity("ERROR");
+        public static readonly SyntaxMarkupType KEYWORD = new SyntaxMarkupType("KEYWORD");
+        public static readonly SyntaxMarkupType COMMENT = new SyntaxMarkupType("COMMENT");
+        public static readonly SyntaxMarkupType IDENTIFIER = new SyntaxMarkupType("IDENTIFIER");
+        public static readonly SyntaxMarkupType DECLARATION = new SyntaxMarkupType("DECLARATION");
+        public static readonly SyntaxMarkupType NUMLITERAL = new SyntaxMarkupType("NUM_LITERAL");
+        public static readonly SyntaxMarkupType STRINGLITERAL = new SyntaxMarkupType("STRING_LITERAL");
+        public static readonly SyntaxMarkupType ANNOTATION = new SyntaxMarkupType("ANNOTATION");
+        public static readonly SyntaxMarkupType HIGHLIGHT = new SyntaxMarkupType("HIGHLIGHT");
     }
 
-    // Source: issuessorting
+    // Source: weekday
     [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class IssuesSorting : Enumeration
+    public sealed class Weekday : Enumeration
     {
-        private IssuesSorting(string value) : base(value) { }
-
-        public static readonly IssuesSorting UPDATED = new IssuesSorting("UPDATED");
-        public static readonly IssuesSorting CREATED = new IssuesSorting("CREATED");
-        public static readonly IssuesSorting TITLE = new IssuesSorting("TITLE");
-        public static readonly IssuesSorting DUE = new IssuesSorting("DUE");
-    }
-
-    // Source: organizationrecord
-    public class OrganizationRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("orgId")]
-        public string OrgId { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("slogan")]
-        public string? Slogan { get; set; }
-
-        [JsonPropertyName("logoId")]
-        public string? LogoId { get; set; }
-
-        [JsonPropertyName("slackWorkspace")]
-        public string? SlackWorkspace { get; set; }
-
-    }
-
-    // Source: td_membership
-    public class TDMembershipDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("member")]
-        public TDMemberProfileDto? Member { get; set; }
-
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
-        [Required]
-        [JsonPropertyName("role")]
-        public TDRoleDto Role { get; set; }
-
-        [Required]
-        [JsonPropertyName("lead")]
-        public bool Lead { get; set; }
-
-        [JsonPropertyName("manager")]
-        public TDMemberProfileDto? Manager { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
-        [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
-        [Required]
-        [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [JsonPropertyName("editFor")]
-        public TDMembershipDto? EditFor { get; set; }
-
-        [JsonPropertyName("pendingEdit")]
-        public TDMembershipDto? PendingEdit { get; set; }
-
-        [JsonPropertyName("approver")]
-        public TDMemberProfileDto? Approver { get; set; }
-
-    }
-
-    // Source: td_memberprofile
-    public class TDMemberProfileDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("username")]
-        public string Username { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public TDProfileNameDto Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("speaksEnglish")]
-        public bool SpeaksEnglish { get; set; }
-
-        [JsonPropertyName("smallAvatar")]
-        public string? SmallAvatar { get; set; }
-
-        [JsonPropertyName("avatar")]
-        public string? Avatar { get; set; }
-
-        [JsonPropertyName("profilePicture")]
-        public string? ProfilePicture { get; set; }
-
-        [Required]
-        [JsonPropertyName("languages")]
-        public List<TDProfileLanguageDto> Languages { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("notAMember")]
-        public bool NotAMember { get; set; }
-
-        [JsonPropertyName("joined")]
-        public SpaceDate? Joined { get; set; }
-
-        [JsonPropertyName("left")]
-        public SpaceDate? Left { get; set; }
-
-        [JsonPropertyName("leftAt")]
-        public SpaceTime? LeftAt { get; set; }
-
-        [Required]
-        [JsonPropertyName("absences")]
-        public List<AbsenceRecordDto> Absences { get; set; }
-
-        [Required]
-        [JsonPropertyName("emails")]
-        public List<TDProfileEmailDto> Emails { get; set; }
-
-        [Required]
-        [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }
-
-        [Required]
-        [JsonPropertyName("messengers")]
-        public List<string> Messengers { get; set; }
-
-        [Required]
-        [JsonPropertyName("links")]
-        public List<string> Links { get; set; }
-
-        [Required]
-        [JsonPropertyName("locations")]
-        public List<TDMemberLocationDto> Locations { get; set; }
-
-        [Required]
-        [JsonPropertyName("managers")]
-        public List<TDMemberProfileDto> Managers { get; set; }
-
-        [Required]
-        [JsonPropertyName("membershipHistory")]
-        public List<TDMembershipDto> MembershipHistory { get; set; }
-
-        [Required]
-        [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }
-
-        [JsonPropertyName("about")]
-        public string? About { get; set; }
-
-        [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
-
-        [JsonPropertyName("gender")]
-        public Gender? Gender { get; set; }
-
-        [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday { get; set; }
-
-    }
-
-    // Source: td_profilename
-    public class TDProfileNameDto
-    {
-        [Required]
-        [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
-
-    }
-
-    // Source: td_profilelanguage
-    public class TDProfileLanguageDto
-    {
-        [JsonPropertyName("name")]
-        public TDProfileNameDto? Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("language")]
-        public TDLanguageDto Language { get; set; }
-
-        [JsonPropertyName("languageCode")]
-        public string? LanguageCode { get; set; }
-
-    }
-
-    // Source: td_language
-    public class TDLanguageDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("code")]
-        public string Code { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("nativeName")]
-        public string NativeName { get; set; }
-
-        [Required]
-        [JsonPropertyName("firstNameTitle")]
-        public string FirstNameTitle { get; set; }
-
-        [Required]
-        [JsonPropertyName("lastNameTitle")]
-        public string LastNameTitle { get; set; }
-
-    }
-
-    // Source: td_team
-    public class TDTeamDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
-
-        [JsonPropertyName("parent")]
-        public TDTeamDto? Parent { get; set; }
-
-        [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [JsonPropertyName("disbanded")]
-        public bool? Disbanded { get; set; }
-
-        [JsonPropertyName("disbandedAt")]
-        public SpaceDate? DisbandedAt { get; set; }
-
-        [Required]
-        [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }
-
-    }
-
-    // Source: td_role
-    public class TDRoleDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("parent")]
-        public TDRoleDto? Parent { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-    }
-
-    // Source: avatarcropsquare
-    public class AvatarCropSquareDto
-    {
-        [Required]
-        [JsonPropertyName("x")]
-        public int X { get; set; }
-
-        [Required]
-        [JsonPropertyName("y")]
-        public int Y { get; set; }
-
-        [Required]
-        [JsonPropertyName("length")]
-        public int Length { get; set; }
-
-    }
-
-    // Source: pr_repositoryinfo
-    public class PRRepositoryInfoDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
-
-        [JsonPropertyName("latestActivity")]
-        public SpaceTime? LatestActivity { get; set; }
-
-        [JsonPropertyName("proxyPushNotification")]
-        public SpaceTime? ProxyPushNotification { get; set; }
-
-        [Required]
-        [JsonPropertyName("state")]
-        public RepositoryState State { get; set; }
-
-        [JsonPropertyName("initProgress")]
-        public string? InitProgress { get; set; }
-
-        [JsonPropertyName("readmeName")]
-        public string? ReadmeName { get; set; }
-
-        [JsonPropertyName("monthlyActivity")]
-        public RepositoryActivityDto? MonthlyActivity { get; set; }
-
-    }
-
-    // Source: repositoryactivity
-    public class RepositoryActivityDto
-    {
-        [Required]
-        [JsonPropertyName("lastActivity")]
-        public List<Object0Dto> LastActivity { get; set; }
-
-    }
-
-    // Source: pr_project
-    public class PRProjectDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("icon")]
-        public string? Icon { get; set; }
-
-        [JsonPropertyName("latestRepositoryActivity")]
-        public SpaceTime? LatestRepositoryActivity { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("memberProfiles")]
-        public List<TDMemberProfileDto> MemberProfiles { get; set; }
-
-        [Required]
-        [JsonPropertyName("memberTeams")]
-        public List<TDTeamDto> MemberTeams { get; set; }
-
-        [Required]
-        [JsonPropertyName("adminProfiles")]
-        public List<TDMemberProfileDto> AdminProfiles { get; set; }
-
-        [Required]
-        [JsonPropertyName("adminTeams")]
-        public List<TDTeamDto> AdminTeams { get; set; }
-
-        [Required]
-        [JsonPropertyName("repos")]
-        public List<PRRepositoryInfoDto> Repos { get; set; }
-
-        [Required]
-        [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
-
-    }
-
-    // Source: projectkey
-    public class ProjectKeyDto
-    {
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-    }
-
-    // Source: articlerecord
-    public class ArticleRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
-        [Required]
-        [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }
-
-        [Required]
-        [JsonPropertyName("aliases")]
-        public List<BGArticleAliasDto> Aliases { get; set; }
-
-        [Required]
-        [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
-        [Required]
-        [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecordDto ChannelContent { get; set; }
-
-        [Required]
-        [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto Reactions { get; set; }
-
-        [Required]
-        [JsonPropertyName("content")]
-        public string Content { get; set; }
-
-        [JsonPropertyName("event")]
-        public MeetingRecordDto? Event { get; set; }
-
-        [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
-        [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }
-
-        [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
-
-        [Required]
-        [JsonPropertyName("editable")]
-        public bool Editable { get; set; }
-
-        [Required]
-        [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
-
-        [Required]
-        [JsonPropertyName("preview")]
-        public string Preview { get; set; }
-
-        [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber { get; set; }
-
-    }
-
-    // Source: bg_articlealias
-    public class BGArticleAliasDto
-    {
-        [Required]
-        [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
-        [Required]
-        [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
-    }
-
-    // Source: meetingrecord
-    public class MeetingRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("starts")]
-        public SpaceTime Starts { get; set; }
-
-        [Required]
-        [JsonPropertyName("finishes")]
-        public SpaceTime Finishes { get; set; }
-
-        [JsonPropertyName("timezone")]
-        public ATimeZoneDto? Timezone { get; set; }
-
-        [Required]
-        [JsonPropertyName("allDay")]
-        public bool AllDay { get; set; }
-
-        [Required]
-        [JsonPropertyName("rooms")]
-        public List<TDLocationDto> Rooms { get; set; }
-
-        [Required]
-        [JsonPropertyName("participants")]
-        public List<ParticipantDto> Participants { get; set; }
-
-        [JsonPropertyName("article")]
-        public ArticleRecordDto? Article { get; set; }
-
+        private Weekday(string value) : base(value) { }
+
+        public static readonly Weekday SUNDAY = new Weekday("SUNDAY");
+        public static readonly Weekday MONDAY = new Weekday("MONDAY");
+        public static readonly Weekday TUESDAY = new Weekday("TUESDAY");
+        public static readonly Weekday WEDNESDAY = new Weekday("WEDNESDAY");
+        public static readonly Weekday THURSDAY = new Weekday("THURSDAY");
+        public static readonly Weekday FRIDAY = new Weekday("FRIDAY");
+        public static readonly Weekday SATURDAY = new Weekday("SATURDAY");
     }
 
     // Source: atimezone
@@ -1062,62 +492,6 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
-
-    }
-
-    // Source: td_location
-    public class TDLocationDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffsetDto? Timezone { get; set; }
-
-        [JsonPropertyName("tz")]
-        public string? Tz { get; set; }
-
-        [JsonPropertyName("workdays")]
-        public List<int>? Workdays { get; set; }
-
-        [Required]
-        [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }
-
-        [Required]
-        [JsonPropertyName("emails")]
-        public List<string> Emails { get; set; }
-
-        [JsonPropertyName("equipment")]
-        public List<string>? Equipment { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("address")]
-        public string? Address { get; set; }
-
-        [JsonPropertyName("parent")]
-        public TDLocationDto? Parent { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
-        [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }
-
-        [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
 
     }
 
@@ -1134,76 +508,66 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: participant
-    public class ParticipantDto
+    // Source: absenceapproval
+    public class AbsenceApprovalDto
     {
         [Required]
-        [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }
+        [JsonPropertyName("approved")]
+        public bool Approved { get; set; }
 
         [Required]
-        [JsonPropertyName("status")]
-        public EventParticipationStatus Status { get; set; }
+        [JsonPropertyName("approvedBy")]
+        public TDMemberProfileDto ApprovedBy { get; set; }
+
+        [Required]
+        [JsonPropertyName("approvedAt")]
+        public SpaceTime ApprovedAt { get; set; }
 
     }
 
-    // Source: td_memberlocation
-    public class TDMemberLocationDto
+    // Source: absenceevent
+    public class AbsenceEventDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberWithTeamDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("events")]
+        public List<AbsenceRecordDto> Events { get; set; }
+
+    }
+
+    // Source: absencereasonrecord
+    public class AbsenceReasonRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
-
-        [JsonPropertyName("locationMapPoints")]
-        public List<TDLocationMapPointDto>? LocationMapPoints { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [Required]
-        [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
 
         [Required]
         [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-    }
-
-    // Source: td_locationmappoint
-    public class TDLocationMapPointDto
-    {
         [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         [Required]
-        [JsonPropertyName("x")]
-        public int X { get; set; }
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
 
         [Required]
-        [JsonPropertyName("y")]
-        public int Y { get; set; }
+        [JsonPropertyName("defaultAvailability")]
+        public bool DefaultAvailability { get; set; }
 
         [Required]
-        [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
+        [JsonPropertyName("approvalRequired")]
+        public bool ApprovalRequired { get; set; }
 
-        [JsonPropertyName("memberLocation")]
-        public string? MemberLocation { get; set; }
-
-        [JsonPropertyName("deleted")]
-        public bool? Deleted { get; set; }
+        [Required]
+        [JsonPropertyName("icon")]
+        public string Icon { get; set; }
 
     }
 
@@ -1255,8 +619,40 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: absencereasonrecord
-    public class AbsenceReasonRecordDto
+    // Source: accessrecord
+    public class AccessRecordDto
+    {
+        [Required]
+        [JsonPropertyName("time")]
+        public SpaceTime Time { get; set; }
+
+        [Required]
+        [JsonPropertyName("address")]
+        public string Address { get; set; }
+
+        [JsonPropertyName("userAgent")]
+        public string? UserAgent { get; set; }
+
+    }
+
+    // Source: allreactionstoitemrecord
+    public class AllReactionsToItemRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("reactions")]
+        public List<CertainReactionToItemRecordDto> Reactions { get; set; }
+
+        [JsonPropertyName("emojiReactions")]
+        public List<EmojiReactionRecordDto>? EmojiReactions { get; set; }
+
+    }
+
+    // Source: articlechannelrecord
+    public class ArticleChannelRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
@@ -1267,59 +663,64 @@ namespace SpaceDotNet.Client
         public bool Archived { get; set; }
 
         [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("channel")]
+        public M2ChannelRecordDto Channel { get; set; }
 
         [Required]
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
+        [JsonPropertyName("channelContent")]
+        public M2ChannelContentRecordDto ChannelContent { get; set; }
 
         [Required]
-        [JsonPropertyName("defaultAvailability")]
-        public bool DefaultAvailability { get; set; }
-
-        [Required]
-        [JsonPropertyName("approvalRequired")]
-        public bool ApprovalRequired { get; set; }
-
-        [Required]
-        [JsonPropertyName("icon")]
-        public string Icon { get; set; }
+        [JsonPropertyName("reactions")]
+        public AllReactionsToItemRecordDto Reactions { get; set; }
 
     }
 
-    // Source: absenceapproval
-    public class AbsenceApprovalDto
-    {
-        [Required]
-        [JsonPropertyName("approved")]
-        public bool Approved { get; set; }
-
-        [Required]
-        [JsonPropertyName("approvedBy")]
-        public TDMemberProfileDto ApprovedBy { get; set; }
-
-        [Required]
-        [JsonPropertyName("approvedAt")]
-        public SpaceTime ApprovedAt { get; set; }
-
-    }
-
-    // Source: customcolumnvalueswithschemadata
-    public class CustomColumnValuesWithSchemaDataDto
-    {
-    }
-
-    // Source: td_profileemail
-    public class TDProfileEmailDto
+    // Source: articlecontentrecord
+    public class ArticleContentRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("email")]
-        public string Email { get; set; }
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+
+    }
+
+    // Source: articledetailsrecord
+    public class ArticleDetailsRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [JsonPropertyName("event")]
+        public MeetingRecordDto? Event { get; set; }
+
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }
+
+        [JsonPropertyName("teams")]
+        public List<TDTeamDto>? Teams { get; set; }
+
+        [JsonPropertyName("project")]
+        public PRProjectDto? Project { get; set; }
+
+        [JsonPropertyName("location")]
+        public TDLocationDto? Location { get; set; }
+
+        [JsonPropertyName("locations")]
+        public List<TDLocationDto>? Locations { get; set; }
 
     }
 
@@ -1336,51 +737,503 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: m2channelcontentinfo
-    public class M2ChannelContentInfoDto
-    {
-    }
-
-    // Source: m2channelcontentlocation
-    public class M2ChannelContentLocationDto
+    // Source: articlepreviewrecord
+    public class ArticlePreviewRecordDto
     {
         [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("previewImages")]
+        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
+
+        [Required]
+        [JsonPropertyName("preview")]
+        public string Preview { get; set; }
+
+        [JsonPropertyName("wordsNumber")]
+        public int? WordsNumber { get; set; }
+
+    }
+
+    // Source: articlerecord
+    public class ArticleRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+        [Required]
+        [JsonPropertyName("author")]
+        public TDMemberProfileDto Author { get; set; }
+
+        [Required]
+        [JsonPropertyName("aliases")]
+        public List<BGArticleAliasDto> Aliases { get; set; }
+
+        [Required]
+        [JsonPropertyName("channel")]
+        public M2ChannelRecordDto Channel { get; set; }
+
+        [Required]
+        [JsonPropertyName("channelContent")]
+        public M2ChannelContentRecordDto ChannelContent { get; set; }
+
+        [Required]
+        [JsonPropertyName("reactions")]
+        public AllReactionsToItemRecordDto Reactions { get; set; }
+
+        [Required]
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+
+        [JsonPropertyName("event")]
+        public MeetingRecordDto? Event { get; set; }
+
         [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
+        public TDLocationDto? Location { get; set; }
+
+        [JsonPropertyName("locations")]
+        public List<TDLocationDto>? Locations { get; set; }
+
+        [JsonPropertyName("project")]
+        public PRProjectDto? Project { get; set; }
+
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }
+
+        [JsonPropertyName("teams")]
+        public List<TDTeamDto>? Teams { get; set; }
 
         [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+        [JsonPropertyName("editable")]
+        public bool Editable { get; set; }
+
+        [Required]
+        [JsonPropertyName("preview")]
+        public string Preview { get; set; }
+
+        [Required]
+        [JsonPropertyName("previewImages")]
+        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
+
+        [JsonPropertyName("wordsNumber")]
+        public int? WordsNumber { get; set; }
 
     }
 
-    // Source: channelspecificdefaults
-    public class ChannelSpecificDefaultsDto
+    // Source: assignedperson
+    public class AssignedPersonDto
+    {
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto? Profile { get; set; }
+
+        [JsonPropertyName("role")]
+        public string? Role { get; set; }
+
+    }
+
+    // Source: attachment
+    public class AttachmentDto
+    {
+    }
+
+    // Source: attachmentinfo
+    public class AttachmentInfoDto
+    {
+        [JsonPropertyName("details")]
+        public AttachmentDto? Details { get; set; }
+
+    }
+
+    // Source: authmoduleusage
+    public class AuthModuleUsageDto
     {
         [Required]
-        [JsonPropertyName("filter")]
-        public NotificationFilter Filter { get; set; }
+        [JsonPropertyName("authModule")]
+        public ESAuthModuleDto AuthModule { get; set; }
 
         [Required]
-        [JsonPropertyName("push")]
-        public bool Push { get; set; }
+        [JsonPropertyName("profiles")]
+        public int Profiles { get; set; }
+
+    }
+
+    // Source: avatarcropsquare
+    public class AvatarCropSquareDto
+    {
+        [Required]
+        [JsonPropertyName("x")]
+        public int X { get; set; }
+
+        [Required]
+        [JsonPropertyName("y")]
+        public int Y { get; set; }
+
+        [Required]
+        [JsonPropertyName("length")]
+        public int Length { get; set; }
+
+    }
+
+    // Source: awsreportecscontainerinfo
+    public class AwsReportEcsContainerInfoDto
+    {
+        [Required]
+        [JsonPropertyName("arn")]
+        public string Arn { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("lastStatus")]
+        public string? LastStatus { get; set; }
+
+        [JsonPropertyName("exitCode")]
+        public int? ExitCode { get; set; }
+
+        [JsonPropertyName("reason")]
+        public string? Reason { get; set; }
+
+    }
+
+    // Source: bg_articlealias
+    public class BGArticleAliasDto
+    {
+        [Required]
+        [JsonPropertyName("alias")]
+        public string Alias { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+    }
+
+    // Source: bg_articleid
+    public class BGArticleIdDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+    }
+
+    // Source: bg_dates
+    public class BGDatesDto
+    {
+        [Required]
+        [JsonPropertyName("first")]
+        public SpaceTime First { get; set; }
+
+        [Required]
+        [JsonPropertyName("last")]
+        public SpaceTime Last { get; set; }
+
+    }
+
+    // Source: bg_stats
+    public class BGStatsDto
+    {
+        [Required]
+        [JsonPropertyName("totalBlogs")]
+        public int TotalBlogs { get; set; }
+
+        [Required]
+        [JsonPropertyName("teams")]
+        public List<Object0Dto> Teams { get; set; }
+
+        [Required]
+        [JsonPropertyName("projects")]
+        public List<Object1Dto> Projects { get; set; }
+
+        [Required]
+        [JsonPropertyName("locations")]
+        public List<Object2Dto> Locations { get; set; }
+
+    }
+
+    // Source: birthdayevent
+    public class BirthdayEventDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberWithTeamDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("birthday")]
+        public SpaceDate Birthday { get; set; }
+
+    }
+
+    // Source: blogpublicationdetails
+    public class BlogPublicationDetailsDto
+    {
+        [JsonPropertyName("teamId")]
+        public TDTeamDto? TeamId { get; set; }
+
+        [JsonPropertyName("teams")]
+        public List<TDTeamDto>? Teams { get; set; }
+
+        [JsonPropertyName("locationId")]
+        public TDLocationDto? LocationId { get; set; }
+
+        [JsonPropertyName("locations")]
+        public List<TDLocationDto>? Locations { get; set; }
+
+        [JsonPropertyName("event")]
+        public CalendarEventDto? Event { get; set; }
+
+        [JsonPropertyName("article")]
+        public ArticleRecordDto? Article { get; set; }
+
+    }
+
+    // Source: booleancftype
+    public class BooleanCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: booleancfvalue
+    public class BooleanCFValueDto
+         : CFValueDto
+    {
+        [JsonPropertyName("value")]
+        public bool? Value { get; set; }
+
+    }
+
+    // Source: branchinfo
+    public class BranchInfoDto
+    {
+        [Required]
+        [JsonPropertyName("head")]
+        public string Head { get; set; }
+
+        [Required]
+        [JsonPropertyName("ref")]
+        public string Ref { get; set; }
+
+    }
+
+    // Source: cautomationtaskprincipaldetails
+    public class CAutomationTaskPrincipalDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("project")]
+        public PRProjectDto Project { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+    }
+
+    // Source: cbuiltinserviceprincipaldetails
+    public class CBuiltInServicePrincipalDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+    }
+
+    // Source: cexternalserviceprincipaldetails
+    public class CExternalServicePrincipalDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("service")]
+        public ESServiceDto Service { get; set; }
+
+    }
+
+    // Source: cfconstraint
+    public class CFConstraintDto
+    {
+    }
+
+    // Source: cftype
+    public class CFTypeDto
+    {
+    }
+
+    // Source: cfvalue
+    public class CFValueDto
+    {
+    }
+
+    // Source: cprincipal
+    public class CPrincipalDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("details")]
+        public CPrincipalDetailsDto? Details { get; set; }
+
+    }
+
+    // Source: cprincipaldetails
+    public class CPrincipalDetailsDto
+    {
+    }
+
+    // Source: cuserprincipaldetails
+    public class CUserPrincipalDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("user")]
+        public TDMemberProfileDto User { get; set; }
+
+    }
+
+    // Source: cuserwithemailprincipaldetails
+    public class CUserWithEmailPrincipalDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         [Required]
         [JsonPropertyName("email")]
-        public M2EmailNotificationType Email { get; set; }
+        public string Email { get; set; }
 
     }
 
-    // Source: m2channelcontentmention
-    public class M2ChannelContentMentionDto
+    // Source: calendarevent
+    public class CalendarEventDto
+    {
+        [JsonPropertyName("calendarEvent")]
+        public bool? CalendarEvent { get; set; }
+
+        [JsonPropertyName("starts")]
+        public SpaceTime? Starts { get; set; }
+
+        [JsonPropertyName("ends")]
+        public SpaceTime? Ends { get; set; }
+
+        [JsonPropertyName("timezone")]
+        public ATimeZoneDto? Timezone { get; set; }
+
+        [JsonPropertyName("rooms")]
+        public List<TDLocationDto>? Rooms { get; set; }
+
+        [JsonPropertyName("allDay")]
+        public bool? AllDay { get; set; }
+
+    }
+
+    // Source: certainreactiontoitemrecord
+    public class CertainReactionToItemRecordDto
     {
         [Required]
-        [JsonPropertyName("record")]
-        public ChannelItemRecordDto Record { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }
+        [JsonPropertyName("itemId")]
+        public string ItemId { get; set; }
+
+        [Required]
+        [JsonPropertyName("reaction")]
+        public ReactionTypeRecordDto Reaction { get; set; }
+
+        [Required]
+        [JsonPropertyName("count")]
+        public int Count { get; set; }
+
+        [Required]
+        [JsonPropertyName("meReacted")]
+        public bool MeReacted { get; set; }
+
+        [Required]
+        [JsonPropertyName("principals")]
+        public List<CPrincipalDto> Principals { get; set; }
+
+        [JsonPropertyName("order")]
+        public long? Order { get; set; }
+
+    }
+
+    // Source: certificateinfo
+    public class CertificateInfoDto
+    {
+        [Required]
+        [JsonPropertyName("certificateType")]
+        public string CertificateType { get; set; }
+
+        [Required]
+        [JsonPropertyName("version")]
+        public int Version { get; set; }
+
+        [Required]
+        [JsonPropertyName("serialNumber")]
+        public string SerialNumber { get; set; }
+
+        [Required]
+        [JsonPropertyName("issuedBy")]
+        public string IssuedBy { get; set; }
+
+        [Required]
+        [JsonPropertyName("issuedTo")]
+        public string IssuedTo { get; set; }
+
+        [Required]
+        [JsonPropertyName("validFrom")]
+        public SpaceTime ValidFrom { get; set; }
+
+        [Required]
+        [JsonPropertyName("validTo")]
+        public SpaceTime ValidTo { get; set; }
+
+        [Required]
+        [JsonPropertyName("algorithm")]
+        public string Algorithm { get; set; }
+
+        [Required]
+        [JsonPropertyName("fingerprint")]
+        public FingerprintDto Fingerprint { get; set; }
+
+    }
+
+    // Source: changeinreview
+    public class ChangeInReviewDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("change")]
+        public GitCommitChangeDto Change { get; set; }
+
+        [Required]
+        [JsonPropertyName("read")]
+        public bool Read { get; set; }
 
     }
 
@@ -1435,1345 +1288,163 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("edited")]
         public SpaceTime? Edited { get; set; }
 
-    }
-
-    // Source: m2itemcontentdetails
-    public class M2ItemContentDetailsDto
-    {
-    }
-
-    // Source: m2channelfeedintroitemdetails
-    public class M2ChannelFeedIntroItemDetailsDto
-    {
-    }
-
-    // Source: m2channelrestoreditemdetails
-    public class M2ChannelRestoredItemDetailsDto
-    {
-    }
-
-    // Source: m2channelcreateditemdetails
-    public class M2ChannelCreatedItemDetailsDto
-    {
-    }
-
-    // Source: m2textitemcontent
-    public class M2TextItemContentDto
-    {
-        [Required]
-        [JsonPropertyName("markdown")]
-        public bool Markdown { get; set; }
+        [JsonPropertyName("pinned")]
+        public bool? Pinned { get; set; }
 
     }
 
-    // Source: m2externalstatussucceeditemcontent
-    public class M2ExternalStatusSucceedItemContentDto
-    {
-        [JsonPropertyName("projectId")]
-        public string? ProjectId { get; set; }
-
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
-        [JsonPropertyName("revisionInfo")]
-        public RevisionAuthorInfoDto? RevisionInfo { get; set; }
-
-        [JsonPropertyName("changesInfo")]
-        public LastChangesDto? ChangesInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
-
-        [Required]
-        [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }
-
-        [JsonPropertyName("timestamp")]
-        public long? Timestamp { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-    }
-
-    // Source: revisionauthorinfo
-    public class RevisionAuthorInfoDto
+    // Source: channelitemsnapshot
+    public class ChannelItemSnapshotDto
     {
         [Required]
-        [JsonPropertyName("revisionInfo")]
-        public RevisionInfoDto RevisionInfo { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("channelId")]
+        public string? ChannelId { get; set; }
+
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [JsonPropertyName("details")]
+        public M2ItemContentDetailsDto? Details { get; set; }
 
         [Required]
         [JsonPropertyName("author")]
-        public RevisionAuthorDto Author { get; set; }
+        public CPrincipalDto Author { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+        [Required]
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
+
+        [JsonPropertyName("attachments")]
+        public List<AttachmentInfoDto>? Attachments { get; set; }
 
     }
 
-    // Source: revisioninfo
-    public class RevisionInfoDto
+    // Source: channelparticipant
+    public class ChannelParticipantDto
     {
         [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
+        [JsonPropertyName("principal")]
+        public CPrincipalDto Principal { get; set; }
 
         [Required]
-        [JsonPropertyName("date")]
-        public long Date { get; set; }
+        [JsonPropertyName("messageCount")]
+        public int MessageCount { get; set; }
 
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
+        [JsonPropertyName("pendingMessageCount")]
+        public int? PendingMessageCount { get; set; }
 
     }
 
-    // Source: revisionauthor
-    public class RevisionAuthorDto
+    // Source: channelspecificdefaults
+    public class ChannelSpecificDefaultsDto
     {
         [Required]
-        [JsonPropertyName("authorName")]
-        public string AuthorName { get; set; }
-
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }
-
-    }
-
-    // Source: lastchanges
-    public class LastChangesDto
-    {
-        [Required]
-        [JsonPropertyName("lastChanges")]
-        public List<RevisionInfoDto> LastChanges { get; set; }
+        [JsonPropertyName("filter")]
+        public NotificationFilter Filter { get; set; }
 
         [Required]
-        [JsonPropertyName("totalChanges")]
-        public int TotalChanges { get; set; }
-
-    }
-
-    // Source: m2userleftchannel
-    public class M2UserLeftChannelDto
-    {
-    }
-
-    // Source: m2taskexecutionsucceeditemcontent
-    public class M2TaskExecutionSucceedItemContentDto
-    {
-        [Required]
-        [JsonPropertyName("taskExecutionId")]
-        public string TaskExecutionId { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskExecutionName")]
-        public string TaskExecutionName { get; set; }
-
-        [Required]
-        [JsonPropertyName("repoName")]
-        public string RepoName { get; set; }
-
-        [Required]
-        [JsonPropertyName("branchName")]
-        public string BranchName { get; set; }
-
-        [Required]
-        [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
-        [Required]
-        [JsonPropertyName("shortCommitMessage")]
-        public string ShortCommitMessage { get; set; }
-
-        [Required]
-        [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
-        [Required]
-        [JsonPropertyName("finishDateTime")]
-        public long FinishDateTime { get; set; }
-
-        [Required]
-        [JsonPropertyName("triggerInfo")]
-        public string TriggerInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("details")]
-        public string Details { get; set; }
-
-    }
-
-    // Source: m2membercontent
-    public class M2MemberContentDto
-    {
-    }
-
-    // Source: m2memberjoinscontent
-    public class M2MemberJoinsContentDto
-         : M2MemberContentDto
-    {
-        [Required]
-        [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
-    }
-
-    // Source: m2memberleavescontent
-    public class M2MemberLeavesContentDto
-         : M2MemberContentDto
-    {
-        [Required]
-        [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
-    }
-
-    // Source: m2drafteditorteamaddeditemcontent
-    public class M2DraftEditorTeamAddedItemContentDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-    }
-
-    // Source: membersaddeditemdetails
-    public class MembersAddedItemDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get; set; }
-
-        [Required]
-        [JsonPropertyName("othersDisplayNames")]
-        public List<string> OthersDisplayNames { get; set; }
-
-    }
-
-    // Source: cprincipal
-    public class CPrincipalDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("details")]
-        public CPrincipalDetailsDto? Details { get; set; }
-
-    }
-
-    // Source: cprincipaldetails
-    public class CPrincipalDetailsDto
-    {
-    }
-
-    // Source: cuserwithemailprincipaldetails
-    public class CUserWithEmailPrincipalDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
+        [JsonPropertyName("push")]
+        public bool Push { get; set; }
 
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public M2EmailNotificationType Email { get; set; }
 
     }
 
-    // Source: cuserprincipaldetails
-    public class CUserPrincipalDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }
-
-    }
-
-    // Source: cexternalserviceprincipaldetails
-    public class CExternalServicePrincipalDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("service")]
-        public ESServiceDto Service { get; set; }
-
-    }
-
-    // Source: es_service
-    public class ESServiceDto
+    // Source: checklist
+    public class ChecklistDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
-
-        [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public OAuthServiceType Type { get; set; }
-
-        [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("redirectURIs")]
-        public string RedirectURIs { get; set; }
 
         [Required]
         [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonPropertyName("lastClientCredentialsAccess")]
-        public AccessRecordDto? LastClientCredentialsAccess { get; set; }
-
-    }
-
-    // Source: accessrecord
-    public class AccessRecordDto
-    {
-        [Required]
-        [JsonPropertyName("time")]
-        public SpaceTime Time { get; set; }
-
-        [Required]
-        [JsonPropertyName("address")]
-        public string Address { get; set; }
-
-        [JsonPropertyName("userAgent")]
-        public string? UserAgent { get; set; }
-
-    }
-
-    // Source: cbuiltinserviceprincipaldetails
-    public class CBuiltInServicePrincipalDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-    }
-
-    // Source: cautomationtaskprincipaldetails
-    public class CAutomationTaskPrincipalDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("project")]
-        public PRProjectDto Project { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-    }
-
-    // Source: m2absenceitemapprovedcontent
-    public class M2AbsenceItemApprovedContentDto
-    {
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
-        [Required]
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto By { get; set; }
-
-        [Required]
-        [JsonPropertyName("approve")]
-        public bool Approve { get; set; }
-
-    }
-
-    // Source: m2absenceitemapprovedeletedcontent
-    public class M2AbsenceItemApproveDeletedContentDto
-    {
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
-        [Required]
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto By { get; set; }
-
-        [Required]
-        [JsonPropertyName("approve")]
-        public bool Approve { get; set; }
-
-    }
-
-    // Source: teamaddeditemdetails
-    public class TeamAddedItemDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
-    }
-
-    // Source: m2maintenanceactioncontent
-    public class M2MaintenanceActionContentDto
-    {
-        [Required]
-        [JsonPropertyName("action")]
-        public string Action { get; set; }
-
-        [Required]
-        [JsonPropertyName("success")]
-        public bool Success { get; set; }
-
-        [Required]
-        [JsonPropertyName("details")]
-        public string Details { get; set; }
-
-    }
-
-    // Source: m2pollcontent
-    public class M2PollContentDto
-    {
-        [Required]
-        [JsonPropertyName("poll")]
-        public PollRecordDto Poll { get; set; }
-
-    }
-
-    // Source: pollrecord
-    public class PollRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("owner")]
-        public TDMemberProfileDto Owner { get; set; }
-
-        [Required]
-        [JsonPropertyName("question")]
-        public string Question { get; set; }
-
-        [Required]
-        [JsonPropertyName("meVote")]
-        public bool MeVote { get; set; }
-
-        [Required]
-        [JsonPropertyName("countPeople")]
-        public int CountPeople { get; set; }
-
-        [Required]
-        [JsonPropertyName("anonymous")]
-        public bool Anonymous { get; set; }
-
-        [Required]
-        [JsonPropertyName("closed")]
-        public bool Closed { get; set; }
-
-        [Required]
-        [JsonPropertyName("extendable")]
-        public bool Extendable { get; set; }
-
-        [Required]
-        [JsonPropertyName("multiChoice")]
-        public bool MultiChoice { get; set; }
-
-        [Required]
-        [JsonPropertyName("ended")]
-        public bool Ended { get; set; }
-
-        [JsonPropertyName("expirationTime")]
-        public SpaceTime? ExpirationTime { get; set; }
-
-        [Required]
-        [JsonPropertyName("votes")]
-        public List<VoteGroupDto> Votes { get; set; }
-
-    }
-
-    // Source: votegroup
-    public class VoteGroupDto
-    {
-        [Required]
-        [JsonPropertyName("variantName")]
-        public string VariantName { get; set; }
-
-        [Required]
-        [JsonPropertyName("count")]
-        public int Count { get; set; }
-
-        [Required]
-        [JsonPropertyName("meVote")]
-        public bool MeVote { get; set; }
-
-        [Required]
-        [JsonPropertyName("lastUsers")]
-        public List<TDMemberProfileDto> LastUsers { get; set; }
-
-        [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }
-
-    }
-
-    // Source: m2drafteditoraddeditemcontent
-    public class M2DraftEditorAddedItemContentDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-    }
-
-    // Source: m2externalstatusfailureitemcontent
-    public class M2ExternalStatusFailureItemContentDto
-    {
         [JsonPropertyName("projectId")]
         public string? ProjectId { get; set; }
-
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
-        [JsonPropertyName("revisionInfo")]
-        public RevisionAuthorInfoDto? RevisionInfo { get; set; }
-
-        [JsonPropertyName("changesInfo")]
-        public LastChangesDto? ChangesInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
-
-        [Required]
-        [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }
-
-        [JsonPropertyName("timestamp")]
-        public long? Timestamp { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-    }
-
-    // Source: m2taskexecutionfailureitemcontent
-    public class M2TaskExecutionFailureItemContentDto
-    {
-        [Required]
-        [JsonPropertyName("taskExecutionId")]
-        public string TaskExecutionId { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskExecutionName")]
-        public string TaskExecutionName { get; set; }
-
-        [Required]
-        [JsonPropertyName("repoName")]
-        public string RepoName { get; set; }
-
-        [Required]
-        [JsonPropertyName("branchName")]
-        public string BranchName { get; set; }
-
-        [Required]
-        [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
-        [Required]
-        [JsonPropertyName("shortCommitMessage")]
-        public string ShortCommitMessage { get; set; }
-
-        [Required]
-        [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
-        [Required]
-        [JsonPropertyName("finishDateTime")]
-        public long FinishDateTime { get; set; }
-
-        [Required]
-        [JsonPropertyName("triggerInfo")]
-        public string TriggerInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("details")]
-        public string Details { get; set; }
-
-    }
-
-    // Source: m2absenceitemdeletedcontent
-    public class M2AbsenceItemDeletedContentDto
-    {
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
-    }
-
-    // Source: mcmessage
-    public class MCMessageDto
-    {
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style { get; set; }
-
-        [JsonPropertyName("outline")]
-        public MCOutlineDto? Outline { get; set; }
-
-        [Required]
-        [JsonPropertyName("content")]
-        public List<MCElementDto> Content { get; set; }
-
-        [JsonPropertyName("serviceId")]
-        public string? ServiceId { get; set; }
-
-        [JsonPropertyName("supplementaryData")]
-        public string? SupplementaryData { get; set; }
-
-    }
-
-    // Source: mcoutline
-    public class MCOutlineDto
-    {
-        [JsonPropertyName("icon")]
-        public MCElementDto? Icon { get; set; }
-
-        [JsonPropertyName("text")]
-        public MCTextDto? Text { get; set; }
-
-    }
-
-    // Source: mcelement
-    public class MCElementDto
-    {
-        [Required]
-        [JsonPropertyName("defaultText")]
-        public string DefaultText { get; set; }
-
-        [JsonPropertyName("details")]
-        public MCElementDetailsDto? Details { get; set; }
-
-    }
-
-    // Source: mcelementdetails
-    public class MCElementDetailsDto
-    {
-    }
-
-    // Source: mctext
-    public class MCTextDto
-    {
-        [Required]
-        [JsonPropertyName("content")]
-        public string Content { get; set; }
-
-        [Required]
-        [JsonPropertyName("markdown")]
-        public bool Markdown { get; set; }
-
-        [JsonPropertyName("accessory")]
-        public MCElementDto? Accessory { get; set; }
-
-    }
-
-    // Source: mcsection
-    public class MCSectionDto
-    {
-        [JsonPropertyName("header")]
-        public MCTextDto? Header { get; set; }
-
-        [Required]
-        [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }
-
-        [JsonPropertyName("footer")]
-        public MCTextDto? Footer { get; set; }
-
-    }
-
-    // Source: mcicon
-    public class MCIconDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style { get; set; }
-
-    }
-
-    // Source: mcgroup
-    public class MCGroupDto
-    {
-        [Required]
-        [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }
-
-    }
-
-    // Source: mcbutton
-    public class MCButtonDto
-    {
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style { get; set; }
-
-        [Required]
-        [JsonPropertyName("action")]
-        public MCActionDto Action { get; set; }
-
-    }
-
-    // Source: mcaction
-    public class MCActionDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
-
-    }
-
-    // Source: mcfields
-    public class MCFieldsDto
-    {
-        [Required]
-        [JsonPropertyName("fields")]
-        public List<Object1Dto> Fields { get; set; }
-
-    }
-
-    // Source: mctag
-    public class MCTagDto
-    {
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [Required]
-        [JsonPropertyName("style")]
-        public string Style { get; set; }
-
-    }
-
-    // Source: mcdivider
-    public class MCDividerDto
-    {
-    }
-
-    // Source: mcimage
-    public class MCImageDto
-    {
-        [Required]
-        [JsonPropertyName("src")]
-        public string Src { get; set; }
-
-    }
-
-    // Source: m2absenceitemcontent
-    public class M2AbsenceItemContentDto
-    {
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
-    }
-
-    // Source: m2channelarchiveditemdetails
-    public class M2ChannelArchivedItemDetailsDto
-    {
-    }
-
-    // Source: m2absenceitemupdatedcontent
-    public class M2AbsenceItemUpdatedContentDto
-    {
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
-        [JsonPropertyName("reason")]
-        public Modification<AbsenceReasonRecordDto>? Reason { get; set; }
-
-        [JsonPropertyName("description")]
-        public Modification<string>? Description { get; set; }
-
-        [JsonPropertyName("since")]
-        public Modification<SpaceDate>? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public Modification<SpaceDate>? Till { get; set; }
-
-    }
-
-    // Source: m2packagecontentdetails
-    public class M2PackageContentDetailsDto
-    {
-    }
-
-    // Source: m2packagedeleteddetails
-    public class M2PackageDeletedDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("pkg")]
-        public PackageVersionInfoDto Pkg { get; set; }
-
-    }
-
-    // Source: packageversioninfo
-    public class PackageVersionInfoDto
-    {
-        [Required]
-        [JsonPropertyName("type")]
-        public PackageTypeDto Type { get; set; }
-
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("version")]
-        public string Version { get; set; }
-
-        [JsonPropertyName("tags")]
-        public List<string>? Tags { get; set; }
-
-    }
-
-    // Source: packagetype
-    public class PackageTypeDto
-    {
-    }
-
-    // Source: packagetype_tsimpl
-    public class PackageTypeTSImplDto
-    {
-    }
-
-    // Source: mavenpackagetype
-    public class MavenPackageTypeDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-    }
-
-    // Source: containerpackagetype
-    public class ContainerPackageTypeDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-    }
-
-    // Source: nugetpackagetype
-    public class NuGetPackageTypeDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-    }
-
-    // Source: m2packagecreateddetails
-    public class M2PackageCreatedDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("pkg")]
-        public PackageVersionInfoDto Pkg { get; set; }
-
-    }
-
-    // Source: m2membershipcontent
-    public class M2MembershipContentDto
-    {
-    }
-
-    // Source: m2membershipcreatedcontent
-    public class M2MembershipCreatedContentDto
-         : M2MembershipContentDto
-    {
-        [Required]
-        [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
-
-    }
-
-    // Source: m2membershiprequestedcontent
-    public class M2MembershipRequestedContentDto
-         : M2MembershipContentDto
-    {
-        [Required]
-        [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
-
-        [Required]
-        [JsonPropertyName("leave")]
-        public bool Leave { get; set; }
-
-    }
-
-    // Source: m2membershipterminatedcontent
-    public class M2MembershipTerminatedContentDto
-         : M2MembershipContentDto
-    {
-        [Required]
-        [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
-
-    }
-
-    // Source: stickercontentdetails
-    public class StickerContentDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("sticker")]
-        public StickerDto Sticker { get; set; }
-
-        [JsonPropertyName("pack")]
-        public StickerPackInfoDto? Pack { get; set; }
-
-    }
-
-    // Source: sticker
-    public class StickerDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("symbol")]
-        public string? Symbol { get; set; }
-
-        [JsonPropertyName("attachmentId")]
-        public string? AttachmentId { get; set; }
-
-        [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
-        [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-    }
-
-    // Source: stickerpackinfo
-    public class StickerPackInfoDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("favoriteByDefault")]
-        public bool FavoriteByDefault { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
-        [Required]
-        [JsonPropertyName("pack")]
-        public StickerPackInfoDto Pack { get; set; }
-
-        [JsonPropertyName("addedAt")]
-        public SpaceTime? AddedAt { get; set; }
-
-        [Required]
-        [JsonPropertyName("stickers")]
-        public List<StickerDto> Stickers { get; set; }
-
-    }
-
-    // Source: m2blogitempreview
-    public class M2BlogItemPreviewDto
-    {
-        [Required]
-        [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
-        [Required]
-        [JsonPropertyName("articlePreview")]
-        public ArticlePreviewRecordDto ArticlePreview { get; set; }
-
-        [Required]
-        [JsonPropertyName("articleDetails")]
-        public ArticleDetailsRecordDto ArticleDetails { get; set; }
-
-        [Required]
-        [JsonPropertyName("articleChannel")]
-        public ArticleChannelRecordDto ArticleChannel { get; set; }
-
-    }
-
-    // Source: articlepreviewrecord
-    public class ArticlePreviewRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
-
-        [Required]
-        [JsonPropertyName("preview")]
-        public string Preview { get; set; }
-
-        [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber { get; set; }
-
-    }
-
-    // Source: articledetailsrecord
-    public class ArticleDetailsRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [JsonPropertyName("event")]
-        public MeetingRecordDto? Event { get; set; }
-
-        [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
 
         [JsonPropertyName("project")]
         public PRProjectDto? Project { get; set; }
 
-        [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
+        [JsonPropertyName("owner")]
+        public TDMemberProfileDto? Owner { get; set; }
 
-    }
-
-    // Source: articlechannelrecord
-    public class ArticleChannelRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
-        [Required]
-        [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecordDto ChannelContent { get; set; }
-
-        [Required]
-        [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto Reactions { get; set; }
-
-    }
-
-    // Source: m2channelrecord
-    public class M2ChannelRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("contact")]
-        public M2ChannelContactDto Contact { get; set; }
-
-        [Required]
-        [JsonPropertyName("totalMessages")]
-        public int TotalMessages { get; set; }
-
-        [JsonPropertyName("lastMessage")]
-        public MessageInfoDto? LastMessage { get; set; }
-
-        [JsonPropertyName("authors")]
-        public List<TDMemberProfileDto>? Authors { get; set; }
-
-        [JsonPropertyName("commentAuthors")]
-        public List<CPrincipalDto>? CommentAuthors { get; set; }
-
-        [JsonPropertyName("participants")]
-        public List<ChannelParticipantDto>? Participants { get; set; }
-
-        [JsonPropertyName("channelArchived")]
-        public bool? ChannelArchived { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto Content { get; set; }
-
-    }
-
-    // Source: m2channelcontact
-    public class M2ChannelContactDto
-    {
-        [Required]
-        [JsonPropertyName("defaultName")]
-        public string DefaultName { get; set; }
-
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [JsonPropertyName("ext")]
-        public M2ChannelContactInfoDto? Ext { get; set; }
-
-    }
-
-    // Source: m2channelcontactinfo
-    public class M2ChannelContactInfoDto
-    {
-    }
-
-    // Source: m2channelcontactquickinfodefault
-    public class M2ChannelContactQuickInfoDefaultDto
-    {
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
+        [JsonPropertyName("root")]
+        public PlanItemDto? Root { get; set; }
 
-    }
+        [JsonPropertyName("rootTag")]
+        public PlanningTagDto? RootTag { get; set; }
 
-    // Source: m2channelcontactobsolete
-    public class M2ChannelContactObsoleteDto
-    {
-        [JsonPropertyName("cause")]
-        public M2ObsoleteCause? Cause { get; set; }
-
-    }
-
-    // Source: m2channelcontentteam
-    public class M2ChannelContentTeamDto
-    {
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
-    }
-
-    // Source: m2channelcontentmember
-    public class M2ChannelContentMemberDto
-    {
-        [Required]
-        [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
-        [JsonPropertyName("memberAbsences")]
-        public ProfileAbsencesRecordDto? MemberAbsences { get; set; }
-
-        [JsonPropertyName("memberTeams")]
-        public ProfileMembershipRecordDto? MemberTeams { get; set; }
-
-    }
-
-    // Source: profileabsencesrecord
-    public class ProfileAbsencesRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("absences")]
-        public List<AbsenceRecordDto> Absences { get; set; }
-
-    }
-
-    // Source: profilemembershiprecord
-    public class ProfileMembershipRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }
-
-    }
-
-    // Source: m2channelcontactthread
-    public class M2ChannelContactThreadDto
-    {
-        [Required]
-        [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }
-
-        [JsonPropertyName("text")]
-        public string? Text { get; set; }
-
-        [JsonPropertyName("messageId")]
-        public string? MessageId { get; set; }
-
-        [JsonPropertyName("author")]
-        public TDMemberProfileDto? Author { get; set; }
-
-        [JsonPropertyName("messageAuthor")]
-        public CPrincipalDto? MessageAuthor { get; set; }
-
-        [JsonPropertyName("attachments")]
-        public string? Attachments { get; set; }
-
-    }
-
-    // Source: m2channelcontentnamedprivatechannel
-    public class M2ChannelContentNamedPrivateChannelDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
-
-    }
-
-    // Source: m2sharedchannelcontent
-    public class M2SharedChannelContentDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("group")]
-        public string Group { get; set; }
-
-        [Required]
-        [JsonPropertyName("access")]
-        public M2Access Access { get; set; }
-
-        [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
-
-        [JsonPropertyName("membersCounter")]
-        public int? MembersCounter { get; set; }
+        public string? Description { get; set; }
 
         [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+        [JsonPropertyName("totalItemsCount")]
+        public int TotalItemsCount { get; set; }
 
-        [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }
+        [Required]
+        [JsonPropertyName("doneItemsCount")]
+        public int DoneItemsCount { get; set; }
 
-        [JsonPropertyName("canEdit")]
-        public bool? CanEdit { get; set; }
+        [JsonPropertyName("updatedTime")]
+        public SpaceTime? UpdatedTime { get; set; }
 
     }
 
-    // Source: m2channelcontactarticle
-    public class M2ChannelContactArticleDto
+    // Source: codediscussionaddedfeedevent
+    public class CodeDiscussionAddedFeedEventDto
     {
         [Required]
-        [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
-    }
-
-    // Source: m2channelcontentcodediscussion
-    public class M2ChannelContentCodeDiscussionDto
-    {
-        [Required]
-        [JsonPropertyName("codeDiscussionId")]
-        public string CodeDiscussionId { get; set; }
-
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
         [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecordDto? CodeDiscussion { get; set; }
+        public CodeDiscussionRecordDto CodeDiscussion { get; set; }
+
+        [Required]
+        [JsonPropertyName("codeReview")]
+        public CodeReviewRecordDto CodeReview { get; set; }
+
+    }
+
+    // Source: codediscussionanchor
+    public class CodeDiscussionAnchorDto
+    {
+        [Required]
+        [JsonPropertyName("project")]
+        public ProjectKeyDto Project { get; set; }
+
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
+
+        [JsonPropertyName("filename")]
+        public string? Filename { get; set; }
+
+        [JsonPropertyName("line")]
+        public int? Line { get; set; }
+
+        [JsonPropertyName("oldLine")]
+        public int? OldLine { get; set; }
+
+        [JsonPropertyName("interpolatedLineState")]
+        public InterpolatedLineState? InterpolatedLineState { get; set; }
 
     }
 
@@ -2807,6 +1478,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("snippet")]
         public CodeDiscussionSnippetDto? Snippet { get; set; }
 
+        [JsonPropertyName("pending")]
+        public bool? Pending { get; set; }
+
         [JsonPropertyName("review")]
         public CodeReviewRecordDto? Review { get; set; }
 
@@ -2819,38 +1493,19 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: codediscussionanchor
-    public class CodeDiscussionAnchorDto
-    {
-        [Required]
-        [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
-        [JsonPropertyName("filename")]
-        public string? Filename { get; set; }
-
-        [JsonPropertyName("line")]
-        public int? Line { get; set; }
-
-        [JsonPropertyName("oldLine")]
-        public int? OldLine { get; set; }
-
-        [JsonPropertyName("interpolatedLineState")]
-        public InterpolatedLineState? InterpolatedLineState { get; set; }
-
-    }
-
     // Source: codediscussionsnippet
     public class CodeDiscussionSnippetDto
     {
+    }
+
+    // Source: codediscussionsnippet.inlinediffsnippet
+    public class CodeDiscussionSnippetInlineDiffSnippetDto
+         : CodeDiscussionSnippetDto
+    {
+        [Required]
+        [JsonPropertyName("lines")]
+        public List<InlineDiffLineDto> Lines { get; set; }
+
     }
 
     // Source: codediscussionsnippet.plainsnippet
@@ -2870,6 +1525,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text { get; set; }
 
+        [JsonPropertyName("index")]
+        public int? Index { get; set; }
+
         [Required]
         [JsonPropertyName("offset")]
         public int Offset { get; set; }
@@ -2879,80 +1537,47 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: syntaxmarkup
-    public class SyntaxMarkupDto
+    // Source: codereviewdetailedinfo
+    public class CodeReviewDetailedInfoDto
     {
         [Required]
-        [JsonPropertyName("type")]
-        public SyntaxMarkupType Type { get; set; }
+        [JsonPropertyName("shortInfo")]
+        public CodeReviewRecordDto ShortInfo { get; set; }
 
         [Required]
-        [JsonPropertyName("range")]
-        public TextRangeDto Range { get; set; }
+        [JsonPropertyName("commits")]
+        public List<RevisionsInReviewDto> Commits { get; set; }
+
+        [Required]
+        [JsonPropertyName("lostCommits")]
+        public List<RevisionsInReviewDto> LostCommits { get; set; }
+
+        [Required]
+        [JsonPropertyName("discussionCounter")]
+        public CodeReviewDiscussionCounterDto DiscussionCounter { get; set; }
+
+        [Required]
+        [JsonPropertyName("branches")]
+        public List<TrackedBranchesInReviewDto> Branches { get; set; }
 
     }
 
-    // Source: textrange
-    public class TextRangeDto
+    // Source: codereviewdiscussionaddedfeedevent
+    public class CodeReviewDiscussionAddedFeedEventDto
     {
         [Required]
-        [JsonPropertyName("start")]
-        public int Start { get; set; }
-
-        [Required]
-        [JsonPropertyName("length")]
-        public int Length { get; set; }
+        [JsonPropertyName("discussion")]
+        public CodeReviewDiscussionRecordDto Discussion { get; set; }
 
     }
 
-    // Source: codediscussionsnippet.inlinediffsnippet
-    public class CodeDiscussionSnippetInlineDiffSnippetDto
-         : CodeDiscussionSnippetDto
+    // Source: codereviewdiscussioncounter
+    public class CodeReviewDiscussionCounterDto
     {
         [Required]
-        [JsonPropertyName("lines")]
-        public List<InlineDiffLineDto> Lines { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
-    }
-
-    // Source: inlinediffline
-    public class InlineDiffLineDto
-    {
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [JsonPropertyName("type")]
-        public DiffLineType? Type { get; set; }
-
-        [JsonPropertyName("oldLineNum")]
-        public int? OldLineNum { get; set; }
-
-        [JsonPropertyName("newLineNum")]
-        public int? NewLineNum { get; set; }
-
-        [Required]
-        [JsonPropertyName("oldFileOffset")]
-        public int OldFileOffset { get; set; }
-
-        [Required]
-        [JsonPropertyName("newFileOffset")]
-        public int NewFileOffset { get; set; }
-
-        [JsonPropertyName("syntax")]
-        public List<SyntaxMarkupDto>? Syntax { get; set; }
-
-        [JsonPropertyName("deletes")]
-        public List<TextRangeDto>? Deletes { get; set; }
-
-        [JsonPropertyName("inserts")]
-        public List<TextRangeDto>? Inserts { get; set; }
-
-    }
-
-    // Source: codereviewrecord
-    public class CodeReviewRecordDto
-    {
         [Required]
         [JsonPropertyName("projectId")]
         public string ProjectId { get; set; }
@@ -2961,73 +1586,30 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("counter")]
         public CounterDto Counter { get; set; }
 
-        [Required]
-        [JsonPropertyName("reviewers")]
-        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
-
-        [Required]
-        [JsonPropertyName("authors")]
-        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
-
-        [Required]
-        [JsonPropertyName("watchers")]
-        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
-
-        [Required]
-        [JsonPropertyName("count")]
-        public int Count { get; set; }
-
     }
 
-    // Source: mergerequestrecord
-    public class MergeRequestRecordDto
-         : CodeReviewRecordDto
+    // Source: codereviewdiscussionrecord
+    public class CodeReviewDiscussionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
+        [JsonPropertyName("review")]
+        public CodeReviewRecordDto Review { get; set; }
 
         [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
 
         [Required]
-        [JsonPropertyName("number")]
-        public int Number { get; set; }
+        [JsonPropertyName("channel")]
+        public M2ChannelRecordDto Channel { get; set; }
 
         [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
-
-        [JsonPropertyName("canBeReopened")]
-        public bool? CanBeReopened { get; set; }
-
-        [Required]
-        [JsonPropertyName("createdAt")]
-        public long CreatedAt { get; set; }
-
-        [Required]
-        [JsonPropertyName("createdBy")]
-        public TDMemberProfileDto CreatedBy { get; set; }
-
-        [Required]
-        [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto> Participants { get; set; }
-
-        [JsonPropertyName("feedChannel")]
-        public M2ChannelRecordDto? FeedChannel { get; set; }
-
-        [Required]
-        [JsonPropertyName("branchPairs")]
-        public List<MergeRequestBranchPairDto> BranchPairs { get; set; }
+        [JsonPropertyName("resolved")]
+        public bool Resolved { get; set; }
 
     }
 
@@ -3045,49 +1627,150 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public ReviewerState? State { get; set; }
 
+        [JsonPropertyName("theirTurn")]
+        public bool? TheirTurn { get; set; }
+
     }
 
-    // Source: mergerequestbranchpair
-    public class MergeRequestBranchPairDto
+    // Source: codereviewparticipantrecord
+    public class CodeReviewParticipantRecordDto
     {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId { get; set; }
+
+        [Required]
+        [JsonPropertyName("role")]
+        public CodeReviewParticipantRole Role { get; set; }
+
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [JsonPropertyName("reviewerState")]
+        public ReviewerState? ReviewerState { get; set; }
+
+        [JsonPropertyName("theirTurn")]
+        public bool? TheirTurn { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: codereviewparticipants
+    public class CodeReviewParticipantsDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("participants")]
+        public List<CodeReviewParticipantDto>? Participants { get; set; }
+
+        [Required]
+        [JsonPropertyName("reviewers")]
+        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
+
+        [Required]
+        [JsonPropertyName("authors")]
+        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
+
+        [Required]
+        [JsonPropertyName("watchers")]
+        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
+
+    }
+
+    // Source: codereviewrecord
+    public class CodeReviewRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("counter")]
+        public CounterDto Counter { get; set; }
+
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId { get; set; }
+
+        [Required]
+        [JsonPropertyName("authors")]
+        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
+
+        [JsonPropertyName("participants")]
+        public List<CodeReviewParticipantDto>? Participants { get; set; }
+
+        [Required]
+        [JsonPropertyName("reviewers")]
+        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
+
+        [Required]
+        [JsonPropertyName("watchers")]
+        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
+
+        [Required]
+        [JsonPropertyName("count")]
+        public int Count { get; set; }
+
+    }
+
+    // Source: codereviewwithcount
+    public class CodeReviewWithCountDto
+    {
+        [Required]
+        [JsonPropertyName("review")]
+        public CodeReviewRecordDto Review { get; set; }
+
+        [Required]
+        [JsonPropertyName("messagesCount")]
+        public int MessagesCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("authors")]
+        public List<GitCommitterProfileDto> Authors { get; set; }
+
+        [Required]
+        [JsonPropertyName("participants")]
+        public CodeReviewParticipantsDto Participants { get; set; }
+
+    }
+
+    // Source: codesnippetanchor
+    public class CodeSnippetAnchorDto
+    {
+        [Required]
+        [JsonPropertyName("projectKey")]
+        public ProjectKeyDto ProjectKey { get; set; }
+
         [Required]
         [JsonPropertyName("repository")]
         public string Repository { get; set; }
 
         [Required]
-        [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
 
         [Required]
-        [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }
+        [JsonPropertyName("filename")]
+        public string Filename { get; set; }
 
-        [Required]
-        [JsonPropertyName("sourceBranchRef")]
-        public string SourceBranchRef { get; set; }
+        [JsonPropertyName("lineIndex")]
+        public int? LineIndex { get; set; }
 
-        [JsonPropertyName("sourceBranchInfo")]
-        public MergeRequestBranchDto? SourceBranchInfo { get; set; }
+        [JsonPropertyName("lineStart")]
+        public int? LineStart { get; set; }
 
-        [JsonPropertyName("targetBranchInfo")]
-        public MergeRequestBranchDto? TargetBranchInfo { get; set; }
-
-    }
-
-    // Source: mergerequestbranch
-    public class MergeRequestBranchDto
-    {
-        [Required]
-        [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
-
-        [Required]
-        [JsonPropertyName("ref")]
-        public string Ref { get; set; }
-
-        [Required]
-        [JsonPropertyName("deleted")]
-        public bool Deleted { get; set; }
+        [JsonPropertyName("lineEnd")]
+        public int? LineEnd { get; set; }
 
     }
 
@@ -3130,6 +1813,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdBy")]
         public TDMemberProfileDto CreatedBy { get; set; }
 
+        [JsonPropertyName("turnBased")]
+        public bool? TurnBased { get; set; }
+
         [Required]
         [JsonPropertyName("participants")]
         public List<CodeReviewParticipantDto> Participants { get; set; }
@@ -3139,83 +1825,117 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: m2channelcontentcodereviewdiscussion
-    public class M2ChannelContentCodeReviewDiscussionDto
+    // Source: commitstatusdto
+    public class CommitStatusDTODto
     {
         [Required]
-        [JsonPropertyName("codeReviewDiscussion")]
-        public string CodeReviewDiscussion { get; set; }
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
 
         [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
+
+        [Required]
+        [JsonPropertyName("executionStatus")]
+        public ExecutionStatus ExecutionStatus { get; set; }
+
+        [Required]
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+
+        [Required]
+        [JsonPropertyName("externalServiceName")]
+        public string ExternalServiceName { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskName")]
+        public string TaskName { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskId")]
+        public string TaskId { get; set; }
+
+        [Required]
+        [JsonPropertyName("timestamp")]
+        public long Timestamp { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
 
     }
 
-    // Source: m2channelcontentcodereviewfeed
-    public class M2ChannelContentCodeReviewFeedDto
-    {
-        [Required]
-        [JsonPropertyName("codeReviewId")]
-        public string CodeReviewId { get; set; }
-
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
-        [JsonPropertyName("codeReview")]
-        public CodeReviewRecordDto? CodeReview { get; set; }
-
-        [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto? Participants { get; set; }
-
-    }
-
-    // Source: codereviewparticipants
-    public class CodeReviewParticipantsDto
+    // Source: containerpackagetype
+    public class ContainerPackageTypeDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
+    }
+
+    // Source: counter
+    public class CounterDto
+    {
         [Required]
-        [JsonPropertyName("reviewers")]
-        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
+        [JsonPropertyName("resolved")]
+        public int Resolved { get; set; }
 
         [Required]
-        [JsonPropertyName("authors")]
-        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
-
-        [Required]
-        [JsonPropertyName("watchers")]
-        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
+        [JsonPropertyName("unresolved")]
+        public int Unresolved { get; set; }
 
     }
 
-    // Source: codereviewparticipantrecord
-    public class CodeReviewParticipantRecordDto
+    // Source: customcolumnvalueswithschemadata
+    public class CustomColumnValuesWithSchemaDataDto
     {
+    }
+
+    // Source: customfield
+    public class CustomFieldDto
+    {
+        [Required]
+        [JsonPropertyName("extendedType")]
+        public ExtendedTypeDto ExtendedType { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         [Required]
-        [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
 
         [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        [JsonPropertyName("type")]
+        public CFTypeDto Type { get; set; }
 
-        [JsonPropertyName("reviewerState")]
-        public ReviewerState? ReviewerState { get; set; }
+        [JsonPropertyName("constraint")]
+        public CFConstraintDto? Constraint { get; set; }
 
-        [JsonPropertyName("theirTurn")]
-        public bool? TheirTurn { get; set; }
+        [Required]
+        [JsonPropertyName("required")]
+        public bool Required { get; set; }
+
+        [Required]
+        [JsonPropertyName("private")]
+        public bool Private { get; set; }
+
+        [JsonPropertyName("access")]
+        public AccessType? Access { get; set; }
+
+        [Required]
+        [JsonPropertyName("defaultValue")]
+        public CFValueDto DefaultValue { get; set; }
+
+        [Required]
+        [JsonPropertyName("order")]
+        public int Order { get; set; }
 
         [Required]
         [JsonPropertyName("archived")]
@@ -3223,65 +1943,121 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: m2channelissueinfo
-    public class M2ChannelIssueInfoDto
+    // Source: customfieldvalue
+    public class CustomFieldValueDto
     {
-        [JsonPropertyName("projectKey")]
-        public ProjectKeyDto? ProjectKey { get; set; }
+        [Required]
+        [JsonPropertyName("field")]
+        public CustomFieldDto Field { get; set; }
 
         [Required]
-        [JsonPropertyName("issue")]
-        public IssueDto Issue { get; set; }
-
-        [Required]
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+        [JsonPropertyName("value")]
+        public CFValueDto Value { get; set; }
 
     }
 
-    // Source: issue
-    public class IssueDto
+    // Source: customfieldsrecord
+    public class CustomFieldsRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        [JsonPropertyName("values")]
+        public List<CustomFieldValueDto> Values { get; set; }
+
+    }
+
+    // Source: dr_draft
+    public class DRDraftDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
-        [JsonPropertyName("projectRef")]
-        public PRProjectDto? ProjectRef { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
 
         [Required]
-        [JsonPropertyName("number")]
-        public int Number { get; set; }
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
 
         [Required]
-        [JsonPropertyName("createdBy")]
-        public CPrincipalDto CreatedBy { get; set; }
+        [JsonPropertyName("type")]
+        public DraftDocumentType Type { get; set; }
 
         [Required]
-        [JsonPropertyName("creationTime")]
-        public SpaceTime CreationTime { get; set; }
+        [JsonPropertyName("modified")]
+        public SpaceTime Modified { get; set; }
 
-        [JsonPropertyName("assignee")]
-        public TDMemberProfileDto? Assignee { get; set; }
+        [JsonPropertyName("published")]
+        public ArticleRecordDto? Published { get; set; }
 
-        [Required]
-        [JsonPropertyName("status")]
-        public IssueStatusDto Status { get; set; }
-
-        [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
+        [JsonPropertyName("publishedFlag")]
+        public bool? PublishedFlag { get; set; }
 
         [Required]
-        [JsonPropertyName("tags")]
-        public List<PlanningTagDto> Tags { get; set; }
+        [JsonPropertyName("shared")]
+        public bool Shared { get; set; }
+
+        [Required]
+        [JsonPropertyName("accessOrdinal")]
+        public int AccessOrdinal { get; set; }
+
+        [JsonPropertyName("publicationDetails")]
+        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
+
+        [JsonPropertyName("author")]
+        public TDMemberProfileDto? Author { get; set; }
+
+        [Required]
+        [JsonPropertyName("editors")]
+        public List<TDMemberProfileDto> Editors { get; set; }
+
+        [Required]
+        [JsonPropertyName("editorsTeams")]
+        public List<TDTeamDto> EditorsTeams { get; set; }
+
+        [JsonPropertyName("version")]
+        public long? Version { get; set; }
+
+    }
+
+    // Source: dr_draftid
+    public class DRDraftIdDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+    }
+
+    // Source: dto_absencesubscription
+    public class DTOAbsenceSubscriptionDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("location")]
+        public TDLocationDto? Location { get; set; }
+
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }
+
+        [JsonPropertyName("reason")]
+        public AbsenceReasonRecordDto? Reason { get; set; }
+
+    }
+
+    // Source: dto_fullrightwithouttype
+    public class DTOFullRightWithoutTypeDto
+    {
+        [Required]
+        [JsonPropertyName("code")]
+        public string Code { get; set; }
 
         [Required]
         [JsonPropertyName("title")]
@@ -3291,1115 +2067,153 @@ namespace SpaceDotNet.Client
         public string? Description { get; set; }
 
         [Required]
-        [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
+        [JsonPropertyName("grantedForUsers")]
+        public bool GrantedForUsers { get; set; }
 
-        [Required]
-        [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto> Attachments { get; set; }
-
-    }
-
-    // Source: issuestatus
-    public class IssueStatusDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
-
-        [Required]
-        [JsonPropertyName("color")]
-        public string Color { get; set; }
+        [JsonPropertyName("featureFlag")]
+        public FeatureFlagDto? FeatureFlag { get; set; }
 
     }
 
-    // Source: planningtag
-    public class PlanningTagDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
-        [JsonPropertyName("parent")]
-        public PlanningTagDto? Parent { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-    }
-
-    // Source: messageinfo
-    public class MessageInfoDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [Required]
-        [JsonPropertyName("time")]
-        public long Time { get; set; }
-
-        [Required]
-        [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }
-
-        [JsonPropertyName("attachments")]
-        public string? Attachments { get; set; }
-
-    }
-
-    // Source: channelparticipant
-    public class ChannelParticipantDto
-    {
-        [Required]
-        [JsonPropertyName("principal")]
-        public CPrincipalDto Principal { get; set; }
-
-        [Required]
-        [JsonPropertyName("messageCount")]
-        public int MessageCount { get; set; }
-
-    }
-
-    // Source: m2channelcontentrecord
-    public class M2ChannelContentRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto Content { get; set; }
-
-    }
-
-    // Source: allreactionstoitemrecord
-    public class AllReactionsToItemRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("reactions")]
-        public List<CertainReactionToItemRecordDto> Reactions { get; set; }
-
-        [JsonPropertyName("emojiReactions")]
-        public List<EmojiReactionRecordDto>? EmojiReactions { get; set; }
-
-    }
-
-    // Source: certainreactiontoitemrecord
-    public class CertainReactionToItemRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }
-
-        [Required]
-        [JsonPropertyName("reaction")]
-        public ReactionTypeRecordDto Reaction { get; set; }
-
-        [Required]
-        [JsonPropertyName("count")]
-        public int Count { get; set; }
-
-        [Required]
-        [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }
-
-        [Required]
-        [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get; set; }
-
-        [JsonPropertyName("order")]
-        public long? Order { get; set; }
-
-    }
-
-    // Source: reactiontyperecord
-    public class ReactionTypeRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("data")]
-        public ReactionDataDto Data { get; set; }
-
-        [Required]
-        [JsonPropertyName("provider")]
-        public CPrincipalDto Provider { get; set; }
-
-        [Required]
-        [JsonPropertyName("addedAt")]
-        public SpaceDate AddedAt { get; set; }
-
-        [JsonPropertyName("order")]
-        public int? Order { get; set; }
-
-    }
-
-    // Source: reactiondata
-    public class ReactionDataDto
+    // Source: dto_limit
+    public class DTOLimitDto
     {
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonPropertyName("symbol")]
-        public string Symbol { get; set; }
+        [JsonPropertyName("unit")]
+        public LimitUnit Unit { get; set; }
 
         [Required]
-        [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
+        [JsonPropertyName("estimate")]
+        public long Estimate { get; set; }
+
+        [JsonPropertyName("specificEstimate")]
+        public long? SpecificEstimate { get; set; }
+
+        [JsonPropertyName("softCap")]
+        public long? SoftCap { get; set; }
+
+        [JsonPropertyName("hardCap")]
+        public long? HardCap { get; set; }
 
     }
 
-    // Source: emojireactionrecord
-    public class EmojiReactionRecordDto
+    // Source: dto_right
+    public class DTORightDto
     {
         [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
+        [JsonPropertyName("typeCode")]
+        public string TypeCode { get; set; }
 
         [Required]
-        [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }
-
-        [Required]
-        [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
-
-        [Required]
-        [JsonPropertyName("count")]
-        public int Count { get; set; }
-
-        [Required]
-        [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }
-
-        [Required]
-        [JsonPropertyName("order")]
-        public long Order { get; set; }
+        [JsonPropertyName("code")]
+        public string Code { get; set; }
 
     }
 
-    // Source: m2blogitemcontent
-    public class M2BlogItemContentDto
+    // Source: dto_righttype
+    public class DTORightTypeDto
     {
         [Required]
-        [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
+        [JsonPropertyName("typeCode")]
+        public string TypeCode { get; set; }
 
         [Required]
-        [JsonPropertyName("articleContent")]
-        public ArticleContentRecordDto ArticleContent { get; set; }
-
-        [Required]
-        [JsonPropertyName("articleDetails")]
-        public ArticleDetailsRecordDto ArticleDetails { get; set; }
-
-        [Required]
-        [JsonPropertyName("articleChannel")]
-        public ArticleChannelRecordDto ArticleChannel { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
 
     }
 
-    // Source: articlecontentrecord
-    public class ArticleContentRecordDto
+    // Source: dto_righttype_right
+    public class DTORightTypeRightDto
     {
         [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
+        [JsonPropertyName("rightType")]
+        public DTORightTypeDto RightType { get; set; }
 
         [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("content")]
-        public string Content { get; set; }
+        [JsonPropertyName("rights")]
+        public List<DTOFullRightWithoutTypeDto> Rights { get; set; }
 
     }
 
-    // Source: feedevent
-    public class FeedEventDto
-    {
-    }
-
-    // Source: reviewcompletionstatechangedevent
-    public class ReviewCompletionStateChangedEventDto
+    // Source: dto_rightsdeps
+    public class DTORightsDepsDto
     {
         [Required]
-        [JsonPropertyName("state")]
-        public ReviewerState State { get; set; }
-
-    }
-
-    // Source: mergerequestbranchrestoredevent
-    public class MergeRequestBranchRestoredEventDto
-    {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        [JsonPropertyName("code")]
+        public string Code { get; set; }
 
         [Required]
-        [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
-        [Required]
-        [JsonPropertyName("branchType")]
-        public MergeRequestBranchType BranchType { get; set; }
+        [JsonPropertyName("deps")]
+        public List<string> Deps { get; set; }
 
     }
 
-    // Source: mergerequestbranchdeletedevent
-    public class MergeRequestBranchDeletedEventDto
+    // Source: dto_rightsgroup
+    public class DTORightsGroupDto
     {
         [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
 
         [Required]
-        [JsonPropertyName("branch")]
-        public string Branch { get; set; }
+        [JsonPropertyName("priority")]
+        public int Priority { get; set; }
 
         [Required]
-        [JsonPropertyName("branchType")]
-        public MergeRequestBranchType BranchType { get; set; }
+        [JsonPropertyName("rights")]
+        public List<DTORightDto> Rights { get; set; }
 
     }
 
-    // Source: codediscussionaddedfeedevent
-    public class CodeDiscussionAddedFeedEventDto
+    // Source: dto_rightswithhierarchy
+    public class DTORightsWithHierarchyDto
     {
         [Required]
-        [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecordDto CodeDiscussion { get; set; }
+        [JsonPropertyName("rights")]
+        public List<DTORightTypeRightDto> Rights { get; set; }
 
         [Required]
-        [JsonPropertyName("codeReview")]
-        public CodeReviewRecordDto CodeReview { get; set; }
+        [JsonPropertyName("rightsGroups")]
+        public List<DTORightsGroupDto> RightsGroups { get; set; }
+
+        [Required]
+        [JsonPropertyName("deps")]
+        public List<DTORightsDepsDto> Deps { get; set; }
 
     }
 
-    // Source: mergerequestmergedevent
-    public class MergeRequestMergedEventDto
+    // Source: datecfconstraint
+    public class DateCFConstraintDto
+         : CFConstraintDto
     {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        [JsonPropertyName("min")]
+        public SpaceDate? Min { get; set; }
 
-        [Required]
-        [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }
-
-        [Required]
-        [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }
-
-    }
-
-    // Source: reviewstatechangedevent
-    public class ReviewStateChangedEventDto
-    {
-        [Required]
-        [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
-
-        [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
-
-    }
-
-    // Source: reviewbranchtrackevent
-    public class ReviewBranchTrackEventDto
-    {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
-        [Required]
-        [JsonPropertyName("track")]
-        public bool Track { get; set; }
-
-    }
-
-    // Source: reviewtitlechangedevent
-    public class ReviewTitleChangedEventDto
-    {
-        [Required]
-        [JsonPropertyName("oldTitle")]
-        public string OldTitle { get; set; }
-
-        [Required]
-        [JsonPropertyName("newTitle")]
-        public string NewTitle { get; set; }
-
-    }
-
-    // Source: reviewrevisionschangedevent
-    public class ReviewRevisionsChangedEventDto
-    {
-        [Required]
-        [JsonPropertyName("commits")]
-        public List<RepositoryCommitRecordDto> Commits { get; set; }
-
-        [Required]
-        [JsonPropertyName("changeType")]
-        public ReviewRevisionsChangedType ChangeType { get; set; }
-
-        [JsonPropertyName("projectKey")]
-        public string? ProjectKey { get; set; }
-
-        [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
-
-    }
-
-    // Source: repositorycommitrecord
-    public class RepositoryCommitRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("repositoryId")]
-        public string RepositoryId { get; set; }
-
-        [Required]
-        [JsonPropertyName("repositoryName")]
-        public string RepositoryName { get; set; }
-
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
+        [JsonPropertyName("max")]
+        public SpaceDate? Max { get; set; }
 
         [JsonPropertyName("message")]
         public string? Message { get; set; }
 
-        [Required]
-        [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }
-
-        [JsonPropertyName("authorName")]
-        public string? AuthorName { get; set; }
-
-        [JsonPropertyName("authorEmail")]
-        public string? AuthorEmail { get; set; }
-
-        [JsonPropertyName("committerName")]
-        public string? CommitterName { get; set; }
-
-        [JsonPropertyName("committerEmail")]
-        public string? CommitterEmail { get; set; }
-
-        [JsonPropertyName("authorProfile")]
-        public TDMemberProfileDto? AuthorProfile { get; set; }
-
     }
 
-    // Source: codereviewdiscussionaddedfeedevent
-    public class CodeReviewDiscussionAddedFeedEventDto
-    {
-        [Required]
-        [JsonPropertyName("discussion")]
-        public CodeReviewDiscussionRecordDto Discussion { get; set; }
-
-    }
-
-    // Source: codereviewdiscussionrecord
-    public class CodeReviewDiscussionRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get; set; }
-
-        [Required]
-        [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
-        [Required]
-        [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
-        [Required]
-        [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
-
-    }
-
-    // Source: reviewerchangedevent
-    public class ReviewerChangedEventDto
-    {
-        [Required]
-        [JsonPropertyName("uid")]
-        public TDMemberProfileDto Uid { get; set; }
-
-        [Required]
-        [JsonPropertyName("changeType")]
-        public ReviewerChangedType ChangeType { get; set; }
-
-    }
-
-    // Source: issuechangedm2details
-    public class IssueChangedM2DetailsDto
+    // Source: datecftype
+    public class DateCFTypeDto
+         : CFTypeDto
     {
     }
 
-    // Source: issueduedatechangeddetails
-    public class IssueDueDateChangedDetailsDto
+    // Source: datecfvalue
+    public class DateCFValueDto
+         : CFValueDto
     {
-        [JsonPropertyName("oldDueDate")]
-        public SpaceDate? OldDueDate { get; set; }
-
-        [JsonPropertyName("newDueDate")]
-        public SpaceDate? NewDueDate { get; set; }
-
-    }
-
-    // Source: issuestatuschangeddetails
-    public class IssueStatusChangedDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("oldStatus")]
-        public IssueStatusDto OldStatus { get; set; }
-
-        [Required]
-        [JsonPropertyName("newStatus")]
-        public IssueStatusDto NewStatus { get; set; }
-
-    }
-
-    // Source: issuecreateddetails
-    public class IssueCreatedDetailsDto
-    {
-    }
-
-    // Source: issuedeleteddetails
-    public class IssueDeletedDetailsDto
-    {
-    }
-
-    // Source: issuedescriptionchangeddetails
-    public class IssueDescriptionChangedDetailsDto
-    {
-        [JsonPropertyName("oldDescription")]
-        public string? OldDescription { get; set; }
-
-        [JsonPropertyName("newDescription")]
-        public string? NewDescription { get; set; }
-
-    }
-
-    // Source: issueattachmentschangeddetails
-    public class IssueAttachmentsChangedDetailsDto
-    {
-        [JsonPropertyName("addedNames")]
-        public List<string>? AddedNames { get; set; }
-
-        [JsonPropertyName("removedNames")]
-        public List<string>? RemovedNames { get; set; }
-
-    }
-
-    // Source: issuetitlechangeddetails
-    public class IssueTitleChangedDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("oldTitle")]
-        public string OldTitle { get; set; }
-
-        [Required]
-        [JsonPropertyName("newTitle")]
-        public string NewTitle { get; set; }
-
-    }
-
-    // Source: issueassigneechangeddetails
-    public class IssueAssigneeChangedDetailsDto
-    {
-        [JsonPropertyName("oldAssignee")]
-        public TDMemberProfileDto? OldAssignee { get; set; }
-
-        [JsonPropertyName("newAssignee")]
-        public TDMemberProfileDto? NewAssignee { get; set; }
-
-    }
-
-    // Source: issuetagschangeddetails
-    public class IssueTagsChangedDetailsDto
-    {
-        [JsonPropertyName("addedTags")]
-        public List<PlanningTagDto>? AddedTags { get; set; }
-
-        [JsonPropertyName("removedTags")]
-        public List<PlanningTagDto>? RemovedTags { get; set; }
-
-    }
-
-    // Source: attachmentinfo
-    public class AttachmentInfoDto
-    {
-        [JsonPropertyName("details")]
-        public AttachmentDto? Details { get; set; }
-
-    }
-
-    // Source: attachment
-    public class AttachmentDto
-    {
-    }
-
-    // Source: imageattachment
-    public class ImageAttachmentDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("width")]
-        public int Width { get; set; }
-
-        [Required]
-        [JsonPropertyName("height")]
-        public int Height { get; set; }
-
-        [JsonPropertyName("previewBytes")]
-        public string? PreviewBytes { get; set; }
-
-        [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantDto>? Variants { get; set; }
-
-    }
-
-    // Source: imageattachmentvariant
-    public class ImageAttachmentVariantDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("width")]
-        public int Width { get; set; }
-
-        [Required]
-        [JsonPropertyName("height")]
-        public int Height { get; set; }
-
-    }
-
-    // Source: fileattachment
-    public class FileAttachmentDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("sizeBytes")]
-        public long SizeBytes { get; set; }
-
-        [Required]
-        [JsonPropertyName("filename")]
-        public string Filename { get; set; }
-
-    }
-
-    // Source: profilelinkpreview
-    public class ProfileLinkPreviewDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-    }
-
-    // Source: linkpreview
-    public class LinkPreviewDto
-    {
-    }
-
-    // Source: videoattachment
-    public class VideoAttachmentDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
-        [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
-        [Required]
-        [JsonPropertyName("sizeBytes")]
-        public long SizeBytes { get; set; }
-
-        [JsonPropertyName("previewBytes")]
-        public string? PreviewBytes { get; set; }
-
-    }
-
-    // Source: unfurlattachment
-    public class UnfurlAttachmentDto
-    {
-        [Required]
-        [JsonPropertyName("unfurl")]
-        public UnfurlDto Unfurl { get; set; }
-
-        [JsonPropertyName("id")]
-        public string? Id { get; set; }
-
-    }
-
-    // Source: unfurl
-    public class UnfurlDto
-    {
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonPropertyName("link")]
-        public string Link { get; set; }
-
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [JsonPropertyName("details")]
-        public UnfurlDetailsDto? Details { get; set; }
-
-        [JsonPropertyName("sitename")]
-        public string? Sitename { get; set; }
-
-        [JsonPropertyName("image")]
-        public string? Image { get; set; }
-
-        [JsonPropertyName("imageMime")]
-        public string? ImageMime { get; set; }
-
-        [JsonPropertyName("imageWidth")]
-        public int? ImageWidth { get; set; }
-
-        [JsonPropertyName("imageHeight")]
-        public int? ImageHeight { get; set; }
-
-        [JsonPropertyName("video")]
-        public string? Video { get; set; }
-
-        [JsonPropertyName("videoMime")]
-        public string? VideoMime { get; set; }
-
-        [JsonPropertyName("videoHeight")]
-        public int? VideoHeight { get; set; }
-
-        [JsonPropertyName("videoWidth")]
-        public int? VideoWidth { get; set; }
-
-        [JsonPropertyName("favicon")]
-        public string? Favicon { get; set; }
-
-    }
-
-    // Source: unfurldetails
-    public class UnfurlDetailsDto
-    {
-    }
-
-    // Source: unfurldetailsprofile
-    public class UnfurlDetailsProfileDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-    }
-
-    // Source: unfurldetailsteam
-    public class UnfurlDetailsTeamDto
-    {
-        [Required]
-        [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
-    }
-
-    // Source: htmlmetadata
-    public class HtmlMetadataDto
-    {
-    }
-
-    // Source: youtubeoembed
-    public class YoutubeOEmbedDto
-    {
-        [Required]
-        [JsonPropertyName("thumbnailUrl")]
-        public string ThumbnailUrl { get; set; }
-
-        [Required]
-        [JsonPropertyName("thumbnailWidth")]
-        public int ThumbnailWidth { get; set; }
-
-        [Required]
-        [JsonPropertyName("thumbnailHeight")]
-        public int ThumbnailHeight { get; set; }
-
-        [Required]
-        [JsonPropertyName("authorName")]
-        public string AuthorName { get; set; }
-
-        [Required]
-        [JsonPropertyName("authorUrl")]
-        public string AuthorUrl { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("html")]
-        public string? Html { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public string Type { get; set; }
-
-        [Required]
-        [JsonPropertyName("version")]
-        public string Version { get; set; }
-
-    }
-
-    // Source: generalpagehtmlmetadata
-    public class GeneralPageHtmlMetadataDto
-    {
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("image")]
-        public string? Image { get; set; }
-
-    }
-
-    // Source: twitterplayercard
-    public class TwitterPlayerCardDto
-    {
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonPropertyName("site")]
-        public string Site { get; set; }
-
-        [Required]
-        [JsonPropertyName("player")]
-        public string Player { get; set; }
-
-        [Required]
-        [JsonPropertyName("playerWidth")]
-        public int PlayerWidth { get; set; }
-
-        [Required]
-        [JsonPropertyName("playerHeight")]
-        public int PlayerHeight { get; set; }
-
-        [Required]
-        [JsonPropertyName("image")]
-        public string Image { get; set; }
-
-        [JsonPropertyName("playerStream")]
-        public string? PlayerStream { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("imageAlt")]
-        public string? ImageAlt { get; set; }
-
-    }
-
-    // Source: twittersummarycard
-    public class TwitterSummaryCardDto
-    {
-        [Required]
-        [JsonPropertyName("card")]
-        public string Card { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("site")]
-        public string? Site { get; set; }
-
-        [JsonPropertyName("image")]
-        public string? Image { get; set; }
-
-        [JsonPropertyName("imageAlt")]
-        public string? ImageAlt { get; set; }
-
-    }
-
-    // Source: opengraph
-    public class OpenGraphDto
-    {
-        [JsonPropertyName("url")]
-        public string? Url { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("image")]
-        public OpenGraphImageDto? Image { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("determiner")]
-        public string? Determiner { get; set; }
-
-        [JsonPropertyName("siteName")]
-        public string? SiteName { get; set; }
-
-        [JsonPropertyName("video")]
-        public OpenGraphVideoDto? Video { get; set; }
-
-        [JsonPropertyName("audio")]
-        public OpenGraphAudioDto? Audio { get; set; }
-
-    }
-
-    // Source: opengraphimage
-    public class OpenGraphImageDto
-    {
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
-
-        [JsonPropertyName("mime")]
-        public string? Mime { get; set; }
-
-        [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
-        [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
-        [JsonPropertyName("alt")]
-        public string? Alt { get; set; }
-
-    }
-
-    // Source: opengraphvideo
-    public class OpenGraphVideoDto
-    {
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
-
-        [JsonPropertyName("mime")]
-        public string? Mime { get; set; }
-
-        [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
-        [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
-    }
-
-    // Source: opengraphaudio
-    public class OpenGraphAudioDto
-    {
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
-
-        [JsonPropertyName("mime")]
-        public string? Mime { get; set; }
-
-    }
-
-    // Source: unfurldetailsdatetime
-    public class UnfurlDetailsDateTimeDto
-    {
-        [Required]
-        [JsonPropertyName("utcMilliseconds")]
-        public long UtcMilliseconds { get; set; }
-
-    }
-
-    // Source: unfurldetailsdraft
-    public class UnfurlDetailsDraftDto
-    {
-        [Required]
-        [JsonPropertyName("draft")]
-        public string Draft { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-    }
-
-    // Source: channelitemsnapshot
-    public class ChannelItemSnapshotDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }
-
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [JsonPropertyName("details")]
-        public M2ItemContentDetailsDto? Details { get; set; }
-
-        [Required]
-        [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }
-
-        [Required]
-        [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
-        [Required]
-        [JsonPropertyName("time")]
-        public long Time { get; set; }
-
-        [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto>? Attachments { get; set; }
-
-    }
-
-    // Source: unfurldetailsarticle
-    public class UnfurlDetailsArticleDto
-    {
-        [Required]
-        [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
-        [Required]
-        [JsonPropertyName("content")]
-        public ArticleContentRecordDto Content { get; set; }
-
-        [Required]
-        [JsonPropertyName("channel")]
-        public ArticleChannelRecordDto Channel { get; set; }
-
-        [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get; set; }
-
-    }
-
-    // Source: unfurldetailscodesnippet
-    public class UnfurlDetailsCodeSnippetDto
-    {
-        [Required]
-        [JsonPropertyName("anchor")]
-        public CodeSnippetAnchorDto Anchor { get; set; }
-
-        [Required]
-        [JsonPropertyName("lines")]
-        public List<CodeLineDto> Lines { get; set; }
-
-    }
-
-    // Source: codesnippetanchor
-    public class CodeSnippetAnchorDto
-    {
-        [Required]
-        [JsonPropertyName("projectKey")]
-        public ProjectKeyDto ProjectKey { get; set; }
-
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
-        [Required]
-        [JsonPropertyName("filename")]
-        public string Filename { get; set; }
-
-        [JsonPropertyName("lineIndex")]
-        public int? LineIndex { get; set; }
-
-        [JsonPropertyName("lineStart")]
-        public int? LineStart { get; set; }
-
-        [JsonPropertyName("lineEnd")]
-        public int? LineEnd { get; set; }
+        [JsonPropertyName("value")]
+        public SpaceDate? Value { get; set; }
 
     }
 
@@ -4412,57 +2226,170 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: m2channelcontentmembership
-    public class M2ChannelContentMembershipDto
+    // Source: diffcontext
+    public class DiffContextDto
     {
-    }
-
-    // Source: m2channelcontentarticle
-    public class M2ChannelContentArticleDto
-    {
-        [Required]
-        [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
+        [JsonPropertyName("left")]
+        public DiffSideDto? Left { get; set; }
 
         [Required]
-        [JsonPropertyName("articleContent")]
-        public ArticleContentRecordDto ArticleContent { get; set; }
-
-        [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get; set; }
+        [JsonPropertyName("right")]
+        public DiffSideDto Right { get; set; }
 
     }
 
-    // Source: m2channelcontentthread
-    public class M2ChannelContentThreadDto
+    // Source: diffside
+    public class DiffSideDto
+    {
+    }
+
+    // Source: diffside.empty
+    public class DiffSideEmptyDto
+         : DiffSideDto
     {
         [Required]
-        [JsonPropertyName("record")]
-        public ChannelItemRecordDto Record { get; set; }
-
-        [Required]
-        [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
 
     }
 
-    // Source: es_profilelogin
-    public class ESProfileLoginDto
+    // Source: diffside.nonempty
+    public class DiffSideNonEmptyDto
+         : DiffSideDto
     {
         [Required]
-        [JsonPropertyName("identifier")]
-        public string Identifier { get; set; }
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
 
         [Required]
-        [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get; set; }
+        [JsonPropertyName("path")]
+        public string Path { get; set; }
+
+    }
+
+    // Source: draftpublicationdetails
+    public class DraftPublicationDetailsDto
+    {
+        [JsonPropertyName("usedType")]
+        public string? UsedType { get; set; }
+
+        [JsonPropertyName("allPublicationDetails")]
+        public List<PublicationDetailsDto>? AllPublicationDetails { get; set; }
+
+    }
+
+    // Source: emavenrepositorysettings
+    public class EMavenRepositorySettingsDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public long Id { get; set; }
 
         [Required]
-        [JsonPropertyName("details")]
-        public ESProfileLoginDetailsDto Details { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
-        [JsonPropertyName("access")]
-        public AccessRecordDto? Access { get; set; }
+        [Required]
+        [JsonPropertyName("permissions")]
+        public List<string> Permissions { get; set; }
+
+    }
+
+    // Source: emavensettings
+    public class EMavenSettingsDto
+    {
+        [Required]
+        [JsonPropertyName("organizationId")]
+        public long OrganizationId { get; set; }
+
+        [Required]
+        [JsonPropertyName("principalName")]
+        public string PrincipalName { get; set; }
+
+        [Required]
+        [JsonPropertyName("principalInfo")]
+        public string PrincipalInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("repositories")]
+        public List<Object3Dto> Repositories { get; set; }
+
+        [JsonPropertyName("storageLimit")]
+        public DTOLimitDto? StorageLimit { get; set; }
+
+        [JsonPropertyName("downloadLimit")]
+        public DTOLimitDto? DownloadLimit { get; set; }
+
+        [JsonPropertyName("uploadLimit")]
+        public DTOLimitDto? UploadLimit { get; set; }
+
+    }
+
+    // Source: eregistrysettings
+    public class ERegistrySettingsDto
+    {
+        [Required]
+        [JsonPropertyName("organizationId")]
+        public long OrganizationId { get; set; }
+
+        [Required]
+        [JsonPropertyName("principalName")]
+        public string PrincipalName { get; set; }
+
+        [Required]
+        [JsonPropertyName("principalInfo")]
+        public string PrincipalInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("repositories")]
+        public List<Object4Dto> Repositories { get; set; }
+
+        [JsonPropertyName("storageLimit")]
+        public DTOLimitDto? StorageLimit { get; set; }
+
+        [JsonPropertyName("downloadLimit")]
+        public DTOLimitDto? DownloadLimit { get; set; }
+
+        [JsonPropertyName("uploadLimit")]
+        public DTOLimitDto? UploadLimit { get; set; }
+
+    }
+
+    // Source: erepositorysettings
+    public class ERepositorySettingsDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public long Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("immutableTags")]
+        public bool ImmutableTags { get; set; }
+
+        [Required]
+        [JsonPropertyName("permissions")]
+        public List<string> Permissions { get; set; }
+
+    }
+
+    // Source: es_approvedscope
+    public class ESApprovedScopeDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }
+
+        [Required]
+        [JsonPropertyName("offlineAllowed")]
+        public bool OfflineAllowed { get; set; }
 
     }
 
@@ -4503,22 +2430,290 @@ namespace SpaceDotNet.Client
     {
     }
 
-    // Source: es_hiddenauthmodulesettings
-    public class ESHiddenAuthModuleSettingsDto
-         : ESAuthModuleSettingsDto
+    // Source: es_authenticationsession
+    public class ESAuthenticationSessionDto
     {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+        [Required]
+        [JsonPropertyName("expires")]
+        public SpaceTime Expires { get; set; }
+
+        [JsonPropertyName("lastAccess")]
+        public AccessRecordDto? LastAccess { get; set; }
+
+        [Required]
+        [JsonPropertyName("current")]
+        public bool Current { get; set; }
+
     }
 
-    // Source: es_passwordauthmodulesettings
-    public class ESPasswordAuthModuleSettingsDto
-         : ESAuthModuleSettingsDto
+    // Source: es_azureauthmodulesettings
+    public class ESAzureAuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto
     {
+        [Required]
+        [JsonPropertyName("tenantId")]
+        public string TenantId { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientSecret")]
+        public string ClientSecret { get; set; }
+
+        [Required]
+        [JsonPropertyName("registerNewUsers")]
+        public bool RegisterNewUsers { get; set; }
+
+        [Required]
+        [JsonPropertyName("emailVerified")]
+        public bool EmailVerified { get; set; }
+
+    }
+
+    // Source: es_builtinauthmodulesettings
+    public class ESBuiltinAuthModuleSettingsDto
+         : ESPasswordAuthModuleSettingsDto
+    {
+        [Required]
+        [JsonPropertyName("passwordStrengthPolicy")]
+        public PasswordStrength PasswordStrengthPolicy { get; set; }
+
+        [JsonPropertyName("domains")]
+        public List<string>? Domains { get; set; }
+
+    }
+
+    // Source: es_builtinprofilelogindetails
+    public class ESBuiltinProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto
+    {
+        [JsonPropertyName("passwordName")]
+        public string? PasswordName { get; set; }
+
+        [JsonPropertyName("passwordChangeRequest")]
+        public string? PasswordChangeRequest { get; set; }
+
+    }
+
+    // Source: es_containerregistrysettings
+    public class ESContainerRegistrySettingsDto
+         : ESPackageRepositorySettingsDto
+    {
+        [Required]
+        [JsonPropertyName("immutableTags")]
+        public bool ImmutableTags { get; set; }
+
+    }
+
+    // Source: es_defaultprofilelogindetails
+    public class ESDefaultProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto
+    {
+        [JsonPropertyName("login")]
+        public string? Login { get; set; }
+
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }
+
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }
+
+        [JsonPropertyName("email")]
+        public string? Email { get; set; }
+
+        [Required]
+        [JsonPropertyName("emailVerified")]
+        public bool EmailVerified { get; set; }
+
+        [JsonPropertyName("avatarUrl")]
+        public string? AvatarUrl { get; set; }
+
     }
 
     // Source: es_externalpasswordauthmodulesettings
     public class ESExternalPasswordAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto
     {
+    }
+
+    // Source: es_externalpasswordauthmodulesettings_tsimpl
+    public class ESExternalPasswordAuthModuleSettingsTSImplDto
+         : ESExternalPasswordAuthModuleSettingsDto
+    {
+    }
+
+    // Source: es_federatedauthmodulesettings
+    public class ESFederatedAuthModuleSettingsDto
+         : ESAuthModuleSettingsDto
+    {
+    }
+
+    // Source: es_githubauthmodulesettings
+    public class ESGithubAuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto
+    {
+        [Required]
+        [JsonPropertyName("githubUrl")]
+        public string GithubUrl { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientSecret")]
+        public string ClientSecret { get; set; }
+
+        [Required]
+        [JsonPropertyName("registerNewUsers")]
+        public bool RegisterNewUsers { get; set; }
+
+        [Required]
+        [JsonPropertyName("organizations")]
+        public List<string> Organizations { get; set; }
+
+    }
+
+    // Source: es_githubprofilelogindetails
+    public class ESGithubProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto
+    {
+        [JsonPropertyName("login")]
+        public string? Login { get; set; }
+
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }
+
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }
+
+        [JsonPropertyName("email")]
+        public string? Email { get; set; }
+
+        [Required]
+        [JsonPropertyName("emailVerified")]
+        public bool EmailVerified { get; set; }
+
+        [JsonPropertyName("avatarUrl")]
+        public string? AvatarUrl { get; set; }
+
+        [JsonPropertyName("organizations")]
+        public List<string>? Organizations { get; set; }
+
+    }
+
+    // Source: es_googleauthmodulesettings
+    public class ESGoogleAuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto
+    {
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientSecret")]
+        public string ClientSecret { get; set; }
+
+        [Required]
+        [JsonPropertyName("registerNewUsers")]
+        public bool RegisterNewUsers { get; set; }
+
+        [Required]
+        [JsonPropertyName("domains")]
+        public List<string> Domains { get; set; }
+
+    }
+
+    // Source: es_hiddenauthmodulesettings
+    public class ESHiddenAuthModuleSettingsDto
+         : ESAuthModuleSettingsDto
+    {
+    }
+
+    // Source: es_hubauthmodulesettings
+    public class ESHubAuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto
+    {
+        [Required]
+        [JsonPropertyName("hubUrl")]
+        public string HubUrl { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientSecret")]
+        public string ClientSecret { get; set; }
+
+        [JsonPropertyName("registerNewUsers")]
+        public bool? RegisterNewUsers { get; set; }
+
+        [JsonPropertyName("orgAuthProviderName")]
+        public string? OrgAuthProviderName { get; set; }
+
+        [JsonPropertyName("groups")]
+        public List<string>? Groups { get; set; }
+
+    }
+
+    // Source: es_hubprofilelogindetails
+    public class ESHubProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto
+    {
+        [JsonPropertyName("login")]
+        public string? Login { get; set; }
+
+        [JsonPropertyName("hubAuthModuleLogin")]
+        public string? HubAuthModuleLogin { get; set; }
+
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }
+
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }
+
+        [JsonPropertyName("email")]
+        public string? Email { get; set; }
+
+        [Required]
+        [JsonPropertyName("emailVerified")]
+        public bool EmailVerified { get; set; }
+
+        [JsonPropertyName("avatarUrl")]
+        public string? AvatarUrl { get; set; }
+
+    }
+
+    // Source: es_ldapattributenames
+    public class ESLdapAttributeNamesDto
+    {
+        [JsonPropertyName("fullNameAttributeName")]
+        public string? FullNameAttributeName { get; set; }
+
+        [JsonPropertyName("usernameAttributeName")]
+        public string? UsernameAttributeName { get; set; }
+
+        [JsonPropertyName("emailAttributeName")]
+        public string? EmailAttributeName { get; set; }
+
+        [JsonPropertyName("groupsAttributeName")]
+        public string? GroupsAttributeName { get; set; }
+
     }
 
     // Source: es_ldapauthmodulesettings
@@ -4574,65 +2769,15 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: sslkeystore
-    public class SSLKeystoreDto
+    // Source: es_mavenrepositorysettings
+    public class ESMavenRepositorySettingsDto
+         : ESPackageRepositorySettingsDto
     {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("created")]
-        public SpaceDate Created { get; set; }
-
     }
 
-    // Source: es_teammapping
-    public class ESTeamMappingDto
-    {
-        [Required]
-        [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
-
-        [Required]
-        [JsonPropertyName("externalGroupName")]
-        public string ExternalGroupName { get; set; }
-
-    }
-
-    // Source: es_ldapattributenames
-    public class ESLdapAttributeNamesDto
-    {
-        [JsonPropertyName("fullNameAttributeName")]
-        public string? FullNameAttributeName { get; set; }
-
-        [JsonPropertyName("usernameAttributeName")]
-        public string? UsernameAttributeName { get; set; }
-
-        [JsonPropertyName("emailAttributeName")]
-        public string? EmailAttributeName { get; set; }
-
-        [JsonPropertyName("groupsAttributeName")]
-        public string? GroupsAttributeName { get; set; }
-
-    }
-
-    // Source: es_builtinauthmodulesettings
-    public class ESBuiltinAuthModuleSettingsDto
-         : ESPasswordAuthModuleSettingsDto
-    {
-        [Required]
-        [JsonPropertyName("passwordStrengthPolicy")]
-        public PasswordStrength PasswordStrengthPolicy { get; set; }
-
-        [JsonPropertyName("domains")]
-        public List<string>? Domains { get; set; }
-
-    }
-
-    // Source: es_federatedauthmodulesettings
-    public class ESFederatedAuthModuleSettingsDto
-         : ESAuthModuleSettingsDto
+    // Source: es_nugetfeedsettings
+    public class ESNuGetFeedSettingsDto
+         : ESPackageRepositorySettingsDto
     {
     }
 
@@ -4642,78 +2787,124 @@ namespace SpaceDotNet.Client
     {
     }
 
-    // Source: es_hubauthmodulesettings
-    public class ESHubAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto
+    // Source: es_oauthconsent
+    public class ESOAuthConsentDto
     {
         [Required]
-        [JsonPropertyName("hubUrl")]
-        public string HubUrl { get; set; }
+        [JsonPropertyName("clientService")]
+        public ESServiceDto ClientService { get; set; }
 
         [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
+        [JsonPropertyName("approvedScopes")]
+        public List<ESApprovedScopeDto> ApprovedScopes { get; set; }
 
         [Required]
-        [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
-
-        [JsonPropertyName("registerNewUsers")]
-        public bool? RegisterNewUsers { get; set; }
-
-        [JsonPropertyName("orgAuthProviderName")]
-        public string? OrgAuthProviderName { get; set; }
-
-        [JsonPropertyName("groups")]
-        public List<string>? Groups { get; set; }
+        [JsonPropertyName("refreshTokens")]
+        public List<ESRefreshTokenDto> RefreshTokens { get; set; }
 
     }
 
-    // Source: es_googleauthmodulesettings
-    public class ESGoogleAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto
+    // Source: es_packagerepositorysettings
+    public class ESPackageRepositorySettingsDto
+    {
+    }
+
+    // Source: es_passwordauthmodulesettings
+    public class ESPasswordAuthModuleSettingsDto
+         : ESAuthModuleSettingsDto
+    {
+    }
+
+    // Source: es_permanenttoken
+    public class ESPermanentTokenDto
     {
         [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
 
         [Required]
-        [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
 
         [Required]
-        [JsonPropertyName("domains")]
-        public List<string> Domains { get; set; }
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+        [JsonPropertyName("lastAccess")]
+        public AccessRecordDto? LastAccess { get; set; }
 
     }
 
-    // Source: es_githubauthmodulesettings
-    public class ESGithubAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto
+    // Source: es_profilelogin
+    public class ESProfileLoginDto
     {
         [Required]
-        [JsonPropertyName("githubUrl")]
-        public string GithubUrl { get; set; }
+        [JsonPropertyName("identifier")]
+        public string Identifier { get; set; }
 
         [Required]
-        [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
+        [JsonPropertyName("authModule")]
+        public ESAuthModuleDto AuthModule { get; set; }
 
         [Required]
-        [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
+        [JsonPropertyName("details")]
+        public ESProfileLoginDetailsDto Details { get; set; }
+
+        [JsonPropertyName("access")]
+        public AccessRecordDto? Access { get; set; }
+
+    }
+
+    // Source: es_profilelogindetails
+    public class ESProfileLoginDetailsDto
+    {
+    }
+
+    // Source: es_refreshtoken
+    public class ESRefreshTokenDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }
+
+        [JsonPropertyName("lastAccess")]
+        public AccessRecordDto? LastAccess { get; set; }
+
+    }
+
+    // Source: es_samlattributenames
+    public class ESSamlAttributeNamesDto
+    {
+        [JsonPropertyName("loginAttributeName")]
+        public string? LoginAttributeName { get; set; }
+
+        [JsonPropertyName("firstNameAttributeName")]
+        public string? FirstNameAttributeName { get; set; }
+
+        [JsonPropertyName("lastNameAttributeName")]
+        public string? LastNameAttributeName { get; set; }
+
+        [JsonPropertyName("fullNameAttributeName")]
+        public string? FullNameAttributeName { get; set; }
+
+        [JsonPropertyName("emailAttributeName")]
+        public string? EmailAttributeName { get; set; }
 
         [Required]
-        [JsonPropertyName("organizations")]
-        public List<string> Organizations { get; set; }
+        [JsonPropertyName("emailVerified")]
+        public bool EmailVerified { get; set; }
 
     }
 
@@ -4753,192 +2944,109 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: es_samlattributenames
-    public class ESSamlAttributeNamesDto
+    // Source: es_service
+    public class ESServiceDto
     {
-        [JsonPropertyName("loginAttributeName")]
-        public string? LoginAttributeName { get; set; }
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
-        [JsonPropertyName("firstNameAttributeName")]
-        public string? FirstNameAttributeName { get; set; }
-
-        [JsonPropertyName("lastNameAttributeName")]
-        public string? LastNameAttributeName { get; set; }
-
-        [JsonPropertyName("fullNameAttributeName")]
-        public string? FullNameAttributeName { get; set; }
-
-        [JsonPropertyName("emailAttributeName")]
-        public string? EmailAttributeName { get; set; }
+        [JsonPropertyName("owner")]
+        public TDMemberProfileDto? Owner { get; set; }
 
         [Required]
-        [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
+        [JsonPropertyName("type")]
+        public OAuthServiceType Type { get; set; }
+
+        [Required]
+        [JsonPropertyName("clientId")]
+        public string ClientId { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("redirectURIs")]
+        public string RedirectURIs { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [JsonPropertyName("lastClientCredentialsAccess")]
+        public AccessRecordDto? LastClientCredentialsAccess { get; set; }
 
     }
 
-    // Source: es_profilelogindetails
-    public class ESProfileLoginDetailsDto
+    // Source: es_teammapping
+    public class ESTeamMappingDto
     {
-    }
-
-    // Source: es_defaultprofilelogindetails
-    public class ESDefaultProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
-    {
-        [JsonPropertyName("login")]
-        public string? Login { get; set; }
-
-        [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
-        [JsonPropertyName("email")]
-        public string? Email { get; set; }
+        [Required]
+        [JsonPropertyName("teamId")]
+        public string TeamId { get; set; }
 
         [Required]
-        [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
-        [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }
+        [JsonPropertyName("externalGroupName")]
+        public string ExternalGroupName { get; set; }
 
     }
 
-    // Source: es_hubprofilelogindetails
-    public class ESHubProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
-    {
-        [JsonPropertyName("login")]
-        public string? Login { get; set; }
-
-        [JsonPropertyName("hubAuthModuleLogin")]
-        public string? HubAuthModuleLogin { get; set; }
-
-        [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
-        [JsonPropertyName("email")]
-        public string? Email { get; set; }
-
-        [Required]
-        [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
-        [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }
-
-    }
-
-    // Source: es_builtinprofilelogindetails
-    public class ESBuiltinProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
-    {
-        [Required]
-        [JsonPropertyName("passwordName")]
-        public string PasswordName { get; set; }
-
-        [JsonPropertyName("passwordChangeRequest")]
-        public string? PasswordChangeRequest { get; set; }
-
-    }
-
-    // Source: es_githubprofilelogindetails
-    public class ESGithubProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
-    {
-        [JsonPropertyName("login")]
-        public string? Login { get; set; }
-
-        [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
-        [JsonPropertyName("email")]
-        public string? Email { get; set; }
-
-        [Required]
-        [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
-        [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }
-
-        [JsonPropertyName("organizations")]
-        public List<string>? Organizations { get; set; }
-
-    }
-
-    // Source: counter
-    public class CounterDto
-    {
-        [Required]
-        [JsonPropertyName("resolved")]
-        public int Resolved { get; set; }
-
-        [Required]
-        [JsonPropertyName("unresolved")]
-        public int Unresolved { get; set; }
-
-    }
-
-    // Source: planitem
-    public class PlanItemDto
+    // Source: emojireactionrecord
+    public class EmojiReactionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("checklistId")]
-        public string ChecklistId { get; set; }
-
-        [JsonPropertyName("tag")]
-        public PlanningTagDto? Tag { get; set; }
-
-        [JsonPropertyName("simpleText")]
-        public string? SimpleText { get; set; }
-
-        [JsonPropertyName("simpleDone")]
-        public bool? SimpleDone { get; set; }
-
-        [JsonPropertyName("issue")]
-        public IssueDto? Issue { get; set; }
-
-        [JsonPropertyName("issueProblem")]
-        public string? IssueProblem { get; set; }
-
-        [JsonPropertyName("canEditIssue")]
-        public bool? CanEditIssue { get; set; }
+        [JsonPropertyName("itemId")]
+        public string ItemId { get; set; }
 
         [Required]
-        [JsonPropertyName("hasChildren")]
-        public bool HasChildren { get; set; }
+        [JsonPropertyName("emoji")]
+        public string Emoji { get; set; }
 
         [Required]
-        [JsonPropertyName("children")]
-        public List<PlanItemDto> Children { get; set; }
+        [JsonPropertyName("count")]
+        public int Count { get; set; }
+
+        [Required]
+        [JsonPropertyName("meReacted")]
+        public bool MeReacted { get; set; }
+
+        [Required]
+        [JsonPropertyName("order")]
+        public long Order { get; set; }
 
     }
 
-    // Source: cfvalue
-    public class CFValueDto
+    // Source: enumcftype
+    public class EnumCFTypeDto
+         : CFTypeDto
     {
+        [Required]
+        [JsonPropertyName("values")]
+        public List<EnumValueDataDto> Values { get; set; }
+
     }
 
-    // Source: profilecfvalue
-    public class ProfileCFValueDto
+    // Source: enumcfvalue
+    public class EnumCFValueDto
          : CFValueDto
     {
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }
+        [JsonPropertyName("value")]
+        public EnumValueDataDto? Value { get; set; }
+
+    }
+
+    // Source: enumlistcftype
+    public class EnumListCFTypeDto
+         : CFTypeDto
+    {
+        [Required]
+        [JsonPropertyName("values")]
+        public List<EnumValueDataDto> Values { get; set; }
 
     }
 
@@ -4964,251 +3072,6 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: intlistcfvalue
-    public class IntListCFValueDto
-         : CFValueDto
-    {
-        [Required]
-        [JsonPropertyName("values")]
-        public List<int> Values { get; set; }
-
-    }
-
-    // Source: stringcfvalue
-    public class StringCFValueDto
-         : CFValueDto
-    {
-        [JsonPropertyName("value")]
-        public string? Value { get; set; }
-
-    }
-
-    // Source: datecfvalue
-    public class DateCFValueDto
-         : CFValueDto
-    {
-        [JsonPropertyName("value")]
-        public SpaceDate? Value { get; set; }
-
-    }
-
-    // Source: booleancfvalue
-    public class BooleanCFValueDto
-         : CFValueDto
-    {
-        [JsonPropertyName("value")]
-        public bool? Value { get; set; }
-
-    }
-
-    // Source: stringlistcfvalue
-    public class StringListCFValueDto
-         : CFValueDto
-    {
-        [Required]
-        [JsonPropertyName("values")]
-        public List<string> Values { get; set; }
-
-    }
-
-    // Source: urlcfvalue
-    public class UrlCFValueDto
-         : CFValueDto
-    {
-        [JsonPropertyName("href")]
-        public string? Href { get; set; }
-
-    }
-
-    // Source: intcfvalue
-    public class IntCFValueDto
-         : CFValueDto
-    {
-        [JsonPropertyName("value")]
-        public int? Value { get; set; }
-
-    }
-
-    // Source: enumcfvalue
-    public class EnumCFValueDto
-         : CFValueDto
-    {
-        [JsonPropertyName("value")]
-        public EnumValueDataDto? Value { get; set; }
-
-    }
-
-    // Source: profilelistcfvalue
-    public class ProfileListCFValueDto
-         : CFValueDto
-    {
-        [Required]
-        [JsonPropertyName("profiles")]
-        public List<TDMemberProfileDto> Profiles { get; set; }
-
-    }
-
-    // Source: fractioncfvalue
-    public class FractionCFValueDto
-         : CFValueDto
-    {
-        [JsonPropertyName("value")]
-        public FractionDto? Value { get; set; }
-
-    }
-
-    // Source: fraction
-    public class FractionDto
-    {
-        [Required]
-        [JsonPropertyName("numerator")]
-        public int Numerator { get; set; }
-
-        [Required]
-        [JsonPropertyName("denominator")]
-        public int Denominator { get; set; }
-
-    }
-
-    // Source: bg_dates
-    public class BGDatesDto
-    {
-        [Required]
-        [JsonPropertyName("first")]
-        public SpaceTime First { get; set; }
-
-        [Required]
-        [JsonPropertyName("last")]
-        public SpaceTime Last { get; set; }
-
-    }
-
-    // Source: dr_draftid
-    public class DRDraftIdDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-    }
-
-    // Source: bg_articleid
-    public class BGArticleIdDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-    }
-
-    // Source: bg_stats
-    public class BGStatsDto
-    {
-        [Required]
-        [JsonPropertyName("totalBlogs")]
-        public int TotalBlogs { get; set; }
-
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<Object2Dto> Teams { get; set; }
-
-        [Required]
-        [JsonPropertyName("projects")]
-        public List<Object3Dto> Projects { get; set; }
-
-        [Required]
-        [JsonPropertyName("locations")]
-        public List<Object4Dto> Locations { get; set; }
-
-    }
-
-    // Source: td_locationmap
-    public class TDLocationMapDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("picture")]
-        public string Picture { get; set; }
-
-        [Required]
-        [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
-        [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
-        [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
-    }
-
-    // Source: customfieldvalue
-    public class CustomFieldValueDto
-    {
-        [Required]
-        [JsonPropertyName("field")]
-        public CustomFieldDto Field { get; set; }
-
-        [Required]
-        [JsonPropertyName("value")]
-        public CFValueDto Value { get; set; }
-
-    }
-
-    // Source: customfield
-    public class CustomFieldDto
-    {
-        [Required]
-        [JsonPropertyName("extendedType")]
-        public ExtendedTypeDto ExtendedType { get; set; }
-
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public CFTypeDto Type { get; set; }
-
-        [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint { get; set; }
-
-        [Required]
-        [JsonPropertyName("required")]
-        public bool Required { get; set; }
-
-        [Required]
-        [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
-        [JsonPropertyName("access")]
-        public AccessType? Access { get; set; }
-
-        [Required]
-        [JsonPropertyName("defaultValue")]
-        public CFValueDto DefaultValue { get; set; }
-
-        [Required]
-        [JsonPropertyName("order")]
-        public int Order { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-    }
-
     // Source: extendedtype
     public class ExtendedTypeDto
     {
@@ -5219,1962 +3082,6 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("displayName")]
         public string DisplayName { get; set; }
-
-    }
-
-    // Source: cftype
-    public class CFTypeDto
-    {
-    }
-
-    // Source: datecftype
-    public class DateCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: booleancftype
-    public class BooleanCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: enumcftype
-    public class EnumCFTypeDto
-         : CFTypeDto
-    {
-        [Required]
-        [JsonPropertyName("values")]
-        public List<EnumValueDataDto> Values { get; set; }
-
-    }
-
-    // Source: stringlistcftype
-    public class StringListCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: intcftype
-    public class IntCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: enumlistcftype
-    public class EnumListCFTypeDto
-         : CFTypeDto
-    {
-        [Required]
-        [JsonPropertyName("values")]
-        public List<EnumValueDataDto> Values { get; set; }
-
-    }
-
-    // Source: stringcftype
-    public class StringCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: profilecftype
-    public class ProfileCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: intlistcftype
-    public class IntListCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: profilelistcftype
-    public class ProfileListCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: urlcftype
-    public class UrlCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: fractioncftype
-    public class FractionCFTypeDto
-         : CFTypeDto
-    {
-    }
-
-    // Source: cfconstraint
-    public class CFConstraintDto
-    {
-    }
-
-    // Source: datecfconstraint
-    public class DateCFConstraintDto
-         : CFConstraintDto
-    {
-        [JsonPropertyName("min")]
-        public SpaceDate? Min { get; set; }
-
-        [JsonPropertyName("max")]
-        public SpaceDate? Max { get; set; }
-
-        [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
-    }
-
-    // Source: intcfconstraint
-    public class IntCFConstraintDto
-         : CFConstraintDto
-    {
-        [JsonPropertyName("min")]
-        public int? Min { get; set; }
-
-        [JsonPropertyName("max")]
-        public int? Max { get; set; }
-
-        [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
-    }
-
-    // Source: stringcfconstraint
-    public class StringCFConstraintDto
-         : CFConstraintDto
-    {
-        [JsonPropertyName("min")]
-        public int? Min { get; set; }
-
-        [JsonPropertyName("max")]
-        public int? Max { get; set; }
-
-        [JsonPropertyName("pattern")]
-        public string? Pattern { get; set; }
-
-        [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
-    }
-
-    // Source: workingdaysspec
-    public class WorkingDaysSpecDto
-    {
-        [Required]
-        [JsonPropertyName("days")]
-        public List<WorkdayDto> Days { get; set; }
-
-    }
-
-    // Source: workday
-    public class WorkdayDto
-    {
-        [Required]
-        [JsonPropertyName("weekday")]
-        public string Weekday { get; set; }
-
-        [Required]
-        [JsonPropertyName("working")]
-        public bool Working { get; set; }
-
-        [Required]
-        [JsonPropertyName("hours")]
-        public int Hours { get; set; }
-
-        [JsonPropertyName("minutes")]
-        public int? Minutes { get; set; }
-
-    }
-
-    // Source: td_workingdays
-    public class TDWorkingDaysDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
-        [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
-        [Required]
-        [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
-    }
-
-    // Source: vcshostingpassword
-    public class VcsHostingPasswordDto
-    {
-        [Required]
-        [JsonPropertyName("fingerprint")]
-        public string Fingerprint { get; set; }
-
-        [JsonPropertyName("lastUsed")]
-        public SpaceTime? LastUsed { get; set; }
-
-    }
-
-    // Source: td_locationequipmenttype
-    public class TDLocationEquipmentTypeDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-    }
-
-    // Source: td_memberinlocationmaplist
-    public class TDMemberInLocationMapListDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-        [Required]
-        [JsonPropertyName("memberLocation")]
-        public TDMemberLocationDto MemberLocation { get; set; }
-
-        [JsonPropertyName("locationMapPoint")]
-        public TDLocationMapPointDto? LocationMapPoint { get; set; }
-
-    }
-
-    // Source: td_locationwithtimezone
-    public class TDLocationWithTimeZoneDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffsetDto Timezone { get; set; }
-
-    }
-
-    // Source: td_mergedevent
-    public class TDMergedEventDto
-    {
-        [Required]
-        [JsonPropertyName("events")]
-        public List<Object5Dto> Events { get; set; }
-
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-    }
-
-    // Source: td_stats
-    public class TDStatsDto
-    {
-        [Required]
-        [JsonPropertyName("totalMembers")]
-        public int TotalMembers { get; set; }
-
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<Object2Dto> Teams { get; set; }
-
-        [Required]
-        [JsonPropertyName("roles")]
-        public List<Object6Dto> Roles { get; set; }
-
-        [Required]
-        [JsonPropertyName("locations")]
-        public List<Object4Dto> Locations { get; set; }
-
-    }
-
-    // Source: dto_absencesubscription
-    public class DTOAbsenceSubscriptionDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
-
-        [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
-        [JsonPropertyName("reason")]
-        public AbsenceReasonRecordDto? Reason { get; set; }
-
-    }
-
-    // Source: pr_privateproject
-    public class PRPrivateProjectDto
-    {
-        [Required]
-        [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("accessAllowed")]
-        public bool AccessAllowed { get; set; }
-
-        [Required]
-        [JsonPropertyName("admins")]
-        public List<TDMemberProfileDto> Admins { get; set; }
-
-    }
-
-    // Source: pr_tag
-    public class PRTagDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("projectCount")]
-        public int ProjectCount { get; set; }
-
-    }
-
-    // Source: meinfo
-    public class MeInfoDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-        [JsonPropertyName("profilePic")]
-        public string? ProfilePic { get; set; }
-
-        [Required]
-        [JsonPropertyName("preferredLanguage")]
-        public TDLanguageDto PreferredLanguage { get; set; }
-
-        [Required]
-        [JsonPropertyName("englishLanguage")]
-        public TDLanguageDto EnglishLanguage { get; set; }
-
-        [JsonPropertyName("navBarMenuItems")]
-        public List<NavBarMenuItemDto>? NavBarMenuItems { get; set; }
-
-        [Required]
-        [JsonPropertyName("navBarProjects")]
-        public List<string> NavBarProjects { get; set; }
-
-        [Required]
-        [JsonPropertyName("firstDayOfWeek")]
-        public int FirstDayOfWeek { get; set; }
-
-        [JsonPropertyName("themeName")]
-        public string? ThemeName { get; set; }
-
-        [JsonPropertyName("draftType")]
-        public DraftDocumentType? DraftType { get; set; }
-
-    }
-
-    // Source: navbarmenuitem
-    public class NavBarMenuItemDto
-    {
-        [Required]
-        [JsonPropertyName("item")]
-        public string Item { get; set; }
-
-        [Required]
-        [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }
-
-    }
-
-    // Source: dto_rightswithhierarchy
-    public class DTORightsWithHierarchyDto
-    {
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<DTORightTypeRightDto> Rights { get; set; }
-
-        [Required]
-        [JsonPropertyName("rightsGroups")]
-        public List<DTORightsGroupDto> RightsGroups { get; set; }
-
-        [Required]
-        [JsonPropertyName("deps")]
-        public List<DTORightsDepsDto> Deps { get; set; }
-
-    }
-
-    // Source: dto_righttype_right
-    public class DTORightTypeRightDto
-    {
-        [Required]
-        [JsonPropertyName("rightType")]
-        public DTORightTypeDto RightType { get; set; }
-
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<DTOFullRightWithoutTypeDto> Rights { get; set; }
-
-    }
-
-    // Source: dto_righttype
-    public class DTORightTypeDto
-    {
-        [Required]
-        [JsonPropertyName("typeCode")]
-        public string TypeCode { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-    }
-
-    // Source: dto_fullrightwithouttype
-    public class DTOFullRightWithoutTypeDto
-    {
-        [Required]
-        [JsonPropertyName("code")]
-        public string Code { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [Required]
-        [JsonPropertyName("grantedForUsers")]
-        public bool GrantedForUsers { get; set; }
-
-        [JsonPropertyName("featureFlag")]
-        public FeatureFlagDto? FeatureFlag { get; set; }
-
-    }
-
-    // Source: featureflag
-    public class FeatureFlagDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
-
-    }
-
-    // Source: dto_rightsgroup
-    public class DTORightsGroupDto
-    {
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonPropertyName("priority")]
-        public int Priority { get; set; }
-
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<DTORightDto> Rights { get; set; }
-
-    }
-
-    // Source: dto_right
-    public class DTORightDto
-    {
-        [Required]
-        [JsonPropertyName("typeCode")]
-        public string TypeCode { get; set; }
-
-        [Required]
-        [JsonPropertyName("code")]
-        public string Code { get; set; }
-
-    }
-
-    // Source: dto_rightsdeps
-    public class DTORightsDepsDto
-    {
-        [Required]
-        [JsonPropertyName("code")]
-        public string Code { get; set; }
-
-        [Required]
-        [JsonPropertyName("deps")]
-        public List<string> Deps { get; set; }
-
-    }
-
-    // Source: draftpublicationdetails
-    public class DraftPublicationDetailsDto
-    {
-        [JsonPropertyName("usedType")]
-        public string? UsedType { get; set; }
-
-        [JsonPropertyName("allPublicationDetails")]
-        public List<PublicationDetailsDto>? AllPublicationDetails { get; set; }
-
-    }
-
-    // Source: publicationdetails
-    public class PublicationDetailsDto
-    {
-    }
-
-    // Source: blogpublicationdetails
-    public class BlogPublicationDetailsDto
-    {
-        [JsonPropertyName("teamId")]
-        public TDTeamDto? TeamId { get; set; }
-
-        [JsonPropertyName("locationId")]
-        public TDLocationDto? LocationId { get; set; }
-
-        [JsonPropertyName("event")]
-        public CalendarEventDto? Event { get; set; }
-
-    }
-
-    // Source: calendarevent
-    public class CalendarEventDto
-    {
-        [JsonPropertyName("calendarEvent")]
-        public bool? CalendarEvent { get; set; }
-
-        [JsonPropertyName("starts")]
-        public SpaceTime? Starts { get; set; }
-
-        [JsonPropertyName("ends")]
-        public SpaceTime? Ends { get; set; }
-
-        [JsonPropertyName("timezone")]
-        public ATimeZoneDto? Timezone { get; set; }
-
-        [JsonPropertyName("rooms")]
-        public List<TDLocationDto>? Rooms { get; set; }
-
-        [JsonPropertyName("allDay")]
-        public bool? AllDay { get; set; }
-
-    }
-
-    // Source: dr_draft
-    public class DRDraftDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [JsonPropertyName("type")]
-        public DraftDocumentType? Type { get; set; }
-
-        [Required]
-        [JsonPropertyName("modified")]
-        public SpaceTime Modified { get; set; }
-
-        [JsonPropertyName("published")]
-        public ArticleRecordDto? Published { get; set; }
-
-        [Required]
-        [JsonPropertyName("shared")]
-        public bool Shared { get; set; }
-
-        [Required]
-        [JsonPropertyName("accessOrdinal")]
-        public int AccessOrdinal { get; set; }
-
-        [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
-
-        [JsonPropertyName("version")]
-        public long? Version { get; set; }
-
-    }
-
-    // Source: ha_model
-    public class HAModelDto
-    {
-        [Required]
-        [JsonPropertyName("dto")]
-        public List<HADtoDto> Dto { get; set; }
-
-        [Required]
-        [JsonPropertyName("enums")]
-        public List<HAEnumDto> Enums { get; set; }
-
-        [Required]
-        [JsonPropertyName("resources")]
-        public List<HAResourceDto> Resources { get; set; }
-
-    }
-
-    // Source: ha_dto
-    public class HADtoDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("fields")]
-        public List<HADtoFieldDto> Fields { get; set; }
-
-        [Required]
-        [JsonPropertyName("hierarchyRole")]
-        public HierarchyRole HierarchyRole { get; set; }
-
-        [JsonPropertyName("extends")]
-        public HADtoDto? Extends { get; set; }
-
-        [Required]
-        [JsonPropertyName("implements")]
-        public List<HADtoDto> Implements { get; set; }
-
-        [Required]
-        [JsonPropertyName("inheritors")]
-        public List<HADtoDto> Inheritors { get; set; }
-
-        [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
-        [Required]
-        [JsonPropertyName("record")]
-        public bool Record { get; set; }
-
-    }
-
-    // Source: ha_dtofield
-    public class HADtoFieldDto
-    {
-        [Required]
-        [JsonPropertyName("field")]
-        public HAFieldDto Field { get; set; }
-
-        [Required]
-        [JsonPropertyName("extension")]
-        public bool Extension { get; set; }
-
-    }
-
-    // Source: ha_field
-    public class HAFieldDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public HATypeDto Type { get; set; }
-
-        [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
-    }
-
-    // Source: ha_type
-    public class HATypeDto
-    {
-    }
-
-    // Source: ha_type.primitive
-    public class HATypePrimitiveDto
-         : HATypeDto
-    {
-        [Required]
-        [JsonPropertyName("primitive")]
-        public HAPrimitive Primitive { get; set; }
-
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
-    }
-
-    // Source: ha_type.array
-    public class HATypeArrayDto
-         : HATypeDto
-    {
-        [Required]
-        [JsonPropertyName("elementType")]
-        public HATypeDto ElementType { get; set; }
-
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
-    }
-
-    // Source: ha_type.object
-    public class HATypeObjectDto
-         : HATypeDto
-    {
-        [Required]
-        [JsonPropertyName("fields")]
-        public List<HAFieldDto> Fields { get; set; }
-
-        [Required]
-        [JsonPropertyName("kind")]
-        public HATypeObjectKind Kind { get; set; }
-
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
-    }
-
-    // Source: ha_type.dto
-    public class HATypeDtoDto
-         : HATypeDto
-    {
-        [Required]
-        [JsonPropertyName("dto")]
-        public HADtoDto Dto { get; set; }
-
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
-    }
-
-    // Source: ha_type.ref
-    public class HATypeRefDto
-         : HATypeDto
-    {
-        [Required]
-        [JsonPropertyName("dto")]
-        public HADtoDto Dto { get; set; }
-
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
-    }
-
-    // Source: ha_type.enum
-    public class HATypeEnumDto
-         : HATypeDto
-    {
-        [Required]
-        [JsonPropertyName("enum")]
-        public HAEnumDto Enum { get; set; }
-
-        [Required]
-        [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
-    }
-
-    // Source: ha_enum
-    public class HAEnumDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("values")]
-        public List<string> Values { get; set; }
-
-        [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
-    }
-
-    // Source: ha_deprecation
-    public class HADeprecationDto
-    {
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
-
-        [Required]
-        [JsonPropertyName("since")]
-        public string Since { get; set; }
-
-        [Required]
-        [JsonPropertyName("forRemoval")]
-        public bool ForRemoval { get; set; }
-
-    }
-
-    // Source: ha_resource
-    public class HAResourceDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("path")]
-        public HAPathDto Path { get; set; }
-
-        [Required]
-        [JsonPropertyName("displaySingular")]
-        public string DisplaySingular { get; set; }
-
-        [Required]
-        [JsonPropertyName("displayPlural")]
-        public string DisplayPlural { get; set; }
-
-        [JsonPropertyName("parentResource")]
-        public HAResourceDto? ParentResource { get; set; }
-
-        [Required]
-        [JsonPropertyName("nestedResources")]
-        public List<HAResourceDto> NestedResources { get; set; }
-
-        [Required]
-        [JsonPropertyName("endpoints")]
-        public List<HAEndpointDto> Endpoints { get; set; }
-
-    }
-
-    // Source: ha_path
-    public class HAPathDto
-    {
-        [Required]
-        [JsonPropertyName("segments")]
-        public List<HAPathSegmentDto> Segments { get; set; }
-
-    }
-
-    // Source: ha_pathsegment
-    public class HAPathSegmentDto
-    {
-    }
-
-    // Source: ha_pathsegment.var
-    public class HAPathSegmentVarDto
-         : HAPathSegmentDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-    }
-
-    // Source: ha_pathsegment.prefixedvar
-    public class HAPathSegmentPrefixedVarDto
-         : HAPathSegmentDto
-    {
-        [Required]
-        [JsonPropertyName("prefix")]
-        public string Prefix { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-    }
-
-    // Source: ha_pathsegment.const
-    public class HAPathSegmentConstDto
-         : HAPathSegmentDto
-    {
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
-
-    }
-
-    // Source: ha_endpoint
-    public class HAEndpointDto
-    {
-        [Required]
-        [JsonPropertyName("resource")]
-        public HAResourceDto Resource { get; set; }
-
-        [Required]
-        [JsonPropertyName("method")]
-        public HAMethod Method { get; set; }
-
-        [Required]
-        [JsonPropertyName("parameters")]
-        public List<HAParameterDto> Parameters { get; set; }
-
-        [JsonPropertyName("requestBody")]
-        public HATypeObjectDto? RequestBody { get; set; }
-
-        [JsonPropertyName("responseBody")]
-        public HATypeDto? ResponseBody { get; set; }
-
-        [Required]
-        [JsonPropertyName("path")]
-        public HAPathDto Path { get; set; }
-
-        [Required]
-        [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
-
-        [JsonPropertyName("doc")]
-        public string? Doc { get; set; }
-
-        [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
-    }
-
-    // Source: ha_parameter
-    public class HAParameterDto
-    {
-        [Required]
-        [JsonPropertyName("field")]
-        public HAFieldDto Field { get; set; }
-
-        [Required]
-        [JsonPropertyName("path")]
-        public bool Path { get; set; }
-
-    }
-
-    // Source: absenceevent
-    public class AbsenceEventDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberWithTeamDto Profile { get; set; }
-
-        [Required]
-        [JsonPropertyName("events")]
-        public List<AbsenceRecordDto> Events { get; set; }
-
-    }
-
-    // Source: td_memberwithteam
-    public class TDMemberWithTeamDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<TDTeamDto> Teams { get; set; }
-
-    }
-
-    // Source: birthdayevent
-    public class BirthdayEventDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberWithTeamDto Profile { get; set; }
-
-        [Required]
-        [JsonPropertyName("birthday")]
-        public SpaceDate Birthday { get; set; }
-
-    }
-
-    // Source: membershipevent
-    public class MembershipEventDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-        [Required]
-        [JsonPropertyName("membership")]
-        public List<TDMembershipDto> Membership { get; set; }
-
-    }
-
-    // Source: nonworkingdaysevent
-    public class NonWorkingDaysEventDto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-        [Required]
-        [JsonPropertyName("days")]
-        public List<NonWorkingDaysDto> Days { get; set; }
-
-    }
-
-    // Source: nonworkingdays
-    public class NonWorkingDaysDto
-    {
-        [Required]
-        [JsonPropertyName("since")]
-        public SpaceDate Since { get; set; }
-
-        [Required]
-        [JsonPropertyName("till")]
-        public SpaceDate Till { get; set; }
-
-        [Required]
-        [JsonPropertyName("startsEarlier")]
-        public bool StartsEarlier { get; set; }
-
-        [Required]
-        [JsonPropertyName("endsLater")]
-        public bool EndsLater { get; set; }
-
-    }
-
-    // Source: customfieldsrecord
-    public class CustomFieldsRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("values")]
-        public List<CustomFieldValueDto> Values { get; set; }
-
-    }
-
-    // Source: imageattachmentmeta
-    public class ImageAttachmentMetaDto
-    {
-        [Required]
-        [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantsMetaDto> Variants { get; set; }
-
-    }
-
-    // Source: imageattachmentvariantsmeta
-    public class ImageAttachmentVariantsMetaDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("width")]
-        public int Width { get; set; }
-
-        [Required]
-        [JsonPropertyName("height")]
-        public int Height { get; set; }
-
-    }
-
-    // Source: trustedcertificate
-    public class TrustedCertificateDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
-        [Required]
-        [JsonPropertyName("data")]
-        public string Data { get; set; }
-
-        [Required]
-        [JsonPropertyName("info")]
-        public CertificateInfoDto Info { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-    }
-
-    // Source: certificateinfo
-    public class CertificateInfoDto
-    {
-        [Required]
-        [JsonPropertyName("certificateType")]
-        public string CertificateType { get; set; }
-
-        [Required]
-        [JsonPropertyName("version")]
-        public int Version { get; set; }
-
-        [Required]
-        [JsonPropertyName("serialNumber")]
-        public string SerialNumber { get; set; }
-
-        [Required]
-        [JsonPropertyName("issuedBy")]
-        public string IssuedBy { get; set; }
-
-        [Required]
-        [JsonPropertyName("issuedTo")]
-        public string IssuedTo { get; set; }
-
-        [Required]
-        [JsonPropertyName("validFrom")]
-        public SpaceTime ValidFrom { get; set; }
-
-        [Required]
-        [JsonPropertyName("validTo")]
-        public SpaceTime ValidTo { get; set; }
-
-        [Required]
-        [JsonPropertyName("algorithm")]
-        public string Algorithm { get; set; }
-
-        [Required]
-        [JsonPropertyName("fingerprint")]
-        public FingerprintDto Fingerprint { get; set; }
-
-    }
-
-    // Source: fingerprint
-    public class FingerprintDto
-    {
-        [Required]
-        [JsonPropertyName("md5")]
-        public string Md5 { get; set; }
-
-        [Required]
-        [JsonPropertyName("sha1")]
-        public string Sha1 { get; set; }
-
-        [Required]
-        [JsonPropertyName("sha256")]
-        public string Sha256 { get; set; }
-
-        [Required]
-        [JsonPropertyName("sha384")]
-        public string Sha384 { get; set; }
-
-        [Required]
-        [JsonPropertyName("sha512")]
-        public string Sha512 { get; set; }
-
-    }
-
-    // Source: publicholidaycalendarrecord
-    public class PublicHolidayCalendarRecordDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("firstDate")]
-        public SpaceDate? FirstDate { get; set; }
-
-        [JsonPropertyName("lastDate")]
-        public SpaceDate? LastDate { get; set; }
-
-        [Required]
-        [JsonPropertyName("eventsCount")]
-        public int EventsCount { get; set; }
-
-        [Required]
-        [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
-
-    }
-
-    // Source: publicholiday
-    public class PublicHolidayDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("calendar")]
-        public PublicHolidayCalendarRecordDto Calendar { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("date")]
-        public SpaceDate Date { get; set; }
-
-        [Required]
-        [JsonPropertyName("workingDay")]
-        public bool WorkingDay { get; set; }
-
-    }
-
-    // Source: authmoduleusage
-    public class AuthModuleUsageDto
-    {
-        [Required]
-        [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get; set; }
-
-        [Required]
-        [JsonPropertyName("profiles")]
-        public int Profiles { get; set; }
-
-    }
-
-    // Source: invitation
-    public class InvitationDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("expiresAt")]
-        public SpaceTime ExpiresAt { get; set; }
-
-        [Required]
-        [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail { get; set; }
-
-        [Required]
-        [JsonPropertyName("inviteeEmailBlocked")]
-        public bool InviteeEmailBlocked { get; set; }
-
-        [JsonPropertyName("inviteeEmailBlockedReason")]
-        public string? InviteeEmailBlockedReason { get; set; }
-
-        [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }
-
-        [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get; set; }
-
-        [JsonPropertyName("invitee")]
-        public TDMemberProfileDto? Invitee { get; set; }
-
-        [Required]
-        [JsonPropertyName("inviter")]
-        public CPrincipalDto Inviter { get; set; }
-
-        [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
-        [JsonPropertyName("role")]
-        public TDRoleDto? Role { get; set; }
-
-        [JsonPropertyName("revoked")]
-        public bool? Revoked { get; set; }
-
-    }
-
-    // Source: supportprofiledto
-    public class SupportProfileDTODto
-    {
-        [Required]
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
-        [Required]
-        [JsonPropertyName("adminPermissionsGranted")]
-        public bool AdminPermissionsGranted { get; set; }
-
-    }
-
-    // Source: packagessettings
-    public class PackagesSettingsDto
-    {
-        [Required]
-        [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }
-
-        [Required]
-        [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }
-
-        [Required]
-        [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("repositories")]
-        public List<Object7Dto> Repositories { get; set; }
-
-        [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }
-
-        [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }
-
-        [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }
-
-    }
-
-    // Source: packagerepositorysettings
-    public class PackageRepositorySettingsDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("settings")]
-        public ESPackageRepositorySettingsDto? Settings { get; set; }
-
-        [Required]
-        [JsonPropertyName("permissions")]
-        public List<PackagesPermission> Permissions { get; set; }
-
-    }
-
-    // Source: es_packagerepositorysettings
-    public class ESPackageRepositorySettingsDto
-    {
-    }
-
-    // Source: es_mavenrepositorysettings
-    public class ESMavenRepositorySettingsDto
-         : ESPackageRepositorySettingsDto
-    {
-    }
-
-    // Source: es_containerregistrysettings
-    public class ESContainerRegistrySettingsDto
-         : ESPackageRepositorySettingsDto
-    {
-        [Required]
-        [JsonPropertyName("immutableTags")]
-        public bool ImmutableTags { get; set; }
-
-    }
-
-    // Source: es_nugetfeedsettings
-    public class ESNuGetFeedSettingsDto
-         : ESPackageRepositorySettingsDto
-    {
-    }
-
-    // Source: dto_limit
-    public class DTOLimitDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("unit")]
-        public LimitUnit Unit { get; set; }
-
-        [Required]
-        [JsonPropertyName("estimate")]
-        public long Estimate { get; set; }
-
-        [JsonPropertyName("specificEstimate")]
-        public long? SpecificEstimate { get; set; }
-
-        [JsonPropertyName("softCap")]
-        public long? SoftCap { get; set; }
-
-        [JsonPropertyName("hardCap")]
-        public long? HardCap { get; set; }
-
-    }
-
-    // Source: revisioninreview
-    public class RevisionInReviewDto
-    {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
-    }
-
-    // Source: diffcontext
-    public class DiffContextDto
-    {
-        [JsonPropertyName("left")]
-        public DiffSideDto? Left { get; set; }
-
-        [Required]
-        [JsonPropertyName("right")]
-        public DiffSideDto Right { get; set; }
-
-    }
-
-    // Source: diffside
-    public class DiffSideDto
-    {
-    }
-
-    // Source: diffside.empty
-    public class DiffSideEmptyDto
-         : DiffSideDto
-    {
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
-    }
-
-    // Source: diffside.nonempty
-    public class DiffSideNonEmptyDto
-         : DiffSideDto
-    {
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
-        [Required]
-        [JsonPropertyName("path")]
-        public string Path { get; set; }
-
-    }
-
-    // Source: gitcommitchange
-    public class GitCommitChangeDto
-    {
-        [Required]
-        [JsonPropertyName("changeType")]
-        public GitCommitChangeType ChangeType { get; set; }
-
-        [JsonPropertyName("old")]
-        public GitFileDto? Old { get; set; }
-
-        [JsonPropertyName("new")]
-        public GitFileDto? New { get; set; }
-
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
-        [JsonPropertyName("diffSize")]
-        public GitDiffSizeDto? DiffSize { get; set; }
-
-    }
-
-    // Source: gitfile
-    public class GitFileDto
-    {
-        [Required]
-        [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
-        [Required]
-        [JsonPropertyName("path")]
-        public string Path { get; set; }
-
-        [Required]
-        [JsonPropertyName("blob")]
-        public string Blob { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public GitEntryType Type { get; set; }
-
-    }
-
-    // Source: gitdiffsize
-    public class GitDiffSizeDto
-    {
-        [Required]
-        [JsonPropertyName("added")]
-        public int Added { get; set; }
-
-        [Required]
-        [JsonPropertyName("deleted")]
-        public int Deleted { get; set; }
-
-    }
-
-    // Source: propagatedcodediscussion
-    public class PropagatedCodeDiscussionDto
-    {
-        [Required]
-        [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor { get; set; }
-
-        [Required]
-        [JsonPropertyName("discussion")]
-        public CodeDiscussionRecordDto Discussion { get; set; }
-
-    }
-
-    // Source: revisiondiscussionscounter
-    public class RevisionDiscussionsCounterDto
-    {
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
-        [Required]
-        [JsonPropertyName("filesWithCounts")]
-        public List<FileWithCountDto> FilesWithCounts { get; set; }
-
-    }
-
-    // Source: filewithcount
-    public class FileWithCountDto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("count")]
-        public CounterDto Count { get; set; }
-
-    }
-
-    // Source: revisioninreviewidentifier
-    public class RevisionInReviewIdentifierDto
-    {
-        [Required]
-        [JsonPropertyName("identifier")]
-        public string Identifier { get; set; }
-
-    }
-
-    // Source: changeinreview
-    public class ChangeInReviewDto
-    {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("change")]
-        public GitCommitChangeDto Change { get; set; }
-
-        [Required]
-        [JsonPropertyName("read")]
-        public bool Read { get; set; }
-
-    }
-
-    // Source: reviewcounts
-    public class ReviewCountsDto
-    {
-        [Required]
-        [JsonPropertyName("opened")]
-        public int Opened { get; set; }
-
-        [Required]
-        [JsonPropertyName("closed")]
-        public int Closed { get; set; }
-
-        [Required]
-        [JsonPropertyName("authoredByMe")]
-        public int AuthoredByMe { get; set; }
-
-        [Required]
-        [JsonPropertyName("reviewedByMe")]
-        public int ReviewedByMe { get; set; }
-
-    }
-
-    // Source: codereviewdetailedinfo
-    public class CodeReviewDetailedInfoDto
-    {
-        [Required]
-        [JsonPropertyName("shortInfo")]
-        public CodeReviewRecordDto ShortInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("commits")]
-        public List<RevisionsInReviewDto> Commits { get; set; }
-
-        [Required]
-        [JsonPropertyName("lostCommits")]
-        public List<RevisionsInReviewDto> LostCommits { get; set; }
-
-        [Required]
-        [JsonPropertyName("discussionCounter")]
-        public CodeReviewDiscussionCounterDto DiscussionCounter { get; set; }
-
-        [Required]
-        [JsonPropertyName("branches")]
-        public List<TrackedBranchesInReviewDto> Branches { get; set; }
-
-    }
-
-    // Source: revisionsinreview
-    public class RevisionsInReviewDto
-    {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("commits")]
-        public List<GitCommitWithGraphDto> Commits { get; set; }
-
-    }
-
-    // Source: gitcommitwithgraph
-    public class GitCommitWithGraphDto
-    {
-        [Required]
-        [JsonPropertyName("commit")]
-        public GitCommitInfoDto Commit { get; set; }
-
-        [Required]
-        [JsonPropertyName("reviews")]
-        public List<CodeReviewRecordDto> Reviews { get; set; }
-
-        [JsonPropertyName("layout")]
-        public GitGraphLayoutLineDto? Layout { get; set; }
-
-    }
-
-    // Source: gitcommitinfo
-    public class GitCommitInfoDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("repositoryName")]
-        public string RepositoryName { get; set; }
-
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
-
-        [Required]
-        [JsonPropertyName("authorDate")]
-        public long AuthorDate { get; set; }
-
-        [Required]
-        [JsonPropertyName("commitDate")]
-        public long CommitDate { get; set; }
-
-        [Required]
-        [JsonPropertyName("author")]
-        public GitAuthorInfoDto Author { get; set; }
-
-        [Required]
-        [JsonPropertyName("committer")]
-        public GitAuthorInfoDto Committer { get; set; }
-
-        [JsonPropertyName("authorProfile")]
-        public TDMemberProfileDto? AuthorProfile { get; set; }
-
-        [Required]
-        [JsonPropertyName("parents")]
-        public List<string> Parents { get; set; }
-
-        [Required]
-        [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
-
-        [Required]
-        [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get; set; }
-
-        [Required]
-        [JsonPropertyName("heads")]
-        public List<string> Heads { get; set; }
-
-    }
-
-    // Source: gitauthorinfo
-    public class GitAuthorInfoDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("email")]
-        public string Email { get; set; }
-
-    }
-
-    // Source: branchinfo
-    public class BranchInfoDto
-    {
-        [Required]
-        [JsonPropertyName("head")]
-        public string Head { get; set; }
-
-        [Required]
-        [JsonPropertyName("ref")]
-        public string Ref { get; set; }
-
-    }
-
-    // Source: gitgraphlayoutline
-    public class GitGraphLayoutLineDto
-    {
-        [Required]
-        [JsonPropertyName("nodes")]
-        public List<GitGraphLayoutNodeDto> Nodes { get; set; }
-
-        [Required]
-        [JsonPropertyName("edges")]
-        public List<GitGraphLayoutEdgeDto> Edges { get; set; }
-
-    }
-
-    // Source: gitgraphlayoutnode
-    public class GitGraphLayoutNodeDto
-    {
-        [Required]
-        [JsonPropertyName("pos")]
-        public int Pos { get; set; }
-
-        [Required]
-        [JsonPropertyName("color")]
-        public int Color { get; set; }
-
-    }
-
-    // Source: gitgraphlayoutedge
-    public class GitGraphLayoutEdgeDto
-    {
-        [Required]
-        [JsonPropertyName("from")]
-        public int From { get; set; }
-
-        [Required]
-        [JsonPropertyName("to")]
-        public int To { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public GitGraphEdgeType Type { get; set; }
-
-        [Required]
-        [JsonPropertyName("style")]
-        public GitGraphEdgeLineStyle Style { get; set; }
-
-        [Required]
-        [JsonPropertyName("hasArrow")]
-        public bool HasArrow { get; set; }
-
-        [Required]
-        [JsonPropertyName("color")]
-        public int Color { get; set; }
-
-    }
-
-    // Source: codereviewdiscussioncounter
-    public class CodeReviewDiscussionCounterDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
-        [Required]
-        [JsonPropertyName("counter")]
-        public CounterDto Counter { get; set; }
-
-    }
-
-    // Source: trackedbranchesinreview
-    public class TrackedBranchesInReviewDto
-    {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get; set; }
-
-    }
-
-    // Source: codereviewwithcount
-    public class CodeReviewWithCountDto
-    {
-        [Required]
-        [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get; set; }
-
-        [Required]
-        [JsonPropertyName("messagesCount")]
-        public int MessagesCount { get; set; }
-
-        [Required]
-        [JsonPropertyName("authors")]
-        public List<GitCommitterProfileDto> Authors { get; set; }
-
-        [Required]
-        [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto Participants { get; set; }
-
-    }
-
-    // Source: gitcommitterprofile
-    public class GitCommitterProfileDto
-    {
-        [Required]
-        [JsonPropertyName("author")]
-        public string Author { get; set; }
-
-        [Required]
-        [JsonPropertyName("email")]
-        public string Email { get; set; }
-
-        [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }
-
-    }
-
-    // Source: commitstatusdto
-    public class CommitStatusDTODto
-    {
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
-        [Required]
-        [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus { get; set; }
-
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
-
-        [Required]
-        [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskId")]
-        public string TaskId { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public long Timestamp { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-    }
-
-    // Source: eregistrysettings
-    public class ERegistrySettingsDto
-    {
-        [Required]
-        [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }
-
-        [Required]
-        [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }
-
-        [Required]
-        [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("repositories")]
-        public List<Object8Dto> Repositories { get; set; }
-
-        [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }
-
-        [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }
-
-        [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }
-
-    }
-
-    // Source: erepositorysettings
-    public class ERepositorySettingsDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("immutableTags")]
-        public bool ImmutableTags { get; set; }
-
-        [Required]
-        [JsonPropertyName("permissions")]
-        public List<string> Permissions { get; set; }
 
     }
 
@@ -7203,19 +3110,6 @@ namespace SpaceDotNet.Client
 
         [JsonPropertyName("comments")]
         public List<FTSBlogCommentDto>? Comments { get; set; }
-
-    }
-
-    // Source: fts_snippet
-    public class FTSSnippetDto
-    {
-        [Required]
-        [JsonPropertyName("field")]
-        public string Field { get; set; }
-
-        [Required]
-        [JsonPropertyName("snippet")]
-        public List<string> Snippet { get; set; }
 
     }
 
@@ -7278,6 +3172,39 @@ namespace SpaceDotNet.Client
 
     }
 
+    // Source: fts_snippet
+    public class FTSSnippetDto
+    {
+        [Required]
+        [JsonPropertyName("field")]
+        public string Field { get; set; }
+
+        [Required]
+        [JsonPropertyName("snippet")]
+        public List<string> Snippet { get; set; }
+
+    }
+
+    // Source: fts_team
+    public class FTSTeamDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [Required]
+        [JsonPropertyName("snippets")]
+        public List<FTSSnippetDto> Snippets { get; set; }
+
+    }
+
     // Source: fts_user
     public class FTSUserDto
     {
@@ -7305,8 +3232,333 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: fts_team
-    public class FTSTeamDto
+    // Source: featureflag
+    public class FeatureFlagDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+    }
+
+    // Source: feedevent
+    public class FeedEventDto
+    {
+    }
+
+    // Source: fileattachment
+    public class FileAttachmentDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("sizeBytes")]
+        public long SizeBytes { get; set; }
+
+        [Required]
+        [JsonPropertyName("filename")]
+        public string Filename { get; set; }
+
+    }
+
+    // Source: filewithcount
+    public class FileWithCountDto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("count")]
+        public CounterDto Count { get; set; }
+
+    }
+
+    // Source: fingerprint
+    public class FingerprintDto
+    {
+        [Required]
+        [JsonPropertyName("md5")]
+        public string Md5 { get; set; }
+
+        [Required]
+        [JsonPropertyName("sha1")]
+        public string Sha1 { get; set; }
+
+        [Required]
+        [JsonPropertyName("sha256")]
+        public string Sha256 { get; set; }
+
+        [Required]
+        [JsonPropertyName("sha384")]
+        public string Sha384 { get; set; }
+
+        [Required]
+        [JsonPropertyName("sha512")]
+        public string Sha512 { get; set; }
+
+    }
+
+    // Source: fraction
+    public class FractionDto
+    {
+        [Required]
+        [JsonPropertyName("numerator")]
+        public int Numerator { get; set; }
+
+        [Required]
+        [JsonPropertyName("denominator")]
+        public int Denominator { get; set; }
+
+    }
+
+    // Source: fractioncftype
+    public class FractionCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: fractioncfvalue
+    public class FractionCFValueDto
+         : CFValueDto
+    {
+        [JsonPropertyName("value")]
+        public FractionDto? Value { get; set; }
+
+    }
+
+    // Source: gitauthorinfo
+    public class GitAuthorInfoDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
+
+    }
+
+    // Source: gitcommitchange
+    public class GitCommitChangeDto
+    {
+        [Required]
+        [JsonPropertyName("changeType")]
+        public GitCommitChangeType ChangeType { get; set; }
+
+        [JsonPropertyName("old")]
+        public GitFileDto? Old { get; set; }
+
+        [JsonPropertyName("new")]
+        public GitFileDto? New { get; set; }
+
+        [Required]
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
+
+        [JsonPropertyName("diffSize")]
+        public GitDiffSizeDto? DiffSize { get; set; }
+
+    }
+
+    // Source: gitcommitinfo
+    public class GitCommitInfoDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("message")]
+        public string Message { get; set; }
+
+        [Required]
+        [JsonPropertyName("authorDate")]
+        public long AuthorDate { get; set; }
+
+        [Required]
+        [JsonPropertyName("commitDate")]
+        public long CommitDate { get; set; }
+
+        [Required]
+        [JsonPropertyName("author")]
+        public GitAuthorInfoDto Author { get; set; }
+
+        [Required]
+        [JsonPropertyName("committer")]
+        public GitAuthorInfoDto Committer { get; set; }
+
+        [JsonPropertyName("authorProfile")]
+        public TDMemberProfileDto? AuthorProfile { get; set; }
+
+        [Required]
+        [JsonPropertyName("parents")]
+        public List<string> Parents { get; set; }
+
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get; set; }
+
+        [Required]
+        [JsonPropertyName("branches")]
+        public List<BranchInfoDto> Branches { get; set; }
+
+        [Required]
+        [JsonPropertyName("heads")]
+        public List<string> Heads { get; set; }
+
+    }
+
+    // Source: gitcommitwithgraph
+    public class GitCommitWithGraphDto
+    {
+        [Required]
+        [JsonPropertyName("repositoryName")]
+        public string RepositoryName { get; set; }
+
+        [Required]
+        [JsonPropertyName("commit")]
+        public GitCommitInfoDto Commit { get; set; }
+
+        [Required]
+        [JsonPropertyName("reviews")]
+        public List<CodeReviewRecordDto> Reviews { get; set; }
+
+        [JsonPropertyName("layout")]
+        public GitGraphLayoutLineDto? Layout { get; set; }
+
+    }
+
+    // Source: gitcommitterprofile
+    public class GitCommitterProfileDto
+    {
+        [Required]
+        [JsonPropertyName("author")]
+        public string Author { get; set; }
+
+        [Required]
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
+
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto? Profile { get; set; }
+
+    }
+
+    // Source: gitdiffsize
+    public class GitDiffSizeDto
+    {
+        [Required]
+        [JsonPropertyName("added")]
+        public int Added { get; set; }
+
+        [Required]
+        [JsonPropertyName("deleted")]
+        public int Deleted { get; set; }
+
+    }
+
+    // Source: gitfile
+    public class GitFileDto
+    {
+        [Required]
+        [JsonPropertyName("commit")]
+        public string Commit { get; set; }
+
+        [Required]
+        [JsonPropertyName("path")]
+        public string Path { get; set; }
+
+        [Required]
+        [JsonPropertyName("blob")]
+        public string Blob { get; set; }
+
+        [Required]
+        [JsonPropertyName("type")]
+        public GitEntryType Type { get; set; }
+
+    }
+
+    // Source: gitgraphlayoutedge
+    public class GitGraphLayoutEdgeDto
+    {
+        [Required]
+        [JsonPropertyName("from")]
+        public int From { get; set; }
+
+        [Required]
+        [JsonPropertyName("to")]
+        public int To { get; set; }
+
+        [Required]
+        [JsonPropertyName("type")]
+        public GitGraphEdgeType Type { get; set; }
+
+        [Required]
+        [JsonPropertyName("style")]
+        public GitGraphEdgeLineStyle Style { get; set; }
+
+        [Required]
+        [JsonPropertyName("hasArrow")]
+        public bool HasArrow { get; set; }
+
+        [Required]
+        [JsonPropertyName("color")]
+        public int Color { get; set; }
+
+    }
+
+    // Source: gitgraphlayoutline
+    public class GitGraphLayoutLineDto
+    {
+        [Required]
+        [JsonPropertyName("nodes")]
+        public List<GitGraphLayoutNodeDto> Nodes { get; set; }
+
+        [Required]
+        [JsonPropertyName("edges")]
+        public List<GitGraphLayoutEdgeDto> Edges { get; set; }
+
+    }
+
+    // Source: gitgraphlayoutnode
+    public class GitGraphLayoutNodeDto
+    {
+        [Required]
+        [JsonPropertyName("pos")]
+        public int Pos { get; set; }
+
+        [Required]
+        [JsonPropertyName("color")]
+        public int Color { get; set; }
+
+    }
+
+    // Source: ha_deprecation
+    public class HADeprecationDto
+    {
+        [Required]
+        [JsonPropertyName("message")]
+        public string Message { get; set; }
+
+        [Required]
+        [JsonPropertyName("since")]
+        public string Since { get; set; }
+
+        [Required]
+        [JsonPropertyName("forRemoval")]
+        public bool ForRemoval { get; set; }
+
+    }
+
+    // Source: ha_dto
+    public class HADtoDto
     {
         [Required]
         [JsonPropertyName("id")]
@@ -7316,12 +3568,2450 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
+        [Required]
+        [JsonPropertyName("fields")]
+        public List<HADtoFieldDto> Fields { get; set; }
+
+        [Required]
+        [JsonPropertyName("hierarchyRole")]
+        public HierarchyRole HierarchyRole { get; set; }
+
+        [JsonPropertyName("extends")]
+        public HADtoDto? Extends { get; set; }
+
+        [Required]
+        [JsonPropertyName("implements")]
+        public List<HADtoDto> Implements { get; set; }
+
+        [Required]
+        [JsonPropertyName("inheritors")]
+        public List<HADtoDto> Inheritors { get; set; }
+
+        [JsonPropertyName("deprecation")]
+        public HADeprecationDto? Deprecation { get; set; }
+
+        [Required]
+        [JsonPropertyName("record")]
+        public bool Record { get; set; }
+
+    }
+
+    // Source: ha_dtofield
+    public class HADtoFieldDto
+    {
+        [Required]
+        [JsonPropertyName("field")]
+        public HAFieldDto Field { get; set; }
+
+        [Required]
+        [JsonPropertyName("extension")]
+        public bool Extension { get; set; }
+
+    }
+
+    // Source: ha_endpoint
+    public class HAEndpointDto
+    {
+        [Required]
+        [JsonPropertyName("resource")]
+        public HAResourceDto Resource { get; set; }
+
+        [Required]
+        [JsonPropertyName("method")]
+        public HAMethod Method { get; set; }
+
+        [Required]
+        [JsonPropertyName("parameters")]
+        public List<HAParameterDto> Parameters { get; set; }
+
+        [JsonPropertyName("requestBody")]
+        public HATypeObjectDto? RequestBody { get; set; }
+
+        [JsonPropertyName("responseBody")]
+        public HATypeDto? ResponseBody { get; set; }
+
+        [Required]
+        [JsonPropertyName("path")]
+        public HAPathDto Path { get; set; }
+
+        [Required]
+        [JsonPropertyName("displayName")]
+        public string DisplayName { get; set; }
+
+        [JsonPropertyName("doc")]
+        public string? Doc { get; set; }
+
+        [JsonPropertyName("deprecation")]
+        public HADeprecationDto? Deprecation { get; set; }
+
+    }
+
+    // Source: ha_enum
+    public class HAEnumDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("values")]
+        public List<string> Values { get; set; }
+
+        [JsonPropertyName("deprecation")]
+        public HADeprecationDto? Deprecation { get; set; }
+
+    }
+
+    // Source: ha_field
+    public class HAFieldDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("type")]
+        public HATypeDto Type { get; set; }
+
+        [JsonPropertyName("deprecation")]
+        public HADeprecationDto? Deprecation { get; set; }
+
+    }
+
+    // Source: ha_model
+    public class HAModelDto
+    {
+        [Required]
+        [JsonPropertyName("dto")]
+        public List<HADtoDto> Dto { get; set; }
+
+        [Required]
+        [JsonPropertyName("enums")]
+        public List<HAEnumDto> Enums { get; set; }
+
+        [Required]
+        [JsonPropertyName("resources")]
+        public List<HAResourceDto> Resources { get; set; }
+
+        [Required]
+        [JsonPropertyName("allResources")]
+        public List<HAResourceDto> AllResources { get; set; }
+
+    }
+
+    // Source: ha_parameter
+    public class HAParameterDto
+    {
+        [Required]
+        [JsonPropertyName("field")]
+        public HAFieldDto Field { get; set; }
+
+        [Required]
+        [JsonPropertyName("path")]
+        public bool Path { get; set; }
+
+    }
+
+    // Source: ha_path
+    public class HAPathDto
+    {
+        [Required]
+        [JsonPropertyName("segments")]
+        public List<HAPathSegmentDto> Segments { get; set; }
+
+    }
+
+    // Source: ha_pathsegment
+    public class HAPathSegmentDto
+    {
+    }
+
+    // Source: ha_pathsegment.const
+    public class HAPathSegmentConstDto
+         : HAPathSegmentDto
+    {
+        [Required]
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
+
+    }
+
+    // Source: ha_pathsegment.prefixedvar
+    public class HAPathSegmentPrefixedVarDto
+         : HAPathSegmentDto
+    {
+        [Required]
+        [JsonPropertyName("prefix")]
+        public string Prefix { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+    }
+
+    // Source: ha_pathsegment.var
+    public class HAPathSegmentVarDto
+         : HAPathSegmentDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+    }
+
+    // Source: ha_resource
+    public class HAResourceDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("path")]
+        public HAPathDto Path { get; set; }
+
+        [Required]
+        [JsonPropertyName("displaySingular")]
+        public string DisplaySingular { get; set; }
+
+        [Required]
+        [JsonPropertyName("displayPlural")]
+        public string DisplayPlural { get; set; }
+
+        [JsonPropertyName("parentResource")]
+        public HAResourceDto? ParentResource { get; set; }
+
+        [Required]
+        [JsonPropertyName("endpoints")]
+        public List<HAEndpointDto> Endpoints { get; set; }
+
+        [Required]
+        [JsonPropertyName("nestedResources")]
+        public List<HAResourceDto> NestedResources { get; set; }
+
+    }
+
+    // Source: ha_type
+    public class HATypeDto
+    {
+    }
+
+    // Source: ha_type.array
+    public class HATypeArrayDto
+         : HATypeDto
+    {
+        [Required]
+        [JsonPropertyName("elementType")]
+        public HATypeDto ElementType { get; set; }
+
+        [Required]
+        [JsonPropertyName("nullable")]
+        public bool Nullable { get; set; }
+
+        [Required]
+        [JsonPropertyName("optional")]
+        public bool Optional { get; set; }
+
+    }
+
+    // Source: ha_type.dto
+    public class HATypeDtoDto
+         : HATypeDto
+    {
+        [Required]
+        [JsonPropertyName("dto")]
+        public HADtoDto Dto { get; set; }
+
+        [Required]
+        [JsonPropertyName("nullable")]
+        public bool Nullable { get; set; }
+
+        [Required]
+        [JsonPropertyName("optional")]
+        public bool Optional { get; set; }
+
+    }
+
+    // Source: ha_type.enum
+    public class HATypeEnumDto
+         : HATypeDto
+    {
+        [Required]
+        [JsonPropertyName("enum")]
+        public HAEnumDto Enum { get; set; }
+
+        [Required]
+        [JsonPropertyName("nullable")]
+        public bool Nullable { get; set; }
+
+        [Required]
+        [JsonPropertyName("optional")]
+        public bool Optional { get; set; }
+
+    }
+
+    // Source: ha_type.object
+    public class HATypeObjectDto
+         : HATypeDto
+    {
+        [Required]
+        [JsonPropertyName("fields")]
+        public List<HAFieldDto> Fields { get; set; }
+
+        [Required]
+        [JsonPropertyName("kind")]
+        public HATypeObjectKind Kind { get; set; }
+
+        [Required]
+        [JsonPropertyName("nullable")]
+        public bool Nullable { get; set; }
+
+        [Required]
+        [JsonPropertyName("optional")]
+        public bool Optional { get; set; }
+
+    }
+
+    // Source: ha_type.primitive
+    public class HATypePrimitiveDto
+         : HATypeDto
+    {
+        [Required]
+        [JsonPropertyName("primitive")]
+        public HAPrimitive Primitive { get; set; }
+
+        [Required]
+        [JsonPropertyName("nullable")]
+        public bool Nullable { get; set; }
+
+        [Required]
+        [JsonPropertyName("optional")]
+        public bool Optional { get; set; }
+
+    }
+
+    // Source: ha_type.ref
+    public class HATypeRefDto
+         : HATypeDto
+    {
+        [Required]
+        [JsonPropertyName("dto")]
+        public HADtoDto Dto { get; set; }
+
+        [Required]
+        [JsonPropertyName("nullable")]
+        public bool Nullable { get; set; }
+
+        [Required]
+        [JsonPropertyName("optional")]
+        public bool Optional { get; set; }
+
+    }
+
+    // Source: imageattachment
+    public class ImageAttachmentDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("width")]
+        public int Width { get; set; }
+
+        [Required]
+        [JsonPropertyName("height")]
+        public int Height { get; set; }
+
+        [JsonPropertyName("previewBytes")]
+        public string? PreviewBytes { get; set; }
+
+        [JsonPropertyName("variants")]
+        public List<ImageAttachmentVariantDto>? Variants { get; set; }
+
+    }
+
+    // Source: imageattachmentmeta
+    public class ImageAttachmentMetaDto
+    {
+        [Required]
+        [JsonPropertyName("variants")]
+        public List<ImageAttachmentVariantsMetaDto> Variants { get; set; }
+
+    }
+
+    // Source: imageattachmentvariant
+    public class ImageAttachmentVariantDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("width")]
+        public int Width { get; set; }
+
+        [Required]
+        [JsonPropertyName("height")]
+        public int Height { get; set; }
+
+    }
+
+    // Source: imageattachmentvariantsmeta
+    public class ImageAttachmentVariantsMetaDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("width")]
+        public int Width { get; set; }
+
+        [Required]
+        [JsonPropertyName("height")]
+        public int Height { get; set; }
+
+    }
+
+    // Source: importsource
+    public class ImportSourceDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("importer")]
+        public CPrincipalDto Importer { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+    }
+
+    // Source: importedentityinfo
+    public class ImportedEntityInfoDto
+    {
+        [Required]
+        [JsonPropertyName("source")]
+        public ImportSourceDto Source { get; set; }
+
+        [JsonPropertyName("externalName")]
+        public string? ExternalName { get; set; }
+
+        [JsonPropertyName("externalUrl")]
+        public string? ExternalUrl { get; set; }
+
+    }
+
+    // Source: inlinediffline
+    public class InlineDiffLineDto
+    {
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [JsonPropertyName("type")]
+        public DiffLineType? Type { get; set; }
+
+        [JsonPropertyName("oldLineNum")]
+        public int? OldLineNum { get; set; }
+
+        [JsonPropertyName("newLineNum")]
+        public int? NewLineNum { get; set; }
+
+        [Required]
+        [JsonPropertyName("oldFileOffset")]
+        public int OldFileOffset { get; set; }
+
+        [Required]
+        [JsonPropertyName("newFileOffset")]
+        public int NewFileOffset { get; set; }
+
+        [JsonPropertyName("syntax")]
+        public List<SyntaxMarkupDto>? Syntax { get; set; }
+
+        [JsonPropertyName("deletes")]
+        public List<TextRangeDto>? Deletes { get; set; }
+
+        [JsonPropertyName("inserts")]
+        public List<TextRangeDto>? Inserts { get; set; }
+
+    }
+
+    // Source: intcfconstraint
+    public class IntCFConstraintDto
+         : CFConstraintDto
+    {
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+
+        [JsonPropertyName("message")]
+        public string? Message { get; set; }
+
+    }
+
+    // Source: intcftype
+    public class IntCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: intcfvalue
+    public class IntCFValueDto
+         : CFValueDto
+    {
+        [JsonPropertyName("value")]
+        public int? Value { get; set; }
+
+    }
+
+    // Source: intlistcftype
+    public class IntListCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: intlistcfvalue
+    public class IntListCFValueDto
+         : CFValueDto
+    {
+        [Required]
+        [JsonPropertyName("values")]
+        public List<int> Values { get; set; }
+
+    }
+
+    // Source: invitation
+    public class InvitationDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("expiresAt")]
+        public SpaceTime ExpiresAt { get; set; }
+
+        [Required]
+        [JsonPropertyName("inviteeEmail")]
+        public string InviteeEmail { get; set; }
+
+        [Required]
+        [JsonPropertyName("inviteeEmailBlocked")]
+        public bool InviteeEmailBlocked { get; set; }
+
+        [JsonPropertyName("inviteeEmailBlockedReason")]
+        public string? InviteeEmailBlockedReason { get; set; }
+
+        [JsonPropertyName("inviteeFirstName")]
+        public string? InviteeFirstName { get; set; }
+
+        [JsonPropertyName("inviteeLastName")]
+        public string? InviteeLastName { get; set; }
+
+        [JsonPropertyName("invitee")]
+        public TDMemberProfileDto? Invitee { get; set; }
+
+        [Required]
+        [JsonPropertyName("inviter")]
+        public CPrincipalDto Inviter { get; set; }
+
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }
+
+        [JsonPropertyName("role")]
+        public TDRoleDto? Role { get; set; }
+
+        [JsonPropertyName("revoked")]
+        public bool? Revoked { get; set; }
+
+    }
+
+    // Source: issue
+    public class IssueDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId { get; set; }
+
+        [JsonPropertyName("projectRef")]
+        public PRProjectDto? ProjectRef { get; set; }
+
+        [Required]
+        [JsonPropertyName("number")]
+        public int Number { get; set; }
+
+        [Required]
+        [JsonPropertyName("createdBy")]
+        public CPrincipalDto CreatedBy { get; set; }
+
+        [Required]
+        [JsonPropertyName("creationTime")]
+        public SpaceTime CreationTime { get; set; }
+
+        [JsonPropertyName("assignee")]
+        public TDMemberProfileDto? Assignee { get; set; }
+
+        [Required]
+        [JsonPropertyName("status")]
+        public IssueStatusDto Status { get; set; }
+
+        [JsonPropertyName("dueDate")]
+        public SpaceDate? DueDate { get; set; }
+
+        [JsonPropertyName("importInfo")]
+        public ImportedEntityInfoDto? ImportInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<PlanningTagDto> Tags { get; set; }
+
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [Required]
+        [JsonPropertyName("checklists")]
+        public List<ChecklistDto> Checklists { get; set; }
+
+        [Required]
+        [JsonPropertyName("attachments")]
+        public List<AttachmentInfoDto> Attachments { get; set; }
+
+        [Required]
+        [JsonPropertyName("channel")]
+        public M2ChannelRecordDto Channel { get; set; }
+
         [JsonPropertyName("description")]
         public string? Description { get; set; }
 
+    }
+
+    // Source: issueassigneechangeddetails
+    public class IssueAssigneeChangedDetailsDto
+    {
+        [JsonPropertyName("oldAssignee")]
+        public TDMemberProfileDto? OldAssignee { get; set; }
+
+        [JsonPropertyName("newAssignee")]
+        public TDMemberProfileDto? NewAssignee { get; set; }
+
+    }
+
+    // Source: issueattachmentschangeddetails
+    public class IssueAttachmentsChangedDetailsDto
+    {
+        [JsonPropertyName("addedNames")]
+        public List<string>? AddedNames { get; set; }
+
+        [JsonPropertyName("removedNames")]
+        public List<string>? RemovedNames { get; set; }
+
+    }
+
+    // Source: issuechangedm2details
+    public class IssueChangedM2DetailsDto
+    {
+    }
+
+    // Source: issuechecklistschangeddetails
+    public class IssueChecklistsChangedDetailsDto
+    {
+        [JsonPropertyName("addedChecklists")]
+        public List<ChecklistDto>? AddedChecklists { get; set; }
+
+        [JsonPropertyName("removedChecklists")]
+        public List<ChecklistDto>? RemovedChecklists { get; set; }
+
+    }
+
+    // Source: issuecreateddetails
+    public class IssueCreatedDetailsDto
+    {
+        [JsonPropertyName("issue")]
+        public IssueDto? Issue { get; set; }
+
+    }
+
+    // Source: issuedeleteddetails
+    public class IssueDeletedDetailsDto
+    {
+    }
+
+    // Source: issuedescriptionchangeddetails
+    public class IssueDescriptionChangedDetailsDto
+    {
+        [JsonPropertyName("oldDescription")]
+        public string? OldDescription { get; set; }
+
+        [JsonPropertyName("newDescription")]
+        public string? NewDescription { get; set; }
+
+    }
+
+    // Source: issueduedatechangeddetails
+    public class IssueDueDateChangedDetailsDto
+    {
+        [JsonPropertyName("oldDueDate")]
+        public SpaceDate? OldDueDate { get; set; }
+
+        [JsonPropertyName("newDueDate")]
+        public SpaceDate? NewDueDate { get; set; }
+
+    }
+
+    // Source: issuestatus
+    public class IssueStatusDto
+    {
         [Required]
-        [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("resolved")]
+        public bool Resolved { get; set; }
+
+        [Required]
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
+
+    }
+
+    // Source: issuestatuschangeddetails
+    public class IssueStatusChangedDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("oldStatus")]
+        public IssueStatusDto OldStatus { get; set; }
+
+        [Required]
+        [JsonPropertyName("newStatus")]
+        public IssueStatusDto NewStatus { get; set; }
+
+    }
+
+    // Source: issuestatusdata
+    public class IssueStatusDataDto
+    {
+        [JsonPropertyName("existingId")]
+        public string? ExistingId { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("resolved")]
+        public bool Resolved { get; set; }
+
+        [Required]
+        [JsonPropertyName("color")]
+        public string Color { get; set; }
+
+    }
+
+    // Source: issuestatuswithusages
+    public class IssueStatusWithUsagesDto
+    {
+        [Required]
+        [JsonPropertyName("status")]
+        public IssueStatusDto Status { get; set; }
+
+        [Required]
+        [JsonPropertyName("usages")]
+        public int Usages { get; set; }
+
+    }
+
+    // Source: issuetagschangeddetails
+    public class IssueTagsChangedDetailsDto
+    {
+        [JsonPropertyName("addedTags")]
+        public List<PlanningTagDto>? AddedTags { get; set; }
+
+        [JsonPropertyName("removedTags")]
+        public List<PlanningTagDto>? RemovedTags { get; set; }
+
+    }
+
+    // Source: issuetitlechangeddetails
+    public class IssueTitleChangedDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("oldTitle")]
+        public string OldTitle { get; set; }
+
+        [Required]
+        [JsonPropertyName("newTitle")]
+        public string NewTitle { get; set; }
+
+    }
+
+    // Source: jbspacenewsfeedchannel
+    public class JBSpaceNewsFeedChannelDto
+    {
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
+
+    }
+
+    // Source: kbpublicationdetails
+    public class KbPublicationDetailsDto
+    {
+        [JsonPropertyName("path")]
+        public string? Path { get; set; }
+
+    }
+
+    // Source: lastchanges
+    public class LastChangesDto
+    {
+        [Required]
+        [JsonPropertyName("lastChanges")]
+        public List<RevisionInfoDto> LastChanges { get; set; }
+
+        [Required]
+        [JsonPropertyName("totalChanges")]
+        public int TotalChanges { get; set; }
+
+    }
+
+    // Source: linkpreview
+    public class LinkPreviewDto
+    {
+    }
+
+    // Source: m2absenceitemapprovedeletedcontent
+    public class M2AbsenceItemApproveDeletedContentDto
+    {
+        [Required]
+        [JsonPropertyName("absence")]
+        public AbsenceRecordDto Absence { get; set; }
+
+        [Required]
+        [JsonPropertyName("by")]
+        public TDMemberProfileDto By { get; set; }
+
+        [Required]
+        [JsonPropertyName("approve")]
+        public bool Approve { get; set; }
+
+    }
+
+    // Source: m2absenceitemapprovedcontent
+    public class M2AbsenceItemApprovedContentDto
+    {
+        [Required]
+        [JsonPropertyName("absence")]
+        public AbsenceRecordDto Absence { get; set; }
+
+        [Required]
+        [JsonPropertyName("by")]
+        public TDMemberProfileDto By { get; set; }
+
+        [Required]
+        [JsonPropertyName("approve")]
+        public bool Approve { get; set; }
+
+    }
+
+    // Source: m2absenceitemcontent
+    public class M2AbsenceItemContentDto
+    {
+        [Required]
+        [JsonPropertyName("absence")]
+        public AbsenceRecordDto Absence { get; set; }
+
+    }
+
+    // Source: m2absenceitemdeletedcontent
+    public class M2AbsenceItemDeletedContentDto
+    {
+        [Required]
+        [JsonPropertyName("absence")]
+        public AbsenceRecordDto Absence { get; set; }
+
+    }
+
+    // Source: m2absenceitemupdatedcontent
+    public class M2AbsenceItemUpdatedContentDto
+    {
+        [Required]
+        [JsonPropertyName("absence")]
+        public AbsenceRecordDto Absence { get; set; }
+
+        [JsonPropertyName("reason")]
+        public Modification<AbsenceReasonRecordDto>? Reason { get; set; }
+
+        [JsonPropertyName("description")]
+        public Modification<string>? Description { get; set; }
+
+        [JsonPropertyName("since")]
+        public Modification<SpaceDate>? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public Modification<SpaceDate>? Till { get; set; }
+
+    }
+
+    // Source: m2blogitemcontent
+    public class M2BlogItemContentDto
+    {
+        [Required]
+        [JsonPropertyName("article")]
+        public ArticleRecordDto Article { get; set; }
+
+        [Required]
+        [JsonPropertyName("articleContent")]
+        public ArticleContentRecordDto ArticleContent { get; set; }
+
+        [Required]
+        [JsonPropertyName("articleDetails")]
+        public ArticleDetailsRecordDto ArticleDetails { get; set; }
+
+        [Required]
+        [JsonPropertyName("articleChannel")]
+        public ArticleChannelRecordDto ArticleChannel { get; set; }
+
+    }
+
+    // Source: m2blogitempreview
+    public class M2BlogItemPreviewDto
+    {
+        [Required]
+        [JsonPropertyName("article")]
+        public ArticleRecordDto Article { get; set; }
+
+        [Required]
+        [JsonPropertyName("articlePreview")]
+        public ArticlePreviewRecordDto ArticlePreview { get; set; }
+
+        [Required]
+        [JsonPropertyName("articleDetails")]
+        public ArticleDetailsRecordDto ArticleDetails { get; set; }
+
+        [Required]
+        [JsonPropertyName("articleChannel")]
+        public ArticleChannelRecordDto ArticleChannel { get; set; }
+
+    }
+
+    // Source: m2channelarchiveditemdetails
+    public class M2ChannelArchivedItemDetailsDto
+    {
+    }
+
+    // Source: m2channelcontact
+    public class M2ChannelContactDto
+    {
+        [Required]
+        [JsonPropertyName("defaultName")]
+        public string DefaultName { get; set; }
+
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
+
+        [JsonPropertyName("ext")]
+        public M2ChannelContactInfoDto? Ext { get; set; }
+
+    }
+
+    // Source: m2channelcontactarticle
+    public class M2ChannelContactArticleDto
+    {
+        [Required]
+        [JsonPropertyName("article")]
+        public ArticleRecordDto Article { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+    }
+
+    // Source: m2channelcontactinfo
+    public class M2ChannelContactInfoDto
+    {
+    }
+
+    // Source: m2channelcontactobsolete
+    public class M2ChannelContactObsoleteDto
+    {
+        [JsonPropertyName("cause")]
+        public M2ObsoleteCause? Cause { get; set; }
+
+    }
+
+    // Source: m2channelcontactquickinfodefault
+    public class M2ChannelContactQuickInfoDefaultDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
+
+    }
+
+    // Source: m2channelcontactthread
+    public class M2ChannelContactThreadDto
+    {
+        [Required]
+        [JsonPropertyName("parent")]
+        public M2ChannelRecordDto Parent { get; set; }
+
+        [JsonPropertyName("text")]
+        public string? Text { get; set; }
+
+        [JsonPropertyName("messageId")]
+        public string? MessageId { get; set; }
+
+        [JsonPropertyName("author")]
+        public TDMemberProfileDto? Author { get; set; }
+
+        [JsonPropertyName("messageAuthor")]
+        public CPrincipalDto? MessageAuthor { get; set; }
+
+        [JsonPropertyName("attachments")]
+        public string? Attachments { get; set; }
+
+    }
+
+    // Source: m2channelcontentarticle
+    public class M2ChannelContentArticleDto
+    {
+        [Required]
+        [JsonPropertyName("article")]
+        public ArticleRecordDto Article { get; set; }
+
+        [Required]
+        [JsonPropertyName("articleContent")]
+        public ArticleContentRecordDto ArticleContent { get; set; }
+
+        [JsonPropertyName("details")]
+        public ArticleDetailsRecordDto? Details { get; set; }
+
+    }
+
+    // Source: m2channelcontentcodediscussion
+    public class M2ChannelContentCodeDiscussionDto
+    {
+        [Required]
+        [JsonPropertyName("codeDiscussionId")]
+        public string CodeDiscussionId { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+        [JsonPropertyName("codeDiscussion")]
+        public CodeDiscussionRecordDto? CodeDiscussion { get; set; }
+
+    }
+
+    // Source: m2channelcontentcodereviewdiscussion
+    public class M2ChannelContentCodeReviewDiscussionDto
+    {
+        [Required]
+        [JsonPropertyName("codeReviewDiscussion")]
+        public string CodeReviewDiscussion { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+    }
+
+    // Source: m2channelcontentcodereviewfeed
+    public class M2ChannelContentCodeReviewFeedDto
+    {
+        [Required]
+        [JsonPropertyName("codeReviewId")]
+        public string CodeReviewId { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+        [JsonPropertyName("codeReview")]
+        public CodeReviewRecordDto? CodeReview { get; set; }
+
+        [JsonPropertyName("participants")]
+        public CodeReviewParticipantsDto? Participants { get; set; }
+
+    }
+
+    // Source: m2channelcontentinfo
+    public class M2ChannelContentInfoDto
+    {
+    }
+
+    // Source: m2channelcontentlocation
+    public class M2ChannelContentLocationDto
+    {
+        [Required]
+        [JsonPropertyName("location")]
+        public TDLocationDto Location { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+    }
+
+    // Source: m2channelcontentmember
+    public class M2ChannelContentMemberDto
+    {
+        [Required]
+        [JsonPropertyName("member")]
+        public TDMemberProfileDto Member { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+        [JsonPropertyName("memberAbsences")]
+        public ProfileAbsencesRecordDto? MemberAbsences { get; set; }
+
+        [JsonPropertyName("memberTeams")]
+        public ProfileMembershipRecordDto? MemberTeams { get; set; }
+
+    }
+
+    // Source: m2channelcontentmembership
+    public class M2ChannelContentMembershipDto
+    {
+    }
+
+    // Source: m2channelcontentmention
+    public class M2ChannelContentMentionDto
+    {
+        [Required]
+        [JsonPropertyName("record")]
+        public ChannelItemRecordDto Record { get; set; }
+
+        [Required]
+        [JsonPropertyName("parent")]
+        public M2ChannelRecordDto Parent { get; set; }
+
+    }
+
+    // Source: m2channelcontentnamedprivatechannel
+    public class M2ChannelContentNamedPrivateChannelDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
+
+    }
+
+    // Source: m2channelcontentrecord
+    public class M2ChannelContentRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("content")]
+        public M2ChannelContentInfoDto? Content { get; set; }
+
+    }
+
+    // Source: m2channelcontentteam
+    public class M2ChannelContentTeamDto
+    {
+        [Required]
+        [JsonPropertyName("team")]
+        public TDTeamDto Team { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+    }
+
+    // Source: m2channelcontentthread
+    public class M2ChannelContentThreadDto
+    {
+        [Required]
+        [JsonPropertyName("record")]
+        public ChannelItemRecordDto Record { get; set; }
+
+        [Required]
+        [JsonPropertyName("parent")]
+        public M2ChannelRecordDto Parent { get; set; }
+
+    }
+
+    // Source: m2channelcreateditemdetails
+    public class M2ChannelCreatedItemDetailsDto
+    {
+    }
+
+    // Source: m2channelfeedintroitemdetails
+    public class M2ChannelFeedIntroItemDetailsDto
+    {
+    }
+
+    // Source: m2channelissueinfo
+    public class M2ChannelIssueInfoDto
+    {
+        [JsonPropertyName("projectKey")]
+        public ProjectKeyDto? ProjectKey { get; set; }
+
+        [Required]
+        [JsonPropertyName("issue")]
+        public IssueDto Issue { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+    }
+
+    // Source: m2channelrecord
+    public class M2ChannelRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("contact")]
+        public M2ChannelContactDto Contact { get; set; }
+
+        [Required]
+        [JsonPropertyName("totalMessages")]
+        public int TotalMessages { get; set; }
+
+        [JsonPropertyName("lastMessage")]
+        public MessageInfoDto? LastMessage { get; set; }
+
+        [JsonPropertyName("authors")]
+        public List<TDMemberProfileDto>? Authors { get; set; }
+
+        [JsonPropertyName("commentAuthors")]
+        public List<CPrincipalDto>? CommentAuthors { get; set; }
+
+        [JsonPropertyName("participants")]
+        public List<ChannelParticipantDto>? Participants { get; set; }
+
+        [JsonPropertyName("channelArchived")]
+        public bool? ChannelArchived { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("channel")]
+        public M2ChannelRecordDto Channel { get; set; }
+
+        [JsonPropertyName("messages")]
+        public List<ChannelItemRecordDto>? Messages { get; set; }
+
+        [JsonPropertyName("content")]
+        public M2ChannelContentInfoDto? Content { get; set; }
+
+    }
+
+    // Source: m2channelrestoreditemdetails
+    public class M2ChannelRestoredItemDetailsDto
+    {
+    }
+
+    // Source: m2drafteditoraddeditemcontent
+    public class M2DraftEditorAddedItemContentDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+    }
+
+    // Source: m2drafteditorteamaddeditemcontent
+    public class M2DraftEditorTeamAddedItemContentDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("team")]
+        public TDTeamDto Team { get; set; }
+
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+    }
+
+    // Source: m2externalstatusfailureitemcontent
+    public class M2ExternalStatusFailureItemContentDto
+    {
+        [JsonPropertyName("projectId")]
+        public string? ProjectId { get; set; }
+
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("branch")]
+        public string Branch { get; set; }
+
+        [JsonPropertyName("revisionInfo")]
+        public RevisionAuthorInfoDto? RevisionInfo { get; set; }
+
+        [JsonPropertyName("changesInfo")]
+        public LastChangesDto? ChangesInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+
+        [Required]
+        [JsonPropertyName("externalServiceName")]
+        public string ExternalServiceName { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskName")]
+        public string TaskName { get; set; }
+
+        [JsonPropertyName("timestamp")]
+        public long? Timestamp { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+    }
+
+    // Source: m2externalstatussucceeditemcontent
+    public class M2ExternalStatusSucceedItemContentDto
+    {
+        [JsonPropertyName("projectId")]
+        public string? ProjectId { get; set; }
+
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("branch")]
+        public string Branch { get; set; }
+
+        [JsonPropertyName("revisionInfo")]
+        public RevisionAuthorInfoDto? RevisionInfo { get; set; }
+
+        [JsonPropertyName("changesInfo")]
+        public LastChangesDto? ChangesInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
+
+        [Required]
+        [JsonPropertyName("externalServiceName")]
+        public string ExternalServiceName { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskName")]
+        public string TaskName { get; set; }
+
+        [JsonPropertyName("timestamp")]
+        public long? Timestamp { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+    }
+
+    // Source: m2itemcontentdetails
+    public class M2ItemContentDetailsDto
+    {
+    }
+
+    // Source: m2maintenanceactioncontent
+    public class M2MaintenanceActionContentDto
+    {
+        [Required]
+        [JsonPropertyName("action")]
+        public string Action { get; set; }
+
+        [Required]
+        [JsonPropertyName("success")]
+        public bool Success { get; set; }
+
+        [Required]
+        [JsonPropertyName("details")]
+        public string Details { get; set; }
+
+    }
+
+    // Source: m2membercontent
+    public class M2MemberContentDto
+    {
+    }
+
+    // Source: m2memberjoinscontent
+    public class M2MemberJoinsContentDto
+         : M2MemberContentDto
+    {
+        [Required]
+        [JsonPropertyName("member")]
+        public TDMemberProfileDto Member { get; set; }
+
+    }
+
+    // Source: m2memberleavescontent
+    public class M2MemberLeavesContentDto
+         : M2MemberContentDto
+    {
+        [Required]
+        [JsonPropertyName("member")]
+        public TDMemberProfileDto Member { get; set; }
+
+    }
+
+    // Source: m2membershipcontent
+    public class M2MembershipContentDto
+    {
+    }
+
+    // Source: m2membershipcreatedcontent
+    public class M2MembershipCreatedContentDto
+         : M2MembershipContentDto
+    {
+        [Required]
+        [JsonPropertyName("membership")]
+        public TDMembershipDto Membership { get; set; }
+
+    }
+
+    // Source: m2membershiprequestedcontent
+    public class M2MembershipRequestedContentDto
+         : M2MembershipContentDto
+    {
+        [Required]
+        [JsonPropertyName("membership")]
+        public TDMembershipDto Membership { get; set; }
+
+        [Required]
+        [JsonPropertyName("leave")]
+        public bool Leave { get; set; }
+
+    }
+
+    // Source: m2membershipterminatedcontent
+    public class M2MembershipTerminatedContentDto
+         : M2MembershipContentDto
+    {
+        [Required]
+        [JsonPropertyName("membership")]
+        public TDMembershipDto Membership { get; set; }
+
+    }
+
+    // Source: m2packagecontentdetails
+    public class M2PackageContentDetailsDto
+    {
+    }
+
+    // Source: m2packagecreateddetails
+    public class M2PackageCreatedDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("pkg")]
+        public PackageVersionInfoDto Pkg { get; set; }
+
+    }
+
+    // Source: m2packagedeleteddetails
+    public class M2PackageDeletedDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("pkg")]
+        public PackageVersionInfoDto Pkg { get; set; }
+
+    }
+
+    // Source: m2pollcontent
+    public class M2PollContentDto
+    {
+        [Required]
+        [JsonPropertyName("poll")]
+        public PollRecordDto Poll { get; set; }
+
+    }
+
+    // Source: m2privateconversationchannelcontent
+    public class M2PrivateConversationChannelContentDto
+    {
+        [Required]
+        [JsonPropertyName("channelId")]
+        public string ChannelId { get; set; }
+
+        [JsonPropertyName("subject")]
+        public string? Subject { get; set; }
+
+        [Required]
+        [JsonPropertyName("members")]
+        public List<TDMemberProfileDto> Members { get; set; }
+
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
+
+    }
+
+    // Source: m2sharedchannelcontent
+    public class M2SharedChannelContentDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("group")]
+        public string Group { get; set; }
+
+        [Required]
+        [JsonPropertyName("access")]
+        public M2Access Access { get; set; }
+
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        [JsonPropertyName("membersCounter")]
+        public int? MembersCounter { get; set; }
+
+        [JsonPropertyName("iconId")]
+        public string? IconId { get; set; }
+
+        [Required]
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+
+        [JsonPropertyName("teams")]
+        public List<TDTeamDto>? Teams { get; set; }
+
+        [JsonPropertyName("canEdit")]
+        public bool? CanEdit { get; set; }
+
+    }
+
+    // Source: m2taskexecutionfailureitemcontent
+    public class M2TaskExecutionFailureItemContentDto
+    {
+        [Required]
+        [JsonPropertyName("taskExecutionId")]
+        public string TaskExecutionId { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskExecutionName")]
+        public string TaskExecutionName { get; set; }
+
+        [Required]
+        [JsonPropertyName("repoName")]
+        public string RepoName { get; set; }
+
+        [Required]
+        [JsonPropertyName("branchName")]
+        public string BranchName { get; set; }
+
+        [Required]
+        [JsonPropertyName("commit")]
+        public string Commit { get; set; }
+
+        [Required]
+        [JsonPropertyName("shortCommitMessage")]
+        public string ShortCommitMessage { get; set; }
+
+        [Required]
+        [JsonPropertyName("project")]
+        public ProjectKeyDto Project { get; set; }
+
+        [Required]
+        [JsonPropertyName("finishDateTime")]
+        public long FinishDateTime { get; set; }
+
+        [Required]
+        [JsonPropertyName("triggerInfo")]
+        public string TriggerInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("details")]
+        public string Details { get; set; }
+
+    }
+
+    // Source: m2taskexecutionsucceeditemcontent
+    public class M2TaskExecutionSucceedItemContentDto
+    {
+        [Required]
+        [JsonPropertyName("taskExecutionId")]
+        public string TaskExecutionId { get; set; }
+
+        [Required]
+        [JsonPropertyName("taskExecutionName")]
+        public string TaskExecutionName { get; set; }
+
+        [Required]
+        [JsonPropertyName("repoName")]
+        public string RepoName { get; set; }
+
+        [Required]
+        [JsonPropertyName("branchName")]
+        public string BranchName { get; set; }
+
+        [Required]
+        [JsonPropertyName("commit")]
+        public string Commit { get; set; }
+
+        [Required]
+        [JsonPropertyName("shortCommitMessage")]
+        public string ShortCommitMessage { get; set; }
+
+        [Required]
+        [JsonPropertyName("project")]
+        public ProjectKeyDto Project { get; set; }
+
+        [Required]
+        [JsonPropertyName("finishDateTime")]
+        public long FinishDateTime { get; set; }
+
+        [Required]
+        [JsonPropertyName("triggerInfo")]
+        public string TriggerInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("details")]
+        public string Details { get; set; }
+
+    }
+
+    // Source: m2textitemcontent
+    public class M2TextItemContentDto
+    {
+        [Required]
+        [JsonPropertyName("markdown")]
+        public bool Markdown { get; set; }
+
+    }
+
+    // Source: m2userleftchannel
+    public class M2UserLeftChannelDto
+    {
+    }
+
+    // Source: mcaction
+    public class MCActionDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
+
+    }
+
+    // Source: mcbutton
+    public class MCButtonDto
+    {
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [Required]
+        [JsonPropertyName("style")]
+        public string Style { get; set; }
+
+        [Required]
+        [JsonPropertyName("action")]
+        public MCActionDto Action { get; set; }
+
+    }
+
+    // Source: mcdivider
+    public class MCDividerDto
+    {
+    }
+
+    // Source: mcelement
+    public class MCElementDto
+    {
+        [Required]
+        [JsonPropertyName("defaultText")]
+        public string DefaultText { get; set; }
+
+        [JsonPropertyName("details")]
+        public MCElementDetailsDto? Details { get; set; }
+
+    }
+
+    // Source: mcelementdetails
+    public class MCElementDetailsDto
+    {
+    }
+
+    // Source: mcfields
+    public class MCFieldsDto
+    {
+        [Required]
+        [JsonPropertyName("fields")]
+        public List<Object5Dto> Fields { get; set; }
+
+    }
+
+    // Source: mcgroup
+    public class MCGroupDto
+    {
+        [Required]
+        [JsonPropertyName("elements")]
+        public List<MCElementDto> Elements { get; set; }
+
+    }
+
+    // Source: mcicon
+    public class MCIconDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("style")]
+        public string Style { get; set; }
+
+    }
+
+    // Source: mcimage
+    public class MCImageDto
+    {
+        [Required]
+        [JsonPropertyName("src")]
+        public string Src { get; set; }
+
+    }
+
+    // Source: mcmessage
+    public class MCMessageDto
+    {
+        [Required]
+        [JsonPropertyName("style")]
+        public string Style { get; set; }
+
+        [JsonPropertyName("outline")]
+        public MCOutlineDto? Outline { get; set; }
+
+        [Required]
+        [JsonPropertyName("content")]
+        public List<MCElementDto> Content { get; set; }
+
+        [JsonPropertyName("serviceId")]
+        public string? ServiceId { get; set; }
+
+        [JsonPropertyName("supplementaryData")]
+        public string? SupplementaryData { get; set; }
+
+    }
+
+    // Source: mcoutline
+    public class MCOutlineDto
+    {
+        [JsonPropertyName("icon")]
+        public MCElementDto? Icon { get; set; }
+
+        [JsonPropertyName("text")]
+        public MCTextDto? Text { get; set; }
+
+    }
+
+    // Source: mcsection
+    public class MCSectionDto
+    {
+        [JsonPropertyName("header")]
+        public MCTextDto? Header { get; set; }
+
+        [Required]
+        [JsonPropertyName("elements")]
+        public List<MCElementDto> Elements { get; set; }
+
+        [JsonPropertyName("footer")]
+        public MCTextDto? Footer { get; set; }
+
+    }
+
+    // Source: mctag
+    public class MCTagDto
+    {
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [Required]
+        [JsonPropertyName("style")]
+        public string Style { get; set; }
+
+    }
+
+    // Source: mctext
+    public class MCTextDto
+    {
+        [Required]
+        [JsonPropertyName("content")]
+        public string Content { get; set; }
+
+        [Required]
+        [JsonPropertyName("markdown")]
+        public bool Markdown { get; set; }
+
+        [JsonPropertyName("accessory")]
+        public MCElementDto? Accessory { get; set; }
+
+    }
+
+    // Source: mavenpackagetype
+    public class MavenPackageTypeDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+    }
+
+    // Source: mdmarkup
+    public class MdMarkupDto
+    {
+        [Required]
+        [JsonPropertyName("unfurl")]
+        public List<UnfurlDto> Unfurl { get; set; }
+
+    }
+
+    // Source: meinfo
+    public class MeInfoDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [JsonPropertyName("profilePic")]
+        public string? ProfilePic { get; set; }
+
+        [Required]
+        [JsonPropertyName("preferredLanguage")]
+        public TDLanguageDto PreferredLanguage { get; set; }
+
+        [Required]
+        [JsonPropertyName("englishLanguage")]
+        public TDLanguageDto EnglishLanguage { get; set; }
+
+        [JsonPropertyName("navBarMenuItems")]
+        public List<NavBarMenuItemDto>? NavBarMenuItems { get; set; }
+
+        [Required]
+        [JsonPropertyName("navBarProjects")]
+        public List<string> NavBarProjects { get; set; }
+
+        [Required]
+        [JsonPropertyName("firstDayOfWeek")]
+        public int FirstDayOfWeek { get; set; }
+
+        [JsonPropertyName("themeName")]
+        public string? ThemeName { get; set; }
+
+        [JsonPropertyName("draftType")]
+        public DraftDocumentType? DraftType { get; set; }
+
+    }
+
+    // Source: meetingrecord
+    public class MeetingRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("starts")]
+        public SpaceTime Starts { get; set; }
+
+        [Required]
+        [JsonPropertyName("finishes")]
+        public SpaceTime Finishes { get; set; }
+
+        [JsonPropertyName("timezone")]
+        public ATimeZoneDto? Timezone { get; set; }
+
+        [Required]
+        [JsonPropertyName("allDay")]
+        public bool AllDay { get; set; }
+
+        [Required]
+        [JsonPropertyName("rooms")]
+        public List<TDLocationDto> Rooms { get; set; }
+
+        [Required]
+        [JsonPropertyName("participants")]
+        public List<ParticipantDto> Participants { get; set; }
+
+        [JsonPropertyName("article")]
+        public ArticleRecordDto? Article { get; set; }
+
+    }
+
+    // Source: membersaddeditemdetails
+    public class MembersAddedItemDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("principals")]
+        public List<CPrincipalDto> Principals { get; set; }
+
+        [Required]
+        [JsonPropertyName("othersDisplayNames")]
+        public List<string> OthersDisplayNames { get; set; }
+
+    }
+
+    // Source: membershipevent
+    public class MembershipEventDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("membership")]
+        public List<TDMembershipDto> Membership { get; set; }
+
+    }
+
+    // Source: mergerequestbranch
+    public class MergeRequestBranchDto
+    {
+        [Required]
+        [JsonPropertyName("displayName")]
+        public string DisplayName { get; set; }
+
+        [Required]
+        [JsonPropertyName("ref")]
+        public string Ref { get; set; }
+
+        [Required]
+        [JsonPropertyName("deleted")]
+        public bool Deleted { get; set; }
+
+    }
+
+    // Source: mergerequestbranchdeletedevent
+    public class MergeRequestBranchDeletedEventDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("branch")]
+        public string Branch { get; set; }
+
+        [Required]
+        [JsonPropertyName("branchType")]
+        public MergeRequestBranchType BranchType { get; set; }
+
+    }
+
+    // Source: mergerequestbranchpair
+    public class MergeRequestBranchPairDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("sourceBranch")]
+        public string SourceBranch { get; set; }
+
+        [Required]
+        [JsonPropertyName("targetBranch")]
+        public string TargetBranch { get; set; }
+
+        [Required]
+        [JsonPropertyName("sourceBranchRef")]
+        public string SourceBranchRef { get; set; }
+
+        [JsonPropertyName("sourceBranchInfo")]
+        public MergeRequestBranchDto? SourceBranchInfo { get; set; }
+
+        [JsonPropertyName("targetBranchInfo")]
+        public MergeRequestBranchDto? TargetBranchInfo { get; set; }
+
+    }
+
+    // Source: mergerequestbranchrestoredevent
+    public class MergeRequestBranchRestoredEventDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("branch")]
+        public string Branch { get; set; }
+
+        [Required]
+        [JsonPropertyName("branchType")]
+        public MergeRequestBranchType BranchType { get; set; }
+
+    }
+
+    // Source: mergerequestmergedevent
+    public class MergeRequestMergedEventDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("sourceBranch")]
+        public string SourceBranch { get; set; }
+
+        [Required]
+        [JsonPropertyName("targetBranch")]
+        public string TargetBranch { get; set; }
+
+    }
+
+    // Source: mergerequestrecord
+    public class MergeRequestRecordDto
+         : CodeReviewRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("project")]
+        public ProjectKeyDto Project { get; set; }
+
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId { get; set; }
+
+        [Required]
+        [JsonPropertyName("number")]
+        public int Number { get; set; }
+
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [Required]
+        [JsonPropertyName("state")]
+        public CodeReviewState State { get; set; }
+
+        [JsonPropertyName("canBeReopened")]
+        public bool? CanBeReopened { get; set; }
+
+        [Required]
+        [JsonPropertyName("createdAt")]
+        public long CreatedAt { get; set; }
+
+        [Required]
+        [JsonPropertyName("createdBy")]
+        public TDMemberProfileDto CreatedBy { get; set; }
+
+        [JsonPropertyName("turnBased")]
+        public bool? TurnBased { get; set; }
+
+        [Required]
+        [JsonPropertyName("participants")]
+        public List<CodeReviewParticipantDto> Participants { get; set; }
+
+        [JsonPropertyName("feedChannel")]
+        public M2ChannelRecordDto? FeedChannel { get; set; }
+
+        [Required]
+        [JsonPropertyName("branchPairs")]
+        public List<MergeRequestBranchPairDto> BranchPairs { get; set; }
+
+    }
+
+    // Source: messageforimport
+    public class MessageForImportDto
+    {
+        [Required]
+        [JsonPropertyName("authorPrincipalId")]
+        public string AuthorPrincipalId { get; set; }
+
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [Required]
+        [JsonPropertyName("createdAtUtc")]
+        public long CreatedAtUtc { get; set; }
+
+        [JsonPropertyName("attachments")]
+        public List<AttachmentDto>? Attachments { get; set; }
+
+    }
+
+    // Source: messageinfo
+    public class MessageInfoDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [Required]
+        [JsonPropertyName("time")]
+        public long Time { get; set; }
+
+        [Required]
+        [JsonPropertyName("author")]
+        public CPrincipalDto Author { get; set; }
+
+        [JsonPropertyName("attachments")]
+        public string? Attachments { get; set; }
+
+    }
+
+    // Source: navbarmenuitem
+    public class NavBarMenuItemDto
+    {
+        [Required]
+        [JsonPropertyName("item")]
+        public string Item { get; set; }
+
+        [Required]
+        [JsonPropertyName("enabled")]
+        public bool Enabled { get; set; }
+
+    }
+
+    // Source: nonworkingdays
+    public class NonWorkingDaysDto
+    {
+        [Required]
+        [JsonPropertyName("since")]
+        public SpaceDate Since { get; set; }
+
+        [Required]
+        [JsonPropertyName("till")]
+        public SpaceDate Till { get; set; }
+
+        [Required]
+        [JsonPropertyName("startsEarlier")]
+        public bool StartsEarlier { get; set; }
+
+        [Required]
+        [JsonPropertyName("endsLater")]
+        public bool EndsLater { get; set; }
+
+    }
+
+    // Source: nonworkingdaysevent
+    public class NonWorkingDaysEventDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("days")]
+        public List<NonWorkingDaysDto> Days { get; set; }
+
+    }
+
+    // Source: nugetpackagetype
+    public class NuGetPackageTypeDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+    }
+
+    // Source: pr_privateproject
+    public class PRPrivateProjectDto
+    {
+        [Required]
+        [JsonPropertyName("key")]
+        public ProjectKeyDto Key { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("accessAllowed")]
+        public bool AccessAllowed { get; set; }
+
+        [Required]
+        [JsonPropertyName("admins")]
+        public List<TDMemberProfileDto> Admins { get; set; }
+
+    }
+
+    // Source: pr_project
+    public class PRProjectDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("key")]
+        public ProjectKeyDto Key { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("private")]
+        public bool Private { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("icon")]
+        public string? Icon { get; set; }
+
+        [JsonPropertyName("latestRepositoryActivity")]
+        public SpaceTime? LatestRepositoryActivity { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("adminProfiles")]
+        public List<TDMemberProfileDto> AdminProfiles { get; set; }
+
+        [Required]
+        [JsonPropertyName("adminTeams")]
+        public List<TDTeamDto> AdminTeams { get; set; }
+
+        [Required]
+        [JsonPropertyName("memberProfiles")]
+        public List<TDMemberProfileDto> MemberProfiles { get; set; }
+
+        [Required]
+        [JsonPropertyName("memberTeams")]
+        public List<TDTeamDto> MemberTeams { get; set; }
+
+        [Required]
+        [JsonPropertyName("repos")]
+        public List<PRRepositoryInfoDto> Repos { get; set; }
+
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get; set; }
+
+    }
+
+    // Source: pr_repositoryinfo
+    public class PRRepositoryInfoDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        [JsonPropertyName("latestActivity")]
+        public SpaceTime? LatestActivity { get; set; }
+
+        [JsonPropertyName("proxyPushNotification")]
+        public SpaceTime? ProxyPushNotification { get; set; }
+
+        [Required]
+        [JsonPropertyName("state")]
+        public RepositoryState State { get; set; }
+
+        [JsonPropertyName("initProgress")]
+        public string? InitProgress { get; set; }
+
+        [JsonPropertyName("readmeName")]
+        public string? ReadmeName { get; set; }
+
+        [JsonPropertyName("monthlyActivity")]
+        public RepositoryActivityDto? MonthlyActivity { get; set; }
+
+    }
+
+    // Source: pr_tag
+    public class PRTagDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("projectCount")]
+        public int ProjectCount { get; set; }
+
+    }
+
+    // Source: packagerepositorysettings
+    public class PackageRepositorySettingsDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public long Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("settings")]
+        public ESPackageRepositorySettingsDto? Settings { get; set; }
+
+        [Required]
+        [JsonPropertyName("permissions")]
+        public List<PackagesPermission> Permissions { get; set; }
+
+    }
+
+    // Source: packagetype
+    public class PackageTypeDto
+    {
+    }
+
+    // Source: packagetype_tsimpl
+    public class PackageTypeTSImplDto
+    {
+    }
+
+    // Source: packageversioninfo
+    public class PackageVersionInfoDto
+    {
+        [Required]
+        [JsonPropertyName("type")]
+        public PackageTypeDto Type { get; set; }
+
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("version")]
+        public string Version { get; set; }
+
+        [JsonPropertyName("tags")]
+        public List<string>? Tags { get; set; }
+
+    }
+
+    // Source: packagessettings
+    public class PackagesSettingsDto
+    {
+        [Required]
+        [JsonPropertyName("organizationId")]
+        public long OrganizationId { get; set; }
+
+        [Required]
+        [JsonPropertyName("principalName")]
+        public string PrincipalName { get; set; }
+
+        [Required]
+        [JsonPropertyName("principalInfo")]
+        public string PrincipalInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("repositories")]
+        public List<Object6Dto> Repositories { get; set; }
+
+        [JsonPropertyName("storageLimit")]
+        public DTOLimitDto? StorageLimit { get; set; }
+
+        [JsonPropertyName("downloadLimit")]
+        public DTOLimitDto? DownloadLimit { get; set; }
+
+        [JsonPropertyName("uploadLimit")]
+        public DTOLimitDto? UploadLimit { get; set; }
+
+    }
+
+    // Source: participant
+    public class ParticipantDto
+    {
+        [Required]
+        [JsonPropertyName("user")]
+        public TDMemberProfileDto User { get; set; }
+
+        [Required]
+        [JsonPropertyName("status")]
+        public EventParticipationStatus Status { get; set; }
 
     }
 
@@ -7375,6 +6065,73 @@ namespace SpaceDotNet.Client
 
     }
 
+    // Source: permissionsnapshotcontentdto
+    public class PermissionSnapshotContentDTODto
+    {
+        [Required]
+        [JsonPropertyName("entries")]
+        public List<PermissionSnapshotEntryDTODto> Entries { get; set; }
+
+        [Required]
+        [JsonPropertyName("principals")]
+        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }
+
+        [Required]
+        [JsonPropertyName("rights")]
+        public List<PermissionSnapshotRightDTODto> Rights { get; set; }
+
+        [Required]
+        [JsonPropertyName("targets")]
+        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }
+
+    }
+
+    // Source: permissionsnapshotdto
+    public class PermissionSnapshotDTODto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("timestamp")]
+        public long Timestamp { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("version")]
+        public int Version { get; set; }
+
+        [Required]
+        [JsonPropertyName("size")]
+        public int Size { get; set; }
+
+    }
+
+    // Source: permissionsnapshotentrydto
+    public class PermissionSnapshotEntryDTODto
+    {
+        [Required]
+        [JsonPropertyName("principalIndex")]
+        public int PrincipalIndex { get; set; }
+
+        [Required]
+        [JsonPropertyName("rightIndex")]
+        public int RightIndex { get; set; }
+
+        [Required]
+        [JsonPropertyName("allTargets")]
+        public bool AllTargets { get; set; }
+
+        [Required]
+        [JsonPropertyName("targetIndices")]
+        public List<int> TargetIndices { get; set; }
+
+    }
+
     // Source: permissionsnapshotprincipaldto
     public class PermissionSnapshotPrincipalDTODto
     {
@@ -7422,471 +6179,42 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: permissionsnapshotdto
-    public class PermissionSnapshotDTODto
+    // Source: planitem
+    public class PlanItemDto
     {
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("timestamp")]
-        public long Timestamp { get; set; }
+        [JsonPropertyName("checklistId")]
+        public string ChecklistId { get; set; }
 
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("version")]
-        public int Version { get; set; }
-
-        [Required]
-        [JsonPropertyName("size")]
-        public int Size { get; set; }
-
-    }
-
-    // Source: permissionsnapshotcontentdto
-    public class PermissionSnapshotContentDTODto
-    {
-        [Required]
-        [JsonPropertyName("entries")]
-        public List<PermissionSnapshotEntryDTODto> Entries { get; set; }
-
-        [Required]
-        [JsonPropertyName("principals")]
-        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }
-
-        [Required]
-        [JsonPropertyName("rights")]
-        public List<PermissionSnapshotRightDTODto> Rights { get; set; }
-
-        [Required]
-        [JsonPropertyName("targets")]
-        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }
-
-    }
-
-    // Source: permissionsnapshotentrydto
-    public class PermissionSnapshotEntryDTODto
-    {
-        [Required]
-        [JsonPropertyName("principalIndex")]
-        public int PrincipalIndex { get; set; }
-
-        [Required]
-        [JsonPropertyName("rightIndex")]
-        public int RightIndex { get; set; }
-
-        [Required]
-        [JsonPropertyName("allTargets")]
-        public bool AllTargets { get; set; }
-
-        [Required]
-        [JsonPropertyName("targetIndices")]
-        public List<int> TargetIndices { get; set; }
-
-    }
-
-    // Source: emavensettings
-    public class EMavenSettingsDto
-    {
-        [Required]
-        [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }
-
-        [Required]
-        [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }
-
-        [Required]
-        [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }
-
-        [Required]
-        [JsonPropertyName("repositories")]
-        public List<Object9Dto> Repositories { get; set; }
-
-        [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }
-
-        [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }
-
-        [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }
-
-    }
-
-    // Source: emavenrepositorysettings
-    public class EMavenRepositorySettingsDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public long Id { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("permissions")]
-        public List<string> Permissions { get; set; }
-
-    }
-
-    // Source: stepinfo
-    public class StepInfoDto
-    {
-        [Required]
-        [JsonPropertyName("graphExecutionId")]
-        public long GraphExecutionId { get; set; }
-
-        [Required]
-        [JsonPropertyName("stepExecutionId")]
-        public long StepExecutionId { get; set; }
-
-    }
-
-    // Source: servicemessage
-    public class ServiceMessageDto
-    {
-    }
-
-    // Source: namedservicemessage
-    public class NamedServiceMessageDto
-         : ServiceMessageDto
-    {
-    }
-
-    // Source: testservicemessage
-    public class TestServiceMessageDto
-         : NamedServiceMessageDto
-    {
-    }
-
-    // Source: teststartservicemessage
-    public class TestStartServiceMessageDto
-         : TestServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: timestamp
-    public class TimestampDto
-    {
-        [Required]
-        [JsonPropertyName("millis")]
-        public long Millis { get; set; }
-
-        [Required]
-        [JsonPropertyName("microFraction")]
-        public int MicroFraction { get; set; }
-
-    }
-
-    // Source: testpassedservicemessage
-    public class TestPassedServiceMessageDto
-         : TestServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("duration")]
-        public long Duration { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: testignoreservicemessage
-    public class TestIgnoreServiceMessageDto
-         : TestServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: testfailureservicemessage
-    public class TestFailureServiceMessageDto
-         : TestServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("duration")]
-        public long Duration { get; set; }
-
-        [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
-        [JsonPropertyName("stackTrace")]
-        public string? StackTrace { get; set; }
-
-        [JsonPropertyName("expected")]
-        public string? Expected { get; set; }
+        [JsonPropertyName("tag")]
+        public PlanningTagDto? Tag { get; set; }
 
-        [JsonPropertyName("actual")]
-        public string? Actual { get; set; }
+        [JsonPropertyName("simpleText")]
+        public string? SimpleText { get; set; }
 
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: normalizedtestservicemessage
-    public class NormalizedTestServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("status")]
-        public NormalizedTestServiceMessageStatus Status { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-        [JsonPropertyName("duration")]
-        public long? Duration { get; set; }
-
-        [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
-        [JsonPropertyName("stackTrace")]
-        public string? StackTrace { get; set; }
-
-        [JsonPropertyName("expected")]
-        public string? Expected { get; set; }
-
-        [JsonPropertyName("actual")]
-        public string? Actual { get; set; }
-
-    }
-
-    // Source: taskstartservicemessage
-    public class TaskStartServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: taskendservicemessage
-    public class TaskEndServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: compilationstartservicemessage
-    public class CompilationStartServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: compilationendservicemessage
-    public class CompilationEndServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: testsuitestartservicemessage
-    public class TestSuiteStartServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: testsuiteendservicemessage
-    public class TestSuiteEndServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: teststdoutservicemessage
-    public class TestStdOutServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("output")]
-        public string Output { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: teststderrservicemessage
-    public class TestStdErrServiceMessageDto
-         : NamedServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("output")]
-        public string Output { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: textservicemessage
-    public class TextServiceMessageDto
-         : ServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
+        [JsonPropertyName("simpleDone")]
+        public bool? SimpleDone { get; set; }
 
-        [Required]
-        [JsonPropertyName("severity")]
-        public TextMessageSeverity Severity { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: stderrtextservicemessage
-    public class StderrTextServiceMessageDto
-         : ServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: errorservicemessage
-    public class ErrorServiceMessageDto
-         : ServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
-
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
-
-    }
-
-    // Source: buildproblemservicemessage
-    public class BuildProblemServiceMessageDto
-         : ServiceMessageDto
-    {
-        [Required]
-        [JsonPropertyName("message")]
-        public string Message { get; set; }
+        [JsonPropertyName("issue")]
+        public IssueDto? Issue { get; set; }
 
-        [Required]
-        [JsonPropertyName("timestamp")]
-        public TimestampDto Timestamp { get; set; }
+        [JsonPropertyName("issueProblem")]
+        public string? IssueProblem { get; set; }
 
-    }
+        [JsonPropertyName("canEditIssue")]
+        public bool? CanEditIssue { get; set; }
 
-    // Source: awsreportecscontainerinfo
-    public class AwsReportEcsContainerInfoDto
-    {
         [Required]
-        [JsonPropertyName("arn")]
-        public string Arn { get; set; }
+        [JsonPropertyName("hasChildren")]
+        public bool HasChildren { get; set; }
 
         [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("lastStatus")]
-        public string? LastStatus { get; set; }
-
-        [JsonPropertyName("exitCode")]
-        public int? ExitCode { get; set; }
-
-        [JsonPropertyName("reason")]
-        public string? Reason { get; set; }
+        [JsonPropertyName("children")]
+        public List<PlanItemDto> Children { get; set; }
 
     }
 
@@ -7903,8 +6231,193 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: checklist
-    public class ChecklistDto
+    // Source: planningtag
+    public class PlanningTagDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId { get; set; }
+
+        [JsonPropertyName("parent")]
+        public PlanningTagDto? Parent { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+    }
+
+    // Source: pollrecord
+    public class PollRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("owner")]
+        public TDMemberProfileDto Owner { get; set; }
+
+        [Required]
+        [JsonPropertyName("question")]
+        public string Question { get; set; }
+
+        [Required]
+        [JsonPropertyName("meVote")]
+        public bool MeVote { get; set; }
+
+        [Required]
+        [JsonPropertyName("countPeople")]
+        public int CountPeople { get; set; }
+
+        [Required]
+        [JsonPropertyName("anonymous")]
+        public bool Anonymous { get; set; }
+
+        [Required]
+        [JsonPropertyName("closed")]
+        public bool Closed { get; set; }
+
+        [Required]
+        [JsonPropertyName("extendable")]
+        public bool Extendable { get; set; }
+
+        [Required]
+        [JsonPropertyName("multiChoice")]
+        public bool MultiChoice { get; set; }
+
+        [Required]
+        [JsonPropertyName("ended")]
+        public bool Ended { get; set; }
+
+        [JsonPropertyName("expirationTime")]
+        public SpaceTime? ExpirationTime { get; set; }
+
+        [Required]
+        [JsonPropertyName("votes")]
+        public List<VoteGroupDto> Votes { get; set; }
+
+    }
+
+    // Source: profileabsencesrecord
+    public class ProfileAbsencesRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("absences")]
+        public List<AbsenceRecordDto> Absences { get; set; }
+
+    }
+
+    // Source: profilecftype
+    public class ProfileCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: profilecfvalue
+    public class ProfileCFValueDto
+         : CFValueDto
+    {
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto? Profile { get; set; }
+
+    }
+
+    // Source: profilelinkpreview
+    public class ProfileLinkPreviewDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+    }
+
+    // Source: profilelistcftype
+    public class ProfileListCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: profilelistcfvalue
+    public class ProfileListCFValueDto
+         : CFValueDto
+    {
+        [Required]
+        [JsonPropertyName("profiles")]
+        public List<TDMemberProfileDto> Profiles { get; set; }
+
+    }
+
+    // Source: profilemembershiprecord
+    public class ProfileMembershipRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("memberships")]
+        public List<TDMembershipDto> Memberships { get; set; }
+
+    }
+
+    // Source: projectkey
+    public class ProjectKeyDto
+    {
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
+
+    }
+
+    // Source: propagatedcodediscussion
+    public class PropagatedCodeDiscussionDto
+    {
+        [Required]
+        [JsonPropertyName("anchor")]
+        public CodeDiscussionAnchorDto Anchor { get; set; }
+
+        [Required]
+        [JsonPropertyName("discussion")]
+        public CodeDiscussionRecordDto Discussion { get; set; }
+
+    }
+
+    // Source: publicholiday
+    public class PublicHolidayDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("calendar")]
+        public PublicHolidayCalendarRecordDto Calendar { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("date")]
+        public SpaceDate Date { get; set; }
+
+        [Required]
+        [JsonPropertyName("workingDay")]
+        public bool WorkingDay { get; set; }
+
+    }
+
+    // Source: publicholidaycalendarrecord
+    public class PublicHolidayCalendarRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
@@ -7914,91 +6427,125 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool Archived { get; set; }
 
-        [JsonPropertyName("projectId")]
-        public string? ProjectId { get; set; }
-
-        [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }
-
-        [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }
-
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
-        [JsonPropertyName("root")]
-        public PlanItemDto? Root { get; set; }
+        [JsonPropertyName("firstDate")]
+        public SpaceDate? FirstDate { get; set; }
 
-        [JsonPropertyName("rootTag")]
-        public PlanningTagDto? RootTag { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        [JsonPropertyName("lastDate")]
+        public SpaceDate? LastDate { get; set; }
 
         [Required]
-        [JsonPropertyName("totalItemsCount")]
-        public int TotalItemsCount { get; set; }
+        [JsonPropertyName("eventsCount")]
+        public int EventsCount { get; set; }
 
         [Required]
-        [JsonPropertyName("doneItemsCount")]
-        public int DoneItemsCount { get; set; }
-
-        [JsonPropertyName("updatedTime")]
-        public SpaceTime? UpdatedTime { get; set; }
+        [JsonPropertyName("location")]
+        public TDLocationDto Location { get; set; }
 
     }
 
-    // Source: issuestatuswithusages
-    public class IssueStatusWithUsagesDto
+    // Source: publicationdetails
+    public class PublicationDetailsDto
     {
-        [Required]
-        [JsonPropertyName("status")]
-        public IssueStatusDto Status { get; set; }
-
-        [Required]
-        [JsonPropertyName("usages")]
-        public int Usages { get; set; }
-
     }
 
-    // Source: issuestatusdata
-    public class IssueStatusDataDto
+    // Source: reactiondata
+    public class ReactionDataDto
     {
-        [JsonPropertyName("existingId")]
-        public string? ExistingId { get; set; }
-
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [Required]
-        [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
+        [JsonPropertyName("symbol")]
+        public string Symbol { get; set; }
 
         [Required]
-        [JsonPropertyName("color")]
-        public string Color { get; set; }
+        [JsonPropertyName("emoji")]
+        public string Emoji { get; set; }
 
     }
 
-    // Source: subjectresponsibilitiestable
-    public class SubjectResponsibilitiesTableDto
+    // Source: reactiontyperecord
+    public class ReactionTypeRecordDto
     {
         [Required]
-        [JsonPropertyName("subjectId")]
-        public string SubjectId { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
 
         [Required]
-        [JsonPropertyName("reusedInProjects")]
-        public List<string> ReusedInProjects { get; set; }
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
 
         [Required]
-        [JsonPropertyName("responsibilityRecords")]
-        public List<ResponsibilityRecordDto> ResponsibilityRecords { get; set; }
+        [JsonPropertyName("data")]
+        public ReactionDataDto Data { get; set; }
+
+        [Required]
+        [JsonPropertyName("provider")]
+        public CPrincipalDto Provider { get; set; }
+
+        [Required]
+        [JsonPropertyName("addedAt")]
+        public SpaceDate AddedAt { get; set; }
+
+        [JsonPropertyName("order")]
+        public int? Order { get; set; }
+
+    }
+
+    // Source: repositoryactivity
+    public class RepositoryActivityDto
+    {
+        [Required]
+        [JsonPropertyName("lastActivity")]
+        public List<Object7Dto> LastActivity { get; set; }
+
+    }
+
+    // Source: repositorycommitrecord
+    public class RepositoryCommitRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("repositoryId")]
+        public string RepositoryId { get; set; }
+
+        [Required]
+        [JsonPropertyName("repositoryName")]
+        public string RepositoryName { get; set; }
+
+        [Required]
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
+
+        [JsonPropertyName("message")]
+        public string? Message { get; set; }
+
+        [Required]
+        [JsonPropertyName("date")]
+        public SpaceTime Date { get; set; }
+
+        [JsonPropertyName("authorName")]
+        public string? AuthorName { get; set; }
+
+        [JsonPropertyName("authorEmail")]
+        public string? AuthorEmail { get; set; }
+
+        [JsonPropertyName("committerName")]
+        public string? CommitterName { get; set; }
+
+        [JsonPropertyName("committerEmail")]
+        public string? CommitterEmail { get; set; }
+
+        [JsonPropertyName("authorProfile")]
+        public TDMemberProfileDto? AuthorProfile { get; set; }
 
     }
 
@@ -8022,20 +6569,225 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: assignedperson
-    public class AssignedPersonDto
+    // Source: reviewbranchtrackevent
+    public class ReviewBranchTrackEventDto
     {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("branch")]
+        public string Branch { get; set; }
+
+        [Required]
+        [JsonPropertyName("track")]
+        public bool Track { get; set; }
+
+    }
+
+    // Source: reviewcompletionstatechangedevent
+    public class ReviewCompletionStateChangedEventDto
+    {
+        [Required]
+        [JsonPropertyName("state")]
+        public ReviewerState State { get; set; }
+
+    }
+
+    // Source: reviewcounts
+    public class ReviewCountsDto
+    {
+        [Required]
+        [JsonPropertyName("opened")]
+        public int Opened { get; set; }
+
+        [Required]
+        [JsonPropertyName("closed")]
+        public int Closed { get; set; }
+
+        [Required]
+        [JsonPropertyName("authoredByMe")]
+        public int AuthoredByMe { get; set; }
+
+        [Required]
+        [JsonPropertyName("reviewedByMe")]
+        public int ReviewedByMe { get; set; }
+
+        [Required]
+        [JsonPropertyName("needsMyAttention")]
+        public int NeedsMyAttention { get; set; }
+
+        [Required]
+        [JsonPropertyName("needsMyReview")]
+        public int NeedsMyReview { get; set; }
+
+    }
+
+    // Source: reviewrevisionschangedevent
+    public class ReviewRevisionsChangedEventDto
+    {
+        [Required]
+        [JsonPropertyName("commits")]
+        public List<RepositoryCommitRecordDto> Commits { get; set; }
+
+        [Required]
+        [JsonPropertyName("changeType")]
+        public ReviewRevisionsChangedType ChangeType { get; set; }
+
+        [JsonPropertyName("projectKey")]
+        public string? ProjectKey { get; set; }
+
+        [JsonPropertyName("review")]
+        public CodeReviewRecordDto? Review { get; set; }
+
+    }
+
+    // Source: reviewstatechangedevent
+    public class ReviewStateChangedEventDto
+    {
+        [Required]
+        [JsonPropertyName("state")]
+        public CodeReviewState State { get; set; }
+
+        [JsonPropertyName("review")]
+        public CodeReviewRecordDto? Review { get; set; }
+
+    }
+
+    // Source: reviewtitlechangedevent
+    public class ReviewTitleChangedEventDto
+    {
+        [Required]
+        [JsonPropertyName("oldTitle")]
+        public string OldTitle { get; set; }
+
+        [Required]
+        [JsonPropertyName("newTitle")]
+        public string NewTitle { get; set; }
+
+    }
+
+    // Source: reviewerchangedevent
+    public class ReviewerChangedEventDto
+    {
+        [Required]
+        [JsonPropertyName("uid")]
+        public TDMemberProfileDto Uid { get; set; }
+
+        [Required]
+        [JsonPropertyName("changeType")]
+        public ReviewerChangedType ChangeType { get; set; }
+
+    }
+
+    // Source: revisionauthor
+    public class RevisionAuthorDto
+    {
+        [Required]
+        [JsonPropertyName("authorName")]
+        public string AuthorName { get; set; }
+
         [JsonPropertyName("profile")]
         public TDMemberProfileDto? Profile { get; set; }
 
-        [JsonPropertyName("role")]
-        public string? Role { get; set; }
+    }
+
+    // Source: revisionauthorinfo
+    public class RevisionAuthorInfoDto
+    {
+        [Required]
+        [JsonPropertyName("revisionInfo")]
+        public RevisionInfoDto RevisionInfo { get; set; }
+
+        [Required]
+        [JsonPropertyName("author")]
+        public RevisionAuthorDto Author { get; set; }
+
+    }
+
+    // Source: revisiondiscussionscounter
+    public class RevisionDiscussionsCounterDto
+    {
+        [Required]
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
+
+        [Required]
+        [JsonPropertyName("filesWithCounts")]
+        public List<FileWithCountDto> FilesWithCounts { get; set; }
+
+    }
+
+    // Source: revisioninreview
+    public class RevisionInReviewDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("commit")]
+        public string Commit { get; set; }
+
+    }
+
+    // Source: revisioninfo
+    public class RevisionInfoDto
+    {
+        [Required]
+        [JsonPropertyName("revision")]
+        public string Revision { get; set; }
+
+        [Required]
+        [JsonPropertyName("date")]
+        public long Date { get; set; }
+
+        [Required]
+        [JsonPropertyName("message")]
+        public string Message { get; set; }
+
+    }
+
+    // Source: revisionsinreview
+    public class RevisionsInReviewDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("commits")]
+        public List<GitCommitWithGraphDto> Commits { get; set; }
+
+    }
+
+    // Source: sslkeystore
+    public class SSLKeystoreDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceDate Created { get; set; }
 
     }
 
     // Source: samlmetadataresponse
     public class SamlMetadataResponseDto
     {
+    }
+
+    // Source: samlmetadataresponse.error
+    public class SamlMetadataResponseErrorDto
+         : SamlMetadataResponseDto
+    {
+        [Required]
+        [JsonPropertyName("messages")]
+        public List<string> Messages { get; set; }
+
     }
 
     // Source: samlmetadataresponse.success
@@ -8048,13 +6800,1117 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: samlmetadataresponse.error
-    public class SamlMetadataResponseErrorDto
-         : SamlMetadataResponseDto
+    // Source: sticker
+    public class StickerDto
     {
         [Required]
-        [JsonPropertyName("messages")]
-        public List<string> Messages { get; set; }
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("symbol")]
+        public string? Symbol { get; set; }
+
+        [JsonPropertyName("attachmentId")]
+        public string? AttachmentId { get; set; }
+
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+
+        [JsonPropertyName("variants")]
+        public List<StickerVariantDto>? Variants { get; set; }
+
+        [JsonPropertyName("animated")]
+        public bool? Animated { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: stickercontentdetails
+    public class StickerContentDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("sticker")]
+        public StickerDto Sticker { get; set; }
+
+        [JsonPropertyName("pack")]
+        public StickerPackInfoDto? Pack { get; set; }
+
+    }
+
+    // Source: stickerpackinfo
+    public class StickerPackInfoDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("favoriteByDefault")]
+        public bool FavoriteByDefault { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("private")]
+        public bool Private { get; set; }
+
+        [JsonPropertyName("addedAt")]
+        public SpaceTime? AddedAt { get; set; }
+
+        [Required]
+        [JsonPropertyName("pack")]
+        public StickerPackInfoDto Pack { get; set; }
+
+        [Required]
+        [JsonPropertyName("stickers")]
+        public List<StickerDto> Stickers { get; set; }
+
+    }
+
+    // Source: stickervariant
+    public class StickerVariantDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("width")]
+        public int Width { get; set; }
+
+        [Required]
+        [JsonPropertyName("height")]
+        public int Height { get; set; }
+
+    }
+
+    // Source: stringcfconstraint
+    public class StringCFConstraintDto
+         : CFConstraintDto
+    {
+        [JsonPropertyName("min")]
+        public int? Min { get; set; }
+
+        [JsonPropertyName("max")]
+        public int? Max { get; set; }
+
+        [JsonPropertyName("pattern")]
+        public string? Pattern { get; set; }
+
+        [JsonPropertyName("message")]
+        public string? Message { get; set; }
+
+    }
+
+    // Source: stringcftype
+    public class StringCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: stringcfvalue
+    public class StringCFValueDto
+         : CFValueDto
+    {
+        [JsonPropertyName("value")]
+        public string? Value { get; set; }
+
+    }
+
+    // Source: stringlistcftype
+    public class StringListCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: stringlistcfvalue
+    public class StringListCFValueDto
+         : CFValueDto
+    {
+        [Required]
+        [JsonPropertyName("values")]
+        public List<string> Values { get; set; }
+
+    }
+
+    // Source: subjectresponsibilitiestable
+    public class SubjectResponsibilitiesTableDto
+    {
+        [Required]
+        [JsonPropertyName("subjectId")]
+        public string SubjectId { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("reusedInProjects")]
+        public List<string> ReusedInProjects { get; set; }
+
+        [Required]
+        [JsonPropertyName("responsibilityRecords")]
+        public List<ResponsibilityRecordDto> ResponsibilityRecords { get; set; }
+
+    }
+
+    // Source: supportprofiledto
+    public class SupportProfileDTODto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("adminPermissionsGranted")]
+        public bool AdminPermissionsGranted { get; set; }
+
+    }
+
+    // Source: syntaxmarkup
+    public class SyntaxMarkupDto
+    {
+        [Required]
+        [JsonPropertyName("type")]
+        public SyntaxMarkupType Type { get; set; }
+
+        [Required]
+        [JsonPropertyName("range")]
+        public TextRangeDto Range { get; set; }
+
+    }
+
+    // Source: td_language
+    public class TDLanguageDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("code")]
+        public string Code { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("nativeName")]
+        public string NativeName { get; set; }
+
+        [Required]
+        [JsonPropertyName("firstNameTitle")]
+        public string FirstNameTitle { get; set; }
+
+        [Required]
+        [JsonPropertyName("lastNameTitle")]
+        public string LastNameTitle { get; set; }
+
+    }
+
+    // Source: td_location
+    public class TDLocationDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("timezone")]
+        public ATimeZoneWithOffsetDto? Timezone { get; set; }
+
+        [JsonPropertyName("tz")]
+        public string? Tz { get; set; }
+
+        [JsonPropertyName("workdays")]
+        public List<int>? Workdays { get; set; }
+
+        [Required]
+        [JsonPropertyName("phones")]
+        public List<string> Phones { get; set; }
+
+        [Required]
+        [JsonPropertyName("emails")]
+        public List<string> Emails { get; set; }
+
+        [JsonPropertyName("equipment")]
+        public List<string>? Equipment { get; set; }
+
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }
+
+        [JsonPropertyName("address")]
+        public string? Address { get; set; }
+
+        [JsonPropertyName("parent")]
+        public TDLocationDto? Parent { get; set; }
+
+        [Required]
+        [JsonPropertyName("type")]
+        public string Type { get; set; }
+
+        [JsonPropertyName("mapId")]
+        public string? MapId { get; set; }
+
+        [JsonPropertyName("channelId")]
+        public string? ChannelId { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: td_locationequipmenttype
+    public class TDLocationEquipmentTypeDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: td_locationmap
+    public class TDLocationMapDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("picture")]
+        public string Picture { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+
+    }
+
+    // Source: td_locationmappoint
+    public class TDLocationMapPointDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("mapId")]
+        public string? MapId { get; set; }
+
+        [Required]
+        [JsonPropertyName("x")]
+        public int X { get; set; }
+
+        [Required]
+        [JsonPropertyName("y")]
+        public int Y { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+        [JsonPropertyName("memberLocation")]
+        public string? MemberLocation { get; set; }
+
+        [JsonPropertyName("deleted")]
+        public bool? Deleted { get; set; }
+
+    }
+
+    // Source: td_locationwithtimezone
+    public class TDLocationWithTimeZoneDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("timezone")]
+        public ATimeZoneWithOffsetDto Timezone { get; set; }
+
+    }
+
+    // Source: td_memberinlocationmaplist
+    public class TDMemberInLocationMapListDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("memberLocation")]
+        public TDMemberLocationDto MemberLocation { get; set; }
+
+        [JsonPropertyName("locationMapPoint")]
+        public TDLocationMapPointDto? LocationMapPoint { get; set; }
+
+    }
+
+    // Source: td_memberlocation
+    public class TDMemberLocationDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("location")]
+        public TDLocationDto Location { get; set; }
+
+        [JsonPropertyName("locationMapPoints")]
+        public List<TDLocationMapPointDto>? LocationMapPoints { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
+
+        [Required]
+        [JsonPropertyName("member")]
+        public TDMemberProfileDto Member { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: td_memberprofile
+    public class TDMemberProfileDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("username")]
+        public string Username { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public TDProfileNameDto Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("speaksEnglish")]
+        public bool SpeaksEnglish { get; set; }
+
+        [JsonPropertyName("smallAvatar")]
+        public string? SmallAvatar { get; set; }
+
+        [JsonPropertyName("avatar")]
+        public string? Avatar { get; set; }
+
+        [JsonPropertyName("profilePicture")]
+        public string? ProfilePicture { get; set; }
+
+        [Required]
+        [JsonPropertyName("languages")]
+        public List<TDProfileLanguageDto> Languages { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("notAMember")]
+        public bool NotAMember { get; set; }
+
+        [JsonPropertyName("joined")]
+        public SpaceDate? Joined { get; set; }
+
+        [JsonPropertyName("left")]
+        public SpaceDate? Left { get; set; }
+
+        [JsonPropertyName("leftAt")]
+        public SpaceTime? LeftAt { get; set; }
+
+        [Required]
+        [JsonPropertyName("absences")]
+        public List<AbsenceRecordDto> Absences { get; set; }
+
+        [Required]
+        [JsonPropertyName("emails")]
+        public List<TDProfileEmailDto> Emails { get; set; }
+
+        [Required]
+        [JsonPropertyName("links")]
+        public List<string> Links { get; set; }
+
+        [Required]
+        [JsonPropertyName("messengers")]
+        public List<string> Messengers { get; set; }
+
+        [Required]
+        [JsonPropertyName("phones")]
+        public List<string> Phones { get; set; }
+
+        [Required]
+        [JsonPropertyName("locations")]
+        public List<TDMemberLocationDto> Locations { get; set; }
+
+        [Required]
+        [JsonPropertyName("managers")]
+        public List<TDMemberProfileDto> Managers { get; set; }
+
+        [Required]
+        [JsonPropertyName("membershipHistory")]
+        public List<TDMembershipDto> MembershipHistory { get; set; }
+
+        [Required]
+        [JsonPropertyName("memberships")]
+        public List<TDMembershipDto> Memberships { get; set; }
+
+        [JsonPropertyName("about")]
+        public string? About { get; set; }
+
+        [JsonPropertyName("avatarCropSquare")]
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
+
+        [JsonPropertyName("birthday")]
+        public SpaceDate? Birthday { get; set; }
+
+        [JsonPropertyName("gender")]
+        public Gender? Gender { get; set; }
+    }
+
+    // Source: td_memberwithteam
+    public class TDMemberWithTeamDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+        [Required]
+        [JsonPropertyName("teams")]
+        public List<TDTeamDto> Teams { get; set; }
+
+    }
+
+    // Source: td_membership
+    public class TDMembershipDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("member")]
+        public TDMemberProfileDto? Member { get; set; }
+
+        [Required]
+        [JsonPropertyName("team")]
+        public TDTeamDto Team { get; set; }
+
+        [Required]
+        [JsonPropertyName("role")]
+        public TDRoleDto Role { get; set; }
+
+        [Required]
+        [JsonPropertyName("lead")]
+        public bool Lead { get; set; }
+
+        [JsonPropertyName("manager")]
+        public TDMemberProfileDto? Manager { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
+
+        [JsonPropertyName("activeSince")]
+        public SpaceTime? ActiveSince { get; set; }
+
+        [JsonPropertyName("activeTill")]
+        public SpaceTime? ActiveTill { get; set; }
+
+        [Required]
+        [JsonPropertyName("requiresApproval")]
+        public bool RequiresApproval { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [JsonPropertyName("editFor")]
+        public TDMembershipDto? EditFor { get; set; }
+
+        [JsonPropertyName("pendingEdit")]
+        public TDMembershipDto? PendingEdit { get; set; }
+
+        [JsonPropertyName("approver")]
+        public TDMemberProfileDto? Approver { get; set; }
+
+    }
+
+    // Source: td_mergedevent
+    public class TDMergedEventDto
+    {
+        [Required]
+        [JsonPropertyName("events")]
+        public List<Object8Dto> Events { get; set; }
+
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+    }
+
+    // Source: td_profileemail
+    public class TDProfileEmailDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("email")]
+        public string Email { get; set; }
+
+    }
+
+    // Source: td_profilelanguage
+    public class TDProfileLanguageDto
+    {
+        [JsonPropertyName("name")]
+        public TDProfileNameDto? Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("language")]
+        public TDLanguageDto Language { get; set; }
+
+        [JsonPropertyName("languageCode")]
+        public string? LanguageCode { get; set; }
+
+    }
+
+    // Source: td_profilename
+    public class TDProfileNameDto
+    {
+        [Required]
+        [JsonPropertyName("firstName")]
+        public string FirstName { get; set; }
+
+        [Required]
+        [JsonPropertyName("lastName")]
+        public string LastName { get; set; }
+
+    }
+
+    // Source: td_role
+    public class TDRoleDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("parent")]
+        public TDRoleDto? Parent { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: td_stats
+    public class TDStatsDto
+    {
+        [Required]
+        [JsonPropertyName("totalMembers")]
+        public int TotalMembers { get; set; }
+
+        [Required]
+        [JsonPropertyName("teams")]
+        public List<Object0Dto> Teams { get; set; }
+
+        [Required]
+        [JsonPropertyName("roles")]
+        public List<Object9Dto> Roles { get; set; }
+
+        [Required]
+        [JsonPropertyName("locations")]
+        public List<Object2Dto> Locations { get; set; }
+
+    }
+
+    // Source: td_team
+    public class TDTeamDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description { get; set; }
+
+        [JsonPropertyName("parent")]
+        public TDTeamDto? Parent { get; set; }
+
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }
+
+        [JsonPropertyName("channelId")]
+        public string? ChannelId { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [JsonPropertyName("disbanded")]
+        public bool? Disbanded { get; set; }
+
+        [JsonPropertyName("disbandedAt")]
+        public SpaceDate? DisbandedAt { get; set; }
+
+        [Required]
+        [JsonPropertyName("memberships")]
+        public List<TDMembershipDto> Memberships { get; set; }
+
+    }
+
+    // Source: td_workingdays
+    public class TDWorkingDaysDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("dateStart")]
+        public SpaceDate? DateStart { get; set; }
+
+        [JsonPropertyName("dateEnd")]
+        public SpaceDate? DateEnd { get; set; }
+
+        [Required]
+        [JsonPropertyName("workingDaysSpec")]
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+
+    }
+
+    // Source: teamaddeditemdetails
+    public class TeamAddedItemDetailsDto
+    {
+        [Required]
+        [JsonPropertyName("team")]
+        public TDTeamDto Team { get; set; }
+
+    }
+
+    // Source: textrange
+    public class TextRangeDto
+    {
+        [Required]
+        [JsonPropertyName("start")]
+        public int Start { get; set; }
+
+        [Required]
+        [JsonPropertyName("length")]
+        public int Length { get; set; }
+
+    }
+
+    // Source: todoitemcontent
+    public class TodoItemContentDto
+    {
+    }
+
+    // Source: todoitemcontentmdtext
+    public class TodoItemContentMdTextDto
+    {
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [Required]
+        [JsonPropertyName("mdMarkup")]
+        public MdMarkupDto MdMarkup { get; set; }
+
+    }
+
+    // Source: todoitemcontenttext
+    public class TodoItemContentTextDto
+    {
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+    }
+
+    // Source: todoitemrecord
+    public class TodoItemRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }
+
+        [Required]
+        [JsonPropertyName("updated")]
+        public SpaceTime Updated { get; set; }
+
+        [Required]
+        [JsonPropertyName("content")]
+        public TodoItemContentDto Content { get; set; }
+
+        [Required]
+        [JsonPropertyName("_status")]
+        public string Status { get; set; }
+
+        [JsonPropertyName("dueDate")]
+        public SpaceDate? DueDate { get; set; }
+
+    }
+
+    // Source: trackedbranchesinreview
+    public class TrackedBranchesInReviewDto
+    {
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }
+
+        [Required]
+        [JsonPropertyName("branches")]
+        public List<BranchInfoDto> Branches { get; set; }
+
+    }
+
+    // Source: trustedcertificate
+    public class TrustedCertificateDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [Required]
+        [JsonPropertyName("alias")]
+        public string Alias { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public string Data { get; set; }
+
+        [Required]
+        [JsonPropertyName("info")]
+        public CertificateInfoDto Info { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: unfurl
+    public class UnfurlDto
+    {
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+        [Required]
+        [JsonPropertyName("link")]
+        public string Link { get; set; }
+
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }
+
+        [JsonPropertyName("details")]
+        public UnfurlDetailsDto? Details { get; set; }
+
+        [JsonPropertyName("sitename")]
+        public string? Sitename { get; set; }
+
+        [JsonPropertyName("image")]
+        public string? Image { get; set; }
+
+        [JsonPropertyName("imageMime")]
+        public string? ImageMime { get; set; }
+
+        [JsonPropertyName("imageWidth")]
+        public int? ImageWidth { get; set; }
+
+        [JsonPropertyName("imageHeight")]
+        public int? ImageHeight { get; set; }
+
+        [JsonPropertyName("video")]
+        public string? Video { get; set; }
+
+        [JsonPropertyName("videoIFrame")]
+        public string? VideoIFrame { get; set; }
+
+        [JsonPropertyName("videoMime")]
+        public string? VideoMime { get; set; }
+
+        [JsonPropertyName("videoHeight")]
+        public int? VideoHeight { get; set; }
+
+        [JsonPropertyName("videoWidth")]
+        public int? VideoWidth { get; set; }
+
+        [JsonPropertyName("favicon")]
+        public string? Favicon { get; set; }
+
+    }
+
+    // Source: unfurlattachment
+    public class UnfurlAttachmentDto
+    {
+        [Required]
+        [JsonPropertyName("unfurl")]
+        public UnfurlDto Unfurl { get; set; }
+
+        [JsonPropertyName("id")]
+        public string? Id { get; set; }
+
+    }
+
+    // Source: unfurldetails
+    public class UnfurlDetailsDto
+    {
+    }
+
+    // Source: unfurldetailsarticle
+    public class UnfurlDetailsArticleDto
+    {
+        [Required]
+        [JsonPropertyName("article")]
+        public ArticleRecordDto Article { get; set; }
+
+        [Required]
+        [JsonPropertyName("content")]
+        public ArticleContentRecordDto Content { get; set; }
+
+        [Required]
+        [JsonPropertyName("channel")]
+        public ArticleChannelRecordDto Channel { get; set; }
+
+        [JsonPropertyName("details")]
+        public ArticleDetailsRecordDto? Details { get; set; }
+
+    }
+
+    // Source: unfurldetailschecklist
+    public class UnfurlDetailsChecklistDto
+    {
+        [Required]
+        [JsonPropertyName("checklist")]
+        public ChecklistDto Checklist { get; set; }
+
+    }
+
+    // Source: unfurldetailscodesnippet
+    public class UnfurlDetailsCodeSnippetDto
+    {
+        [Required]
+        [JsonPropertyName("anchor")]
+        public CodeSnippetAnchorDto Anchor { get; set; }
+
+        [Required]
+        [JsonPropertyName("lines")]
+        public List<CodeLineDto> Lines { get; set; }
+
+    }
+
+    // Source: unfurldetailsdatetime
+    public class UnfurlDetailsDateTimeDto
+    {
+        [Required]
+        [JsonPropertyName("utcMilliseconds")]
+        public long UtcMilliseconds { get; set; }
+
+    }
+
+    // Source: unfurldetailsdraft
+    public class UnfurlDetailsDraftDto
+    {
+        [Required]
+        [JsonPropertyName("draft")]
+        public string Draft { get; set; }
+
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }
+
+    }
+
+    // Source: unfurldetailsissue
+    public class UnfurlDetailsIssueDto
+    {
+        [Required]
+        [JsonPropertyName("issue")]
+        public IssueDto Issue { get; set; }
+
+    }
+
+    // Source: unfurldetailsprofile
+    public class UnfurlDetailsProfileDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }
+
+    }
+
+    // Source: unfurldetailsteam
+    public class UnfurlDetailsTeamDto
+    {
+        [Required]
+        [JsonPropertyName("team")]
+        public TDTeamDto Team { get; set; }
+
+    }
+
+    // Source: urlcftype
+    public class UrlCFTypeDto
+         : CFTypeDto
+    {
+    }
+
+    // Source: urlcfvalue
+    public class UrlCFValueDto
+         : CFValueDto
+    {
+        [JsonPropertyName("href")]
+        public string? Href { get; set; }
+
+    }
+
+    // Source: vcshostingpassword
+    public class VcsHostingPasswordDto
+    {
+        [Required]
+        [JsonPropertyName("fingerprint")]
+        public string Fingerprint { get; set; }
+
+        [JsonPropertyName("lastUsed")]
+        public SpaceTime? LastUsed { get; set; }
+
+    }
+
+    // Source: videoattachment
+    public class VideoAttachmentDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }
+
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [JsonPropertyName("width")]
+        public int? Width { get; set; }
+
+        [JsonPropertyName("height")]
+        public int? Height { get; set; }
+
+        [Required]
+        [JsonPropertyName("sizeBytes")]
+        public long SizeBytes { get; set; }
+
+        [JsonPropertyName("previewBytes")]
+        public string? PreviewBytes { get; set; }
+
+    }
+
+    // Source: votegroup
+    public class VoteGroupDto
+    {
+        [Required]
+        [JsonPropertyName("variantName")]
+        public string VariantName { get; set; }
+
+        [Required]
+        [JsonPropertyName("count")]
+        public int Count { get; set; }
+
+        [Required]
+        [JsonPropertyName("meVote")]
+        public bool MeVote { get; set; }
+
+        [Required]
+        [JsonPropertyName("lastUsers")]
+        public List<TDMemberProfileDto> LastUsers { get; set; }
+
+        [JsonPropertyName("owner")]
+        public TDMemberProfileDto? Owner { get; set; }
+
+    }
+
+    // Source: workday
+    public class WorkdayDto
+    {
+        [Required]
+        [JsonPropertyName("weekday")]
+        public string Weekday { get; set; }
+
+        [Required]
+        [JsonPropertyName("working")]
+        public bool Working { get; set; }
+
+        [Required]
+        [JsonPropertyName("hours")]
+        public int Hours { get; set; }
+
+        [JsonPropertyName("minutes")]
+        public int? Minutes { get; set; }
+
+    }
+
+    // Source: workingdaysspec
+    public class WorkingDaysSpecDto
+    {
+        [Required]
+        [JsonPropertyName("days")]
+        public List<WorkdayDto> Days { get; set; }
 
     }
 
@@ -8156,6 +8012,24 @@ namespace SpaceDotNet.Client
 
     }
 
+    // Source: automation
+    public partial class AutomationClient
+    {
+        private readonly Connection _connection;
+
+        public AutomationClient(Connection connection)
+        {
+            _connection = connection;
+        }
+
+        public async Task<string> GraphExecutionsParametersGetParameter(long id, string key) => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)));
+
+        public async Task GraphExecutionsParametersUpdateParameter(long id, Object24Dto data) => await _connection.RequestResourceAsync<Object24Dto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);
+
+        public async Task GraphExecutionsParametersDeleteParameter(long id, string key) => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");
+
+    }
+
     // Source: blogs
     public partial class BlogClient
     {
@@ -8166,11 +8040,11 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<string> ConvertMarkdownToHTML(Object24Dto data) => await _connection.RequestResourceAsync<Object24Dto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
+        public async Task<string> ConvertMarkdownToHTML(Object25Dto data) => await _connection.RequestResourceAsync<Object25Dto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
 
-        public async Task<ArticleRecordDto> ArticlesCreateArticle(Object25Dto data) => await _connection.RequestResourceAsync<Object25Dto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);
+        public async Task<ArticleRecordDto> ArticlesCreateArticle(Object26Dto data) => await _connection.RequestResourceAsync<Object26Dto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);
 
-        public async Task<Object26Dto> ArticlesGetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null) => await _connection.RequestResourceAsync<Object26Dto>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object26Dto)));
+        public async Task<Object27Dto> ArticlesGetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null) => await _connection.RequestResourceAsync<Object27Dto>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object27Dto)));
 
         public async Task<ArticleRecordDto> ArticlesGetArticleByAlias(string alias) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));
 
@@ -8198,18 +8072,20 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<bool> ChannelsIsNameFree(Object27Dto data) => await _connection.RequestResourceAsync<Object27Dto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);
+        public async Task<bool> ChannelsIsNameFree(Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);
 
-        public async Task ChannelsRestoreArchivedChannel(string channel) => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channel}/restore-archived");
+        public async Task<List<string>> ChannelsImportMessageHistory(string channelId, Object29Dto data) => await _connection.RequestResourceAsync<Object29Dto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);
 
-        public async Task ChannelsDeleteChannel(string channel) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}");
+        public async Task ChannelsRestoreArchivedChannel(string channelId) => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");
 
-        public async Task ChannelsArchiveChannel(string channel) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channel}/archive");
+        public async Task ChannelsDeleteChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");
 
-        public async Task ChannelsMessagesSendMessage(string channel, Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto>("POST", $"api/http/chats/channels/{channel}/messages", data);
+        public async Task ChannelsArchiveChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");
 
-        [Obsolete("Use POST chats/channels/{channel}/messages (since 2020-01-17)")]
-        public async Task MessagesSendMessage(Object29Dto data) => await _connection.RequestResourceAsync<Object29Dto>("POST", $"api/http/chats/messages/send", data);
+        public async Task ChannelsMessagesSendMessage(string channelId, Object30Dto data) => await _connection.RequestResourceAsync<Object30Dto>("POST", $"api/http/chats/channels/{channelId}/messages", data);
+
+        [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17)")]
+        public async Task MessagesSendMessage(Object31Dto data) => await _connection.RequestResourceAsync<Object31Dto>("POST", $"api/http/chats/messages/send", data);
 
     }
 
@@ -8225,11 +8101,11 @@ namespace SpaceDotNet.Client
 
         public async Task<List<ExtendedTypeDto>> ExtendedTypesGetAllExtendedTypes() => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ExtendedTypeDto>)));
 
-        public async Task<Object30Dto> AllValuesGetAllAllValues(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null) => await _connection.RequestResourceAsync<Object30Dto>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object30Dto)));
+        public async Task<Object32Dto> AllValuesGetAllAllValues(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null) => await _connection.RequestResourceAsync<Object32Dto>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object32Dto)));
 
-        public async Task<CustomFieldDto> FieldsCreateField(string typeKey, Object31Dto data) => await _connection.RequestResourceAsync<Object31Dto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);
+        public async Task<CustomFieldDto> FieldsCreateField(string typeKey, Object33Dto data) => await _connection.RequestResourceAsync<Object33Dto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);
 
-        public async Task FieldsReorder(string typeKey, Object32Dto data) => await _connection.RequestResourceAsync<Object32Dto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);
+        public async Task FieldsReorder(string typeKey, Object34Dto data) => await _connection.RequestResourceAsync<Object34Dto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);
 
         public async Task FieldsArchive(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");
 
@@ -8237,13 +8113,13 @@ namespace SpaceDotNet.Client
 
         public async Task<List<CustomFieldDto>> FieldsGetAllFields(string typeKey, bool withArchived) => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));
 
-        public async Task FieldsUpdateField(string typeKey, string id, Object33Dto data) => await _connection.RequestResourceAsync<Object33Dto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);
+        public async Task FieldsUpdateField(string typeKey, string id, Object35Dto data) => await _connection.RequestResourceAsync<Object35Dto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);
 
         public async Task FieldsDeleteField(string typeKey, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");
 
         public async Task<CustomFieldsRecordDto> ValuesGetValue(string typeKey, string entityId) => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldsRecordDto)));
 
-        public async Task ValuesUpdateValue(string entityId, string typeKey, Object34Dto data) => await _connection.RequestResourceAsync<Object34Dto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);
+        public async Task ValuesUpdateValue(string entityId, string typeKey, Object36Dto data) => await _connection.RequestResourceAsync<Object36Dto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);
 
     }
 
@@ -8257,21 +8133,21 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<DRDraftDto> DraftsCreateDraft(Object35Dto data) => await _connection.RequestResourceAsync<Object35Dto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);
+        public async Task<DRDraftDto> DraftsCreateDraft(Object37Dto data) => await _connection.RequestResourceAsync<Object37Dto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);
 
         public async Task<DRDraftDto> DraftsGetDraft(string id) => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)));
 
-        public async Task<DRDraftDto> DraftsUpdateDraft(string id, Object36Dto data) => await _connection.RequestResourceAsync<Object36Dto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);
+        public async Task<DRDraftDto> DraftsUpdateDraft(string id, Object38Dto data) => await _connection.RequestResourceAsync<Object38Dto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);
 
         public async Task DraftsDeleteDraft(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");
 
-        public async Task DraftsEditorsProfilesCreateProfile(string id, Object37Dto data) => await _connection.RequestResourceAsync<Object37Dto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);
+        public async Task DraftsEditorsProfilesCreateProfile(string id, Object39Dto data) => await _connection.RequestResourceAsync<Object39Dto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);
 
         public async Task<List<TDMemberProfileDto>> DraftsEditorsProfilesGetAllProfiles(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));
 
         public async Task DraftsEditorsProfilesDeleteProfile(string id, string editorId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");
 
-        public async Task DraftsEditorsTeamsCreateTeam(string id, Object38Dto data) => await _connection.RequestResourceAsync<Object38Dto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);
+        public async Task DraftsEditorsTeamsCreateTeam(string id, Object40Dto data) => await _connection.RequestResourceAsync<Object40Dto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);
 
         public async Task<List<TDTeamDto>> DraftsEditorsTeamsGetAllTeams(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));
 
@@ -8289,7 +8165,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task Delete(Object39Dto data) => await _connection.RequestResourceAsync<Object39Dto>("POST", $"api/http/emojis/delete", data);
+        public async Task Delete(Object41Dto data) => await _connection.RequestResourceAsync<Object41Dto>("POST", $"api/http/emojis/delete", data);
 
         public async Task<bool> Exists(string emoji) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));
 
@@ -8305,13 +8181,13 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<Object40Dto> BlogsGetAllBlogs(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object40Dto>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object40Dto)));
+        public async Task<Object42Dto> BlogsGetAllBlogs(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object42Dto>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object42Dto)));
 
-        public async Task<Object41Dto> DraftsGetAllDrafts(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object41Dto>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object41Dto)));
+        public async Task<Object43Dto> DraftsGetAllDrafts(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object43Dto>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object43Dto)));
 
-        public async Task<Object42Dto> ProfilesGetAllProfiles(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object42Dto>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object42Dto)));
+        public async Task<Object44Dto> ProfilesGetAllProfiles(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object44Dto>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object44Dto)));
 
-        public async Task<Object43Dto> TeamsGetAllTeams(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object43Dto>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object43Dto)));
+        public async Task<Object45Dto> TeamsGetAllTeams(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object45Dto>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object45Dto)));
 
     }
 
@@ -8326,6 +8202,26 @@ namespace SpaceDotNet.Client
         }
 
         public async Task<HAModelDto> GetHTTPAPIModel() => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(HAModelDto)));
+
+    }
+
+    // Source: import-sources
+    public partial class ImportSourceClient
+    {
+        private readonly Connection _connection;
+
+        public ImportSourceClient(Connection connection)
+        {
+            _connection = connection;
+        }
+
+        public async Task<ImportSourceDto> CreateImportSource(Object46Dto data) => await _connection.RequestResourceAsync<Object46Dto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImportSourceDto)), data);
+
+        public async Task<List<ImportSourceDto>> GetAllImportSources() => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ImportSourceDto>)));
+
+        public async Task UpdateImportSource(string sourceId, Object47Dto data) => await _connection.RequestResourceAsync<Object47Dto>("PATCH", $"api/http/import-sources/{sourceId}", data);
+
+        public async Task DeleteImportSource(string sourceId) => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");
 
     }
 
@@ -8385,25 +8281,25 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<PRProjectDto> CreateProject(Object44Dto data) => await _connection.RequestResourceAsync<Object44Dto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);
+        public async Task<PRProjectDto> CreateProject(Object48Dto data) => await _connection.RequestResourceAsync<Object48Dto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);
 
-        public async Task<Object45Dto> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null) => await _connection.RequestResourceAsync<Object45Dto>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object45Dto)));
+        public async Task<Object49Dto> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null) => await _connection.RequestResourceAsync<Object49Dto>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object49Dto)));
 
         public async Task<PRProjectDto> GetProjectByKey(string projectKey) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));
 
-        public async Task<Object45Dto> GetAllProjectsByMember(string member, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object45Dto>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object45Dto)));
+        public async Task<Object49Dto> GetAllProjectsByMember(string member, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object49Dto>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object49Dto)));
 
-        public async Task<Object45Dto> GetAllProjectsWithRight(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null) => await _connection.RequestResourceAsync<Object45Dto>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object45Dto)));
+        public async Task<Object49Dto> GetAllProjectsWithRight(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null) => await _connection.RequestResourceAsync<Object49Dto>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object49Dto)));
 
-        public async Task<Object45Dto> GetAllProjectsByTeam(string team, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object45Dto>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object45Dto)));
+        public async Task<Object49Dto> GetAllProjectsByTeam(string team, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object49Dto>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object49Dto)));
 
         public async Task<PRProjectDto> GetProject(string projectId) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));
 
-        public async Task<PRProjectDto> UpdateProject(string projectId, Object46Dto data) => await _connection.RequestResourceAsync<Object46Dto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);
+        public async Task<PRProjectDto> UpdateProject(string projectId, Object50Dto data) => await _connection.RequestResourceAsync<Object50Dto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);
 
         public async Task ArchiveProject(string projectId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");
 
-        public async Task<List<PropagatedCodeDiscussionDto>> CodeDiscussionsGetAllCodeDiscussionsByChange(Object47Dto data) => await _connection.RequestResourceAsync<Object47Dto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);
+        public async Task<List<PropagatedCodeDiscussionDto>> CodeDiscussionsGetAllCodeDiscussionsByChange(Object51Dto data) => await _connection.RequestResourceAsync<Object51Dto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);
 
         public async Task<List<RevisionDiscussionsCounterDto>> CodeDiscussionsDiscussionsCountersGetAllDiscussionsCounters(string projectKey, string repository, List<string> revisions) => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/code-discussions/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionDiscussionsCounterDto>)));
 
@@ -8411,21 +8307,21 @@ namespace SpaceDotNet.Client
 
         public async Task<List<PRPrivateProjectDto>> PrivateProjectsGetAllPrivateProjects() => await _connection.RequestResourceAsync<List<PRPrivateProjectDto>>("GET", $"api/http/projects/private-projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRPrivateProjectDto>)));
 
-        public async Task<string> ResponsibilitiesAddResponsibility(Object48Dto data) => await _connection.RequestResourceAsync<Object48Dto, string>("POST", $"api/http/projects/responsibilities?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
+        public async Task<string> ResponsibilitiesAddResponsibility(Object52Dto data) => await _connection.RequestResourceAsync<Object52Dto, string>("POST", $"api/http/projects/responsibilities?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
 
-        public async Task ResponsibilitiesUpdateResponsibility(string responsibilityId, Object49Dto data) => await _connection.RequestResourceAsync<Object49Dto>("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);
+        public async Task ResponsibilitiesUpdateResponsibility(string responsibilityId, Object53Dto data) => await _connection.RequestResourceAsync<Object53Dto>("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);
 
         public async Task ResponsibilitiesDeleteResponsibility(string responsibilityId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}");
 
         public async Task ResponsibilitiesSubjectsDeleteResponsibilitySubject(string subjectId, string? projectId = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");
 
-        public async Task TagsTrackTagAccess(Object50Dto data) => await _connection.RequestResourceAsync<Object50Dto>("POST", $"api/http/projects/tags/track-access", data);
+        public async Task TagsTrackTagAccess(Object54Dto data) => await _connection.RequestResourceAsync<Object54Dto>("POST", $"api/http/projects/tags/track-access", data);
 
         public async Task<List<PRTagDto>> TagsGetAllTags() => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRTagDto>)));
 
-        public async Task<Object51Dto> AccessMemberProfilesGetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));
+        public async Task<Object55Dto> AccessMemberProfilesGetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object55Dto>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object55Dto)));
 
-        public async Task<Object52Dto> CodeReviewsGetAllCodeReviews(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, string? authorGitName = null, string? authorGitEmail = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null) => await _connection.RequestResourceAsync<Object52Dto>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&authorGitName={authorGitName?.ToString() ?? "null"}&authorGitEmail={authorGitEmail?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object52Dto)));
+        public async Task<Object56Dto> CodeReviewsGetAllCodeReviews(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null) => await _connection.RequestResourceAsync<Object56Dto>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object56Dto)));
 
         public async Task<ReviewCountsDto> CodeReviewsGetReviewCounts(string projectKey) => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ReviewCountsDto)));
 
@@ -8435,59 +8331,59 @@ namespace SpaceDotNet.Client
 
         public async Task<CodeReviewDetailedInfoDto> CodeReviewsDetailsGetReviewDetails(string projectKey, string reviewId) => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewDetailedInfoDto)));
 
-        public async Task<CodeReviewParticipantRecordDto> CodeReviewsParticipantsEditReviewParticipant(string projectKey, string reviewId, string user, Object53Dto data) => await _connection.RequestResourceAsync<Object53Dto, CodeReviewParticipantRecordDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewParticipantRecordDto)), data);
+        public async Task CodeReviewsParticipantsEditReviewParticipant(string projectKey, string reviewId, string user, Object57Dto data) => await _connection.RequestResourceAsync<Object57Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);
 
-        public async Task CodeReviewsRevisionsAddRevisionsToReview(string projectKey, string reviewId, Object54Dto data) => await _connection.RequestResourceAsync<Object54Dto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);
+        public async Task CodeReviewsRevisionsAddRevisionsToReview(string projectKey, string reviewId, Object58Dto data) => await _connection.RequestResourceAsync<Object58Dto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);
 
         public async Task CodeReviewsRevisionsRemoveRevisionsFromReview(string projectKey, string reviewId, List<string> revisions) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions?revisions={revisions.ToString()}");
 
-        public async Task CodeReviewsStateEditReviewState(string projectKey, string reviewId, Object55Dto data) => await _connection.RequestResourceAsync<Object55Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);
+        public async Task CodeReviewsStateEditReviewState(string projectKey, string reviewId, Object59Dto data) => await _connection.RequestResourceAsync<Object59Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);
 
         public async Task<List<TDMemberProfileDto>> CodeReviewsSuggestedReviewersGetAllSuggestedReviewers(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));
 
-        public async Task CodeReviewsTitleEditReviewTitle(string projectKey, string reviewId, Object56Dto data) => await _connection.RequestResourceAsync<Object56Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);
+        public async Task CodeReviewsTitleEditReviewTitle(string projectKey, string reviewId, Object60Dto data) => await _connection.RequestResourceAsync<Object60Dto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);
 
         public async Task<List<RevisionInReviewDto>> CodeReviewsUnreadRevisionsGetAllUnreadRevisions(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionInReviewDto>)));
 
-        public async Task<CommitSetReviewRecordDto> RepositoriesCommitSetReviewsCreateCommitSetReview(string projectKey, string repository, Object57Dto data) => await _connection.RequestResourceAsync<Object57Dto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);
+        public async Task<CommitSetReviewRecordDto> RepositoriesCommitSetReviewsCreateCommitSetReview(string projectKey, string repository, Object61Dto data) => await _connection.RequestResourceAsync<Object61Dto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);
 
-        public async Task<MergeRequestRecordDto> RepositoriesMergeRequestsCreateMergeRequest(string projectKey, string repository, Object58Dto data) => await _connection.RequestResourceAsync<Object58Dto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);
+        public async Task<MergeRequestRecordDto> RepositoriesMergeRequestsCreateMergeRequest(string projectKey, string repository, Object62Dto data) => await _connection.RequestResourceAsync<Object62Dto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);
 
-        public async Task<CodeDiscussionRecordDto> RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussion(string projectKey, string repository, string revision, Object59Dto data) => await _connection.RequestResourceAsync<Object59Dto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);
+        public async Task<CodeDiscussionRecordDto> RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussion(string projectKey, string repository, string revision, Object63Dto data) => await _connection.RequestResourceAsync<Object63Dto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);
 
         public async Task<List<PropagatedCodeDiscussionDto>> RepositoriesRevisionsCodeDiscussionsGetDiscussionInFile(string projectKey, string repository, string revision, string file) => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)));
 
-        public async Task RepositoriesRevisionsCommitStatusesPushCommitStatus(string projectKey, string repository, string revision, Object60Dto data) => await _connection.RequestResourceAsync<Object60Dto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);
+        public async Task RepositoriesRevisionsCommitStatusesPushCommitStatus(string projectKey, string repository, string revision, Object64Dto data) => await _connection.RequestResourceAsync<Object64Dto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);
 
         public async Task<List<CommitStatusDTODto>> RepositoriesRevisionsCommitStatusesGetCommitStatusesForCommit(string projectKey, string repository, string revision) => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CommitStatusDTODto>)));
 
-        public async Task AccessAdminsProfilesAddAdministrator(string projectId, Object61Dto data) => await _connection.RequestResourceAsync<Object61Dto>("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);
+        public async Task AccessAdminsProfilesAddAdministrator(string projectId, Object65Dto data) => await _connection.RequestResourceAsync<Object65Dto>("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);
 
         public async Task AccessAdminsProfilesRemoveAdministrator(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/profiles/{profileId}");
 
-        public async Task AccessAdminsTeamsAddAdministratorsTeam(string projectId, Object38Dto data) => await _connection.RequestResourceAsync<Object38Dto>("POST", $"api/http/projects/{projectId}/access/admins/teams", data);
+        public async Task AccessAdminsTeamsAddAdministratorsTeam(string projectId, Object40Dto data) => await _connection.RequestResourceAsync<Object40Dto>("POST", $"api/http/projects/{projectId}/access/admins/teams", data);
 
         public async Task AccessAdminsTeamsRemoveAdministratorsTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/teams/{teamId}");
 
-        public async Task AccessMembersProfilesAddMember(string projectId, Object61Dto data) => await _connection.RequestResourceAsync<Object61Dto>("POST", $"api/http/projects/{projectId}/access/members/profiles", data);
+        public async Task AccessMembersProfilesAddMember(string projectId, Object65Dto data) => await _connection.RequestResourceAsync<Object65Dto>("POST", $"api/http/projects/{projectId}/access/members/profiles", data);
 
         public async Task AccessMembersProfilesRemoveMember(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/profiles/{profileId}");
 
-        public async Task AccessMembersTeamsAddTeam(string projectId, Object38Dto data) => await _connection.RequestResourceAsync<Object38Dto>("POST", $"api/http/projects/{projectId}/access/members/teams", data);
+        public async Task AccessMembersTeamsAddTeam(string projectId, Object40Dto data) => await _connection.RequestResourceAsync<Object40Dto>("POST", $"api/http/projects/{projectId}/access/members/teams", data);
 
         public async Task AccessMembersTeamsRemoveTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/teams/{teamId}");
 
-        public async Task<Object51Dto> AccessViewersOrganizationProfilesWhoCanViewTheProject(string projectId, string term, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));
+        public async Task<Object55Dto> AccessViewersOrganizationProfilesWhoCanViewTheProject(string projectId, string term, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object55Dto>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object55Dto)));
 
-        public async Task<ChecklistDto> PlanningChecklistsCreateChecklist(string projectId, Object27Dto data) => await _connection.RequestResourceAsync<Object27Dto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
+        public async Task<ChecklistDto> PlanningChecklistsCreateChecklist(string projectId, Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
 
-        public async Task<ChecklistDto> PlanningChecklistsImportChecklist(string projectId, Object62Dto data) => await _connection.RequestResourceAsync<Object62Dto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
+        public async Task<ChecklistDto> PlanningChecklistsImportChecklist(string projectId, Object66Dto data) => await _connection.RequestResourceAsync<Object66Dto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
 
-        public async Task PlanningChecklistsImportChecklistLines(string projectId, string checklistId, Object63Dto data) => await _connection.RequestResourceAsync<Object63Dto>("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);
+        public async Task PlanningChecklistsImportChecklistLines(string projectId, string checklistId, Object67Dto data) => await _connection.RequestResourceAsync<Object67Dto>("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);
 
-        public async Task<List<ChecklistDto>> PlanningChecklistsGetAllChecklists(string projectId) => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));
+        public async Task<Object68Dto> PlanningChecklistsGetAllChecklists(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Object68Dto>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object68Dto)));
 
-        public async Task PlanningChecklistsUpdateChecklist(string projectId, string checklistId, Object64Dto data) => await _connection.RequestResourceAsync<Object64Dto>("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);
+        public async Task PlanningChecklistsUpdateChecklist(string projectId, string checklistId, Object69Dto data) => await _connection.RequestResourceAsync<Object69Dto>("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);
 
         public async Task PlanningChecklistsDeleteChecklist(string projectId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/checklists/{checklistId}");
 
@@ -8495,41 +8391,47 @@ namespace SpaceDotNet.Client
 
         public async Task<List<PlanItemChildrenDto>> PlanningChecklistsFullChecklistTreeGetFullChecklistTree(string projectId, string checklistId) => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));
 
-        public async Task<IssueDto> PlanningIssuesCreateIssue(string projectId, Object65Dto data) => await _connection.RequestResourceAsync<Object65Dto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);
+        public async Task<IssueDto> PlanningIssuesCreateIssue(string projectId, Object70Dto data) => await _connection.RequestResourceAsync<Object70Dto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);
 
-        public async Task PlanningIssuesToggleIssueResolved(string projectId, string issueId, Object66Dto data) => await _connection.RequestResourceAsync<Object66Dto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);
+        public async Task PlanningIssuesToggleIssueResolved(string projectId, string issueId, Object71Dto data) => await _connection.RequestResourceAsync<Object71Dto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);
 
-        public async Task<Object67Dto> PlanningIssuesGetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null) => await _connection.RequestResourceAsync<Object67Dto>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&statuses={statuses.ToString()}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object67Dto)));
+        public async Task<Object72Dto> PlanningIssuesGetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null) => await _connection.RequestResourceAsync<Object72Dto>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&statuses={statuses.ToString()}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object72Dto)));
 
         public async Task<IssueDto> PlanningIssuesGetIssueByNumber(string projectId, int number) => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));
 
-        public async Task PlanningIssuesUpdateIssue(string projectId, string issueId, Object68Dto data) => await _connection.RequestResourceAsync<Object68Dto>("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);
+        public async Task PlanningIssuesUpdateIssue(string projectId, string issueId, Object73Dto data) => await _connection.RequestResourceAsync<Object73Dto>("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);
 
         public async Task PlanningIssuesDeleteIssue(string projectId, string issueId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}");
 
         public async Task<List<IssueStatusDto>> PlanningIssuesStatusesGetAllIssueStatuses(string projectId) => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusDto>)));
 
-        public async Task PlanningIssuesStatusesUpdateStatus(string projectId, Object69Dto data) => await _connection.RequestResourceAsync<Object69Dto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);
+        public async Task PlanningIssuesStatusesUpdateStatus(string projectId, Object74Dto data) => await _connection.RequestResourceAsync<Object74Dto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);
 
-        public async Task PlanningIssuesAttachmentsAddAttachments(string projectId, string issueId, Object70Dto data) => await _connection.RequestResourceAsync<Object70Dto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);
+        public async Task PlanningIssuesAttachmentsAddAttachments(string projectId, string issueId, Object75Dto data) => await _connection.RequestResourceAsync<Object75Dto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);
 
         public async Task PlanningIssuesAttachmentsRemoveAttachments(string projectId, string issueId, List<string> identities) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments?identities={identities.ToString()}");
+
+        public async Task PlanningIssuesChecklistsAddIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");
+
+        public async Task PlanningIssuesChecklistsRemoveIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");
+
+        public async Task<List<string>> PlanningIssuesCommentsImportIssueCommentHistory(string projectId, string issueId, Object76Dto data) => await _connection.RequestResourceAsync<Object76Dto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);
 
         public async Task PlanningIssuesTagsAddIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");
 
         public async Task PlanningIssuesTagsRemoveIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");
 
-        public async Task<PlanningTagDto> PlanningTagsCreateHierarchicalTag(string projectId, Object71Dto data) => await _connection.RequestResourceAsync<Object71Dto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);
+        public async Task<PlanningTagDto> PlanningTagsCreateHierarchicalTag(string projectId, Object77Dto data) => await _connection.RequestResourceAsync<Object77Dto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);
 
-        public async Task<Object72Dto> PlanningTagsGetAllHierarchicalTags(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Object72Dto>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object72Dto)));
+        public async Task<Object78Dto> PlanningTagsGetAllHierarchicalTags(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Object78Dto>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object78Dto)));
 
         public async Task<List<SubjectResponsibilitiesTableDto>> ResponsibilitiesSchemeGetProjectResponsibilityScheme(string projectId) => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/{projectId}/responsibilities/scheme?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<SubjectResponsibilitiesTableDto>)));
 
-        public async Task<string> ResponsibilitiesSubjectsAddResponsibilitySubject(string projectId, Object73Dto data) => await _connection.RequestResourceAsync<Object73Dto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
+        public async Task<string> ResponsibilitiesSubjectsAddResponsibilitySubject(string projectId, Object79Dto data) => await _connection.RequestResourceAsync<Object79Dto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
 
-        public async Task ResponsibilitiesSubjectsEditResponsibilitySubject(string projectId, string subjectId, Object73Dto data) => await _connection.RequestResourceAsync<Object73Dto>("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);
+        public async Task ResponsibilitiesSubjectsEditResponsibilitySubject(string projectId, string subjectId, Object79Dto data) => await _connection.RequestResourceAsync<Object79Dto>("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);
 
-        public async Task ResponsibilitiesAssigneesAssignResponsible(string projectId, string responsibilityId, string profileId, Object74Dto data) => await _connection.RequestResourceAsync<Object74Dto>("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);
+        public async Task ResponsibilitiesAssigneesAssignResponsible(string projectId, string responsibilityId, string profileId, Object80Dto data) => await _connection.RequestResourceAsync<Object80Dto>("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);
 
         public async Task ResponsibilitiesAssigneesRemoveResponsible(string projectId, string responsibilityId, string profileId, string? role = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");
 
@@ -8545,25 +8447,25 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<PublicHolidayCalendarRecordDto> CalendarsCreateCalendar(Object75Dto data) => await _connection.RequestResourceAsync<Object75Dto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);
+        public async Task<PublicHolidayCalendarRecordDto> CalendarsCreateCalendar(Object81Dto data) => await _connection.RequestResourceAsync<Object81Dto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);
 
-        public async Task<string> CalendarsImport(Object76Dto data) => await _connection.RequestResourceAsync<Object76Dto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
+        public async Task<string> CalendarsImport(Object82Dto data) => await _connection.RequestResourceAsync<Object82Dto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
 
-        public async Task<Object77Dto> CalendarsGetAllCalendars(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object77Dto>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object77Dto)));
+        public async Task<Object83Dto> CalendarsGetAllCalendars(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object83Dto>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object83Dto)));
 
-        public async Task<PublicHolidayCalendarRecordDto> CalendarsUpdateCalendar(string id, Object75Dto data) => await _connection.RequestResourceAsync<Object75Dto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);
+        public async Task<PublicHolidayCalendarRecordDto> CalendarsUpdateCalendar(string id, Object81Dto data) => await _connection.RequestResourceAsync<Object81Dto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);
 
         public async Task CalendarsDeleteCalendar(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");
 
-        public async Task<PublicHolidayDto> HolidaysCreateHoliday(Object78Dto data) => await _connection.RequestResourceAsync<Object78Dto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);
+        public async Task<PublicHolidayDto> HolidaysCreateHoliday(Object84Dto data) => await _connection.RequestResourceAsync<Object84Dto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);
 
-        public async Task<Object79Dto> HolidaysGetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Object79Dto>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object79Dto)));
+        public async Task<Object85Dto> HolidaysGetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Object85Dto>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object85Dto)));
 
-        public async Task<PublicHolidayDto> HolidaysUpdateHoliday(string id, Object80Dto data) => await _connection.RequestResourceAsync<Object80Dto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);
+        public async Task<PublicHolidayDto> HolidaysUpdateHoliday(string id, Object86Dto data) => await _connection.RequestResourceAsync<Object86Dto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);
 
         public async Task HolidaysDeleteHoliday(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");
 
-        public async Task<Object79Dto> HolidaysRelatedHolidaysGetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Object79Dto>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object79Dto)));
+        public async Task<Object85Dto> HolidaysRelatedHolidaysGetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Object85Dto>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object85Dto)));
 
     }
 
@@ -8587,17 +8489,17 @@ namespace SpaceDotNet.Client
 
         public async Task<List<BirthdayEventDto>> CalendarEventsBirthdayEventsStarredGetAllStarredBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo) => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));
 
-        public async Task<MeetingRecordDto> CalendarEventsMeetingParticipationsUpdateMeetingParticipation(string id, Object81Dto data) => await _connection.RequestResourceAsync<Object81Dto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);
+        public async Task<MeetingRecordDto> CalendarEventsMeetingParticipationsUpdateMeetingParticipation(string id, Object87Dto data) => await _connection.RequestResourceAsync<Object87Dto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);
 
         public async Task<List<MembershipEventDto>> CalendarEventsMembershipEventsGetAllMembershipEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MembershipEventDto>)));
 
         public async Task<List<NonWorkingDaysEventDto>> CalendarEventsNonWorkingDaysEventsGetAllNonWorkingDaysEvents(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<NonWorkingDaysEventDto>)));
 
-        public async Task<InvitationDto> InvitationsCreateInvitation(Object82Dto data) => await _connection.RequestResourceAsync<Object82Dto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);
+        public async Task<InvitationDto> InvitationsCreateInvitation(Object88Dto data) => await _connection.RequestResourceAsync<Object88Dto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);
 
-        public async Task<Object83Dto> InvitationsGetAllInvitations(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object83Dto>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object83Dto)));
+        public async Task<Object89Dto> InvitationsGetAllInvitations(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object89Dto>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object89Dto)));
 
-        public async Task InvitationsUpdateInvitation(string id, Object84Dto data) => await _connection.RequestResourceAsync<Object84Dto>("PATCH", $"api/http/team-directory/invitations/{id}", data);
+        public async Task InvitationsUpdateInvitation(string id, Object90Dto data) => await _connection.RequestResourceAsync<Object90Dto>("PATCH", $"api/http/team-directory/invitations/{id}", data);
 
         public async Task InvitationsDeleteInvitation(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}");
 
@@ -8607,9 +8509,9 @@ namespace SpaceDotNet.Client
 
         public async Task LocationEquipmentTypesDeleteLocationEquipmentTypeByName(string name, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString().ToLowerInvariant()}");
 
-        public async Task<TDLocationDto> LocationsCreateLocation(Object85Dto data) => await _connection.RequestResourceAsync<Object85Dto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);
+        public async Task<TDLocationDto> LocationsCreateLocation(Object91Dto data) => await _connection.RequestResourceAsync<Object91Dto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);
 
-        public async Task<List<TDLocationDto>> LocationsRestoreMultiple(Object86Dto data) => await _connection.RequestResourceAsync<Object86Dto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);
+        public async Task<List<TDLocationDto>> LocationsRestoreMultiple(Object92Dto data) => await _connection.RequestResourceAsync<Object92Dto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);
 
         public async Task<TDLocationDto> LocationsRestore(string id) => await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));
 
@@ -8617,57 +8519,57 @@ namespace SpaceDotNet.Client
 
         public async Task<TDLocationDto> LocationsGetLocation(string id) => await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));
 
-        public async Task<TDLocationDto> LocationsUpdateLocation(string id, Object87Dto data) => await _connection.RequestResourceAsync<Object87Dto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);
+        public async Task<TDLocationDto> LocationsUpdateLocation(string id, Object93Dto data) => await _connection.RequestResourceAsync<Object93Dto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);
 
         public async Task<List<TDLocationDto>> LocationsArchiveLocation(string id) => await _connection.RequestResourceAsync<List<TDLocationDto>>("DELETE", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));
 
         public async Task<TDLocationMapDto> LocationsMapGetMap(string id) => await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)));
 
-        public async Task<TDLocationMapDto> LocationsMapUpdateMap(string id, Object88Dto data) => await _connection.RequestResourceAsync<Object88Dto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);
+        public async Task<TDLocationMapDto> LocationsMapUpdateMap(string id, Object94Dto data) => await _connection.RequestResourceAsync<Object94Dto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);
 
         public async Task<List<TDMemberInLocationMapListDto>> LocationsMapMembersGetAllMembers(string id, bool includeUnmarked) => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));
 
         public async Task<List<TDLocationWithTimeZoneDto>> LocationsWithTimezoneGetAllLocationsWithTimezone() => await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationWithTimeZoneDto>)));
 
-        public async Task<Object51Dto> ManagerCandidatesGetAllManagerCandidates(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));
+        public async Task<Object55Dto> ManagerCandidatesGetAllManagerCandidates(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null) => await _connection.RequestResourceAsync<Object55Dto>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object55Dto)));
 
-        public async Task<TDMemberLocationDto> MemberLocationsCreateMemberLocation(Object89Dto data) => await _connection.RequestResourceAsync<Object89Dto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
+        public async Task<TDMemberLocationDto> MemberLocationsCreateMemberLocation(Object95Dto data) => await _connection.RequestResourceAsync<Object95Dto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
 
-        public async Task<Object90Dto> MemberLocationsGetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Object90Dto>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.ToString() ?? "null"}&locations={locations?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object90Dto)));
+        public async Task<Object96Dto> MemberLocationsGetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Object96Dto>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.ToString() ?? "null"}&locations={locations?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object96Dto)));
 
-        public async Task<TDMemberLocationDto> MemberLocationsUpdateMemberLocation(string id, Object91Dto data) => await _connection.RequestResourceAsync<Object91Dto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
+        public async Task<TDMemberLocationDto> MemberLocationsUpdateMemberLocation(string id, Object97Dto data) => await _connection.RequestResourceAsync<Object97Dto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
 
         public async Task MemberLocationsDeleteMemberLocation(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete.ToString().ToLowerInvariant()}");
 
-        public async Task<TDLocationMapPointDto> MemberLocationsPointsCreatePoint(string id, Object92Dto data) => await _connection.RequestResourceAsync<Object92Dto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
+        public async Task<TDLocationMapPointDto> MemberLocationsPointsCreatePoint(string id, Object98Dto data) => await _connection.RequestResourceAsync<Object98Dto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
 
-        public async Task<TDLocationMapPointDto> MemberLocationsPointsUpdatePoint(string locationPointId, string id, Object93Dto data) => await _connection.RequestResourceAsync<Object93Dto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
+        public async Task<TDLocationMapPointDto> MemberLocationsPointsUpdatePoint(string locationPointId, string id, Object99Dto data) => await _connection.RequestResourceAsync<Object99Dto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
 
         public async Task MemberLocationsPointsDeletePoint(string id, string locationPointId, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");
 
-        public async Task<Object94Dto> MembershipEventsGetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<Object94Dto>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object94Dto)));
+        public async Task<Object100Dto> MembershipEventsGetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<Object100Dto>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object100Dto)));
 
-        public async Task<TDMembershipDto> MembershipsCreateMembership(Object95Dto data) => await _connection.RequestResourceAsync<Object95Dto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
+        public async Task<TDMembershipDto> MembershipsCreateMembership(Object101Dto data) => await _connection.RequestResourceAsync<Object101Dto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
 
-        public async Task<Object96Dto> MembershipsGetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null) => await _connection.RequestResourceAsync<Object96Dto>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.ToString() ?? "null"}&teams={teams?.ToString() ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.ToString() ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object96Dto)));
+        public async Task<Object102Dto> MembershipsGetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null) => await _connection.RequestResourceAsync<Object102Dto>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.ToString() ?? "null"}&teams={teams?.ToString() ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.ToString() ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object102Dto)));
 
-        public async Task<TDMembershipDto> MembershipsUpdateMembership(string id, Object97Dto data) => await _connection.RequestResourceAsync<Object97Dto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
+        public async Task<TDMembershipDto> MembershipsUpdateMembership(string id, Object103Dto data) => await _connection.RequestResourceAsync<Object103Dto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
 
         public async Task MembershipsDeleteMembership(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete.ToString().ToLowerInvariant()}");
 
         public async Task MembershipsRevoke(string id, SpaceTime? till = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke?till={till?.ToString() ?? "null"}");
 
-        public async Task<Object98Dto> MembershipsRequestsGetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null) => await _connection.RequestResourceAsync<Object98Dto>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object98Dto)));
+        public async Task<Object104Dto> MembershipsRequestsGetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null) => await _connection.RequestResourceAsync<Object104Dto>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object104Dto)));
 
-        public async Task MembershipsRequestsUpdateRequest(string id, Object99Dto data) => await _connection.RequestResourceAsync<Object99Dto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);
+        public async Task MembershipsRequestsUpdateRequest(string id, Object105Dto data) => await _connection.RequestResourceAsync<Object105Dto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);
 
         public async Task<TDMembershipDto> MembershipsRequestsDeleteRequest(string id) => await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/memberships/requests/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)));
 
-        public async Task MembershipsRequestRevokeUpdateRequestRevoke(string id, Object100Dto data) => await _connection.RequestResourceAsync<Object100Dto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);
+        public async Task MembershipsRequestRevokeUpdateRequestRevoke(string id, Object106Dto data) => await _connection.RequestResourceAsync<Object106Dto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);
 
-        public async Task<TDMemberProfileDto> ProfilesCreateProfile(Object101Dto data) => await _connection.RequestResourceAsync<Object101Dto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
+        public async Task<TDMemberProfileDto> ProfilesCreateProfile(Object107Dto data) => await _connection.RequestResourceAsync<Object107Dto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
 
-        public async Task<Object51Dto> ProfilesGetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));
+        public async Task<Object55Dto> ProfilesGetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null) => await _connection.RequestResourceAsync<Object55Dto>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object55Dto)));
 
         public async Task<List<string>> ProfilesCheckProfileUsernamesExistence(List<string> usernames) => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)));
 
@@ -8677,7 +8579,7 @@ namespace SpaceDotNet.Client
 
         public async Task<bool> ProfilesCheckIfProfileIsTeamMember(string id, List<string> teamIds) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));
 
-        public async Task<TDMemberProfileDto> ProfilesUpdateProfile(string id, Object102Dto data) => await _connection.RequestResourceAsync<Object102Dto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
+        public async Task<TDMemberProfileDto> ProfilesUpdateProfile(string id, Object108Dto data) => await _connection.RequestResourceAsync<Object108Dto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
 
         public async Task<TDMemberProfileDto> ProfilesDeleteProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
 
@@ -8685,45 +8587,59 @@ namespace SpaceDotNet.Client
 
         public async Task<TDMemberProfileDto> ProfilesFire(string id, SpaceDate since) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/fire?since={since.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
 
+        public async Task<List<ESAuthenticationSessionDto>> ProfilesAuthenticationSessionsGetAllAuthenticationSessions(string owner) => await _connection.RequestResourceAsync<List<ESAuthenticationSessionDto>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthenticationSessionDto>)));
+
+        public async Task ProfilesAuthenticationSessionsMeTerminateOwnAuthenticationSession(string sessionId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/me/{sessionId}");
+
         public async Task<TDMemberProfileDto> ProfilesMeGetMe() => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/me?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
 
-        public async Task<ChecklistDto> ProfilesMeChecklistsCreateChecklist(Object27Dto data) => await _connection.RequestResourceAsync<Object27Dto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
+        public async Task<ChecklistDto> ProfilesMeChecklistsCreateChecklist(Object28Dto data) => await _connection.RequestResourceAsync<Object28Dto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
 
-        public async Task<ChecklistDto> ProfilesMeChecklistsImportChecklist(Object62Dto data) => await _connection.RequestResourceAsync<Object62Dto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
+        public async Task<ChecklistDto> ProfilesMeChecklistsImportChecklist(Object66Dto data) => await _connection.RequestResourceAsync<Object66Dto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
 
-        public async Task ProfilesMeChecklistsImportChecklistLines(string checklistId, Object63Dto data) => await _connection.RequestResourceAsync<Object63Dto>("POST", $"api/http/team-directory/profiles/me/checklists/{checklistId}/import", data);
+        public async Task ProfilesMeChecklistsImportChecklistLines(string checklistId, Object67Dto data) => await _connection.RequestResourceAsync<Object67Dto>("POST", $"api/http/team-directory/profiles/me/checklists/{checklistId}/import", data);
 
         public async Task<List<ChecklistDto>> ProfilesMeChecklistsGetAllChecklists() => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));
 
-        public async Task ProfilesMeChecklistsUpdateChecklist(string checklistId, Object103Dto data) => await _connection.RequestResourceAsync<Object103Dto>("PATCH", $"api/http/team-directory/profiles/me/checklists/{checklistId}", data);
+        public async Task ProfilesMeChecklistsUpdateChecklist(string checklistId, Object109Dto data) => await _connection.RequestResourceAsync<Object109Dto>("PATCH", $"api/http/team-directory/profiles/me/checklists/{checklistId}", data);
 
         public async Task ProfilesMeChecklistsDeleteChecklist(string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/checklists/{checklistId}");
 
         public async Task<MeInfoDto> ProfilesMeInfoGetInfo() => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/me/info?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeInfoDto)));
 
+        public async Task<List<ESOAuthConsentDto>> ProfilesOAuthConsentsGetAllOAuthConsents(string owner) => await _connection.RequestResourceAsync<List<ESOAuthConsentDto>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESOAuthConsentDto>)));
+
         public async Task<List<TDMemberProfileDto>> ProfilesLeadsGetAllLeads(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles/{id}/leads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));
 
-        public async Task<TDProfileLanguageDto> ProfilesSpokenLanguagesUpdateSpokenLanguage(string id, Object104Dto data) => await _connection.RequestResourceAsync<Object104Dto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);
+        public async Task<Object110Dto> ProfilesPermanentTokensCreatePermanentToken(string id, Object111Dto data) => await _connection.RequestResourceAsync<Object111Dto, Object110Dto>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object110Dto)), data);
+
+        public async Task<Object112Dto> ProfilesPermanentTokensGetAllPermanentTokens(string id, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object112Dto>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object112Dto)));
+
+        public async Task ProfilesPermanentTokensUpdatePermanentToken(string id, string tokenId, Object113Dto data) => await _connection.RequestResourceAsync<Object113Dto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);
+
+        public async Task ProfilesPermanentTokensDeletePermanentToken(string id, string tokenId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");
+
+        public async Task<TDProfileLanguageDto> ProfilesSpokenLanguagesUpdateSpokenLanguage(string id, Object114Dto data) => await _connection.RequestResourceAsync<Object114Dto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);
 
         public async Task ProfilesSpokenLanguagesDeleteSpokenLanguage(string id, string language) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/spoken-languages?language={language.ToString()}");
 
         public async Task<VcsHostingPasswordDto> ProfilesVcsPasswordGetVcsPassword(string id) => await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/profiles/{id}/vcs-password?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(VcsHostingPasswordDto)));
 
-        public async Task ProfilesVcsPasswordUpdateVcsPassword(string id, Object105Dto data) => await _connection.RequestResourceAsync<Object105Dto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);
+        public async Task ProfilesVcsPasswordUpdateVcsPassword(string id, Object115Dto data) => await _connection.RequestResourceAsync<Object115Dto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);
 
         public async Task ProfilesVcsPasswordDeleteVcsPassword(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/vcs-password");
 
-        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysAddWorkingDays(string id, Object106Dto data) => await _connection.RequestResourceAsync<Object106Dto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);
+        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysAddWorkingDays(string id, Object116Dto data) => await _connection.RequestResourceAsync<Object116Dto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);
 
         public async Task<List<TDWorkingDaysDto>> ProfilesWorkingDaysGetAllWorkingDays(string id) => await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDWorkingDaysDto>)));
 
-        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysUpdateWorkingDays(string id, string workingDaysId, Object107Dto data) => await _connection.RequestResourceAsync<Object107Dto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);
+        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysUpdateWorkingDays(string id, string workingDaysId, Object117Dto data) => await _connection.RequestResourceAsync<Object117Dto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);
 
         public async Task ProfilesWorkingDaysDeleteWorkingDays(string id, string workingDaysId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");
 
-        public async Task<Object51Dto> ReportingsGetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));
+        public async Task<Object55Dto> ReportingsGetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null) => await _connection.RequestResourceAsync<Object55Dto>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object55Dto)));
 
-        public async Task<TDRoleDto> RolesCreateRole(Object108Dto data) => await _connection.RequestResourceAsync<Object108Dto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);
+        public async Task<TDRoleDto> RolesCreateRole(Object118Dto data) => await _connection.RequestResourceAsync<Object118Dto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);
 
         public async Task<TDRoleDto> RolesRestore(string id) => await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));
 
@@ -8731,34 +8647,34 @@ namespace SpaceDotNet.Client
 
         public async Task<TDRoleDto> RolesGetRole(string id) => await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));
 
-        public async Task<TDRoleDto> RolesUpdateRole(string id, Object109Dto data) => await _connection.RequestResourceAsync<Object109Dto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);
+        public async Task<TDRoleDto> RolesUpdateRole(string id, Object119Dto data) => await _connection.RequestResourceAsync<Object119Dto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);
 
         public async Task RolesArchiveRole(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}");
 
         public async Task<TDStatsDto> StatsGetAllStats(string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<TDStatsDto>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDStatsDto)));
 
-        public async Task<TDTeamDto> TeamsCreateTeam(Object110Dto data) => await _connection.RequestResourceAsync<Object110Dto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);
+        public async Task<TDTeamDto> TeamsCreateTeam(Object120Dto data) => await _connection.RequestResourceAsync<Object120Dto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);
 
-        public async Task<List<TDTeamDto>> TeamsRestoreMultiple(Object86Dto data) => await _connection.RequestResourceAsync<Object86Dto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);
+        public async Task<List<TDTeamDto>> TeamsRestoreMultiple(Object92Dto data) => await _connection.RequestResourceAsync<Object92Dto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);
 
         public async Task TeamsCancelDisbanding(string id) => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding");
 
         public async Task<TDTeamDto> TeamsRestore(string id) => await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
 
-        public async Task<Object111Dto> TeamsGetAllTeams(string query, bool withArchived, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object111Dto>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object111Dto)));
+        public async Task<Object121Dto> TeamsGetAllTeams(string query, bool withArchived, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object121Dto>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object121Dto)));
 
         [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]
         public async Task<TDTeamDto> TeamsGetSingleTeamByName(string name) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
 
         public async Task<TDTeamDto> TeamsGetTeam(string id) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
 
-        public async Task<TDTeamDto> TeamsUpdateTeam(string id, Object112Dto data) => await _connection.RequestResourceAsync<Object112Dto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);
+        public async Task<TDTeamDto> TeamsUpdateTeam(string id, Object122Dto data) => await _connection.RequestResourceAsync<Object122Dto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);
 
         public async Task<List<TDTeamDto>> TeamsArchiveTeam(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));
 
         public async Task<List<TDTeamDto>> TeamsDisband(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));
 
-        public async Task<Object51Dto> TeamsDirectMembersGetAllDirectMembers(string id, string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object51Dto>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object51Dto)));
+        public async Task<Object55Dto> TeamsDirectMembersGetAllDirectMembers(string id, string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Object55Dto>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Object55Dto)));
 
     }
 
@@ -8772,13 +8688,13 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<TrustedCertificateDto> CreateTrustedCertificate(Object113Dto data) => await _connection.RequestResourceAsync<Object113Dto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TrustedCertificateDto)), data);
+        public async Task<TrustedCertificateDto> CreateTrustedCertificate(Object123Dto data) => await _connection.RequestResourceAsync<Object123Dto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TrustedCertificateDto)), data);
 
         public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates() => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TrustedCertificateDto>)));
 
         public async Task<CertificateInfoDto> Info(string data) => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CertificateInfoDto)));
 
-        public async Task UpdateTrustedCertificate(string id, Object114Dto data) => await _connection.RequestResourceAsync<Object114Dto>("PATCH", $"api/http/trusted-certificates/{id}", data);
+        public async Task UpdateTrustedCertificate(string id, Object124Dto data) => await _connection.RequestResourceAsync<Object124Dto>("PATCH", $"api/http/trusted-certificates/{id}", data);
 
         public async Task DeleteTrustedCertificate(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}");
 
@@ -8794,7 +8710,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
 
-        public async Task<string> CreateUpload(Object115Dto data) => await _connection.RequestResourceAsync<Object115Dto, string>("POST", $"api/http/uploads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
+        public async Task<string> CreateUpload(Object125Dto data) => await _connection.RequestResourceAsync<Object125Dto, string>("POST", $"api/http/uploads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
 
         public async Task<ImageAttachmentMetaDto> ImageGetImageAttachmentMetadata(string id) => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImageAttachmentMetaDto)));
 
@@ -8805,7 +8721,7 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("first")]
-        public SpaceDate First { get; set; }
+        public TDTeamDto First { get; set; }
 
         [Required]
         [JsonPropertyName("second")]
@@ -8816,11 +8732,13 @@ namespace SpaceDotNet.Client
     // Source: Object1
     public class Object1Dto
     {
+        [Required]
         [JsonPropertyName("first")]
-        public MCElementDto? First { get; set; }
+        public PRProjectDto First { get; set; }
 
+        [Required]
         [JsonPropertyName("second")]
-        public MCElementDto? Second { get; set; }
+        public int Second { get; set; }
 
     }
 
@@ -8867,13 +8785,158 @@ namespace SpaceDotNet.Client
     public class Object100Dto
     {
         [Required]
-        [JsonPropertyName("till")]
-        public SpaceTime Till { get; set; }
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public List<TDMergedEventDto> Data { get; set; }
 
     }
 
     // Source: Object101
     public class Object101Dto
+    {
+        [Required]
+        [JsonPropertyName("memberId")]
+        public string MemberId { get; set; }
+
+        [Required]
+        [JsonPropertyName("teamId")]
+        public string TeamId { get; set; }
+
+        [Required]
+        [JsonPropertyName("roleId")]
+        public string RoleId { get; set; }
+
+        [Required]
+        [JsonPropertyName("lead")]
+        public bool Lead { get; set; }
+
+        [JsonPropertyName("managerId")]
+        public string? ManagerId { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
+
+        [JsonPropertyName("activeSince")]
+        public SpaceTime? ActiveSince { get; set; }
+
+        [JsonPropertyName("activeTill")]
+        public SpaceTime? ActiveTill { get; set; }
+
+        [JsonPropertyName("previousMembershipId")]
+        public string? PreviousMembershipId { get; set; }
+
+        [Required]
+        [JsonPropertyName("requiresApproval")]
+        public bool RequiresApproval { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+
+    }
+
+    // Source: Object102
+    public class Object102Dto
+    {
+        [Required]
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public List<TDMembershipDto> Data { get; set; }
+
+    }
+
+    // Source: Object103
+    public class Object103Dto
+    {
+        [JsonPropertyName("memberId")]
+        public string? MemberId { get; set; }
+
+        [JsonPropertyName("teamId")]
+        public string? TeamId { get; set; }
+
+        [JsonPropertyName("roleId")]
+        public string? RoleId { get; set; }
+
+        [JsonPropertyName("lead")]
+        public bool? Lead { get; set; }
+
+        [JsonPropertyName("managerId")]
+        public string? ManagerId { get; set; }
+
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }
+
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }
+
+        [JsonPropertyName("activeSince")]
+        public SpaceTime? ActiveSince { get; set; }
+
+        [JsonPropertyName("activeTill")]
+        public SpaceTime? ActiveTill { get; set; }
+
+        [JsonPropertyName("previousMembershipId")]
+        public string? PreviousMembershipId { get; set; }
+
+        [Required]
+        [JsonPropertyName("requiresApproval")]
+        public bool RequiresApproval { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+
+    }
+
+    // Source: Object104
+    public class Object104Dto
+    {
+        [Required]
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public List<Object126Dto> Data { get; set; }
+
+    }
+
+    // Source: Object105
+    public class Object105Dto
+    {
+        [Required]
+        [JsonPropertyName("approved")]
+        public bool Approved { get; set; }
+
+    }
+
+    // Source: Object106
+    public class Object106Dto
+    {
+        [Required]
+        [JsonPropertyName("till")]
+        public SpaceTime Till { get; set; }
+
+    }
+
+    // Source: Object107
+    public class Object107Dto
     {
         [Required]
         [JsonPropertyName("username")]
@@ -8931,8 +8994,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object102
-    public class Object102Dto
+    // Source: Object108
+    public class Object108Dto
     {
         [JsonPropertyName("username")]
         public string? Username { get; set; }
@@ -8987,94 +9050,14 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object103
-    public class Object103Dto
+    // Source: Object109
+    public class Object109Dto
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
 
         [JsonPropertyName("description")]
         public string? Description { get; set; }
-
-    }
-
-    // Source: Object104
-    public class Object104Dto
-    {
-        [Required]
-        [JsonPropertyName("language")]
-        public string Language { get; set; }
-
-        [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
-    }
-
-    // Source: Object105
-    public class Object105Dto
-    {
-        [Required]
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
-
-    }
-
-    // Source: Object106
-    public class Object106Dto
-    {
-        [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
-        [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
-        [Required]
-        [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
-    }
-
-    // Source: Object107
-    public class Object107Dto
-    {
-        [JsonPropertyName("profile")]
-        public string? Profile { get; set; }
-
-        [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
-        [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
-        [Required]
-        [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
-    }
-
-    // Source: Object108
-    public class Object108Dto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-
-    }
-
-    // Source: Object109
-    public class Object109Dto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
 
     }
 
@@ -9091,22 +9074,30 @@ namespace SpaceDotNet.Client
     public class Object110Dto
     {
         [Required]
-        [JsonPropertyName("teamNameRaw")]
-        public string TeamNameRaw { get; set; }
+        [JsonPropertyName("first")]
+        public ESPermanentTokenDto First { get; set; }
 
-        [JsonPropertyName("teamDescription")]
-        public string? TeamDescription { get; set; }
-
-        [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
+        [Required]
+        [JsonPropertyName("second")]
+        public string Second { get; set; }
 
     }
 
     // Source: Object111
     public class Object111Dto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [Required]
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }
+
+    }
+
+    // Source: Object112
+    public class Object112Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -9117,55 +9108,33 @@ namespace SpaceDotNet.Client
 
         [Required]
         [JsonPropertyName("data")]
-        public List<TDTeamDto> Data { get; set; }
-
-    }
-
-    // Source: Object112
-    public class Object112Dto
-    {
-        [JsonPropertyName("teamNameRaw")]
-        public string? TeamNameRaw { get; set; }
-
-        [JsonPropertyName("teamDescription")]
-        public string? TeamDescription { get; set; }
-
-        [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
+        public List<ESPermanentTokenDto> Data { get; set; }
 
     }
 
     // Source: Object113
     public class Object113Dto
     {
-        [Required]
-        [JsonPropertyName("alias")]
-        public string Alias { get; set; }
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
 
-        [Required]
-        [JsonPropertyName("data")]
-        public string Data { get; set; }
-
-        [Required]
-        [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        [JsonPropertyName("scope")]
+        public string? Scope { get; set; }
 
     }
 
     // Source: Object114
     public class Object114Dto
     {
-        [JsonPropertyName("alias")]
-        public string? Alias { get; set; }
+        [Required]
+        [JsonPropertyName("language")]
+        public string Language { get; set; }
 
-        [JsonPropertyName("data")]
-        public string? Data { get; set; }
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }
 
-        [JsonPropertyName("archived")]
-        public bool? Archived { get; set; }
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }
 
     }
 
@@ -9173,11 +9142,64 @@ namespace SpaceDotNet.Client
     public class Object115Dto
     {
         [Required]
-        [JsonPropertyName("storagePrefix")]
-        public string StoragePrefix { get; set; }
+        [JsonPropertyName("password")]
+        public string Password { get; set; }
 
-        [JsonPropertyName("mediaType")]
-        public string? MediaType { get; set; }
+    }
+
+    // Source: Object116
+    public class Object116Dto
+    {
+        [JsonPropertyName("dateStart")]
+        public SpaceDate? DateStart { get; set; }
+
+        [JsonPropertyName("dateEnd")]
+        public SpaceDate? DateEnd { get; set; }
+
+        [Required]
+        [JsonPropertyName("workingDaysSpec")]
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+
+    }
+
+    // Source: Object117
+    public class Object117Dto
+    {
+        [JsonPropertyName("profile")]
+        public string? Profile { get; set; }
+
+        [JsonPropertyName("dateStart")]
+        public SpaceDate? DateStart { get; set; }
+
+        [JsonPropertyName("dateEnd")]
+        public SpaceDate? DateEnd { get; set; }
+
+        [Required]
+        [JsonPropertyName("workingDaysSpec")]
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+
+    }
+
+    // Source: Object118
+    public class Object118Dto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
+
+    }
+
+    // Source: Object119
+    public class Object119Dto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }
+
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
 
     }
 
@@ -9194,6 +9216,106 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("data")]
         public List<AbsenceRecordDto> Data { get; set; }
+
+    }
+
+    // Source: Object120
+    public class Object120Dto
+    {
+        [Required]
+        [JsonPropertyName("teamNameRaw")]
+        public string TeamNameRaw { get; set; }
+
+        [JsonPropertyName("teamDescription")]
+        public string? TeamDescription { get; set; }
+
+        [JsonPropertyName("teamEmails")]
+        public List<string>? TeamEmails { get; set; }
+
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+
+    }
+
+    // Source: Object121
+    public class Object121Dto
+    {
+        [Required]
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public List<TDTeamDto> Data { get; set; }
+
+    }
+
+    // Source: Object122
+    public class Object122Dto
+    {
+        [JsonPropertyName("teamNameRaw")]
+        public string? TeamNameRaw { get; set; }
+
+        [JsonPropertyName("teamDescription")]
+        public string? TeamDescription { get; set; }
+
+        [JsonPropertyName("teamEmails")]
+        public List<string>? TeamEmails { get; set; }
+
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }
+
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+
+    }
+
+    // Source: Object123
+    public class Object123Dto
+    {
+        [Required]
+        [JsonPropertyName("alias")]
+        public string Alias { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public string Data { get; set; }
+
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }
+
+    }
+
+    // Source: Object124
+    public class Object124Dto
+    {
+        [JsonPropertyName("alias")]
+        public string? Alias { get; set; }
+
+        [JsonPropertyName("data")]
+        public string? Data { get; set; }
+
+        [JsonPropertyName("archived")]
+        public bool? Archived { get; set; }
+
+    }
+
+    // Source: Object125
+    public class Object125Dto
+    {
+        [Required]
+        [JsonPropertyName("storagePrefix")]
+        public string StoragePrefix { get; set; }
+
+        [JsonPropertyName("mediaType")]
+        public string? MediaType { get; set; }
 
     }
 
@@ -9344,7 +9466,7 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("first")]
-        public TDTeamDto First { get; set; }
+        public TDLocationDto First { get; set; }
 
         [Required]
         [JsonPropertyName("second")]
@@ -9420,13 +9542,26 @@ namespace SpaceDotNet.Client
     public class Object24Dto
     {
         [Required]
-        [JsonPropertyName("markdown")]
-        public string Markdown { get; set; }
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
+
+        [Required]
+        [JsonPropertyName("value")]
+        public string Value { get; set; }
 
     }
 
     // Source: Object25
     public class Object25Dto
+    {
+        [Required]
+        [JsonPropertyName("markdown")]
+        public string Markdown { get; set; }
+
+    }
+
+    // Source: Object26
+    public class Object26Dto
     {
         [Required]
         [JsonPropertyName("title")]
@@ -9442,13 +9577,19 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("team")]
         public string? Team { get; set; }
 
+        [JsonPropertyName("teams")]
+        public List<string>? Teams { get; set; }
+
         [JsonPropertyName("location")]
         public string? Location { get; set; }
 
+        [JsonPropertyName("locations")]
+        public List<string>? Locations { get; set; }
+
     }
 
-    // Source: Object26
-    public class Object26Dto
+    // Source: Object27
+    public class Object27Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -9463,8 +9604,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object27
-    public class Object27Dto
+    // Source: Object28
+    public class Object28Dto
     {
         [Required]
         [JsonPropertyName("name")]
@@ -9472,8 +9613,30 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object28
-    public class Object28Dto
+    // Source: Object29
+    public class Object29Dto
+    {
+        [Required]
+        [JsonPropertyName("messages")]
+        public List<MessageForImportDto> Messages { get; set; }
+
+    }
+
+    // Source: Object3
+    public class Object3Dto
+    {
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
+
+        [Required]
+        [JsonPropertyName("value")]
+        public EMavenRepositorySettingsDto Value { get; set; }
+
+    }
+
+    // Source: Object30
+    public class Object30Dto
     {
         [Required]
         [JsonPropertyName("text")]
@@ -9484,8 +9647,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object29
-    public class Object29Dto
+    // Source: Object31
+    public class Object31Dto
     {
         [Required]
         [JsonPropertyName("channel")]
@@ -9504,21 +9667,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object3
-    public class Object3Dto
-    {
-        [Required]
-        [JsonPropertyName("first")]
-        public PRProjectDto First { get; set; }
-
-        [Required]
-        [JsonPropertyName("second")]
-        public int Second { get; set; }
-
-    }
-
-    // Source: Object30
-    public class Object30Dto
+    // Source: Object32
+    public class Object32Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -9533,8 +9683,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object31
-    public class Object31Dto
+    // Source: Object33
+    public class Object33Dto
     {
         [Required]
         [JsonPropertyName("name")]
@@ -9568,8 +9718,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object32
-    public class Object32Dto
+    // Source: Object34
+    public class Object34Dto
     {
         [Required]
         [JsonPropertyName("customFieldOrder")]
@@ -9577,8 +9727,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object33
-    public class Object33Dto
+    // Source: Object35
+    public class Object35Dto
     {
         [JsonPropertyName("name")]
         public string? Name { get; set; }
@@ -9606,8 +9756,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object34
-    public class Object34Dto
+    // Source: Object36
+    public class Object36Dto
     {
         [Required]
         [JsonPropertyName("values")]
@@ -9615,8 +9765,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object35
-    public class Object35Dto
+    // Source: Object37
+    public class Object37Dto
     {
         [JsonPropertyName("title")]
         public string? Title { get; set; }
@@ -9636,8 +9786,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object36
-    public class Object36Dto
+    // Source: Object38
+    public class Object38Dto
     {
         [JsonPropertyName("title")]
         public string? Title { get; set; }
@@ -9656,8 +9806,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object37
-    public class Object37Dto
+    // Source: Object39
+    public class Object39Dto
     {
         [Required]
         [JsonPropertyName("editorId")]
@@ -9665,34 +9815,16 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object38
-    public class Object38Dto
-    {
-        [Required]
-        [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
-
-    }
-
-    // Source: Object39
-    public class Object39Dto
-    {
-        [Required]
-        [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
-
-    }
-
     // Source: Object4
     public class Object4Dto
     {
         [Required]
-        [JsonPropertyName("first")]
-        public TDLocationDto First { get; set; }
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
 
         [Required]
-        [JsonPropertyName("second")]
-        public int Second { get; set; }
+        [JsonPropertyName("value")]
+        public ERepositorySettingsDto Value { get; set; }
 
     }
 
@@ -9700,15 +9832,8 @@ namespace SpaceDotNet.Client
     public class Object40Dto
     {
         [Required]
-        [JsonPropertyName("next")]
-        public string Next { get; set; }
-
-        [JsonPropertyName("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonPropertyName("data")]
-        public List<FTSBlogDto> Data { get; set; }
+        [JsonPropertyName("teamId")]
+        public string TeamId { get; set; }
 
     }
 
@@ -9716,15 +9841,8 @@ namespace SpaceDotNet.Client
     public class Object41Dto
     {
         [Required]
-        [JsonPropertyName("next")]
-        public string Next { get; set; }
-
-        [JsonPropertyName("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonPropertyName("data")]
-        public List<FTSDraftDto> Data { get; set; }
+        [JsonPropertyName("emoji")]
+        public string Emoji { get; set; }
 
     }
 
@@ -9740,7 +9858,7 @@ namespace SpaceDotNet.Client
 
         [Required]
         [JsonPropertyName("data")]
-        public List<FTSProfileDto> Data { get; set; }
+        public List<FTSBlogDto> Data { get; set; }
 
     }
 
@@ -9756,12 +9874,67 @@ namespace SpaceDotNet.Client
 
         [Required]
         [JsonPropertyName("data")]
-        public List<FTSTeamDto> Data { get; set; }
+        public List<FTSDraftDto> Data { get; set; }
 
     }
 
     // Source: Object44
     public class Object44Dto
+    {
+        [Required]
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public List<FTSProfileDto> Data { get; set; }
+
+    }
+
+    // Source: Object45
+    public class Object45Dto
+    {
+        [Required]
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public List<FTSTeamDto> Data { get; set; }
+
+    }
+
+    // Source: Object46
+    public class Object46Dto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("importerPrincipal")]
+        public string? ImporterPrincipal { get; set; }
+
+    }
+
+    // Source: Object47
+    public class Object47Dto
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("importerPrincipal")]
+        public string ImporterPrincipal { get; set; }
+
+    }
+
+    // Source: Object48
+    public class Object48Dto
     {
         [Required]
         [JsonPropertyName("key")]
@@ -9784,8 +9957,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object45
-    public class Object45Dto
+    // Source: Object49
+    public class Object49Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -9800,8 +9973,19 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object46
-    public class Object46Dto
+    // Source: Object5
+    public class Object5Dto
+    {
+        [JsonPropertyName("first")]
+        public MCElementDto? First { get; set; }
+
+        [JsonPropertyName("second")]
+        public MCElementDto? Second { get; set; }
+
+    }
+
+    // Source: Object50
+    public class Object50Dto
     {
         [JsonPropertyName("key")]
         public ProjectKeyDto? Key { get; set; }
@@ -9823,8 +10007,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object47
-    public class Object47Dto
+    // Source: Object51
+    public class Object51Dto
     {
         [Required]
         [JsonPropertyName("projectKey")]
@@ -9844,8 +10028,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object48
-    public class Object48Dto
+    // Source: Object52
+    public class Object52Dto
     {
         [Required]
         [JsonPropertyName("subjectId")]
@@ -9860,8 +10044,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object49
-    public class Object49Dto
+    // Source: Object53
+    public class Object53Dto
     {
         [Required]
         [JsonPropertyName("summary")]
@@ -9872,21 +10056,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object5
-    public class Object5Dto
-    {
-        [Required]
-        [JsonPropertyName("first")]
-        public TDMembershipDto First { get; set; }
-
-        [Required]
-        [JsonPropertyName("second")]
-        public int Second { get; set; }
-
-    }
-
-    // Source: Object50
-    public class Object50Dto
+    // Source: Object54
+    public class Object54Dto
     {
         [Required]
         [JsonPropertyName("tag")]
@@ -9894,8 +10065,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object51
-    public class Object51Dto
+    // Source: Object55
+    public class Object55Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -9910,8 +10081,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object52
-    public class Object52Dto
+    // Source: Object56
+    public class Object56Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -9926,8 +10097,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object53
-    public class Object53Dto
+    // Source: Object57
+    public class Object57Dto
     {
         [Required]
         [JsonPropertyName("role")]
@@ -9935,8 +10106,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object54
-    public class Object54Dto
+    // Source: Object58
+    public class Object58Dto
     {
         [Required]
         [JsonPropertyName("revisions")]
@@ -9944,8 +10115,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object55
-    public class Object55Dto
+    // Source: Object59
+    public class Object59Dto
     {
         [Required]
         [JsonPropertyName("state")]
@@ -9953,8 +10124,21 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object56
-    public class Object56Dto
+    // Source: Object6
+    public class Object6Dto
+    {
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }
+
+        [Required]
+        [JsonPropertyName("value")]
+        public PackageRepositorySettingsDto Value { get; set; }
+
+    }
+
+    // Source: Object60
+    public class Object60Dto
     {
         [Required]
         [JsonPropertyName("title")]
@@ -9962,8 +10146,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object57
-    public class Object57Dto
+    // Source: Object61
+    public class Object61Dto
     {
         [Required]
         [JsonPropertyName("revisions")]
@@ -9974,8 +10158,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object58
-    public class Object58Dto
+    // Source: Object62
+    public class Object62Dto
     {
         [Required]
         [JsonPropertyName("sourceBranch")]
@@ -9991,8 +10175,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object59
-    public class Object59Dto
+    // Source: Object63
+    public class Object63Dto
     {
         [Required]
         [JsonPropertyName("text")]
@@ -10016,21 +10200,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object6
-    public class Object6Dto
-    {
-        [Required]
-        [JsonPropertyName("first")]
-        public TDRoleDto First { get; set; }
-
-        [Required]
-        [JsonPropertyName("second")]
-        public int Second { get; set; }
-
-    }
-
-    // Source: Object60
-    public class Object60Dto
+    // Source: Object64
+    public class Object64Dto
     {
         [JsonPropertyName("branch")]
         public string? Branch { get; set; }
@@ -10066,8 +10237,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object61
-    public class Object61Dto
+    // Source: Object65
+    public class Object65Dto
     {
         [Required]
         [JsonPropertyName("profileId")]
@@ -10075,8 +10246,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object62
-    public class Object62Dto
+    // Source: Object66
+    public class Object66Dto
     {
         [Required]
         [JsonPropertyName("name")]
@@ -10088,8 +10259,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object63
-    public class Object63Dto
+    // Source: Object67
+    public class Object67Dto
     {
         [Required]
         [JsonPropertyName("targetParentId")]
@@ -10104,8 +10275,24 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object64
-    public class Object64Dto
+    // Source: Object68
+    public class Object68Dto
+    {
+        [Required]
+        [JsonPropertyName("next")]
+        public string Next { get; set; }
+
+        [JsonPropertyName("totalCount")]
+        public int? TotalCount { get; set; }
+
+        [Required]
+        [JsonPropertyName("data")]
+        public List<ChecklistDto> Data { get; set; }
+
+    }
+
+    // Source: Object69
+    public class Object69Dto
     {
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -10121,8 +10308,21 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object65
-    public class Object65Dto
+    // Source: Object7
+    public class Object7Dto
+    {
+        [Required]
+        [JsonPropertyName("first")]
+        public SpaceDate First { get; set; }
+
+        [Required]
+        [JsonPropertyName("second")]
+        public int Second { get; set; }
+
+    }
+
+    // Source: Object70
+    public class Object70Dto
     {
         [Required]
         [JsonPropertyName("title")]
@@ -10145,13 +10345,20 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string> Tags { get; set; }
 
+        [Required]
+        [JsonPropertyName("checklists")]
+        public List<string> Checklists { get; set; }
+
         [JsonPropertyName("attachments")]
         public List<AttachmentDto>? Attachments { get; set; }
 
+        [JsonPropertyName("importInfo")]
+        public ImportedEntityInfoDto? ImportInfo { get; set; }
+
     }
 
-    // Source: Object66
-    public class Object66Dto
+    // Source: Object71
+    public class Object71Dto
     {
         [Required]
         [JsonPropertyName("resolved")]
@@ -10159,8 +10366,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object67
-    public class Object67Dto
+    // Source: Object72
+    public class Object72Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -10175,8 +10382,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object68
-    public class Object68Dto
+    // Source: Object73
+    public class Object73Dto
     {
         [JsonPropertyName("title")]
         public string Title { get; set; }
@@ -10193,10 +10400,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("dueDate")]
         public SpaceDate? DueDate { get; set; }
 
+        [JsonPropertyName("importInfo")]
+        public ImportedEntityInfoDto? ImportInfo { get; set; }
+
     }
 
-    // Source: Object69
-    public class Object69Dto
+    // Source: Object74
+    public class Object74Dto
     {
         [Required]
         [JsonPropertyName("statuses")]
@@ -10204,21 +10414,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object7
-    public class Object7Dto
-    {
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("value")]
-        public PackageRepositorySettingsDto Value { get; set; }
-
-    }
-
-    // Source: Object70
-    public class Object70Dto
+    // Source: Object75
+    public class Object75Dto
     {
         [Required]
         [JsonPropertyName("attachments")]
@@ -10226,8 +10423,17 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object71
-    public class Object71Dto
+    // Source: Object76
+    public class Object76Dto
+    {
+        [Required]
+        [JsonPropertyName("comments")]
+        public List<MessageForImportDto> Comments { get; set; }
+
+    }
+
+    // Source: Object77
+    public class Object77Dto
     {
         [JsonPropertyName("parentTagId")]
         public string? ParentTagId { get; set; }
@@ -10238,8 +10444,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object72
-    public class Object72Dto
+    // Source: Object78
+    public class Object78Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -10254,24 +10460,37 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object73
-    public class Object73Dto
+    // Source: Object79
+    public class Object79Dto
     {
         [JsonPropertyName("name")]
         public string? Name { get; set; }
 
     }
 
-    // Source: Object74
-    public class Object74Dto
+    // Source: Object8
+    public class Object8Dto
+    {
+        [Required]
+        [JsonPropertyName("first")]
+        public TDMembershipDto First { get; set; }
+
+        [Required]
+        [JsonPropertyName("second")]
+        public int Second { get; set; }
+
+    }
+
+    // Source: Object80
+    public class Object80Dto
     {
         [JsonPropertyName("role")]
         public string? Role { get; set; }
 
     }
 
-    // Source: Object75
-    public class Object75Dto
+    // Source: Object81
+    public class Object81Dto
     {
         [Required]
         [JsonPropertyName("name")]
@@ -10283,8 +10502,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object76
-    public class Object76Dto
+    // Source: Object82
+    public class Object82Dto
     {
         [Required]
         [JsonPropertyName("calendar")]
@@ -10296,8 +10515,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object77
-    public class Object77Dto
+    // Source: Object83
+    public class Object83Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -10312,8 +10531,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object78
-    public class Object78Dto
+    // Source: Object84
+    public class Object84Dto
     {
         [Required]
         [JsonPropertyName("calendar")]
@@ -10333,8 +10552,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object79
-    public class Object79Dto
+    // Source: Object85
+    public class Object85Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -10349,21 +10568,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object8
-    public class Object8Dto
-    {
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("value")]
-        public ERepositorySettingsDto Value { get; set; }
-
-    }
-
-    // Source: Object80
-    public class Object80Dto
+    // Source: Object86
+    public class Object86Dto
     {
         [JsonPropertyName("calendar")]
         public string? Calendar { get; set; }
@@ -10379,8 +10585,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object81
-    public class Object81Dto
+    // Source: Object87
+    public class Object87Dto
     {
         [Required]
         [JsonPropertyName("newStatus")]
@@ -10388,20 +10594,18 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object82
-    public class Object82Dto
+    // Source: Object88
+    public class Object88Dto
     {
         [Required]
         [JsonPropertyName("inviteeEmail")]
         public string InviteeEmail { get; set; }
 
-        [Required]
         [JsonPropertyName("inviteeFirstName")]
-        public string InviteeFirstName { get; set; }
+        public string? InviteeFirstName { get; set; }
 
-        [Required]
         [JsonPropertyName("inviteeLastName")]
-        public string InviteeLastName { get; set; }
+        public string? InviteeLastName { get; set; }
 
         [JsonPropertyName("team")]
         public TDTeamDto? Team { get; set; }
@@ -10411,8 +10615,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object83
-    public class Object83Dto
+    // Source: Object89
+    public class Object89Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -10427,8 +10631,21 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object84
-    public class Object84Dto
+    // Source: Object9
+    public class Object9Dto
+    {
+        [Required]
+        [JsonPropertyName("first")]
+        public TDRoleDto First { get; set; }
+
+        [Required]
+        [JsonPropertyName("second")]
+        public int Second { get; set; }
+
+    }
+
+    // Source: Object90
+    public class Object90Dto
     {
         [JsonPropertyName("inviteeEmail")]
         public string? InviteeEmail { get; set; }
@@ -10447,8 +10664,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object85
-    public class Object85Dto
+    // Source: Object91
+    public class Object91Dto
     {
         [Required]
         [JsonPropertyName("name")]
@@ -10483,8 +10700,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object86
-    public class Object86Dto
+    // Source: Object92
+    public class Object92Dto
     {
         [Required]
         [JsonPropertyName("ids")]
@@ -10492,8 +10709,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object87
-    public class Object87Dto
+    // Source: Object93
+    public class Object93Dto
     {
         [JsonPropertyName("name")]
         public string? Name { get; set; }
@@ -10533,8 +10750,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object88
-    public class Object88Dto
+    // Source: Object94
+    public class Object94Dto
     {
         [Required]
         [JsonPropertyName("mapPictureId")]
@@ -10542,8 +10759,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object89
-    public class Object89Dto
+    // Source: Object95
+    public class Object95Dto
     {
         [Required]
         [JsonPropertyName("member")]
@@ -10564,21 +10781,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object9
-    public class Object9Dto
-    {
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("value")]
-        public EMavenRepositorySettingsDto Value { get; set; }
-
-    }
-
-    // Source: Object90
-    public class Object90Dto
+    // Source: Object96
+    public class Object96Dto
     {
         [Required]
         [JsonPropertyName("next")]
@@ -10593,8 +10797,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object91
-    public class Object91Dto
+    // Source: Object97
+    public class Object97Dto
     {
         [JsonPropertyName("member")]
         public string? Member { get; set; }
@@ -10613,8 +10817,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object92
-    public class Object92Dto
+    // Source: Object98
+    public class Object98Dto
     {
         [Required]
         [JsonPropertyName("x")]
@@ -10630,8 +10834,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object93
-    public class Object93Dto
+    // Source: Object99
+    public class Object99Dto
     {
         [JsonPropertyName("x")]
         public int? X { get; set; }
@@ -10644,153 +10848,8 @@ namespace SpaceDotNet.Client
 
     }
 
-    // Source: Object94
-    public class Object94Dto
-    {
-        [Required]
-        [JsonPropertyName("next")]
-        public string Next { get; set; }
-
-        [JsonPropertyName("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonPropertyName("data")]
-        public List<TDMergedEventDto> Data { get; set; }
-
-    }
-
-    // Source: Object95
-    public class Object95Dto
-    {
-        [Required]
-        [JsonPropertyName("memberId")]
-        public string MemberId { get; set; }
-
-        [Required]
-        [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
-
-        [Required]
-        [JsonPropertyName("roleId")]
-        public string RoleId { get; set; }
-
-        [Required]
-        [JsonPropertyName("lead")]
-        public bool Lead { get; set; }
-
-        [JsonPropertyName("managerId")]
-        public string? ManagerId { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
-        [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
-        [JsonPropertyName("previousMembershipId")]
-        public string? PreviousMembershipId { get; set; }
-
-        [Required]
-        [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: Object96
-    public class Object96Dto
-    {
-        [Required]
-        [JsonPropertyName("next")]
-        public string Next { get; set; }
-
-        [JsonPropertyName("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonPropertyName("data")]
-        public List<TDMembershipDto> Data { get; set; }
-
-    }
-
-    // Source: Object97
-    public class Object97Dto
-    {
-        [JsonPropertyName("memberId")]
-        public string? MemberId { get; set; }
-
-        [JsonPropertyName("teamId")]
-        public string? TeamId { get; set; }
-
-        [JsonPropertyName("roleId")]
-        public string? RoleId { get; set; }
-
-        [JsonPropertyName("lead")]
-        public bool? Lead { get; set; }
-
-        [JsonPropertyName("managerId")]
-        public string? ManagerId { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
-        [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
-        [JsonPropertyName("previousMembershipId")]
-        public string? PreviousMembershipId { get; set; }
-
-        [Required]
-        [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: Object98
-    public class Object98Dto
-    {
-        [Required]
-        [JsonPropertyName("next")]
-        public string Next { get; set; }
-
-        [JsonPropertyName("totalCount")]
-        public int? TotalCount { get; set; }
-
-        [Required]
-        [JsonPropertyName("data")]
-        public List<Object116Dto> Data { get; set; }
-
-    }
-
-    // Source: Object99
-    public class Object99Dto
-    {
-        [Required]
-        [JsonPropertyName("approved")]
-        public bool Approved { get; set; }
-
-    }
-
-    // Source: Object116
-    public class Object116Dto
+    // Source: Object126
+    public class Object126Dto
     {
         [Required]
         [JsonPropertyName("first")]
