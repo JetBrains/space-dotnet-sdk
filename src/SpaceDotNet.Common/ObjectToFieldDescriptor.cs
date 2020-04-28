@@ -7,6 +7,8 @@ using System.Web;
 
 namespace SpaceDotNet.Common
 {
+    
+    
     public static class QueryStringHelper
     {
         public static string Nullable(string queryString)
@@ -24,6 +26,7 @@ namespace SpaceDotNet.Common
             return queryStringCollection.ToString() ?? string.Empty;
         }
     }
+
     public static class ObjectToFieldDescriptor
     {
         public static string FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)

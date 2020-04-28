@@ -2,9 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 
 namespace SpaceDotNet.Common.Types
 {
+    [PublicAPI]
     public abstract class Enumeration : IComparable
     {
         public string Value { get; private set; }

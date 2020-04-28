@@ -1,10 +1,12 @@
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 
 namespace SpaceDotNet.Common.Types
 {
     /// <summary>
     /// Represents an error retrieved from Space.
     /// </summary>
+    [PublicAPI]
     public class SpaceError
     {
         /// <summary>

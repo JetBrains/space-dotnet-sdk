@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
+using SpaceDotNet.Common;
 using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
@@ -216,16 +217,54 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     break;
                 
                 case ApiFieldType.Object apiFieldTypeObject:
-                    if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
+                    if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.PAIR)
+                    {
+                        // Known anonymous type
+                        Builder.Append("Pair<");
+                        Visit(apiFieldTypeObject.Fields[0].Type);
+                        Builder.Append(", ");
+                        Visit(apiFieldTypeObject.Fields[1].Type);
+                        Builder.Append(">");
+                    }
+                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.TRIPLE)
+                    {
+                        // Known anonymous type
+                        Builder.Append("Triple<");
+                        Visit(apiFieldTypeObject.Fields[0].Type);
+                        Builder.Append(", ");
+                        Visit(apiFieldTypeObject.Fields[1].Type);
+                        Builder.Append(", ");
+                        Visit(apiFieldTypeObject.Fields[2].Type);
+                        Builder.Append(">");
+                    }
+                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MAP_ENTRY)
+                    {
+                        // Known anonymous type
+                        Builder.Append("MapEntry<");
+                        Visit(apiFieldTypeObject.Fields[0].Type);
+                        Builder.Append(", ");
+                        Visit(apiFieldTypeObject.Fields[1].Type);
+                        Builder.Append(">");
+                    }
+                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.BATCH)
+                    {
+                        // Known anonymous type
+                        Builder.Append("Batch<");
+                        var dataFieldType = apiFieldTypeObject.Fields.First(it => string.Equals(it.Name, "data", StringComparison.OrdinalIgnoreCase));
+                        var dataFieldArrayType = (ApiFieldType.Array)dataFieldType.Type;
+                        Visit(dataFieldArrayType.ElementType);
+                        Builder.Append(">");
+                    }  
+                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
                     {
                         // Known anonymous type
                         Builder.Append("Modification<");
                         Visit(apiFieldTypeObject.Fields[0].Type);
                         Builder.Append(">");
                     }
-                    else
+                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.REQUEST_BODY)
                     {
-                        // Unknown anonymous type - check whether we generated it before?
+                        // Request body/anonymous type - check whether we generated it before?
                         var anonymousClassFields = apiFieldTypeObject.Fields.Select(it => new ApiDtoField { Field = it }).ToList();
 
                         // TODO: make this check less expensive, serializing N times is probably not the best idea
@@ -233,7 +272,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         var anonymousClass = IdToAnonymousClassMap.Values.FirstOrDefault(it => anonymousClassSignature == JsonSerializer.Serialize(it.Fields));
                         if (anonymousClass == null)
                         {
-                            var anonymousClassId = "Object" + IdToAnonymousClassMap.Count;
+                            var anonymousClassId = !string.IsNullOrEmpty(_clientMethodName)
+                                ? _clientMethodName + "Request"
+                                : "Object" + IdToAnonymousClassMap.Count;
                             anonymousClass = new ApiDto
                             {
                                 Id = anonymousClassId,
@@ -245,6 +286,11 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         }
 
                         Builder.Append(anonymousClass.Id + "Dto");
+                    }
+                    else
+                    {
+                        // Unknown object kind
+                        throw new ResourceException("Could not generate class for object kind: " + apiFieldTypeObject.Kind);
                     }
 
                     break;
@@ -344,13 +390,15 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}}}");
             Builder.AppendLine();
         }
-
+        
+        private string _clientMethodName = string.Empty;
+        
         public override void Visit(ApiResource apiResource, ApiEndpoint apiEndpoint)
         {
             var endpointPath = (_baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
 
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
-            var clientMethodName = _baseMethodName + apiEndpoint.DisplayName.ToSafeIdentifier();
+            _clientMethodName = _baseMethodName + apiEndpoint.DisplayName.ToSafeIdentifier();
 
             bool AppendParameterList(ApiEndpoint apiEndpoint1)
             {
@@ -441,7 +489,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
             {
-                Builder.Append($"{Indent}public async Task " + clientMethodName + "(");
+                Builder.Append($"{Indent}public async Task " + _clientMethodName + "(");
             
                 AppendParameterList(apiEndpoint);
 
@@ -457,7 +505,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append($"{Indent}public async Task<");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
-                Builder.Append(" " + clientMethodName + "(");
+                Builder.Append(" " + _clientMethodName + "(");
             
                 AppendParameterList(apiEndpoint);
                 
@@ -475,7 +523,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody == null)
             {
                 Builder.Append($"{Indent}public async Task");
-                Builder.Append(" " + clientMethodName + "(");
+                Builder.Append(" " + _clientMethodName + "(");
             
                 if (AppendParameterList(apiEndpoint))
                 {
@@ -499,7 +547,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append($"{Indent}public async Task<");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
-                Builder.Append(" " + clientMethodName + "(");
+                Builder.Append(" " + _clientMethodName + "(");
 
                 if (AppendParameterList(apiEndpoint))
                 {
@@ -528,6 +576,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             }
             
             Builder.AppendLine();
+
+            _clientMethodName = string.Empty;
         }
     }
 }
