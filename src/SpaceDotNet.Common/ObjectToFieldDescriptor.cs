@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using System.Web;
+using JetBrains.Annotations;
 
 namespace SpaceDotNet.Common
 {
@@ -27,13 +28,16 @@ namespace SpaceDotNet.Common
         }
     }
 
+    [PublicAPI]
     public static class ObjectToFieldDescriptor
     {
+        private static readonly string CommonTypesNamespace = "SpaceDotNet.Common.Types";
+        
         public static string FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
         {
             var fieldNames = new List<string>();
 
-            if (forType.IsGenericType)
+            if (forType.IsGenericType && forType.Namespace != CommonTypesNamespace)
             {
                 forType = forType.GetGenericArguments().First();
             }
@@ -49,7 +53,7 @@ namespace SpaceDotNet.Common
                         // Follow e.g. generic lists
                         innerType = innerType.GenericTypeArguments[0];
                     }
-                    if (innerType.Namespace == forType.Namespace && currentDepth < maxDepth)
+                    if ((innerType.Namespace == forType.Namespace || forType.Namespace == CommonTypesNamespace) && currentDepth < maxDepth)
                     {
                         var derivedInnerTypes = FindAllDerivedTypes(innerType);
                         if (derivedInnerTypes.Count > 0)
