@@ -18,7 +18,7 @@ namespace SpaceDotNet.Common.Types
         public static SpaceTime AsSpaceTime(this DateTime subject) =>
             new SpaceTime
             {
-                Iso = subject.ToString("o"),
+                Iso = subject.ToString("yyyy-MM-ddTHH:mm:ssZ"),
                 Timestamp = new DateTimeOffset(subject).ToUnixTimeMilliseconds()
             };
     }
