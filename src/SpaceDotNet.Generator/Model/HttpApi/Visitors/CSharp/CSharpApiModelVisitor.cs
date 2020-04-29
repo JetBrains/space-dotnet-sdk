@@ -440,18 +440,47 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     Builder.Append("=");
                     Builder.Append("{");
                     Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
-                    Builder.Append(!apiEndpointParameter.Field.Type.Nullable
-                        ? ".ToString()"
-                        : "?.ToString()");
                     
-                    if (apiEndpointParameter.Field.Type is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
+                    if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
                     {
-                        // Boolean needs lowercase value
+                        // For lists, we will need to repeat the parameter for each element
                         Builder.Append(!apiEndpointParameter.Field.Type.Nullable
-                            ? ".ToLowerInvariant()"
-                            : "?.ToLowerInvariant()");
-                    }
+                            ? ".JoinToString("
+                            : "?.JoinToString(");
+                        
+                        Builder.Append("\"");
+                        Builder.Append(apiEndpointParameter.Field.Name);
+                        Builder.Append("\", it => it");
+                        
+                        Builder.Append(!arrayType.ElementType.Nullable
+                            ? ".ToString()"
+                            : "?.ToString()");
                     
+                        if (arrayType.ElementType is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Boolean needs lowercase value
+                            Builder.Append(!arrayType.ElementType.Nullable
+                                ? ".ToLowerInvariant()"
+                                : "?.ToLowerInvariant()"); }
+
+                        Builder.Append(")");
+                    }
+                    else
+                    {
+                        // Anything else can be "ToString()"
+                        Builder.Append(!apiEndpointParameter.Field.Type.Nullable
+                            ? ".ToString()"
+                            : "?.ToString()");
+                    
+                        if (apiEndpointParameter.Field.Type is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
+                        {
+                            // Boolean needs lowercase value
+                            Builder.Append(!apiEndpointParameter.Field.Type.Nullable
+                                ? ".ToLowerInvariant()"
+                                : "?.ToLowerInvariant()");
+                        }
+                    }
+
                     if (apiEndpointParameter.Field.Type.Nullable)
                     {
                         // Used to be able to filter out nullable query string parameters in Connection.CleanNullableNullQueryStringParameters
