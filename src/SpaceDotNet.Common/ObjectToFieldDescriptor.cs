@@ -8,8 +8,6 @@ using JetBrains.Annotations;
 
 namespace SpaceDotNet.Common
 {
-    
-    
     public static class QueryStringHelper
     {
         public static string Nullable(string queryString)
