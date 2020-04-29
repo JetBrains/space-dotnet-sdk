@@ -23,7 +23,7 @@ namespace SpaceDotNet.Common.Types
 
         public override string ToString()
         {
-            return AsDateTime().ToString("o");
+            return AsDateTime().ToString("yyyy-MM-dd");
         }
     }
 }

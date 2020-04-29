@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Text.Json.Serialization;
 using System.Web;
 using JetBrains.Annotations;
+using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Common
 {
@@ -29,12 +30,17 @@ namespace SpaceDotNet.Common
     [PublicAPI]
     public static class ObjectToFieldDescriptor
     {
-        private static readonly string CommonTypesNamespace = "SpaceDotNet.Common.Types";
+        private static readonly string CommonTypesNamespace = typeof(Batch<>).Namespace!;
+        private static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
         
         public static string FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
         {
             var fieldNames = new List<string>();
 
+            if (forType.IsGenericType && forType.Name == CommonTypesBatchName)
+            {
+                maxDepth++;
+            }
             if (forType.IsGenericType && forType.Namespace != CommonTypesNamespace)
             {
                 forType = forType.GetGenericArguments().First();

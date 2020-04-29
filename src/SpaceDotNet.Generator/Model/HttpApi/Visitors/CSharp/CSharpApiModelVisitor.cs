@@ -57,6 +57,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}using System.ComponentModel.DataAnnotations;");
             Builder.AppendLine($"{Indent}using System.Text.Json.Serialization;");
             Builder.AppendLine($"{Indent}using System.Threading.Tasks;");
+            Builder.AppendLine($"{Indent}using SpaceDotNet.Client.Internal;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Json.Serialization;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Types;");

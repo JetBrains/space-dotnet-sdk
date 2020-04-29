@@ -13,7 +13,7 @@ namespace SpaceDotNet.Common.Types
         [JsonPropertyName("timestamp")]
         public long Timestamp { get; set; }
 
-        public DateTime AsDateTime() => DateTimeOffset.FromUnixTimeSeconds(Timestamp).DateTime;
+        public DateTime AsDateTime() => Timestamp.AsDateTime();
 
         public override string ToString()
         {
