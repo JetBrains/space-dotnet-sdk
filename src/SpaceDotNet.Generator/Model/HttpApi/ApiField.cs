@@ -6,10 +6,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi
     public class ApiField
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
         
         [JsonPropertyName("type")]
         [JsonConverter(typeof(ApiFieldTypeConverter))]
-        public ApiFieldType Type { get; set; }
+        public ApiFieldType Type { get; set; } = default!;
     }
 }

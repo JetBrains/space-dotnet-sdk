@@ -7,10 +7,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi
     public class ApiDto
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = default!;
         
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
         
         [JsonPropertyName("fields")]
         public List<ApiDtoField> Fields { get; set; } = new List<ApiDtoField>();

@@ -9,10 +9,10 @@ namespace SpaceDotNet.Common.Types
     {
         [Required]
         [JsonPropertyName("key")]
-        public TKey Key { get; set; }
+        public TKey Key { get; set; } = default!;
 
         [Required]
         [JsonPropertyName("value")]
-        public TValue Value { get; set; }
+        public TValue Value { get; set; } = default!;
     }
 }

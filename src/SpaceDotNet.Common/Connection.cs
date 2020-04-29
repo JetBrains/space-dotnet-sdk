@@ -1,5 +1,4 @@
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 
@@ -101,7 +100,7 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
         {
-            await RequestResourceInternalAsync<TPayload>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
+            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
         }
         
         /// <summary>

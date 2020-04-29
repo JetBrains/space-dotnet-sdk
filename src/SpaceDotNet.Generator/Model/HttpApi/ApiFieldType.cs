@@ -21,14 +21,14 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         public class Primitive : ApiFieldType
         {
             [JsonPropertyName("primitive")]
-            public string Type { get; set; }
+            public string Type { get; set; } = default!;
         }
         
         public class Array : ApiFieldType
         {
             [JsonPropertyName("elementType")]
             [JsonConverter(typeof(ApiFieldTypeConverter))]
-            public ApiFieldType ElementType { get; set; }
+            public ApiFieldType ElementType { get; set; } = default!;
         }
         
         public class Object : ApiFieldType
@@ -37,7 +37,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi
             public List<ApiField> Fields { get; set; } = new List<ApiField>();
             
             [JsonPropertyName("kind")]
-            public ObjectKind Kind { get; set; }
+            public ObjectKind Kind { get; set; } = default!;
             
             [SuppressMessage("ReSharper", "InconsistentNaming")]
             [JsonConverter(typeof(EnumerationConverter))]

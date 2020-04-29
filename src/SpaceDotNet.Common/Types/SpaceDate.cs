@@ -8,7 +8,7 @@ namespace SpaceDotNet.Common.Types
     public class SpaceDate
     {
         [JsonPropertyName("iso")]
-        public string Iso { get; set; }
+        public string Iso { get; set; } = default!;
         
         [JsonPropertyName("year")]
         public int Year { get; set; }

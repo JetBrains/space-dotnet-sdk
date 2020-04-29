@@ -6,10 +6,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi
     public class ApiEnum
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = default!;
         
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get; set; } = default!;
         
         [JsonPropertyName("values")]
         public List<string> Values { get; set; } = new List<string>();

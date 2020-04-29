@@ -7,13 +7,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi
     public class ApiEndpoint
     {
         [JsonPropertyName("resource")]
-        public ApiResource Resource { get; set; }
+        public ApiResource Resource { get; set; } = default!;
         
         [JsonPropertyName("deprecation")]
-        public ApiDeprecation? Deprecation { get; set; }
+        public ApiDeprecation? Deprecation { get; set; } = default;
         
         [JsonPropertyName("method")]
-        public ApiMethod Method { get; set; }
+        public ApiMethod Method { get; set; } = default!;
         
         [JsonPropertyName("parameters")]
         public List<ApiParameter> Parameters { get; set; } = new List<ApiParameter>();
@@ -27,10 +27,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         public ApiFieldType? ResponseBody { get; set; }
         
         [JsonPropertyName("path")]
-        public ApiResourcePath Path { get; set; }
+        public ApiResourcePath Path { get; set; } = default!;
         
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
+        public string DisplayName { get; set; } = default!;
         
         [JsonPropertyName("doc")]
         public string? Documentation { get; set; }

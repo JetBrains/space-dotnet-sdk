@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
-using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 using SpaceDotNet.Generator.Model.HttpApi;
 using SpaceDotNet.Generator.Model.HttpApi.Converters;
@@ -42,7 +40,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             var target = new ApiFieldTypeConverter();
             
             // Act
-            ApiFieldType result = null;
+            ApiFieldType? result = null;
             var utf8JsonBytes = Encoding.UTF8.GetBytes(json);
             var reader = new Utf8JsonReader(utf8JsonBytes, true, new JsonReaderState());
             while (reader.Read())

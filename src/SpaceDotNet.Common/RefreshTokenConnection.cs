@@ -50,7 +50,7 @@ namespace SpaceDotNet.Common
         protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request)
         {
             // Authenticate?
-            if (AuthenticationTokens != null && AuthenticationTokens.HasExpired())
+            if (AuthenticationTokens != null && AuthenticationTokens.HasExpired() && !string.IsNullOrEmpty(AuthenticationTokens.RefreshToken))
             {
                 // Get new token
                 var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, ServerUrl + "oauth/token")

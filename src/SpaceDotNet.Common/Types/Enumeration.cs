@@ -51,7 +51,7 @@ namespace SpaceDotNet.Common.Types
                 return false;
             }
 
-            var typeMatches = GetType() == obj.GetType();
+            var typeMatches = GetType() == obj?.GetType();
             var valueMatches = Value.Equals(otherValue.Value);
 
             return typeMatches && valueMatches;

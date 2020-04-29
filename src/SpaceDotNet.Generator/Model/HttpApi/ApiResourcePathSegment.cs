@@ -12,22 +12,22 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         public class Var : ApiResourcePathSegment
         {
             [JsonPropertyName("name")]
-            public string Name { get; set; }
+            public string Name { get; set; } = default!;
         }
         
         public class PrefixedVar : ApiResourcePathSegment
         {
             [JsonPropertyName("prefix")]
-            public string Prefix { get; set; }
+            public string Prefix { get; set; } = default!;
             
             [JsonPropertyName("name")]
-            public string Name { get; set; }
+            public string Name { get; set; } = default!;
         }
         
         public class Const : ApiResourcePathSegment
         {
             [JsonPropertyName("value")]
-            public string Value { get; set; }
+            public string Value { get; set; } = default!;
         }
     }
 }

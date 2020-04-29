@@ -13,12 +13,12 @@ namespace SpaceDotNet.Common.Types
         /// Short description of the error.
         /// </summary>
         [JsonPropertyName("error")]
-        public string Error { get; set; }
+        public string Error { get; set; } = default!;
         
         /// <summary>
         /// Full description of the error.
         /// </summary>
         [JsonPropertyName("error_description")]
-        public string Description { get; set; }
+        public string Description { get; set; } = default!;
     }
 }

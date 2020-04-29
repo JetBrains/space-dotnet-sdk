@@ -16,9 +16,9 @@ namespace SpaceDotNet.Generator
         {
             // Metadata
             var connection = new ClientCredentialsConnection(
-                Environment.GetEnvironmentVariable("SPACE_SERVERURL"),
-                Environment.GetEnvironmentVariable("SPACE_CLIENTID"),
-                Environment.GetEnvironmentVariable("SPACE_CLIENTSECRET"),
+                Environment.GetEnvironmentVariable("SPACE_SERVERURL")!,
+                Environment.GetEnvironmentVariable("SPACE_CLIENTID")!,
+                Environment.GetEnvironmentVariable("SPACE_CLIENTSECRET")!,
                 new HttpClient());
             
             var apiModel = await connection.RequestResourceAsync<ApiModel>(

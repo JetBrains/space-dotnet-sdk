@@ -8,7 +8,7 @@ namespace SpaceDotNet.Common.Types
     public class SpaceTime
     {
         [JsonPropertyName("iso")]
-        public string Iso { get; set; }
+        public string Iso { get; set; } = default!;
         
         [JsonPropertyName("timestamp")]
         public long Timestamp { get; set; }

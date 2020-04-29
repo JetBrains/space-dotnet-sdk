@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using JetBrains.Annotations;
 using SpaceDotNet.Common.Json.Serialization;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Converters
@@ -21,6 +22,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
         
         public override bool CanConvert(Type objectType) => typeof(ApiFieldType).IsAssignableFrom(objectType);
 
+        [CanBeNull]
         public override ApiFieldType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType == JsonTokenType.Null) return null;

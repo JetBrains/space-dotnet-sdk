@@ -46,7 +46,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             // Act & Assert
             foreach (var (json, expectedResult) in inputs)
             {
-                Enumeration result = null;
+                Enumeration? result = null;
                 
                 var utf8JsonBytes = Encoding.UTF8.GetBytes(json);
                 var reader = new Utf8JsonReader(utf8JsonBytes, true, new JsonReaderState());
@@ -66,7 +66,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             var target = new EnumerationConverter();
             
             // Act & 
-            Enumeration result = null;
+            Enumeration? result = null;
                 
             var utf8JsonBytes = Encoding.UTF8.GetBytes("\"UNKNOWN_VALUE\"");
             var reader = new Utf8JsonReader(utf8JsonBytes, true, new JsonReaderState());

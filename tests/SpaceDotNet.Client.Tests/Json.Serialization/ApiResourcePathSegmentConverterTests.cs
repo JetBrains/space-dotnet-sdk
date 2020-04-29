@@ -37,7 +37,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             var target = new ApiResourcePathSegmentConverter();
             
             // Act
-            ApiResourcePathSegment result = null;
+            ApiResourcePathSegment? result = null;
             var utf8JsonBytes = Encoding.UTF8.GetBytes(json);
             var reader = new Utf8JsonReader(utf8JsonBytes, true, new JsonReaderState());
             while (reader.Read())

@@ -353,7 +353,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 foreach (var apiEndpoint in apiNestedResource.Endpoints)
                 {
                     _baseEndpointPath = apiResource.Path.Segments.Union(apiNestedResource.Path.Segments).ToPath();
-                    _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier();
+                    _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier() ?? apiNestedResource.DisplayPlural;
                     Visit(apiNestedResource, apiEndpoint);
                     _baseMethodName = string.Empty;
                     _baseEndpointPath = string.Empty;

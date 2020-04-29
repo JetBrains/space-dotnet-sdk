@@ -9,10 +9,10 @@ namespace SpaceDotNet.Common.Types
     {
         [Required]
         [JsonPropertyName("first")]
-        public TFirst First { get; set; }
+        public TFirst First { get; set; } = default!;
 
         [Required]
         [JsonPropertyName("second")]
-        public TSecond Second { get; set; }
+        public TSecond Second { get; set; } = default!;
     }
 }
