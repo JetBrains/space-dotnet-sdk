@@ -20,5 +20,14 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         
         [JsonPropertyName("implements")]
         public List<Reference<ApiDto>> Implements { get; set; } = new List<Reference<ApiDto>>();
+        
+        [JsonPropertyName("inheritors")]
+        public List<Reference<ApiDto>> Inheritors { get; set; } = new List<Reference<ApiDto>>();
+        
+        [JsonPropertyName("hierarchyRole")]
+        public HierarchyRole HierarchyRole { get; set; } = default!;
+
+        [JsonPropertyName("record")]
+        public bool Record { get; set; }
     }
 }

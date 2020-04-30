@@ -17,6 +17,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         protected ImmutableSortedDictionary<string, ApiEnum> IdToEnumMap = ImmutableSortedDictionary<string, ApiEnum>.Empty;
         protected ImmutableSortedDictionary<string, ApiDto> IdToDtoMap = ImmutableSortedDictionary<string, ApiDto>.Empty;
         protected readonly SortedDictionary<string, ApiDto> IdToAnonymousClassMap = new SortedDictionary<string, ApiDto>();
+        protected readonly HashSet<string> PropertiesToSkip = new HashSet<string>
+        {
+            "TDMemberProfileDto.Logins"
+        };
 
         public CSharpApiModelVisitor(StringBuilder builder)
         {
@@ -131,32 +135,80 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         public override void Visit(ApiDto apiDto)
         {
             Builder.AppendLine($"{Indent}// Source: " + apiDto.Id);
-            Builder.AppendLine($"{Indent}public class " + apiDto.Name.ToSafeIdentifier() + "Dto");
+            if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
+            {
+                // When extending another DTO, make sure to apply a converter
+                Builder.AppendLine($"{Indent}[JsonConverter(typeof(ClassNameDtoTypeConverter))]");
+            }
+
+            var dtoHierarchyType = apiDto.HierarchyRole == HierarchyRole.INTERFACE
+                ? "interface"
+                : apiDto.HierarchyRole == HierarchyRole.ABSTRACT
+                    ? "abstract class"
+                    : apiDto.HierarchyRole == HierarchyRole.SEALED
+                        ? "sealed class"
+                        : "class";
+
+            var dtoHierarchy = new List<string>();
             if (apiDto.Extends != null && IdToDtoMap.TryGetValue(apiDto.Extends.Id, out var apiDtoExtends))
             {
+                dtoHierarchy.Add(apiDtoExtends.Name.ToSafeIdentifier() + "Dto");
+            }
+            if (apiDto.Implements != null)
+            {
+                foreach (var dtoImplements in apiDto.Implements)
+                {
+                    if (IdToDtoMap.TryGetValue(dtoImplements.Id, out var apiDtoImplements))
+                    {
+                        dtoHierarchy.Add(apiDtoImplements.Name.ToSafeIdentifier() + "Dto");
+                    }
+                }
+            }
+            if (dtoHierarchy.Count > 0 || apiDto.Inheritors.Count > 0)
+            {
+                dtoHierarchy.Add("IClassNameConvertible");
+            }
+            
+            Builder.AppendLine($"{Indent}public {dtoHierarchyType} " + apiDto.Name.ToSafeIdentifier() + "Dto");
+            if (dtoHierarchy.Count > 0)
+            {
                 Indent.Increment();
-                Builder.AppendLine($"{Indent} : " + apiDtoExtends.Name.ToSafeIdentifier() + "Dto");
+                Builder.AppendLine($"{Indent} : " + string.Join(", ", dtoHierarchy));
                 Indent.Decrement();
             }
             Builder.AppendLine($"{Indent}{{");
             Indent.Increment();
+            
+            // When in a hierarchy, make sure we can capture the class name.
+            if (dtoHierarchy.Count > 0)
+            {
+                Builder.AppendLine($"{Indent}[JsonPropertyName(\"className\")]");
+                Builder.AppendLine($"{Indent}public string? ClassName {{ get; set; }}"); // TODO MAKE THIS READ-ONLY?
+                Builder.AppendLine();
+            }
                 
             // For implements, add all referenced types' fields
-            foreach (var dtoReference in apiDto.Implements)
+            if (apiDto.Implements != null)
             {
-                if (IdToDtoMap.TryGetValue(dtoReference.Id, out var apiDtoImplements))
+                foreach (var dtoReference in apiDto.Implements)
                 {
-                    foreach (var apiDtoField in apiDtoImplements.Fields)
+                    if (IdToDtoMap.TryGetValue(dtoReference.Id, out var apiDtoImplements))
                     {
-                        Visit(apiDtoField);
+                        foreach (var apiDtoField in apiDtoImplements.Fields)
+                        {
+                            Visit(apiDtoField);
+                        }
                     }
                 }
             }
-            
+
             // Add own fields
             foreach (var apiDtoField in apiDto.Fields)
             {
-                Visit(apiDtoField);
+                if (!PropertiesToSkip.Contains(apiDto.Name.ToSafeIdentifier() + "Dto." + apiDtoField.Field.Name.ToSafeIdentifier().ToUppercaseFirst()))
+                {
+                    Visit(apiDtoField);
+                }
             }
 
             Indent.Decrement();

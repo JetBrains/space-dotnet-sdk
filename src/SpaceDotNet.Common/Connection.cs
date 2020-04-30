@@ -1,6 +1,8 @@
 using System;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
+using SpaceDotNet.Common.Json.Serialization;
 
 namespace SpaceDotNet.Common
 {
@@ -14,6 +16,19 @@ namespace SpaceDotNet.Common
         /// Space organization URL that will be connected against.
         /// </summary>
         protected Uri ServerUrl { get; }
+
+        /// <summary>
+        /// JSON serializer options that will be used when (de)serializing options.
+        /// </summary>
+        protected static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions();
+        
+        /// <summary>
+        /// Initializes static members of the <see cref="Connection" /> class.
+        /// </summary>
+        static Connection()
+        {
+            JsonSerializerOptions.Converters.Add(new ClassNameInterfaceDtoTypeConverter());
+        }
         
         /// <summary>
         /// Creates an instance of the <see cref="Connection" /> class.

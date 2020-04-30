@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-04-29T11:38:18.2380019+00:00
+//     Generated: 2020-04-30T06:14:14.8660245+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -891,8 +891,12 @@ namespace SpaceDotNet.Client
     }
 
     // Source: attachment
-    public class AttachmentDto
+    public interface AttachmentDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: attachmentinfo
@@ -1004,7 +1008,11 @@ namespace SpaceDotNet.Client
 
     // Source: blogpublicationdetails
     public class BlogPublicationDetailsDto
+         : PublicationDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("teamId")]
         public TDTeamDto? TeamId { get; set; }
 
@@ -1027,14 +1035,20 @@ namespace SpaceDotNet.Client
 
     // Source: booleancftype
     public class BooleanCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: booleancfvalue
     public class BooleanCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("value")]
         public bool? Value { get; set; }
 
@@ -1055,7 +1069,11 @@ namespace SpaceDotNet.Client
 
     // Source: cautomationtaskprincipaldetails
     public class CAutomationTaskPrincipalDetailsDto
+         : CPrincipalDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("project")]
         public PRProjectDto Project { get; set; }
@@ -1072,7 +1090,11 @@ namespace SpaceDotNet.Client
 
     // Source: cbuiltinserviceprincipaldetails
     public class CBuiltInServicePrincipalDetailsDto
+         : CPrincipalDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -1081,7 +1103,11 @@ namespace SpaceDotNet.Client
 
     // Source: cexternalserviceprincipaldetails
     public class CExternalServicePrincipalDetailsDto
+         : CPrincipalDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("service")]
         public ESServiceDto Service { get; set; }
@@ -1089,18 +1115,33 @@ namespace SpaceDotNet.Client
     }
 
     // Source: cfconstraint
-    public class CFConstraintDto
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class CFConstraintDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: cftype
-    public class CFTypeDto
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class CFTypeDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: cfvalue
-    public class CFValueDto
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class CFValueDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: cprincipal
@@ -1116,13 +1157,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: cprincipaldetails
-    public class CPrincipalDetailsDto
+    public interface CPrincipalDetailsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: cuserprincipaldetails
     public class CUserPrincipalDetailsDto
+         : CPrincipalDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("user")]
         public TDMemberProfileDto User { get; set; }
@@ -1131,7 +1180,11 @@ namespace SpaceDotNet.Client
 
     // Source: cuserwithemailprincipaldetails
     public class CUserWithEmailPrincipalDetailsDto
+         : CPrincipalDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -1313,7 +1366,11 @@ namespace SpaceDotNet.Client
 
     // Source: channelitemsnapshot
     public class ChannelItemSnapshotDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -1426,7 +1483,11 @@ namespace SpaceDotNet.Client
 
     // Source: codediscussionaddedfeedevent
     public class CodeDiscussionAddedFeedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("codeDiscussion")]
         public CodeDiscussionRecordDto CodeDiscussion { get; set; }
@@ -1512,14 +1573,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: codediscussionsnippet
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class CodeDiscussionSnippetDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: codediscussionsnippet.inlinediffsnippet
     public class CodeDiscussionSnippetInlineDiffSnippetDto
-         : CodeDiscussionSnippetDto
+         : CodeDiscussionSnippetDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("lines")]
         public List<InlineDiffLineDto> Lines { get; set; }
@@ -1528,8 +1597,11 @@ namespace SpaceDotNet.Client
 
     // Source: codediscussionsnippet.plainsnippet
     public class CodeDiscussionSnippetPlainSnippetDto
-         : CodeDiscussionSnippetDto
+         : CodeDiscussionSnippetDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("lines")]
         public List<CodeLineDto> Lines { get; set; }
@@ -1582,7 +1654,11 @@ namespace SpaceDotNet.Client
 
     // Source: codereviewdiscussionaddedfeedevent
     public class CodeReviewDiscussionAddedFeedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("discussion")]
         public CodeReviewDiscussionRecordDto Discussion { get; set; }
@@ -1723,8 +1799,13 @@ namespace SpaceDotNet.Client
     }
 
     // Source: codereviewrecord
-    public class CodeReviewRecordDto
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class CodeReviewRecordDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -1811,8 +1892,11 @@ namespace SpaceDotNet.Client
 
     // Source: commitsetreviewrecord
     public class CommitSetReviewRecordDto
-         : CodeReviewRecordDto
+         : CodeReviewRecordDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -1902,7 +1986,11 @@ namespace SpaceDotNet.Client
 
     // Source: containerpackagetype
     public class ContainerPackageTypeDto
+         : PackageTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -2224,8 +2312,11 @@ namespace SpaceDotNet.Client
 
     // Source: datecfconstraint
     public class DateCFConstraintDto
-         : CFConstraintDto
+         : CFConstraintDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("min")]
         public SpaceDate? Min { get; set; }
 
@@ -2239,14 +2330,20 @@ namespace SpaceDotNet.Client
 
     // Source: datecftype
     public class DateCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: datecfvalue
     public class DateCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("value")]
         public SpaceDate? Value { get; set; }
 
@@ -2254,7 +2351,11 @@ namespace SpaceDotNet.Client
 
     // Source: deletedattachment
     public class DeletedAttachmentDto
+         : AttachmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("deletedIdentity")]
         public string DeletedIdentity { get; set; }
@@ -2274,14 +2375,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: diffside
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class DiffSideDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: diffside.empty
     public class DiffSideEmptyDto
-         : DiffSideDto
+         : DiffSideDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("revision")]
         public string Revision { get; set; }
@@ -2290,8 +2399,11 @@ namespace SpaceDotNet.Client
 
     // Source: diffside.nonempty
     public class DiffSideNonEmptyDto
-         : DiffSideDto
+         : DiffSideDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("revision")]
         public string Revision { get; set; }
@@ -2304,7 +2416,11 @@ namespace SpaceDotNet.Client
 
     // Source: documentpublicationitem
     public class DocumentPublicationItemDto
+         : PublicationItemDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("documentId")]
         public string DocumentId { get; set; }
@@ -2474,8 +2590,13 @@ namespace SpaceDotNet.Client
     }
 
     // Source: es_authmodulesettings
-    public class ESAuthModuleSettingsDto
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class ESAuthModuleSettingsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_authenticationsession
@@ -2508,8 +2629,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_azureauthmodulesettings
     public class ESAzureAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("tenantId")]
         public string TenantId { get; set; }
@@ -2534,8 +2658,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_builtinauthmodulesettings
     public class ESBuiltinAuthModuleSettingsDto
-         : ESPasswordAuthModuleSettingsDto
+         : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("passwordStrengthPolicy")]
         public PasswordStrength PasswordStrengthPolicy { get; set; }
@@ -2547,8 +2674,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_builtinprofilelogindetails
     public class ESBuiltinProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("passwordName")]
         public string? PasswordName { get; set; }
 
@@ -2559,8 +2689,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_containerregistrysettings
     public class ESContainerRegistrySettingsDto
-         : ESPackageRepositorySettingsDto
+         : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("immutableTags")]
         public bool ImmutableTags { get; set; }
@@ -2569,8 +2702,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_defaultprofilelogindetails
     public class ESDefaultProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("login")]
         public string? Login { get; set; }
 
@@ -2593,21 +2729,30 @@ namespace SpaceDotNet.Client
     }
 
     // Source: es_externalpasswordauthmodulesettings
-    public class ESExternalPasswordAuthModuleSettingsDto
-         : ESPasswordAuthModuleSettingsDto
+    public abstract class ESExternalPasswordAuthModuleSettingsDto
+         : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_federatedauthmodulesettings
-    public class ESFederatedAuthModuleSettingsDto
-         : ESAuthModuleSettingsDto
+    public abstract class ESFederatedAuthModuleSettingsDto
+         : ESAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_githubauthmodulesettings
     public class ESGithubAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("githubUrl")]
         public string GithubUrl { get; set; }
@@ -2632,8 +2777,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_githubprofilelogindetails
     public class ESGithubProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("login")]
         public string? Login { get; set; }
 
@@ -2660,8 +2808,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_googleauthmodulesettings
     public class ESGoogleAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("clientId")]
         public string ClientId { get; set; }
@@ -2682,14 +2833,20 @@ namespace SpaceDotNet.Client
 
     // Source: es_hiddenauthmodulesettings
     public class ESHiddenAuthModuleSettingsDto
-         : ESAuthModuleSettingsDto
+         : ESAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_hubauthmodulesettings
     public class ESHubAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("hubUrl")]
         public string HubUrl { get; set; }
@@ -2715,8 +2872,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_hubprofilelogindetails
     public class ESHubProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto
+         : ESProfileLoginDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("login")]
         public string? Login { get; set; }
 
@@ -2760,8 +2920,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_ldapauthmodulesettings
     public class ESLdapAuthModuleSettingsDto
-         : ESExternalPasswordAuthModuleSettingsDto
+         : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("type")]
         public LdapModuleType Type { get; set; }
@@ -2813,20 +2976,29 @@ namespace SpaceDotNet.Client
 
     // Source: es_mavenrepositorysettings
     public class ESMavenRepositorySettingsDto
-         : ESPackageRepositorySettingsDto
+         : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_nugetfeedsettings
     public class ESNuGetFeedSettingsDto
-         : ESPackageRepositorySettingsDto
+         : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_oauth2authmodulesettings
-    public class ESOAuth2AuthModuleSettingsDto
-         : ESFederatedAuthModuleSettingsDto
+    public abstract class ESOAuth2AuthModuleSettingsDto
+         : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_oauthconsent
@@ -2847,14 +3019,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: es_packagerepositorysettings
-    public class ESPackageRepositorySettingsDto
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class ESPackageRepositorySettingsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_passwordauthmodulesettings
-    public class ESPasswordAuthModuleSettingsDto
-         : ESAuthModuleSettingsDto
+    public abstract class ESPasswordAuthModuleSettingsDto
+         : ESAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_permanenttoken
@@ -2906,8 +3086,13 @@ namespace SpaceDotNet.Client
     }
 
     // Source: es_profilelogindetails
-    public class ESProfileLoginDetailsDto
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public abstract class ESProfileLoginDetailsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: es_refreshtoken
@@ -2952,8 +3137,11 @@ namespace SpaceDotNet.Client
 
     // Source: es_samlauthmodulesettings
     public class ESSamlAuthModuleSettingsDto
-         : ESFederatedAuthModuleSettingsDto
+         : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("idpUrl")]
         public string IdpUrl { get; set; }
@@ -3152,8 +3340,11 @@ namespace SpaceDotNet.Client
 
     // Source: enumcftype
     public class EnumCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("values")]
         public List<EnumValueDataDto> Values { get; set; }
@@ -3162,8 +3353,11 @@ namespace SpaceDotNet.Client
 
     // Source: enumcfvalue
     public class EnumCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("value")]
         public EnumValueDataDto? Value { get; set; }
 
@@ -3171,8 +3365,11 @@ namespace SpaceDotNet.Client
 
     // Source: enumlistcftype
     public class EnumListCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("values")]
         public List<EnumValueDataDto> Values { get; set; }
@@ -3181,8 +3378,11 @@ namespace SpaceDotNet.Client
 
     // Source: enumlistcfvalue
     public class EnumListCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("values")]
         public List<EnumValueDataDto> Values { get; set; }
@@ -3375,13 +3575,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: feedevent
-    public class FeedEventDto
+    public interface FeedEventDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: fileattachment
     public class FileAttachmentDto
+         : AttachmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -3448,14 +3656,20 @@ namespace SpaceDotNet.Client
 
     // Source: fractioncftype
     public class FractionCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: fractioncfvalue
     public class FractionCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("value")]
         public FractionDto? Value { get; set; }
 
@@ -3855,14 +4069,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: ha_pathsegment
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class HAPathSegmentDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: ha_pathsegment.const
     public class HAPathSegmentConstDto
-         : HAPathSegmentDto
+         : HAPathSegmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("value")]
         public string Value { get; set; }
@@ -3871,8 +4093,11 @@ namespace SpaceDotNet.Client
 
     // Source: ha_pathsegment.prefixedvar
     public class HAPathSegmentPrefixedVarDto
-         : HAPathSegmentDto
+         : HAPathSegmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("prefix")]
         public string Prefix { get; set; }
@@ -3885,8 +4110,11 @@ namespace SpaceDotNet.Client
 
     // Source: ha_pathsegment.var
     public class HAPathSegmentVarDto
-         : HAPathSegmentDto
+         : HAPathSegmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -3926,14 +4154,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: ha_type
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class HATypeDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: ha_type.array
     public class HATypeArrayDto
-         : HATypeDto
+         : HATypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("elementType")]
         public HATypeDto ElementType { get; set; }
@@ -3950,8 +4186,11 @@ namespace SpaceDotNet.Client
 
     // Source: ha_type.dto
     public class HATypeDtoDto
-         : HATypeDto
+         : HATypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("dto")]
         public HADtoDto Dto { get; set; }
@@ -3968,8 +4207,11 @@ namespace SpaceDotNet.Client
 
     // Source: ha_type.enum
     public class HATypeEnumDto
-         : HATypeDto
+         : HATypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("enum")]
         public HAEnumDto Enum { get; set; }
@@ -3986,8 +4228,11 @@ namespace SpaceDotNet.Client
 
     // Source: ha_type.object
     public class HATypeObjectDto
-         : HATypeDto
+         : HATypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("fields")]
         public List<HAFieldDto> Fields { get; set; }
@@ -4008,8 +4253,11 @@ namespace SpaceDotNet.Client
 
     // Source: ha_type.primitive
     public class HATypePrimitiveDto
-         : HATypeDto
+         : HATypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("primitive")]
         public HAPrimitive Primitive { get; set; }
@@ -4026,8 +4274,11 @@ namespace SpaceDotNet.Client
 
     // Source: ha_type.ref
     public class HATypeRefDto
-         : HATypeDto
+         : HATypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("dto")]
         public HADtoDto Dto { get; set; }
@@ -4044,7 +4295,11 @@ namespace SpaceDotNet.Client
 
     // Source: imageattachment
     public class ImageAttachmentDto
+         : AttachmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -4191,8 +4446,11 @@ namespace SpaceDotNet.Client
 
     // Source: intcfconstraint
     public class IntCFConstraintDto
-         : CFConstraintDto
+         : CFConstraintDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("min")]
         public int? Min { get; set; }
 
@@ -4206,14 +4464,20 @@ namespace SpaceDotNet.Client
 
     // Source: intcftype
     public class IntCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: intcfvalue
     public class IntCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("value")]
         public int? Value { get; set; }
 
@@ -4221,14 +4485,20 @@ namespace SpaceDotNet.Client
 
     // Source: intlistcftype
     public class IntListCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: intlistcfvalue
     public class IntListCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("values")]
         public List<int> Values { get; set; }
@@ -4351,7 +4621,11 @@ namespace SpaceDotNet.Client
 
     // Source: issueassigneechangeddetails
     public class IssueAssigneeChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("oldAssignee")]
         public TDMemberProfileDto? OldAssignee { get; set; }
 
@@ -4362,7 +4636,11 @@ namespace SpaceDotNet.Client
 
     // Source: issueattachmentschangeddetails
     public class IssueAttachmentsChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("addedNames")]
         public List<string>? AddedNames { get; set; }
 
@@ -4372,13 +4650,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: issuechangedm2details
-    public class IssueChangedM2DetailsDto
+    public interface IssueChangedM2DetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: issuechecklistschangeddetails
     public class IssueChecklistsChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("addedChecklists")]
         public List<ChecklistDto>? AddedChecklists { get; set; }
 
@@ -4389,7 +4675,11 @@ namespace SpaceDotNet.Client
 
     // Source: issuecreateddetails
     public class IssueCreatedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("issue")]
         public IssueDto? Issue { get; set; }
 
@@ -4397,12 +4687,20 @@ namespace SpaceDotNet.Client
 
     // Source: issuedeleteddetails
     public class IssueDeletedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: issuedescriptionchangeddetails
     public class IssueDescriptionChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("oldDescription")]
         public string? OldDescription { get; set; }
 
@@ -4413,7 +4711,11 @@ namespace SpaceDotNet.Client
 
     // Source: issueduedatechangeddetails
     public class IssueDueDateChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("oldDueDate")]
         public SpaceDate? OldDueDate { get; set; }
 
@@ -4449,7 +4751,11 @@ namespace SpaceDotNet.Client
 
     // Source: issuestatuschangeddetails
     public class IssueStatusChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("oldStatus")]
         public IssueStatusDto OldStatus { get; set; }
@@ -4495,7 +4801,11 @@ namespace SpaceDotNet.Client
 
     // Source: issuetagschangeddetails
     public class IssueTagsChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("addedTags")]
         public List<PlanningTagDto>? AddedTags { get; set; }
 
@@ -4506,7 +4816,11 @@ namespace SpaceDotNet.Client
 
     // Source: issuetitlechangeddetails
     public class IssueTitleChangedDetailsDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("oldTitle")]
         public string OldTitle { get; set; }
@@ -4519,7 +4833,11 @@ namespace SpaceDotNet.Client
 
     // Source: jbspacenewsfeedchannel
     public class JBSpaceNewsFeedChannelDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
 
@@ -4641,7 +4959,11 @@ namespace SpaceDotNet.Client
 
     // Source: kbpublicationdetails
     public class KbPublicationDetailsDto
+         : PublicationDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("book")]
         public KBBookDto? Book { get; set; }
 
@@ -4667,13 +4989,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: linkpreview
-    public class LinkPreviewDto
+    public interface LinkPreviewDto
+         : AttachmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2absenceitemapprovedeletedcontent
     public class M2AbsenceItemApproveDeletedContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
@@ -4690,7 +5020,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2absenceitemapprovedcontent
     public class M2AbsenceItemApprovedContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
@@ -4707,7 +5041,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2absenceitemcontent
     public class M2AbsenceItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
@@ -4716,7 +5054,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2absenceitemdeletedcontent
     public class M2AbsenceItemDeletedContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
@@ -4725,7 +5067,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2absenceitemupdatedcontent
     public class M2AbsenceItemUpdatedContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }
@@ -4746,7 +5092,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2blogitemcontent
     public class M2BlogItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
@@ -4767,7 +5117,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2blogitempreview
     public class M2BlogItemPreviewDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
@@ -4788,7 +5142,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelarchiveditemdetails
     public class M2ChannelArchivedItemDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2channelcontact
@@ -4809,7 +5167,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontactarticle
     public class M2ChannelContactArticleDto
+         : M2ChannelContactInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
@@ -4821,13 +5183,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: m2channelcontactinfo
-    public class M2ChannelContactInfoDto
+    public interface M2ChannelContactInfoDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2channelcontactobsolete
     public class M2ChannelContactObsoleteDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("cause")]
         public M2ObsoleteCause? Cause { get; set; }
 
@@ -4835,7 +5205,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontactquickinfodefault
     public class M2ChannelContactQuickInfoDefaultDto
+         : M2ChannelContactInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -4848,7 +5222,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontactthread
     public class M2ChannelContactThreadDto
+         : M2ChannelContactInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("parent")]
         public M2ChannelRecordDto Parent { get; set; }
@@ -4872,7 +5250,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentarticle
     public class M2ChannelContentArticleDto
+         : M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
@@ -4888,7 +5270,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentcodediscussion
     public class M2ChannelContentCodeDiscussionDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("codeDiscussionId")]
         public string CodeDiscussionId { get; set; }
@@ -4904,7 +5290,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentcodereviewdiscussion
     public class M2ChannelContentCodeReviewDiscussionDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("codeReviewDiscussion")]
         public string CodeReviewDiscussion { get; set; }
@@ -4917,7 +5307,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentcodereviewfeed
     public class M2ChannelContentCodeReviewFeedDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("codeReviewId")]
         public string CodeReviewId { get; set; }
@@ -4941,13 +5335,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: m2channelcontentinfo
-    public class M2ChannelContentInfoDto
+    public interface M2ChannelContentInfoDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2channelcontentlocation
     public class M2ChannelContentLocationDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("location")]
         public TDLocationDto Location { get; set; }
@@ -4960,7 +5362,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentmember
     public class M2ChannelContentMemberDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
@@ -4979,12 +5385,20 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentmembership
     public class M2ChannelContentMembershipDto
+         : M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2channelcontentmention
     public class M2ChannelContentMentionDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("record")]
         public ChannelItemRecordDto Record { get; set; }
@@ -4997,7 +5411,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentnamedprivatechannel
     public class M2ChannelContentNamedPrivateChannelDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -5021,7 +5439,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentteam
     public class M2ChannelContentTeamDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
@@ -5034,7 +5456,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcontentthread
     public class M2ChannelContentThreadDto
+         : M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("record")]
         public ChannelItemRecordDto Record { get; set; }
@@ -5047,17 +5473,29 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelcreateditemdetails
     public class M2ChannelCreatedItemDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2channelfeedintroitemdetails
     public class M2ChannelFeedIntroItemDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2channelissueinfo
     public class M2ChannelIssueInfoDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("projectKey")]
         public ProjectKeyDto? ProjectKey { get; set; }
 
@@ -5119,12 +5557,20 @@ namespace SpaceDotNet.Client
 
     // Source: m2channelrestoreditemdetails
     public class M2ChannelRestoredItemDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2drafteditoraddeditemcontent
     public class M2DraftEditorAddedItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -5137,7 +5583,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2drafteditorteamaddeditemcontent
     public class M2DraftEditorTeamAddedItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -5154,7 +5604,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2externalstatusfailureitemcontent
     public class M2ExternalStatusFailureItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("projectId")]
         public string? ProjectId { get; set; }
 
@@ -5194,7 +5648,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2externalstatussucceeditemcontent
     public class M2ExternalStatusSucceedItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("projectId")]
         public string? ProjectId { get; set; }
 
@@ -5233,13 +5691,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: m2itemcontentdetails
-    public class M2ItemContentDetailsDto
+    public interface M2ItemContentDetailsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2maintenanceactioncontent
     public class M2MaintenanceActionContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("action")]
         public string Action { get; set; }
@@ -5255,14 +5721,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: m2membercontent
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class M2MemberContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2memberjoinscontent
     public class M2MemberJoinsContentDto
-         : M2MemberContentDto
+         : M2MemberContentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
@@ -5271,8 +5745,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2memberleavescontent
     public class M2MemberLeavesContentDto
-         : M2MemberContentDto
+         : M2MemberContentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }
@@ -5280,14 +5757,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: m2membershipcontent
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class M2MembershipContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2membershipcreatedcontent
     public class M2MembershipCreatedContentDto
-         : M2MembershipContentDto
+         : M2MembershipContentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("membership")]
         public TDMembershipDto Membership { get; set; }
@@ -5296,8 +5781,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2membershiprequestedcontent
     public class M2MembershipRequestedContentDto
-         : M2MembershipContentDto
+         : M2MembershipContentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("membership")]
         public TDMembershipDto Membership { get; set; }
@@ -5310,8 +5798,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2membershipterminatedcontent
     public class M2MembershipTerminatedContentDto
-         : M2MembershipContentDto
+         : M2MembershipContentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("membership")]
         public TDMembershipDto Membership { get; set; }
@@ -5319,13 +5810,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: m2packagecontentdetails
-    public class M2PackageContentDetailsDto
+    public interface M2PackageContentDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: m2packagecreateddetails
     public class M2PackageCreatedDetailsDto
+         : M2PackageContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("pkg")]
         public PackageVersionInfoDto Pkg { get; set; }
@@ -5334,7 +5833,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2packagedeleteddetails
     public class M2PackageDeletedDetailsDto
+         : M2PackageContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("pkg")]
         public PackageVersionInfoDto Pkg { get; set; }
@@ -5343,7 +5846,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2pollcontent
     public class M2PollContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("poll")]
         public PollRecordDto Poll { get; set; }
@@ -5352,7 +5859,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2privateconversationchannelcontent
     public class M2PrivateConversationChannelContentDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("channelId")]
         public string ChannelId { get; set; }
@@ -5371,7 +5882,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2sharedchannelcontent
     public class M2SharedChannelContentDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -5408,7 +5923,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2taskexecutionfailureitemcontent
     public class M2TaskExecutionFailureItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("taskExecutionId")]
         public string TaskExecutionId { get; set; }
@@ -5453,7 +5972,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2taskexecutionsucceeditemcontent
     public class M2TaskExecutionSucceedItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("taskExecutionId")]
         public string TaskExecutionId { get; set; }
@@ -5498,7 +6021,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2textitemcontent
     public class M2TextItemContentDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("markdown")]
         public bool Markdown { get; set; }
@@ -5507,7 +6034,11 @@ namespace SpaceDotNet.Client
 
     // Source: m2userleftchannel
     public class M2UserLeftChannelDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: mcaction
@@ -5525,7 +6056,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcbutton
     public class MCButtonDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("text")]
         public string Text { get; set; }
@@ -5542,7 +6077,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcdivider
     public class MCDividerDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: mcelement
@@ -5558,13 +6097,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: mcelementdetails
-    public class MCElementDetailsDto
+    public interface MCElementDetailsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: mcfields
     public class MCFieldsDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("fields")]
         public List<Pair<MCElementDto, MCElementDto>> Fields { get; set; }
@@ -5573,7 +6120,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcgroup
     public class MCGroupDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("elements")]
         public List<MCElementDto> Elements { get; set; }
@@ -5582,7 +6133,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcicon
     public class MCIconDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("name")]
         public string Name { get; set; }
@@ -5595,7 +6150,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcimage
     public class MCImageDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("src")]
         public string Src { get; set; }
@@ -5604,7 +6163,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcmessage
     public class MCMessageDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("style")]
         public string Style { get; set; }
@@ -5626,7 +6189,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcoutline
     public class MCOutlineDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("icon")]
         public MCElementDto? Icon { get; set; }
 
@@ -5637,7 +6204,11 @@ namespace SpaceDotNet.Client
 
     // Source: mcsection
     public class MCSectionDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("header")]
         public MCTextDto? Header { get; set; }
 
@@ -5652,7 +6223,11 @@ namespace SpaceDotNet.Client
 
     // Source: mctag
     public class MCTagDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("text")]
         public string Text { get; set; }
@@ -5665,7 +6240,11 @@ namespace SpaceDotNet.Client
 
     // Source: mctext
     public class MCTextDto
+         : MCElementDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("content")]
         public string Content { get; set; }
@@ -5681,7 +6260,11 @@ namespace SpaceDotNet.Client
 
     // Source: mavenpackagetype
     public class MavenPackageTypeDto
+         : PackageTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -5775,7 +6358,11 @@ namespace SpaceDotNet.Client
 
     // Source: membersaddeditemdetails
     public class MembersAddedItemDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("principals")]
         public List<CPrincipalDto> Principals { get; set; }
@@ -5818,7 +6405,11 @@ namespace SpaceDotNet.Client
 
     // Source: mergerequestbranchdeletedevent
     public class MergeRequestBranchDeletedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("repository")]
         public string Repository { get; set; }
@@ -5862,7 +6453,11 @@ namespace SpaceDotNet.Client
 
     // Source: mergerequestbranchrestoredevent
     public class MergeRequestBranchRestoredEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("repository")]
         public string Repository { get; set; }
@@ -5879,7 +6474,11 @@ namespace SpaceDotNet.Client
 
     // Source: mergerequestmergedevent
     public class MergeRequestMergedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("repository")]
         public string Repository { get; set; }
@@ -5896,8 +6495,11 @@ namespace SpaceDotNet.Client
 
     // Source: mergerequestrecord
     public class MergeRequestRecordDto
-         : CodeReviewRecordDto
+         : CodeReviewRecordDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -6042,7 +6644,11 @@ namespace SpaceDotNet.Client
 
     // Source: nugetpackagetype
     public class NuGetPackageTypeDto
+         : PackageTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }
@@ -6194,8 +6800,12 @@ namespace SpaceDotNet.Client
     }
 
     // Source: packagetype
-    public class PackageTypeDto
+    public interface PackageTypeDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: packageversioninfo
@@ -6568,14 +7178,20 @@ namespace SpaceDotNet.Client
 
     // Source: profilecftype
     public class ProfileCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: profilecfvalue
     public class ProfileCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("profile")]
         public TDMemberProfileDto? Profile { get; set; }
 
@@ -6583,7 +7199,11 @@ namespace SpaceDotNet.Client
 
     // Source: profilelinkpreview
     public class ProfileLinkPreviewDto
+         : AttachmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
@@ -6592,14 +7212,20 @@ namespace SpaceDotNet.Client
 
     // Source: profilelistcftype
     public class ProfileListCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: profilelistcfvalue
     public class ProfileListCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("profiles")]
         public List<TDMemberProfileDto> Profiles { get; set; }
@@ -6698,13 +7324,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: publicationdetails
-    public class PublicationDetailsDto
+    public interface PublicationDetailsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: publicationitem
-    public class PublicationItemDto
+    public interface PublicationItemDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: reactiondata
@@ -6826,7 +7460,11 @@ namespace SpaceDotNet.Client
 
     // Source: reviewbranchtrackevent
     public class ReviewBranchTrackEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("repository")]
         public string Repository { get; set; }
@@ -6843,7 +7481,11 @@ namespace SpaceDotNet.Client
 
     // Source: reviewcompletionstatechangedevent
     public class ReviewCompletionStateChangedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("state")]
         public ReviewerState State { get; set; }
@@ -6881,7 +7523,11 @@ namespace SpaceDotNet.Client
 
     // Source: reviewrevisionschangedevent
     public class ReviewRevisionsChangedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("commits")]
         public List<RepositoryCommitRecordDto> Commits { get; set; }
@@ -6900,7 +7546,11 @@ namespace SpaceDotNet.Client
 
     // Source: reviewstatechangedevent
     public class ReviewStateChangedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("state")]
         public CodeReviewState State { get; set; }
@@ -6912,7 +7562,11 @@ namespace SpaceDotNet.Client
 
     // Source: reviewtitlechangedevent
     public class ReviewTitleChangedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("oldTitle")]
         public string OldTitle { get; set; }
@@ -6925,7 +7579,11 @@ namespace SpaceDotNet.Client
 
     // Source: reviewerchangedevent
     public class ReviewerChangedEventDto
+         : FeedEventDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("uid")]
         public TDMemberProfileDto Uid { get; set; }
@@ -7031,14 +7689,22 @@ namespace SpaceDotNet.Client
     }
 
     // Source: samlmetadataresponse
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class SamlMetadataResponseDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: samlmetadataresponse.error
     public class SamlMetadataResponseErrorDto
-         : SamlMetadataResponseDto
+         : SamlMetadataResponseDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("messages")]
         public List<string> Messages { get; set; }
@@ -7047,8 +7713,11 @@ namespace SpaceDotNet.Client
 
     // Source: samlmetadataresponse.success
     public class SamlMetadataResponseSuccessDto
-         : SamlMetadataResponseDto
+         : SamlMetadataResponseDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("metadata")]
         public string Metadata { get; set; }
@@ -7088,7 +7757,11 @@ namespace SpaceDotNet.Client
 
     // Source: stickercontentdetails
     public class StickerContentDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("sticker")]
         public StickerDto Sticker { get; set; }
@@ -7156,8 +7829,11 @@ namespace SpaceDotNet.Client
 
     // Source: stringcfconstraint
     public class StringCFConstraintDto
-         : CFConstraintDto
+         : CFConstraintDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("min")]
         public int? Min { get; set; }
 
@@ -7174,14 +7850,20 @@ namespace SpaceDotNet.Client
 
     // Source: stringcftype
     public class StringCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: stringcfvalue
     public class StringCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("value")]
         public string? Value { get; set; }
 
@@ -7189,14 +7871,20 @@ namespace SpaceDotNet.Client
 
     // Source: stringlistcftype
     public class StringListCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: stringlistcfvalue
     public class StringListCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("values")]
         public List<string> Values { get; set; }
@@ -7787,7 +8475,11 @@ namespace SpaceDotNet.Client
 
     // Source: teamaddeditemdetails
     public class TeamAddedItemDetailsDto
+         : M2ItemContentDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
@@ -7808,13 +8500,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: todoitemcontent
-    public class TodoItemContentDto
+    public interface TodoItemContentDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: todoitemcontentmdtext
     public class TodoItemContentMdTextDto
+         : TodoItemContentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("text")]
         public string Text { get; set; }
@@ -7827,7 +8527,11 @@ namespace SpaceDotNet.Client
 
     // Source: todoitemcontenttext
     public class TodoItemContentTextDto
+         : TodoItemContentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("text")]
         public string Text { get; set; }
@@ -7959,7 +8663,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurlattachment
     public class UnfurlAttachmentDto
+         : AttachmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("unfurl")]
         public UnfurlDto Unfurl { get; set; }
@@ -7970,13 +8678,21 @@ namespace SpaceDotNet.Client
     }
 
     // Source: unfurldetails
-    public class UnfurlDetailsDto
+    public interface UnfurlDetailsDto
+         : IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: unfurldetailsarticle
     public class UnfurlDetailsArticleDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("article")]
         public ArticleRecordDto Article { get; set; }
@@ -7996,7 +8712,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurldetailschecklist
     public class UnfurlDetailsChecklistDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("checklist")]
         public ChecklistDto Checklist { get; set; }
@@ -8005,7 +8725,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurldetailscodesnippet
     public class UnfurlDetailsCodeSnippetDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("anchor")]
         public CodeSnippetAnchorDto Anchor { get; set; }
@@ -8018,7 +8742,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurldetailsdatetime
     public class UnfurlDetailsDateTimeDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("utcMilliseconds")]
         public long UtcMilliseconds { get; set; }
@@ -8027,7 +8755,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurldetailsdraft
     public class UnfurlDetailsDraftDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("draft")]
         public string Draft { get; set; }
@@ -8040,7 +8772,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurldetailsissue
     public class UnfurlDetailsIssueDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("issue")]
         public IssueDto Issue { get; set; }
@@ -8049,7 +8785,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurldetailsprofile
     public class UnfurlDetailsProfileDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("profile")]
         public TDMemberProfileDto Profile { get; set; }
@@ -8058,7 +8798,11 @@ namespace SpaceDotNet.Client
 
     // Source: unfurldetailsteam
     public class UnfurlDetailsTeamDto
+         : UnfurlDetailsDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("team")]
         public TDTeamDto Team { get; set; }
@@ -8067,14 +8811,20 @@ namespace SpaceDotNet.Client
 
     // Source: urlcftype
     public class UrlCFTypeDto
-         : CFTypeDto
+         : CFTypeDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
     }
 
     // Source: urlcfvalue
     public class UrlCFValueDto
-         : CFValueDto
+         : CFValueDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [JsonPropertyName("href")]
         public string? Href { get; set; }
 
@@ -8094,7 +8844,11 @@ namespace SpaceDotNet.Client
 
     // Source: videoattachment
     public class VideoAttachmentDto
+         : AttachmentDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }

@@ -66,7 +66,7 @@ namespace SpaceDotNet.Common
                 
                 try
                 {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
                 }
                 catch (JsonException)
                 {
@@ -96,7 +96,7 @@ namespace SpaceDotNet.Common
                 
                 try
                 {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
                 }
                 catch (JsonException)
                 {
@@ -106,7 +106,7 @@ namespace SpaceDotNet.Common
                 throw exception;
             }
             
-            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync());
+            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
         }
 
         protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
@@ -117,7 +117,7 @@ namespace SpaceDotNet.Common
                 {
                     Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
                 },
-                Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             };
             
             await EnsureAuthenticatedAsync(request);
@@ -129,7 +129,7 @@ namespace SpaceDotNet.Common
                 
                 try
                 {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
                 }
                 catch (JsonException)
                 {
@@ -148,7 +148,7 @@ namespace SpaceDotNet.Common
                 {
                     Accept = { MediaTypeWithQualityHeaderValue.Parse("application/json") }
                 },
-                Content = new StringContent(JsonSerializer.Serialize(payload), Encoding.UTF8, "application/json")
+                Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             };
             
             await EnsureAuthenticatedAsync(request);
@@ -160,7 +160,7 @@ namespace SpaceDotNet.Common
                 
                 try
                 {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync());
+                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
                 }
                 catch (JsonException)
                 {
@@ -170,7 +170,7 @@ namespace SpaceDotNet.Common
                 throw exception;
             }
             
-            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync());
+            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
         }
         
         protected virtual Task EnsureAuthenticatedAsync(HttpRequestMessage request)

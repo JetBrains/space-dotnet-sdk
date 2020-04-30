@@ -62,13 +62,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         public class Dto : ApiFieldType
         {
             [JsonPropertyName("dto")]
-            public Reference<ApiDto>? DtoRef { get; set; }
+            public ApiDto? DtoRef { get; set; }
         }
         
         public class Ref : ApiFieldType
         {
             [JsonPropertyName("dto")]
-            public Reference<ApiDto>? DtoRef { get; set; }
+            public ApiDto? DtoRef { get; set; }
         }
     }
 }
