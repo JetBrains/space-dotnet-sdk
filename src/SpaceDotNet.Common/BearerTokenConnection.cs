@@ -1,4 +1,5 @@
 using System;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -62,17 +63,7 @@ namespace SpaceDotNet.Common
             var response = await HttpClient.SendAsync(request);
             if (!response.IsSuccessStatusCode)
             {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
-                }
-                catch (JsonException)
-                {
-                    // Intentional.
-                }
-                
+                var exception = await BuildException(response);
                 throw exception;
             }
         }
@@ -92,17 +83,7 @@ namespace SpaceDotNet.Common
             var response = await HttpClient.SendAsync(request);
             if (!response.IsSuccessStatusCode)
             {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
-                }
-                catch (JsonException)
-                {
-                    // Intentional.
-                }
-                
+                var exception = await BuildException(response);
                 throw exception;
             }
             
@@ -125,17 +106,7 @@ namespace SpaceDotNet.Common
             var response = await HttpClient.SendAsync(request);
             if (!response.IsSuccessStatusCode)
             {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
-                }
-                catch (JsonException)
-                {
-                    // Intentional.
-                }
-                
+                var exception = await BuildException(response);
                 throw exception;
             }
         }
@@ -156,17 +127,7 @@ namespace SpaceDotNet.Common
             var response = await HttpClient.SendAsync(request);
             if (!response.IsSuccessStatusCode)
             {
-                var exception = new ResourceException("An error occurred while retrieving the resource.", response.StatusCode, response.ReasonPhrase);
-                
-                try
-                {
-                    exception.Error = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
-                }
-                catch (JsonException)
-                {
-                    // Intentional.
-                }
-                
+                var exception = await BuildException(response);
                 throw exception;
             }
             
@@ -181,6 +142,93 @@ namespace SpaceDotNet.Common
             }
 
             return Task.CompletedTask;
+        }
+        
+        private static async Task<ResourceException> BuildException(HttpResponseMessage response)
+        {
+            // 1. Determine Space error
+            SpaceError spaceError = null;
+            try
+            {
+                spaceError = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
+            }
+            catch (JsonException)
+            {
+                // Intentional.
+            }
+            
+            // 2. Build Exception
+            ResourceException exception = null;
+            if (spaceError != null)
+            {
+                switch (spaceError.Error)
+                {
+                    case ErrorCodes.ValidationError: 
+                        exception = new ValidationException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.AuthenticationRequired: 
+                        exception = new AuthenticationRequiredException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.PermissionDenied: 
+                        exception = new PermissionDeniedException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.DuplicatedEntity: 
+                        exception = new DuplicatedEntityException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.RequestError: 
+                        exception = new ResourceException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.NotFound: 
+                        exception = new NotFoundException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.RateLimited: 
+                        exception = new RateLimitedException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.PayloadTooLarge: 
+                        exception = new PayloadTooLargeException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case ErrorCodes.InternalServerError: 
+                        exception = new InternalServerErrorException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
+                        break;
+                }
+                
+                exception.Error = spaceError;
+            }
+            else
+            {
+                switch (response.StatusCode)
+                {
+                    case HttpStatusCode.BadRequest:
+                        exception = new ResourceException("Bad Request", response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case HttpStatusCode.Unauthorized:
+                        exception = new AuthenticationRequiredException("Unauthorized", response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case HttpStatusCode.Forbidden:
+                        exception = new PermissionDeniedException("Forbidden", response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case HttpStatusCode.NotFound:
+                        exception = new NotFoundException("Not Found", response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case HttpStatusCode.TooManyRequests:
+                        exception = new RateLimitedException("Too Many Requests", response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case HttpStatusCode.RequestEntityTooLarge:
+                    case HttpStatusCode.RequestHeaderFieldsTooLarge:
+                        exception = new PayloadTooLargeException("Bad Request", response.StatusCode, response.ReasonPhrase);
+                        break;
+                    case HttpStatusCode.InternalServerError:
+                        exception = new InternalServerErrorException("Internal Server Error", response.StatusCode, response.ReasonPhrase);
+                        break;
+                }
+            }
+
+            if (exception == null)
+            {
+                exception = new ResourceException("An error occurred while accessing the resource.", response.StatusCode, response.ReasonPhrase);
+            }
+
+            return exception;
         }
     }
 }
