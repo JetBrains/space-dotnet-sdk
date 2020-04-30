@@ -70,11 +70,11 @@
                         var activityCanvas = document.getElementById("activityChart");
     
                         var activityData = {
-                          labels: ["Issues", "Reviews created", "Reviews participated", "TODO items closed"],
+                          labels: ["Issues created", "Issues resolved", "Reviews created", "Reviews participated", "TODO items closed"],
                           datasets: [{
                             label: "Activity",
                             backgroundColor: "rgba(200,0,0,0.2)",
-                            data: [@Model.IssuesResolvedThisWeek, @Model.ReviewsCreatedThisWeek, @Model.ReviewsParticipatedThisWeek, @Model.TodoClosedThisWeek]
+                            data: [@Model.IssuesCreatedThisWeek, @Model.IssuesResolvedThisWeek, @Model.ReviewsCreatedThisWeek, @Model.ReviewsParticipatedThisWeek, @Model.TodoClosedThisWeek]
                           }]
                         };
                         

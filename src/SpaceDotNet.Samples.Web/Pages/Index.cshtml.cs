@@ -20,6 +20,7 @@ namespace SpaceDotNet.Samples.Web.Pages
         private readonly TeamDirectoryClient _teamDirectoryClient;
 
         public TDMemberProfileDto? MemberProfile { get; set; }
+        public int IssuesCreatedThisWeek { get; set; }
         public int IssuesResolvedThisWeek { get; set; }
         public int ReviewsCreatedThisWeek { get; set; }
         public int ReviewsParticipatedThisWeek { get; set; }
@@ -46,6 +47,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
             var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);
 
+            var issuesCreatedThisWeek = 0;
             var issuesResolvedThisWeek = 0;
             var reviewsCreatedThisWeek = 0;
             var reviewsParticipatedThisWeek = 0;
@@ -60,12 +62,23 @@ namespace SpaceDotNet.Samples.Web.Pages
                 
                     await foreach (var issueDto in BatchEnumerator.AllItems(skip => _projectClient.Planning.Issues.GetAllIssues(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, skip: skip)))
                     {
-                        var lastUpdated = issueDto.Channel.LastMessage?.Time.AsDateTime() ?? issueDto.CreationTime.AsDateTime();
+                        var created = issueDto.CreationTime.AsDateTime();
+                        var lastUpdated = issueDto.Channel.LastMessage?.Time.AsDateTime() ?? created;
                         if (lastUpdated < weekStart)
                         {
                             break;
                         }
                     
+                        // Created
+                        if (issueDto.CreatedBy.Details is CUserPrincipalDetailsDto userPrincipal && userPrincipal.User?.Id == MemberProfile.Id)
+                        {
+                            if (created >= weekStart && created <= weekEnd)
+                            {
+                                issuesCreatedThisWeek++;
+                            }
+                        }
+                        
+                        // Resolved
                         if (issueDto.Assignee?.Id == MemberProfile.Id)
                         {
                             if (lastUpdated >= weekStart && lastUpdated <= weekEnd)
@@ -160,6 +173,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             // Chats
             // + status (open, in progress, done)
             
+            IssuesCreatedThisWeek = issuesCreatedThisWeek;
             IssuesResolvedThisWeek = issuesResolvedThisWeek;
             ReviewsCreatedThisWeek = reviewsCreatedThisWeek;
             ReviewsParticipatedThisWeek = reviewsParticipatedThisWeek;
