@@ -61,6 +61,34 @@
         
         <div class="row mb-2">
             <div class="col-12">
+                <h4>Activity</h4>
+                <canvas id="activityChart" width="600" height="400"></canvas>
+                
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {                        
+                        var activityCanvas = document.getElementById("activityChart");
+    
+                        var activityData = {
+                          labels: ["Issues", "Reviews created", "Reviews participated", "TODO items closed"],
+                          datasets: [{
+                            label: "Activity",
+                            backgroundColor: "rgba(200,0,0,0.2)",
+                            data: [@Model.IssuesResolvedThisWeek, @Model.ReviewsCreatedThisWeek, @Model.ReviewsParticipatedThisWeek, @Model.TodoClosedThisWeek]
+                          }]
+                        };
+                        
+                        var activityChart = new Chart(activityCanvas, {
+                          type: 'radar',
+                          data: activityData
+                        });
+                    }, false);
+                </script>
+            </div>
+        </div>
+        
+        <div class="row mb-2">
+            <div class="col-12">
                 <h4>Absences</h4>
                 <ul class="list-group">
                     @{
