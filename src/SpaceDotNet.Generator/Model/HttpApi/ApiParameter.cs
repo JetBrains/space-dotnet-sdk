@@ -5,8 +5,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi
     public class ApiParameter
     {
         [JsonPropertyName("field")]
-        public ApiField Field { get; set; }
-        
+        public ApiField Field { get; set; } = null!;
+
         [JsonPropertyName("path")]
         public bool Path { get; set; }
     }

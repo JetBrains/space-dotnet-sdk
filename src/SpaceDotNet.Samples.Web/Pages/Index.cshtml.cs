@@ -41,7 +41,7 @@ namespace SpaceDotNet.Samples.Web.Pages
 
         public async Task OnGet()
         {
-            MemberProfile = await _teamDirectoryClient.ProfilesMeGetMe();
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe();
             
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
             var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);
@@ -56,9 +56,9 @@ namespace SpaceDotNet.Samples.Web.Pages
                 try
                 {
                     // Check # of issues resolved this week
-                    var issueStatuses = await _projectClient.PlanningIssuesStatusesGetAllIssueStatuses(projectDto.Id);
+                    var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatuses(projectDto.Id);
                 
-                    await foreach (var issueDto in BatchEnumerator.AllItems(skip => _projectClient.PlanningIssuesGetAllIssues(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, skip: skip)))
+                    await foreach (var issueDto in BatchEnumerator.AllItems(skip => _projectClient.Planning.Issues.GetAllIssues(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, skip: skip)))
                     {
                         var lastUpdated = issueDto.Channel.LastMessage?.Time.AsDateTime() ?? issueDto.CreationTime.AsDateTime();
                         if (lastUpdated < weekStart)
@@ -87,10 +87,10 @@ namespace SpaceDotNet.Samples.Web.Pages
                 try
                 {
                     // Check # of reviews created and participated in
-                    var reviews1 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviewsGetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
-                    var reviews2 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviewsGetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
-                    var reviews3 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviewsGetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
-                    var reviews4 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviewsGetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews1 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews2 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews3 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews4 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
                     
                     foreach (var reviewDto in reviews1.Union(reviews2).Union(reviews3).Union(reviews4))
                     {

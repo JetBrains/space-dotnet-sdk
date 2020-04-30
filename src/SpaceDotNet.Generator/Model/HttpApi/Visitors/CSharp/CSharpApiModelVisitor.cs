@@ -53,9 +53,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}//     Generated: {DateTimeOffset.UtcNow:O}");
             Builder.AppendLine($"{Indent}// </auto-generated>");
             Builder.AppendLine($"{Indent}// ------------------------------------------------------------------------------");
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
             Builder.AppendLine($"{Indent}#nullable enable");
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
             Builder.AppendLine($"{Indent}using System;");
             Builder.AppendLine($"{Indent}using System.Collections.Generic;");
             Builder.AppendLine($"{Indent}using System.ComponentModel.DataAnnotations;");
@@ -65,7 +65,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Json.Serialization;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Types;");
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
             Builder.AppendLine($"{Indent}namespace SpaceDotNet.Client");
             Builder.AppendLine($"{Indent}{{");
             
@@ -119,7 +119,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 
             Indent.Increment();
             Builder.AppendLine($"{Indent}private " + apiEnum.Name.ToSafeIdentifier() + "(string value) : base(value) { }");
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
             
             foreach (var value in apiEnum.Values)
             {
@@ -129,7 +129,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Indent.Decrement();
                 
             Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
         }
 
         public override void Visit(ApiDto apiDto)
@@ -184,7 +184,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 Builder.AppendLine($"{Indent}[JsonPropertyName(\"className\")]");
                 Builder.AppendLine($"{Indent}public string? ClassName {{ get; set; }}"); // TODO MAKE THIS READ-ONLY?
-                Builder.AppendLine();
+                Builder.AppendLine($"{Indent}");
             }
                 
             // For implements, add all referenced types' fields
@@ -213,7 +213,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
             Indent.Decrement();
             Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
         }
         
         public override void Visit(ApiField apiField)
@@ -233,8 +233,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.Append(" ");
             Builder.Append(apiField.Name.ToSafeIdentifier().ToUppercaseFirst());
             Builder.Append(" { get; set; }");
-            Builder.AppendLine();
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
+            Builder.AppendLine($"{Indent}");
         }
 
         public override void Visit(ApiFieldType apiFieldType)
@@ -370,78 +370,85 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         }
 
         private string _baseEndpointPath = string.Empty;
-        private string _baseMethodName = string.Empty;
-        
+        private string _resourceBreadcrumbPath = string.Empty;
+        private HashSet<string> _resourceBreadcrumbPaths = new HashSet<string>();
+
         public override void Visit(ApiResource apiResource)
         {
+            var originalBaseEndpointPath = _baseEndpointPath;
+            _baseEndpointPath = (_baseEndpointPath.Length > 0 ? _baseEndpointPath + "/" : _baseEndpointPath) +  apiResource.Path.Segments.ToPath();
+        
+            var originalResourceBreadcrumbPath = _resourceBreadcrumbPath;
+            _resourceBreadcrumbPath = (_resourceBreadcrumbPath.Length > 0 ? _resourceBreadcrumbPath + "." : _resourceBreadcrumbPath) +  apiResource.DisplaySingular.ToSafeIdentifier();
+
+            Visit(apiResource, true);
+        
+            _resourceBreadcrumbPath = originalResourceBreadcrumbPath;
+            _baseEndpointPath = originalBaseEndpointPath;
+        }
+
+        public void Visit(ApiResource apiResource, bool withConstructor)
+        {
+            // Client class
             Builder.AppendLine($"{Indent}// Source: " + apiResource.Id);
             Builder.AppendLine($"{Indent}public partial class " + apiResource.DisplaySingular.ToSafeIdentifier() + "Client");
             Builder.AppendLine($"{Indent}{{");
             Indent.Increment();
 
-            Builder.AppendLine($"{Indent}private readonly Connection _connection;");
-            Builder.AppendLine();
-            Builder.AppendLine($"{Indent}public " + apiResource.DisplaySingular.ToSafeIdentifier() + "Client(Connection connection)");
-            Builder.AppendLine($"{Indent}{{");
-            Indent.Increment();
+            // Constructor needed?
+            if (withConstructor)
+            {
+                Builder.AppendLine($"{Indent}private readonly Connection _connection;");
+                Builder.AppendLine($"{Indent}");
+                Builder.AppendLine($"{Indent}public " + apiResource.DisplaySingular.ToSafeIdentifier() + "Client(Connection connection)");
+                Builder.AppendLine($"{Indent}{{");
+                Indent.Increment();
 
-            Builder.AppendLine($"{Indent}_connection = connection;");
+                Builder.AppendLine($"{Indent}_connection = connection;");
             
-            Indent.Decrement();
-            Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine();
+                Indent.Decrement();
+                Builder.AppendLine($"{Indent}}}");
+                Builder.AppendLine($"{Indent}");
+            }
         
+            // Endpoint methods
             foreach (var apiEndpoint in apiResource.Endpoints)
             {
-                _baseEndpointPath = apiResource.Path.Segments.ToPath();
-                _baseMethodName = string.Empty;
                 Visit(apiResource, apiEndpoint);
-                _baseMethodName = string.Empty;
-                _baseEndpointPath = string.Empty;
             }
-            
-            // Nested resources
-            foreach (var apiNestedResource in apiResource.NestedResources)
-            {
-                foreach (var apiEndpoint in apiNestedResource.Endpoints)
-                {
-                    _baseEndpointPath = apiResource.Path.Segments.Union(apiNestedResource.Path.Segments).ToPath();
-                    _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier() ?? apiNestedResource.DisplayPlural;
-                    Visit(apiNestedResource, apiEndpoint);
-                    _baseMethodName = string.Empty;
-                    _baseEndpointPath = string.Empty;
-                }
 
-                // Nested nested resources
-                foreach (var apiNestedResourceNestedResource in apiNestedResource.NestedResources)
+            // Group nested resources by path
+            var resourcePathBuildingVisitor = new ResourcePathBuildingVisitor(1, 2);
+            resourcePathBuildingVisitor.Visit(apiResource);
+            foreach (var (path, apiNestedResources) in resourcePathBuildingVisitor.Paths)
+            {
+                var isFirstResource = true;
+                foreach (var apiNestedResource in apiNestedResources)
                 {
-                    foreach (var apiEndpoint in apiNestedResourceNestedResource.Endpoints)
+                    var originalBaseEndpointPath = _baseEndpointPath;
+                    _baseEndpointPath = (_baseEndpointPath.Length > 0 ? _baseEndpointPath + "/" : _baseEndpointPath) +  apiNestedResource.Path.Segments.ToPath();
+        
+                    var originalResourceBreadcrumbPath = _resourceBreadcrumbPath;
+                    _resourceBreadcrumbPath = (_resourceBreadcrumbPath.Length > 0 ? _resourceBreadcrumbPath + "." : _resourceBreadcrumbPath) +  apiNestedResource.DisplaySingular.ToSafeIdentifier();
+
+                    var isFirstWrite = _resourceBreadcrumbPaths.Add(_resourceBreadcrumbPath);
+                    if (isFirstResource && isFirstWrite)
                     {
-                        _baseEndpointPath = apiResource.Path.Segments.Union(apiNestedResource.Path.Segments).Union(apiNestedResourceNestedResource.Path.Segments).ToPath();
-                        _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier() + apiNestedResourceNestedResource.DisplayPlural.ToSafeIdentifier();
-                        Visit(apiNestedResourceNestedResource, apiEndpoint);
-                        _baseMethodName = string.Empty;
-                        _baseEndpointPath = string.Empty;
+                        Builder.AppendLine($"{Indent}public " + apiNestedResource.DisplaySingular.ToSafeIdentifier() + "Client " + apiNestedResource.DisplayPlural.ToSafeIdentifier() + " => new " + apiNestedResource.DisplaySingular.ToSafeIdentifier() + "Client(_connection);");
+                        Builder.AppendLine($"{Indent}");
                     }
-                    
-                    // Nested nested nested resources
-                    foreach (var apiNestedResourceNestedResourceNestedResource in apiNestedResourceNestedResource.NestedResources)
-                    {
-                        foreach (var apiEndpoint in apiNestedResourceNestedResourceNestedResource.Endpoints)
-                        {
-                            _baseEndpointPath = apiResource.Path.Segments.Union(apiNestedResource.Path.Segments).Union(apiNestedResourceNestedResource.Path.Segments).Union(apiNestedResourceNestedResourceNestedResource.Path.Segments).ToPath();
-                            _baseMethodName = apiNestedResource.DisplayPlural.ToSafeIdentifier() + apiNestedResourceNestedResource.DisplayPlural.ToSafeIdentifier() + apiNestedResourceNestedResourceNestedResource.DisplayPlural.ToSafeIdentifier();
-                            Visit(apiNestedResourceNestedResourceNestedResource, apiEndpoint);
-                            _baseMethodName = string.Empty;
-                            _baseEndpointPath = string.Empty;
-                        }
-                    }
+                    Visit(apiNestedResource, isFirstResource && isFirstWrite);
+        
+                    _resourceBreadcrumbPath = originalResourceBreadcrumbPath;
+                    _baseEndpointPath = originalBaseEndpointPath;
+
+                    isFirstResource = false;
                 }
             }
 
             Indent.Decrement();
             Builder.AppendLine($"{Indent}}}");
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
         }
         
         private string _clientMethodName = string.Empty;
@@ -451,7 +458,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             var endpointPath = (_baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
 
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
-            _clientMethodName = _baseMethodName + apiEndpoint.DisplayName.ToSafeIdentifier();
+            _clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
 
             bool AppendParameterList(ApiEndpoint apiEndpoint1)
             {
@@ -566,7 +573,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     Builder.Append(" (since " + apiEndpoint.Deprecation.Since + ")");
                 }
                 Builder.Append("\")]");
-                Builder.AppendLine();
+                Builder.AppendLine($"{Indent}");
             }
             
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
@@ -580,7 +587,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$\"api/http/" + endpointPath);
                 AppendRequestParameterList(apiEndpoint);
                 Builder.Append("\");");
-                Builder.AppendLine();
+                Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody != null)
             {
@@ -600,7 +607,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")));");
-                Builder.AppendLine();
+                Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody == null)
             {
@@ -622,7 +629,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$\"api/http/" + endpointPath);
                 AppendRequestParameterList(apiEndpoint);
                 Builder.Append("\", data);");
-                Builder.AppendLine();
+                Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody != null)
             {
@@ -650,14 +657,14 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")), data);");
-                Builder.AppendLine();
+                Builder.AppendLine($"{Indent}");
             }
             else
             {
                 Builder.AppendLine($"{Indent}#warning UNSUPPORTED CASE - " + apiEndpoint.DisplayName.ToSafeIdentifier() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
             }
             
-            Builder.AppendLine();
+            Builder.AppendLine($"{Indent}");
 
             _clientMethodName = string.Empty;
         }

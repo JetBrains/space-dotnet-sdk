@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-04-30T06:14:14.8660245+00:00
+//     Generated: 2020-04-30T11:08:14.9093313+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -28,110 +28,110 @@ namespace SpaceDotNet.Client
     public sealed class AbsenceListMode : Enumeration
     {
         private AbsenceListMode(string value) : base(value) { }
-
+        
         public static readonly AbsenceListMode All = new AbsenceListMode("All");
         public static readonly AbsenceListMode WithAccessibleReasonUnapproved = new AbsenceListMode("WithAccessibleReasonUnapproved");
         public static readonly AbsenceListMode WithAccessibleReasonAll = new AbsenceListMode("WithAccessibleReasonAll");
     }
-
+    
     // Source: accesstype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class AccessType : Enumeration
     {
         private AccessType(string value) : base(value) { }
-
+        
         public static readonly AccessType PUBLIC = new AccessType("PUBLIC");
         public static readonly AccessType CONFIDENTIAL = new AccessType("CONFIDENTIAL");
         public static readonly AccessType RESTRICTED = new AccessType("RESTRICTED");
     }
-
+    
     // Source: codereviewparticipantrole
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewParticipantRole : Enumeration
     {
         private CodeReviewParticipantRole(string value) : base(value) { }
-
+        
         public static readonly CodeReviewParticipantRole Reviewer = new CodeReviewParticipantRole("Reviewer");
         public static readonly CodeReviewParticipantRole Author = new CodeReviewParticipantRole("Author");
         public static readonly CodeReviewParticipantRole Watcher = new CodeReviewParticipantRole("Watcher");
     }
-
+    
     // Source: codereviewstate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewState : Enumeration
     {
         private CodeReviewState(string value) : base(value) { }
-
+        
         public static readonly CodeReviewState Opened = new CodeReviewState("Opened");
         public static readonly CodeReviewState Closed = new CodeReviewState("Closed");
         public static readonly CodeReviewState Deleted = new CodeReviewState("Deleted");
     }
-
+    
     // Source: codereviewstatefilter
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewStateFilter : Enumeration
     {
         private CodeReviewStateFilter(string value) : base(value) { }
-
+        
         public static readonly CodeReviewStateFilter Opened = new CodeReviewStateFilter("Opened");
         public static readonly CodeReviewStateFilter Closed = new CodeReviewStateFilter("Closed");
         public static readonly CodeReviewStateFilter RequiresAuthorAttention = new CodeReviewStateFilter("RequiresAuthorAttention");
         public static readonly CodeReviewStateFilter NeedsReview = new CodeReviewStateFilter("NeedsReview");
     }
-
+    
     // Source: desiredstatus
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DesiredStatus : Enumeration
     {
         private DesiredStatus(string value) : base(value) { }
-
+        
         public static readonly DesiredStatus UNKNOWN = new DesiredStatus("UNKNOWN");
         public static readonly DesiredStatus PENDING = new DesiredStatus("PENDING");
         public static readonly DesiredStatus RUNNING = new DesiredStatus("RUNNING");
         public static readonly DesiredStatus STOPPED = new DesiredStatus("STOPPED");
     }
-
+    
     // Source: difflinetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DiffLineType : Enumeration
     {
         private DiffLineType(string value) : base(value) { }
-
+        
         public static readonly DiffLineType ADDED = new DiffLineType("ADDED");
         public static readonly DiffLineType DELETED = new DiffLineType("DELETED");
         public static readonly DiffLineType MODIFIED = new DiffLineType("MODIFIED");
         public static readonly DiffLineType CONFLICTOLD = new DiffLineType("CONFLICT_OLD");
         public static readonly DiffLineType CONFLICTNEW = new DiffLineType("CONFLICT_NEW");
     }
-
+    
     // Source: draftdocumenttype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DraftDocumentType : Enumeration
     {
         private DraftDocumentType(string value) : base(value) { }
-
+        
         public static readonly DraftDocumentType WYSIWYG = new DraftDocumentType("WYSIWYG");
         public static readonly DraftDocumentType MARKDOWN = new DraftDocumentType("MARKDOWN");
     }
-
+    
     // Source: eventparticipationstatus
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class EventParticipationStatus : Enumeration
     {
         private EventParticipationStatus(string value) : base(value) { }
-
+        
         public static readonly EventParticipationStatus GOING = new EventParticipationStatus("GOING");
         public static readonly EventParticipationStatus NOTGOING = new EventParticipationStatus("NOT_GOING");
         public static readonly EventParticipationStatus NOTSURE = new EventParticipationStatus("NOT_SURE");
         public static readonly EventParticipationStatus WAITINGFORRESPONSE = new EventParticipationStatus("WAITING_FOR_RESPONSE");
     }
-
+    
     // Source: executionstatus
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ExecutionStatus : Enumeration
     {
         private ExecutionStatus(string value) : base(value) { }
-
+        
         public static readonly ExecutionStatus SCHEDULED = new ExecutionStatus("SCHEDULED");
         public static readonly ExecutionStatus PENDING = new ExecutionStatus("PENDING");
         public static readonly ExecutionStatus READYTOSTART = new ExecutionStatus("READY_TO_START");
@@ -143,69 +143,69 @@ namespace SpaceDotNet.Client
         public static readonly ExecutionStatus FAILED = new ExecutionStatus("FAILED");
         public static readonly ExecutionStatus HANGING = new ExecutionStatus("HANGING");
     }
-
+    
     // Source: gender
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class Gender : Enumeration
     {
         private Gender(string value) : base(value) { }
-
+        
         public static readonly Gender Female = new Gender("Female");
         public static readonly Gender Male = new Gender("Male");
         public static readonly Gender Other = new Gender("Other");
         public static readonly Gender NotSpecified = new Gender("NotSpecified");
     }
-
+    
     // Source: gitcommitchangetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitCommitChangeType : Enumeration
     {
         private GitCommitChangeType(string value) : base(value) { }
-
+        
         public static readonly GitCommitChangeType ADDED = new GitCommitChangeType("ADDED");
         public static readonly GitCommitChangeType DELETED = new GitCommitChangeType("DELETED");
         public static readonly GitCommitChangeType MODIFIED = new GitCommitChangeType("MODIFIED");
     }
-
+    
     // Source: gitentrytype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitEntryType : Enumeration
     {
         private GitEntryType(string value) : base(value) { }
-
+        
         public static readonly GitEntryType FILE = new GitEntryType("FILE");
         public static readonly GitEntryType DIR = new GitEntryType("DIR");
         public static readonly GitEntryType GITLINK = new GitEntryType("GIT_LINK");
         public static readonly GitEntryType SYMLINK = new GitEntryType("SYM_LINK");
     }
-
+    
     // Source: gitgraphedgelinestyle
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitGraphEdgeLineStyle : Enumeration
     {
         private GitGraphEdgeLineStyle(string value) : base(value) { }
-
+        
         public static readonly GitGraphEdgeLineStyle SOLID = new GitGraphEdgeLineStyle("SOLID");
         public static readonly GitGraphEdgeLineStyle DASHED = new GitGraphEdgeLineStyle("DASHED");
         public static readonly GitGraphEdgeLineStyle DOTTED = new GitGraphEdgeLineStyle("DOTTED");
     }
-
+    
     // Source: gitgraphedgetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitGraphEdgeType : Enumeration
     {
         private GitGraphEdgeType(string value) : base(value) { }
-
+        
         public static readonly GitGraphEdgeType UP = new GitGraphEdgeType("UP");
         public static readonly GitGraphEdgeType DOWN = new GitGraphEdgeType("DOWN");
     }
-
+    
     // Source: ha_method
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HAMethod : Enumeration
     {
         private HAMethod(string value) : base(value) { }
-
+        
         public static readonly HAMethod RESTCREATE = new HAMethod("REST_CREATE");
         public static readonly HAMethod RESTQUERY = new HAMethod("REST_QUERY");
         public static readonly HAMethod RESTGET = new HAMethod("REST_GET");
@@ -217,13 +217,13 @@ namespace SpaceDotNet.Client
         public static readonly HAMethod HTTPPUT = new HAMethod("HTTP_PUT");
         public static readonly HAMethod HTTPDELETE = new HAMethod("HTTP_DELETE");
     }
-
+    
     // Source: ha_primitive
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HAPrimitive : Enumeration
     {
         private HAPrimitive(string value) : base(value) { }
-
+        
         public static readonly HAPrimitive Byte = new HAPrimitive("Byte");
         public static readonly HAPrimitive Short = new HAPrimitive("Short");
         public static readonly HAPrimitive Int = new HAPrimitive("Int");
@@ -235,13 +235,13 @@ namespace SpaceDotNet.Client
         public static readonly HAPrimitive Date = new HAPrimitive("Date");
         public static readonly HAPrimitive DateTime = new HAPrimitive("DateTime");
     }
-
+    
     // Source: ha_type.object.kind
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HATypeObjectKind : Enumeration
     {
         private HATypeObjectKind(string value) : base(value) { }
-
+        
         public static readonly HATypeObjectKind PAIR = new HATypeObjectKind("PAIR");
         public static readonly HATypeObjectKind TRIPLE = new HATypeObjectKind("TRIPLE");
         public static readonly HATypeObjectKind MAPENTRY = new HATypeObjectKind("MAP_ENTRY");
@@ -249,243 +249,243 @@ namespace SpaceDotNet.Client
         public static readonly HATypeObjectKind MOD = new HATypeObjectKind("MOD");
         public static readonly HATypeObjectKind REQUESTBODY = new HATypeObjectKind("REQUEST_BODY");
     }
-
+    
     // Source: hierarchyrole
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HierarchyRole : Enumeration
     {
         private HierarchyRole(string value) : base(value) { }
-
+        
         public static readonly HierarchyRole SEALED = new HierarchyRole("SEALED");
         public static readonly HierarchyRole OPEN = new HierarchyRole("OPEN");
         public static readonly HierarchyRole FINAL = new HierarchyRole("FINAL");
         public static readonly HierarchyRole ABSTRACT = new HierarchyRole("ABSTRACT");
         public static readonly HierarchyRole INTERFACE = new HierarchyRole("INTERFACE");
     }
-
+    
     // Source: interpolatedlinestate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class InterpolatedLineState : Enumeration
     {
         private InterpolatedLineState(string value) : base(value) { }
-
+        
         public static readonly InterpolatedLineState Normal = new InterpolatedLineState("Normal");
         public static readonly InterpolatedLineState Deleted = new InterpolatedLineState("Deleted");
         public static readonly InterpolatedLineState Modified = new InterpolatedLineState("Modified");
     }
-
+    
     // Source: issuessorting
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class IssuesSorting : Enumeration
     {
         private IssuesSorting(string value) : base(value) { }
-
+        
         public static readonly IssuesSorting UPDATED = new IssuesSorting("UPDATED");
         public static readonly IssuesSorting CREATED = new IssuesSorting("CREATED");
         public static readonly IssuesSorting TITLE = new IssuesSorting("TITLE");
         public static readonly IssuesSorting DUE = new IssuesSorting("DUE");
     }
-
+    
     // Source: ldapmoduletype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class LdapModuleType : Enumeration
     {
         private LdapModuleType(string value) : base(value) { }
-
+        
         public static readonly LdapModuleType AD = new LdapModuleType("AD");
         public static readonly LdapModuleType OPENLDAP = new LdapModuleType("OPEN_LDAP");
     }
-
+    
     // Source: limitunit
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class LimitUnit : Enumeration
     {
         private LimitUnit(string value) : base(value) { }
-
+        
         public static readonly LimitUnit BYTES = new LimitUnit("BYTES");
         public static readonly LimitUnit UNITS = new LimitUnit("UNITS");
         public static readonly LimitUnit ENTITIES = new LimitUnit("ENTITIES");
     }
-
+    
     // Source: m2.access
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2Access : Enumeration
     {
         private M2Access(string value) : base(value) { }
-
+        
         public static readonly M2Access Private = new M2Access("Private");
         public static readonly M2Access Public = new M2Access("Public");
     }
-
+    
     // Source: m2emailnotificationtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2EmailNotificationType : Enumeration
     {
         private M2EmailNotificationType(string value) : base(value) { }
-
+        
         public static readonly M2EmailNotificationType INSTANT = new M2EmailNotificationType("INSTANT");
         public static readonly M2EmailNotificationType DELAYED = new M2EmailNotificationType("DELAYED");
         public static readonly M2EmailNotificationType NONE = new M2EmailNotificationType("NONE");
     }
-
+    
     // Source: m2obsoletecause
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2ObsoleteCause : Enumeration
     {
         private M2ObsoleteCause(string value) : base(value) { }
-
+        
         public static readonly M2ObsoleteCause PermissionsDenied = new M2ObsoleteCause("PermissionsDenied");
     }
-
+    
     // Source: mergerequestbranchtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class MergeRequestBranchType : Enumeration
     {
         private MergeRequestBranchType(string value) : base(value) { }
-
+        
         public static readonly MergeRequestBranchType SOURCE = new MergeRequestBranchType("SOURCE");
         public static readonly MergeRequestBranchType TARGET = new MergeRequestBranchType("TARGET");
     }
-
+    
     // Source: notificationfilter
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class NotificationFilter : Enumeration
     {
         private NotificationFilter(string value) : base(value) { }
-
+        
         public static readonly NotificationFilter ALLMESSAGES = new NotificationFilter("ALL_MESSAGES");
         public static readonly NotificationFilter MENTIONS = new NotificationFilter("MENTIONS");
         public static readonly NotificationFilter NOTHING = new NotificationFilter("NOTHING");
         public static readonly NotificationFilter MUTE = new NotificationFilter("MUTE");
     }
-
+    
     // Source: oauthservicetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class OAuthServiceType : Enumeration
     {
         private OAuthServiceType(string value) : base(value) { }
-
+        
         public static readonly OAuthServiceType Server = new OAuthServiceType("Server");
         public static readonly OAuthServiceType WebClient = new OAuthServiceType("WebClient");
         public static readonly OAuthServiceType Mobile = new OAuthServiceType("Mobile");
         public static readonly OAuthServiceType ServiceAccount = new OAuthServiceType("ServiceAccount");
     }
-
+    
     // Source: packagespermission
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class PackagesPermission : Enumeration
     {
         private PackagesPermission(string value) : base(value) { }
-
+        
         public static readonly PackagesPermission Read = new PackagesPermission("Read");
         public static readonly PackagesPermission Write = new PackagesPermission("Write");
         public static readonly PackagesPermission Admin = new PackagesPermission("Admin");
     }
-
+    
     // Source: passwordstrength
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class PasswordStrength : Enumeration
     {
         private PasswordStrength(string value) : base(value) { }
-
+        
         public static readonly PasswordStrength NOPOLICY = new PasswordStrength("NO_POLICY");
         public static readonly PasswordStrength FAIR = new PasswordStrength("FAIR");
         public static readonly PasswordStrength GOOD = new PasswordStrength("GOOD");
         public static readonly PasswordStrength STRONG = new PasswordStrength("STRONG");
     }
-
+    
     // Source: profileorder
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ProfileOrder : Enumeration
     {
         private ProfileOrder(string value) : base(value) { }
-
+        
         public static readonly ProfileOrder DEFAULT = new ProfileOrder("DEFAULT");
         public static readonly ProfileOrder FULLNAME = new ProfileOrder("FULL_NAME");
     }
-
+    
     // Source: repositorystate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class RepositoryState : Enumeration
     {
         private RepositoryState(string value) : base(value) { }
-
+        
         public static readonly RepositoryState READY = new RepositoryState("READY");
         public static readonly RepositoryState INPROGRESS = new RepositoryState("IN_PROGRESS");
         public static readonly RepositoryState ERROR = new RepositoryState("ERROR");
     }
-
+    
     // Source: reviewrevisionschangedtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewRevisionsChangedType : Enumeration
     {
         private ReviewRevisionsChangedType(string value) : base(value) { }
-
+        
         public static readonly ReviewRevisionsChangedType Created = new ReviewRevisionsChangedType("Created");
         public static readonly ReviewRevisionsChangedType Added = new ReviewRevisionsChangedType("Added");
         public static readonly ReviewRevisionsChangedType Removed = new ReviewRevisionsChangedType("Removed");
     }
-
+    
     // Source: reviewsorting
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewSorting : Enumeration
     {
         private ReviewSorting(string value) : base(value) { }
-
+        
         public static readonly ReviewSorting CreatedAtAsc = new ReviewSorting("CreatedAtAsc");
         public static readonly ReviewSorting CreatedAtDesc = new ReviewSorting("CreatedAtDesc");
         public static readonly ReviewSorting LastUpdatedAsc = new ReviewSorting("LastUpdatedAsc");
         public static readonly ReviewSorting LastUpdatedDesc = new ReviewSorting("LastUpdatedDesc");
     }
-
+    
     // Source: reviewtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewType : Enumeration
     {
         private ReviewType(string value) : base(value) { }
-
+        
         public static readonly ReviewType CommitSetReview = new ReviewType("CommitSetReview");
         public static readonly ReviewType MergeRequest = new ReviewType("MergeRequest");
     }
-
+    
     // Source: reviewerchangedtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewerChangedType : Enumeration
     {
         private ReviewerChangedType(string value) : base(value) { }
-
+        
         public static readonly ReviewerChangedType Joined = new ReviewerChangedType("Joined");
         public static readonly ReviewerChangedType Left = new ReviewerChangedType("Left");
     }
-
+    
     // Source: reviewerstate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewerState : Enumeration
     {
         private ReviewerState(string value) : base(value) { }
-
+        
         public static readonly ReviewerState Accepted = new ReviewerState("Accepted");
         public static readonly ReviewerState Rejected = new ReviewerState("Rejected");
     }
-
+    
     // Source: snapshotstate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class SnapshotState : Enumeration
     {
         private SnapshotState(string value) : base(value) { }
-
+        
         public static readonly SnapshotState UNKNOWN = new SnapshotState("UNKNOWN");
         public static readonly SnapshotState PENDING = new SnapshotState("PENDING");
         public static readonly SnapshotState COMPLETED = new SnapshotState("COMPLETED");
         public static readonly SnapshotState ERROR = new SnapshotState("ERROR");
     }
-
+    
     // Source: syntaxmarkuptype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class SyntaxMarkupType : Enumeration
     {
         private SyntaxMarkupType(string value) : base(value) { }
-
+        
         public static readonly SyntaxMarkupType KEYWORD = new SyntaxMarkupType("KEYWORD");
         public static readonly SyntaxMarkupType COMMENT = new SyntaxMarkupType("COMMENT");
         public static readonly SyntaxMarkupType IDENTIFIER = new SyntaxMarkupType("IDENTIFIER");
@@ -495,13 +495,13 @@ namespace SpaceDotNet.Client
         public static readonly SyntaxMarkupType ANNOTATION = new SyntaxMarkupType("ANNOTATION");
         public static readonly SyntaxMarkupType HIGHLIGHT = new SyntaxMarkupType("HIGHLIGHT");
     }
-
+    
     // Source: volumestate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class VolumeState : Enumeration
     {
         private VolumeState(string value) : base(value) { }
-
+        
         public static readonly VolumeState UNKNOWN = new VolumeState("UNKNOWN");
         public static readonly VolumeState CREATING = new VolumeState("CREATING");
         public static readonly VolumeState AVAILABLE = new VolumeState("AVAILABLE");
@@ -510,13 +510,13 @@ namespace SpaceDotNet.Client
         public static readonly VolumeState DELETED = new VolumeState("DELETED");
         public static readonly VolumeState ERROR = new VolumeState("ERROR");
     }
-
+    
     // Source: weekday
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class Weekday : Enumeration
     {
         private Weekday(string value) : base(value) { }
-
+        
         public static readonly Weekday SUNDAY = new Weekday("SUNDAY");
         public static readonly Weekday MONDAY = new Weekday("MONDAY");
         public static readonly Weekday TUESDAY = new Weekday("TUESDAY");
@@ -525,595 +525,595 @@ namespace SpaceDotNet.Client
         public static readonly Weekday FRIDAY = new Weekday("FRIDAY");
         public static readonly Weekday SATURDAY = new Weekday("SATURDAY");
     }
-
+    
     // Source: atimezone
     public class ATimeZoneDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
     }
-
+    
     // Source: atimezonewithoffset
     public class ATimeZoneWithOffsetDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("offset")]
-        public int Offset { get; set; }
-
+        public int Offset { get; set; }        
+        
     }
-
+    
     // Source: absenceapproval
     public class AbsenceApprovalDto
     {
         [Required]
         [JsonPropertyName("approved")]
-        public bool Approved { get; set; }
-
+        public bool Approved { get; set; }        
+        
         [Required]
         [JsonPropertyName("approvedBy")]
-        public TDMemberProfileDto ApprovedBy { get; set; }
-
+        public TDMemberProfileDto ApprovedBy { get; set; }        
+        
         [Required]
         [JsonPropertyName("approvedAt")]
-        public SpaceTime ApprovedAt { get; set; }
-
+        public SpaceTime ApprovedAt { get; set; }        
+        
     }
-
+    
     // Source: absenceevent
     public class AbsenceEventDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberWithTeamDto Profile { get; set; }
-
+        public TDMemberWithTeamDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("events")]
-        public List<AbsenceRecordDto> Events { get; set; }
-
+        public List<AbsenceRecordDto> Events { get; set; }        
+        
     }
-
+    
     // Source: absencereasonrecord
     public class AbsenceReasonRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
-
+        public string Description { get; set; }        
+        
         [Required]
         [JsonPropertyName("defaultAvailability")]
-        public bool DefaultAvailability { get; set; }
-
+        public bool DefaultAvailability { get; set; }        
+        
         [Required]
         [JsonPropertyName("approvalRequired")]
-        public bool ApprovalRequired { get; set; }
-
+        public bool ApprovalRequired { get; set; }        
+        
         [Required]
         [JsonPropertyName("icon")]
-        public string Icon { get; set; }
-
+        public string Icon { get; set; }        
+        
     }
-
+    
     // Source: absencerecord
     public class AbsenceRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
+        public TDMemberProfileDto Member { get; set; }        
+        
         [Required]
         [JsonPropertyName("icon")]
-        public string Icon { get; set; }
-
+        public string Icon { get; set; }        
+        
         [JsonPropertyName("reason")]
-        public AbsenceReasonRecordDto? Reason { get; set; }
-
+        public AbsenceReasonRecordDto? Reason { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since { get; set; }
-
+        public SpaceDate Since { get; set; }        
+        
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till { get; set; }
-
+        public SpaceDate Till { get; set; }        
+        
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
-
+        public TDLocationDto? Location { get; set; }        
+        
         [Required]
         [JsonPropertyName("available")]
-        public bool Available { get; set; }
-
+        public bool Available { get; set; }        
+        
         [JsonPropertyName("approval")]
-        public AbsenceApprovalDto? Approval { get; set; }
-
+        public AbsenceApprovalDto? Approval { get; set; }        
+        
         [JsonPropertyName("customFields")]
-        public List<CustomColumnValuesWithSchemaDataDto>? CustomFields { get; set; }
-
+        public List<CustomColumnValuesWithSchemaDataDto>? CustomFields { get; set; }        
+        
     }
-
+    
     // Source: accessrecord
     public class AccessRecordDto
     {
         [Required]
         [JsonPropertyName("time")]
-        public SpaceTime Time { get; set; }
-
+        public SpaceTime Time { get; set; }        
+        
         [Required]
         [JsonPropertyName("address")]
-        public string Address { get; set; }
-
+        public string Address { get; set; }        
+        
         [JsonPropertyName("userAgent")]
-        public string? UserAgent { get; set; }
-
+        public string? UserAgent { get; set; }        
+        
     }
-
+    
     // Source: allreactionstoitemrecord
     public class AllReactionsToItemRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("reactions")]
-        public List<CertainReactionToItemRecordDto> Reactions { get; set; }
-
+        public List<CertainReactionToItemRecordDto> Reactions { get; set; }        
+        
         [JsonPropertyName("emojiReactions")]
-        public List<EmojiReactionRecordDto>? EmojiReactions { get; set; }
-
+        public List<EmojiReactionRecordDto>? EmojiReactions { get; set; }        
+        
     }
-
+    
     // Source: articlechannelrecord
     public class ArticleChannelRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
+        public M2ChannelRecordDto Channel { get; set; }        
+        
         [Required]
         [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecordDto ChannelContent { get; set; }
-
+        public M2ChannelContentRecordDto ChannelContent { get; set; }        
+        
         [Required]
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto Reactions { get; set; }
-
+        public AllReactionsToItemRecordDto Reactions { get; set; }        
+        
     }
-
+    
     // Source: articlecontentrecord
     public class ArticleContentRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("content")]
-        public string Content { get; set; }
-
+        public string Content { get; set; }        
+        
     }
-
+    
     // Source: articledetailsrecord
     public class ArticleDetailsRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [JsonPropertyName("event")]
-        public MeetingRecordDto? Event { get; set; }
-
+        public MeetingRecordDto? Event { get; set; }        
+        
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
+        public TDTeamDto? Team { get; set; }        
+        
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }
-
+        public List<TDTeamDto>? Teams { get; set; }        
+        
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }
-
+        public PRProjectDto? Project { get; set; }        
+        
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
-
+        public TDLocationDto? Location { get; set; }        
+        
         [JsonPropertyName("locations")]
-        public List<TDLocationDto>? Locations { get; set; }
-
+        public List<TDLocationDto>? Locations { get; set; }        
+        
     }
-
+    
     // Source: articlemarkdownimage
     public class ArticleMarkdownImageDto
     {
         [Required]
         [JsonPropertyName("alt")]
-        public string Alt { get; set; }
-
+        public string Alt { get; set; }        
+        
         [Required]
         [JsonPropertyName("src")]
-        public string Src { get; set; }
-
+        public string Src { get; set; }        
+        
     }
-
+    
     // Source: articlepreviewrecord
     public class ArticlePreviewRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
-
+        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }        
+        
         [Required]
         [JsonPropertyName("preview")]
-        public string Preview { get; set; }
-
+        public string Preview { get; set; }        
+        
         [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber { get; set; }
-
+        public int? WordsNumber { get; set; }        
+        
     }
-
+    
     // Source: articlerecord
     public class ArticleRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }
-
+        public TDMemberProfileDto Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("aliases")]
-        public List<BGArticleAliasDto> Aliases { get; set; }
-
+        public List<BGArticleAliasDto> Aliases { get; set; }        
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
+        public M2ChannelRecordDto Channel { get; set; }        
+        
         [Required]
         [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecordDto ChannelContent { get; set; }
-
+        public M2ChannelContentRecordDto ChannelContent { get; set; }        
+        
         [Required]
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto Reactions { get; set; }
-
+        public AllReactionsToItemRecordDto Reactions { get; set; }        
+        
         [Required]
         [JsonPropertyName("content")]
-        public string Content { get; set; }
-
+        public string Content { get; set; }        
+        
         [JsonPropertyName("event")]
-        public MeetingRecordDto? Event { get; set; }
-
+        public MeetingRecordDto? Event { get; set; }        
+        
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
-
+        public TDLocationDto? Location { get; set; }        
+        
         [JsonPropertyName("locations")]
-        public List<TDLocationDto>? Locations { get; set; }
-
+        public List<TDLocationDto>? Locations { get; set; }        
+        
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }
-
+        public PRProjectDto? Project { get; set; }        
+        
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
+        public TDTeamDto? Team { get; set; }        
+        
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }
-
+        public List<TDTeamDto>? Teams { get; set; }        
+        
         [Required]
         [JsonPropertyName("editable")]
-        public bool Editable { get; set; }
-
+        public bool Editable { get; set; }        
+        
         [Required]
         [JsonPropertyName("preview")]
-        public string Preview { get; set; }
-
+        public string Preview { get; set; }        
+        
         [Required]
         [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
-
+        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }        
+        
         [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber { get; set; }
-
+        public int? WordsNumber { get; set; }        
+        
     }
-
+    
     // Source: assignedperson
     public class AssignedPersonDto
     {
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }
-
+        public TDMemberProfileDto? Profile { get; set; }        
+        
         [JsonPropertyName("role")]
-        public string? Role { get; set; }
-
+        public string? Role { get; set; }        
+        
     }
-
+    
     // Source: attachment
     public interface AttachmentDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: attachmentinfo
     public class AttachmentInfoDto
     {
         [JsonPropertyName("details")]
-        public AttachmentDto? Details { get; set; }
-
+        public AttachmentDto? Details { get; set; }        
+        
     }
-
+    
     // Source: authmoduleusage
     public class AuthModuleUsageDto
     {
         [Required]
         [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get; set; }
-
+        public ESAuthModuleDto AuthModule { get; set; }        
+        
         [Required]
         [JsonPropertyName("profiles")]
-        public int Profiles { get; set; }
-
+        public int Profiles { get; set; }        
+        
     }
-
+    
     // Source: avatarcropsquare
     public class AvatarCropSquareDto
     {
         [Required]
         [JsonPropertyName("x")]
-        public int X { get; set; }
-
+        public int X { get; set; }        
+        
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get; set; }
-
+        public int Y { get; set; }        
+        
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get; set; }
-
+        public int Length { get; set; }        
+        
     }
-
+    
     // Source: bg_articlealias
     public class BGArticleAliasDto
     {
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
+        public string Alias { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
     }
-
+    
     // Source: bg_articleid
     public class BGArticleIdDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
     }
-
+    
     // Source: bg_dates
     public class BGDatesDto
     {
         [Required]
         [JsonPropertyName("first")]
-        public SpaceTime First { get; set; }
-
+        public SpaceTime First { get; set; }        
+        
         [Required]
         [JsonPropertyName("last")]
-        public SpaceTime Last { get; set; }
-
+        public SpaceTime Last { get; set; }        
+        
     }
-
+    
     // Source: bg_stats
     public class BGStatsDto
     {
         [Required]
         [JsonPropertyName("totalBlogs")]
-        public int TotalBlogs { get; set; }
-
+        public int TotalBlogs { get; set; }        
+        
         [Required]
         [JsonPropertyName("teams")]
-        public List<Pair<TDTeamDto, int>> Teams { get; set; }
-
+        public List<Pair<TDTeamDto, int>> Teams { get; set; }        
+        
         [Required]
         [JsonPropertyName("projects")]
-        public List<Pair<PRProjectDto, int>> Projects { get; set; }
-
+        public List<Pair<PRProjectDto, int>> Projects { get; set; }        
+        
         [Required]
         [JsonPropertyName("locations")]
-        public List<Pair<TDLocationDto, int>> Locations { get; set; }
-
+        public List<Pair<TDLocationDto, int>> Locations { get; set; }        
+        
     }
-
+    
     // Source: birthdayevent
     public class BirthdayEventDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberWithTeamDto Profile { get; set; }
-
+        public TDMemberWithTeamDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("birthday")]
-        public SpaceDate Birthday { get; set; }
-
+        public SpaceDate Birthday { get; set; }        
+        
     }
-
+    
     // Source: blogpublicationdetails
     public class BlogPublicationDetailsDto
          : PublicationDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("teamId")]
-        public TDTeamDto? TeamId { get; set; }
-
+        public TDTeamDto? TeamId { get; set; }        
+        
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }
-
+        public List<TDTeamDto>? Teams { get; set; }        
+        
         [JsonPropertyName("locationId")]
-        public TDLocationDto? LocationId { get; set; }
-
+        public TDLocationDto? LocationId { get; set; }        
+        
         [JsonPropertyName("locations")]
-        public List<TDLocationDto>? Locations { get; set; }
-
+        public List<TDLocationDto>? Locations { get; set; }        
+        
         [JsonPropertyName("event")]
-        public CalendarEventDto? Event { get; set; }
-
+        public CalendarEventDto? Event { get; set; }        
+        
         [JsonPropertyName("article")]
-        public ArticleRecordDto? Article { get; set; }
-
+        public ArticleRecordDto? Article { get; set; }        
+        
     }
-
+    
     // Source: booleancftype
     public class BooleanCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: booleancfvalue
     public class BooleanCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("value")]
-        public bool? Value { get; set; }
-
+        public bool? Value { get; set; }        
+        
     }
-
+    
     // Source: branchinfo
     public class BranchInfoDto
     {
         [Required]
         [JsonPropertyName("head")]
-        public string Head { get; set; }
-
+        public string Head { get; set; }        
+        
         [Required]
         [JsonPropertyName("ref")]
-        public string Ref { get; set; }
-
+        public string Ref { get; set; }        
+        
     }
-
+    
     // Source: cautomationtaskprincipaldetails
     public class CAutomationTaskPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("project")]
-        public PRProjectDto Project { get; set; }
-
+        public PRProjectDto Project { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
     }
-
+    
     // Source: cbuiltinserviceprincipaldetails
     public class CBuiltInServicePrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
     }
-
+    
     // Source: cexternalserviceprincipaldetails
     public class CExternalServicePrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("service")]
-        public ESServiceDto Service { get; set; }
-
+        public ESServiceDto Service { get; set; }        
+        
     }
-
+    
     // Source: cfconstraint
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CFConstraintDto
@@ -1121,9 +1121,9 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: cftype
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CFTypeDto
@@ -1131,9 +1131,9 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: cfvalue
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CFValueDto
@@ -1141,437 +1141,437 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: cprincipal
     public class CPrincipalDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("details")]
-        public CPrincipalDetailsDto? Details { get; set; }
-
+        public CPrincipalDetailsDto? Details { get; set; }        
+        
     }
-
+    
     // Source: cprincipaldetails
     public interface CPrincipalDetailsDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: cuserprincipaldetails
     public class CUserPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }
-
+        public TDMemberProfileDto User { get; set; }        
+        
     }
-
+    
     // Source: cuserwithemailprincipaldetails
     public class CUserWithEmailPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }
-
+        public string Email { get; set; }        
+        
     }
-
+    
     // Source: calendarevent
     public class CalendarEventDto
     {
         [JsonPropertyName("calendarEvent")]
-        public bool? CalendarEvent { get; set; }
-
+        public bool? CalendarEvent { get; set; }        
+        
         [JsonPropertyName("starts")]
-        public SpaceTime? Starts { get; set; }
-
+        public SpaceTime? Starts { get; set; }        
+        
         [JsonPropertyName("ends")]
-        public SpaceTime? Ends { get; set; }
-
+        public SpaceTime? Ends { get; set; }        
+        
         [JsonPropertyName("timezone")]
-        public ATimeZoneDto? Timezone { get; set; }
-
+        public ATimeZoneDto? Timezone { get; set; }        
+        
         [JsonPropertyName("rooms")]
-        public List<TDLocationDto>? Rooms { get; set; }
-
+        public List<TDLocationDto>? Rooms { get; set; }        
+        
         [JsonPropertyName("allDay")]
-        public bool? AllDay { get; set; }
-
+        public bool? AllDay { get; set; }        
+        
     }
-
+    
     // Source: certainreactiontoitemrecord
     public class CertainReactionToItemRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }
-
+        public string ItemId { get; set; }        
+        
         [Required]
         [JsonPropertyName("reaction")]
-        public ReactionTypeRecordDto Reaction { get; set; }
-
+        public ReactionTypeRecordDto Reaction { get; set; }        
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
-
+        public int Count { get; set; }        
+        
         [Required]
         [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }
-
+        public bool MeReacted { get; set; }        
+        
         [Required]
         [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get; set; }
-
+        public List<CPrincipalDto> Principals { get; set; }        
+        
         [JsonPropertyName("order")]
-        public long? Order { get; set; }
-
+        public long? Order { get; set; }        
+        
     }
-
+    
     // Source: certificateinfo
     public class CertificateInfoDto
     {
         [Required]
         [JsonPropertyName("certificateType")]
-        public string CertificateType { get; set; }
-
+        public string CertificateType { get; set; }        
+        
         [Required]
         [JsonPropertyName("version")]
-        public int Version { get; set; }
-
+        public int Version { get; set; }        
+        
         [Required]
         [JsonPropertyName("serialNumber")]
-        public string SerialNumber { get; set; }
-
+        public string SerialNumber { get; set; }        
+        
         [Required]
         [JsonPropertyName("issuedBy")]
-        public string IssuedBy { get; set; }
-
+        public string IssuedBy { get; set; }        
+        
         [Required]
         [JsonPropertyName("issuedTo")]
-        public string IssuedTo { get; set; }
-
+        public string IssuedTo { get; set; }        
+        
         [Required]
         [JsonPropertyName("validFrom")]
-        public SpaceTime ValidFrom { get; set; }
-
+        public SpaceTime ValidFrom { get; set; }        
+        
         [Required]
         [JsonPropertyName("validTo")]
-        public SpaceTime ValidTo { get; set; }
-
+        public SpaceTime ValidTo { get; set; }        
+        
         [Required]
         [JsonPropertyName("algorithm")]
-        public string Algorithm { get; set; }
-
+        public string Algorithm { get; set; }        
+        
         [Required]
         [JsonPropertyName("fingerprint")]
-        public FingerprintDto Fingerprint { get; set; }
-
+        public FingerprintDto Fingerprint { get; set; }        
+        
     }
-
+    
     // Source: changeinreview
     public class ChangeInReviewDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("change")]
-        public GitCommitChangeDto Change { get; set; }
-
+        public GitCommitChangeDto Change { get; set; }        
+        
         [Required]
         [JsonPropertyName("read")]
-        public bool Read { get; set; }
-
+        public bool Read { get; set; }        
+        
     }
-
+    
     // Source: channelitemrecord
     public class ChannelItemRecordDto
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [JsonPropertyName("details")]
-        public M2ItemContentDetailsDto? Details { get; set; }
-
+        public M2ItemContentDetailsDto? Details { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }
-
+        public CPrincipalDto Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }
-
+        public long Time { get; set; }        
+        
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto? Reactions { get; set; }
-
+        public AllReactionsToItemRecordDto? Reactions { get; set; }        
+        
         [JsonPropertyName("thread")]
-        public M2ChannelRecordDto? Thread { get; set; }
-
+        public M2ChannelRecordDto? Thread { get; set; }        
+        
         [JsonPropertyName("projectedItem")]
-        public ChannelItemRecordDto? ProjectedItem { get; set; }
-
+        public ChannelItemRecordDto? ProjectedItem { get; set; }        
+        
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto>? Attachments { get; set; }
-
+        public List<AttachmentInfoDto>? Attachments { get; set; }        
+        
         [JsonPropertyName("attachmentsInfos")]
-        public List<AttachmentInfoDto>? AttachmentsInfos { get; set; }
-
+        public List<AttachmentInfoDto>? AttachmentsInfos { get; set; }        
+        
         [JsonPropertyName("pending")]
-        public bool? Pending { get; set; }
-
+        public bool? Pending { get; set; }        
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [JsonPropertyName("edited")]
-        public SpaceTime? Edited { get; set; }
-
+        public SpaceTime? Edited { get; set; }        
+        
         [JsonPropertyName("pinned")]
-        public bool? Pinned { get; set; }
-
+        public bool? Pinned { get; set; }        
+        
     }
-
+    
     // Source: channelitemsnapshot
     public class ChannelItemSnapshotDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }
-
+        public string? ChannelId { get; set; }        
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [JsonPropertyName("details")]
-        public M2ItemContentDetailsDto? Details { get; set; }
-
+        public M2ItemContentDetailsDto? Details { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }
-
+        public CPrincipalDto Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }
-
+        public long Time { get; set; }        
+        
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto>? Attachments { get; set; }
-
+        public List<AttachmentInfoDto>? Attachments { get; set; }        
+        
     }
-
+    
     // Source: channelparticipant
     public class ChannelParticipantDto
     {
         [Required]
         [JsonPropertyName("principal")]
-        public CPrincipalDto Principal { get; set; }
-
+        public CPrincipalDto Principal { get; set; }        
+        
         [Required]
         [JsonPropertyName("messageCount")]
-        public int MessageCount { get; set; }
-
+        public int MessageCount { get; set; }        
+        
         [JsonPropertyName("pendingMessageCount")]
-        public int? PendingMessageCount { get; set; }
-
+        public int? PendingMessageCount { get; set; }        
+        
     }
-
+    
     // Source: channelspecificdefaults
     public class ChannelSpecificDefaultsDto
     {
         [Required]
         [JsonPropertyName("filter")]
-        public NotificationFilter Filter { get; set; }
-
+        public NotificationFilter Filter { get; set; }        
+        
         [Required]
         [JsonPropertyName("push")]
-        public bool Push { get; set; }
-
+        public bool Push { get; set; }        
+        
         [Required]
         [JsonPropertyName("email")]
-        public M2EmailNotificationType Email { get; set; }
-
+        public M2EmailNotificationType Email { get; set; }        
+        
     }
-
+    
     // Source: checklist
     public class ChecklistDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get; set; }
-
+        public string? ProjectId { get; set; }        
+        
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }
-
+        public PRProjectDto? Project { get; set; }        
+        
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }
-
+        public TDMemberProfileDto? Owner { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("root")]
-        public PlanItemDto? Root { get; set; }
-
+        public PlanItemDto? Root { get; set; }        
+        
         [JsonPropertyName("rootTag")]
-        public PlanningTagDto? RootTag { get; set; }
-
+        public PlanningTagDto? RootTag { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [Required]
         [JsonPropertyName("totalItemsCount")]
-        public int TotalItemsCount { get; set; }
-
+        public int TotalItemsCount { get; set; }        
+        
         [Required]
         [JsonPropertyName("doneItemsCount")]
-        public int DoneItemsCount { get; set; }
-
+        public int DoneItemsCount { get; set; }        
+        
         [JsonPropertyName("updatedTime")]
-        public SpaceTime? UpdatedTime { get; set; }
-
+        public SpaceTime? UpdatedTime { get; set; }        
+        
     }
-
+    
     // Source: codediscussionaddedfeedevent
     public class CodeDiscussionAddedFeedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecordDto CodeDiscussion { get; set; }
-
+        public CodeDiscussionRecordDto CodeDiscussion { get; set; }        
+        
         [Required]
         [JsonPropertyName("codeReview")]
-        public CodeReviewRecordDto CodeReview { get; set; }
-
+        public CodeReviewRecordDto CodeReview { get; set; }        
+        
     }
-
+    
     // Source: codediscussionanchor
     public class CodeDiscussionAnchorDto
     {
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
+        public ProjectKeyDto Project { get; set; }        
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [JsonPropertyName("filename")]
-        public string? Filename { get; set; }
-
+        public string? Filename { get; set; }        
+        
         [JsonPropertyName("line")]
-        public int? Line { get; set; }
-
+        public int? Line { get; set; }        
+        
         [JsonPropertyName("oldLine")]
-        public int? OldLine { get; set; }
-
+        public int? OldLine { get; set; }        
+        
         [JsonPropertyName("interpolatedLineState")]
-        public InterpolatedLineState? InterpolatedLineState { get; set; }
-
+        public InterpolatedLineState? InterpolatedLineState { get; set; }        
+        
     }
-
+    
     // Source: codediscussionrecord
     public class CodeDiscussionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor { get; set; }
-
+        public CodeDiscussionAnchorDto Anchor { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
+        public M2ChannelRecordDto Channel { get; set; }        
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
-
+        public bool Resolved { get; set; }        
+        
         [JsonPropertyName("snippet")]
-        public CodeDiscussionSnippetDto? Snippet { get; set; }
-
+        public CodeDiscussionSnippetDto? Snippet { get; set; }        
+        
         [JsonPropertyName("pending")]
-        public bool? Pending { get; set; }
-
+        public bool? Pending { get; set; }        
+        
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
-
+        public CodeReviewRecordDto? Review { get; set; }        
+        
         [JsonPropertyName("reviews")]
-        public List<CodeReviewRecordDto>? Reviews { get; set; }
-
+        public List<CodeReviewRecordDto>? Reviews { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: codediscussionsnippet
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class CodeDiscussionSnippetDto
@@ -1579,225 +1579,225 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: codediscussionsnippet.inlinediffsnippet
     public class CodeDiscussionSnippetInlineDiffSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("lines")]
-        public List<InlineDiffLineDto> Lines { get; set; }
-
+        public List<InlineDiffLineDto> Lines { get; set; }        
+        
     }
-
+    
     // Source: codediscussionsnippet.plainsnippet
     public class CodeDiscussionSnippetPlainSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("lines")]
-        public List<CodeLineDto> Lines { get; set; }
-
+        public List<CodeLineDto> Lines { get; set; }        
+        
     }
-
+    
     // Source: codeline
     public class CodeLineDto
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [JsonPropertyName("index")]
-        public int? Index { get; set; }
-
+        public int? Index { get; set; }        
+        
         [Required]
         [JsonPropertyName("offset")]
-        public int Offset { get; set; }
-
+        public int Offset { get; set; }        
+        
         [JsonPropertyName("syntax")]
-        public List<SyntaxMarkupDto>? Syntax { get; set; }
-
+        public List<SyntaxMarkupDto>? Syntax { get; set; }        
+        
     }
-
+    
     // Source: codereviewdetailedinfo
     public class CodeReviewDetailedInfoDto
     {
         [Required]
         [JsonPropertyName("shortInfo")]
-        public CodeReviewRecordDto ShortInfo { get; set; }
-
+        public CodeReviewRecordDto ShortInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("commits")]
-        public List<RevisionsInReviewDto> Commits { get; set; }
-
+        public List<RevisionsInReviewDto> Commits { get; set; }        
+        
         [Required]
         [JsonPropertyName("lostCommits")]
-        public List<RevisionsInReviewDto> LostCommits { get; set; }
-
+        public List<RevisionsInReviewDto> LostCommits { get; set; }        
+        
         [Required]
         [JsonPropertyName("discussionCounter")]
-        public CodeReviewDiscussionCounterDto DiscussionCounter { get; set; }
-
+        public CodeReviewDiscussionCounterDto DiscussionCounter { get; set; }        
+        
         [Required]
         [JsonPropertyName("branches")]
-        public List<TrackedBranchesInReviewDto> Branches { get; set; }
-
+        public List<TrackedBranchesInReviewDto> Branches { get; set; }        
+        
     }
-
+    
     // Source: codereviewdiscussionaddedfeedevent
     public class CodeReviewDiscussionAddedFeedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("discussion")]
-        public CodeReviewDiscussionRecordDto Discussion { get; set; }
-
+        public CodeReviewDiscussionRecordDto Discussion { get; set; }        
+        
     }
-
+    
     // Source: codereviewdiscussioncounter
     public class CodeReviewDiscussionCounterDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("counter")]
-        public CounterDto Counter { get; set; }
-
+        public CounterDto Counter { get; set; }        
+        
     }
-
+    
     // Source: codereviewdiscussionrecord
     public class CodeReviewDiscussionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get; set; }
-
+        public CodeReviewRecordDto Review { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
+        public M2ChannelRecordDto Channel { get; set; }        
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
-
+        public bool Resolved { get; set; }        
+        
     }
-
+    
     // Source: codereviewparticipant
     public class CodeReviewParticipantDto
     {
         [Required]
         [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }
-
+        public TDMemberProfileDto User { get; set; }        
+        
         [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }
-
+        public CodeReviewParticipantRole Role { get; set; }        
+        
         [JsonPropertyName("state")]
-        public ReviewerState? State { get; set; }
-
+        public ReviewerState? State { get; set; }        
+        
         [JsonPropertyName("theirTurn")]
-        public bool? TheirTurn { get; set; }
-
+        public bool? TheirTurn { get; set; }        
+        
     }
-
+    
     // Source: codereviewparticipantrecord
     public class CodeReviewParticipantRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }
-
+        public CodeReviewParticipantRole Role { get; set; }        
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [JsonPropertyName("reviewerState")]
-        public ReviewerState? ReviewerState { get; set; }
-
+        public ReviewerState? ReviewerState { get; set; }        
+        
         [JsonPropertyName("theirTurn")]
-        public bool? TheirTurn { get; set; }
-
+        public bool? TheirTurn { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: codereviewparticipants
     public class CodeReviewParticipantsDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto>? Participants { get; set; }
-
+        public List<CodeReviewParticipantDto>? Participants { get; set; }        
+        
         [Required]
         [JsonPropertyName("reviewers")]
-        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
-
+        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }        
+        
         [Required]
         [JsonPropertyName("authors")]
-        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
-
+        public List<CodeReviewParticipantRecordDto> Authors { get; set; }        
+        
         [Required]
         [JsonPropertyName("watchers")]
-        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
-
+        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }        
+        
     }
-
+    
     // Source: codereviewpendingmessagecounter
     public class CodeReviewPendingMessageCounterDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
-
+        public int Count { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: codereviewrecord
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CodeReviewRecordDto
@@ -1805,575 +1805,575 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("counter")]
-        public CounterDto Counter { get; set; }
-
+        public CounterDto Counter { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("authors")]
-        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
-
+        public List<CodeReviewParticipantRecordDto> Authors { get; set; }        
+        
         [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto>? Participants { get; set; }
-
+        public List<CodeReviewParticipantDto>? Participants { get; set; }        
+        
         [Required]
         [JsonPropertyName("reviewers")]
-        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
-
+        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }        
+        
         [Required]
         [JsonPropertyName("watchers")]
-        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
-
+        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }        
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
-
+        public int Count { get; set; }        
+        
     }
-
+    
     // Source: codereviewwithcount
     public class CodeReviewWithCountDto
     {
         [Required]
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get; set; }
-
+        public CodeReviewRecordDto Review { get; set; }        
+        
         [Required]
         [JsonPropertyName("messagesCount")]
-        public int MessagesCount { get; set; }
-
+        public int MessagesCount { get; set; }        
+        
         [Required]
         [JsonPropertyName("authors")]
-        public List<GitCommitterProfileDto> Authors { get; set; }
-
+        public List<GitCommitterProfileDto> Authors { get; set; }        
+        
         [Required]
         [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto Participants { get; set; }
-
+        public CodeReviewParticipantsDto Participants { get; set; }        
+        
     }
-
+    
     // Source: codesnippetanchor
     public class CodeSnippetAnchorDto
     {
         [Required]
         [JsonPropertyName("projectKey")]
-        public ProjectKeyDto ProjectKey { get; set; }
-
+        public ProjectKeyDto ProjectKey { get; set; }        
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [Required]
         [JsonPropertyName("filename")]
-        public string Filename { get; set; }
-
+        public string Filename { get; set; }        
+        
         [JsonPropertyName("lineIndex")]
-        public int? LineIndex { get; set; }
-
+        public int? LineIndex { get; set; }        
+        
         [JsonPropertyName("lineStart")]
-        public int? LineStart { get; set; }
-
+        public int? LineStart { get; set; }        
+        
         [JsonPropertyName("lineEnd")]
-        public int? LineEnd { get; set; }
-
+        public int? LineEnd { get; set; }        
+        
     }
-
+    
     // Source: commitsetreviewrecord
     public class CommitSetReviewRecordDto
          : CodeReviewRecordDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
+        public ProjectKeyDto Project { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("number")]
-        public int Number { get; set; }
-
+        public int Number { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
-
+        public CodeReviewState State { get; set; }        
+        
         [JsonPropertyName("canBeReopened")]
-        public bool? CanBeReopened { get; set; }
-
+        public bool? CanBeReopened { get; set; }        
+        
         [Required]
         [JsonPropertyName("createdAt")]
-        public long CreatedAt { get; set; }
-
+        public long CreatedAt { get; set; }        
+        
         [Required]
         [JsonPropertyName("createdBy")]
-        public TDMemberProfileDto CreatedBy { get; set; }
-
+        public TDMemberProfileDto CreatedBy { get; set; }        
+        
         [JsonPropertyName("turnBased")]
-        public bool? TurnBased { get; set; }
-
+        public bool? TurnBased { get; set; }        
+        
         [Required]
         [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto> Participants { get; set; }
-
+        public List<CodeReviewParticipantDto> Participants { get; set; }        
+        
         [JsonPropertyName("feedChannel")]
-        public M2ChannelRecordDto? FeedChannel { get; set; }
-
+        public M2ChannelRecordDto? FeedChannel { get; set; }        
+        
     }
-
+    
     // Source: commitstatusdto
     public class CommitStatusDTODto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [Required]
         [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus { get; set; }
-
+        public ExecutionStatus ExecutionStatus { get; set; }        
+        
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get; set; }
-
+        public string Url { get; set; }        
+        
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
+        public string ExternalServiceName { get; set; }        
+        
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }
-
+        public string TaskName { get; set; }        
+        
         [Required]
         [JsonPropertyName("taskId")]
-        public string TaskId { get; set; }
-
+        public string TaskId { get; set; }        
+        
         [Required]
         [JsonPropertyName("timestamp")]
-        public long Timestamp { get; set; }
-
+        public long Timestamp { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
     }
-
+    
     // Source: containerpackagetype
     public class ContainerPackageTypeDto
          : PackageTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
     }
-
+    
     // Source: counter
     public class CounterDto
     {
         [Required]
         [JsonPropertyName("resolved")]
-        public int Resolved { get; set; }
-
+        public int Resolved { get; set; }        
+        
         [Required]
         [JsonPropertyName("unresolved")]
-        public int Unresolved { get; set; }
-
+        public int Unresolved { get; set; }        
+        
     }
-
+    
     // Source: customcolumnvalueswithschemadata
     public class CustomColumnValuesWithSchemaDataDto
     {
     }
-
+    
     // Source: customfield
     public class CustomFieldDto
     {
         [Required]
         [JsonPropertyName("extendedType")]
-        public ExtendedTypeDto ExtendedType { get; set; }
-
+        public ExtendedTypeDto ExtendedType { get; set; }        
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
-
+        public string Key { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public CFTypeDto Type { get; set; }
-
+        public CFTypeDto Type { get; set; }        
+        
         [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint { get; set; }
-
+        public CFConstraintDto? Constraint { get; set; }        
+        
         [Required]
         [JsonPropertyName("required")]
-        public bool Required { get; set; }
-
+        public bool Required { get; set; }        
+        
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
+        public bool Private { get; set; }        
+        
         [JsonPropertyName("access")]
-        public AccessType? Access { get; set; }
-
+        public AccessType? Access { get; set; }        
+        
         [Required]
         [JsonPropertyName("defaultValue")]
-        public CFValueDto DefaultValue { get; set; }
-
+        public CFValueDto DefaultValue { get; set; }        
+        
         [Required]
         [JsonPropertyName("order")]
-        public int Order { get; set; }
-
+        public int Order { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: customfieldvalue
     public class CustomFieldValueDto
     {
         [Required]
         [JsonPropertyName("field")]
-        public CustomFieldDto Field { get; set; }
-
+        public CustomFieldDto Field { get; set; }        
+        
         [Required]
         [JsonPropertyName("value")]
-        public CFValueDto Value { get; set; }
-
+        public CFValueDto Value { get; set; }        
+        
     }
-
+    
     // Source: customfieldsrecord
     public class CustomFieldsRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<CustomFieldValueDto> Values { get; set; }
-
+        public List<CustomFieldValueDto> Values { get; set; }        
+        
     }
-
+    
     // Source: dr_draft
     public class DRDraftDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get; set; }
-
+        public DraftDocumentType Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("modified")]
-        public SpaceTime Modified { get; set; }
-
+        public SpaceTime Modified { get; set; }        
+        
         [JsonPropertyName("published")]
-        public ArticleRecordDto? Published { get; set; }
-
+        public ArticleRecordDto? Published { get; set; }        
+        
         [JsonPropertyName("publishedFlag")]
-        public bool? PublishedFlag { get; set; }
-
+        public bool? PublishedFlag { get; set; }        
+        
         [Required]
         [JsonPropertyName("shared")]
-        public bool Shared { get; set; }
-
+        public bool Shared { get; set; }        
+        
         [Required]
         [JsonPropertyName("accessOrdinal")]
-        public int AccessOrdinal { get; set; }
-
+        public int AccessOrdinal { get; set; }        
+        
         [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
-
+        public DraftPublicationDetailsDto? PublicationDetails { get; set; }        
+        
         [JsonPropertyName("author")]
-        public TDMemberProfileDto? Author { get; set; }
-
+        public TDMemberProfileDto? Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("editors")]
-        public List<TDMemberProfileDto> Editors { get; set; }
-
+        public List<TDMemberProfileDto> Editors { get; set; }        
+        
         [Required]
         [JsonPropertyName("editorsTeams")]
-        public List<TDTeamDto> EditorsTeams { get; set; }
-
+        public List<TDTeamDto> EditorsTeams { get; set; }        
+        
         [JsonPropertyName("version")]
-        public long? Version { get; set; }
-
+        public long? Version { get; set; }        
+        
     }
-
+    
     // Source: dr_draftid
     public class DRDraftIdDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
     }
-
+    
     // Source: dto_absencesubscription
     public class DTOAbsenceSubscriptionDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
-
+        public TDLocationDto? Location { get; set; }        
+        
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
+        public TDTeamDto? Team { get; set; }        
+        
         [JsonPropertyName("reason")]
-        public AbsenceReasonRecordDto? Reason { get; set; }
-
+        public AbsenceReasonRecordDto? Reason { get; set; }        
+        
     }
-
+    
     // Source: dto_fullrightwithouttype
     public class DTOFullRightWithoutTypeDto
     {
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }
-
+        public string Code { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [Required]
         [JsonPropertyName("grantedForUsers")]
-        public bool GrantedForUsers { get; set; }
-
+        public bool GrantedForUsers { get; set; }        
+        
         [JsonPropertyName("featureFlag")]
-        public FeatureFlagDto? FeatureFlag { get; set; }
-
+        public FeatureFlagDto? FeatureFlag { get; set; }        
+        
     }
-
+    
     // Source: dto_limit
     public class DTOLimitDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("unit")]
-        public LimitUnit Unit { get; set; }
-
+        public LimitUnit Unit { get; set; }        
+        
         [Required]
         [JsonPropertyName("estimate")]
-        public long Estimate { get; set; }
-
+        public long Estimate { get; set; }        
+        
         [JsonPropertyName("specificEstimate")]
-        public long? SpecificEstimate { get; set; }
-
+        public long? SpecificEstimate { get; set; }        
+        
         [JsonPropertyName("softCap")]
-        public long? SoftCap { get; set; }
-
+        public long? SoftCap { get; set; }        
+        
         [JsonPropertyName("hardCap")]
-        public long? HardCap { get; set; }
-
+        public long? HardCap { get; set; }        
+        
     }
-
+    
     // Source: dto_right
     public class DTORightDto
     {
         [Required]
         [JsonPropertyName("typeCode")]
-        public string TypeCode { get; set; }
-
+        public string TypeCode { get; set; }        
+        
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }
-
+        public string Code { get; set; }        
+        
     }
-
+    
     // Source: dto_righttype
     public class DTORightTypeDto
     {
         [Required]
         [JsonPropertyName("typeCode")]
-        public string TypeCode { get; set; }
-
+        public string TypeCode { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
     }
-
+    
     // Source: dto_righttype_right
     public class DTORightTypeRightDto
     {
         [Required]
         [JsonPropertyName("rightType")]
-        public DTORightTypeDto RightType { get; set; }
-
+        public DTORightTypeDto RightType { get; set; }        
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTOFullRightWithoutTypeDto> Rights { get; set; }
-
+        public List<DTOFullRightWithoutTypeDto> Rights { get; set; }        
+        
     }
-
+    
     // Source: dto_rightsdeps
     public class DTORightsDepsDto
     {
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }
-
+        public string Code { get; set; }        
+        
         [Required]
         [JsonPropertyName("deps")]
-        public List<string> Deps { get; set; }
-
+        public List<string> Deps { get; set; }        
+        
     }
-
+    
     // Source: dto_rightsgroup
     public class DTORightsGroupDto
     {
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("priority")]
-        public int Priority { get; set; }
-
+        public int Priority { get; set; }        
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTORightDto> Rights { get; set; }
-
+        public List<DTORightDto> Rights { get; set; }        
+        
     }
-
+    
     // Source: dto_rightswithhierarchy
     public class DTORightsWithHierarchyDto
     {
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTORightTypeRightDto> Rights { get; set; }
-
+        public List<DTORightTypeRightDto> Rights { get; set; }        
+        
         [Required]
         [JsonPropertyName("rightsGroups")]
-        public List<DTORightsGroupDto> RightsGroups { get; set; }
-
+        public List<DTORightsGroupDto> RightsGroups { get; set; }        
+        
         [Required]
         [JsonPropertyName("deps")]
-        public List<DTORightsDepsDto> Deps { get; set; }
-
+        public List<DTORightsDepsDto> Deps { get; set; }        
+        
     }
-
+    
     // Source: datecfconstraint
     public class DateCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("min")]
-        public SpaceDate? Min { get; set; }
-
+        public SpaceDate? Min { get; set; }        
+        
         [JsonPropertyName("max")]
-        public SpaceDate? Max { get; set; }
-
+        public SpaceDate? Max { get; set; }        
+        
         [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
+        public string? Message { get; set; }        
+        
     }
-
+    
     // Source: datecftype
     public class DateCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: datecfvalue
     public class DateCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("value")]
-        public SpaceDate? Value { get; set; }
-
+        public SpaceDate? Value { get; set; }        
+        
     }
-
+    
     // Source: deletedattachment
     public class DeletedAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("deletedIdentity")]
-        public string DeletedIdentity { get; set; }
-
+        public string DeletedIdentity { get; set; }        
+        
     }
-
+    
     // Source: diffcontext
     public class DiffContextDto
     {
         [JsonPropertyName("left")]
-        public DiffSideDto? Left { get; set; }
-
+        public DiffSideDto? Left { get; set; }        
+        
         [Required]
         [JsonPropertyName("right")]
-        public DiffSideDto Right { get; set; }
-
+        public DiffSideDto Right { get; set; }        
+        
     }
-
+    
     // Source: diffside
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class DiffSideDto
@@ -2381,214 +2381,214 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: diffside.empty
     public class DiffSideEmptyDto
          : DiffSideDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
     }
-
+    
     // Source: diffside.nonempty
     public class DiffSideNonEmptyDto
          : DiffSideDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [Required]
         [JsonPropertyName("path")]
-        public string Path { get; set; }
-
+        public string Path { get; set; }        
+        
     }
-
+    
     // Source: documentpublicationitem
     public class DocumentPublicationItemDto
          : PublicationItemDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("documentId")]
-        public string DocumentId { get; set; }
-
+        public string DocumentId { get; set; }        
+        
         [Required]
         [JsonPropertyName("documentType")]
-        public DraftDocumentType DocumentType { get; set; }
-
+        public DraftDocumentType DocumentType { get; set; }        
+        
     }
-
+    
     // Source: draftpublicationdetails
     public class DraftPublicationDetailsDto
     {
         [JsonPropertyName("usedType")]
-        public string? UsedType { get; set; }
-
+        public string? UsedType { get; set; }        
+        
         [JsonPropertyName("allPublicationDetails")]
-        public List<PublicationDetailsDto>? AllPublicationDetails { get; set; }
-
+        public List<PublicationDetailsDto>? AllPublicationDetails { get; set; }        
+        
     }
-
+    
     // Source: emavenrepositorysettings
     public class EMavenRepositorySettingsDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public long Id { get; set; }
-
+        public long Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("permissions")]
-        public List<string> Permissions { get; set; }
-
+        public List<string> Permissions { get; set; }        
+        
     }
-
+    
     // Source: emavensettings
     public class EMavenSettingsDto
     {
         [Required]
         [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }
-
+        public long OrganizationId { get; set; }        
+        
         [Required]
         [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }
-
+        public string PrincipalName { get; set; }        
+        
         [Required]
         [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }
-
+        public string PrincipalInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("repositories")]
-        public List<MapEntry<string, EMavenRepositorySettingsDto>> Repositories { get; set; }
-
+        public List<MapEntry<string, EMavenRepositorySettingsDto>> Repositories { get; set; }        
+        
         [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }
-
+        public DTOLimitDto? StorageLimit { get; set; }        
+        
         [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }
-
+        public DTOLimitDto? DownloadLimit { get; set; }        
+        
         [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }
-
+        public DTOLimitDto? UploadLimit { get; set; }        
+        
     }
-
+    
     // Source: eregistrysettings
     public class ERegistrySettingsDto
     {
         [Required]
         [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }
-
+        public long OrganizationId { get; set; }        
+        
         [Required]
         [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }
-
+        public string PrincipalName { get; set; }        
+        
         [Required]
         [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }
-
+        public string PrincipalInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("repositories")]
-        public List<MapEntry<string, ERepositorySettingsDto>> Repositories { get; set; }
-
+        public List<MapEntry<string, ERepositorySettingsDto>> Repositories { get; set; }        
+        
         [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }
-
+        public DTOLimitDto? StorageLimit { get; set; }        
+        
         [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }
-
+        public DTOLimitDto? DownloadLimit { get; set; }        
+        
         [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }
-
+        public DTOLimitDto? UploadLimit { get; set; }        
+        
     }
-
+    
     // Source: erepositorysettings
     public class ERepositorySettingsDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public long Id { get; set; }
-
+        public long Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("immutableTags")]
-        public bool ImmutableTags { get; set; }
-
+        public bool ImmutableTags { get; set; }        
+        
         [Required]
         [JsonPropertyName("permissions")]
-        public List<string> Permissions { get; set; }
-
+        public List<string> Permissions { get; set; }        
+        
     }
-
+    
     // Source: es_approvedscope
     public class ESApprovedScopeDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }
-
+        public string Scope { get; set; }        
+        
         [Required]
         [JsonPropertyName("offlineAllowed")]
-        public bool OfflineAllowed { get; set; }
-
+        public bool OfflineAllowed { get; set; }        
+        
     }
-
+    
     // Source: es_authmodule
     public class ESAuthModuleDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
-
+        public string Key { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("ordinal")]
-        public int Ordinal { get; set; }
-
+        public int Ordinal { get; set; }        
+        
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }
-
+        public bool Enabled { get; set; }        
+        
         [JsonPropertyName("iconDataURI")]
-        public string? IconDataURI { get; set; }
-
+        public string? IconDataURI { get; set; }        
+        
         [Required]
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto Settings { get; set; }
-
+        public ESAuthModuleSettingsDto Settings { get; set; }        
+        
     }
-
+    
     // Source: es_authmodulesettings
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class ESAuthModuleSettingsDto
@@ -2596,428 +2596,428 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_authenticationsession
     public class ESAuthenticationSessionDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("expires")]
-        public SpaceTime Expires { get; set; }
-
+        public SpaceTime Expires { get; set; }        
+        
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }
-
+        public AccessRecordDto? LastAccess { get; set; }        
+        
         [Required]
         [JsonPropertyName("current")]
-        public bool Current { get; set; }
-
+        public bool Current { get; set; }        
+        
     }
-
+    
     // Source: es_azureauthmodulesettings
     public class ESAzureAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("tenantId")]
-        public string TenantId { get; set; }
-
+        public string TenantId { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
-
+        public string ClientId { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
-
+        public string ClientSecret { get; set; }        
+        
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
-
+        public bool RegisterNewUsers { get; set; }        
+        
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
+        public bool EmailVerified { get; set; }        
+        
     }
-
+    
     // Source: es_builtinauthmodulesettings
     public class ESBuiltinAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("passwordStrengthPolicy")]
-        public PasswordStrength PasswordStrengthPolicy { get; set; }
-
+        public PasswordStrength PasswordStrengthPolicy { get; set; }        
+        
         [JsonPropertyName("domains")]
-        public List<string>? Domains { get; set; }
-
+        public List<string>? Domains { get; set; }        
+        
     }
-
+    
     // Source: es_builtinprofilelogindetails
     public class ESBuiltinProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("passwordName")]
-        public string? PasswordName { get; set; }
-
+        public string? PasswordName { get; set; }        
+        
         [JsonPropertyName("passwordChangeRequest")]
-        public string? PasswordChangeRequest { get; set; }
-
+        public string? PasswordChangeRequest { get; set; }        
+        
     }
-
+    
     // Source: es_containerregistrysettings
     public class ESContainerRegistrySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("immutableTags")]
-        public bool ImmutableTags { get; set; }
-
+        public bool ImmutableTags { get; set; }        
+        
     }
-
+    
     // Source: es_defaultprofilelogindetails
     public class ESDefaultProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("login")]
-        public string? Login { get; set; }
-
+        public string? Login { get; set; }        
+        
         [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
+        public string? FirstName { get; set; }        
+        
         [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
+        public string? LastName { get; set; }        
+        
         [JsonPropertyName("email")]
-        public string? Email { get; set; }
-
+        public string? Email { get; set; }        
+        
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
+        public bool EmailVerified { get; set; }        
+        
         [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }
-
+        public string? AvatarUrl { get; set; }        
+        
     }
-
+    
     // Source: es_externalpasswordauthmodulesettings
     public abstract class ESExternalPasswordAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_federatedauthmodulesettings
     public abstract class ESFederatedAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_githubauthmodulesettings
     public class ESGithubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("githubUrl")]
-        public string GithubUrl { get; set; }
-
+        public string GithubUrl { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
-
+        public string ClientId { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
-
+        public string ClientSecret { get; set; }        
+        
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
-
+        public bool RegisterNewUsers { get; set; }        
+        
         [Required]
         [JsonPropertyName("organizations")]
-        public List<string> Organizations { get; set; }
-
+        public List<string> Organizations { get; set; }        
+        
     }
-
+    
     // Source: es_githubprofilelogindetails
     public class ESGithubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("login")]
-        public string? Login { get; set; }
-
+        public string? Login { get; set; }        
+        
         [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
+        public string? FirstName { get; set; }        
+        
         [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
+        public string? LastName { get; set; }        
+        
         [JsonPropertyName("email")]
-        public string? Email { get; set; }
-
+        public string? Email { get; set; }        
+        
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
+        public bool EmailVerified { get; set; }        
+        
         [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }
-
+        public string? AvatarUrl { get; set; }        
+        
         [JsonPropertyName("organizations")]
-        public List<string>? Organizations { get; set; }
-
+        public List<string>? Organizations { get; set; }        
+        
     }
-
+    
     // Source: es_googleauthmodulesettings
     public class ESGoogleAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
-
+        public string ClientId { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
-
+        public string ClientSecret { get; set; }        
+        
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
-
+        public bool RegisterNewUsers { get; set; }        
+        
         [Required]
         [JsonPropertyName("domains")]
-        public List<string> Domains { get; set; }
-
+        public List<string> Domains { get; set; }        
+        
     }
-
+    
     // Source: es_hiddenauthmodulesettings
     public class ESHiddenAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_hubauthmodulesettings
     public class ESHubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("hubUrl")]
-        public string HubUrl { get; set; }
-
+        public string HubUrl { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
-
+        public string ClientId { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
-
+        public string ClientSecret { get; set; }        
+        
         [JsonPropertyName("registerNewUsers")]
-        public bool? RegisterNewUsers { get; set; }
-
+        public bool? RegisterNewUsers { get; set; }        
+        
         [JsonPropertyName("orgAuthProviderName")]
-        public string? OrgAuthProviderName { get; set; }
-
+        public string? OrgAuthProviderName { get; set; }        
+        
         [JsonPropertyName("groups")]
-        public List<string>? Groups { get; set; }
-
+        public List<string>? Groups { get; set; }        
+        
     }
-
+    
     // Source: es_hubprofilelogindetails
     public class ESHubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("login")]
-        public string? Login { get; set; }
-
+        public string? Login { get; set; }        
+        
         [JsonPropertyName("hubAuthModuleLogin")]
-        public string? HubAuthModuleLogin { get; set; }
-
+        public string? HubAuthModuleLogin { get; set; }        
+        
         [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
+        public string? FirstName { get; set; }        
+        
         [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
+        public string? LastName { get; set; }        
+        
         [JsonPropertyName("email")]
-        public string? Email { get; set; }
-
+        public string? Email { get; set; }        
+        
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
+        public bool EmailVerified { get; set; }        
+        
         [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }
-
+        public string? AvatarUrl { get; set; }        
+        
     }
-
+    
     // Source: es_ldapattributenames
     public class ESLdapAttributeNamesDto
     {
         [JsonPropertyName("fullNameAttributeName")]
-        public string? FullNameAttributeName { get; set; }
-
+        public string? FullNameAttributeName { get; set; }        
+        
         [JsonPropertyName("usernameAttributeName")]
-        public string? UsernameAttributeName { get; set; }
-
+        public string? UsernameAttributeName { get; set; }        
+        
         [JsonPropertyName("emailAttributeName")]
-        public string? EmailAttributeName { get; set; }
-
+        public string? EmailAttributeName { get; set; }        
+        
         [JsonPropertyName("groupsAttributeName")]
-        public string? GroupsAttributeName { get; set; }
-
+        public string? GroupsAttributeName { get; set; }        
+        
     }
-
+    
     // Source: es_ldapauthmodulesettings
     public class ESLdapAuthModuleSettingsDto
          : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("type")]
-        public LdapModuleType Type { get; set; }
-
+        public LdapModuleType Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
-
+        public bool RegisterNewUsers { get; set; }        
+        
         [Required]
         [JsonPropertyName("serverUrl")]
-        public string ServerUrl { get; set; }
-
+        public string ServerUrl { get; set; }        
+        
         [Required]
         [JsonPropertyName("connectionTimeout")]
-        public int ConnectionTimeout { get; set; }
-
+        public int ConnectionTimeout { get; set; }        
+        
         [Required]
         [JsonPropertyName("readTimeout")]
-        public int ReadTimeout { get; set; }
-
+        public int ReadTimeout { get; set; }        
+        
         [JsonPropertyName("sslKeystore")]
-        public SSLKeystoreDto? SslKeystore { get; set; }
-
+        public SSLKeystoreDto? SslKeystore { get; set; }        
+        
         [Required]
         [JsonPropertyName("teamMappings")]
-        public List<ESTeamMappingDto> TeamMappings { get; set; }
-
+        public List<ESTeamMappingDto> TeamMappings { get; set; }        
+        
         [Required]
         [JsonPropertyName("referralIgnored")]
-        public bool ReferralIgnored { get; set; }
-
+        public bool ReferralIgnored { get; set; }        
+        
         [Required]
         [JsonPropertyName("filter")]
-        public string Filter { get; set; }
-
+        public string Filter { get; set; }        
+        
         [Required]
         [JsonPropertyName("bindUserDN")]
-        public string BindUserDN { get; set; }
-
+        public string BindUserDN { get; set; }        
+        
         [Required]
         [JsonPropertyName("bindUserPassword")]
-        public string BindUserPassword { get; set; }
-
+        public string BindUserPassword { get; set; }        
+        
         [Required]
         [JsonPropertyName("attributeNames")]
-        public ESLdapAttributeNamesDto AttributeNames { get; set; }
-
+        public ESLdapAttributeNamesDto AttributeNames { get; set; }        
+        
     }
-
+    
     // Source: es_mavenrepositorysettings
     public class ESMavenRepositorySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_nugetfeedsettings
     public class ESNuGetFeedSettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_oauth2authmodulesettings
     public abstract class ESOAuth2AuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_oauthconsent
     public class ESOAuthConsentDto
     {
         [Required]
         [JsonPropertyName("clientService")]
-        public ESServiceDto ClientService { get; set; }
-
+        public ESServiceDto ClientService { get; set; }        
+        
         [Required]
         [JsonPropertyName("approvedScopes")]
-        public List<ESApprovedScopeDto> ApprovedScopes { get; set; }
-
+        public List<ESApprovedScopeDto> ApprovedScopes { get; set; }        
+        
         [Required]
         [JsonPropertyName("refreshTokens")]
-        public List<ESRefreshTokenDto> RefreshTokens { get; set; }
-
+        public List<ESRefreshTokenDto> RefreshTokens { get; set; }        
+        
     }
-
+    
     // Source: es_packagerepositorysettings
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class ESPackageRepositorySettingsDto
@@ -3025,66 +3025,66 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_passwordauthmodulesettings
     public abstract class ESPasswordAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_permanenttoken
     public class ESPermanentTokenDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }
-
+        public string Scope { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }
-
+        public AccessRecordDto? LastAccess { get; set; }        
+        
     }
-
+    
     // Source: es_profilelogin
     public class ESProfileLoginDto
     {
         [Required]
         [JsonPropertyName("identifier")]
-        public string Identifier { get; set; }
-
+        public string Identifier { get; set; }        
+        
         [Required]
         [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get; set; }
-
+        public ESAuthModuleDto AuthModule { get; set; }        
+        
         [Required]
         [JsonPropertyName("details")]
-        public ESProfileLoginDetailsDto Details { get; set; }
-
+        public ESProfileLoginDetailsDto Details { get; set; }        
+        
         [JsonPropertyName("access")]
-        public AccessRecordDto? Access { get; set; }
-
+        public AccessRecordDto? Access { get; set; }        
+        
     }
-
+    
     // Source: es_profilelogindetails
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class ESProfileLoginDetailsDto
@@ -3092,982 +3092,982 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: es_refreshtoken
     public class ESRefreshTokenDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }
-
+        public string Scope { get; set; }        
+        
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }
-
+        public AccessRecordDto? LastAccess { get; set; }        
+        
     }
-
+    
     // Source: es_samlattributenames
     public class ESSamlAttributeNamesDto
     {
         [JsonPropertyName("loginAttributeName")]
-        public string? LoginAttributeName { get; set; }
-
+        public string? LoginAttributeName { get; set; }        
+        
         [JsonPropertyName("firstNameAttributeName")]
-        public string? FirstNameAttributeName { get; set; }
-
+        public string? FirstNameAttributeName { get; set; }        
+        
         [JsonPropertyName("lastNameAttributeName")]
-        public string? LastNameAttributeName { get; set; }
-
+        public string? LastNameAttributeName { get; set; }        
+        
         [JsonPropertyName("fullNameAttributeName")]
-        public string? FullNameAttributeName { get; set; }
-
+        public string? FullNameAttributeName { get; set; }        
+        
         [JsonPropertyName("emailAttributeName")]
-        public string? EmailAttributeName { get; set; }
-
+        public string? EmailAttributeName { get; set; }        
+        
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
-
+        public bool EmailVerified { get; set; }        
+        
     }
-
+    
     // Source: es_samlauthmodulesettings
     public class ESSamlAuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("idpUrl")]
-        public string IdpUrl { get; set; }
-
+        public string IdpUrl { get; set; }        
+        
         [Required]
         [JsonPropertyName("idpEntityId")]
-        public string IdpEntityId { get; set; }
-
+        public string IdpEntityId { get; set; }        
+        
         [Required]
         [JsonPropertyName("idpCertificateSHA256")]
-        public string IdpCertificateSHA256 { get; set; }
-
+        public string IdpCertificateSHA256 { get; set; }        
+        
         [Required]
         [JsonPropertyName("spEntityId")]
-        public string SpEntityId { get; set; }
-
+        public string SpEntityId { get; set; }        
+        
         [JsonPropertyName("sslKeystore")]
-        public SSLKeystoreDto? SslKeystore { get; set; }
-
+        public SSLKeystoreDto? SslKeystore { get; set; }        
+        
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
-
+        public bool RegisterNewUsers { get; set; }        
+        
         [JsonPropertyName("contactProfileId")]
-        public string? ContactProfileId { get; set; }
-
+        public string? ContactProfileId { get; set; }        
+        
         [Required]
         [JsonPropertyName("attributeNames")]
-        public ESSamlAttributeNamesDto AttributeNames { get; set; }
-
+        public ESSamlAttributeNamesDto AttributeNames { get; set; }        
+        
     }
-
+    
     // Source: es_service
     public class ESServiceDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }
-
+        public TDMemberProfileDto? Owner { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public OAuthServiceType Type { get; set; }
-
+        public OAuthServiceType Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
-
+        public string ClientId { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("redirectURIs")]
-        public string RedirectURIs { get; set; }
-
+        public string RedirectURIs { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [JsonPropertyName("lastClientCredentialsAccess")]
-        public AccessRecordDto? LastClientCredentialsAccess { get; set; }
-
+        public AccessRecordDto? LastClientCredentialsAccess { get; set; }        
+        
     }
-
+    
     // Source: es_teammapping
     public class ESTeamMappingDto
     {
         [Required]
         [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
-
+        public string TeamId { get; set; }        
+        
         [Required]
         [JsonPropertyName("externalGroupName")]
-        public string ExternalGroupName { get; set; }
-
+        public string ExternalGroupName { get; set; }        
+        
     }
-
+    
     // Source: ebssnapshotapi
     public class EbsSnapshotApiDto
     {
         [Required]
         [JsonPropertyName("snapshotId")]
-        public string SnapshotId { get; set; }
-
+        public string SnapshotId { get; set; }        
+        
         [Required]
         [JsonPropertyName("snapshotState")]
-        public SnapshotState SnapshotState { get; set; }
-
+        public SnapshotState SnapshotState { get; set; }        
+        
         [Required]
         [JsonPropertyName("execution")]
-        public long Execution { get; set; }
-
+        public long Execution { get; set; }        
+        
     }
-
+    
     // Source: ebsvolumeapi
     public class EbsVolumeApiDto
     {
         [Required]
         [JsonPropertyName("volumeId")]
-        public string VolumeId { get; set; }
-
+        public string VolumeId { get; set; }        
+        
         [Required]
         [JsonPropertyName("volumeName")]
-        public string VolumeName { get; set; }
-
+        public string VolumeName { get; set; }        
+        
         [Required]
         [JsonPropertyName("volumeState")]
-        public VolumeState VolumeState { get; set; }
-
+        public VolumeState VolumeState { get; set; }        
+        
         [Required]
         [JsonPropertyName("execution")]
-        public long Execution { get; set; }
-
+        public long Execution { get; set; }        
+        
     }
-
+    
     // Source: ecstaskcontainerinfo
     public class EcsTaskContainerInfoDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("lastStatus")]
-        public string? LastStatus { get; set; }
-
+        public string? LastStatus { get; set; }        
+        
         [JsonPropertyName("exitCode")]
-        public int? ExitCode { get; set; }
-
+        public int? ExitCode { get; set; }        
+        
         [JsonPropertyName("reason")]
-        public string? Reason { get; set; }
-
+        public string? Reason { get; set; }        
+        
     }
-
+    
     // Source: ecstaskinfoapi
     public class EcsTaskInfoApiDto
     {
         [Required]
         [JsonPropertyName("taskArn")]
-        public string TaskArn { get; set; }
-
+        public string TaskArn { get; set; }        
+        
         [Required]
         [JsonPropertyName("containers")]
-        public List<EcsTaskContainerInfoDto> Containers { get; set; }
-
+        public List<EcsTaskContainerInfoDto> Containers { get; set; }        
+        
         [Required]
         [JsonPropertyName("desiredStatus")]
-        public DesiredStatus DesiredStatus { get; set; }
-
+        public DesiredStatus DesiredStatus { get; set; }        
+        
         [Required]
         [JsonPropertyName("lastStatus")]
-        public DesiredStatus LastStatus { get; set; }
-
+        public DesiredStatus LastStatus { get; set; }        
+        
         [JsonPropertyName("pullStartedAt")]
-        public long? PullStartedAt { get; set; }
-
+        public long? PullStartedAt { get; set; }        
+        
         [JsonPropertyName("stoppedAt")]
-        public long? StoppedAt { get; set; }
-
+        public long? StoppedAt { get; set; }        
+        
         [Required]
         [JsonPropertyName("execution")]
-        public long Execution { get; set; }
-
+        public long Execution { get; set; }        
+        
     }
-
+    
     // Source: emojireactionrecord
     public class EmojiReactionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }
-
+        public string ItemId { get; set; }        
+        
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
-
+        public string Emoji { get; set; }        
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
-
+        public int Count { get; set; }        
+        
         [Required]
         [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }
-
+        public bool MeReacted { get; set; }        
+        
         [Required]
         [JsonPropertyName("order")]
-        public long Order { get; set; }
-
+        public long Order { get; set; }        
+        
     }
-
+    
     // Source: enumcftype
     public class EnumCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<EnumValueDataDto> Values { get; set; }
-
+        public List<EnumValueDataDto> Values { get; set; }        
+        
     }
-
+    
     // Source: enumcfvalue
     public class EnumCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("value")]
-        public EnumValueDataDto? Value { get; set; }
-
+        public EnumValueDataDto? Value { get; set; }        
+        
     }
-
+    
     // Source: enumlistcftype
     public class EnumListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<EnumValueDataDto> Values { get; set; }
-
+        public List<EnumValueDataDto> Values { get; set; }        
+        
     }
-
+    
     // Source: enumlistcfvalue
     public class EnumListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<EnumValueDataDto> Values { get; set; }
-
+        public List<EnumValueDataDto> Values { get; set; }        
+        
     }
-
+    
     // Source: enumvaluedata
     public class EnumValueDataDto
     {
         [JsonPropertyName("id")]
-        public string? Id { get; set; }
-
+        public string? Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }
-
+        public string Value { get; set; }        
+        
     }
-
+    
     // Source: extendedtype
     public class ExtendedTypeDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
-
+        public string Key { get; set; }        
+        
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
-
+        public string DisplayName { get; set; }        
+        
     }
-
+    
     // Source: fts_blog
     public class FTSBlogDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }
-
+        public TDMemberProfileDto Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }
-
+        public SpaceTime Date { get; set; }        
+        
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }
-
+        public List<FTSSnippetDto> Snippets { get; set; }        
+        
         [JsonPropertyName("comments")]
-        public List<FTSBlogCommentDto>? Comments { get; set; }
-
+        public List<FTSBlogCommentDto>? Comments { get; set; }        
+        
     }
-
+    
     // Source: fts_blogcomment
     public class FTSBlogCommentDto
     {
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }
-
+        public TDMemberProfileDto Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }
-
+        public SpaceTime Date { get; set; }        
+        
         [Required]
         [JsonPropertyName("snippets")]
-        public List<string> Snippets { get; set; }
-
+        public List<string> Snippets { get; set; }        
+        
     }
-
+    
     // Source: fts_draft
     public class FTSDraftDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }
-
+        public TDMemberProfileDto Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }
-
+        public SpaceTime Date { get; set; }        
+        
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }
-
+        public List<FTSSnippetDto> Snippets { get; set; }        
+        
     }
-
+    
     // Source: fts_profile
     public class FTSProfileDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public FTSUserDto Profile { get; set; }
-
+        public FTSUserDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }
-
+        public List<FTSSnippetDto> Snippets { get; set; }        
+        
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
+        public TDMemberProfileDto Member { get; set; }        
+        
     }
-
+    
     // Source: fts_snippet
     public class FTSSnippetDto
     {
         [Required]
         [JsonPropertyName("field")]
-        public string Field { get; set; }
-
+        public string Field { get; set; }        
+        
         [Required]
         [JsonPropertyName("snippet")]
-        public List<string> Snippet { get; set; }
-
+        public List<string> Snippet { get; set; }        
+        
     }
-
+    
     // Source: fts_team
     public class FTSTeamDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }
-
+        public List<FTSSnippetDto> Snippets { get; set; }        
+        
     }
-
+    
     // Source: fts_user
     public class FTSUserDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }
-
+        public string Username { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public TDProfileNameDto Name { get; set; }
-
+        public TDProfileNameDto Name { get; set; }        
+        
         [JsonPropertyName("avatar")]
-        public string? Avatar { get; set; }
-
+        public string? Avatar { get; set; }        
+        
         [Required]
         [JsonPropertyName("languages")]
-        public List<TDProfileNameDto> Languages { get; set; }
-
+        public List<TDProfileNameDto> Languages { get; set; }        
+        
         [JsonPropertyName("notAMember")]
-        public bool? NotAMember { get; set; }
-
+        public bool? NotAMember { get; set; }        
+        
     }
-
+    
     // Source: featureflag
     public class FeatureFlagDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
-
+        public string Description { get; set; }        
+        
     }
-
+    
     // Source: feedevent
     public interface FeedEventDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: fileattachment
     public class FileAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("sizeBytes")]
-        public long SizeBytes { get; set; }
-
+        public long SizeBytes { get; set; }        
+        
         [Required]
         [JsonPropertyName("filename")]
-        public string Filename { get; set; }
-
+        public string Filename { get; set; }        
+        
     }
-
+    
     // Source: filewithcount
     public class FileWithCountDto
     {
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("count")]
-        public CounterDto Count { get; set; }
-
+        public CounterDto Count { get; set; }        
+        
     }
-
+    
     // Source: fingerprint
     public class FingerprintDto
     {
         [Required]
         [JsonPropertyName("md5")]
-        public string Md5 { get; set; }
-
+        public string Md5 { get; set; }        
+        
         [Required]
         [JsonPropertyName("sha1")]
-        public string Sha1 { get; set; }
-
+        public string Sha1 { get; set; }        
+        
         [Required]
         [JsonPropertyName("sha256")]
-        public string Sha256 { get; set; }
-
+        public string Sha256 { get; set; }        
+        
         [Required]
         [JsonPropertyName("sha384")]
-        public string Sha384 { get; set; }
-
+        public string Sha384 { get; set; }        
+        
         [Required]
         [JsonPropertyName("sha512")]
-        public string Sha512 { get; set; }
-
+        public string Sha512 { get; set; }        
+        
     }
-
+    
     // Source: fraction
     public class FractionDto
     {
         [Required]
         [JsonPropertyName("numerator")]
-        public int Numerator { get; set; }
-
+        public int Numerator { get; set; }        
+        
         [Required]
         [JsonPropertyName("denominator")]
-        public int Denominator { get; set; }
-
+        public int Denominator { get; set; }        
+        
     }
-
+    
     // Source: fractioncftype
     public class FractionCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: fractioncfvalue
     public class FractionCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("value")]
-        public FractionDto? Value { get; set; }
-
+        public FractionDto? Value { get; set; }        
+        
     }
-
+    
     // Source: gitauthorinfo
     public class GitAuthorInfoDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }
-
+        public string Email { get; set; }        
+        
     }
-
+    
     // Source: gitcommitchange
     public class GitCommitChangeDto
     {
         [Required]
         [JsonPropertyName("changeType")]
-        public GitCommitChangeType ChangeType { get; set; }
-
+        public GitCommitChangeType ChangeType { get; set; }        
+        
         [JsonPropertyName("old")]
-        public GitFileDto? Old { get; set; }
-
+        public GitFileDto? Old { get; set; }        
+        
         [JsonPropertyName("new")]
-        public GitFileDto? New { get; set; }
-
+        public GitFileDto? New { get; set; }        
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [JsonPropertyName("diffSize")]
-        public GitDiffSizeDto? DiffSize { get; set; }
-
+        public GitDiffSizeDto? DiffSize { get; set; }        
+        
     }
-
+    
     // Source: gitcommitinfo
     public class GitCommitInfoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }
-
+        public string Message { get; set; }        
+        
         [Required]
         [JsonPropertyName("authorDate")]
-        public long AuthorDate { get; set; }
-
+        public long AuthorDate { get; set; }        
+        
         [Required]
         [JsonPropertyName("commitDate")]
-        public long CommitDate { get; set; }
-
+        public long CommitDate { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public GitAuthorInfoDto Author { get; set; }
-
+        public GitAuthorInfoDto Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("committer")]
-        public GitAuthorInfoDto Committer { get; set; }
-
+        public GitAuthorInfoDto Committer { get; set; }        
+        
         [JsonPropertyName("authorProfile")]
-        public TDMemberProfileDto? AuthorProfile { get; set; }
-
+        public TDMemberProfileDto? AuthorProfile { get; set; }        
+        
         [Required]
         [JsonPropertyName("parents")]
-        public List<string> Parents { get; set; }
-
+        public List<string> Parents { get; set; }        
+        
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
-
+        public List<string> Tags { get; set; }        
+        
         [Required]
         [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get; set; }
-
+        public List<BranchInfoDto> Branches { get; set; }        
+        
         [Required]
         [JsonPropertyName("heads")]
-        public List<string> Heads { get; set; }
-
+        public List<string> Heads { get; set; }        
+        
     }
-
+    
     // Source: gitcommitwithgraph
     public class GitCommitWithGraphDto
     {
         [Required]
         [JsonPropertyName("repositoryName")]
-        public string RepositoryName { get; set; }
-
+        public string RepositoryName { get; set; }        
+        
         [Required]
         [JsonPropertyName("commit")]
-        public GitCommitInfoDto Commit { get; set; }
-
+        public GitCommitInfoDto Commit { get; set; }        
+        
         [Required]
         [JsonPropertyName("reviews")]
-        public List<CodeReviewRecordDto> Reviews { get; set; }
-
+        public List<CodeReviewRecordDto> Reviews { get; set; }        
+        
         [JsonPropertyName("layout")]
-        public GitGraphLayoutLineDto? Layout { get; set; }
-
+        public GitGraphLayoutLineDto? Layout { get; set; }        
+        
     }
-
+    
     // Source: gitcommitterprofile
     public class GitCommitterProfileDto
     {
         [Required]
         [JsonPropertyName("author")]
-        public string Author { get; set; }
-
+        public string Author { get; set; }        
+        
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }
-
+        public string Email { get; set; }        
+        
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }
-
+        public TDMemberProfileDto? Profile { get; set; }        
+        
     }
-
+    
     // Source: gitdiffsize
     public class GitDiffSizeDto
     {
         [Required]
         [JsonPropertyName("added")]
-        public int Added { get; set; }
-
+        public int Added { get; set; }        
+        
         [Required]
         [JsonPropertyName("deleted")]
-        public int Deleted { get; set; }
-
+        public int Deleted { get; set; }        
+        
     }
-
+    
     // Source: gitfile
     public class GitFileDto
     {
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
+        public string Commit { get; set; }        
+        
         [Required]
         [JsonPropertyName("path")]
-        public string Path { get; set; }
-
+        public string Path { get; set; }        
+        
         [Required]
         [JsonPropertyName("blob")]
-        public string Blob { get; set; }
-
+        public string Blob { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public GitEntryType Type { get; set; }
-
+        public GitEntryType Type { get; set; }        
+        
     }
-
+    
     // Source: gitgraphlayoutedge
     public class GitGraphLayoutEdgeDto
     {
         [Required]
         [JsonPropertyName("from")]
-        public int From { get; set; }
-
+        public int From { get; set; }        
+        
         [Required]
         [JsonPropertyName("to")]
-        public int To { get; set; }
-
+        public int To { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public GitGraphEdgeType Type { get; set; }
-
+        public GitGraphEdgeType Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("style")]
-        public GitGraphEdgeLineStyle Style { get; set; }
-
+        public GitGraphEdgeLineStyle Style { get; set; }        
+        
         [Required]
         [JsonPropertyName("hasArrow")]
-        public bool HasArrow { get; set; }
-
+        public bool HasArrow { get; set; }        
+        
         [Required]
         [JsonPropertyName("color")]
-        public int Color { get; set; }
-
+        public int Color { get; set; }        
+        
     }
-
+    
     // Source: gitgraphlayoutline
     public class GitGraphLayoutLineDto
     {
         [Required]
         [JsonPropertyName("nodes")]
-        public List<GitGraphLayoutNodeDto> Nodes { get; set; }
-
+        public List<GitGraphLayoutNodeDto> Nodes { get; set; }        
+        
         [Required]
         [JsonPropertyName("edges")]
-        public List<GitGraphLayoutEdgeDto> Edges { get; set; }
-
+        public List<GitGraphLayoutEdgeDto> Edges { get; set; }        
+        
     }
-
+    
     // Source: gitgraphlayoutnode
     public class GitGraphLayoutNodeDto
     {
         [Required]
         [JsonPropertyName("pos")]
-        public int Pos { get; set; }
-
+        public int Pos { get; set; }        
+        
         [Required]
         [JsonPropertyName("color")]
-        public int Color { get; set; }
-
+        public int Color { get; set; }        
+        
     }
-
+    
     // Source: ha_deprecation
     public class HADeprecationDto
     {
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }
-
+        public string Message { get; set; }        
+        
         [Required]
         [JsonPropertyName("since")]
-        public string Since { get; set; }
-
+        public string Since { get; set; }        
+        
         [Required]
         [JsonPropertyName("forRemoval")]
-        public bool ForRemoval { get; set; }
-
+        public bool ForRemoval { get; set; }        
+        
     }
-
+    
     // Source: ha_dto
     public class HADtoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("fields")]
-        public List<HADtoFieldDto> Fields { get; set; }
-
+        public List<HADtoFieldDto> Fields { get; set; }        
+        
         [Required]
         [JsonPropertyName("hierarchyRole")]
-        public HierarchyRole HierarchyRole { get; set; }
-
+        public HierarchyRole HierarchyRole { get; set; }        
+        
         [JsonPropertyName("extends")]
-        public HADtoDto? Extends { get; set; }
-
+        public HADtoDto? Extends { get; set; }        
+        
         [Required]
         [JsonPropertyName("implements")]
-        public List<HADtoDto> Implements { get; set; }
-
+        public List<HADtoDto> Implements { get; set; }        
+        
         [Required]
         [JsonPropertyName("inheritors")]
-        public List<HADtoDto> Inheritors { get; set; }
-
+        public List<HADtoDto> Inheritors { get; set; }        
+        
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
+        public HADeprecationDto? Deprecation { get; set; }        
+        
         [Required]
         [JsonPropertyName("record")]
-        public bool Record { get; set; }
-
+        public bool Record { get; set; }        
+        
     }
-
+    
     // Source: ha_dtofield
     public class HADtoFieldDto
     {
         [Required]
         [JsonPropertyName("field")]
-        public HAFieldDto Field { get; set; }
-
+        public HAFieldDto Field { get; set; }        
+        
         [Required]
         [JsonPropertyName("extension")]
-        public bool Extension { get; set; }
-
+        public bool Extension { get; set; }        
+        
     }
-
+    
     // Source: ha_endpoint
     public class HAEndpointDto
     {
         [Required]
         [JsonPropertyName("resource")]
-        public HAResourceDto Resource { get; set; }
-
+        public HAResourceDto Resource { get; set; }        
+        
         [Required]
         [JsonPropertyName("method")]
-        public HAMethod Method { get; set; }
-
+        public HAMethod Method { get; set; }        
+        
         [Required]
         [JsonPropertyName("parameters")]
-        public List<HAParameterDto> Parameters { get; set; }
-
+        public List<HAParameterDto> Parameters { get; set; }        
+        
         [JsonPropertyName("requestBody")]
-        public HATypeObjectDto? RequestBody { get; set; }
-
+        public HATypeObjectDto? RequestBody { get; set; }        
+        
         [JsonPropertyName("responseBody")]
-        public HATypeDto? ResponseBody { get; set; }
-
+        public HATypeDto? ResponseBody { get; set; }        
+        
         [Required]
         [JsonPropertyName("path")]
-        public HAPathDto Path { get; set; }
-
+        public HAPathDto Path { get; set; }        
+        
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
-
+        public string DisplayName { get; set; }        
+        
         [JsonPropertyName("doc")]
-        public string? Doc { get; set; }
-
+        public string? Doc { get; set; }        
+        
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
+        public HADeprecationDto? Deprecation { get; set; }        
+        
     }
-
+    
     // Source: ha_enum
     public class HAEnumDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<string> Values { get; set; }
-
+        public List<string> Values { get; set; }        
+        
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
+        public HADeprecationDto? Deprecation { get; set; }        
+        
     }
-
+    
     // Source: ha_field
     public class HAFieldDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public HATypeDto Type { get; set; }
-
+        public HATypeDto Type { get; set; }        
+        
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
-
+        public HADeprecationDto? Deprecation { get; set; }        
+        
     }
-
+    
     // Source: ha_model
     public class HAModelDto
     {
         [Required]
         [JsonPropertyName("dto")]
-        public List<HADtoDto> Dto { get; set; }
-
+        public List<HADtoDto> Dto { get; set; }        
+        
         [Required]
         [JsonPropertyName("enums")]
-        public List<HAEnumDto> Enums { get; set; }
-
+        public List<HAEnumDto> Enums { get; set; }        
+        
         [Required]
         [JsonPropertyName("resources")]
-        public List<HAResourceDto> Resources { get; set; }
-
+        public List<HAResourceDto> Resources { get; set; }        
+        
         [Required]
         [JsonPropertyName("allResources")]
-        public List<HAResourceDto> AllResources { get; set; }
-
+        public List<HAResourceDto> AllResources { get; set; }        
+        
     }
-
+    
     // Source: ha_parameter
     public class HAParameterDto
     {
         [Required]
         [JsonPropertyName("field")]
-        public HAFieldDto Field { get; set; }
-
+        public HAFieldDto Field { get; set; }        
+        
         [Required]
         [JsonPropertyName("path")]
-        public bool Path { get; set; }
-
+        public bool Path { get; set; }        
+        
     }
-
+    
     // Source: ha_path
     public class HAPathDto
     {
         [Required]
         [JsonPropertyName("segments")]
-        public List<HAPathSegmentDto> Segments { get; set; }
-
+        public List<HAPathSegmentDto> Segments { get; set; }        
+        
     }
-
+    
     // Source: ha_pathsegment
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class HAPathSegmentDto
@@ -4075,84 +4075,84 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: ha_pathsegment.const
     public class HAPathSegmentConstDto
          : HAPathSegmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }
-
+        public string Value { get; set; }        
+        
     }
-
+    
     // Source: ha_pathsegment.prefixedvar
     public class HAPathSegmentPrefixedVarDto
          : HAPathSegmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("prefix")]
-        public string Prefix { get; set; }
-
+        public string Prefix { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
     }
-
+    
     // Source: ha_pathsegment.var
     public class HAPathSegmentVarDto
          : HAPathSegmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
     }
-
+    
     // Source: ha_resource
     public class HAResourceDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("path")]
-        public HAPathDto Path { get; set; }
-
+        public HAPathDto Path { get; set; }        
+        
         [Required]
         [JsonPropertyName("displaySingular")]
-        public string DisplaySingular { get; set; }
-
+        public string DisplaySingular { get; set; }        
+        
         [Required]
         [JsonPropertyName("displayPlural")]
-        public string DisplayPlural { get; set; }
-
+        public string DisplayPlural { get; set; }        
+        
         [JsonPropertyName("parentResource")]
-        public HAResourceDto? ParentResource { get; set; }
-
+        public HAResourceDto? ParentResource { get; set; }        
+        
         [Required]
         [JsonPropertyName("endpoints")]
-        public List<HAEndpointDto> Endpoints { get; set; }
-
+        public List<HAEndpointDto> Endpoints { get; set; }        
+        
         [Required]
         [JsonPropertyName("nestedResources")]
-        public List<HAResourceDto> NestedResources { get; set; }
-
+        public List<HAResourceDto> NestedResources { get; set; }        
+        
     }
-
+    
     // Source: ha_type
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class HATypeDto
@@ -4160,1566 +4160,1566 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: ha_type.array
     public class HATypeArrayDto
          : HATypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("elementType")]
-        public HATypeDto ElementType { get; set; }
-
+        public HATypeDto ElementType { get; set; }        
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
+        public bool Nullable { get; set; }        
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
+        public bool Optional { get; set; }        
+        
     }
-
+    
     // Source: ha_type.dto
     public class HATypeDtoDto
          : HATypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("dto")]
-        public HADtoDto Dto { get; set; }
-
+        public HADtoDto Dto { get; set; }        
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
+        public bool Nullable { get; set; }        
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
+        public bool Optional { get; set; }        
+        
     }
-
+    
     // Source: ha_type.enum
     public class HATypeEnumDto
          : HATypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("enum")]
-        public HAEnumDto Enum { get; set; }
-
+        public HAEnumDto Enum { get; set; }        
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
+        public bool Nullable { get; set; }        
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
+        public bool Optional { get; set; }        
+        
     }
-
+    
     // Source: ha_type.object
     public class HATypeObjectDto
          : HATypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("fields")]
-        public List<HAFieldDto> Fields { get; set; }
-
+        public List<HAFieldDto> Fields { get; set; }        
+        
         [Required]
         [JsonPropertyName("kind")]
-        public HATypeObjectKind Kind { get; set; }
-
+        public HATypeObjectKind Kind { get; set; }        
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
+        public bool Nullable { get; set; }        
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
+        public bool Optional { get; set; }        
+        
     }
-
+    
     // Source: ha_type.primitive
     public class HATypePrimitiveDto
          : HATypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("primitive")]
-        public HAPrimitive Primitive { get; set; }
-
+        public HAPrimitive Primitive { get; set; }        
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
+        public bool Nullable { get; set; }        
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
+        public bool Optional { get; set; }        
+        
     }
-
+    
     // Source: ha_type.ref
     public class HATypeRefDto
          : HATypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("dto")]
-        public HADtoDto Dto { get; set; }
-
+        public HADtoDto Dto { get; set; }        
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
-
+        public bool Nullable { get; set; }        
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
-
+        public bool Optional { get; set; }        
+        
     }
-
+    
     // Source: imageattachment
     public class ImageAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }
-
+        public int Width { get; set; }        
+        
         [Required]
         [JsonPropertyName("height")]
-        public int Height { get; set; }
-
+        public int Height { get; set; }        
+        
         [JsonPropertyName("previewBytes")]
-        public string? PreviewBytes { get; set; }
-
+        public string? PreviewBytes { get; set; }        
+        
         [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantDto>? Variants { get; set; }
-
+        public List<ImageAttachmentVariantDto>? Variants { get; set; }        
+        
     }
-
+    
     // Source: imageattachmentmeta
     public class ImageAttachmentMetaDto
     {
         [Required]
         [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantsMetaDto> Variants { get; set; }
-
+        public List<ImageAttachmentVariantsMetaDto> Variants { get; set; }        
+        
     }
-
+    
     // Source: imageattachmentvariant
     public class ImageAttachmentVariantDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }
-
+        public int Width { get; set; }        
+        
         [Required]
         [JsonPropertyName("height")]
-        public int Height { get; set; }
-
+        public int Height { get; set; }        
+        
     }
-
+    
     // Source: imageattachmentvariantsmeta
     public class ImageAttachmentVariantsMetaDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }
-
+        public int Width { get; set; }        
+        
         [Required]
         [JsonPropertyName("height")]
-        public int Height { get; set; }
-
+        public int Height { get; set; }        
+        
     }
-
+    
     // Source: importsource
     public class ImportSourceDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("importer")]
-        public CPrincipalDto Importer { get; set; }
-
+        public CPrincipalDto Importer { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
     }
-
+    
     // Source: importedentityinfo
     public class ImportedEntityInfoDto
     {
         [Required]
         [JsonPropertyName("source")]
-        public ImportSourceDto Source { get; set; }
-
+        public ImportSourceDto Source { get; set; }        
+        
         [JsonPropertyName("externalName")]
-        public string? ExternalName { get; set; }
-
+        public string? ExternalName { get; set; }        
+        
         [JsonPropertyName("externalUrl")]
-        public string? ExternalUrl { get; set; }
-
+        public string? ExternalUrl { get; set; }        
+        
     }
-
+    
     // Source: inlinediffline
     public class InlineDiffLineDto
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [JsonPropertyName("type")]
-        public DiffLineType? Type { get; set; }
-
+        public DiffLineType? Type { get; set; }        
+        
         [JsonPropertyName("oldLineNum")]
-        public int? OldLineNum { get; set; }
-
+        public int? OldLineNum { get; set; }        
+        
         [JsonPropertyName("newLineNum")]
-        public int? NewLineNum { get; set; }
-
+        public int? NewLineNum { get; set; }        
+        
         [Required]
         [JsonPropertyName("oldFileOffset")]
-        public int OldFileOffset { get; set; }
-
+        public int OldFileOffset { get; set; }        
+        
         [Required]
         [JsonPropertyName("newFileOffset")]
-        public int NewFileOffset { get; set; }
-
+        public int NewFileOffset { get; set; }        
+        
         [JsonPropertyName("syntax")]
-        public List<SyntaxMarkupDto>? Syntax { get; set; }
-
+        public List<SyntaxMarkupDto>? Syntax { get; set; }        
+        
         [JsonPropertyName("deletes")]
-        public List<TextRangeDto>? Deletes { get; set; }
-
+        public List<TextRangeDto>? Deletes { get; set; }        
+        
         [JsonPropertyName("inserts")]
-        public List<TextRangeDto>? Inserts { get; set; }
-
+        public List<TextRangeDto>? Inserts { get; set; }        
+        
     }
-
+    
     // Source: intcfconstraint
     public class IntCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("min")]
-        public int? Min { get; set; }
-
+        public int? Min { get; set; }        
+        
         [JsonPropertyName("max")]
-        public int? Max { get; set; }
-
+        public int? Max { get; set; }        
+        
         [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
+        public string? Message { get; set; }        
+        
     }
-
+    
     // Source: intcftype
     public class IntCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: intcfvalue
     public class IntCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("value")]
-        public int? Value { get; set; }
-
+        public int? Value { get; set; }        
+        
     }
-
+    
     // Source: intlistcftype
     public class IntListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: intlistcfvalue
     public class IntListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<int> Values { get; set; }
-
+        public List<int> Values { get; set; }        
+        
     }
-
+    
     // Source: invitation
     public class InvitationDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("expiresAt")]
-        public SpaceTime ExpiresAt { get; set; }
-
+        public SpaceTime ExpiresAt { get; set; }        
+        
         [Required]
         [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail { get; set; }
-
+        public string InviteeEmail { get; set; }        
+        
         [Required]
         [JsonPropertyName("inviteeEmailBlocked")]
-        public bool InviteeEmailBlocked { get; set; }
-
+        public bool InviteeEmailBlocked { get; set; }        
+        
         [JsonPropertyName("inviteeEmailBlockedReason")]
-        public string? InviteeEmailBlockedReason { get; set; }
-
+        public string? InviteeEmailBlockedReason { get; set; }        
+        
         [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }
-
+        public string? InviteeFirstName { get; set; }        
+        
         [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get; set; }
-
+        public string? InviteeLastName { get; set; }        
+        
         [JsonPropertyName("invitee")]
-        public TDMemberProfileDto? Invitee { get; set; }
-
+        public TDMemberProfileDto? Invitee { get; set; }        
+        
         [Required]
         [JsonPropertyName("inviter")]
-        public CPrincipalDto Inviter { get; set; }
-
+        public CPrincipalDto Inviter { get; set; }        
+        
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
+        public TDTeamDto? Team { get; set; }        
+        
         [JsonPropertyName("role")]
-        public TDRoleDto? Role { get; set; }
-
+        public TDRoleDto? Role { get; set; }        
+        
         [JsonPropertyName("revoked")]
-        public bool? Revoked { get; set; }
-
+        public bool? Revoked { get; set; }        
+        
     }
-
+    
     // Source: issue
     public class IssueDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [JsonPropertyName("projectRef")]
-        public PRProjectDto? ProjectRef { get; set; }
-
+        public PRProjectDto? ProjectRef { get; set; }        
+        
         [Required]
         [JsonPropertyName("number")]
-        public int Number { get; set; }
-
+        public int Number { get; set; }        
+        
         [Required]
         [JsonPropertyName("createdBy")]
-        public CPrincipalDto CreatedBy { get; set; }
-
+        public CPrincipalDto CreatedBy { get; set; }        
+        
         [Required]
         [JsonPropertyName("creationTime")]
-        public SpaceTime CreationTime { get; set; }
-
+        public SpaceTime CreationTime { get; set; }        
+        
         [JsonPropertyName("assignee")]
-        public TDMemberProfileDto? Assignee { get; set; }
-
+        public TDMemberProfileDto? Assignee { get; set; }        
+        
         [Required]
         [JsonPropertyName("status")]
-        public IssueStatusDto Status { get; set; }
-
+        public IssueStatusDto Status { get; set; }        
+        
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
-
+        public SpaceDate? DueDate { get; set; }        
+        
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get; set; }
-
+        public ImportedEntityInfoDto? ImportInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("tags")]
-        public List<PlanningTagDto> Tags { get; set; }
-
+        public List<PlanningTagDto> Tags { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("checklists")]
-        public List<ChecklistDto> Checklists { get; set; }
-
+        public List<ChecklistDto> Checklists { get; set; }        
+        
         [Required]
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto> Attachments { get; set; }
-
+        public List<AttachmentInfoDto> Attachments { get; set; }        
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
+        public M2ChannelRecordDto Channel { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
     }
-
+    
     // Source: issueassigneechangeddetails
     public class IssueAssigneeChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("oldAssignee")]
-        public TDMemberProfileDto? OldAssignee { get; set; }
-
+        public TDMemberProfileDto? OldAssignee { get; set; }        
+        
         [JsonPropertyName("newAssignee")]
-        public TDMemberProfileDto? NewAssignee { get; set; }
-
+        public TDMemberProfileDto? NewAssignee { get; set; }        
+        
     }
-
+    
     // Source: issueattachmentschangeddetails
     public class IssueAttachmentsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("addedNames")]
-        public List<string>? AddedNames { get; set; }
-
+        public List<string>? AddedNames { get; set; }        
+        
         [JsonPropertyName("removedNames")]
-        public List<string>? RemovedNames { get; set; }
-
+        public List<string>? RemovedNames { get; set; }        
+        
     }
-
+    
     // Source: issuechangedm2details
     public interface IssueChangedM2DetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: issuechecklistschangeddetails
     public class IssueChecklistsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("addedChecklists")]
-        public List<ChecklistDto>? AddedChecklists { get; set; }
-
+        public List<ChecklistDto>? AddedChecklists { get; set; }        
+        
         [JsonPropertyName("removedChecklists")]
-        public List<ChecklistDto>? RemovedChecklists { get; set; }
-
+        public List<ChecklistDto>? RemovedChecklists { get; set; }        
+        
     }
-
+    
     // Source: issuecreateddetails
     public class IssueCreatedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("issue")]
-        public IssueDto? Issue { get; set; }
-
+        public IssueDto? Issue { get; set; }        
+        
     }
-
+    
     // Source: issuedeleteddetails
     public class IssueDeletedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: issuedescriptionchangeddetails
     public class IssueDescriptionChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("oldDescription")]
-        public string? OldDescription { get; set; }
-
+        public string? OldDescription { get; set; }        
+        
         [JsonPropertyName("newDescription")]
-        public string? NewDescription { get; set; }
-
+        public string? NewDescription { get; set; }        
+        
     }
-
+    
     // Source: issueduedatechangeddetails
     public class IssueDueDateChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("oldDueDate")]
-        public SpaceDate? OldDueDate { get; set; }
-
+        public SpaceDate? OldDueDate { get; set; }        
+        
         [JsonPropertyName("newDueDate")]
-        public SpaceDate? NewDueDate { get; set; }
-
+        public SpaceDate? NewDueDate { get; set; }        
+        
     }
-
+    
     // Source: issuestatus
     public class IssueStatusDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
-
+        public bool Resolved { get; set; }        
+        
         [Required]
         [JsonPropertyName("color")]
-        public string Color { get; set; }
-
+        public string Color { get; set; }        
+        
     }
-
+    
     // Source: issuestatuschangeddetails
     public class IssueStatusChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("oldStatus")]
-        public IssueStatusDto OldStatus { get; set; }
-
+        public IssueStatusDto OldStatus { get; set; }        
+        
         [Required]
         [JsonPropertyName("newStatus")]
-        public IssueStatusDto NewStatus { get; set; }
-
+        public IssueStatusDto NewStatus { get; set; }        
+        
     }
-
+    
     // Source: issuestatusdata
     public class IssueStatusDataDto
     {
         [JsonPropertyName("existingId")]
-        public string? ExistingId { get; set; }
-
+        public string? ExistingId { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
-
+        public bool Resolved { get; set; }        
+        
         [Required]
         [JsonPropertyName("color")]
-        public string Color { get; set; }
-
+        public string Color { get; set; }        
+        
     }
-
+    
     // Source: issuestatuswithusages
     public class IssueStatusWithUsagesDto
     {
         [Required]
         [JsonPropertyName("status")]
-        public IssueStatusDto Status { get; set; }
-
+        public IssueStatusDto Status { get; set; }        
+        
         [Required]
         [JsonPropertyName("usages")]
-        public int Usages { get; set; }
-
+        public int Usages { get; set; }        
+        
     }
-
+    
     // Source: issuetagschangeddetails
     public class IssueTagsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("addedTags")]
-        public List<PlanningTagDto>? AddedTags { get; set; }
-
+        public List<PlanningTagDto>? AddedTags { get; set; }        
+        
         [JsonPropertyName("removedTags")]
-        public List<PlanningTagDto>? RemovedTags { get; set; }
-
+        public List<PlanningTagDto>? RemovedTags { get; set; }        
+        
     }
-
+    
     // Source: issuetitlechangeddetails
     public class IssueTitleChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("oldTitle")]
-        public string OldTitle { get; set; }
-
+        public string OldTitle { get; set; }        
+        
         [Required]
         [JsonPropertyName("newTitle")]
-        public string NewTitle { get; set; }
-
+        public string NewTitle { get; set; }        
+        
     }
-
+    
     // Source: jbspacenewsfeedchannel
     public class JBSpaceNewsFeedChannelDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: kb_article
     public class KBArticleDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("book")]
-        public KBBookDto Book { get; set; }
-
+        public KBBookDto Book { get; set; }        
+        
         [Required]
         [JsonPropertyName("folder")]
-        public KBFolderDto Folder { get; set; }
-
+        public KBFolderDto Folder { get; set; }        
+        
         [Required]
         [JsonPropertyName("item")]
-        public PublicationItemDto Item { get; set; }
-
+        public PublicationItemDto Item { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
+        public string Alias { get; set; }        
+        
     }
-
+    
     // Source: kb_book
     public class KBBookDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }
-
+        public string Summary { get; set; }        
+        
         [Required]
         [JsonPropertyName("updated")]
-        public long Updated { get; set; }
-
+        public long Updated { get; set; }        
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
+        public string Alias { get; set; }        
+        
         [Required]
         [JsonPropertyName("locations")]
-        public List<TDLocationDto> Locations { get; set; }
-
+        public List<TDLocationDto> Locations { get; set; }        
+        
         [Required]
         [JsonPropertyName("teams")]
-        public List<TDTeamDto> Teams { get; set; }
-
+        public List<TDTeamDto> Teams { get; set; }        
+        
         [Required]
         [JsonPropertyName("rootFolder")]
-        public KBFolderDto RootFolder { get; set; }
-
+        public KBFolderDto RootFolder { get; set; }        
+        
     }
-
+    
     // Source: kb_folder
     public class KBFolderDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("parent")]
-        public KBFolderDto? Parent { get; set; }
-
+        public KBFolderDto? Parent { get; set; }        
+        
         [Required]
         [JsonPropertyName("subfolders")]
-        public List<KBFolderDto> Subfolders { get; set; }
-
+        public List<KBFolderDto> Subfolders { get; set; }        
+        
         [Required]
         [JsonPropertyName("articles")]
-        public List<KBArticleDto> Articles { get; set; }
-
+        public List<KBArticleDto> Articles { get; set; }        
+        
         [Required]
         [JsonPropertyName("book")]
-        public KBBookDto Book { get; set; }
-
+        public KBBookDto Book { get; set; }        
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
+        public string Alias { get; set; }        
+        
     }
-
+    
     // Source: kbpublicationdetails
     public class KbPublicationDetailsDto
          : PublicationDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("book")]
-        public KBBookDto? Book { get; set; }
-
+        public KBBookDto? Book { get; set; }        
+        
         [JsonPropertyName("folder")]
-        public KBFolderDto? Folder { get; set; }
-
+        public KBFolderDto? Folder { get; set; }        
+        
         [JsonPropertyName("articleId")]
-        public KBArticleDto? ArticleId { get; set; }
-
+        public KBArticleDto? ArticleId { get; set; }        
+        
     }
-
+    
     // Source: lastchanges
     public class LastChangesDto
     {
         [Required]
         [JsonPropertyName("lastChanges")]
-        public List<RevisionInfoDto> LastChanges { get; set; }
-
+        public List<RevisionInfoDto> LastChanges { get; set; }        
+        
         [Required]
         [JsonPropertyName("totalChanges")]
-        public int TotalChanges { get; set; }
-
+        public int TotalChanges { get; set; }        
+        
     }
-
+    
     // Source: linkpreview
     public interface LinkPreviewDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2absenceitemapprovedeletedcontent
     public class M2AbsenceItemApproveDeletedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
+        public AbsenceRecordDto Absence { get; set; }        
+        
         [Required]
         [JsonPropertyName("by")]
-        public TDMemberProfileDto By { get; set; }
-
+        public TDMemberProfileDto By { get; set; }        
+        
         [Required]
         [JsonPropertyName("approve")]
-        public bool Approve { get; set; }
-
+        public bool Approve { get; set; }        
+        
     }
-
+    
     // Source: m2absenceitemapprovedcontent
     public class M2AbsenceItemApprovedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
+        public AbsenceRecordDto Absence { get; set; }        
+        
         [Required]
         [JsonPropertyName("by")]
-        public TDMemberProfileDto By { get; set; }
-
+        public TDMemberProfileDto By { get; set; }        
+        
         [Required]
         [JsonPropertyName("approve")]
-        public bool Approve { get; set; }
-
+        public bool Approve { get; set; }        
+        
     }
-
+    
     // Source: m2absenceitemcontent
     public class M2AbsenceItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
+        public AbsenceRecordDto Absence { get; set; }        
+        
     }
-
+    
     // Source: m2absenceitemdeletedcontent
     public class M2AbsenceItemDeletedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
+        public AbsenceRecordDto Absence { get; set; }        
+        
     }
-
+    
     // Source: m2absenceitemupdatedcontent
     public class M2AbsenceItemUpdatedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
-
+        public AbsenceRecordDto Absence { get; set; }        
+        
         [JsonPropertyName("reason")]
-        public Modification<AbsenceReasonRecordDto>? Reason { get; set; }
-
+        public Modification<AbsenceReasonRecordDto>? Reason { get; set; }        
+        
         [JsonPropertyName("description")]
-        public Modification<string>? Description { get; set; }
-
+        public Modification<string>? Description { get; set; }        
+        
         [JsonPropertyName("since")]
-        public Modification<SpaceDate>? Since { get; set; }
-
+        public Modification<SpaceDate>? Since { get; set; }        
+        
         [JsonPropertyName("till")]
-        public Modification<SpaceDate>? Till { get; set; }
-
+        public Modification<SpaceDate>? Till { get; set; }        
+        
     }
-
+    
     // Source: m2blogitemcontent
     public class M2BlogItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
+        public ArticleRecordDto Article { get; set; }        
+        
         [Required]
         [JsonPropertyName("articleContent")]
-        public ArticleContentRecordDto ArticleContent { get; set; }
-
+        public ArticleContentRecordDto ArticleContent { get; set; }        
+        
         [Required]
         [JsonPropertyName("articleDetails")]
-        public ArticleDetailsRecordDto ArticleDetails { get; set; }
-
+        public ArticleDetailsRecordDto ArticleDetails { get; set; }        
+        
         [Required]
         [JsonPropertyName("articleChannel")]
-        public ArticleChannelRecordDto ArticleChannel { get; set; }
-
+        public ArticleChannelRecordDto ArticleChannel { get; set; }        
+        
     }
-
+    
     // Source: m2blogitempreview
     public class M2BlogItemPreviewDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
+        public ArticleRecordDto Article { get; set; }        
+        
         [Required]
         [JsonPropertyName("articlePreview")]
-        public ArticlePreviewRecordDto ArticlePreview { get; set; }
-
+        public ArticlePreviewRecordDto ArticlePreview { get; set; }        
+        
         [Required]
         [JsonPropertyName("articleDetails")]
-        public ArticleDetailsRecordDto ArticleDetails { get; set; }
-
+        public ArticleDetailsRecordDto ArticleDetails { get; set; }        
+        
         [Required]
         [JsonPropertyName("articleChannel")]
-        public ArticleChannelRecordDto ArticleChannel { get; set; }
-
+        public ArticleChannelRecordDto ArticleChannel { get; set; }        
+        
     }
-
+    
     // Source: m2channelarchiveditemdetails
     public class M2ChannelArchivedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2channelcontact
     public class M2ChannelContactDto
     {
         [Required]
         [JsonPropertyName("defaultName")]
-        public string DefaultName { get; set; }
-
+        public string DefaultName { get; set; }        
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
-
+        public string Key { get; set; }        
+        
         [JsonPropertyName("ext")]
-        public M2ChannelContactInfoDto? Ext { get; set; }
-
+        public M2ChannelContactInfoDto? Ext { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontactarticle
     public class M2ChannelContactArticleDto
          : M2ChannelContactInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
+        public ArticleRecordDto Article { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontactinfo
     public interface M2ChannelContactInfoDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2channelcontactobsolete
     public class M2ChannelContactObsoleteDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("cause")]
-        public M2ObsoleteCause? Cause { get; set; }
-
+        public M2ObsoleteCause? Cause { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontactquickinfodefault
     public class M2ChannelContactQuickInfoDefaultDto
          : M2ChannelContactInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
-
+        public string Key { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontactthread
     public class M2ChannelContactThreadDto
          : M2ChannelContactInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }
-
+        public M2ChannelRecordDto Parent { get; set; }        
+        
         [JsonPropertyName("text")]
-        public string? Text { get; set; }
-
+        public string? Text { get; set; }        
+        
         [JsonPropertyName("messageId")]
-        public string? MessageId { get; set; }
-
+        public string? MessageId { get; set; }        
+        
         [JsonPropertyName("author")]
-        public TDMemberProfileDto? Author { get; set; }
-
+        public TDMemberProfileDto? Author { get; set; }        
+        
         [JsonPropertyName("messageAuthor")]
-        public CPrincipalDto? MessageAuthor { get; set; }
-
+        public CPrincipalDto? MessageAuthor { get; set; }        
+        
         [JsonPropertyName("attachments")]
-        public string? Attachments { get; set; }
-
+        public string? Attachments { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentarticle
     public class M2ChannelContentArticleDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
+        public ArticleRecordDto Article { get; set; }        
+        
         [Required]
         [JsonPropertyName("articleContent")]
-        public ArticleContentRecordDto ArticleContent { get; set; }
-
+        public ArticleContentRecordDto ArticleContent { get; set; }        
+        
         [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get; set; }
-
+        public ArticleDetailsRecordDto? Details { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentcodediscussion
     public class M2ChannelContentCodeDiscussionDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("codeDiscussionId")]
-        public string CodeDiscussionId { get; set; }
-
+        public string CodeDiscussionId { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
         [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecordDto? CodeDiscussion { get; set; }
-
+        public CodeDiscussionRecordDto? CodeDiscussion { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentcodereviewdiscussion
     public class M2ChannelContentCodeReviewDiscussionDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("codeReviewDiscussion")]
-        public string CodeReviewDiscussion { get; set; }
-
+        public string CodeReviewDiscussion { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentcodereviewfeed
     public class M2ChannelContentCodeReviewFeedDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("codeReviewId")]
-        public string CodeReviewId { get; set; }
-
+        public string CodeReviewId { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
         [JsonPropertyName("codeReview")]
-        public CodeReviewRecordDto? CodeReview { get; set; }
-
+        public CodeReviewRecordDto? CodeReview { get; set; }        
+        
         [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto? Participants { get; set; }
-
+        public CodeReviewParticipantsDto? Participants { get; set; }        
+        
         [JsonPropertyName("pendingMessageCounter")]
-        public CodeReviewPendingMessageCounterDto? PendingMessageCounter { get; set; }
-
+        public CodeReviewPendingMessageCounterDto? PendingMessageCounter { get; set; }        
+        
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }
-
+        public PRProjectDto? Project { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentinfo
     public interface M2ChannelContentInfoDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2channelcontentlocation
     public class M2ChannelContentLocationDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
-
+        public TDLocationDto Location { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentmember
     public class M2ChannelContentMemberDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
+        public TDMemberProfileDto Member { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
         [JsonPropertyName("memberAbsences")]
-        public ProfileAbsencesRecordDto? MemberAbsences { get; set; }
-
+        public ProfileAbsencesRecordDto? MemberAbsences { get; set; }        
+        
         [JsonPropertyName("memberTeams")]
-        public ProfileMembershipRecordDto? MemberTeams { get; set; }
-
+        public ProfileMembershipRecordDto? MemberTeams { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentmembership
     public class M2ChannelContentMembershipDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2channelcontentmention
     public class M2ChannelContentMentionDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("record")]
-        public ChannelItemRecordDto Record { get; set; }
-
+        public ChannelItemRecordDto Record { get; set; }        
+        
         [Required]
         [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }
-
+        public M2ChannelRecordDto Parent { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentnamedprivatechannel
     public class M2ChannelContentNamedPrivateChannelDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentrecord
     public class M2ChannelContentRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto? Content { get; set; }
-
+        public M2ChannelContentInfoDto? Content { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentteam
     public class M2ChannelContentTeamDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
+        public TDTeamDto Team { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: m2channelcontentthread
     public class M2ChannelContentThreadDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("record")]
-        public ChannelItemRecordDto Record { get; set; }
-
+        public ChannelItemRecordDto Record { get; set; }        
+        
         [Required]
         [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }
-
+        public M2ChannelRecordDto Parent { get; set; }        
+        
     }
-
+    
     // Source: m2channelcreateditemdetails
     public class M2ChannelCreatedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2channelfeedintroitemdetails
     public class M2ChannelFeedIntroItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2channelissueinfo
     public class M2ChannelIssueInfoDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("projectKey")]
-        public ProjectKeyDto? ProjectKey { get; set; }
-
+        public ProjectKeyDto? ProjectKey { get; set; }        
+        
         [Required]
         [JsonPropertyName("issue")]
-        public IssueDto Issue { get; set; }
-
+        public IssueDto Issue { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: m2channelrecord
     public class M2ChannelRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("contact")]
-        public M2ChannelContactDto Contact { get; set; }
-
+        public M2ChannelContactDto Contact { get; set; }        
+        
         [Required]
         [JsonPropertyName("totalMessages")]
-        public int TotalMessages { get; set; }
-
+        public int TotalMessages { get; set; }        
+        
         [JsonPropertyName("lastMessage")]
-        public MessageInfoDto? LastMessage { get; set; }
-
+        public MessageInfoDto? LastMessage { get; set; }        
+        
         [JsonPropertyName("authors")]
-        public List<TDMemberProfileDto>? Authors { get; set; }
-
+        public List<TDMemberProfileDto>? Authors { get; set; }        
+        
         [JsonPropertyName("commentAuthors")]
-        public List<CPrincipalDto>? CommentAuthors { get; set; }
-
+        public List<CPrincipalDto>? CommentAuthors { get; set; }        
+        
         [JsonPropertyName("participants")]
-        public List<ChannelParticipantDto>? Participants { get; set; }
-
+        public List<ChannelParticipantDto>? Participants { get; set; }        
+        
         [JsonPropertyName("channelArchived")]
-        public bool? ChannelArchived { get; set; }
-
+        public bool? ChannelArchived { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
-
+        public M2ChannelRecordDto Channel { get; set; }        
+        
         [JsonPropertyName("messages")]
-        public List<ChannelItemRecordDto>? Messages { get; set; }
-
+        public List<ChannelItemRecordDto>? Messages { get; set; }        
+        
         [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto? Content { get; set; }
-
+        public M2ChannelContentInfoDto? Content { get; set; }        
+        
     }
-
+    
     // Source: m2channelrestoreditemdetails
     public class M2ChannelRestoredItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2drafteditoraddeditemcontent
     public class M2DraftEditorAddedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
     }
-
+    
     // Source: m2drafteditorteamaddeditemcontent
     public class M2DraftEditorTeamAddedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
+        public TDTeamDto Team { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
     }
-
+    
     // Source: m2externalstatusfailureitemcontent
     public class M2ExternalStatusFailureItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get; set; }
-
+        public string? ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
+        public string Branch { get; set; }        
+        
         [JsonPropertyName("revisionInfo")]
-        public RevisionAuthorInfoDto? RevisionInfo { get; set; }
-
+        public RevisionAuthorInfoDto? RevisionInfo { get; set; }        
+        
         [JsonPropertyName("changesInfo")]
-        public LastChangesDto? ChangesInfo { get; set; }
-
+        public LastChangesDto? ChangesInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get; set; }
-
+        public string Url { get; set; }        
+        
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
+        public string ExternalServiceName { get; set; }        
+        
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }
-
+        public string TaskName { get; set; }        
+        
         [JsonPropertyName("timestamp")]
-        public long? Timestamp { get; set; }
-
+        public long? Timestamp { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
     }
-
+    
     // Source: m2externalstatussucceeditemcontent
     public class M2ExternalStatusSucceedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get; set; }
-
+        public string? ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
+        public string Branch { get; set; }        
+        
         [JsonPropertyName("revisionInfo")]
-        public RevisionAuthorInfoDto? RevisionInfo { get; set; }
-
+        public RevisionAuthorInfoDto? RevisionInfo { get; set; }        
+        
         [JsonPropertyName("changesInfo")]
-        public LastChangesDto? ChangesInfo { get; set; }
-
+        public LastChangesDto? ChangesInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get; set; }
-
+        public string Url { get; set; }        
+        
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
+        public string ExternalServiceName { get; set; }        
+        
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }
-
+        public string TaskName { get; set; }        
+        
         [JsonPropertyName("timestamp")]
-        public long? Timestamp { get; set; }
-
+        public long? Timestamp { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
     }
-
+    
     // Source: m2itemcontentdetails
     public interface M2ItemContentDetailsDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2maintenanceactioncontent
     public class M2MaintenanceActionContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("action")]
-        public string Action { get; set; }
-
+        public string Action { get; set; }        
+        
         [Required]
         [JsonPropertyName("success")]
-        public bool Success { get; set; }
-
+        public bool Success { get; set; }        
+        
         [Required]
         [JsonPropertyName("details")]
-        public string Details { get; set; }
-
+        public string Details { get; set; }        
+        
     }
-
+    
     // Source: m2membercontent
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class M2MemberContentDto
@@ -5727,35 +5727,35 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2memberjoinscontent
     public class M2MemberJoinsContentDto
          : M2MemberContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
+        public TDMemberProfileDto Member { get; set; }        
+        
     }
-
+    
     // Source: m2memberleavescontent
     public class M2MemberLeavesContentDto
          : M2MemberContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
+        public TDMemberProfileDto Member { get; set; }        
+        
     }
-
+    
     // Source: m2membershipcontent
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class M2MembershipContentDto
@@ -5763,1931 +5763,1931 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2membershipcreatedcontent
     public class M2MembershipCreatedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
-
+        public TDMembershipDto Membership { get; set; }        
+        
     }
-
+    
     // Source: m2membershiprequestedcontent
     public class M2MembershipRequestedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
-
+        public TDMembershipDto Membership { get; set; }        
+        
         [Required]
         [JsonPropertyName("leave")]
-        public bool Leave { get; set; }
-
+        public bool Leave { get; set; }        
+        
     }
-
+    
     // Source: m2membershipterminatedcontent
     public class M2MembershipTerminatedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
-
+        public TDMembershipDto Membership { get; set; }        
+        
     }
-
+    
     // Source: m2packagecontentdetails
     public interface M2PackageContentDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: m2packagecreateddetails
     public class M2PackageCreatedDetailsDto
          : M2PackageContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("pkg")]
-        public PackageVersionInfoDto Pkg { get; set; }
-
+        public PackageVersionInfoDto Pkg { get; set; }        
+        
     }
-
+    
     // Source: m2packagedeleteddetails
     public class M2PackageDeletedDetailsDto
          : M2PackageContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("pkg")]
-        public PackageVersionInfoDto Pkg { get; set; }
-
+        public PackageVersionInfoDto Pkg { get; set; }        
+        
     }
-
+    
     // Source: m2pollcontent
     public class M2PollContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("poll")]
-        public PollRecordDto Poll { get; set; }
-
+        public PollRecordDto Poll { get; set; }        
+        
     }
-
+    
     // Source: m2privateconversationchannelcontent
     public class M2PrivateConversationChannelContentDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("channelId")]
-        public string ChannelId { get; set; }
-
+        public string ChannelId { get; set; }        
+        
         [JsonPropertyName("subject")]
-        public string? Subject { get; set; }
-
+        public string? Subject { get; set; }        
+        
         [Required]
         [JsonPropertyName("members")]
-        public List<TDMemberProfileDto> Members { get; set; }
-
+        public List<TDMemberProfileDto> Members { get; set; }        
+        
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }        
+        
     }
-
+    
     // Source: m2sharedchannelcontent
     public class M2SharedChannelContentDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("group")]
-        public string Group { get; set; }
-
+        public string Group { get; set; }        
+        
         [Required]
         [JsonPropertyName("access")]
-        public M2Access Access { get; set; }
-
+        public M2Access Access { get; set; }        
+        
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
-
+        public string Description { get; set; }        
+        
         [JsonPropertyName("membersCounter")]
-        public int? MembersCounter { get; set; }
-
+        public int? MembersCounter { get; set; }        
+        
         [JsonPropertyName("iconId")]
-        public string? IconId { get; set; }
-
+        public string? IconId { get; set; }        
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
-
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
+        
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }
-
+        public List<TDTeamDto>? Teams { get; set; }        
+        
         [JsonPropertyName("canEdit")]
-        public bool? CanEdit { get; set; }
-
+        public bool? CanEdit { get; set; }        
+        
     }
-
+    
     // Source: m2taskexecutionfailureitemcontent
     public class M2TaskExecutionFailureItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("taskExecutionId")]
-        public string TaskExecutionId { get; set; }
-
+        public string TaskExecutionId { get; set; }        
+        
         [Required]
         [JsonPropertyName("taskExecutionName")]
-        public string TaskExecutionName { get; set; }
-
+        public string TaskExecutionName { get; set; }        
+        
         [Required]
         [JsonPropertyName("repoName")]
-        public string RepoName { get; set; }
-
+        public string RepoName { get; set; }        
+        
         [Required]
         [JsonPropertyName("branchName")]
-        public string BranchName { get; set; }
-
+        public string BranchName { get; set; }        
+        
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
+        public string Commit { get; set; }        
+        
         [Required]
         [JsonPropertyName("shortCommitMessage")]
-        public string ShortCommitMessage { get; set; }
-
+        public string ShortCommitMessage { get; set; }        
+        
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
+        public ProjectKeyDto Project { get; set; }        
+        
         [Required]
         [JsonPropertyName("finishDateTime")]
-        public long FinishDateTime { get; set; }
-
+        public long FinishDateTime { get; set; }        
+        
         [Required]
         [JsonPropertyName("triggerInfo")]
-        public string TriggerInfo { get; set; }
-
+        public string TriggerInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("details")]
-        public string Details { get; set; }
-
+        public string Details { get; set; }        
+        
     }
-
+    
     // Source: m2taskexecutionsucceeditemcontent
     public class M2TaskExecutionSucceedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("taskExecutionId")]
-        public string TaskExecutionId { get; set; }
-
+        public string TaskExecutionId { get; set; }        
+        
         [Required]
         [JsonPropertyName("taskExecutionName")]
-        public string TaskExecutionName { get; set; }
-
+        public string TaskExecutionName { get; set; }        
+        
         [Required]
         [JsonPropertyName("repoName")]
-        public string RepoName { get; set; }
-
+        public string RepoName { get; set; }        
+        
         [Required]
         [JsonPropertyName("branchName")]
-        public string BranchName { get; set; }
-
+        public string BranchName { get; set; }        
+        
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
+        public string Commit { get; set; }        
+        
         [Required]
         [JsonPropertyName("shortCommitMessage")]
-        public string ShortCommitMessage { get; set; }
-
+        public string ShortCommitMessage { get; set; }        
+        
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
+        public ProjectKeyDto Project { get; set; }        
+        
         [Required]
         [JsonPropertyName("finishDateTime")]
-        public long FinishDateTime { get; set; }
-
+        public long FinishDateTime { get; set; }        
+        
         [Required]
         [JsonPropertyName("triggerInfo")]
-        public string TriggerInfo { get; set; }
-
+        public string TriggerInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("details")]
-        public string Details { get; set; }
-
+        public string Details { get; set; }        
+        
     }
-
+    
     // Source: m2textitemcontent
     public class M2TextItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("markdown")]
-        public bool Markdown { get; set; }
-
+        public bool Markdown { get; set; }        
+        
     }
-
+    
     // Source: m2userleftchannel
     public class M2UserLeftChannelDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: mcaction
     public class MCActionDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }
-
+        public string Value { get; set; }        
+        
     }
-
+    
     // Source: mcbutton
     public class MCButtonDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }
-
+        public string Style { get; set; }        
+        
         [Required]
         [JsonPropertyName("action")]
-        public MCActionDto Action { get; set; }
-
+        public MCActionDto Action { get; set; }        
+        
     }
-
+    
     // Source: mcdivider
     public class MCDividerDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: mcelement
     public class MCElementDto
     {
         [Required]
         [JsonPropertyName("defaultText")]
-        public string DefaultText { get; set; }
-
+        public string DefaultText { get; set; }        
+        
         [JsonPropertyName("details")]
-        public MCElementDetailsDto? Details { get; set; }
-
+        public MCElementDetailsDto? Details { get; set; }        
+        
     }
-
+    
     // Source: mcelementdetails
     public interface MCElementDetailsDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: mcfields
     public class MCFieldsDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("fields")]
-        public List<Pair<MCElementDto, MCElementDto>> Fields { get; set; }
-
+        public List<Pair<MCElementDto, MCElementDto>> Fields { get; set; }        
+        
     }
-
+    
     // Source: mcgroup
     public class MCGroupDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }
-
+        public List<MCElementDto> Elements { get; set; }        
+        
     }
-
+    
     // Source: mcicon
     public class MCIconDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }
-
+        public string Style { get; set; }        
+        
     }
-
+    
     // Source: mcimage
     public class MCImageDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("src")]
-        public string Src { get; set; }
-
+        public string Src { get; set; }        
+        
     }
-
+    
     // Source: mcmessage
     public class MCMessageDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }
-
+        public string Style { get; set; }        
+        
         [JsonPropertyName("outline")]
-        public MCOutlineDto? Outline { get; set; }
-
+        public MCOutlineDto? Outline { get; set; }        
+        
         [Required]
         [JsonPropertyName("content")]
-        public List<MCElementDto> Content { get; set; }
-
+        public List<MCElementDto> Content { get; set; }        
+        
         [JsonPropertyName("serviceId")]
-        public string? ServiceId { get; set; }
-
+        public string? ServiceId { get; set; }        
+        
         [JsonPropertyName("supplementaryData")]
-        public string? SupplementaryData { get; set; }
-
+        public string? SupplementaryData { get; set; }        
+        
     }
-
+    
     // Source: mcoutline
     public class MCOutlineDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("icon")]
-        public MCElementDto? Icon { get; set; }
-
+        public MCElementDto? Icon { get; set; }        
+        
         [JsonPropertyName("text")]
-        public MCTextDto? Text { get; set; }
-
+        public MCTextDto? Text { get; set; }        
+        
     }
-
+    
     // Source: mcsection
     public class MCSectionDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("header")]
-        public MCTextDto? Header { get; set; }
-
+        public MCTextDto? Header { get; set; }        
+        
         [Required]
         [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }
-
+        public List<MCElementDto> Elements { get; set; }        
+        
         [JsonPropertyName("footer")]
-        public MCTextDto? Footer { get; set; }
-
+        public MCTextDto? Footer { get; set; }        
+        
     }
-
+    
     // Source: mctag
     public class MCTagDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }
-
+        public string Style { get; set; }        
+        
     }
-
+    
     // Source: mctext
     public class MCTextDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("content")]
-        public string Content { get; set; }
-
+        public string Content { get; set; }        
+        
         [Required]
         [JsonPropertyName("markdown")]
-        public bool Markdown { get; set; }
-
+        public bool Markdown { get; set; }        
+        
         [JsonPropertyName("accessory")]
-        public MCElementDto? Accessory { get; set; }
-
+        public MCElementDto? Accessory { get; set; }        
+        
     }
-
+    
     // Source: mavenpackagetype
     public class MavenPackageTypeDto
          : PackageTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
     }
-
+    
     // Source: mdmarkup
     public class MdMarkupDto
     {
         [Required]
         [JsonPropertyName("unfurl")]
-        public List<UnfurlDto> Unfurl { get; set; }
-
+        public List<UnfurlDto> Unfurl { get; set; }        
+        
     }
-
+    
     // Source: meinfo
     public class MeInfoDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [JsonPropertyName("profilePic")]
-        public string? ProfilePic { get; set; }
-
+        public string? ProfilePic { get; set; }        
+        
         [Required]
         [JsonPropertyName("preferredLanguage")]
-        public TDLanguageDto PreferredLanguage { get; set; }
-
+        public TDLanguageDto PreferredLanguage { get; set; }        
+        
         [Required]
         [JsonPropertyName("englishLanguage")]
-        public TDLanguageDto EnglishLanguage { get; set; }
-
+        public TDLanguageDto EnglishLanguage { get; set; }        
+        
         [JsonPropertyName("navBarMenuItems")]
-        public List<NavBarMenuItemDto>? NavBarMenuItems { get; set; }
-
+        public List<NavBarMenuItemDto>? NavBarMenuItems { get; set; }        
+        
         [Required]
         [JsonPropertyName("navBarProjects")]
-        public List<string> NavBarProjects { get; set; }
-
+        public List<string> NavBarProjects { get; set; }        
+        
         [Required]
         [JsonPropertyName("firstDayOfWeek")]
-        public int FirstDayOfWeek { get; set; }
-
+        public int FirstDayOfWeek { get; set; }        
+        
         [JsonPropertyName("themeName")]
-        public string? ThemeName { get; set; }
-
+        public string? ThemeName { get; set; }        
+        
         [JsonPropertyName("draftType")]
-        public DraftDocumentType? DraftType { get; set; }
-
+        public DraftDocumentType? DraftType { get; set; }        
+        
     }
-
+    
     // Source: meetingrecord
     public class MeetingRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("starts")]
-        public SpaceTime Starts { get; set; }
-
+        public SpaceTime Starts { get; set; }        
+        
         [Required]
         [JsonPropertyName("finishes")]
-        public SpaceTime Finishes { get; set; }
-
+        public SpaceTime Finishes { get; set; }        
+        
         [JsonPropertyName("timezone")]
-        public ATimeZoneDto? Timezone { get; set; }
-
+        public ATimeZoneDto? Timezone { get; set; }        
+        
         [Required]
         [JsonPropertyName("allDay")]
-        public bool AllDay { get; set; }
-
+        public bool AllDay { get; set; }        
+        
         [Required]
         [JsonPropertyName("rooms")]
-        public List<TDLocationDto> Rooms { get; set; }
-
+        public List<TDLocationDto> Rooms { get; set; }        
+        
         [Required]
         [JsonPropertyName("participants")]
-        public List<ParticipantDto> Participants { get; set; }
-
+        public List<ParticipantDto> Participants { get; set; }        
+        
         [JsonPropertyName("article")]
-        public ArticleRecordDto? Article { get; set; }
-
+        public ArticleRecordDto? Article { get; set; }        
+        
     }
-
+    
     // Source: membersaddeditemdetails
     public class MembersAddedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get; set; }
-
+        public List<CPrincipalDto> Principals { get; set; }        
+        
         [Required]
         [JsonPropertyName("othersDisplayNames")]
-        public List<string> OthersDisplayNames { get; set; }
-
+        public List<string> OthersDisplayNames { get; set; }        
+        
     }
-
+    
     // Source: membershipevent
     public class MembershipEventDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("membership")]
-        public List<TDMembershipDto> Membership { get; set; }
-
+        public List<TDMembershipDto> Membership { get; set; }        
+        
     }
-
+    
     // Source: mergerequestbranch
     public class MergeRequestBranchDto
     {
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
-
+        public string DisplayName { get; set; }        
+        
         [Required]
         [JsonPropertyName("ref")]
-        public string Ref { get; set; }
-
+        public string Ref { get; set; }        
+        
         [Required]
         [JsonPropertyName("deleted")]
-        public bool Deleted { get; set; }
-
+        public bool Deleted { get; set; }        
+        
     }
-
+    
     // Source: mergerequestbranchdeletedevent
     public class MergeRequestBranchDeletedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
+        public string Branch { get; set; }        
+        
         [Required]
         [JsonPropertyName("branchType")]
-        public MergeRequestBranchType BranchType { get; set; }
-
+        public MergeRequestBranchType BranchType { get; set; }        
+        
     }
-
+    
     // Source: mergerequestbranchpair
     public class MergeRequestBranchPairDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }
-
+        public string SourceBranch { get; set; }        
+        
         [Required]
         [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }
-
+        public string TargetBranch { get; set; }        
+        
         [Required]
         [JsonPropertyName("sourceBranchRef")]
-        public string SourceBranchRef { get; set; }
-
+        public string SourceBranchRef { get; set; }        
+        
         [JsonPropertyName("sourceBranchInfo")]
-        public MergeRequestBranchDto? SourceBranchInfo { get; set; }
-
+        public MergeRequestBranchDto? SourceBranchInfo { get; set; }        
+        
         [JsonPropertyName("targetBranchInfo")]
-        public MergeRequestBranchDto? TargetBranchInfo { get; set; }
-
+        public MergeRequestBranchDto? TargetBranchInfo { get; set; }        
+        
     }
-
+    
     // Source: mergerequestbranchrestoredevent
     public class MergeRequestBranchRestoredEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
+        public string Branch { get; set; }        
+        
         [Required]
         [JsonPropertyName("branchType")]
-        public MergeRequestBranchType BranchType { get; set; }
-
+        public MergeRequestBranchType BranchType { get; set; }        
+        
     }
-
+    
     // Source: mergerequestmergedevent
     public class MergeRequestMergedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }
-
+        public string SourceBranch { get; set; }        
+        
         [Required]
         [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }
-
+        public string TargetBranch { get; set; }        
+        
     }
-
+    
     // Source: mergerequestrecord
     public class MergeRequestRecordDto
          : CodeReviewRecordDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
-
+        public ProjectKeyDto Project { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [Required]
         [JsonPropertyName("number")]
-        public int Number { get; set; }
-
+        public int Number { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
-
+        public CodeReviewState State { get; set; }        
+        
         [JsonPropertyName("canBeReopened")]
-        public bool? CanBeReopened { get; set; }
-
+        public bool? CanBeReopened { get; set; }        
+        
         [Required]
         [JsonPropertyName("createdAt")]
-        public long CreatedAt { get; set; }
-
+        public long CreatedAt { get; set; }        
+        
         [Required]
         [JsonPropertyName("createdBy")]
-        public TDMemberProfileDto CreatedBy { get; set; }
-
+        public TDMemberProfileDto CreatedBy { get; set; }        
+        
         [JsonPropertyName("turnBased")]
-        public bool? TurnBased { get; set; }
-
+        public bool? TurnBased { get; set; }        
+        
         [Required]
         [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto> Participants { get; set; }
-
+        public List<CodeReviewParticipantDto> Participants { get; set; }        
+        
         [JsonPropertyName("feedChannel")]
-        public M2ChannelRecordDto? FeedChannel { get; set; }
-
+        public M2ChannelRecordDto? FeedChannel { get; set; }        
+        
         [Required]
         [JsonPropertyName("branchPairs")]
-        public List<MergeRequestBranchPairDto> BranchPairs { get; set; }
-
+        public List<MergeRequestBranchPairDto> BranchPairs { get; set; }        
+        
     }
-
+    
     // Source: messageforimport
     public class MessageForImportDto
     {
         [Required]
         [JsonPropertyName("authorPrincipalId")]
-        public string AuthorPrincipalId { get; set; }
-
+        public string AuthorPrincipalId { get; set; }        
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [Required]
         [JsonPropertyName("createdAtUtc")]
-        public long CreatedAtUtc { get; set; }
-
+        public long CreatedAtUtc { get; set; }        
+        
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto>? Attachments { get; set; }
-
+        public List<AttachmentDto>? Attachments { get; set; }        
+        
     }
-
+    
     // Source: messageinfo
     public class MessageInfoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }
-
+        public long Time { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }
-
+        public CPrincipalDto Author { get; set; }        
+        
         [JsonPropertyName("attachments")]
-        public string? Attachments { get; set; }
-
+        public string? Attachments { get; set; }        
+        
     }
-
+    
     // Source: navbarmenuitem
     public class NavBarMenuItemDto
     {
         [Required]
         [JsonPropertyName("item")]
-        public string Item { get; set; }
-
+        public string Item { get; set; }        
+        
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }
-
+        public bool Enabled { get; set; }        
+        
     }
-
+    
     // Source: nonworkingdays
     public class NonWorkingDaysDto
     {
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since { get; set; }
-
+        public SpaceDate Since { get; set; }        
+        
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till { get; set; }
-
+        public SpaceDate Till { get; set; }        
+        
         [Required]
         [JsonPropertyName("startsEarlier")]
-        public bool StartsEarlier { get; set; }
-
+        public bool StartsEarlier { get; set; }        
+        
         [Required]
         [JsonPropertyName("endsLater")]
-        public bool EndsLater { get; set; }
-
+        public bool EndsLater { get; set; }        
+        
     }
-
+    
     // Source: nonworkingdaysevent
     public class NonWorkingDaysEventDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("days")]
-        public List<NonWorkingDaysDto> Days { get; set; }
-
+        public List<NonWorkingDaysDto> Days { get; set; }        
+        
     }
-
+    
     // Source: nugetpackagetype
     public class NuGetPackageTypeDto
          : PackageTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
     }
-
+    
     // Source: pr_privateproject
     public class PRPrivateProjectDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }
-
+        public ProjectKeyDto Key { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("accessAllowed")]
-        public bool AccessAllowed { get; set; }
-
+        public bool AccessAllowed { get; set; }        
+        
         [Required]
         [JsonPropertyName("admins")]
-        public List<TDMemberProfileDto> Admins { get; set; }
-
+        public List<TDMemberProfileDto> Admins { get; set; }        
+        
     }
-
+    
     // Source: pr_project
     public class PRProjectDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }
-
+        public ProjectKeyDto Key { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
+        public bool Private { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [JsonPropertyName("icon")]
-        public string? Icon { get; set; }
-
+        public string? Icon { get; set; }        
+        
         [JsonPropertyName("latestRepositoryActivity")]
-        public SpaceTime? LatestRepositoryActivity { get; set; }
-
+        public SpaceTime? LatestRepositoryActivity { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("adminProfiles")]
-        public List<TDMemberProfileDto> AdminProfiles { get; set; }
-
+        public List<TDMemberProfileDto> AdminProfiles { get; set; }        
+        
         [Required]
         [JsonPropertyName("adminTeams")]
-        public List<TDTeamDto> AdminTeams { get; set; }
-
+        public List<TDTeamDto> AdminTeams { get; set; }        
+        
         [Required]
         [JsonPropertyName("memberProfiles")]
-        public List<TDMemberProfileDto> MemberProfiles { get; set; }
-
+        public List<TDMemberProfileDto> MemberProfiles { get; set; }        
+        
         [Required]
         [JsonPropertyName("memberTeams")]
-        public List<TDTeamDto> MemberTeams { get; set; }
-
+        public List<TDTeamDto> MemberTeams { get; set; }        
+        
         [Required]
         [JsonPropertyName("repos")]
-        public List<PRRepositoryInfoDto> Repos { get; set; }
-
+        public List<PRRepositoryInfoDto> Repos { get; set; }        
+        
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
-
+        public List<string> Tags { get; set; }        
+        
     }
-
+    
     // Source: pr_repositoryinfo
     public class PRRepositoryInfoDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
-
+        public string Description { get; set; }        
+        
         [JsonPropertyName("latestActivity")]
-        public SpaceTime? LatestActivity { get; set; }
-
+        public SpaceTime? LatestActivity { get; set; }        
+        
         [JsonPropertyName("proxyPushNotification")]
-        public SpaceTime? ProxyPushNotification { get; set; }
-
+        public SpaceTime? ProxyPushNotification { get; set; }        
+        
         [Required]
         [JsonPropertyName("state")]
-        public RepositoryState State { get; set; }
-
+        public RepositoryState State { get; set; }        
+        
         [JsonPropertyName("initProgress")]
-        public string? InitProgress { get; set; }
-
+        public string? InitProgress { get; set; }        
+        
         [JsonPropertyName("readmeName")]
-        public string? ReadmeName { get; set; }
-
+        public string? ReadmeName { get; set; }        
+        
         [JsonPropertyName("monthlyActivity")]
-        public RepositoryActivityDto? MonthlyActivity { get; set; }
-
+        public RepositoryActivityDto? MonthlyActivity { get; set; }        
+        
     }
-
+    
     // Source: pr_tag
     public class PRTagDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectCount")]
-        public int ProjectCount { get; set; }
-
+        public int ProjectCount { get; set; }        
+        
     }
-
+    
     // Source: packagerepositorysettings
     public class PackageRepositorySettingsDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public long Id { get; set; }
-
+        public long Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("settings")]
-        public ESPackageRepositorySettingsDto? Settings { get; set; }
-
+        public ESPackageRepositorySettingsDto? Settings { get; set; }        
+        
         [Required]
         [JsonPropertyName("permissions")]
-        public List<PackagesPermission> Permissions { get; set; }
-
+        public List<PackagesPermission> Permissions { get; set; }        
+        
     }
-
+    
     // Source: packagetype
     public interface PackageTypeDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: packageversioninfo
     public class PackageVersionInfoDto
     {
         [Required]
         [JsonPropertyName("type")]
-        public PackageTypeDto Type { get; set; }
-
+        public PackageTypeDto Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("version")]
-        public string Version { get; set; }
-
+        public string Version { get; set; }        
+        
         [JsonPropertyName("tags")]
-        public List<string>? Tags { get; set; }
-
+        public List<string>? Tags { get; set; }        
+        
     }
-
+    
     // Source: packagessettings
     public class PackagesSettingsDto
     {
         [Required]
         [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }
-
+        public long OrganizationId { get; set; }        
+        
         [Required]
         [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }
-
+        public string PrincipalName { get; set; }        
+        
         [Required]
         [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }
-
+        public string PrincipalInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("repositories")]
-        public List<MapEntry<string, PackageRepositorySettingsDto>> Repositories { get; set; }
-
+        public List<MapEntry<string, PackageRepositorySettingsDto>> Repositories { get; set; }        
+        
         [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }
-
+        public DTOLimitDto? StorageLimit { get; set; }        
+        
         [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }
-
+        public DTOLimitDto? DownloadLimit { get; set; }        
+        
         [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }
-
+        public DTOLimitDto? UploadLimit { get; set; }        
+        
     }
-
+    
     // Source: participant
     public class ParticipantDto
     {
         [Required]
         [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }
-
+        public TDMemberProfileDto User { get; set; }        
+        
         [Required]
         [JsonPropertyName("status")]
-        public EventParticipationStatus Status { get; set; }
-
+        public EventParticipationStatus Status { get; set; }        
+        
     }
-
+    
     // Source: permissioncomparisoncontentdto
     public class PermissionComparisonContentDTODto
     {
         [Required]
         [JsonPropertyName("entries")]
-        public List<PermissionComparisonEntryDTODto> Entries { get; set; }
-
+        public List<PermissionComparisonEntryDTODto> Entries { get; set; }        
+        
         [Required]
         [JsonPropertyName("principals")]
-        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }
-
+        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }        
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<PermissionSnapshotRightDTODto> Rights { get; set; }
-
+        public List<PermissionSnapshotRightDTODto> Rights { get; set; }        
+        
         [Required]
         [JsonPropertyName("targets")]
-        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }
-
+        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }        
+        
     }
-
+    
     // Source: permissioncomparisonentrydto
     public class PermissionComparisonEntryDTODto
     {
         [Required]
         [JsonPropertyName("principalIndex")]
-        public int PrincipalIndex { get; set; }
-
+        public int PrincipalIndex { get; set; }        
+        
         [Required]
         [JsonPropertyName("rightIndex")]
-        public int RightIndex { get; set; }
-
+        public int RightIndex { get; set; }        
+        
         [Required]
         [JsonPropertyName("allTargets1")]
-        public bool AllTargets1 { get; set; }
-
+        public bool AllTargets1 { get; set; }        
+        
         [Required]
         [JsonPropertyName("targetIndices1")]
-        public List<int> TargetIndices1 { get; set; }
-
+        public List<int> TargetIndices1 { get; set; }        
+        
         [Required]
         [JsonPropertyName("allTargets2")]
-        public bool AllTargets2 { get; set; }
-
+        public bool AllTargets2 { get; set; }        
+        
         [Required]
         [JsonPropertyName("targetIndices2")]
-        public List<int> TargetIndices2 { get; set; }
-
+        public List<int> TargetIndices2 { get; set; }        
+        
     }
-
+    
     // Source: permissionsnapshotcontentdto
     public class PermissionSnapshotContentDTODto
     {
         [Required]
         [JsonPropertyName("entries")]
-        public List<PermissionSnapshotEntryDTODto> Entries { get; set; }
-
+        public List<PermissionSnapshotEntryDTODto> Entries { get; set; }        
+        
         [Required]
         [JsonPropertyName("principals")]
-        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }
-
+        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }        
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<PermissionSnapshotRightDTODto> Rights { get; set; }
-
+        public List<PermissionSnapshotRightDTODto> Rights { get; set; }        
+        
         [Required]
         [JsonPropertyName("targets")]
-        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }
-
+        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }        
+        
     }
-
+    
     // Source: permissionsnapshotdto
     public class PermissionSnapshotDTODto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("timestamp")]
-        public long Timestamp { get; set; }
-
+        public long Timestamp { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("version")]
-        public int Version { get; set; }
-
+        public int Version { get; set; }        
+        
         [Required]
         [JsonPropertyName("size")]
-        public int Size { get; set; }
-
+        public int Size { get; set; }        
+        
     }
-
+    
     // Source: permissionsnapshotentrydto
     public class PermissionSnapshotEntryDTODto
     {
         [Required]
         [JsonPropertyName("principalIndex")]
-        public int PrincipalIndex { get; set; }
-
+        public int PrincipalIndex { get; set; }        
+        
         [Required]
         [JsonPropertyName("rightIndex")]
-        public int RightIndex { get; set; }
-
+        public int RightIndex { get; set; }        
+        
         [Required]
         [JsonPropertyName("allTargets")]
-        public bool AllTargets { get; set; }
-
+        public bool AllTargets { get; set; }        
+        
         [Required]
         [JsonPropertyName("targetIndices")]
-        public List<int> TargetIndices { get; set; }
-
+        public List<int> TargetIndices { get; set; }        
+        
     }
-
+    
     // Source: permissionsnapshotprincipaldto
     public class PermissionSnapshotPrincipalDTODto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public string Type { get; set; }
-
+        public string Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
     }
-
+    
     // Source: permissionsnapshotrightdto
     public class PermissionSnapshotRightDTODto
     {
         [Required]
         [JsonPropertyName("rightCode")]
-        public string RightCode { get; set; }
-
+        public string RightCode { get; set; }        
+        
         [Required]
         [JsonPropertyName("targetType")]
-        public string TargetType { get; set; }
-
+        public string TargetType { get; set; }        
+        
     }
-
+    
     // Source: permissionsnapshottargetdto
     public class PermissionSnapshotTargetDTODto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public string Type { get; set; }
-
+        public string Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
     }
-
+    
     // Source: planitem
     public class PlanItemDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("checklistId")]
-        public string ChecklistId { get; set; }
-
+        public string ChecklistId { get; set; }        
+        
         [JsonPropertyName("tag")]
-        public PlanningTagDto? Tag { get; set; }
-
+        public PlanningTagDto? Tag { get; set; }        
+        
         [JsonPropertyName("simpleText")]
-        public string? SimpleText { get; set; }
-
+        public string? SimpleText { get; set; }        
+        
         [JsonPropertyName("simpleDone")]
-        public bool? SimpleDone { get; set; }
-
+        public bool? SimpleDone { get; set; }        
+        
         [JsonPropertyName("issue")]
-        public IssueDto? Issue { get; set; }
-
+        public IssueDto? Issue { get; set; }        
+        
         [JsonPropertyName("issueProblem")]
-        public string? IssueProblem { get; set; }
-
+        public string? IssueProblem { get; set; }        
+        
         [JsonPropertyName("canEditIssue")]
-        public bool? CanEditIssue { get; set; }
-
+        public bool? CanEditIssue { get; set; }        
+        
         [Required]
         [JsonPropertyName("hasChildren")]
-        public bool HasChildren { get; set; }
-
+        public bool HasChildren { get; set; }        
+        
         [Required]
         [JsonPropertyName("children")]
-        public List<PlanItemDto> Children { get; set; }
-
+        public List<PlanItemDto> Children { get; set; }        
+        
     }
-
+    
     // Source: planitemchildren
     public class PlanItemChildrenDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("children")]
-        public List<PlanItemDto> Children { get; set; }
-
+        public List<PlanItemDto> Children { get; set; }        
+        
     }
-
+    
     // Source: planningtag
     public class PlanningTagDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
-
+        public string ProjectId { get; set; }        
+        
         [JsonPropertyName("parent")]
-        public PlanningTagDto? Parent { get; set; }
-
+        public PlanningTagDto? Parent { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
     }
-
+    
     // Source: pollrecord
     public class PollRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto Owner { get; set; }
-
+        public TDMemberProfileDto Owner { get; set; }        
+        
         [Required]
         [JsonPropertyName("question")]
-        public string Question { get; set; }
-
+        public string Question { get; set; }        
+        
         [Required]
         [JsonPropertyName("meVote")]
-        public bool MeVote { get; set; }
-
+        public bool MeVote { get; set; }        
+        
         [Required]
         [JsonPropertyName("countPeople")]
-        public int CountPeople { get; set; }
-
+        public int CountPeople { get; set; }        
+        
         [Required]
         [JsonPropertyName("anonymous")]
-        public bool Anonymous { get; set; }
-
+        public bool Anonymous { get; set; }        
+        
         [Required]
         [JsonPropertyName("closed")]
-        public bool Closed { get; set; }
-
+        public bool Closed { get; set; }        
+        
         [Required]
         [JsonPropertyName("extendable")]
-        public bool Extendable { get; set; }
-
+        public bool Extendable { get; set; }        
+        
         [Required]
         [JsonPropertyName("multiChoice")]
-        public bool MultiChoice { get; set; }
-
+        public bool MultiChoice { get; set; }        
+        
         [Required]
         [JsonPropertyName("ended")]
-        public bool Ended { get; set; }
-
+        public bool Ended { get; set; }        
+        
         [JsonPropertyName("expirationTime")]
-        public SpaceTime? ExpirationTime { get; set; }
-
+        public SpaceTime? ExpirationTime { get; set; }        
+        
         [Required]
         [JsonPropertyName("votes")]
-        public List<VoteGroupDto> Votes { get; set; }
-
+        public List<VoteGroupDto> Votes { get; set; }        
+        
     }
-
+    
     // Source: profileabsencesrecord
     public class ProfileAbsencesRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("absences")]
-        public List<AbsenceRecordDto> Absences { get; set; }
-
+        public List<AbsenceRecordDto> Absences { get; set; }        
+        
     }
-
+    
     // Source: profilecftype
     public class ProfileCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: profilecfvalue
     public class ProfileCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }
-
+        public TDMemberProfileDto? Profile { get; set; }        
+        
     }
-
+    
     // Source: profilelinkpreview
     public class ProfileLinkPreviewDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
     }
-
+    
     // Source: profilelistcftype
     public class ProfileListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: profilelistcfvalue
     public class ProfileListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("profiles")]
-        public List<TDMemberProfileDto> Profiles { get; set; }
-
+        public List<TDMemberProfileDto> Profiles { get; set; }        
+        
     }
-
+    
     // Source: profilemembershiprecord
     public class ProfileMembershipRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }
-
+        public List<TDMembershipDto> Memberships { get; set; }        
+        
     }
-
+    
     // Source: projectkey
     public class ProjectKeyDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
-
+        public string Key { get; set; }        
+        
     }
-
+    
     // Source: propagatedcodediscussion
     public class PropagatedCodeDiscussionDto
     {
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor { get; set; }
-
+        public CodeDiscussionAnchorDto Anchor { get; set; }        
+        
         [Required]
         [JsonPropertyName("discussion")]
-        public CodeDiscussionRecordDto Discussion { get; set; }
-
+        public CodeDiscussionRecordDto Discussion { get; set; }        
+        
     }
-
+    
     // Source: publicholiday
     public class PublicHolidayDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("calendar")]
-        public PublicHolidayCalendarRecordDto Calendar { get; set; }
-
+        public PublicHolidayCalendarRecordDto Calendar { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date { get; set; }
-
+        public SpaceDate Date { get; set; }        
+        
         [Required]
         [JsonPropertyName("workingDay")]
-        public bool WorkingDay { get; set; }
-
+        public bool WorkingDay { get; set; }        
+        
     }
-
+    
     // Source: publicholidaycalendarrecord
     public class PublicHolidayCalendarRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("firstDate")]
-        public SpaceDate? FirstDate { get; set; }
-
+        public SpaceDate? FirstDate { get; set; }        
+        
         [JsonPropertyName("lastDate")]
-        public SpaceDate? LastDate { get; set; }
-
+        public SpaceDate? LastDate { get; set; }        
+        
         [Required]
         [JsonPropertyName("eventsCount")]
-        public int EventsCount { get; set; }
-
+        public int EventsCount { get; set; }        
+        
         [Required]
         [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
-
+        public TDLocationDto Location { get; set; }        
+        
     }
-
+    
     // Source: publicationdetails
     public interface PublicationDetailsDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: publicationitem
     public interface PublicationItemDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: reactiondata
     public class ReactionDataDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("symbol")]
-        public string Symbol { get; set; }
-
+        public string Symbol { get; set; }        
+        
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
-
+        public string Emoji { get; set; }        
+        
     }
-
+    
     // Source: reactiontyperecord
     public class ReactionTypeRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("data")]
-        public ReactionDataDto Data { get; set; }
-
+        public ReactionDataDto Data { get; set; }        
+        
         [Required]
         [JsonPropertyName("provider")]
-        public CPrincipalDto Provider { get; set; }
-
+        public CPrincipalDto Provider { get; set; }        
+        
         [Required]
         [JsonPropertyName("addedAt")]
-        public SpaceDate AddedAt { get; set; }
-
+        public SpaceDate AddedAt { get; set; }        
+        
         [JsonPropertyName("order")]
-        public int? Order { get; set; }
-
+        public int? Order { get; set; }        
+        
     }
-
+    
     // Source: repositoryactivity
     public class RepositoryActivityDto
     {
         [Required]
         [JsonPropertyName("lastActivity")]
-        public List<Pair<SpaceDate, int>> LastActivity { get; set; }
-
+        public List<Pair<SpaceDate, int>> LastActivity { get; set; }        
+        
     }
-
+    
     // Source: repositorycommitrecord
     public class RepositoryCommitRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("repositoryId")]
-        public string RepositoryId { get; set; }
-
+        public string RepositoryId { get; set; }        
+        
         [Required]
         [JsonPropertyName("repositoryName")]
-        public string RepositoryName { get; set; }
-
+        public string RepositoryName { get; set; }        
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
+        public string? Message { get; set; }        
+        
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }
-
+        public SpaceTime Date { get; set; }        
+        
         [JsonPropertyName("authorName")]
-        public string? AuthorName { get; set; }
-
+        public string? AuthorName { get; set; }        
+        
         [JsonPropertyName("authorEmail")]
-        public string? AuthorEmail { get; set; }
-
+        public string? AuthorEmail { get; set; }        
+        
         [JsonPropertyName("committerName")]
-        public string? CommitterName { get; set; }
-
+        public string? CommitterName { get; set; }        
+        
         [JsonPropertyName("committerEmail")]
-        public string? CommitterEmail { get; set; }
-
+        public string? CommitterEmail { get; set; }        
+        
         [JsonPropertyName("authorProfile")]
-        public TDMemberProfileDto? AuthorProfile { get; set; }
-
+        public TDMemberProfileDto? AuthorProfile { get; set; }        
+        
     }
-
+    
     // Source: responsibilityrecord
     public class ResponsibilityRecordDto
     {
         [Required]
         [JsonPropertyName("responsibilityId")]
-        public string ResponsibilityId { get; set; }
-
+        public string ResponsibilityId { get; set; }        
+        
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }
-
+        public string Summary { get; set; }        
+        
         [JsonPropertyName("notes")]
-        public string? Notes { get; set; }
-
+        public string? Notes { get; set; }        
+        
         [Required]
         [JsonPropertyName("assignedPeople")]
-        public List<AssignedPersonDto> AssignedPeople { get; set; }
-
+        public List<AssignedPersonDto> AssignedPeople { get; set; }        
+        
     }
-
+    
     // Source: reviewbranchtrackevent
     public class ReviewBranchTrackEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get; set; }
-
+        public string Branch { get; set; }        
+        
         [Required]
         [JsonPropertyName("track")]
-        public bool Track { get; set; }
-
+        public bool Track { get; set; }        
+        
     }
-
+    
     // Source: reviewcompletionstatechangedevent
     public class ReviewCompletionStateChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("state")]
-        public ReviewerState State { get; set; }
-
+        public ReviewerState State { get; set; }        
+        
     }
-
+    
     // Source: reviewcounts
     public class ReviewCountsDto
     {
         [Required]
         [JsonPropertyName("opened")]
-        public int Opened { get; set; }
-
+        public int Opened { get; set; }        
+        
         [Required]
         [JsonPropertyName("closed")]
-        public int Closed { get; set; }
-
+        public int Closed { get; set; }        
+        
         [Required]
         [JsonPropertyName("authoredByMe")]
-        public int AuthoredByMe { get; set; }
-
+        public int AuthoredByMe { get; set; }        
+        
         [Required]
         [JsonPropertyName("reviewedByMe")]
-        public int ReviewedByMe { get; set; }
-
+        public int ReviewedByMe { get; set; }        
+        
         [Required]
         [JsonPropertyName("needsMyAttention")]
-        public int NeedsMyAttention { get; set; }
-
+        public int NeedsMyAttention { get; set; }        
+        
         [Required]
         [JsonPropertyName("needsMyReview")]
-        public int NeedsMyReview { get; set; }
-
+        public int NeedsMyReview { get; set; }        
+        
     }
-
+    
     // Source: reviewrevisionschangedevent
     public class ReviewRevisionsChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("commits")]
-        public List<RepositoryCommitRecordDto> Commits { get; set; }
-
+        public List<RepositoryCommitRecordDto> Commits { get; set; }        
+        
         [Required]
         [JsonPropertyName("changeType")]
-        public ReviewRevisionsChangedType ChangeType { get; set; }
-
+        public ReviewRevisionsChangedType ChangeType { get; set; }        
+        
         [JsonPropertyName("projectKey")]
-        public string? ProjectKey { get; set; }
-
+        public string? ProjectKey { get; set; }        
+        
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
-
+        public CodeReviewRecordDto? Review { get; set; }        
+        
     }
-
+    
     // Source: reviewstatechangedevent
     public class ReviewStateChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
-
+        public CodeReviewState State { get; set; }        
+        
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
-
+        public CodeReviewRecordDto? Review { get; set; }        
+        
     }
-
+    
     // Source: reviewtitlechangedevent
     public class ReviewTitleChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("oldTitle")]
-        public string OldTitle { get; set; }
-
+        public string OldTitle { get; set; }        
+        
         [Required]
         [JsonPropertyName("newTitle")]
-        public string NewTitle { get; set; }
-
+        public string NewTitle { get; set; }        
+        
     }
-
+    
     // Source: reviewerchangedevent
     public class ReviewerChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("uid")]
-        public TDMemberProfileDto Uid { get; set; }
-
+        public TDMemberProfileDto Uid { get; set; }        
+        
         [Required]
         [JsonPropertyName("changeType")]
-        public ReviewerChangedType ChangeType { get; set; }
-
+        public ReviewerChangedType ChangeType { get; set; }        
+        
     }
-
+    
     // Source: revisionauthor
     public class RevisionAuthorDto
     {
         [Required]
         [JsonPropertyName("authorName")]
-        public string AuthorName { get; set; }
-
+        public string AuthorName { get; set; }        
+        
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }
-
+        public TDMemberProfileDto? Profile { get; set; }        
+        
     }
-
+    
     // Source: revisionauthorinfo
     public class RevisionAuthorInfoDto
     {
         [Required]
         [JsonPropertyName("revisionInfo")]
-        public RevisionInfoDto RevisionInfo { get; set; }
-
+        public RevisionInfoDto RevisionInfo { get; set; }        
+        
         [Required]
         [JsonPropertyName("author")]
-        public RevisionAuthorDto Author { get; set; }
-
+        public RevisionAuthorDto Author { get; set; }        
+        
     }
-
+    
     // Source: revisiondiscussionscounter
     public class RevisionDiscussionsCounterDto
     {
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [Required]
         [JsonPropertyName("filesWithCounts")]
-        public List<FileWithCountDto> FilesWithCounts { get; set; }
-
+        public List<FileWithCountDto> FilesWithCounts { get; set; }        
+        
     }
-
+    
     // Source: revisioninreview
     public class RevisionInReviewDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get; set; }
-
+        public string Commit { get; set; }        
+        
     }
-
+    
     // Source: revisioninfo
     public class RevisionInfoDto
     {
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
-
+        public string Revision { get; set; }        
+        
         [Required]
         [JsonPropertyName("date")]
-        public long Date { get; set; }
-
+        public long Date { get; set; }        
+        
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }
-
+        public string Message { get; set; }        
+        
     }
-
+    
     // Source: revisionsinreview
     public class RevisionsInReviewDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("commits")]
-        public List<GitCommitWithGraphDto> Commits { get; set; }
-
+        public List<GitCommitWithGraphDto> Commits { get; set; }        
+        
     }
-
+    
     // Source: sslkeystore
     public class SSLKeystoreDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceDate Created { get; set; }
-
+        public SpaceDate Created { get; set; }        
+        
     }
-
+    
     // Source: samlmetadataresponse
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class SamlMetadataResponseDto
@@ -7695,3720 +7695,5597 @@ namespace SpaceDotNet.Client
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: samlmetadataresponse.error
     public class SamlMetadataResponseErrorDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("messages")]
-        public List<string> Messages { get; set; }
-
+        public List<string> Messages { get; set; }        
+        
     }
-
+    
     // Source: samlmetadataresponse.success
     public class SamlMetadataResponseSuccessDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("metadata")]
-        public string Metadata { get; set; }
-
+        public string Metadata { get; set; }        
+        
     }
-
+    
     // Source: sticker
     public class StickerDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("symbol")]
-        public string? Symbol { get; set; }
-
+        public string? Symbol { get; set; }        
+        
         [JsonPropertyName("attachmentId")]
-        public string? AttachmentId { get; set; }
-
+        public string? AttachmentId { get; set; }        
+        
         [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
+        public int? Width { get; set; }        
+        
         [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
+        public int? Height { get; set; }        
+        
         [JsonPropertyName("variants")]
-        public List<StickerVariantDto>? Variants { get; set; }
-
+        public List<StickerVariantDto>? Variants { get; set; }        
+        
         [JsonPropertyName("animated")]
-        public bool? Animated { get; set; }
-
+        public bool? Animated { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: stickercontentdetails
     public class StickerContentDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("sticker")]
-        public StickerDto Sticker { get; set; }
-
+        public StickerDto Sticker { get; set; }        
+        
         [JsonPropertyName("pack")]
-        public StickerPackInfoDto? Pack { get; set; }
-
+        public StickerPackInfoDto? Pack { get; set; }        
+        
     }
-
+    
     // Source: stickerpackinfo
     public class StickerPackInfoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("favoriteByDefault")]
-        public bool FavoriteByDefault { get; set; }
-
+        public bool FavoriteByDefault { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
+        public bool Private { get; set; }        
+        
         [JsonPropertyName("addedAt")]
-        public SpaceTime? AddedAt { get; set; }
-
+        public SpaceTime? AddedAt { get; set; }        
+        
         [Required]
         [JsonPropertyName("pack")]
-        public StickerPackInfoDto Pack { get; set; }
-
+        public StickerPackInfoDto Pack { get; set; }        
+        
         [Required]
         [JsonPropertyName("stickers")]
-        public List<StickerDto> Stickers { get; set; }
-
+        public List<StickerDto> Stickers { get; set; }        
+        
     }
-
+    
     // Source: stickervariant
     public class StickerVariantDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }
-
+        public int Width { get; set; }        
+        
         [Required]
         [JsonPropertyName("height")]
-        public int Height { get; set; }
-
+        public int Height { get; set; }        
+        
     }
-
+    
     // Source: stringcfconstraint
     public class StringCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("min")]
-        public int? Min { get; set; }
-
+        public int? Min { get; set; }        
+        
         [JsonPropertyName("max")]
-        public int? Max { get; set; }
-
+        public int? Max { get; set; }        
+        
         [JsonPropertyName("pattern")]
-        public string? Pattern { get; set; }
-
+        public string? Pattern { get; set; }        
+        
         [JsonPropertyName("message")]
-        public string? Message { get; set; }
-
+        public string? Message { get; set; }        
+        
     }
-
+    
     // Source: stringcftype
     public class StringCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: stringcfvalue
     public class StringCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("value")]
-        public string? Value { get; set; }
-
+        public string? Value { get; set; }        
+        
     }
-
+    
     // Source: stringlistcftype
     public class StringListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: stringlistcfvalue
     public class StringListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<string> Values { get; set; }
-
+        public List<string> Values { get; set; }        
+        
     }
-
+    
     // Source: subjectresponsibilitiestable
     public class SubjectResponsibilitiesTableDto
     {
         [Required]
         [JsonPropertyName("subjectId")]
-        public string SubjectId { get; set; }
-
+        public string SubjectId { get; set; }        
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("reusedInProjects")]
-        public List<string> ReusedInProjects { get; set; }
-
+        public List<string> ReusedInProjects { get; set; }        
+        
         [Required]
         [JsonPropertyName("responsibilityRecords")]
-        public List<ResponsibilityRecordDto> ResponsibilityRecords { get; set; }
-
+        public List<ResponsibilityRecordDto> ResponsibilityRecords { get; set; }        
+        
     }
-
+    
     // Source: supportprofiledto
     public class SupportProfileDTODto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("adminPermissionsGranted")]
-        public bool AdminPermissionsGranted { get; set; }
-
+        public bool AdminPermissionsGranted { get; set; }        
+        
     }
-
+    
     // Source: syntaxmarkup
     public class SyntaxMarkupDto
     {
         [Required]
         [JsonPropertyName("type")]
-        public SyntaxMarkupType Type { get; set; }
-
+        public SyntaxMarkupType Type { get; set; }        
+        
         [Required]
         [JsonPropertyName("range")]
-        public TextRangeDto Range { get; set; }
-
+        public TextRangeDto Range { get; set; }        
+        
     }
-
+    
     // Source: td_language
     public class TDLanguageDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }
-
+        public string Code { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("nativeName")]
-        public string NativeName { get; set; }
-
+        public string NativeName { get; set; }        
+        
         [Required]
         [JsonPropertyName("firstNameTitle")]
-        public string FirstNameTitle { get; set; }
-
+        public string FirstNameTitle { get; set; }        
+        
         [Required]
         [JsonPropertyName("lastNameTitle")]
-        public string LastNameTitle { get; set; }
-
+        public string LastNameTitle { get; set; }        
+        
     }
-
+    
     // Source: td_location
     public class TDLocationDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffsetDto? Timezone { get; set; }
-
+        public ATimeZoneWithOffsetDto? Timezone { get; set; }        
+        
         [JsonPropertyName("tz")]
-        public string? Tz { get; set; }
-
+        public string? Tz { get; set; }        
+        
         [JsonPropertyName("workdays")]
-        public List<int>? Workdays { get; set; }
-
+        public List<int>? Workdays { get; set; }        
+        
         [Required]
         [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }
-
+        public List<string> Phones { get; set; }        
+        
         [Required]
         [JsonPropertyName("emails")]
-        public List<string> Emails { get; set; }
-
+        public List<string> Emails { get; set; }        
+        
         [JsonPropertyName("equipment")]
-        public List<string>? Equipment { get; set; }
-
+        public List<string>? Equipment { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [JsonPropertyName("address")]
-        public string? Address { get; set; }
-
+        public string? Address { get; set; }        
+        
         [JsonPropertyName("parent")]
-        public TDLocationDto? Parent { get; set; }
-
+        public TDLocationDto? Parent { get; set; }        
+        
         [Required]
         [JsonPropertyName("type")]
-        public string Type { get; set; }
-
+        public string Type { get; set; }        
+        
         [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }
-
+        public string? MapId { get; set; }        
+        
         [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }
-
+        public string? ChannelId { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: td_locationequipmenttype
     public class TDLocationEquipmentTypeDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: td_locationmap
     public class TDLocationMapDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("picture")]
-        public string Picture { get; set; }
-
+        public string Picture { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
+        public int? Width { get; set; }        
+        
         [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
+        public int? Height { get; set; }        
+        
     }
-
+    
     // Source: td_locationmappoint
     public class TDLocationMapPointDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }
-
+        public string? MapId { get; set; }        
+        
         [Required]
         [JsonPropertyName("x")]
-        public int X { get; set; }
-
+        public int X { get; set; }        
+        
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get; set; }
-
+        public int Y { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [JsonPropertyName("memberLocation")]
-        public string? MemberLocation { get; set; }
-
+        public string? MemberLocation { get; set; }        
+        
         [JsonPropertyName("deleted")]
-        public bool? Deleted { get; set; }
-
+        public bool? Deleted { get; set; }        
+        
     }
-
+    
     // Source: td_locationwithtimezone
     public class TDLocationWithTimeZoneDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffsetDto Timezone { get; set; }
-
+        public ATimeZoneWithOffsetDto Timezone { get; set; }        
+        
     }
-
+    
     // Source: td_memberinlocationmaplist
     public class TDMemberInLocationMapListDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("memberLocation")]
-        public TDMemberLocationDto MemberLocation { get; set; }
-
+        public TDMemberLocationDto MemberLocation { get; set; }        
+        
         [JsonPropertyName("locationMapPoint")]
-        public TDLocationMapPointDto? LocationMapPoint { get; set; }
-
+        public TDLocationMapPointDto? LocationMapPoint { get; set; }        
+        
     }
-
+    
     // Source: td_memberlocation
     public class TDMemberLocationDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
-
+        public TDLocationDto Location { get; set; }        
+        
         [JsonPropertyName("locationMapPoints")]
-        public List<TDLocationMapPointDto>? LocationMapPoints { get; set; }
-
+        public List<TDLocationMapPointDto>? LocationMapPoints { get; set; }        
+        
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
+        public SpaceDate? Since { get; set; }        
+        
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
+        public SpaceDate? Till { get; set; }        
+        
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
-
+        public TDMemberProfileDto Member { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: td_memberprofile
     public class TDMemberProfileDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }
-
+        public string Username { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public TDProfileNameDto Name { get; set; }
-
+        public TDProfileNameDto Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("speaksEnglish")]
-        public bool SpeaksEnglish { get; set; }
-
+        public bool SpeaksEnglish { get; set; }        
+        
         [JsonPropertyName("smallAvatar")]
-        public string? SmallAvatar { get; set; }
-
+        public string? SmallAvatar { get; set; }        
+        
         [JsonPropertyName("avatar")]
-        public string? Avatar { get; set; }
-
+        public string? Avatar { get; set; }        
+        
         [JsonPropertyName("profilePicture")]
-        public string? ProfilePicture { get; set; }
-
+        public string? ProfilePicture { get; set; }        
+        
         [Required]
         [JsonPropertyName("languages")]
-        public List<TDProfileLanguageDto> Languages { get; set; }
-
+        public List<TDProfileLanguageDto> Languages { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("notAMember")]
-        public bool NotAMember { get; set; }
-
+        public bool NotAMember { get; set; }        
+        
         [JsonPropertyName("joined")]
-        public SpaceDate? Joined { get; set; }
-
+        public SpaceDate? Joined { get; set; }        
+        
         [JsonPropertyName("left")]
-        public SpaceDate? Left { get; set; }
-
+        public SpaceDate? Left { get; set; }        
+        
         [JsonPropertyName("leftAt")]
-        public SpaceTime? LeftAt { get; set; }
-
+        public SpaceTime? LeftAt { get; set; }        
+        
         [Required]
         [JsonPropertyName("absences")]
-        public List<AbsenceRecordDto> Absences { get; set; }
-
+        public List<AbsenceRecordDto> Absences { get; set; }        
+        
         [Required]
         [JsonPropertyName("emails")]
-        public List<TDProfileEmailDto> Emails { get; set; }
-
+        public List<TDProfileEmailDto> Emails { get; set; }        
+        
         [Required]
         [JsonPropertyName("links")]
-        public List<string> Links { get; set; }
-
+        public List<string> Links { get; set; }        
+        
         [Required]
         [JsonPropertyName("messengers")]
-        public List<string> Messengers { get; set; }
-
+        public List<string> Messengers { get; set; }        
+        
         [Required]
         [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }
-
+        public List<string> Phones { get; set; }        
+        
         [Required]
         [JsonPropertyName("locations")]
-        public List<TDMemberLocationDto> Locations { get; set; }
-
+        public List<TDMemberLocationDto> Locations { get; set; }        
+        
         [Required]
         [JsonPropertyName("managers")]
-        public List<TDMemberProfileDto> Managers { get; set; }
-
+        public List<TDMemberProfileDto> Managers { get; set; }        
+        
         [Required]
         [JsonPropertyName("membershipHistory")]
-        public List<TDMembershipDto> MembershipHistory { get; set; }
-
+        public List<TDMembershipDto> MembershipHistory { get; set; }        
+        
         [Required]
         [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }
-
+        public List<TDMembershipDto> Memberships { get; set; }        
+        
         [JsonPropertyName("about")]
-        public string? About { get; set; }
-
+        public string? About { get; set; }        
+        
         [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
-
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }        
+        
         [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday { get; set; }
-
+        public SpaceDate? Birthday { get; set; }        
+        
         [JsonPropertyName("gender")]
-        public Gender? Gender { get; set; }
-
+        public Gender? Gender { get; set; }        
+        
     }
-
+    
     // Source: td_memberwithteam
     public class TDMemberWithTeamDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
         [Required]
         [JsonPropertyName("teams")]
-        public List<TDTeamDto> Teams { get; set; }
-
+        public List<TDTeamDto> Teams { get; set; }        
+        
     }
-
+    
     // Source: td_membership
     public class TDMembershipDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("member")]
-        public TDMemberProfileDto? Member { get; set; }
-
+        public TDMemberProfileDto? Member { get; set; }        
+        
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
+        public TDTeamDto Team { get; set; }        
+        
         [Required]
         [JsonPropertyName("role")]
-        public TDRoleDto Role { get; set; }
-
+        public TDRoleDto Role { get; set; }        
+        
         [Required]
         [JsonPropertyName("lead")]
-        public bool Lead { get; set; }
-
+        public bool Lead { get; set; }        
+        
         [JsonPropertyName("manager")]
-        public TDMemberProfileDto? Manager { get; set; }
-
+        public TDMemberProfileDto? Manager { get; set; }        
+        
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
+        public SpaceDate? Since { get; set; }        
+        
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
+        public SpaceDate? Till { get; set; }        
+        
         [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
+        public SpaceTime? ActiveSince { get; set; }        
+        
         [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
+        public SpaceTime? ActiveTill { get; set; }        
+        
         [Required]
         [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
+        public bool RequiresApproval { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [JsonPropertyName("editFor")]
-        public TDMembershipDto? EditFor { get; set; }
-
+        public TDMembershipDto? EditFor { get; set; }        
+        
         [JsonPropertyName("pendingEdit")]
-        public TDMembershipDto? PendingEdit { get; set; }
-
+        public TDMembershipDto? PendingEdit { get; set; }        
+        
         [JsonPropertyName("approver")]
-        public TDMemberProfileDto? Approver { get; set; }
-
+        public TDMemberProfileDto? Approver { get; set; }        
+        
     }
-
+    
     // Source: td_mergedevent
     public class TDMergedEventDto
     {
         [Required]
         [JsonPropertyName("events")]
-        public List<Pair<TDMembershipDto, int>> Events { get; set; }
-
+        public List<Pair<TDMembershipDto, int>> Events { get; set; }        
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
     }
-
+    
     // Source: td_profileemail
     public class TDProfileEmailDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }
-
+        public string Email { get; set; }        
+        
     }
-
+    
     // Source: td_profilelanguage
     public class TDProfileLanguageDto
     {
         [JsonPropertyName("name")]
-        public TDProfileNameDto? Name { get; set; }
-
+        public TDProfileNameDto? Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("language")]
-        public TDLanguageDto Language { get; set; }
-
+        public TDLanguageDto Language { get; set; }        
+        
         [JsonPropertyName("languageCode")]
-        public string? LanguageCode { get; set; }
-
+        public string? LanguageCode { get; set; }        
+        
     }
-
+    
     // Source: td_profilename
     public class TDProfileNameDto
     {
         [Required]
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
-
+        public string FirstName { get; set; }        
+        
         [Required]
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
-
+        public string LastName { get; set; }        
+        
     }
-
+    
     // Source: td_role
     public class TDRoleDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("parent")]
-        public TDRoleDto? Parent { get; set; }
-
+        public TDRoleDto? Parent { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: td_stats
     public class TDStatsDto
     {
         [Required]
         [JsonPropertyName("totalMembers")]
-        public int TotalMembers { get; set; }
-
+        public int TotalMembers { get; set; }        
+        
         [Required]
         [JsonPropertyName("teams")]
-        public List<Pair<TDTeamDto, int>> Teams { get; set; }
-
+        public List<Pair<TDTeamDto, int>> Teams { get; set; }        
+        
         [Required]
         [JsonPropertyName("roles")]
-        public List<Pair<TDRoleDto, int>> Roles { get; set; }
-
+        public List<Pair<TDRoleDto, int>> Roles { get; set; }        
+        
         [Required]
         [JsonPropertyName("locations")]
-        public List<Pair<TDLocationDto, int>> Locations { get; set; }
-
+        public List<Pair<TDLocationDto, int>> Locations { get; set; }        
+        
     }
-
+    
     // Source: td_team
     public class TDTeamDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
-
+        public string Description { get; set; }        
+        
         [JsonPropertyName("parent")]
-        public TDTeamDto? Parent { get; set; }
-
+        public TDTeamDto? Parent { get; set; }        
+        
         [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }
-
+        public List<string>? Emails { get; set; }        
+        
         [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }
-
+        public string? ChannelId { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [JsonPropertyName("disbanded")]
-        public bool? Disbanded { get; set; }
-
+        public bool? Disbanded { get; set; }        
+        
         [JsonPropertyName("disbandedAt")]
-        public SpaceDate? DisbandedAt { get; set; }
-
+        public SpaceDate? DisbandedAt { get; set; }        
+        
         [Required]
         [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }
-
+        public List<TDMembershipDto> Memberships { get; set; }        
+        
     }
-
+    
     // Source: td_workingdays
     public class TDWorkingDaysDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
+        public SpaceDate? DateStart { get; set; }        
+        
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
+        public SpaceDate? DateEnd { get; set; }        
+        
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }        
+        
     }
-
+    
     // Source: teamaddeditemdetails
     public class TeamAddedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
+        public TDTeamDto Team { get; set; }        
+        
     }
-
+    
     // Source: textrange
     public class TextRangeDto
     {
         [Required]
         [JsonPropertyName("start")]
-        public int Start { get; set; }
-
+        public int Start { get; set; }        
+        
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get; set; }
-
+        public int Length { get; set; }        
+        
     }
-
+    
     // Source: todoitemcontent
     public interface TodoItemContentDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: todoitemcontentmdtext
     public class TodoItemContentMdTextDto
          : TodoItemContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [Required]
         [JsonPropertyName("mdMarkup")]
-        public MdMarkupDto MdMarkup { get; set; }
-
+        public MdMarkupDto MdMarkup { get; set; }        
+        
     }
-
+    
     // Source: todoitemcontenttext
     public class TodoItemContentTextDto
          : TodoItemContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
     }
-
+    
     // Source: todoitemrecord
     public class TodoItemRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
-
+        public SpaceTime Created { get; set; }        
+        
         [Required]
         [JsonPropertyName("updated")]
-        public SpaceTime Updated { get; set; }
-
+        public SpaceTime Updated { get; set; }        
+        
         [Required]
         [JsonPropertyName("content")]
-        public TodoItemContentDto Content { get; set; }
-
+        public TodoItemContentDto Content { get; set; }        
+        
         [Required]
         [JsonPropertyName("_status")]
-        public string Status { get; set; }
-
+        public string Status { get; set; }        
+        
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
-
+        public SpaceDate? DueDate { get; set; }        
+        
     }
-
+    
     // Source: trackedbranchesinreview
     public class TrackedBranchesInReviewDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
+        public string Repository { get; set; }        
+        
         [Required]
         [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get; set; }
-
+        public List<BranchInfoDto> Branches { get; set; }        
+        
     }
-
+    
     // Source: trustedcertificate
     public class TrustedCertificateDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
+        public string Alias { get; set; }        
+        
         [Required]
         [JsonPropertyName("data")]
-        public string Data { get; set; }
-
+        public string Data { get; set; }        
+        
         [Required]
         [JsonPropertyName("info")]
-        public CertificateInfoDto Info { get; set; }
-
+        public CertificateInfoDto Info { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: unfurl
     public class UnfurlDto
     {
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
         [Required]
         [JsonPropertyName("link")]
-        public string Link { get; set; }
-
+        public string Link { get; set; }        
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [JsonPropertyName("details")]
-        public UnfurlDetailsDto? Details { get; set; }
-
+        public UnfurlDetailsDto? Details { get; set; }        
+        
         [JsonPropertyName("sitename")]
-        public string? Sitename { get; set; }
-
+        public string? Sitename { get; set; }        
+        
         [JsonPropertyName("image")]
-        public string? Image { get; set; }
-
+        public string? Image { get; set; }        
+        
         [JsonPropertyName("imageMime")]
-        public string? ImageMime { get; set; }
-
+        public string? ImageMime { get; set; }        
+        
         [JsonPropertyName("imageWidth")]
-        public int? ImageWidth { get; set; }
-
+        public int? ImageWidth { get; set; }        
+        
         [JsonPropertyName("imageHeight")]
-        public int? ImageHeight { get; set; }
-
+        public int? ImageHeight { get; set; }        
+        
         [JsonPropertyName("video")]
-        public string? Video { get; set; }
-
+        public string? Video { get; set; }        
+        
         [JsonPropertyName("videoIFrame")]
-        public string? VideoIFrame { get; set; }
-
+        public string? VideoIFrame { get; set; }        
+        
         [JsonPropertyName("videoMime")]
-        public string? VideoMime { get; set; }
-
+        public string? VideoMime { get; set; }        
+        
         [JsonPropertyName("videoHeight")]
-        public int? VideoHeight { get; set; }
-
+        public int? VideoHeight { get; set; }        
+        
         [JsonPropertyName("videoWidth")]
-        public int? VideoWidth { get; set; }
-
+        public int? VideoWidth { get; set; }        
+        
         [JsonPropertyName("favicon")]
-        public string? Favicon { get; set; }
-
+        public string? Favicon { get; set; }        
+        
     }
-
+    
     // Source: unfurlattachment
     public class UnfurlAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("unfurl")]
-        public UnfurlDto Unfurl { get; set; }
-
+        public UnfurlDto Unfurl { get; set; }        
+        
         [JsonPropertyName("id")]
-        public string? Id { get; set; }
-
+        public string? Id { get; set; }        
+        
     }
-
+    
     // Source: unfurldetails
     public interface UnfurlDetailsDto
          : IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: unfurldetailsarticle
     public class UnfurlDetailsArticleDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
-
+        public ArticleRecordDto Article { get; set; }        
+        
         [Required]
         [JsonPropertyName("content")]
-        public ArticleContentRecordDto Content { get; set; }
-
+        public ArticleContentRecordDto Content { get; set; }        
+        
         [Required]
         [JsonPropertyName("channel")]
-        public ArticleChannelRecordDto Channel { get; set; }
-
+        public ArticleChannelRecordDto Channel { get; set; }        
+        
         [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get; set; }
-
+        public ArticleDetailsRecordDto? Details { get; set; }        
+        
     }
-
+    
     // Source: unfurldetailschecklist
     public class UnfurlDetailsChecklistDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("checklist")]
-        public ChecklistDto Checklist { get; set; }
-
+        public ChecklistDto Checklist { get; set; }        
+        
     }
-
+    
     // Source: unfurldetailscodesnippet
     public class UnfurlDetailsCodeSnippetDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeSnippetAnchorDto Anchor { get; set; }
-
+        public CodeSnippetAnchorDto Anchor { get; set; }        
+        
         [Required]
         [JsonPropertyName("lines")]
-        public List<CodeLineDto> Lines { get; set; }
-
+        public List<CodeLineDto> Lines { get; set; }        
+        
     }
-
+    
     // Source: unfurldetailsdatetime
     public class UnfurlDetailsDateTimeDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("utcMilliseconds")]
-        public long UtcMilliseconds { get; set; }
-
+        public long UtcMilliseconds { get; set; }        
+        
     }
-
+    
     // Source: unfurldetailsdraft
     public class UnfurlDetailsDraftDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("draft")]
-        public string Draft { get; set; }
-
+        public string Draft { get; set; }        
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
-
+        public string Title { get; set; }        
+        
     }
-
+    
     // Source: unfurldetailsissue
     public class UnfurlDetailsIssueDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("issue")]
-        public IssueDto Issue { get; set; }
-
+        public IssueDto Issue { get; set; }        
+        
     }
-
+    
     // Source: unfurldetailsprofile
     public class UnfurlDetailsProfileDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
-
+        public TDMemberProfileDto Profile { get; set; }        
+        
     }
-
+    
     // Source: unfurldetailsteam
     public class UnfurlDetailsTeamDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
-
+        public TDTeamDto Team { get; set; }        
+        
     }
-
+    
     // Source: urlcftype
     public class UrlCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
     }
-
+    
     // Source: urlcfvalue
     public class UrlCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [JsonPropertyName("href")]
-        public string? Href { get; set; }
-
+        public string? Href { get; set; }        
+        
     }
-
+    
     // Source: vcshostingpassword
     public class VcsHostingPasswordDto
     {
         [Required]
         [JsonPropertyName("fingerprint")]
-        public string Fingerprint { get; set; }
-
+        public string Fingerprint { get; set; }        
+        
         [JsonPropertyName("lastUsed")]
-        public SpaceTime? LastUsed { get; set; }
-
+        public SpaceTime? LastUsed { get; set; }        
+        
     }
-
+    
     // Source: videoattachment
     public class VideoAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
-
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
-
+        public string Id { get; set; }        
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [JsonPropertyName("width")]
-        public int? Width { get; set; }
-
+        public int? Width { get; set; }        
+        
         [JsonPropertyName("height")]
-        public int? Height { get; set; }
-
+        public int? Height { get; set; }        
+        
         [Required]
         [JsonPropertyName("sizeBytes")]
-        public long SizeBytes { get; set; }
-
+        public long SizeBytes { get; set; }        
+        
         [JsonPropertyName("previewBytes")]
-        public string? PreviewBytes { get; set; }
-
+        public string? PreviewBytes { get; set; }        
+        
     }
-
+    
     // Source: votegroup
     public class VoteGroupDto
     {
         [Required]
         [JsonPropertyName("variantName")]
-        public string VariantName { get; set; }
-
+        public string VariantName { get; set; }        
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
-
+        public int Count { get; set; }        
+        
         [Required]
         [JsonPropertyName("meVote")]
-        public bool MeVote { get; set; }
-
+        public bool MeVote { get; set; }        
+        
         [Required]
         [JsonPropertyName("lastUsers")]
-        public List<TDMemberProfileDto> LastUsers { get; set; }
-
+        public List<TDMemberProfileDto> LastUsers { get; set; }        
+        
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }
-
+        public TDMemberProfileDto? Owner { get; set; }        
+        
     }
-
+    
     // Source: workday
     public class WorkdayDto
     {
         [Required]
         [JsonPropertyName("weekday")]
-        public string Weekday { get; set; }
-
+        public string Weekday { get; set; }        
+        
         [Required]
         [JsonPropertyName("working")]
-        public bool Working { get; set; }
-
+        public bool Working { get; set; }        
+        
         [Required]
         [JsonPropertyName("hours")]
-        public int Hours { get; set; }
-
+        public int Hours { get; set; }        
+        
         [JsonPropertyName("minutes")]
-        public int? Minutes { get; set; }
-
+        public int? Minutes { get; set; }        
+        
     }
-
+    
     // Source: workingdaysspec
     public class WorkingDaysSpecDto
     {
         [Required]
         [JsonPropertyName("days")]
-        public List<WorkdayDto> Days { get; set; }
-
+        public List<WorkdayDto> Days { get; set; }        
+        
     }
-
+    
     // Source: absences
     public partial class AbsenceClient
     {
         private readonly Connection _connection;
-
+        
         public AbsenceClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<AbsenceRecordDto> CreateAbsence(CreateAbsenceRequestDto data) => await _connection.RequestResourceAsync<CreateAbsenceRequestDto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);
-
-        public async Task ApproveAbsence(string id, ApproveAbsenceRequestDto data) => await _connection.RequestResourceAsync<ApproveAbsenceRequestDto>("POST", $"api/http/absences/{id}/approve", data);
-
-        public async Task<Batch<AbsenceRecordDto>> GetAllAbsences(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null) => await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<AbsenceRecordDto>)));
-
-        public async Task<List<AbsenceRecordDto>> GetAllAbsencesByMember(string member) => await _connection.RequestResourceAsync<List<AbsenceRecordDto>>("GET", $"api/http/absences/member:{member}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceRecordDto>)));
-
-        public async Task<AbsenceRecordDto> GetAbsence(string id) => await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)));
-
-        public async Task<AbsenceRecordDto> UpdateAbsence(string id, UpdateAbsenceRequestDto data) => await _connection.RequestResourceAsync<UpdateAbsenceRequestDto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);
-
-        public async Task DeleteAbsence(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}");
-
-        public async Task DeleteAbsenceApproval(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");
-
-        public async Task<AbsenceReasonRecordDto> AbsenceReasonsCreateAbsenceReason(AbsenceReasonsCreateAbsenceReasonRequestDto data) => await _connection.RequestResourceAsync<AbsenceReasonsCreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);
-
-        public async Task<AbsenceReasonRecordDto> AbsenceReasonsCreateAbsenceReason(string id, AbsenceReasonsCreateAbsenceReasonRequestDto data) => await _connection.RequestResourceAsync<AbsenceReasonsCreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);
-
-        public async Task<List<AbsenceReasonRecordDto>> AbsenceReasonsGetAllAbsenceReasons(bool withArchived) => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceReasonRecordDto>)));
-
-        public async Task<AbsenceReasonRecordDto> AbsenceReasonsGetAbsenceReason(string id) => await _connection.RequestResourceAsync<AbsenceReasonRecordDto>("GET", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)));
-
-        public async Task AbsenceReasonsDeleteAbsenceReason(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}");
-
-        public async Task<DTOAbsenceSubscriptionDto> SubscriptionsCreateSubscription(SubscriptionsCreateSubscriptionRequestDto data) => await _connection.RequestResourceAsync<SubscriptionsCreateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);
-
-        public async Task<List<DTOAbsenceSubscriptionDto>> SubscriptionsGetAllSubscriptions() => await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<DTOAbsenceSubscriptionDto>)));
-
-        public async Task<DTOAbsenceSubscriptionDto> SubscriptionsUpdateSubscription(string id, SubscriptionsUpdateSubscriptionRequestDto data) => await _connection.RequestResourceAsync<SubscriptionsUpdateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);
-
-        public async Task SubscriptionsDeleteSubscription(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");
-
+        
+        public async Task<AbsenceRecordDto> CreateAbsence(CreateAbsenceRequestDto data) => await _connection.RequestResourceAsync<CreateAbsenceRequestDto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
+        
+        public async Task ApproveAbsence(string id, ApproveAbsenceRequestDto data) => await _connection.RequestResourceAsync<ApproveAbsenceRequestDto>("POST", $"api/http/absences/{id}/approve", data);        
+        
+        public async Task<Batch<AbsenceRecordDto>> GetAllAbsences(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null) => await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<AbsenceRecordDto>)));        
+        
+        public async Task<List<AbsenceRecordDto>> GetAllAbsencesByMember(string member) => await _connection.RequestResourceAsync<List<AbsenceRecordDto>>("GET", $"api/http/absences/member:{member}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceRecordDto>)));        
+        
+        public async Task<AbsenceRecordDto> GetAbsence(string id) => await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)));        
+        
+        public async Task<AbsenceRecordDto> UpdateAbsence(string id, UpdateAbsenceRequestDto data) => await _connection.RequestResourceAsync<UpdateAbsenceRequestDto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
+        
+        public async Task DeleteAbsence(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}");        
+        
+        public async Task DeleteAbsenceApproval(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");        
+        
+        public AbsenceReasonClient AbsenceReasons => new AbsenceReasonClient(_connection);
+        
+        // Source: absences_absence-reasons
+        public partial class AbsenceReasonClient
+        {
+            private readonly Connection _connection;
+            
+            public AbsenceReasonClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<AbsenceReasonRecordDto> CreateAbsenceReason(CreateAbsenceReasonRequestDto data) => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);            
+            
+            public async Task<AbsenceReasonRecordDto> CreateAbsenceReason(string id, CreateAbsenceReasonRequestDto data) => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);            
+            
+            public async Task<List<AbsenceReasonRecordDto>> GetAllAbsenceReasons(bool withArchived) => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceReasonRecordDto>)));            
+            
+            public async Task<AbsenceReasonRecordDto> GetAbsenceReason(string id) => await _connection.RequestResourceAsync<AbsenceReasonRecordDto>("GET", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)));            
+            
+            public async Task DeleteAbsenceReason(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}");            
+            
+        }
+        
+        public SubscriptionClient Subscriptions => new SubscriptionClient(_connection);
+        
+        // Source: absences_subscriptions
+        public partial class SubscriptionClient
+        {
+            private readonly Connection _connection;
+            
+            public SubscriptionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<DTOAbsenceSubscriptionDto> CreateSubscription(CreateSubscriptionRequestDto data) => await _connection.RequestResourceAsync<CreateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);            
+            
+            public async Task<List<DTOAbsenceSubscriptionDto>> GetAllSubscriptions() => await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<DTOAbsenceSubscriptionDto>)));            
+            
+            public async Task<DTOAbsenceSubscriptionDto> UpdateSubscription(string id, UpdateSubscriptionRequestDto data) => await _connection.RequestResourceAsync<UpdateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);            
+            
+            public async Task DeleteSubscription(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");            
+            
+        }
+        
     }
-
+    
     // Source: administration
     public partial class AdministrationClient
     {
         private readonly Connection _connection;
-
+        
         public AdministrationClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<SupportProfileDTODto> SupportCreateSupport() => await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SupportProfileDTODto)));
-
+        
+        public SupportClient Support => new SupportClient(_connection);
+        
+        // Source: administration_support
+        public partial class SupportClient
+        {
+            private readonly Connection _connection;
+            
+            public SupportClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<SupportProfileDTODto> CreateSupport() => await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SupportProfileDTODto)));            
+            
+        }
+        
     }
-
+    
     // Source: auth-modules
     public partial class AuthModuleClient
     {
         private readonly Connection _connection;
-
+        
         public AuthModuleClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<ESAuthModuleDto> CreateAuthModule(CreateAuthModuleRequestDto data) => await _connection.RequestResourceAsync<CreateAuthModuleRequestDto, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)), data);
-
-        public async Task Reorder(ReorderRequestDto data) => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/auth-modules/reorder", data);
-
-        public async Task<SamlMetadataResponseDto> SamlMetadata(string id, SamlMetadataRequestDto data) => await _connection.RequestResourceAsync<SamlMetadataRequestDto, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SamlMetadataResponseDto)), data);
-
-        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled) => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthModuleDto>)));
-
-        public async Task<ESAuthModuleDto> GetAuthModuleByKey(string key) => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)));
-
-        public async Task UpdateAuthModule(string id, UpdateAuthModuleRequestDto data) => await _connection.RequestResourceAsync<UpdateAuthModuleRequestDto>("PATCH", $"api/http/auth-modules/{id}", data);
-
-        public async Task DeleteAuthModule(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}");
-
-        public async Task<TDMemberProfileDto> TestTestBuiltInSettings(TestTestBuiltInSettingsRequestDto data) => await _connection.RequestResourceAsync<TestTestBuiltInSettingsRequestDto, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
-
-        public async Task<ESDefaultProfileLoginDetailsDto> TestTestLDAPSettings(TestTestLDAPSettingsRequestDto data) => await _connection.RequestResourceAsync<TestTestLDAPSettingsRequestDto, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESDefaultProfileLoginDetailsDto)), data);
-
-        public async Task<List<AuthModuleUsageDto>> UsagesGetAllUsages() => await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AuthModuleUsageDto>)));
-
-        public async Task LoginsChange(string id, string identifier, LoginsChangeRequestDto data) => await _connection.RequestResourceAsync<LoginsChangeRequestDto>("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);
-
-        public async Task LoginsReset(string id, string identifier) => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset");
-
-        public async Task LoginsDeleteLogin(string identifier, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}");
-
+        
+        public async Task<ESAuthModuleDto> CreateAuthModule(CreateAuthModuleRequestDto data) => await _connection.RequestResourceAsync<CreateAuthModuleRequestDto, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)), data);        
+        
+        public async Task Reorder(ReorderRequestDto data) => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/auth-modules/reorder", data);        
+        
+        public async Task<SamlMetadataResponseDto> SamlMetadata(string id, SamlMetadataRequestDto data) => await _connection.RequestResourceAsync<SamlMetadataRequestDto, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SamlMetadataResponseDto)), data);        
+        
+        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled) => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthModuleDto>)));        
+        
+        public async Task<ESAuthModuleDto> GetAuthModuleByKey(string key) => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)));        
+        
+        public async Task UpdateAuthModule(string id, UpdateAuthModuleRequestDto data) => await _connection.RequestResourceAsync<UpdateAuthModuleRequestDto>("PATCH", $"api/http/auth-modules/{id}", data);        
+        
+        public async Task DeleteAuthModule(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}");        
+        
+        public TestClient Test => new TestClient(_connection);
+        
+        // Source: auth-modules_test
+        public partial class TestClient
+        {
+            private readonly Connection _connection;
+            
+            public TestClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDMemberProfileDto> TestBuiltInSettings(TestBuiltInSettingsRequestDto data) => await _connection.RequestResourceAsync<TestBuiltInSettingsRequestDto, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
+            
+            public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettings(TestLDAPSettingsRequestDto data) => await _connection.RequestResourceAsync<TestLDAPSettingsRequestDto, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESDefaultProfileLoginDetailsDto)), data);            
+            
+        }
+        
+        public UsageClient Usages => new UsageClient(_connection);
+        
+        // Source: auth-modules_usages
+        public partial class UsageClient
+        {
+            private readonly Connection _connection;
+            
+            public UsageClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<AuthModuleUsageDto>> GetAllUsages() => await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AuthModuleUsageDto>)));            
+            
+        }
+        
+        public LoginClient Logins => new LoginClient(_connection);
+        
+        // Source: auth-modules_xxx_logins
+        public partial class LoginClient
+        {
+            private readonly Connection _connection;
+            
+            public LoginClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task Change(string id, string identifier, ChangeRequestDto data) => await _connection.RequestResourceAsync<ChangeRequestDto>("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);            
+            
+            public async Task Reset(string id, string identifier) => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset");            
+            
+            public async Task DeleteLogin(string identifier, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}");            
+            
+        }
+        
     }
-
+    
     // Source: automation
     public partial class AutomationClient
     {
         private readonly Connection _connection;
-
+        
         public AutomationClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<string> GraphExecutionsParametersGetParameter(long id, string key) => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)));
-
-        public async Task GraphExecutionsParametersUpdateParameter(long id, GraphExecutionsParametersUpdateParameterRequestDto data) => await _connection.RequestResourceAsync<GraphExecutionsParametersUpdateParameterRequestDto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);
-
-        public async Task GraphExecutionsParametersDeleteParameter(long id, string key) => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");
-
+        
+        public GraphExecutionClient GraphExecutions => new GraphExecutionClient(_connection);
+        
+        // Source: automation_graph-executions
+        public partial class GraphExecutionClient
+        {
+            private readonly Connection _connection;
+            
+            public GraphExecutionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ParameterClient Parameters => new ParameterClient(_connection);
+            
+            // Source: automation_graph-executions_xxx_parameters
+            public partial class ParameterClient
+            {
+                private readonly Connection _connection;
+                
+                public ParameterClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<string> GetParameter(long id, string key) => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)));                
+                
+                public async Task UpdateParameter(long id, UpdateParameterRequestDto data) => await _connection.RequestResourceAsync<UpdateParameterRequestDto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);                
+                
+                public async Task DeleteParameter(long id, string key) => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");                
+                
+            }
+            
+        }
+        
     }
-
+    
     // Source: blogs
     public partial class BlogClient
     {
         private readonly Connection _connection;
-
+        
         public BlogClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<string> ConvertMarkdownToHTML(ConvertMarkdownToHTMLRequestDto data) => await _connection.RequestResourceAsync<ConvertMarkdownToHTMLRequestDto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
-
-        public async Task<ArticleRecordDto> ArticlesCreateArticle(ArticlesCreateArticleRequestDto data) => await _connection.RequestResourceAsync<ArticlesCreateArticleRequestDto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);
-
-        public async Task<Batch<ArticleRecordDto>> ArticlesGetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null) => await _connection.RequestResourceAsync<Batch<ArticleRecordDto>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ArticleRecordDto>)));
-
-        public async Task<ArticleRecordDto> ArticlesGetArticleByAlias(string alias) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));
-
-        public async Task<ArticleRecordDto> ArticlesGetArticle(string id) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));
-
-        public async Task<BGArticleIdDto> ArticlesDraftsPublishArticle(string draftId) => await _connection.RequestResourceAsync<BGArticleIdDto>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGArticleIdDto)));
-
-        public async Task<DRDraftIdDto> ArticlesDraftsGetDraftByArticleId(string articleId) => await _connection.RequestResourceAsync<DRDraftIdDto>("GET", $"api/http/blogs/articles/drafts/article-id:{articleId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftIdDto)));
-
-        public async Task ArticlesDraftsUnpublishArticle(string draftId) => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish");
-
-        public async Task<BGDatesDto> DatesGetDates() => await _connection.RequestResourceAsync<BGDatesDto>("GET", $"api/http/blogs/dates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGDatesDto)));
-
-        public async Task<BGStatsDto> StatsGetStats(SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null) => await _connection.RequestResourceAsync<BGStatsDto>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGStatsDto)));
-
+        
+        public async Task<string> ConvertMarkdownToHTML(ConvertMarkdownToHTMLRequestDto data) => await _connection.RequestResourceAsync<ConvertMarkdownToHTMLRequestDto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
+        
+        public ArticleClient Articles => new ArticleClient(_connection);
+        
+        // Source: blogs_articles
+        public partial class ArticleClient
+        {
+            private readonly Connection _connection;
+            
+            public ArticleClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<ArticleRecordDto> CreateArticle(CreateArticleRequestDto data) => await _connection.RequestResourceAsync<CreateArticleRequestDto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);            
+            
+            public async Task<Batch<ArticleRecordDto>> GetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null) => await _connection.RequestResourceAsync<Batch<ArticleRecordDto>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ArticleRecordDto>)));            
+            
+            public async Task<ArticleRecordDto> GetArticleByAlias(string alias) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));            
+            
+            public async Task<ArticleRecordDto> GetArticle(string id) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));            
+            
+            public DraftClient Drafts => new DraftClient(_connection);
+            
+            // Source: blogs_articles_drafts
+            public partial class DraftClient
+            {
+                private readonly Connection _connection;
+                
+                public DraftClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<BGArticleIdDto> PublishArticle(string draftId) => await _connection.RequestResourceAsync<BGArticleIdDto>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGArticleIdDto)));                
+                
+                public async Task<DRDraftIdDto> GetDraftByArticleId(string articleId) => await _connection.RequestResourceAsync<DRDraftIdDto>("GET", $"api/http/blogs/articles/drafts/article-id:{articleId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftIdDto)));                
+                
+                public async Task UnpublishArticle(string draftId) => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish");                
+                
+            }
+            
+        }
+        
+        public DateClient Dates => new DateClient(_connection);
+        
+        // Source: blogs_dates
+        public partial class DateClient
+        {
+            private readonly Connection _connection;
+            
+            public DateClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<BGDatesDto> GetDates() => await _connection.RequestResourceAsync<BGDatesDto>("GET", $"api/http/blogs/dates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGDatesDto)));            
+            
+        }
+        
+        public StatClient Stats => new StatClient(_connection);
+        
+        // Source: blogs_stats
+        public partial class StatClient
+        {
+            private readonly Connection _connection;
+            
+            public StatClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<BGStatsDto> GetStats(SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null) => await _connection.RequestResourceAsync<BGStatsDto>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGStatsDto)));            
+            
+        }
+        
     }
-
+    
     // Source: chats
     public partial class ChatClient
     {
         private readonly Connection _connection;
-
+        
         public ChatClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<bool> ChannelsIsNameFree(ChannelsIsNameFreeRequestDto data) => await _connection.RequestResourceAsync<ChannelsIsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);
-
-        public async Task<List<string>> ChannelsImportMessageHistory(string channelId, ChannelsImportMessageHistoryRequestDto data) => await _connection.RequestResourceAsync<ChannelsImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);
-
-        public async Task ChannelsRestoreArchivedChannel(string channelId) => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");
-
-        public async Task ChannelsDeleteChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");
-
-        public async Task ChannelsArchiveChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");
-
-        public async Task ChannelsMessagesSendMessage(string channelId, ChannelsMessagesSendMessageRequestDto data) => await _connection.RequestResourceAsync<ChannelsMessagesSendMessageRequestDto>("POST", $"api/http/chats/channels/{channelId}/messages", data);
-
-        [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17)")]
-        public async Task MessagesSendMessage(MessagesSendMessageRequestDto data) => await _connection.RequestResourceAsync<MessagesSendMessageRequestDto>("POST", $"api/http/chats/messages/send", data);
-
+        
+        public ChannelClient Channels => new ChannelClient(_connection);
+        
+        // Source: chats_channels
+        public partial class ChannelClient
+        {
+            private readonly Connection _connection;
+            
+            public ChannelClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<bool> IsNameFree(IsNameFreeRequestDto data) => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);            
+            
+            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data) => await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);            
+            
+            public async Task RestoreArchivedChannel(string channelId) => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");            
+            
+            public async Task DeleteChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");            
+            
+            public async Task ArchiveChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");            
+            
+            public MessageClient Messages => new MessageClient(_connection);
+            
+            // Source: chats_channels_xxx_messages
+            public partial class MessageClient
+            {
+                private readonly Connection _connection;
+                
+                public MessageClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task SendMessage(string channelId, SendMessageRequestDto data) => await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/channels/{channelId}/messages", data);                
+                
+            }
+            
+        }
+        
+        public MessageClient Messages => new MessageClient(_connection);
+        
+        // Source: chats_messages
+        public partial class MessageClient
+        {
+            private readonly Connection _connection;
+            
+            public MessageClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17)")]            
+            public async Task SendMessage(SendMessageRequestDto data) => await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/messages/send", data);            
+            
+        }
+        
     }
-
+    
     // Source: custom-fields
     public partial class CustomFieldClient
     {
         private readonly Connection _connection;
-
+        
         public CustomFieldClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<List<ExtendedTypeDto>> ExtendedTypesGetAllExtendedTypes() => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ExtendedTypeDto>)));
-
-        public async Task<Batch<CustomFieldsRecordDto>> AllValuesGetAllAllValues(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null) => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CustomFieldsRecordDto>)));
-
-        public async Task<CustomFieldDto> FieldsCreateField(string typeKey, FieldsCreateFieldRequestDto data) => await _connection.RequestResourceAsync<FieldsCreateFieldRequestDto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);
-
-        public async Task FieldsReorder(string typeKey, FieldsReorderRequestDto data) => await _connection.RequestResourceAsync<FieldsReorderRequestDto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);
-
-        public async Task FieldsArchive(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");
-
-        public async Task FieldsRestore(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/restore");
-
-        public async Task<List<CustomFieldDto>> FieldsGetAllFields(string typeKey, bool withArchived) => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));
-
-        public async Task FieldsUpdateField(string typeKey, string id, FieldsUpdateFieldRequestDto data) => await _connection.RequestResourceAsync<FieldsUpdateFieldRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);
-
-        public async Task FieldsDeleteField(string typeKey, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");
-
-        public async Task<CustomFieldsRecordDto> ValuesGetValue(string typeKey, string entityId) => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldsRecordDto)));
-
-        public async Task ValuesUpdateValue(string entityId, string typeKey, ValuesUpdateValueRequestDto data) => await _connection.RequestResourceAsync<ValuesUpdateValueRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);
-
+        
+        public ExtendedTypeClient ExtendedTypes => new ExtendedTypeClient(_connection);
+        
+        // Source: custom-fields_extended-types
+        public partial class ExtendedTypeClient
+        {
+            private readonly Connection _connection;
+            
+            public ExtendedTypeClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<ExtendedTypeDto>> GetAllExtendedTypes() => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ExtendedTypeDto>)));            
+            
+        }
+        
+        public AllValueClient AllValues => new AllValueClient(_connection);
+        
+        // Source: custom-fields_xxx_all-values
+        public partial class AllValueClient
+        {
+            private readonly Connection _connection;
+            
+            public AllValueClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValues(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null) => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CustomFieldsRecordDto>)));            
+            
+        }
+        
+        public FieldClient Fields => new FieldClient(_connection);
+        
+        // Source: custom-fields_xxx_fields
+        public partial class FieldClient
+        {
+            private readonly Connection _connection;
+            
+            public FieldClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<CustomFieldDto> CreateField(string typeKey, CreateFieldRequestDto data) => await _connection.RequestResourceAsync<CreateFieldRequestDto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);            
+            
+            public async Task Reorder(string typeKey, ReorderRequestDto data) => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);            
+            
+            public async Task Archive(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");            
+            
+            public async Task Restore(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/restore");            
+            
+            public async Task<List<CustomFieldDto>> GetAllFields(string typeKey, bool withArchived) => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));            
+            
+            public async Task UpdateField(string typeKey, string id, UpdateFieldRequestDto data) => await _connection.RequestResourceAsync<UpdateFieldRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);            
+            
+            public async Task DeleteField(string typeKey, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");            
+            
+        }
+        
+        public ValueClient Values => new ValueClient(_connection);
+        
+        // Source: custom-fields_xxx_xxx_values
+        public partial class ValueClient
+        {
+            private readonly Connection _connection;
+            
+            public ValueClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<CustomFieldsRecordDto> GetValue(string typeKey, string entityId) => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldsRecordDto)));            
+            
+            public async Task UpdateValue(string entityId, string typeKey, UpdateValueRequestDto data) => await _connection.RequestResourceAsync<UpdateValueRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);            
+            
+        }
+        
     }
-
+    
     // Source: docs
     public partial class DocClient
     {
         private readonly Connection _connection;
-
+        
         public DocClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<DRDraftDto> DraftsCreateDraft(DraftsCreateDraftRequestDto data) => await _connection.RequestResourceAsync<DraftsCreateDraftRequestDto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);
-
-        public async Task<DRDraftDto> DraftsGetDraft(string id) => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)));
-
-        public async Task<DRDraftDto> DraftsUpdateDraft(string id, DraftsUpdateDraftRequestDto data) => await _connection.RequestResourceAsync<DraftsUpdateDraftRequestDto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);
-
-        public async Task DraftsDeleteDraft(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");
-
-        public async Task DraftsEditorsProfilesCreateProfile(string id, DraftsEditorsProfilesCreateProfileRequestDto data) => await _connection.RequestResourceAsync<DraftsEditorsProfilesCreateProfileRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);
-
-        public async Task<List<TDMemberProfileDto>> DraftsEditorsProfilesGetAllProfiles(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));
-
-        public async Task DraftsEditorsProfilesDeleteProfile(string id, string editorId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");
-
-        public async Task DraftsEditorsTeamsCreateTeam(string id, DraftsEditorsTeamsCreateTeamRequestDto data) => await _connection.RequestResourceAsync<DraftsEditorsTeamsCreateTeamRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);
-
-        public async Task<List<TDTeamDto>> DraftsEditorsTeamsGetAllTeams(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));
-
-        public async Task DraftsEditorsTeamsDeleteTeam(string id, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}");
-
+        
+        public DraftClient Drafts => new DraftClient(_connection);
+        
+        // Source: docs_drafts
+        public partial class DraftClient
+        {
+            private readonly Connection _connection;
+            
+            public DraftClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<DRDraftDto> CreateDraft(CreateDraftRequestDto data) => await _connection.RequestResourceAsync<CreateDraftRequestDto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);            
+            
+            public async Task<DRDraftDto> GetDraft(string id) => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)));            
+            
+            public async Task<DRDraftDto> UpdateDraft(string id, UpdateDraftRequestDto data) => await _connection.RequestResourceAsync<UpdateDraftRequestDto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);            
+            
+            public async Task DeleteDraft(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");            
+            
+            public EditorClient Editors => new EditorClient(_connection);
+            
+            // Source: docs_drafts_xxx_editors
+            public partial class EditorClient
+            {
+                private readonly Connection _connection;
+                
+                public EditorClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public ProfileClient Profiles => new ProfileClient(_connection);
+                
+                // Source: docs_drafts_xxx_editors_profiles
+                public partial class ProfileClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ProfileClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task CreateProfile(string id, CreateProfileRequestDto data) => await _connection.RequestResourceAsync<CreateProfileRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);                    
+                    
+                    public async Task<List<TDMemberProfileDto>> GetAllProfiles(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                    
+                    
+                    public async Task DeleteProfile(string id, string editorId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");                    
+                    
+                }
+                
+                public TeamClient Teams => new TeamClient(_connection);
+                
+                // Source: docs_drafts_xxx_editors_teams
+                public partial class TeamClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public TeamClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task CreateTeam(string id, CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);                    
+                    
+                    public async Task<List<TDTeamDto>> GetAllTeams(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));                    
+                    
+                    public async Task DeleteTeam(string id, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}");                    
+                    
+                }
+                
+            }
+            
+        }
+        
     }
-
+    
     // Source: emojis
     public partial class EmojiClient
     {
         private readonly Connection _connection;
-
+        
         public EmojiClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task Delete(DeleteRequestDto data) => await _connection.RequestResourceAsync<DeleteRequestDto>("POST", $"api/http/emojis/delete", data);
-
-        public async Task<bool> Exists(string emoji) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));
-
+        
+        public async Task Delete(DeleteRequestDto data) => await _connection.RequestResourceAsync<DeleteRequestDto>("POST", $"api/http/emojis/delete", data);        
+        
+        public async Task<bool> Exists(string emoji) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));        
+        
     }
-
+    
     // Source: full-text-search
     public partial class FullTextSearchClient
     {
         private readonly Connection _connection;
-
+        
         public FullTextSearchClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<Batch<FTSBlogDto>> BlogsGetAllBlogs(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSBlogDto>>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSBlogDto>)));
-
-        public async Task<Batch<FTSDraftDto>> DraftsGetAllDrafts(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSDraftDto>>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSDraftDto>)));
-
-        public async Task<Batch<FTSProfileDto>> ProfilesGetAllProfiles(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSProfileDto>>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSProfileDto>)));
-
-        public async Task<Batch<FTSTeamDto>> TeamsGetAllTeams(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSTeamDto>>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSTeamDto>)));
-
+        
+        public BlogClient Blogs => new BlogClient(_connection);
+        
+        // Source: full-text-search_blogs
+        public partial class BlogClient
+        {
+            private readonly Connection _connection;
+            
+            public BlogClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<FTSBlogDto>> GetAllBlogs(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSBlogDto>>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSBlogDto>)));            
+            
+        }
+        
+        public DraftClient Drafts => new DraftClient(_connection);
+        
+        // Source: full-text-search_drafts
+        public partial class DraftClient
+        {
+            private readonly Connection _connection;
+            
+            public DraftClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<FTSDraftDto>> GetAllDrafts(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSDraftDto>>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSDraftDto>)));            
+            
+        }
+        
+        public ProfileClient Profiles => new ProfileClient(_connection);
+        
+        // Source: full-text-search_profiles
+        public partial class ProfileClient
+        {
+            private readonly Connection _connection;
+            
+            public ProfileClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<FTSProfileDto>> GetAllProfiles(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSProfileDto>>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSProfileDto>)));            
+            
+        }
+        
+        public TeamClient Teams => new TeamClient(_connection);
+        
+        // Source: full-text-search_teams
+        public partial class TeamClient
+        {
+            private readonly Connection _connection;
+            
+            public TeamClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<FTSTeamDto>> GetAllTeams(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSTeamDto>>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSTeamDto>)));            
+            
+        }
+        
     }
-
+    
     // Source: http-api-model
     public partial class HTTPAPIModelClient
     {
         private readonly Connection _connection;
-
+        
         public HTTPAPIModelClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<HAModelDto> GetHTTPAPIModel() => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(HAModelDto)));
-
+        
+        public async Task<HAModelDto> GetHTTPAPIModel() => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(HAModelDto)));        
+        
     }
-
+    
     // Source: import-sources
     public partial class ImportSourceClient
     {
         private readonly Connection _connection;
-
+        
         public ImportSourceClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<ImportSourceDto> CreateImportSource(CreateImportSourceRequestDto data) => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImportSourceDto)), data);
-
-        public async Task<List<ImportSourceDto>> GetAllImportSources() => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ImportSourceDto>)));
-
-        public async Task UpdateImportSource(string sourceId, UpdateImportSourceRequestDto data) => await _connection.RequestResourceAsync<UpdateImportSourceRequestDto>("PATCH", $"api/http/import-sources/{sourceId}", data);
-
-        public async Task DeleteImportSource(string sourceId) => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");
-
+        
+        public async Task<ImportSourceDto> CreateImportSource(CreateImportSourceRequestDto data) => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImportSourceDto)), data);        
+        
+        public async Task<List<ImportSourceDto>> GetAllImportSources() => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ImportSourceDto>)));        
+        
+        public async Task UpdateImportSource(string sourceId, UpdateImportSourceRequestDto data) => await _connection.RequestResourceAsync<UpdateImportSourceRequestDto>("PATCH", $"api/http/import-sources/{sourceId}", data);        
+        
+        public async Task DeleteImportSource(string sourceId) => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");        
+        
     }
-
+    
     // Source: packages
     public partial class PackageClient
     {
         private readonly Connection _connection;
-
+        
         public PackageClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<ERegistrySettingsDto> ContainerRegistrySettingsGetAllSettings(string method, string? name = null, bool? all = null) => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));
-
-        public async Task<EMavenSettingsDto> MavenRepositorySettingsGetAllSettings(string method, string? name = null) => await _connection.RequestResourceAsync<EMavenSettingsDto>("GET", $"api/http/packages/maven-repository/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(EMavenSettingsDto)));
-
-        public async Task<PackagesSettingsDto> SettingsGetAllSettings(string type, string method, string? repository = null) => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PackagesSettingsDto)));
-
+        
+        public ContainerRegistryClient ContainerRegistry => new ContainerRegistryClient(_connection);
+        
+        // Source: packages_container-registry
+        public partial class ContainerRegistryClient
+        {
+            private readonly Connection _connection;
+            
+            public ContainerRegistryClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public SettingClient Settings => new SettingClient(_connection);
+            
+            // Source: packages_container-registry_settings
+            public partial class SettingClient
+            {
+                private readonly Connection _connection;
+                
+                public SettingClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<ERegistrySettingsDto> GetAllSettings(string method, string? name = null, bool? all = null) => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));                
+                
+            }
+            
+        }
+        
+        public MavenRepositoryClient MavenRepository => new MavenRepositoryClient(_connection);
+        
+        // Source: packages_maven-repository
+        public partial class MavenRepositoryClient
+        {
+            private readonly Connection _connection;
+            
+            public MavenRepositoryClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public SettingClient Settings => new SettingClient(_connection);
+            
+            // Source: packages_maven-repository_settings
+            public partial class SettingClient
+            {
+                private readonly Connection _connection;
+                
+                public SettingClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<EMavenSettingsDto> GetAllSettings(string method, string? name = null) => await _connection.RequestResourceAsync<EMavenSettingsDto>("GET", $"api/http/packages/maven-repository/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(EMavenSettingsDto)));                
+                
+            }
+            
+        }
+        
+        public SettingClient Settings => new SettingClient(_connection);
+        
+        // Source: packages_settings
+        public partial class SettingClient
+        {
+            private readonly Connection _connection;
+            
+            public SettingClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<PackagesSettingsDto> GetAllSettings(string type, string method, string? repository = null) => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PackagesSettingsDto)));            
+            
+        }
+        
     }
-
+    
     // Source: permissions
     public partial class PermissionClient
     {
         private readonly Connection _connection;
-
+        
         public PermissionClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<DTORightsWithHierarchyDto> GetAllPermissions() => await _connection.RequestResourceAsync<DTORightsWithHierarchyDto>("GET", $"api/http/permissions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTORightsWithHierarchyDto)));
-
-        public async Task<PermissionSnapshotDTODto> SnapshotsCreateSnapshot() => await _connection.RequestResourceAsync<PermissionSnapshotDTODto>("POST", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotDTODto)));
-
-        public async Task<List<PermissionSnapshotDTODto>> SnapshotsGetAllSnapshots() => await _connection.RequestResourceAsync<List<PermissionSnapshotDTODto>>("GET", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotDTODto>)));
-
-        public async Task<PermissionSnapshotContentDTODto> SnapshotsGetSnapshot(string id, string? principal = null, string? right = null) => await _connection.RequestResourceAsync<PermissionSnapshotContentDTODto>("GET", $"api/http/permissions/snapshots/{id}?principal={principal?.ToString() ?? "null"}&right={right?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotContentDTODto)));
-
-        public async Task SnapshotsDeleteSnapshot(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/permissions/snapshots/{id}");
-
-        public async Task<PermissionComparisonContentDTODto> SnapshotsComparisonGetComparison(string id1, string id2) => await _connection.RequestResourceAsync<PermissionComparisonContentDTODto>("GET", $"api/http/permissions/snapshots/comparison?id1={id1.ToString()}&id2={id2.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionComparisonContentDTODto)));
-
-        public async Task<List<PermissionSnapshotPrincipalDTODto>> SnapshotsPrincipalsGetPrincipal(string id) => await _connection.RequestResourceAsync<List<PermissionSnapshotPrincipalDTODto>>("GET", $"api/http/permissions/snapshots/{id}/principals?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotPrincipalDTODto>)));
-
-        public async Task<List<PermissionSnapshotRightDTODto>> SnapshotsRightsGetRight(string id) => await _connection.RequestResourceAsync<List<PermissionSnapshotRightDTODto>>("GET", $"api/http/permissions/snapshots/{id}/rights?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotRightDTODto>)));
-
+        
+        public async Task<DTORightsWithHierarchyDto> GetAllPermissions() => await _connection.RequestResourceAsync<DTORightsWithHierarchyDto>("GET", $"api/http/permissions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTORightsWithHierarchyDto)));        
+        
+        public SnapshotClient Snapshots => new SnapshotClient(_connection);
+        
+        // Source: permissions_snapshots
+        public partial class SnapshotClient
+        {
+            private readonly Connection _connection;
+            
+            public SnapshotClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<PermissionSnapshotDTODto> CreateSnapshot() => await _connection.RequestResourceAsync<PermissionSnapshotDTODto>("POST", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotDTODto)));            
+            
+            public async Task<List<PermissionSnapshotDTODto>> GetAllSnapshots() => await _connection.RequestResourceAsync<List<PermissionSnapshotDTODto>>("GET", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotDTODto>)));            
+            
+            public async Task<PermissionSnapshotContentDTODto> GetSnapshot(string id, string? principal = null, string? right = null) => await _connection.RequestResourceAsync<PermissionSnapshotContentDTODto>("GET", $"api/http/permissions/snapshots/{id}?principal={principal?.ToString() ?? "null"}&right={right?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotContentDTODto)));            
+            
+            public async Task DeleteSnapshot(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/permissions/snapshots/{id}");            
+            
+            public ComparisonClient Comparison => new ComparisonClient(_connection);
+            
+            // Source: permissions_snapshots_comparison
+            public partial class ComparisonClient
+            {
+                private readonly Connection _connection;
+                
+                public ComparisonClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<PermissionComparisonContentDTODto> GetComparison(string id1, string id2) => await _connection.RequestResourceAsync<PermissionComparisonContentDTODto>("GET", $"api/http/permissions/snapshots/comparison?id1={id1.ToString()}&id2={id2.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionComparisonContentDTODto)));                
+                
+            }
+            
+            public PrincipalClient Principals => new PrincipalClient(_connection);
+            
+            // Source: permissions_snapshots_xxx_principals
+            public partial class PrincipalClient
+            {
+                private readonly Connection _connection;
+                
+                public PrincipalClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<PermissionSnapshotPrincipalDTODto>> GetPrincipal(string id) => await _connection.RequestResourceAsync<List<PermissionSnapshotPrincipalDTODto>>("GET", $"api/http/permissions/snapshots/{id}/principals?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotPrincipalDTODto>)));                
+                
+            }
+            
+            public RightClient Rights => new RightClient(_connection);
+            
+            // Source: permissions_snapshots_xxx_rights
+            public partial class RightClient
+            {
+                private readonly Connection _connection;
+                
+                public RightClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<PermissionSnapshotRightDTODto>> GetRight(string id) => await _connection.RequestResourceAsync<List<PermissionSnapshotRightDTODto>>("GET", $"api/http/permissions/snapshots/{id}/rights?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotRightDTODto>)));                
+                
+            }
+            
+        }
+        
     }
-
+    
     // Source: projects
     public partial class ProjectClient
     {
         private readonly Connection _connection;
-
+        
         public ProjectClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<PRProjectDto> CreateProject(CreateProjectRequestDto data) => await _connection.RequestResourceAsync<CreateProjectRequestDto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);
-
-        public async Task<Batch<PRProjectDto>> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));
-
-        public async Task<PRProjectDto> GetProjectByKey(string projectKey) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));
-
-        public async Task<Batch<PRProjectDto>> GetAllProjectsByMember(string member, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));
-
-        public async Task<Batch<PRProjectDto>> GetAllProjectsWithRight(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));
-
-        public async Task<Batch<PRProjectDto>> GetAllProjectsByTeam(string team, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));
-
-        public async Task<PRProjectDto> GetProject(string projectId) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));
-
-        public async Task<PRProjectDto> UpdateProject(string projectId, UpdateProjectRequestDto data) => await _connection.RequestResourceAsync<UpdateProjectRequestDto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);
-
-        public async Task ArchiveProject(string projectId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");
-
-        public async Task<List<PropagatedCodeDiscussionDto>> CodeDiscussionsGetAllCodeDiscussionsByChange(CodeDiscussionsGetAllCodeDiscussionsByChangeRequestDto data) => await _connection.RequestResourceAsync<CodeDiscussionsGetAllCodeDiscussionsByChangeRequestDto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);
-
-        public async Task<List<RevisionDiscussionsCounterDto>> CodeDiscussionsDiscussionsCountersGetAllDiscussionsCounters(string projectKey, string repository, List<string> revisions) => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/code-discussions/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionDiscussionsCounterDto>)));
-
-        public async Task PrivateProjectsRequestAccessToProject(string projectKey) => await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/key:{projectKey}/request-access");
-
-        public async Task<List<PRPrivateProjectDto>> PrivateProjectsGetAllPrivateProjects() => await _connection.RequestResourceAsync<List<PRPrivateProjectDto>>("GET", $"api/http/projects/private-projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRPrivateProjectDto>)));
-
-        public async Task<string> ResponsibilitiesAddResponsibility(ResponsibilitiesAddResponsibilityRequestDto data) => await _connection.RequestResourceAsync<ResponsibilitiesAddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
-
-        public async Task ResponsibilitiesUpdateResponsibility(string responsibilityId, ResponsibilitiesUpdateResponsibilityRequestDto data) => await _connection.RequestResourceAsync<ResponsibilitiesUpdateResponsibilityRequestDto>("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);
-
-        public async Task ResponsibilitiesDeleteResponsibility(string responsibilityId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}");
-
-        public async Task ResponsibilitiesSubjectsDeleteResponsibilitySubject(string subjectId, string? projectId = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");
-
-        public async Task TagsTrackTagAccess(TagsTrackTagAccessRequestDto data) => await _connection.RequestResourceAsync<TagsTrackTagAccessRequestDto>("POST", $"api/http/projects/tags/track-access", data);
-
-        public async Task<List<PRTagDto>> TagsGetAllTags() => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRTagDto>)));
-
-        public async Task<Batch<TDMemberProfileDto>> AccessMemberProfilesGetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));
-
-        public async Task<Batch<CodeReviewWithCountDto>> CodeReviewsGetAllCodeReviews(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null) => await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CodeReviewWithCountDto>)));
-
-        public async Task<ReviewCountsDto> CodeReviewsGetReviewCounts(string projectKey) => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ReviewCountsDto)));
-
-        public async Task<CodeReviewRecordDto> CodeReviewsGetCodeReviewByReviewNumber(string projectKey, int reviewNumber) => await _connection.RequestResourceAsync<CodeReviewRecordDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-number:{reviewNumber}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewRecordDto)));
-
-        public async Task<List<ChangeInReviewDto>> CodeReviewsChangesGetAllChanges(string projectKey, string reviewId, List<string> revisions) => await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChangeInReviewDto>)));
-
-        public async Task<CodeReviewDetailedInfoDto> CodeReviewsDetailsGetReviewDetails(string projectKey, string reviewId) => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewDetailedInfoDto)));
-
-        public async Task CodeReviewsParticipantsEditReviewParticipant(string projectKey, string reviewId, string user, CodeReviewsParticipantsEditReviewParticipantRequestDto data) => await _connection.RequestResourceAsync<CodeReviewsParticipantsEditReviewParticipantRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);
-
-        public async Task CodeReviewsRevisionsAddRevisionsToReview(string projectKey, string reviewId, CodeReviewsRevisionsAddRevisionsToReviewRequestDto data) => await _connection.RequestResourceAsync<CodeReviewsRevisionsAddRevisionsToReviewRequestDto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);
-
-        public async Task CodeReviewsRevisionsRemoveRevisionsFromReview(string projectKey, string reviewId, List<string> revisions) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");
-
-        public async Task CodeReviewsStateEditReviewState(string projectKey, string reviewId, CodeReviewsStateEditReviewStateRequestDto data) => await _connection.RequestResourceAsync<CodeReviewsStateEditReviewStateRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);
-
-        public async Task<List<TDMemberProfileDto>> CodeReviewsSuggestedReviewersGetAllSuggestedReviewers(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));
-
-        public async Task CodeReviewsTitleEditReviewTitle(string projectKey, string reviewId, CodeReviewsTitleEditReviewTitleRequestDto data) => await _connection.RequestResourceAsync<CodeReviewsTitleEditReviewTitleRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);
-
-        public async Task<List<RevisionInReviewDto>> CodeReviewsUnreadRevisionsGetAllUnreadRevisions(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionInReviewDto>)));
-
-        public async Task<CommitSetReviewRecordDto> RepositoriesCommitSetReviewsCreateCommitSetReview(string projectKey, string repository, RepositoriesCommitSetReviewsCreateCommitSetReviewRequestDto data) => await _connection.RequestResourceAsync<RepositoriesCommitSetReviewsCreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);
-
-        public async Task<MergeRequestRecordDto> RepositoriesMergeRequestsCreateMergeRequest(string projectKey, string repository, RepositoriesMergeRequestsCreateMergeRequestRequestDto data) => await _connection.RequestResourceAsync<RepositoriesMergeRequestsCreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);
-
-        public async Task<CodeDiscussionRecordDto> RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussion(string projectKey, string repository, string revision, RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussionRequestDto data) => await _connection.RequestResourceAsync<RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);
-
-        public async Task<List<PropagatedCodeDiscussionDto>> RepositoriesRevisionsCodeDiscussionsGetDiscussionInFile(string projectKey, string repository, string revision, string file) => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)));
-
-        public async Task RepositoriesRevisionsCommitStatusesPushCommitStatus(string projectKey, string repository, string revision, RepositoriesRevisionsCommitStatusesPushCommitStatusRequestDto data) => await _connection.RequestResourceAsync<RepositoriesRevisionsCommitStatusesPushCommitStatusRequestDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);
-
-        public async Task<List<CommitStatusDTODto>> RepositoriesRevisionsCommitStatusesGetCommitStatusesForCommit(string projectKey, string repository, string revision) => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CommitStatusDTODto>)));
-
-        public async Task AccessAdminsProfilesAddAdministrator(string projectId, AccessAdminsProfilesAddAdministratorRequestDto data) => await _connection.RequestResourceAsync<AccessAdminsProfilesAddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);
-
-        public async Task AccessAdminsProfilesRemoveAdministrator(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/profiles/{profileId}");
-
-        public async Task AccessAdminsTeamsAddAdministratorsTeam(string projectId, DraftsEditorsTeamsCreateTeamRequestDto data) => await _connection.RequestResourceAsync<DraftsEditorsTeamsCreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/teams", data);
-
-        public async Task AccessAdminsTeamsRemoveAdministratorsTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/teams/{teamId}");
-
-        public async Task AccessMembersProfilesAddMember(string projectId, AccessAdminsProfilesAddAdministratorRequestDto data) => await _connection.RequestResourceAsync<AccessAdminsProfilesAddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/members/profiles", data);
-
-        public async Task AccessMembersProfilesRemoveMember(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/profiles/{profileId}");
-
-        public async Task AccessMembersTeamsAddTeam(string projectId, DraftsEditorsTeamsCreateTeamRequestDto data) => await _connection.RequestResourceAsync<DraftsEditorsTeamsCreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/members/teams", data);
-
-        public async Task AccessMembersTeamsRemoveTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/teams/{teamId}");
-
-        public async Task<Batch<TDMemberProfileDto>> AccessViewersOrganizationProfilesWhoCanViewTheProject(string projectId, string term, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));
-
-        public async Task<ChecklistDto> PlanningChecklistsCreateChecklist(string projectId, ChannelsIsNameFreeRequestDto data) => await _connection.RequestResourceAsync<ChannelsIsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
-
-        public async Task<ChecklistDto> PlanningChecklistsImportChecklist(string projectId, PlanningChecklistsImportChecklistRequestDto data) => await _connection.RequestResourceAsync<PlanningChecklistsImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
-
-        public async Task PlanningChecklistsImportChecklistLines(string projectId, string checklistId, PlanningChecklistsImportChecklistLinesRequestDto data) => await _connection.RequestResourceAsync<PlanningChecklistsImportChecklistLinesRequestDto>("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);
-
-        public async Task<Batch<ChecklistDto>> PlanningChecklistsGetAllChecklists(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ChecklistDto>)));
-
-        public async Task PlanningChecklistsUpdateChecklist(string projectId, string checklistId, PlanningChecklistsUpdateChecklistRequestDto data) => await _connection.RequestResourceAsync<PlanningChecklistsUpdateChecklistRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);
-
-        public async Task PlanningChecklistsDeleteChecklist(string projectId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/checklists/{checklistId}");
-
-        public async Task<List<ChecklistDto>> PlanningChecklistsStarredGetAllStarredChecklists(string projectId) => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));
-
-        public async Task<List<PlanItemChildrenDto>> PlanningChecklistsFullChecklistTreeGetFullChecklistTree(string projectId, string checklistId) => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));
-
-        public async Task<IssueDto> PlanningIssuesCreateIssue(string projectId, PlanningIssuesCreateIssueRequestDto data) => await _connection.RequestResourceAsync<PlanningIssuesCreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);
-
-        public async Task PlanningIssuesToggleIssueResolved(string projectId, string issueId, PlanningIssuesToggleIssueResolvedRequestDto data) => await _connection.RequestResourceAsync<PlanningIssuesToggleIssueResolvedRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);
-
-        public async Task<Batch<IssueDto>> PlanningIssuesGetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null) => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<IssueDto>)));
-
-        public async Task<IssueDto> PlanningIssuesGetIssueByNumber(string projectId, int number) => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));
-
-        public async Task PlanningIssuesUpdateIssue(string projectId, string issueId, PlanningIssuesUpdateIssueRequestDto data) => await _connection.RequestResourceAsync<PlanningIssuesUpdateIssueRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);
-
-        public async Task PlanningIssuesDeleteIssue(string projectId, string issueId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}");
-
-        public async Task<List<IssueStatusDto>> PlanningIssuesStatusesGetAllIssueStatuses(string projectId) => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusDto>)));
-
-        public async Task PlanningIssuesStatusesUpdateStatus(string projectId, PlanningIssuesStatusesUpdateStatusRequestDto data) => await _connection.RequestResourceAsync<PlanningIssuesStatusesUpdateStatusRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);
-
-        public async Task PlanningIssuesAttachmentsAddAttachments(string projectId, string issueId, PlanningIssuesAttachmentsAddAttachmentsRequestDto data) => await _connection.RequestResourceAsync<PlanningIssuesAttachmentsAddAttachmentsRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);
-
-        public async Task PlanningIssuesAttachmentsRemoveAttachments(string projectId, string issueId, List<string> identities) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");
-
-        public async Task PlanningIssuesChecklistsAddIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");
-
-        public async Task PlanningIssuesChecklistsRemoveIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");
-
-        public async Task<List<string>> PlanningIssuesCommentsImportIssueCommentHistory(string projectId, string issueId, PlanningIssuesCommentsImportIssueCommentHistoryRequestDto data) => await _connection.RequestResourceAsync<PlanningIssuesCommentsImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);
-
-        public async Task PlanningIssuesTagsAddIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");
-
-        public async Task PlanningIssuesTagsRemoveIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");
-
-        public async Task<PlanningTagDto> PlanningTagsCreateHierarchicalTag(string projectId, PlanningTagsCreateHierarchicalTagRequestDto data) => await _connection.RequestResourceAsync<PlanningTagsCreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);
-
-        public async Task<Batch<PlanningTagDto>> PlanningTagsGetAllHierarchicalTags(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PlanningTagDto>)));
-
-        public async Task<List<SubjectResponsibilitiesTableDto>> ResponsibilitiesSchemeGetProjectResponsibilityScheme(string projectId) => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/{projectId}/responsibilities/scheme?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<SubjectResponsibilitiesTableDto>)));
-
-        public async Task<string> ResponsibilitiesSubjectsAddResponsibilitySubject(string projectId, ResponsibilitiesSubjectsAddResponsibilitySubjectRequestDto data) => await _connection.RequestResourceAsync<ResponsibilitiesSubjectsAddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
-
-        public async Task ResponsibilitiesSubjectsEditResponsibilitySubject(string projectId, string subjectId, ResponsibilitiesSubjectsAddResponsibilitySubjectRequestDto data) => await _connection.RequestResourceAsync<ResponsibilitiesSubjectsAddResponsibilitySubjectRequestDto>("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);
-
-        public async Task ResponsibilitiesAssigneesAssignResponsible(string projectId, string responsibilityId, string profileId, ResponsibilitiesAssigneesAssignResponsibleRequestDto data) => await _connection.RequestResourceAsync<ResponsibilitiesAssigneesAssignResponsibleRequestDto>("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);
-
-        public async Task ResponsibilitiesAssigneesRemoveResponsible(string projectId, string responsibilityId, string profileId, string? role = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");
-
+        
+        public async Task<PRProjectDto> CreateProject(CreateProjectRequestDto data) => await _connection.RequestResourceAsync<CreateProjectRequestDto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
+        
+        public async Task<Batch<PRProjectDto>> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        
+        public async Task<PRProjectDto> GetProjectByKey(string projectKey) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));        
+        
+        public async Task<Batch<PRProjectDto>> GetAllProjectsByMember(string member, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        
+        public async Task<Batch<PRProjectDto>> GetAllProjectsWithRight(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        
+        public async Task<Batch<PRProjectDto>> GetAllProjectsByTeam(string team, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        
+        public async Task<PRProjectDto> GetProject(string projectId) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));        
+        
+        public async Task<PRProjectDto> UpdateProject(string projectId, UpdateProjectRequestDto data) => await _connection.RequestResourceAsync<UpdateProjectRequestDto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
+        
+        public async Task ArchiveProject(string projectId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");        
+        
+        public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
+        
+        // Source: projects_code-discussions
+        public partial class CodeDiscussionClient
+        {
+            private readonly Connection _connection;
+            
+            public CodeDiscussionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<PropagatedCodeDiscussionDto>> GetAllCodeDiscussionsByChange(GetAllCodeDiscussionsByChangeRequestDto data) => await _connection.RequestResourceAsync<GetAllCodeDiscussionsByChangeRequestDto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);            
+            
+            public DiscussionsCounterClient DiscussionsCounters => new DiscussionsCounterClient(_connection);
+            
+            // Source: projects_code-discussions_discussions-counters
+            public partial class DiscussionsCounterClient
+            {
+                private readonly Connection _connection;
+                
+                public DiscussionsCounterClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<RevisionDiscussionsCounterDto>> GetAllDiscussionsCounters(string projectKey, string repository, List<string> revisions) => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/code-discussions/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionDiscussionsCounterDto>)));                
+                
+            }
+            
+        }
+        
+        public PrivateProjectClient PrivateProjects => new PrivateProjectClient(_connection);
+        
+        // Source: projects_private-projects
+        public partial class PrivateProjectClient
+        {
+            private readonly Connection _connection;
+            
+            public PrivateProjectClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task RequestAccessToProject(string projectKey) => await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/key:{projectKey}/request-access");            
+            
+            public async Task<List<PRPrivateProjectDto>> GetAllPrivateProjects() => await _connection.RequestResourceAsync<List<PRPrivateProjectDto>>("GET", $"api/http/projects/private-projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRPrivateProjectDto>)));            
+            
+        }
+        
+        public ResponsibilityClient Responsibilities => new ResponsibilityClient(_connection);
+        
+        // Source: projects_responsibilities
+        public partial class ResponsibilityClient
+        {
+            private readonly Connection _connection;
+            
+            public ResponsibilityClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<string> AddResponsibility(AddResponsibilityRequestDto data) => await _connection.RequestResourceAsync<AddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);            
+            
+            public async Task UpdateResponsibility(string responsibilityId, UpdateResponsibilityRequestDto data) => await _connection.RequestResourceAsync<UpdateResponsibilityRequestDto>("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);            
+            
+            public async Task DeleteResponsibility(string responsibilityId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}");            
+            
+            public SubjectClient Subjects => new SubjectClient(_connection);
+            
+            // Source: projects_responsibilities_subjects
+            public partial class SubjectClient
+            {
+                private readonly Connection _connection;
+                
+                public SubjectClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task DeleteResponsibilitySubject(string subjectId, string? projectId = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");                
+                
+            }
+            
+        }
+        
+        // Source: projects_xxx_responsibilities
+        public partial class ResponsibilityClient
+        {
+            public SchemeClient Scheme => new SchemeClient(_connection);
+            
+            // Source: projects_xxx_responsibilities_scheme
+            public partial class SchemeClient
+            {
+                private readonly Connection _connection;
+                
+                public SchemeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<SubjectResponsibilitiesTableDto>> GetProjectResponsibilityScheme(string projectId) => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/{projectId}/responsibilities/scheme?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<SubjectResponsibilitiesTableDto>)));                
+                
+            }
+            
+            // Source: projects_xxx_responsibilities_subjects
+            public partial class SubjectClient
+            {
+                public async Task<string> AddResponsibilitySubject(string projectId, AddResponsibilitySubjectRequestDto data) => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);                
+                
+                public async Task EditResponsibilitySubject(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data) => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto>("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);                
+                
+            }
+            
+            public AssigneeClient Assignees => new AssigneeClient(_connection);
+            
+            // Source: projects_xxx_responsibilities_xxx_assignees
+            public partial class AssigneeClient
+            {
+                private readonly Connection _connection;
+                
+                public AssigneeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task AssignResponsible(string projectId, string responsibilityId, string profileId, AssignResponsibleRequestDto data) => await _connection.RequestResourceAsync<AssignResponsibleRequestDto>("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);                
+                
+                public async Task RemoveResponsible(string projectId, string responsibilityId, string profileId, string? role = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");                
+                
+            }
+            
+        }
+        
+        public TagClient Tags => new TagClient(_connection);
+        
+        // Source: projects_tags
+        public partial class TagClient
+        {
+            private readonly Connection _connection;
+            
+            public TagClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task TrackTagAccess(TrackTagAccessRequestDto data) => await _connection.RequestResourceAsync<TrackTagAccessRequestDto>("POST", $"api/http/projects/tags/track-access", data);            
+            
+            public async Task<List<PRTagDto>> GetAllTags() => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRTagDto>)));            
+            
+        }
+        
+        public AccesClient Access => new AccesClient(_connection);
+        
+        // Source: projects_key:xxx_access
+        public partial class AccesClient
+        {
+            private readonly Connection _connection;
+            
+            public AccesClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public MemberProfileClient MemberProfiles => new MemberProfileClient(_connection);
+            
+            // Source: projects_key:xxx_access_member-profiles
+            public partial class MemberProfileClient
+            {
+                private readonly Connection _connection;
+                
+                public MemberProfileClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
+                
+            }
+            
+        }
+        
+        // Source: projects_xxx_access
+        public partial class AccesClient
+        {
+            public AdminClient Admins => new AdminClient(_connection);
+            
+            // Source: projects_xxx_access_admins
+            public partial class AdminClient
+            {
+                private readonly Connection _connection;
+                
+                public AdminClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public ProfileClient Profiles => new ProfileClient(_connection);
+                
+                // Source: projects_xxx_access_admins_profiles
+                public partial class ProfileClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ProfileClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddAdministrator(string projectId, AddAdministratorRequestDto data) => await _connection.RequestResourceAsync<AddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);                    
+                    
+                    public async Task RemoveAdministrator(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/profiles/{profileId}");                    
+                    
+                }
+                
+                public TeamClient Teams => new TeamClient(_connection);
+                
+                // Source: projects_xxx_access_admins_teams
+                public partial class TeamClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public TeamClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddAdministratorsTeam(string projectId, CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/teams", data);                    
+                    
+                    public async Task RemoveAdministratorsTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/teams/{teamId}");                    
+                    
+                }
+                
+            }
+            
+            public MemberClient Members => new MemberClient(_connection);
+            
+            // Source: projects_xxx_access_members
+            public partial class MemberClient
+            {
+                private readonly Connection _connection;
+                
+                public MemberClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public ProfileClient Profiles => new ProfileClient(_connection);
+                
+                // Source: projects_xxx_access_members_profiles
+                public partial class ProfileClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ProfileClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddMember(string projectId, AddAdministratorRequestDto data) => await _connection.RequestResourceAsync<AddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/members/profiles", data);                    
+                    
+                    public async Task RemoveMember(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/profiles/{profileId}");                    
+                    
+                }
+                
+                public TeamClient Teams => new TeamClient(_connection);
+                
+                // Source: projects_xxx_access_members_teams
+                public partial class TeamClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public TeamClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddTeam(string projectId, CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/members/teams", data);                    
+                    
+                    public async Task RemoveTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/teams/{teamId}");                    
+                    
+                }
+                
+            }
+            
+            public ViewerClient Viewers => new ViewerClient(_connection);
+            
+            // Source: projects_xxx_access_viewers
+            public partial class ViewerClient
+            {
+                private readonly Connection _connection;
+                
+                public ViewerClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProject(string projectId, string term, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
+                
+            }
+            
+        }
+        
+        public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
+        
+        // Source: projects_key:xxx_code-reviews
+        public partial class CodeReviewClient
+        {
+            private readonly Connection _connection;
+            
+            public CodeReviewClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviews(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null) => await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CodeReviewWithCountDto>)));            
+            
+            public async Task<ReviewCountsDto> GetReviewCounts(string projectKey) => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ReviewCountsDto)));            
+            
+            public async Task<CodeReviewRecordDto> GetCodeReviewByReviewNumber(string projectKey, int reviewNumber) => await _connection.RequestResourceAsync<CodeReviewRecordDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-number:{reviewNumber}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewRecordDto)));            
+            
+            public ChangeClient Changes => new ChangeClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_changes
+            public partial class ChangeClient
+            {
+                private readonly Connection _connection;
+                
+                public ChangeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<ChangeInReviewDto>> GetAllChanges(string projectKey, string reviewId, List<string> revisions) => await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChangeInReviewDto>)));                
+                
+            }
+            
+            public DetailClient Details => new DetailClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_details
+            public partial class DetailClient
+            {
+                private readonly Connection _connection;
+                
+                public DetailClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<CodeReviewDetailedInfoDto> GetReviewDetails(string projectKey, string reviewId) => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewDetailedInfoDto)));                
+                
+            }
+            
+            public ParticipantClient Participants => new ParticipantClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_participants
+            public partial class ParticipantClient
+            {
+                private readonly Connection _connection;
+                
+                public ParticipantClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task EditReviewParticipant(string projectKey, string reviewId, string user, EditReviewParticipantRequestDto data) => await _connection.RequestResourceAsync<EditReviewParticipantRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);                
+                
+            }
+            
+            public RevisionClient Revisions => new RevisionClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_revisions
+            public partial class RevisionClient
+            {
+                private readonly Connection _connection;
+                
+                public RevisionClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task AddRevisionsToReview(string projectKey, string reviewId, AddRevisionsToReviewRequestDto data) => await _connection.RequestResourceAsync<AddRevisionsToReviewRequestDto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);                
+                
+                public async Task RemoveRevisionsFromReview(string projectKey, string reviewId, List<string> revisions) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");                
+                
+            }
+            
+            public StateClient State => new StateClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_state
+            public partial class StateClient
+            {
+                private readonly Connection _connection;
+                
+                public StateClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task EditReviewState(string projectKey, string reviewId, EditReviewStateRequestDto data) => await _connection.RequestResourceAsync<EditReviewStateRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);                
+                
+            }
+            
+            public SuggestedReviewerClient SuggestedReviewers => new SuggestedReviewerClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_suggested-reviewers
+            public partial class SuggestedReviewerClient
+            {
+                private readonly Connection _connection;
+                
+                public SuggestedReviewerClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<TDMemberProfileDto>> GetAllSuggestedReviewers(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                
+                
+            }
+            
+            public TitleClient Title => new TitleClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_title
+            public partial class TitleClient
+            {
+                private readonly Connection _connection;
+                
+                public TitleClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task EditReviewTitle(string projectKey, string reviewId, EditReviewTitleRequestDto data) => await _connection.RequestResourceAsync<EditReviewTitleRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);                
+                
+            }
+            
+            public UnreadRevisionClient UnreadRevisions => new UnreadRevisionClient(_connection);
+            
+            // Source: projects_key:xxx_code-reviews_xxx_unread-revisions
+            public partial class UnreadRevisionClient
+            {
+                private readonly Connection _connection;
+                
+                public UnreadRevisionClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<RevisionInReviewDto>> GetAllUnreadRevisions(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionInReviewDto>)));                
+                
+            }
+            
+        }
+        
+        public RepositoryClient Repositories => new RepositoryClient(_connection);
+        
+        // Source: projects_key:xxx_repositories
+        public partial class RepositoryClient
+        {
+            private readonly Connection _connection;
+            
+            public RepositoryClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public CommitSetReviewClient CommitSetReviews => new CommitSetReviewClient(_connection);
+            
+            // Source: projects_key:xxx_repositories_xxx_commit-set-reviews
+            public partial class CommitSetReviewClient
+            {
+                private readonly Connection _connection;
+                
+                public CommitSetReviewClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<CommitSetReviewRecordDto> CreateCommitSetReview(string projectKey, string repository, CreateCommitSetReviewRequestDto data) => await _connection.RequestResourceAsync<CreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);                
+                
+            }
+            
+            public MergeRequestClient MergeRequests => new MergeRequestClient(_connection);
+            
+            // Source: projects_key:xxx_repositories_xxx_merge-requests
+            public partial class MergeRequestClient
+            {
+                private readonly Connection _connection;
+                
+                public MergeRequestClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<MergeRequestRecordDto> CreateMergeRequest(string projectKey, string repository, CreateMergeRequestRequestDto data) => await _connection.RequestResourceAsync<CreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);                
+                
+            }
+            
+            public RevisionClient Revisions => new RevisionClient(_connection);
+            
+            // Source: projects_key:xxx_repositories_xxx_revisions
+            public partial class RevisionClient
+            {
+                private readonly Connection _connection;
+                
+                public RevisionClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
+                
+                // Source: projects_key:xxx_repositories_xxx_revisions_xxx_code-discussions
+                public partial class CodeDiscussionClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public CodeDiscussionClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<CodeDiscussionRecordDto> CreateCodeDiscussion(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data) => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);                    
+                    
+                    public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFile(string projectKey, string repository, string revision, string file) => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)));                    
+                    
+                }
+                
+                public CommitStatusClient CommitStatuses => new CommitStatusClient(_connection);
+                
+                // Source: projects_key:xxx_repositories_xxx_revisions_xxx_commit-statuses
+                public partial class CommitStatusClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public CommitStatusClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task PushCommitStatus(string projectKey, string repository, string revision, PushCommitStatusRequestDto data) => await _connection.RequestResourceAsync<PushCommitStatusRequestDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);                    
+                    
+                    public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommit(string projectKey, string repository, string revision) => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CommitStatusDTODto>)));                    
+                    
+                }
+                
+            }
+            
+        }
+        
+        public PlanningClient Planning => new PlanningClient(_connection);
+        
+        // Source: projects_xxx_planning
+        public partial class PlanningClient
+        {
+            private readonly Connection _connection;
+            
+            public PlanningClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ChecklistClient Checklists => new ChecklistClient(_connection);
+            
+            // Source: projects_xxx_planning_checklists
+            public partial class ChecklistClient
+            {
+                private readonly Connection _connection;
+                
+                public ChecklistClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<ChecklistDto> CreateChecklist(string projectId, IsNameFreeRequestDto data) => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                
+                
+                public async Task<ChecklistDto> ImportChecklist(string projectId, ImportChecklistRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                
+                
+                public async Task ImportChecklistLines(string projectId, string checklistId, ImportChecklistLinesRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);                
+                
+                public async Task<Batch<ChecklistDto>> GetAllChecklists(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ChecklistDto>)));                
+                
+                public async Task UpdateChecklist(string projectId, string checklistId, UpdateChecklistRequestDto data) => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);                
+                
+                public async Task DeleteChecklist(string projectId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/checklists/{checklistId}");                
+                
+                public StarredClient Starred => new StarredClient(_connection);
+                
+                // Source: projects_xxx_planning_checklists_starred
+                public partial class StarredClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public StarredClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<ChecklistDto>> GetAllStarredChecklists(string projectId) => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                    
+                    
+                }
+                
+                public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
+                
+                // Source: projects_xxx_planning_checklists_xxx_full-checklist-tree
+                public partial class FullChecklistTreeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public FullChecklistTreeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTree(string projectId, string checklistId) => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));                    
+                    
+                }
+                
+            }
+            
+            public IssueClient Issues => new IssueClient(_connection);
+            
+            // Source: projects_xxx_planning_issues
+            public partial class IssueClient
+            {
+                private readonly Connection _connection;
+                
+                public IssueClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<IssueDto> CreateIssue(string projectId, CreateIssueRequestDto data) => await _connection.RequestResourceAsync<CreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);                
+                
+                public async Task ToggleIssueResolved(string projectId, string issueId, ToggleIssueResolvedRequestDto data) => await _connection.RequestResourceAsync<ToggleIssueResolvedRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);                
+                
+                public async Task<Batch<IssueDto>> GetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null) => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<IssueDto>)));                
+                
+                public async Task<IssueDto> GetIssueByNumber(string projectId, int number) => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));                
+                
+                public async Task UpdateIssue(string projectId, string issueId, UpdateIssueRequestDto data) => await _connection.RequestResourceAsync<UpdateIssueRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);                
+                
+                public async Task DeleteIssue(string projectId, string issueId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}");                
+                
+                public StatusClient Statuses => new StatusClient(_connection);
+                
+                // Source: projects_xxx_planning_issues_statuses
+                public partial class StatusClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public StatusClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<IssueStatusDto>> GetAllIssueStatuses(string projectId) => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusDto>)));                    
+                    
+                    public async Task UpdateStatus(string projectId, UpdateStatusRequestDto data) => await _connection.RequestResourceAsync<UpdateStatusRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);                    
+                    
+                    public DistributionClient Distribution => new DistributionClient(_connection);
+                    
+                    // Source: projects_xxx_planning_issues_statuses_distribution
+                    public partial class DistributionClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public DistributionClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistribution(string projectId) => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses/distribution?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusWithUsagesDto>)));                        
+                        
+                    }
+                    
+                }
+                
+                public AttachmentClient Attachments => new AttachmentClient(_connection);
+                
+                // Source: projects_xxx_planning_issues_xxx_attachments
+                public partial class AttachmentClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public AttachmentClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddAttachments(string projectId, string issueId, AddAttachmentsRequestDto data) => await _connection.RequestResourceAsync<AddAttachmentsRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);                    
+                    
+                    public async Task RemoveAttachments(string projectId, string issueId, List<string> identities) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");                    
+                    
+                }
+                
+                public ChecklistClient Checklists => new ChecklistClient(_connection);
+                
+                // Source: projects_xxx_planning_issues_xxx_checklists
+                public partial class ChecklistClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ChecklistClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
+                    
+                    public async Task RemoveIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
+                    
+                }
+                
+                public CommentClient Comments => new CommentClient(_connection);
+                
+                // Source: projects_xxx_planning_issues_xxx_comments
+                public partial class CommentClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public CommentClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<string>> ImportIssueCommentHistory(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data) => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);                    
+                    
+                }
+                
+                public TagClient Tags => new TagClient(_connection);
+                
+                // Source: projects_xxx_planning_issues_xxx_tags
+                public partial class TagClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public TagClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
+                    
+                    public async Task RemoveIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
+                    
+                }
+                
+            }
+            
+            public TagClient Tags => new TagClient(_connection);
+            
+            // Source: projects_xxx_planning_tags
+            public partial class TagClient
+            {
+                private readonly Connection _connection;
+                
+                public TagClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<PlanningTagDto> CreateHierarchicalTag(string projectId, CreateHierarchicalTagRequestDto data) => await _connection.RequestResourceAsync<CreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);                
+                
+                public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTags(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PlanningTagDto>)));                
+                
+            }
+            
+        }
+        
     }
-
+    
     // Source: public-holidays
     public partial class PublicHolidayClient
     {
         private readonly Connection _connection;
-
+        
         public PublicHolidayClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<PublicHolidayCalendarRecordDto> CalendarsCreateCalendar(CalendarsCreateCalendarRequestDto data) => await _connection.RequestResourceAsync<CalendarsCreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);
-
-        public async Task<string> CalendarsImport(CalendarsImportRequestDto data) => await _connection.RequestResourceAsync<CalendarsImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
-
-        public async Task<Batch<PublicHolidayCalendarRecordDto>> CalendarsGetAllCalendars(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayCalendarRecordDto>)));
-
-        public async Task<PublicHolidayCalendarRecordDto> CalendarsUpdateCalendar(string id, CalendarsCreateCalendarRequestDto data) => await _connection.RequestResourceAsync<CalendarsCreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);
-
-        public async Task CalendarsDeleteCalendar(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");
-
-        public async Task<PublicHolidayDto> HolidaysCreateHoliday(HolidaysCreateHolidayRequestDto data) => await _connection.RequestResourceAsync<HolidaysCreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);
-
-        public async Task<Batch<PublicHolidayDto>> HolidaysGetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));
-
-        public async Task<PublicHolidayDto> HolidaysUpdateHoliday(string id, HolidaysUpdateHolidayRequestDto data) => await _connection.RequestResourceAsync<HolidaysUpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);
-
-        public async Task HolidaysDeleteHoliday(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");
-
-        public async Task<Batch<PublicHolidayDto>> HolidaysRelatedHolidaysGetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));
-
+        
+        public CalendarClient Calendars => new CalendarClient(_connection);
+        
+        // Source: public-holidays_calendars
+        public partial class CalendarClient
+        {
+            private readonly Connection _connection;
+            
+            public CalendarClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<PublicHolidayCalendarRecordDto> CreateCalendar(CreateCalendarRequestDto data) => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
+            
+            public async Task<string> Import(ImportRequestDto data) => await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);            
+            
+            public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendars(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayCalendarRecordDto>)));            
+            
+            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendar(string id, CreateCalendarRequestDto data) => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
+            
+            public async Task DeleteCalendar(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");            
+            
+        }
+        
+        public HolidayClient Holidays => new HolidayClient(_connection);
+        
+        // Source: public-holidays_holidays
+        public partial class HolidayClient
+        {
+            private readonly Connection _connection;
+            
+            public HolidayClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<PublicHolidayDto> CreateHoliday(CreateHolidayRequestDto data) => await _connection.RequestResourceAsync<CreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
+            
+            public async Task<Batch<PublicHolidayDto>> GetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));            
+            
+            public async Task<PublicHolidayDto> UpdateHoliday(string id, UpdateHolidayRequestDto data) => await _connection.RequestResourceAsync<UpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
+            
+            public async Task DeleteHoliday(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");            
+            
+            public RelatedHolidayClient RelatedHolidays => new RelatedHolidayClient(_connection);
+            
+            // Source: public-holidays_holidays_related-holidays
+            public partial class RelatedHolidayClient
+            {
+                private readonly Connection _connection;
+                
+                public RelatedHolidayClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));                
+                
+            }
+            
+        }
+        
     }
-
+    
     // Source: team-directory
     public partial class TeamDirectoryClient
     {
         private readonly Connection _connection;
-
+        
         public TeamDirectoryClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<List<MeetingRecordDto>> CalendarEventsGetAllCalendarEvents(SpaceDate dateFrom, SpaceDate dateTo) => await _connection.RequestResourceAsync<List<MeetingRecordDto>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MeetingRecordDto>)));
-
-        public async Task<MeetingRecordDto> CalendarEventsGetCalendarEvent(string id) => await _connection.RequestResourceAsync<MeetingRecordDto>("GET", $"api/http/team-directory/calendar-events/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)));
-
-        public async Task<List<AbsenceEventDto>> CalendarEventsAbsenceEventsGetAllAbsenceEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<AbsenceEventDto>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceEventDto>)));
-
-        public async Task<List<BirthdayEventDto>> CalendarEventsBirthdayEventsGetAllBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));
-
-        public async Task<List<BirthdayEventDto>> CalendarEventsBirthdayEventsStarredGetAllStarredBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo) => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));
-
-        public async Task<MeetingRecordDto> CalendarEventsMeetingParticipationsUpdateMeetingParticipation(string id, CalendarEventsMeetingParticipationsUpdateMeetingParticipationRequestDto data) => await _connection.RequestResourceAsync<CalendarEventsMeetingParticipationsUpdateMeetingParticipationRequestDto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);
-
-        public async Task<List<MembershipEventDto>> CalendarEventsMembershipEventsGetAllMembershipEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MembershipEventDto>)));
-
-        public async Task<List<NonWorkingDaysEventDto>> CalendarEventsNonWorkingDaysEventsGetAllNonWorkingDaysEvents(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<NonWorkingDaysEventDto>)));
-
-        public async Task<InvitationDto> InvitationsCreateInvitation(InvitationsCreateInvitationRequestDto data) => await _connection.RequestResourceAsync<InvitationsCreateInvitationRequestDto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);
-
-        public async Task<Batch<InvitationDto>> InvitationsGetAllInvitations(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<InvitationDto>)));
-
-        public async Task InvitationsUpdateInvitation(string id, InvitationsUpdateInvitationRequestDto data) => await _connection.RequestResourceAsync<InvitationsUpdateInvitationRequestDto>("PATCH", $"api/http/team-directory/invitations/{id}", data);
-
-        public async Task InvitationsDeleteInvitation(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}");
-
-        public async Task<List<TDLanguageDto>> LanguagesGetAllLanguages() => await _connection.RequestResourceAsync<List<TDLanguageDto>>("GET", $"api/http/team-directory/languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLanguageDto>)));
-
-        public async Task<List<TDLocationEquipmentTypeDto>> LocationEquipmentTypesGetAllLocationEquipmentTypes(bool withArchived) => await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationEquipmentTypeDto>)));
-
-        public async Task LocationEquipmentTypesDeleteLocationEquipmentTypeByName(string name, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString().ToLowerInvariant()}");
-
-        public async Task<TDLocationDto> LocationsCreateLocation(LocationsCreateLocationRequestDto data) => await _connection.RequestResourceAsync<LocationsCreateLocationRequestDto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);
-
-        public async Task<List<TDLocationDto>> LocationsRestoreMultiple(LocationsRestoreMultipleRequestDto data) => await _connection.RequestResourceAsync<LocationsRestoreMultipleRequestDto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);
-
-        public async Task<TDLocationDto> LocationsRestore(string id) => await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));
-
-        public async Task<List<TDLocationDto>> LocationsGetAllLocations(string query, bool withArchived, string? type = null) => await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));
-
-        public async Task<TDLocationDto> LocationsGetLocation(string id) => await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));
-
-        public async Task<TDLocationDto> LocationsUpdateLocation(string id, LocationsUpdateLocationRequestDto data) => await _connection.RequestResourceAsync<LocationsUpdateLocationRequestDto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);
-
-        public async Task<List<TDLocationDto>> LocationsArchiveLocation(string id) => await _connection.RequestResourceAsync<List<TDLocationDto>>("DELETE", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));
-
-        public async Task<TDLocationMapDto> LocationsMapGetMap(string id) => await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)));
-
-        public async Task<TDLocationMapDto> LocationsMapUpdateMap(string id, LocationsMapUpdateMapRequestDto data) => await _connection.RequestResourceAsync<LocationsMapUpdateMapRequestDto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);
-
-        public async Task<List<TDMemberInLocationMapListDto>> LocationsMapMembersGetAllMembers(string id, bool includeUnmarked) => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));
-
-        public async Task<List<TDLocationWithTimeZoneDto>> LocationsWithTimezoneGetAllLocationsWithTimezone() => await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationWithTimeZoneDto>)));
-
-        public async Task<Batch<TDMemberProfileDto>> ManagerCandidatesGetAllManagerCandidates(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));
-
-        public async Task<TDMemberLocationDto> MemberLocationsCreateMemberLocation(MemberLocationsCreateMemberLocationRequestDto data) => await _connection.RequestResourceAsync<MemberLocationsCreateMemberLocationRequestDto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
-
-        public async Task<Batch<TDMemberLocationDto>> MemberLocationsGetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberLocationDto>)));
-
-        public async Task<TDMemberLocationDto> MemberLocationsUpdateMemberLocation(string id, MemberLocationsUpdateMemberLocationRequestDto data) => await _connection.RequestResourceAsync<MemberLocationsUpdateMemberLocationRequestDto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);
-
-        public async Task MemberLocationsDeleteMemberLocation(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete.ToString().ToLowerInvariant()}");
-
-        public async Task<TDLocationMapPointDto> MemberLocationsPointsCreatePoint(string id, MemberLocationsPointsCreatePointRequestDto data) => await _connection.RequestResourceAsync<MemberLocationsPointsCreatePointRequestDto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
-
-        public async Task<TDLocationMapPointDto> MemberLocationsPointsUpdatePoint(string locationPointId, string id, MemberLocationsPointsUpdatePointRequestDto data) => await _connection.RequestResourceAsync<MemberLocationsPointsUpdatePointRequestDto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);
-
-        public async Task MemberLocationsPointsDeletePoint(string id, string locationPointId, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");
-
-        public async Task<Batch<TDMergedEventDto>> MembershipEventsGetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMergedEventDto>)));
-
-        public async Task<TDMembershipDto> MembershipsCreateMembership(MembershipsCreateMembershipRequestDto data) => await _connection.RequestResourceAsync<MembershipsCreateMembershipRequestDto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
-
-        public async Task<Batch<TDMembershipDto>> MembershipsGetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null) => await _connection.RequestResourceAsync<Batch<TDMembershipDto>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMembershipDto>)));
-
-        public async Task<TDMembershipDto> MembershipsUpdateMembership(string id, MembershipsUpdateMembershipRequestDto data) => await _connection.RequestResourceAsync<MembershipsUpdateMembershipRequestDto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);
-
-        public async Task MembershipsDeleteMembership(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete.ToString().ToLowerInvariant()}");
-
-        public async Task MembershipsRevoke(string id, SpaceTime? till = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke?till={till?.ToString() ?? "null"}");
-
-        public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> MembershipsRequestsGetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null) => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<Pair<TDMemberProfileDto, TDMembershipDto>>)));
-
-        public async Task MembershipsRequestsUpdateRequest(string id, MembershipsRequestsUpdateRequestRequestDto data) => await _connection.RequestResourceAsync<MembershipsRequestsUpdateRequestRequestDto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);
-
-        public async Task<TDMembershipDto> MembershipsRequestsDeleteRequest(string id) => await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/memberships/requests/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)));
-
-        public async Task MembershipsRequestRevokeUpdateRequestRevoke(string id, MembershipsRequestRevokeUpdateRequestRevokeRequestDto data) => await _connection.RequestResourceAsync<MembershipsRequestRevokeUpdateRequestRevokeRequestDto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);
-
-        public async Task<TDMemberProfileDto> ProfilesCreateProfile(ProfilesCreateProfileRequestDto data) => await _connection.RequestResourceAsync<ProfilesCreateProfileRequestDto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
-
-        public async Task<Batch<TDMemberProfileDto>> ProfilesGetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));
-
-        public async Task<List<string>> ProfilesCheckProfileUsernamesExistence(List<string> usernames) => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)));
-
-        public async Task<TDMemberProfileDto> ProfilesGetProfileByUsername(string username) => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/username:{username}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
-
-        public async Task<TDMemberProfileDto> ProfilesGetProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
-
-        public async Task<bool> ProfilesCheckIfProfileIsTeamMember(string id, List<string> teamIds) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));
-
-        public async Task<TDMemberProfileDto> ProfilesUpdateProfile(string id, ProfilesUpdateProfileRequestDto data) => await _connection.RequestResourceAsync<ProfilesUpdateProfileRequestDto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);
-
-        public async Task<TDMemberProfileDto> ProfilesDeleteProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
-
-        public async Task<TDMemberProfileDto> ProfilesDeactivate(string id, SpaceDate? since = null, SpaceTime? at = null) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/deactivate?since={since?.ToString() ?? "null"}&at={at?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
-
-        public async Task<TDMemberProfileDto> ProfilesFire(string id, SpaceDate since) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/fire?since={since.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
-
-        public async Task<List<ESAuthenticationSessionDto>> ProfilesAuthenticationSessionsGetAllAuthenticationSessions(string owner) => await _connection.RequestResourceAsync<List<ESAuthenticationSessionDto>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthenticationSessionDto>)));
-
-        public async Task ProfilesAuthenticationSessionsMeTerminateOwnAuthenticationSession(string sessionId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/me/{sessionId}");
-
-        public async Task<TDMemberProfileDto> ProfilesMeGetMe() => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/me?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));
-
-        public async Task<ChecklistDto> ProfilesMeChecklistsCreateChecklist(ChannelsIsNameFreeRequestDto data) => await _connection.RequestResourceAsync<ChannelsIsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
-
-        public async Task<ChecklistDto> ProfilesMeChecklistsImportChecklist(PlanningChecklistsImportChecklistRequestDto data) => await _connection.RequestResourceAsync<PlanningChecklistsImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);
-
-        public async Task ProfilesMeChecklistsImportChecklistLines(string checklistId, PlanningChecklistsImportChecklistLinesRequestDto data) => await _connection.RequestResourceAsync<PlanningChecklistsImportChecklistLinesRequestDto>("POST", $"api/http/team-directory/profiles/me/checklists/{checklistId}/import", data);
-
-        public async Task<List<ChecklistDto>> ProfilesMeChecklistsGetAllChecklists() => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));
-
-        public async Task ProfilesMeChecklistsUpdateChecklist(string checklistId, ProfilesMeChecklistsUpdateChecklistRequestDto data) => await _connection.RequestResourceAsync<ProfilesMeChecklistsUpdateChecklistRequestDto>("PATCH", $"api/http/team-directory/profiles/me/checklists/{checklistId}", data);
-
-        public async Task ProfilesMeChecklistsDeleteChecklist(string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/checklists/{checklistId}");
-
-        public async Task<MeInfoDto> ProfilesMeInfoGetInfo() => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/me/info?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeInfoDto)));
-
-        public async Task<List<ESOAuthConsentDto>> ProfilesOAuthConsentsGetAllOAuthConsents(string owner) => await _connection.RequestResourceAsync<List<ESOAuthConsentDto>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESOAuthConsentDto>)));
-
-        public async Task<List<TDMemberProfileDto>> ProfilesLeadsGetAllLeads(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles/{id}/leads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));
-
-        public async Task<Pair<ESPermanentTokenDto, string>> ProfilesPermanentTokensCreatePermanentToken(string id, ProfilesPermanentTokensCreatePermanentTokenRequestDto data) => await _connection.RequestResourceAsync<ProfilesPermanentTokensCreatePermanentTokenRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Pair<ESPermanentTokenDto, string>)), data);
-
-        public async Task<Batch<ESPermanentTokenDto>> ProfilesPermanentTokensGetAllPermanentTokens(string id, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ESPermanentTokenDto>)));
-
-        public async Task ProfilesPermanentTokensUpdatePermanentToken(string id, string tokenId, ProfilesPermanentTokensUpdatePermanentTokenRequestDto data) => await _connection.RequestResourceAsync<ProfilesPermanentTokensUpdatePermanentTokenRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);
-
-        public async Task ProfilesPermanentTokensDeletePermanentToken(string id, string tokenId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");
-
-        public async Task<TDProfileLanguageDto> ProfilesSpokenLanguagesUpdateSpokenLanguage(string id, ProfilesSpokenLanguagesUpdateSpokenLanguageRequestDto data) => await _connection.RequestResourceAsync<ProfilesSpokenLanguagesUpdateSpokenLanguageRequestDto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);
-
-        public async Task ProfilesSpokenLanguagesDeleteSpokenLanguage(string id, string language) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/spoken-languages?language={language.ToString()}");
-
-        public async Task<VcsHostingPasswordDto> ProfilesVcsPasswordGetVcsPassword(string id) => await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/profiles/{id}/vcs-password?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(VcsHostingPasswordDto)));
-
-        public async Task ProfilesVcsPasswordUpdateVcsPassword(string id, ProfilesVcsPasswordUpdateVcsPasswordRequestDto data) => await _connection.RequestResourceAsync<ProfilesVcsPasswordUpdateVcsPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);
-
-        public async Task ProfilesVcsPasswordDeleteVcsPassword(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/vcs-password");
-
-        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysAddWorkingDays(string id, ProfilesWorkingDaysAddWorkingDaysRequestDto data) => await _connection.RequestResourceAsync<ProfilesWorkingDaysAddWorkingDaysRequestDto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);
-
-        public async Task<List<TDWorkingDaysDto>> ProfilesWorkingDaysGetAllWorkingDays(string id) => await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDWorkingDaysDto>)));
-
-        public async Task<TDWorkingDaysDto> ProfilesWorkingDaysUpdateWorkingDays(string id, string workingDaysId, ProfilesWorkingDaysUpdateWorkingDaysRequestDto data) => await _connection.RequestResourceAsync<ProfilesWorkingDaysUpdateWorkingDaysRequestDto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);
-
-        public async Task ProfilesWorkingDaysDeleteWorkingDays(string id, string workingDaysId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");
-
-        public async Task<Batch<TDMemberProfileDto>> ReportingsGetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));
-
-        public async Task<TDRoleDto> RolesCreateRole(RolesCreateRoleRequestDto data) => await _connection.RequestResourceAsync<RolesCreateRoleRequestDto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);
-
-        public async Task<TDRoleDto> RolesRestore(string id) => await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));
-
-        public async Task<List<TDRoleDto>> RolesGetAllRoles(string query, bool withArchived) => await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDRoleDto>)));
-
-        public async Task<TDRoleDto> RolesGetRole(string id) => await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));
-
-        public async Task<TDRoleDto> RolesUpdateRole(string id, RolesUpdateRoleRequestDto data) => await _connection.RequestResourceAsync<RolesUpdateRoleRequestDto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);
-
-        public async Task RolesArchiveRole(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}");
-
-        public async Task<TDStatsDto> StatsGetAllStats(string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<TDStatsDto>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDStatsDto)));
-
-        public async Task<TDTeamDto> TeamsCreateTeam(TeamsCreateTeamRequestDto data) => await _connection.RequestResourceAsync<TeamsCreateTeamRequestDto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);
-
-        public async Task<List<TDTeamDto>> TeamsRestoreMultiple(LocationsRestoreMultipleRequestDto data) => await _connection.RequestResourceAsync<LocationsRestoreMultipleRequestDto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);
-
-        public async Task TeamsCancelDisbanding(string id) => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding");
-
-        public async Task<TDTeamDto> TeamsRestore(string id) => await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
-
-        public async Task<Batch<TDTeamDto>> TeamsGetAllTeams(string query, bool withArchived, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDTeamDto>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDTeamDto>)));
-
-        [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]
-        public async Task<TDTeamDto> TeamsGetSingleTeamByName(string name) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
-
-        public async Task<TDTeamDto> TeamsGetTeam(string id) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));
-
-        public async Task<TDTeamDto> TeamsUpdateTeam(string id, TeamsUpdateTeamRequestDto data) => await _connection.RequestResourceAsync<TeamsUpdateTeamRequestDto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);
-
-        public async Task<List<TDTeamDto>> TeamsArchiveTeam(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));
-
-        public async Task<List<TDTeamDto>> TeamsDisband(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));
-
-        public async Task<Batch<TDMemberProfileDto>> TeamsDirectMembersGetAllDirectMembers(string id, string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));
-
+        
+        public CalendarEventClient CalendarEvents => new CalendarEventClient(_connection);
+        
+        // Source: team-directory_calendar-events
+        public partial class CalendarEventClient
+        {
+            private readonly Connection _connection;
+            
+            public CalendarEventClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<MeetingRecordDto>> GetAllCalendarEvents(SpaceDate dateFrom, SpaceDate dateTo) => await _connection.RequestResourceAsync<List<MeetingRecordDto>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MeetingRecordDto>)));            
+            
+            public async Task<MeetingRecordDto> GetCalendarEvent(string id) => await _connection.RequestResourceAsync<MeetingRecordDto>("GET", $"api/http/team-directory/calendar-events/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)));            
+            
+            public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
+            
+            // Source: team-directory_calendar-events_absence-events
+            public partial class AbsenceEventClient
+            {
+                private readonly Connection _connection;
+                
+                public AbsenceEventClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<AbsenceEventDto>> GetAllAbsenceEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<AbsenceEventDto>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceEventDto>)));                
+                
+            }
+            
+            public BirthdayEventClient BirthdayEvents => new BirthdayEventClient(_connection);
+            
+            // Source: team-directory_calendar-events_birthday-events
+            public partial class BirthdayEventClient
+            {
+                private readonly Connection _connection;
+                
+                public BirthdayEventClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<BirthdayEventDto>> GetAllBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));                
+                
+                public StarredClient Starred => new StarredClient(_connection);
+                
+                // Source: team-directory_calendar-events_birthday-events_starred
+                public partial class StarredClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public StarredClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<BirthdayEventDto>> GetAllStarredBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo) => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));                    
+                    
+                }
+                
+            }
+            
+            public MeetingParticipationClient MeetingParticipations => new MeetingParticipationClient(_connection);
+            
+            // Source: team-directory_calendar-events_meeting-participations
+            public partial class MeetingParticipationClient
+            {
+                private readonly Connection _connection;
+                
+                public MeetingParticipationClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<MeetingRecordDto> UpdateMeetingParticipation(string id, UpdateMeetingParticipationRequestDto data) => await _connection.RequestResourceAsync<UpdateMeetingParticipationRequestDto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);                
+                
+            }
+            
+            public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
+            
+            // Source: team-directory_calendar-events_membership-events
+            public partial class MembershipEventClient
+            {
+                private readonly Connection _connection;
+                
+                public MembershipEventClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<MembershipEventDto>> GetAllMembershipEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MembershipEventDto>)));                
+                
+            }
+            
+            public NonWorkingDaysEventClient NonWorkingDaysEvents => new NonWorkingDaysEventClient(_connection);
+            
+            // Source: team-directory_calendar-events_non-working-days-events
+            public partial class NonWorkingDaysEventClient
+            {
+                private readonly Connection _connection;
+                
+                public NonWorkingDaysEventClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<NonWorkingDaysEventDto>> GetAllNonWorkingDaysEvents(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<NonWorkingDaysEventDto>)));                
+                
+            }
+            
+        }
+        
+        public InvitationClient Invitations => new InvitationClient(_connection);
+        
+        // Source: team-directory_invitations
+        public partial class InvitationClient
+        {
+            private readonly Connection _connection;
+            
+            public InvitationClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<InvitationDto> CreateInvitation(CreateInvitationRequestDto data) => await _connection.RequestResourceAsync<CreateInvitationRequestDto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);            
+            
+            public async Task<Batch<InvitationDto>> GetAllInvitations(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<InvitationDto>)));            
+            
+            public async Task UpdateInvitation(string id, UpdateInvitationRequestDto data) => await _connection.RequestResourceAsync<UpdateInvitationRequestDto>("PATCH", $"api/http/team-directory/invitations/{id}", data);            
+            
+            public async Task DeleteInvitation(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}");            
+            
+        }
+        
+        public LanguageClient Languages => new LanguageClient(_connection);
+        
+        // Source: team-directory_languages
+        public partial class LanguageClient
+        {
+            private readonly Connection _connection;
+            
+            public LanguageClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<TDLanguageDto>> GetAllLanguages() => await _connection.RequestResourceAsync<List<TDLanguageDto>>("GET", $"api/http/team-directory/languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLanguageDto>)));            
+            
+        }
+        
+        public LocationEquipmentTypeClient LocationEquipmentTypes => new LocationEquipmentTypeClient(_connection);
+        
+        // Source: team-directory_location-equipment-types
+        public partial class LocationEquipmentTypeClient
+        {
+            private readonly Connection _connection;
+            
+            public LocationEquipmentTypeClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<TDLocationEquipmentTypeDto>> GetAllLocationEquipmentTypes(bool withArchived) => await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationEquipmentTypeDto>)));            
+            
+            public async Task DeleteLocationEquipmentTypeByName(string name, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString().ToLowerInvariant()}");            
+            
+        }
+        
+        public LocationClient Locations => new LocationClient(_connection);
+        
+        // Source: team-directory_locations
+        public partial class LocationClient
+        {
+            private readonly Connection _connection;
+            
+            public LocationClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDLocationDto> CreateLocation(CreateLocationRequestDto data) => await _connection.RequestResourceAsync<CreateLocationRequestDto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);            
+            
+            public async Task<List<TDLocationDto>> RestoreMultiple(RestoreMultipleRequestDto data) => await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);            
+            
+            public async Task<TDLocationDto> Restore(string id) => await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));            
+            
+            public async Task<List<TDLocationDto>> GetAllLocations(string query, bool withArchived, string? type = null) => await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));            
+            
+            public async Task<TDLocationDto> GetLocation(string id) => await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));            
+            
+            public async Task<TDLocationDto> UpdateLocation(string id, UpdateLocationRequestDto data) => await _connection.RequestResourceAsync<UpdateLocationRequestDto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);            
+            
+            public async Task<List<TDLocationDto>> ArchiveLocation(string id) => await _connection.RequestResourceAsync<List<TDLocationDto>>("DELETE", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));            
+            
+            public MapClient Map => new MapClient(_connection);
+            
+            // Source: team-directory_locations_xxx_map
+            public partial class MapClient
+            {
+                private readonly Connection _connection;
+                
+                public MapClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TDLocationMapDto> GetMap(string id) => await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)));                
+                
+                public async Task<TDLocationMapDto> UpdateMap(string id, UpdateMapRequestDto data) => await _connection.RequestResourceAsync<UpdateMapRequestDto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);                
+                
+                public MemberClient Members => new MemberClient(_connection);
+                
+                // Source: team-directory_locations_xxx_map_members
+                public partial class MemberClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public MemberClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<TDMemberInLocationMapListDto>> GetAllMembers(string id, bool includeUnmarked) => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));                    
+                    
+                }
+                
+            }
+            
+        }
+        
+        public LocationsWithTimezoneClient LocationsWithTimezone => new LocationsWithTimezoneClient(_connection);
+        
+        // Source: team-directory_locations-with-timezone
+        public partial class LocationsWithTimezoneClient
+        {
+            private readonly Connection _connection;
+            
+            public LocationsWithTimezoneClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<TDLocationWithTimeZoneDto>> GetAllLocationsWithTimezone() => await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationWithTimeZoneDto>)));            
+            
+        }
+        
+        public ManagerCandidateClient ManagerCandidates => new ManagerCandidateClient(_connection);
+        
+        // Source: team-directory_manager-candidates
+        public partial class ManagerCandidateClient
+        {
+            private readonly Connection _connection;
+            
+            public ManagerCandidateClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidates(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
+            
+        }
+        
+        public MemberLocationClient MemberLocations => new MemberLocationClient(_connection);
+        
+        // Source: team-directory_member-locations
+        public partial class MemberLocationClient
+        {
+            private readonly Connection _connection;
+            
+            public MemberLocationClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDMemberLocationDto> CreateMemberLocation(CreateMemberLocationRequestDto data) => await _connection.RequestResourceAsync<CreateMemberLocationRequestDto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);            
+            
+            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberLocationDto>)));            
+            
+            public async Task<TDMemberLocationDto> UpdateMemberLocation(string id, UpdateMemberLocationRequestDto data) => await _connection.RequestResourceAsync<UpdateMemberLocationRequestDto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);            
+            
+            public async Task DeleteMemberLocation(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete.ToString().ToLowerInvariant()}");            
+            
+            public PointClient Points => new PointClient(_connection);
+            
+            // Source: team-directory_member-locations_xxx_points
+            public partial class PointClient
+            {
+                private readonly Connection _connection;
+                
+                public PointClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TDLocationMapPointDto> CreatePoint(string id, CreatePointRequestDto data) => await _connection.RequestResourceAsync<CreatePointRequestDto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);                
+                
+                public async Task<TDLocationMapPointDto> UpdatePoint(string locationPointId, string id, UpdatePointRequestDto data) => await _connection.RequestResourceAsync<UpdatePointRequestDto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);                
+                
+                public async Task DeletePoint(string id, string locationPointId, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");                
+                
+            }
+            
+        }
+        
+        public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
+        
+        // Source: team-directory_membership-events
+        public partial class MembershipEventClient
+        {
+            private readonly Connection _connection;
+            
+            public MembershipEventClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<TDMergedEventDto>> GetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMergedEventDto>)));            
+            
+        }
+        
+        public MembershipClient Memberships => new MembershipClient(_connection);
+        
+        // Source: team-directory_memberships
+        public partial class MembershipClient
+        {
+            private readonly Connection _connection;
+            
+            public MembershipClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDMembershipDto> CreateMembership(CreateMembershipRequestDto data) => await _connection.RequestResourceAsync<CreateMembershipRequestDto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);            
+            
+            public async Task<Batch<TDMembershipDto>> GetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null) => await _connection.RequestResourceAsync<Batch<TDMembershipDto>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMembershipDto>)));            
+            
+            public async Task<TDMembershipDto> UpdateMembership(string id, UpdateMembershipRequestDto data) => await _connection.RequestResourceAsync<UpdateMembershipRequestDto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);            
+            
+            public async Task DeleteMembership(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete.ToString().ToLowerInvariant()}");            
+            
+            public async Task Revoke(string id, SpaceTime? till = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke?till={till?.ToString() ?? "null"}");            
+            
+            public RequestClient Requests => new RequestClient(_connection);
+            
+            // Source: team-directory_memberships_requests
+            public partial class RequestClient
+            {
+                private readonly Connection _connection;
+                
+                public RequestClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null) => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<Pair<TDMemberProfileDto, TDMembershipDto>>)));                
+                
+                public async Task UpdateRequest(string id, UpdateRequestRequestDto data) => await _connection.RequestResourceAsync<UpdateRequestRequestDto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);                
+                
+                public async Task<TDMembershipDto> DeleteRequest(string id) => await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/memberships/requests/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)));                
+                
+            }
+            
+            public RequestRevokeClient RequestRevoke => new RequestRevokeClient(_connection);
+            
+            // Source: team-directory_memberships_xxx_request-revoke
+            public partial class RequestRevokeClient
+            {
+                private readonly Connection _connection;
+                
+                public RequestRevokeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task UpdateRequestRevoke(string id, UpdateRequestRevokeRequestDto data) => await _connection.RequestResourceAsync<UpdateRequestRevokeRequestDto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);                
+                
+            }
+            
+        }
+        
+        public ProfileClient Profiles => new ProfileClient(_connection);
+        
+        // Source: team-directory_profiles
+        public partial class ProfileClient
+        {
+            private readonly Connection _connection;
+            
+            public ProfileClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDMemberProfileDto> CreateProfile(CreateProfileRequestDto data) => await _connection.RequestResourceAsync<CreateProfileRequestDto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
+            
+            public async Task<Batch<TDMemberProfileDto>> GetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
+            
+            public async Task<List<string>> CheckProfileUsernamesExistence(List<string> usernames) => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)));            
+            
+            public async Task<TDMemberProfileDto> GetProfileByUsername(string username) => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/username:{username}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            
+            public async Task<TDMemberProfileDto> GetProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            
+            public async Task<bool> CheckIfProfileIsTeamMember(string id, List<string> teamIds) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));            
+            
+            public async Task<TDMemberProfileDto> UpdateProfile(string id, UpdateProfileRequestDto data) => await _connection.RequestResourceAsync<UpdateProfileRequestDto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
+            
+            public async Task<TDMemberProfileDto> DeleteProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            
+            public async Task<TDMemberProfileDto> Deactivate(string id, SpaceDate? since = null, SpaceTime? at = null) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/deactivate?since={since?.ToString() ?? "null"}&at={at?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            
+            public async Task<TDMemberProfileDto> Fire(string id, SpaceDate since) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/fire?since={since.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            
+            public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
+            
+            // Source: team-directory_profiles_authentication-sessions
+            public partial class AuthenticationSessionClient
+            {
+                private readonly Connection _connection;
+                
+                public AuthenticationSessionClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<ESAuthenticationSessionDto>> GetAllAuthenticationSessions(string owner) => await _connection.RequestResourceAsync<List<ESAuthenticationSessionDto>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthenticationSessionDto>)));                
+                
+                public MeClient Me => new MeClient(_connection);
+                
+                // Source: team-directory_profiles_authentication-sessions_me
+                public partial class MeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public MeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task TerminateOwnAuthenticationSession(string sessionId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/me/{sessionId}");                    
+                    
+                }
+                
+            }
+            
+            public MeClient Me => new MeClient(_connection);
+            
+            // Source: team-directory_profiles_me
+            public partial class MeClient
+            {
+                private readonly Connection _connection;
+                
+                public MeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TDMemberProfileDto> GetMe() => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/me?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));                
+                
+                public ChecklistClient Checklists => new ChecklistClient(_connection);
+                
+                // Source: team-directory_profiles_me_checklists
+                public partial class ChecklistClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ChecklistClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<ChecklistDto> CreateChecklist(IsNameFreeRequestDto data) => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                    
+                    
+                    public async Task<ChecklistDto> ImportChecklist(ImportChecklistRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                    
+                    
+                    public async Task ImportChecklistLines(string checklistId, ImportChecklistLinesRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/team-directory/profiles/me/checklists/{checklistId}/import", data);                    
+                    
+                    public async Task<List<ChecklistDto>> GetAllChecklists() => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                    
+                    
+                    public async Task UpdateChecklist(string checklistId, UpdateChecklistRequestDto data) => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/team-directory/profiles/me/checklists/{checklistId}", data);                    
+                    
+                    public async Task DeleteChecklist(string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/checklists/{checklistId}");                    
+                    
+                    public StarredClient Starred => new StarredClient(_connection);
+                    
+                    // Source: team-directory_profiles_me_checklists_starred
+                    public partial class StarredClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public StarredClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task<List<ChecklistDto>> GetAllStarredChecklists() => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                        
+                        
+                    }
+                    
+                    public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
+                    
+                    // Source: team-directory_profiles_me_checklists_xxx_full-checklist-tree
+                    public partial class FullChecklistTreeClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public FullChecklistTreeClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task<List<PlanItemChildrenDto>> GetFullChecklistTree(string checklistId) => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/profiles/me/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));                        
+                        
+                    }
+                    
+                }
+                
+                public InfoClient Info => new InfoClient(_connection);
+                
+                // Source: team-directory_profiles_me_info
+                public partial class InfoClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public InfoClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<MeInfoDto> GetInfo() => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/me/info?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeInfoDto)));                    
+                    
+                    public DraftTypeClient DraftType => new DraftTypeClient(_connection);
+                    
+                    // Source: team-directory_profiles_me_info_draft-type
+                    public partial class DraftTypeClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public DraftTypeClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task UpdateDraftType(UpdateDraftTypeRequestDto data) => await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/draft-type", data);                        
+                        
+                    }
+                    
+                    public FirstDayOfWeekClient FirstDayOfWeek => new FirstDayOfWeekClient(_connection);
+                    
+                    // Source: team-directory_profiles_me_info_first-day-of-week
+                    public partial class FirstDayOfWeekClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public FirstDayOfWeekClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task UpdateFirstDayOfWeek(UpdateFirstDayOfWeekRequestDto data) => await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/first-day-of-week", data);                        
+                        
+                    }
+                    
+                    public NavBarMenuItemClient NavBarMenuItems => new NavBarMenuItemClient(_connection);
+                    
+                    // Source: team-directory_profiles_me_info_nav-bar-menu-items
+                    public partial class NavBarMenuItemClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public NavBarMenuItemClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task UpdateNavBarMenuItem(UpdateNavBarMenuItemRequestDto data) => await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/nav-bar-menu-items", data);                        
+                        
+                    }
+                    
+                    public NavBarProjectClient NavBarProjects => new NavBarProjectClient(_connection);
+                    
+                    // Source: team-directory_profiles_me_info_nav-bar-projects
+                    public partial class NavBarProjectClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public NavBarProjectClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task CreateNavBarProject(CreateNavBarProjectRequestDto data) => await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/profiles/me/info/nav-bar-projects", data);                        
+                        
+                        public async Task DeleteNavBarProject(string projectId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/info/nav-bar-projects?projectId={projectId.ToString()}");                        
+                        
+                    }
+                    
+                    public ThemeClient Theme => new ThemeClient(_connection);
+                    
+                    // Source: team-directory_profiles_me_info_theme
+                    public partial class ThemeClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public ThemeClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task UpdateTheme(UpdateThemeRequestDto data) => await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/theme", data);                        
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
+            
+            // Source: team-directory_profiles_oauth-consents
+            public partial class OAuthConsentClient
+            {
+                private readonly Connection _connection;
+                
+                public OAuthConsentClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<ESOAuthConsentDto>> GetAllOAuthConsents(string owner) => await _connection.RequestResourceAsync<List<ESOAuthConsentDto>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESOAuthConsentDto>)));                
+                
+                public MeClient Me => new MeClient(_connection);
+                
+                // Source: team-directory_profiles_oauth-consents_me
+                public partial class MeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public MeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
+                    
+                    // Source: team-directory_profiles_oauth-consents_me_approved-scopes
+                    public partial class ApprovedScopeClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public ApprovedScopeClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task DeleteApprovedScope(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/approved-scopes/{id}");                        
+                        
+                    }
+                    
+                    public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
+                    
+                    // Source: team-directory_profiles_oauth-consents_me_refresh-tokens
+                    public partial class RefreshTokenClient
+                    {
+                        private readonly Connection _connection;
+                        
+                        public RefreshTokenClient(Connection connection)
+                        {
+                            _connection = connection;
+                        }
+                        
+                        public async Task DeleteRefreshToken(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/refresh-tokens/{id}");                        
+                        
+                    }
+                    
+                }
+                
+            }
+            
+            public LeadClient Leads => new LeadClient(_connection);
+            
+            // Source: team-directory_profiles_xxx_leads
+            public partial class LeadClient
+            {
+                private readonly Connection _connection;
+                
+                public LeadClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<TDMemberProfileDto>> GetAllLeads(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles/{id}/leads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                
+                
+            }
+            
+            public PermanentTokenClient PermanentTokens => new PermanentTokenClient(_connection);
+            
+            // Source: team-directory_profiles_xxx_permanent-tokens
+            public partial class PermanentTokenClient
+            {
+                private readonly Connection _connection;
+                
+                public PermanentTokenClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentToken(string id, CreatePermanentTokenRequestDto data) => await _connection.RequestResourceAsync<CreatePermanentTokenRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Pair<ESPermanentTokenDto, string>)), data);                
+                
+                public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokens(string id, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ESPermanentTokenDto>)));                
+                
+                public async Task UpdatePermanentToken(string id, string tokenId, UpdatePermanentTokenRequestDto data) => await _connection.RequestResourceAsync<UpdatePermanentTokenRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);                
+                
+                public async Task DeletePermanentToken(string id, string tokenId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");                
+                
+            }
+            
+            public SpokenLanguageClient SpokenLanguages => new SpokenLanguageClient(_connection);
+            
+            // Source: team-directory_profiles_xxx_spoken-languages
+            public partial class SpokenLanguageClient
+            {
+                private readonly Connection _connection;
+                
+                public SpokenLanguageClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TDProfileLanguageDto> UpdateSpokenLanguage(string id, UpdateSpokenLanguageRequestDto data) => await _connection.RequestResourceAsync<UpdateSpokenLanguageRequestDto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);                
+                
+                public async Task DeleteSpokenLanguage(string id, string language) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/spoken-languages?language={language.ToString()}");                
+                
+            }
+            
+            public VcsPasswordClient VcsPassword => new VcsPasswordClient(_connection);
+            
+            // Source: team-directory_profiles_xxx_vcs-password
+            public partial class VcsPasswordClient
+            {
+                private readonly Connection _connection;
+                
+                public VcsPasswordClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<VcsHostingPasswordDto> GetVcsPassword(string id) => await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/profiles/{id}/vcs-password?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(VcsHostingPasswordDto)));                
+                
+                public async Task UpdateVcsPassword(string id, UpdateVcsPasswordRequestDto data) => await _connection.RequestResourceAsync<UpdateVcsPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);                
+                
+                public async Task DeleteVcsPassword(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/vcs-password");                
+                
+            }
+            
+            public WorkingDayClient WorkingDays => new WorkingDayClient(_connection);
+            
+            // Source: team-directory_profiles_xxx_working-days
+            public partial class WorkingDayClient
+            {
+                private readonly Connection _connection;
+                
+                public WorkingDayClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TDWorkingDaysDto> AddWorkingDays(string id, AddWorkingDaysRequestDto data) => await _connection.RequestResourceAsync<AddWorkingDaysRequestDto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);                
+                
+                public async Task<List<TDWorkingDaysDto>> GetAllWorkingDays(string id) => await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDWorkingDaysDto>)));                
+                
+                public async Task<TDWorkingDaysDto> UpdateWorkingDays(string id, string workingDaysId, UpdateWorkingDaysRequestDto data) => await _connection.RequestResourceAsync<UpdateWorkingDaysRequestDto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);                
+                
+                public async Task DeleteWorkingDays(string id, string workingDaysId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");                
+                
+            }
+            
+        }
+        
+        public ReportingClient Reportings => new ReportingClient(_connection);
+        
+        // Source: team-directory_reportings
+        public partial class ReportingClient
+        {
+            private readonly Connection _connection;
+            
+            public ReportingClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<TDMemberProfileDto>> GetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
+            
+        }
+        
+        public RoleClient Roles => new RoleClient(_connection);
+        
+        // Source: team-directory_roles
+        public partial class RoleClient
+        {
+            private readonly Connection _connection;
+            
+            public RoleClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDRoleDto> CreateRole(CreateRoleRequestDto data) => await _connection.RequestResourceAsync<CreateRoleRequestDto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);            
+            
+            public async Task<TDRoleDto> Restore(string id) => await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));            
+            
+            public async Task<List<TDRoleDto>> GetAllRoles(string query, bool withArchived) => await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDRoleDto>)));            
+            
+            public async Task<TDRoleDto> GetRole(string id) => await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));            
+            
+            public async Task<TDRoleDto> UpdateRole(string id, UpdateRoleRequestDto data) => await _connection.RequestResourceAsync<UpdateRoleRequestDto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);            
+            
+            public async Task ArchiveRole(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}");            
+            
+        }
+        
+        public StatClient Stats => new StatClient(_connection);
+        
+        // Source: team-directory_stats
+        public partial class StatClient
+        {
+            private readonly Connection _connection;
+            
+            public StatClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDStatsDto> GetAllStats(string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<TDStatsDto>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDStatsDto)));            
+            
+        }
+        
+        public TeamClient Teams => new TeamClient(_connection);
+        
+        // Source: team-directory_teams
+        public partial class TeamClient
+        {
+            private readonly Connection _connection;
+            
+            public TeamClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDTeamDto> CreateTeam(CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);            
+            
+            public async Task<List<TDTeamDto>> RestoreMultiple(RestoreMultipleRequestDto data) => await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);            
+            
+            public async Task CancelDisbanding(string id) => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding");            
+            
+            public async Task<TDTeamDto> Restore(string id) => await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
+            
+            public async Task<Batch<TDTeamDto>> GetAllTeams(string query, bool withArchived, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDTeamDto>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDTeamDto>)));            
+            
+            [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]            
+            public async Task<TDTeamDto> GetSingleTeamByName(string name) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
+            
+            public async Task<TDTeamDto> GetTeam(string id) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
+            
+            public async Task<TDTeamDto> UpdateTeam(string id, UpdateTeamRequestDto data) => await _connection.RequestResourceAsync<UpdateTeamRequestDto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);            
+            
+            public async Task<List<TDTeamDto>> ArchiveTeam(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));            
+            
+            public async Task<List<TDTeamDto>> Disband(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));            
+            
+            public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
+            
+            // Source: team-directory_teams_xxx_direct-members
+            public partial class DirectMemberClient
+            {
+                private readonly Connection _connection;
+                
+                public DirectMemberClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembers(string id, string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
+                
+            }
+            
+        }
+        
     }
-
+    
     // Source: todo
     public partial class ToDoItemClient
     {
         private readonly Connection _connection;
-
+        
         public ToDoItemClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<TodoItemRecordDto> CreateToDoItem(CreateToDoItemRequestDto data) => await _connection.RequestResourceAsync<CreateToDoItemRequestDto, TodoItemRecordDto>("POST", $"api/http/todo?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TodoItemRecordDto)), data);
-
-        public async Task<Batch<TodoItemRecordDto>> GetAllToDoItems(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TodoItemRecordDto>)));
-
-        public async Task UpdateToDoItem(string id, UpdateToDoItemRequestDto data) => await _connection.RequestResourceAsync<UpdateToDoItemRequestDto>("PATCH", $"api/http/todo/{id}", data);
-
-        public async Task DeleteToDoItem(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}");
-
+        
+        public async Task<TodoItemRecordDto> CreateToDoItem(CreateToDoItemRequestDto data) => await _connection.RequestResourceAsync<CreateToDoItemRequestDto, TodoItemRecordDto>("POST", $"api/http/todo?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TodoItemRecordDto)), data);        
+        
+        public async Task<Batch<TodoItemRecordDto>> GetAllToDoItems(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TodoItemRecordDto>)));        
+        
+        public async Task UpdateToDoItem(string id, UpdateToDoItemRequestDto data) => await _connection.RequestResourceAsync<UpdateToDoItemRequestDto>("PATCH", $"api/http/todo/{id}", data);        
+        
+        public async Task DeleteToDoItem(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}");        
+        
     }
-
+    
     // Source: trusted-certificates
     public partial class TrustedCertificateClient
     {
         private readonly Connection _connection;
-
+        
         public TrustedCertificateClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<TrustedCertificateDto> CreateTrustedCertificate(CreateTrustedCertificateRequestDto data) => await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TrustedCertificateDto)), data);
-
-        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates() => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TrustedCertificateDto>)));
-
-        public async Task<CertificateInfoDto> Info(string data) => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CertificateInfoDto)));
-
-        public async Task UpdateTrustedCertificate(string id, UpdateTrustedCertificateRequestDto data) => await _connection.RequestResourceAsync<UpdateTrustedCertificateRequestDto>("PATCH", $"api/http/trusted-certificates/{id}", data);
-
-        public async Task DeleteTrustedCertificate(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}");
-
+        
+        public async Task<TrustedCertificateDto> CreateTrustedCertificate(CreateTrustedCertificateRequestDto data) => await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TrustedCertificateDto)), data);        
+        
+        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates() => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TrustedCertificateDto>)));        
+        
+        public async Task<CertificateInfoDto> Info(string data) => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CertificateInfoDto)));        
+        
+        public async Task UpdateTrustedCertificate(string id, UpdateTrustedCertificateRequestDto data) => await _connection.RequestResourceAsync<UpdateTrustedCertificateRequestDto>("PATCH", $"api/http/trusted-certificates/{id}", data);        
+        
+        public async Task DeleteTrustedCertificate(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}");        
+        
     }
-
+    
     // Source: uploads
     public partial class UploadClient
     {
         private readonly Connection _connection;
-
+        
         public UploadClient(Connection connection)
         {
             _connection = connection;
         }
-
-        public async Task<string> CreateUpload(CreateUploadRequestDto data) => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);
-
-        public async Task<ImageAttachmentMetaDto> ImageGetImageAttachmentMetadata(string id) => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImageAttachmentMetaDto)));
-
+        
+        public async Task<string> CreateUpload(CreateUploadRequestDto data) => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
+        
+        public ImageClient Image => new ImageClient(_connection);
+        
+        // Source: uploads_image
+        public partial class ImageClient
+        {
+            private readonly Connection _connection;
+            
+            public ImageClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadata(string id) => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImageAttachmentMetaDto)));            
+            
+        }
+        
     }
-
-    // Source: AbsenceReasonsCreateAbsenceReasonRequest
-    public class AbsenceReasonsCreateAbsenceReasonRequestDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("description")]
-        public string Description { get; set; }
-
-        [Required]
-        [JsonPropertyName("defaultAvailability")]
-        public bool DefaultAvailability { get; set; }
-
-        [Required]
-        [JsonPropertyName("approvalRequired")]
-        public bool ApprovalRequired { get; set; }
-
-        [JsonPropertyName("icon")]
-        public string? Icon { get; set; }
-
-    }
-
-    // Source: AccessAdminsProfilesAddAdministratorRequest
-    public class AccessAdminsProfilesAddAdministratorRequestDto
+    
+    // Source: AddAdministratorRequest
+    public class AddAdministratorRequestDto
     {
         [Required]
         [JsonPropertyName("profileId")]
-        public string ProfileId { get; set; }
-
+        public string ProfileId { get; set; }        
+        
     }
-
+    
+    // Source: AddAttachmentsRequest
+    public class AddAttachmentsRequestDto
+    {
+        [Required]
+        [JsonPropertyName("attachments")]
+        public List<AttachmentDto> Attachments { get; set; }        
+        
+    }
+    
+    // Source: AddResponsibilityRequest
+    public class AddResponsibilityRequestDto
+    {
+        [Required]
+        [JsonPropertyName("subjectId")]
+        public string SubjectId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("summary")]
+        public string Summary { get; set; }        
+        
+        [JsonPropertyName("notes")]
+        public string? Notes { get; set; }        
+        
+    }
+    
+    // Source: AddResponsibilitySubjectRequest
+    public class AddResponsibilitySubjectRequestDto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }        
+        
+    }
+    
+    // Source: AddRevisionsToReviewRequest
+    public class AddRevisionsToReviewRequestDto
+    {
+        [Required]
+        [JsonPropertyName("revisions")]
+        public List<RevisionInReviewDto> Revisions { get; set; }        
+        
+    }
+    
+    // Source: AddWorkingDaysRequest
+    public class AddWorkingDaysRequestDto
+    {
+        [JsonPropertyName("dateStart")]
+        public SpaceDate? DateStart { get; set; }        
+        
+        [JsonPropertyName("dateEnd")]
+        public SpaceDate? DateEnd { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("workingDaysSpec")]
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }        
+        
+    }
+    
     // Source: ApproveAbsenceRequest
     public class ApproveAbsenceRequestDto
     {
         [Required]
         [JsonPropertyName("approve")]
-        public bool Approve { get; set; }
-
+        public bool Approve { get; set; }        
+        
     }
-
-    // Source: ArticlesCreateArticleRequest
-    public class ArticlesCreateArticleRequestDto
+    
+    // Source: AssignResponsibleRequest
+    public class AssignResponsibleRequestDto
     {
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [Required]
-        [JsonPropertyName("content")]
-        public string Content { get; set; }
-
-        [JsonPropertyName("created")]
-        public SpaceTime? Created { get; set; }
-
-        [JsonPropertyName("team")]
-        public string? Team { get; set; }
-
-        [JsonPropertyName("teams")]
-        public List<string>? Teams { get; set; }
-
-        [JsonPropertyName("location")]
-        public string? Location { get; set; }
-
-        [JsonPropertyName("locations")]
-        public List<string>? Locations { get; set; }
-
-    }
-
-    // Source: CalendarEventsMeetingParticipationsUpdateMeetingParticipationRequest
-    public class CalendarEventsMeetingParticipationsUpdateMeetingParticipationRequestDto
-    {
-        [Required]
-        [JsonPropertyName("newStatus")]
-        public EventParticipationStatus NewStatus { get; set; }
-
-    }
-
-    // Source: CalendarsCreateCalendarRequest
-    public class CalendarsCreateCalendarRequestDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("location")]
-        public string Location { get; set; }
-
-    }
-
-    // Source: CalendarsImportRequest
-    public class CalendarsImportRequestDto
-    {
-        [Required]
-        [JsonPropertyName("calendar")]
-        public string Calendar { get; set; }
-
-        [Required]
-        [JsonPropertyName("attachmentId")]
-        public string AttachmentId { get; set; }
-
-    }
-
-    // Source: ChannelsImportMessageHistoryRequest
-    public class ChannelsImportMessageHistoryRequestDto
-    {
-        [Required]
-        [JsonPropertyName("messages")]
-        public List<MessageForImportDto> Messages { get; set; }
-
-    }
-
-    // Source: ChannelsIsNameFreeRequest
-    public class ChannelsIsNameFreeRequestDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-    }
-
-    // Source: ChannelsMessagesSendMessageRequest
-    public class ChannelsMessagesSendMessageRequestDto
-    {
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [JsonPropertyName("temporaryId")]
-        public string? TemporaryId { get; set; }
-
-    }
-
-    // Source: CodeDiscussionsGetAllCodeDiscussionsByChangeRequest
-    public class CodeDiscussionsGetAllCodeDiscussionsByChangeRequestDto
-    {
-        [Required]
-        [JsonPropertyName("projectKey")]
-        public ProjectKeyDto ProjectKey { get; set; }
-
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository { get; set; }
-
-        [Required]
-        [JsonPropertyName("revisions")]
-        public List<string> Revisions { get; set; }
-
-        [Required]
-        [JsonPropertyName("change")]
-        public GitCommitChangeDto Change { get; set; }
-
-    }
-
-    // Source: CodeReviewsParticipantsEditReviewParticipantRequest
-    public class CodeReviewsParticipantsEditReviewParticipantRequestDto
-    {
-        [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }
-
+        public string? Role { get; set; }        
+        
     }
-
-    // Source: CodeReviewsRevisionsAddRevisionsToReviewRequest
-    public class CodeReviewsRevisionsAddRevisionsToReviewRequestDto
+    
+    // Source: ChangeRequest
+    public class ChangeRequestDto
     {
         [Required]
-        [JsonPropertyName("revisions")]
-        public List<RevisionInReviewDto> Revisions { get; set; }
-
-    }
-
-    // Source: CodeReviewsStateEditReviewStateRequest
-    public class CodeReviewsStateEditReviewStateRequestDto
-    {
+        [JsonPropertyName("oldPassword")]
+        public string OldPassword { get; set; }        
+        
         [Required]
-        [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
-
+        [JsonPropertyName("newPassword")]
+        public string NewPassword { get; set; }        
+        
     }
-
-    // Source: CodeReviewsTitleEditReviewTitleRequest
-    public class CodeReviewsTitleEditReviewTitleRequestDto
-    {
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-    }
-
+    
     // Source: ConvertMarkdownToHTMLRequest
     public class ConvertMarkdownToHTMLRequestDto
     {
         [Required]
         [JsonPropertyName("markdown")]
-        public string Markdown { get; set; }
-
+        public string Markdown { get; set; }        
+        
     }
-
+    
+    // Source: CreateAbsenceReasonRequest
+    public class CreateAbsenceReasonRequestDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("defaultAvailability")]
+        public bool DefaultAvailability { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("approvalRequired")]
+        public bool ApprovalRequired { get; set; }        
+        
+        [JsonPropertyName("icon")]
+        public string? Icon { get; set; }        
+        
+    }
+    
     // Source: CreateAbsenceRequest
     public class CreateAbsenceRequestDto
     {
         [Required]
         [JsonPropertyName("member")]
-        public string Member { get; set; }
-
+        public string Member { get; set; }        
+        
         [Required]
         [JsonPropertyName("reason")]
-        public string Reason { get; set; }
-
+        public string Reason { get; set; }        
+        
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
-
+        public string Description { get; set; }        
+        
         [JsonPropertyName("location")]
-        public string? Location { get; set; }
-
+        public string? Location { get; set; }        
+        
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since { get; set; }
-
+        public SpaceDate Since { get; set; }        
+        
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till { get; set; }
-
+        public SpaceDate Till { get; set; }        
+        
         [Required]
         [JsonPropertyName("available")]
-        public bool Available { get; set; }
-
+        public bool Available { get; set; }        
+        
         [Required]
         [JsonPropertyName("icon")]
-        public string Icon { get; set; }
-
+        public string Icon { get; set; }        
+        
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
     }
-
+    
+    // Source: CreateArticleRequest
+    public class CreateArticleRequestDto
+    {
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("content")]
+        public string Content { get; set; }        
+        
+        [JsonPropertyName("created")]
+        public SpaceTime? Created { get; set; }        
+        
+        [JsonPropertyName("team")]
+        public string? Team { get; set; }        
+        
+        [JsonPropertyName("teams")]
+        public List<string>? Teams { get; set; }        
+        
+        [JsonPropertyName("location")]
+        public string? Location { get; set; }        
+        
+        [JsonPropertyName("locations")]
+        public List<string>? Locations { get; set; }        
+        
+    }
+    
     // Source: CreateAuthModuleRequest
     public class CreateAuthModuleRequestDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
-
+        public string Key { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }
-
+        public bool Enabled { get; set; }        
+        
         [Required]
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto Settings { get; set; }
-
+        public ESAuthModuleSettingsDto Settings { get; set; }        
+        
     }
-
+    
+    // Source: CreateCalendarRequest
+    public class CreateCalendarRequestDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("location")]
+        public string Location { get; set; }        
+        
+    }
+    
+    // Source: CreateCodeDiscussionRequest
+    public class CreateCodeDiscussionRequestDto
+    {
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }        
+        
+        [JsonPropertyName("diffContext")]
+        public DiffContextDto? DiffContext { get; set; }        
+        
+        [JsonPropertyName("filename")]
+        public string? Filename { get; set; }        
+        
+        [JsonPropertyName("line")]
+        public int? Line { get; set; }        
+        
+        [JsonPropertyName("oldLine")]
+        public int? OldLine { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("pending")]
+        public bool Pending { get; set; }        
+        
+    }
+    
+    // Source: CreateCommitSetReviewRequest
+    public class CreateCommitSetReviewRequestDto
+    {
+        [Required]
+        [JsonPropertyName("revisions")]
+        public List<string> Revisions { get; set; }        
+        
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }        
+        
+    }
+    
+    // Source: CreateDraftRequest
+    public class CreateDraftRequestDto
+    {
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }        
+        
+        [JsonPropertyName("text")]
+        public string? Text { get; set; }        
+        
+        [JsonPropertyName("textVersion")]
+        public long? TextVersion { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("type")]
+        public DraftDocumentType Type { get; set; }        
+        
+        [JsonPropertyName("publicationDetails")]
+        public DraftPublicationDetailsDto? PublicationDetails { get; set; }        
+        
+    }
+    
+    // Source: CreateFieldRequest
+    public class CreateFieldRequestDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("type")]
+        public CFTypeDto Type { get; set; }        
+        
+        [JsonPropertyName("constraint")]
+        public CFConstraintDto? Constraint { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("required")]
+        public bool Required { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("private")]
+        public bool Private { get; set; }        
+        
+        [JsonPropertyName("access")]
+        public AccessType? Access { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("defaultValue")]
+        public CFValueDto DefaultValue { get; set; }        
+        
+    }
+    
+    // Source: CreateHierarchicalTagRequest
+    public class CreateHierarchicalTagRequestDto
+    {
+        [JsonPropertyName("parentTagId")]
+        public string? ParentTagId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("path")]
+        public List<string> Path { get; set; }        
+        
+    }
+    
+    // Source: CreateHolidayRequest
+    public class CreateHolidayRequestDto
+    {
+        [Required]
+        [JsonPropertyName("calendar")]
+        public string Calendar { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("date")]
+        public SpaceDate Date { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("workingDay")]
+        public bool WorkingDay { get; set; }        
+        
+    }
+    
     // Source: CreateImportSourceRequest
     public class CreateImportSourceRequestDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("importerPrincipal")]
-        public string? ImporterPrincipal { get; set; }
-
+        public string? ImporterPrincipal { get; set; }        
+        
     }
-
+    
+    // Source: CreateInvitationRequest
+    public class CreateInvitationRequestDto
+    {
+        [Required]
+        [JsonPropertyName("inviteeEmail")]
+        public string InviteeEmail { get; set; }        
+        
+        [JsonPropertyName("inviteeFirstName")]
+        public string? InviteeFirstName { get; set; }        
+        
+        [JsonPropertyName("inviteeLastName")]
+        public string? InviteeLastName { get; set; }        
+        
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }        
+        
+        [JsonPropertyName("role")]
+        public TDRoleDto? Role { get; set; }        
+        
+    }
+    
+    // Source: CreateIssueRequest
+    public class CreateIssueRequestDto
+    {
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
+        [JsonPropertyName("assignee")]
+        public string? Assignee { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("status")]
+        public string Status { get; set; }        
+        
+        [JsonPropertyName("dueDate")]
+        public SpaceDate? DueDate { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("tags")]
+        public List<string> Tags { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("checklists")]
+        public List<string> Checklists { get; set; }        
+        
+        [JsonPropertyName("attachments")]
+        public List<AttachmentDto>? Attachments { get; set; }        
+        
+        [JsonPropertyName("importInfo")]
+        public ImportedEntityInfoDto? ImportInfo { get; set; }        
+        
+    }
+    
+    // Source: CreateLocationRequest
+    public class CreateLocationRequestDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [JsonPropertyName("timezone")]
+        public string? Timezone { get; set; }        
+        
+        [JsonPropertyName("workdays")]
+        public List<int>? Workdays { get; set; }        
+        
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }        
+        
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }        
+        
+        [JsonPropertyName("equipment")]
+        public List<string>? Equipment { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
+        [JsonPropertyName("address")]
+        public string? Address { get; set; }        
+        
+        [JsonPropertyName("type")]
+        public string? Type { get; set; }        
+        
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }        
+        
+    }
+    
+    // Source: CreateMemberLocationRequest
+    public class CreateMemberLocationRequestDto
+    {
+        [Required]
+        [JsonPropertyName("member")]
+        public string Member { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("location")]
+        public string Location { get; set; }        
+        
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }        
+        
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }        
+        
+        [JsonPropertyName("previousLocation")]
+        public string? PreviousLocation { get; set; }        
+        
+    }
+    
+    // Source: CreateMembershipRequest
+    public class CreateMembershipRequestDto
+    {
+        [Required]
+        [JsonPropertyName("memberId")]
+        public string MemberId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("teamId")]
+        public string TeamId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("roleId")]
+        public string RoleId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("lead")]
+        public bool Lead { get; set; }        
+        
+        [JsonPropertyName("managerId")]
+        public string? ManagerId { get; set; }        
+        
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }        
+        
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }        
+        
+        [JsonPropertyName("activeSince")]
+        public SpaceTime? ActiveSince { get; set; }        
+        
+        [JsonPropertyName("activeTill")]
+        public SpaceTime? ActiveTill { get; set; }        
+        
+        [JsonPropertyName("previousMembershipId")]
+        public string? PreviousMembershipId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("requiresApproval")]
+        public bool RequiresApproval { get; set; }        
+        
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
+    // Source: CreateMergeRequestRequest
+    public class CreateMergeRequestRequestDto
+    {
+        [Required]
+        [JsonPropertyName("sourceBranch")]
+        public string SourceBranch { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("targetBranch")]
+        public string TargetBranch { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }        
+        
+    }
+    
+    // Source: CreateNavBarProjectRequest
+    public class CreateNavBarProjectRequestDto
+    {
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId { get; set; }        
+        
+    }
+    
+    // Source: CreatePermanentTokenRequest
+    public class CreatePermanentTokenRequestDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }        
+        
+    }
+    
+    // Source: CreatePointRequest
+    public class CreatePointRequestDto
+    {
+        [Required]
+        [JsonPropertyName("x")]
+        public int X { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("y")]
+        public int Y { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("mapId")]
+        public string MapId { get; set; }        
+        
+    }
+    
+    // Source: CreateProfileRequest
+    public class CreateProfileRequestDto
+    {
+        [Required]
+        [JsonPropertyName("username")]
+        public string Username { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("firstName")]
+        public string FirstName { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("lastName")]
+        public string LastName { get; set; }        
+        
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }        
+        
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }        
+        
+        [JsonPropertyName("birthday")]
+        public SpaceDate? Birthday { get; set; }        
+        
+        [JsonPropertyName("about")]
+        public string? About { get; set; }        
+        
+        [JsonPropertyName("gender")]
+        public Gender? Gender { get; set; }        
+        
+        [JsonPropertyName("messengers")]
+        public List<string>? Messengers { get; set; }        
+        
+        [JsonPropertyName("links")]
+        public List<string>? Links { get; set; }        
+        
+        [JsonPropertyName("notAMember")]
+        public bool? NotAMember { get; set; }        
+        
+        [JsonPropertyName("joined")]
+        public SpaceDate? Joined { get; set; }        
+        
+        [JsonPropertyName("left")]
+        public SpaceDate? Left { get; set; }        
+        
+        [JsonPropertyName("speaksEnglish")]
+        public bool? SpeaksEnglish { get; set; }        
+        
+        [JsonPropertyName("pictureAttachmentId")]
+        public string? PictureAttachmentId { get; set; }        
+        
+        [JsonPropertyName("avatarCropSquare")]
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }        
+        
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
     // Source: CreateProjectRequest
     public class CreateProjectRequestDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }
-
+        public ProjectKeyDto Key { get; set; }        
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
+        public bool Private { get; set; }        
+        
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
-
+        public List<string> Tags { get; set; }        
+        
     }
-
+    
+    // Source: CreateRoleRequest
+    public class CreateRoleRequestDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }        
+        
+    }
+    
+    // Source: CreateSubscriptionRequest
+    public class CreateSubscriptionRequestDto
+    {
+        [JsonPropertyName("locationId")]
+        public string? LocationId { get; set; }        
+        
+        [JsonPropertyName("teamId")]
+        public string? TeamId { get; set; }        
+        
+        [JsonPropertyName("reasonId")]
+        public string? ReasonId { get; set; }        
+        
+    }
+    
+    // Source: CreateTeamRequest
+    public class CreateTeamRequestDto
+    {
+        [Required]
+        [JsonPropertyName("teamNameRaw")]
+        public string TeamNameRaw { get; set; }        
+        
+        [JsonPropertyName("teamDescription")]
+        public string? TeamDescription { get; set; }        
+        
+        [JsonPropertyName("teamEmails")]
+        public List<string>? TeamEmails { get; set; }        
+        
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }        
+        
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
     // Source: CreateToDoItemRequest
     public class CreateToDoItemRequestDto
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
-
+        public string Text { get; set; }        
+        
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
-
+        public SpaceDate? DueDate { get; set; }        
+        
     }
-
+    
     // Source: CreateTrustedCertificateRequest
     public class CreateTrustedCertificateRequestDto
     {
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
-
+        public string Alias { get; set; }        
+        
         [Required]
         [JsonPropertyName("data")]
-        public string Data { get; set; }
-
+        public string Data { get; set; }        
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
-
+        public bool Archived { get; set; }        
+        
     }
-
+    
     // Source: CreateUploadRequest
     public class CreateUploadRequestDto
     {
         [Required]
         [JsonPropertyName("storagePrefix")]
-        public string StoragePrefix { get; set; }
-
+        public string StoragePrefix { get; set; }        
+        
         [JsonPropertyName("mediaType")]
-        public string? MediaType { get; set; }
-
+        public string? MediaType { get; set; }        
+        
     }
-
+    
     // Source: DeleteRequest
     public class DeleteRequestDto
     {
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
-
+        public string Emoji { get; set; }        
+        
     }
-
-    // Source: DraftsCreateDraftRequest
-    public class DraftsCreateDraftRequestDto
-    {
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }
-
-        [JsonPropertyName("text")]
-        public string? Text { get; set; }
-
-        [JsonPropertyName("textVersion")]
-        public long? TextVersion { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public DraftDocumentType Type { get; set; }
-
-        [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
-
-    }
-
-    // Source: DraftsEditorsProfilesCreateProfileRequest
-    public class DraftsEditorsProfilesCreateProfileRequestDto
+    
+    // Source: EditReviewParticipantRequest
+    public class EditReviewParticipantRequestDto
     {
         [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
-
-    }
-
-    // Source: DraftsEditorsTeamsCreateTeamRequest
-    public class DraftsEditorsTeamsCreateTeamRequestDto
-    {
-        [Required]
-        [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
-
-    }
-
-    // Source: DraftsUpdateDraftRequest
-    public class DraftsUpdateDraftRequestDto
-    {
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }
-
-        [JsonPropertyName("text")]
-        public string? Text { get; set; }
-
-        [JsonPropertyName("textVersion")]
-        public long? TextVersion { get; set; }
-
-        [JsonPropertyName("type")]
-        public DraftDocumentType? Type { get; set; }
-
-        [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
-
-    }
-
-    // Source: FieldsCreateFieldRequest
-    public class FieldsCreateFieldRequestDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("type")]
-        public CFTypeDto Type { get; set; }
-
-        [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint { get; set; }
-
-        [Required]
-        [JsonPropertyName("required")]
-        public bool Required { get; set; }
-
-        [Required]
-        [JsonPropertyName("private")]
-        public bool Private { get; set; }
-
-        [JsonPropertyName("access")]
-        public AccessType? Access { get; set; }
-
-        [Required]
-        [JsonPropertyName("defaultValue")]
-        public CFValueDto DefaultValue { get; set; }
-
-    }
-
-    // Source: FieldsReorderRequest
-    public class FieldsReorderRequestDto
-    {
-        [Required]
-        [JsonPropertyName("customFieldOrder")]
-        public List<string> CustomFieldOrder { get; set; }
-
-    }
-
-    // Source: FieldsUpdateFieldRequest
-    public class FieldsUpdateFieldRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [JsonPropertyName("key")]
-        public string? Key { get; set; }
-
-        [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint { get; set; }
-
-        [JsonPropertyName("required")]
-        public bool? Required { get; set; }
-
-        [JsonPropertyName("private")]
-        public bool? Private { get; set; }
-
-        [JsonPropertyName("access")]
-        public AccessType? Access { get; set; }
-
-        [JsonPropertyName("defaultValue")]
-        public CFValueDto? DefaultValue { get; set; }
-
-        [JsonPropertyName("enumValues")]
-        public List<EnumValueDataDto>? EnumValues { get; set; }
-
-    }
-
-    // Source: GraphExecutionsParametersUpdateParameterRequest
-    public class GraphExecutionsParametersUpdateParameterRequestDto
-    {
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key { get; set; }
-
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value { get; set; }
-
-    }
-
-    // Source: HolidaysCreateHolidayRequest
-    public class HolidaysCreateHolidayRequestDto
-    {
-        [Required]
-        [JsonPropertyName("calendar")]
-        public string Calendar { get; set; }
-
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [Required]
-        [JsonPropertyName("date")]
-        public SpaceDate Date { get; set; }
-
-        [Required]
-        [JsonPropertyName("workingDay")]
-        public bool WorkingDay { get; set; }
-
-    }
-
-    // Source: HolidaysUpdateHolidayRequest
-    public class HolidaysUpdateHolidayRequestDto
-    {
-        [JsonPropertyName("calendar")]
-        public string? Calendar { get; set; }
-
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [JsonPropertyName("date")]
-        public SpaceDate? Date { get; set; }
-
-        [JsonPropertyName("workingDay")]
-        public bool? WorkingDay { get; set; }
-
-    }
-
-    // Source: InvitationsCreateInvitationRequest
-    public class InvitationsCreateInvitationRequestDto
-    {
-        [Required]
-        [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail { get; set; }
-
-        [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }
-
-        [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get; set; }
-
-        [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
         [JsonPropertyName("role")]
-        public TDRoleDto? Role { get; set; }
-
+        public CodeReviewParticipantRole Role { get; set; }        
+        
     }
-
-    // Source: InvitationsUpdateInvitationRequest
-    public class InvitationsUpdateInvitationRequestDto
-    {
-        [JsonPropertyName("inviteeEmail")]
-        public string? InviteeEmail { get; set; }
-
-        [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }
-
-        [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get; set; }
-
-        [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
-
-        [JsonPropertyName("role")]
-        public TDRoleDto? Role { get; set; }
-
-    }
-
-    // Source: LocationsCreateLocationRequest
-    public class LocationsCreateLocationRequestDto
+    
+    // Source: EditReviewStateRequest
+    public class EditReviewStateRequestDto
     {
         [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("timezone")]
-        public string? Timezone { get; set; }
-
-        [JsonPropertyName("workdays")]
-        public List<int>? Workdays { get; set; }
-
-        [JsonPropertyName("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonPropertyName("equipment")]
-        public List<string>? Equipment { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("address")]
-        public string? Address { get; set; }
-
-        [JsonPropertyName("type")]
-        public string? Type { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-
+        [JsonPropertyName("state")]
+        public CodeReviewState State { get; set; }        
+        
     }
-
-    // Source: LocationsMapUpdateMapRequest
-    public class LocationsMapUpdateMapRequestDto
+    
+    // Source: EditReviewTitleRequest
+    public class EditReviewTitleRequestDto
     {
         [Required]
-        [JsonPropertyName("mapPictureId")]
-        public string MapPictureId { get; set; }
-
+        [JsonPropertyName("title")]
+        public string Title { get; set; }        
+        
     }
-
-    // Source: LocationsRestoreMultipleRequest
-    public class LocationsRestoreMultipleRequestDto
+    
+    // Source: GetAllCodeDiscussionsByChangeRequest
+    public class GetAllCodeDiscussionsByChangeRequestDto
     {
         [Required]
-        [JsonPropertyName("ids")]
-        public List<string> Ids { get; set; }
-
+        [JsonPropertyName("projectKey")]
+        public ProjectKeyDto ProjectKey { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("repository")]
+        public string Repository { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("revisions")]
+        public List<string> Revisions { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("change")]
+        public GitCommitChangeDto Change { get; set; }        
+        
     }
-
-    // Source: LocationsUpdateLocationRequest
-    public class LocationsUpdateLocationRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [JsonPropertyName("timezone")]
-        public string? Timezone { get; set; }
-
-        [JsonPropertyName("customWorkdays")]
-        public bool? CustomWorkdays { get; set; }
-
-        [JsonPropertyName("workdays")]
-        public List<int>? Workdays { get; set; }
-
-        [JsonPropertyName("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonPropertyName("equipment")]
-        public List<string>? Equipment { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("address")]
-        public string? Address { get; set; }
-
-        [JsonPropertyName("type")]
-        public string? Type { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-
-        [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }
-
-    }
-
-    // Source: LoginsChangeRequest
-    public class LoginsChangeRequestDto
-    {
-        [Required]
-        [JsonPropertyName("oldPassword")]
-        public string OldPassword { get; set; }
-
-        [Required]
-        [JsonPropertyName("newPassword")]
-        public string NewPassword { get; set; }
-
-    }
-
-    // Source: MemberLocationsCreateMemberLocationRequest
-    public class MemberLocationsCreateMemberLocationRequestDto
-    {
-        [Required]
-        [JsonPropertyName("member")]
-        public string Member { get; set; }
-
-        [Required]
-        [JsonPropertyName("location")]
-        public string Location { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonPropertyName("previousLocation")]
-        public string? PreviousLocation { get; set; }
-
-    }
-
-    // Source: MemberLocationsPointsCreatePointRequest
-    public class MemberLocationsPointsCreatePointRequestDto
-    {
-        [Required]
-        [JsonPropertyName("x")]
-        public int X { get; set; }
-
-        [Required]
-        [JsonPropertyName("y")]
-        public int Y { get; set; }
-
-        [Required]
-        [JsonPropertyName("mapId")]
-        public string MapId { get; set; }
-
-    }
-
-    // Source: MemberLocationsPointsUpdatePointRequest
-    public class MemberLocationsPointsUpdatePointRequestDto
-    {
-        [JsonPropertyName("x")]
-        public int? X { get; set; }
-
-        [JsonPropertyName("y")]
-        public int? Y { get; set; }
-
-        [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }
-
-    }
-
-    // Source: MemberLocationsUpdateMemberLocationRequest
-    public class MemberLocationsUpdateMemberLocationRequestDto
-    {
-        [JsonPropertyName("member")]
-        public string? Member { get; set; }
-
-        [JsonPropertyName("location")]
-        public string? Location { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonPropertyName("previousLocation")]
-        public string? PreviousLocation { get; set; }
-
-    }
-
-    // Source: MembershipsCreateMembershipRequest
-    public class MembershipsCreateMembershipRequestDto
-    {
-        [Required]
-        [JsonPropertyName("memberId")]
-        public string MemberId { get; set; }
-
-        [Required]
-        [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
-
-        [Required]
-        [JsonPropertyName("roleId")]
-        public string RoleId { get; set; }
-
-        [Required]
-        [JsonPropertyName("lead")]
-        public bool Lead { get; set; }
-
-        [JsonPropertyName("managerId")]
-        public string? ManagerId { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
-        [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
-        [JsonPropertyName("previousMembershipId")]
-        public string? PreviousMembershipId { get; set; }
-
-        [Required]
-        [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: MembershipsRequestRevokeUpdateRequestRevokeRequest
-    public class MembershipsRequestRevokeUpdateRequestRevokeRequestDto
-    {
-        [Required]
-        [JsonPropertyName("till")]
-        public SpaceTime Till { get; set; }
-
-    }
-
-    // Source: MembershipsRequestsUpdateRequestRequest
-    public class MembershipsRequestsUpdateRequestRequestDto
-    {
-        [Required]
-        [JsonPropertyName("approved")]
-        public bool Approved { get; set; }
-
-    }
-
-    // Source: MembershipsUpdateMembershipRequest
-    public class MembershipsUpdateMembershipRequestDto
-    {
-        [JsonPropertyName("memberId")]
-        public string? MemberId { get; set; }
-
-        [JsonPropertyName("teamId")]
-        public string? TeamId { get; set; }
-
-        [JsonPropertyName("roleId")]
-        public string? RoleId { get; set; }
-
-        [JsonPropertyName("lead")]
-        public bool? Lead { get; set; }
-
-        [JsonPropertyName("managerId")]
-        public string? ManagerId { get; set; }
-
-        [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
-        [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
-        [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }
-
-        [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }
-
-        [JsonPropertyName("previousMembershipId")]
-        public string? PreviousMembershipId { get; set; }
-
-        [Required]
-        [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: MessagesSendMessageRequest
-    public class MessagesSendMessageRequestDto
-    {
-        [Required]
-        [JsonPropertyName("channel")]
-        public string Channel { get; set; }
-
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [Required]
-        [JsonPropertyName("pending")]
-        public bool Pending { get; set; }
-
-        [JsonPropertyName("temporaryId")]
-        public string? TemporaryId { get; set; }
-
-    }
-
-    // Source: PlanningChecklistsImportChecklistLinesRequest
-    public class PlanningChecklistsImportChecklistLinesRequestDto
+    
+    // Source: ImportChecklistLinesRequest
+    public class ImportChecklistLinesRequestDto
     {
         [Required]
         [JsonPropertyName("targetParentId")]
-        public string TargetParentId { get; set; }
-
+        public string TargetParentId { get; set; }        
+        
         [JsonPropertyName("afterItemId")]
-        public string? AfterItemId { get; set; }
-
+        public string? AfterItemId { get; set; }        
+        
         [Required]
         [JsonPropertyName("tabIndentedLines")]
-        public string TabIndentedLines { get; set; }
-
+        public string TabIndentedLines { get; set; }        
+        
     }
-
-    // Source: PlanningChecklistsImportChecklistRequest
-    public class PlanningChecklistsImportChecklistRequestDto
+    
+    // Source: ImportChecklistRequest
+    public class ImportChecklistRequestDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [Required]
         [JsonPropertyName("tabIndentedLines")]
-        public string TabIndentedLines { get; set; }
-
+        public string TabIndentedLines { get; set; }        
+        
     }
-
-    // Source: PlanningChecklistsUpdateChecklistRequest
-    public class PlanningChecklistsUpdateChecklistRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("owner")]
-        public string? Owner { get; set; }
-
-        [JsonPropertyName("tag")]
-        public string? Tag { get; set; }
-
-    }
-
-    // Source: PlanningIssuesAttachmentsAddAttachmentsRequest
-    public class PlanningIssuesAttachmentsAddAttachmentsRequestDto
-    {
-        [Required]
-        [JsonPropertyName("attachments")]
-        public List<AttachmentDto> Attachments { get; set; }
-
-    }
-
-    // Source: PlanningIssuesCommentsImportIssueCommentHistoryRequest
-    public class PlanningIssuesCommentsImportIssueCommentHistoryRequestDto
+    
+    // Source: ImportIssueCommentHistoryRequest
+    public class ImportIssueCommentHistoryRequestDto
     {
         [Required]
         [JsonPropertyName("comments")]
-        public List<MessageForImportDto> Comments { get; set; }
-
+        public List<MessageForImportDto> Comments { get; set; }        
+        
     }
-
-    // Source: PlanningIssuesCreateIssueRequest
-    public class PlanningIssuesCreateIssueRequestDto
+    
+    // Source: ImportMessageHistoryRequest
+    public class ImportMessageHistoryRequestDto
     {
         [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("assignee")]
-        public string? Assignee { get; set; }
-
-        [Required]
-        [JsonPropertyName("status")]
-        public string Status { get; set; }
-
-        [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
-
-        [Required]
-        [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
-
-        [Required]
-        [JsonPropertyName("checklists")]
-        public List<string> Checklists { get; set; }
-
-        [JsonPropertyName("attachments")]
-        public List<AttachmentDto>? Attachments { get; set; }
-
-        [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get; set; }
-
+        [JsonPropertyName("messages")]
+        public List<MessageForImportDto> Messages { get; set; }        
+        
     }
-
-    // Source: PlanningIssuesStatusesUpdateStatusRequest
-    public class PlanningIssuesStatusesUpdateStatusRequestDto
+    
+    // Source: ImportRequest
+    public class ImportRequestDto
     {
         [Required]
-        [JsonPropertyName("statuses")]
-        public List<IssueStatusDataDto> Statuses { get; set; }
-
-    }
-
-    // Source: PlanningIssuesToggleIssueResolvedRequest
-    public class PlanningIssuesToggleIssueResolvedRequestDto
-    {
+        [JsonPropertyName("calendar")]
+        public string Calendar { get; set; }        
+        
         [Required]
-        [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
-
+        [JsonPropertyName("attachmentId")]
+        public string AttachmentId { get; set; }        
+        
     }
-
-    // Source: PlanningIssuesUpdateIssueRequest
-    public class PlanningIssuesUpdateIssueRequestDto
-    {
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-        [JsonPropertyName("assignee")]
-        public string? Assignee { get; set; }
-
-        [JsonPropertyName("status")]
-        public string Status { get; set; }
-
-        [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
-
-        [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get; set; }
-
-    }
-
-    // Source: PlanningTagsCreateHierarchicalTagRequest
-    public class PlanningTagsCreateHierarchicalTagRequestDto
-    {
-        [JsonPropertyName("parentTagId")]
-        public string? ParentTagId { get; set; }
-
-        [Required]
-        [JsonPropertyName("path")]
-        public List<string> Path { get; set; }
-
-    }
-
-    // Source: ProfilesCreateProfileRequest
-    public class ProfilesCreateProfileRequestDto
-    {
-        [Required]
-        [JsonPropertyName("username")]
-        public string Username { get; set; }
-
-        [Required]
-        [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
-
-        [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonPropertyName("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday { get; set; }
-
-        [JsonPropertyName("about")]
-        public string? About { get; set; }
-
-        [JsonPropertyName("gender")]
-        public Gender? Gender { get; set; }
-
-        [JsonPropertyName("messengers")]
-        public List<string>? Messengers { get; set; }
-
-        [JsonPropertyName("links")]
-        public List<string>? Links { get; set; }
-
-        [JsonPropertyName("notAMember")]
-        public bool? NotAMember { get; set; }
-
-        [JsonPropertyName("joined")]
-        public SpaceDate? Joined { get; set; }
-
-        [JsonPropertyName("left")]
-        public SpaceDate? Left { get; set; }
-
-        [JsonPropertyName("speaksEnglish")]
-        public bool? SpeaksEnglish { get; set; }
-
-        [JsonPropertyName("pictureAttachmentId")]
-        public string? PictureAttachmentId { get; set; }
-
-        [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: ProfilesMeChecklistsUpdateChecklistRequest
-    public class ProfilesMeChecklistsUpdateChecklistRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-    }
-
-    // Source: ProfilesPermanentTokensCreatePermanentTokenRequest
-    public class ProfilesPermanentTokensCreatePermanentTokenRequestDto
+    
+    // Source: IsNameFreeRequest
+    public class IsNameFreeRequestDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
+    }
+    
+    // Source: PushCommitStatusRequest
+    public class PushCommitStatusRequestDto
+    {
+        [JsonPropertyName("branch")]
+        public string? Branch { get; set; }        
+        
+        [JsonPropertyName("changes")]
+        public List<string>? Changes { get; set; }        
+        
         [Required]
-        [JsonPropertyName("scope")]
-        public string Scope { get; set; }
-
-    }
-
-    // Source: ProfilesPermanentTokensUpdatePermanentTokenRequest
-    public class ProfilesPermanentTokensUpdatePermanentTokenRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [JsonPropertyName("scope")]
-        public string? Scope { get; set; }
-
-    }
-
-    // Source: ProfilesSpokenLanguagesUpdateSpokenLanguageRequest
-    public class ProfilesSpokenLanguagesUpdateSpokenLanguageRequestDto
-    {
+        [JsonPropertyName("executionStatus")]
+        public ExecutionStatus ExecutionStatus { get; set; }        
+        
         [Required]
-        [JsonPropertyName("language")]
-        public string Language { get; set; }
-
-        [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
-    }
-
-    // Source: ProfilesUpdateProfileRequest
-    public class ProfilesUpdateProfileRequestDto
-    {
-        [JsonPropertyName("username")]
-        public string? Username { get; set; }
-
-        [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
-
-        [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
-
-        [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }
-
-        [JsonPropertyName("phones")]
-        public List<string>? Phones { get; set; }
-
-        [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday { get; set; }
-
-        [JsonPropertyName("about")]
-        public string? About { get; set; }
-
-        [JsonPropertyName("gender")]
-        public Gender? Gender { get; set; }
-
-        [JsonPropertyName("messengers")]
-        public List<string>? Messengers { get; set; }
-
-        [JsonPropertyName("links")]
-        public List<string>? Links { get; set; }
-
-        [JsonPropertyName("notAMember")]
-        public bool? NotAMember { get; set; }
-
-        [JsonPropertyName("joined")]
-        public SpaceDate? Joined { get; set; }
-
-        [JsonPropertyName("left")]
-        public SpaceDate? Left { get; set; }
-
-        [JsonPropertyName("speaksEnglish")]
-        public bool? SpeaksEnglish { get; set; }
-
-        [JsonPropertyName("pictureAttachmentId")]
-        public string? PictureAttachmentId { get; set; }
-
-        [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: ProfilesVcsPasswordUpdateVcsPasswordRequest
-    public class ProfilesVcsPasswordUpdateVcsPasswordRequestDto
-    {
+        [JsonPropertyName("url")]
+        public string Url { get; set; }        
+        
         [Required]
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
-
-    }
-
-    // Source: ProfilesWorkingDaysAddWorkingDaysRequest
-    public class ProfilesWorkingDaysAddWorkingDaysRequestDto
-    {
-        [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
-        [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
+        [JsonPropertyName("externalServiceName")]
+        public string ExternalServiceName { get; set; }        
+        
         [Required]
-        [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
-    }
-
-    // Source: ProfilesWorkingDaysUpdateWorkingDaysRequest
-    public class ProfilesWorkingDaysUpdateWorkingDaysRequestDto
-    {
-        [JsonPropertyName("profile")]
-        public string? Profile { get; set; }
-
-        [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
-
-        [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
-
+        [JsonPropertyName("taskName")]
+        public string TaskName { get; set; }        
+        
         [Required]
-        [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
-
+        [JsonPropertyName("taskId")]
+        public string TaskId { get; set; }        
+        
+        [JsonPropertyName("timestamp")]
+        public long? Timestamp { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
     }
-
+    
     // Source: ReorderRequest
     public class ReorderRequestDto
     {
         [Required]
-        [JsonPropertyName("order")]
-        public List<string> Order { get; set; }
-
+        [JsonPropertyName("customFieldOrder")]
+        public List<string> CustomFieldOrder { get; set; }        
+        
     }
-
-    // Source: RepositoriesCommitSetReviewsCreateCommitSetReviewRequest
-    public class RepositoriesCommitSetReviewsCreateCommitSetReviewRequestDto
+    
+    // Source: RestoreMultipleRequest
+    public class RestoreMultipleRequestDto
     {
         [Required]
-        [JsonPropertyName("revisions")]
-        public List<string> Revisions { get; set; }
-
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }
-
+        [JsonPropertyName("ids")]
+        public List<string> Ids { get; set; }        
+        
     }
-
-    // Source: RepositoriesMergeRequestsCreateMergeRequestRequest
-    public class RepositoriesMergeRequestsCreateMergeRequestRequestDto
-    {
-        [Required]
-        [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }
-
-        [Required]
-        [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }
-
-        [Required]
-        [JsonPropertyName("title")]
-        public string Title { get; set; }
-
-    }
-
-    // Source: RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussionRequest
-    public class RepositoriesRevisionsCodeDiscussionsCreateCodeDiscussionRequestDto
-    {
-        [Required]
-        [JsonPropertyName("text")]
-        public string Text { get; set; }
-
-        [JsonPropertyName("diffContext")]
-        public DiffContextDto? DiffContext { get; set; }
-
-        [JsonPropertyName("filename")]
-        public string? Filename { get; set; }
-
-        [JsonPropertyName("line")]
-        public int? Line { get; set; }
-
-        [JsonPropertyName("oldLine")]
-        public int? OldLine { get; set; }
-
-        [Required]
-        [JsonPropertyName("pending")]
-        public bool Pending { get; set; }
-
-    }
-
-    // Source: RepositoriesRevisionsCommitStatusesPushCommitStatusRequest
-    public class RepositoriesRevisionsCommitStatusesPushCommitStatusRequestDto
-    {
-        [JsonPropertyName("branch")]
-        public string? Branch { get; set; }
-
-        [JsonPropertyName("changes")]
-        public List<string>? Changes { get; set; }
-
-        [Required]
-        [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus { get; set; }
-
-        [Required]
-        [JsonPropertyName("url")]
-        public string Url { get; set; }
-
-        [Required]
-        [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }
-
-        [Required]
-        [JsonPropertyName("taskId")]
-        public string TaskId { get; set; }
-
-        [JsonPropertyName("timestamp")]
-        public long? Timestamp { get; set; }
-
-        [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
-    }
-
-    // Source: ResponsibilitiesAddResponsibilityRequest
-    public class ResponsibilitiesAddResponsibilityRequestDto
-    {
-        [Required]
-        [JsonPropertyName("subjectId")]
-        public string SubjectId { get; set; }
-
-        [Required]
-        [JsonPropertyName("summary")]
-        public string Summary { get; set; }
-
-        [JsonPropertyName("notes")]
-        public string? Notes { get; set; }
-
-    }
-
-    // Source: ResponsibilitiesAssigneesAssignResponsibleRequest
-    public class ResponsibilitiesAssigneesAssignResponsibleRequestDto
-    {
-        [JsonPropertyName("role")]
-        public string? Role { get; set; }
-
-    }
-
-    // Source: ResponsibilitiesSubjectsAddResponsibilitySubjectRequest
-    public class ResponsibilitiesSubjectsAddResponsibilitySubjectRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-    }
-
-    // Source: ResponsibilitiesUpdateResponsibilityRequest
-    public class ResponsibilitiesUpdateResponsibilityRequestDto
-    {
-        [Required]
-        [JsonPropertyName("summary")]
-        public string Summary { get; set; }
-
-        [JsonPropertyName("notes")]
-        public string? Notes { get; set; }
-
-    }
-
-    // Source: RolesCreateRoleRequest
-    public class RolesCreateRoleRequestDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-
-    }
-
-    // Source: RolesUpdateRoleRequest
-    public class RolesUpdateRoleRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-
-    }
-
+    
     // Source: SamlMetadataRequest
     public class SamlMetadataRequestDto
     {
         [Required]
         [JsonPropertyName("idpUrl")]
-        public string IdpUrl { get; set; }
-
+        public string IdpUrl { get; set; }        
+        
         [Required]
         [JsonPropertyName("idpEntityId")]
-        public string IdpEntityId { get; set; }
-
+        public string IdpEntityId { get; set; }        
+        
         [Required]
         [JsonPropertyName("idpCertificateSHA256")]
-        public string IdpCertificateSHA256 { get; set; }
-
+        public string IdpCertificateSHA256 { get; set; }        
+        
         [Required]
         [JsonPropertyName("spEntityId")]
-        public string SpEntityId { get; set; }
-
+        public string SpEntityId { get; set; }        
+        
         [JsonPropertyName("sslKeystore")]
-        public SSLKeystoreDto? SslKeystore { get; set; }
-
+        public SSLKeystoreDto? SslKeystore { get; set; }        
+        
         [JsonPropertyName("contactProfileId")]
-        public string? ContactProfileId { get; set; }
-
+        public string? ContactProfileId { get; set; }        
+        
     }
-
-    // Source: SubscriptionsCreateSubscriptionRequest
-    public class SubscriptionsCreateSubscriptionRequestDto
+    
+    // Source: SendMessageRequest
+    public class SendMessageRequestDto
     {
-        [JsonPropertyName("locationId")]
-        public string? LocationId { get; set; }
-
-        [JsonPropertyName("teamId")]
-        public string? TeamId { get; set; }
-
-        [JsonPropertyName("reasonId")]
-        public string? ReasonId { get; set; }
-
+        [Required]
+        [JsonPropertyName("channel")]
+        public string Channel { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("pending")]
+        public bool Pending { get; set; }        
+        
+        [JsonPropertyName("temporaryId")]
+        public string? TemporaryId { get; set; }        
+        
     }
-
-    // Source: SubscriptionsUpdateSubscriptionRequest
-    public class SubscriptionsUpdateSubscriptionRequestDto
+    
+    // Source: TestBuiltInSettingsRequest
+    public class TestBuiltInSettingsRequestDto
     {
-        [JsonPropertyName("locationId")]
-        public string? LocationId { get; set; }
-
-        [JsonPropertyName("teamId")]
-        public string? TeamId { get; set; }
-
-        [JsonPropertyName("reasonId")]
-        public string? ReasonId { get; set; }
-
+        [Required]
+        [JsonPropertyName("settings")]
+        public ESBuiltinAuthModuleSettingsDto Settings { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("username")]
+        public string Username { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("password")]
+        public string Password { get; set; }        
+        
     }
-
-    // Source: TagsTrackTagAccessRequest
-    public class TagsTrackTagAccessRequestDto
+    
+    // Source: TestLDAPSettingsRequest
+    public class TestLDAPSettingsRequestDto
+    {
+        [Required]
+        [JsonPropertyName("settings")]
+        public ESLdapAuthModuleSettingsDto Settings { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("username")]
+        public string Username { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("password")]
+        public string Password { get; set; }        
+        
+    }
+    
+    // Source: ToggleIssueResolvedRequest
+    public class ToggleIssueResolvedRequestDto
+    {
+        [Required]
+        [JsonPropertyName("resolved")]
+        public bool Resolved { get; set; }        
+        
+    }
+    
+    // Source: TrackTagAccessRequest
+    public class TrackTagAccessRequestDto
     {
         [Required]
         [JsonPropertyName("tag")]
-        public string Tag { get; set; }
-
+        public string Tag { get; set; }        
+        
     }
-
-    // Source: TeamsCreateTeamRequest
-    public class TeamsCreateTeamRequestDto
-    {
-        [Required]
-        [JsonPropertyName("teamNameRaw")]
-        public string TeamNameRaw { get; set; }
-
-        [JsonPropertyName("teamDescription")]
-        public string? TeamDescription { get; set; }
-
-        [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: TeamsUpdateTeamRequest
-    public class TeamsUpdateTeamRequestDto
-    {
-        [JsonPropertyName("teamNameRaw")]
-        public string? TeamNameRaw { get; set; }
-
-        [JsonPropertyName("teamDescription")]
-        public string? TeamDescription { get; set; }
-
-        [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails { get; set; }
-
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
-    }
-
-    // Source: TestTestBuiltInSettingsRequest
-    public class TestTestBuiltInSettingsRequestDto
-    {
-        [Required]
-        [JsonPropertyName("settings")]
-        public ESBuiltinAuthModuleSettingsDto Settings { get; set; }
-
-        [Required]
-        [JsonPropertyName("username")]
-        public string Username { get; set; }
-
-        [Required]
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
-
-    }
-
-    // Source: TestTestLDAPSettingsRequest
-    public class TestTestLDAPSettingsRequestDto
-    {
-        [Required]
-        [JsonPropertyName("settings")]
-        public ESLdapAuthModuleSettingsDto Settings { get; set; }
-
-        [Required]
-        [JsonPropertyName("username")]
-        public string Username { get; set; }
-
-        [Required]
-        [JsonPropertyName("password")]
-        public string Password { get; set; }
-
-    }
-
+    
     // Source: UpdateAbsenceRequest
     public class UpdateAbsenceRequestDto
     {
         [JsonPropertyName("member")]
-        public string? Member { get; set; }
-
+        public string? Member { get; set; }        
+        
         [JsonPropertyName("reason")]
-        public string? Reason { get; set; }
-
+        public string? Reason { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [JsonPropertyName("location")]
-        public string? Location { get; set; }
-
+        public string? Location { get; set; }        
+        
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
-
+        public SpaceDate? Since { get; set; }        
+        
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
-
+        public SpaceDate? Till { get; set; }        
+        
         [Required]
         [JsonPropertyName("available")]
-        public bool Available { get; set; }
-
+        public bool Available { get; set; }        
+        
         [JsonPropertyName("icon")]
-        public string? Icon { get; set; }
-
+        public string? Icon { get; set; }        
+        
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
-
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
     }
-
+    
     // Source: UpdateAuthModuleRequest
     public class UpdateAuthModuleRequestDto
     {
         [JsonPropertyName("key")]
-        public string? Key { get; set; }
-
+        public string? Key { get; set; }        
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get; set; }
-
+        public bool? Enabled { get; set; }        
+        
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto? Settings { get; set; }
-
+        public ESAuthModuleSettingsDto? Settings { get; set; }        
+        
     }
-
+    
+    // Source: UpdateChecklistRequest
+    public class UpdateChecklistRequestDto
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
+    }
+    
+    // Source: UpdateDraftRequest
+    public class UpdateDraftRequestDto
+    {
+        [JsonPropertyName("title")]
+        public string? Title { get; set; }        
+        
+        [JsonPropertyName("text")]
+        public string? Text { get; set; }        
+        
+        [JsonPropertyName("textVersion")]
+        public long? TextVersion { get; set; }        
+        
+        [JsonPropertyName("type")]
+        public DraftDocumentType? Type { get; set; }        
+        
+        [JsonPropertyName("publicationDetails")]
+        public DraftPublicationDetailsDto? PublicationDetails { get; set; }        
+        
+    }
+    
+    // Source: UpdateDraftTypeRequest
+    public class UpdateDraftTypeRequestDto
+    {
+        [Required]
+        [JsonPropertyName("draftType")]
+        public DraftDocumentType DraftType { get; set; }        
+        
+    }
+    
+    // Source: UpdateFieldRequest
+    public class UpdateFieldRequestDto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }        
+        
+        [JsonPropertyName("key")]
+        public string? Key { get; set; }        
+        
+        [JsonPropertyName("constraint")]
+        public CFConstraintDto? Constraint { get; set; }        
+        
+        [JsonPropertyName("required")]
+        public bool? Required { get; set; }        
+        
+        [JsonPropertyName("private")]
+        public bool? Private { get; set; }        
+        
+        [JsonPropertyName("access")]
+        public AccessType? Access { get; set; }        
+        
+        [JsonPropertyName("defaultValue")]
+        public CFValueDto? DefaultValue { get; set; }        
+        
+        [JsonPropertyName("enumValues")]
+        public List<EnumValueDataDto>? EnumValues { get; set; }        
+        
+    }
+    
+    // Source: UpdateFirstDayOfWeekRequest
+    public class UpdateFirstDayOfWeekRequestDto
+    {
+        [Required]
+        [JsonPropertyName("firstDayOfWeek")]
+        public Weekday FirstDayOfWeek { get; set; }        
+        
+    }
+    
+    // Source: UpdateHolidayRequest
+    public class UpdateHolidayRequestDto
+    {
+        [JsonPropertyName("calendar")]
+        public string? Calendar { get; set; }        
+        
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }        
+        
+        [JsonPropertyName("date")]
+        public SpaceDate? Date { get; set; }        
+        
+        [JsonPropertyName("workingDay")]
+        public bool? WorkingDay { get; set; }        
+        
+    }
+    
     // Source: UpdateImportSourceRequest
     public class UpdateImportSourceRequestDto
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }
-
+        public string Name { get; set; }        
+        
         [JsonPropertyName("importerPrincipal")]
-        public string ImporterPrincipal { get; set; }
-
+        public string ImporterPrincipal { get; set; }        
+        
     }
-
+    
+    // Source: UpdateInvitationRequest
+    public class UpdateInvitationRequestDto
+    {
+        [JsonPropertyName("inviteeEmail")]
+        public string? InviteeEmail { get; set; }        
+        
+        [JsonPropertyName("inviteeFirstName")]
+        public string? InviteeFirstName { get; set; }        
+        
+        [JsonPropertyName("inviteeLastName")]
+        public string? InviteeLastName { get; set; }        
+        
+        [JsonPropertyName("team")]
+        public TDTeamDto? Team { get; set; }        
+        
+        [JsonPropertyName("role")]
+        public TDRoleDto? Role { get; set; }        
+        
+    }
+    
+    // Source: UpdateIssueRequest
+    public class UpdateIssueRequestDto
+    {
+        [JsonPropertyName("title")]
+        public string Title { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
+        [JsonPropertyName("assignee")]
+        public string? Assignee { get; set; }        
+        
+        [JsonPropertyName("status")]
+        public string Status { get; set; }        
+        
+        [JsonPropertyName("dueDate")]
+        public SpaceDate? DueDate { get; set; }        
+        
+        [JsonPropertyName("importInfo")]
+        public ImportedEntityInfoDto? ImportInfo { get; set; }        
+        
+    }
+    
+    // Source: UpdateLocationRequest
+    public class UpdateLocationRequestDto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }        
+        
+        [JsonPropertyName("timezone")]
+        public string? Timezone { get; set; }        
+        
+        [JsonPropertyName("customWorkdays")]
+        public bool? CustomWorkdays { get; set; }        
+        
+        [JsonPropertyName("workdays")]
+        public List<int>? Workdays { get; set; }        
+        
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }        
+        
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }        
+        
+        [JsonPropertyName("equipment")]
+        public List<string>? Equipment { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
+        [JsonPropertyName("address")]
+        public string? Address { get; set; }        
+        
+        [JsonPropertyName("type")]
+        public string? Type { get; set; }        
+        
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }        
+        
+        [JsonPropertyName("mapId")]
+        public string? MapId { get; set; }        
+        
+    }
+    
+    // Source: UpdateMapRequest
+    public class UpdateMapRequestDto
+    {
+        [Required]
+        [JsonPropertyName("mapPictureId")]
+        public string MapPictureId { get; set; }        
+        
+    }
+    
+    // Source: UpdateMeetingParticipationRequest
+    public class UpdateMeetingParticipationRequestDto
+    {
+        [Required]
+        [JsonPropertyName("newStatus")]
+        public EventParticipationStatus NewStatus { get; set; }        
+        
+    }
+    
+    // Source: UpdateMemberLocationRequest
+    public class UpdateMemberLocationRequestDto
+    {
+        [JsonPropertyName("member")]
+        public string? Member { get; set; }        
+        
+        [JsonPropertyName("location")]
+        public string? Location { get; set; }        
+        
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }        
+        
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }        
+        
+        [JsonPropertyName("previousLocation")]
+        public string? PreviousLocation { get; set; }        
+        
+    }
+    
+    // Source: UpdateMembershipRequest
+    public class UpdateMembershipRequestDto
+    {
+        [JsonPropertyName("memberId")]
+        public string? MemberId { get; set; }        
+        
+        [JsonPropertyName("teamId")]
+        public string? TeamId { get; set; }        
+        
+        [JsonPropertyName("roleId")]
+        public string? RoleId { get; set; }        
+        
+        [JsonPropertyName("lead")]
+        public bool? Lead { get; set; }        
+        
+        [JsonPropertyName("managerId")]
+        public string? ManagerId { get; set; }        
+        
+        [JsonPropertyName("since")]
+        public SpaceDate? Since { get; set; }        
+        
+        [JsonPropertyName("till")]
+        public SpaceDate? Till { get; set; }        
+        
+        [JsonPropertyName("activeSince")]
+        public SpaceTime? ActiveSince { get; set; }        
+        
+        [JsonPropertyName("activeTill")]
+        public SpaceTime? ActiveTill { get; set; }        
+        
+        [JsonPropertyName("previousMembershipId")]
+        public string? PreviousMembershipId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("requiresApproval")]
+        public bool RequiresApproval { get; set; }        
+        
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
+    // Source: UpdateNavBarMenuItemRequest
+    public class UpdateNavBarMenuItemRequestDto
+    {
+        [Required]
+        [JsonPropertyName("item")]
+        public string Item { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("enabled")]
+        public bool Enabled { get; set; }        
+        
+    }
+    
+    // Source: UpdateParameterRequest
+    public class UpdateParameterRequestDto
+    {
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("value")]
+        public string Value { get; set; }        
+        
+    }
+    
+    // Source: UpdatePermanentTokenRequest
+    public class UpdatePermanentTokenRequestDto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }        
+        
+        [JsonPropertyName("scope")]
+        public string? Scope { get; set; }        
+        
+    }
+    
+    // Source: UpdatePointRequest
+    public class UpdatePointRequestDto
+    {
+        [JsonPropertyName("x")]
+        public int? X { get; set; }        
+        
+        [JsonPropertyName("y")]
+        public int? Y { get; set; }        
+        
+        [JsonPropertyName("mapId")]
+        public string? MapId { get; set; }        
+        
+    }
+    
+    // Source: UpdateProfileRequest
+    public class UpdateProfileRequestDto
+    {
+        [JsonPropertyName("username")]
+        public string? Username { get; set; }        
+        
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }        
+        
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }        
+        
+        [JsonPropertyName("emails")]
+        public List<string>? Emails { get; set; }        
+        
+        [JsonPropertyName("phones")]
+        public List<string>? Phones { get; set; }        
+        
+        [JsonPropertyName("birthday")]
+        public SpaceDate? Birthday { get; set; }        
+        
+        [JsonPropertyName("about")]
+        public string? About { get; set; }        
+        
+        [JsonPropertyName("gender")]
+        public Gender? Gender { get; set; }        
+        
+        [JsonPropertyName("messengers")]
+        public List<string>? Messengers { get; set; }        
+        
+        [JsonPropertyName("links")]
+        public List<string>? Links { get; set; }        
+        
+        [JsonPropertyName("notAMember")]
+        public bool? NotAMember { get; set; }        
+        
+        [JsonPropertyName("joined")]
+        public SpaceDate? Joined { get; set; }        
+        
+        [JsonPropertyName("left")]
+        public SpaceDate? Left { get; set; }        
+        
+        [JsonPropertyName("speaksEnglish")]
+        public bool? SpeaksEnglish { get; set; }        
+        
+        [JsonPropertyName("pictureAttachmentId")]
+        public string? PictureAttachmentId { get; set; }        
+        
+        [JsonPropertyName("avatarCropSquare")]
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }        
+        
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
     // Source: UpdateProjectRequest
     public class UpdateProjectRequestDto
     {
         [JsonPropertyName("key")]
-        public ProjectKeyDto? Key { get; set; }
-
+        public ProjectKeyDto? Key { get; set; }        
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
-
+        public string? Name { get; set; }        
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
-
+        public string? Description { get; set; }        
+        
         [JsonPropertyName("private")]
-        public bool? Private { get; set; }
-
+        public bool? Private { get; set; }        
+        
         [JsonPropertyName("tags")]
-        public List<string>? Tags { get; set; }
-
+        public List<string>? Tags { get; set; }        
+        
         [JsonPropertyName("icon")]
-        public string? Icon { get; set; }
-
+        public string? Icon { get; set; }        
+        
     }
-
+    
+    // Source: UpdateRequestRequest
+    public class UpdateRequestRequestDto
+    {
+        [Required]
+        [JsonPropertyName("approved")]
+        public bool Approved { get; set; }        
+        
+    }
+    
+    // Source: UpdateRequestRevokeRequest
+    public class UpdateRequestRevokeRequestDto
+    {
+        [Required]
+        [JsonPropertyName("till")]
+        public SpaceTime Till { get; set; }        
+        
+    }
+    
+    // Source: UpdateResponsibilityRequest
+    public class UpdateResponsibilityRequestDto
+    {
+        [Required]
+        [JsonPropertyName("summary")]
+        public string Summary { get; set; }        
+        
+        [JsonPropertyName("notes")]
+        public string? Notes { get; set; }        
+        
+    }
+    
+    // Source: UpdateRoleRequest
+    public class UpdateRoleRequestDto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }        
+        
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }        
+        
+    }
+    
+    // Source: UpdateSpokenLanguageRequest
+    public class UpdateSpokenLanguageRequestDto
+    {
+        [Required]
+        [JsonPropertyName("language")]
+        public string Language { get; set; }        
+        
+        [JsonPropertyName("firstName")]
+        public string? FirstName { get; set; }        
+        
+        [JsonPropertyName("lastName")]
+        public string? LastName { get; set; }        
+        
+    }
+    
+    // Source: UpdateStatusRequest
+    public class UpdateStatusRequestDto
+    {
+        [Required]
+        [JsonPropertyName("statuses")]
+        public List<IssueStatusDataDto> Statuses { get; set; }        
+        
+    }
+    
+    // Source: UpdateSubscriptionRequest
+    public class UpdateSubscriptionRequestDto
+    {
+        [JsonPropertyName("locationId")]
+        public string? LocationId { get; set; }        
+        
+        [JsonPropertyName("teamId")]
+        public string? TeamId { get; set; }        
+        
+        [JsonPropertyName("reasonId")]
+        public string? ReasonId { get; set; }        
+        
+    }
+    
+    // Source: UpdateTeamRequest
+    public class UpdateTeamRequestDto
+    {
+        [JsonPropertyName("teamNameRaw")]
+        public string? TeamNameRaw { get; set; }        
+        
+        [JsonPropertyName("teamDescription")]
+        public string? TeamDescription { get; set; }        
+        
+        [JsonPropertyName("teamEmails")]
+        public List<string>? TeamEmails { get; set; }        
+        
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }        
+        
+        [JsonPropertyName("customFieldValues")]
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
+    // Source: UpdateThemeRequest
+    public class UpdateThemeRequestDto
+    {
+        [JsonPropertyName("themeName")]
+        public string? ThemeName { get; set; }        
+        
+    }
+    
     // Source: UpdateToDoItemRequest
     public class UpdateToDoItemRequestDto
     {
         [JsonPropertyName("text")]
-        public string? Text { get; set; }
-
+        public string? Text { get; set; }        
+        
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
-
+        public SpaceDate? DueDate { get; set; }        
+        
         [JsonPropertyName("open")]
-        public bool? Open { get; set; }
-
+        public bool? Open { get; set; }        
+        
     }
-
+    
     // Source: UpdateTrustedCertificateRequest
     public class UpdateTrustedCertificateRequestDto
     {
         [JsonPropertyName("alias")]
-        public string? Alias { get; set; }
-
+        public string? Alias { get; set; }        
+        
         [JsonPropertyName("data")]
-        public string? Data { get; set; }
-
+        public string? Data { get; set; }        
+        
         [JsonPropertyName("archived")]
-        public bool? Archived { get; set; }
-
+        public bool? Archived { get; set; }        
+        
     }
-
-    // Source: ValuesUpdateValueRequest
-    public class ValuesUpdateValueRequestDto
+    
+    // Source: UpdateValueRequest
+    public class UpdateValueRequestDto
     {
         [Required]
         [JsonPropertyName("values")]
-        public List<CustomFieldValueDto> Values { get; set; }
-
+        public List<CustomFieldValueDto> Values { get; set; }        
+        
     }
-
+    
+    // Source: UpdateVcsPasswordRequest
+    public class UpdateVcsPasswordRequestDto
+    {
+        [Required]
+        [JsonPropertyName("password")]
+        public string Password { get; set; }        
+        
+    }
+    
+    // Source: UpdateWorkingDaysRequest
+    public class UpdateWorkingDaysRequestDto
+    {
+        [JsonPropertyName("profile")]
+        public string? Profile { get; set; }        
+        
+        [JsonPropertyName("dateStart")]
+        public SpaceDate? DateStart { get; set; }        
+        
+        [JsonPropertyName("dateEnd")]
+        public SpaceDate? DateEnd { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("workingDaysSpec")]
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }        
+        
+    }
+    
 }

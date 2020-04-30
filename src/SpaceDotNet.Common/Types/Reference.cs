@@ -7,6 +7,6 @@ namespace SpaceDotNet.Common.Types
     public class Reference<T>
     {
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get; set; } = default!;
     }
 }

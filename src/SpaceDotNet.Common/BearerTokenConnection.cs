@@ -147,7 +147,7 @@ namespace SpaceDotNet.Common
         private static async Task<ResourceException> BuildException(HttpResponseMessage response)
         {
             // 1. Determine Space error
-            SpaceError spaceError = null;
+            SpaceError? spaceError = null;
             try
             {
                 spaceError = await JsonSerializer.DeserializeAsync<SpaceError>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
@@ -158,7 +158,7 @@ namespace SpaceDotNet.Common
             }
             
             // 2. Build Exception
-            ResourceException exception = null;
+            ResourceException? exception = null;
             if (spaceError != null)
             {
                 switch (spaceError.Error)
@@ -191,8 +191,6 @@ namespace SpaceDotNet.Common
                         exception = new InternalServerErrorException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
                         break;
                 }
-                
-                exception.Error = spaceError;
             }
             else
             {
@@ -227,7 +225,9 @@ namespace SpaceDotNet.Common
             {
                 exception = new ResourceException("An error occurred while accessing the resource.", response.StatusCode, response.ReasonPhrase);
             }
-
+            
+            exception.Error = spaceError;
+            
             return exception;
         }
     }
