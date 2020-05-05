@@ -15,7 +15,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
-    public static int Main () => Execute<Build>(x => x.Package);
+    public static int Main () => Execute<Build>(x => x.PushPackages);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -99,8 +99,9 @@ class Build : NukeBuild
 
     Target PushPackages => _ => _
         .DependsOn(Package)
-        .Requires(() => SpaceApiUrl)
+        .Requires(() => Source)
         .Requires(() => SpaceClientSecret)
+        .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
