@@ -29,6 +29,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         
         public override void Visit(ApiModel apiModel)
         {
+#pragma warning disable 8619
             // Metadata mappings
             IdToEnumMap =
                 apiModel.Enums.ToImmutableSortedDictionary(
@@ -41,6 +42,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     it => it.Id, 
                     it => it, 
                     StringComparer.OrdinalIgnoreCase);
+#pragma warning restore 8619
             
             // Start building
             Builder.AppendLine($"{Indent}// ------------------------------------------------------------------------------");
@@ -420,7 +422,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             // Group nested resources by path
             var resourcePathBuildingVisitor = new ResourcePathBuildingVisitor(1, 2);
             resourcePathBuildingVisitor.Visit(apiResource);
-            foreach (var (path, apiNestedResources) in resourcePathBuildingVisitor.Paths)
+            foreach (var (_, apiNestedResources) in resourcePathBuildingVisitor.Paths)
             {
                 var isFirstResource = true;
                 foreach (var apiNestedResource in apiNestedResources)
