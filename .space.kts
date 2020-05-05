@@ -9,6 +9,6 @@ job("Run NUKE build") {
         workDir = "/mnt/mySpace/work"
         user = "root"
         entrypoint("/bin/bash")
-        args("./build.sh")
+        args("./build.sh PushPackages")
     }
 }

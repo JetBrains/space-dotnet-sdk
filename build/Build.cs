@@ -4,6 +4,7 @@ using Nuke.Common.Execution;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
+using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
@@ -19,6 +20,18 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
+    [Parameter("NuGet Source for Packages")]
+    readonly string Source = "https://packages.jetbrains.team/nuget/spacedotnet/v3/index.json";
+    
+    [Parameter("Space API URL", Name = "JB_SPACE_API_URL")]
+    readonly string? SpaceApiUrl;
+
+    [Parameter("Space API URL", Name = "JB_SPACE_CLIENT_ID")]
+    readonly string? SpaceClientId;
+
+    [Parameter("Space API URL", Name = "JB_SPACE_CLIENT_SECRET")]
+    readonly string? SpaceClientSecret;
+    
     [Solution] readonly Solution? Solution;
     [GitRepository] readonly GitRepository? GitRepository;
     [GitVersion(NoFetch = true)] readonly GitVersion? GitVersion;
@@ -28,7 +41,6 @@ class Build : NukeBuild
     AbsolutePath ArtifactsDirectory => RootDirectory / "artifacts";
 
     Target Clean => _ => _
-        .Before(Restore)
         .Executes(() =>
         {
             SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
@@ -37,6 +49,7 @@ class Build : NukeBuild
         });
 
     Target Restore => _ => _
+        .DependsOn(Clean)
         .Executes(() =>
         {
             DotNetRestore(_ => _
@@ -82,5 +95,22 @@ class Build : NukeBuild
                     .SetVersion(GitVersion.NuGetVersion)
                     .SetOutputDirectory(ArtifactsDirectory));
             }
+        });
+
+    Target PushPackages => _ => _
+        .DependsOn(Package)
+        .Requires(() => SpaceApiUrl)
+        .Requires(() => SpaceClientSecret)
+        .Executes(() =>
+        {
+            var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
+
+            DotNetNuGetPush(_ => _
+                    .SetSource(Source)
+                    .SetApiKey(SpaceClientSecret)
+                    .CombineWith(packages, (_, v) => _
+                        .SetTargetPath(v)),
+                degreeOfParallelism: 5,
+                completeOnFailure: true);
         });
 }
