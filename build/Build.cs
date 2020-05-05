@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Linq;
-using Colorful;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
@@ -33,11 +31,6 @@ class Build : NukeBuild
         .Before(Restore)
         .Executes(() =>
         {
-            foreach(DictionaryEntry e in System.Environment.GetEnvironmentVariables())
-            {
-                Console.WriteLine(e.Key  + ":" + e.Value);
-            }
-            
             SourceDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
             TestsDirectory.GlobDirectories("**/bin", "**/obj").ForEach(DeleteDirectory);
             EnsureCleanDirectory(ArtifactsDirectory);
