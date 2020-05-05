@@ -3,8 +3,8 @@
         <LangVersion>8</LangVersion>
         <Nullable>enable</Nullable>
     
-        <!-- NuGet -->        
-        <PackageIconUrl>https://pbs.twimg.com/profile_images/1202638201002835975/LDQWGLj3_400x400.png</PackageIconUrl>
+        <!-- NuGet -->
+        <PackageIcon>package_icon.png</PackageIcon>
         <PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
         <PackageProjectUrl>https://jetbrains.team/p/evan/code/SpaceDotNet/</PackageProjectUrl>
         <RepositoryUrl>https://git.jetbrains.team/SpaceDotNet.git</RepositoryUrl>
@@ -28,4 +28,11 @@
     
         <Product>SpaceDotNet</Product>
     </PropertyGroup>
+
+    <ItemGroup Condition="$(GeneratePackageOnBuild)">
+        <None Include="../../package_icon.png">
+            <Pack>true</Pack>
+            <PackagePath>/</PackagePath>
+        </None>
+    </ItemGroup>
 </Project>
