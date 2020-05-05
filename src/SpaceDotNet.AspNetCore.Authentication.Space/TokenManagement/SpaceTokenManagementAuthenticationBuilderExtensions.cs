@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,6 +12,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement
     /// <remarks>
     /// Inspired by <a href="https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement">IdentityServer4</a>
     /// </remarks>
+    [PublicAPI]
     public static class SpaceTokenManagementAuthenticationBuilderExtensions
     {
         public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder, Action<SpaceTokenManagementOptions> options)

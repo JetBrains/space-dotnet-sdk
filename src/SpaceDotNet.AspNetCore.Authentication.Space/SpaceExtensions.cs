@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
@@ -7,6 +8,7 @@ using SpaceDotNet.AspNetCore.Authentication.Space;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
+    [PublicAPI]
     public static class SpaceExtensions
     {
         public static AuthenticationBuilder AddSpace(this AuthenticationBuilder builder)
