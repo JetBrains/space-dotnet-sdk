@@ -15,7 +15,7 @@ using static Nuke.Common.Tools.DotNet.DotNetTasks;
 [UnsetVisualStudioEnvironmentVariables]
 class Build : NukeBuild
 {
-    public static int Main () => Execute<Build>(x => x.PushPackages);
+    public static int Main () => Execute<Build>(x => x.Package);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
@@ -66,6 +66,8 @@ class Build : NukeBuild
                 .SetAssemblyVersion(GitVersion.AssemblySemVer)
                 .SetFileVersion(GitVersion.AssemblySemFileVer)
                 .SetInformationalVersion(GitVersion.InformationalVersion)
+                .SetVersion(GitVersion.NuGetVersion)
+                .SetProperty("GeneratePackageOnBuild", "False")
                 .EnableNoRestore());
         });
 
@@ -98,9 +100,9 @@ class Build : NukeBuild
         });
 
     Target PushPackages => _ => _
-        .DependsOn(Package)
-        .Requires(() => Source)
-        .Requires(() => SpaceClientSecret)
+        .TriggeredBy(Package)
+        .OnlyWhenStatic(() =>
+            !string.IsNullOrEmpty(Source) && !string.IsNullOrEmpty(SpaceClientSecret))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
