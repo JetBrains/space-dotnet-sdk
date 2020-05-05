@@ -114,7 +114,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
         public override void Visit(ApiEnum apiEnum)
         {
-            Builder.AppendLine($"{Indent}// Source: " + apiEnum.Id);
             Builder.AppendLine($"{Indent}[JsonConverter(typeof(EnumerationConverter))]");
             Builder.AppendLine($"{Indent}public sealed class " + apiEnum.Name.ToSafeIdentifier() + " : Enumeration");
             Builder.AppendLine($"{Indent}{{");
@@ -136,7 +135,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
         public override void Visit(ApiDto apiDto)
         {
-            Builder.AppendLine($"{Indent}// Source: " + apiDto.Id);
             if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
             {
                 // When extending another DTO, make sure to apply a converter
@@ -392,7 +390,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         public void Visit(ApiResource apiResource, bool withConstructor)
         {
             // Client class
-            Builder.AppendLine($"{Indent}// Source: " + apiResource.Id);
             Builder.AppendLine($"{Indent}public partial class " + apiResource.DisplaySingular.ToSafeIdentifier() + "Client");
             Builder.AppendLine($"{Indent}{{");
             Indent.Increment();
