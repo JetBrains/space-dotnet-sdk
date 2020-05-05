@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-05T12:48:19.6175568+00:00
+//     Generated: 2020-05-05T14:42:43.6430761+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -23,7 +23,6 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    // Source: absencelistmode
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class AbsenceListMode : Enumeration
     {
@@ -34,7 +33,6 @@ namespace SpaceDotNet.Client
         public static readonly AbsenceListMode WithAccessibleReasonAll = new AbsenceListMode("WithAccessibleReasonAll");
     }
     
-    // Source: accesstype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class AccessType : Enumeration
     {
@@ -45,7 +43,6 @@ namespace SpaceDotNet.Client
         public static readonly AccessType RESTRICTED = new AccessType("RESTRICTED");
     }
     
-    // Source: codereviewparticipantrole
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewParticipantRole : Enumeration
     {
@@ -56,7 +53,6 @@ namespace SpaceDotNet.Client
         public static readonly CodeReviewParticipantRole Watcher = new CodeReviewParticipantRole("Watcher");
     }
     
-    // Source: codereviewstate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewState : Enumeration
     {
@@ -67,7 +63,6 @@ namespace SpaceDotNet.Client
         public static readonly CodeReviewState Deleted = new CodeReviewState("Deleted");
     }
     
-    // Source: codereviewstatefilter
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class CodeReviewStateFilter : Enumeration
     {
@@ -79,7 +74,6 @@ namespace SpaceDotNet.Client
         public static readonly CodeReviewStateFilter NeedsReview = new CodeReviewStateFilter("NeedsReview");
     }
     
-    // Source: desiredstatus
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DesiredStatus : Enumeration
     {
@@ -91,7 +85,6 @@ namespace SpaceDotNet.Client
         public static readonly DesiredStatus STOPPED = new DesiredStatus("STOPPED");
     }
     
-    // Source: difflinetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DiffLineType : Enumeration
     {
@@ -104,7 +97,6 @@ namespace SpaceDotNet.Client
         public static readonly DiffLineType CONFLICTNEW = new DiffLineType("CONFLICT_NEW");
     }
     
-    // Source: draftdocumenttype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class DraftDocumentType : Enumeration
     {
@@ -114,7 +106,6 @@ namespace SpaceDotNet.Client
         public static readonly DraftDocumentType MARKDOWN = new DraftDocumentType("MARKDOWN");
     }
     
-    // Source: eventparticipationstatus
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class EventParticipationStatus : Enumeration
     {
@@ -126,7 +117,6 @@ namespace SpaceDotNet.Client
         public static readonly EventParticipationStatus WAITINGFORRESPONSE = new EventParticipationStatus("WAITING_FOR_RESPONSE");
     }
     
-    // Source: executionstatus
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ExecutionStatus : Enumeration
     {
@@ -144,7 +134,6 @@ namespace SpaceDotNet.Client
         public static readonly ExecutionStatus HANGING = new ExecutionStatus("HANGING");
     }
     
-    // Source: gender
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class Gender : Enumeration
     {
@@ -156,7 +145,6 @@ namespace SpaceDotNet.Client
         public static readonly Gender NotSpecified = new Gender("NotSpecified");
     }
     
-    // Source: gitcommitchangetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitCommitChangeType : Enumeration
     {
@@ -167,7 +155,6 @@ namespace SpaceDotNet.Client
         public static readonly GitCommitChangeType MODIFIED = new GitCommitChangeType("MODIFIED");
     }
     
-    // Source: gitentrytype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitEntryType : Enumeration
     {
@@ -179,7 +166,6 @@ namespace SpaceDotNet.Client
         public static readonly GitEntryType SYMLINK = new GitEntryType("SYM_LINK");
     }
     
-    // Source: gitgraphedgelinestyle
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitGraphEdgeLineStyle : Enumeration
     {
@@ -190,7 +176,6 @@ namespace SpaceDotNet.Client
         public static readonly GitGraphEdgeLineStyle DOTTED = new GitGraphEdgeLineStyle("DOTTED");
     }
     
-    // Source: gitgraphedgetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class GitGraphEdgeType : Enumeration
     {
@@ -200,7 +185,6 @@ namespace SpaceDotNet.Client
         public static readonly GitGraphEdgeType DOWN = new GitGraphEdgeType("DOWN");
     }
     
-    // Source: ha_method
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HAMethod : Enumeration
     {
@@ -218,7 +202,6 @@ namespace SpaceDotNet.Client
         public static readonly HAMethod HTTPDELETE = new HAMethod("HTTP_DELETE");
     }
     
-    // Source: ha_primitive
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HAPrimitive : Enumeration
     {
@@ -236,7 +219,6 @@ namespace SpaceDotNet.Client
         public static readonly HAPrimitive DateTime = new HAPrimitive("DateTime");
     }
     
-    // Source: ha_type.object.kind
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HATypeObjectKind : Enumeration
     {
@@ -250,7 +232,6 @@ namespace SpaceDotNet.Client
         public static readonly HATypeObjectKind REQUESTBODY = new HATypeObjectKind("REQUEST_BODY");
     }
     
-    // Source: hierarchyrole
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class HierarchyRole : Enumeration
     {
@@ -263,7 +244,6 @@ namespace SpaceDotNet.Client
         public static readonly HierarchyRole INTERFACE = new HierarchyRole("INTERFACE");
     }
     
-    // Source: interpolatedlinestate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class InterpolatedLineState : Enumeration
     {
@@ -274,7 +254,6 @@ namespace SpaceDotNet.Client
         public static readonly InterpolatedLineState Modified = new InterpolatedLineState("Modified");
     }
     
-    // Source: issuessorting
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class IssuesSorting : Enumeration
     {
@@ -286,7 +265,6 @@ namespace SpaceDotNet.Client
         public static readonly IssuesSorting DUE = new IssuesSorting("DUE");
     }
     
-    // Source: ldapmoduletype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class LdapModuleType : Enumeration
     {
@@ -296,7 +274,6 @@ namespace SpaceDotNet.Client
         public static readonly LdapModuleType OPENLDAP = new LdapModuleType("OPEN_LDAP");
     }
     
-    // Source: limitunit
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class LimitUnit : Enumeration
     {
@@ -307,7 +284,6 @@ namespace SpaceDotNet.Client
         public static readonly LimitUnit ENTITIES = new LimitUnit("ENTITIES");
     }
     
-    // Source: m2.access
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2Access : Enumeration
     {
@@ -317,7 +293,6 @@ namespace SpaceDotNet.Client
         public static readonly M2Access Public = new M2Access("Public");
     }
     
-    // Source: m2emailnotificationtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2EmailNotificationType : Enumeration
     {
@@ -328,7 +303,6 @@ namespace SpaceDotNet.Client
         public static readonly M2EmailNotificationType NONE = new M2EmailNotificationType("NONE");
     }
     
-    // Source: m2obsoletecause
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class M2ObsoleteCause : Enumeration
     {
@@ -337,7 +311,6 @@ namespace SpaceDotNet.Client
         public static readonly M2ObsoleteCause PermissionsDenied = new M2ObsoleteCause("PermissionsDenied");
     }
     
-    // Source: mergerequestbranchtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class MergeRequestBranchType : Enumeration
     {
@@ -347,7 +320,6 @@ namespace SpaceDotNet.Client
         public static readonly MergeRequestBranchType TARGET = new MergeRequestBranchType("TARGET");
     }
     
-    // Source: notificationfilter
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class NotificationFilter : Enumeration
     {
@@ -359,7 +331,6 @@ namespace SpaceDotNet.Client
         public static readonly NotificationFilter MUTE = new NotificationFilter("MUTE");
     }
     
-    // Source: oauthservicetype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class OAuthServiceType : Enumeration
     {
@@ -371,7 +342,6 @@ namespace SpaceDotNet.Client
         public static readonly OAuthServiceType ServiceAccount = new OAuthServiceType("ServiceAccount");
     }
     
-    // Source: packagespermission
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class PackagesPermission : Enumeration
     {
@@ -382,7 +352,6 @@ namespace SpaceDotNet.Client
         public static readonly PackagesPermission Admin = new PackagesPermission("Admin");
     }
     
-    // Source: passwordstrength
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class PasswordStrength : Enumeration
     {
@@ -394,7 +363,6 @@ namespace SpaceDotNet.Client
         public static readonly PasswordStrength STRONG = new PasswordStrength("STRONG");
     }
     
-    // Source: profileorder
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ProfileOrder : Enumeration
     {
@@ -404,7 +372,6 @@ namespace SpaceDotNet.Client
         public static readonly ProfileOrder FULLNAME = new ProfileOrder("FULL_NAME");
     }
     
-    // Source: repositorystate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class RepositoryState : Enumeration
     {
@@ -415,7 +382,6 @@ namespace SpaceDotNet.Client
         public static readonly RepositoryState ERROR = new RepositoryState("ERROR");
     }
     
-    // Source: reviewrevisionschangedtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewRevisionsChangedType : Enumeration
     {
@@ -426,7 +392,6 @@ namespace SpaceDotNet.Client
         public static readonly ReviewRevisionsChangedType Removed = new ReviewRevisionsChangedType("Removed");
     }
     
-    // Source: reviewsorting
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewSorting : Enumeration
     {
@@ -438,7 +403,6 @@ namespace SpaceDotNet.Client
         public static readonly ReviewSorting LastUpdatedDesc = new ReviewSorting("LastUpdatedDesc");
     }
     
-    // Source: reviewtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewType : Enumeration
     {
@@ -448,7 +412,6 @@ namespace SpaceDotNet.Client
         public static readonly ReviewType MergeRequest = new ReviewType("MergeRequest");
     }
     
-    // Source: reviewerchangedtype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewerChangedType : Enumeration
     {
@@ -458,7 +421,6 @@ namespace SpaceDotNet.Client
         public static readonly ReviewerChangedType Left = new ReviewerChangedType("Left");
     }
     
-    // Source: reviewerstate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class ReviewerState : Enumeration
     {
@@ -468,7 +430,6 @@ namespace SpaceDotNet.Client
         public static readonly ReviewerState Rejected = new ReviewerState("Rejected");
     }
     
-    // Source: snapshotstate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class SnapshotState : Enumeration
     {
@@ -480,7 +441,6 @@ namespace SpaceDotNet.Client
         public static readonly SnapshotState ERROR = new SnapshotState("ERROR");
     }
     
-    // Source: syntaxmarkuptype
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class SyntaxMarkupType : Enumeration
     {
@@ -496,7 +456,6 @@ namespace SpaceDotNet.Client
         public static readonly SyntaxMarkupType HIGHLIGHT = new SyntaxMarkupType("HIGHLIGHT");
     }
     
-    // Source: volumestate
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class VolumeState : Enumeration
     {
@@ -511,7 +470,6 @@ namespace SpaceDotNet.Client
         public static readonly VolumeState ERROR = new VolumeState("ERROR");
     }
     
-    // Source: weekday
     [JsonConverter(typeof(EnumerationConverter))]
     public sealed class Weekday : Enumeration
     {
@@ -526,7 +484,6 @@ namespace SpaceDotNet.Client
         public static readonly Weekday SATURDAY = new Weekday("SATURDAY");
     }
     
-    // Source: atimezone
     public class ATimeZoneDto
     {
         [Required]
@@ -535,7 +492,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: atimezonewithoffset
     public class ATimeZoneWithOffsetDto
     {
         [Required]
@@ -548,7 +504,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: absenceapproval
     public class AbsenceApprovalDto
     {
         [Required]
@@ -565,7 +520,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: absenceevent
     public class AbsenceEventDto
     {
         [Required]
@@ -578,7 +532,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: absencereasonrecord
     public class AbsenceReasonRecordDto
     {
         [Required]
@@ -611,7 +564,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: absencerecord
     public class AbsenceRecordDto
     {
         [Required]
@@ -659,7 +611,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: accessrecord
     public class AccessRecordDto
     {
         [Required]
@@ -675,7 +626,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: allreactionstoitemrecord
     public class AllReactionsToItemRecordDto
     {
         [Required]
@@ -691,7 +641,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: articlechannelrecord
     public class ArticleChannelRecordDto
     {
         [Required]
@@ -716,7 +665,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: articlecontentrecord
     public class ArticleContentRecordDto
     {
         [Required]
@@ -733,7 +681,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: articledetailsrecord
     public class ArticleDetailsRecordDto
     {
         [Required]
@@ -764,7 +711,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: articlemarkdownimage
     public class ArticleMarkdownImageDto
     {
         [Required]
@@ -777,7 +723,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: articlepreviewrecord
     public class ArticlePreviewRecordDto
     {
         [Required]
@@ -801,7 +746,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: articlerecord
     public class ArticleRecordDto
     {
         [Required]
@@ -879,7 +823,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: assignedperson
     public class AssignedPersonDto
     {
         [JsonPropertyName("profile")]
@@ -890,7 +833,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: attachment
     public interface AttachmentDto
          : IClassNameConvertible
     {
@@ -899,7 +841,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: attachmentinfo
     public class AttachmentInfoDto
     {
         [JsonPropertyName("details")]
@@ -907,7 +848,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: authmoduleusage
     public class AuthModuleUsageDto
     {
         [Required]
@@ -920,7 +860,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: avatarcropsquare
     public class AvatarCropSquareDto
     {
         [Required]
@@ -937,7 +876,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: bg_articlealias
     public class BGArticleAliasDto
     {
         [Required]
@@ -950,7 +888,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: bg_articleid
     public class BGArticleIdDto
     {
         [Required]
@@ -959,7 +896,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: bg_dates
     public class BGDatesDto
     {
         [Required]
@@ -972,7 +908,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: bg_stats
     public class BGStatsDto
     {
         [Required]
@@ -993,7 +928,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: birthdayevent
     public class BirthdayEventDto
     {
         [Required]
@@ -1006,7 +940,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: blogpublicationdetails
     public class BlogPublicationDetailsDto
          : PublicationDetailsDto, IClassNameConvertible
     {
@@ -1033,7 +966,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: booleancftype
     public class BooleanCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -1042,7 +974,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: booleancfvalue
     public class BooleanCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -1054,7 +985,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: branchinfo
     public class BranchInfoDto
     {
         [Required]
@@ -1067,7 +997,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cautomationtaskprincipaldetails
     public class CAutomationTaskPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
@@ -1088,7 +1017,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cbuiltinserviceprincipaldetails
     public class CBuiltInServicePrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
@@ -1101,7 +1029,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cexternalserviceprincipaldetails
     public class CExternalServicePrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
@@ -1114,7 +1041,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cfconstraint
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CFConstraintDto
          : IClassNameConvertible
@@ -1124,7 +1050,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cftype
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CFTypeDto
          : IClassNameConvertible
@@ -1134,7 +1059,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cfvalue
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CFValueDto
          : IClassNameConvertible
@@ -1144,7 +1068,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cprincipal
     public class CPrincipalDto
     {
         [Required]
@@ -1156,7 +1079,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cprincipaldetails
     public interface CPrincipalDetailsDto
          : IClassNameConvertible
     {
@@ -1165,7 +1087,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cuserprincipaldetails
     public class CUserPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
@@ -1178,7 +1099,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: cuserwithemailprincipaldetails
     public class CUserWithEmailPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
@@ -1195,7 +1115,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: calendarevent
     public class CalendarEventDto
     {
         [JsonPropertyName("calendarEvent")]
@@ -1218,7 +1137,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: certainreactiontoitemrecord
     public class CertainReactionToItemRecordDto
     {
         [Required]
@@ -1250,7 +1168,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: certificateinfo
     public class CertificateInfoDto
     {
         [Required]
@@ -1291,7 +1208,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: changeinreview
     public class ChangeInReviewDto
     {
         [Required]
@@ -1308,7 +1224,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: channelitemrecord
     public class ChannelItemRecordDto
     {
         [Required]
@@ -1364,7 +1279,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: channelitemsnapshot
     public class ChannelItemSnapshotDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -1402,7 +1316,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: channelparticipant
     public class ChannelParticipantDto
     {
         [Required]
@@ -1418,7 +1331,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: channelspecificdefaults
     public class ChannelSpecificDefaultsDto
     {
         [Required]
@@ -1435,7 +1347,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: checklist
     public class ChecklistDto
     {
         [Required]
@@ -1481,7 +1392,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codediscussionaddedfeedevent
     public class CodeDiscussionAddedFeedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -1498,7 +1408,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codediscussionanchor
     public class CodeDiscussionAnchorDto
     {
         [Required]
@@ -1527,7 +1436,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codediscussionrecord
     public class CodeDiscussionRecordDto
     {
         [Required]
@@ -1572,7 +1480,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codediscussionsnippet
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class CodeDiscussionSnippetDto
          : IClassNameConvertible
@@ -1582,7 +1489,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codediscussionsnippet.inlinediffsnippet
     public class CodeDiscussionSnippetInlineDiffSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
@@ -1595,7 +1501,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codediscussionsnippet.plainsnippet
     public class CodeDiscussionSnippetPlainSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
@@ -1608,7 +1513,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codeline
     public class CodeLineDto
     {
         [Required]
@@ -1627,7 +1531,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewdetailedinfo
     public class CodeReviewDetailedInfoDto
     {
         [Required]
@@ -1652,7 +1555,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewdiscussionaddedfeedevent
     public class CodeReviewDiscussionAddedFeedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -1665,7 +1567,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewdiscussioncounter
     public class CodeReviewDiscussionCounterDto
     {
         [Required]
@@ -1682,7 +1583,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewdiscussionrecord
     public class CodeReviewDiscussionRecordDto
     {
         [Required]
@@ -1707,7 +1607,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewparticipant
     public class CodeReviewParticipantDto
     {
         [Required]
@@ -1726,7 +1625,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewparticipantrecord
     public class CodeReviewParticipantRecordDto
     {
         [Required]
@@ -1757,7 +1655,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewparticipants
     public class CodeReviewParticipantsDto
     {
         [Required]
@@ -1781,7 +1678,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewpendingmessagecounter
     public class CodeReviewPendingMessageCounterDto
     {
         [Required]
@@ -1798,7 +1694,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewrecord
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CodeReviewRecordDto
          : IClassNameConvertible
@@ -1839,7 +1734,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codereviewwithcount
     public class CodeReviewWithCountDto
     {
         [Required]
@@ -1860,7 +1754,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: codesnippetanchor
     public class CodeSnippetAnchorDto
     {
         [Required]
@@ -1890,7 +1783,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: commitsetreviewrecord
     public class CommitSetReviewRecordDto
          : CodeReviewRecordDto, IClassNameConvertible
     {
@@ -1944,7 +1836,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: commitstatusdto
     public class CommitStatusDTODto
     {
         [Required]
@@ -1984,7 +1875,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: containerpackagetype
     public class ContainerPackageTypeDto
          : PackageTypeDto, IClassNameConvertible
     {
@@ -1997,7 +1887,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: counter
     public class CounterDto
     {
         [Required]
@@ -2010,12 +1899,10 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: customcolumnvalueswithschemadata
     public class CustomColumnValuesWithSchemaDataDto
     {
     }
     
-    // Source: customfield
     public class CustomFieldDto
     {
         [Required]
@@ -2066,7 +1953,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: customfieldvalue
     public class CustomFieldValueDto
     {
         [Required]
@@ -2079,7 +1965,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: customfieldsrecord
     public class CustomFieldsRecordDto
     {
         [Required]
@@ -2092,7 +1977,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dr_draft
     public class DRDraftDto
     {
         [Required]
@@ -2148,7 +2032,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dr_draftid
     public class DRDraftIdDto
     {
         [Required]
@@ -2157,7 +2040,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_absencesubscription
     public class DTOAbsenceSubscriptionDto
     {
         [Required]
@@ -2175,7 +2057,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_fullrightwithouttype
     public class DTOFullRightWithoutTypeDto
     {
         [Required]
@@ -2198,7 +2079,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_limit
     public class DTOLimitDto
     {
         [Required]
@@ -2224,7 +2104,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_right
     public class DTORightDto
     {
         [Required]
@@ -2237,7 +2116,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_righttype
     public class DTORightTypeDto
     {
         [Required]
@@ -2250,7 +2128,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_righttype_right
     public class DTORightTypeRightDto
     {
         [Required]
@@ -2263,7 +2140,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_rightsdeps
     public class DTORightsDepsDto
     {
         [Required]
@@ -2276,7 +2152,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_rightsgroup
     public class DTORightsGroupDto
     {
         [Required]
@@ -2293,7 +2168,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: dto_rightswithhierarchy
     public class DTORightsWithHierarchyDto
     {
         [Required]
@@ -2310,7 +2184,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: datecfconstraint
     public class DateCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
@@ -2328,7 +2201,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: datecftype
     public class DateCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -2337,7 +2209,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: datecfvalue
     public class DateCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -2349,7 +2220,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: deletedattachment
     public class DeletedAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
@@ -2362,7 +2232,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: diffcontext
     public class DiffContextDto
     {
         [JsonPropertyName("left")]
@@ -2374,7 +2243,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: diffside
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class DiffSideDto
          : IClassNameConvertible
@@ -2384,7 +2252,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: diffside.empty
     public class DiffSideEmptyDto
          : DiffSideDto, IClassNameConvertible
     {
@@ -2397,7 +2264,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: diffside.nonempty
     public class DiffSideNonEmptyDto
          : DiffSideDto, IClassNameConvertible
     {
@@ -2414,7 +2280,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: documentpublicationitem
     public class DocumentPublicationItemDto
          : PublicationItemDto, IClassNameConvertible
     {
@@ -2431,7 +2296,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: draftpublicationdetails
     public class DraftPublicationDetailsDto
     {
         [JsonPropertyName("usedType")]
@@ -2442,7 +2306,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: emavenrepositorysettings
     public class EMavenRepositorySettingsDto
     {
         [Required]
@@ -2459,7 +2322,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: emavensettings
     public class EMavenSettingsDto
     {
         [Required]
@@ -2489,7 +2351,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: eregistrysettings
     public class ERegistrySettingsDto
     {
         [Required]
@@ -2519,7 +2380,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: erepositorysettings
     public class ERepositorySettingsDto
     {
         [Required]
@@ -2540,7 +2400,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_approvedscope
     public class ESApprovedScopeDto
     {
         [Required]
@@ -2557,7 +2416,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_authmodule
     public class ESAuthModuleDto
     {
         [Required]
@@ -2589,7 +2447,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_authmodulesettings
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class ESAuthModuleSettingsDto
          : IClassNameConvertible
@@ -2599,7 +2456,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_authenticationsession
     public class ESAuthenticationSessionDto
     {
         [Required]
@@ -2627,7 +2483,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_azureauthmodulesettings
     public class ESAzureAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2656,7 +2511,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_builtinauthmodulesettings
     public class ESBuiltinAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2672,7 +2526,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_builtinprofilelogindetails
     public class ESBuiltinProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
@@ -2687,7 +2540,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_containerregistrysettings
     public class ESContainerRegistrySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
@@ -2700,7 +2552,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_defaultprofilelogindetails
     public class ESDefaultProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
@@ -2728,7 +2579,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_externalpasswordauthmodulesettings
     public abstract class ESExternalPasswordAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2737,7 +2587,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_federatedauthmodulesettings
     public abstract class ESFederatedAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2746,7 +2595,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_githubauthmodulesettings
     public class ESGithubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2775,7 +2623,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_githubprofilelogindetails
     public class ESGithubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
@@ -2806,7 +2653,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_googleauthmodulesettings
     public class ESGoogleAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2831,7 +2677,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_hiddenauthmodulesettings
     public class ESHiddenAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2840,7 +2685,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_hubauthmodulesettings
     public class ESHubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2870,7 +2714,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_hubprofilelogindetails
     public class ESHubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
@@ -2901,7 +2744,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_ldapattributenames
     public class ESLdapAttributeNamesDto
     {
         [JsonPropertyName("fullNameAttributeName")]
@@ -2918,7 +2760,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_ldapauthmodulesettings
     public class ESLdapAuthModuleSettingsDto
          : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -2974,7 +2815,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_mavenrepositorysettings
     public class ESMavenRepositorySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
@@ -2983,7 +2823,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_nugetfeedsettings
     public class ESNuGetFeedSettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
@@ -2992,7 +2831,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_oauth2authmodulesettings
     public abstract class ESOAuth2AuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -3001,7 +2839,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_oauthconsent
     public class ESOAuthConsentDto
     {
         [Required]
@@ -3018,7 +2855,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_packagerepositorysettings
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class ESPackageRepositorySettingsDto
          : IClassNameConvertible
@@ -3028,7 +2864,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_passwordauthmodulesettings
     public abstract class ESPasswordAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -3037,7 +2872,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_permanenttoken
     public class ESPermanentTokenDto
     {
         [Required]
@@ -3065,7 +2899,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_profilelogin
     public class ESProfileLoginDto
     {
         [Required]
@@ -3085,7 +2918,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_profilelogindetails
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class ESProfileLoginDetailsDto
          : IClassNameConvertible
@@ -3095,7 +2927,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_refreshtoken
     public class ESRefreshTokenDto
     {
         [Required]
@@ -3111,7 +2942,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_samlattributenames
     public class ESSamlAttributeNamesDto
     {
         [JsonPropertyName("loginAttributeName")]
@@ -3135,7 +2965,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_samlauthmodulesettings
     public class ESSamlAuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
@@ -3174,7 +3003,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_service
     public class ESServiceDto
     {
         [Required]
@@ -3209,7 +3037,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: es_teammapping
     public class ESTeamMappingDto
     {
         [Required]
@@ -3222,7 +3049,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ebssnapshotapi
     public class EbsSnapshotApiDto
     {
         [Required]
@@ -3239,7 +3065,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ebsvolumeapi
     public class EbsVolumeApiDto
     {
         [Required]
@@ -3260,7 +3085,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ecstaskcontainerinfo
     public class EcsTaskContainerInfoDto
     {
         [Required]
@@ -3278,7 +3102,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ecstaskinfoapi
     public class EcsTaskInfoApiDto
     {
         [Required]
@@ -3309,7 +3132,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: emojireactionrecord
     public class EmojiReactionRecordDto
     {
         [Required]
@@ -3338,7 +3160,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: enumcftype
     public class EnumCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -3351,7 +3172,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: enumcfvalue
     public class EnumCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -3363,7 +3183,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: enumlistcftype
     public class EnumListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -3376,7 +3195,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: enumlistcfvalue
     public class EnumListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -3389,7 +3207,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: enumvaluedata
     public class EnumValueDataDto
     {
         [JsonPropertyName("id")]
@@ -3401,7 +3218,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: extendedtype
     public class ExtendedTypeDto
     {
         [Required]
@@ -3414,7 +3230,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fts_blog
     public class FTSBlogDto
     {
         [Required]
@@ -3442,7 +3257,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fts_blogcomment
     public class FTSBlogCommentDto
     {
         [Required]
@@ -3459,7 +3273,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fts_draft
     public class FTSDraftDto
     {
         [Required]
@@ -3484,7 +3297,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fts_profile
     public class FTSProfileDto
     {
         [Required]
@@ -3501,7 +3313,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fts_snippet
     public class FTSSnippetDto
     {
         [Required]
@@ -3514,7 +3325,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fts_team
     public class FTSTeamDto
     {
         [Required]
@@ -3534,7 +3344,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fts_user
     public class FTSUserDto
     {
         [Required]
@@ -3561,7 +3370,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: featureflag
     public class FeatureFlagDto
     {
         [Required]
@@ -3574,7 +3382,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: feedevent
     public interface FeedEventDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -3583,7 +3390,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fileattachment
     public class FileAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
@@ -3604,7 +3410,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: filewithcount
     public class FileWithCountDto
     {
         [JsonPropertyName("name")]
@@ -3616,7 +3421,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fingerprint
     public class FingerprintDto
     {
         [Required]
@@ -3641,7 +3445,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fraction
     public class FractionDto
     {
         [Required]
@@ -3654,7 +3457,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fractioncftype
     public class FractionCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -3663,7 +3465,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: fractioncfvalue
     public class FractionCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -3675,7 +3476,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitauthorinfo
     public class GitAuthorInfoDto
     {
         [Required]
@@ -3688,7 +3488,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitcommitchange
     public class GitCommitChangeDto
     {
         [Required]
@@ -3710,7 +3509,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitcommitinfo
     public class GitCommitInfoDto
     {
         [Required]
@@ -3758,7 +3556,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitcommitwithgraph
     public class GitCommitWithGraphDto
     {
         [Required]
@@ -3778,7 +3575,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitcommitterprofile
     public class GitCommitterProfileDto
     {
         [Required]
@@ -3794,7 +3590,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitdiffsize
     public class GitDiffSizeDto
     {
         [Required]
@@ -3807,7 +3602,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitfile
     public class GitFileDto
     {
         [Required]
@@ -3828,7 +3622,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitgraphlayoutedge
     public class GitGraphLayoutEdgeDto
     {
         [Required]
@@ -3857,7 +3650,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitgraphlayoutline
     public class GitGraphLayoutLineDto
     {
         [Required]
@@ -3870,7 +3662,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: gitgraphlayoutnode
     public class GitGraphLayoutNodeDto
     {
         [Required]
@@ -3883,7 +3674,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_deprecation
     public class HADeprecationDto
     {
         [Required]
@@ -3900,7 +3690,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_dto
     public class HADtoDto
     {
         [Required]
@@ -3939,7 +3728,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_dtofield
     public class HADtoFieldDto
     {
         [Required]
@@ -3952,7 +3740,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_endpoint
     public class HAEndpointDto
     {
         [Required]
@@ -3989,7 +3776,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_enum
     public class HAEnumDto
     {
         [Required]
@@ -4009,7 +3795,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_field
     public class HAFieldDto
     {
         [Required]
@@ -4025,7 +3810,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_model
     public class HAModelDto
     {
         [Required]
@@ -4046,7 +3830,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_parameter
     public class HAParameterDto
     {
         [Required]
@@ -4059,7 +3842,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_path
     public class HAPathDto
     {
         [Required]
@@ -4068,7 +3850,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_pathsegment
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class HAPathSegmentDto
          : IClassNameConvertible
@@ -4078,7 +3859,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_pathsegment.const
     public class HAPathSegmentConstDto
          : HAPathSegmentDto, IClassNameConvertible
     {
@@ -4091,7 +3871,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_pathsegment.prefixedvar
     public class HAPathSegmentPrefixedVarDto
          : HAPathSegmentDto, IClassNameConvertible
     {
@@ -4108,7 +3887,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_pathsegment.var
     public class HAPathSegmentVarDto
          : HAPathSegmentDto, IClassNameConvertible
     {
@@ -4121,7 +3899,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_resource
     public class HAResourceDto
     {
         [Required]
@@ -4153,7 +3930,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_type
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class HATypeDto
          : IClassNameConvertible
@@ -4163,7 +3939,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_type.array
     public class HATypeArrayDto
          : HATypeDto, IClassNameConvertible
     {
@@ -4184,7 +3959,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_type.dto
     public class HATypeDtoDto
          : HATypeDto, IClassNameConvertible
     {
@@ -4205,7 +3979,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_type.enum
     public class HATypeEnumDto
          : HATypeDto, IClassNameConvertible
     {
@@ -4226,7 +3999,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_type.object
     public class HATypeObjectDto
          : HATypeDto, IClassNameConvertible
     {
@@ -4251,7 +4023,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_type.primitive
     public class HATypePrimitiveDto
          : HATypeDto, IClassNameConvertible
     {
@@ -4272,7 +4043,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ha_type.ref
     public class HATypeRefDto
          : HATypeDto, IClassNameConvertible
     {
@@ -4293,7 +4063,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: imageattachment
     public class ImageAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
@@ -4323,7 +4092,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: imageattachmentmeta
     public class ImageAttachmentMetaDto
     {
         [Required]
@@ -4332,7 +4100,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: imageattachmentvariant
     public class ImageAttachmentVariantDto
     {
         [Required]
@@ -4352,7 +4119,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: imageattachmentvariantsmeta
     public class ImageAttachmentVariantsMetaDto
     {
         [Required]
@@ -4373,7 +4139,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: importsource
     public class ImportSourceDto
     {
         [Required]
@@ -4394,7 +4159,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: importedentityinfo
     public class ImportedEntityInfoDto
     {
         [Required]
@@ -4409,7 +4173,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: inlinediffline
     public class InlineDiffLineDto
     {
         [Required]
@@ -4444,7 +4207,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: intcfconstraint
     public class IntCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
@@ -4462,7 +4224,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: intcftype
     public class IntCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -4471,7 +4232,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: intcfvalue
     public class IntCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -4483,7 +4243,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: intlistcftype
     public class IntListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -4492,7 +4251,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: intlistcfvalue
     public class IntListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -4505,7 +4263,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: invitation
     public class InvitationDto
     {
         [Required]
@@ -4551,7 +4308,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issue
     public class IssueDto
     {
         [Required]
@@ -4619,7 +4375,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issueassigneechangeddetails
     public class IssueAssigneeChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4634,7 +4389,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issueattachmentschangeddetails
     public class IssueAttachmentsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4649,7 +4403,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuechangedm2details
     public interface IssueChangedM2DetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -4658,7 +4411,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuechecklistschangeddetails
     public class IssueChecklistsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4673,7 +4425,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuecreateddetails
     public class IssueCreatedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4685,7 +4436,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuedeleteddetails
     public class IssueDeletedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4694,7 +4444,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuedescriptionchangeddetails
     public class IssueDescriptionChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4709,7 +4458,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issueduedatechangeddetails
     public class IssueDueDateChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4724,7 +4472,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuestatus
     public class IssueStatusDto
     {
         [Required]
@@ -4749,7 +4496,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuestatuschangeddetails
     public class IssueStatusChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4766,7 +4512,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuestatusdata
     public class IssueStatusDataDto
     {
         [JsonPropertyName("existingId")]
@@ -4786,7 +4531,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuestatuswithusages
     public class IssueStatusWithUsagesDto
     {
         [Required]
@@ -4799,7 +4543,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuetagschangeddetails
     public class IssueTagsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4814,7 +4557,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: issuetitlechangeddetails
     public class IssueTitleChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
@@ -4831,7 +4573,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: jbspacenewsfeedchannel
     public class JBSpaceNewsFeedChannelDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -4843,7 +4584,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: kb_article
     public class KBArticleDto
     {
         [Required]
@@ -4880,7 +4620,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: kb_book
     public class KBBookDto
     {
         [Required]
@@ -4921,7 +4660,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: kb_folder
     public class KBFolderDto
     {
         [Required]
@@ -4957,7 +4695,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: kbpublicationdetails
     public class KbPublicationDetailsDto
          : PublicationDetailsDto, IClassNameConvertible
     {
@@ -4975,7 +4712,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: lastchanges
     public class LastChangesDto
     {
         [Required]
@@ -4988,7 +4724,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: linkpreview
     public interface LinkPreviewDto
          : AttachmentDto, IClassNameConvertible
     {
@@ -4997,7 +4732,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2absenceitemapprovedeletedcontent
     public class M2AbsenceItemApproveDeletedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5018,7 +4752,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2absenceitemapprovedcontent
     public class M2AbsenceItemApprovedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5039,7 +4772,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2absenceitemcontent
     public class M2AbsenceItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5052,7 +4784,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2absenceitemdeletedcontent
     public class M2AbsenceItemDeletedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5065,7 +4796,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2absenceitemupdatedcontent
     public class M2AbsenceItemUpdatedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5090,7 +4820,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2blogitemcontent
     public class M2BlogItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5115,7 +4844,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2blogitempreview
     public class M2BlogItemPreviewDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5140,7 +4868,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelarchiveditemdetails
     public class M2ChannelArchivedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5149,7 +4876,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontact
     public class M2ChannelContactDto
     {
         [Required]
@@ -5165,7 +4891,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontactarticle
     public class M2ChannelContactArticleDto
          : M2ChannelContactInfoDto, IClassNameConvertible
     {
@@ -5182,7 +4907,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontactinfo
     public interface M2ChannelContactInfoDto
          : IClassNameConvertible
     {
@@ -5191,7 +4915,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontactobsolete
     public class M2ChannelContactObsoleteDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5203,7 +4926,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontactquickinfodefault
     public class M2ChannelContactQuickInfoDefaultDto
          : M2ChannelContactInfoDto, IClassNameConvertible
     {
@@ -5220,7 +4942,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontactthread
     public class M2ChannelContactThreadDto
          : M2ChannelContactInfoDto, IClassNameConvertible
     {
@@ -5248,7 +4969,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentarticle
     public class M2ChannelContentArticleDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5268,7 +4988,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentcodediscussion
     public class M2ChannelContentCodeDiscussionDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5288,7 +5007,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentcodereviewdiscussion
     public class M2ChannelContentCodeReviewDiscussionDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5305,7 +5023,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentcodereviewfeed
     public class M2ChannelContentCodeReviewFeedDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5334,7 +5051,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentinfo
     public interface M2ChannelContentInfoDto
          : IClassNameConvertible
     {
@@ -5343,7 +5059,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentlocation
     public class M2ChannelContentLocationDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5360,7 +5075,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentmember
     public class M2ChannelContentMemberDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5383,7 +5097,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentmembership
     public class M2ChannelContentMembershipDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5392,7 +5105,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentmention
     public class M2ChannelContentMentionDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5409,7 +5121,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentnamedprivatechannel
     public class M2ChannelContentNamedPrivateChannelDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5425,7 +5136,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentrecord
     public class M2ChannelContentRecordDto
     {
         [Required]
@@ -5437,7 +5147,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentteam
     public class M2ChannelContentTeamDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5454,7 +5163,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcontentthread
     public class M2ChannelContentThreadDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5471,7 +5179,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelcreateditemdetails
     public class M2ChannelCreatedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5480,7 +5187,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelfeedintroitemdetails
     public class M2ChannelFeedIntroItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5489,7 +5195,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelissueinfo
     public class M2ChannelIssueInfoDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5509,7 +5214,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelrecord
     public class M2ChannelRecordDto
     {
         [Required]
@@ -5555,7 +5259,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2channelrestoreditemdetails
     public class M2ChannelRestoredItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5564,7 +5267,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2drafteditoraddeditemcontent
     public class M2DraftEditorAddedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5581,7 +5283,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2drafteditorteamaddeditemcontent
     public class M2DraftEditorTeamAddedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5602,7 +5303,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2externalstatusfailureitemcontent
     public class M2ExternalStatusFailureItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5646,7 +5346,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2externalstatussucceeditemcontent
     public class M2ExternalStatusSucceedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5690,7 +5389,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2itemcontentdetails
     public interface M2ItemContentDetailsDto
          : IClassNameConvertible
     {
@@ -5699,7 +5397,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2maintenanceactioncontent
     public class M2MaintenanceActionContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5720,7 +5417,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2membercontent
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class M2MemberContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
@@ -5730,7 +5426,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2memberjoinscontent
     public class M2MemberJoinsContentDto
          : M2MemberContentDto, IClassNameConvertible
     {
@@ -5743,7 +5438,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2memberleavescontent
     public class M2MemberLeavesContentDto
          : M2MemberContentDto, IClassNameConvertible
     {
@@ -5756,7 +5450,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2membershipcontent
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class M2MembershipContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
@@ -5766,7 +5459,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2membershipcreatedcontent
     public class M2MembershipCreatedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
@@ -5779,7 +5471,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2membershiprequestedcontent
     public class M2MembershipRequestedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
@@ -5796,7 +5487,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2membershipterminatedcontent
     public class M2MembershipTerminatedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
@@ -5809,7 +5499,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2packagecontentdetails
     public interface M2PackageContentDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5818,7 +5507,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2packagecreateddetails
     public class M2PackageCreatedDetailsDto
          : M2PackageContentDetailsDto, IClassNameConvertible
     {
@@ -5831,7 +5519,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2packagedeleteddetails
     public class M2PackageDeletedDetailsDto
          : M2PackageContentDetailsDto, IClassNameConvertible
     {
@@ -5844,7 +5531,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2pollcontent
     public class M2PollContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5857,7 +5543,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2privateconversationchannelcontent
     public class M2PrivateConversationChannelContentDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5880,7 +5565,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2sharedchannelcontent
     public class M2SharedChannelContentDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
@@ -5921,7 +5605,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2taskexecutionfailureitemcontent
     public class M2TaskExecutionFailureItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -5970,7 +5653,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2taskexecutionsucceeditemcontent
     public class M2TaskExecutionSucceedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -6019,7 +5701,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2textitemcontent
     public class M2TextItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -6032,7 +5713,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: m2userleftchannel
     public class M2UserLeftChannelDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -6041,7 +5721,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcaction
     public class MCActionDto
     {
         [Required]
@@ -6054,7 +5733,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcbutton
     public class MCButtonDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6075,7 +5753,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcdivider
     public class MCDividerDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6084,7 +5761,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcelement
     public class MCElementDto
     {
         [Required]
@@ -6096,7 +5772,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcelementdetails
     public interface MCElementDetailsDto
          : IClassNameConvertible
     {
@@ -6105,7 +5780,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcfields
     public class MCFieldsDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6118,7 +5792,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcgroup
     public class MCGroupDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6131,7 +5804,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcicon
     public class MCIconDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6148,7 +5820,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcimage
     public class MCImageDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6161,7 +5832,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcmessage
     public class MCMessageDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -6187,7 +5857,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcoutline
     public class MCOutlineDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6202,7 +5871,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mcsection
     public class MCSectionDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6221,7 +5889,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mctag
     public class MCTagDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6238,7 +5905,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mctext
     public class MCTextDto
          : MCElementDetailsDto, IClassNameConvertible
     {
@@ -6258,7 +5924,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mavenpackagetype
     public class MavenPackageTypeDto
          : PackageTypeDto, IClassNameConvertible
     {
@@ -6271,7 +5936,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mdmarkup
     public class MdMarkupDto
     {
         [Required]
@@ -6280,7 +5944,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: meinfo
     public class MeInfoDto
     {
         [Required]
@@ -6317,7 +5980,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: meetingrecord
     public class MeetingRecordDto
     {
         [Required]
@@ -6356,7 +6018,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: membersaddeditemdetails
     public class MembersAddedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -6373,7 +6034,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: membershipevent
     public class MembershipEventDto
     {
         [Required]
@@ -6386,7 +6046,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mergerequestbranch
     public class MergeRequestBranchDto
     {
         [Required]
@@ -6403,7 +6062,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mergerequestbranchdeletedevent
     public class MergeRequestBranchDeletedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -6424,7 +6082,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mergerequestbranchpair
     public class MergeRequestBranchPairDto
     {
         [Required]
@@ -6451,7 +6108,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mergerequestbranchrestoredevent
     public class MergeRequestBranchRestoredEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -6472,7 +6128,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mergerequestmergedevent
     public class MergeRequestMergedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -6493,7 +6148,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: mergerequestrecord
     public class MergeRequestRecordDto
          : CodeReviewRecordDto, IClassNameConvertible
     {
@@ -6551,7 +6205,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: messageforimport
     public class MessageForImportDto
     {
         [Required]
@@ -6571,7 +6224,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: messageinfo
     public class MessageInfoDto
     {
         [Required]
@@ -6595,7 +6247,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: navbarmenuitem
     public class NavBarMenuItemDto
     {
         [Required]
@@ -6608,7 +6259,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: nonworkingdays
     public class NonWorkingDaysDto
     {
         [Required]
@@ -6629,7 +6279,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: nonworkingdaysevent
     public class NonWorkingDaysEventDto
     {
         [Required]
@@ -6642,7 +6291,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: nugetpackagetype
     public class NuGetPackageTypeDto
          : PackageTypeDto, IClassNameConvertible
     {
@@ -6655,7 +6303,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: pr_privateproject
     public class PRPrivateProjectDto
     {
         [Required]
@@ -6676,7 +6323,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: pr_project
     public class PRProjectDto
     {
         [Required]
@@ -6734,7 +6380,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: pr_repositoryinfo
     public class PRRepositoryInfoDto
     {
         [Required]
@@ -6766,7 +6411,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: pr_tag
     public class PRTagDto
     {
         [Required]
@@ -6779,7 +6423,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: packagerepositorysettings
     public class PackageRepositorySettingsDto
     {
         [Required]
@@ -6799,7 +6442,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: packagetype
     public interface PackageTypeDto
          : IClassNameConvertible
     {
@@ -6808,7 +6450,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: packageversioninfo
     public class PackageVersionInfoDto
     {
         [Required]
@@ -6832,7 +6473,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: packagessettings
     public class PackagesSettingsDto
     {
         [Required]
@@ -6862,7 +6502,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: participant
     public class ParticipantDto
     {
         [Required]
@@ -6875,7 +6514,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissioncomparisoncontentdto
     public class PermissionComparisonContentDTODto
     {
         [Required]
@@ -6896,7 +6534,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissioncomparisonentrydto
     public class PermissionComparisonEntryDTODto
     {
         [Required]
@@ -6925,7 +6562,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissionsnapshotcontentdto
     public class PermissionSnapshotContentDTODto
     {
         [Required]
@@ -6946,7 +6582,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissionsnapshotdto
     public class PermissionSnapshotDTODto
     {
         [Required]
@@ -6971,7 +6606,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissionsnapshotentrydto
     public class PermissionSnapshotEntryDTODto
     {
         [Required]
@@ -6992,7 +6626,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissionsnapshotprincipaldto
     public class PermissionSnapshotPrincipalDTODto
     {
         [Required]
@@ -7009,7 +6642,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissionsnapshotrightdto
     public class PermissionSnapshotRightDTODto
     {
         [Required]
@@ -7022,7 +6654,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissionsnapshottargetdto
     public class PermissionSnapshotTargetDTODto
     {
         [Required]
@@ -7039,7 +6670,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: planitem
     public class PlanItemDto
     {
         [Required]
@@ -7078,7 +6708,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: planitemchildren
     public class PlanItemChildrenDto
     {
         [Required]
@@ -7091,7 +6720,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: planningtag
     public class PlanningTagDto
     {
         [Required]
@@ -7111,7 +6739,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: pollrecord
     public class PollRecordDto
     {
         [Required]
@@ -7163,7 +6790,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: profileabsencesrecord
     public class ProfileAbsencesRecordDto
     {
         [Required]
@@ -7176,7 +6802,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: profilecftype
     public class ProfileCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -7185,7 +6810,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: profilecfvalue
     public class ProfileCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -7197,7 +6821,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: profilelinkpreview
     public class ProfileLinkPreviewDto
          : AttachmentDto, IClassNameConvertible
     {
@@ -7210,7 +6833,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: profilelistcftype
     public class ProfileListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -7219,7 +6841,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: profilelistcfvalue
     public class ProfileListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -7232,7 +6853,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: profilemembershiprecord
     public class ProfileMembershipRecordDto
     {
         [Required]
@@ -7245,7 +6865,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: projectkey
     public class ProjectKeyDto
     {
         [Required]
@@ -7254,7 +6873,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: propagatedcodediscussion
     public class PropagatedCodeDiscussionDto
     {
         [Required]
@@ -7267,7 +6885,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: publicholiday
     public class PublicHolidayDto
     {
         [Required]
@@ -7292,7 +6909,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: publicholidaycalendarrecord
     public class PublicHolidayCalendarRecordDto
     {
         [Required]
@@ -7323,7 +6939,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: publicationdetails
     public interface PublicationDetailsDto
          : IClassNameConvertible
     {
@@ -7332,7 +6947,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: publicationitem
     public interface PublicationItemDto
          : IClassNameConvertible
     {
@@ -7341,7 +6955,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reactiondata
     public class ReactionDataDto
     {
         [Required]
@@ -7358,7 +6971,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reactiontyperecord
     public class ReactionTypeRecordDto
     {
         [Required]
@@ -7386,7 +6998,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: repositoryactivity
     public class RepositoryActivityDto
     {
         [Required]
@@ -7395,7 +7006,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: repositorycommitrecord
     public class RepositoryCommitRecordDto
     {
         [Required]
@@ -7438,7 +7048,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: responsibilityrecord
     public class ResponsibilityRecordDto
     {
         [Required]
@@ -7458,7 +7067,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reviewbranchtrackevent
     public class ReviewBranchTrackEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -7479,7 +7087,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reviewcompletionstatechangedevent
     public class ReviewCompletionStateChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -7492,7 +7099,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reviewcounts
     public class ReviewCountsDto
     {
         [Required]
@@ -7521,7 +7127,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reviewrevisionschangedevent
     public class ReviewRevisionsChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -7544,7 +7149,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reviewstatechangedevent
     public class ReviewStateChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -7560,7 +7164,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reviewtitlechangedevent
     public class ReviewTitleChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -7577,7 +7180,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: reviewerchangedevent
     public class ReviewerChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
@@ -7594,7 +7196,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: revisionauthor
     public class RevisionAuthorDto
     {
         [Required]
@@ -7606,7 +7207,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: revisionauthorinfo
     public class RevisionAuthorInfoDto
     {
         [Required]
@@ -7619,7 +7219,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: revisiondiscussionscounter
     public class RevisionDiscussionsCounterDto
     {
         [Required]
@@ -7632,7 +7231,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: revisioninreview
     public class RevisionInReviewDto
     {
         [Required]
@@ -7645,7 +7243,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: revisioninfo
     public class RevisionInfoDto
     {
         [Required]
@@ -7662,7 +7259,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: revisionsinreview
     public class RevisionsInReviewDto
     {
         [Required]
@@ -7675,7 +7271,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: sslkeystore
     public class SSLKeystoreDto
     {
         [Required]
@@ -7688,7 +7283,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: samlmetadataresponse
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class SamlMetadataResponseDto
          : IClassNameConvertible
@@ -7698,7 +7292,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: samlmetadataresponse.error
     public class SamlMetadataResponseErrorDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
@@ -7711,7 +7304,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: samlmetadataresponse.success
     public class SamlMetadataResponseSuccessDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
@@ -7724,7 +7316,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: sticker
     public class StickerDto
     {
         [Required]
@@ -7755,7 +7346,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stickercontentdetails
     public class StickerContentDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -7771,7 +7361,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stickerpackinfo
     public class StickerPackInfoDto
     {
         [Required]
@@ -7807,7 +7396,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stickervariant
     public class StickerVariantDto
     {
         [Required]
@@ -7827,7 +7415,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stringcfconstraint
     public class StringCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
@@ -7848,7 +7435,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stringcftype
     public class StringCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -7857,7 +7443,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stringcfvalue
     public class StringCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -7869,7 +7454,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stringlistcftype
     public class StringListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -7878,7 +7462,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: stringlistcfvalue
     public class StringListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -7891,7 +7474,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: subjectresponsibilitiestable
     public class SubjectResponsibilitiesTableDto
     {
         [Required]
@@ -7911,7 +7493,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: supportprofiledto
     public class SupportProfileDTODto
     {
         [Required]
@@ -7924,7 +7505,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: syntaxmarkup
     public class SyntaxMarkupDto
     {
         [Required]
@@ -7937,7 +7517,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_language
     public class TDLanguageDto
     {
         [Required]
@@ -7966,7 +7545,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_location
     public class TDLocationDto
     {
         [Required]
@@ -8022,7 +7600,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_locationequipmenttype
     public class TDLocationEquipmentTypeDto
     {
         [Required]
@@ -8035,7 +7612,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_locationmap
     public class TDLocationMapDto
     {
         [Required]
@@ -8058,7 +7634,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_locationmappoint
     public class TDLocationMapPointDto
     {
         [Required]
@@ -8088,7 +7663,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_locationwithtimezone
     public class TDLocationWithTimeZoneDto
     {
         [Required]
@@ -8105,7 +7679,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_memberinlocationmaplist
     public class TDMemberInLocationMapListDto
     {
         [Required]
@@ -8121,7 +7694,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_memberlocation
     public class TDMemberLocationDto
     {
         [Required]
@@ -8151,7 +7723,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_memberprofile
     public class TDMemberProfileDto
     {
         [Required]
@@ -8250,7 +7821,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_memberwithteam
     public class TDMemberWithTeamDto
     {
         [Required]
@@ -8263,7 +7833,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_membership
     public class TDMembershipDto
     {
         [Required]
@@ -8319,7 +7888,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_mergedevent
     public class TDMergedEventDto
     {
         [Required]
@@ -8332,7 +7900,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_profileemail
     public class TDProfileEmailDto
     {
         [Required]
@@ -8345,7 +7912,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_profilelanguage
     public class TDProfileLanguageDto
     {
         [JsonPropertyName("name")]
@@ -8360,7 +7926,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_profilename
     public class TDProfileNameDto
     {
         [Required]
@@ -8373,7 +7938,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_role
     public class TDRoleDto
     {
         [Required]
@@ -8393,7 +7957,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_stats
     public class TDStatsDto
     {
         [Required]
@@ -8414,7 +7977,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_team
     public class TDTeamDto
     {
         [Required]
@@ -8454,7 +8016,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: td_workingdays
     public class TDWorkingDaysDto
     {
         [Required]
@@ -8473,7 +8034,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: teamaddeditemdetails
     public class TeamAddedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
@@ -8486,7 +8046,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: textrange
     public class TextRangeDto
     {
         [Required]
@@ -8499,7 +8058,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: todoitemcontent
     public interface TodoItemContentDto
          : IClassNameConvertible
     {
@@ -8508,7 +8066,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: todoitemcontentmdtext
     public class TodoItemContentMdTextDto
          : TodoItemContentDto, IClassNameConvertible
     {
@@ -8525,7 +8082,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: todoitemcontenttext
     public class TodoItemContentTextDto
          : TodoItemContentDto, IClassNameConvertible
     {
@@ -8538,7 +8094,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: todoitemrecord
     public class TodoItemRecordDto
     {
         [Required]
@@ -8570,7 +8125,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: trackedbranchesinreview
     public class TrackedBranchesInReviewDto
     {
         [Required]
@@ -8583,7 +8137,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: trustedcertificate
     public class TrustedCertificateDto
     {
         [Required]
@@ -8608,7 +8161,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurl
     public class UnfurlDto
     {
         [Required]
@@ -8661,7 +8213,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurlattachment
     public class UnfurlAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
@@ -8677,7 +8228,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetails
     public interface UnfurlDetailsDto
          : IClassNameConvertible
     {
@@ -8686,7 +8236,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailsarticle
     public class UnfurlDetailsArticleDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8710,7 +8259,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailschecklist
     public class UnfurlDetailsChecklistDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8723,7 +8271,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailscodesnippet
     public class UnfurlDetailsCodeSnippetDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8740,7 +8287,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailsdatetime
     public class UnfurlDetailsDateTimeDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8753,7 +8299,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailsdraft
     public class UnfurlDetailsDraftDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8770,7 +8315,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailsissue
     public class UnfurlDetailsIssueDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8783,7 +8327,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailsprofile
     public class UnfurlDetailsProfileDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8796,7 +8339,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: unfurldetailsteam
     public class UnfurlDetailsTeamDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
@@ -8809,7 +8351,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: urlcftype
     public class UrlCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
@@ -8818,7 +8359,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: urlcfvalue
     public class UrlCFValueDto
          : CFValueDto, IClassNameConvertible
     {
@@ -8830,7 +8370,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: vcshostingpassword
     public class VcsHostingPasswordDto
     {
         [Required]
@@ -8842,7 +8381,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: videoattachment
     public class VideoAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
@@ -8871,7 +8409,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: votegroup
     public class VoteGroupDto
     {
         [Required]
@@ -8895,7 +8432,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: workday
     public class WorkdayDto
     {
         [Required]
@@ -8915,7 +8451,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: workingdaysspec
     public class WorkingDaysSpecDto
     {
         [Required]
@@ -8924,7 +8459,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: absences
     public partial class AbsenceClient
     {
         private readonly Connection _connection;
@@ -8960,7 +8494,6 @@ namespace SpaceDotNet.Client
         
         public AbsenceReasonClient AbsenceReasons => new AbsenceReasonClient(_connection);
         
-        // Source: absences_absence-reasons
         public partial class AbsenceReasonClient
         {
             private readonly Connection _connection;
@@ -8989,7 +8522,6 @@ namespace SpaceDotNet.Client
         
         public SubscriptionClient Subscriptions => new SubscriptionClient(_connection);
         
-        // Source: absences_subscriptions
         public partial class SubscriptionClient
         {
             private readonly Connection _connection;
@@ -9015,7 +8547,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: administration
     public partial class AdministrationClient
     {
         private readonly Connection _connection;
@@ -9027,7 +8558,6 @@ namespace SpaceDotNet.Client
         
         public SupportClient Support => new SupportClient(_connection);
         
-        // Source: administration_support
         public partial class SupportClient
         {
             private readonly Connection _connection;
@@ -9044,7 +8574,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: auth-modules
     public partial class AuthModuleClient
     {
         private readonly Connection _connection;
@@ -9077,7 +8606,6 @@ namespace SpaceDotNet.Client
         
         public TestClient Test => new TestClient(_connection);
         
-        // Source: auth-modules_test
         public partial class TestClient
         {
             private readonly Connection _connection;
@@ -9097,7 +8625,6 @@ namespace SpaceDotNet.Client
         
         public UsageClient Usages => new UsageClient(_connection);
         
-        // Source: auth-modules_usages
         public partial class UsageClient
         {
             private readonly Connection _connection;
@@ -9114,7 +8641,6 @@ namespace SpaceDotNet.Client
         
         public LoginClient Logins => new LoginClient(_connection);
         
-        // Source: auth-modules_xxx_logins
         public partial class LoginClient
         {
             private readonly Connection _connection;
@@ -9137,7 +8663,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: automation
     public partial class AutomationClient
     {
         private readonly Connection _connection;
@@ -9149,7 +8674,6 @@ namespace SpaceDotNet.Client
         
         public GraphExecutionClient GraphExecutions => new GraphExecutionClient(_connection);
         
-        // Source: automation_graph-executions
         public partial class GraphExecutionClient
         {
             private readonly Connection _connection;
@@ -9161,7 +8685,6 @@ namespace SpaceDotNet.Client
             
             public ParameterClient Parameters => new ParameterClient(_connection);
             
-            // Source: automation_graph-executions_xxx_parameters
             public partial class ParameterClient
             {
                 private readonly Connection _connection;
@@ -9186,7 +8709,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: blogs
     public partial class BlogClient
     {
         private readonly Connection _connection;
@@ -9201,7 +8723,6 @@ namespace SpaceDotNet.Client
         
         public ArticleClient Articles => new ArticleClient(_connection);
         
-        // Source: blogs_articles
         public partial class ArticleClient
         {
             private readonly Connection _connection;
@@ -9225,7 +8746,6 @@ namespace SpaceDotNet.Client
             
             public DraftClient Drafts => new DraftClient(_connection);
             
-            // Source: blogs_articles_drafts
             public partial class DraftClient
             {
                 private readonly Connection _connection;
@@ -9250,7 +8770,6 @@ namespace SpaceDotNet.Client
         
         public DateClient Dates => new DateClient(_connection);
         
-        // Source: blogs_dates
         public partial class DateClient
         {
             private readonly Connection _connection;
@@ -9267,7 +8786,6 @@ namespace SpaceDotNet.Client
         
         public StatClient Stats => new StatClient(_connection);
         
-        // Source: blogs_stats
         public partial class StatClient
         {
             private readonly Connection _connection;
@@ -9284,7 +8802,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: chats
     public partial class ChatClient
     {
         private readonly Connection _connection;
@@ -9296,7 +8813,6 @@ namespace SpaceDotNet.Client
         
         public ChannelClient Channels => new ChannelClient(_connection);
         
-        // Source: chats_channels
         public partial class ChannelClient
         {
             private readonly Connection _connection;
@@ -9323,7 +8839,6 @@ namespace SpaceDotNet.Client
             
             public MessageClient Messages => new MessageClient(_connection);
             
-            // Source: chats_channels_xxx_messages
             public partial class MessageClient
             {
                 private readonly Connection _connection;
@@ -9342,7 +8857,6 @@ namespace SpaceDotNet.Client
         
         public MessageClient Messages => new MessageClient(_connection);
         
-        // Source: chats_messages
         public partial class MessageClient
         {
             private readonly Connection _connection;
@@ -9360,7 +8874,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: custom-fields
     public partial class CustomFieldClient
     {
         private readonly Connection _connection;
@@ -9372,7 +8885,6 @@ namespace SpaceDotNet.Client
         
         public ExtendedTypeClient ExtendedTypes => new ExtendedTypeClient(_connection);
         
-        // Source: custom-fields_extended-types
         public partial class ExtendedTypeClient
         {
             private readonly Connection _connection;
@@ -9389,7 +8901,6 @@ namespace SpaceDotNet.Client
         
         public AllValueClient AllValues => new AllValueClient(_connection);
         
-        // Source: custom-fields_xxx_all-values
         public partial class AllValueClient
         {
             private readonly Connection _connection;
@@ -9406,7 +8917,6 @@ namespace SpaceDotNet.Client
         
         public FieldClient Fields => new FieldClient(_connection);
         
-        // Source: custom-fields_xxx_fields
         public partial class FieldClient
         {
             private readonly Connection _connection;
@@ -9441,7 +8951,6 @@ namespace SpaceDotNet.Client
         
         public ValueClient Values => new ValueClient(_connection);
         
-        // Source: custom-fields_xxx_xxx_values
         public partial class ValueClient
         {
             private readonly Connection _connection;
@@ -9461,7 +8970,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: docs
     public partial class DocClient
     {
         private readonly Connection _connection;
@@ -9473,7 +8981,6 @@ namespace SpaceDotNet.Client
         
         public DraftClient Drafts => new DraftClient(_connection);
         
-        // Source: docs_drafts
         public partial class DraftClient
         {
             private readonly Connection _connection;
@@ -9497,7 +9004,6 @@ namespace SpaceDotNet.Client
             
             public EditorClient Editors => new EditorClient(_connection);
             
-            // Source: docs_drafts_xxx_editors
             public partial class EditorClient
             {
                 private readonly Connection _connection;
@@ -9509,7 +9015,6 @@ namespace SpaceDotNet.Client
                 
                 public ProfileClient Profiles => new ProfileClient(_connection);
                 
-                // Source: docs_drafts_xxx_editors_profiles
                 public partial class ProfileClient
                 {
                     private readonly Connection _connection;
@@ -9532,7 +9037,6 @@ namespace SpaceDotNet.Client
                 
                 public TeamClient Teams => new TeamClient(_connection);
                 
-                // Source: docs_drafts_xxx_editors_teams
                 public partial class TeamClient
                 {
                     private readonly Connection _connection;
@@ -9559,7 +9063,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: emojis
     public partial class EmojiClient
     {
         private readonly Connection _connection;
@@ -9577,7 +9080,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: full-text-search
     public partial class FullTextSearchClient
     {
         private readonly Connection _connection;
@@ -9589,7 +9091,6 @@ namespace SpaceDotNet.Client
         
         public BlogClient Blogs => new BlogClient(_connection);
         
-        // Source: full-text-search_blogs
         public partial class BlogClient
         {
             private readonly Connection _connection;
@@ -9606,7 +9107,6 @@ namespace SpaceDotNet.Client
         
         public DraftClient Drafts => new DraftClient(_connection);
         
-        // Source: full-text-search_drafts
         public partial class DraftClient
         {
             private readonly Connection _connection;
@@ -9623,7 +9123,6 @@ namespace SpaceDotNet.Client
         
         public ProfileClient Profiles => new ProfileClient(_connection);
         
-        // Source: full-text-search_profiles
         public partial class ProfileClient
         {
             private readonly Connection _connection;
@@ -9640,7 +9139,6 @@ namespace SpaceDotNet.Client
         
         public TeamClient Teams => new TeamClient(_connection);
         
-        // Source: full-text-search_teams
         public partial class TeamClient
         {
             private readonly Connection _connection;
@@ -9657,7 +9155,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: http-api-model
     public partial class HTTPAPIModelClient
     {
         private readonly Connection _connection;
@@ -9672,7 +9169,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: import-sources
     public partial class ImportSourceClient
     {
         private readonly Connection _connection;
@@ -9696,7 +9192,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: packages
     public partial class PackageClient
     {
         private readonly Connection _connection;
@@ -9708,7 +9203,6 @@ namespace SpaceDotNet.Client
         
         public ContainerRegistryClient ContainerRegistry => new ContainerRegistryClient(_connection);
         
-        // Source: packages_container-registry
         public partial class ContainerRegistryClient
         {
             private readonly Connection _connection;
@@ -9720,7 +9214,6 @@ namespace SpaceDotNet.Client
             
             public SettingClient Settings => new SettingClient(_connection);
             
-            // Source: packages_container-registry_settings
             public partial class SettingClient
             {
                 private readonly Connection _connection;
@@ -9739,7 +9232,6 @@ namespace SpaceDotNet.Client
         
         public MavenRepositoryClient MavenRepository => new MavenRepositoryClient(_connection);
         
-        // Source: packages_maven-repository
         public partial class MavenRepositoryClient
         {
             private readonly Connection _connection;
@@ -9751,7 +9243,6 @@ namespace SpaceDotNet.Client
             
             public SettingClient Settings => new SettingClient(_connection);
             
-            // Source: packages_maven-repository_settings
             public partial class SettingClient
             {
                 private readonly Connection _connection;
@@ -9770,7 +9261,6 @@ namespace SpaceDotNet.Client
         
         public SettingClient Settings => new SettingClient(_connection);
         
-        // Source: packages_settings
         public partial class SettingClient
         {
             private readonly Connection _connection;
@@ -9787,7 +9277,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: permissions
     public partial class PermissionClient
     {
         private readonly Connection _connection;
@@ -9802,7 +9291,6 @@ namespace SpaceDotNet.Client
         
         public SnapshotClient Snapshots => new SnapshotClient(_connection);
         
-        // Source: permissions_snapshots
         public partial class SnapshotClient
         {
             private readonly Connection _connection;
@@ -9826,7 +9314,6 @@ namespace SpaceDotNet.Client
             
             public ComparisonClient Comparison => new ComparisonClient(_connection);
             
-            // Source: permissions_snapshots_comparison
             public partial class ComparisonClient
             {
                 private readonly Connection _connection;
@@ -9843,7 +9330,6 @@ namespace SpaceDotNet.Client
             
             public PrincipalClient Principals => new PrincipalClient(_connection);
             
-            // Source: permissions_snapshots_xxx_principals
             public partial class PrincipalClient
             {
                 private readonly Connection _connection;
@@ -9860,7 +9346,6 @@ namespace SpaceDotNet.Client
             
             public RightClient Rights => new RightClient(_connection);
             
-            // Source: permissions_snapshots_xxx_rights
             public partial class RightClient
             {
                 private readonly Connection _connection;
@@ -9879,7 +9364,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: projects
     public partial class ProjectClient
     {
         private readonly Connection _connection;
@@ -9918,7 +9402,6 @@ namespace SpaceDotNet.Client
         
         public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
         
-        // Source: projects_code-discussions
         public partial class CodeDiscussionClient
         {
             private readonly Connection _connection;
@@ -9933,7 +9416,6 @@ namespace SpaceDotNet.Client
             
             public DiscussionsCounterClient DiscussionsCounters => new DiscussionsCounterClient(_connection);
             
-            // Source: projects_code-discussions_discussions-counters
             public partial class DiscussionsCounterClient
             {
                 private readonly Connection _connection;
@@ -9952,7 +9434,6 @@ namespace SpaceDotNet.Client
         
         public PrivateProjectClient PrivateProjects => new PrivateProjectClient(_connection);
         
-        // Source: projects_private-projects
         public partial class PrivateProjectClient
         {
             private readonly Connection _connection;
@@ -9972,7 +9453,6 @@ namespace SpaceDotNet.Client
         
         public ResponsibilityClient Responsibilities => new ResponsibilityClient(_connection);
         
-        // Source: projects_responsibilities
         public partial class ResponsibilityClient
         {
             private readonly Connection _connection;
@@ -9993,7 +9473,6 @@ namespace SpaceDotNet.Client
             
             public SubjectClient Subjects => new SubjectClient(_connection);
             
-            // Source: projects_responsibilities_subjects
             public partial class SubjectClient
             {
                 private readonly Connection _connection;
@@ -10010,12 +9489,10 @@ namespace SpaceDotNet.Client
             
         }
         
-        // Source: projects_xxx_responsibilities
         public partial class ResponsibilityClient
         {
             public SchemeClient Scheme => new SchemeClient(_connection);
             
-            // Source: projects_xxx_responsibilities_scheme
             public partial class SchemeClient
             {
                 private readonly Connection _connection;
@@ -10030,7 +9507,6 @@ namespace SpaceDotNet.Client
                 
             }
             
-            // Source: projects_xxx_responsibilities_subjects
             public partial class SubjectClient
             {
                 public async Task<string> AddResponsibilitySubject(string projectId, AddResponsibilitySubjectRequestDto data)
@@ -10043,7 +9519,6 @@ namespace SpaceDotNet.Client
             
             public AssigneeClient Assignees => new AssigneeClient(_connection);
             
-            // Source: projects_xxx_responsibilities_xxx_assignees
             public partial class AssigneeClient
             {
                 private readonly Connection _connection;
@@ -10065,7 +9540,6 @@ namespace SpaceDotNet.Client
         
         public TagClient Tags => new TagClient(_connection);
         
-        // Source: projects_tags
         public partial class TagClient
         {
             private readonly Connection _connection;
@@ -10085,7 +9559,6 @@ namespace SpaceDotNet.Client
         
         public AccesClient Access => new AccesClient(_connection);
         
-        // Source: projects_key:xxx_access
         public partial class AccesClient
         {
             private readonly Connection _connection;
@@ -10097,7 +9570,6 @@ namespace SpaceDotNet.Client
             
             public MemberProfileClient MemberProfiles => new MemberProfileClient(_connection);
             
-            // Source: projects_key:xxx_access_member-profiles
             public partial class MemberProfileClient
             {
                 private readonly Connection _connection;
@@ -10114,12 +9586,10 @@ namespace SpaceDotNet.Client
             
         }
         
-        // Source: projects_xxx_access
         public partial class AccesClient
         {
             public AdminClient Admins => new AdminClient(_connection);
             
-            // Source: projects_xxx_access_admins
             public partial class AdminClient
             {
                 private readonly Connection _connection;
@@ -10131,7 +9601,6 @@ namespace SpaceDotNet.Client
                 
                 public ProfileClient Profiles => new ProfileClient(_connection);
                 
-                // Source: projects_xxx_access_admins_profiles
                 public partial class ProfileClient
                 {
                     private readonly Connection _connection;
@@ -10151,7 +9620,6 @@ namespace SpaceDotNet.Client
                 
                 public TeamClient Teams => new TeamClient(_connection);
                 
-                // Source: projects_xxx_access_admins_teams
                 public partial class TeamClient
                 {
                     private readonly Connection _connection;
@@ -10173,7 +9641,6 @@ namespace SpaceDotNet.Client
             
             public MemberClient Members => new MemberClient(_connection);
             
-            // Source: projects_xxx_access_members
             public partial class MemberClient
             {
                 private readonly Connection _connection;
@@ -10185,7 +9652,6 @@ namespace SpaceDotNet.Client
                 
                 public ProfileClient Profiles => new ProfileClient(_connection);
                 
-                // Source: projects_xxx_access_members_profiles
                 public partial class ProfileClient
                 {
                     private readonly Connection _connection;
@@ -10205,7 +9671,6 @@ namespace SpaceDotNet.Client
                 
                 public TeamClient Teams => new TeamClient(_connection);
                 
-                // Source: projects_xxx_access_members_teams
                 public partial class TeamClient
                 {
                     private readonly Connection _connection;
@@ -10227,7 +9692,6 @@ namespace SpaceDotNet.Client
             
             public ViewerClient Viewers => new ViewerClient(_connection);
             
-            // Source: projects_xxx_access_viewers
             public partial class ViewerClient
             {
                 private readonly Connection _connection;
@@ -10246,7 +9710,6 @@ namespace SpaceDotNet.Client
         
         public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
         
-        // Source: projects_key:xxx_code-reviews
         public partial class CodeReviewClient
         {
             private readonly Connection _connection;
@@ -10267,7 +9730,6 @@ namespace SpaceDotNet.Client
             
             public ChangeClient Changes => new ChangeClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_changes
             public partial class ChangeClient
             {
                 private readonly Connection _connection;
@@ -10284,7 +9746,6 @@ namespace SpaceDotNet.Client
             
             public DetailClient Details => new DetailClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_details
             public partial class DetailClient
             {
                 private readonly Connection _connection;
@@ -10301,7 +9762,6 @@ namespace SpaceDotNet.Client
             
             public ParticipantClient Participants => new ParticipantClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_participants
             public partial class ParticipantClient
             {
                 private readonly Connection _connection;
@@ -10318,7 +9778,6 @@ namespace SpaceDotNet.Client
             
             public RevisionClient Revisions => new RevisionClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_revisions
             public partial class RevisionClient
             {
                 private readonly Connection _connection;
@@ -10338,7 +9797,6 @@ namespace SpaceDotNet.Client
             
             public StateClient State => new StateClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_state
             public partial class StateClient
             {
                 private readonly Connection _connection;
@@ -10355,7 +9813,6 @@ namespace SpaceDotNet.Client
             
             public SuggestedReviewerClient SuggestedReviewers => new SuggestedReviewerClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_suggested-reviewers
             public partial class SuggestedReviewerClient
             {
                 private readonly Connection _connection;
@@ -10372,7 +9829,6 @@ namespace SpaceDotNet.Client
             
             public TitleClient Title => new TitleClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_title
             public partial class TitleClient
             {
                 private readonly Connection _connection;
@@ -10389,7 +9845,6 @@ namespace SpaceDotNet.Client
             
             public UnreadRevisionClient UnreadRevisions => new UnreadRevisionClient(_connection);
             
-            // Source: projects_key:xxx_code-reviews_xxx_unread-revisions
             public partial class UnreadRevisionClient
             {
                 private readonly Connection _connection;
@@ -10408,7 +9863,6 @@ namespace SpaceDotNet.Client
         
         public RepositoryClient Repositories => new RepositoryClient(_connection);
         
-        // Source: projects_key:xxx_repositories
         public partial class RepositoryClient
         {
             private readonly Connection _connection;
@@ -10420,7 +9874,6 @@ namespace SpaceDotNet.Client
             
             public CommitSetReviewClient CommitSetReviews => new CommitSetReviewClient(_connection);
             
-            // Source: projects_key:xxx_repositories_xxx_commit-set-reviews
             public partial class CommitSetReviewClient
             {
                 private readonly Connection _connection;
@@ -10437,7 +9890,6 @@ namespace SpaceDotNet.Client
             
             public MergeRequestClient MergeRequests => new MergeRequestClient(_connection);
             
-            // Source: projects_key:xxx_repositories_xxx_merge-requests
             public partial class MergeRequestClient
             {
                 private readonly Connection _connection;
@@ -10454,7 +9906,6 @@ namespace SpaceDotNet.Client
             
             public RevisionClient Revisions => new RevisionClient(_connection);
             
-            // Source: projects_key:xxx_repositories_xxx_revisions
             public partial class RevisionClient
             {
                 private readonly Connection _connection;
@@ -10466,7 +9917,6 @@ namespace SpaceDotNet.Client
                 
                 public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
                 
-                // Source: projects_key:xxx_repositories_xxx_revisions_xxx_code-discussions
                 public partial class CodeDiscussionClient
                 {
                     private readonly Connection _connection;
@@ -10486,7 +9936,6 @@ namespace SpaceDotNet.Client
                 
                 public CommitStatusClient CommitStatuses => new CommitStatusClient(_connection);
                 
-                // Source: projects_key:xxx_repositories_xxx_revisions_xxx_commit-statuses
                 public partial class CommitStatusClient
                 {
                     private readonly Connection _connection;
@@ -10510,7 +9959,6 @@ namespace SpaceDotNet.Client
         
         public PlanningClient Planning => new PlanningClient(_connection);
         
-        // Source: projects_xxx_planning
         public partial class PlanningClient
         {
             private readonly Connection _connection;
@@ -10522,7 +9970,6 @@ namespace SpaceDotNet.Client
             
             public ChecklistClient Checklists => new ChecklistClient(_connection);
             
-            // Source: projects_xxx_planning_checklists
             public partial class ChecklistClient
             {
                 private readonly Connection _connection;
@@ -10552,7 +9999,6 @@ namespace SpaceDotNet.Client
                 
                 public StarredClient Starred => new StarredClient(_connection);
                 
-                // Source: projects_xxx_planning_checklists_starred
                 public partial class StarredClient
                 {
                     private readonly Connection _connection;
@@ -10569,7 +10015,6 @@ namespace SpaceDotNet.Client
                 
                 public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
                 
-                // Source: projects_xxx_planning_checklists_xxx_full-checklist-tree
                 public partial class FullChecklistTreeClient
                 {
                     private readonly Connection _connection;
@@ -10588,7 +10033,6 @@ namespace SpaceDotNet.Client
             
             public IssueClient Issues => new IssueClient(_connection);
             
-            // Source: projects_xxx_planning_issues
             public partial class IssueClient
             {
                 private readonly Connection _connection;
@@ -10618,7 +10062,6 @@ namespace SpaceDotNet.Client
                 
                 public StatusClient Statuses => new StatusClient(_connection);
                 
-                // Source: projects_xxx_planning_issues_statuses
                 public partial class StatusClient
                 {
                     private readonly Connection _connection;
@@ -10636,7 +10079,6 @@ namespace SpaceDotNet.Client
                     
                     public DistributionClient Distribution => new DistributionClient(_connection);
                     
-                    // Source: projects_xxx_planning_issues_statuses_distribution
                     public partial class DistributionClient
                     {
                         private readonly Connection _connection;
@@ -10655,7 +10097,6 @@ namespace SpaceDotNet.Client
                 
                 public AttachmentClient Attachments => new AttachmentClient(_connection);
                 
-                // Source: projects_xxx_planning_issues_xxx_attachments
                 public partial class AttachmentClient
                 {
                     private readonly Connection _connection;
@@ -10675,7 +10116,6 @@ namespace SpaceDotNet.Client
                 
                 public ChecklistClient Checklists => new ChecklistClient(_connection);
                 
-                // Source: projects_xxx_planning_issues_xxx_checklists
                 public partial class ChecklistClient
                 {
                     private readonly Connection _connection;
@@ -10695,7 +10135,6 @@ namespace SpaceDotNet.Client
                 
                 public CommentClient Comments => new CommentClient(_connection);
                 
-                // Source: projects_xxx_planning_issues_xxx_comments
                 public partial class CommentClient
                 {
                     private readonly Connection _connection;
@@ -10712,7 +10151,6 @@ namespace SpaceDotNet.Client
                 
                 public TagClient Tags => new TagClient(_connection);
                 
-                // Source: projects_xxx_planning_issues_xxx_tags
                 public partial class TagClient
                 {
                     private readonly Connection _connection;
@@ -10734,7 +10172,6 @@ namespace SpaceDotNet.Client
             
             public TagClient Tags => new TagClient(_connection);
             
-            // Source: projects_xxx_planning_tags
             public partial class TagClient
             {
                 private readonly Connection _connection;
@@ -10756,7 +10193,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: public-holidays
     public partial class PublicHolidayClient
     {
         private readonly Connection _connection;
@@ -10768,7 +10204,6 @@ namespace SpaceDotNet.Client
         
         public CalendarClient Calendars => new CalendarClient(_connection);
         
-        // Source: public-holidays_calendars
         public partial class CalendarClient
         {
             private readonly Connection _connection;
@@ -10797,7 +10232,6 @@ namespace SpaceDotNet.Client
         
         public HolidayClient Holidays => new HolidayClient(_connection);
         
-        // Source: public-holidays_holidays
         public partial class HolidayClient
         {
             private readonly Connection _connection;
@@ -10821,7 +10255,6 @@ namespace SpaceDotNet.Client
             
             public RelatedHolidayClient RelatedHolidays => new RelatedHolidayClient(_connection);
             
-            // Source: public-holidays_holidays_related-holidays
             public partial class RelatedHolidayClient
             {
                 private readonly Connection _connection;
@@ -10840,7 +10273,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: team-directory
     public partial class TeamDirectoryClient
     {
         private readonly Connection _connection;
@@ -10852,7 +10284,6 @@ namespace SpaceDotNet.Client
         
         public CalendarEventClient CalendarEvents => new CalendarEventClient(_connection);
         
-        // Source: team-directory_calendar-events
         public partial class CalendarEventClient
         {
             private readonly Connection _connection;
@@ -10870,7 +10301,6 @@ namespace SpaceDotNet.Client
             
             public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
             
-            // Source: team-directory_calendar-events_absence-events
             public partial class AbsenceEventClient
             {
                 private readonly Connection _connection;
@@ -10887,7 +10317,6 @@ namespace SpaceDotNet.Client
             
             public BirthdayEventClient BirthdayEvents => new BirthdayEventClient(_connection);
             
-            // Source: team-directory_calendar-events_birthday-events
             public partial class BirthdayEventClient
             {
                 private readonly Connection _connection;
@@ -10902,7 +10331,6 @@ namespace SpaceDotNet.Client
                 
                 public StarredClient Starred => new StarredClient(_connection);
                 
-                // Source: team-directory_calendar-events_birthday-events_starred
                 public partial class StarredClient
                 {
                     private readonly Connection _connection;
@@ -10921,7 +10349,6 @@ namespace SpaceDotNet.Client
             
             public MeetingParticipationClient MeetingParticipations => new MeetingParticipationClient(_connection);
             
-            // Source: team-directory_calendar-events_meeting-participations
             public partial class MeetingParticipationClient
             {
                 private readonly Connection _connection;
@@ -10938,7 +10365,6 @@ namespace SpaceDotNet.Client
             
             public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
             
-            // Source: team-directory_calendar-events_membership-events
             public partial class MembershipEventClient
             {
                 private readonly Connection _connection;
@@ -10955,7 +10381,6 @@ namespace SpaceDotNet.Client
             
             public NonWorkingDaysEventClient NonWorkingDaysEvents => new NonWorkingDaysEventClient(_connection);
             
-            // Source: team-directory_calendar-events_non-working-days-events
             public partial class NonWorkingDaysEventClient
             {
                 private readonly Connection _connection;
@@ -10974,7 +10399,6 @@ namespace SpaceDotNet.Client
         
         public InvitationClient Invitations => new InvitationClient(_connection);
         
-        // Source: team-directory_invitations
         public partial class InvitationClient
         {
             private readonly Connection _connection;
@@ -11000,7 +10424,6 @@ namespace SpaceDotNet.Client
         
         public LanguageClient Languages => new LanguageClient(_connection);
         
-        // Source: team-directory_languages
         public partial class LanguageClient
         {
             private readonly Connection _connection;
@@ -11017,7 +10440,6 @@ namespace SpaceDotNet.Client
         
         public LocationEquipmentTypeClient LocationEquipmentTypes => new LocationEquipmentTypeClient(_connection);
         
-        // Source: team-directory_location-equipment-types
         public partial class LocationEquipmentTypeClient
         {
             private readonly Connection _connection;
@@ -11037,7 +10459,6 @@ namespace SpaceDotNet.Client
         
         public LocationClient Locations => new LocationClient(_connection);
         
-        // Source: team-directory_locations
         public partial class LocationClient
         {
             private readonly Connection _connection;
@@ -11070,7 +10491,6 @@ namespace SpaceDotNet.Client
             
             public MapClient Map => new MapClient(_connection);
             
-            // Source: team-directory_locations_xxx_map
             public partial class MapClient
             {
                 private readonly Connection _connection;
@@ -11088,7 +10508,6 @@ namespace SpaceDotNet.Client
                 
                 public MemberClient Members => new MemberClient(_connection);
                 
-                // Source: team-directory_locations_xxx_map_members
                 public partial class MemberClient
                 {
                     private readonly Connection _connection;
@@ -11109,7 +10528,6 @@ namespace SpaceDotNet.Client
         
         public LocationsWithTimezoneClient LocationsWithTimezone => new LocationsWithTimezoneClient(_connection);
         
-        // Source: team-directory_locations-with-timezone
         public partial class LocationsWithTimezoneClient
         {
             private readonly Connection _connection;
@@ -11126,7 +10544,6 @@ namespace SpaceDotNet.Client
         
         public ManagerCandidateClient ManagerCandidates => new ManagerCandidateClient(_connection);
         
-        // Source: team-directory_manager-candidates
         public partial class ManagerCandidateClient
         {
             private readonly Connection _connection;
@@ -11143,7 +10560,6 @@ namespace SpaceDotNet.Client
         
         public MemberLocationClient MemberLocations => new MemberLocationClient(_connection);
         
-        // Source: team-directory_member-locations
         public partial class MemberLocationClient
         {
             private readonly Connection _connection;
@@ -11167,7 +10583,6 @@ namespace SpaceDotNet.Client
             
             public PointClient Points => new PointClient(_connection);
             
-            // Source: team-directory_member-locations_xxx_points
             public partial class PointClient
             {
                 private readonly Connection _connection;
@@ -11192,7 +10607,6 @@ namespace SpaceDotNet.Client
         
         public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
         
-        // Source: team-directory_membership-events
         public partial class MembershipEventClient
         {
             private readonly Connection _connection;
@@ -11209,7 +10623,6 @@ namespace SpaceDotNet.Client
         
         public MembershipClient Memberships => new MembershipClient(_connection);
         
-        // Source: team-directory_memberships
         public partial class MembershipClient
         {
             private readonly Connection _connection;
@@ -11236,7 +10649,6 @@ namespace SpaceDotNet.Client
             
             public RequestClient Requests => new RequestClient(_connection);
             
-            // Source: team-directory_memberships_requests
             public partial class RequestClient
             {
                 private readonly Connection _connection;
@@ -11259,7 +10671,6 @@ namespace SpaceDotNet.Client
             
             public RequestRevokeClient RequestRevoke => new RequestRevokeClient(_connection);
             
-            // Source: team-directory_memberships_xxx_request-revoke
             public partial class RequestRevokeClient
             {
                 private readonly Connection _connection;
@@ -11278,7 +10689,6 @@ namespace SpaceDotNet.Client
         
         public ProfileClient Profiles => new ProfileClient(_connection);
         
-        // Source: team-directory_profiles
         public partial class ProfileClient
         {
             private readonly Connection _connection;
@@ -11320,7 +10730,6 @@ namespace SpaceDotNet.Client
             
             public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
             
-            // Source: team-directory_profiles_authentication-sessions
             public partial class AuthenticationSessionClient
             {
                 private readonly Connection _connection;
@@ -11335,7 +10744,6 @@ namespace SpaceDotNet.Client
                 
                 public MeClient Me => new MeClient(_connection);
                 
-                // Source: team-directory_profiles_authentication-sessions_me
                 public partial class MeClient
                 {
                     private readonly Connection _connection;
@@ -11354,7 +10762,6 @@ namespace SpaceDotNet.Client
             
             public MeClient Me => new MeClient(_connection);
             
-            // Source: team-directory_profiles_me
             public partial class MeClient
             {
                 private readonly Connection _connection;
@@ -11369,7 +10776,6 @@ namespace SpaceDotNet.Client
                 
                 public ChecklistClient Checklists => new ChecklistClient(_connection);
                 
-                // Source: team-directory_profiles_me_checklists
                 public partial class ChecklistClient
                 {
                     private readonly Connection _connection;
@@ -11399,7 +10805,6 @@ namespace SpaceDotNet.Client
                     
                     public StarredClient Starred => new StarredClient(_connection);
                     
-                    // Source: team-directory_profiles_me_checklists_starred
                     public partial class StarredClient
                     {
                         private readonly Connection _connection;
@@ -11416,7 +10821,6 @@ namespace SpaceDotNet.Client
                     
                     public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
                     
-                    // Source: team-directory_profiles_me_checklists_xxx_full-checklist-tree
                     public partial class FullChecklistTreeClient
                     {
                         private readonly Connection _connection;
@@ -11435,7 +10839,6 @@ namespace SpaceDotNet.Client
                 
                 public InfoClient Info => new InfoClient(_connection);
                 
-                // Source: team-directory_profiles_me_info
                 public partial class InfoClient
                 {
                     private readonly Connection _connection;
@@ -11450,7 +10853,6 @@ namespace SpaceDotNet.Client
                     
                     public DraftTypeClient DraftType => new DraftTypeClient(_connection);
                     
-                    // Source: team-directory_profiles_me_info_draft-type
                     public partial class DraftTypeClient
                     {
                         private readonly Connection _connection;
@@ -11467,7 +10869,6 @@ namespace SpaceDotNet.Client
                     
                     public FirstDayOfWeekClient FirstDayOfWeek => new FirstDayOfWeekClient(_connection);
                     
-                    // Source: team-directory_profiles_me_info_first-day-of-week
                     public partial class FirstDayOfWeekClient
                     {
                         private readonly Connection _connection;
@@ -11484,7 +10885,6 @@ namespace SpaceDotNet.Client
                     
                     public NavBarMenuItemClient NavBarMenuItems => new NavBarMenuItemClient(_connection);
                     
-                    // Source: team-directory_profiles_me_info_nav-bar-menu-items
                     public partial class NavBarMenuItemClient
                     {
                         private readonly Connection _connection;
@@ -11501,7 +10901,6 @@ namespace SpaceDotNet.Client
                     
                     public NavBarProjectClient NavBarProjects => new NavBarProjectClient(_connection);
                     
-                    // Source: team-directory_profiles_me_info_nav-bar-projects
                     public partial class NavBarProjectClient
                     {
                         private readonly Connection _connection;
@@ -11521,7 +10920,6 @@ namespace SpaceDotNet.Client
                     
                     public ThemeClient Theme => new ThemeClient(_connection);
                     
-                    // Source: team-directory_profiles_me_info_theme
                     public partial class ThemeClient
                     {
                         private readonly Connection _connection;
@@ -11542,7 +10940,6 @@ namespace SpaceDotNet.Client
             
             public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
             
-            // Source: team-directory_profiles_oauth-consents
             public partial class OAuthConsentClient
             {
                 private readonly Connection _connection;
@@ -11557,7 +10954,6 @@ namespace SpaceDotNet.Client
                 
                 public MeClient Me => new MeClient(_connection);
                 
-                // Source: team-directory_profiles_oauth-consents_me
                 public partial class MeClient
                 {
                     private readonly Connection _connection;
@@ -11569,7 +10965,6 @@ namespace SpaceDotNet.Client
                     
                     public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
                     
-                    // Source: team-directory_profiles_oauth-consents_me_approved-scopes
                     public partial class ApprovedScopeClient
                     {
                         private readonly Connection _connection;
@@ -11586,7 +10981,6 @@ namespace SpaceDotNet.Client
                     
                     public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
                     
-                    // Source: team-directory_profiles_oauth-consents_me_refresh-tokens
                     public partial class RefreshTokenClient
                     {
                         private readonly Connection _connection;
@@ -11607,7 +11001,6 @@ namespace SpaceDotNet.Client
             
             public LeadClient Leads => new LeadClient(_connection);
             
-            // Source: team-directory_profiles_xxx_leads
             public partial class LeadClient
             {
                 private readonly Connection _connection;
@@ -11624,7 +11017,6 @@ namespace SpaceDotNet.Client
             
             public PermanentTokenClient PermanentTokens => new PermanentTokenClient(_connection);
             
-            // Source: team-directory_profiles_xxx_permanent-tokens
             public partial class PermanentTokenClient
             {
                 private readonly Connection _connection;
@@ -11650,7 +11042,6 @@ namespace SpaceDotNet.Client
             
             public SpokenLanguageClient SpokenLanguages => new SpokenLanguageClient(_connection);
             
-            // Source: team-directory_profiles_xxx_spoken-languages
             public partial class SpokenLanguageClient
             {
                 private readonly Connection _connection;
@@ -11670,7 +11061,6 @@ namespace SpaceDotNet.Client
             
             public VcsPasswordClient VcsPassword => new VcsPasswordClient(_connection);
             
-            // Source: team-directory_profiles_xxx_vcs-password
             public partial class VcsPasswordClient
             {
                 private readonly Connection _connection;
@@ -11693,7 +11083,6 @@ namespace SpaceDotNet.Client
             
             public WorkingDayClient WorkingDays => new WorkingDayClient(_connection);
             
-            // Source: team-directory_profiles_xxx_working-days
             public partial class WorkingDayClient
             {
                 private readonly Connection _connection;
@@ -11721,7 +11110,6 @@ namespace SpaceDotNet.Client
         
         public ReportingClient Reportings => new ReportingClient(_connection);
         
-        // Source: team-directory_reportings
         public partial class ReportingClient
         {
             private readonly Connection _connection;
@@ -11738,7 +11126,6 @@ namespace SpaceDotNet.Client
         
         public RoleClient Roles => new RoleClient(_connection);
         
-        // Source: team-directory_roles
         public partial class RoleClient
         {
             private readonly Connection _connection;
@@ -11770,7 +11157,6 @@ namespace SpaceDotNet.Client
         
         public StatClient Stats => new StatClient(_connection);
         
-        // Source: team-directory_stats
         public partial class StatClient
         {
             private readonly Connection _connection;
@@ -11787,7 +11173,6 @@ namespace SpaceDotNet.Client
         
         public TeamClient Teams => new TeamClient(_connection);
         
-        // Source: team-directory_teams
         public partial class TeamClient
         {
             private readonly Connection _connection;
@@ -11830,7 +11215,6 @@ namespace SpaceDotNet.Client
             
             public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
             
-            // Source: team-directory_teams_xxx_direct-members
             public partial class DirectMemberClient
             {
                 private readonly Connection _connection;
@@ -11849,7 +11233,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: todo
     public partial class ToDoItemClient
     {
         private readonly Connection _connection;
@@ -11873,7 +11256,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: trusted-certificates
     public partial class TrustedCertificateClient
     {
         private readonly Connection _connection;
@@ -11900,7 +11282,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: uploads
     public partial class UploadClient
     {
         private readonly Connection _connection;
@@ -11915,7 +11296,6 @@ namespace SpaceDotNet.Client
         
         public ImageClient Image => new ImageClient(_connection);
         
-        // Source: uploads_image
         public partial class ImageClient
         {
             private readonly Connection _connection;
@@ -11932,7 +11312,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: AddAdministratorRequest
     public class AddAdministratorRequestDto
     {
         [Required]
@@ -11941,7 +11320,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: AddAttachmentsRequest
     public class AddAttachmentsRequestDto
     {
         [Required]
@@ -11950,7 +11328,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: AddResponsibilityRequest
     public class AddResponsibilityRequestDto
     {
         [Required]
@@ -11966,7 +11343,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: AddResponsibilitySubjectRequest
     public class AddResponsibilitySubjectRequestDto
     {
         [JsonPropertyName("name")]
@@ -11974,7 +11350,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: AddRevisionsToReviewRequest
     public class AddRevisionsToReviewRequestDto
     {
         [Required]
@@ -11983,7 +11358,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: AddWorkingDaysRequest
     public class AddWorkingDaysRequestDto
     {
         [JsonPropertyName("dateStart")]
@@ -11998,7 +11372,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ApproveAbsenceRequest
     public class ApproveAbsenceRequestDto
     {
         [Required]
@@ -12007,7 +11380,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: AssignResponsibleRequest
     public class AssignResponsibleRequestDto
     {
         [JsonPropertyName("role")]
@@ -12015,7 +11387,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ChangeRequest
     public class ChangeRequestDto
     {
         [Required]
@@ -12028,7 +11399,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ConvertMarkdownToHTMLRequest
     public class ConvertMarkdownToHTMLRequestDto
     {
         [Required]
@@ -12037,7 +11407,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateAbsenceReasonRequest
     public class CreateAbsenceReasonRequestDto
     {
         [Required]
@@ -12061,7 +11430,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateAbsenceRequest
     public class CreateAbsenceRequestDto
     {
         [Required]
@@ -12100,7 +11468,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateArticleRequest
     public class CreateArticleRequestDto
     {
         [Required]
@@ -12128,7 +11495,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateAuthModuleRequest
     public class CreateAuthModuleRequestDto
     {
         [Required]
@@ -12149,7 +11515,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateCalendarRequest
     public class CreateCalendarRequestDto
     {
         [Required]
@@ -12162,7 +11527,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateCodeDiscussionRequest
     public class CreateCodeDiscussionRequestDto
     {
         [Required]
@@ -12187,7 +11551,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateCommitSetReviewRequest
     public class CreateCommitSetReviewRequestDto
     {
         [Required]
@@ -12199,7 +11562,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateDraftRequest
     public class CreateDraftRequestDto
     {
         [JsonPropertyName("title")]
@@ -12220,7 +11582,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateFieldRequest
     public class CreateFieldRequestDto
     {
         [Required]
@@ -12255,7 +11616,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateHierarchicalTagRequest
     public class CreateHierarchicalTagRequestDto
     {
         [JsonPropertyName("parentTagId")]
@@ -12267,7 +11627,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateHolidayRequest
     public class CreateHolidayRequestDto
     {
         [Required]
@@ -12288,7 +11647,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateImportSourceRequest
     public class CreateImportSourceRequestDto
     {
         [Required]
@@ -12300,7 +11658,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateInvitationRequest
     public class CreateInvitationRequestDto
     {
         [Required]
@@ -12321,7 +11678,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateIssueRequest
     public class CreateIssueRequestDto
     {
         [Required]
@@ -12357,7 +11713,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateLocationRequest
     public class CreateLocationRequestDto
     {
         [Required]
@@ -12393,7 +11748,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateMemberLocationRequest
     public class CreateMemberLocationRequestDto
     {
         [Required]
@@ -12415,7 +11769,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateMembershipRequest
     public class CreateMembershipRequestDto
     {
         [Required]
@@ -12461,7 +11814,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateMergeRequestRequest
     public class CreateMergeRequestRequestDto
     {
         [Required]
@@ -12478,7 +11830,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateNavBarProjectRequest
     public class CreateNavBarProjectRequestDto
     {
         [Required]
@@ -12487,7 +11838,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreatePermanentTokenRequest
     public class CreatePermanentTokenRequestDto
     {
         [Required]
@@ -12500,7 +11850,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreatePointRequest
     public class CreatePointRequestDto
     {
         [Required]
@@ -12517,7 +11866,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateProfileRequest
     public class CreateProfileRequestDto
     {
         [Required]
@@ -12576,7 +11924,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateProjectRequest
     public class CreateProjectRequestDto
     {
         [Required]
@@ -12600,7 +11947,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateRoleRequest
     public class CreateRoleRequestDto
     {
         [Required]
@@ -12612,7 +11958,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateSubscriptionRequest
     public class CreateSubscriptionRequestDto
     {
         [JsonPropertyName("locationId")]
@@ -12626,7 +11971,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateTeamRequest
     public class CreateTeamRequestDto
     {
         [Required]
@@ -12647,7 +11991,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateToDoItemRequest
     public class CreateToDoItemRequestDto
     {
         [Required]
@@ -12659,7 +12002,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateTrustedCertificateRequest
     public class CreateTrustedCertificateRequestDto
     {
         [Required]
@@ -12676,7 +12018,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: CreateUploadRequest
     public class CreateUploadRequestDto
     {
         [Required]
@@ -12688,7 +12029,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: DeleteRequest
     public class DeleteRequestDto
     {
         [Required]
@@ -12697,7 +12037,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: EditReviewParticipantRequest
     public class EditReviewParticipantRequestDto
     {
         [Required]
@@ -12706,7 +12045,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: EditReviewStateRequest
     public class EditReviewStateRequestDto
     {
         [Required]
@@ -12715,7 +12053,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: EditReviewTitleRequest
     public class EditReviewTitleRequestDto
     {
         [Required]
@@ -12724,7 +12061,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: GetAllCodeDiscussionsByChangeRequest
     public class GetAllCodeDiscussionsByChangeRequestDto
     {
         [Required]
@@ -12745,7 +12081,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ImportChecklistLinesRequest
     public class ImportChecklistLinesRequestDto
     {
         [Required]
@@ -12761,7 +12096,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ImportChecklistRequest
     public class ImportChecklistRequestDto
     {
         [Required]
@@ -12774,7 +12108,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ImportIssueCommentHistoryRequest
     public class ImportIssueCommentHistoryRequestDto
     {
         [Required]
@@ -12783,7 +12116,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ImportMessageHistoryRequest
     public class ImportMessageHistoryRequestDto
     {
         [Required]
@@ -12792,7 +12124,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ImportRequest
     public class ImportRequestDto
     {
         [Required]
@@ -12805,7 +12136,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: IsNameFreeRequest
     public class IsNameFreeRequestDto
     {
         [Required]
@@ -12814,7 +12144,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: PushCommitStatusRequest
     public class PushCommitStatusRequestDto
     {
         [JsonPropertyName("branch")]
@@ -12851,7 +12180,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ReorderRequest
     public class ReorderRequestDto
     {
         [Required]
@@ -12860,7 +12188,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: RestoreMultipleRequest
     public class RestoreMultipleRequestDto
     {
         [Required]
@@ -12869,7 +12196,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: SamlMetadataRequest
     public class SamlMetadataRequestDto
     {
         [Required]
@@ -12896,7 +12222,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: SendMessageRequest
     public class SendMessageRequestDto
     {
         [Required]
@@ -12916,7 +12241,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: TestBuiltInSettingsRequest
     public class TestBuiltInSettingsRequestDto
     {
         [Required]
@@ -12933,7 +12257,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: TestLDAPSettingsRequest
     public class TestLDAPSettingsRequestDto
     {
         [Required]
@@ -12950,7 +12273,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: ToggleIssueResolvedRequest
     public class ToggleIssueResolvedRequestDto
     {
         [Required]
@@ -12959,7 +12281,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: TrackTagAccessRequest
     public class TrackTagAccessRequestDto
     {
         [Required]
@@ -12968,7 +12289,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateAbsenceRequest
     public class UpdateAbsenceRequestDto
     {
         [JsonPropertyName("member")]
@@ -13001,7 +12321,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateAuthModuleRequest
     public class UpdateAuthModuleRequestDto
     {
         [JsonPropertyName("key")]
@@ -13018,7 +12337,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateChecklistRequest
     public class UpdateChecklistRequestDto
     {
         [JsonPropertyName("name")]
@@ -13029,7 +12347,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateDraftRequest
     public class UpdateDraftRequestDto
     {
         [JsonPropertyName("title")]
@@ -13049,7 +12366,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateDraftTypeRequest
     public class UpdateDraftTypeRequestDto
     {
         [Required]
@@ -13058,7 +12374,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateFieldRequest
     public class UpdateFieldRequestDto
     {
         [JsonPropertyName("name")]
@@ -13087,7 +12402,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateFirstDayOfWeekRequest
     public class UpdateFirstDayOfWeekRequestDto
     {
         [Required]
@@ -13096,7 +12410,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateHolidayRequest
     public class UpdateHolidayRequestDto
     {
         [JsonPropertyName("calendar")]
@@ -13113,7 +12426,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateImportSourceRequest
     public class UpdateImportSourceRequestDto
     {
         [JsonPropertyName("name")]
@@ -13124,7 +12436,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateInvitationRequest
     public class UpdateInvitationRequestDto
     {
         [JsonPropertyName("inviteeEmail")]
@@ -13144,7 +12455,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateIssueRequest
     public class UpdateIssueRequestDto
     {
         [JsonPropertyName("title")]
@@ -13167,7 +12477,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateLocationRequest
     public class UpdateLocationRequestDto
     {
         [JsonPropertyName("name")]
@@ -13208,7 +12517,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateMapRequest
     public class UpdateMapRequestDto
     {
         [Required]
@@ -13217,7 +12525,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateMeetingParticipationRequest
     public class UpdateMeetingParticipationRequestDto
     {
         [Required]
@@ -13226,7 +12533,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateMemberLocationRequest
     public class UpdateMemberLocationRequestDto
     {
         [JsonPropertyName("member")]
@@ -13246,7 +12552,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateMembershipRequest
     public class UpdateMembershipRequestDto
     {
         [JsonPropertyName("memberId")]
@@ -13288,7 +12593,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateNavBarMenuItemRequest
     public class UpdateNavBarMenuItemRequestDto
     {
         [Required]
@@ -13301,7 +12605,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateParameterRequest
     public class UpdateParameterRequestDto
     {
         [Required]
@@ -13314,7 +12617,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdatePermanentTokenRequest
     public class UpdatePermanentTokenRequestDto
     {
         [JsonPropertyName("name")]
@@ -13325,7 +12627,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdatePointRequest
     public class UpdatePointRequestDto
     {
         [JsonPropertyName("x")]
@@ -13339,7 +12640,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateProfileRequest
     public class UpdateProfileRequestDto
     {
         [JsonPropertyName("username")]
@@ -13395,7 +12695,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateProjectRequest
     public class UpdateProjectRequestDto
     {
         [JsonPropertyName("key")]
@@ -13418,7 +12717,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateRequestRequest
     public class UpdateRequestRequestDto
     {
         [Required]
@@ -13427,7 +12725,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateRequestRevokeRequest
     public class UpdateRequestRevokeRequestDto
     {
         [Required]
@@ -13436,7 +12733,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateResponsibilityRequest
     public class UpdateResponsibilityRequestDto
     {
         [Required]
@@ -13448,7 +12744,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateRoleRequest
     public class UpdateRoleRequestDto
     {
         [JsonPropertyName("name")]
@@ -13459,7 +12754,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateSpokenLanguageRequest
     public class UpdateSpokenLanguageRequestDto
     {
         [Required]
@@ -13474,7 +12768,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateStatusRequest
     public class UpdateStatusRequestDto
     {
         [Required]
@@ -13483,7 +12776,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateSubscriptionRequest
     public class UpdateSubscriptionRequestDto
     {
         [JsonPropertyName("locationId")]
@@ -13497,7 +12789,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateTeamRequest
     public class UpdateTeamRequestDto
     {
         [JsonPropertyName("teamNameRaw")]
@@ -13517,7 +12808,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateThemeRequest
     public class UpdateThemeRequestDto
     {
         [JsonPropertyName("themeName")]
@@ -13525,7 +12815,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateToDoItemRequest
     public class UpdateToDoItemRequestDto
     {
         [JsonPropertyName("text")]
@@ -13539,7 +12828,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateTrustedCertificateRequest
     public class UpdateTrustedCertificateRequestDto
     {
         [JsonPropertyName("alias")]
@@ -13553,7 +12841,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateValueRequest
     public class UpdateValueRequestDto
     {
         [Required]
@@ -13562,7 +12849,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateVcsPasswordRequest
     public class UpdateVcsPasswordRequestDto
     {
         [Required]
@@ -13571,7 +12857,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    // Source: UpdateWorkingDaysRequest
     public class UpdateWorkingDaysRequestDto
     {
         [JsonPropertyName("profile")]
