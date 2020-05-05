@@ -585,11 +585,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 AppendParameterList(apiEndpoint);
 
                 Builder.AppendLine(")");
-                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync");
+                Indent.Increment();
+                Builder.Append($"{Indent}=> await _connection.RequestResourceAsync");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
                 AppendRequestParameterList(apiEndpoint);
                 Builder.Append("\");");
+                Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody != null)
@@ -602,7 +604,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 AppendParameterList(apiEndpoint);
                 
                 Builder.AppendLine(")");
-                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync<");
+                Indent.Increment();
+                Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
@@ -611,6 +614,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")));");
+                Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody == null)
@@ -627,13 +631,15 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(" data");
                 
                 Builder.AppendLine(")");
-                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync<");
+                Indent.Increment();
+                Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
                 AppendRequestParameterList(apiEndpoint);
                 Builder.Append("\", data);");
+                Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody != null)
@@ -652,7 +658,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(" data");
                 
                 Builder.AppendLine(")");
-                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync<");
+                Indent.Increment();
+                Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(", ");
                 Visit(apiEndpoint.ResponseBody);
@@ -663,6 +670,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(")), data);");
+                Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
             else
