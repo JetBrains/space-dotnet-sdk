@@ -25,10 +25,10 @@ namespace SpaceDotNet.Generator
                 "GET", "api/http/http-api-model?$fields=dto(id,deprecation,extends,fields,hierarchyRole,implements,inheritors,name,record),enums(id,deprecation,name,values),resources(id,displayPlural,displaySingular,endpoints,nestedResources!,parentResource,path)");
             
             // Build code
-            var apiModelCodeBuilder = new StringBuilder();
-            var apiModelVisitor = new CSharpApiModelVisitor(apiModelCodeBuilder);
-            apiModelVisitor.Visit(apiModel);
-            File.WriteAllText("../../../../SpaceDotNet.Client/Space.generated.cs", apiModelCodeBuilder.ToString());
+            var csharpCodeBuilder = new StringBuilder();
+            var csharpApiModelVisitor = new CSharpApiModelVisitor(csharpCodeBuilder);
+            csharpApiModelVisitor.Visit(apiModel);
+            File.WriteAllText("../../../../SpaceDotNet.Client/Space.generated.cs", csharpCodeBuilder.ToString());
         }
     }
 }
