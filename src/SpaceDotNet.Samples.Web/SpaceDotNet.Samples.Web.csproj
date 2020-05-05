@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\SpaceDotNet.AspNetCore.Authentication.Space\SpaceDotNet.AspNetCore.Authentication.Space.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.AspNetCore\SpaceDotNet.AspNetCore.csproj" />
       <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
       <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
     </ItemGroup>

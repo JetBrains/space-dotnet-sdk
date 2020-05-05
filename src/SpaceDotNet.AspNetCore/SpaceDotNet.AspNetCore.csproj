@@ -3,8 +3,8 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.0</TargetFramework>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Description>Authentication provider for JetBrains Space.</Description>
-        <PackageTags>JetBrains;JetBrains Space;security;authentication;aspnetcore</PackageTags>
+        <Description>Utilities to work with SpaceDotNet, the JetBrains Space SDK for .NET, in ASP.NET Core.</Description>
+        <PackageTags>JetBrains;JetBrains Space;aspnetcore</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
@@ -13,8 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\SpaceDotNet.AspNetCore\SpaceDotNet.AspNetCore.csproj" />
-      <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
     </ItemGroup>
 
 </Project>
