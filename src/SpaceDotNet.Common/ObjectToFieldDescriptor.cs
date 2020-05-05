@@ -3,30 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text.Json.Serialization;
-using System.Web;
 using JetBrains.Annotations;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Common
 {
-    public static class QueryStringHelper
-    {
-        public static string Nullable(string queryString)
-        {
-            var queryStringCollection = HttpUtility.ParseQueryString(queryString);
-            foreach (var key in queryStringCollection.AllKeys)
-            {
-                if (string.IsNullOrEmpty(queryStringCollection[key]))
-                {
-                    queryStringCollection.Remove(key);
-                }
-            }
-
-            // ReSharper disable once AssignNullToNotNullAttribute
-            return queryStringCollection.ToString() ?? string.Empty;
-        }
-    }
-
     [PublicAPI]
     public static class ObjectToFieldDescriptor
     {
