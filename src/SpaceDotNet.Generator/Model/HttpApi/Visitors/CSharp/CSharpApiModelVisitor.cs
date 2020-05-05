@@ -584,7 +584,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             
                 AppendParameterList(apiEndpoint);
 
-                Builder.Append(") => await _connection.RequestResourceAsync");
+                Builder.AppendLine(")");
+                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
                 AppendRequestParameterList(apiEndpoint);
@@ -600,7 +601,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             
                 AppendParameterList(apiEndpoint);
                 
-                Builder.Append(") => await _connection.RequestResourceAsync<");
+                Builder.AppendLine(")");
+                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
@@ -624,7 +626,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(" data");
                 
-                Builder.Append(") => await _connection.RequestResourceAsync<");
+                Builder.AppendLine(")");
+                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
@@ -648,7 +651,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(" data");
                 
-                Builder.Append(") => await _connection.RequestResourceAsync<");
+                Builder.AppendLine(")");
+                Builder.Append($"{Indent}{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(", ");
                 Visit(apiEndpoint.ResponseBody);

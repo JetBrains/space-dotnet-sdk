@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-05T06:42:15.2944316+00:00
+//     Generated: 2020-05-05T12:35:47.0240423+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -8934,21 +8934,29 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<AbsenceRecordDto> CreateAbsence(CreateAbsenceRequestDto data) => await _connection.RequestResourceAsync<CreateAbsenceRequestDto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
+        public async Task<AbsenceRecordDto> CreateAbsence(CreateAbsenceRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateAbsenceRequestDto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
         
-        public async Task ApproveAbsence(string id, ApproveAbsenceRequestDto data) => await _connection.RequestResourceAsync<ApproveAbsenceRequestDto>("POST", $"api/http/absences/{id}/approve", data);        
+        public async Task ApproveAbsence(string id, ApproveAbsenceRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ApproveAbsenceRequestDto>("POST", $"api/http/absences/{id}/approve", data);        
         
-        public async Task<Batch<AbsenceRecordDto>> GetAllAbsences(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null) => await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<AbsenceRecordDto>)));        
+        public async Task<Batch<AbsenceRecordDto>> GetAllAbsences(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<AbsenceRecordDto>)));        
         
-        public async Task<List<AbsenceRecordDto>> GetAllAbsencesByMember(string member) => await _connection.RequestResourceAsync<List<AbsenceRecordDto>>("GET", $"api/http/absences/member:{member}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceRecordDto>)));        
+        public async Task<List<AbsenceRecordDto>> GetAllAbsencesByMember(string member)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<AbsenceRecordDto>>("GET", $"api/http/absences/member:{member}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceRecordDto>)));        
         
-        public async Task<AbsenceRecordDto> GetAbsence(string id) => await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)));        
+        public async Task<AbsenceRecordDto> GetAbsence(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)));        
         
-        public async Task<AbsenceRecordDto> UpdateAbsence(string id, UpdateAbsenceRequestDto data) => await _connection.RequestResourceAsync<UpdateAbsenceRequestDto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
+        public async Task<AbsenceRecordDto> UpdateAbsence(string id, UpdateAbsenceRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateAbsenceRequestDto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceRecordDto)), data);        
         
-        public async Task DeleteAbsence(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}");        
+        public async Task DeleteAbsence(string id, bool delete)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}");        
         
-        public async Task DeleteAbsenceApproval(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");        
+        public async Task DeleteAbsenceApproval(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");        
         
         public AbsenceReasonClient AbsenceReasons => new AbsenceReasonClient(_connection);
         
@@ -8962,15 +8970,20 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<AbsenceReasonRecordDto> CreateAbsenceReason(CreateAbsenceReasonRequestDto data) => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);            
+            public async Task<AbsenceReasonRecordDto> CreateAbsenceReason(CreateAbsenceReasonRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);            
             
-            public async Task<AbsenceReasonRecordDto> CreateAbsenceReason(string id, CreateAbsenceReasonRequestDto data) => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);            
+            public async Task<AbsenceReasonRecordDto> CreateAbsenceReason(string id, CreateAbsenceReasonRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)), data);            
             
-            public async Task<List<AbsenceReasonRecordDto>> GetAllAbsenceReasons(bool withArchived) => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceReasonRecordDto>)));            
+            public async Task<List<AbsenceReasonRecordDto>> GetAllAbsenceReasons(bool withArchived)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceReasonRecordDto>)));            
             
-            public async Task<AbsenceReasonRecordDto> GetAbsenceReason(string id) => await _connection.RequestResourceAsync<AbsenceReasonRecordDto>("GET", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)));            
+            public async Task<AbsenceReasonRecordDto> GetAbsenceReason(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AbsenceReasonRecordDto>("GET", $"api/http/absences/absence-reasons/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(AbsenceReasonRecordDto)));            
             
-            public async Task DeleteAbsenceReason(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}");            
+            public async Task DeleteAbsenceReason(string id, bool delete)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}");            
             
         }
         
@@ -8986,13 +8999,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DTOAbsenceSubscriptionDto> CreateSubscription(CreateSubscriptionRequestDto data) => await _connection.RequestResourceAsync<CreateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);            
+            public async Task<DTOAbsenceSubscriptionDto> CreateSubscription(CreateSubscriptionRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);            
             
-            public async Task<List<DTOAbsenceSubscriptionDto>> GetAllSubscriptions() => await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<DTOAbsenceSubscriptionDto>)));            
+            public async Task<List<DTOAbsenceSubscriptionDto>> GetAllSubscriptions()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<DTOAbsenceSubscriptionDto>)));            
             
-            public async Task<DTOAbsenceSubscriptionDto> UpdateSubscription(string id, UpdateSubscriptionRequestDto data) => await _connection.RequestResourceAsync<UpdateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);            
+            public async Task<DTOAbsenceSubscriptionDto> UpdateSubscription(string id, UpdateSubscriptionRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTOAbsenceSubscriptionDto)), data);            
             
-            public async Task DeleteSubscription(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");            
+            public async Task DeleteSubscription(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");            
             
         }
         
@@ -9020,7 +9037,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<SupportProfileDTODto> CreateSupport() => await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SupportProfileDTODto)));            
+            public async Task<SupportProfileDTODto> CreateSupport()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SupportProfileDTODto)));            
             
         }
         
@@ -9036,19 +9054,26 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ESAuthModuleDto> CreateAuthModule(CreateAuthModuleRequestDto data) => await _connection.RequestResourceAsync<CreateAuthModuleRequestDto, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)), data);        
+        public async Task<ESAuthModuleDto> CreateAuthModule(CreateAuthModuleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateAuthModuleRequestDto, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)), data);        
         
-        public async Task Reorder(ReorderRequestDto data) => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/auth-modules/reorder", data);        
+        public async Task Reorder(ReorderRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/auth-modules/reorder", data);        
         
-        public async Task<SamlMetadataResponseDto> SamlMetadata(string id, SamlMetadataRequestDto data) => await _connection.RequestResourceAsync<SamlMetadataRequestDto, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SamlMetadataResponseDto)), data);        
+        public async Task<SamlMetadataResponseDto> SamlMetadata(string id, SamlMetadataRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<SamlMetadataRequestDto, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(SamlMetadataResponseDto)), data);        
         
-        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled) => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthModuleDto>)));        
+        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthModuleDto>)));        
         
-        public async Task<ESAuthModuleDto> GetAuthModuleByKey(string key) => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)));        
+        public async Task<ESAuthModuleDto> GetAuthModuleByKey(string key)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)));        
         
-        public async Task UpdateAuthModule(string id, UpdateAuthModuleRequestDto data) => await _connection.RequestResourceAsync<UpdateAuthModuleRequestDto>("PATCH", $"api/http/auth-modules/{id}", data);        
+        public async Task UpdateAuthModule(string id, UpdateAuthModuleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateAuthModuleRequestDto>("PATCH", $"api/http/auth-modules/{id}", data);        
         
-        public async Task DeleteAuthModule(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}");        
+        public async Task DeleteAuthModule(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}");        
         
         public TestClient Test => new TestClient(_connection);
         
@@ -9062,9 +9087,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMemberProfileDto> TestBuiltInSettings(TestBuiltInSettingsRequestDto data) => await _connection.RequestResourceAsync<TestBuiltInSettingsRequestDto, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
+            public async Task<TDMemberProfileDto> TestBuiltInSettings(TestBuiltInSettingsRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TestBuiltInSettingsRequestDto, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
             
-            public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettings(TestLDAPSettingsRequestDto data) => await _connection.RequestResourceAsync<TestLDAPSettingsRequestDto, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESDefaultProfileLoginDetailsDto)), data);            
+            public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettings(TestLDAPSettingsRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TestLDAPSettingsRequestDto, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESDefaultProfileLoginDetailsDto)), data);            
             
         }
         
@@ -9080,7 +9107,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<AuthModuleUsageDto>> GetAllUsages() => await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AuthModuleUsageDto>)));            
+            public async Task<List<AuthModuleUsageDto>> GetAllUsages()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AuthModuleUsageDto>)));            
             
         }
         
@@ -9096,11 +9124,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task Change(string id, string identifier, ChangeRequestDto data) => await _connection.RequestResourceAsync<ChangeRequestDto>("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);            
+            public async Task Change(string id, string identifier, ChangeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ChangeRequestDto>("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);            
             
-            public async Task Reset(string id, string identifier) => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset");            
+            public async Task Reset(string id, string identifier)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset");            
             
-            public async Task DeleteLogin(string identifier, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}");            
+            public async Task DeleteLogin(string identifier, string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}");            
             
         }
         
@@ -9140,11 +9171,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<string> GetParameter(long id, string key) => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)));                
+                public async Task<string> GetParameter(long id, string key)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)));                
                 
-                public async Task UpdateParameter(long id, UpdateParameterRequestDto data) => await _connection.RequestResourceAsync<UpdateParameterRequestDto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);                
+                public async Task UpdateParameter(long id, UpdateParameterRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateParameterRequestDto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);                
                 
-                public async Task DeleteParameter(long id, string key) => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");                
+                public async Task DeleteParameter(long id, string key)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");                
                 
             }
             
@@ -9162,7 +9196,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> ConvertMarkdownToHTML(ConvertMarkdownToHTMLRequestDto data) => await _connection.RequestResourceAsync<ConvertMarkdownToHTMLRequestDto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
+        public async Task<string> ConvertMarkdownToHTML(ConvertMarkdownToHTMLRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ConvertMarkdownToHTMLRequestDto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
         
         public ArticleClient Articles => new ArticleClient(_connection);
         
@@ -9176,13 +9211,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ArticleRecordDto> CreateArticle(CreateArticleRequestDto data) => await _connection.RequestResourceAsync<CreateArticleRequestDto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);            
+            public async Task<ArticleRecordDto> CreateArticle(CreateArticleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateArticleRequestDto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)), data);            
             
-            public async Task<Batch<ArticleRecordDto>> GetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null) => await _connection.RequestResourceAsync<Batch<ArticleRecordDto>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ArticleRecordDto>)));            
+            public async Task<Batch<ArticleRecordDto>> GetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<ArticleRecordDto>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ArticleRecordDto>)));            
             
-            public async Task<ArticleRecordDto> GetArticleByAlias(string alias) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));            
+            public async Task<ArticleRecordDto> GetArticleByAlias(string alias)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));            
             
-            public async Task<ArticleRecordDto> GetArticle(string id) => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));            
+            public async Task<ArticleRecordDto> GetArticle(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ArticleRecordDto)));            
             
             public DraftClient Drafts => new DraftClient(_connection);
             
@@ -9196,11 +9235,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<BGArticleIdDto> PublishArticle(string draftId) => await _connection.RequestResourceAsync<BGArticleIdDto>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGArticleIdDto)));                
+                public async Task<BGArticleIdDto> PublishArticle(string draftId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<BGArticleIdDto>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGArticleIdDto)));                
                 
-                public async Task<DRDraftIdDto> GetDraftByArticleId(string articleId) => await _connection.RequestResourceAsync<DRDraftIdDto>("GET", $"api/http/blogs/articles/drafts/article-id:{articleId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftIdDto)));                
+                public async Task<DRDraftIdDto> GetDraftByArticleId(string articleId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<DRDraftIdDto>("GET", $"api/http/blogs/articles/drafts/article-id:{articleId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftIdDto)));                
                 
-                public async Task UnpublishArticle(string draftId) => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish");                
+                public async Task UnpublishArticle(string draftId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish");                
                 
             }
             
@@ -9218,7 +9260,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<BGDatesDto> GetDates() => await _connection.RequestResourceAsync<BGDatesDto>("GET", $"api/http/blogs/dates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGDatesDto)));            
+            public async Task<BGDatesDto> GetDates()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<BGDatesDto>("GET", $"api/http/blogs/dates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGDatesDto)));            
             
         }
         
@@ -9234,7 +9277,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<BGStatsDto> GetStats(SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null) => await _connection.RequestResourceAsync<BGStatsDto>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGStatsDto)));            
+            public async Task<BGStatsDto> GetStats(SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<BGStatsDto>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(BGStatsDto)));            
             
         }
         
@@ -9262,15 +9306,20 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<bool> IsNameFree(IsNameFreeRequestDto data) => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);            
+            public async Task<bool> IsNameFree(IsNameFreeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);            
             
-            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data) => await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);            
+            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);            
             
-            public async Task RestoreArchivedChannel(string channelId) => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");            
+            public async Task RestoreArchivedChannel(string channelId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");            
             
-            public async Task DeleteChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");            
+            public async Task DeleteChannel(string channelId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");            
             
-            public async Task ArchiveChannel(string channelId) => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");            
+            public async Task ArchiveChannel(string channelId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");            
             
             public MessageClient Messages => new MessageClient(_connection);
             
@@ -9284,7 +9333,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task SendMessage(string channelId, SendMessageRequestDto data) => await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/channels/{channelId}/messages", data);                
+                public async Task SendMessage(string channelId, SendMessageRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/channels/{channelId}/messages", data);                
                 
             }
             
@@ -9303,7 +9353,8 @@ namespace SpaceDotNet.Client
             }
             
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17)")]            
-            public async Task SendMessage(SendMessageRequestDto data) => await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/messages/send", data);            
+            public async Task SendMessage(SendMessageRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/messages/send", data);            
             
         }
         
@@ -9331,7 +9382,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<ExtendedTypeDto>> GetAllExtendedTypes() => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ExtendedTypeDto>)));            
+            public async Task<List<ExtendedTypeDto>> GetAllExtendedTypes()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ExtendedTypeDto>)));            
             
         }
         
@@ -9347,7 +9399,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValues(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null) => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CustomFieldsRecordDto>)));            
+            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValues(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CustomFieldsRecordDto>)));            
             
         }
         
@@ -9363,19 +9416,26 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<CustomFieldDto> CreateField(string typeKey, CreateFieldRequestDto data) => await _connection.RequestResourceAsync<CreateFieldRequestDto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);            
+            public async Task<CustomFieldDto> CreateField(string typeKey, CreateFieldRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateFieldRequestDto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldDto)), data);            
             
-            public async Task Reorder(string typeKey, ReorderRequestDto data) => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);            
+            public async Task Reorder(string typeKey, ReorderRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);            
             
-            public async Task Archive(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");            
+            public async Task Archive(string typeKey, string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");            
             
-            public async Task Restore(string typeKey, string id) => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/restore");            
+            public async Task Restore(string typeKey, string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/restore");            
             
-            public async Task<List<CustomFieldDto>> GetAllFields(string typeKey, bool withArchived) => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));            
+            public async Task<List<CustomFieldDto>> GetAllFields(string typeKey, bool withArchived)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CustomFieldDto>)));            
             
-            public async Task UpdateField(string typeKey, string id, UpdateFieldRequestDto data) => await _connection.RequestResourceAsync<UpdateFieldRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);            
+            public async Task UpdateField(string typeKey, string id, UpdateFieldRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateFieldRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);            
             
-            public async Task DeleteField(string typeKey, string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");            
+            public async Task DeleteField(string typeKey, string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");            
             
         }
         
@@ -9391,9 +9451,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<CustomFieldsRecordDto> GetValue(string typeKey, string entityId) => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldsRecordDto)));            
+            public async Task<CustomFieldsRecordDto> GetValue(string typeKey, string entityId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CustomFieldsRecordDto)));            
             
-            public async Task UpdateValue(string entityId, string typeKey, UpdateValueRequestDto data) => await _connection.RequestResourceAsync<UpdateValueRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);            
+            public async Task UpdateValue(string entityId, string typeKey, UpdateValueRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateValueRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);            
             
         }
         
@@ -9421,13 +9483,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DRDraftDto> CreateDraft(CreateDraftRequestDto data) => await _connection.RequestResourceAsync<CreateDraftRequestDto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);            
+            public async Task<DRDraftDto> CreateDraft(CreateDraftRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateDraftRequestDto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);            
             
-            public async Task<DRDraftDto> GetDraft(string id) => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)));            
+            public async Task<DRDraftDto> GetDraft(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)));            
             
-            public async Task<DRDraftDto> UpdateDraft(string id, UpdateDraftRequestDto data) => await _connection.RequestResourceAsync<UpdateDraftRequestDto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);            
+            public async Task<DRDraftDto> UpdateDraft(string id, UpdateDraftRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateDraftRequestDto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DRDraftDto)), data);            
             
-            public async Task DeleteDraft(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");            
+            public async Task DeleteDraft(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");            
             
             public EditorClient Editors => new EditorClient(_connection);
             
@@ -9453,11 +9519,14 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task CreateProfile(string id, CreateProfileRequestDto data) => await _connection.RequestResourceAsync<CreateProfileRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);                    
+                    public async Task CreateProfile(string id, CreateProfileRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateProfileRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);                    
                     
-                    public async Task<List<TDMemberProfileDto>> GetAllProfiles(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                    
+                    public async Task<List<TDMemberProfileDto>> GetAllProfiles(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                    
                     
-                    public async Task DeleteProfile(string id, string editorId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");                    
+                    public async Task DeleteProfile(string id, string editorId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");                    
                     
                 }
                 
@@ -9473,11 +9542,14 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task CreateTeam(string id, CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);                    
+                    public async Task CreateTeam(string id, CreateTeamRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);                    
                     
-                    public async Task<List<TDTeamDto>> GetAllTeams(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));                    
+                    public async Task<List<TDTeamDto>> GetAllTeams(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));                    
                     
-                    public async Task DeleteTeam(string id, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}");                    
+                    public async Task DeleteTeam(string id, string teamId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}");                    
                     
                 }
                 
@@ -9497,9 +9569,11 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task Delete(DeleteRequestDto data) => await _connection.RequestResourceAsync<DeleteRequestDto>("POST", $"api/http/emojis/delete", data);        
+        public async Task Delete(DeleteRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<DeleteRequestDto>("POST", $"api/http/emojis/delete", data);        
         
-        public async Task<bool> Exists(string emoji) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));        
+        public async Task<bool> Exists(string emoji)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));        
         
     }
     
@@ -9525,7 +9599,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSBlogDto>> GetAllBlogs(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSBlogDto>>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSBlogDto>)));            
+            public async Task<Batch<FTSBlogDto>> GetAllBlogs(string query, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<FTSBlogDto>>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSBlogDto>)));            
             
         }
         
@@ -9541,7 +9616,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSDraftDto>> GetAllDrafts(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSDraftDto>>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSDraftDto>)));            
+            public async Task<Batch<FTSDraftDto>> GetAllDrafts(string query, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<FTSDraftDto>>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSDraftDto>)));            
             
         }
         
@@ -9557,7 +9633,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSProfileDto>> GetAllProfiles(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSProfileDto>>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSProfileDto>)));            
+            public async Task<Batch<FTSProfileDto>> GetAllProfiles(string query, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<FTSProfileDto>>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSProfileDto>)));            
             
         }
         
@@ -9573,7 +9650,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSTeamDto>> GetAllTeams(string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<FTSTeamDto>>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSTeamDto>)));            
+            public async Task<Batch<FTSTeamDto>> GetAllTeams(string query, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<FTSTeamDto>>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<FTSTeamDto>)));            
             
         }
         
@@ -9589,7 +9667,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<HAModelDto> GetHTTPAPIModel() => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(HAModelDto)));        
+        public async Task<HAModelDto> GetHTTPAPIModel()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(HAModelDto)));        
         
     }
     
@@ -9603,13 +9682,17 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ImportSourceDto> CreateImportSource(CreateImportSourceRequestDto data) => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImportSourceDto)), data);        
+        public async Task<ImportSourceDto> CreateImportSource(CreateImportSourceRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImportSourceDto)), data);        
         
-        public async Task<List<ImportSourceDto>> GetAllImportSources() => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ImportSourceDto>)));        
+        public async Task<List<ImportSourceDto>> GetAllImportSources()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ImportSourceDto>)));        
         
-        public async Task UpdateImportSource(string sourceId, UpdateImportSourceRequestDto data) => await _connection.RequestResourceAsync<UpdateImportSourceRequestDto>("PATCH", $"api/http/import-sources/{sourceId}", data);        
+        public async Task UpdateImportSource(string sourceId, UpdateImportSourceRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateImportSourceRequestDto>("PATCH", $"api/http/import-sources/{sourceId}", data);        
         
-        public async Task DeleteImportSource(string sourceId) => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");        
+        public async Task DeleteImportSource(string sourceId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");        
         
     }
     
@@ -9647,7 +9730,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ERegistrySettingsDto> GetAllSettings(string method, string? name = null, bool? all = null) => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));                
+                public async Task<ERegistrySettingsDto> GetAllSettings(string method, string? name = null, bool? all = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));                
                 
             }
             
@@ -9677,7 +9761,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<EMavenSettingsDto> GetAllSettings(string method, string? name = null) => await _connection.RequestResourceAsync<EMavenSettingsDto>("GET", $"api/http/packages/maven-repository/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(EMavenSettingsDto)));                
+                public async Task<EMavenSettingsDto> GetAllSettings(string method, string? name = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<EMavenSettingsDto>("GET", $"api/http/packages/maven-repository/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(EMavenSettingsDto)));                
                 
             }
             
@@ -9695,7 +9780,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PackagesSettingsDto> GetAllSettings(string type, string method, string? repository = null) => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PackagesSettingsDto)));            
+            public async Task<PackagesSettingsDto> GetAllSettings(string type, string method, string? repository = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PackagesSettingsDto)));            
             
         }
         
@@ -9711,7 +9797,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<DTORightsWithHierarchyDto> GetAllPermissions() => await _connection.RequestResourceAsync<DTORightsWithHierarchyDto>("GET", $"api/http/permissions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTORightsWithHierarchyDto)));        
+        public async Task<DTORightsWithHierarchyDto> GetAllPermissions()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<DTORightsWithHierarchyDto>("GET", $"api/http/permissions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(DTORightsWithHierarchyDto)));        
         
         public SnapshotClient Snapshots => new SnapshotClient(_connection);
         
@@ -9725,13 +9812,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PermissionSnapshotDTODto> CreateSnapshot() => await _connection.RequestResourceAsync<PermissionSnapshotDTODto>("POST", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotDTODto)));            
+            public async Task<PermissionSnapshotDTODto> CreateSnapshot()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<PermissionSnapshotDTODto>("POST", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotDTODto)));            
             
-            public async Task<List<PermissionSnapshotDTODto>> GetAllSnapshots() => await _connection.RequestResourceAsync<List<PermissionSnapshotDTODto>>("GET", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotDTODto>)));            
+            public async Task<List<PermissionSnapshotDTODto>> GetAllSnapshots()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PermissionSnapshotDTODto>>("GET", $"api/http/permissions/snapshots?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotDTODto>)));            
             
-            public async Task<PermissionSnapshotContentDTODto> GetSnapshot(string id, string? principal = null, string? right = null) => await _connection.RequestResourceAsync<PermissionSnapshotContentDTODto>("GET", $"api/http/permissions/snapshots/{id}?principal={principal?.ToString() ?? "null"}&right={right?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotContentDTODto)));            
+            public async Task<PermissionSnapshotContentDTODto> GetSnapshot(string id, string? principal = null, string? right = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<PermissionSnapshotContentDTODto>("GET", $"api/http/permissions/snapshots/{id}?principal={principal?.ToString() ?? "null"}&right={right?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionSnapshotContentDTODto)));            
             
-            public async Task DeleteSnapshot(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/permissions/snapshots/{id}");            
+            public async Task DeleteSnapshot(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/permissions/snapshots/{id}");            
             
             public ComparisonClient Comparison => new ComparisonClient(_connection);
             
@@ -9745,7 +9836,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<PermissionComparisonContentDTODto> GetComparison(string id1, string id2) => await _connection.RequestResourceAsync<PermissionComparisonContentDTODto>("GET", $"api/http/permissions/snapshots/comparison?id1={id1.ToString()}&id2={id2.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionComparisonContentDTODto)));                
+                public async Task<PermissionComparisonContentDTODto> GetComparison(string id1, string id2)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<PermissionComparisonContentDTODto>("GET", $"api/http/permissions/snapshots/comparison?id1={id1.ToString()}&id2={id2.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PermissionComparisonContentDTODto)));                
                 
             }
             
@@ -9761,7 +9853,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<PermissionSnapshotPrincipalDTODto>> GetPrincipal(string id) => await _connection.RequestResourceAsync<List<PermissionSnapshotPrincipalDTODto>>("GET", $"api/http/permissions/snapshots/{id}/principals?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotPrincipalDTODto>)));                
+                public async Task<List<PermissionSnapshotPrincipalDTODto>> GetPrincipal(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PermissionSnapshotPrincipalDTODto>>("GET", $"api/http/permissions/snapshots/{id}/principals?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotPrincipalDTODto>)));                
                 
             }
             
@@ -9777,7 +9870,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<PermissionSnapshotRightDTODto>> GetRight(string id) => await _connection.RequestResourceAsync<List<PermissionSnapshotRightDTODto>>("GET", $"api/http/permissions/snapshots/{id}/rights?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotRightDTODto>)));                
+                public async Task<List<PermissionSnapshotRightDTODto>> GetRight(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PermissionSnapshotRightDTODto>>("GET", $"api/http/permissions/snapshots/{id}/rights?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PermissionSnapshotRightDTODto>)));                
                 
             }
             
@@ -9795,23 +9889,32 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<PRProjectDto> CreateProject(CreateProjectRequestDto data) => await _connection.RequestResourceAsync<CreateProjectRequestDto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
+        public async Task<PRProjectDto> CreateProject(CreateProjectRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateProjectRequestDto, PRProjectDto>("POST", $"api/http/projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
         
-        public async Task<Batch<PRProjectDto>> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        public async Task<Batch<PRProjectDto>> GetAllProjects(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
         
-        public async Task<PRProjectDto> GetProjectByKey(string projectKey) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));        
+        public async Task<PRProjectDto> GetProjectByKey(string projectKey)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));        
         
-        public async Task<Batch<PRProjectDto>> GetAllProjectsByMember(string member, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        public async Task<Batch<PRProjectDto>> GetAllProjectsByMember(string member, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
         
-        public async Task<Batch<PRProjectDto>> GetAllProjectsWithRight(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        public async Task<Batch<PRProjectDto>> GetAllProjectsWithRight(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
         
-        public async Task<Batch<PRProjectDto>> GetAllProjectsByTeam(string team, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
+        public async Task<Batch<PRProjectDto>> GetAllProjectsByTeam(string team, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PRProjectDto>)));        
         
-        public async Task<PRProjectDto> GetProject(string projectId) => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));        
+        public async Task<PRProjectDto> GetProject(string projectId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)));        
         
-        public async Task<PRProjectDto> UpdateProject(string projectId, UpdateProjectRequestDto data) => await _connection.RequestResourceAsync<UpdateProjectRequestDto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
+        public async Task<PRProjectDto> UpdateProject(string projectId, UpdateProjectRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateProjectRequestDto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PRProjectDto)), data);        
         
-        public async Task ArchiveProject(string projectId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");        
+        public async Task ArchiveProject(string projectId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");        
         
         public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
         
@@ -9825,7 +9928,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<PropagatedCodeDiscussionDto>> GetAllCodeDiscussionsByChange(GetAllCodeDiscussionsByChangeRequestDto data) => await _connection.RequestResourceAsync<GetAllCodeDiscussionsByChangeRequestDto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);            
+            public async Task<List<PropagatedCodeDiscussionDto>> GetAllCodeDiscussionsByChange(GetAllCodeDiscussionsByChangeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<GetAllCodeDiscussionsByChangeRequestDto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)), data);            
             
             public DiscussionsCounterClient DiscussionsCounters => new DiscussionsCounterClient(_connection);
             
@@ -9839,7 +9943,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<RevisionDiscussionsCounterDto>> GetAllDiscussionsCounters(string projectKey, string repository, List<string> revisions) => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/code-discussions/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionDiscussionsCounterDto>)));                
+                public async Task<List<RevisionDiscussionsCounterDto>> GetAllDiscussionsCounters(string projectKey, string repository, List<string> revisions)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/code-discussions/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionDiscussionsCounterDto>)));                
                 
             }
             
@@ -9857,9 +9962,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task RequestAccessToProject(string projectKey) => await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/key:{projectKey}/request-access");            
+            public async Task RequestAccessToProject(string projectKey)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/key:{projectKey}/request-access");            
             
-            public async Task<List<PRPrivateProjectDto>> GetAllPrivateProjects() => await _connection.RequestResourceAsync<List<PRPrivateProjectDto>>("GET", $"api/http/projects/private-projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRPrivateProjectDto>)));            
+            public async Task<List<PRPrivateProjectDto>> GetAllPrivateProjects()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PRPrivateProjectDto>>("GET", $"api/http/projects/private-projects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRPrivateProjectDto>)));            
             
         }
         
@@ -9875,11 +9982,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<string> AddResponsibility(AddResponsibilityRequestDto data) => await _connection.RequestResourceAsync<AddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);            
+            public async Task<string> AddResponsibility(AddResponsibilityRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);            
             
-            public async Task UpdateResponsibility(string responsibilityId, UpdateResponsibilityRequestDto data) => await _connection.RequestResourceAsync<UpdateResponsibilityRequestDto>("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);            
+            public async Task UpdateResponsibility(string responsibilityId, UpdateResponsibilityRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateResponsibilityRequestDto>("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);            
             
-            public async Task DeleteResponsibility(string responsibilityId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}");            
+            public async Task DeleteResponsibility(string responsibilityId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}");            
             
             public SubjectClient Subjects => new SubjectClient(_connection);
             
@@ -9893,7 +10003,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task DeleteResponsibilitySubject(string subjectId, string? projectId = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");                
+                public async Task DeleteResponsibilitySubject(string subjectId, string? projectId = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");                
                 
             }
             
@@ -9914,16 +10025,19 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<SubjectResponsibilitiesTableDto>> GetProjectResponsibilityScheme(string projectId) => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/{projectId}/responsibilities/scheme?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<SubjectResponsibilitiesTableDto>)));                
+                public async Task<List<SubjectResponsibilitiesTableDto>> GetProjectResponsibilityScheme(string projectId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/{projectId}/responsibilities/scheme?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<SubjectResponsibilitiesTableDto>)));                
                 
             }
             
             // Source: projects_xxx_responsibilities_subjects
             public partial class SubjectClient
             {
-                public async Task<string> AddResponsibilitySubject(string projectId, AddResponsibilitySubjectRequestDto data) => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);                
+                public async Task<string> AddResponsibilitySubject(string projectId, AddResponsibilitySubjectRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);                
                 
-                public async Task EditResponsibilitySubject(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data) => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto>("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);                
+                public async Task EditResponsibilitySubject(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto>("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);                
                 
             }
             
@@ -9939,9 +10053,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task AssignResponsible(string projectId, string responsibilityId, string profileId, AssignResponsibleRequestDto data) => await _connection.RequestResourceAsync<AssignResponsibleRequestDto>("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);                
+                public async Task AssignResponsible(string projectId, string responsibilityId, string profileId, AssignResponsibleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AssignResponsibleRequestDto>("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);                
                 
-                public async Task RemoveResponsible(string projectId, string responsibilityId, string profileId, string? role = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");                
+                public async Task RemoveResponsible(string projectId, string responsibilityId, string profileId, string? role = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");                
                 
             }
             
@@ -9959,9 +10075,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task TrackTagAccess(TrackTagAccessRequestDto data) => await _connection.RequestResourceAsync<TrackTagAccessRequestDto>("POST", $"api/http/projects/tags/track-access", data);            
+            public async Task TrackTagAccess(TrackTagAccessRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TrackTagAccessRequestDto>("POST", $"api/http/projects/tags/track-access", data);            
             
-            public async Task<List<PRTagDto>> GetAllTags() => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRTagDto>)));            
+            public async Task<List<PRTagDto>> GetAllTags()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PRTagDto>)));            
             
         }
         
@@ -9989,7 +10107,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
+                public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfiles(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
                 
             }
             
@@ -10022,9 +10141,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddAdministrator(string projectId, AddAdministratorRequestDto data) => await _connection.RequestResourceAsync<AddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);                    
+                    public async Task AddAdministrator(string projectId, AddAdministratorRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);                    
                     
-                    public async Task RemoveAdministrator(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/profiles/{profileId}");                    
+                    public async Task RemoveAdministrator(string projectId, string profileId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/profiles/{profileId}");                    
                     
                 }
                 
@@ -10040,9 +10161,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddAdministratorsTeam(string projectId, CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/teams", data);                    
+                    public async Task AddAdministratorsTeam(string projectId, CreateTeamRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/admins/teams", data);                    
                     
-                    public async Task RemoveAdministratorsTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/teams/{teamId}");                    
+                    public async Task RemoveAdministratorsTeam(string projectId, string teamId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/teams/{teamId}");                    
                     
                 }
                 
@@ -10072,9 +10195,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddMember(string projectId, AddAdministratorRequestDto data) => await _connection.RequestResourceAsync<AddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/members/profiles", data);                    
+                    public async Task AddMember(string projectId, AddAdministratorRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddAdministratorRequestDto>("POST", $"api/http/projects/{projectId}/access/members/profiles", data);                    
                     
-                    public async Task RemoveMember(string projectId, string profileId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/profiles/{profileId}");                    
+                    public async Task RemoveMember(string projectId, string profileId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/profiles/{profileId}");                    
                     
                 }
                 
@@ -10090,9 +10215,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddTeam(string projectId, CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/members/teams", data);                    
+                    public async Task AddTeam(string projectId, CreateTeamRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/projects/{projectId}/access/members/teams", data);                    
                     
-                    public async Task RemoveTeam(string projectId, string teamId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/teams/{teamId}");                    
+                    public async Task RemoveTeam(string projectId, string teamId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/teams/{teamId}");                    
                     
                 }
                 
@@ -10110,7 +10237,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProject(string projectId, string term, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
+                public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProject(string projectId, string term, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
                 
             }
             
@@ -10128,11 +10256,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviews(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null) => await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CodeReviewWithCountDto>)));            
+            public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviews(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<CodeReviewWithCountDto>)));            
             
-            public async Task<ReviewCountsDto> GetReviewCounts(string projectKey) => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ReviewCountsDto)));            
+            public async Task<ReviewCountsDto> GetReviewCounts(string projectKey)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ReviewCountsDto)));            
             
-            public async Task<CodeReviewRecordDto> GetCodeReviewByReviewNumber(string projectKey, int reviewNumber) => await _connection.RequestResourceAsync<CodeReviewRecordDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-number:{reviewNumber}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewRecordDto)));            
+            public async Task<CodeReviewRecordDto> GetCodeReviewByReviewNumber(string projectKey, int reviewNumber)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CodeReviewRecordDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-number:{reviewNumber}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewRecordDto)));            
             
             public ChangeClient Changes => new ChangeClient(_connection);
             
@@ -10146,7 +10277,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ChangeInReviewDto>> GetAllChanges(string projectKey, string reviewId, List<string> revisions) => await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChangeInReviewDto>)));                
+                public async Task<List<ChangeInReviewDto>> GetAllChanges(string projectKey, string reviewId, List<string> revisions)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChangeInReviewDto>)));                
                 
             }
             
@@ -10162,7 +10294,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<CodeReviewDetailedInfoDto> GetReviewDetails(string projectKey, string reviewId) => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewDetailedInfoDto)));                
+                public async Task<CodeReviewDetailedInfoDto> GetReviewDetails(string projectKey, string reviewId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeReviewDetailedInfoDto)));                
                 
             }
             
@@ -10178,7 +10311,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task EditReviewParticipant(string projectKey, string reviewId, string user, EditReviewParticipantRequestDto data) => await _connection.RequestResourceAsync<EditReviewParticipantRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);                
+                public async Task EditReviewParticipant(string projectKey, string reviewId, string user, EditReviewParticipantRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<EditReviewParticipantRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);                
                 
             }
             
@@ -10194,9 +10328,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task AddRevisionsToReview(string projectKey, string reviewId, AddRevisionsToReviewRequestDto data) => await _connection.RequestResourceAsync<AddRevisionsToReviewRequestDto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);                
+                public async Task AddRevisionsToReview(string projectKey, string reviewId, AddRevisionsToReviewRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddRevisionsToReviewRequestDto>("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);                
                 
-                public async Task RemoveRevisionsFromReview(string projectKey, string reviewId, List<string> revisions) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");                
+                public async Task RemoveRevisionsFromReview(string projectKey, string reviewId, List<string> revisions)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");                
                 
             }
             
@@ -10212,7 +10348,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task EditReviewState(string projectKey, string reviewId, EditReviewStateRequestDto data) => await _connection.RequestResourceAsync<EditReviewStateRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);                
+                public async Task EditReviewState(string projectKey, string reviewId, EditReviewStateRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<EditReviewStateRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);                
                 
             }
             
@@ -10228,7 +10365,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<TDMemberProfileDto>> GetAllSuggestedReviewers(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                
+                public async Task<List<TDMemberProfileDto>> GetAllSuggestedReviewers(string projectKey, string reviewId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                
                 
             }
             
@@ -10244,7 +10382,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task EditReviewTitle(string projectKey, string reviewId, EditReviewTitleRequestDto data) => await _connection.RequestResourceAsync<EditReviewTitleRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);                
+                public async Task EditReviewTitle(string projectKey, string reviewId, EditReviewTitleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<EditReviewTitleRequestDto>("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);                
                 
             }
             
@@ -10260,7 +10399,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<RevisionInReviewDto>> GetAllUnreadRevisions(string projectKey, string reviewId) => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionInReviewDto>)));                
+                public async Task<List<RevisionInReviewDto>> GetAllUnreadRevisions(string projectKey, string reviewId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<RevisionInReviewDto>)));                
                 
             }
             
@@ -10290,7 +10430,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<CommitSetReviewRecordDto> CreateCommitSetReview(string projectKey, string repository, CreateCommitSetReviewRequestDto data) => await _connection.RequestResourceAsync<CreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);                
+                public async Task<CommitSetReviewRecordDto> CreateCommitSetReview(string projectKey, string repository, CreateCommitSetReviewRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CommitSetReviewRecordDto)), data);                
                 
             }
             
@@ -10306,7 +10447,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<MergeRequestRecordDto> CreateMergeRequest(string projectKey, string repository, CreateMergeRequestRequestDto data) => await _connection.RequestResourceAsync<CreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);                
+                public async Task<MergeRequestRecordDto> CreateMergeRequest(string projectKey, string repository, CreateMergeRequestRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MergeRequestRecordDto)), data);                
                 
             }
             
@@ -10334,9 +10476,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<CodeDiscussionRecordDto> CreateCodeDiscussion(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data) => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);                    
+                    public async Task<CodeDiscussionRecordDto> CreateCodeDiscussion(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CodeDiscussionRecordDto)), data);                    
                     
-                    public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFile(string projectKey, string repository, string revision, string file) => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)));                    
+                    public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFile(string projectKey, string repository, string revision, string file)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PropagatedCodeDiscussionDto>)));                    
                     
                 }
                 
@@ -10352,9 +10496,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task PushCommitStatus(string projectKey, string repository, string revision, PushCommitStatusRequestDto data) => await _connection.RequestResourceAsync<PushCommitStatusRequestDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);                    
+                    public async Task PushCommitStatus(string projectKey, string repository, string revision, PushCommitStatusRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<PushCommitStatusRequestDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);                    
                     
-                    public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommit(string projectKey, string repository, string revision) => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CommitStatusDTODto>)));                    
+                    public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommit(string projectKey, string repository, string revision)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<CommitStatusDTODto>)));                    
                     
                 }
                 
@@ -10386,17 +10532,23 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ChecklistDto> CreateChecklist(string projectId, IsNameFreeRequestDto data) => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                
+                public async Task<ChecklistDto> CreateChecklist(string projectId, IsNameFreeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                
                 
-                public async Task<ChecklistDto> ImportChecklist(string projectId, ImportChecklistRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                
+                public async Task<ChecklistDto> ImportChecklist(string projectId, ImportChecklistRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                
                 
-                public async Task ImportChecklistLines(string projectId, string checklistId, ImportChecklistLinesRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);                
+                public async Task ImportChecklistLines(string projectId, string checklistId, ImportChecklistLinesRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);                
                 
-                public async Task<Batch<ChecklistDto>> GetAllChecklists(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ChecklistDto>)));                
+                public async Task<Batch<ChecklistDto>> GetAllChecklists(string projectId, string? skip = null, int? top = null, string? query = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ChecklistDto>)));                
                 
-                public async Task UpdateChecklist(string projectId, string checklistId, UpdateChecklistRequestDto data) => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);                
+                public async Task UpdateChecklist(string projectId, string checklistId, UpdateChecklistRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);                
                 
-                public async Task DeleteChecklist(string projectId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/checklists/{checklistId}");                
+                public async Task DeleteChecklist(string projectId, string checklistId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/checklists/{checklistId}");                
                 
                 public StarredClient Starred => new StarredClient(_connection);
                 
@@ -10410,7 +10562,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<ChecklistDto>> GetAllStarredChecklists(string projectId) => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                    
+                    public async Task<List<ChecklistDto>> GetAllStarredChecklists(string projectId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                    
                     
                 }
                 
@@ -10426,7 +10579,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTree(string projectId, string checklistId) => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));                    
+                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTree(string projectId, string checklistId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));                    
                     
                 }
                 
@@ -10444,17 +10598,23 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<IssueDto> CreateIssue(string projectId, CreateIssueRequestDto data) => await _connection.RequestResourceAsync<CreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);                
+                public async Task<IssueDto> CreateIssue(string projectId, CreateIssueRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)), data);                
                 
-                public async Task ToggleIssueResolved(string projectId, string issueId, ToggleIssueResolvedRequestDto data) => await _connection.RequestResourceAsync<ToggleIssueResolvedRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);                
+                public async Task ToggleIssueResolved(string projectId, string issueId, ToggleIssueResolvedRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ToggleIssueResolvedRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);                
                 
-                public async Task<Batch<IssueDto>> GetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null) => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<IssueDto>)));                
+                public async Task<Batch<IssueDto>> GetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<IssueDto>)));                
                 
-                public async Task<IssueDto> GetIssueByNumber(string projectId, int number) => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));                
+                public async Task<IssueDto> GetIssueByNumber(string projectId, int number)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));                
                 
-                public async Task UpdateIssue(string projectId, string issueId, UpdateIssueRequestDto data) => await _connection.RequestResourceAsync<UpdateIssueRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);                
+                public async Task UpdateIssue(string projectId, string issueId, UpdateIssueRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateIssueRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);                
                 
-                public async Task DeleteIssue(string projectId, string issueId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}");                
+                public async Task DeleteIssue(string projectId, string issueId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}");                
                 
                 public StatusClient Statuses => new StatusClient(_connection);
                 
@@ -10468,9 +10628,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<IssueStatusDto>> GetAllIssueStatuses(string projectId) => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusDto>)));                    
+                    public async Task<List<IssueStatusDto>> GetAllIssueStatuses(string projectId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusDto>)));                    
                     
-                    public async Task UpdateStatus(string projectId, UpdateStatusRequestDto data) => await _connection.RequestResourceAsync<UpdateStatusRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);                    
+                    public async Task UpdateStatus(string projectId, UpdateStatusRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateStatusRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);                    
                     
                     public DistributionClient Distribution => new DistributionClient(_connection);
                     
@@ -10484,7 +10646,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistribution(string projectId) => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses/distribution?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusWithUsagesDto>)));                        
+                        public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistribution(string projectId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses/distribution?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<IssueStatusWithUsagesDto>)));                        
                         
                     }
                     
@@ -10502,9 +10665,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddAttachments(string projectId, string issueId, AddAttachmentsRequestDto data) => await _connection.RequestResourceAsync<AddAttachmentsRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);                    
+                    public async Task AddAttachments(string projectId, string issueId, AddAttachmentsRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddAttachmentsRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);                    
                     
-                    public async Task RemoveAttachments(string projectId, string issueId, List<string> identities) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");                    
+                    public async Task RemoveAttachments(string projectId, string issueId, List<string> identities)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");                    
                     
                 }
                 
@@ -10520,9 +10685,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
+                    public async Task AddIssueChecklist(string projectId, string issueId, string checklistId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
                     
-                    public async Task RemoveIssueChecklist(string projectId, string issueId, string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
+                    public async Task RemoveIssueChecklist(string projectId, string issueId, string checklistId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
                     
                 }
                 
@@ -10538,7 +10705,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<string>> ImportIssueCommentHistory(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data) => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);                    
+                    public async Task<List<string>> ImportIssueCommentHistory(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);                    
                     
                 }
                 
@@ -10554,9 +10722,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
+                    public async Task AddIssueTag(string projectId, string issueId, string tagId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
                     
-                    public async Task RemoveIssueTag(string projectId, string issueId, string tagId) => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
+                    public async Task RemoveIssueTag(string projectId, string issueId, string tagId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
                     
                 }
                 
@@ -10574,9 +10744,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<PlanningTagDto> CreateHierarchicalTag(string projectId, CreateHierarchicalTagRequestDto data) => await _connection.RequestResourceAsync<CreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);                
+                public async Task<PlanningTagDto> CreateHierarchicalTag(string projectId, CreateHierarchicalTagRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PlanningTagDto)), data);                
                 
-                public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTags(string projectId, string? skip = null, int? top = null, string? query = null) => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PlanningTagDto>)));                
+                public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTags(string projectId, string? skip = null, int? top = null, string? query = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PlanningTagDto>)));                
                 
             }
             
@@ -10606,15 +10778,20 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PublicHolidayCalendarRecordDto> CreateCalendar(CreateCalendarRequestDto data) => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
+            public async Task<PublicHolidayCalendarRecordDto> CreateCalendar(CreateCalendarRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
             
-            public async Task<string> Import(ImportRequestDto data) => await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);            
+            public async Task<string> Import(ImportRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);            
             
-            public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendars(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayCalendarRecordDto>)));            
+            public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendars(string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayCalendarRecordDto>)));            
             
-            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendar(string id, CreateCalendarRequestDto data) => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
+            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendar(string id, CreateCalendarRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
             
-            public async Task DeleteCalendar(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");            
+            public async Task DeleteCalendar(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");            
             
         }
         
@@ -10630,13 +10807,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PublicHolidayDto> CreateHoliday(CreateHolidayRequestDto data) => await _connection.RequestResourceAsync<CreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
+            public async Task<PublicHolidayDto> CreateHoliday(CreateHolidayRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
             
-            public async Task<Batch<PublicHolidayDto>> GetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));            
+            public async Task<Batch<PublicHolidayDto>> GetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));            
             
-            public async Task<PublicHolidayDto> UpdateHoliday(string id, UpdateHolidayRequestDto data) => await _connection.RequestResourceAsync<UpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
+            public async Task<PublicHolidayDto> UpdateHoliday(string id, UpdateHolidayRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
             
-            public async Task DeleteHoliday(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");            
+            public async Task DeleteHoliday(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");            
             
             public RelatedHolidayClient RelatedHolidays => new RelatedHolidayClient(_connection);
             
@@ -10650,7 +10831,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null) => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));                
+                public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));                
                 
             }
             
@@ -10680,9 +10862,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<MeetingRecordDto>> GetAllCalendarEvents(SpaceDate dateFrom, SpaceDate dateTo) => await _connection.RequestResourceAsync<List<MeetingRecordDto>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MeetingRecordDto>)));            
+            public async Task<List<MeetingRecordDto>> GetAllCalendarEvents(SpaceDate dateFrom, SpaceDate dateTo)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<MeetingRecordDto>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MeetingRecordDto>)));            
             
-            public async Task<MeetingRecordDto> GetCalendarEvent(string id) => await _connection.RequestResourceAsync<MeetingRecordDto>("GET", $"api/http/team-directory/calendar-events/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)));            
+            public async Task<MeetingRecordDto> GetCalendarEvent(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<MeetingRecordDto>("GET", $"api/http/team-directory/calendar-events/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)));            
             
             public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
             
@@ -10696,7 +10880,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<AbsenceEventDto>> GetAllAbsenceEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<AbsenceEventDto>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceEventDto>)));                
+                public async Task<List<AbsenceEventDto>> GetAllAbsenceEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<AbsenceEventDto>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<AbsenceEventDto>)));                
                 
             }
             
@@ -10712,7 +10897,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<BirthdayEventDto>> GetAllBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));                
+                public async Task<List<BirthdayEventDto>> GetAllBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));                
                 
                 public StarredClient Starred => new StarredClient(_connection);
                 
@@ -10726,7 +10912,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<BirthdayEventDto>> GetAllStarredBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo) => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));                    
+                    public async Task<List<BirthdayEventDto>> GetAllStarredBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<BirthdayEventDto>)));                    
                     
                 }
                 
@@ -10744,7 +10931,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<MeetingRecordDto> UpdateMeetingParticipation(string id, UpdateMeetingParticipationRequestDto data) => await _connection.RequestResourceAsync<UpdateMeetingParticipationRequestDto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);                
+                public async Task<MeetingRecordDto> UpdateMeetingParticipation(string id, UpdateMeetingParticipationRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateMeetingParticipationRequestDto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeetingRecordDto)), data);                
                 
             }
             
@@ -10760,7 +10948,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<MembershipEventDto>> GetAllMembershipEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MembershipEventDto>)));                
+                public async Task<List<MembershipEventDto>> GetAllMembershipEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<MembershipEventDto>)));                
                 
             }
             
@@ -10776,7 +10965,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<NonWorkingDaysEventDto>> GetAllNonWorkingDaysEvents(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null) => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<NonWorkingDaysEventDto>)));                
+                public async Task<List<NonWorkingDaysEventDto>> GetAllNonWorkingDaysEvents(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<NonWorkingDaysEventDto>)));                
                 
             }
             
@@ -10794,13 +10984,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<InvitationDto> CreateInvitation(CreateInvitationRequestDto data) => await _connection.RequestResourceAsync<CreateInvitationRequestDto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);            
+            public async Task<InvitationDto> CreateInvitation(CreateInvitationRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateInvitationRequestDto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(InvitationDto)), data);            
             
-            public async Task<Batch<InvitationDto>> GetAllInvitations(string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<InvitationDto>)));            
+            public async Task<Batch<InvitationDto>> GetAllInvitations(string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<InvitationDto>)));            
             
-            public async Task UpdateInvitation(string id, UpdateInvitationRequestDto data) => await _connection.RequestResourceAsync<UpdateInvitationRequestDto>("PATCH", $"api/http/team-directory/invitations/{id}", data);            
+            public async Task UpdateInvitation(string id, UpdateInvitationRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateInvitationRequestDto>("PATCH", $"api/http/team-directory/invitations/{id}", data);            
             
-            public async Task DeleteInvitation(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}");            
+            public async Task DeleteInvitation(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}");            
             
         }
         
@@ -10816,7 +11010,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<TDLanguageDto>> GetAllLanguages() => await _connection.RequestResourceAsync<List<TDLanguageDto>>("GET", $"api/http/team-directory/languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLanguageDto>)));            
+            public async Task<List<TDLanguageDto>> GetAllLanguages()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDLanguageDto>>("GET", $"api/http/team-directory/languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLanguageDto>)));            
             
         }
         
@@ -10832,9 +11027,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<TDLocationEquipmentTypeDto>> GetAllLocationEquipmentTypes(bool withArchived) => await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationEquipmentTypeDto>)));            
+            public async Task<List<TDLocationEquipmentTypeDto>> GetAllLocationEquipmentTypes(bool withArchived)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationEquipmentTypeDto>)));            
             
-            public async Task DeleteLocationEquipmentTypeByName(string name, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString().ToLowerInvariant()}");            
+            public async Task DeleteLocationEquipmentTypeByName(string name, bool delete)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString().ToLowerInvariant()}");            
             
         }
         
@@ -10850,19 +11047,26 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDLocationDto> CreateLocation(CreateLocationRequestDto data) => await _connection.RequestResourceAsync<CreateLocationRequestDto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);            
+            public async Task<TDLocationDto> CreateLocation(CreateLocationRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateLocationRequestDto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);            
             
-            public async Task<List<TDLocationDto>> RestoreMultiple(RestoreMultipleRequestDto data) => await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);            
+            public async Task<List<TDLocationDto>> RestoreMultiple(RestoreMultipleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)), data);            
             
-            public async Task<TDLocationDto> Restore(string id) => await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));            
+            public async Task<TDLocationDto> Restore(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));            
             
-            public async Task<List<TDLocationDto>> GetAllLocations(string query, bool withArchived, string? type = null) => await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));            
+            public async Task<List<TDLocationDto>> GetAllLocations(string query, bool withArchived, string? type = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));            
             
-            public async Task<TDLocationDto> GetLocation(string id) => await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));            
+            public async Task<TDLocationDto> GetLocation(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)));            
             
-            public async Task<TDLocationDto> UpdateLocation(string id, UpdateLocationRequestDto data) => await _connection.RequestResourceAsync<UpdateLocationRequestDto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);            
+            public async Task<TDLocationDto> UpdateLocation(string id, UpdateLocationRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateLocationRequestDto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationDto)), data);            
             
-            public async Task<List<TDLocationDto>> ArchiveLocation(string id) => await _connection.RequestResourceAsync<List<TDLocationDto>>("DELETE", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));            
+            public async Task<List<TDLocationDto>> ArchiveLocation(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDLocationDto>>("DELETE", $"api/http/team-directory/locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationDto>)));            
             
             public MapClient Map => new MapClient(_connection);
             
@@ -10876,9 +11080,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDLocationMapDto> GetMap(string id) => await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)));                
+                public async Task<TDLocationMapDto> GetMap(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)));                
                 
-                public async Task<TDLocationMapDto> UpdateMap(string id, UpdateMapRequestDto data) => await _connection.RequestResourceAsync<UpdateMapRequestDto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);                
+                public async Task<TDLocationMapDto> UpdateMap(string id, UpdateMapRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateMapRequestDto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapDto)), data);                
                 
                 public MemberClient Members => new MemberClient(_connection);
                 
@@ -10892,7 +11098,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<TDMemberInLocationMapListDto>> GetAllMembers(string id, bool includeUnmarked) => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));                    
+                    public async Task<List<TDMemberInLocationMapListDto>> GetAllMembers(string id, bool includeUnmarked)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberInLocationMapListDto>)));                    
                     
                 }
                 
@@ -10912,7 +11119,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<TDLocationWithTimeZoneDto>> GetAllLocationsWithTimezone() => await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationWithTimeZoneDto>)));            
+            public async Task<List<TDLocationWithTimeZoneDto>> GetAllLocationsWithTimezone()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDLocationWithTimeZoneDto>)));            
             
         }
         
@@ -10928,7 +11136,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidates(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
+            public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidates(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
             
         }
         
@@ -10944,13 +11153,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMemberLocationDto> CreateMemberLocation(CreateMemberLocationRequestDto data) => await _connection.RequestResourceAsync<CreateMemberLocationRequestDto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);            
+            public async Task<TDMemberLocationDto> CreateMemberLocation(CreateMemberLocationRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateMemberLocationRequestDto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);            
             
-            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberLocationDto>)));            
+            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberLocationDto>)));            
             
-            public async Task<TDMemberLocationDto> UpdateMemberLocation(string id, UpdateMemberLocationRequestDto data) => await _connection.RequestResourceAsync<UpdateMemberLocationRequestDto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);            
+            public async Task<TDMemberLocationDto> UpdateMemberLocation(string id, UpdateMemberLocationRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateMemberLocationRequestDto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberLocationDto)), data);            
             
-            public async Task DeleteMemberLocation(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete.ToString().ToLowerInvariant()}");            
+            public async Task DeleteMemberLocation(string id, bool delete)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete.ToString().ToLowerInvariant()}");            
             
             public PointClient Points => new PointClient(_connection);
             
@@ -10964,11 +11177,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDLocationMapPointDto> CreatePoint(string id, CreatePointRequestDto data) => await _connection.RequestResourceAsync<CreatePointRequestDto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);                
+                public async Task<TDLocationMapPointDto> CreatePoint(string id, CreatePointRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreatePointRequestDto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);                
                 
-                public async Task<TDLocationMapPointDto> UpdatePoint(string locationPointId, string id, UpdatePointRequestDto data) => await _connection.RequestResourceAsync<UpdatePointRequestDto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);                
+                public async Task<TDLocationMapPointDto> UpdatePoint(string locationPointId, string id, UpdatePointRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdatePointRequestDto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDLocationMapPointDto)), data);                
                 
-                public async Task DeletePoint(string id, string locationPointId, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");                
+                public async Task DeletePoint(string id, string locationPointId, bool delete)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");                
                 
             }
             
@@ -10986,7 +11202,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMergedEventDto>> GetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMergedEventDto>)));            
+            public async Task<Batch<TDMergedEventDto>> GetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMergedEventDto>)));            
             
         }
         
@@ -11002,15 +11219,20 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMembershipDto> CreateMembership(CreateMembershipRequestDto data) => await _connection.RequestResourceAsync<CreateMembershipRequestDto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);            
+            public async Task<TDMembershipDto> CreateMembership(CreateMembershipRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateMembershipRequestDto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);            
             
-            public async Task<Batch<TDMembershipDto>> GetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null) => await _connection.RequestResourceAsync<Batch<TDMembershipDto>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMembershipDto>)));            
+            public async Task<Batch<TDMembershipDto>> GetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMembershipDto>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMembershipDto>)));            
             
-            public async Task<TDMembershipDto> UpdateMembership(string id, UpdateMembershipRequestDto data) => await _connection.RequestResourceAsync<UpdateMembershipRequestDto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);            
+            public async Task<TDMembershipDto> UpdateMembership(string id, UpdateMembershipRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateMembershipRequestDto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)), data);            
             
-            public async Task DeleteMembership(string id, bool delete) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete.ToString().ToLowerInvariant()}");            
+            public async Task DeleteMembership(string id, bool delete)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete.ToString().ToLowerInvariant()}");            
             
-            public async Task Revoke(string id, SpaceTime? till = null) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke?till={till?.ToString() ?? "null"}");            
+            public async Task Revoke(string id, SpaceTime? till = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke?till={till?.ToString() ?? "null"}");            
             
             public RequestClient Requests => new RequestClient(_connection);
             
@@ -11024,11 +11246,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null) => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<Pair<TDMemberProfileDto, TDMembershipDto>>)));                
+                public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<Pair<TDMemberProfileDto, TDMembershipDto>>)));                
                 
-                public async Task UpdateRequest(string id, UpdateRequestRequestDto data) => await _connection.RequestResourceAsync<UpdateRequestRequestDto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);                
+                public async Task UpdateRequest(string id, UpdateRequestRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateRequestRequestDto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);                
                 
-                public async Task<TDMembershipDto> DeleteRequest(string id) => await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/memberships/requests/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)));                
+                public async Task<TDMembershipDto> DeleteRequest(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/memberships/requests/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMembershipDto)));                
                 
             }
             
@@ -11044,7 +11269,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task UpdateRequestRevoke(string id, UpdateRequestRevokeRequestDto data) => await _connection.RequestResourceAsync<UpdateRequestRevokeRequestDto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);                
+                public async Task UpdateRequestRevoke(string id, UpdateRequestRevokeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateRequestRevokeRequestDto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);                
                 
             }
             
@@ -11062,25 +11288,35 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMemberProfileDto> CreateProfile(CreateProfileRequestDto data) => await _connection.RequestResourceAsync<CreateProfileRequestDto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
+            public async Task<TDMemberProfileDto> CreateProfile(CreateProfileRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateProfileRequestDto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
+            public async Task<Batch<TDMemberProfileDto>> GetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
             
-            public async Task<List<string>> CheckProfileUsernamesExistence(List<string> usernames) => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)));            
+            public async Task<List<string>> CheckProfileUsernamesExistence(List<string> usernames)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)));            
             
-            public async Task<TDMemberProfileDto> GetProfileByUsername(string username) => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/username:{username}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            public async Task<TDMemberProfileDto> GetProfileByUsername(string username)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/username:{username}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
             
-            public async Task<TDMemberProfileDto> GetProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            public async Task<TDMemberProfileDto> GetProfile(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
             
-            public async Task<bool> CheckIfProfileIsTeamMember(string id, List<string> teamIds) => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));            
+            public async Task<bool> CheckIfProfileIsTeamMember(string id, List<string> teamIds)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));            
             
-            public async Task<TDMemberProfileDto> UpdateProfile(string id, UpdateProfileRequestDto data) => await _connection.RequestResourceAsync<UpdateProfileRequestDto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
+            public async Task<TDMemberProfileDto> UpdateProfile(string id, UpdateProfileRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateProfileRequestDto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)), data);            
             
-            public async Task<TDMemberProfileDto> DeleteProfile(string id) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            public async Task<TDMemberProfileDto> DeleteProfile(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
             
-            public async Task<TDMemberProfileDto> Deactivate(string id, SpaceDate? since = null, SpaceTime? at = null) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/deactivate?since={since?.ToString() ?? "null"}&at={at?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            public async Task<TDMemberProfileDto> Deactivate(string id, SpaceDate? since = null, SpaceTime? at = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/deactivate?since={since?.ToString() ?? "null"}&at={at?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
             
-            public async Task<TDMemberProfileDto> Fire(string id, SpaceDate since) => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/fire?since={since.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
+            public async Task<TDMemberProfileDto> Fire(string id, SpaceDate since)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/fire?since={since.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));            
             
             public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
             
@@ -11094,7 +11330,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ESAuthenticationSessionDto>> GetAllAuthenticationSessions(string owner) => await _connection.RequestResourceAsync<List<ESAuthenticationSessionDto>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthenticationSessionDto>)));                
+                public async Task<List<ESAuthenticationSessionDto>> GetAllAuthenticationSessions(string owner)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ESAuthenticationSessionDto>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESAuthenticationSessionDto>)));                
                 
                 public MeClient Me => new MeClient(_connection);
                 
@@ -11108,7 +11345,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task TerminateOwnAuthenticationSession(string sessionId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/me/{sessionId}");                    
+                    public async Task TerminateOwnAuthenticationSession(string sessionId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/me/{sessionId}");                    
                     
                 }
                 
@@ -11126,7 +11364,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDMemberProfileDto> GetMe() => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/me?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));                
+                public async Task<TDMemberProfileDto> GetMe()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/me?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDMemberProfileDto)));                
                 
                 public ChecklistClient Checklists => new ChecklistClient(_connection);
                 
@@ -11140,17 +11379,23 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<ChecklistDto> CreateChecklist(IsNameFreeRequestDto data) => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                    
+                    public async Task<ChecklistDto> CreateChecklist(IsNameFreeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                    
                     
-                    public async Task<ChecklistDto> ImportChecklist(ImportChecklistRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                    
+                    public async Task<ChecklistDto> ImportChecklist(ImportChecklistRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChecklistDto)), data);                    
                     
-                    public async Task ImportChecklistLines(string checklistId, ImportChecklistLinesRequestDto data) => await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/team-directory/profiles/me/checklists/{checklistId}/import", data);                    
+                    public async Task ImportChecklistLines(string checklistId, ImportChecklistLinesRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/team-directory/profiles/me/checklists/{checklistId}/import", data);                    
                     
-                    public async Task<List<ChecklistDto>> GetAllChecklists() => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                    
+                    public async Task<List<ChecklistDto>> GetAllChecklists()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                    
                     
-                    public async Task UpdateChecklist(string checklistId, UpdateChecklistRequestDto data) => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/team-directory/profiles/me/checklists/{checklistId}", data);                    
+                    public async Task UpdateChecklist(string checklistId, UpdateChecklistRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/team-directory/profiles/me/checklists/{checklistId}", data);                    
                     
-                    public async Task DeleteChecklist(string checklistId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/checklists/{checklistId}");                    
+                    public async Task DeleteChecklist(string checklistId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/checklists/{checklistId}");                    
                     
                     public StarredClient Starred => new StarredClient(_connection);
                     
@@ -11164,7 +11409,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task<List<ChecklistDto>> GetAllStarredChecklists() => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                        
+                        public async Task<List<ChecklistDto>> GetAllStarredChecklists()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists/starred?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ChecklistDto>)));                        
                         
                     }
                     
@@ -11180,7 +11426,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task<List<PlanItemChildrenDto>> GetFullChecklistTree(string checklistId) => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/profiles/me/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));                        
+                        public async Task<List<PlanItemChildrenDto>> GetFullChecklistTree(string checklistId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/profiles/me/checklists/{checklistId}/full-checklist-tree?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<PlanItemChildrenDto>)));                        
                         
                     }
                     
@@ -11198,7 +11445,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<MeInfoDto> GetInfo() => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/me/info?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeInfoDto)));                    
+                    public async Task<MeInfoDto> GetInfo()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/me/info?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(MeInfoDto)));                    
                     
                     public DraftTypeClient DraftType => new DraftTypeClient(_connection);
                     
@@ -11212,7 +11460,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateDraftType(UpdateDraftTypeRequestDto data) => await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/draft-type", data);                        
+                        public async Task UpdateDraftType(UpdateDraftTypeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/draft-type", data);                        
                         
                     }
                     
@@ -11228,7 +11477,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateFirstDayOfWeek(UpdateFirstDayOfWeekRequestDto data) => await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/first-day-of-week", data);                        
+                        public async Task UpdateFirstDayOfWeek(UpdateFirstDayOfWeekRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/first-day-of-week", data);                        
                         
                     }
                     
@@ -11244,7 +11494,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateNavBarMenuItem(UpdateNavBarMenuItemRequestDto data) => await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/nav-bar-menu-items", data);                        
+                        public async Task UpdateNavBarMenuItem(UpdateNavBarMenuItemRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/nav-bar-menu-items", data);                        
                         
                     }
                     
@@ -11260,9 +11511,11 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task CreateNavBarProject(CreateNavBarProjectRequestDto data) => await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/profiles/me/info/nav-bar-projects", data);                        
+                        public async Task CreateNavBarProject(CreateNavBarProjectRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/profiles/me/info/nav-bar-projects", data);                        
                         
-                        public async Task DeleteNavBarProject(string projectId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/info/nav-bar-projects?projectId={projectId.ToString()}");                        
+                        public async Task DeleteNavBarProject(string projectId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/info/nav-bar-projects?projectId={projectId.ToString()}");                        
                         
                     }
                     
@@ -11278,7 +11531,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateTheme(UpdateThemeRequestDto data) => await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/theme", data);                        
+                        public async Task UpdateTheme(UpdateThemeRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/theme", data);                        
                         
                     }
                     
@@ -11298,7 +11552,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ESOAuthConsentDto>> GetAllOAuthConsents(string owner) => await _connection.RequestResourceAsync<List<ESOAuthConsentDto>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESOAuthConsentDto>)));                
+                public async Task<List<ESOAuthConsentDto>> GetAllOAuthConsents(string owner)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<ESOAuthConsentDto>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ESOAuthConsentDto>)));                
                 
                 public MeClient Me => new MeClient(_connection);
                 
@@ -11324,7 +11579,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task DeleteApprovedScope(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/approved-scopes/{id}");                        
+                        public async Task DeleteApprovedScope(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/approved-scopes/{id}");                        
                         
                     }
                     
@@ -11340,7 +11596,8 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task DeleteRefreshToken(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/refresh-tokens/{id}");                        
+                        public async Task DeleteRefreshToken(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/refresh-tokens/{id}");                        
                         
                     }
                     
@@ -11360,7 +11617,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<TDMemberProfileDto>> GetAllLeads(string id) => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles/{id}/leads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                
+                public async Task<List<TDMemberProfileDto>> GetAllLeads(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles/{id}/leads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDMemberProfileDto>)));                
                 
             }
             
@@ -11376,13 +11634,17 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentToken(string id, CreatePermanentTokenRequestDto data) => await _connection.RequestResourceAsync<CreatePermanentTokenRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Pair<ESPermanentTokenDto, string>)), data);                
+                public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentToken(string id, CreatePermanentTokenRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreatePermanentTokenRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Pair<ESPermanentTokenDto, string>)), data);                
                 
-                public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokens(string id, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ESPermanentTokenDto>)));                
+                public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokens(string id, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ESPermanentTokenDto>)));                
                 
-                public async Task UpdatePermanentToken(string id, string tokenId, UpdatePermanentTokenRequestDto data) => await _connection.RequestResourceAsync<UpdatePermanentTokenRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);                
+                public async Task UpdatePermanentToken(string id, string tokenId, UpdatePermanentTokenRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdatePermanentTokenRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);                
                 
-                public async Task DeletePermanentToken(string id, string tokenId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");                
+                public async Task DeletePermanentToken(string id, string tokenId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");                
                 
             }
             
@@ -11398,9 +11660,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDProfileLanguageDto> UpdateSpokenLanguage(string id, UpdateSpokenLanguageRequestDto data) => await _connection.RequestResourceAsync<UpdateSpokenLanguageRequestDto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);                
+                public async Task<TDProfileLanguageDto> UpdateSpokenLanguage(string id, UpdateSpokenLanguageRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateSpokenLanguageRequestDto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDProfileLanguageDto)), data);                
                 
-                public async Task DeleteSpokenLanguage(string id, string language) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/spoken-languages?language={language.ToString()}");                
+                public async Task DeleteSpokenLanguage(string id, string language)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/spoken-languages?language={language.ToString()}");                
                 
             }
             
@@ -11416,11 +11680,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<VcsHostingPasswordDto> GetVcsPassword(string id) => await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/profiles/{id}/vcs-password?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(VcsHostingPasswordDto)));                
+                public async Task<VcsHostingPasswordDto> GetVcsPassword(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/profiles/{id}/vcs-password?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(VcsHostingPasswordDto)));                
                 
-                public async Task UpdateVcsPassword(string id, UpdateVcsPasswordRequestDto data) => await _connection.RequestResourceAsync<UpdateVcsPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);                
+                public async Task UpdateVcsPassword(string id, UpdateVcsPasswordRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateVcsPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);                
                 
-                public async Task DeleteVcsPassword(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/vcs-password");                
+                public async Task DeleteVcsPassword(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/vcs-password");                
                 
             }
             
@@ -11436,13 +11703,17 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDWorkingDaysDto> AddWorkingDays(string id, AddWorkingDaysRequestDto data) => await _connection.RequestResourceAsync<AddWorkingDaysRequestDto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);                
+                public async Task<TDWorkingDaysDto> AddWorkingDays(string id, AddWorkingDaysRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<AddWorkingDaysRequestDto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);                
                 
-                public async Task<List<TDWorkingDaysDto>> GetAllWorkingDays(string id) => await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDWorkingDaysDto>)));                
+                public async Task<List<TDWorkingDaysDto>> GetAllWorkingDays(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDWorkingDaysDto>)));                
                 
-                public async Task<TDWorkingDaysDto> UpdateWorkingDays(string id, string workingDaysId, UpdateWorkingDaysRequestDto data) => await _connection.RequestResourceAsync<UpdateWorkingDaysRequestDto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);                
+                public async Task<TDWorkingDaysDto> UpdateWorkingDays(string id, string workingDaysId, UpdateWorkingDaysRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateWorkingDaysRequestDto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDWorkingDaysDto)), data);                
                 
-                public async Task DeleteWorkingDays(string id, string workingDaysId) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");                
+                public async Task DeleteWorkingDays(string id, string workingDaysId)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");                
                 
             }
             
@@ -11460,7 +11731,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
+            public async Task<Batch<TDMemberProfileDto>> GetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));            
             
         }
         
@@ -11476,17 +11748,23 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDRoleDto> CreateRole(CreateRoleRequestDto data) => await _connection.RequestResourceAsync<CreateRoleRequestDto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);            
+            public async Task<TDRoleDto> CreateRole(CreateRoleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateRoleRequestDto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);            
             
-            public async Task<TDRoleDto> Restore(string id) => await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));            
+            public async Task<TDRoleDto> Restore(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));            
             
-            public async Task<List<TDRoleDto>> GetAllRoles(string query, bool withArchived) => await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDRoleDto>)));            
+            public async Task<List<TDRoleDto>> GetAllRoles(string query, bool withArchived)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDRoleDto>)));            
             
-            public async Task<TDRoleDto> GetRole(string id) => await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));            
+            public async Task<TDRoleDto> GetRole(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)));            
             
-            public async Task<TDRoleDto> UpdateRole(string id, UpdateRoleRequestDto data) => await _connection.RequestResourceAsync<UpdateRoleRequestDto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);            
+            public async Task<TDRoleDto> UpdateRole(string id, UpdateRoleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateRoleRequestDto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDRoleDto)), data);            
             
-            public async Task ArchiveRole(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}");            
+            public async Task ArchiveRole(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}");            
             
         }
         
@@ -11502,7 +11780,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDStatsDto> GetAllStats(string? teamId = null, string? locationId = null, string? roleId = null) => await _connection.RequestResourceAsync<TDStatsDto>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDStatsDto)));            
+            public async Task<TDStatsDto> GetAllStats(string? teamId = null, string? locationId = null, string? roleId = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDStatsDto>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDStatsDto)));            
             
         }
         
@@ -11518,26 +11797,36 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDTeamDto> CreateTeam(CreateTeamRequestDto data) => await _connection.RequestResourceAsync<CreateTeamRequestDto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);            
+            public async Task<TDTeamDto> CreateTeam(CreateTeamRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateTeamRequestDto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);            
             
-            public async Task<List<TDTeamDto>> RestoreMultiple(RestoreMultipleRequestDto data) => await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);            
+            public async Task<List<TDTeamDto>> RestoreMultiple(RestoreMultipleRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)), data);            
             
-            public async Task CancelDisbanding(string id) => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding");            
+            public async Task CancelDisbanding(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding");            
             
-            public async Task<TDTeamDto> Restore(string id) => await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
+            public async Task<TDTeamDto> Restore(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
             
-            public async Task<Batch<TDTeamDto>> GetAllTeams(string query, bool withArchived, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDTeamDto>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDTeamDto>)));            
+            public async Task<Batch<TDTeamDto>> GetAllTeams(string query, bool withArchived, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDTeamDto>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDTeamDto>)));            
             
             [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]            
-            public async Task<TDTeamDto> GetSingleTeamByName(string name) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
+            public async Task<TDTeamDto> GetSingleTeamByName(string name)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
             
-            public async Task<TDTeamDto> GetTeam(string id) => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
+            public async Task<TDTeamDto> GetTeam(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)));            
             
-            public async Task<TDTeamDto> UpdateTeam(string id, UpdateTeamRequestDto data) => await _connection.RequestResourceAsync<UpdateTeamRequestDto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);            
+            public async Task<TDTeamDto> UpdateTeam(string id, UpdateTeamRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateTeamRequestDto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TDTeamDto)), data);            
             
-            public async Task<List<TDTeamDto>> ArchiveTeam(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));            
+            public async Task<List<TDTeamDto>> ArchiveTeam(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));            
             
-            public async Task<List<TDTeamDto>> Disband(string id) => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));            
+            public async Task<List<TDTeamDto>> Disband(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TDTeamDto>)));            
             
             public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
             
@@ -11551,7 +11840,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembers(string id, string query, string? skip = null, int? top = null) => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
+                public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembers(string id, string query, string? skip = null, int? top = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TDMemberProfileDto>)));                
                 
             }
             
@@ -11569,13 +11859,17 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<TodoItemRecordDto> CreateToDoItem(CreateToDoItemRequestDto data) => await _connection.RequestResourceAsync<CreateToDoItemRequestDto, TodoItemRecordDto>("POST", $"api/http/todo?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TodoItemRecordDto)), data);        
+        public async Task<TodoItemRecordDto> CreateToDoItem(CreateToDoItemRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateToDoItemRequestDto, TodoItemRecordDto>("POST", $"api/http/todo?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TodoItemRecordDto)), data);        
         
-        public async Task<Batch<TodoItemRecordDto>> GetAllToDoItems(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null) => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TodoItemRecordDto>)));        
+        public async Task<Batch<TodoItemRecordDto>> GetAllToDoItems(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<TodoItemRecordDto>)));        
         
-        public async Task UpdateToDoItem(string id, UpdateToDoItemRequestDto data) => await _connection.RequestResourceAsync<UpdateToDoItemRequestDto>("PATCH", $"api/http/todo/{id}", data);        
+        public async Task UpdateToDoItem(string id, UpdateToDoItemRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateToDoItemRequestDto>("PATCH", $"api/http/todo/{id}", data);        
         
-        public async Task DeleteToDoItem(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}");        
+        public async Task DeleteToDoItem(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}");        
         
     }
     
@@ -11589,15 +11883,20 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<TrustedCertificateDto> CreateTrustedCertificate(CreateTrustedCertificateRequestDto data) => await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TrustedCertificateDto)), data);        
+        public async Task<TrustedCertificateDto> CreateTrustedCertificate(CreateTrustedCertificateRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TrustedCertificateDto)), data);        
         
-        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates() => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TrustedCertificateDto>)));        
+        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates()
+{Indent}{Indent}=> await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TrustedCertificateDto>)));        
         
-        public async Task<CertificateInfoDto> Info(string data) => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CertificateInfoDto)));        
+        public async Task<CertificateInfoDto> Info(string data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CertificateInfoDto)));        
         
-        public async Task UpdateTrustedCertificate(string id, UpdateTrustedCertificateRequestDto data) => await _connection.RequestResourceAsync<UpdateTrustedCertificateRequestDto>("PATCH", $"api/http/trusted-certificates/{id}", data);        
+        public async Task UpdateTrustedCertificate(string id, UpdateTrustedCertificateRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<UpdateTrustedCertificateRequestDto>("PATCH", $"api/http/trusted-certificates/{id}", data);        
         
-        public async Task DeleteTrustedCertificate(string id) => await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}");        
+        public async Task DeleteTrustedCertificate(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync("DELETE", $"api/http/trusted-certificates/{id}");        
         
     }
     
@@ -11611,7 +11910,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> CreateUpload(CreateUploadRequestDto data) => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
+        public async Task<string> CreateUpload(CreateUploadRequestDto data)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
         
         public ImageClient Image => new ImageClient(_connection);
         
@@ -11625,7 +11925,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadata(string id) => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImageAttachmentMetaDto)));            
+            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadata(string id)
+{Indent}{Indent}=> await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImageAttachmentMetaDto)));            
             
         }
         
