@@ -10,6 +10,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
         {
             if (options.Scope.Count == 0)
             {
+                // REVIEW: Should we use a more narrow scope here? https://www.jetbrains.com/help/space/client-credentials.html#request
                 options.Scope.Add("**");
             }
         }
