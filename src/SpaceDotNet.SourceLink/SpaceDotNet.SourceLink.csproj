@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net461;netcoreapp2.0</TargetFrameworks>
+        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+        <Description>Generates source link for JetBrains Space repositories.</Description>
+        <PackageTags>JetBrains;JetBrains Space;aspnetcore;sourcelink;pdb;symbols;MSBuild;tasks;git</PackageTags>
+        <DevelopmentDependency>true</DevelopmentDependency>
+
+        <!-- Suppresses the warnings about the package not having assemblies in lib/*/.dll.-->
+        <NoPackageAnalysis>true</NoPackageAnalysis>
+        <!-- Change the default location where NuGet will put the build output -->
+        <BuildOutputTargetFolder>tools</BuildOutputTargetFolder>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="all" />
+
+        <!-- 
+          MSBuild: Keep the version at 15.7 until we can target net472.
+          Newer packages cause netstandard2.0 dependencies to flow to SourceLink projects 
+          when targeting net461 (due to System.Collections.Immutable), which is causing 
+          build issues. See https://github.com/Microsoft/msbuild/issues/2527.
+        -->
+        <PackageReference Include="Microsoft.Build" Version="15.7.179" PrivateAssets="all" />
+        <PackageReference Include="Microsoft.Build.Tasks.Core" Version="15.7.179" PrivateAssets="all" />
+        
+        <!-- Package dependencies -->
+        <PackageReference Include="Microsoft.Build.Tasks.Git" Version="1.0.0" />
+        <PackageReference Include="Microsoft.SourceLink.Common" Version="1.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="build/*.*">
+            <Pack>true</Pack>
+            <PackagePath>/build</PackagePath>
+        </None>
+        <None Include="buildMultiTargeting/*.*">
+            <Pack>true</Pack>
+            <PackagePath>/buildMultiTargeting</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Microsoft.Build.Tasks.SourceControl\CommonResources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>CommonResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Microsoft.Build.Tasks.SourceControl\CommonResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>CommonResources.resx</DependentUpon>
+      </Compile>
+    </ItemGroup>
+    
+    <!-- https://github.com/NuGet/Home/issues/6754 -->
+    <PropertyGroup>
+        <PackageId Condition="'$(PackageId)' == ''">$(MSBuildProjectName)</PackageId>
+        <PackageIdTemp>$(PackageId)</PackageIdTemp>
+        <PackageId>$(PackageId)_temp</PackageId>
+    </PropertyGroup>
+    <Target Name="_UpdatePackageId" BeforeTargets="$(PackDependsOn)">
+        <PropertyGroup>
+            <PackageId>$(PackageIdTemp)</PackageId>
+        </PropertyGroup>
+    </Target>
+</Project>

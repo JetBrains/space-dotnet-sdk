@@ -10,4 +10,14 @@
         <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="all" />
     </ItemGroup>
     
+    <ItemGroup>
+        <ProjectReference Include="..\SpaceDotNet.SourceLink\SpaceDotNet.SourceLink.csproj" PrivateAssets="All" />
+    </ItemGroup>
+
+    <PropertyGroup>
+        <_SourceLinkSpaceAssemblyFile Condition="'$(MSBuildRuntimeType)' != 'Core'">$(OutputPath)\SpaceDotNet.SourceLink.dll</_SourceLinkSpaceAssemblyFile>
+        <_SourceLinkSpaceAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Core'">$(OutputPath)\SpaceDotNet.SourceLink\bin\$(Configuration)\netcoreapp2.0\SpaceDotNet.SourceLink.dll</_SourceLinkSpaceAssemblyFile>
+    </PropertyGroup>
+    <Import Project="..\SpaceDotNet.SourceLink\build\SpaceDotNet.SourceLink.targets" />
+
 </Project>

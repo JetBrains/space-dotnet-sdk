@@ -10,6 +10,7 @@
         <RepositoryUrl>https://git.jetbrains.team/SpaceDotNet.git</RepositoryUrl>
         <RepositoryType>Git</RepositoryType>
         <PackageTags>JetBrains;JetBrains Space;SDK</PackageTags>
+        <InformationalVersion>0.0.1</InformationalVersion>
         <AssemblyVersion>0.0.1</AssemblyVersion>
         <FileVersion>0.0.1</FileVersion>
         <Description>A .NET library to talk to JetBrains Space.</Description>
@@ -24,12 +25,17 @@
         <IncludeSymbols>True</IncludeSymbols>
         <IncludeSource>True</IncludeSource>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <EmbedAllSources>true</EmbedAllSources>
+        <DebugType>Embedded</DebugType>
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     
         <Product>SpaceDotNet</Product>
     </PropertyGroup>
 
     <ItemGroup Condition="$(GeneratePackageOnBuild)">
+        <SourceLinkSpaceHost Include="jetbrains.team" />
+        
         <None Include="../../package_icon.png">
             <Pack>true</Pack>
             <PackagePath>/</PackagePath>
