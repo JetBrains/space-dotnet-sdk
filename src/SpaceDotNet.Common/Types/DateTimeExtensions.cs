@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using JetBrains.Annotations;
 
 namespace SpaceDotNet.Common.Types
@@ -18,7 +19,7 @@ namespace SpaceDotNet.Common.Types
         public static SpaceTime AsSpaceTime(this DateTime subject) =>
             new SpaceTime
             {
-                Iso = subject.ToString("yyyy-MM-ddTHH:mm:ssZ"),
+                Iso = subject.ToString("s", CultureInfo.InvariantCulture),
                 Timestamp = new DateTimeOffset(subject).ToUnixTimeMilliseconds()
             };
     }

@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 
@@ -15,9 +16,6 @@ namespace SpaceDotNet.Common.Types
 
         public DateTime AsDateTime() => Timestamp.AsDateTime();
 
-        public override string ToString()
-        {
-            return AsDateTime().ToString("yyyy-MM-ddTHH:mm:ssZ");
-        }
+        public override string ToString() => AsDateTime().ToString("s", CultureInfo.InvariantCulture);
     }
 }
