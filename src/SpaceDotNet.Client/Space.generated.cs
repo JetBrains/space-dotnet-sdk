@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-05T14:42:43.6430761+00:00
+//     Generated: 2020-05-06T07:57:46.2204354+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -8586,6 +8586,9 @@ namespace SpaceDotNet.Client
         public async Task<ESAuthModuleDto> CreateAuthModule(CreateAuthModuleRequestDto data)
             => await _connection.RequestResourceAsync<CreateAuthModuleRequestDto, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ESAuthModuleDto)), data);        
         
+        /// <summary>
+        /// Define order of auth modules. It affects the order of the federated auth module buttons on the sign-in page.
+        /// </summary>
         public async Task Reorder(ReorderRequestDto data)
             => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/auth-modules/reorder", data);        
         
@@ -8848,6 +8851,9 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// `channel` is channel ID
+                /// </summary>
                 public async Task SendMessage(string channelId, SendMessageRequestDto data)
                     => await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/channels/{channelId}/messages", data);                
                 

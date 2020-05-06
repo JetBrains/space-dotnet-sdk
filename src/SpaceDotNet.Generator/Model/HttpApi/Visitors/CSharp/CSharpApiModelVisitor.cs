@@ -556,6 +556,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 return methodParameters.Count > 0;
             }
 
+            if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
+            {
+                Builder.AppendLine($"{Indent}/// <summary>");
+                Builder.AppendLine($"{Indent}/// {apiEndpoint.Documentation}");
+                Builder.AppendLine($"{Indent}/// </summary>");
+            }
+            
             if (apiEndpoint.Deprecation != null)
             {
                 Builder.Append($"{Indent}[Obsolete(\"");
