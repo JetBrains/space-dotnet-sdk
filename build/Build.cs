@@ -26,10 +26,10 @@ class Build : NukeBuild
     [Parameter("Space API URL", Name = "JB_SPACE_API_URL")]
     readonly string? SpaceApiUrl;
 
-    [Parameter("Space API URL", Name = "JB_SPACE_CLIENT_ID")]
+    [Parameter("Space API Client Id", Name = "JB_SPACE_CLIENT_ID")]
     readonly string? SpaceClientId;
 
-    [Parameter("Space API URL", Name = "JB_SPACE_CLIENT_SECRET")]
+    [Parameter("Space API Client Secret", Name = "JB_SPACE_CLIENT_SECRET")]
     readonly string? SpaceClientSecret;
     
     [Solution] readonly Solution? Solution;
