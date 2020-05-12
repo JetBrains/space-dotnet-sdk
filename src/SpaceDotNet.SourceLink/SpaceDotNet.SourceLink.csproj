@@ -30,6 +30,10 @@
         <PackageReference Include="Microsoft.SourceLink.Common" Version="1.0.0" />
     </ItemGroup>
 
+    <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
+        <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.0" PrivateAssets="All" />
+    </ItemGroup>
+
     <ItemGroup>
         <None Include="build/*.*">
             <Pack>true</Pack>

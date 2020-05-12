@@ -5,6 +5,10 @@
         <_SourceLinkSpaceAssemblyFile Condition="'$(MSBuildRuntimeType)' == 'Core'">$(MSBuildThisFileDirectory)..\tools\netcoreapp2.0\SpaceDotNet.SourceLink.dll</_SourceLinkSpaceAssemblyFile>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <EnableSourceLink Condition="'$(EnableSourceLink)' == ''">true</EnableSourceLink>
+    </PropertyGroup>
+
     <UsingTask TaskName="SpaceDotNet.SourceLink.GetSourceLinkUrl" AssemblyFile="$(_SourceLinkSpaceAssemblyFile)"/>
     <UsingTask TaskName="SpaceDotNet.SourceLink.TranslateRepositoryUrls" AssemblyFile="$(_SourceLinkSpaceAssemblyFile)"/>
 
@@ -47,7 +51,6 @@
       We need to translate ssh URLs to https.
     -->
     <Target Name="TranslateSpaceUrlsInSourceControlInformation">
-
         <ItemGroup>
             <_TranslatedSourceRoot Remove="@(_TranslatedSourceRoot)"/>
         </ItemGroup>

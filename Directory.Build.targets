@@ -22,13 +22,13 @@
         <Copyright>Maarten Balliauw</Copyright>
         
         <!-- Symbols -->
-        <IncludeSymbols>True</IncludeSymbols>
-        <IncludeSource>True</IncludeSource>
+        <DebugSymbols>True</DebugSymbols>
+        <DebugType>Portable</DebugType>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
-        <EmbedAllSources>true</EmbedAllSources>
-        <DebugType>Embedded</DebugType>
-        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+        <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedAllSources>true</EmbedAllSources>
+        <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     
         <Product>SpaceDotNet</Product>
     </PropertyGroup>
