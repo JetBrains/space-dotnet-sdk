@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-06T07:57:46.2204354+00:00
+//     Generated: 2020-05-12T13:18:58.6952469+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -312,6 +312,43 @@ namespace SpaceDotNet.Client
     }
     
     [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class MeetingJoiningPreference : Enumeration
+    {
+        private MeetingJoiningPreference(string value) : base(value) { }
+        
+        public static readonly MeetingJoiningPreference NOBODY = new MeetingJoiningPreference("NOBODY");
+        public static readonly MeetingJoiningPreference EVERYONE = new MeetingJoiningPreference("EVERYONE");
+    }
+    
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class MeetingModificationPreference : Enumeration
+    {
+        private MeetingModificationPreference(string value) : base(value) { }
+        
+        public static readonly MeetingModificationPreference ORGANIZER = new MeetingModificationPreference("ORGANIZER");
+        public static readonly MeetingModificationPreference PARTICIPANTS = new MeetingModificationPreference("PARTICIPANTS");
+        public static readonly MeetingModificationPreference EVERYONE = new MeetingModificationPreference("EVERYONE");
+    }
+    
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class MeetingOrigin : Enumeration
+    {
+        private MeetingOrigin(string value) : base(value) { }
+        
+        public static readonly MeetingOrigin User = new MeetingOrigin("User");
+        public static readonly MeetingOrigin GoogleCalendar = new MeetingOrigin("GoogleCalendar");
+    }
+    
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class MeetingVisibility : Enumeration
+    {
+        private MeetingVisibility(string value) : base(value) { }
+        
+        public static readonly MeetingVisibility PARTICIPANTS = new MeetingVisibility("PARTICIPANTS");
+        public static readonly MeetingVisibility EVERYONE = new MeetingVisibility("EVERYONE");
+    }
+    
+    [JsonConverter(typeof(EnumerationConverter))]
     public sealed class MergeRequestBranchType : Enumeration
     {
         private MergeRequestBranchType(string value) : base(value) { }
@@ -454,6 +491,16 @@ namespace SpaceDotNet.Client
         public static readonly SyntaxMarkupType STRINGLITERAL = new SyntaxMarkupType("STRING_LITERAL");
         public static readonly SyntaxMarkupType ANNOTATION = new SyntaxMarkupType("ANNOTATION");
         public static readonly SyntaxMarkupType HIGHLIGHT = new SyntaxMarkupType("HIGHLIGHT");
+    }
+    
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class TwoFactorAuthenticationStatus : Enumeration
+    {
+        private TwoFactorAuthenticationStatus(string value) : base(value) { }
+        
+        public static readonly TwoFactorAuthenticationStatus NOTSETUP = new TwoFactorAuthenticationStatus("NOT_SETUP");
+        public static readonly TwoFactorAuthenticationStatus INACTIVE = new TwoFactorAuthenticationStatus("INACTIVE");
+        public static readonly TwoFactorAuthenticationStatus ACTIVE = new TwoFactorAuthenticationStatus("ACTIVE");
     }
     
     [JsonConverter(typeof(EnumerationConverter))]
@@ -1134,6 +1181,32 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("allDay")]
         public bool? AllDay { get; set; }        
+        
+    }
+    
+    public class CalendarEventSpecDto
+    {
+        [Required]
+        [JsonPropertyName("start")]
+        public SpaceTime Start { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("end")]
+        public SpaceTime End { get; set; }        
+        
+        [JsonPropertyName("recurrenceRule")]
+        public RecurrenceRuleDto? RecurrenceRule { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("allDay")]
+        public bool AllDay { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("timezone")]
+        public ATimeZoneDto Timezone { get; set; }        
+        
+        [JsonPropertyName("parentId")]
+        public string? ParentId { get; set; }        
         
     }
     
@@ -2104,6 +2177,89 @@ namespace SpaceDotNet.Client
         
     }
     
+    public class DTOMeetingDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("summary")]
+        public string Summary { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("locations")]
+        public List<TDLocationDto> Locations { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("profiles")]
+        public List<TDMemberProfileDto> Profiles { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("teams")]
+        public List<TDTeamDto> Teams { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("occurrenceRule")]
+        public CalendarEventSpecDto OccurrenceRule { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("origin")]
+        public MeetingOrigin Origin { get; set; }        
+        
+        [JsonPropertyName("googleMeetLink")]
+        public string? GoogleMeetLink { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("visibility")]
+        public MeetingVisibility Visibility { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("modificationPreference")]
+        public MeetingModificationPreference ModificationPreference { get; set; }        
+        
+        [JsonPropertyName("joiningPreference")]
+        public MeetingJoiningPreference? JoiningPreference { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("organizer")]
+        public MeetingOrganizerDto Organizer { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("etag")]
+        public long Etag { get; set; }        
+        
+        [JsonPropertyName("googleEventId")]
+        public string? GoogleEventId { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("privateDataSubstituted")]
+        public bool PrivateDataSubstituted { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("canModify")]
+        public bool CanModify { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("canDelete")]
+        public bool CanDelete { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("canJoin")]
+        public bool CanJoin { get; set; }        
+        
+        [JsonPropertyName("externalParticipants")]
+        public List<string>? ExternalParticipants { get; set; }        
+        
+    }
+    
     public class DTORightDto
     {
         [Required]
@@ -2306,51 +2462,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    public class EMavenRepositorySettingsDto
-    {
-        [Required]
-        [JsonPropertyName("id")]
-        public long Id { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("permissions")]
-        public List<string> Permissions { get; set; }        
-        
-    }
-    
-    public class EMavenSettingsDto
-    {
-        [Required]
-        [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("repositories")]
-        public List<MapEntry<string, EMavenRepositorySettingsDto>> Repositories { get; set; }        
-        
-        [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }        
-        
-        [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }        
-        
-        [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }        
-        
-    }
-    
     public class ERegistrySettingsDto
     {
         [Required]
@@ -2397,6 +2508,33 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("permissions")]
         public List<string> Permissions { get; set; }        
+        
+    }
+    
+    public class ESApplicationPasswordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("profile")]
+        public TDMemberProfileDto Profile { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }        
+        
+        [JsonPropertyName("lastAccess")]
+        public AccessRecordDto? LastAccess { get; set; }        
         
     }
     
@@ -2683,6 +2821,12 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        [JsonPropertyName("passwordModule")]
+        public bool? PasswordModule { get; set; }        
+        
+        [JsonPropertyName("federatedModule")]
+        public bool? FederatedModule { get; set; }        
+        
     }
     
     public class ESHubAuthModuleSettingsDto
@@ -2816,6 +2960,14 @@ namespace SpaceDotNet.Client
     }
     
     public class ESMavenRepositorySettingsDto
+         : ESPackageRepositorySettingsDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+    }
+    
+    public class ESNpmRegistrySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -4573,17 +4725,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    public class JBSpaceNewsFeedChannelDto
-         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
-    {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
-        [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }        
-        
-    }
-    
     public class KBArticleDto
     {
         [Required]
@@ -5944,6 +6085,39 @@ namespace SpaceDotNet.Client
         
     }
     
+    public class MeCodeReviewParticipantRecordDto
+    {
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }        
+        
+        [JsonPropertyName("role")]
+        public CodeReviewParticipantRole? Role { get; set; }        
+        
+        [JsonPropertyName("theirTurn")]
+        public bool? TheirTurn { get; set; }        
+        
+        [JsonPropertyName("reviewerState")]
+        public ReviewerState? ReviewerState { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("review")]
+        public CodeReviewRecordDto Review { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("participants")]
+        public CodeReviewParticipantsDto Participants { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("pendingCounter")]
+        public CodeReviewPendingMessageCounterDto PendingCounter { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("archived")]
+        public bool Archived { get; set; }        
+        
+    }
+    
     public class MeInfoDto
     {
         [Required]
@@ -5977,6 +6151,39 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("draftType")]
         public DraftDocumentType? DraftType { get; set; }        
+        
+    }
+    
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class MeetingOrganizerDto
+         : IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+    }
+    
+    public class MeetingOrganizerExternalUserDto
+         : MeetingOrganizerDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("email")]
+        public string Email { get; set; }        
+        
+    }
+    
+    public class MeetingOrganizerUserDto
+         : MeetingOrganizerDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("profileRef")]
+        public TDMemberProfileDto ProfileRef { get; set; }        
         
     }
     
@@ -6288,6 +6495,18 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("days")]
         public List<NonWorkingDaysDto> Days { get; set; }        
+        
+    }
+    
+    public class NpmPackageTypeDto
+         : PackageTypeDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id { get; set; }        
         
     }
     
@@ -6955,6 +7174,18 @@ namespace SpaceDotNet.Client
         
     }
     
+    public class QRCodeDto
+    {
+        [Required]
+        [JsonPropertyName("width")]
+        public int Width { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("base64Bitmap")]
+        public string Base64Bitmap { get; set; }        
+        
+    }
+    
     public class ReactionDataDto
     {
         [Required]
@@ -6995,6 +7226,172 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("order")]
         public int? Order { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleDto
+    {
+        [Required]
+        [JsonPropertyName("freq")]
+        public RecurrenceRuleFreqDto Freq { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("ends")]
+        public RecurrenceRuleEndsDto Ends { get; set; }        
+        
+    }
+    
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class RecurrenceRuleEndsDto
+         : IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+    }
+    
+    public class RecurrenceRuleEndsNeverDto
+         : RecurrenceRuleEndsDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+    }
+    
+    public class RecurrenceRuleEndsOnDateDto
+         : RecurrenceRuleEndsDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("date")]
+        public SpaceDate Date { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleEndsTotalCountDto
+         : RecurrenceRuleEndsDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("count")]
+        public int Count { get; set; }        
+        
+    }
+    
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class RecurrenceRuleFreqDto
+         : IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+    }
+    
+    public class RecurrenceRuleFreqDailyDto
+         : RecurrenceRuleFreqDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("interval")]
+        public int Interval { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleFreqMonthlyOnDateDto
+         : RecurrenceRuleFreqDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("day")]
+        public int Day { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("interval")]
+        public int Interval { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleFreqMonthlyOnFirstWeekdayDto
+         : RecurrenceRuleFreqDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("weekday")]
+        public Weekday Weekday { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("shift")]
+        public int Shift { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("interval")]
+        public int Interval { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleFreqMonthlyOnLastWeekdayDto
+         : RecurrenceRuleFreqDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("weekday")]
+        public Weekday Weekday { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("interval")]
+        public int Interval { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleFreqMonthlyOnStartDateDto
+         : RecurrenceRuleFreqDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("interval")]
+        public int Interval { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleFreqWeeklyDto
+         : RecurrenceRuleFreqDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("weekdays")]
+        public List<Weekday> Weekdays { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("interval")]
+        public int Interval { get; set; }        
+        
+    }
+    
+    public class RecurrenceRuleFreqYearlyDto
+         : RecurrenceRuleFreqDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("interval")]
+        public int Interval { get; set; }        
         
     }
     
@@ -7045,6 +7442,18 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("authorProfile")]
         public TDMemberProfileDto? AuthorProfile { get; set; }        
+        
+    }
+    
+    public class RepositoryInReviewDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("deleted")]
+        public bool Deleted { get; set; }        
         
     }
     
@@ -7263,7 +7672,7 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
+        public RepositoryInReviewDto Repository { get; set; }        
         
         [Required]
         [JsonPropertyName("commits")]
@@ -7313,6 +7722,17 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("metadata")]
         public string Metadata { get; set; }        
+        
+    }
+    
+    public class SpaceNewsFeedChannelDto
+         : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [JsonPropertyName("notificationDefaults")]
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }        
         
     }
     
@@ -8161,6 +8581,22 @@ namespace SpaceDotNet.Client
         
     }
     
+    public class TwoFactorAuthenticationSecretDto
+    {
+        [Required]
+        [JsonPropertyName("secretKey")]
+        public string SecretKey { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("qrCode")]
+        public QRCodeDto QrCode { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("scratchCodes")]
+        public List<int> ScratchCodes { get; set; }        
+        
+    }
+    
     public class UnfurlDto
     {
         [Required]
@@ -8324,6 +8760,18 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("issue")]
         public IssueDto Issue { get; set; }        
+        
+    }
+    
+    public class UnfurlDetailsMeetingDto
+         : UnfurlDetailsDto, IClassNameConvertible
+    {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        [Required]
+        [JsonPropertyName("meeting")]
+        public DTOMeetingDto Meeting { get; set; }        
         
     }
     
@@ -8825,6 +9273,9 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannel(GerOrCreateDirectMessagesChannelRequestDto data)
+                => await _connection.RequestResourceAsync<GerOrCreateDirectMessagesChannelRequestDto, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(M2ChannelRecordDto)), data);            
+            
             public async Task<bool> IsNameFree(IsNameFreeRequestDto data)
                 => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);            
             
@@ -8851,11 +9302,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                /// <summary>
-                /// `channel` is channel ID
-                /// </summary>
-                public async Task SendMessage(string channelId, SendMessageRequestDto data)
-                    => await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/channels/{channelId}/messages", data);                
+                public async Task<ChannelItemRecordDto> SendMessage(string channelId, SendMessageRequestDto data)
+                    => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChannelItemRecordDto)), data);                
                 
             }
             
@@ -8873,8 +9321,8 @@ namespace SpaceDotNet.Client
             }
             
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17)")]            
-            public async Task SendMessage(SendMessageRequestDto data)
-                => await _connection.RequestResourceAsync<SendMessageRequestDto>("POST", $"api/http/chats/messages/send", data);            
+            public async Task<ChannelItemRecordDto> SendMessage(SendMessageRequestDto data)
+                => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChannelItemRecordDto)), data);            
             
         }
         
@@ -9231,35 +9679,6 @@ namespace SpaceDotNet.Client
                 
                 public async Task<ERegistrySettingsDto> GetAllSettings(string method, string? name = null, bool? all = null)
                     => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));                
-                
-            }
-            
-        }
-        
-        public MavenRepositoryClient MavenRepository => new MavenRepositoryClient(_connection);
-        
-        public partial class MavenRepositoryClient
-        {
-            private readonly Connection _connection;
-            
-            public MavenRepositoryClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public SettingClient Settings => new SettingClient(_connection);
-            
-            public partial class SettingClient
-            {
-                private readonly Connection _connection;
-                
-                public SettingClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<EMavenSettingsDto> GetAllSettings(string method, string? name = null)
-                    => await _connection.RequestResourceAsync<EMavenSettingsDto>("GET", $"api/http/packages/maven-repository/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(EMavenSettingsDto)));                
                 
             }
             
@@ -10054,8 +10473,8 @@ namespace SpaceDotNet.Client
                 public async Task ToggleIssueResolved(string projectId, string issueId, ToggleIssueResolvedRequestDto data)
                     => await _connection.RequestResourceAsync<ToggleIssueResolvedRequestDto>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);                
                 
-                public async Task<Batch<IssueDto>> GetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? tagId = null, string? query = null)
-                    => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<IssueDto>)));                
+                public async Task<Batch<IssueDto>> GetAllIssues(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null)
+                    => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<IssueDto>)));                
                 
                 public async Task<IssueDto> GetIssueByNumber(string projectId, int number)
                     => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(IssueDto)));                
@@ -11005,6 +11424,85 @@ namespace SpaceDotNet.Client
                 
             }
             
+            public TwoFaClient TwoFa => new TwoFaClient(_connection);
+            
+            public partial class TwoFaClient
+            {
+                private readonly Connection _connection;
+                
+                public TwoFaClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public StatuClient Status => new StatuClient(_connection);
+                
+                public partial class StatuClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public StatuClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<TwoFactorAuthenticationStatus> GetStatu(string id)
+                        => await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/profiles/{id}/2-fa/status?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TwoFactorAuthenticationStatus)));                    
+                    
+                }
+                
+                public TotpClient Totp => new TotpClient(_connection);
+                
+                public partial class TotpClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public TotpClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<TwoFactorAuthenticationSecretDto> CreateTotp(string id)
+                        => await _connection.RequestResourceAsync<TwoFactorAuthenticationSecretDto>("POST", $"api/http/team-directory/profiles/{id}/2-fa/totp?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TwoFactorAuthenticationSecretDto)));                    
+                    
+                    public async Task Confirm(string id, ConfirmRequestDto data)
+                        => await _connection.RequestResourceAsync<ConfirmRequestDto>("POST", $"api/http/team-directory/profiles/{id}/2-fa/totp/confirm", data);                    
+                    
+                    public async Task UpdateTotp(string id, UpdateTotpRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateTotpRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/2-fa/totp", data);                    
+                    
+                    public async Task DeleteTotp(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/2-fa/totp");                    
+                    
+                }
+                
+            }
+            
+            public ApplicationPasswordClient ApplicationPasswords => new ApplicationPasswordClient(_connection);
+            
+            public partial class ApplicationPasswordClient
+            {
+                private readonly Connection _connection;
+                
+                public ApplicationPasswordClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<Pair<ESApplicationPasswordDto, string>> CreateApplicationPassword(string id, CreateApplicationPasswordRequestDto data)
+                    => await _connection.RequestResourceAsync<CreateApplicationPasswordRequestDto, Pair<ESApplicationPasswordDto, string>>("POST", $"api/http/team-directory/profiles/{id}/application-passwords?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Pair<ESApplicationPasswordDto, string>)), data);                
+                
+                public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswords(string id, string? skip = null, int? top = null)
+                    => await _connection.RequestResourceAsync<Batch<ESApplicationPasswordDto>>("GET", $"api/http/team-directory/profiles/{id}/application-passwords?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ESApplicationPasswordDto>)));                
+                
+                public async Task UpdateApplicationPassword(string id, string passwordId, UpdateApplicationPasswordRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/application-passwords/{passwordId}", data);                
+                
+                public async Task DeleteApplicationPassword(string id, string passwordId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/application-passwords/{passwordId}");                
+                
+            }
+            
             public LeadClient Leads => new LeadClient(_connection);
             
             public partial class LeadClient
@@ -11032,14 +11530,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentToken(string id, CreatePermanentTokenRequestDto data)
-                    => await _connection.RequestResourceAsync<CreatePermanentTokenRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Pair<ESPermanentTokenDto, string>)), data);                
+                public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentToken(string id, CreateApplicationPasswordRequestDto data)
+                    => await _connection.RequestResourceAsync<CreateApplicationPasswordRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Pair<ESPermanentTokenDto, string>)), data);                
                 
                 public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokens(string id, string? skip = null, int? top = null)
                     => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<ESPermanentTokenDto>)));                
                 
-                public async Task UpdatePermanentToken(string id, string tokenId, UpdatePermanentTokenRequestDto data)
-                    => await _connection.RequestResourceAsync<UpdatePermanentTokenRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);                
+                public async Task UpdatePermanentToken(string id, string tokenId, UpdateApplicationPasswordRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);                
                 
                 public async Task DeletePermanentToken(string id, string tokenId)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");                
@@ -11405,6 +11903,14 @@ namespace SpaceDotNet.Client
         
     }
     
+    public class ConfirmRequestDto
+    {
+        [Required]
+        [JsonPropertyName("code")]
+        public int Code { get; set; }        
+        
+    }
+    
     public class ConvertMarkdownToHTMLRequestDto
     {
         [Required]
@@ -11471,6 +11977,18 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
+    public class CreateApplicationPasswordRequestDto
+    {
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }        
         
     }
     
@@ -11844,18 +12362,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    public class CreatePermanentTokenRequestDto
-    {
-        [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("scope")]
-        public string Scope { get; set; }        
-        
-    }
-    
     public class CreatePointRequestDto
     {
         [Required]
@@ -12064,6 +12570,14 @@ namespace SpaceDotNet.Client
         [Required]
         [JsonPropertyName("title")]
         public string Title { get; set; }        
+        
+    }
+    
+    public class GerOrCreateDirectMessagesChannelRequestDto
+    {
+        [Required]
+        [JsonPropertyName("profile")]
+        public string Profile { get; set; }        
         
     }
     
@@ -12324,6 +12838,16 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
+        
+    }
+    
+    public class UpdateApplicationPasswordRequestDto
+    {
+        [JsonPropertyName("name")]
+        public string? Name { get; set; }        
+        
+        [JsonPropertyName("scope")]
+        public string? Scope { get; set; }        
         
     }
     
@@ -12623,16 +13147,6 @@ namespace SpaceDotNet.Client
         
     }
     
-    public class UpdatePermanentTokenRequestDto
-    {
-        [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
-        [JsonPropertyName("scope")]
-        public string? Scope { get; set; }        
-        
-    }
-    
     public class UpdatePointRequestDto
     {
         [JsonPropertyName("x")]
@@ -12831,6 +13345,14 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("open")]
         public bool? Open { get; set; }        
+        
+    }
+    
+    public class UpdateTotpRequestDto
+    {
+        [Required]
+        [JsonPropertyName("enabled")]
+        public bool Enabled { get; set; }        
         
     }
     
