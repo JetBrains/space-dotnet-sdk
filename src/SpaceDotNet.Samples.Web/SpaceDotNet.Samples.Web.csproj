@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <UserSecretsId>aspnet-SpaceDotNet.Samples.Web-CEE4CB30-950A-4ED1-94C9-AB8453473E6D</UserSecretsId>
     </PropertyGroup>
 

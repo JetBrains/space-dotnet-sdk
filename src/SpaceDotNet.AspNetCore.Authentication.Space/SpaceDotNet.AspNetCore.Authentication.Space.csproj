@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.0</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Description>Authentication provider for JetBrains Space.</Description>
         <PackageTags>JetBrains;JetBrains Space;security;authentication;aspnetcore</PackageTags>
