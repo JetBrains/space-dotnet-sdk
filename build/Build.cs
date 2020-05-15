@@ -21,7 +21,7 @@ class Build : NukeBuild
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter("NuGet Source for Packages")]
-    readonly string Source = "https://packages.jetbrains.team/nuget/spacedotnet/v3/index.json";
+    readonly string Source = "http://192.168.1.161.nip.io:18390/nuget/spacedotnet/v3/index.json";
     
     [Parameter("Space API URL", Name = "JB_SPACE_API_URL")]
     readonly string? SpaceApiUrl;
