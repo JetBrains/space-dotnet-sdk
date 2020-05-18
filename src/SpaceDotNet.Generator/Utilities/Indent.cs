@@ -3,7 +3,7 @@ namespace SpaceDotNet.Generator.Utilities
     public class Indent
     {
         public int Level { get; private set; }
-
+        
         public void Increment()
         {
             Level++;
@@ -13,6 +13,11 @@ namespace SpaceDotNet.Generator.Utilities
         {
             Level--;
             if (Level < 0) Level = 0;
+        }
+
+        public void Reset()
+        {
+            Level = 0;
         }
 
         public override string ToString()

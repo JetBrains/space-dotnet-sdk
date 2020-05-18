@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.Model.HttpApi;
@@ -25,10 +24,13 @@ namespace SpaceDotNet.Generator
                 "GET", "api/http/http-api-model?$fields=dto(id,deprecation,extends,fields,hierarchyRole,implements,inheritors,name,record),enums(id,deprecation,name,values),resources(id,displayPlural,displaySingular,endpoints,nestedResources!,parentResource,path)");
             
             // Build code
-            var csharpCodeBuilder = new StringBuilder();
-            var csharpApiModelVisitor = new CSharpApiModelVisitor(csharpCodeBuilder);
+            var csharpApiModelVisitor = new CSharpApiModelVisitor((fileName, fileContents) =>
+            {
+                var filePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated/" + fileName);
+                Directory.GetParent(filePath).Create();
+                File.WriteAllText(filePath, fileContents);
+            });
             csharpApiModelVisitor.Visit(apiModel);
-            File.WriteAllText("../../../../SpaceDotNet.Client/Space.generated.cs", csharpCodeBuilder.ToString());
         }
     }
 }
