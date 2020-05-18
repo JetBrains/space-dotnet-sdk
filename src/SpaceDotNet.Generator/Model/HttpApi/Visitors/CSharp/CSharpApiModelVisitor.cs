@@ -45,21 +45,28 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     StringComparer.OrdinalIgnoreCase);
 #pragma warning restore 8619
             
+            // Enums
             foreach (var apiEnum in apiModel.Enums)
             {
-                GenerateFile("Enums/" + apiEnum.Name.ToSafeIdentifier() + ".generated.cs", () => Visit(apiEnum));
+                GenerateFile("Enums/" + apiEnum.Name.ToSafeIdentifier() + ".generated.cs", 
+                    () => Visit(apiEnum));
             }
             
+            // Dtos
             foreach (var apiDto in apiModel.Dto)
             {
-                GenerateFile("Dtos/" + apiDto.Name.ToSafeIdentifier() + "Dto.generated.cs", () => Visit(apiDto));
+                GenerateFile("Dtos/" + apiDto.Name.ToSafeIdentifier() + "Dto.generated.cs", 
+                    () => Visit(apiDto));
             }
             
+            // API clients/endpoints
             foreach (var apiResource in apiModel.Resources)
             {
-                GenerateFile(apiResource.DisplaySingular.ToSafeIdentifier() + "Client.generated.cs", () => Visit(apiResource));
+                GenerateFile(apiResource.DisplaySingular.ToSafeIdentifier() + "Client.generated.cs", 
+                    () => Visit(apiResource));
             }
 
+            // Response bodies generated from API clients/endpoints
             var currentIdToAnonymousClassMap = IdToAnonymousClassMap.ToImmutableSortedDictionary();
             var writtenIdToAnonymousClassMap = new SortedDictionary<string, ApiDto>();
             do
@@ -67,7 +74,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 // Write output
                 foreach (var (anonymousDtoKey, anonymousDto) in currentIdToAnonymousClassMap)
                 {
-                    GenerateFile("Dtos/" + anonymousDto.Name.ToSafeIdentifier() + "Dto.generated.cs", () => Visit(anonymousDto));
+                    GenerateFile("Dtos/" + anonymousDto.Name.ToSafeIdentifier() + "Dto.generated.cs", 
+                        () => Visit(anonymousDto));
                     writtenIdToAnonymousClassMap.Add(anonymousDtoKey, anonymousDto);
                 }
                 
@@ -79,6 +87,21 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 currentIdToAnonymousClassMap = temp;
 
             } while (currentIdToAnonymousClassMap.Count > 0);
+            
+            // Partial extensions
+            var partialExtensionsVisitor = new CSharpPartialExtensionsVisitor(Builder, Indent, PropertiesToSkip, IdToDtoMap, IdToAnonymousClassMap);
+            foreach (var apiDto in apiModel.Dto)
+            {
+                GenerateFile("Partials/" + apiDto.Name.ToSafeIdentifier() + "Dto.generated.cs", 
+                    () => partialExtensionsVisitor.Visit(apiDto),
+                    apiDto.Name.ToSafeIdentifier() + "Extensions");
+            }
+            foreach (var (_, anonymousDto) in IdToAnonymousClassMap)
+            {
+                GenerateFile("Partials/" + anonymousDto.Name.ToSafeIdentifier() + "Dto.generated.cs", 
+                    () => partialExtensionsVisitor.Visit(anonymousDto),
+                    anonymousDto.Name.ToSafeIdentifier() + "Extensions");
+            }
         }
 
         public override void Visit(ApiEnum apiEnum)
@@ -554,7 +577,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
             {
                 Builder.Append($"{Indent}public async Task " + _clientMethodName + "(");
-            
+
                 AppendParameterList(apiEndpoint);
 
                 Builder.AppendLine(")");
@@ -574,7 +597,16 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append(" " + _clientMethodName + "(");
             
-                AppendParameterList(apiEndpoint);
+                if (AppendParameterList(apiEndpoint))
+                {
+                    Builder.Append(", ");
+                }
+                
+                Builder.Append("Func<Partial<");
+                Visit(apiEndpoint.ResponseBody);
+                Builder.Append(">, Partial<");
+                Visit(apiEndpoint.ResponseBody);
+                Builder.Append(">> partialBuilder = null");
                 
                 Builder.AppendLine(")");
                 Indent.Increment();
@@ -584,9 +616,11 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
                 Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
-                Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
+                Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
                 Visit(apiEndpoint.ResponseBody);
-                Builder.Append(")));");
+                Builder.Append(">()) : new EagerPartial<");
+                Visit(apiEndpoint.ResponseBody);
+                Builder.Append(">()));");
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
@@ -630,6 +664,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(" data");
                 
+                Builder.Append(", ");
+                Builder.Append("Func<Partial<");
+                Visit(apiEndpoint.ResponseBody);
+                Builder.Append(">, Partial<");
+                Visit(apiEndpoint.ResponseBody);
+                Builder.Append(">> partialBuilder = null");
+                
                 Builder.AppendLine(")");
                 Indent.Increment();
                 Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
@@ -640,9 +681,11 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
                 Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
-                Builder.Append("$fields=\" + ObjectToFieldDescriptor.FieldsFor(typeof(");
+                Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
                 Visit(apiEndpoint.ResponseBody);
-                Builder.Append(")), data);");
+                Builder.Append(">()) : new EagerPartial<");
+                Visit(apiEndpoint.ResponseBody);
+                Builder.Append(">()), data);");
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
@@ -656,7 +699,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             _clientMethodName = string.Empty;
         }
         
-        private void GenerateFile(string fileName, Action generate)
+        private void GenerateFile(string fileName, Action generate, string namespaceSuffix = null)
         {
             // Start building
             Indent.Reset();
@@ -684,7 +727,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Json.Serialization;");
             Builder.AppendLine($"{Indent}using SpaceDotNet.Common.Types;");
             Builder.AppendLine($"{Indent}");
-            Builder.AppendLine($"{Indent}namespace SpaceDotNet.Client");
+            Builder.AppendLine($"{Indent}namespace SpaceDotNet.Client{(!string.IsNullOrEmpty(namespaceSuffix) ? "." + namespaceSuffix : "")}");
             Builder.AppendLine($"{Indent}{{");
             Indent.Increment();
 

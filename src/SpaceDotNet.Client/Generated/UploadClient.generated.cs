@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.6571974+00:00
+//     Generated: 2020-05-18T15:15:45.4015075+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -32,8 +32,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> CreateUpload(CreateUploadRequestDto data)
-            => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);        
+        public async Task<string> CreateUpload(CreateUploadRequestDto data, Func<Partial<string>, Partial<string>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : new EagerPartial<string>()), data);        
         
         public ImageClient Image => new ImageClient(_connection);
         
@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadata(string id)
-                => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImageAttachmentMetaDto)));            
+            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadata(string id, Func<Partial<ImageAttachmentMetaDto>, Partial<ImageAttachmentMetaDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImageAttachmentMetaDto>()) : new EagerPartial<ImageAttachmentMetaDto>()));            
             
         }
         

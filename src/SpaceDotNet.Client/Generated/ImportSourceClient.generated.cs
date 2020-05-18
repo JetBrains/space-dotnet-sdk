@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.4832691+00:00
+//     Generated: 2020-05-18T15:15:45.3193087+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -32,11 +32,11 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ImportSourceDto> CreateImportSource(CreateImportSourceRequestDto data)
-            => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ImportSourceDto)), data);        
+        public async Task<ImportSourceDto> CreateImportSource(CreateImportSourceRequestDto data, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImportSourceDto>()) : new EagerPartial<ImportSourceDto>()), data);        
         
-        public async Task<List<ImportSourceDto>> GetAllImportSources()
-            => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<ImportSourceDto>)));        
+        public async Task<List<ImportSourceDto>> GetAllImportSources(Func<Partial<List<ImportSourceDto>>, Partial<List<ImportSourceDto>>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<ImportSourceDto>>()) : new EagerPartial<List<ImportSourceDto>>()));        
         
         public async Task UpdateImportSource(string sourceId, UpdateImportSourceRequestDto data)
             => await _connection.RequestResourceAsync<UpdateImportSourceRequestDto>("PATCH", $"api/http/import-sources/{sourceId}", data);        

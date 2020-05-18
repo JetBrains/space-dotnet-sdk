@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.4811660+00:00
+//     Generated: 2020-05-18T15:15:45.3173648+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -35,8 +35,8 @@ namespace SpaceDotNet.Client
         public async Task Delete(DeleteRequestDto data)
             => await _connection.RequestResourceAsync<DeleteRequestDto>("POST", $"api/http/emojis/delete", data);        
         
-        public async Task<bool> Exists(string emoji)
-            => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)));        
+        public async Task<bool> Exists(string emoji, Func<Partial<bool>, Partial<bool>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<bool>()) : new EagerPartial<bool>()));        
         
     }
     

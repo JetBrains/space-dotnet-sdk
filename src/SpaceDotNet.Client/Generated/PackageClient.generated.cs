@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.4866340+00:00
+//     Generated: 2020-05-18T15:15:45.3205924+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ERegistrySettingsDto> GetAllSettings(string method, string? name = null, bool? all = null)
-                    => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ERegistrySettingsDto)));                
+                public async Task<ERegistrySettingsDto> GetAllSettings(string method, string? name = null, bool? all = null, Func<Partial<ERegistrySettingsDto>, Partial<ERegistrySettingsDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ERegistrySettingsDto>()) : new EagerPartial<ERegistrySettingsDto>()));                
                 
             }
             
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PackagesSettingsDto> GetAllSettings(string type, string method, string? repository = null)
-                => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PackagesSettingsDto)));            
+            public async Task<PackagesSettingsDto> GetAllSettings(string type, string method, string? repository = null, Func<Partial<PackagesSettingsDto>, Partial<PackagesSettingsDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PackagesSettingsDto>()) : new EagerPartial<PackagesSettingsDto>()));            
             
         }
         

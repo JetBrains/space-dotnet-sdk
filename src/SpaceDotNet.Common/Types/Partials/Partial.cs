@@ -6,15 +6,23 @@ using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 using SpaceDotNet.Common.Types;
 
+// ReSharper disable once CheckNamespace Make discovery easier
 namespace SpaceDotNet.Common
 {
-    [PublicAPI]
-    public static class ObjectToFieldDescriptor
+    public sealed class EagerPartial<T> : Partial<T>
     {
+        // ReSharper disable once StaticMemberInGenericType
         private static readonly string CommonTypesNamespace = typeof(Batch<>).Namespace!;
-        private static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
         
-        public static string FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
+        // ReSharper disable once StaticMemberInGenericType
+        private static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
+
+        public EagerPartial()
+        {
+            AddFieldNames(FieldsFor(typeof(T)));
+        }
+        
+        private static List<string> FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
         {
             var fieldNames = new List<string>();
 
@@ -49,7 +57,7 @@ namespace SpaceDotNet.Common
                         else
                         {
                             // Follow just innerType
-                            fieldNameToAdd = fieldNameToAdd + "(" + FieldsFor(innerType, currentDepth + 1, maxDepth) + ")";
+                            fieldNameToAdd = fieldNameToAdd + "(" + string.Join(",", FieldsFor(innerType, currentDepth + 1, maxDepth)) + ")";
                         }
                     }
 
@@ -60,7 +68,7 @@ namespace SpaceDotNet.Common
                 }
             }
 
-            return string.Join(",", fieldNames);
+            return fieldNames;
         }
         
         private static List<Type> FindAllDerivedTypes(Type forType)
@@ -69,7 +77,35 @@ namespace SpaceDotNet.Common
                 .GetTypes()
                 .Where(t => t != forType && forType.IsAssignableFrom(t))
                 .ToList();
+        }
+    }
 
-        } 
+    [PublicAPI]
+    public class Partial<T>
+    {
+        private HashSet<string> _fieldNames = new HashSet<string>();
+
+        public virtual Partial<T> AddFieldName(string fieldName)
+        {
+            _fieldNames.Add(fieldName);
+            return this;
+        }
+
+        public virtual Partial<T> AddFieldNames(IEnumerable<string> fieldNames)
+        {
+            foreach (var fieldName in fieldNames)
+            {
+                _fieldNames.Add(fieldName);
+            }
+            return this;
+        }
+        
+        public virtual Partial<T> AddFieldName<TField>(string fieldName, Partial<TField> fieldPartial)
+        {
+            _fieldNames.Add(fieldName + "(" + fieldPartial + ")");
+            return this;
+        }
+
+        public override string ToString() => string.Join(",", _fieldNames);
     }
 }

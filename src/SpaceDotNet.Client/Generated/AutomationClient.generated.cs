@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.4557562+00:00
+//     Generated: 2020-05-18T15:15:45.3085823+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<string> GetParameter(long id, string key)
-                    => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)));                
+                public async Task<string> GetParameter(long id, string key, Func<Partial<string>, Partial<string>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : new EagerPartial<string>()));                
                 
                 public async Task UpdateParameter(long id, UpdateParameterRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateParameterRequestDto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);                

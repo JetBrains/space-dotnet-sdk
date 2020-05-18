@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.4581715+00:00
+//     Generated: 2020-05-18T15:15:45.3103170+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -43,14 +43,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannel(GerOrCreateDirectMessagesChannelRequestDto data)
-                => await _connection.RequestResourceAsync<GerOrCreateDirectMessagesChannelRequestDto, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(M2ChannelRecordDto)), data);            
+            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannel(GerOrCreateDirectMessagesChannelRequestDto data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<GerOrCreateDirectMessagesChannelRequestDto, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<M2ChannelRecordDto>()) : new EagerPartial<M2ChannelRecordDto>()), data);            
             
-            public async Task<bool> IsNameFree(IsNameFreeRequestDto data)
-                => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(bool)), data);            
+            public async Task<bool> IsNameFree(IsNameFreeRequestDto data, Func<Partial<bool>, Partial<bool>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<bool>()) : new EagerPartial<bool>()), data);            
             
-            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data)
-                => await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<string>)), data);            
+            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data, Func<Partial<List<string>>, Partial<List<string>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<string>>()) : new EagerPartial<List<string>>()), data);            
             
             public async Task RestoreArchivedChannel(string channelId)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");            
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ChannelItemRecordDto> SendMessage(string channelId, SendMessageRequestDto data)
-                    => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChannelItemRecordDto)), data);                
+                public async Task<ChannelItemRecordDto> SendMessage(string channelId, SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChannelItemRecordDto>()) : new EagerPartial<ChannelItemRecordDto>()), data);                
                 
             }
             
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
             }
             
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17)")]            
-            public async Task<ChannelItemRecordDto> SendMessage(SendMessageRequestDto data)
-                => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(ChannelItemRecordDto)), data);            
+            public async Task<ChannelItemRecordDto> SendMessage(SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChannelItemRecordDto>()) : new EagerPartial<ChannelItemRecordDto>()), data);            
             
         }
         

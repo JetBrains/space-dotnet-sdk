@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.4829727+00:00
+//     Generated: 2020-05-18T15:15:45.3190348+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -32,8 +32,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<HAModelDto> GetHTTPAPIModel()
-            => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(HAModelDto)));        
+        public async Task<HAModelDto> GetHTTPAPIModel(Func<Partial<HAModelDto>, Partial<HAModelDto>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<HAModelDto>()) : new EagerPartial<HAModelDto>()));        
         
     }
     

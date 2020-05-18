@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SpaceDotNet.Client;
+using SpaceDotNet.Client.TDMemberProfileExtensions;
+using SpaceDotNet.Client.TDProfileNameExtensions;
+using SpaceDotNet.Client.TodoItemRecordExtensions;
+using SpaceDotNet.Common;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Samples.Web.Pages
@@ -42,7 +46,12 @@ namespace SpaceDotNet.Samples.Web.Pages
 
         public async Task OnGet()
         {
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe();
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe(partial => partial
+                .WithId()
+                .WithName(name => name
+                    .WithFirstName()
+                    .WithLastName())
+                .WithEmails());
             
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
             var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);
@@ -150,7 +159,11 @@ namespace SpaceDotNet.Samples.Web.Pages
             try
             {
                 // Check # of TODO items resolved
-                await foreach (var todoDto in BatchEnumerator.AllItems(skip => _todoClient.GetAllToDoItems(from: weekStart.AsSpaceDate(), skip: skip)))
+                await foreach (var todoDto in BatchEnumerator.AllItems(skip => _todoClient.GetAllToDoItems(from: weekStart.AsSpaceDate(), skip: skip, partialBuilder: partial => partial
+                    .WithNext()
+                    .WithTotalCount()
+                    .WithData(x => 
+                        x.WithStatus()))))
                 {
                     if (todoDto.Status == "Closed")
                     {

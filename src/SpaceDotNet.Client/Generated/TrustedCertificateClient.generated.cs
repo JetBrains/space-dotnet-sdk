@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.6472682+00:00
+//     Generated: 2020-05-18T15:15:45.3978354+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -32,14 +32,14 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<TrustedCertificateDto> CreateTrustedCertificate(CreateTrustedCertificateRequestDto data)
-            => await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(TrustedCertificateDto)), data);        
+        public async Task<TrustedCertificateDto> CreateTrustedCertificate(CreateTrustedCertificateRequestDto data, Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TrustedCertificateDto>()) : new EagerPartial<TrustedCertificateDto>()), data);        
         
-        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates()
-            => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(List<TrustedCertificateDto>)));        
+        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates(Func<Partial<List<TrustedCertificateDto>>, Partial<List<TrustedCertificateDto>>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<TrustedCertificateDto>>()) : new EagerPartial<List<TrustedCertificateDto>>()));        
         
-        public async Task<CertificateInfoDto> Info(string data)
-            => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(CertificateInfoDto)));        
+        public async Task<CertificateInfoDto> Info(string data, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CertificateInfoDto>()) : new EagerPartial<CertificateInfoDto>()));        
         
         public async Task UpdateTrustedCertificate(string id, UpdateTrustedCertificateRequestDto data)
             => await _connection.RequestResourceAsync<UpdateTrustedCertificateRequestDto>("PATCH", $"api/http/trusted-certificates/{id}", data);        

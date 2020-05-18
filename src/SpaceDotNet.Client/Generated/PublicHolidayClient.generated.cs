@@ -5,7 +5,7 @@
 //     Changes to this file may cause incorrect behavior and will be lost if
 //     the code is regenerated.
 // 
-//     Generated: 2020-05-18T10:16:39.5338677+00:00
+//     Generated: 2020-05-18T15:15:45.3406573+00:00
 // </auto-generated>
 // ------------------------------------------------------------------------------
 
@@ -43,17 +43,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PublicHolidayCalendarRecordDto> CreateCalendar(CreateCalendarRequestDto data)
-                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
+            public async Task<PublicHolidayCalendarRecordDto> CreateCalendar(CreateCalendarRequestDto data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()) : new EagerPartial<PublicHolidayCalendarRecordDto>()), data);            
             
-            public async Task<string> Import(ImportRequestDto data)
-                => await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(string)), data);            
+            public async Task<string> Import(ImportRequestDto data, Func<Partial<string>, Partial<string>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : new EagerPartial<string>()), data);            
             
-            public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendars(string? skip = null, int? top = null)
-                => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayCalendarRecordDto>)));            
+            public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendars(string? skip = null, int? top = null, Func<Partial<Batch<PublicHolidayCalendarRecordDto>>, Partial<Batch<PublicHolidayCalendarRecordDto>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayCalendarRecordDto>>()) : new EagerPartial<Batch<PublicHolidayCalendarRecordDto>>()));            
             
-            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendar(string id, CreateCalendarRequestDto data)
-                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayCalendarRecordDto)), data);            
+            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendar(string id, CreateCalendarRequestDto data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()) : new EagerPartial<PublicHolidayCalendarRecordDto>()), data);            
             
             public async Task DeleteCalendar(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");            
@@ -71,14 +71,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PublicHolidayDto> CreateHoliday(CreateHolidayRequestDto data)
-                => await _connection.RequestResourceAsync<CreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
+            public async Task<PublicHolidayDto> CreateHoliday(CreateHolidayRequestDto data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<CreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayDto>()) : new EagerPartial<PublicHolidayDto>()), data);            
             
-            public async Task<Batch<PublicHolidayDto>> GetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null)
-                => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));            
+            public async Task<Batch<PublicHolidayDto>> GetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayDto>>()) : new EagerPartial<Batch<PublicHolidayDto>>()));            
             
-            public async Task<PublicHolidayDto> UpdateHoliday(string id, UpdateHolidayRequestDto data)
-                => await _connection.RequestResourceAsync<UpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(PublicHolidayDto)), data);            
+            public async Task<PublicHolidayDto> UpdateHoliday(string id, UpdateHolidayRequestDto data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<UpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayDto>()) : new EagerPartial<PublicHolidayDto>()), data);            
             
             public async Task DeleteHoliday(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");            
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null)
-                    => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + ObjectToFieldDescriptor.FieldsFor(typeof(Batch<PublicHolidayDto>)));                
+                public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayDto>>()) : new EagerPartial<Batch<PublicHolidayDto>>()));                
                 
             }
             
