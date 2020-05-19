@@ -710,8 +710,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}// ");
             Builder.AppendLine($"{Indent}//     Changes to this file may cause incorrect behavior and will be lost if");
             Builder.AppendLine($"{Indent}//     the code is regenerated.");
-            Builder.AppendLine($"{Indent}// ");
-            Builder.AppendLine($"{Indent}//     Generated: {DateTimeOffset.UtcNow:O}");
             Builder.AppendLine($"{Indent}// </auto-generated>");
             Builder.AppendLine($"{Indent}// ------------------------------------------------------------------------------");
             Builder.AppendLine($"{Indent}");
