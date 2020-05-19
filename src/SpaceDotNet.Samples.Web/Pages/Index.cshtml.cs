@@ -47,11 +47,14 @@ namespace SpaceDotNet.Samples.Web.Pages
         public async Task OnGet()
         {
             MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe(partial => partial
+                .AddAllFieldNames() // adds all fields for the current partial request
                 .WithId()
                 .WithName(name => name
                     .WithFirstName()
                     .WithLastName())
                 .WithEmails());
+            
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe();
             
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
             var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);

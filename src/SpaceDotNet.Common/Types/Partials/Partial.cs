@@ -9,14 +9,19 @@ using SpaceDotNet.Common.Types;
 // ReSharper disable once CheckNamespace Make discovery easier
 namespace SpaceDotNet.Common
 {
+    /// <summary>
+    /// Defines the fields to fetch from the Space API.
+    /// Extension methods are generated to provide a strong-typed, fluent API on top.
+    /// </summary>
+    /// <typeparam name="T">The type to select properties from.</typeparam>
     [PublicAPI]
-    public class Partial<T>
+    public sealed class Partial<T>
     {
         // ReSharper disable once StaticMemberInGenericType
-        protected static readonly string CommonTypesNamespace = typeof(Batch<>).Namespace!;
+        private static readonly string CommonTypesNamespace = typeof(Batch<>).Namespace!;
         
         // ReSharper disable once StaticMemberInGenericType
-        protected static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
+        private static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
         
         private HashSet<string> _fieldNames = new HashSet<string>();
 
@@ -29,13 +34,25 @@ namespace SpaceDotNet.Common
             }
         }
 
-        public virtual Partial<T> AddFieldName(string fieldName)
+        /// <summary>
+        /// Add a field name to fetch from the Space API.
+        /// </summary>
+        /// <remarks>This method does not check whether <typeparamref name="T"/> contains <paramref name="fieldName"/>.</remarks>
+        /// <param name="fieldName">Field name to fetch.</param>
+        /// <returns>The current <see cref="Partial{T}"/>.</returns>
+        public Partial<T> AddFieldName(string fieldName)
         {
             _fieldNames.Add(fieldName);
             return this;
         }
 
-        public virtual Partial<T> AddFieldNames(IEnumerable<string> fieldNames)
+        /// <summary>
+        /// Add multiple field names to fetch from the Space API.
+        /// </summary>
+        /// <remarks>This method does not check whether <typeparamref name="T"/> contains <paramref name="fieldNames"/>.</remarks>
+        /// <param name="fieldNames">Field names to fetch.</param>
+        /// <returns>The current <see cref="Partial{T}"/>.</returns>
+        public Partial<T> AddFieldNames(IEnumerable<string> fieldNames)
         {
             foreach (var fieldName in fieldNames)
             {
@@ -43,23 +60,50 @@ namespace SpaceDotNet.Common
             }
             return this;
         }
-        
-        public virtual Partial<T> AddFieldName<TField>(string fieldName, Partial<TField> fieldPartial)
+
+        /// <summary>
+        /// Add a field name to fetch from the Space API, with a partial definition for that field.
+        /// </summary>
+        /// <remarks>This method does not check whether <typeparamref name="T"/> contains <paramref name="fieldName"/>.</remarks>
+        /// <param name="fieldName">Field name to fetch. Will not be added if it already was added to the list of fields to fetch.</param>
+        /// <param name="fieldPartial">The partial expression that defines sub-fields to fetch.</param>
+        /// <returns>The current <see cref="Partial{T}"/>.</returns>
+        public Partial<T> AddFieldName<TField>(string fieldName, Partial<TField> fieldPartial)
         {
+            _fieldNames.Remove(fieldName);
             _fieldNames.Add(fieldName + "(" + fieldPartial + ")");
             return this;
         }
         
+        /// <summary>
+        /// Add all field names of <typeparamref name="T"/> to the current partial definition.
+        /// </summary>
+        /// <remarks>When combining <see cref="AddAllFieldNames"/> with methods such as <see cref="AddFieldName"/>, make sure to use <see cref="AddAllFieldNames"/> first in the partial definition.</remarks>
+        /// <returns>The current <see cref="Partial{T}"/>.</returns>
+        public Partial<T> AddAllFieldNames()
+        {
+            AddFieldNames(FieldsFor(typeof(T), currentDepth: 0, maxDepth: 0));
+            return this;
+        }
+        
+        /// <summary>
+        /// Creates a string that can be use in the Space API <code>$fields</code> query parameter.
+        /// </summary>
+        /// <returns>A string that can be use in the Space API <code>$fields</code> query parameter.</returns>
         public override string ToString() => string.Join(",", _fieldNames);
         
+        /// <summary>
+        /// Creates a recursive partial definition, fetching all fields and sub-fields recursively.
+        /// </summary>
+        /// <returns></returns>
         public static Partial<T> Recursive()
         {
             var partial = new Partial<T>();
             partial.AddFieldNames(FieldsFor(typeof(T)));
             return partial;
         }
-        
-        protected static List<string> FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
+
+        private static List<string> FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
         {
             var fieldNames = new List<string>();
 
