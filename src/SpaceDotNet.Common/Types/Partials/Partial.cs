@@ -85,6 +85,15 @@ namespace SpaceDotNet.Common
     {
         private HashSet<string> _fieldNames = new HashSet<string>();
 
+        public Partial()
+        {
+            if (typeof(IClassNameConvertible).IsAssignableFrom(typeof(T)))
+            {
+                // Support className-based inheritance
+                _fieldNames.Add("className");
+            }
+        }
+
         public virtual Partial<T> AddFieldName(string fieldName)
         {
             _fieldNames.Add(fieldName);
