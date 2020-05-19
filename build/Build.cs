@@ -21,7 +21,7 @@ class Build : NukeBuild
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
     [Parameter("NuGet Source for Packages")]
-    readonly string Source = "https://packages.jetbrains.team/nuget/spacedotnet/v3/index.json";
+    readonly string NuGetSourceUrl = "https://packages.jetbrains.team/nuget/spacedotnet/v3/index.json";
     
     [Parameter("Space API URL", Name = "JB_SPACE_API_URL")]
     readonly string? SpaceApiUrl;
@@ -102,15 +102,17 @@ class Build : NukeBuild
     Target PushPackages => _ => _
         .TriggeredBy(Package)
         .OnlyWhenStatic(() =>
-            !string.IsNullOrEmpty(Source) && !string.IsNullOrEmpty(SpaceClientSecret))
+            !string.IsNullOrEmpty(NuGetSourceUrl) && !string.IsNullOrEmpty(SpaceClientSecret))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
 
+            DotNet("nuget add source " + NuGetSourceUrl + " -n space -u " + SpaceClientId + " -p " + SpaceClientSecret + " --store-password-in-clear-text ");
+            
             DotNetNuGetPush(_ => _
-                    .SetSource(Source)
-                    .SetApiKey(SpaceClientSecret)
+                    .SetSource(NuGetSourceUrl)
+                    //.SetApiKey(SpaceClientSecret)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
