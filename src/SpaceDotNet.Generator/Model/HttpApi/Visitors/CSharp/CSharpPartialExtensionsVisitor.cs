@@ -34,6 +34,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         private string _currentPartialType = string.Empty;
         private string _currentFieldName = string.Empty;
         private readonly StringBuilder _currentFieldInnerTypeBuilder = new StringBuilder();
+        
         public override void Visit(ApiDto apiDto)
         {
             Builder.AppendLine($"{Indent}public static class " + apiDto.Name.ToSafeIdentifier() + "DtoPartialExtensions");

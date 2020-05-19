@@ -9,20 +9,57 @@ using SpaceDotNet.Common.Types;
 // ReSharper disable once CheckNamespace Make discovery easier
 namespace SpaceDotNet.Common
 {
-    public sealed class EagerPartial<T> : Partial<T>
+    [PublicAPI]
+    public class Partial<T>
     {
         // ReSharper disable once StaticMemberInGenericType
-        private static readonly string CommonTypesNamespace = typeof(Batch<>).Namespace!;
+        protected static readonly string CommonTypesNamespace = typeof(Batch<>).Namespace!;
         
         // ReSharper disable once StaticMemberInGenericType
-        private static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
+        protected static readonly string CommonTypesBatchName = typeof(Batch<>).Name;
+        
+        private HashSet<string> _fieldNames = new HashSet<string>();
 
-        public EagerPartial()
+        public Partial()
         {
-            AddFieldNames(FieldsFor(typeof(T)));
+            if (typeof(IClassNameConvertible).IsAssignableFrom(typeof(T)))
+            {
+                // Support className-based inheritance
+                _fieldNames.Add("className");
+            }
+        }
+
+        public virtual Partial<T> AddFieldName(string fieldName)
+        {
+            _fieldNames.Add(fieldName);
+            return this;
+        }
+
+        public virtual Partial<T> AddFieldNames(IEnumerable<string> fieldNames)
+        {
+            foreach (var fieldName in fieldNames)
+            {
+                _fieldNames.Add(fieldName);
+            }
+            return this;
         }
         
-        private static List<string> FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
+        public virtual Partial<T> AddFieldName<TField>(string fieldName, Partial<TField> fieldPartial)
+        {
+            _fieldNames.Add(fieldName + "(" + fieldPartial + ")");
+            return this;
+        }
+        
+        public override string ToString() => string.Join(",", _fieldNames);
+        
+        public static Partial<T> Recursive()
+        {
+            var partial = new Partial<T>();
+            partial.AddFieldNames(FieldsFor(typeof(T)));
+            return partial;
+        }
+        
+        protected static List<string> FieldsFor(Type forType, int currentDepth = 0, int maxDepth = 2)
         {
             var fieldNames = new List<string>();
 
@@ -78,43 +115,5 @@ namespace SpaceDotNet.Common
                 .Where(t => t != forType && forType.IsAssignableFrom(t))
                 .ToList();
         }
-    }
-
-    [PublicAPI]
-    public class Partial<T>
-    {
-        private HashSet<string> _fieldNames = new HashSet<string>();
-
-        public Partial()
-        {
-            if (typeof(IClassNameConvertible).IsAssignableFrom(typeof(T)))
-            {
-                // Support className-based inheritance
-                _fieldNames.Add("className");
-            }
-        }
-
-        public virtual Partial<T> AddFieldName(string fieldName)
-        {
-            _fieldNames.Add(fieldName);
-            return this;
-        }
-
-        public virtual Partial<T> AddFieldNames(IEnumerable<string> fieldNames)
-        {
-            foreach (var fieldName in fieldNames)
-            {
-                _fieldNames.Add(fieldName);
-            }
-            return this;
-        }
-        
-        public virtual Partial<T> AddFieldName<TField>(string fieldName, Partial<TField> fieldPartial)
-        {
-            _fieldNames.Add(fieldName + "(" + fieldPartial + ")");
-            return this;
-        }
-
-        public override string ToString() => string.Join(",", _fieldNames);
     }
 }

@@ -618,9 +618,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
                 Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
                 Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">()) : new EagerPartial<");
+                Builder.Append(">()) : Partial<");
                 Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">()));");
+                Builder.Append(">.Recursive()));");
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
@@ -683,9 +683,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
                 Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
                 Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">()) : new EagerPartial<");
+                Builder.Append(">()) : Partial<");
                 Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">()), data);");
+                Builder.Append(">.Recursive()), data);");
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
