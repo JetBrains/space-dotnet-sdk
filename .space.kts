@@ -4,6 +4,8 @@ job("Run NUKE build") {
             cpu = 2048
             memory = 2048
         }
+        
+        env.set("JB_SPACE_NUGET_URL", "https://packages.jetbrains.team/nuget/spacedotnet/v3/index.json")
 
         mountDir = "/mnt/mySpace"
         workDir = "/mnt/mySpace/work"

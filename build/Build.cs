@@ -20,8 +20,8 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("NuGet Source for Packages")]
-    readonly string NuGetSourceUrl = "https://packages.jetbrains.team/nuget/spacedotnet/v3/index.json";
+    [Parameter("NuGet Source for Packages", Name = "JB_SPACE_NUGET_URL")]
+    readonly string? NuGetSourceUrl;
     
     [Parameter("Space API URL", Name = "JB_SPACE_API_URL")]
     readonly string? SpaceApiUrl;
@@ -102,13 +102,13 @@ class Build : NukeBuild
     Target PushPackages => _ => _
         .TriggeredBy(Package)
         .OnlyWhenStatic(() =>
-            !string.IsNullOrEmpty(NuGetSourceUrl) && !string.IsNullOrEmpty(SpaceClientSecret))
+            !string.IsNullOrEmpty(NuGetSourceUrl) && !string.IsNullOrEmpty(SpaceClientId) && !string.IsNullOrEmpty(SpaceClientSecret))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
 
-            DotNet("nuget add source " + NuGetSourceUrl + " -n space -u " + SpaceClientId + " -p " + SpaceClientSecret + " --store-password-in-clear-text ");
+            DotNet($"nuget add source \"{NuGetSourceUrl}\" -n space -u \"{SpaceClientId}\" -p \"{SpaceClientSecret}\" --store-password-in-clear-text ");
             
             DotNetNuGetPush(_ => _
                     .SetSource(NuGetSourceUrl)
