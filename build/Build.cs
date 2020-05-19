@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Text.Json;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
@@ -116,32 +110,15 @@ class Build : NukeBuild
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
+
+            var myGetSourceUrl = "https://www.myget.org/F/spacedotnet/api/v3/index.json";
+            var myGetApiKey = "71f22ebd-f554-4bf5-b1f3-2f9ea126eba4"; // write-only to SpaceDotNet feed
             
-            // Get new token
-            var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, SpaceApiUrl + "oauth/token")
-            {
-                Headers =
-                {
-                    Authorization = AuthenticationHeaderValue.Parse(
-                        "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{SpaceClientId}:{SpaceClientSecret}")))
-                },
-                Content = new FormUrlEncodedContent(new []
-                {
-                    new KeyValuePair<string, string>("grant_type", "client_credentials"),
-                    new KeyValuePair<string, string>("scope", "**")
-                })
-            };
-
-            var httpClient = new HttpClient();
-            var spaceTokenResponse = httpClient.SendAsync(spaceTokenRequest).GetAwaiter().GetResult();
-            using var spaceTokenDocument = JsonDocument.ParseAsync(spaceTokenResponse.Content.ReadAsStreamAsync().GetAwaiter().GetResult()).GetAwaiter().GetResult();
-            var spaceToken = spaceTokenDocument.RootElement;
-
-            var spaceNuGetApiKey = spaceToken.GetProperty("access_token").GetString();
-
             DotNetNuGetPush(_ => _
-                    .SetSource(NuGetSourceUrl)
-                    .SetApiKey(spaceNuGetApiKey)
+                    //.SetSource(NuGetSourceUrl)
+                    //.SetApiKey(SpaceClientSecret)
+                    .SetSource(myGetSourceUrl)
+                    .SetApiKey(myGetApiKey)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
