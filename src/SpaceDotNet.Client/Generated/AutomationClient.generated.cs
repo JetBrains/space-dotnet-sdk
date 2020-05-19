@@ -53,7 +53,7 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task<string> GetParameter(long id, string key, Func<Partial<string>, Partial<string>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : new EagerPartial<string>()));                
+                    => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : Partial<string>.Recursive()));                
                 
                 public async Task UpdateParameter(long id, UpdateParameterRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateParameterRequestDto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);                

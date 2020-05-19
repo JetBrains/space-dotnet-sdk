@@ -42,13 +42,13 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<DRDraftDto> CreateDraft(CreateDraftRequestDto data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateDraftRequestDto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DRDraftDto>()) : new EagerPartial<DRDraftDto>()), data);            
+                => await _connection.RequestResourceAsync<CreateDraftRequestDto, DRDraftDto>("POST", $"api/http/docs/drafts?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Recursive()), data);            
             
             public async Task<DRDraftDto> GetDraft(string id, Func<Partial<DRDraftDto>, Partial<DRDraftDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DRDraftDto>()) : new EagerPartial<DRDraftDto>()));            
+                => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Recursive()));            
             
             public async Task<DRDraftDto> UpdateDraft(string id, UpdateDraftRequestDto data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<UpdateDraftRequestDto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DRDraftDto>()) : new EagerPartial<DRDraftDto>()), data);            
+                => await _connection.RequestResourceAsync<UpdateDraftRequestDto, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Recursive()), data);            
             
             public async Task DeleteDraft(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");            
@@ -79,7 +79,7 @@ namespace SpaceDotNet.Client
                         => await _connection.RequestResourceAsync<CreateProfileRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);                    
                     
                     public async Task<List<TDMemberProfileDto>> GetAllProfiles(string id, Func<Partial<List<TDMemberProfileDto>>, Partial<List<TDMemberProfileDto>>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<TDMemberProfileDto>>()) : new EagerPartial<List<TDMemberProfileDto>>()));                    
+                        => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<TDMemberProfileDto>>()) : Partial<List<TDMemberProfileDto>>.Recursive()));                    
                     
                     public async Task DeleteProfile(string id, string editorId)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");                    
@@ -101,7 +101,7 @@ namespace SpaceDotNet.Client
                         => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/docs/drafts/{id}/editors/teams", data);                    
                     
                     public async Task<List<TDTeamDto>> GetAllTeams(string id, Func<Partial<List<TDTeamDto>>, Partial<List<TDTeamDto>>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<TDTeamDto>>()) : new EagerPartial<List<TDTeamDto>>()));                    
+                        => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<TDTeamDto>>()) : Partial<List<TDTeamDto>>.Recursive()));                    
                     
                     public async Task DeleteTeam(string id, string teamId)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}");                    

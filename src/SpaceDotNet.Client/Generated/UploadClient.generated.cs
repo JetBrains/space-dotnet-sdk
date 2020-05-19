@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client
         }
         
         public async Task<string> CreateUpload(CreateUploadRequestDto data, Func<Partial<string>, Partial<string>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : new EagerPartial<string>()), data);        
+            => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : Partial<string>.Recursive()), data);        
         
         public ImageClient Image => new ImageClient(_connection);
         
@@ -45,7 +45,7 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadata(string id, Func<Partial<ImageAttachmentMetaDto>, Partial<ImageAttachmentMetaDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImageAttachmentMetaDto>()) : new EagerPartial<ImageAttachmentMetaDto>()));            
+                => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImageAttachmentMetaDto>()) : Partial<ImageAttachmentMetaDto>.Recursive()));            
             
         }
         

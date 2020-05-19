@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client
         }
         
         public async Task<HAModelDto> GetHTTPAPIModel(Func<Partial<HAModelDto>, Partial<HAModelDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<HAModelDto>()) : new EagerPartial<HAModelDto>()));        
+            => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<HAModelDto>()) : Partial<HAModelDto>.Recursive()));        
         
     }
     

@@ -34,7 +34,7 @@ namespace SpaceDotNet.Client
             => await _connection.RequestResourceAsync<DeleteRequestDto>("POST", $"api/http/emojis/delete", data);        
         
         public async Task<bool> Exists(string emoji, Func<Partial<bool>, Partial<bool>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<bool>()) : new EagerPartial<bool>()));        
+            => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<bool>()) : Partial<bool>.Recursive()));        
         
     }
     

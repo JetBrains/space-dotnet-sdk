@@ -42,7 +42,7 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<SupportProfileDTODto> CreateSupport(Func<Partial<SupportProfileDTODto>, Partial<SupportProfileDTODto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<SupportProfileDTODto>()) : new EagerPartial<SupportProfileDTODto>()));            
+                => await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<SupportProfileDTODto>()) : Partial<SupportProfileDTODto>.Recursive()));            
             
         }
         

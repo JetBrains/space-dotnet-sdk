@@ -31,10 +31,10 @@ namespace SpaceDotNet.Client
         }
         
         public async Task<ImportSourceDto> CreateImportSource(CreateImportSourceRequestDto data, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImportSourceDto>()) : new EagerPartial<ImportSourceDto>()), data);        
+            => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Recursive()), data);        
         
         public async Task<List<ImportSourceDto>> GetAllImportSources(Func<Partial<List<ImportSourceDto>>, Partial<List<ImportSourceDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<ImportSourceDto>>()) : new EagerPartial<List<ImportSourceDto>>()));        
+            => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<ImportSourceDto>>()) : Partial<List<ImportSourceDto>>.Recursive()));        
         
         public async Task UpdateImportSource(string sourceId, UpdateImportSourceRequestDto data)
             => await _connection.RequestResourceAsync<UpdateImportSourceRequestDto>("PATCH", $"api/http/import-sources/{sourceId}", data);        
