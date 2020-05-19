@@ -1,4 +1,10 @@
+using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
 using Nuke.Common;
 using Nuke.Common.Execution;
 using Nuke.Common.Git;
@@ -102,17 +108,40 @@ class Build : NukeBuild
     Target PushPackages => _ => _
         .TriggeredBy(Package)
         .OnlyWhenStatic(() =>
-            !string.IsNullOrEmpty(NuGetSourceUrl) && !string.IsNullOrEmpty(SpaceClientId) && !string.IsNullOrEmpty(SpaceClientSecret))
+            !string.IsNullOrEmpty(NuGetSourceUrl) && 
+            !string.IsNullOrEmpty(SpaceApiUrl) &&
+            !string.IsNullOrEmpty(SpaceClientId) && 
+            !string.IsNullOrEmpty(SpaceClientSecret))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
-
-            DotNet($"nuget add source \"{NuGetSourceUrl}\" -n space -u \"{SpaceClientId}\" -p \"{SpaceClientSecret}\" --store-password-in-clear-text ");
             
+            // Get new token
+            var spaceTokenRequest = new HttpRequestMessage(HttpMethod.Post, SpaceApiUrl + "oauth/token")
+            {
+                Headers =
+                {
+                    Authorization = AuthenticationHeaderValue.Parse(
+                        "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes($"{SpaceClientId}:{SpaceClientSecret}")))
+                },
+                Content = new FormUrlEncodedContent(new []
+                {
+                    new KeyValuePair<string, string>("grant_type", "client_credentials"),
+                    new KeyValuePair<string, string>("scope", "**")
+                })
+            };
+
+            var httpClient = new HttpClient();
+            var spaceTokenResponse = httpClient.SendAsync(spaceTokenRequest).GetAwaiter().GetResult();
+            using var spaceTokenDocument = JsonDocument.ParseAsync(spaceTokenResponse.Content.ReadAsStreamAsync().GetAwaiter().GetResult()).GetAwaiter().GetResult();
+            var spaceToken = spaceTokenDocument.RootElement;
+
+            var spaceNuGetApiKey = spaceToken.GetProperty("access_token").GetString();
+
             DotNetNuGetPush(_ => _
                     .SetSource(NuGetSourceUrl)
-                    //.SetApiKey(SpaceClientSecret)
+                    .SetApiKey(spaceNuGetApiKey)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
