@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CreateArticleRequestDto
+    public class ExternalArticleDto
     {
         [Required]
         [JsonPropertyName("title")]
@@ -31,20 +31,25 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public string Content { get; set; }        
         
-        [JsonPropertyName("created")]
-        public SpaceTime? Created { get; set; }        
+        [Required]
+        [JsonPropertyName("authorId")]
+        public string AuthorId { get; set; }        
         
-        [JsonPropertyName("team")]
-        public string? Team { get; set; }        
+        [Required]
+        [JsonPropertyName("created")]
+        public SpaceTime Created { get; set; }        
         
         [JsonPropertyName("teams")]
         public List<string>? Teams { get; set; }        
         
-        [JsonPropertyName("location")]
-        public string? Location { get; set; }        
-        
         [JsonPropertyName("locations")]
         public List<string>? Locations { get; set; }        
+        
+        [JsonPropertyName("externalId")]
+        public string? ExternalId { get; set; }        
+        
+        [JsonPropertyName("externalUrl")]
+        public string? ExternalUrl { get; set; }        
         
     }
     

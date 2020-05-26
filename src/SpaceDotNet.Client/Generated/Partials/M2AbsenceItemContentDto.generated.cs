@@ -29,6 +29,12 @@ namespace SpaceDotNet.Client.M2AbsenceItemContentExtensions
         public static Partial<M2AbsenceItemContentDto> WithAbsence(this Partial<M2AbsenceItemContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)
             => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>()));
         
+        public static Partial<M2AbsenceItemContentDto> WithBy(this Partial<M2AbsenceItemContentDto> it)
+            => it.AddFieldName("by");
+        
+        public static Partial<M2AbsenceItemContentDto> WithBy(this Partial<M2AbsenceItemContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
+        
     }
     
 }

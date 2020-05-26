@@ -19,20 +19,12 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.UneditableDocumentExtensions
 {
-    public class M2AbsenceItemDeletedContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+    public static class UneditableDocumentDtoPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }        
-        
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }        
+        public static Partial<UneditableDocumentDto> WithType(this Partial<UneditableDocumentDto> it)
+            => it.AddFieldName("type");
         
     }
     

@@ -21,18 +21,11 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2AbsenceItemDeletedContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+    public class ImportMetadataDto
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }        
-        
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }        
+        [JsonPropertyName("importSource")]
+        public string ImportSource { get; set; }        
         
     }
     

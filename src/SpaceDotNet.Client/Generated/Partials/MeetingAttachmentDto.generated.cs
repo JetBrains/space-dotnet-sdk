@@ -19,20 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.MeetingAttachmentExtensions
 {
-    public class M2AbsenceItemDeletedContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+    public static class MeetingAttachmentDtoPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public static Partial<MeetingAttachmentDto> WithFileUrl(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("fileUrl");
         
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }        
+        public static Partial<MeetingAttachmentDto> WithTitle(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("title");
         
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }        
+        public static Partial<MeetingAttachmentDto> WithMimeType(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("mimeType");
+        
+        public static Partial<MeetingAttachmentDto> WithFileId(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("fileId");
         
     }
     

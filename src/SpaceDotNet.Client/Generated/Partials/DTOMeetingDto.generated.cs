@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client.DTOMeetingExtensions
         public static Partial<DTOMeetingDto> WithOrigin(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("origin");
         
-        public static Partial<DTOMeetingDto> WithGoogleMeetLink(this Partial<DTOMeetingDto> it)
-            => it.AddFieldName("googleMeetLink");
+        public static Partial<DTOMeetingDto> WithConferenceLink(this Partial<DTOMeetingDto> it)
+            => it.AddFieldName("conferenceLink");
         
         public static Partial<DTOMeetingDto> WithVisibility(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("visibility");
@@ -83,9 +83,6 @@ namespace SpaceDotNet.Client.DTOMeetingExtensions
         public static Partial<DTOMeetingDto> WithEtag(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("etag");
         
-        public static Partial<DTOMeetingDto> WithGoogleEventId(this Partial<DTOMeetingDto> it)
-            => it.AddFieldName("googleEventId");
-        
         public static Partial<DTOMeetingDto> WithPrivateDataSubstituted(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("privateDataSubstituted");
         
@@ -103,6 +100,15 @@ namespace SpaceDotNet.Client.DTOMeetingExtensions
         
         public static Partial<DTOMeetingDto> WithExternalParticipants(this Partial<DTOMeetingDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
             => it.AddFieldName("externalParticipants", partialBuilder(new Partial<string>()));
+        
+        public static Partial<DTOMeetingDto> WithLinkToExternalSource(this Partial<DTOMeetingDto> it)
+            => it.AddFieldName("linkToExternalSource");
+        
+        public static Partial<DTOMeetingDto> WithEventAttachments(this Partial<DTOMeetingDto> it)
+            => it.AddFieldName("eventAttachments");
+        
+        public static Partial<DTOMeetingDto> WithEventAttachments(this Partial<DTOMeetingDto> it, Func<Partial<MeetingAttachmentDto>, Partial<MeetingAttachmentDto>> partialBuilder)
+            => it.AddFieldName("eventAttachments", partialBuilder(new Partial<MeetingAttachmentDto>()));
         
     }
     

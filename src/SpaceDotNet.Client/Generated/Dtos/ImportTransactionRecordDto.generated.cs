@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticleDetailsRecordDto
+    public class ImportTransactionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
@@ -31,26 +31,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool Archived { get; set; }        
         
-        [JsonPropertyName("event")]
-        public MeetingRecordDto? Event { get; set; }        
+        [Required]
+        [JsonPropertyName("importer")]
+        public CPrincipalDto Importer { get; set; }        
         
-        [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }        
-        
-        [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }        
-        
-        [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }        
-        
-        [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }        
-        
-        [JsonPropertyName("locations")]
-        public List<TDLocationDto>? Locations { get; set; }        
-        
-        [JsonPropertyName("externalEntityInfo")]
-        public ExternalEntityInfoRecordDto? ExternalEntityInfo { get; set; }        
+        [Required]
+        [JsonPropertyName("externalSource")]
+        public string ExternalSource { get; set; }        
         
     }
     

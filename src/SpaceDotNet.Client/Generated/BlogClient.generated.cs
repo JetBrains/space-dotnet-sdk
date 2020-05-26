@@ -44,14 +44,17 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ArticleRecordDto> CreateArticle(CreateArticleRequestDto data, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateArticleRequestDto, ArticleRecordDto>("POST", $"api/http/blogs/articles?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ArticleRecordDto>()) : Partial<ArticleRecordDto>.Recursive()), data);            
+            public async Task<List<ArticleImportResultDto>> ImportArticles(ImportArticlesRequestDto data, Func<Partial<List<ArticleImportResultDto>>, Partial<List<ArticleImportResultDto>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<ImportArticlesRequestDto, List<ArticleImportResultDto>>("POST", $"api/http/blogs/articles/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<ArticleImportResultDto>>()) : Partial<List<ArticleImportResultDto>>.Recursive()), data);            
             
             public async Task<Batch<ArticleRecordDto>> GetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecordDto>>, Partial<Batch<ArticleRecordDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<ArticleRecordDto>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ArticleRecordDto>>()) : Partial<Batch<ArticleRecordDto>>.Recursive()));            
             
             public async Task<ArticleRecordDto> GetArticleByAlias(string alias, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ArticleRecordDto>()) : Partial<ArticleRecordDto>.Recursive()));            
+            
+            public async Task<ArticleRecordDto> GetArticleByExternalId(string id, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/external-id:{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ArticleRecordDto>()) : Partial<ArticleRecordDto>.Recursive()));            
             
             public async Task<ArticleRecordDto> GetArticle(string id, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ArticleRecordDto>()) : Partial<ArticleRecordDto>.Recursive()));            

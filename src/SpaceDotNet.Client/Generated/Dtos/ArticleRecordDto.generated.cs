@@ -66,6 +66,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("event")]
         public MeetingRecordDto? Event { get; set; }        
         
+        [JsonPropertyName("externalEntityInfo")]
+        public ExternalEntityInfoRecordDto? ExternalEntityInfo { get; set; }        
+        
         [JsonPropertyName("location")]
         public TDLocationDto? Location { get; set; }        
         

@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("origin")]
         public MeetingOrigin Origin { get; set; }        
         
-        [JsonPropertyName("googleMeetLink")]
-        public string? GoogleMeetLink { get; set; }        
+        [JsonPropertyName("conferenceLink")]
+        public string? ConferenceLink { get; set; }        
         
         [Required]
         [JsonPropertyName("visibility")]
@@ -80,9 +80,6 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("etag")]
         public long Etag { get; set; }        
         
-        [JsonPropertyName("googleEventId")]
-        public string? GoogleEventId { get; set; }        
-        
         [Required]
         [JsonPropertyName("privateDataSubstituted")]
         public bool PrivateDataSubstituted { get; set; }        
@@ -99,8 +96,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canJoin")]
         public bool CanJoin { get; set; }        
         
+        [Required]
         [JsonPropertyName("externalParticipants")]
-        public List<string>? ExternalParticipants { get; set; }        
+        public List<string> ExternalParticipants { get; set; }        
+        
+        [JsonPropertyName("linkToExternalSource")]
+        public string? LinkToExternalSource { get; set; }        
+        
+        [JsonPropertyName("eventAttachments")]
+        public List<MeetingAttachmentDto>? EventAttachments { get; set; }        
         
     }
     

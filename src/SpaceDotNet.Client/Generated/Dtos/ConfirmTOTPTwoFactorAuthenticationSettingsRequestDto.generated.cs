@@ -21,18 +21,11 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2AbsenceItemDeletedContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+    public class ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }        
-        
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }        
+        [JsonPropertyName("code")]
+        public int Code { get; set; }        
         
     }
     

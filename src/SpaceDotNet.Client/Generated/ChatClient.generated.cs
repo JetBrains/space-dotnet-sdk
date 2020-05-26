@@ -88,7 +88,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17)")]            
+            [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]            
             public async Task<ChannelItemRecordDto> SendMessage(SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Recursive()), data);            
             

@@ -21,11 +21,11 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ConfirmRequestDto
+    public interface TextDocumentDto
+         : IClassNameConvertible
     {
-        [Required]
-        [JsonPropertyName("code")]
-        public int Code { get; set; }        
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
     }
     

@@ -41,12 +41,6 @@ namespace SpaceDotNet.Client.ArticleDetailsRecordExtensions
         public static Partial<ArticleDetailsRecordDto> WithTeam(this Partial<ArticleDetailsRecordDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
             => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>()));
         
-        public static Partial<ArticleDetailsRecordDto> WithTeams(this Partial<ArticleDetailsRecordDto> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<ArticleDetailsRecordDto> WithTeams(this Partial<ArticleDetailsRecordDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>()));
-        
         public static Partial<ArticleDetailsRecordDto> WithProject(this Partial<ArticleDetailsRecordDto> it)
             => it.AddFieldName("project");
         
@@ -59,11 +53,23 @@ namespace SpaceDotNet.Client.ArticleDetailsRecordExtensions
         public static Partial<ArticleDetailsRecordDto> WithLocation(this Partial<ArticleDetailsRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
             => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>()));
         
+        public static Partial<ArticleDetailsRecordDto> WithTeams(this Partial<ArticleDetailsRecordDto> it)
+            => it.AddFieldName("teams");
+        
+        public static Partial<ArticleDetailsRecordDto> WithTeams(this Partial<ArticleDetailsRecordDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>()));
+        
         public static Partial<ArticleDetailsRecordDto> WithLocations(this Partial<ArticleDetailsRecordDto> it)
             => it.AddFieldName("locations");
         
         public static Partial<ArticleDetailsRecordDto> WithLocations(this Partial<ArticleDetailsRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
             => it.AddFieldName("locations", partialBuilder(new Partial<TDLocationDto>()));
+        
+        public static Partial<ArticleDetailsRecordDto> WithExternalEntityInfo(this Partial<ArticleDetailsRecordDto> it)
+            => it.AddFieldName("externalEntityInfo");
+        
+        public static Partial<ArticleDetailsRecordDto> WithExternalEntityInfo(this Partial<ArticleDetailsRecordDto> it, Func<Partial<ExternalEntityInfoRecordDto>, Partial<ExternalEntityInfoRecordDto>> partialBuilder)
+            => it.AddFieldName("externalEntityInfo", partialBuilder(new Partial<ExternalEntityInfoRecordDto>()));
         
     }
     

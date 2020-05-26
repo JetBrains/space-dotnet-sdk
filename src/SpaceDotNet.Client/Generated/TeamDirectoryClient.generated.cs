@@ -769,7 +769,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<TwoFactorAuthenticationStatus> GetStatu(string id, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>> partialBuilder = null)
+                    public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatus(string id, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/profiles/{id}/2-fa/status?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Recursive()));                    
                     
                 }
@@ -785,16 +785,16 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<TwoFactorAuthenticationSecretDto> CreateTotp(string id, Func<Partial<TwoFactorAuthenticationSecretDto>, Partial<TwoFactorAuthenticationSecretDto>> partialBuilder = null)
+                    public async Task<TwoFactorAuthenticationSecretDto> SetUpTOTPTwoFactorAuthentication(string id, Func<Partial<TwoFactorAuthenticationSecretDto>, Partial<TwoFactorAuthenticationSecretDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<TwoFactorAuthenticationSecretDto>("POST", $"api/http/team-directory/profiles/{id}/2-fa/totp?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationSecretDto>()) : Partial<TwoFactorAuthenticationSecretDto>.Recursive()));                    
                     
-                    public async Task Confirm(string id, ConfirmRequestDto data)
-                        => await _connection.RequestResourceAsync<ConfirmRequestDto>("POST", $"api/http/team-directory/profiles/{id}/2-fa/totp/confirm", data);                    
+                    public async Task ConfirmTOTPTwoFactorAuthenticationSettings(string id, ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                        => await _connection.RequestResourceAsync<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto>("POST", $"api/http/team-directory/profiles/{id}/2-fa/totp/confirm", data);                    
                     
-                    public async Task UpdateTotp(string id, UpdateTotpRequestDto data)
-                        => await _connection.RequestResourceAsync<UpdateTotpRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/2-fa/totp", data);                    
+                    public async Task UpdateTOTPTwoFactorAuthenticationSettings(string id, UpdateTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateTOTPTwoFactorAuthenticationSettingsRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/2-fa/totp", data);                    
                     
-                    public async Task DeleteTotp(string id)
+                    public async Task DeleteCurrentTOTPTwoFactorAuthenticationSettings(string id)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/2-fa/totp");                    
                     
                 }

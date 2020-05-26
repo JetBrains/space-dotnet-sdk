@@ -21,19 +21,14 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2AbsenceItemDeletedContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class RecurrentModification : Enumeration
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        private RecurrentModification(string value) : base(value) { }
         
-        [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }        
-        
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }        
-        
+        public static readonly RecurrentModification Me = new RecurrentModification("Me");
+        public static readonly RecurrentModification SinceMe = new RecurrentModification("SinceMe");
+        public static readonly RecurrentModification All = new RecurrentModification("All");
     }
     
 }

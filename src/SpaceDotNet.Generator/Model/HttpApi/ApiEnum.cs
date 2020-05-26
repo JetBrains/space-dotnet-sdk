@@ -8,6 +8,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         [JsonPropertyName("id")]
         public string Id { get; set; } = default!;
         
+        [JsonPropertyName("deprecation")]
+        public ApiDeprecation? Deprecation { get; set; } = default;
+        
         [JsonPropertyName("name")]
         public string Name { get; set; } = default!;
         

@@ -31,6 +31,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("absence")]
         public AbsenceRecordDto Absence { get; set; }        
         
+        [JsonPropertyName("by")]
+        public TDMemberProfileDto? By { get; set; }        
+        
     }
     
 }

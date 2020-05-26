@@ -38,12 +38,6 @@ namespace SpaceDotNet.Client.DRDraftExtensions
         public static Partial<DRDraftDto> WithModified(this Partial<DRDraftDto> it)
             => it.AddFieldName("modified");
         
-        public static Partial<DRDraftDto> WithPublished(this Partial<DRDraftDto> it)
-            => it.AddFieldName("published");
-        
-        public static Partial<DRDraftDto> WithPublished(this Partial<DRDraftDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)
-            => it.AddFieldName("published", partialBuilder(new Partial<ArticleRecordDto>()));
-        
         public static Partial<DRDraftDto> WithPublishedFlag(this Partial<DRDraftDto> it)
             => it.AddFieldName("publishedFlag");
         
@@ -79,6 +73,12 @@ namespace SpaceDotNet.Client.DRDraftExtensions
         
         public static Partial<DRDraftDto> WithVersion(this Partial<DRDraftDto> it)
             => it.AddFieldName("version");
+        
+        public static Partial<DRDraftDto> WithDocument(this Partial<DRDraftDto> it)
+            => it.AddFieldName("document");
+        
+        public static Partial<DRDraftDto> WithDocument(this Partial<DRDraftDto> it, Func<Partial<TextDocumentDto>, Partial<TextDocumentDto>> partialBuilder)
+            => it.AddFieldName("document", partialBuilder(new Partial<TextDocumentDto>()));
         
     }
     

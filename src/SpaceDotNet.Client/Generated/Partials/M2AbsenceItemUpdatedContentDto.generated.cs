@@ -41,6 +41,12 @@ namespace SpaceDotNet.Client.M2AbsenceItemUpdatedContentExtensions
         public static Partial<M2AbsenceItemUpdatedContentDto> WithTill(this Partial<M2AbsenceItemUpdatedContentDto> it)
             => it.AddFieldName("till");
         
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithBy(this Partial<M2AbsenceItemUpdatedContentDto> it)
+            => it.AddFieldName("by");
+        
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithBy(this Partial<M2AbsenceItemUpdatedContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
+        
     }
     
 }

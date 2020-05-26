@@ -31,23 +31,19 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title { get; set; }        
         
-        [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
+        public string? Text { get; set; }        
         
-        [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get; set; }        
+        public DraftDocumentType? Type { get; set; }        
         
         [Required]
         [JsonPropertyName("modified")]
         public SpaceTime Modified { get; set; }        
         
-        [JsonPropertyName("published")]
-        public ArticleRecordDto? Published { get; set; }        
-        
+        [Required]
         [JsonPropertyName("publishedFlag")]
-        public bool? PublishedFlag { get; set; }        
+        public bool PublishedFlag { get; set; }        
         
         [Required]
         [JsonPropertyName("shared")]
@@ -73,6 +69,9 @@ namespace SpaceDotNet.Client
         
         [JsonPropertyName("version")]
         public long? Version { get; set; }        
+        
+        [JsonPropertyName("document")]
+        public TextDocumentDto? Document { get; set; }        
         
     }
     

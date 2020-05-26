@@ -21,30 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2AbsenceItemUpdatedContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+    public class UneditableDocumentDto
+         : TextDocumentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [Required]
-        [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }        
-        
-        [JsonPropertyName("reason")]
-        public Modification<AbsenceReasonRecordDto>? Reason { get; set; }        
-        
-        [JsonPropertyName("description")]
-        public Modification<string>? Description { get; set; }        
-        
-        [JsonPropertyName("since")]
-        public Modification<SpaceDate>? Since { get; set; }        
-        
-        [JsonPropertyName("till")]
-        public Modification<SpaceDate>? Till { get; set; }        
-        
-        [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }        
+        [JsonPropertyName("type")]
+        public DraftDocumentType Type { get; set; }        
         
     }
     

@@ -106,6 +106,11 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
         public override void Visit(ApiEnum apiEnum)
         {
+            if (apiEnum.Deprecation != null)
+            {
+                Visit(apiEnum.Deprecation);
+            }
+            
             Builder.AppendLine($"{Indent}[JsonConverter(typeof(EnumerationConverter))]");
             Builder.AppendLine($"{Indent}public sealed class " + apiEnum.Name.ToSafeIdentifier() + " : Enumeration");
             Builder.AppendLine($"{Indent}{{");
@@ -127,6 +132,11 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
         public override void Visit(ApiDto apiDto)
         {
+            if (apiDto.Deprecation != null)
+            {
+                Visit(apiDto.Deprecation);
+            }
+                
             if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
             {
                 // When extending another DTO, make sure to apply a converter
@@ -557,21 +567,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             
             if (apiEndpoint.Deprecation != null)
             {
-                Builder.Append($"{Indent}[Obsolete(\"");
-                if (!string.IsNullOrEmpty(apiEndpoint.Deprecation.Message))
-                {
-                    Builder.Append(apiEndpoint.Deprecation.Message);
-                }
-                else
-                {
-                    Builder.Append("This API is obsolete");
-                }
-                if (!string.IsNullOrEmpty(apiEndpoint.Deprecation.Since))
-                {
-                    Builder.Append(" (since " + apiEndpoint.Deprecation.Since + ")");
-                }
-                Builder.Append("\")]");
-                Builder.AppendLine($"{Indent}");
+                Visit(apiEndpoint.Deprecation);
             }
             
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
@@ -697,6 +693,29 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}");
 
             _clientMethodName = string.Empty;
+        }
+
+        private void Visit(ApiDeprecation apiDeprecation)
+        {
+            Builder.Append($"{Indent}[Obsolete(\"");
+            if (!string.IsNullOrEmpty(apiDeprecation.Message))
+            {
+                Builder.Append(apiDeprecation.Message);
+            }
+            else
+            {
+                Builder.Append("This is obsolete");
+            }
+            if (!string.IsNullOrEmpty(apiDeprecation.Since))
+            {
+                Builder.Append(" (since " + apiDeprecation.Since + ")");
+            }
+            if (apiDeprecation.ForRemoval)
+            {
+                Builder.Append(" (marked for removal)");
+            }
+            Builder.Append("\")]");
+            Builder.AppendLine($"{Indent}");
         }
         
         private void GenerateFile(string fileName, Action generate, string namespaceSuffix = null)

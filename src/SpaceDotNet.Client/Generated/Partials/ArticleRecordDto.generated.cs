@@ -74,6 +74,12 @@ namespace SpaceDotNet.Client.ArticleRecordExtensions
         public static Partial<ArticleRecordDto> WithEvent(this Partial<ArticleRecordDto> it, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder)
             => it.AddFieldName("event", partialBuilder(new Partial<MeetingRecordDto>()));
         
+        public static Partial<ArticleRecordDto> WithExternalEntityInfo(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("externalEntityInfo");
+        
+        public static Partial<ArticleRecordDto> WithExternalEntityInfo(this Partial<ArticleRecordDto> it, Func<Partial<ExternalEntityInfoRecordDto>, Partial<ExternalEntityInfoRecordDto>> partialBuilder)
+            => it.AddFieldName("externalEntityInfo", partialBuilder(new Partial<ExternalEntityInfoRecordDto>()));
+        
         public static Partial<ArticleRecordDto> WithLocation(this Partial<ArticleRecordDto> it)
             => it.AddFieldName("location");
         
