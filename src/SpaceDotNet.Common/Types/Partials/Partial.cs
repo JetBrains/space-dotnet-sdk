@@ -85,6 +85,21 @@ namespace SpaceDotNet.Common
             AddFieldNames(FieldsFor(typeof(T), currentDepth: 0, maxDepth: 0));
             return this;
         }
+
+        /// <summary>
+        /// Add partial for an inheritor.
+        /// </summary>
+        /// <param name="inheritorPartialBuilder">A <see cref="Partial{TInheritor}"/> that can specify the fields to fetch for <typeparamref name="TInheritor"/>.</param>
+        /// <typeparam name="TInheritor">Type of the inheritor.</typeparam>
+        /// <remarks>This method does not check whether <typeparamref name="TInheritor"/> is an inheritor of <typeparamref name="T"/>.</remarks>
+        /// <returns>The current partial.</returns>
+        public Partial<T> WithInherited<TInheritor>(Func<Partial<TInheritor>, Partial<TInheritor>> inheritorPartialBuilder)
+            where TInheritor : IClassNameConvertible
+        {
+            var inheritorPartial = inheritorPartialBuilder(new Partial<TInheritor>());
+            AddFieldNames(inheritorPartial._fieldNames);
+            return this;
+        }
         
         /// <summary>
         /// Creates a string that can be use in the Space API <code>$fields</code> query parameter.
