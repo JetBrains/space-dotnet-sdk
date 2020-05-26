@@ -70,11 +70,14 @@
                         var activityCanvas = document.getElementById("activityChart");
     
                         var activityData = {
-                          labels: ["Issues created", "Issues resolved", "Reviews created", "Reviews participated", "TODO items closed"],
+                          labels: ["Issues created", "Issues resolved", "Reviews created", "Reviews participated", "TODO items completed", "Meetings"],
                           datasets: [{
                             label: "Activity",
-                            backgroundColor: "rgba(200,0,0,0.2)",
-                            data: [@Model.IssuesCreatedThisWeek, @Model.IssuesResolvedThisWeek, @Model.ReviewsCreatedThisWeek, @Model.ReviewsParticipatedThisWeek, @Model.TodoClosedThisWeek]
+                            backgroundColor: "rgba(22,155,207,0.2)",
+                            data: [
+                                @Model.IssuesCreatedThisWeek, @Model.IssuesResolvedThisWeek, @Model.ReviewsCreatedThisWeek, 
+                                @Model.ReviewsParticipatedThisWeek, @Model.TodoClosedThisWeek, @Model.MeetingsThisWeek
+                            ]
                           }]
                         };
                         
@@ -86,6 +89,29 @@
                 </script>
             </div>
         </div>
+        
+        @if (Model.MeetingsToday.Count > 0)
+        {
+            <div class="row mb-2">
+                <div class="col-12">
+                    <h4>Meetings today</h4>
+                    <ul class="list-group">
+                        @foreach (var meeting in Model.MeetingsToday.OrderBy(it => it.OccurrenceRule.Start.AsDateTime()))
+                        {
+                            <li class="list-group-item">
+                                <small>@meeting.OccurrenceRule.Start.AsDateTime().ToString("hh:mm tt") - @meeting.OccurrenceRule.End.AsDateTime().ToString("hh:mm tt")</small><br/>
+                                @meeting.Summary
+                                
+                                @if (!string.IsNullOrEmpty(meeting.ConferenceLink))
+                                {
+                                    <a href="@Html.Raw(meeting.ConferenceLink.TrimEnd('/'))/" class="btn-sm btn-secondary">join</a>
+                                }
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
         
         <div class="row mb-2">
             <div class="col-12">
