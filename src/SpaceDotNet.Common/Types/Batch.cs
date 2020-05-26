@@ -16,6 +16,6 @@ namespace SpaceDotNet.Common.Types
         [JsonPropertyName("totalCount")]
         public int? TotalCount { get; set; }
 
-        public bool HasNext() => !string.IsNullOrEmpty(Next) && int.TryParse(Next, out var next) && next != TotalCount;
+        public bool HasNext() => TotalCount != null && !string.IsNullOrEmpty(Next) && int.TryParse(Next, out var next) && next != TotalCount;
     }
 }

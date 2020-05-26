@@ -13,6 +13,13 @@ namespace SpaceDotNet.Client.Internal
                 return null;
             }
 
+            // Nullify parameter
+            if (subject.Count == 0)
+            {
+                return "null";
+            }
+
+            // Repeat parameter
             var builder = new StringBuilder();
             for (var i = 0; i < subject.Count; i++)
             {

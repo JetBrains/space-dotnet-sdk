@@ -133,12 +133,20 @@ namespace SpaceDotNet.Common
                         if (derivedInnerTypes.Count > 0)
                         {
                             // Follow all derived types of innerType
-                            fieldNameToAdd = fieldNameToAdd + "(" + string.Join(",", derivedInnerTypes.Select(it => FieldsFor(it, currentDepth + 1, maxDepth))) + ")";
+                            var innerFieldsToAdd = string.Join(",", derivedInnerTypes.SelectMany(it => FieldsFor(it, currentDepth + 1, maxDepth)));
+                            if (!string.IsNullOrEmpty(innerFieldsToAdd))
+                            {
+                                fieldNameToAdd = $"{fieldNameToAdd}({innerFieldsToAdd})";
+                            }
                         }
                         else
                         {
                             // Follow just innerType
-                            fieldNameToAdd = fieldNameToAdd + "(" + string.Join(",", FieldsFor(innerType, currentDepth + 1, maxDepth)) + ")";
+                            var innerFieldsToAdd = string.Join(",", FieldsFor(innerType, currentDepth + 1, maxDepth));
+                            if (!string.IsNullOrEmpty(innerFieldsToAdd))
+                            {
+                                fieldNameToAdd = $"{fieldNameToAdd}({innerFieldsToAdd})";
+                            }
                         }
                     }
 
