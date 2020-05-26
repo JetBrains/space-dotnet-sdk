@@ -53,7 +53,7 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task<ERegistrySettingsDto> GetAllSettings(string method, string? name = null, bool? all = null, Func<Partial<ERegistrySettingsDto>, Partial<ERegistrySettingsDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ERegistrySettingsDto>()) : Partial<ERegistrySettingsDto>.Recursive()));                
+                    => await _connection.RequestResourceAsync<ERegistrySettingsDto>("GET", $"api/http/packages/container-registry/settings?method={method.ToString()}&name={name?.ToString() ?? "null"}&all={all?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ERegistrySettingsDto>()) : Partial<ERegistrySettingsDto>.Default()));                
                 
             }
             
@@ -71,7 +71,7 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<PackagesSettingsDto> GetAllSettings(string type, string method, string? repository = null, Func<Partial<PackagesSettingsDto>, Partial<PackagesSettingsDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PackagesSettingsDto>()) : Partial<PackagesSettingsDto>.Recursive()));            
+                => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PackagesSettingsDto>()) : Partial<PackagesSettingsDto>.Default()));            
             
         }
         

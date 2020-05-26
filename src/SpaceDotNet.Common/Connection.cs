@@ -74,6 +74,10 @@ namespace SpaceDotNet.Common
                     {
                         queryStringCollection.Remove(key);
                     }
+                    else if (key == "$fields" && string.IsNullOrEmpty(queryStringCollection[key]))
+                    {
+                        queryStringCollection.Remove(key);
+                    }
                 }
 
                 // ReSharper disable once AssignNullToNotNullAttribute

@@ -98,6 +98,9 @@ namespace SpaceDotNet.Client.TDMemberProfileExtensions
         public static Partial<TDMemberProfileDto> WithManagers(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("managers");
         
+        public static Partial<TDMemberProfileDto> WithManagersRecursive(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("managers!");
+        
         public static Partial<TDMemberProfileDto> WithManagers(this Partial<TDMemberProfileDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
             => it.AddFieldName("managers", partialBuilder(new Partial<TDMemberProfileDto>()));
         

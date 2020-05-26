@@ -59,6 +59,9 @@ namespace SpaceDotNet.Client.TDLocationExtensions
         public static Partial<TDLocationDto> WithParent(this Partial<TDLocationDto> it)
             => it.AddFieldName("parent");
         
+        public static Partial<TDLocationDto> WithParentRecursive(this Partial<TDLocationDto> it)
+            => it.AddFieldName("parent!");
+        
         public static Partial<TDLocationDto> WithParent(this Partial<TDLocationDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
             => it.AddFieldName("parent", partialBuilder(new Partial<TDLocationDto>()));
         

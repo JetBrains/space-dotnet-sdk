@@ -624,7 +624,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     Visit(apiEndpoint.ResponseBody);
                     Builder.Append(">()) : Partial<");
                     Visit(apiEndpoint.ResponseBody);
-                    Builder.Append(">.Recursive())");
+                    Builder.Append(">.Default())");
                 }
                 else
                 {
@@ -701,7 +701,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     Visit(apiEndpoint.ResponseBody);
                     Builder.Append(">()) : Partial<");
                     Visit(apiEndpoint.ResponseBody);
-                    Builder.Append(">.Recursive()), ");
+                    Builder.Append(">.Default()), ");
                 }
                 else
                 {

@@ -41,6 +41,9 @@ namespace SpaceDotNet.Client.HAResourceExtensions
         public static Partial<HAResourceDto> WithParentResource(this Partial<HAResourceDto> it)
             => it.AddFieldName("parentResource");
         
+        public static Partial<HAResourceDto> WithParentResourceRecursive(this Partial<HAResourceDto> it)
+            => it.AddFieldName("parentResource!");
+        
         public static Partial<HAResourceDto> WithParentResource(this Partial<HAResourceDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)
             => it.AddFieldName("parentResource", partialBuilder(new Partial<HAResourceDto>()));
         
@@ -52,6 +55,9 @@ namespace SpaceDotNet.Client.HAResourceExtensions
         
         public static Partial<HAResourceDto> WithNestedResources(this Partial<HAResourceDto> it)
             => it.AddFieldName("nestedResources");
+        
+        public static Partial<HAResourceDto> WithNestedResourcesRecursive(this Partial<HAResourceDto> it)
+            => it.AddFieldName("nestedResources!");
         
         public static Partial<HAResourceDto> WithNestedResources(this Partial<HAResourceDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)
             => it.AddFieldName("nestedResources", partialBuilder(new Partial<HAResourceDto>()));

@@ -59,6 +59,9 @@ namespace SpaceDotNet.Client.PlanItemExtensions
         public static Partial<PlanItemDto> WithChildren(this Partial<PlanItemDto> it)
             => it.AddFieldName("children");
         
+        public static Partial<PlanItemDto> WithChildrenRecursive(this Partial<PlanItemDto> it)
+            => it.AddFieldName("children!");
+        
         public static Partial<PlanItemDto> WithChildren(this Partial<PlanItemDto> it, Func<Partial<PlanItemDto>, Partial<PlanItemDto>> partialBuilder)
             => it.AddFieldName("children", partialBuilder(new Partial<PlanItemDto>()));
         

@@ -35,11 +35,17 @@ namespace SpaceDotNet.Client.KBFolderExtensions
         public static Partial<KBFolderDto> WithParent(this Partial<KBFolderDto> it)
             => it.AddFieldName("parent");
         
+        public static Partial<KBFolderDto> WithParentRecursive(this Partial<KBFolderDto> it)
+            => it.AddFieldName("parent!");
+        
         public static Partial<KBFolderDto> WithParent(this Partial<KBFolderDto> it, Func<Partial<KBFolderDto>, Partial<KBFolderDto>> partialBuilder)
             => it.AddFieldName("parent", partialBuilder(new Partial<KBFolderDto>()));
         
         public static Partial<KBFolderDto> WithSubfolders(this Partial<KBFolderDto> it)
             => it.AddFieldName("subfolders");
+        
+        public static Partial<KBFolderDto> WithSubfoldersRecursive(this Partial<KBFolderDto> it)
+            => it.AddFieldName("subfolders!");
         
         public static Partial<KBFolderDto> WithSubfolders(this Partial<KBFolderDto> it, Func<Partial<KBFolderDto>, Partial<KBFolderDto>> partialBuilder)
             => it.AddFieldName("subfolders", partialBuilder(new Partial<KBFolderDto>()));

@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.TDTeamExtensions
         public static Partial<TDTeamDto> WithParent(this Partial<TDTeamDto> it)
             => it.AddFieldName("parent");
         
+        public static Partial<TDTeamDto> WithParentRecursive(this Partial<TDTeamDto> it)
+            => it.AddFieldName("parent!");
+        
         public static Partial<TDTeamDto> WithParent(this Partial<TDTeamDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
             => it.AddFieldName("parent", partialBuilder(new Partial<TDTeamDto>()));
         

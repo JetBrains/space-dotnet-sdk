@@ -68,6 +68,9 @@ namespace SpaceDotNet.Client.M2ChannelRecordExtensions
         public static Partial<M2ChannelRecordDto> WithChannel(this Partial<M2ChannelRecordDto> it)
             => it.AddFieldName("channel");
         
+        public static Partial<M2ChannelRecordDto> WithChannelRecursive(this Partial<M2ChannelRecordDto> it)
+            => it.AddFieldName("channel!");
+        
         public static Partial<M2ChannelRecordDto> WithChannel(this Partial<M2ChannelRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
             => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>()));
         

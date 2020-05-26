@@ -44,6 +44,9 @@ namespace SpaceDotNet.Client.StickerPackInfoExtensions
         public static Partial<StickerPackInfoDto> WithPack(this Partial<StickerPackInfoDto> it)
             => it.AddFieldName("pack");
         
+        public static Partial<StickerPackInfoDto> WithPackRecursive(this Partial<StickerPackInfoDto> it)
+            => it.AddFieldName("pack!");
+        
         public static Partial<StickerPackInfoDto> WithPack(this Partial<StickerPackInfoDto> it, Func<Partial<StickerPackInfoDto>, Partial<StickerPackInfoDto>> partialBuilder)
             => it.AddFieldName("pack", partialBuilder(new Partial<StickerPackInfoDto>()));
         

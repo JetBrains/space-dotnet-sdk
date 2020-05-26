@@ -74,11 +74,17 @@ namespace SpaceDotNet.Client.TDMembershipExtensions
         public static Partial<TDMembershipDto> WithEditFor(this Partial<TDMembershipDto> it)
             => it.AddFieldName("editFor");
         
+        public static Partial<TDMembershipDto> WithEditForRecursive(this Partial<TDMembershipDto> it)
+            => it.AddFieldName("editFor!");
+        
         public static Partial<TDMembershipDto> WithEditFor(this Partial<TDMembershipDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)
             => it.AddFieldName("editFor", partialBuilder(new Partial<TDMembershipDto>()));
         
         public static Partial<TDMembershipDto> WithPendingEdit(this Partial<TDMembershipDto> it)
             => it.AddFieldName("pendingEdit");
+        
+        public static Partial<TDMembershipDto> WithPendingEditRecursive(this Partial<TDMembershipDto> it)
+            => it.AddFieldName("pendingEdit!");
         
         public static Partial<TDMembershipDto> WithPendingEdit(this Partial<TDMembershipDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)
             => it.AddFieldName("pendingEdit", partialBuilder(new Partial<TDMembershipDto>()));

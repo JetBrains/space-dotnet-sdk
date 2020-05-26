@@ -31,10 +31,10 @@ namespace SpaceDotNet.Client
         }
         
         public async Task<TodoItemRecordDto> CreateToDoItem(CreateToDoItemRequestDto data, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<CreateToDoItemRequestDto, TodoItemRecordDto>("POST", $"api/http/todo?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Recursive()), data);        
+            => await _connection.RequestResourceAsync<CreateToDoItemRequestDto, TodoItemRecordDto>("POST", $"api/http/todo?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default()), data);        
         
         public async Task<Batch<TodoItemRecordDto>> GetAllToDoItems(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<Batch<TodoItemRecordDto>>, Partial<Batch<TodoItemRecordDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TodoItemRecordDto>>()) : Partial<Batch<TodoItemRecordDto>>.Recursive()));        
+            => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TodoItemRecordDto>>()) : Partial<Batch<TodoItemRecordDto>>.Default()));        
         
         public async Task UpdateToDoItem(string id, UpdateToDoItemRequestDto data)
             => await _connection.RequestResourceAsync<UpdateToDoItemRequestDto>("PATCH", $"api/http/todo/{id}", data);        

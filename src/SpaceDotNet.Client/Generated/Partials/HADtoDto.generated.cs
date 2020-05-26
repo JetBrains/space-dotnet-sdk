@@ -41,17 +41,26 @@ namespace SpaceDotNet.Client.HADtoExtensions
         public static Partial<HADtoDto> WithExtends(this Partial<HADtoDto> it)
             => it.AddFieldName("extends");
         
+        public static Partial<HADtoDto> WithExtendsRecursive(this Partial<HADtoDto> it)
+            => it.AddFieldName("extends!");
+        
         public static Partial<HADtoDto> WithExtends(this Partial<HADtoDto> it, Func<Partial<HADtoDto>, Partial<HADtoDto>> partialBuilder)
             => it.AddFieldName("extends", partialBuilder(new Partial<HADtoDto>()));
         
         public static Partial<HADtoDto> WithImplements(this Partial<HADtoDto> it)
             => it.AddFieldName("implements");
         
+        public static Partial<HADtoDto> WithImplementsRecursive(this Partial<HADtoDto> it)
+            => it.AddFieldName("implements!");
+        
         public static Partial<HADtoDto> WithImplements(this Partial<HADtoDto> it, Func<Partial<HADtoDto>, Partial<HADtoDto>> partialBuilder)
             => it.AddFieldName("implements", partialBuilder(new Partial<HADtoDto>()));
         
         public static Partial<HADtoDto> WithInheritors(this Partial<HADtoDto> it)
             => it.AddFieldName("inheritors");
+        
+        public static Partial<HADtoDto> WithInheritorsRecursive(this Partial<HADtoDto> it)
+            => it.AddFieldName("inheritors!");
         
         public static Partial<HADtoDto> WithInheritors(this Partial<HADtoDto> it, Func<Partial<HADtoDto>, Partial<HADtoDto>> partialBuilder)
             => it.AddFieldName("inheritors", partialBuilder(new Partial<HADtoDto>()));

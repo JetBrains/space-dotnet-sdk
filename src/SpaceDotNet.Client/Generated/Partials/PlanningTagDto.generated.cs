@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.PlanningTagExtensions
         public static Partial<PlanningTagDto> WithParent(this Partial<PlanningTagDto> it)
             => it.AddFieldName("parent");
         
+        public static Partial<PlanningTagDto> WithParentRecursive(this Partial<PlanningTagDto> it)
+            => it.AddFieldName("parent!");
+        
         public static Partial<PlanningTagDto> WithParent(this Partial<PlanningTagDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)
             => it.AddFieldName("parent", partialBuilder(new Partial<PlanningTagDto>()));
         

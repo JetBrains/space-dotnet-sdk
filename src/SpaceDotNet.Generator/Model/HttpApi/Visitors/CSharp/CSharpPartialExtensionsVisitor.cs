@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -31,6 +32,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             PropertiesToSkip = propertiesToSkip;
         }
 
+        private string _currentDtoType = string.Empty;
         private string _currentPartialType = string.Empty;
         private string _currentFieldName = string.Empty;
         private readonly StringBuilder _currentFieldInnerTypeBuilder = new StringBuilder();
@@ -41,7 +43,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}{{");
             Indent.Increment();
             
-            _currentPartialType = "Partial<" + apiDto.Name.ToSafeIdentifier() + "Dto>";
+            _currentDtoType = apiDto.Name.ToSafeIdentifier() + "Dto";
+            _currentPartialType = $"Partial<{_currentDtoType}>";
             foreach (var apiDtoField in apiDto.Fields)
             {
                 if (!PropertiesToSkip.Contains(apiDto.Name.ToSafeIdentifier() + "Dto." + apiDtoField.Field.Name.ToSafeIdentifier().ToUppercaseFirst()))
@@ -50,6 +53,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 }
             }
             _currentPartialType = string.Empty;
+            _currentDtoType = string.Empty;
 
             Indent.Decrement();
             Builder.AppendLine($"{Indent}}}");
@@ -60,6 +64,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         {
             _currentFieldName = apiField.Name;
             
+            // Field
             Builder.Append($"{Indent}public static {_currentPartialType} With");
             Builder.Append(_currentFieldName.ToSafeIdentifier().ToUppercaseFirst());
             Builder.AppendLine($"(this {_currentPartialType} it)");
@@ -67,13 +72,26 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}=> it.AddFieldName(\"{_currentFieldName}\");");
             Indent.Decrement();
             Builder.AppendLine($"{Indent}");
-
+            
             _currentFieldInnerTypeBuilder.Clear();
             Visit(apiField.Type);
             var isPrimitiveOrObject = apiField.Type is ApiFieldType.Primitive || apiField.Type is ApiFieldType.Object;
             var isArrayOfPrimitive = apiField.Type is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive;
             if (!isPrimitiveOrObject && !isArrayOfPrimitive && _currentFieldInnerTypeBuilder.Length > 0)
             {
+                // Recursive field?
+                if (_currentDtoType == _currentFieldInnerTypeBuilder.ToString())
+                {
+                    Builder.Append($"{Indent}public static {_currentPartialType} With");
+                    Builder.Append(_currentFieldName.ToSafeIdentifier().ToUppercaseFirst());
+                    Builder.AppendLine($"Recursive(this {_currentPartialType} it)");
+                    Indent.Increment();
+                    Builder.AppendLine($"{Indent}=> it.AddFieldName(\"{_currentFieldName}!\");");
+                    Indent.Decrement();
+                    Builder.AppendLine($"{Indent}");
+                }
+
+                // Field with partial builder
                 Builder.Append($"{Indent}public static {_currentPartialType} With");
                 Builder.Append(_currentFieldName.ToSafeIdentifier().ToUppercaseFirst());
                 Builder.AppendLine($"(this {_currentPartialType} it, Func<Partial<{_currentFieldInnerTypeBuilder}>, Partial<{_currentFieldInnerTypeBuilder}>> partialBuilder)");

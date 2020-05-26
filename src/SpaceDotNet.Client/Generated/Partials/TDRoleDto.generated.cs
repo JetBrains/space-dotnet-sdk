@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.TDRoleExtensions
         public static Partial<TDRoleDto> WithParent(this Partial<TDRoleDto> it)
             => it.AddFieldName("parent");
         
+        public static Partial<TDRoleDto> WithParentRecursive(this Partial<TDRoleDto> it)
+            => it.AddFieldName("parent!");
+        
         public static Partial<TDRoleDto> WithParent(this Partial<TDRoleDto> it, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder)
             => it.AddFieldName("parent", partialBuilder(new Partial<TDRoleDto>()));
         

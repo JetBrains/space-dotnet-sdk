@@ -59,6 +59,9 @@ namespace SpaceDotNet.Client.ChannelItemRecordExtensions
         public static Partial<ChannelItemRecordDto> WithProjectedItem(this Partial<ChannelItemRecordDto> it)
             => it.AddFieldName("projectedItem");
         
+        public static Partial<ChannelItemRecordDto> WithProjectedItemRecursive(this Partial<ChannelItemRecordDto> it)
+            => it.AddFieldName("projectedItem!");
+        
         public static Partial<ChannelItemRecordDto> WithProjectedItem(this Partial<ChannelItemRecordDto> it, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder)
             => it.AddFieldName("projectedItem", partialBuilder(new Partial<ChannelItemRecordDto>()));
         

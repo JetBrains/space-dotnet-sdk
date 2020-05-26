@@ -42,16 +42,16 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<PublicHolidayCalendarRecordDto> CreateCalendar(CreateCalendarRequestDto data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Recursive()), data);            
+                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default()), data);            
             
             public async Task<string> Import(ImportRequestDto data)
                 => await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?", data);            
             
             public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendars(string? skip = null, int? top = null, Func<Partial<Batch<PublicHolidayCalendarRecordDto>>, Partial<Batch<PublicHolidayCalendarRecordDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayCalendarRecordDto>>()) : Partial<Batch<PublicHolidayCalendarRecordDto>>.Recursive()));            
+                => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayCalendarRecordDto>>()) : Partial<Batch<PublicHolidayCalendarRecordDto>>.Default()));            
             
             public async Task<PublicHolidayCalendarRecordDto> UpdateCalendar(string id, CreateCalendarRequestDto data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Recursive()), data);            
+                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default()), data);            
             
             public async Task DeleteCalendar(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");            
@@ -70,13 +70,13 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<PublicHolidayDto> CreateHoliday(CreateHolidayRequestDto data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Recursive()), data);            
+                => await _connection.RequestResourceAsync<CreateHolidayRequestDto, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default()), data);            
             
             public async Task<Batch<PublicHolidayDto>> GetAllHolidays(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayDto>>()) : Partial<Batch<PublicHolidayDto>>.Recursive()));            
+                => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayDto>>()) : Partial<Batch<PublicHolidayDto>>.Default()));            
             
             public async Task<PublicHolidayDto> UpdateHoliday(string id, UpdateHolidayRequestDto data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<UpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Recursive()), data);            
+                => await _connection.RequestResourceAsync<UpdateHolidayRequestDto, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default()), data);            
             
             public async Task DeleteHoliday(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/holidays/{id}");            
@@ -93,7 +93,7 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidays(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayDto>>()) : Partial<Batch<PublicHolidayDto>>.Recursive()));                
+                    => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayDto>>()) : Partial<Batch<PublicHolidayDto>>.Default()));                
                 
             }
             
