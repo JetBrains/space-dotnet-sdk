@@ -9,12 +9,15 @@ using Microsoft.Extensions.Logging;
 using SpaceDotNet.Client;
 using SpaceDotNet.Client.CPrincipalExtensions;
 using SpaceDotNet.Client.CUserPrincipalDetailsExtensions;
-using SpaceDotNet.Client.DTOMeetingExtensions;
 using SpaceDotNet.Client.IssueExtensions;
 using SpaceDotNet.Client.M2ChannelRecordExtensions;
 using SpaceDotNet.Client.MessageInfoExtensions;
 using SpaceDotNet.Client.TDMemberProfileExtensions;
+using SpaceDotNet.Client.TDMembershipExtensions;
+using SpaceDotNet.Client.TDProfileLanguageExtensions;
 using SpaceDotNet.Client.TDProfileNameExtensions;
+using SpaceDotNet.Client.TDRoleExtensions;
+using SpaceDotNet.Client.TDTeamExtensions;
 using SpaceDotNet.Client.TodoItemRecordExtensions;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Types;
@@ -58,6 +61,18 @@ namespace SpaceDotNet.Samples.Web.Pages
 
         public async Task OnGet()
         {
+            #region Example with default fields (1 level)
+            
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe();
+            
+            #endregion
+            
+            #region Example with full recursive (not recommended as it is too eager)
+            
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe(partial => Partial<TDMemberProfileDto>.Recursive());
+            
+            #endregion
+            
             #region Example with full field definitions
             
             MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe(partial => partial
@@ -66,8 +81,19 @@ namespace SpaceDotNet.Samples.Web.Pages
                 .WithName(name => name
                     .WithFirstName()
                     .WithLastName())
-                .WithEmails()
-                .WithMessengers());
+                .WithEmails(emails => emails.AddAllFieldNames())
+                .WithMessengers()
+                .WithPhones()
+                .WithLinks()
+                .WithBirthday()
+                .WithLanguages(languages => languages
+                    .AddAllFieldNames()
+                    .WithLanguage(language => language.AddAllFieldNames()))
+                .WithAbsences(absence => absence.AddAllFieldNames())
+                .WithMemberships(membership => membership
+                    .AddAllFieldNames()
+                    .WithRole(role => role.WithName())
+                    .WithTeam(team => team.WithName())));
             
             #endregion
             
@@ -214,30 +240,30 @@ namespace SpaceDotNet.Samples.Web.Pages
                 _logger.LogError("An error occurred", ex);
             }
 
-            try
-            {
-                await foreach (var meetingDto in BatchEnumerator.AllItems(skip => _calendarClient.Meetings.GetAllMeetings("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), skip: skip, partialBuilder: partial => partial
-                    .WithNext()
-                    .WithTotalCount()
-                    .WithData(meeting => meeting
-                        .AddAllFieldNames()
-                        .WithId()
-                        .WithSummary()
-                        .WithDescription()
-                        .WithConferenceLink()))))
-                {
-                    meetingsThisWeek++;
-
-                    if (meetingDto.OccurrenceRule.Start.AsDateTime().Date == DateTime.UtcNow.Date)
-                    {
-                        MeetingsToday.Add(meetingDto);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError("An error occurred", ex);
-            }
+            // try
+            // {
+            //     await foreach (var meetingDto in BatchEnumerator.AllItems(skip => _calendarClient.Meetings.GetAllMeetings("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), skip: skip, partialBuilder: partial => partial
+            //         .WithNext()
+            //         .WithTotalCount()
+            //         .WithData(meeting => meeting
+            //             .AddAllFieldNames()
+            //             .WithId()
+            //             .WithSummary()
+            //             .WithDescription()
+            //             .WithConferenceLink()))))
+            //     {
+            //         meetingsThisWeek++;
+            //
+            //         if (meetingDto.OccurrenceRule.Start.AsDateTime().Date == DateTime.UtcNow.Date)
+            //         {
+            //             MeetingsToday.Add(meetingDto);
+            //         }
+            //     }
+            // }
+            // catch (Exception ex)
+            // {
+            //     _logger.LogError("An error occurred", ex);
+            // }
             
 
             // Issues
