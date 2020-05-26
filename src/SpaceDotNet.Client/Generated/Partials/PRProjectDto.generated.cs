@@ -83,9 +83,6 @@ namespace SpaceDotNet.Client.PRProjectExtensions
         public static Partial<PRProjectDto> WithTags(this Partial<PRProjectDto> it)
             => it.AddFieldName("tags");
         
-        public static Partial<PRProjectDto> WithTags(this Partial<PRProjectDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("tags", partialBuilder(new Partial<string>()));
-        
     }
     
 }

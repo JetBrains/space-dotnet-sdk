@@ -35,9 +35,6 @@ namespace SpaceDotNet.Client.FTSBlogCommentExtensions
         public static Partial<FTSBlogCommentDto> WithSnippets(this Partial<FTSBlogCommentDto> it)
             => it.AddFieldName("snippets");
         
-        public static Partial<FTSBlogCommentDto> WithSnippets(this Partial<FTSBlogCommentDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("snippets", partialBuilder(new Partial<string>()));
-        
     }
     
 }

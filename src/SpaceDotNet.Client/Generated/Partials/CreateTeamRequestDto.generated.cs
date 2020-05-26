@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.CreateTeamRequestExtensions
         public static Partial<CreateTeamRequestDto> WithTeamEmails(this Partial<CreateTeamRequestDto> it)
             => it.AddFieldName("teamEmails");
         
-        public static Partial<CreateTeamRequestDto> WithTeamEmails(this Partial<CreateTeamRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("teamEmails", partialBuilder(new Partial<string>()));
-        
         public static Partial<CreateTeamRequestDto> WithParentId(this Partial<CreateTeamRequestDto> it)
             => it.AddFieldName("parentId");
         

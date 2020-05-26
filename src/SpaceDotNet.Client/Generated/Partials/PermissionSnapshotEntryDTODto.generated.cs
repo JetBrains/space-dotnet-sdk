@@ -35,9 +35,6 @@ namespace SpaceDotNet.Client.PermissionSnapshotEntryDTOExtensions
         public static Partial<PermissionSnapshotEntryDTODto> WithTargetIndices(this Partial<PermissionSnapshotEntryDTODto> it)
             => it.AddFieldName("targetIndices");
         
-        public static Partial<PermissionSnapshotEntryDTODto> WithTargetIndices(this Partial<PermissionSnapshotEntryDTODto> it, Func<Partial<int>, Partial<int>> partialBuilder)
-            => it.AddFieldName("targetIndices", partialBuilder(new Partial<int>()));
-        
     }
     
 }

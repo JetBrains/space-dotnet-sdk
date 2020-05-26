@@ -26,14 +26,8 @@ namespace SpaceDotNet.Client.IssueAttachmentsChangedDetailsExtensions
         public static Partial<IssueAttachmentsChangedDetailsDto> WithAddedNames(this Partial<IssueAttachmentsChangedDetailsDto> it)
             => it.AddFieldName("addedNames");
         
-        public static Partial<IssueAttachmentsChangedDetailsDto> WithAddedNames(this Partial<IssueAttachmentsChangedDetailsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("addedNames", partialBuilder(new Partial<string>()));
-        
         public static Partial<IssueAttachmentsChangedDetailsDto> WithRemovedNames(this Partial<IssueAttachmentsChangedDetailsDto> it)
             => it.AddFieldName("removedNames");
-        
-        public static Partial<IssueAttachmentsChangedDetailsDto> WithRemovedNames(this Partial<IssueAttachmentsChangedDetailsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("removedNames", partialBuilder(new Partial<string>()));
         
     }
     

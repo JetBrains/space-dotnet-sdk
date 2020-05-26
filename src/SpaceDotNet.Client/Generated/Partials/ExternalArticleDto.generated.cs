@@ -38,14 +38,8 @@ namespace SpaceDotNet.Client.ExternalArticleExtensions
         public static Partial<ExternalArticleDto> WithTeams(this Partial<ExternalArticleDto> it)
             => it.AddFieldName("teams");
         
-        public static Partial<ExternalArticleDto> WithTeams(this Partial<ExternalArticleDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<string>()));
-        
         public static Partial<ExternalArticleDto> WithLocations(this Partial<ExternalArticleDto> it)
             => it.AddFieldName("locations");
-        
-        public static Partial<ExternalArticleDto> WithLocations(this Partial<ExternalArticleDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("locations", partialBuilder(new Partial<string>()));
         
         public static Partial<ExternalArticleDto> WithExternalId(this Partial<ExternalArticleDto> it)
             => it.AddFieldName("externalId");

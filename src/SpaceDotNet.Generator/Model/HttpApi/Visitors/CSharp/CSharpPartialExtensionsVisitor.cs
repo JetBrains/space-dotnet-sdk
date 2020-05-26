@@ -70,7 +70,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
             _currentFieldInnerTypeBuilder.Clear();
             Visit(apiField.Type);
-            if (!(apiField.Type is ApiFieldType.Primitive) && !(apiField.Type is ApiFieldType.Object) && _currentFieldInnerTypeBuilder.Length > 0)
+            var isPrimitiveOrObject = apiField.Type is ApiFieldType.Primitive || apiField.Type is ApiFieldType.Object;
+            var isArrayOfPrimitive = apiField.Type is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive;
+            if (!isPrimitiveOrObject && !isArrayOfPrimitive && _currentFieldInnerTypeBuilder.Length > 0)
             {
                 Builder.Append($"{Indent}public static {_currentPartialType} With");
                 Builder.Append(_currentFieldName.ToSafeIdentifier().ToUppercaseFirst());

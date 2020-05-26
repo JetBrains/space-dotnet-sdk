@@ -35,9 +35,6 @@ namespace SpaceDotNet.Client.GetAllCodeDiscussionsByChangeRequestExtensions
         public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithRevisions(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)
             => it.AddFieldName("revisions");
         
-        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithRevisions(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("revisions", partialBuilder(new Partial<string>()));
-        
         public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithChange(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)
             => it.AddFieldName("change");
         

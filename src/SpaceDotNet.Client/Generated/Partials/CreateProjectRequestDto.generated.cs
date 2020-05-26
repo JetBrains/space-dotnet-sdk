@@ -41,9 +41,6 @@ namespace SpaceDotNet.Client.CreateProjectRequestExtensions
         public static Partial<CreateProjectRequestDto> WithTags(this Partial<CreateProjectRequestDto> it)
             => it.AddFieldName("tags");
         
-        public static Partial<CreateProjectRequestDto> WithTags(this Partial<CreateProjectRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("tags", partialBuilder(new Partial<string>()));
-        
     }
     
 }

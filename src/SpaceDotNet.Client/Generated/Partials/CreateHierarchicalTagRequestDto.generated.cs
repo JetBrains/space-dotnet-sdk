@@ -29,9 +29,6 @@ namespace SpaceDotNet.Client.CreateHierarchicalTagRequestExtensions
         public static Partial<CreateHierarchicalTagRequestDto> WithPath(this Partial<CreateHierarchicalTagRequestDto> it)
             => it.AddFieldName("path");
         
-        public static Partial<CreateHierarchicalTagRequestDto> WithPath(this Partial<CreateHierarchicalTagRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("path", partialBuilder(new Partial<string>()));
-        
     }
     
 }

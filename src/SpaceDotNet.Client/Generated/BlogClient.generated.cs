@@ -30,8 +30,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> ConvertMarkdownToHTML(ConvertMarkdownToHTMLRequestDto data, Func<Partial<string>, Partial<string>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<ConvertMarkdownToHTMLRequestDto, string>("POST", $"api/http/blogs/markdown2html?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : Partial<string>.Recursive()), data);        
+        public async Task<string> ConvertMarkdownToHTML(ConvertMarkdownToHTMLRequestDto data)
+            => await _connection.RequestResourceAsync<ConvertMarkdownToHTMLRequestDto, string>("POST", $"api/http/blogs/markdown2html?", data);        
         
         public ArticleClient Articles => new ArticleClient(_connection);
         

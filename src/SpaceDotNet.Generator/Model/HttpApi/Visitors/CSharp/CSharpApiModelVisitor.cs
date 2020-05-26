@@ -570,6 +570,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Visit(apiEndpoint.Deprecation);
             }
             
+            var isResponsePrimitiveOrArrayOfPrimitive = apiEndpoint.ResponseBody is ApiFieldType.Primitive 
+              || (apiEndpoint.ResponseBody is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive);
+            
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
             {
                 Builder.Append($"{Indent}public async Task " + _clientMethodName + "(");
@@ -593,17 +596,20 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append(" " + _clientMethodName + "(");
             
-                if (AppendParameterList(apiEndpoint))
+                if (AppendParameterList(apiEndpoint) && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append(", ");
                 }
-                
-                Builder.Append("Func<Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">, Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">> partialBuilder = null");
-                
+
+                if (!isResponsePrimitiveOrArrayOfPrimitive)
+                {
+                    Builder.Append("Func<Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">, Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">> partialBuilder = null");
+                }
+
                 Builder.AppendLine(")");
                 Indent.Increment();
                 Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
@@ -612,11 +618,20 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
                 Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
-                Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">()) : Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">.Recursive()));");
+                if (!isResponsePrimitiveOrArrayOfPrimitive)
+                {
+                    Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">()) : Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">.Recursive())");
+                }
+                else
+                {
+                    Builder.Append("\"");
+                }
+                Builder.Append(");");
+
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }
@@ -659,14 +674,17 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
                 Visit(apiEndpoint.RequestBody);
                 Builder.Append(" data");
-                
-                Builder.Append(", ");
-                Builder.Append("Func<Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">, Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">> partialBuilder = null");
-                
+
+                if (!isResponsePrimitiveOrArrayOfPrimitive)
+                {
+                    Builder.Append(", ");
+                    Builder.Append("Func<Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">, Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">> partialBuilder = null");
+                }
+
                 Builder.AppendLine(")");
                 Indent.Increment();
                 Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
@@ -677,11 +695,19 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
                 Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
-                Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">()) : Partial<");
-                Visit(apiEndpoint.ResponseBody);
-                Builder.Append(">.Recursive()), data);");
+                if (!isResponsePrimitiveOrArrayOfPrimitive)
+                {
+                    Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">()) : Partial<");
+                    Visit(apiEndpoint.ResponseBody);
+                    Builder.Append(">.Recursive()), ");
+                }
+                else
+                {
+                    Builder.Append("\", ");
+                }
+                Builder.Append("data);");
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
             }

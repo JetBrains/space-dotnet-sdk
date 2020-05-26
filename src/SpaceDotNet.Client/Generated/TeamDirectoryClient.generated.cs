@@ -452,8 +452,8 @@ namespace SpaceDotNet.Client
             public async Task<Batch<TDMemberProfileDto>> GetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Recursive()));            
             
-            public async Task<List<string>> CheckProfileUsernamesExistence(List<string> usernames, Func<Partial<List<string>>, Partial<List<string>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<string>>()) : Partial<List<string>>.Recursive()));            
+            public async Task<List<string>> CheckProfileUsernamesExistence(List<string> usernames)
+                => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&");            
             
             public async Task<TDMemberProfileDto> GetProfileByUsername(string username, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/username:{username}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Recursive()));            
@@ -461,8 +461,8 @@ namespace SpaceDotNet.Client
             public async Task<TDMemberProfileDto> GetProfile(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Recursive()));            
             
-            public async Task<bool> CheckIfProfileIsTeamMember(string id, List<string> teamIds, Func<Partial<bool>, Partial<bool>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<bool>()) : Partial<bool>.Recursive()));            
+            public async Task<bool> CheckIfProfileIsTeamMember(string id, List<string> teamIds)
+                => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}&");            
             
             public async Task<TDMemberProfileDto> UpdateProfile(string id, UpdateProfileRequestDto data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateProfileRequestDto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Recursive()), data);            

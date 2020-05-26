@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<string> AddResponsibility(AddResponsibilityRequestDto data, Func<Partial<string>, Partial<string>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<AddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : Partial<string>.Recursive()), data);            
+            public async Task<string> AddResponsibility(AddResponsibilityRequestDto data)
+                => await _connection.RequestResourceAsync<AddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities?", data);            
             
             public async Task UpdateResponsibility(string responsibilityId, UpdateResponsibilityRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateResponsibilityRequestDto>("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);            
@@ -166,8 +166,8 @@ namespace SpaceDotNet.Client
             
             public partial class SubjectClient
             {
-                public async Task<string> AddResponsibilitySubject(string projectId, AddResponsibilitySubjectRequestDto data, Func<Partial<string>, Partial<string>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : Partial<string>.Recursive()), data);                
+                public async Task<string> AddResponsibilitySubject(string projectId, AddResponsibilitySubjectRequestDto data)
+                    => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?", data);                
                 
                 public async Task EditResponsibilitySubject(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
                     => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto>("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);                
@@ -801,8 +801,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<string>> ImportIssueCommentHistory(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data, Func<Partial<List<string>>, Partial<List<string>>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<string>>()) : Partial<List<string>>.Recursive()), data);                    
+                    public async Task<List<string>> ImportIssueCommentHistory(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data)
+                        => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?", data);                    
                     
                 }
                 

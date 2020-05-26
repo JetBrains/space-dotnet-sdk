@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
             public async Task<PublicHolidayCalendarRecordDto> CreateCalendar(CreateCalendarRequestDto data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Recursive()), data);            
             
-            public async Task<string> Import(ImportRequestDto data, Func<Partial<string>, Partial<string>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<string>()) : Partial<string>.Recursive()), data);            
+            public async Task<string> Import(ImportRequestDto data)
+                => await _connection.RequestResourceAsync<ImportRequestDto, string>("POST", $"api/http/public-holidays/calendars/import?", data);            
             
             public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendars(string? skip = null, int? top = null, Func<Partial<Batch<PublicHolidayCalendarRecordDto>>, Partial<Batch<PublicHolidayCalendarRecordDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PublicHolidayCalendarRecordDto>>()) : Partial<Batch<PublicHolidayCalendarRecordDto>>.Recursive()));            

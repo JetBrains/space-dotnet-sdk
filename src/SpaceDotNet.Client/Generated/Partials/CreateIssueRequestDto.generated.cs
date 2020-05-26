@@ -41,14 +41,8 @@ namespace SpaceDotNet.Client.CreateIssueRequestExtensions
         public static Partial<CreateIssueRequestDto> WithTags(this Partial<CreateIssueRequestDto> it)
             => it.AddFieldName("tags");
         
-        public static Partial<CreateIssueRequestDto> WithTags(this Partial<CreateIssueRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("tags", partialBuilder(new Partial<string>()));
-        
         public static Partial<CreateIssueRequestDto> WithChecklists(this Partial<CreateIssueRequestDto> it)
             => it.AddFieldName("checklists");
-        
-        public static Partial<CreateIssueRequestDto> WithChecklists(this Partial<CreateIssueRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("checklists", partialBuilder(new Partial<string>()));
         
         public static Partial<CreateIssueRequestDto> WithAttachments(this Partial<CreateIssueRequestDto> it)
             => it.AddFieldName("attachments");

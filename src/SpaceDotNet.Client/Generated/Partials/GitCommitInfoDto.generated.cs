@@ -56,14 +56,8 @@ namespace SpaceDotNet.Client.GitCommitInfoExtensions
         public static Partial<GitCommitInfoDto> WithParents(this Partial<GitCommitInfoDto> it)
             => it.AddFieldName("parents");
         
-        public static Partial<GitCommitInfoDto> WithParents(this Partial<GitCommitInfoDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("parents", partialBuilder(new Partial<string>()));
-        
         public static Partial<GitCommitInfoDto> WithTags(this Partial<GitCommitInfoDto> it)
             => it.AddFieldName("tags");
-        
-        public static Partial<GitCommitInfoDto> WithTags(this Partial<GitCommitInfoDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("tags", partialBuilder(new Partial<string>()));
         
         public static Partial<GitCommitInfoDto> WithBranches(this Partial<GitCommitInfoDto> it)
             => it.AddFieldName("branches");
@@ -73,9 +67,6 @@ namespace SpaceDotNet.Client.GitCommitInfoExtensions
         
         public static Partial<GitCommitInfoDto> WithHeads(this Partial<GitCommitInfoDto> it)
             => it.AddFieldName("heads");
-        
-        public static Partial<GitCommitInfoDto> WithHeads(this Partial<GitCommitInfoDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("heads", partialBuilder(new Partial<string>()));
         
     }
     

@@ -35,9 +35,6 @@ namespace SpaceDotNet.Client.TwoFactorAuthenticationSecretExtensions
         public static Partial<TwoFactorAuthenticationSecretDto> WithScratchCodes(this Partial<TwoFactorAuthenticationSecretDto> it)
             => it.AddFieldName("scratchCodes");
         
-        public static Partial<TwoFactorAuthenticationSecretDto> WithScratchCodes(this Partial<TwoFactorAuthenticationSecretDto> it, Func<Partial<int>, Partial<int>> partialBuilder)
-            => it.AddFieldName("scratchCodes", partialBuilder(new Partial<int>()));
-        
     }
     
 }

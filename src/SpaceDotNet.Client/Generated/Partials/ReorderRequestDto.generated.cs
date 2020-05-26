@@ -26,9 +26,6 @@ namespace SpaceDotNet.Client.ReorderRequestExtensions
         public static Partial<ReorderRequestDto> WithCustomFieldOrder(this Partial<ReorderRequestDto> it)
             => it.AddFieldName("customFieldOrder");
         
-        public static Partial<ReorderRequestDto> WithCustomFieldOrder(this Partial<ReorderRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("customFieldOrder", partialBuilder(new Partial<string>()));
-        
     }
     
 }

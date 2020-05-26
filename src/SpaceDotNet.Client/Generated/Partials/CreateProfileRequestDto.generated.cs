@@ -35,14 +35,8 @@ namespace SpaceDotNet.Client.CreateProfileRequestExtensions
         public static Partial<CreateProfileRequestDto> WithEmails(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("emails");
         
-        public static Partial<CreateProfileRequestDto> WithEmails(this Partial<CreateProfileRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("emails", partialBuilder(new Partial<string>()));
-        
         public static Partial<CreateProfileRequestDto> WithPhones(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("phones");
-        
-        public static Partial<CreateProfileRequestDto> WithPhones(this Partial<CreateProfileRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("phones", partialBuilder(new Partial<string>()));
         
         public static Partial<CreateProfileRequestDto> WithBirthday(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("birthday");
@@ -56,14 +50,8 @@ namespace SpaceDotNet.Client.CreateProfileRequestExtensions
         public static Partial<CreateProfileRequestDto> WithMessengers(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("messengers");
         
-        public static Partial<CreateProfileRequestDto> WithMessengers(this Partial<CreateProfileRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("messengers", partialBuilder(new Partial<string>()));
-        
         public static Partial<CreateProfileRequestDto> WithLinks(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("links");
-        
-        public static Partial<CreateProfileRequestDto> WithLinks(this Partial<CreateProfileRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("links", partialBuilder(new Partial<string>()));
         
         public static Partial<CreateProfileRequestDto> WithNotAMember(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("notAMember");

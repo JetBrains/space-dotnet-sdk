@@ -44,11 +44,11 @@ namespace SpaceDotNet.Client
             public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannel(GerOrCreateDirectMessagesChannelRequestDto data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<GerOrCreateDirectMessagesChannelRequestDto, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<M2ChannelRecordDto>()) : Partial<M2ChannelRecordDto>.Recursive()), data);            
             
-            public async Task<bool> IsNameFree(IsNameFreeRequestDto data, Func<Partial<bool>, Partial<bool>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<bool>()) : Partial<bool>.Recursive()), data);            
+            public async Task<bool> IsNameFree(IsNameFreeRequestDto data)
+                => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?", data);            
             
-            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data, Func<Partial<List<string>>, Partial<List<string>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<string>>()) : Partial<List<string>>.Recursive()), data);            
+            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data)
+                => await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?", data);            
             
             public async Task RestoreArchivedChannel(string channelId)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");            

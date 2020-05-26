@@ -35,9 +35,6 @@ namespace SpaceDotNet.Client.ESGoogleAuthModuleSettingsExtensions
         public static Partial<ESGoogleAuthModuleSettingsDto> WithDomains(this Partial<ESGoogleAuthModuleSettingsDto> it)
             => it.AddFieldName("domains");
         
-        public static Partial<ESGoogleAuthModuleSettingsDto> WithDomains(this Partial<ESGoogleAuthModuleSettingsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("domains", partialBuilder(new Partial<string>()));
-        
     }
     
 }

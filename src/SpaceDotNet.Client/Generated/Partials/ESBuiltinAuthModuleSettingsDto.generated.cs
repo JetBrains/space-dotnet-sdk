@@ -29,9 +29,6 @@ namespace SpaceDotNet.Client.ESBuiltinAuthModuleSettingsExtensions
         public static Partial<ESBuiltinAuthModuleSettingsDto> WithDomains(this Partial<ESBuiltinAuthModuleSettingsDto> it)
             => it.AddFieldName("domains");
         
-        public static Partial<ESBuiltinAuthModuleSettingsDto> WithDomains(this Partial<ESBuiltinAuthModuleSettingsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("domains", partialBuilder(new Partial<string>()));
-        
     }
     
 }

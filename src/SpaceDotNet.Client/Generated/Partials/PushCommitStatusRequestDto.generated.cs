@@ -29,9 +29,6 @@ namespace SpaceDotNet.Client.PushCommitStatusRequestExtensions
         public static Partial<PushCommitStatusRequestDto> WithChanges(this Partial<PushCommitStatusRequestDto> it)
             => it.AddFieldName("changes");
         
-        public static Partial<PushCommitStatusRequestDto> WithChanges(this Partial<PushCommitStatusRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("changes", partialBuilder(new Partial<string>()));
-        
         public static Partial<PushCommitStatusRequestDto> WithExecutionStatus(this Partial<PushCommitStatusRequestDto> it)
             => it.AddFieldName("executionStatus");
         

@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.SubjectResponsibilitiesTableExtensions
         public static Partial<SubjectResponsibilitiesTableDto> WithReusedInProjects(this Partial<SubjectResponsibilitiesTableDto> it)
             => it.AddFieldName("reusedInProjects");
         
-        public static Partial<SubjectResponsibilitiesTableDto> WithReusedInProjects(this Partial<SubjectResponsibilitiesTableDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("reusedInProjects", partialBuilder(new Partial<string>()));
-        
         public static Partial<SubjectResponsibilitiesTableDto> WithResponsibilityRecords(this Partial<SubjectResponsibilitiesTableDto> it)
             => it.AddFieldName("responsibilityRecords");
         

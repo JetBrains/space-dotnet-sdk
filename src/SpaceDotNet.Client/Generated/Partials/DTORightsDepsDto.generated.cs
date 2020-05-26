@@ -29,9 +29,6 @@ namespace SpaceDotNet.Client.DTORightsDepsExtensions
         public static Partial<DTORightsDepsDto> WithDeps(this Partial<DTORightsDepsDto> it)
             => it.AddFieldName("deps");
         
-        public static Partial<DTORightsDepsDto> WithDeps(this Partial<DTORightsDepsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("deps", partialBuilder(new Partial<string>()));
-        
     }
     
 }

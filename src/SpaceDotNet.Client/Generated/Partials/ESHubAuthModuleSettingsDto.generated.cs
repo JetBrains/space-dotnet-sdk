@@ -41,9 +41,6 @@ namespace SpaceDotNet.Client.ESHubAuthModuleSettingsExtensions
         public static Partial<ESHubAuthModuleSettingsDto> WithGroups(this Partial<ESHubAuthModuleSettingsDto> it)
             => it.AddFieldName("groups");
         
-        public static Partial<ESHubAuthModuleSettingsDto> WithGroups(this Partial<ESHubAuthModuleSettingsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("groups", partialBuilder(new Partial<string>()));
-        
     }
     
 }

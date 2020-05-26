@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.MembersAddedItemDetailsExtensions
         public static Partial<MembersAddedItemDetailsDto> WithOthersDisplayNames(this Partial<MembersAddedItemDetailsDto> it)
             => it.AddFieldName("othersDisplayNames");
         
-        public static Partial<MembersAddedItemDetailsDto> WithOthersDisplayNames(this Partial<MembersAddedItemDetailsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("othersDisplayNames", partialBuilder(new Partial<string>()));
-        
     }
     
 }

@@ -38,9 +38,6 @@ namespace SpaceDotNet.Client.ESGithubAuthModuleSettingsExtensions
         public static Partial<ESGithubAuthModuleSettingsDto> WithOrganizations(this Partial<ESGithubAuthModuleSettingsDto> it)
             => it.AddFieldName("organizations");
         
-        public static Partial<ESGithubAuthModuleSettingsDto> WithOrganizations(this Partial<ESGithubAuthModuleSettingsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("organizations", partialBuilder(new Partial<string>()));
-        
     }
     
 }

@@ -41,9 +41,6 @@ namespace SpaceDotNet.Client.UpdateProjectRequestExtensions
         public static Partial<UpdateProjectRequestDto> WithTags(this Partial<UpdateProjectRequestDto> it)
             => it.AddFieldName("tags");
         
-        public static Partial<UpdateProjectRequestDto> WithTags(this Partial<UpdateProjectRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("tags", partialBuilder(new Partial<string>()));
-        
         public static Partial<UpdateProjectRequestDto> WithIcon(this Partial<UpdateProjectRequestDto> it)
             => it.AddFieldName("icon");
         

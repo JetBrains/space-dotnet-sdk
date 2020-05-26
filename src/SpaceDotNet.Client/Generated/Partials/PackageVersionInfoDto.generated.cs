@@ -41,9 +41,6 @@ namespace SpaceDotNet.Client.PackageVersionInfoExtensions
         public static Partial<PackageVersionInfoDto> WithTags(this Partial<PackageVersionInfoDto> it)
             => it.AddFieldName("tags");
         
-        public static Partial<PackageVersionInfoDto> WithTags(this Partial<PackageVersionInfoDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("tags", partialBuilder(new Partial<string>()));
-        
     }
     
 }

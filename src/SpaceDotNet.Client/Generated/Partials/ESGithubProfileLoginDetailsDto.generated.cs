@@ -44,9 +44,6 @@ namespace SpaceDotNet.Client.ESGithubProfileLoginDetailsExtensions
         public static Partial<ESGithubProfileLoginDetailsDto> WithOrganizations(this Partial<ESGithubProfileLoginDetailsDto> it)
             => it.AddFieldName("organizations");
         
-        public static Partial<ESGithubProfileLoginDetailsDto> WithOrganizations(this Partial<ESGithubProfileLoginDetailsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("organizations", partialBuilder(new Partial<string>()));
-        
     }
     
 }

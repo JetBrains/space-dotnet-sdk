@@ -35,9 +35,6 @@ namespace SpaceDotNet.Client.ERepositorySettingsExtensions
         public static Partial<ERepositorySettingsDto> WithPermissions(this Partial<ERepositorySettingsDto> it)
             => it.AddFieldName("permissions");
         
-        public static Partial<ERepositorySettingsDto> WithPermissions(this Partial<ERepositorySettingsDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("permissions", partialBuilder(new Partial<string>()));
-        
     }
     
 }

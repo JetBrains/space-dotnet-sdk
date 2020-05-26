@@ -35,17 +35,11 @@ namespace SpaceDotNet.Client.PermissionComparisonEntryDTOExtensions
         public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices1(this Partial<PermissionComparisonEntryDTODto> it)
             => it.AddFieldName("targetIndices1");
         
-        public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices1(this Partial<PermissionComparisonEntryDTODto> it, Func<Partial<int>, Partial<int>> partialBuilder)
-            => it.AddFieldName("targetIndices1", partialBuilder(new Partial<int>()));
-        
         public static Partial<PermissionComparisonEntryDTODto> WithAllTargets2(this Partial<PermissionComparisonEntryDTODto> it)
             => it.AddFieldName("allTargets2");
         
         public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices2(this Partial<PermissionComparisonEntryDTODto> it)
             => it.AddFieldName("targetIndices2");
-        
-        public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices2(this Partial<PermissionComparisonEntryDTODto> it, Func<Partial<int>, Partial<int>> partialBuilder)
-            => it.AddFieldName("targetIndices2", partialBuilder(new Partial<int>()));
         
     }
     

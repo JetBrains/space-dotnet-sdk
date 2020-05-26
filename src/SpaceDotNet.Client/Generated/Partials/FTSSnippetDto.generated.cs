@@ -29,9 +29,6 @@ namespace SpaceDotNet.Client.FTSSnippetExtensions
         public static Partial<FTSSnippetDto> WithSnippet(this Partial<FTSSnippetDto> it)
             => it.AddFieldName("snippet");
         
-        public static Partial<FTSSnippetDto> WithSnippet(this Partial<FTSSnippetDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("snippet", partialBuilder(new Partial<string>()));
-        
     }
     
 }

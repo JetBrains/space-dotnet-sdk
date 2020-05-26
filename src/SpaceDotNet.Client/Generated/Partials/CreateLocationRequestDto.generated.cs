@@ -32,26 +32,14 @@ namespace SpaceDotNet.Client.CreateLocationRequestExtensions
         public static Partial<CreateLocationRequestDto> WithWorkdays(this Partial<CreateLocationRequestDto> it)
             => it.AddFieldName("workdays");
         
-        public static Partial<CreateLocationRequestDto> WithWorkdays(this Partial<CreateLocationRequestDto> it, Func<Partial<int>, Partial<int>> partialBuilder)
-            => it.AddFieldName("workdays", partialBuilder(new Partial<int>()));
-        
         public static Partial<CreateLocationRequestDto> WithPhones(this Partial<CreateLocationRequestDto> it)
             => it.AddFieldName("phones");
-        
-        public static Partial<CreateLocationRequestDto> WithPhones(this Partial<CreateLocationRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("phones", partialBuilder(new Partial<string>()));
         
         public static Partial<CreateLocationRequestDto> WithEmails(this Partial<CreateLocationRequestDto> it)
             => it.AddFieldName("emails");
         
-        public static Partial<CreateLocationRequestDto> WithEmails(this Partial<CreateLocationRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("emails", partialBuilder(new Partial<string>()));
-        
         public static Partial<CreateLocationRequestDto> WithEquipment(this Partial<CreateLocationRequestDto> it)
             => it.AddFieldName("equipment");
-        
-        public static Partial<CreateLocationRequestDto> WithEquipment(this Partial<CreateLocationRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("equipment", partialBuilder(new Partial<string>()));
         
         public static Partial<CreateLocationRequestDto> WithDescription(this Partial<CreateLocationRequestDto> it)
             => it.AddFieldName("description");

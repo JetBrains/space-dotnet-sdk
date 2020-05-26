@@ -38,26 +38,14 @@ namespace SpaceDotNet.Client.CreateMeetingRequestExtensions
         public static Partial<CreateMeetingRequestDto> WithLocations(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("locations");
         
-        public static Partial<CreateMeetingRequestDto> WithLocations(this Partial<CreateMeetingRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("locations", partialBuilder(new Partial<string>()));
-        
         public static Partial<CreateMeetingRequestDto> WithProfiles(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("profiles");
-        
-        public static Partial<CreateMeetingRequestDto> WithProfiles(this Partial<CreateMeetingRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("profiles", partialBuilder(new Partial<string>()));
         
         public static Partial<CreateMeetingRequestDto> WithExternalParticipants(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("externalParticipants");
         
-        public static Partial<CreateMeetingRequestDto> WithExternalParticipants(this Partial<CreateMeetingRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("externalParticipants", partialBuilder(new Partial<string>()));
-        
         public static Partial<CreateMeetingRequestDto> WithTeams(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("teams");
-        
-        public static Partial<CreateMeetingRequestDto> WithTeams(this Partial<CreateMeetingRequestDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<string>()));
         
         public static Partial<CreateMeetingRequestDto> WithVisibility(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("visibility");

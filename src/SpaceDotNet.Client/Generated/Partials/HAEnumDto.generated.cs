@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.HAEnumExtensions
         public static Partial<HAEnumDto> WithValues(this Partial<HAEnumDto> it)
             => it.AddFieldName("values");
         
-        public static Partial<HAEnumDto> WithValues(this Partial<HAEnumDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("values", partialBuilder(new Partial<string>()));
-        
         public static Partial<HAEnumDto> WithDeprecation(this Partial<HAEnumDto> it)
             => it.AddFieldName("deprecation");
         

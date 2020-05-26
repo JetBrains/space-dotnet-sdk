@@ -53,9 +53,6 @@ namespace SpaceDotNet.Client.MeInfoExtensions
         public static Partial<MeInfoDto> WithNavBarProjects(this Partial<MeInfoDto> it)
             => it.AddFieldName("navBarProjects");
         
-        public static Partial<MeInfoDto> WithNavBarProjects(this Partial<MeInfoDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("navBarProjects", partialBuilder(new Partial<string>()));
-        
         public static Partial<MeInfoDto> WithFirstDayOfWeek(this Partial<MeInfoDto> it)
             => it.AddFieldName("firstDayOfWeek");
         

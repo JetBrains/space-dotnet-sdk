@@ -41,9 +41,6 @@ namespace SpaceDotNet.Client.TDTeamExtensions
         public static Partial<TDTeamDto> WithEmails(this Partial<TDTeamDto> it)
             => it.AddFieldName("emails");
         
-        public static Partial<TDTeamDto> WithEmails(this Partial<TDTeamDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("emails", partialBuilder(new Partial<string>()));
-        
         public static Partial<TDTeamDto> WithChannelId(this Partial<TDTeamDto> it)
             => it.AddFieldName("channelId");
         

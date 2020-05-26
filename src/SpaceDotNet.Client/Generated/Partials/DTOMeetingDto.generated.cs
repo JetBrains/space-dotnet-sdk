@@ -98,9 +98,6 @@ namespace SpaceDotNet.Client.DTOMeetingExtensions
         public static Partial<DTOMeetingDto> WithExternalParticipants(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("externalParticipants");
         
-        public static Partial<DTOMeetingDto> WithExternalParticipants(this Partial<DTOMeetingDto> it, Func<Partial<string>, Partial<string>> partialBuilder)
-            => it.AddFieldName("externalParticipants", partialBuilder(new Partial<string>()));
-        
         public static Partial<DTOMeetingDto> WithLinkToExternalSource(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("linkToExternalSource");
         
