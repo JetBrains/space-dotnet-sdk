@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<ArticleImportResultDto>> ImportArticles(ImportArticlesRequestDto data, Func<Partial<List<ArticleImportResultDto>>, Partial<List<ArticleImportResultDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<ImportArticlesRequestDto, List<ArticleImportResultDto>>("POST", $"api/http/blogs/articles/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<ArticleImportResultDto>>()) : Partial<List<ArticleImportResultDto>>.Default()), data);            
+            public async Task<List<ArticleImportResultDto>> ImportArticles(ImportArticlesRequestDto data, Func<Partial<ArticleImportResultDto>, Partial<ArticleImportResultDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<ImportArticlesRequestDto, List<ArticleImportResultDto>>("POST", $"api/http/blogs/articles/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ArticleImportResultDto>()) : Partial<ArticleImportResultDto>.Default()), data);            
             
             public async Task<Batch<ArticleRecordDto>> GetAllArticles(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecordDto>>, Partial<Batch<ArticleRecordDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<ArticleRecordDto>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ArticleRecordDto>>()) : Partial<Batch<ArticleRecordDto>>.Default()));            

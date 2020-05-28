@@ -557,7 +557,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
                 return methodParameters.Count > 0;
             }
-
+            
             if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
             {
                 Builder.AppendLine($"{Indent}/// <summary>");
@@ -604,9 +604,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("Func<Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
+                        ? a.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">, Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
+                        ? b.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">> partialBuilder = null");
                 }
 
@@ -621,9 +625,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
+                        ? a.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">()) : Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
+                        ? b.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">.Default())");
                 }
                 else
@@ -679,9 +687,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 {
                     Builder.Append(", ");
                     Builder.Append("Func<Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
+                        ? a.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">, Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
+                        ? b.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">> partialBuilder = null");
                 }
 
@@ -698,9 +710,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
+                        ? a.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">()) : Partial<");
-                    Visit(apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
+                        ? b.ElementType
+                        : apiEndpoint.ResponseBody);
                     Builder.Append(">.Default()), ");
                 }
                 else

@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         public async Task<SamlMetadataResponseDto> SamlMetadata(string id, SamlMetadataRequestDto data, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<SamlMetadataRequestDto, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default()), data);        
         
-        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled, Func<Partial<List<ESAuthModuleDto>>, Partial<List<ESAuthModuleDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<ESAuthModuleDto>>()) : Partial<List<ESAuthModuleDto>>.Default()));        
+        public async Task<List<ESAuthModuleDto>> GetAllAuthModules(bool withDisabled, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default()));        
         
         public async Task<ESAuthModuleDto> GetAuthModuleByKey(string key, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default()));        
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<AuthModuleUsageDto>> GetAllUsages(Func<Partial<List<AuthModuleUsageDto>>, Partial<List<AuthModuleUsageDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<AuthModuleUsageDto>>()) : Partial<List<AuthModuleUsageDto>>.Default()));            
+            public async Task<List<AuthModuleUsageDto>> GetAllUsages(Func<Partial<AuthModuleUsageDto>, Partial<AuthModuleUsageDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AuthModuleUsageDto>()) : Partial<AuthModuleUsageDto>.Default()));            
             
         }
         

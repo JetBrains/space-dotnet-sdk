@@ -33,8 +33,8 @@ namespace SpaceDotNet.Client
         public async Task<TrustedCertificateDto> CreateTrustedCertificate(CreateTrustedCertificateRequestDto data, Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default()), data);        
         
-        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates(Func<Partial<List<TrustedCertificateDto>>, Partial<List<TrustedCertificateDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<List<TrustedCertificateDto>>()) : Partial<List<TrustedCertificateDto>>.Default()));        
+        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificates(Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>> partialBuilder = null)
+            => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default()));        
         
         public async Task<CertificateInfoDto> Info(string data, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CertificateInfoDto>()) : Partial<CertificateInfoDto>.Default()));        
