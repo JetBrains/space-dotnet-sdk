@@ -9,6 +9,8 @@ using Microsoft.Extensions.Logging;
 using SpaceDotNet.Client;
 using SpaceDotNet.Client.CPrincipalExtensions;
 using SpaceDotNet.Client.CUserPrincipalDetailsExtensions;
+using SpaceDotNet.Client.CUserWithEmailPrincipalDetailsExtensions;
+using SpaceDotNet.Client.DTOMeetingExtensions;
 using SpaceDotNet.Client.IssueExtensions;
 using SpaceDotNet.Client.M2ChannelRecordExtensions;
 using SpaceDotNet.Client.MessageInfoExtensions;
@@ -126,7 +128,10 @@ namespace SpaceDotNet.Samples.Web.Pages
                                 .WithDetails(details => details
                                     .WithInherited<CUserPrincipalDetailsDto>(detailsDto => detailsDto
                                         .WithUser(user => user
-                                            .WithId()))))
+                                            .WithId()))
+                                    .WithInherited<CUserWithEmailPrincipalDetailsDto>(detailsDto => detailsDto
+                                        .WithName()
+                                        .WithEmail())))
                             .WithStatus()
                             .WithAssignee(assignee => assignee
                                 .WithId())
@@ -240,32 +245,31 @@ namespace SpaceDotNet.Samples.Web.Pages
                 _logger.LogError("An error occurred", ex);
             }
 
-            // try
-            // {
-            //     await foreach (var meetingDto in BatchEnumerator.AllItems(skip => _calendarClient.Meetings.GetAllMeetings("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), skip: skip, partialBuilder: partial => partial
-            //         .WithNext()
-            //         .WithTotalCount()
-            //         .WithData(meeting => meeting
-            //             .AddAllFieldNames()
-            //             .WithId()
-            //             .WithSummary()
-            //             .WithDescription()
-            //             .WithConferenceLink()))))
-            //     {
-            //         meetingsThisWeek++;
-            //
-            //         if (meetingDto.OccurrenceRule.Start.AsDateTime().Date == DateTime.UtcNow.Date)
-            //         {
-            //             MeetingsToday.Add(meetingDto);
-            //         }
-            //     }
-            // }
-            // catch (Exception ex)
-            // {
-            //     _logger.LogError("An error occurred", ex);
-            // }
+            try
+            {
+                await foreach (var meetingDto in BatchEnumerator.AllItems(skip => _calendarClient.Meetings.GetAllMeetings("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), skip: skip, partialBuilder: partial => partial
+                    .WithNext()
+                    .WithTotalCount()
+                    .WithData(meeting => meeting
+                        .AddAllFieldNames()
+                        .WithId()
+                        .WithSummary()
+                        .WithDescription()
+                        .WithConferenceLink()))))
+                {
+                    meetingsThisWeek++;
             
-
+                    if (meetingDto.OccurrenceRule.Start.AsDateTime().Date == DateTime.UtcNow.Date)
+                    {
+                        MeetingsToday.Add(meetingDto);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError("An error occurred", ex);
+            }
+            
             // Issues
             // Reviews created
             // Reviews participated
