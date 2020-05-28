@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class UrlCFValueDto
          : CFValueDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("href")]
         public string? Href { get; set; }        
         

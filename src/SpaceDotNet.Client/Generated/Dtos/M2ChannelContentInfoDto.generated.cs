@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public interface M2ChannelContentInfoDto
          : IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

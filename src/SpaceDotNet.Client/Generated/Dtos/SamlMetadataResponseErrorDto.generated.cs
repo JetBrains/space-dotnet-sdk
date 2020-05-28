@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class SamlMetadataResponseErrorDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("messages")]
         public List<string> Messages { get; set; }        

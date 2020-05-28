@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class DiffSideEmptyDto
          : DiffSideDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("revision")]
         public string Revision { get; set; }        

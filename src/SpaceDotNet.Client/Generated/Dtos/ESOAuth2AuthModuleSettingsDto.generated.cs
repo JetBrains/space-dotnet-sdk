@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public abstract class ESOAuth2AuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public interface IssueChangedM2DetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

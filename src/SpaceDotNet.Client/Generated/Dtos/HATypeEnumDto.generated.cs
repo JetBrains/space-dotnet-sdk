@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class HATypeEnumDto
          : HATypeDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("enum")]
         public HAEnumDto Enum { get; set; }        

@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class RecurrenceRuleEndsOnDateDto
          : RecurrenceRuleEndsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("date")]
         public SpaceDate Date { get; set; }        

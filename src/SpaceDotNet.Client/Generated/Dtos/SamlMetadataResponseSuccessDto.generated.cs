@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class SamlMetadataResponseSuccessDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("metadata")]
         public string Metadata { get; set; }        

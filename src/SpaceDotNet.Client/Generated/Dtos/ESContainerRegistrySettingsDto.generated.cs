@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESContainerRegistrySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("immutableTags")]
         public bool ImmutableTags { get; set; }        

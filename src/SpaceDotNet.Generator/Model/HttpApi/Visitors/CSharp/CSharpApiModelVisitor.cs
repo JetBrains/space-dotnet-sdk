@@ -182,7 +182,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Indent.Increment();
             
             // When in a hierarchy, make sure we can capture the class name.
-            if (dtoHierarchy.Count > 0)
+            if (dtoHierarchy.Count > 0 && apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null)
             {
                 Builder.AppendLine($"{Indent}[JsonPropertyName(\"className\")]");
                 Builder.AppendLine($"{Indent}public string? ClassName {{ get; set; }}"); // TODO MAKE THIS READ-ONLY?

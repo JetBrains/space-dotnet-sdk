@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class RecurrenceRuleEndsTotalCountDto
          : RecurrenceRuleEndsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("count")]
         public int Count { get; set; }        

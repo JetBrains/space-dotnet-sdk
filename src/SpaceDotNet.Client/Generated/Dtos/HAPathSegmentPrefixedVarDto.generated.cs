@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class HAPathSegmentPrefixedVarDto
          : HAPathSegmentDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("prefix")]
         public string Prefix { get; set; }        

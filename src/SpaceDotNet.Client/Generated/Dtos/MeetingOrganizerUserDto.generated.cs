@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class MeetingOrganizerUserDto
          : MeetingOrganizerDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("profileRef")]
         public TDMemberProfileDto ProfileRef { get; set; }        

@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class CommitSetReviewRecordDto
          : CodeReviewRecordDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("id")]
         public string Id { get; set; }        

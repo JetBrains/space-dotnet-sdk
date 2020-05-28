@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESBuiltinProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("passwordChangeRequest")]
         public string? PasswordChangeRequest { get; set; }        
         

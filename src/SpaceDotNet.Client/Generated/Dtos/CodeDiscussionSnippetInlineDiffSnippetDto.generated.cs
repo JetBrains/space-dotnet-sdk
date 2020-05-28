@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class CodeDiscussionSnippetInlineDiffSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("lines")]
         public List<InlineDiffLineDto> Lines { get; set; }        

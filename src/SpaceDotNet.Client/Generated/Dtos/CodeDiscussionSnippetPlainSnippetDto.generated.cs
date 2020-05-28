@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class CodeDiscussionSnippetPlainSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("lines")]
         public List<CodeLineDto> Lines { get; set; }        

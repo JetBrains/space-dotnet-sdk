@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class MeetingOrganizerExternalUserDto
          : MeetingOrganizerDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("email")]
         public string Email { get; set; }        

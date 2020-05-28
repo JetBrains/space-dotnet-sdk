@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public interface TodoItemContentDto
          : IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

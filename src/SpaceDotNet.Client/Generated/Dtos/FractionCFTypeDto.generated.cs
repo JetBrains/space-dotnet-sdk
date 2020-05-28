@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class FractionCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

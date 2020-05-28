@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESGithubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("githubUrl")]
         public string GithubUrl { get; set; }        

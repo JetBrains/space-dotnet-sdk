@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESHubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("login")]
         public string? Login { get; set; }        
         

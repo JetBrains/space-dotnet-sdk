@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESLdapAuthModuleSettingsDto
          : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("type")]
         public LdapModuleType Type { get; set; }        

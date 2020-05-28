@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESHubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("hubUrl")]
         public string HubUrl { get; set; }        

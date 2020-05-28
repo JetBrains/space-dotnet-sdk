@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESHiddenAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("passwordModule")]
         public bool? PasswordModule { get; set; }        
         

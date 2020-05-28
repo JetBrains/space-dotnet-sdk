@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class M2MemberLeavesContentDto
          : M2MemberContentDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("member")]
         public TDMemberProfileDto Member { get; set; }        

@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public interface FeedEventDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

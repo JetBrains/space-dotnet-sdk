@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public interface PublicationItemDto
          : IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

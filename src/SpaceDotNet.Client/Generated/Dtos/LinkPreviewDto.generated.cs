@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public interface LinkPreviewDto
          : AttachmentDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

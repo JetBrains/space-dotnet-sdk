@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESNuGetFeedSettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }

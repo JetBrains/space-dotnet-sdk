@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESBuiltinAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("passwordStrengthPolicy")]
         public PasswordStrength PasswordStrengthPolicy { get; set; }        

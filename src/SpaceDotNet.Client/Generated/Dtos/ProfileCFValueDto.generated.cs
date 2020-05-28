@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ProfileCFValueDto
          : CFValueDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("profile")]
         public TDMemberProfileDto? Profile { get; set; }        
         

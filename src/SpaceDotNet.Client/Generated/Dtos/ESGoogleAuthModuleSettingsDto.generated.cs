@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESGoogleAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("clientId")]
         public string ClientId { get; set; }        

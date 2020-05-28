@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class HATypePrimitiveDto
          : HATypeDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("primitive")]
         public HAPrimitive Primitive { get; set; }        

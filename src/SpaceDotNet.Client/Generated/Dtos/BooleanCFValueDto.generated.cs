@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class BooleanCFValueDto
          : CFValueDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("value")]
         public bool? Value { get; set; }        
         

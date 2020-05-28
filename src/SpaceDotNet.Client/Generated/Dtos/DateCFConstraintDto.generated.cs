@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class DateCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("min")]
         public SpaceDate? Min { get; set; }        
         

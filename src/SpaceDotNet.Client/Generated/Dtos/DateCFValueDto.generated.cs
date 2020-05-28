@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class DateCFValueDto
          : CFValueDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [JsonPropertyName("value")]
         public SpaceDate? Value { get; set; }        
         

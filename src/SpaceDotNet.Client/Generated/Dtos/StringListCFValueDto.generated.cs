@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class StringListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("values")]
         public List<string> Values { get; set; }        

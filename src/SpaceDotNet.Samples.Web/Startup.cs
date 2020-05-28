@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpaceDotNet.AspNetCore.Authentication.Space;
 using SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement;
-using SpaceDotNet.Client;
 
 namespace SpaceDotNet.Samples.Web
 {

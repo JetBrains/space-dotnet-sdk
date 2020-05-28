@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class RecurrenceRuleFreqMonthlyOnFirstWeekdayDto
          : RecurrenceRuleFreqDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("weekday")]
         public Weekday Weekday { get; set; }        

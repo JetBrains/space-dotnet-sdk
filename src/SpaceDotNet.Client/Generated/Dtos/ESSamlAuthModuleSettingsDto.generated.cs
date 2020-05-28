@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESSamlAuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("idpUrl")]
         public string IdpUrl { get; set; }        

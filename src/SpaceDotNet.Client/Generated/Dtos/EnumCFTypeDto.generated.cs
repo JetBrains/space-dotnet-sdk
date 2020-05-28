@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class EnumCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("values")]
         public List<EnumValueDataDto> Values { get; set; }        

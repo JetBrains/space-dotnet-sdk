@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class ESAzureAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("tenantId")]
         public string TenantId { get; set; }        

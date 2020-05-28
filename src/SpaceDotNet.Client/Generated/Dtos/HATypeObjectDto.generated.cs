@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class HATypeObjectDto
          : HATypeDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
         [Required]
         [JsonPropertyName("fields")]
         public List<HAFieldDto> Fields { get; set; }        

@@ -24,9 +24,6 @@ namespace SpaceDotNet.Client
     public class IntListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
-        [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
-        
     }
     
 }
