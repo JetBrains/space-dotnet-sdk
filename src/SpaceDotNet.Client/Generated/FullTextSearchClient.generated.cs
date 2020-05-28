@@ -78,6 +78,22 @@ namespace SpaceDotNet.Client
             
         }
         
+        public SearchClient Search => new SearchClient(_connection);
+        
+        public partial class SearchClient
+        {
+            private readonly Connection _connection;
+            
+            public SearchClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<EntityHitDto>> GetAllSearch(string query, string? skip = null, int? top = null, Func<Partial<Batch<EntityHitDto>>, Partial<Batch<EntityHitDto>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<Batch<EntityHitDto>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<EntityHitDto>>()) : Partial<Batch<EntityHitDto>>.Default()));            
+            
+        }
+        
         public TeamClient Teams => new TeamClient(_connection);
         
         public partial class TeamClient

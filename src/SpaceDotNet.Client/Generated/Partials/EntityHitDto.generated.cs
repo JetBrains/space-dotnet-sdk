@@ -19,19 +19,10 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EbsSnapshotApiExtensions
+namespace SpaceDotNet.Client.EntityHitExtensions
 {
-    public static class EbsSnapshotApiDtoPartialExtensions
+    public static class EntityHitDtoPartialExtensions
     {
-        public static Partial<EbsSnapshotApiDto> WithSnapshotId(this Partial<EbsSnapshotApiDto> it)
-            => it.AddFieldName("snapshotId");
-        
-        public static Partial<EbsSnapshotApiDto> WithSnapshotState(this Partial<EbsSnapshotApiDto> it)
-            => it.AddFieldName("snapshotState");
-        
-        public static Partial<EbsSnapshotApiDto> WithExecution(this Partial<EbsSnapshotApiDto> it)
-            => it.AddFieldName("execution");
-        
     }
     
 }

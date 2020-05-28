@@ -19,21 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EcsTaskContainerInfoExtensions
+namespace SpaceDotNet.Client.CustomFieldHitExtensions
 {
-    public static class EcsTaskContainerInfoDtoPartialExtensions
+    public static class CustomFieldHitDtoPartialExtensions
     {
-        public static Partial<EcsTaskContainerInfoDto> WithName(this Partial<EcsTaskContainerInfoDto> it)
+        public static Partial<CustomFieldHitDto> WithName(this Partial<CustomFieldHitDto> it)
             => it.AddFieldName("name");
         
-        public static Partial<EcsTaskContainerInfoDto> WithLastStatus(this Partial<EcsTaskContainerInfoDto> it)
-            => it.AddFieldName("lastStatus");
-        
-        public static Partial<EcsTaskContainerInfoDto> WithExitCode(this Partial<EcsTaskContainerInfoDto> it)
-            => it.AddFieldName("exitCode");
-        
-        public static Partial<EcsTaskContainerInfoDto> WithReason(this Partial<EcsTaskContainerInfoDto> it)
-            => it.AddFieldName("reason");
+        public static Partial<CustomFieldHitDto> WithValue(this Partial<CustomFieldHitDto> it)
+            => it.AddFieldName("value");
         
     }
     

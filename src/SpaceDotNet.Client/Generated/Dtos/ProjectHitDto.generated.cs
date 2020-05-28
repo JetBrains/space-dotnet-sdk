@@ -21,19 +21,34 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EbsSnapshotApiDto
+    public class ProjectHitDto
+         : EntityHitDto, IClassNameConvertible
     {
-        [Required]
-        [JsonPropertyName("snapshotId")]
-        public string SnapshotId { get; set; }        
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
         [Required]
-        [JsonPropertyName("snapshotState")]
-        public SnapshotState SnapshotState { get; set; }        
+        [JsonPropertyName("id")]
+        public string Id { get; set; }        
         
         [Required]
-        [JsonPropertyName("execution")]
-        public long Execution { get; set; }        
+        [JsonPropertyName("score")]
+        public double Score { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("key")]
+        public string Key { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
+        
+        [JsonPropertyName("description")]
+        public string? Description { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("ref")]
+        public PRProjectDto Ref { get; set; }        
         
     }
     

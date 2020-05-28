@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EbsVolumeApiExtensions
+namespace SpaceDotNet.Client
 {
-    public static class EbsVolumeApiDtoPartialExtensions
+    public class CustomFieldHitDto
     {
-        public static Partial<EbsVolumeApiDto> WithVolumeId(this Partial<EbsVolumeApiDto> it)
-            => it.AddFieldName("volumeId");
+        [Required]
+        [JsonPropertyName("name")]
+        public string Name { get; set; }        
         
-        public static Partial<EbsVolumeApiDto> WithVolumeName(this Partial<EbsVolumeApiDto> it)
-            => it.AddFieldName("volumeName");
-        
-        public static Partial<EbsVolumeApiDto> WithVolumeState(this Partial<EbsVolumeApiDto> it)
-            => it.AddFieldName("volumeState");
-        
-        public static Partial<EbsVolumeApiDto> WithExecution(this Partial<EbsVolumeApiDto> it)
-            => it.AddFieldName("execution");
+        [Required]
+        [JsonPropertyName("value")]
+        public string Value { get; set; }        
         
     }
     

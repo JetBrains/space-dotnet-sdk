@@ -21,20 +21,31 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EcsTaskContainerInfoDto
+    public class ArticleHitDto
+         : EntityHitDto, IClassNameConvertible
     {
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
         [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }        
+        [JsonPropertyName("id")]
+        public string Id { get; set; }        
         
-        [JsonPropertyName("lastStatus")]
-        public string? LastStatus { get; set; }        
+        [Required]
+        [JsonPropertyName("score")]
+        public double Score { get; set; }        
         
-        [JsonPropertyName("exitCode")]
-        public int? ExitCode { get; set; }        
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title { get; set; }        
         
-        [JsonPropertyName("reason")]
-        public string? Reason { get; set; }        
+        [Required]
+        [JsonPropertyName("body")]
+        public string Body { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("ref")]
+        public ArticleRecordDto Ref { get; set; }        
         
     }
     

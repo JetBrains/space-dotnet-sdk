@@ -21,18 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class VolumeState : Enumeration
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class EntityHitDto
+         : IClassNameConvertible
     {
-        private VolumeState(string value) : base(value) { }
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
-        public static readonly VolumeState UNKNOWN = new VolumeState("UNKNOWN");
-        public static readonly VolumeState CREATING = new VolumeState("CREATING");
-        public static readonly VolumeState AVAILABLE = new VolumeState("AVAILABLE");
-        public static readonly VolumeState INUSE = new VolumeState("IN_USE");
-        public static readonly VolumeState DELETING = new VolumeState("DELETING");
-        public static readonly VolumeState DELETED = new VolumeState("DELETED");
-        public static readonly VolumeState ERROR = new VolumeState("ERROR");
     }
     
 }

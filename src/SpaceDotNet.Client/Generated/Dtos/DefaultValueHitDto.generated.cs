@@ -21,23 +21,11 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EbsVolumeApiDto
+    public class DefaultValueHitDto
+         : EntityHitDto, IClassNameConvertible
     {
-        [Required]
-        [JsonPropertyName("volumeId")]
-        public string VolumeId { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("volumeName")]
-        public string VolumeName { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("volumeState")]
-        public VolumeState VolumeState { get; set; }        
-        
-        [Required]
-        [JsonPropertyName("execution")]
-        public long Execution { get; set; }        
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
     }
     

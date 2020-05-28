@@ -19,17 +19,10 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.DefaultValueHitExtensions
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class DesiredStatus : Enumeration
+    public static class DefaultValueHitDtoPartialExtensions
     {
-        private DesiredStatus(string value) : base(value) { }
-        
-        public static readonly DesiredStatus UNKNOWN = new DesiredStatus("UNKNOWN");
-        public static readonly DesiredStatus PENDING = new DesiredStatus("PENDING");
-        public static readonly DesiredStatus RUNNING = new DesiredStatus("RUNNING");
-        public static readonly DesiredStatus STOPPED = new DesiredStatus("STOPPED");
     }
     
 }

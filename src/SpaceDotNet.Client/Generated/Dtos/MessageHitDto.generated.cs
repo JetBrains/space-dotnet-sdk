@@ -21,33 +21,31 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EcsTaskInfoApiDto
+    public class MessageHitDto
+         : EntityHitDto, IClassNameConvertible
     {
-        [Required]
-        [JsonPropertyName("taskArn")]
-        public string TaskArn { get; set; }        
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
         [Required]
-        [JsonPropertyName("containers")]
-        public List<EcsTaskContainerInfoDto> Containers { get; set; }        
+        [JsonPropertyName("id")]
+        public string Id { get; set; }        
         
         [Required]
-        [JsonPropertyName("desiredStatus")]
-        public DesiredStatus DesiredStatus { get; set; }        
+        [JsonPropertyName("score")]
+        public double Score { get; set; }        
         
         [Required]
-        [JsonPropertyName("lastStatus")]
-        public DesiredStatus LastStatus { get; set; }        
-        
-        [JsonPropertyName("pullStartedAt")]
-        public long? PullStartedAt { get; set; }        
-        
-        [JsonPropertyName("stoppedAt")]
-        public long? StoppedAt { get; set; }        
+        [JsonPropertyName("channel")]
+        public M2ChannelRecordDto Channel { get; set; }        
         
         [Required]
-        [JsonPropertyName("execution")]
-        public long Execution { get; set; }        
+        [JsonPropertyName("ref")]
+        public ChannelItemRecordDto Ref { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("message")]
+        public string Message { get; set; }        
         
     }
     
