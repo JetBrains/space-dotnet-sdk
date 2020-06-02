@@ -41,22 +41,22 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannel(GerOrCreateDirectMessagesChannelRequestDto data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder = null)
+            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannelAsync(GerOrCreateDirectMessagesChannelRequestDto data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<GerOrCreateDirectMessagesChannelRequestDto, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<M2ChannelRecordDto>()) : Partial<M2ChannelRecordDto>.Default()), data);            
             
-            public async Task<bool> IsNameFree(IsNameFreeRequestDto data)
+            public async Task<bool> IsNameFreeAsync(IsNameFreeRequestDto data)
                 => await _connection.RequestResourceAsync<IsNameFreeRequestDto, bool>("POST", $"api/http/chats/channels/is-name-free?", data);            
             
-            public async Task<List<string>> ImportMessageHistory(string channelId, ImportMessageHistoryRequestDto data)
+            public async Task<List<string>> ImportMessageHistoryAsync(string channelId, ImportMessageHistoryRequestDto data)
                 => await _connection.RequestResourceAsync<ImportMessageHistoryRequestDto, List<string>>("POST", $"api/http/chats/channels/{channelId}/import?", data);            
             
-            public async Task RestoreArchivedChannel(string channelId)
+            public async Task RestoreArchivedChannelAsync(string channelId)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");            
             
-            public async Task DeleteChannel(string channelId)
+            public async Task DeleteChannelAsync(string channelId)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");            
             
-            public async Task ArchiveChannel(string channelId)
+            public async Task ArchiveChannelAsync(string channelId)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");            
             
             public MessageClient Messages => new MessageClient(_connection);
@@ -70,7 +70,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ChannelItemRecordDto> SendMessage(string channelId, SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
+                public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default()), data);                
                 
             }
@@ -89,7 +89,7 @@ namespace SpaceDotNet.Client
             }
             
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]            
-            public async Task<ChannelItemRecordDto> SendMessage(SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
+            public async Task<ChannelItemRecordDto> SendMessageAsync(SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default()), data);            
             
         }

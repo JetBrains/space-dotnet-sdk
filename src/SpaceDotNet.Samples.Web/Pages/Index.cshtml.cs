@@ -65,19 +65,19 @@ namespace SpaceDotNet.Samples.Web.Pages
         {
             #region Example with default fields (1 level)
             
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe();
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync();
             
             #endregion
             
             #region Example with full recursive (not recommended as it is too eager)
             
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe(partial => Partial<TDMemberProfileDto>.Recursive());
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync(partial => Partial<TDMemberProfileDto>.Recursive());
             
             #endregion
             
             #region Example with full field definitions
             
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe(partial => partial
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync(partial => partial
                 .AddAllFieldNames() // adds all fields for the current partial request (one level)
                 .WithId()
                 .WithName(name => name
@@ -99,7 +99,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             
             #endregion
             
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMe();
+            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync();
             
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
             var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);
@@ -111,14 +111,14 @@ namespace SpaceDotNet.Samples.Web.Pages
             var todoClosedThisWeek = 0;
             var meetingsThisWeek = 0;
             
-            await foreach (var projectDto in BatchEnumerator.AllItems(skip => _projectClient.GetAllProjectsByMember(MemberProfile.Id, skip: skip)))
+            await foreach (var projectDto in BatchEnumerator.AllItems(skip => _projectClient.GetAllProjectsByMemberAsync(MemberProfile.Id, skip: skip)))
             {
                 try
                 {
                     // Check # of issues resolved this week
-                    var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatuses(projectDto.Id);
+                    var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatusesAsync(projectDto.Id);
                 
-                    await foreach (var issueDto in BatchEnumerator.AllItems(skip => _projectClient.Planning.Issues.GetAllIssues(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, skip: skip, partialBuilder: partial => partial
+                    await foreach (var issueDto in BatchEnumerator.AllItems(skip => _projectClient.Planning.Issues.GetAllIssuesAsync(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, skip: skip, partialBuilder: partial => partial
                         .WithNext()
                         .WithTotalCount()
                         .WithData(issue => issue
@@ -178,10 +178,10 @@ namespace SpaceDotNet.Samples.Web.Pages
                 try
                 {
                     // Check # of reviews created and participated in
-                    var reviews1 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
-                    var reviews2 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
-                    var reviews3 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
-                    var reviews4 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviews(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews1 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviewsAsync(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews2 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviewsAsync(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews3 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviewsAsync(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
+                    var reviews4 = await BatchEnumerator.AllItems(skip => _projectClient.CodeReviews.GetAllCodeReviewsAsync(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate(), skip: skip)).ToListAsync();
                     
                     foreach (var reviewDto in reviews1.Union(reviews2).Union(reviews3).Union(reviews4))
                     {
@@ -228,7 +228,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             try
             {
                 // Check # of TODO items resolved
-                await foreach (var todoDto in BatchEnumerator.AllItems(skip => _todoClient.GetAllToDoItems(from: weekStart.AsSpaceDate(), skip: skip, partialBuilder: partial => partial
+                await foreach (var todoDto in BatchEnumerator.AllItems(skip => _todoClient.GetAllToDoItemsAsync(from: weekStart.AsSpaceDate(), skip: skip, partialBuilder: partial => partial
                     .WithNext()
                     .WithTotalCount()
                     .WithData(todoItem => todoItem
@@ -247,7 +247,7 @@ namespace SpaceDotNet.Samples.Web.Pages
 
             try
             {
-                await foreach (var meetingDto in BatchEnumerator.AllItems(skip => _calendarClient.Meetings.GetAllMeetings("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), skip: skip, partialBuilder: partial => partial
+                await foreach (var meetingDto in BatchEnumerator.AllItems(skip => _calendarClient.Meetings.GetAllMeetingsAsync("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), skip: skip, partialBuilder: partial => partial
                     .WithNext()
                     .WithTotalCount()
                     .WithData(meeting => meeting

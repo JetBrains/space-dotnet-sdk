@@ -52,13 +52,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<string> GetParameter(long id, string key)
+                public async Task<string> GetParameterAsync(long id, string key)
                     => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&");                
                 
-                public async Task UpdateParameter(long id, UpdateParameterRequestDto data)
+                public async Task UpdateParameterAsync(long id, UpdateParameterRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateParameterRequestDto>("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);                
                 
-                public async Task DeleteParameter(long id, string key)
+                public async Task DeleteParameterAsync(long id, string key)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");                
                 
             }

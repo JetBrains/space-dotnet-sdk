@@ -575,7 +575,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
             {
-                Builder.Append($"{Indent}public async Task " + _clientMethodName + "(");
+                Builder.Append($"{Indent}public async Task " + _clientMethodName + "Async(");
 
                 AppendParameterList(apiEndpoint);
 
@@ -594,7 +594,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append($"{Indent}public async Task<");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
-                Builder.Append(" " + _clientMethodName + "(");
+                Builder.Append(" " + _clientMethodName + "Async(");
             
                 if (AppendParameterList(apiEndpoint) && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
@@ -645,8 +645,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             }
             else if (apiEndpoint.RequestBody != null && apiEndpoint.ResponseBody == null)
             {
-                Builder.Append($"{Indent}public async Task");
-                Builder.Append(" " + _clientMethodName + "(");
+                Builder.Append($"{Indent}public async Task " + _clientMethodName + "Async(");
             
                 if (AppendParameterList(apiEndpoint))
                 {
@@ -673,7 +672,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append($"{Indent}public async Task<");
                 Visit(apiEndpoint.ResponseBody);
                 Builder.Append(">");
-                Builder.Append(" " + _clientMethodName + "(");
+                Builder.Append(" " + _clientMethodName + "Async(");
 
                 if (AppendParameterList(apiEndpoint))
                 {

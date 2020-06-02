@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> CreateUpload(CreateUploadRequestDto data)
+        public async Task<string> CreateUploadAsync(CreateUploadRequestDto data)
             => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads?", data);        
         
         public ImageClient Image => new ImageClient(_connection);
@@ -44,7 +44,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadata(string id, Func<Partial<ImageAttachmentMetaDto>, Partial<ImageAttachmentMetaDto>> partialBuilder = null)
+            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMetaDto>, Partial<ImageAttachmentMetaDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImageAttachmentMetaDto>()) : Partial<ImageAttachmentMetaDto>.Default()));            
             
         }

@@ -41,7 +41,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<ExtendedTypeDto>> GetAllExtendedTypes(Func<Partial<ExtendedTypeDto>, Partial<ExtendedTypeDto>> partialBuilder = null)
+            public async Task<List<ExtendedTypeDto>> GetAllExtendedTypesAsync(Func<Partial<ExtendedTypeDto>, Partial<ExtendedTypeDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ExtendedTypeDto>()) : Partial<ExtendedTypeDto>.Default()));            
             
         }
@@ -57,7 +57,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValues(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>> partialBuilder = null)
+            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValuesAsync(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<CustomFieldsRecordDto>>()) : Partial<Batch<CustomFieldsRecordDto>>.Default()));            
             
         }
@@ -73,25 +73,25 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<CustomFieldDto> CreateField(string typeKey, CreateFieldRequestDto data, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>> partialBuilder = null)
+            public async Task<CustomFieldDto> CreateFieldAsync(string typeKey, CreateFieldRequestDto data, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateFieldRequestDto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default()), data);            
             
-            public async Task Reorder(string typeKey, ReorderRequestDto data)
+            public async Task ReorderAsync(string typeKey, ReorderRequestDto data)
                 => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);            
             
-            public async Task Archive(string typeKey, string id)
+            public async Task ArchiveAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");            
             
-            public async Task Restore(string typeKey, string id)
+            public async Task RestoreAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/restore");            
             
-            public async Task<List<CustomFieldDto>> GetAllFields(string typeKey, bool withArchived, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>> partialBuilder = null)
+            public async Task<List<CustomFieldDto>> GetAllFieldsAsync(string typeKey, bool withArchived, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default()));            
             
-            public async Task UpdateField(string typeKey, string id, UpdateFieldRequestDto data)
+            public async Task UpdateFieldAsync(string typeKey, string id, UpdateFieldRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateFieldRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);            
             
-            public async Task DeleteField(string typeKey, string id)
+            public async Task DeleteFieldAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");            
             
         }
@@ -107,10 +107,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<CustomFieldsRecordDto> GetValue(string typeKey, string entityId, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>> partialBuilder = null)
+            public async Task<CustomFieldsRecordDto> GetValueAsync(string typeKey, string entityId, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CustomFieldsRecordDto>()) : Partial<CustomFieldsRecordDto>.Default()));            
             
-            public async Task UpdateValue(string entityId, string typeKey, UpdateValueRequestDto data)
+            public async Task UpdateValueAsync(string entityId, string typeKey, UpdateValueRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateValueRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);            
             
         }

@@ -41,10 +41,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<MeetingRecordDto>> GetAllCalendarEvents(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder = null)
+            public async Task<List<MeetingRecordDto>> GetAllCalendarEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<MeetingRecordDto>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MeetingRecordDto>()) : Partial<MeetingRecordDto>.Default()));            
             
-            public async Task<MeetingRecordDto> GetCalendarEvent(string id, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder = null)
+            public async Task<MeetingRecordDto> GetCalendarEventAsync(string id, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<MeetingRecordDto>("GET", $"api/http/team-directory/calendar-events/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MeetingRecordDto>()) : Partial<MeetingRecordDto>.Default()));            
             
             public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
@@ -58,7 +58,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<AbsenceEventDto>> GetAllAbsenceEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEventDto>, Partial<AbsenceEventDto>> partialBuilder = null)
+                public async Task<List<AbsenceEventDto>> GetAllAbsenceEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEventDto>, Partial<AbsenceEventDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<AbsenceEventDto>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceEventDto>()) : Partial<AbsenceEventDto>.Default()));                
                 
             }
@@ -74,7 +74,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<BirthdayEventDto>> GetAllBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEventDto>, Partial<BirthdayEventDto>> partialBuilder = null)
+                public async Task<List<BirthdayEventDto>> GetAllBirthdayEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEventDto>, Partial<BirthdayEventDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<BirthdayEventDto>()) : Partial<BirthdayEventDto>.Default()));                
                 
                 public StarredClient Starred => new StarredClient(_connection);
@@ -88,7 +88,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<BirthdayEventDto>> GetAllStarredBirthdayEvents(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<BirthdayEventDto>, Partial<BirthdayEventDto>> partialBuilder = null)
+                    public async Task<List<BirthdayEventDto>> GetAllStarredBirthdayEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<BirthdayEventDto>, Partial<BirthdayEventDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<BirthdayEventDto>()) : Partial<BirthdayEventDto>.Default()));                    
                     
                 }
@@ -106,7 +106,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<MeetingRecordDto> UpdateMeetingParticipation(string id, UpdateMeetingParticipationRequestDto data, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder = null)
+                public async Task<MeetingRecordDto> UpdateMeetingParticipationAsync(string id, UpdateMeetingParticipationRequestDto data, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<UpdateMeetingParticipationRequestDto, MeetingRecordDto>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MeetingRecordDto>()) : Partial<MeetingRecordDto>.Default()), data);                
                 
             }
@@ -122,7 +122,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<MembershipEventDto>> GetAllMembershipEvents(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEventDto>, Partial<MembershipEventDto>> partialBuilder = null)
+                public async Task<List<MembershipEventDto>> GetAllMembershipEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEventDto>, Partial<MembershipEventDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MembershipEventDto>()) : Partial<MembershipEventDto>.Default()));                
                 
             }
@@ -138,7 +138,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<NonWorkingDaysEventDto>> GetAllNonWorkingDaysEvents(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEventDto>, Partial<NonWorkingDaysEventDto>> partialBuilder = null)
+                public async Task<List<NonWorkingDaysEventDto>> GetAllNonWorkingDaysEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEventDto>, Partial<NonWorkingDaysEventDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<NonWorkingDaysEventDto>()) : Partial<NonWorkingDaysEventDto>.Default()));                
                 
             }
@@ -156,16 +156,16 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<InvitationDto> CreateInvitation(CreateInvitationRequestDto data, Func<Partial<InvitationDto>, Partial<InvitationDto>> partialBuilder = null)
+            public async Task<InvitationDto> CreateInvitationAsync(CreateInvitationRequestDto data, Func<Partial<InvitationDto>, Partial<InvitationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateInvitationRequestDto, InvitationDto>("POST", $"api/http/team-directory/invitations?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<InvitationDto>()) : Partial<InvitationDto>.Default()), data);            
             
-            public async Task<Batch<InvitationDto>> GetAllInvitations(string? skip = null, int? top = null, Func<Partial<Batch<InvitationDto>>, Partial<Batch<InvitationDto>>> partialBuilder = null)
+            public async Task<Batch<InvitationDto>> GetAllInvitationsAsync(string? skip = null, int? top = null, Func<Partial<Batch<InvitationDto>>, Partial<Batch<InvitationDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<InvitationDto>>()) : Partial<Batch<InvitationDto>>.Default()));            
             
-            public async Task UpdateInvitation(string id, UpdateInvitationRequestDto data)
+            public async Task UpdateInvitationAsync(string id, UpdateInvitationRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateInvitationRequestDto>("PATCH", $"api/http/team-directory/invitations/{id}", data);            
             
-            public async Task DeleteInvitation(string id)
+            public async Task DeleteInvitationAsync(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitations/{id}");            
             
         }
@@ -181,7 +181,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<TDLanguageDto>> GetAllLanguages(Func<Partial<TDLanguageDto>, Partial<TDLanguageDto>> partialBuilder = null)
+            public async Task<List<TDLanguageDto>> GetAllLanguagesAsync(Func<Partial<TDLanguageDto>, Partial<TDLanguageDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDLanguageDto>>("GET", $"api/http/team-directory/languages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLanguageDto>()) : Partial<TDLanguageDto>.Default()));            
             
         }
@@ -197,10 +197,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<TDLocationEquipmentTypeDto>> GetAllLocationEquipmentTypes(bool withArchived, Func<Partial<TDLocationEquipmentTypeDto>, Partial<TDLocationEquipmentTypeDto>> partialBuilder = null)
+            public async Task<List<TDLocationEquipmentTypeDto>> GetAllLocationEquipmentTypesAsync(bool withArchived, Func<Partial<TDLocationEquipmentTypeDto>, Partial<TDLocationEquipmentTypeDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationEquipmentTypeDto>()) : Partial<TDLocationEquipmentTypeDto>.Default()));            
             
-            public async Task DeleteLocationEquipmentTypeByName(string name, bool delete)
+            public async Task DeleteLocationEquipmentTypeByNameAsync(string name, bool delete)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString().ToLowerInvariant()}");            
             
         }
@@ -216,25 +216,25 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDLocationDto> CreateLocation(CreateLocationRequestDto data, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
+            public async Task<TDLocationDto> CreateLocationAsync(CreateLocationRequestDto data, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateLocationRequestDto, TDLocationDto>("POST", $"api/http/team-directory/locations?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default()), data);            
             
-            public async Task<List<TDLocationDto>> RestoreMultiple(RestoreMultipleRequestDto data, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
+            public async Task<List<TDLocationDto>> RestoreMultipleAsync(RestoreMultipleRequestDto data, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDLocationDto>>("POST", $"api/http/team-directory/locations/restore?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default()), data);            
             
-            public async Task<TDLocationDto> Restore(string id, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
+            public async Task<TDLocationDto> RestoreAsync(string id, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDLocationDto>("POST", $"api/http/team-directory/locations/{id}/restore?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default()));            
             
-            public async Task<List<TDLocationDto>> GetAllLocations(string query, bool withArchived, string? type = null, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
+            public async Task<List<TDLocationDto>> GetAllLocationsAsync(string query, bool withArchived, string? type = null, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default()));            
             
-            public async Task<TDLocationDto> GetLocation(string id, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
+            public async Task<TDLocationDto> GetLocationAsync(string id, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDLocationDto>("GET", $"api/http/team-directory/locations/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default()));            
             
-            public async Task<TDLocationDto> UpdateLocation(string id, UpdateLocationRequestDto data, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
+            public async Task<TDLocationDto> UpdateLocationAsync(string id, UpdateLocationRequestDto data, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateLocationRequestDto, TDLocationDto>("PATCH", $"api/http/team-directory/locations/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default()), data);            
             
-            public async Task<List<TDLocationDto>> ArchiveLocation(string id, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
+            public async Task<List<TDLocationDto>> ArchiveLocationAsync(string id, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDLocationDto>>("DELETE", $"api/http/team-directory/locations/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default()));            
             
             public MapClient Map => new MapClient(_connection);
@@ -248,10 +248,10 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDLocationMapDto> GetMap(string id, Func<Partial<TDLocationMapDto>, Partial<TDLocationMapDto>> partialBuilder = null)
+                public async Task<TDLocationMapDto> GetMapAsync(string id, Func<Partial<TDLocationMapDto>, Partial<TDLocationMapDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/locations/{id}/map?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapDto>()) : Partial<TDLocationMapDto>.Default()));                
                 
-                public async Task<TDLocationMapDto> UpdateMap(string id, UpdateMapRequestDto data, Func<Partial<TDLocationMapDto>, Partial<TDLocationMapDto>> partialBuilder = null)
+                public async Task<TDLocationMapDto> UpdateMapAsync(string id, UpdateMapRequestDto data, Func<Partial<TDLocationMapDto>, Partial<TDLocationMapDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<UpdateMapRequestDto, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapDto>()) : Partial<TDLocationMapDto>.Default()), data);                
                 
                 public MemberClient Members => new MemberClient(_connection);
@@ -265,7 +265,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<TDMemberInLocationMapListDto>> GetAllMembers(string id, bool includeUnmarked, Func<Partial<TDMemberInLocationMapListDto>, Partial<TDMemberInLocationMapListDto>> partialBuilder = null)
+                    public async Task<List<TDMemberInLocationMapListDto>> GetAllMembersAsync(string id, bool includeUnmarked, Func<Partial<TDMemberInLocationMapListDto>, Partial<TDMemberInLocationMapListDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberInLocationMapListDto>()) : Partial<TDMemberInLocationMapListDto>.Default()));                    
                     
                 }
@@ -285,7 +285,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<TDLocationWithTimeZoneDto>> GetAllLocationsWithTimezone(Func<Partial<TDLocationWithTimeZoneDto>, Partial<TDLocationWithTimeZoneDto>> partialBuilder = null)
+            public async Task<List<TDLocationWithTimeZoneDto>> GetAllLocationsWithTimezoneAsync(Func<Partial<TDLocationWithTimeZoneDto>, Partial<TDLocationWithTimeZoneDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDLocationWithTimeZoneDto>>("GET", $"api/http/team-directory/locations-with-timezone?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationWithTimeZoneDto>()) : Partial<TDLocationWithTimeZoneDto>.Default()));            
             
         }
@@ -301,7 +301,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidates(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
+            public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidatesAsync(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
         }
@@ -317,16 +317,16 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMemberLocationDto> CreateMemberLocation(CreateMemberLocationRequestDto data, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder = null)
+            public async Task<TDMemberLocationDto> CreateMemberLocationAsync(CreateMemberLocationRequestDto data, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateMemberLocationRequestDto, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberLocationDto>()) : Partial<TDMemberLocationDto>.Default()), data);            
             
-            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocations(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocationDto>>, Partial<Batch<TDMemberLocationDto>>> partialBuilder = null)
+            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocationsAsync(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocationDto>>, Partial<Batch<TDMemberLocationDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberLocationDto>>()) : Partial<Batch<TDMemberLocationDto>>.Default()));            
             
-            public async Task<TDMemberLocationDto> UpdateMemberLocation(string id, UpdateMemberLocationRequestDto data, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder = null)
+            public async Task<TDMemberLocationDto> UpdateMemberLocationAsync(string id, UpdateMemberLocationRequestDto data, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateMemberLocationRequestDto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberLocationDto>()) : Partial<TDMemberLocationDto>.Default()), data);            
             
-            public async Task DeleteMemberLocation(string id, bool delete)
+            public async Task DeleteMemberLocationAsync(string id, bool delete)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete.ToString().ToLowerInvariant()}");            
             
             public PointClient Points => new PointClient(_connection);
@@ -340,13 +340,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDLocationMapPointDto> CreatePoint(string id, CreatePointRequestDto data, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder = null)
+                public async Task<TDLocationMapPointDto> CreatePointAsync(string id, CreatePointRequestDto data, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<CreatePointRequestDto, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default()), data);                
                 
-                public async Task<TDLocationMapPointDto> UpdatePoint(string locationPointId, string id, UpdatePointRequestDto data, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder = null)
+                public async Task<TDLocationMapPointDto> UpdatePointAsync(string locationPointId, string id, UpdatePointRequestDto data, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<UpdatePointRequestDto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default()), data);                
                 
-                public async Task DeletePoint(string id, string locationPointId, bool delete)
+                public async Task DeletePointAsync(string id, string locationPointId, bool delete)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");                
                 
             }
@@ -364,7 +364,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMergedEventDto>> GetAllMembershipEvents(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<Batch<TDMergedEventDto>>, Partial<Batch<TDMergedEventDto>>> partialBuilder = null)
+            public async Task<Batch<TDMergedEventDto>> GetAllMembershipEventsAsync(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<Batch<TDMergedEventDto>>, Partial<Batch<TDMergedEventDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMergedEventDto>>()) : Partial<Batch<TDMergedEventDto>>.Default()));            
             
         }
@@ -380,19 +380,19 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMembershipDto> CreateMembership(CreateMembershipRequestDto data, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
+            public async Task<TDMembershipDto> CreateMembershipAsync(CreateMembershipRequestDto data, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateMembershipRequestDto, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default()), data);            
             
-            public async Task<Batch<TDMembershipDto>> GetAllMemberships(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembershipDto>>, Partial<Batch<TDMembershipDto>>> partialBuilder = null)
+            public async Task<Batch<TDMembershipDto>> GetAllMembershipsAsync(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembershipDto>>, Partial<Batch<TDMembershipDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMembershipDto>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMembershipDto>>()) : Partial<Batch<TDMembershipDto>>.Default()));            
             
-            public async Task<TDMembershipDto> UpdateMembership(string id, UpdateMembershipRequestDto data, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
+            public async Task<TDMembershipDto> UpdateMembershipAsync(string id, UpdateMembershipRequestDto data, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateMembershipRequestDto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default()), data);            
             
-            public async Task DeleteMembership(string id, bool delete)
+            public async Task DeleteMembershipAsync(string id, bool delete)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete.ToString().ToLowerInvariant()}");            
             
-            public async Task Revoke(string id, SpaceTime? till = null)
+            public async Task RevokeAsync(string id, SpaceTime? till = null)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}/revoke?till={till?.ToString() ?? "null"}");            
             
             public RequestClient Requests => new RequestClient(_connection);
@@ -406,13 +406,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequests(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>, Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>> partialBuilder = null)
+                public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequestsAsync(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>, Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>()) : Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default()));                
                 
-                public async Task UpdateRequest(string id, UpdateRequestRequestDto data)
+                public async Task UpdateRequestAsync(string id, UpdateRequestRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateRequestRequestDto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);                
                 
-                public async Task<TDMembershipDto> DeleteRequest(string id, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
+                public async Task<TDMembershipDto> DeleteRequestAsync(string id, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/memberships/requests/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default()));                
                 
             }
@@ -428,7 +428,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task UpdateRequestRevoke(string id, UpdateRequestRevokeRequestDto data)
+                public async Task UpdateRequestRevokeAsync(string id, UpdateRequestRevokeRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateRequestRevokeRequestDto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);                
                 
             }
@@ -446,37 +446,37 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMemberProfileDto> CreateProfile(CreateProfileRequestDto data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> CreateProfileAsync(CreateProfileRequestDto data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateProfileRequestDto, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()), data);            
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllProfiles(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
+            public async Task<Batch<TDMemberProfileDto>> GetAllProfilesAsync(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
-            public async Task<List<string>> CheckProfileUsernamesExistence(List<string> usernames)
+            public async Task<List<string>> CheckProfileUsernamesExistenceAsync(List<string> usernames)
                 => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&");            
             
-            public async Task<TDMemberProfileDto> GetProfileByEmail(string email, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> GetProfileByEmailAsync(string email, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/email:{email}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
             
-            public async Task<TDMemberProfileDto> GetProfileByUsername(string username, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> GetProfileByUsernameAsync(string username, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/username:{username}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
             
-            public async Task<TDMemberProfileDto> GetProfile(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> GetProfileAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
             
-            public async Task<bool> CheckIfProfileIsTeamMember(string id, List<string> teamIds)
+            public async Task<bool> CheckIfProfileIsTeamMemberAsync(string id, List<string> teamIds)
                 => await _connection.RequestResourceAsync<bool>("GET", $"api/http/team-directory/profiles/{id}/is-team-member?teamIds={teamIds.JoinToString("teamIds", it => it.ToString())}&");            
             
-            public async Task<TDMemberProfileDto> UpdateProfile(string id, UpdateProfileRequestDto data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> UpdateProfileAsync(string id, UpdateProfileRequestDto data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateProfileRequestDto, TDMemberProfileDto>("PATCH", $"api/http/team-directory/profiles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()), data);            
             
-            public async Task<TDMemberProfileDto> DeleteProfile(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> DeleteProfileAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
             
-            public async Task<TDMemberProfileDto> Deactivate(string id, SpaceDate? since = null, SpaceTime? at = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> DeactivateAsync(string id, SpaceDate? since = null, SpaceTime? at = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/deactivate?since={since?.ToString() ?? "null"}&at={at?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
             
-            public async Task<TDMemberProfileDto> Fire(string id, SpaceDate since, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+            public async Task<TDMemberProfileDto> FireAsync(string id, SpaceDate since, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{id}/fire?since={since.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
             
             public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
@@ -490,7 +490,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ESAuthenticationSessionDto>> GetAllAuthenticationSessions(string owner, Func<Partial<ESAuthenticationSessionDto>, Partial<ESAuthenticationSessionDto>> partialBuilder = null)
+                public async Task<List<ESAuthenticationSessionDto>> GetAllAuthenticationSessionsAsync(string owner, Func<Partial<ESAuthenticationSessionDto>, Partial<ESAuthenticationSessionDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<ESAuthenticationSessionDto>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ESAuthenticationSessionDto>()) : Partial<ESAuthenticationSessionDto>.Default()));                
                 
                 public MeClient Me => new MeClient(_connection);
@@ -504,7 +504,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task TerminateOwnAuthenticationSession(string sessionId)
+                    public async Task TerminateOwnAuthenticationSessionAsync(string sessionId)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/me/{sessionId}");                    
                     
                 }
@@ -522,7 +522,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDMemberProfileDto> GetMe(Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                public async Task<TDMemberProfileDto> GetMeAsync(Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/me?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));                
                 
                 public ChecklistClient Checklists => new ChecklistClient(_connection);
@@ -536,22 +536,22 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<ChecklistDto> CreateChecklist(IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    public async Task<ChecklistDto> CreateChecklistAsync(IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                    
                     
-                    public async Task<ChecklistDto> ImportChecklist(ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    public async Task<ChecklistDto> ImportChecklistAsync(ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/me/checklists/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                    
                     
-                    public async Task ImportChecklistLines(string checklistId, ImportChecklistLinesRequestDto data)
+                    public async Task ImportChecklistLinesAsync(string checklistId, ImportChecklistLinesRequestDto data)
                         => await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/team-directory/profiles/me/checklists/{checklistId}/import", data);                    
                     
-                    public async Task<List<ChecklistDto>> GetAllChecklists(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    public async Task<List<ChecklistDto>> GetAllChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                    
                     
-                    public async Task UpdateChecklist(string checklistId, UpdateChecklistRequestDto data)
+                    public async Task UpdateChecklistAsync(string checklistId, UpdateChecklistRequestDto data)
                         => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/team-directory/profiles/me/checklists/{checklistId}", data);                    
                     
-                    public async Task DeleteChecklist(string checklistId)
+                    public async Task DeleteChecklistAsync(string checklistId)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/checklists/{checklistId}");                    
                     
                     public StarredClient Starred => new StarredClient(_connection);
@@ -565,7 +565,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task<List<ChecklistDto>> GetAllStarredChecklists(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                        public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
                             => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/checklists/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                        
                         
                     }
@@ -581,7 +581,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task<List<PlanItemChildrenDto>> GetFullChecklistTree(string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
+                        public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
                             => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/profiles/me/checklists/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                        
                         
                     }
@@ -599,7 +599,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<MeInfoDto> GetInfo(Func<Partial<MeInfoDto>, Partial<MeInfoDto>> partialBuilder = null)
+                    public async Task<MeInfoDto> GetInfoAsync(Func<Partial<MeInfoDto>, Partial<MeInfoDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/me/info?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MeInfoDto>()) : Partial<MeInfoDto>.Default()));                    
                     
                     public DraftTypeClient DraftType => new DraftTypeClient(_connection);
@@ -613,7 +613,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateDraftType(UpdateDraftTypeRequestDto data)
+                        public async Task UpdateDraftTypeAsync(UpdateDraftTypeRequestDto data)
                             => await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/draft-type", data);                        
                         
                     }
@@ -629,7 +629,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateFirstDayOfWeek(UpdateFirstDayOfWeekRequestDto data)
+                        public async Task UpdateFirstDayOfWeekAsync(UpdateFirstDayOfWeekRequestDto data)
                             => await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/first-day-of-week", data);                        
                         
                     }
@@ -645,7 +645,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateNavBarMenuItem(UpdateNavBarMenuItemRequestDto data)
+                        public async Task UpdateNavBarMenuItemAsync(UpdateNavBarMenuItemRequestDto data)
                             => await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/nav-bar-menu-items", data);                        
                         
                     }
@@ -661,10 +661,10 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task CreateNavBarProject(CreateNavBarProjectRequestDto data)
+                        public async Task CreateNavBarProjectAsync(CreateNavBarProjectRequestDto data)
                             => await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/profiles/me/info/nav-bar-projects", data);                        
                         
-                        public async Task DeleteNavBarProject(string projectId)
+                        public async Task DeleteNavBarProjectAsync(string projectId)
                             => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/info/nav-bar-projects?projectId={projectId.ToString()}");                        
                         
                     }
@@ -680,7 +680,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task UpdateTheme(UpdateThemeRequestDto data)
+                        public async Task UpdateThemeAsync(UpdateThemeRequestDto data)
                             => await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/info/theme", data);                        
                         
                     }
@@ -700,7 +700,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ESOAuthConsentDto>> GetAllOAuthConsents(string owner, Func<Partial<ESOAuthConsentDto>, Partial<ESOAuthConsentDto>> partialBuilder = null)
+                public async Task<List<ESOAuthConsentDto>> GetAllOAuthConsentsAsync(string owner, Func<Partial<ESOAuthConsentDto>, Partial<ESOAuthConsentDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<ESOAuthConsentDto>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ESOAuthConsentDto>()) : Partial<ESOAuthConsentDto>.Default()));                
                 
                 public MeClient Me => new MeClient(_connection);
@@ -725,7 +725,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task DeleteApprovedScope(string id)
+                        public async Task DeleteApprovedScopeAsync(string id)
                             => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/approved-scopes/{id}");                        
                         
                     }
@@ -741,7 +741,7 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task DeleteRefreshToken(string id)
+                        public async Task DeleteRefreshTokenAsync(string id)
                             => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/me/refresh-tokens/{id}");                        
                         
                     }
@@ -772,7 +772,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatus(string id, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>> partialBuilder = null)
+                    public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatusAsync(string id, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/profiles/{id}/2-fa/status?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Default()));                    
                     
                 }
@@ -788,16 +788,16 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<TwoFactorAuthenticationSecretDto> SetUpTOTPTwoFactorAuthentication(string id, Func<Partial<TwoFactorAuthenticationSecretDto>, Partial<TwoFactorAuthenticationSecretDto>> partialBuilder = null)
+                    public async Task<TwoFactorAuthenticationSecretDto> SetUpTOTPTwoFactorAuthenticationAsync(string id, Func<Partial<TwoFactorAuthenticationSecretDto>, Partial<TwoFactorAuthenticationSecretDto>> partialBuilder = null)
                         => await _connection.RequestResourceAsync<TwoFactorAuthenticationSecretDto>("POST", $"api/http/team-directory/profiles/{id}/2-fa/totp?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationSecretDto>()) : Partial<TwoFactorAuthenticationSecretDto>.Default()));                    
                     
-                    public async Task ConfirmTOTPTwoFactorAuthenticationSettings(string id, ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                    public async Task ConfirmTOTPTwoFactorAuthenticationSettingsAsync(string id, ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto data)
                         => await _connection.RequestResourceAsync<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto>("POST", $"api/http/team-directory/profiles/{id}/2-fa/totp/confirm", data);                    
                     
-                    public async Task UpdateTOTPTwoFactorAuthenticationSettings(string id, UpdateTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                    public async Task UpdateTOTPTwoFactorAuthenticationSettingsAsync(string id, UpdateTOTPTwoFactorAuthenticationSettingsRequestDto data)
                         => await _connection.RequestResourceAsync<UpdateTOTPTwoFactorAuthenticationSettingsRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/2-fa/totp", data);                    
                     
-                    public async Task DeleteCurrentTOTPTwoFactorAuthenticationSettings(string id)
+                    public async Task DeleteCurrentTOTPTwoFactorAuthenticationSettingsAsync(string id)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/2-fa/totp");                    
                     
                 }
@@ -815,16 +815,16 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Pair<ESApplicationPasswordDto, string>> CreateApplicationPassword(string id, CreateApplicationPasswordRequestDto data, Func<Partial<Pair<ESApplicationPasswordDto, string>>, Partial<Pair<ESApplicationPasswordDto, string>>> partialBuilder = null)
+                public async Task<Pair<ESApplicationPasswordDto, string>> CreateApplicationPasswordAsync(string id, CreateApplicationPasswordRequestDto data, Func<Partial<Pair<ESApplicationPasswordDto, string>>, Partial<Pair<ESApplicationPasswordDto, string>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<CreateApplicationPasswordRequestDto, Pair<ESApplicationPasswordDto, string>>("POST", $"api/http/team-directory/profiles/{id}/application-passwords?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Pair<ESApplicationPasswordDto, string>>()) : Partial<Pair<ESApplicationPasswordDto, string>>.Default()), data);                
                 
-                public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswords(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESApplicationPasswordDto>>, Partial<Batch<ESApplicationPasswordDto>>> partialBuilder = null)
+                public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswordsAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESApplicationPasswordDto>>, Partial<Batch<ESApplicationPasswordDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<ESApplicationPasswordDto>>("GET", $"api/http/team-directory/profiles/{id}/application-passwords?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESApplicationPasswordDto>>()) : Partial<Batch<ESApplicationPasswordDto>>.Default()));                
                 
-                public async Task UpdateApplicationPassword(string id, string passwordId, UpdateApplicationPasswordRequestDto data)
+                public async Task UpdateApplicationPasswordAsync(string id, string passwordId, UpdateApplicationPasswordRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/application-passwords/{passwordId}", data);                
                 
-                public async Task DeleteApplicationPassword(string id, string passwordId)
+                public async Task DeleteApplicationPasswordAsync(string id, string passwordId)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/application-passwords/{passwordId}");                
                 
             }
@@ -840,7 +840,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<TDMemberProfileDto>> GetAllLeads(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                public async Task<List<TDMemberProfileDto>> GetAllLeadsAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles/{id}/leads?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));                
                 
             }
@@ -856,16 +856,16 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentToken(string id, CreateApplicationPasswordRequestDto data, Func<Partial<Pair<ESPermanentTokenDto, string>>, Partial<Pair<ESPermanentTokenDto, string>>> partialBuilder = null)
+                public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentTokenAsync(string id, CreateApplicationPasswordRequestDto data, Func<Partial<Pair<ESPermanentTokenDto, string>>, Partial<Pair<ESPermanentTokenDto, string>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<CreateApplicationPasswordRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/profiles/{id}/permanent-tokens?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Pair<ESPermanentTokenDto, string>>()) : Partial<Pair<ESPermanentTokenDto, string>>.Default()), data);                
                 
-                public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokens(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESPermanentTokenDto>>, Partial<Batch<ESPermanentTokenDto>>> partialBuilder = null)
+                public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokensAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESPermanentTokenDto>>, Partial<Batch<ESPermanentTokenDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESPermanentTokenDto>>()) : Partial<Batch<ESPermanentTokenDto>>.Default()));                
                 
-                public async Task UpdatePermanentToken(string id, string tokenId, UpdateApplicationPasswordRequestDto data)
+                public async Task UpdatePermanentTokenAsync(string id, string tokenId, UpdateApplicationPasswordRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);                
                 
-                public async Task DeletePermanentToken(string id, string tokenId)
+                public async Task DeletePermanentTokenAsync(string id, string tokenId)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");                
                 
             }
@@ -881,10 +881,10 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDProfileLanguageDto> UpdateSpokenLanguage(string id, UpdateSpokenLanguageRequestDto data, Func<Partial<TDProfileLanguageDto>, Partial<TDProfileLanguageDto>> partialBuilder = null)
+                public async Task<TDProfileLanguageDto> UpdateSpokenLanguageAsync(string id, UpdateSpokenLanguageRequestDto data, Func<Partial<TDProfileLanguageDto>, Partial<TDProfileLanguageDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<UpdateSpokenLanguageRequestDto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/profiles/{id}/spoken-languages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDProfileLanguageDto>()) : Partial<TDProfileLanguageDto>.Default()), data);                
                 
-                public async Task DeleteSpokenLanguage(string id, string language)
+                public async Task DeleteSpokenLanguageAsync(string id, string language)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/spoken-languages?language={language.ToString()}");                
                 
             }
@@ -900,13 +900,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<VcsHostingPasswordDto> GetVcsPassword(string id, Func<Partial<VcsHostingPasswordDto>, Partial<VcsHostingPasswordDto>> partialBuilder = null)
+                public async Task<VcsHostingPasswordDto> GetVcsPasswordAsync(string id, Func<Partial<VcsHostingPasswordDto>, Partial<VcsHostingPasswordDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/profiles/{id}/vcs-password?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<VcsHostingPasswordDto>()) : Partial<VcsHostingPasswordDto>.Default()));                
                 
-                public async Task UpdateVcsPassword(string id, UpdateVcsPasswordRequestDto data)
+                public async Task UpdateVcsPasswordAsync(string id, UpdateVcsPasswordRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateVcsPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/vcs-password", data);                
                 
-                public async Task DeleteVcsPassword(string id)
+                public async Task DeleteVcsPasswordAsync(string id)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/vcs-password");                
                 
             }
@@ -922,16 +922,16 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<TDWorkingDaysDto> AddWorkingDays(string id, AddWorkingDaysRequestDto data, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
+                public async Task<TDWorkingDaysDto> AddWorkingDaysAsync(string id, AddWorkingDaysRequestDto data, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<AddWorkingDaysRequestDto, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default()), data);                
                 
-                public async Task<List<TDWorkingDaysDto>> GetAllWorkingDays(string id, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
+                public async Task<List<TDWorkingDaysDto>> GetAllWorkingDaysAsync(string id, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{id}/working-days?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default()));                
                 
-                public async Task<TDWorkingDaysDto> UpdateWorkingDays(string id, string workingDaysId, UpdateWorkingDaysRequestDto data, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
+                public async Task<TDWorkingDaysDto> UpdateWorkingDaysAsync(string id, string workingDaysId, UpdateWorkingDaysRequestDto data, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<UpdateWorkingDaysRequestDto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default()), data);                
                 
-                public async Task DeleteWorkingDays(string id, string workingDaysId)
+                public async Task DeleteWorkingDaysAsync(string id, string workingDaysId)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");                
                 
             }
@@ -949,7 +949,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllReportings(string query, string? skip = null, int? top = null, bool? withManager = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
+            public async Task<Batch<TDMemberProfileDto>> GetAllReportingsAsync(string query, string? skip = null, int? top = null, bool? withManager = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
         }
@@ -965,22 +965,22 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDRoleDto> CreateRole(CreateRoleRequestDto data, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
+            public async Task<TDRoleDto> CreateRoleAsync(CreateRoleRequestDto data, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateRoleRequestDto, TDRoleDto>("POST", $"api/http/team-directory/roles?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDRoleDto>()) : Partial<TDRoleDto>.Default()), data);            
             
-            public async Task<TDRoleDto> Restore(string id, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
+            public async Task<TDRoleDto> RestoreAsync(string id, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDRoleDto>("POST", $"api/http/team-directory/roles/{id}/restore?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDRoleDto>()) : Partial<TDRoleDto>.Default()));            
             
-            public async Task<List<TDRoleDto>> GetAllRoles(string query, bool withArchived, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
+            public async Task<List<TDRoleDto>> GetAllRolesAsync(string query, bool withArchived, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDRoleDto>()) : Partial<TDRoleDto>.Default()));            
             
-            public async Task<TDRoleDto> GetRole(string id, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
+            public async Task<TDRoleDto> GetRoleAsync(string id, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDRoleDto>("GET", $"api/http/team-directory/roles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDRoleDto>()) : Partial<TDRoleDto>.Default()));            
             
-            public async Task<TDRoleDto> UpdateRole(string id, UpdateRoleRequestDto data, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
+            public async Task<TDRoleDto> UpdateRoleAsync(string id, UpdateRoleRequestDto data, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateRoleRequestDto, TDRoleDto>("PATCH", $"api/http/team-directory/roles/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDRoleDto>()) : Partial<TDRoleDto>.Default()), data);            
             
-            public async Task ArchiveRole(string id)
+            public async Task ArchiveRoleAsync(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}");            
             
         }
@@ -996,7 +996,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDStatsDto> GetAllStats(string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDStatsDto>, Partial<TDStatsDto>> partialBuilder = null)
+            public async Task<TDStatsDto> GetAllStatsAsync(string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDStatsDto>, Partial<TDStatsDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDStatsDto>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDStatsDto>()) : Partial<TDStatsDto>.Default()));            
             
         }
@@ -1012,35 +1012,35 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDTeamDto> CreateTeam(CreateTeamRequestDto data, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<TDTeamDto> CreateTeamAsync(CreateTeamRequestDto data, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateTeamRequestDto, TDTeamDto>("POST", $"api/http/team-directory/teams?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()), data);            
             
-            public async Task<List<TDTeamDto>> RestoreMultiple(RestoreMultipleRequestDto data, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<List<TDTeamDto>> RestoreMultipleAsync(RestoreMultipleRequestDto data, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<RestoreMultipleRequestDto, List<TDTeamDto>>("POST", $"api/http/team-directory/teams/restore?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()), data);            
             
-            public async Task CancelDisbanding(string id)
+            public async Task CancelDisbandingAsync(string id)
                 => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding");            
             
-            public async Task<TDTeamDto> Restore(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<TDTeamDto> RestoreAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDTeamDto>("POST", $"api/http/team-directory/teams/{id}/restore?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));            
             
-            public async Task<Batch<TDTeamDto>> GetAllTeams(string query, bool withArchived, string? skip = null, int? top = null, Func<Partial<Batch<TDTeamDto>>, Partial<Batch<TDTeamDto>>> partialBuilder = null)
+            public async Task<Batch<TDTeamDto>> GetAllTeamsAsync(string query, bool withArchived, string? skip = null, int? top = null, Func<Partial<Batch<TDTeamDto>>, Partial<Batch<TDTeamDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDTeamDto>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDTeamDto>>()) : Partial<Batch<TDTeamDto>>.Default()));            
             
             [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]            
-            public async Task<TDTeamDto> GetSingleTeamByName(string name, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<TDTeamDto> GetSingleTeamByNameAsync(string name, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));            
             
-            public async Task<TDTeamDto> GetTeam(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<TDTeamDto> GetTeamAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));            
             
-            public async Task<TDTeamDto> UpdateTeam(string id, UpdateTeamRequestDto data, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<TDTeamDto> UpdateTeamAsync(string id, UpdateTeamRequestDto data, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateTeamRequestDto, TDTeamDto>("PATCH", $"api/http/team-directory/teams/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()), data);            
             
-            public async Task<List<TDTeamDto>> ArchiveTeam(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<List<TDTeamDto>> ArchiveTeamAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));            
             
-            public async Task<List<TDTeamDto>> Disband(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+            public async Task<List<TDTeamDto>> DisbandAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<TDTeamDto>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));            
             
             public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
@@ -1054,7 +1054,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembers(string id, string query, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
+                public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembersAsync(string id, string query, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));                
                 
             }

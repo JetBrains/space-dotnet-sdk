@@ -44,25 +44,25 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a meeting. Note: all-day events are not supported yet.
             /// </summary>
-            public async Task<DTOMeetingDto> CreateMeeting(CreateMeetingRequestDto data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
+            public async Task<DTOMeetingDto> CreateMeetingAsync(CreateMeetingRequestDto data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<CreateMeetingRequestDto, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default()), data);            
             
             /// <summary>
             /// Search meetings by name, location, time period and other parameters. Parameters are applied as 'AND' filters while values in lists of locations, profiles and teams have 'OR' semantics.
             /// </summary>
-            public async Task<Batch<DTOMeetingDto>> GetAllMeetings(string summaryQuery, List<string> locationsQuery, List<string> profiles, List<string> teams, bool includePrivate, bool includeArchived, string? skip = null, int? top = null, SpaceTime? startingAfter = null, SpaceTime? endingBefore = null, string? organizer = null, Func<Partial<Batch<DTOMeetingDto>>, Partial<Batch<DTOMeetingDto>>> partialBuilder = null)
+            public async Task<Batch<DTOMeetingDto>> GetAllMeetingsAsync(string summaryQuery, List<string> locationsQuery, List<string> profiles, List<string> teams, bool includePrivate, bool includeArchived, string? skip = null, int? top = null, SpaceTime? startingAfter = null, SpaceTime? endingBefore = null, string? organizer = null, Func<Partial<Batch<DTOMeetingDto>>, Partial<Batch<DTOMeetingDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<DTOMeetingDto>>("GET", $"api/http/calendars/meetings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&summaryQuery={summaryQuery.ToString()}&locationsQuery={locationsQuery.JoinToString("locationsQuery", it => it.ToString())}&startingAfter={startingAfter?.ToString() ?? "null"}&endingBefore={endingBefore?.ToString() ?? "null"}&profiles={profiles.JoinToString("profiles", it => it.ToString())}&teams={teams.JoinToString("teams", it => it.ToString())}&organizer={organizer?.ToString() ?? "null"}&includePrivate={includePrivate.ToString().ToLowerInvariant()}&includeArchived={includeArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<DTOMeetingDto>>()) : Partial<Batch<DTOMeetingDto>>.Default()));            
             
-            public async Task<DTOMeetingDto> GetMeeting(string id, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
+            public async Task<DTOMeetingDto> GetMeetingAsync(string id, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<DTOMeetingDto>("GET", $"api/http/calendars/meetings/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default()));            
             
             /// <summary>
             /// Patch a meeting. Only not-null parameters and not empty diffs will be applied.
             /// </summary>
-            public async Task<DTOMeetingDto> UpdateMeeting(string id, UpdateMeetingRequestDto data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
+            public async Task<DTOMeetingDto> UpdateMeetingAsync(string id, UpdateMeetingRequestDto data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateMeetingRequestDto, DTOMeetingDto>("PATCH", $"api/http/calendars/meetings/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default()), data);            
             
-            public async Task<DTOMeetingDto> DeleteMeeting(string id, RecurrentModification modificationKind, SpaceTime? targetDate = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
+            public async Task<DTOMeetingDto> DeleteMeetingAsync(string id, RecurrentModification modificationKind, SpaceTime? targetDate = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<DTOMeetingDto>("DELETE", $"api/http/calendars/meetings/{id}?targetDate={targetDate?.ToString() ?? "null"}&modificationKind={modificationKind.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default()));            
             
         }

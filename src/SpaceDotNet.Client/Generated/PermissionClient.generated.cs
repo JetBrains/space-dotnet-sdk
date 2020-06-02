@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<DTORightsWithHierarchyDto> GetAllPermissions(Func<Partial<DTORightsWithHierarchyDto>, Partial<DTORightsWithHierarchyDto>> partialBuilder = null)
+        public async Task<DTORightsWithHierarchyDto> GetAllPermissionsAsync(Func<Partial<DTORightsWithHierarchyDto>, Partial<DTORightsWithHierarchyDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<DTORightsWithHierarchyDto>("GET", $"api/http/permissions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTORightsWithHierarchyDto>()) : Partial<DTORightsWithHierarchyDto>.Default()));        
         
         public SnapshotClient Snapshots => new SnapshotClient(_connection);
@@ -44,16 +44,16 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PermissionSnapshotDTODto> CreateSnapshot(Func<Partial<PermissionSnapshotDTODto>, Partial<PermissionSnapshotDTODto>> partialBuilder = null)
+            public async Task<PermissionSnapshotDTODto> CreateSnapshotAsync(Func<Partial<PermissionSnapshotDTODto>, Partial<PermissionSnapshotDTODto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<PermissionSnapshotDTODto>("POST", $"api/http/permissions/snapshots?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionSnapshotDTODto>()) : Partial<PermissionSnapshotDTODto>.Default()));            
             
-            public async Task<List<PermissionSnapshotDTODto>> GetAllSnapshots(Func<Partial<PermissionSnapshotDTODto>, Partial<PermissionSnapshotDTODto>> partialBuilder = null)
+            public async Task<List<PermissionSnapshotDTODto>> GetAllSnapshotsAsync(Func<Partial<PermissionSnapshotDTODto>, Partial<PermissionSnapshotDTODto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<List<PermissionSnapshotDTODto>>("GET", $"api/http/permissions/snapshots?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionSnapshotDTODto>()) : Partial<PermissionSnapshotDTODto>.Default()));            
             
-            public async Task<PermissionSnapshotContentDTODto> GetSnapshot(string id, string? principal = null, string? right = null, Func<Partial<PermissionSnapshotContentDTODto>, Partial<PermissionSnapshotContentDTODto>> partialBuilder = null)
+            public async Task<PermissionSnapshotContentDTODto> GetSnapshotAsync(string id, string? principal = null, string? right = null, Func<Partial<PermissionSnapshotContentDTODto>, Partial<PermissionSnapshotContentDTODto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<PermissionSnapshotContentDTODto>("GET", $"api/http/permissions/snapshots/{id}?principal={principal?.ToString() ?? "null"}&right={right?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionSnapshotContentDTODto>()) : Partial<PermissionSnapshotContentDTODto>.Default()));            
             
-            public async Task DeleteSnapshot(string id)
+            public async Task DeleteSnapshotAsync(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/permissions/snapshots/{id}");            
             
             public ComparisonClient Comparison => new ComparisonClient(_connection);
@@ -67,7 +67,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<PermissionComparisonContentDTODto> GetComparison(string id1, string id2, Func<Partial<PermissionComparisonContentDTODto>, Partial<PermissionComparisonContentDTODto>> partialBuilder = null)
+                public async Task<PermissionComparisonContentDTODto> GetComparisonAsync(string id1, string id2, Func<Partial<PermissionComparisonContentDTODto>, Partial<PermissionComparisonContentDTODto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<PermissionComparisonContentDTODto>("GET", $"api/http/permissions/snapshots/comparison?id1={id1.ToString()}&id2={id2.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionComparisonContentDTODto>()) : Partial<PermissionComparisonContentDTODto>.Default()));                
                 
             }
@@ -83,7 +83,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<PermissionSnapshotPrincipalDTODto>> GetPrincipal(string id, Func<Partial<PermissionSnapshotPrincipalDTODto>, Partial<PermissionSnapshotPrincipalDTODto>> partialBuilder = null)
+                public async Task<List<PermissionSnapshotPrincipalDTODto>> GetPrincipalAsync(string id, Func<Partial<PermissionSnapshotPrincipalDTODto>, Partial<PermissionSnapshotPrincipalDTODto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<PermissionSnapshotPrincipalDTODto>>("GET", $"api/http/permissions/snapshots/{id}/principals?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionSnapshotPrincipalDTODto>()) : Partial<PermissionSnapshotPrincipalDTODto>.Default()));                
                 
             }
@@ -99,7 +99,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<PermissionSnapshotRightDTODto>> GetRight(string id, Func<Partial<PermissionSnapshotRightDTODto>, Partial<PermissionSnapshotRightDTODto>> partialBuilder = null)
+                public async Task<List<PermissionSnapshotRightDTODto>> GetRightAsync(string id, Func<Partial<PermissionSnapshotRightDTODto>, Partial<PermissionSnapshotRightDTODto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<List<PermissionSnapshotRightDTODto>>("GET", $"api/http/permissions/snapshots/{id}/rights?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionSnapshotRightDTODto>()) : Partial<PermissionSnapshotRightDTODto>.Default()));                
                 
             }

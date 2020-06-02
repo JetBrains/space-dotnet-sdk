@@ -41,7 +41,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSBlogDto>> GetAllBlogs(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSBlogDto>>, Partial<Batch<FTSBlogDto>>> partialBuilder = null)
+            public async Task<Batch<FTSBlogDto>> GetAllBlogsAsync(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSBlogDto>>, Partial<Batch<FTSBlogDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<FTSBlogDto>>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<FTSBlogDto>>()) : Partial<Batch<FTSBlogDto>>.Default()));            
             
         }
@@ -57,7 +57,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSDraftDto>> GetAllDrafts(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSDraftDto>>, Partial<Batch<FTSDraftDto>>> partialBuilder = null)
+            public async Task<Batch<FTSDraftDto>> GetAllDraftsAsync(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSDraftDto>>, Partial<Batch<FTSDraftDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<FTSDraftDto>>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<FTSDraftDto>>()) : Partial<Batch<FTSDraftDto>>.Default()));            
             
         }
@@ -73,7 +73,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSProfileDto>> GetAllProfiles(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSProfileDto>>, Partial<Batch<FTSProfileDto>>> partialBuilder = null)
+            public async Task<Batch<FTSProfileDto>> GetAllProfilesAsync(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSProfileDto>>, Partial<Batch<FTSProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<FTSProfileDto>>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<FTSProfileDto>>()) : Partial<Batch<FTSProfileDto>>.Default()));            
             
         }
@@ -89,7 +89,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<EntityHitDto>> GetAllSearch(string query, string? skip = null, int? top = null, Func<Partial<Batch<EntityHitDto>>, Partial<Batch<EntityHitDto>>> partialBuilder = null)
+            public async Task<Batch<EntityHitDto>> GetAllSearchAsync(string query, string? skip = null, int? top = null, Func<Partial<Batch<EntityHitDto>>, Partial<Batch<EntityHitDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<EntityHitDto>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<EntityHitDto>>()) : Partial<Batch<EntityHitDto>>.Default()));            
             
         }
@@ -105,7 +105,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<FTSTeamDto>> GetAllTeams(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSTeamDto>>, Partial<Batch<FTSTeamDto>>> partialBuilder = null)
+            public async Task<Batch<FTSTeamDto>> GetAllTeamsAsync(string query, string? skip = null, int? top = null, Func<Partial<Batch<FTSTeamDto>>, Partial<Batch<FTSTeamDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<FTSTeamDto>>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<FTSTeamDto>>()) : Partial<Batch<FTSTeamDto>>.Default()));            
             
         }
