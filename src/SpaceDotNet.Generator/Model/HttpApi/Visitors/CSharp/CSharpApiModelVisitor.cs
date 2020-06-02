@@ -453,111 +453,27 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         }
         
         private string _clientMethodName = string.Empty;
-        
+
         public override void Visit(ApiResource apiResource, ApiEndpoint apiEndpoint)
+        {
+            WriteEndpoint(apiEndpoint);
+            
+            var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object objectResponse
+                && objectResponse.Kind == ApiFieldType.Object.ObjectKind.BATCH;
+
+            if (isResponseBatch && apiEndpoint.ResponseBody != null)
+            {
+                // TODO: WriteEndpointWithBatchEnumerator(apiEndpoint); - make using IAsyncEnumerable easier
+            }
+        }
+        
+        private void WriteEndpoint(ApiEndpoint apiEndpoint)
         {
             var endpointPath = (_baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
 
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
             _clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
 
-            bool AppendParameterList(ApiEndpoint apiEndpoint1)
-            {
-                var methodParameters = apiEndpoint1.Parameters.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
-                foreach (var apiEndpointParameter in methodParameters)
-                {
-                    Visit(apiEndpointParameter.Field.Type);
-                    if (apiEndpointParameter.Field.Type.Nullable)
-                    {
-                        Builder.Append("?");
-                    }
-                    Builder.Append(" ");
-                    Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
-                    if (apiEndpointParameter.Field.Type.Nullable)
-                    {
-                        Builder.Append(" = null");
-                    }
-
-                    if (apiEndpointParameter != methodParameters.Last())
-                    {
-                        Builder.Append(", ");
-                    }
-                }
-
-                return methodParameters.Count > 0;
-            }
-
-            bool AppendRequestParameterList(ApiEndpoint apiEndpoint1)
-            {
-                var methodParameters = apiEndpoint1.Parameters.Where(it => !it.Path).ToList();
-                if (methodParameters.Count > 0)
-                {
-                    Builder.Append("?");
-                }
-                
-                foreach (var apiEndpointParameter in methodParameters)
-                {
-                    Builder.Append(apiEndpointParameter.Field.Name);
-                    Builder.Append("=");
-                    Builder.Append("{");
-                    Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
-                    
-                    if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
-                    {
-                        // For lists, we will need to repeat the parameter for each element
-                        Builder.Append(!apiEndpointParameter.Field.Type.Nullable
-                            ? ".JoinToString("
-                            : "?.JoinToString(");
-                        
-                        Builder.Append("\"");
-                        Builder.Append(apiEndpointParameter.Field.Name);
-                        Builder.Append("\", it => it");
-                        
-                        Builder.Append(!arrayType.ElementType.Nullable
-                            ? ".ToString()"
-                            : "?.ToString()");
-                    
-                        if (arrayType.ElementType is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
-                        {
-                            // Boolean needs lowercase value
-                            Builder.Append(!arrayType.ElementType.Nullable
-                                ? ".ToLowerInvariant()"
-                                : "?.ToLowerInvariant()"); }
-
-                        Builder.Append(")");
-                    }
-                    else
-                    {
-                        // Anything else can be "ToString()"
-                        Builder.Append(!apiEndpointParameter.Field.Type.Nullable
-                            ? ".ToString()"
-                            : "?.ToString()");
-                    
-                        if (apiEndpointParameter.Field.Type is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
-                        {
-                            // Boolean needs lowercase value
-                            Builder.Append(!apiEndpointParameter.Field.Type.Nullable
-                                ? ".ToLowerInvariant()"
-                                : "?.ToLowerInvariant()");
-                        }
-                    }
-
-                    if (apiEndpointParameter.Field.Type.Nullable)
-                    {
-                        // Used to be able to filter out nullable query string parameters in Connection.CleanNullableNullQueryStringParameters
-                        Builder.Append(" ?? \"null\"");
-                    }
-                    Builder.Append("}");
-                    
-                    if (apiEndpointParameter != methodParameters.Last())
-                    {
-                        Builder.Append("&");
-                    }
-                }
-
-                return methodParameters.Count > 0;
-            }
-            
             if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
             {
                 Builder.AppendLine($"{Indent}/// <summary>");
@@ -571,20 +487,20 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             }
             
             var isResponsePrimitiveOrArrayOfPrimitive = apiEndpoint.ResponseBody is ApiFieldType.Primitive 
-              || (apiEndpoint.ResponseBody is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive);
+                || (apiEndpoint.ResponseBody is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive);
             
             if (apiEndpoint.RequestBody == null && apiEndpoint.ResponseBody == null)
             {
                 Builder.Append($"{Indent}public async Task " + _clientMethodName + "Async(");
 
-                AppendParameterList(apiEndpoint);
+                WriteMethodParameterList(apiEndpoint);
 
                 Builder.AppendLine(")");
                 Indent.Increment();
                 Builder.Append($"{Indent}=> await _connection.RequestResourceAsync");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
-                AppendRequestParameterList(apiEndpoint);
+                WriteRequestParameterList(apiEndpoint);
                 Builder.Append("\");");
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
@@ -596,7 +512,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append(" " + _clientMethodName + "Async(");
             
-                if (AppendParameterList(apiEndpoint) && !isResponsePrimitiveOrArrayOfPrimitive)
+                if (WriteMethodParameterList(apiEndpoint) && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append(", ");
                 }
@@ -621,7 +537,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
-                Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
+                Builder.Append(WriteRequestParameterList(apiEndpoint) ? "&" : "?");
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
@@ -647,7 +563,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 Builder.Append($"{Indent}public async Task " + _clientMethodName + "Async(");
             
-                if (AppendParameterList(apiEndpoint))
+                if (WriteMethodParameterList(apiEndpoint))
                 {
                     Builder.Append(", ");
                 }
@@ -662,7 +578,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
-                AppendRequestParameterList(apiEndpoint);
+                WriteRequestParameterList(apiEndpoint);
                 Builder.Append("\", data);");
                 Indent.Decrement();
                 Builder.AppendLine($"{Indent}");
@@ -674,7 +590,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append(" " + _clientMethodName + "Async(");
 
-                if (AppendParameterList(apiEndpoint))
+                if (WriteMethodParameterList(apiEndpoint))
                 {
                     Builder.Append(", ");
                 }
@@ -705,7 +621,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(">");
                 Builder.Append("(\"" + apiCallMethod + "\", ");
                 Builder.Append("$\"api/http/" + endpointPath);
-                Builder.Append(AppendRequestParameterList(apiEndpoint) ? "&" : "?");
+                Builder.Append(WriteRequestParameterList(apiEndpoint) ? "&" : "?");
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
@@ -734,6 +650,106 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             Builder.AppendLine($"{Indent}");
 
             _clientMethodName = string.Empty;
+        }
+        
+        private bool WriteMethodParameterList(ApiEndpoint apiEndpoint1)
+        {
+            var methodParameters = apiEndpoint1.Parameters.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
+            foreach (var apiEndpointParameter in methodParameters)
+            {
+                Visit(apiEndpointParameter.Field.Type);
+                if (apiEndpointParameter.Field.Type.Nullable)
+                {
+                    Builder.Append("?");
+                }
+
+                Builder.Append(" ");
+                Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                if (apiEndpointParameter.Field.Type.Nullable)
+                {
+                    Builder.Append(" = null");
+                }
+
+                if (apiEndpointParameter != methodParameters.Last())
+                {
+                    Builder.Append(", ");
+                }
+            }
+
+            return methodParameters.Count > 0;
+        }
+
+        private bool WriteRequestParameterList(ApiEndpoint apiEndpoint)
+        {
+            var methodParameters = apiEndpoint.Parameters.Where(it => !it.Path).ToList();
+            if (methodParameters.Count > 0)
+            {
+                Builder.Append("?");
+            }
+
+            foreach (var apiEndpointParameter in methodParameters)
+            {
+                Builder.Append(apiEndpointParameter.Field.Name);
+                Builder.Append("=");
+                Builder.Append("{");
+                Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+
+                if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
+                {
+                    // For lists, we will need to repeat the parameter for each element
+                    Builder.Append(!apiEndpointParameter.Field.Type.Nullable
+                        ? ".JoinToString("
+                        : "?.JoinToString(");
+
+                    Builder.Append("\"");
+                    Builder.Append(apiEndpointParameter.Field.Name);
+                    Builder.Append("\", it => it");
+
+                    Builder.Append(!arrayType.ElementType.Nullable
+                        ? ".ToString()"
+                        : "?.ToString()");
+
+                    if (arrayType.ElementType is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Boolean needs lowercase value
+                        Builder.Append(!arrayType.ElementType.Nullable
+                            ? ".ToLowerInvariant()"
+                            : "?.ToLowerInvariant()");
+                    }
+
+                    Builder.Append(")");
+                }
+                else
+                {
+                    // Anything else can be "ToString()"
+                    Builder.Append(!apiEndpointParameter.Field.Type.Nullable
+                        ? ".ToString()"
+                        : "?.ToString()");
+
+                    if (apiEndpointParameter.Field.Type is ApiFieldType.Primitive primitive && primitive.Type.Equals("Boolean", StringComparison.OrdinalIgnoreCase))
+                    {
+                        // Boolean needs lowercase value
+                        Builder.Append(!apiEndpointParameter.Field.Type.Nullable
+                            ? ".ToLowerInvariant()"
+                            : "?.ToLowerInvariant()");
+                    }
+                }
+
+                if (apiEndpointParameter.Field.Type.Nullable)
+                {
+                    // Used to be able to filter out nullable query string parameters in Connection.CleanNullableNullQueryStringParameters
+                    Builder.Append(" ?? \"null\"");
+                }
+
+                Builder.Append("}");
+
+                if (apiEndpointParameter != methodParameters.Last())
+                {
+                    Builder.Append("&");
+                }
+            }
+
+            return methodParameters.Count > 0;
         }
 
         private void Visit(ApiDeprecation apiDeprecation)
