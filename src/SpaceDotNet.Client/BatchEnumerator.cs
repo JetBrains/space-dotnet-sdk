@@ -10,9 +10,9 @@ namespace SpaceDotNet.Client
     {
         public delegate Task<Batch<T>> RetrieveBatch<T>(string? skip);
         
-        public static async IAsyncEnumerable<T> AllItems<T>(RetrieveBatch<T> batchResponse)
+        public static async IAsyncEnumerable<T> AllItems<T>(RetrieveBatch<T> batchResponse, string? initialSkip = null)
         {
-            await foreach (var batch in AllPages(batchResponse))
+            await foreach (var batch in AllPages(batchResponse, initialSkip))
             {
                 if (batch.Data != null)
                 {
@@ -28,9 +28,9 @@ namespace SpaceDotNet.Client
             }
         }
             
-        public static async IAsyncEnumerable<Batch<T>> AllPages<T>(RetrieveBatch<T> batchResponse)
+        public static async IAsyncEnumerable<Batch<T>> AllPages<T>(RetrieveBatch<T> batchResponse, string? initialSkip = null)
         {
-            var batch = await batchResponse(null);
+            var batch = await batchResponse(initialSkip);
             do
             {
                 yield return batch;
