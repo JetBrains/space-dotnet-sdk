@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using SpaceDotNet.Common;
+using SpaceDotNet.Generator.CodeGeneration.CSharp;
 using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
@@ -186,7 +187,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     break;
                 
                 case ApiFieldType.Primitive apiFieldTypePrimitive:
-                    _currentFieldInnerTypeBuilder.Append(apiFieldTypePrimitive.Type.ToCSharpPrimitiveType());
+                    _currentFieldInnerTypeBuilder.Append(apiFieldTypePrimitive.ToCSharpPrimitiveType());
                     break;
         
                 case ApiFieldType.Ref apiFieldTypeReference:

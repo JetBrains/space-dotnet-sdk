@@ -6,8 +6,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
     public static class StringExtensions
     {
         private static readonly char[] IdentifierSeparators = {' ', '-', '_', '.'};
-        
-        public static string? WithStartingDigitReplaced(this string? subject)
+
+        private static string? WithStartingDigitReplaced(this string? subject)
         {
             if (string.IsNullOrEmpty(subject)) return subject;
 
@@ -43,21 +43,5 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
             return subject.WithStartingDigitReplaced()!.Replace("$", string.Empty);
         }
-
-        public static string? ToCSharpPrimitiveType(this string? subject) =>
-            (subject ?? "Generic") switch
-            {
-                "Byte" => "byte",
-                "Short" => "short",
-                "Int" => "int",
-                "Long" => "long",
-                "Float" => "float",
-                "Double" => "double",
-                "Boolean" => "bool",
-                "String" => "string",
-                "Date" => "SpaceDate",
-                "DateTime" => "SpaceTime",
-                _ => "object"
-            };
     }
 }
