@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using System.Linq;
+using SpaceDotNet.Generator.Model.HttpApi;
 
-namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
+namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 {
     public static class ApiResourcePathSegmentExtensions
     {
