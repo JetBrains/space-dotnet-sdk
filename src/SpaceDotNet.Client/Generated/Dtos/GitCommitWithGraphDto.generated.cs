@@ -38,6 +38,10 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("layout")]
         public GitGraphLayoutLineDto? Layout { get; set; }        
         
+        [Required]
+        [JsonPropertyName("unreachable")]
+        public bool Unreachable { get; set; }        
+        
     }
     
 }

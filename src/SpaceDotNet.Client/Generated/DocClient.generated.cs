@@ -110,6 +110,107 @@ namespace SpaceDotNet.Client
                 
             }
             
+            public ProfileClient Profiles => new ProfileClient(_connection);
+            
+            public partial class ProfileClient
+            {
+                private readonly Connection _connection;
+                
+                public ProfileClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task CreateProfileAsync(string id, CreateProfileRequestDto data)
+                    => await _connection.RequestResourceAsync<CreateProfileRequestDto>("POST", $"api/http/docs/drafts/profiles", data);                
+                
+                public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/profiles?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));                
+                
+                public async Task DeleteProfileAsync(string id, string editorId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/profiles/{editorId}");                
+                
+            }
+            
+            public TeamClient Teams => new TeamClient(_connection);
+            
+            public partial class TeamClient
+            {
+                private readonly Connection _connection;
+                
+                public TeamClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task CreateTeamAsync(string id, CreateTeamRequestDto data)
+                    => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/docs/drafts/teams", data);                
+                
+                public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/teams?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));                
+                
+                public async Task DeleteTeamAsync(string id, string teamId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/teams/{teamId}");                
+                
+            }
+            
+        }
+        
+        public EditorClient Editors => new EditorClient(_connection);
+        
+        public partial class EditorClient
+        {
+            private readonly Connection _connection;
+            
+            public EditorClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public ProfileClient Profiles => new ProfileClient(_connection);
+            
+            public partial class ProfileClient
+            {
+                private readonly Connection _connection;
+                
+                public ProfileClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task CreateProfileAsync(string id, CreateProfileRequestDto data)
+                    => await _connection.RequestResourceAsync<CreateProfileRequestDto>("POST", $"api/http/docs/{id}/editors/profiles", data);                
+                
+                public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/{id}/editors/profiles?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));                
+                
+                public async Task DeleteProfileAsync(string id, string editorId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/{id}/editors/profiles/{editorId}");                
+                
+            }
+            
+            public TeamClient Teams => new TeamClient(_connection);
+            
+            public partial class TeamClient
+            {
+                private readonly Connection _connection;
+                
+                public TeamClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task CreateTeamAsync(string id, CreateTeamRequestDto data)
+                    => await _connection.RequestResourceAsync<CreateTeamRequestDto>("POST", $"api/http/docs/{id}/editors/teams", data);                
+                
+                public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/{id}/editors/teams?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));                
+                
+                public async Task DeleteTeamAsync(string id, string teamId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/{id}/editors/teams/{teamId}");                
+                
+            }
+            
         }
         
     }

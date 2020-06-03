@@ -90,6 +90,10 @@ namespace SpaceDotNet.Client
         public List<string> Phones { get; set; }        
         
         [Required]
+        [JsonPropertyName("holidays")]
+        public List<PublicHolidayDto> Holidays { get; set; }        
+        
+        [Required]
         [JsonPropertyName("locations")]
         public List<TDMemberLocationDto> Locations { get; set; }        
         

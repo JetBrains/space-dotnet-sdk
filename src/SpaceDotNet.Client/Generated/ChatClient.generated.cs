@@ -88,6 +88,13 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/{channelId}/messages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default()), data);            
+            
+        }
+        
+        public partial class MessageClient
+        {
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]            
             public async Task<ChannelItemRecordDto> SendMessageAsync(SendMessageRequestDto data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<SendMessageRequestDto, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default()), data);            

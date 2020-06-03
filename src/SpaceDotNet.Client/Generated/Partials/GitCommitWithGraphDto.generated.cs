@@ -44,6 +44,9 @@ namespace SpaceDotNet.Client.GitCommitWithGraphExtensions
         public static Partial<GitCommitWithGraphDto> WithLayout(this Partial<GitCommitWithGraphDto> it, Func<Partial<GitGraphLayoutLineDto>, Partial<GitGraphLayoutLineDto>> partialBuilder)
             => it.AddFieldName("layout", partialBuilder(new Partial<GitGraphLayoutLineDto>()));
         
+        public static Partial<GitCommitWithGraphDto> WithUnreachable(this Partial<GitCommitWithGraphDto> it)
+            => it.AddFieldName("unreachable");
+        
     }
     
 }

@@ -21,23 +21,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MeetingAttachmentDto
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class ClientOS : Enumeration
     {
-        [JsonPropertyName("fileUrl")]
-        public string? FileUrl { get; set; }        
+        private ClientOS(string value) : base(value) { }
         
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
-        [JsonPropertyName("mimeType")]
-        public string? MimeType { get; set; }        
-        
-        [JsonPropertyName("fileId")]
-        public string? FileId { get; set; }        
-        
-        [JsonPropertyName("source")]
-        public string? Source { get; set; }        
-        
+        public static readonly ClientOS Other = new ClientOS("Other");
+        public static readonly ClientOS Windows = new ClientOS("Windows");
+        public static readonly ClientOS MacOS = new ClientOS("MacOS");
+        public static readonly ClientOS Linux = new ClientOS("Linux");
+        public static readonly ClientOS Android = new ClientOS("Android");
+        public static readonly ClientOS IOS = new ClientOS("iOS");
     }
     
 }

@@ -106,6 +106,54 @@ namespace SpaceDotNet.Client
             
         }
         
+        public ComparisonClient Comparison => new ComparisonClient(_connection);
+        
+        public partial class ComparisonClient
+        {
+            private readonly Connection _connection;
+            
+            public ComparisonClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<PermissionComparisonContentDTODto> GetComparisonAsync(string id1, string id2, Func<Partial<PermissionComparisonContentDTODto>, Partial<PermissionComparisonContentDTODto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<PermissionComparisonContentDTODto>("GET", $"api/http/permissions/comparison?id1={id1.ToString()}&id2={id2.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionComparisonContentDTODto>()) : Partial<PermissionComparisonContentDTODto>.Default()));            
+            
+        }
+        
+        public PrincipalClient Principals => new PrincipalClient(_connection);
+        
+        public partial class PrincipalClient
+        {
+            private readonly Connection _connection;
+            
+            public PrincipalClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<PermissionSnapshotPrincipalDTODto>> GetPrincipalAsync(string id, Func<Partial<PermissionSnapshotPrincipalDTODto>, Partial<PermissionSnapshotPrincipalDTODto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<PermissionSnapshotPrincipalDTODto>>("GET", $"api/http/permissions/{id}/principals?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionSnapshotPrincipalDTODto>()) : Partial<PermissionSnapshotPrincipalDTODto>.Default()));            
+            
+        }
+        
+        public RightClient Rights => new RightClient(_connection);
+        
+        public partial class RightClient
+        {
+            private readonly Connection _connection;
+            
+            public RightClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<PermissionSnapshotRightDTODto>> GetRightAsync(string id, Func<Partial<PermissionSnapshotRightDTODto>, Partial<PermissionSnapshotRightDTODto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<PermissionSnapshotRightDTODto>>("GET", $"api/http/permissions/{id}/rights?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PermissionSnapshotRightDTODto>()) : Partial<PermissionSnapshotRightDTODto>.Default()));            
+            
+        }
+        
     }
     
 }

@@ -31,6 +31,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description { get; set; }        
         
+        [Required]
+        [JsonPropertyName("status")]
+        public FeatureFlagStatus Status { get; set; }        
+        
+        [Required]
+        [JsonPropertyName("owner")]
+        public string Owner { get; set; }        
+        
+        [JsonPropertyName("introduced")]
+        public SpaceDate? Introduced { get; set; }        
+        
     }
     
 }

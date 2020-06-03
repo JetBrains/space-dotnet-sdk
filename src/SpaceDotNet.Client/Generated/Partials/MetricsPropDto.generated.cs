@@ -19,24 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.MetricsPropExtensions
 {
-    public class MeetingAttachmentDto
+    public static class MetricsPropDtoPartialExtensions
     {
-        [JsonPropertyName("fileUrl")]
-        public string? FileUrl { get; set; }        
+        public static Partial<MetricsPropDto> WithKey(this Partial<MetricsPropDto> it)
+            => it.AddFieldName("key");
         
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
-        [JsonPropertyName("mimeType")]
-        public string? MimeType { get; set; }        
-        
-        [JsonPropertyName("fileId")]
-        public string? FileId { get; set; }        
-        
-        [JsonPropertyName("source")]
-        public string? Source { get; set; }        
+        public static Partial<MetricsPropDto> WithValue(this Partial<MetricsPropDto> it)
+            => it.AddFieldName("value");
         
     }
     

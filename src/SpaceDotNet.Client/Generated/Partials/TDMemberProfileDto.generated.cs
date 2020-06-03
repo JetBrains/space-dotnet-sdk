@@ -89,6 +89,12 @@ namespace SpaceDotNet.Client.TDMemberProfileExtensions
         public static Partial<TDMemberProfileDto> WithPhones(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("phones");
         
+        public static Partial<TDMemberProfileDto> WithHolidays(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("holidays");
+        
+        public static Partial<TDMemberProfileDto> WithHolidays(this Partial<TDMemberProfileDto> it, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partialBuilder)
+            => it.AddFieldName("holidays", partialBuilder(new Partial<PublicHolidayDto>()));
+        
         public static Partial<TDMemberProfileDto> WithLocations(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("locations");
         

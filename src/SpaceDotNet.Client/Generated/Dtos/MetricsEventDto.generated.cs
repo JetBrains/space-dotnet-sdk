@@ -21,23 +21,21 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ERepositorySettingsDto
+    public class MetricsEventDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public long Id { get; set; }        
+        public string Id { get; set; }        
         
         [Required]
-        [JsonPropertyName("name")]
-        public string Name { get; set; }        
+        [JsonPropertyName("time")]
+        public long Time { get; set; }        
         
-        [Required]
-        [JsonPropertyName("immutableTags")]
-        public bool ImmutableTags { get; set; }        
+        [JsonPropertyName("props")]
+        public List<MetricsPropDto>? Props { get; set; }        
         
-        [Required]
-        [JsonPropertyName("permissions")]
-        public List<string> Permissions { get; set; }        
+        [JsonPropertyName("points")]
+        public List<MetricsPointDto>? Points { get; set; }        
         
     }
     

@@ -19,21 +19,24 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ERepositorySettingsExtensions
+namespace SpaceDotNet.Client
 {
-    public static class ERepositorySettingsDtoPartialExtensions
+    public class ClientInfoDto
     {
-        public static Partial<ERepositorySettingsDto> WithId(this Partial<ERepositorySettingsDto> it)
-            => it.AddFieldName("id");
+        [JsonPropertyName("os")]
+        public ClientOS? Os { get; set; }        
         
-        public static Partial<ERepositorySettingsDto> WithName(this Partial<ERepositorySettingsDto> it)
-            => it.AddFieldName("name");
+        [JsonPropertyName("osVersion")]
+        public string? OsVersion { get; set; }        
         
-        public static Partial<ERepositorySettingsDto> WithImmutableTags(this Partial<ERepositorySettingsDto> it)
-            => it.AddFieldName("immutableTags");
+        [JsonPropertyName("browser")]
+        public ClientBrowser? Browser { get; set; }        
         
-        public static Partial<ERepositorySettingsDto> WithPermissions(this Partial<ERepositorySettingsDto> it)
-            => it.AddFieldName("permissions");
+        [JsonPropertyName("browserVersion")]
+        public string? BrowserVersion { get; set; }        
+        
+        [JsonPropertyName("device")]
+        public string? Device { get; set; }        
         
     }
     

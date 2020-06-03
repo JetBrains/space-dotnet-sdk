@@ -21,23 +21,14 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MeetingAttachmentDto
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class FeatureFlagStatus : Enumeration
     {
-        [JsonPropertyName("fileUrl")]
-        public string? FileUrl { get; set; }        
+        private FeatureFlagStatus(string value) : base(value) { }
         
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
-        [JsonPropertyName("mimeType")]
-        public string? MimeType { get; set; }        
-        
-        [JsonPropertyName("fileId")]
-        public string? FileId { get; set; }        
-        
-        [JsonPropertyName("source")]
-        public string? Source { get; set; }        
-        
+        public static readonly FeatureFlagStatus WIP = new FeatureFlagStatus("WIP");
+        public static readonly FeatureFlagStatus EXPERIMENTAL = new FeatureFlagStatus("EXPERIMENTAL");
+        public static readonly FeatureFlagStatus INTERNAL = new FeatureFlagStatus("INTERNAL");
     }
     
 }

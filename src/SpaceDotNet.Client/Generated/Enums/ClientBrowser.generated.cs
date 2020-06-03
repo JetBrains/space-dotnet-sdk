@@ -21,23 +21,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MeetingAttachmentDto
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class ClientBrowser : Enumeration
     {
-        [JsonPropertyName("fileUrl")]
-        public string? FileUrl { get; set; }        
+        private ClientBrowser(string value) : base(value) { }
         
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
-        [JsonPropertyName("mimeType")]
-        public string? MimeType { get; set; }        
-        
-        [JsonPropertyName("fileId")]
-        public string? FileId { get; set; }        
-        
-        [JsonPropertyName("source")]
-        public string? Source { get; set; }        
-        
+        public static readonly ClientBrowser Other = new ClientBrowser("Other");
+        public static readonly ClientBrowser Chrome = new ClientBrowser("Chrome");
+        public static readonly ClientBrowser Firefox = new ClientBrowser("Firefox");
+        public static readonly ClientBrowser Safari = new ClientBrowser("Safari");
+        public static readonly ClientBrowser Edge = new ClientBrowser("Edge");
+        public static readonly ClientBrowser Opera = new ClientBrowser("Opera");
     }
     
 }

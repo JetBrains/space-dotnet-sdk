@@ -21,23 +21,9 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MeetingAttachmentDto
+    public class MeetingOrganizerHiddenUserDto
+         : MeetingOrganizerDto, IClassNameConvertible
     {
-        [JsonPropertyName("fileUrl")]
-        public string? FileUrl { get; set; }        
-        
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
-        [JsonPropertyName("mimeType")]
-        public string? MimeType { get; set; }        
-        
-        [JsonPropertyName("fileId")]
-        public string? FileId { get; set; }        
-        
-        [JsonPropertyName("source")]
-        public string? Source { get; set; }        
-        
     }
     
 }

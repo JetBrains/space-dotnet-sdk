@@ -95,6 +95,38 @@ namespace SpaceDotNet.Client
                 
             }
             
+            public StarredClient Starred => new StarredClient(_connection);
+            
+            public partial class StarredClient
+            {
+                private readonly Connection _connection;
+                
+                public StarredClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<BirthdayEventDto>> GetAllStarredBirthdayEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<BirthdayEventDto>, Partial<BirthdayEventDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/calendar-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<BirthdayEventDto>()) : Partial<BirthdayEventDto>.Default()));                
+                
+            }
+            
+            public HolidayClient Holidays => new HolidayClient(_connection);
+            
+            public partial class HolidayClient
+            {
+                private readonly Connection _connection;
+                
+                public HolidayClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<HolidaysEventDto>> GetAllHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEventDto>, Partial<HolidaysEventDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<HolidaysEventDto>>("GET", $"api/http/team-directory/calendar-events/holidays?startDate={startDate.ToString()}&endDate={endDate.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<HolidaysEventDto>()) : Partial<HolidaysEventDto>.Default()));                
+                
+            }
+            
             public MeetingParticipationClient MeetingParticipations => new MeetingParticipationClient(_connection);
             
             public partial class MeetingParticipationClient
@@ -142,6 +174,118 @@ namespace SpaceDotNet.Client
                     => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<NonWorkingDaysEventDto>()) : Partial<NonWorkingDaysEventDto>.Default()));                
                 
             }
+            
+        }
+        
+        public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
+        
+        public partial class AbsenceEventClient
+        {
+            private readonly Connection _connection;
+            
+            public AbsenceEventClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<AbsenceEventDto>> GetAllAbsenceEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEventDto>, Partial<AbsenceEventDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<AbsenceEventDto>>("GET", $"api/http/team-directory/absence-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceEventDto>()) : Partial<AbsenceEventDto>.Default()));            
+            
+        }
+        
+        public BirthdayEventClient BirthdayEvents => new BirthdayEventClient(_connection);
+        
+        public partial class BirthdayEventClient
+        {
+            private readonly Connection _connection;
+            
+            public BirthdayEventClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<BirthdayEventDto>> GetAllBirthdayEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEventDto>, Partial<BirthdayEventDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/birthday-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<BirthdayEventDto>()) : Partial<BirthdayEventDto>.Default()));            
+            
+            public StarredClient Starred => new StarredClient(_connection);
+            
+            public partial class StarredClient
+            {
+                private readonly Connection _connection;
+                
+                public StarredClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<BirthdayEventDto>> GetAllStarredBirthdayEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<BirthdayEventDto>, Partial<BirthdayEventDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<BirthdayEventDto>>("GET", $"api/http/team-directory/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<BirthdayEventDto>()) : Partial<BirthdayEventDto>.Default()));                
+                
+            }
+            
+        }
+        
+        public HolidayClient Holidays => new HolidayClient(_connection);
+        
+        public partial class HolidayClient
+        {
+            private readonly Connection _connection;
+            
+            public HolidayClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<HolidaysEventDto>> GetAllHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEventDto>, Partial<HolidaysEventDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<HolidaysEventDto>>("GET", $"api/http/team-directory/holidays?startDate={startDate.ToString()}&endDate={endDate.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<HolidaysEventDto>()) : Partial<HolidaysEventDto>.Default()));            
+            
+        }
+        
+        public MeetingParticipationClient MeetingParticipations => new MeetingParticipationClient(_connection);
+        
+        public partial class MeetingParticipationClient
+        {
+            private readonly Connection _connection;
+            
+            public MeetingParticipationClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<MeetingRecordDto> UpdateMeetingParticipationAsync(string id, UpdateMeetingParticipationRequestDto data, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<UpdateMeetingParticipationRequestDto, MeetingRecordDto>("PATCH", $"api/http/team-directory/meeting-participations/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MeetingRecordDto>()) : Partial<MeetingRecordDto>.Default()), data);            
+            
+        }
+        
+        public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
+        
+        public partial class MembershipEventClient
+        {
+            private readonly Connection _connection;
+            
+            public MembershipEventClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<MembershipEventDto>> GetAllMembershipEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEventDto>, Partial<MembershipEventDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<MembershipEventDto>>("GET", $"api/http/team-directory/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MembershipEventDto>()) : Partial<MembershipEventDto>.Default()));            
+            
+        }
+        
+        public NonWorkingDaysEventClient NonWorkingDaysEvents => new NonWorkingDaysEventClient(_connection);
+        
+        public partial class NonWorkingDaysEventClient
+        {
+            private readonly Connection _connection;
+            
+            public NonWorkingDaysEventClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<NonWorkingDaysEventDto>> GetAllNonWorkingDaysEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEventDto>, Partial<NonWorkingDaysEventDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<NonWorkingDaysEventDto>>("GET", $"api/http/team-directory/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<NonWorkingDaysEventDto>()) : Partial<NonWorkingDaysEventDto>.Default()));            
             
         }
         
@@ -272,6 +416,57 @@ namespace SpaceDotNet.Client
                 
             }
             
+            public MemberClient Members => new MemberClient(_connection);
+            
+            public partial class MemberClient
+            {
+                private readonly Connection _connection;
+                
+                public MemberClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<TDMemberInLocationMapListDto>> GetAllMembersAsync(string id, bool includeUnmarked, Func<Partial<TDMemberInLocationMapListDto>, Partial<TDMemberInLocationMapListDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberInLocationMapListDto>()) : Partial<TDMemberInLocationMapListDto>.Default()));                
+                
+            }
+            
+        }
+        
+        public MapClient Map => new MapClient(_connection);
+        
+        public partial class MapClient
+        {
+            private readonly Connection _connection;
+            
+            public MapClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDLocationMapDto> GetMapAsync(string id, Func<Partial<TDLocationMapDto>, Partial<TDLocationMapDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<TDLocationMapDto>("GET", $"api/http/team-directory/{id}/map?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapDto>()) : Partial<TDLocationMapDto>.Default()));            
+            
+            public async Task<TDLocationMapDto> UpdateMapAsync(string id, UpdateMapRequestDto data, Func<Partial<TDLocationMapDto>, Partial<TDLocationMapDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<UpdateMapRequestDto, TDLocationMapDto>("PATCH", $"api/http/team-directory/{id}/map?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapDto>()) : Partial<TDLocationMapDto>.Default()), data);            
+            
+            public MemberClient Members => new MemberClient(_connection);
+            
+            public partial class MemberClient
+            {
+                private readonly Connection _connection;
+                
+                public MemberClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<TDMemberInLocationMapListDto>> GetAllMembersAsync(string id, bool includeUnmarked, Func<Partial<TDMemberInLocationMapListDto>, Partial<TDMemberInLocationMapListDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberInLocationMapListDto>()) : Partial<TDMemberInLocationMapListDto>.Default()));                
+                
+            }
+            
         }
         
         public LocationsWithTimezoneClient LocationsWithTimezone => new LocationsWithTimezoneClient(_connection);
@@ -353,17 +548,30 @@ namespace SpaceDotNet.Client
             
         }
         
-        public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
+        public PointClient Points => new PointClient(_connection);
         
-        public partial class MembershipEventClient
+        public partial class PointClient
         {
             private readonly Connection _connection;
             
-            public MembershipEventClient(Connection connection)
+            public PointClient(Connection connection)
             {
                 _connection = connection;
             }
             
+            public async Task<TDLocationMapPointDto> CreatePointAsync(string id, CreatePointRequestDto data, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<CreatePointRequestDto, TDLocationMapPointDto>("POST", $"api/http/team-directory/{id}/points?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default()), data);            
+            
+            public async Task<TDLocationMapPointDto> UpdatePointAsync(string locationPointId, string id, UpdatePointRequestDto data, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<UpdatePointRequestDto, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/{id}/points/{locationPointId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default()), data);            
+            
+            public async Task DeletePointAsync(string id, string locationPointId, bool delete)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");            
+            
+        }
+        
+        public partial class MembershipEventClient
+        {
             public async Task<Batch<TDMergedEventDto>> GetAllMembershipEventsAsync(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<Batch<TDMergedEventDto>>, Partial<Batch<TDMergedEventDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMergedEventDto>>()) : Partial<Batch<TDMergedEventDto>>.Default()));            
             
@@ -432,6 +640,44 @@ namespace SpaceDotNet.Client
                     => await _connection.RequestResourceAsync<UpdateRequestRevokeRequestDto>("PATCH", $"api/http/team-directory/memberships/{id}/request-revoke", data);                
                 
             }
+            
+        }
+        
+        public RequestClient Requests => new RequestClient(_connection);
+        
+        public partial class RequestClient
+        {
+            private readonly Connection _connection;
+            
+            public RequestClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequestsAsync(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>, Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>()) : Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default()));            
+            
+            public async Task UpdateRequestAsync(string id, UpdateRequestRequestDto data)
+                => await _connection.RequestResourceAsync<UpdateRequestRequestDto>("PATCH", $"api/http/team-directory/requests/{id}", data);            
+            
+            public async Task<TDMembershipDto> DeleteRequestAsync(string id, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<TDMembershipDto>("DELETE", $"api/http/team-directory/requests/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default()));            
+            
+        }
+        
+        public RequestRevokeClient RequestRevoke => new RequestRevokeClient(_connection);
+        
+        public partial class RequestRevokeClient
+        {
+            private readonly Connection _connection;
+            
+            public RequestRevokeClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task UpdateRequestRevokeAsync(string id, UpdateRequestRevokeRequestDto data)
+                => await _connection.RequestResourceAsync<UpdateRequestRevokeRequestDto>("PATCH", $"api/http/team-directory/{id}/request-revoke", data);            
             
         }
         
@@ -522,6 +768,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
+                public async Task TerminateOwnAuthenticationSessionAsync(string sessionId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/{sessionId}");                
+                
+            }
+            
+            public partial class MeClient
+            {
                 public async Task<TDMemberProfileDto> GetMeAsync(Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/me?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));                
                 
@@ -585,6 +838,38 @@ namespace SpaceDotNet.Client
                             => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/profiles/me/checklists/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                        
                         
                     }
+                    
+                }
+                
+                public StarredClient Starred => new StarredClient(_connection);
+                
+                public partial class StarredClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public StarredClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                        => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/me/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                    
+                    
+                }
+                
+                public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
+                
+                public partial class FullChecklistTreeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public FullChecklistTreeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
+                        => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/profiles/me/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                    
                     
                 }
                 
@@ -687,6 +972,251 @@ namespace SpaceDotNet.Client
                     
                 }
                 
+                public DraftTypeClient DraftType => new DraftTypeClient(_connection);
+                
+                public partial class DraftTypeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public DraftTypeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateDraftTypeAsync(UpdateDraftTypeRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/draft-type", data);                    
+                    
+                }
+                
+                public FirstDayOfWeekClient FirstDayOfWeek => new FirstDayOfWeekClient(_connection);
+                
+                public partial class FirstDayOfWeekClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public FirstDayOfWeekClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateFirstDayOfWeekAsync(UpdateFirstDayOfWeekRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/profiles/me/first-day-of-week", data);                    
+                    
+                }
+                
+                public NavBarMenuItemClient NavBarMenuItems => new NavBarMenuItemClient(_connection);
+                
+                public partial class NavBarMenuItemClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public NavBarMenuItemClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateNavBarMenuItemAsync(UpdateNavBarMenuItemRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/profiles/me/nav-bar-menu-items", data);                    
+                    
+                }
+                
+                public NavBarProjectClient NavBarProjects => new NavBarProjectClient(_connection);
+                
+                public partial class NavBarProjectClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public NavBarProjectClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task CreateNavBarProjectAsync(CreateNavBarProjectRequestDto data)
+                        => await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/profiles/me/nav-bar-projects", data);                    
+                    
+                    public async Task DeleteNavBarProjectAsync(string projectId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/nav-bar-projects?projectId={projectId.ToString()}");                    
+                    
+                }
+                
+                public ThemeClient Theme => new ThemeClient(_connection);
+                
+                public partial class ThemeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ThemeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateThemeAsync(UpdateThemeRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/profiles/me/theme", data);                    
+                    
+                }
+                
+            }
+            
+            public ChecklistClient Checklists => new ChecklistClient(_connection);
+            
+            public partial class ChecklistClient
+            {
+                private readonly Connection _connection;
+                
+                public ChecklistClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<ChecklistDto> CreateChecklistAsync(IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                
+                
+                public async Task<ChecklistDto> ImportChecklistAsync(ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/team-directory/profiles/checklists/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                
+                
+                public async Task ImportChecklistLinesAsync(string checklistId, ImportChecklistLinesRequestDto data)
+                    => await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/team-directory/profiles/checklists/{checklistId}/import", data);                
+                
+                public async Task<List<ChecklistDto>> GetAllChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                
+                
+                public async Task UpdateChecklistAsync(string checklistId, UpdateChecklistRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/team-directory/profiles/checklists/{checklistId}", data);                
+                
+                public async Task DeleteChecklistAsync(string checklistId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/checklists/{checklistId}");                
+                
+                public StarredClient Starred => new StarredClient(_connection);
+                
+                public partial class StarredClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public StarredClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                        => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/profiles/checklists/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                    
+                    
+                }
+                
+                public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
+                
+                public partial class FullChecklistTreeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public FullChecklistTreeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
+                        => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/profiles/checklists/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                    
+                    
+                }
+                
+            }
+            
+            public InfoClient Info => new InfoClient(_connection);
+            
+            public partial class InfoClient
+            {
+                private readonly Connection _connection;
+                
+                public InfoClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<MeInfoDto> GetInfoAsync(Func<Partial<MeInfoDto>, Partial<MeInfoDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/profiles/info?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MeInfoDto>()) : Partial<MeInfoDto>.Default()));                
+                
+                public DraftTypeClient DraftType => new DraftTypeClient(_connection);
+                
+                public partial class DraftTypeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public DraftTypeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateDraftTypeAsync(UpdateDraftTypeRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/profiles/info/draft-type", data);                    
+                    
+                }
+                
+                public FirstDayOfWeekClient FirstDayOfWeek => new FirstDayOfWeekClient(_connection);
+                
+                public partial class FirstDayOfWeekClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public FirstDayOfWeekClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateFirstDayOfWeekAsync(UpdateFirstDayOfWeekRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/profiles/info/first-day-of-week", data);                    
+                    
+                }
+                
+                public NavBarMenuItemClient NavBarMenuItems => new NavBarMenuItemClient(_connection);
+                
+                public partial class NavBarMenuItemClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public NavBarMenuItemClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateNavBarMenuItemAsync(UpdateNavBarMenuItemRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/profiles/info/nav-bar-menu-items", data);                    
+                    
+                }
+                
+                public NavBarProjectClient NavBarProjects => new NavBarProjectClient(_connection);
+                
+                public partial class NavBarProjectClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public NavBarProjectClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task CreateNavBarProjectAsync(CreateNavBarProjectRequestDto data)
+                        => await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/profiles/info/nav-bar-projects", data);                    
+                    
+                    public async Task DeleteNavBarProjectAsync(string projectId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/info/nav-bar-projects?projectId={projectId.ToString()}");                    
+                    
+                }
+                
+                public ThemeClient Theme => new ThemeClient(_connection);
+                
+                public partial class ThemeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ThemeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateThemeAsync(UpdateThemeRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/profiles/info/theme", data);                    
+                    
+                }
+                
             }
             
             public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
@@ -748,6 +1278,74 @@ namespace SpaceDotNet.Client
                     
                 }
                 
+                public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
+                
+                public partial class ApprovedScopeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ApprovedScopeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task DeleteApprovedScopeAsync(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/approved-scopes/{id}");                    
+                    
+                }
+                
+                public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
+                
+                public partial class RefreshTokenClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public RefreshTokenClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task DeleteRefreshTokenAsync(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/refresh-tokens/{id}");                    
+                    
+                }
+                
+            }
+            
+            public partial class MeClient
+            {
+                public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
+                
+                public partial class ApprovedScopeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ApprovedScopeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task DeleteApprovedScopeAsync(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/approved-scopes/{id}");                    
+                    
+                }
+                
+                public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
+                
+                public partial class RefreshTokenClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public RefreshTokenClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task DeleteRefreshTokenAsync(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/refresh-tokens/{id}");                    
+                    
+                }
+                
             }
             
             public TwoFaClient TwoFa => new TwoFaClient(_connection);
@@ -801,6 +1399,47 @@ namespace SpaceDotNet.Client
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/2-fa/totp");                    
                     
                 }
+                
+            }
+            
+            public StatuClient Status => new StatuClient(_connection);
+            
+            public partial class StatuClient
+            {
+                private readonly Connection _connection;
+                
+                public StatuClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatusAsync(string id, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/profiles/status?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Default()));                
+                
+            }
+            
+            public TotpClient Totp => new TotpClient(_connection);
+            
+            public partial class TotpClient
+            {
+                private readonly Connection _connection;
+                
+                public TotpClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TwoFactorAuthenticationSecretDto> SetUpTOTPTwoFactorAuthenticationAsync(string id, Func<Partial<TwoFactorAuthenticationSecretDto>, Partial<TwoFactorAuthenticationSecretDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<TwoFactorAuthenticationSecretDto>("POST", $"api/http/team-directory/profiles/totp?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationSecretDto>()) : Partial<TwoFactorAuthenticationSecretDto>.Default()));                
+                
+                public async Task ConfirmTOTPTwoFactorAuthenticationSettingsAsync(string id, ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                    => await _connection.RequestResourceAsync<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto>("POST", $"api/http/team-directory/profiles/totp/confirm", data);                
+                
+                public async Task UpdateTOTPTwoFactorAuthenticationSettingsAsync(string id, UpdateTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateTOTPTwoFactorAuthenticationSettingsRequestDto>("PATCH", $"api/http/team-directory/profiles/totp", data);                
+                
+                public async Task DeleteCurrentTOTPTwoFactorAuthenticationSettingsAsync(string id)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/totp");                
                 
             }
             
@@ -867,6 +1506,44 @@ namespace SpaceDotNet.Client
                 
                 public async Task DeletePermanentTokenAsync(string id, string tokenId)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}");                
+                
+                public CurrentClient Current => new CurrentClient(_connection);
+                
+                public partial class CurrentClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public CurrentClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    /// <summary>
+                    /// Delete permanent token used to access this end-point
+                    /// </summary>
+                    public async Task DeleteCurrentPermanentTokenAsync(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/permanent-tokens/current");                    
+                    
+                }
+                
+            }
+            
+            public CurrentClient Current => new CurrentClient(_connection);
+            
+            public partial class CurrentClient
+            {
+                private readonly Connection _connection;
+                
+                public CurrentClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Delete permanent token used to access this end-point
+                /// </summary>
+                public async Task DeleteCurrentPermanentTokenAsync(string id)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/current");                
                 
             }
             
@@ -935,6 +1612,629 @@ namespace SpaceDotNet.Client
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{id}/working-days/{workingDaysId}");                
                 
             }
+            
+        }
+        
+        public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
+        
+        public partial class AuthenticationSessionClient
+        {
+            private readonly Connection _connection;
+            
+            public AuthenticationSessionClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<ESAuthenticationSessionDto>> GetAllAuthenticationSessionsAsync(string owner, Func<Partial<ESAuthenticationSessionDto>, Partial<ESAuthenticationSessionDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<ESAuthenticationSessionDto>>("GET", $"api/http/team-directory/authentication-sessions/{owner}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ESAuthenticationSessionDto>()) : Partial<ESAuthenticationSessionDto>.Default()));            
+            
+            public MeClient Me => new MeClient(_connection);
+            
+            public partial class MeClient
+            {
+                private readonly Connection _connection;
+                
+                public MeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task TerminateOwnAuthenticationSessionAsync(string sessionId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/authentication-sessions/me/{sessionId}");                
+                
+            }
+            
+        }
+        
+        public MeClient Me => new MeClient(_connection);
+        
+        public partial class MeClient
+        {
+            private readonly Connection _connection;
+            
+            public MeClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDMemberProfileDto> GetMeAsync(Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/me?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
+            
+            public ChecklistClient Checklists => new ChecklistClient(_connection);
+            
+            public partial class ChecklistClient
+            {
+                private readonly Connection _connection;
+                
+                public ChecklistClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<ChecklistDto> CreateChecklistAsync(IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/team-directory/me/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                
+                
+                public async Task<ChecklistDto> ImportChecklistAsync(ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/team-directory/me/checklists/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                
+                
+                public async Task ImportChecklistLinesAsync(string checklistId, ImportChecklistLinesRequestDto data)
+                    => await _connection.RequestResourceAsync<ImportChecklistLinesRequestDto>("POST", $"api/http/team-directory/me/checklists/{checklistId}/import", data);                
+                
+                public async Task<List<ChecklistDto>> GetAllChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/me/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                
+                
+                public async Task UpdateChecklistAsync(string checklistId, UpdateChecklistRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/team-directory/me/checklists/{checklistId}", data);                
+                
+                public async Task DeleteChecklistAsync(string checklistId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/me/checklists/{checklistId}");                
+                
+                public StarredClient Starred => new StarredClient(_connection);
+                
+                public partial class StarredClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public StarredClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                        => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/me/checklists/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                    
+                    
+                }
+                
+                public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
+                
+                public partial class FullChecklistTreeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public FullChecklistTreeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
+                        => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/me/checklists/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                    
+                    
+                }
+                
+            }
+            
+            public StarredClient Starred => new StarredClient(_connection);
+            
+            public partial class StarredClient
+            {
+                private readonly Connection _connection;
+                
+                public StarredClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/team-directory/me/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                
+                
+            }
+            
+            public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
+            
+            public partial class FullChecklistTreeClient
+            {
+                private readonly Connection _connection;
+                
+                public FullChecklistTreeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/team-directory/me/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                
+                
+            }
+            
+            public InfoClient Info => new InfoClient(_connection);
+            
+            public partial class InfoClient
+            {
+                private readonly Connection _connection;
+                
+                public InfoClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<MeInfoDto> GetInfoAsync(Func<Partial<MeInfoDto>, Partial<MeInfoDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<MeInfoDto>("GET", $"api/http/team-directory/me/info?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MeInfoDto>()) : Partial<MeInfoDto>.Default()));                
+                
+                public DraftTypeClient DraftType => new DraftTypeClient(_connection);
+                
+                public partial class DraftTypeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public DraftTypeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateDraftTypeAsync(UpdateDraftTypeRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/me/info/draft-type", data);                    
+                    
+                }
+                
+                public FirstDayOfWeekClient FirstDayOfWeek => new FirstDayOfWeekClient(_connection);
+                
+                public partial class FirstDayOfWeekClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public FirstDayOfWeekClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateFirstDayOfWeekAsync(UpdateFirstDayOfWeekRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/me/info/first-day-of-week", data);                    
+                    
+                }
+                
+                public NavBarMenuItemClient NavBarMenuItems => new NavBarMenuItemClient(_connection);
+                
+                public partial class NavBarMenuItemClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public NavBarMenuItemClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateNavBarMenuItemAsync(UpdateNavBarMenuItemRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/me/info/nav-bar-menu-items", data);                    
+                    
+                }
+                
+                public NavBarProjectClient NavBarProjects => new NavBarProjectClient(_connection);
+                
+                public partial class NavBarProjectClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public NavBarProjectClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task CreateNavBarProjectAsync(CreateNavBarProjectRequestDto data)
+                        => await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/me/info/nav-bar-projects", data);                    
+                    
+                    public async Task DeleteNavBarProjectAsync(string projectId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/me/info/nav-bar-projects?projectId={projectId.ToString()}");                    
+                    
+                }
+                
+                public ThemeClient Theme => new ThemeClient(_connection);
+                
+                public partial class ThemeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ThemeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateThemeAsync(UpdateThemeRequestDto data)
+                        => await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/me/info/theme", data);                    
+                    
+                }
+                
+            }
+            
+            public DraftTypeClient DraftType => new DraftTypeClient(_connection);
+            
+            public partial class DraftTypeClient
+            {
+                private readonly Connection _connection;
+                
+                public DraftTypeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task UpdateDraftTypeAsync(UpdateDraftTypeRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateDraftTypeRequestDto>("PATCH", $"api/http/team-directory/me/draft-type", data);                
+                
+            }
+            
+            public FirstDayOfWeekClient FirstDayOfWeek => new FirstDayOfWeekClient(_connection);
+            
+            public partial class FirstDayOfWeekClient
+            {
+                private readonly Connection _connection;
+                
+                public FirstDayOfWeekClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task UpdateFirstDayOfWeekAsync(UpdateFirstDayOfWeekRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateFirstDayOfWeekRequestDto>("PATCH", $"api/http/team-directory/me/first-day-of-week", data);                
+                
+            }
+            
+            public NavBarMenuItemClient NavBarMenuItems => new NavBarMenuItemClient(_connection);
+            
+            public partial class NavBarMenuItemClient
+            {
+                private readonly Connection _connection;
+                
+                public NavBarMenuItemClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task UpdateNavBarMenuItemAsync(UpdateNavBarMenuItemRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateNavBarMenuItemRequestDto>("PATCH", $"api/http/team-directory/me/nav-bar-menu-items", data);                
+                
+            }
+            
+            public NavBarProjectClient NavBarProjects => new NavBarProjectClient(_connection);
+            
+            public partial class NavBarProjectClient
+            {
+                private readonly Connection _connection;
+                
+                public NavBarProjectClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task CreateNavBarProjectAsync(CreateNavBarProjectRequestDto data)
+                    => await _connection.RequestResourceAsync<CreateNavBarProjectRequestDto>("POST", $"api/http/team-directory/me/nav-bar-projects", data);                
+                
+                public async Task DeleteNavBarProjectAsync(string projectId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/me/nav-bar-projects?projectId={projectId.ToString()}");                
+                
+            }
+            
+            public ThemeClient Theme => new ThemeClient(_connection);
+            
+            public partial class ThemeClient
+            {
+                private readonly Connection _connection;
+                
+                public ThemeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task UpdateThemeAsync(UpdateThemeRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateThemeRequestDto>("PATCH", $"api/http/team-directory/me/theme", data);                
+                
+            }
+            
+        }
+        
+        public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
+        
+        public partial class OAuthConsentClient
+        {
+            private readonly Connection _connection;
+            
+            public OAuthConsentClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<ESOAuthConsentDto>> GetAllOAuthConsentsAsync(string owner, Func<Partial<ESOAuthConsentDto>, Partial<ESOAuthConsentDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<ESOAuthConsentDto>>("GET", $"api/http/team-directory/oauth-consents/{owner}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ESOAuthConsentDto>()) : Partial<ESOAuthConsentDto>.Default()));            
+            
+            public MeClient Me => new MeClient(_connection);
+            
+            public partial class MeClient
+            {
+                private readonly Connection _connection;
+                
+                public MeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
+                
+                public partial class ApprovedScopeClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ApprovedScopeClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task DeleteApprovedScopeAsync(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/oauth-consents/me/approved-scopes/{id}");                    
+                    
+                }
+                
+                public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
+                
+                public partial class RefreshTokenClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public RefreshTokenClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task DeleteRefreshTokenAsync(string id)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/oauth-consents/me/refresh-tokens/{id}");                    
+                    
+                }
+                
+            }
+            
+            public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
+            
+            public partial class ApprovedScopeClient
+            {
+                private readonly Connection _connection;
+                
+                public ApprovedScopeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task DeleteApprovedScopeAsync(string id)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/oauth-consents/approved-scopes/{id}");                
+                
+            }
+            
+            public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
+            
+            public partial class RefreshTokenClient
+            {
+                private readonly Connection _connection;
+                
+                public RefreshTokenClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task DeleteRefreshTokenAsync(string id)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/oauth-consents/refresh-tokens/{id}");                
+                
+            }
+            
+        }
+        
+        public TwoFaClient TwoFa => new TwoFaClient(_connection);
+        
+        public partial class TwoFaClient
+        {
+            private readonly Connection _connection;
+            
+            public TwoFaClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public StatuClient Status => new StatuClient(_connection);
+            
+            public partial class StatuClient
+            {
+                private readonly Connection _connection;
+                
+                public StatuClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatusAsync(string id, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/{id}/2-fa/status?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Default()));                
+                
+            }
+            
+            public TotpClient Totp => new TotpClient(_connection);
+            
+            public partial class TotpClient
+            {
+                private readonly Connection _connection;
+                
+                public TotpClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<TwoFactorAuthenticationSecretDto> SetUpTOTPTwoFactorAuthenticationAsync(string id, Func<Partial<TwoFactorAuthenticationSecretDto>, Partial<TwoFactorAuthenticationSecretDto>> partialBuilder = null)
+                    => await _connection.RequestResourceAsync<TwoFactorAuthenticationSecretDto>("POST", $"api/http/team-directory/{id}/2-fa/totp?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TwoFactorAuthenticationSecretDto>()) : Partial<TwoFactorAuthenticationSecretDto>.Default()));                
+                
+                public async Task ConfirmTOTPTwoFactorAuthenticationSettingsAsync(string id, ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                    => await _connection.RequestResourceAsync<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto>("POST", $"api/http/team-directory/{id}/2-fa/totp/confirm", data);                
+                
+                public async Task UpdateTOTPTwoFactorAuthenticationSettingsAsync(string id, UpdateTOTPTwoFactorAuthenticationSettingsRequestDto data)
+                    => await _connection.RequestResourceAsync<UpdateTOTPTwoFactorAuthenticationSettingsRequestDto>("PATCH", $"api/http/team-directory/{id}/2-fa/totp", data);                
+                
+                public async Task DeleteCurrentTOTPTwoFactorAuthenticationSettingsAsync(string id)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/2-fa/totp");                
+                
+            }
+            
+        }
+        
+        public ApplicationPasswordClient ApplicationPasswords => new ApplicationPasswordClient(_connection);
+        
+        public partial class ApplicationPasswordClient
+        {
+            private readonly Connection _connection;
+            
+            public ApplicationPasswordClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Pair<ESApplicationPasswordDto, string>> CreateApplicationPasswordAsync(string id, CreateApplicationPasswordRequestDto data, Func<Partial<Pair<ESApplicationPasswordDto, string>>, Partial<Pair<ESApplicationPasswordDto, string>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<CreateApplicationPasswordRequestDto, Pair<ESApplicationPasswordDto, string>>("POST", $"api/http/team-directory/{id}/application-passwords?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Pair<ESApplicationPasswordDto, string>>()) : Partial<Pair<ESApplicationPasswordDto, string>>.Default()), data);            
+            
+            public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswordsAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESApplicationPasswordDto>>, Partial<Batch<ESApplicationPasswordDto>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<Batch<ESApplicationPasswordDto>>("GET", $"api/http/team-directory/{id}/application-passwords?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESApplicationPasswordDto>>()) : Partial<Batch<ESApplicationPasswordDto>>.Default()));            
+            
+            public async Task UpdateApplicationPasswordAsync(string id, string passwordId, UpdateApplicationPasswordRequestDto data)
+                => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/{id}/application-passwords/{passwordId}", data);            
+            
+            public async Task DeleteApplicationPasswordAsync(string id, string passwordId)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/application-passwords/{passwordId}");            
+            
+        }
+        
+        public LeadClient Leads => new LeadClient(_connection);
+        
+        public partial class LeadClient
+        {
+            private readonly Connection _connection;
+            
+            public LeadClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<List<TDMemberProfileDto>> GetAllLeadsAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/team-directory/{id}/leads?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
+            
+        }
+        
+        public PermanentTokenClient PermanentTokens => new PermanentTokenClient(_connection);
+        
+        public partial class PermanentTokenClient
+        {
+            private readonly Connection _connection;
+            
+            public PermanentTokenClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Pair<ESPermanentTokenDto, string>> CreatePermanentTokenAsync(string id, CreateApplicationPasswordRequestDto data, Func<Partial<Pair<ESPermanentTokenDto, string>>, Partial<Pair<ESPermanentTokenDto, string>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<CreateApplicationPasswordRequestDto, Pair<ESPermanentTokenDto, string>>("POST", $"api/http/team-directory/{id}/permanent-tokens?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Pair<ESPermanentTokenDto, string>>()) : Partial<Pair<ESPermanentTokenDto, string>>.Default()), data);            
+            
+            public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokensAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESPermanentTokenDto>>, Partial<Batch<ESPermanentTokenDto>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESPermanentTokenDto>>()) : Partial<Batch<ESPermanentTokenDto>>.Default()));            
+            
+            public async Task UpdatePermanentTokenAsync(string id, string tokenId, UpdateApplicationPasswordRequestDto data)
+                => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/{id}/permanent-tokens/{tokenId}", data);            
+            
+            public async Task DeletePermanentTokenAsync(string id, string tokenId)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/permanent-tokens/{tokenId}");            
+            
+            public CurrentClient Current => new CurrentClient(_connection);
+            
+            public partial class CurrentClient
+            {
+                private readonly Connection _connection;
+                
+                public CurrentClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Delete permanent token used to access this end-point
+                /// </summary>
+                public async Task DeleteCurrentPermanentTokenAsync(string id)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/permanent-tokens/current");                
+                
+            }
+            
+        }
+        
+        public SpokenLanguageClient SpokenLanguages => new SpokenLanguageClient(_connection);
+        
+        public partial class SpokenLanguageClient
+        {
+            private readonly Connection _connection;
+            
+            public SpokenLanguageClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDProfileLanguageDto> UpdateSpokenLanguageAsync(string id, UpdateSpokenLanguageRequestDto data, Func<Partial<TDProfileLanguageDto>, Partial<TDProfileLanguageDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<UpdateSpokenLanguageRequestDto, TDProfileLanguageDto>("PATCH", $"api/http/team-directory/{id}/spoken-languages?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDProfileLanguageDto>()) : Partial<TDProfileLanguageDto>.Default()), data);            
+            
+            public async Task DeleteSpokenLanguageAsync(string id, string language)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/spoken-languages?language={language.ToString()}");            
+            
+        }
+        
+        public VcsPasswordClient VcsPassword => new VcsPasswordClient(_connection);
+        
+        public partial class VcsPasswordClient
+        {
+            private readonly Connection _connection;
+            
+            public VcsPasswordClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<VcsHostingPasswordDto> GetVcsPasswordAsync(string id, Func<Partial<VcsHostingPasswordDto>, Partial<VcsHostingPasswordDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<VcsHostingPasswordDto>("GET", $"api/http/team-directory/{id}/vcs-password?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<VcsHostingPasswordDto>()) : Partial<VcsHostingPasswordDto>.Default()));            
+            
+            public async Task UpdateVcsPasswordAsync(string id, UpdateVcsPasswordRequestDto data)
+                => await _connection.RequestResourceAsync<UpdateVcsPasswordRequestDto>("PATCH", $"api/http/team-directory/{id}/vcs-password", data);            
+            
+            public async Task DeleteVcsPasswordAsync(string id)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/vcs-password");            
+            
+        }
+        
+        public WorkingDayClient WorkingDays => new WorkingDayClient(_connection);
+        
+        public partial class WorkingDayClient
+        {
+            private readonly Connection _connection;
+            
+            public WorkingDayClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<TDWorkingDaysDto> AddWorkingDaysAsync(string id, AddWorkingDaysRequestDto data, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<AddWorkingDaysRequestDto, TDWorkingDaysDto>("POST", $"api/http/team-directory/{id}/working-days?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default()), data);            
+            
+            public async Task<List<TDWorkingDaysDto>> GetAllWorkingDaysAsync(string id, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<List<TDWorkingDaysDto>>("GET", $"api/http/team-directory/{id}/working-days?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default()));            
+            
+            public async Task<TDWorkingDaysDto> UpdateWorkingDaysAsync(string id, string workingDaysId, UpdateWorkingDaysRequestDto data, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<UpdateWorkingDaysRequestDto, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/{id}/working-days/{workingDaysId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default()), data);            
+            
+            public async Task DeleteWorkingDaysAsync(string id, string workingDaysId)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/{id}/working-days/{workingDaysId}");            
             
         }
         
@@ -1058,6 +2358,22 @@ namespace SpaceDotNet.Client
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));                
                 
             }
+            
+        }
+        
+        public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
+        
+        public partial class DirectMemberClient
+        {
+            private readonly Connection _connection;
+            
+            public DirectMemberClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembersAsync(string id, string query, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
         }
         

@@ -19,25 +19,10 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.MeetingOrganizerHiddenUserExtensions
 {
-    public class MeetingAttachmentDto
+    public static class MeetingOrganizerHiddenUserDtoPartialExtensions
     {
-        [JsonPropertyName("fileUrl")]
-        public string? FileUrl { get; set; }        
-        
-        [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
-        [JsonPropertyName("mimeType")]
-        public string? MimeType { get; set; }        
-        
-        [JsonPropertyName("fileId")]
-        public string? FileId { get; set; }        
-        
-        [JsonPropertyName("source")]
-        public string? Source { get; set; }        
-        
     }
     
 }

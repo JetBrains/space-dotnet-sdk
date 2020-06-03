@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.MeetingAttachmentExtensions
         public static Partial<MeetingAttachmentDto> WithFileId(this Partial<MeetingAttachmentDto> it)
             => it.AddFieldName("fileId");
         
+        public static Partial<MeetingAttachmentDto> WithSource(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("source");
+        
     }
     
 }

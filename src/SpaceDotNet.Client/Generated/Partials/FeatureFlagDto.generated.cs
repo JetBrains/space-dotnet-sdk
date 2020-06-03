@@ -29,6 +29,15 @@ namespace SpaceDotNet.Client.FeatureFlagExtensions
         public static Partial<FeatureFlagDto> WithDescription(this Partial<FeatureFlagDto> it)
             => it.AddFieldName("description");
         
+        public static Partial<FeatureFlagDto> WithStatus(this Partial<FeatureFlagDto> it)
+            => it.AddFieldName("status");
+        
+        public static Partial<FeatureFlagDto> WithOwner(this Partial<FeatureFlagDto> it)
+            => it.AddFieldName("owner");
+        
+        public static Partial<FeatureFlagDto> WithIntroduced(this Partial<FeatureFlagDto> it)
+            => it.AddFieldName("introduced");
+        
     }
     
 }

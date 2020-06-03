@@ -83,6 +83,28 @@ namespace SpaceDotNet.Client
             
         }
         
+        public DraftClient Drafts => new DraftClient(_connection);
+        
+        public partial class DraftClient
+        {
+            private readonly Connection _connection;
+            
+            public DraftClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<BGArticleIdDto> PublishArticleAsync(string draftId, Func<Partial<BGArticleIdDto>, Partial<BGArticleIdDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<BGArticleIdDto>("POST", $"api/http/blogs/drafts/{draftId}/publish?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<BGArticleIdDto>()) : Partial<BGArticleIdDto>.Default()));            
+            
+            public async Task<DRDraftIdDto> GetDraftByArticleIdAsync(string articleId, Func<Partial<DRDraftIdDto>, Partial<DRDraftIdDto>> partialBuilder = null)
+                => await _connection.RequestResourceAsync<DRDraftIdDto>("GET", $"api/http/blogs/drafts/article-id:{articleId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DRDraftIdDto>()) : Partial<DRDraftIdDto>.Default()));            
+            
+            public async Task UnpublishArticleAsync(string draftId)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/drafts/{draftId}/unpublish");            
+            
+        }
+        
         public DateClient Dates => new DateClient(_connection);
         
         public partial class DateClient
