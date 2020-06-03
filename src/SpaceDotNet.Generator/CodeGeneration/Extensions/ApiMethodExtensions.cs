@@ -1,6 +1,7 @@
 using System;
+using SpaceDotNet.Generator.Model.HttpApi;
 
-namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
+namespace SpaceDotNet.Generator.CodeGeneration.Extensions
 {
     public static class ApiMethodExtensions
     {

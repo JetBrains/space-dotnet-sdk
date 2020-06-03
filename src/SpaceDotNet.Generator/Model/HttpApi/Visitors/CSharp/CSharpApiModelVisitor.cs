@@ -7,6 +7,7 @@ using System.Text.Json;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
+using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
@@ -307,9 +308,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     {
                         // Known anonymous type
                         Builder.Append("Batch<");
-                        var dataFieldType = apiFieldTypeObject.Fields.First(it => string.Equals(it.Name, "data", StringComparison.OrdinalIgnoreCase));
-                        var dataFieldArrayType = (ApiFieldType.Array)dataFieldType.Type;
-                        Visit(dataFieldArrayType.ElementType);
+                        Visit(apiFieldTypeObject.GetBatchDataType()!.ElementType);
                         Builder.Append(">");
                     }  
                     else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
@@ -464,7 +463,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 
             if (isResponseBatch && apiEndpoint.ResponseBody != null)
             {
-                // TODO: WriteEndpointWithBatchEnumerator(apiEndpoint); - make using IAsyncEnumerable easier
+                WriteEndpointWithBatchEnumerator(apiEndpoint);
             }
         }
         
@@ -521,17 +520,14 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("Func<Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
-                        ? a.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">, Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
-                        ? b.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">> partialBuilder = null");
                 }
 
                 Builder.AppendLine(")");
+                
                 Indent.Increment();
                 Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.ResponseBody);
@@ -542,13 +538,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
-                        ? a.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">()) : Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
-                        ? b.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">.Default())");
                 }
                 else
@@ -573,6 +565,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 Builder.Append(" data");
                 
                 Builder.AppendLine(")");
+                
                 Indent.Increment();
                 Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.RequestBody);
@@ -603,17 +596,14 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 {
                     Builder.Append(", ");
                     Builder.Append("Func<Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
-                        ? a.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">, Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
-                        ? b.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">> partialBuilder = null");
                 }
 
                 Builder.AppendLine(")");
+                
                 Indent.Increment();
                 Builder.Append($"{Indent}=> await _connection.RequestResourceAsync<");
                 Visit(apiEndpoint.RequestBody);
@@ -626,13 +616,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 if (!isResponsePrimitiveOrArrayOfPrimitive)
                 {
                     Builder.Append("$fields=\" + (partialBuilder != null ? partialBuilder(new Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array a
-                        ? a.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">()) : Partial<");
-                    Visit(apiEndpoint.ResponseBody is ApiFieldType.Array b
-                        ? b.ElementType
-                        : apiEndpoint.ResponseBody);
+                    Visit(apiEndpoint.ResponseBody.GetArrayElementTypeOrType());
                     Builder.Append(">.Default()), ");
                 }
                 else
@@ -653,9 +639,116 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             _clientMethodName = string.Empty;
         }
         
-        private bool WriteMethodParameterList(ApiEndpoint apiEndpoint1)
+        private void WriteEndpointWithBatchEnumerator(ApiEndpoint apiEndpoint)
         {
-            var methodParameters = apiEndpoint1.Parameters.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
+            void WriteMethodCallParameterList(ApiEndpoint apiEndpoint1)
+            {
+                var methodParameters = apiEndpoint1.Parameters.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
+                foreach (var apiEndpointParameter in methodParameters)
+                {
+                    Builder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                    if (apiEndpointParameter.Field.Name.ToSafeVariableIdentifier() == "skip")
+                    {
+                        Builder.Append(": batchSkip");
+                    }
+
+                    if (apiEndpointParameter != methodParameters.Last())
+                    {
+                        Builder.Append(", ");
+                    }
+                }
+            }
+            
+            var endpointPath = (_baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
+
+            _clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
+
+            if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
+            {
+                Builder.AppendLine($"{Indent}/// <summary>");
+                Builder.AppendLine($"{Indent}/// {apiEndpoint.Documentation}");
+                Builder.AppendLine($"{Indent}/// </summary>");
+            }
+            
+            if (apiEndpoint.Deprecation != null)
+            {
+                Visit(apiEndpoint.Deprecation);
+            }
+            
+            //WriteEndpointWithBatchEnumerator(apiEndpoint); TODO MAARTEN
+            // public async Task<Batch<PRProjectDto>> GetAllProjectsAsync(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
+            //     => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
+            //
+            // should have a secondary:
+            // 
+            // public async IAsyncEnumerable<PRProjectDto> GetAllProjectsAsync2(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
+            //     => BatchEnumerator.AllItems(batchSkip => GetAllProjectsAsync(skip: batchSkip, top, term, tag, starred, builder => Partial<Batch<PRProjectDto>>.Default().AddFieldName<PRProjectDto>("data", (partialBuilder != null ? partialBuilder(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default()))), skip);        
+
+            var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody).GetBatchDataType();
+            
+            if (apiEndpoint.ResponseBody != null)
+            {
+                Builder.Append($"{Indent}public IAsyncEnumerable<");
+                Visit(batchDataType.ElementType);
+                Builder.Append(">");
+                Builder.Append(" " + _clientMethodName + "AsyncEnumerable(");
+            
+                if (WriteMethodParameterList(apiEndpoint))
+                {
+                    Builder.Append(", ");
+                }
+
+                if (apiEndpoint.RequestBody != null)
+                {
+                    Visit(apiEndpoint.RequestBody);
+                    Builder.Append(" data");
+
+                    Builder.Append(", ");
+                }
+
+                Builder.Append("Func<Partial<");
+                Visit(batchDataType.GetBatchElementTypeOrType());
+                Builder.Append(">, Partial<");
+                Visit(batchDataType.GetBatchElementTypeOrType());
+                Builder.Append(">> partialBuilder = null");
+
+                Builder.AppendLine(")");
+                
+                Indent.Increment();
+                Builder.Append($"{Indent}=> BatchEnumerator.AllItems(batchSkip => ");
+                
+                Builder.Append(_clientMethodName + "Async(");
+                WriteMethodCallParameterList(apiEndpoint);
+                Builder.Append(", ");
+                
+                if (apiEndpoint.RequestBody != null)
+                {
+                    Builder.Append("data, ");
+                }
+                
+                Builder.Append("builder => Partial<Batch<");
+                Visit(batchDataType.GetBatchElementTypeOrType());
+                Builder.Append(">>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<");
+                Visit(batchDataType.GetBatchElementTypeOrType());
+                Builder.Append(">.Default()))");
+                
+                Builder.Append(", skip);");
+                Indent.Decrement();
+                Builder.AppendLine($"{Indent}");
+            }
+            else
+            {
+                Builder.AppendLine($"{Indent}#warning UNSUPPORTED CASE - " + apiEndpoint.DisplayName.ToSafeIdentifier() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
+            }
+            
+            Builder.AppendLine($"{Indent}");
+
+            _clientMethodName = string.Empty;
+        }
+
+        private bool WriteMethodParameterList(ApiEndpoint apiEndpoint)
+        {
+            var methodParameters = apiEndpoint.Parameters.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
             foreach (var apiEndpointParameter in methodParameters)
             {
                 Visit(apiEndpointParameter.Field.Type);

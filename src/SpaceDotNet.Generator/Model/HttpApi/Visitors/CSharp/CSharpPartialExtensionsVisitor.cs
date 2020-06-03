@@ -7,6 +7,7 @@ using System.Text.Json;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
+using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
@@ -154,9 +155,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     {
                         // Known anonymous type
                         _currentFieldInnerTypeBuilder.Append("Batch<");
-                        var dataFieldType = apiFieldTypeObject.Fields.First(it => string.Equals(it.Name, "data", StringComparison.OrdinalIgnoreCase));
-                        var dataFieldArrayType = (ApiFieldType.Array)dataFieldType.Type;
-                        Visit(dataFieldArrayType.ElementType);
+                        Visit(apiFieldTypeObject.GetBatchDataType()!);
                         _currentFieldInnerTypeBuilder.Append(">");
                     }  
                     else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
