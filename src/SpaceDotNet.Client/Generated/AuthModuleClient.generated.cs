@@ -37,7 +37,7 @@ namespace SpaceDotNet.Client
         /// Define order of auth modules. It affects the order of the federated auth module buttons on the sign-in page.
         /// </summary>
         public async Task ReorderAsync(ReorderRequestDto data)
-            => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/auth-modules/reorder", data);        
+            => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", data);        
         
         public async Task<SamlMetadataResponseDto> SamlMetadataAsync(string id, SamlMetadataRequestDto data, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<SamlMetadataRequestDto, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default()), data);        
@@ -49,7 +49,7 @@ namespace SpaceDotNet.Client
             => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default()));        
         
         public async Task UpdateAuthModuleAsync(string id, UpdateAuthModuleRequestDto data)
-            => await _connection.RequestResourceAsync<UpdateAuthModuleRequestDto>("PATCH", $"api/http/auth-modules/{id}", data);        
+            => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", data);        
         
         public async Task DeleteAuthModuleAsync(string id)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}");        
@@ -101,7 +101,7 @@ namespace SpaceDotNet.Client
             }
             
             public async Task ChangeAsync(string id, string identifier, ChangeRequestDto data)
-                => await _connection.RequestResourceAsync<ChangeRequestDto>("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);            
+                => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);            
             
             public async Task ResetAsync(string id, string identifier)
                 => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset");            

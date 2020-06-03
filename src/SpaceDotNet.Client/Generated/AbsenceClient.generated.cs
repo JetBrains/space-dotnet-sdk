@@ -34,7 +34,7 @@ namespace SpaceDotNet.Client
             => await _connection.RequestResourceAsync<CreateAbsenceRequestDto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default()), data);        
         
         public async Task ApproveAbsenceAsync(string id, ApproveAbsenceRequestDto data)
-            => await _connection.RequestResourceAsync<ApproveAbsenceRequestDto>("POST", $"api/http/absences/{id}/approve", data);        
+            => await _connection.RequestResourceAsync("POST", $"api/http/absences/{id}/approve", data);        
         
         public async Task<Batch<AbsenceRecordDto>> GetAllAbsencesAsync(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecordDto>>, Partial<Batch<AbsenceRecordDto>>> partialBuilder = null)
             => await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<AbsenceRecordDto>>()) : Partial<Batch<AbsenceRecordDto>>.Default()));        

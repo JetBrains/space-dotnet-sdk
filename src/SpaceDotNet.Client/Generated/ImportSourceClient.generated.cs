@@ -37,7 +37,7 @@ namespace SpaceDotNet.Client
             => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default()));        
         
         public async Task UpdateImportSourceAsync(string sourceId, UpdateImportSourceRequestDto data)
-            => await _connection.RequestResourceAsync<UpdateImportSourceRequestDto>("PATCH", $"api/http/import-sources/{sourceId}", data);        
+            => await _connection.RequestResourceAsync("PATCH", $"api/http/import-sources/{sourceId}", data);        
         
         public async Task DeleteImportSourceAsync(string sourceId)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");        

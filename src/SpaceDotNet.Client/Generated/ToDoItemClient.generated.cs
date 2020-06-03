@@ -40,7 +40,7 @@ namespace SpaceDotNet.Client
             => BatchEnumerator.AllItems(batchSkip => GetAllToDoItemsAsync(skip: batchSkip, top, open, from, till, builder => Partial<Batch<TodoItemRecordDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TodoItemRecordDto>.Default())), skip);        
         
         public async Task UpdateToDoItemAsync(string id, UpdateToDoItemRequestDto data)
-            => await _connection.RequestResourceAsync<UpdateToDoItemRequestDto>("PATCH", $"api/http/todo/{id}", data);        
+            => await _connection.RequestResourceAsync("PATCH", $"api/http/todo/{id}", data);        
         
         public async Task DeleteToDoItemAsync(string id)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}");        

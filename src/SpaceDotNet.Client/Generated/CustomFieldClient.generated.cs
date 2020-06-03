@@ -80,7 +80,7 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<CreateFieldRequestDto, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default()), data);            
             
             public async Task ReorderAsync(string typeKey, ReorderRequestDto data)
-                => await _connection.RequestResourceAsync<ReorderRequestDto>("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);            
+                => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);            
             
             public async Task ArchiveAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");            
@@ -92,7 +92,7 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default()));            
             
             public async Task UpdateFieldAsync(string typeKey, string id, UpdateFieldRequestDto data)
-                => await _connection.RequestResourceAsync<UpdateFieldRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);            
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);            
             
             public async Task DeleteFieldAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");            
@@ -114,7 +114,7 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CustomFieldsRecordDto>()) : Partial<CustomFieldsRecordDto>.Default()));            
             
             public async Task UpdateValueAsync(string entityId, string typeKey, UpdateValueRequestDto data)
-                => await _connection.RequestResourceAsync<UpdateValueRequestDto>("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);            
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);            
             
         }
         
