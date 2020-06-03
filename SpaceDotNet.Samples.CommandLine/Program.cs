@@ -21,12 +21,9 @@ namespace SpaceDotNet.Samples.CommandLine
             
             // Get all profiles with their names
             var teamDirectoryClient = new TeamDirectoryClient(connection);
-            await foreach (var profile in BatchEnumerator.AllItems(skip => teamDirectoryClient.Profiles.GetAllProfilesAsync("", false, false, skip: skip, partialBuilder: partial => partial
-                .WithNext()
-                .WithTotalCount()
-                .WithData(data => data
-                    .WithId()
-                    .WithName()))))
+            await foreach (var profile in teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partialBuilder: partial => partial
+                .WithId()
+                .WithName()))
             {
                 Console.WriteLine($"{profile.Name.FirstName} {profile.Name.LastName}");
             }
