@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Text.Json;
 using SpaceDotNet.Common;
+using SpaceDotNet.Generator.CodeGeneration;
 using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
@@ -419,9 +420,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             }
 
             // Group nested resources by path
-            var resourcePathBuildingVisitor = new ResourcePathBuildingVisitor(1, 2);
-            resourcePathBuildingVisitor.Visit(apiResource);
-            foreach (var (_, apiNestedResources) in resourcePathBuildingVisitor.Paths)
+            var resourcePathBuildingVisitor = new PathToResourceMapper();
+            foreach (var (_, apiNestedResources) in resourcePathBuildingVisitor.CreateMapOfPathToResources(apiResource))
             {
                 var isFirstResource = true;
                 foreach (var apiNestedResource in apiNestedResources)
