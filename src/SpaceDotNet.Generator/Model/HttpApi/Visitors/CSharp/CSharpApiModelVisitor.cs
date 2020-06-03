@@ -7,6 +7,8 @@ using System.Text.Json;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration;
 using SpaceDotNet.Generator.CodeGeneration.CSharp;
+using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
+using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp

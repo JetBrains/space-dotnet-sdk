@@ -1,6 +1,6 @@
 using SpaceDotNet.Generator.Model.HttpApi;
 
-namespace SpaceDotNet.Generator.CodeGeneration.CSharp
+namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 {
     public static class PrimitiveTypeExtensions
     {

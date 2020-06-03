@@ -2,7 +2,7 @@ using System;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 {
-    public static class ApiMethodExtension
+    public static class ApiMethodExtensions
     {
         public static string ToHttpMethod(this ApiMethod current)
         {
