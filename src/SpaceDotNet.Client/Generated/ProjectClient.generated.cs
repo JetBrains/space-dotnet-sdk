@@ -36,17 +36,29 @@ namespace SpaceDotNet.Client
         public async Task<Batch<PRProjectDto>> GetAllProjectsAsync(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
             => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
         
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsAsyncEnumerable(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsAsync(skip: batchSkip, top, term, tag, starred, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
+        
         public async Task<PRProjectDto> GetProjectByKeyAsync(string projectKey, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default()));        
         
         public async Task<Batch<PRProjectDto>> GetAllProjectsByMemberAsync(string member, string? skip = null, int? top = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
             => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
         
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsByMemberAsyncEnumerable(string member, string? skip = null, int? top = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsByMemberAsync(member, skip: batchSkip, top, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
+        
         public async Task<Batch<PRProjectDto>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
             => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
         
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsWithRightAsync(rightCode, skip: batchSkip, top, term, path, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
+        
         public async Task<Batch<PRProjectDto>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
             => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
+        
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsByTeamAsync(team, skip: batchSkip, top, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
         
         public async Task<PRProjectDto> GetProjectAsync(string projectId, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
             => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default()));        
@@ -281,6 +293,9 @@ namespace SpaceDotNet.Client
                 public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfilesAsync(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));                
                 
+                public IAsyncEnumerable<TDMemberProfileDto> GetAllMemberProfilesAsyncEnumerable(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllMemberProfilesAsync(projectKey, query, includingAdmins, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);                
+                
             }
             
         }
@@ -461,6 +476,9 @@ namespace SpaceDotNet.Client
                 public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProjectAsync(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));                
                 
+                public IAsyncEnumerable<TDMemberProfileDto> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => OrganizationProfilesWhoCanViewTheProjectAsync(projectId, term, meOnTop, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);                
+                
             }
             
         }
@@ -479,6 +497,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfilesAsync(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllMemberProfilesAsyncEnumerable(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllMemberProfilesAsync(projectKey, query, includingAdmins, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
+            
         }
         
         public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
@@ -494,6 +515,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviewsAsync(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCountDto>>, Partial<Batch<CodeReviewWithCountDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<CodeReviewWithCountDto>>()) : Partial<Batch<CodeReviewWithCountDto>>.Default()));            
+            
+            public IAsyncEnumerable<CodeReviewWithCountDto> GetAllCodeReviewsAsyncEnumerable(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCountDto>, Partial<CodeReviewWithCountDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllCodeReviewsAsync(projectKey, sort, skip: batchSkip, top, state, text, authorProfileId, from, to, reviewer, type, builder => Partial<Batch<CodeReviewWithCountDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<CodeReviewWithCountDto>.Default())), skip);            
             
             public async Task<ReviewCountsDto> GetReviewCountsAsync(string projectKey, Func<Partial<ReviewCountsDto>, Partial<ReviewCountsDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ReviewCountsDto>()) : Partial<ReviewCountsDto>.Default()));            
@@ -1089,6 +1113,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProjectAsync(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
+            public IAsyncEnumerable<TDMemberProfileDto> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => OrganizationProfilesWhoCanViewTheProjectAsync(projectId, term, meOnTop, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
+            
         }
         
         public PlanningClient Planning => new PlanningClient(_connection);
@@ -1124,6 +1151,9 @@ namespace SpaceDotNet.Client
                 
                 public async Task<Batch<ChecklistDto>> GetAllChecklistsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<ChecklistDto>>, Partial<Batch<ChecklistDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ChecklistDto>>()) : Partial<Batch<ChecklistDto>>.Default()));                
+                
+                public IAsyncEnumerable<ChecklistDto> GetAllChecklistsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllChecklistsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<ChecklistDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ChecklistDto>.Default())), skip);                
                 
                 public async Task UpdateChecklistAsync(string projectId, string checklistId, UpdateChecklistRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);                
@@ -1216,6 +1246,9 @@ namespace SpaceDotNet.Client
                 
                 public async Task<Batch<IssueDto>> GetAllIssuesAsync(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<Batch<IssueDto>>, Partial<Batch<IssueDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<IssueDto>>()) : Partial<Batch<IssueDto>>.Default()));                
+                
+                public IAsyncEnumerable<IssueDto> GetAllIssuesAsyncEnumerable(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllIssuesAsync(projectId, statuses, sorting, descending, skip: batchSkip, top, assigneeId, createdByProfileId, tagId, query, builder => Partial<Batch<IssueDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<IssueDto>.Default())), skip);                
                 
                 public async Task<IssueDto> GetIssueByNumberAsync(string projectId, int number, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueDto>()) : Partial<IssueDto>.Default()));                
@@ -1459,6 +1492,9 @@ namespace SpaceDotNet.Client
                 public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTagsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<PlanningTagDto>>, Partial<Batch<PlanningTagDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PlanningTagDto>>()) : Partial<Batch<PlanningTagDto>>.Default()));                
                 
+                public IAsyncEnumerable<PlanningTagDto> GetAllHierarchicalTagsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllHierarchicalTagsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<PlanningTagDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PlanningTagDto>.Default())), skip);                
+                
             }
             
         }
@@ -1485,6 +1521,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<ChecklistDto>> GetAllChecklistsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<ChecklistDto>>, Partial<Batch<ChecklistDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ChecklistDto>>()) : Partial<Batch<ChecklistDto>>.Default()));            
+            
+            public IAsyncEnumerable<ChecklistDto> GetAllChecklistsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllChecklistsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<ChecklistDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ChecklistDto>.Default())), skip);            
             
             public async Task UpdateChecklistAsync(string projectId, string checklistId, UpdateChecklistRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateChecklistRequestDto>("PATCH", $"api/http/projects/checklists/{checklistId}", data);            
@@ -1545,6 +1584,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<IssueDto>> GetAllIssuesAsync(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<Batch<IssueDto>>, Partial<Batch<IssueDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<IssueDto>>()) : Partial<Batch<IssueDto>>.Default()));            
+            
+            public IAsyncEnumerable<IssueDto> GetAllIssuesAsyncEnumerable(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllIssuesAsync(projectId, statuses, sorting, descending, skip: batchSkip, top, assigneeId, createdByProfileId, tagId, query, builder => Partial<Batch<IssueDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<IssueDto>.Default())), skip);            
             
             public async Task<IssueDto> GetIssueByNumberAsync(string projectId, int number, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/issues/number:{number}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueDto>()) : Partial<IssueDto>.Default()));            
@@ -1688,6 +1730,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTagsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<PlanningTagDto>>, Partial<Batch<PlanningTagDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PlanningTagDto>>()) : Partial<Batch<PlanningTagDto>>.Default()));            
+            
+            public IAsyncEnumerable<PlanningTagDto> GetAllHierarchicalTagsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllHierarchicalTagsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<PlanningTagDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PlanningTagDto>.Default())), skip);            
             
         }
         

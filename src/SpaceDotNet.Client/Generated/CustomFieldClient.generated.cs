@@ -60,6 +60,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValuesAsync(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<CustomFieldsRecordDto>>()) : Partial<Batch<CustomFieldsRecordDto>>.Default()));            
             
+            public IAsyncEnumerable<CustomFieldsRecordDto> GetAllAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllAllValuesAsync(typeKey, skip: batchSkip, top, extendedEntityIds, builder => Partial<Batch<CustomFieldsRecordDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<CustomFieldsRecordDto>.Default())), skip);            
+            
         }
         
         public FieldClient Fields => new FieldClient(_connection);

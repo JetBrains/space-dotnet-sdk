@@ -306,6 +306,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<InvitationDto>> GetAllInvitationsAsync(string? skip = null, int? top = null, Func<Partial<Batch<InvitationDto>>, Partial<Batch<InvitationDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<InvitationDto>>()) : Partial<Batch<InvitationDto>>.Default()));            
             
+            public IAsyncEnumerable<InvitationDto> GetAllInvitationsAsyncEnumerable(string? skip = null, int? top = null, Func<Partial<InvitationDto>, Partial<InvitationDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllInvitationsAsync(skip: batchSkip, top, builder => Partial<Batch<InvitationDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<InvitationDto>.Default())), skip);            
+            
             public async Task UpdateInvitationAsync(string id, UpdateInvitationRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateInvitationRequestDto>("PATCH", $"api/http/team-directory/invitations/{id}", data);            
             
@@ -499,6 +502,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidatesAsync(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllManagerCandidatesAsyncEnumerable(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllManagerCandidatesAsync(term, skip: batchSkip, top, teamId, excludedMemberId, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
+            
         }
         
         public MemberLocationClient MemberLocations => new MemberLocationClient(_connection);
@@ -517,6 +523,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocationsAsync(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocationDto>>, Partial<Batch<TDMemberLocationDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberLocationDto>>()) : Partial<Batch<TDMemberLocationDto>>.Default()));            
+            
+            public IAsyncEnumerable<TDMemberLocationDto> GetAllMemberLocationsAsyncEnumerable(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllMemberLocationsAsync(withArchived, skip: batchSkip, top, profiles, locations, since, till, builder => Partial<Batch<TDMemberLocationDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberLocationDto>.Default())), skip);            
             
             public async Task<TDMemberLocationDto> UpdateMemberLocationAsync(string id, UpdateMemberLocationRequestDto data, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateMemberLocationRequestDto, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberLocationDto>()) : Partial<TDMemberLocationDto>.Default()), data);            
@@ -575,6 +584,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<TDMergedEventDto>> GetAllMembershipEventsAsync(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<Batch<TDMergedEventDto>>, Partial<Batch<TDMergedEventDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMergedEventDto>>()) : Partial<Batch<TDMergedEventDto>>.Default()));            
             
+            public IAsyncEnumerable<TDMergedEventDto> GetAllMembershipEventsAsyncEnumerable(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDMergedEventDto>, Partial<TDMergedEventDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllMembershipEventsAsync(skip: batchSkip, top, teamId, locationId, roleId, builder => Partial<Batch<TDMergedEventDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMergedEventDto>.Default())), skip);            
+            
         }
         
         public MembershipClient Memberships => new MembershipClient(_connection);
@@ -593,6 +605,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<TDMembershipDto>> GetAllMembershipsAsync(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembershipDto>>, Partial<Batch<TDMembershipDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMembershipDto>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMembershipDto>>()) : Partial<Batch<TDMembershipDto>>.Default()));            
+            
+            public IAsyncEnumerable<TDMembershipDto> GetAllMembershipsAsyncEnumerable(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllMembershipsAsync(directTeams, directRoles, withArchived, skip: batchSkip, top, profiles, teams, roles, since, till, requiresApproval, builder => Partial<Batch<TDMembershipDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMembershipDto>.Default())), skip);            
             
             public async Task<TDMembershipDto> UpdateMembershipAsync(string id, UpdateMembershipRequestDto data, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<UpdateMembershipRequestDto, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default()), data);            
@@ -616,6 +631,9 @@ namespace SpaceDotNet.Client
                 
                 public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequestsAsync(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>, Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>()) : Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default()));                
+                
+                public IAsyncEnumerable<Pair<TDMemberProfileDto, TDMembershipDto>> GetAllRequestsAsyncEnumerable(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Pair<TDMemberProfileDto, TDMembershipDto>>, Partial<Pair<TDMemberProfileDto, TDMembershipDto>>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllRequestsAsync(skip: batchSkip, top, teamId, direct, builder => Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<Pair<TDMemberProfileDto, TDMembershipDto>>.Default())), skip);                
                 
                 public async Task UpdateRequestAsync(string id, UpdateRequestRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateRequestRequestDto>("PATCH", $"api/http/team-directory/memberships/requests/{id}", data);                
@@ -657,6 +675,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequestsAsync(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>, Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>()) : Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default()));            
             
+            public IAsyncEnumerable<Pair<TDMemberProfileDto, TDMembershipDto>> GetAllRequestsAsyncEnumerable(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Pair<TDMemberProfileDto, TDMembershipDto>>, Partial<Pair<TDMemberProfileDto, TDMembershipDto>>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllRequestsAsync(skip: batchSkip, top, teamId, direct, builder => Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<Pair<TDMemberProfileDto, TDMembershipDto>>.Default())), skip);            
+            
             public async Task UpdateRequestAsync(string id, UpdateRequestRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateRequestRequestDto>("PATCH", $"api/http/team-directory/requests/{id}", data);            
             
@@ -697,6 +718,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<TDMemberProfileDto>> GetAllProfilesAsync(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
+            
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllProfilesAsyncEnumerable(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesAsync(query, reportPastMembers, meOnTop, skip: batchSkip, top, teamId, locationId, roleId, order, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
             
             public async Task<List<string>> CheckProfileUsernamesExistenceAsync(List<string> usernames)
                 => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}&");            
@@ -1460,6 +1484,9 @@ namespace SpaceDotNet.Client
                 public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswordsAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESApplicationPasswordDto>>, Partial<Batch<ESApplicationPasswordDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<ESApplicationPasswordDto>>("GET", $"api/http/team-directory/profiles/{id}/application-passwords?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESApplicationPasswordDto>>()) : Partial<Batch<ESApplicationPasswordDto>>.Default()));                
                 
+                public IAsyncEnumerable<ESApplicationPasswordDto> GetAllApplicationPasswordsAsyncEnumerable(string id, string? skip = null, int? top = null, Func<Partial<ESApplicationPasswordDto>, Partial<ESApplicationPasswordDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllApplicationPasswordsAsync(id, skip: batchSkip, top, builder => Partial<Batch<ESApplicationPasswordDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ESApplicationPasswordDto>.Default())), skip);                
+                
                 public async Task UpdateApplicationPasswordAsync(string id, string passwordId, UpdateApplicationPasswordRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/application-passwords/{passwordId}", data);                
                 
@@ -1500,6 +1527,9 @@ namespace SpaceDotNet.Client
                 
                 public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokensAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESPermanentTokenDto>>, Partial<Batch<ESPermanentTokenDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESPermanentTokenDto>>()) : Partial<Batch<ESPermanentTokenDto>>.Default()));                
+                
+                public IAsyncEnumerable<ESPermanentTokenDto> GetAllPermanentTokensAsyncEnumerable(string id, string? skip = null, int? top = null, Func<Partial<ESPermanentTokenDto>, Partial<ESPermanentTokenDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllPermanentTokensAsync(id, skip: batchSkip, top, builder => Partial<Batch<ESPermanentTokenDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ESPermanentTokenDto>.Default())), skip);                
                 
                 public async Task UpdatePermanentTokenAsync(string id, string tokenId, UpdateApplicationPasswordRequestDto data)
                     => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/profiles/{id}/permanent-tokens/{tokenId}", data);                
@@ -2104,6 +2134,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswordsAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESApplicationPasswordDto>>, Partial<Batch<ESApplicationPasswordDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<ESApplicationPasswordDto>>("GET", $"api/http/team-directory/{id}/application-passwords?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESApplicationPasswordDto>>()) : Partial<Batch<ESApplicationPasswordDto>>.Default()));            
             
+            public IAsyncEnumerable<ESApplicationPasswordDto> GetAllApplicationPasswordsAsyncEnumerable(string id, string? skip = null, int? top = null, Func<Partial<ESApplicationPasswordDto>, Partial<ESApplicationPasswordDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllApplicationPasswordsAsync(id, skip: batchSkip, top, builder => Partial<Batch<ESApplicationPasswordDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ESApplicationPasswordDto>.Default())), skip);            
+            
             public async Task UpdateApplicationPasswordAsync(string id, string passwordId, UpdateApplicationPasswordRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/{id}/application-passwords/{passwordId}", data);            
             
@@ -2144,6 +2177,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokensAsync(string id, string? skip = null, int? top = null, Func<Partial<Batch<ESPermanentTokenDto>>, Partial<Batch<ESPermanentTokenDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/{id}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ESPermanentTokenDto>>()) : Partial<Batch<ESPermanentTokenDto>>.Default()));            
+            
+            public IAsyncEnumerable<ESPermanentTokenDto> GetAllPermanentTokensAsyncEnumerable(string id, string? skip = null, int? top = null, Func<Partial<ESPermanentTokenDto>, Partial<ESPermanentTokenDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllPermanentTokensAsync(id, skip: batchSkip, top, builder => Partial<Batch<ESPermanentTokenDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ESPermanentTokenDto>.Default())), skip);            
             
             public async Task UpdatePermanentTokenAsync(string id, string tokenId, UpdateApplicationPasswordRequestDto data)
                 => await _connection.RequestResourceAsync<UpdateApplicationPasswordRequestDto>("PATCH", $"api/http/team-directory/{id}/permanent-tokens/{tokenId}", data);            
@@ -2252,6 +2288,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<TDMemberProfileDto>> GetAllReportingsAsync(string query, string? skip = null, int? top = null, bool? withManager = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
             
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllReportingsAsyncEnumerable(string query, string? skip = null, int? top = null, bool? withManager = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllReportingsAsync(query, skip: batchSkip, top, withManager, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
+            
         }
         
         public RoleClient Roles => new RoleClient(_connection);
@@ -2327,6 +2366,9 @@ namespace SpaceDotNet.Client
             public async Task<Batch<TDTeamDto>> GetAllTeamsAsync(string query, bool withArchived, string? skip = null, int? top = null, Func<Partial<Batch<TDTeamDto>>, Partial<Batch<TDTeamDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDTeamDto>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDTeamDto>>()) : Partial<Batch<TDTeamDto>>.Default()));            
             
+            public IAsyncEnumerable<TDTeamDto> GetAllTeamsAsyncEnumerable(string query, bool withArchived, string? skip = null, int? top = null, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllTeamsAsync(query, withArchived, skip: batchSkip, top, builder => Partial<Batch<TDTeamDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDTeamDto>.Default())), skip);            
+            
             [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]            
             public async Task<TDTeamDto> GetSingleTeamByNameAsync(string name, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<TDTeamDto>("GET", $"api/http/team-directory/teams/name:{name}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default()));            
@@ -2357,6 +2399,9 @@ namespace SpaceDotNet.Client
                 public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembersAsync(string id, string query, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));                
                 
+                public IAsyncEnumerable<TDMemberProfileDto> GetAllDirectMembersAsyncEnumerable(string id, string query, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllDirectMembersAsync(id, query, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);                
+                
             }
             
         }
@@ -2374,6 +2419,9 @@ namespace SpaceDotNet.Client
             
             public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembersAsync(string id, string query, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
+            
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllDirectMembersAsyncEnumerable(string id, string query, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllDirectMembersAsync(id, query, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
             
         }
         
