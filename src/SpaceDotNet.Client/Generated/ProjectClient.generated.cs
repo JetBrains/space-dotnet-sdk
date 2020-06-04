@@ -197,7 +197,7 @@ namespace SpaceDotNet.Client
                 public async Task<string> AddResponsibilitySubjectAsync(string projectId, AddResponsibilitySubjectRequestDto data)
                     => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects", data);
             
-                public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
+                public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, EditResponsibilitySubjectRequestDto data)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);
             
             }
@@ -244,7 +244,7 @@ namespace SpaceDotNet.Client
             public async Task<string> AddResponsibilitySubjectAsync(string projectId, AddResponsibilitySubjectRequestDto data)
                 => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/subjects", data);
         
-            public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
+            public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, EditResponsibilitySubjectRequestDto data)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/subjects/{subjectId}", data);
         
         }
@@ -343,7 +343,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddAdministratorsTeamAsync(string projectId, CreateTeamRequestDto data)
+                    public async Task AddAdministratorsTeamAsync(string projectId, AddAdministratorsTeamRequestDto data)
                         => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/admins/teams", data);
                 
                     public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
@@ -383,7 +383,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task AddAdministratorsTeamAsync(string projectId, CreateTeamRequestDto data)
+                public async Task AddAdministratorsTeamAsync(string projectId, AddAdministratorsTeamRequestDto data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/teams", data);
             
                 public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
@@ -413,7 +413,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddMemberAsync(string projectId, AddAdministratorRequestDto data)
+                    public async Task AddMemberAsync(string projectId, AddMemberRequestDto data)
                         => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/members/profiles", data);
                 
                     public async Task RemoveMemberAsync(string projectId, string profileId)
@@ -432,7 +432,7 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task AddTeamAsync(string projectId, CreateTeamRequestDto data)
+                    public async Task AddTeamAsync(string projectId, AddTeamRequestDto data)
                         => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/members/teams", data);
                 
                     public async Task RemoveTeamAsync(string projectId, string teamId)
@@ -444,7 +444,7 @@ namespace SpaceDotNet.Client
         
             public partial class ProfileClient
             {
-                public async Task AddMemberAsync(string projectId, AddAdministratorRequestDto data)
+                public async Task AddMemberAsync(string projectId, AddMemberRequestDto data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/profiles", data);
             
                 public async Task RemoveMemberAsync(string projectId, string profileId)
@@ -454,7 +454,7 @@ namespace SpaceDotNet.Client
         
             public partial class TeamClient
             {
-                public async Task AddTeamAsync(string projectId, CreateTeamRequestDto data)
+                public async Task AddTeamAsync(string projectId, AddTeamRequestDto data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/teams", data);
             
                 public async Task RemoveTeamAsync(string projectId, string teamId)
@@ -1038,7 +1038,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task AddAdministratorsTeamAsync(string projectId, CreateTeamRequestDto data)
+                public async Task AddAdministratorsTeamAsync(string projectId, AddAdministratorsTeamRequestDto data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/admins/teams", data);
             
                 public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
@@ -1070,7 +1070,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task AddMemberAsync(string projectId, AddAdministratorRequestDto data)
+                public async Task AddMemberAsync(string projectId, AddMemberRequestDto data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/members/profiles", data);
             
                 public async Task RemoveMemberAsync(string projectId, string profileId)
@@ -1089,7 +1089,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task AddTeamAsync(string projectId, CreateTeamRequestDto data)
+                public async Task AddTeamAsync(string projectId, AddTeamRequestDto data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/members/teams", data);
             
                 public async Task RemoveTeamAsync(string projectId, string teamId)
@@ -1140,8 +1140,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ChecklistDto> CreateChecklistAsync(string projectId, IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
-                    => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
+                public async Task<ChecklistDto> CreateChecklistAsync(string projectId, CreateChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CreateChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
             
                 public async Task<ChecklistDto> ImportChecklistAsync(string projectId, ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
                     => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
@@ -1510,8 +1510,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ChecklistDto> CreateChecklistAsync(string projectId, IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
-                => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/checklists?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
+            public async Task<ChecklistDto> CreateChecklistAsync(string projectId, CreateChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/checklists?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
         
             public async Task<ChecklistDto> ImportChecklistAsync(string projectId, ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
                 => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/checklists/import?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);

@@ -19,14 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.CreateChecklistRequestExtensions
 {
-    public class CreateProfileRequestDto
+    public static class CreateChecklistRequestDtoPartialExtensions
     {
-        [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
-    
+        public static Partial<CreateChecklistRequestDto> WithName(this Partial<CreateChecklistRequestDto> it)
+            => it.AddFieldName("name");
+        
     }
     
 }

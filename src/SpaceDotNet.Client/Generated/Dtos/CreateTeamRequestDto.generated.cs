@@ -24,20 +24,8 @@ namespace SpaceDotNet.Client
     public class CreateTeamRequestDto
     {
         [Required]
-        [JsonPropertyName("teamNameRaw")]
-        public string TeamNameRaw { get; set; }
-    
-        [JsonPropertyName("teamDescription")]
-        public string? TeamDescription { get; set; }
-    
-        [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails { get; set; }
-    
-        [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
-    
-        [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+        [JsonPropertyName("teamId")]
+        public string TeamId { get; set; }
     
     }
     

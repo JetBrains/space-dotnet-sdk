@@ -19,14 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.AddTeamRequestExtensions
 {
-    public class CreateProfileRequestDto
+    public static class AddTeamRequestDtoPartialExtensions
     {
-        [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
-    
+        public static Partial<AddTeamRequestDto> WithTeamId(this Partial<AddTeamRequestDto> it)
+            => it.AddFieldName("teamId");
+        
     }
     
 }

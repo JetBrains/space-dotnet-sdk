@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
             public IAsyncEnumerable<PublicHolidayCalendarRecordDto> GetAllCalendarsAsyncEnumerable(string? skip = null, int? top = null, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllCalendarsAsync(skip: batchSkip, top, partial: builder => Partial<Batch<PublicHolidayCalendarRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHolidayCalendarRecordDto>.Default())), skip);
         
-            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendarAsync(string id, CreateCalendarRequestDto data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partial = null)
-                => await _connection.RequestResourceAsync<CreateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", data);
+            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendarAsync(string id, UpdateCalendarRequestDto data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<UpdateCalendarRequestDto, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", data);
         
             public async Task DeleteCalendarAsync(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/public-holidays/calendars/{id}");

@@ -24,16 +24,8 @@ namespace SpaceDotNet.Client
     public class SendMessageRequestDto
     {
         [Required]
-        [JsonPropertyName("channel")]
-        public string Channel { get; set; }
-    
-        [Required]
         [JsonPropertyName("text")]
         public string Text { get; set; }
-    
-        [Required]
-        [JsonPropertyName("pending")]
-        public bool Pending { get; set; }
     
         [JsonPropertyName("temporaryId")]
         public string? TemporaryId { get; set; }

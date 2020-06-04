@@ -310,22 +310,18 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     }
                     else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.REQUEST_BODY)
                     {
-                        // Request body/anonymous type - check whether we generated it before?
-                        var anonymousClassFields = apiFieldTypeObject.Fields.Select(it => new ApiDtoField { Field = it }).ToList();
-        
-                        // TODO: make this check less expensive, serializing N times is probably not the best idea
-                        var anonymousClassSignature = JsonSerializer.Serialize(anonymousClassFields);
-                        var anonymousClass = _codeGenerationContext.IdToDtoMap.Values.FirstOrDefault(it => it.Name.EndsWith("Request") && anonymousClassSignature == JsonSerializer.Serialize(it.Fields));
-                        if (anonymousClass == null)
+                        // See if we have seen the anonymous class before (and if not, add it)
+                        var anonymousClassId = !string.IsNullOrEmpty(clientMethodName)
+                            ? clientMethodName + "Request" // TODO REFACTORING
+                            : throw new Exception("Request body class requires a _clientMethodName to be specified.");
+                        
+                        if (!_codeGenerationContext.IdToDtoMap.TryGetValue(anonymousClassId, out var anonymousClass))
                         {
-                            var anonymousClassId = !string.IsNullOrEmpty(clientMethodName)
-                                ? clientMethodName + "Request" // TODO REFACTORING
-                                : throw new Exception("Request body class requires a _clientMethodName to be specified.");
                             anonymousClass = new ApiDto
                             {
                                 Id = anonymousClassId.ToLowerInvariant(),
                                 Name = anonymousClassId,
-                                Fields = anonymousClassFields
+                                Fields = apiFieldTypeObject.Fields.Select(it => new ApiDtoField { Field = it }).ToList()
                             };
         
                             _codeGenerationContext.IdToDtoMap[anonymousClassId] = anonymousClass;

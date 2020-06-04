@@ -23,14 +23,8 @@ namespace SpaceDotNet.Client.SendMessageRequestExtensions
 {
     public static class SendMessageRequestDtoPartialExtensions
     {
-        public static Partial<SendMessageRequestDto> WithChannel(this Partial<SendMessageRequestDto> it)
-            => it.AddFieldName("channel");
-        
         public static Partial<SendMessageRequestDto> WithText(this Partial<SendMessageRequestDto> it)
             => it.AddFieldName("text");
-        
-        public static Partial<SendMessageRequestDto> WithPending(this Partial<SendMessageRequestDto> it)
-            => it.AddFieldName("pending");
         
         public static Partial<SendMessageRequestDto> WithTemporaryId(this Partial<SendMessageRequestDto> it)
             => it.AddFieldName("temporaryId");

@@ -19,14 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.EditResponsibilitySubjectRequestExtensions
 {
-    public class CreateProfileRequestDto
+    public static class EditResponsibilitySubjectRequestDtoPartialExtensions
     {
-        [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
-    
+        public static Partial<EditResponsibilitySubjectRequestDto> WithName(this Partial<EditResponsibilitySubjectRequestDto> it)
+            => it.AddFieldName("name");
+        
     }
     
 }

@@ -21,11 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CreateProfileRequestDto
+    public class CreatePermanentTokenRequestDto
     {
         [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    
+        [Required]
+        [JsonPropertyName("scope")]
+        public string Scope { get; set; }
     
     }
     

@@ -23,23 +23,8 @@ namespace SpaceDotNet.Client.CreateTeamRequestExtensions
 {
     public static class CreateTeamRequestDtoPartialExtensions
     {
-        public static Partial<CreateTeamRequestDto> WithTeamNameRaw(this Partial<CreateTeamRequestDto> it)
-            => it.AddFieldName("teamNameRaw");
-        
-        public static Partial<CreateTeamRequestDto> WithTeamDescription(this Partial<CreateTeamRequestDto> it)
-            => it.AddFieldName("teamDescription");
-        
-        public static Partial<CreateTeamRequestDto> WithTeamEmails(this Partial<CreateTeamRequestDto> it)
-            => it.AddFieldName("teamEmails");
-        
-        public static Partial<CreateTeamRequestDto> WithParentId(this Partial<CreateTeamRequestDto> it)
-            => it.AddFieldName("parentId");
-        
-        public static Partial<CreateTeamRequestDto> WithCustomFieldValues(this Partial<CreateTeamRequestDto> it)
-            => it.AddFieldName("customFieldValues");
-        
-        public static Partial<CreateTeamRequestDto> WithCustomFieldValues(this Partial<CreateTeamRequestDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
+        public static Partial<CreateTeamRequestDto> WithTeamId(this Partial<CreateTeamRequestDto> it)
+            => it.AddFieldName("teamId");
         
     }
     

@@ -29,6 +29,12 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description { get; set; }
     
+        [JsonPropertyName("owner")]
+        public string? Owner { get; set; }
+    
+        [JsonPropertyName("tag")]
+        public string? Tag { get; set; }
+    
     }
     
 }

@@ -21,11 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CreateProfileRequestDto
+    public class UpdateCalendarRequestDto
     {
         [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+    
+        [Required]
+        [JsonPropertyName("location")]
+        public string Location { get; set; }
     
     }
     

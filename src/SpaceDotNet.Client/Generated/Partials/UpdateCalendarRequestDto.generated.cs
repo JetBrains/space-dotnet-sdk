@@ -19,14 +19,16 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.UpdateCalendarRequestExtensions
 {
-    public class CreateProfileRequestDto
+    public static class UpdateCalendarRequestDtoPartialExtensions
     {
-        [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
-    
+        public static Partial<UpdateCalendarRequestDto> WithName(this Partial<UpdateCalendarRequestDto> it)
+            => it.AddFieldName("name");
+        
+        public static Partial<UpdateCalendarRequestDto> WithLocation(this Partial<UpdateCalendarRequestDto> it)
+            => it.AddFieldName("location");
+        
     }
     
 }

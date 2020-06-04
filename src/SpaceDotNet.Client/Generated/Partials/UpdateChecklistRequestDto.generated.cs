@@ -29,6 +29,12 @@ namespace SpaceDotNet.Client.UpdateChecklistRequestExtensions
         public static Partial<UpdateChecklistRequestDto> WithDescription(this Partial<UpdateChecklistRequestDto> it)
             => it.AddFieldName("description");
         
+        public static Partial<UpdateChecklistRequestDto> WithOwner(this Partial<UpdateChecklistRequestDto> it)
+            => it.AddFieldName("owner");
+        
+        public static Partial<UpdateChecklistRequestDto> WithTag(this Partial<UpdateChecklistRequestDto> it)
+            => it.AddFieldName("tag");
+        
     }
     
 }

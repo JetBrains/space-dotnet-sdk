@@ -24,8 +24,8 @@ namespace SpaceDotNet.Client
     public class ReorderRequestDto
     {
         [Required]
-        [JsonPropertyName("customFieldOrder")]
-        public List<string> CustomFieldOrder { get; set; }
+        [JsonPropertyName("order")]
+        public List<string> Order { get; set; }
     
     }
     

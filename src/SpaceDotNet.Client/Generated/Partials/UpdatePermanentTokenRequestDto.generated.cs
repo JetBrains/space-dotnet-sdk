@@ -19,14 +19,16 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.UpdatePermanentTokenRequestExtensions
 {
-    public class CreateProfileRequestDto
+    public static class UpdatePermanentTokenRequestDtoPartialExtensions
     {
-        [Required]
-        [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
-    
+        public static Partial<UpdatePermanentTokenRequestDto> WithName(this Partial<UpdatePermanentTokenRequestDto> it)
+            => it.AddFieldName("name");
+        
+        public static Partial<UpdatePermanentTokenRequestDto> WithScope(this Partial<UpdatePermanentTokenRequestDto> it)
+            => it.AddFieldName("scope");
+        
     }
     
 }
