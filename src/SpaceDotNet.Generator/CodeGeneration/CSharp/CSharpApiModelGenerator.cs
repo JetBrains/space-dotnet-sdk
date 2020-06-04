@@ -198,7 +198,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             return builder.ToString();
         }
 
-        public string GenerateDtoFieldDefinition(ApiField apiField)
+        private string GenerateDtoFieldDefinition(ApiField apiField)
         {
             var indent = new Indent();
             var builder = new StringBuilder();
@@ -220,8 +220,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             builder.AppendLine(" { get; set; }");
             return builder.ToString();
         }
-        
-        public string GenerateDtoFieldDefinitionType(ApiFieldType apiFieldType, string? clientMethodName = null)
+
+        private string GenerateDtoFieldDefinitionType(ApiFieldType apiFieldType, string? clientMethodName = null)
         {
             switch (apiFieldType)
             {
@@ -362,8 +362,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 new HashSet<string>(),
                 true);
         }
-        
-        public string GenerateResourceDefinition(
+
+        private string GenerateResourceDefinition(
             ApiResource apiResource,
             string baseEndpointPath,
             string resourceBreadcrumbPath,
@@ -435,8 +435,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}}}");
             return builder.ToString();
         }
-        
-        public string GenerateMethodsForApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
+
+        private string GenerateMethodsForApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var builder = new StringBuilder();
             builder.AppendLine(GenerateMethodForApiEndpoint(apiEndpoint, baseEndpointPath));
