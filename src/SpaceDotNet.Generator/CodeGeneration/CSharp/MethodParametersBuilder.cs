@@ -69,7 +69,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             return new MethodParametersBuilder(futureParameters);
         }
         
-        public MethodParametersBuilder WithDefaultValueForAllParameters(string? defaultValue = null)
+        public MethodParametersBuilder WithDefaultValueForAllParameters(string? defaultValue)
         {
             var futureParameters = new List<MethodParameter>();
             foreach (var futureParameter in _parameters)

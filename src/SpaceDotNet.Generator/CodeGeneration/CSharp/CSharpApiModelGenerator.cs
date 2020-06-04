@@ -358,7 +358,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             return GenerateResourceDefinition(
                 apiResource, 
                 apiResource.Path.Segments.ToPath(),
-                apiResource.DisplaySingular.ToSafeIdentifier(),
+                apiResource.DisplaySingular.ToSafeIdentifier()!,
                 new HashSet<string>(),
                 true);
         }
@@ -561,7 +561,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName));
                     builder.Append(", ");
                 }
-                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, clientMethodName));
+                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody!, clientMethodName));
                 builder.Append(">");
                 builder.Append("(\"" + apiCallMethod + "\", ");
                 builder.Append("$\"api/http/" + endpointPath);
@@ -616,7 +616,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.AppendLine(apiEndpoint.Deprecation.ToCSharpDeprecation());
             }
             
-            var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody).GetBatchDataType();
+            var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody!).GetBatchDataType()!;
             
             if (apiEndpoint.ResponseBody != null)
             {
