@@ -25,16 +25,8 @@ namespace SpaceDotNet.Client
          : CodeReviewRecordDto, IClassNameConvertible
     {
         [Required]
-        [JsonPropertyName("id")]
-        public string Id { get; set; }
-    
-        [Required]
         [JsonPropertyName("project")]
         public ProjectKeyDto Project { get; set; }
-    
-        [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
     
         [Required]
         [JsonPropertyName("number")]
@@ -61,10 +53,6 @@ namespace SpaceDotNet.Client
     
         [JsonPropertyName("turnBased")]
         public bool? TurnBased { get; set; }
-    
-        [Required]
-        [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto> Participants { get; set; }
     
         [JsonPropertyName("feedChannel")]
         public M2ChannelRecordDto? FeedChannel { get; set; }

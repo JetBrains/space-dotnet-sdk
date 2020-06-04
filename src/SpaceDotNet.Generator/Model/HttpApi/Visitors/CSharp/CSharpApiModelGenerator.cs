@@ -129,9 +129,11 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         : "class";
         
             var dtoHierarchy = new List<string>();
+            var dtoHierarchyFieldNames = new List<string>();
             if (apiDto.Extends != null && _codeGenerationContext.IdToDtoMap.TryGetValue(apiDto.Extends.Id, out var apiDtoExtends))
             {
                 dtoHierarchy.Add(apiDtoExtends.Name.ToSafeIdentifier() + "Dto");
+                dtoHierarchyFieldNames.AddRange(apiDtoExtends.Fields.Select(it => it.Field.Name));
             }
             if (apiDto.Implements != null)
             {
@@ -171,8 +173,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 foreach (var dtoReference in apiDto.Implements)
                 {
-                    if (_codeGenerationContext.IdToDtoMap.TryGetValue(dtoReference.Id, out var apiDtoImplements)
-                        /* TODO REFACTORING only generate for interfaces && apiDtoImplements.HierarchyRole == HierarchyRole.INTERFACE*/)
+                    if (_codeGenerationContext.IdToDtoMap.TryGetValue(dtoReference.Id, out var apiDtoImplements))
                     {
                         foreach (var apiDtoField in apiDtoImplements.Fields)
                         {
@@ -185,7 +186,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             // Add own fields
             foreach (var apiDtoField in apiDto.Fields)
             {
-                if (!_codeGenerationContext.PropertiesToSkip.Contains(apiDto.Name.ToSafeIdentifier() + "Dto." + apiDtoField.Field.Name.ToSafeIdentifier().ToUppercaseFirst()))
+                if (!_codeGenerationContext.PropertiesToSkip.Contains(apiDto.Name.ToSafeIdentifier() + "Dto." + apiDtoField.Field.Name.ToSafeIdentifier().ToUppercaseFirst())
+                    && !dtoHierarchyFieldNames.Contains(apiDtoField.Field.Name))
                 {
                     builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDtoField.Field)));
                 }
