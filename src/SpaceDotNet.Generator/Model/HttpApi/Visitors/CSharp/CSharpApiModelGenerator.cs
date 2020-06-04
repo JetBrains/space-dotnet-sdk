@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Text.Json;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration;
 using SpaceDotNet.Generator.CodeGeneration.CSharp;
@@ -12,6 +11,7 @@ using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 {
+    // TODO REFACTORING Split this into a couple classes (Dto/enum/api)
     public class CSharpApiModelGenerator
     {
         private readonly ApiModel _apiModel;
@@ -29,49 +29,49 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             foreach (var apiResource in _apiModel.Resources)
             {
                 var document = new CSharpDocument();
-                document.Write(
+                document.AppendLine(
                     GenerateResourceDefinition(apiResource));
                 
                 documentWriter.WriteDocument(
                     apiResource.DisplaySingular.ToSafeIdentifier() + "Client.generated.cs",
-                    document.Create());
+                    document.ToString());
             }
             
             // Enums
             foreach (var apiEnum in _apiModel.Enums)
             {
                 var document = new CSharpDocument();
-                document.Write(
+                document.AppendLine(
                     GenerateEnumDefinition(apiEnum));
                 
                 documentWriter.WriteDocument(
                     "Enums/" + apiEnum.Name.ToSafeIdentifier() + ".generated.cs",
-                    document.Create());
+                    document.ToString());
             }
             
             // Dtos
             foreach (var apiDto in _codeGenerationContext.IdToDtoMap.Values)
             {
                 var document = new CSharpDocument();
-                document.Write(
+                document.AppendLine(
                     GenerateDtoDefinition(apiDto));
                 
                 documentWriter.WriteDocument(
                     "Dtos/" + apiDto.Name.ToSafeIdentifier() + "Dto.generated.cs",
-                    document.Create());
+                    document.ToString());
             }
             
             // Partial extensions
             var partialExtensionsVisitor = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
             foreach (var apiDto in _codeGenerationContext.IdToDtoMap.Values)
             {
-                var document = new CSharpDocument();
-                document.Write(
+                var document = new CSharpDocument(apiDto.Name.ToSafeIdentifier() + "Extensions");
+                document.AppendLine(
                     partialExtensionsVisitor.GeneratePartialClassFor(apiDto));
                 
                 documentWriter.WriteDocument(
                     "Partials/" + apiDto.Name.ToSafeIdentifier() + "Dto.generated.cs",
-                    document.CreateWithNamespaceSuffix(apiDto.Name.ToSafeIdentifier() + "Extensions"));
+                    document.ToString());
             }
         }
 
