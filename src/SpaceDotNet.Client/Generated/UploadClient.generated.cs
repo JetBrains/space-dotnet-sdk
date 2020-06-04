@@ -44,7 +44,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMetaDto>, Partial<ImageAttachmentMetaDto>> partial = null)
+            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMetaDto>, Partial<ImageAttachmentMetaDto>>? partial = null)
                 => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields={(partial != null ? partial(new Partial<ImageAttachmentMetaDto>()) : Partial<ImageAttachmentMetaDto>.Default())}");
         
         }

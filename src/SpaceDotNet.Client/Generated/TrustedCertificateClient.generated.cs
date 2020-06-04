@@ -30,16 +30,16 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<TrustedCertificateDto> CreateTrustedCertificateAsync(CreateTrustedCertificateRequestDto data, Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>> partial = null)
-            => await _connection.RequestResourceAsync<CreateTrustedCertificateRequestDto, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default())}", data);
+        public async Task<TrustedCertificateDto> CreateTrustedCertificateAsync(CreateTrustedCertificateRequest data, Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>>? partial = null)
+            => await _connection.RequestResourceAsync<CreateTrustedCertificateRequest, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default())}", data);
     
-        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificatesAsync(Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>> partial = null)
+        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificatesAsync(Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>>? partial = null)
             => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default())}");
     
-        public async Task<CertificateInfoDto> InfoAsync(string data, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>> partial = null)
+        public async Task<CertificateInfoDto> InfoAsync(string data, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>>? partial = null)
             => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields={(partial != null ? partial(new Partial<CertificateInfoDto>()) : Partial<CertificateInfoDto>.Default())}");
     
-        public async Task UpdateTrustedCertificateAsync(string id, UpdateTrustedCertificateRequestDto data)
+        public async Task UpdateTrustedCertificateAsync(string id, UpdateTrustedCertificateRequest data)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/trusted-certificates/{id}", data);
     
         public async Task DeleteTrustedCertificateAsync(string id)

@@ -41,7 +41,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannelAsync(GerOrCreateDirectMessagesChannelRequest data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partial = null)
+            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannelAsync(GerOrCreateDirectMessagesChannelRequest data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<GerOrCreateDirectMessagesChannelRequest, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields={(partial != null ? partial(new Partial<M2ChannelRecordDto>()) : Partial<M2ChannelRecordDto>.Default())}", data);
         
             public async Task<bool> IsNameFreeAsync(IsNameFreeRequest data)
@@ -70,7 +70,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partial = null)
+                public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
                     => await _connection.RequestResourceAsync<SendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
             
             }
@@ -88,7 +88,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partial = null)
+            public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<SendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
         
         }
@@ -96,7 +96,7 @@ namespace SpaceDotNet.Client
         public partial class MessageClient
         {
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]
-            public async Task<ChannelItemRecordDto> SendMessageAsync(SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partial = null)
+            public async Task<ChannelItemRecordDto> SendMessageAsync(SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<SendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
         
         }

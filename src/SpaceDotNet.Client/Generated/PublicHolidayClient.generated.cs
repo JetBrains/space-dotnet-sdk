@@ -41,19 +41,19 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PublicHolidayCalendarRecordDto> CreateCalendarAsync(CreateCalendarRequest data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partial = null)
+            public async Task<PublicHolidayCalendarRecordDto> CreateCalendarAsync(CreateCalendarRequest data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<CreateCalendarRequest, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", data);
         
             public async Task<string> ImportAsync(ImportRequest data)
                 => await _connection.RequestResourceAsync<ImportRequest, string>("POST", $"api/http/public-holidays/calendars/import", data);
         
-            public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendarsAsync(string? skip = null, int? top = null, Func<Partial<Batch<PublicHolidayCalendarRecordDto>>, Partial<Batch<PublicHolidayCalendarRecordDto>>> partial = null)
+            public async Task<Batch<PublicHolidayCalendarRecordDto>> GetAllCalendarsAsync(string? skip = null, int? top = null, Func<Partial<Batch<PublicHolidayCalendarRecordDto>>, Partial<Batch<PublicHolidayCalendarRecordDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<PublicHolidayCalendarRecordDto>>("GET", $"api/http/public-holidays/calendars?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHolidayCalendarRecordDto>>()) : Partial<Batch<PublicHolidayCalendarRecordDto>>.Default())}");
             
-            public IAsyncEnumerable<PublicHolidayCalendarRecordDto> GetAllCalendarsAsyncEnumerable(string? skip = null, int? top = null, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partial = null)
+            public IAsyncEnumerable<PublicHolidayCalendarRecordDto> GetAllCalendarsAsyncEnumerable(string? skip = null, int? top = null, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllCalendarsAsync(skip: batchSkip, top, partial: builder => Partial<Batch<PublicHolidayCalendarRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHolidayCalendarRecordDto>.Default())), skip);
         
-            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendarAsync(string id, UpdateCalendarRequest data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partial = null)
+            public async Task<PublicHolidayCalendarRecordDto> UpdateCalendarAsync(string id, UpdateCalendarRequest data, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<UpdateCalendarRequest, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", data);
         
             public async Task DeleteCalendarAsync(string id)
@@ -72,16 +72,16 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PublicHolidayDto> CreateHolidayAsync(CreateHolidayRequest data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partial = null)
+            public async Task<PublicHolidayDto> CreateHolidayAsync(CreateHolidayRequest data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
                 => await _connection.RequestResourceAsync<CreateHolidayRequest, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}", data);
         
-            public async Task<Batch<PublicHolidayDto>> GetAllHolidaysAsync(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>> partial = null)
+            public async Task<Batch<PublicHolidayDto>> GetAllHolidaysAsync(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHolidayDto>>()) : Partial<Batch<PublicHolidayDto>>.Default())}");
             
-            public IAsyncEnumerable<PublicHolidayDto> GetAllHolidaysAsyncEnumerable(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partial = null)
+            public IAsyncEnumerable<PublicHolidayDto> GetAllHolidaysAsyncEnumerable(string? skip = null, int? top = null, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllHolidaysAsync(skip: batchSkip, top, calendar, location, startDate, endDate, partial: builder => Partial<Batch<PublicHolidayDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHolidayDto>.Default())), skip);
         
-            public async Task<PublicHolidayDto> UpdateHolidayAsync(string id, UpdateHolidayRequest data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partial = null)
+            public async Task<PublicHolidayDto> UpdateHolidayAsync(string id, UpdateHolidayRequest data, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
                 => await _connection.RequestResourceAsync<UpdateHolidayRequest, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}", data);
         
             public async Task DeleteHolidayAsync(string id)
@@ -101,7 +101,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get holidays observed in the location(s) of this profile during the selected period
                 /// </summary>
-                public async Task<List<PublicHolidayDto>> GetAllProfileHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string profile, bool? workingDays = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partial = null)
+                public async Task<List<PublicHolidayDto>> GetAllProfileHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string profile, bool? workingDays = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
                     => await _connection.RequestResourceAsync<List<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/profile-holidays?startDate={startDate.ToString()}&endDate={endDate.ToString()}&profile={profile.ToString()}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}");
             
             }
@@ -117,10 +117,10 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>> partial = null)
+                public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>>? partial = null)
                     => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHolidayDto>>()) : Partial<Batch<PublicHolidayDto>>.Default())}");
                 
-                public IAsyncEnumerable<PublicHolidayDto> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partial = null)
+                public IAsyncEnumerable<PublicHolidayDto> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
                     => BatchEnumerator.AllItems(batchSkip => GetAllRelatedHolidaysAsync(skip: batchSkip, top, startDate, endDate, partial: builder => Partial<Batch<PublicHolidayDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHolidayDto>.Default())), skip);
             
             }
@@ -141,7 +141,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get holidays observed in the location(s) of this profile during the selected period
             /// </summary>
-            public async Task<List<PublicHolidayDto>> GetAllProfileHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string profile, bool? workingDays = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partial = null)
+            public async Task<List<PublicHolidayDto>> GetAllProfileHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string profile, bool? workingDays = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<PublicHolidayDto>>("GET", $"api/http/public-holidays/profile-holidays?startDate={startDate.ToString()}&endDate={endDate.ToString()}&profile={profile.ToString()}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}");
         
         }
@@ -157,10 +157,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>> partial = null)
+            public async Task<Batch<PublicHolidayDto>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHolidayDto>>, Partial<Batch<PublicHolidayDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<PublicHolidayDto>>("GET", $"api/http/public-holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHolidayDto>>()) : Partial<Batch<PublicHolidayDto>>.Default())}");
             
-            public IAsyncEnumerable<PublicHolidayDto> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partial = null)
+            public IAsyncEnumerable<PublicHolidayDto> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllRelatedHolidaysAsync(skip: batchSkip, top, startDate, endDate, partial: builder => Partial<Batch<PublicHolidayDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHolidayDto>.Default())), skip);
         
         }

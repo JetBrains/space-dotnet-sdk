@@ -41,7 +41,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<SupportProfileDTODto> CreateSupportAsync(Func<Partial<SupportProfileDTODto>, Partial<SupportProfileDTODto>> partial = null)
+            public async Task<SupportProfileDTODto> CreateSupportAsync(Func<Partial<SupportProfileDTODto>, Partial<SupportProfileDTODto>>? partial = null)
                 => await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields={(partial != null ? partial(new Partial<SupportProfileDTODto>()) : Partial<SupportProfileDTODto>.Default())}");
         
         }

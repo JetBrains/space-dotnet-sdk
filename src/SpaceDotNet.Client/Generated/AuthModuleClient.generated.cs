@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ESAuthModuleDto> CreateAuthModuleAsync(CreateAuthModuleRequest data, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partial = null)
+        public async Task<ESAuthModuleDto> CreateAuthModuleAsync(CreateAuthModuleRequest data, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
             => await _connection.RequestResourceAsync<CreateAuthModuleRequest, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}", data);
     
         /// <summary>
@@ -39,13 +39,13 @@ namespace SpaceDotNet.Client
         public async Task ReorderAsync(ReorderRequest data)
             => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", data);
     
-        public async Task<SamlMetadataResponseDto> SamlMetadataAsync(string id, SamlMetadataRequest data, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>> partial = null)
+        public async Task<SamlMetadataResponseDto> SamlMetadataAsync(string id, SamlMetadataRequest data, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>>? partial = null)
             => await _connection.RequestResourceAsync<SamlMetadataRequest, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields={(partial != null ? partial(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default())}", data);
     
-        public async Task<List<ESAuthModuleDto>> GetAllAuthModulesAsync(bool withDisabled, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partial = null)
+        public async Task<List<ESAuthModuleDto>> GetAllAuthModulesAsync(bool withDisabled, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
             => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}");
     
-        public async Task<ESAuthModuleDto> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partial = null)
+        public async Task<ESAuthModuleDto> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
             => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}");
     
         public async Task UpdateAuthModuleAsync(string id, UpdateAuthModuleRequest data)
@@ -65,10 +65,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMemberProfileDto> TestBuiltInSettingsAsync(TestBuiltInSettingsRequest data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+            public async Task<TDMemberProfileDto> TestBuiltInSettingsAsync(TestBuiltInSettingsRequest data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TestBuiltInSettingsRequest, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", data);
         
-            public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettingsAsync(TestLDAPSettingsRequest data, Func<Partial<ESDefaultProfileLoginDetailsDto>, Partial<ESDefaultProfileLoginDetailsDto>> partial = null)
+            public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettingsAsync(TestLDAPSettingsRequest data, Func<Partial<ESDefaultProfileLoginDetailsDto>, Partial<ESDefaultProfileLoginDetailsDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TestLDAPSettingsRequest, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetailsDto>()) : Partial<ESDefaultProfileLoginDetailsDto>.Default())}", data);
         
         }
@@ -84,7 +84,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<AuthModuleUsageDto>> GetAllUsagesAsync(Func<Partial<AuthModuleUsageDto>, Partial<AuthModuleUsageDto>> partial = null)
+            public async Task<List<AuthModuleUsageDto>> GetAllUsagesAsync(Func<Partial<AuthModuleUsageDto>, Partial<AuthModuleUsageDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields={(partial != null ? partial(new Partial<AuthModuleUsageDto>()) : Partial<AuthModuleUsageDto>.Default())}");
         
         }

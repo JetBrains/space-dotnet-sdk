@@ -41,13 +41,13 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DRDraftDto> CreateDraftAsync(CreateDraftRequest data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>> partial = null)
+            public async Task<DRDraftDto> CreateDraftAsync(CreateDraftRequest data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
                 => await _connection.RequestResourceAsync<CreateDraftRequest, DRDraftDto>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", data);
         
-            public async Task<DRDraftDto> GetDraftAsync(string id, Func<Partial<DRDraftDto>, Partial<DRDraftDto>> partial = null)
+            public async Task<DRDraftDto> GetDraftAsync(string id, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
                 => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}");
         
-            public async Task<DRDraftDto> UpdateDraftAsync(string id, UpdateDraftRequest data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>> partial = null)
+            public async Task<DRDraftDto> UpdateDraftAsync(string id, UpdateDraftRequest data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
                 => await _connection.RequestResourceAsync<UpdateDraftRequest, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", data);
         
             public async Task DeleteDraftAsync(string id)
@@ -78,7 +78,7 @@ namespace SpaceDotNet.Client
                     public async Task CreateProfileAsync(string id, CreateProfileRequest data)
                         => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);
                 
-                    public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                    public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                         => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
                 
                     public async Task DeleteProfileAsync(string id, string editorId)
@@ -100,7 +100,7 @@ namespace SpaceDotNet.Client
                     public async Task CreateTeamAsync(string id, CreateTeamRequest data)
                         => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/teams", data);
                 
-                    public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partial = null)
+                    public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>>? partial = null)
                         => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields={(partial != null ? partial(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default())}");
                 
                     public async Task DeleteTeamAsync(string id, string teamId)
@@ -124,7 +124,7 @@ namespace SpaceDotNet.Client
                 public async Task CreateProfileAsync(string id, CreateProfileRequest data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/profiles", data);
             
-                public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                     => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
             
                 public async Task DeleteProfileAsync(string id, string editorId)
@@ -146,7 +146,7 @@ namespace SpaceDotNet.Client
                 public async Task CreateTeamAsync(string id, CreateTeamRequest data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/teams", data);
             
-                public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partial = null)
+                public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>>? partial = null)
                     => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/teams?$fields={(partial != null ? partial(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default())}");
             
                 public async Task DeleteTeamAsync(string id, string teamId)
@@ -181,7 +181,7 @@ namespace SpaceDotNet.Client
                 public async Task CreateProfileAsync(string id, CreateProfileRequest data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/docs/{id}/editors/profiles", data);
             
-                public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                     => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/{id}/editors/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
             
                 public async Task DeleteProfileAsync(string id, string editorId)
@@ -203,7 +203,7 @@ namespace SpaceDotNet.Client
                 public async Task CreateTeamAsync(string id, CreateTeamRequest data)
                     => await _connection.RequestResourceAsync("POST", $"api/http/docs/{id}/editors/teams", data);
             
-                public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partial = null)
+                public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>>? partial = null)
                     => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/{id}/editors/teams?$fields={(partial != null ? partial(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default())}");
             
                 public async Task DeleteTeamAsync(string id, string teamId)

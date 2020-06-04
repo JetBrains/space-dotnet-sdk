@@ -1,8 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
@@ -221,7 +219,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
             
             builder.Append($"{indent}public ");
-            builder.Append(GenerateDtoFieldDefinitionType(apiField.Type));
+            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
             if (apiField.Type.Nullable)
             {
                 builder.Append("?");
@@ -231,123 +229,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             return builder.ToString();
         }
 
-        private string GenerateDtoFieldDefinitionType(ApiFieldType apiFieldType, string? clientMethodName = null)
-        {
-            switch (apiFieldType)
-            {
-                case ApiFieldType.Array apiFieldTypeArray:
-                {
-                    var sb = new StringBuilder();
-                    sb.Append("List<");
-                    sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeArray.ElementType));
-                    sb.Append(">");
-                    return sb.ToString();
-                }
-
-                case ApiFieldType.Dto apiFieldTypeDto:
-                    if (apiFieldTypeDto.DtoRef?.Id != null && _codeGenerationContext.IdToDtoMap.TryGetValue(apiFieldTypeDto.DtoRef.Id, out var apiDto))
-                    {
-                        return apiDto.ToCSharpClassName();
-                    }
-                    else
-                    {
-                        return "object";
-                    }
-                
-                case ApiFieldType.Enum apiFieldTypeEnum:
-                    if (apiFieldTypeEnum.EnumRef?.Id != null && _codeGenerationContext.IdToEnumMap.TryGetValue(apiFieldTypeEnum.EnumRef.Id, out var apiEnum))
-                    {
-                        return apiEnum.ToCSharpClassName();
-                    }
-                    else
-                    {
-                        return "string";
-                    }
-                
-                case ApiFieldType.Object apiFieldTypeObject:
-                    if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.PAIR)
-                    {
-                        // Known anonymous type
-                        var sb = new StringBuilder();
-                        sb.Append("Pair<");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[0].Type));
-                        sb.Append(", ");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[1].Type));
-                        sb.Append(">");
-                        return sb.ToString();
-                    }
-                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.TRIPLE)
-                    {
-                        // Known anonymous type
-                        var sb = new StringBuilder();
-                        sb.Append("Triple<");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[0].Type));
-                        sb.Append(", ");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[1].Type));
-                        sb.Append(", ");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[2].Type));
-                        sb.Append(">");
-                        return sb.ToString();
-                    }
-                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MAP_ENTRY)
-                    {
-                        // Known anonymous type
-                        var sb = new StringBuilder();
-                        sb.Append("MapEntry<");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[0].Type));
-                        sb.Append(", ");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[1].Type));
-                        sb.Append(">");
-                        return sb.ToString();
-                    }
-                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.BATCH)
-                    {
-                        // Known anonymous type
-                        var sb = new StringBuilder();
-                        sb.Append("Batch<");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.GetBatchDataType()!.ElementType));
-                        sb.Append(">");
-                        return sb.ToString();
-                    }  
-                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MOD)
-                    {
-                        // Known anonymous type
-                        var sb = new StringBuilder();
-                        sb.Append("Modification<");
-                        sb.Append(GenerateDtoFieldDefinitionType(apiFieldTypeObject.Fields[0].Type));
-                        sb.Append(">");
-                        return sb.ToString();
-                    }
-                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.REQUEST_BODY)
-                    {
-                        // Request body/anonymous type?
-                        throw new ResourceException($"The method {nameof(GenerateDtoFieldDefinitionType)}() should not be called with object kind: " + apiFieldTypeObject.Kind 
-                            + $". Ensure {nameof(CSharpApiEndpointDtoEnricher)} has run, and then invoke apiEndpoint.{nameof(ApiEndpointExtensions.ToCSharpRequestBodyClassName)}() to retrieve the proper type name.");
-                    }
-                    else
-                    {
-                        // Unknown object kind
-                        throw new ResourceException("Could not generate type for object kind: " + apiFieldTypeObject.Kind);
-                    }
-                
-                case ApiFieldType.Primitive apiFieldTypePrimitive:
-                    return apiFieldTypePrimitive.ToCSharpPrimitiveType()!;
-        
-                case ApiFieldType.Ref apiFieldTypeReference:
-                    if (apiFieldTypeReference.DtoRef?.Id != null && _codeGenerationContext.IdToDtoMap.TryGetValue(apiFieldTypeReference.DtoRef.Id, out var apiReferenceDto))
-                    {
-                        return apiReferenceDto.ToCSharpClassName();
-                    }
-                    else
-                    {
-                        return "object";
-                    }
-
-                default:
-                    return "object";
-            }
-        }
-        
         public string GenerateResourceDefinition(ApiResource apiResource) =>
             GenerateResourceDefinition(
                 apiResource, 
@@ -480,13 +361,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
 
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, methodNameForEndpoint));
+                    .WithParametersForEndpoint(apiEndpoint, x => x.ToCSharpType(_codeGenerationContext));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
+                            apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext),
                             "data");
                 }
 
@@ -503,7 +384,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), methodNameForEndpoint) + ">";
+                    var partialType = "Partial<" + apiEndpoint.ResponseBody.GetArrayElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
                     
                     requestParametersBuilder = requestParametersBuilder
                         .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
@@ -522,25 +403,25 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             else if (apiEndpoint.ResponseBody != null)
             {
                 builder.Append($"{indent}public async Task<");
-                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, methodNameForEndpoint));
+                builder.Append(apiEndpoint.ResponseBody.ToCSharpType(_codeGenerationContext));
                 builder.Append(">");
                 builder.Append($" {methodNameForEndpoint}Async(");
                 
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, methodNameForEndpoint));
+                    .WithParametersForEndpoint(apiEndpoint, x => x.ToCSharpType(_codeGenerationContext));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
+                            apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext),
                             "data");
                 }
         
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), methodNameForEndpoint) + ">";
-                    var funcType = $"Func<{partialType}, {partialType}>";
+                    var partialType = "Partial<" + apiEndpoint.ResponseBody.GetArrayElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
+                    var funcType = $"Func<{partialType}, {partialType}>?";
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
                             funcType,
@@ -555,10 +436,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.Append($"{indent}=> await _connection.RequestResourceAsync<");
                 if (apiEndpoint.RequestBody != null)
                 {
-                    builder.Append(apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint));
+                    builder.Append(apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext));
                     builder.Append(", ");
                 }
-                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody!, methodNameForEndpoint));
+                builder.Append(apiEndpoint.ResponseBody!.ToCSharpType(_codeGenerationContext));
                 builder.Append(">");
                 builder.Append("(\"" + apiCallMethod + "\", ");
                 builder.Append("$\"api/http/" + endpointPath);
@@ -568,7 +449,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), methodNameForEndpoint) + ">";
+                    var partialType = "Partial<" + apiEndpoint.ResponseBody.GetArrayElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
                     
                     requestParametersBuilder = requestParametersBuilder
                         .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
@@ -618,23 +499,23 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             if (apiEndpoint.ResponseBody != null)
             {
                 builder.Append($"{indent}public IAsyncEnumerable<");
-                builder.Append(GenerateDtoFieldDefinitionType(batchDataType.ElementType, methodNameForEndpoint));
+                builder.Append(batchDataType.ElementType.ToCSharpType(_codeGenerationContext));
                 builder.Append(">");
                 builder.Append($" {methodNameForEndpoint}AsyncEnumerable(");
             
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, methodNameForEndpoint));
+                    .WithParametersForEndpoint(apiEndpoint, x => x.ToCSharpType(_codeGenerationContext));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
+                            apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext),
                             "data");
                 }
         
-                var partialType = "Partial<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), methodNameForEndpoint) + ">";
-                var funcType = $"Func<{partialType}, {partialType}>";
+                var partialType = "Partial<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";
+                var funcType = $"Func<{partialType}, {partialType}>?";
                 methodParametersBuilder = methodParametersBuilder
                     .WithParameter(
                         funcType,
@@ -649,7 +530,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 builder.Append($"{methodNameForEndpoint}Async(");
 
-                var partialTypeForBatch = "Partial<Batch<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), methodNameForEndpoint) + ">>";
+                var partialTypeForBatch = "Partial<Batch<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">>";
                 builder.Append(
                     methodParametersBuilder
                         .WithDefaultValueForAllParameters(null)
