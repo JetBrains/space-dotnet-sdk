@@ -424,7 +424,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         indent.Wrap(
                             GenerateResourceDefinition(
                                 apiNestedResource, 
-                                (baseEndpointPath.Length > 0 ? baseEndpointPath + "/" : baseEndpointPath) + apiResource.Path.Segments.ToPath(),
+                                (baseEndpointPath.Length > 0 ? baseEndpointPath + "/" : baseEndpointPath) + apiNestedResource.Path.Segments.ToPath(),
                                 nestedResourceBreadcrumbPath,
                                 isFirstResource && isFirstWrite)));
         
