@@ -44,6 +44,9 @@ namespace SpaceDotNet.Client.MergeRequestRecordExtensions
         public static Partial<MergeRequestRecordDto> WithState(this Partial<MergeRequestRecordDto> it)
             => it.AddFieldName("state");
         
+        public static Partial<MergeRequestRecordDto> WithState(this Partial<MergeRequestRecordDto> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>()));
+        
         public static Partial<MergeRequestRecordDto> WithCanBeReopened(this Partial<MergeRequestRecordDto> it)
             => it.AddFieldName("canBeReopened");
         

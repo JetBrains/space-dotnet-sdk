@@ -21,32 +21,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PermissionComparisonEntryDTODto
+    public sealed class PermissionComparisonEntryDTODto
     {
         [Required]
         [JsonPropertyName("principalIndex")]
-        public int PrincipalIndex { get; set; }        
-        
+        public int PrincipalIndex { get; set; }
+    
         [Required]
         [JsonPropertyName("rightIndex")]
-        public int RightIndex { get; set; }        
-        
+        public int RightIndex { get; set; }
+    
         [Required]
         [JsonPropertyName("allTargets1")]
-        public bool AllTargets1 { get; set; }        
-        
+        public bool AllTargets1 { get; set; }
+    
         [Required]
         [JsonPropertyName("targetIndices1")]
-        public List<int> TargetIndices1 { get; set; }        
-        
+        public List<int> TargetIndices1 { get; set; }
+    
         [Required]
         [JsonPropertyName("allTargets2")]
-        public bool AllTargets2 { get; set; }        
-        
+        public bool AllTargets2 { get; set; }
+    
         [Required]
         [JsonPropertyName("targetIndices2")]
-        public List<int> TargetIndices2 { get; set; }        
-        
+        public List<int> TargetIndices2 { get; set; }
+    
     }
     
 }

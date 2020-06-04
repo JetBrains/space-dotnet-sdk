@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlDetailsMCDto
+    public sealed class UnfurlDetailsMCDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,11 +29,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("message")]
-        public MCMessageDto Message { get; set; }        
-        
+        public MCMessageDto Message { get; set; }
+    
         [JsonPropertyName("inlineUnfurls")]
-        public List<AttachmentInfoDto>? InlineUnfurls { get; set; }        
-        
+        public List<AttachmentInfoDto>? InlineUnfurls { get; set; }
+    
     }
     
 }

@@ -25,15 +25,15 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("targetParentId")]
-        public string TargetParentId { get; set; }        
-        
+        public string TargetParentId { get; set; }
+    
         [JsonPropertyName("afterItemId")]
-        public string? AfterItemId { get; set; }        
-        
+        public string? AfterItemId { get; set; }
+    
         [Required]
         [JsonPropertyName("tabIndentedLines")]
-        public string TabIndentedLines { get; set; }        
-        
+        public string TabIndentedLines { get; set; }
+    
     }
     
 }

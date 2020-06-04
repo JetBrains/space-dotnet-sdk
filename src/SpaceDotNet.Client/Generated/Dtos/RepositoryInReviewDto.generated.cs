@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RepositoryInReviewDto
+    public sealed class RepositoryInReviewDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("deleted")]
-        public bool Deleted { get; set; }        
-        
+        public bool Deleted { get; set; }
+    
     }
     
 }

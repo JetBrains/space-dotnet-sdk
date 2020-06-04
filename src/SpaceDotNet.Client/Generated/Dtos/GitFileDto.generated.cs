@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitFileDto
+    public sealed class GitFileDto
     {
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get; set; }        
-        
+        public string Commit { get; set; }
+    
         [Required]
         [JsonPropertyName("path")]
-        public string Path { get; set; }        
-        
+        public string Path { get; set; }
+    
         [Required]
         [JsonPropertyName("blob")]
-        public string Blob { get; set; }        
-        
+        public string Blob { get; set; }
+    
         [Required]
         [JsonPropertyName("type")]
-        public GitEntryType Type { get; set; }        
-        
+        public GitEntryType Type { get; set; }
+    
     }
     
 }

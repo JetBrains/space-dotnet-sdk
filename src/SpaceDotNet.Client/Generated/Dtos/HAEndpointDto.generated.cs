@@ -21,40 +21,40 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAEndpointDto
+    public sealed class HAEndpointDto
     {
         [Required]
         [JsonPropertyName("resource")]
-        public HAResourceDto Resource { get; set; }        
-        
+        public HAResourceDto Resource { get; set; }
+    
         [Required]
         [JsonPropertyName("method")]
-        public HAMethod Method { get; set; }        
-        
+        public HAMethod Method { get; set; }
+    
         [Required]
         [JsonPropertyName("parameters")]
-        public List<HAParameterDto> Parameters { get; set; }        
-        
+        public List<HAParameterDto> Parameters { get; set; }
+    
         [JsonPropertyName("requestBody")]
-        public HATypeObjectDto? RequestBody { get; set; }        
-        
+        public HATypeObjectDto? RequestBody { get; set; }
+    
         [JsonPropertyName("responseBody")]
-        public HATypeDto? ResponseBody { get; set; }        
-        
+        public HATypeDto? ResponseBody { get; set; }
+    
         [Required]
         [JsonPropertyName("path")]
-        public HAPathDto Path { get; set; }        
-        
+        public HAPathDto Path { get; set; }
+    
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }        
-        
+        public string DisplayName { get; set; }
+    
         [JsonPropertyName("doc")]
-        public string? Doc { get; set; }        
-        
+        public string? Doc { get; set; }
+    
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }        
-        
+        public HADeprecationDto? Deprecation { get; set; }
+    
     }
     
 }

@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueDueDateChangedDetailsDto
+    public sealed class IssueDueDateChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("oldDueDate")]
-        public SpaceDate? OldDueDate { get; set; }        
-        
+        public SpaceDate? OldDueDate { get; set; }
+    
         [JsonPropertyName("newDueDate")]
-        public SpaceDate? NewDueDate { get; set; }        
-        
+        public SpaceDate? NewDueDate { get; set; }
+    
     }
     
 }

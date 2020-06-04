@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCIconDto
+    public sealed class MCIconDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }        
-        
+        public string Style { get; set; }
+    
     }
     
 }

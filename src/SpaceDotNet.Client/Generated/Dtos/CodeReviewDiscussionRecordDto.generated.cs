@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeReviewDiscussionRecordDto
+    public sealed class CodeReviewDiscussionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get; set; }        
-        
+        public CodeReviewRecordDto Review { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }        
-        
+        public SpaceTime Created { get; set; }
+    
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }        
-        
+        public M2ChannelRecordDto Channel { get; set; }
+    
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }        
-        
+        public bool Resolved { get; set; }
+    
     }
     
 }

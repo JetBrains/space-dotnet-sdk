@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESRefreshTokenDto
+    public sealed class ESRefreshTokenDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }        
-        
+        public string Scope { get; set; }
+    
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }        
-        
+        public AccessRecordDto? LastAccess { get; set; }
+    
     }
     
 }

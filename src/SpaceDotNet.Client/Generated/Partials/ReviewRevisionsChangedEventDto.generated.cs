@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.ReviewRevisionsChangedEventExtensions
         public static Partial<ReviewRevisionsChangedEventDto> WithChangeType(this Partial<ReviewRevisionsChangedEventDto> it)
             => it.AddFieldName("changeType");
         
+        public static Partial<ReviewRevisionsChangedEventDto> WithChangeType(this Partial<ReviewRevisionsChangedEventDto> it, Func<Partial<ReviewRevisionsChangedType>, Partial<ReviewRevisionsChangedType>> partialBuilder)
+            => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewRevisionsChangedType>()));
+        
         public static Partial<ReviewRevisionsChangedEventDto> WithProjectKey(this Partial<ReviewRevisionsChangedEventDto> it)
             => it.AddFieldName("projectKey");
         

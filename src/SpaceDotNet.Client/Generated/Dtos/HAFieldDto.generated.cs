@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAFieldDto
+    public sealed class HAFieldDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("type")]
-        public HATypeDto Type { get; set; }        
-        
+        public HATypeDto Type { get; set; }
+    
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }        
-        
+        public HADeprecationDto? Deprecation { get; set; }
+    
     }
     
 }

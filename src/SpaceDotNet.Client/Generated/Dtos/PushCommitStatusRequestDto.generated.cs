@@ -24,37 +24,37 @@ namespace SpaceDotNet.Client
     public class PushCommitStatusRequestDto
     {
         [JsonPropertyName("branch")]
-        public string? Branch { get; set; }        
-        
+        public string? Branch { get; set; }
+    
         [JsonPropertyName("changes")]
-        public List<string>? Changes { get; set; }        
-        
+        public List<string>? Changes { get; set; }
+    
         [Required]
         [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus { get; set; }        
-        
+        public ExecutionStatus ExecutionStatus { get; set; }
+    
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get; set; }        
-        
+        public string Url { get; set; }
+    
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }        
-        
+        public string ExternalServiceName { get; set; }
+    
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }        
-        
+        public string TaskName { get; set; }
+    
         [Required]
         [JsonPropertyName("taskId")]
-        public string TaskId { get; set; }        
-        
+        public string TaskId { get; set; }
+    
         [JsonPropertyName("timestamp")]
-        public long? Timestamp { get; set; }        
-        
+        public long? Timestamp { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
     }
     
 }

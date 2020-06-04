@@ -24,11 +24,11 @@ namespace SpaceDotNet.Client
     public class UpdateApplicationPasswordRequestDto
     {
         [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
+        public string? Name { get; set; }
+    
         [JsonPropertyName("scope")]
-        public string? Scope { get; set; }        
-        
+        public string? Scope { get; set; }
+    
     }
     
 }

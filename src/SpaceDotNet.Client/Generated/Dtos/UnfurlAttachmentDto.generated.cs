@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlAttachmentDto
+    public sealed class UnfurlAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,11 +29,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("unfurl")]
-        public UnfurlDto Unfurl { get; set; }        
-        
+        public UnfurlDto Unfurl { get; set; }
+    
         [JsonPropertyName("id")]
-        public string? Id { get; set; }        
-        
+        public string? Id { get; set; }
+    
     }
     
 }

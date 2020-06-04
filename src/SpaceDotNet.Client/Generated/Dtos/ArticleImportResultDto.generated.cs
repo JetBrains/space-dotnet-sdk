@@ -21,17 +21,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticleImportResultDto
+    public sealed class ArticleImportResultDto
     {
         [JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; }        
-        
+        public string? ExternalId { get; set; }
+    
         [JsonPropertyName("article")]
-        public ArticleRecordDto? Article { get; set; }        
-        
+        public ArticleRecordDto? Article { get; set; }
+    
         [JsonPropertyName("error")]
-        public string? Error { get; set; }        
-        
+        public string? Error { get; set; }
+    
     }
     
 }

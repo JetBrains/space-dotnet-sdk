@@ -30,35 +30,35 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("counter")]
-        public CounterDto Counter { get; set; }        
-        
+        public CounterDto Counter { get; set; }
+    
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }        
-        
+        public string ProjectId { get; set; }
+    
         [Required]
         [JsonPropertyName("authors")]
-        public List<CodeReviewParticipantRecordDto> Authors { get; set; }        
-        
+        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
+    
         [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto>? Participants { get; set; }        
-        
+        public List<CodeReviewParticipantDto>? Participants { get; set; }
+    
         [Required]
         [JsonPropertyName("reviewers")]
-        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }        
-        
+        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
+    
         [Required]
         [JsonPropertyName("watchers")]
-        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }        
-        
+        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
+    
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }        
-        
+        public int Count { get; set; }
+    
     }
     
 }

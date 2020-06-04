@@ -21,59 +21,59 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDLocationDto
+    public sealed class TDLocationDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffsetDto? Timezone { get; set; }        
-        
+        public ATimeZoneWithOffsetDto? Timezone { get; set; }
+    
         [JsonPropertyName("tz")]
-        public string? Tz { get; set; }        
-        
+        public string? Tz { get; set; }
+    
         [JsonPropertyName("workdays")]
-        public List<int>? Workdays { get; set; }        
-        
+        public List<int>? Workdays { get; set; }
+    
         [Required]
         [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }        
-        
+        public List<string> Phones { get; set; }
+    
         [Required]
         [JsonPropertyName("emails")]
-        public List<string> Emails { get; set; }        
-        
+        public List<string> Emails { get; set; }
+    
         [JsonPropertyName("equipment")]
-        public List<string>? Equipment { get; set; }        
-        
+        public List<string>? Equipment { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [JsonPropertyName("address")]
-        public string? Address { get; set; }        
-        
+        public string? Address { get; set; }
+    
         [JsonPropertyName("parent")]
-        public TDLocationDto? Parent { get; set; }        
-        
+        public TDLocationDto? Parent { get; set; }
+    
         [Required]
         [JsonPropertyName("type")]
-        public string Type { get; set; }        
-        
+        public string Type { get; set; }
+    
         [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }        
-        
+        public string? MapId { get; set; }
+    
         [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }        
-        
+        public string? ChannelId { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
     }
     
 }

@@ -21,22 +21,22 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeLineDto
+    public sealed class CodeLineDto
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [JsonPropertyName("index")]
-        public int? Index { get; set; }        
-        
+        public int? Index { get; set; }
+    
         [Required]
         [JsonPropertyName("offset")]
-        public int Offset { get; set; }        
-        
+        public int Offset { get; set; }
+    
         [JsonPropertyName("syntax")]
-        public List<SyntaxMarkupDto>? Syntax { get; set; }        
-        
+        public List<SyntaxMarkupDto>? Syntax { get; set; }
+    
     }
     
 }

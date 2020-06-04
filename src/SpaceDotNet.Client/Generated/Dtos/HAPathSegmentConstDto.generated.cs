@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAPathSegmentConstDto
+    public sealed class HAPathSegmentConstDto
          : HAPathSegmentDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }        
-        
+        public string Value { get; set; }
+    
     }
     
 }

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MergeRequestMergedEventDto
+    public sealed class MergeRequestMergedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,16 +29,16 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }        
-        
+        public string SourceBranch { get; set; }
+    
         [Required]
         [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }        
-        
+        public string TargetBranch { get; set; }
+    
     }
     
 }

@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitCommitterProfileDto
+    public sealed class GitCommitterProfileDto
     {
         [Required]
         [JsonPropertyName("author")]
-        public string Author { get; set; }        
-        
+        public string Author { get; set; }
+    
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }        
-        
+        public string Email { get; set; }
+    
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }        
-        
+        public TDMemberProfileDto? Profile { get; set; }
+    
     }
     
 }

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCImageDto
+    public sealed class MCImageDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("src")]
-        public string Src { get; set; }        
-        
+        public string Src { get; set; }
+    
     }
     
 }

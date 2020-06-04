@@ -25,20 +25,20 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }        
-        
+        public string Key { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }        
-        
+        public bool Enabled { get; set; }
+    
         [Required]
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto Settings { get; set; }        
-        
+        public ESAuthModuleSettingsDto Settings { get; set; }
+    
     }
     
 }

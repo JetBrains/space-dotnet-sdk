@@ -21,32 +21,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitGraphLayoutEdgeDto
+    public sealed class GitGraphLayoutEdgeDto
     {
         [Required]
         [JsonPropertyName("from")]
-        public int From { get; set; }        
-        
+        public int From { get; set; }
+    
         [Required]
         [JsonPropertyName("to")]
-        public int To { get; set; }        
-        
+        public int To { get; set; }
+    
         [Required]
         [JsonPropertyName("type")]
-        public GitGraphEdgeType Type { get; set; }        
-        
+        public GitGraphEdgeType Type { get; set; }
+    
         [Required]
         [JsonPropertyName("style")]
-        public GitGraphEdgeLineStyle Style { get; set; }        
-        
+        public GitGraphEdgeLineStyle Style { get; set; }
+    
         [Required]
         [JsonPropertyName("hasArrow")]
-        public bool HasArrow { get; set; }        
-        
+        public bool HasArrow { get; set; }
+    
         [Required]
         [JsonPropertyName("color")]
-        public int Color { get; set; }        
-        
+        public int Color { get; set; }
+    
     }
     
 }

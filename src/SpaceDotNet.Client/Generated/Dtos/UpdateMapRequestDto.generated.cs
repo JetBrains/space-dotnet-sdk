@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("mapPictureId")]
-        public string MapPictureId { get; set; }        
-        
+        public string MapPictureId { get; set; }
+    
     }
     
 }

@@ -25,15 +25,15 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("subjectId")]
-        public string SubjectId { get; set; }        
-        
+        public string SubjectId { get; set; }
+    
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }        
-        
+        public string Summary { get; set; }
+    
         [JsonPropertyName("notes")]
-        public string? Notes { get; set; }        
-        
+        public string? Notes { get; set; }
+    
     }
     
 }

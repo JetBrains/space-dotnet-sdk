@@ -21,55 +21,55 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PollRecordDto
+    public sealed class PollRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto Owner { get; set; }        
-        
+        public TDMemberProfileDto Owner { get; set; }
+    
         [Required]
         [JsonPropertyName("question")]
-        public string Question { get; set; }        
-        
+        public string Question { get; set; }
+    
         [Required]
         [JsonPropertyName("meVote")]
-        public bool MeVote { get; set; }        
-        
+        public bool MeVote { get; set; }
+    
         [Required]
         [JsonPropertyName("countPeople")]
-        public int CountPeople { get; set; }        
-        
+        public int CountPeople { get; set; }
+    
         [Required]
         [JsonPropertyName("anonymous")]
-        public bool Anonymous { get; set; }        
-        
+        public bool Anonymous { get; set; }
+    
         [Required]
         [JsonPropertyName("closed")]
-        public bool Closed { get; set; }        
-        
+        public bool Closed { get; set; }
+    
         [Required]
         [JsonPropertyName("extendable")]
-        public bool Extendable { get; set; }        
-        
+        public bool Extendable { get; set; }
+    
         [Required]
         [JsonPropertyName("multiChoice")]
-        public bool MultiChoice { get; set; }        
-        
+        public bool MultiChoice { get; set; }
+    
         [Required]
         [JsonPropertyName("ended")]
-        public bool Ended { get; set; }        
-        
+        public bool Ended { get; set; }
+    
         [JsonPropertyName("expirationTime")]
-        public SpaceTime? ExpirationTime { get; set; }        
-        
+        public SpaceTime? ExpirationTime { get; set; }
+    
         [Required]
         [JsonPropertyName("votes")]
-        public List<VoteGroupDto> Votes { get; set; }        
-        
+        public List<VoteGroupDto> Votes { get; set; }
+    
     }
     
 }

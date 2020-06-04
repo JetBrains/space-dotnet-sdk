@@ -47,6 +47,9 @@ namespace SpaceDotNet.Client.CodeDiscussionAnchorExtensions
         public static Partial<CodeDiscussionAnchorDto> WithInterpolatedLineState(this Partial<CodeDiscussionAnchorDto> it)
             => it.AddFieldName("interpolatedLineState");
         
+        public static Partial<CodeDiscussionAnchorDto> WithInterpolatedLineState(this Partial<CodeDiscussionAnchorDto> it, Func<Partial<InterpolatedLineState>, Partial<InterpolatedLineState>> partialBuilder)
+            => it.AddFieldName("interpolatedLineState", partialBuilder(new Partial<InterpolatedLineState>()));
+        
     }
     
 }

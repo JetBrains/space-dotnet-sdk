@@ -21,42 +21,42 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HADtoDto
+    public sealed class HADtoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("fields")]
-        public List<HADtoFieldDto> Fields { get; set; }        
-        
+        public List<HADtoFieldDto> Fields { get; set; }
+    
         [Required]
         [JsonPropertyName("hierarchyRole")]
-        public HierarchyRole HierarchyRole { get; set; }        
-        
+        public HierarchyRole HierarchyRole { get; set; }
+    
         [JsonPropertyName("extends")]
-        public HADtoDto? Extends { get; set; }        
-        
+        public HADtoDto? Extends { get; set; }
+    
         [Required]
         [JsonPropertyName("implements")]
-        public List<HADtoDto> Implements { get; set; }        
-        
+        public List<HADtoDto> Implements { get; set; }
+    
         [Required]
         [JsonPropertyName("inheritors")]
-        public List<HADtoDto> Inheritors { get; set; }        
-        
+        public List<HADtoDto> Inheritors { get; set; }
+    
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }        
-        
+        public HADeprecationDto? Deprecation { get; set; }
+    
         [Required]
         [JsonPropertyName("record")]
-        public bool Record { get; set; }        
-        
+        public bool Record { get; set; }
+    
     }
     
 }

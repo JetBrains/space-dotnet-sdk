@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AccessRecordDto
+    public sealed class AccessRecordDto
     {
         [Required]
         [JsonPropertyName("time")]
-        public SpaceTime Time { get; set; }        
-        
+        public SpaceTime Time { get; set; }
+    
         [Required]
         [JsonPropertyName("address")]
-        public string Address { get; set; }        
-        
+        public string Address { get; set; }
+    
         [JsonPropertyName("userAgent")]
-        public string? UserAgent { get; set; }        
-        
+        public string? UserAgent { get; set; }
+    
     }
     
 }

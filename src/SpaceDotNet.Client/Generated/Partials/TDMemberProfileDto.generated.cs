@@ -137,6 +137,9 @@ namespace SpaceDotNet.Client.TDMemberProfileExtensions
         public static Partial<TDMemberProfileDto> WithGender(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("gender");
         
+        public static Partial<TDMemberProfileDto> WithGender(this Partial<TDMemberProfileDto> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
+            => it.AddFieldName("gender", partialBuilder(new Partial<Gender>()));
+        
     }
     
 }

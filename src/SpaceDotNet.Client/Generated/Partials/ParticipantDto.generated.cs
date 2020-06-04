@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.ParticipantExtensions
         public static Partial<ParticipantDto> WithStatus(this Partial<ParticipantDto> it)
             => it.AddFieldName("status");
         
+        public static Partial<ParticipantDto> WithStatus(this Partial<ParticipantDto> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
+            => it.AddFieldName("status", partialBuilder(new Partial<EventParticipationStatus>()));
+        
     }
     
 }

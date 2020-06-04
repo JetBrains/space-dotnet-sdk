@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ProfileListCFTypeDto
+    public sealed class ProfileListCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
     }

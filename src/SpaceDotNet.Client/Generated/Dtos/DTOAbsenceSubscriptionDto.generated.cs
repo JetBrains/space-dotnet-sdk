@@ -21,21 +21,21 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DTOAbsenceSubscriptionDto
+    public sealed class DTOAbsenceSubscriptionDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }        
-        
+        public TDLocationDto? Location { get; set; }
+    
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }        
-        
+        public TDTeamDto? Team { get; set; }
+    
         [JsonPropertyName("reason")]
-        public AbsenceReasonRecordDto? Reason { get; set; }        
-        
+        public AbsenceReasonRecordDto? Reason { get; set; }
+    
     }
     
 }

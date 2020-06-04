@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class VoteGroupDto
+    public sealed class VoteGroupDto
     {
         [Required]
         [JsonPropertyName("variantName")]
-        public string VariantName { get; set; }        
-        
+        public string VariantName { get; set; }
+    
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }        
-        
+        public int Count { get; set; }
+    
         [Required]
         [JsonPropertyName("meVote")]
-        public bool MeVote { get; set; }        
-        
+        public bool MeVote { get; set; }
+    
         [Required]
         [JsonPropertyName("lastUsers")]
-        public List<TDMemberProfileDto> LastUsers { get; set; }        
-        
+        public List<TDMemberProfileDto> LastUsers { get; set; }
+    
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }        
-        
+        public TDMemberProfileDto? Owner { get; set; }
+    
     }
     
 }

@@ -21,33 +21,33 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDLocationMapPointDto
+    public sealed class TDLocationMapPointDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }        
-        
+        public string? MapId { get; set; }
+    
         [Required]
         [JsonPropertyName("x")]
-        public int X { get; set; }        
-        
+        public int X { get; set; }
+    
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get; set; }        
-        
+        public int Y { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }        
-        
+        public SpaceTime Created { get; set; }
+    
         [JsonPropertyName("memberLocation")]
-        public string? MemberLocation { get; set; }        
-        
+        public string? MemberLocation { get; set; }
+    
         [JsonPropertyName("deleted")]
-        public bool? Deleted { get; set; }        
-        
+        public bool? Deleted { get; set; }
+    
     }
     
 }

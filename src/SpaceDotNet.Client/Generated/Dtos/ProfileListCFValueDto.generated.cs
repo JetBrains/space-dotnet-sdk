@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ProfileListCFValueDto
+    public sealed class ProfileListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("profiles")]
-        public List<TDMemberProfileDto> Profiles { get; set; }        
-        
+        public List<TDMemberProfileDto> Profiles { get; set; }
+    
     }
     
 }

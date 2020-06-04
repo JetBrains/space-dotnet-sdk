@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HADtoFieldDto
+    public sealed class HADtoFieldDto
     {
         [Required]
         [JsonPropertyName("field")]
-        public HAFieldDto Field { get; set; }        
-        
+        public HAFieldDto Field { get; set; }
+    
         [Required]
         [JsonPropertyName("extension")]
-        public bool Extension { get; set; }        
-        
+        public bool Extension { get; set; }
+    
     }
     
 }

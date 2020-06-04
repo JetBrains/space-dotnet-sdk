@@ -25,24 +25,24 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [JsonPropertyName("diffContext")]
-        public DiffContextDto? DiffContext { get; set; }        
-        
+        public DiffContextDto? DiffContext { get; set; }
+    
         [JsonPropertyName("filename")]
-        public string? Filename { get; set; }        
-        
+        public string? Filename { get; set; }
+    
         [JsonPropertyName("line")]
-        public int? Line { get; set; }        
-        
+        public int? Line { get; set; }
+    
         [JsonPropertyName("oldLine")]
-        public int? OldLine { get; set; }        
-        
+        public int? OldLine { get; set; }
+    
         [Required]
         [JsonPropertyName("pending")]
-        public bool Pending { get; set; }        
-        
+        public bool Pending { get; set; }
+    
     }
     
 }

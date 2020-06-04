@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RecurrenceRuleDto
+    public sealed class RecurrenceRuleDto
     {
         [Required]
         [JsonPropertyName("freq")]
-        public RecurrenceRuleFreqDto Freq { get; set; }        
-        
+        public RecurrenceRuleFreqDto Freq { get; set; }
+    
         [Required]
         [JsonPropertyName("ends")]
-        public RecurrenceRuleEndsDto Ends { get; set; }        
-        
+        public RecurrenceRuleEndsDto Ends { get; set; }
+    
     }
     
 }

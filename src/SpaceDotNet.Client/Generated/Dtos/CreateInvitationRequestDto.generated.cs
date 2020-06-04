@@ -25,20 +25,20 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail { get; set; }        
-        
+        public string InviteeEmail { get; set; }
+    
         [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }        
-        
+        public string? InviteeFirstName { get; set; }
+    
         [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get; set; }        
-        
+        public string? InviteeLastName { get; set; }
+    
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }        
-        
+        public TDTeamDto? Team { get; set; }
+    
         [JsonPropertyName("role")]
-        public TDRoleDto? Role { get; set; }        
-        
+        public TDRoleDto? Role { get; set; }
+    
     }
     
 }

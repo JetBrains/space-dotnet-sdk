@@ -21,38 +21,38 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class InlineDiffLineDto
+    public sealed class InlineDiffLineDto
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [JsonPropertyName("type")]
-        public DiffLineType? Type { get; set; }        
-        
+        public DiffLineType? Type { get; set; }
+    
         [JsonPropertyName("oldLineNum")]
-        public int? OldLineNum { get; set; }        
-        
+        public int? OldLineNum { get; set; }
+    
         [JsonPropertyName("newLineNum")]
-        public int? NewLineNum { get; set; }        
-        
+        public int? NewLineNum { get; set; }
+    
         [Required]
         [JsonPropertyName("oldFileOffset")]
-        public int OldFileOffset { get; set; }        
-        
+        public int OldFileOffset { get; set; }
+    
         [Required]
         [JsonPropertyName("newFileOffset")]
-        public int NewFileOffset { get; set; }        
-        
+        public int NewFileOffset { get; set; }
+    
         [JsonPropertyName("syntax")]
-        public List<SyntaxMarkupDto>? Syntax { get; set; }        
-        
+        public List<SyntaxMarkupDto>? Syntax { get; set; }
+    
         [JsonPropertyName("deletes")]
-        public List<TextRangeDto>? Deletes { get; set; }        
-        
+        public List<TextRangeDto>? Deletes { get; set; }
+    
         [JsonPropertyName("inserts")]
-        public List<TextRangeDto>? Inserts { get; set; }        
-        
+        public List<TextRangeDto>? Inserts { get; set; }
+    
     }
     
 }

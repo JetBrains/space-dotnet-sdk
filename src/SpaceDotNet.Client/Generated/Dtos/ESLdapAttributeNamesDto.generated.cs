@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESLdapAttributeNamesDto
+    public sealed class ESLdapAttributeNamesDto
     {
         [JsonPropertyName("fullNameAttributeName")]
-        public string? FullNameAttributeName { get; set; }        
-        
+        public string? FullNameAttributeName { get; set; }
+    
         [JsonPropertyName("usernameAttributeName")]
-        public string? UsernameAttributeName { get; set; }        
-        
+        public string? UsernameAttributeName { get; set; }
+    
         [JsonPropertyName("emailAttributeName")]
-        public string? EmailAttributeName { get; set; }        
-        
+        public string? EmailAttributeName { get; set; }
+    
         [JsonPropertyName("groupsAttributeName")]
-        public string? GroupsAttributeName { get; set; }        
-        
+        public string? GroupsAttributeName { get; set; }
+    
     }
     
 }

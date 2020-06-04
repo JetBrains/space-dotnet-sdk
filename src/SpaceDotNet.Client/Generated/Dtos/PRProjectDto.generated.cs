@@ -21,61 +21,61 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PRProjectDto
+    public sealed class PRProjectDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }        
-        
+        public ProjectKeyDto Key { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }        
-        
+        public bool Private { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [JsonPropertyName("icon")]
-        public string? Icon { get; set; }        
-        
+        public string? Icon { get; set; }
+    
         [JsonPropertyName("latestRepositoryActivity")]
-        public SpaceTime? LatestRepositoryActivity { get; set; }        
-        
+        public SpaceTime? LatestRepositoryActivity { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("adminProfiles")]
-        public List<TDMemberProfileDto> AdminProfiles { get; set; }        
-        
+        public List<TDMemberProfileDto> AdminProfiles { get; set; }
+    
         [Required]
         [JsonPropertyName("adminTeams")]
-        public List<TDTeamDto> AdminTeams { get; set; }        
-        
+        public List<TDTeamDto> AdminTeams { get; set; }
+    
         [Required]
         [JsonPropertyName("memberProfiles")]
-        public List<TDMemberProfileDto> MemberProfiles { get; set; }        
-        
+        public List<TDMemberProfileDto> MemberProfiles { get; set; }
+    
         [Required]
         [JsonPropertyName("memberTeams")]
-        public List<TDTeamDto> MemberTeams { get; set; }        
-        
+        public List<TDTeamDto> MemberTeams { get; set; }
+    
         [Required]
         [JsonPropertyName("repos")]
-        public List<PRRepositoryInfoDto> Repos { get; set; }        
-        
+        public List<PRRepositoryInfoDto> Repos { get; set; }
+    
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }        
-        
+        public List<string> Tags { get; set; }
+    
     }
     
 }

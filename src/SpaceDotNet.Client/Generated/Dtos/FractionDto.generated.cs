@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FractionDto
+    public sealed class FractionDto
     {
         [Required]
         [JsonPropertyName("numerator")]
-        public int Numerator { get; set; }        
-        
+        public int Numerator { get; set; }
+    
         [Required]
         [JsonPropertyName("denominator")]
-        public int Denominator { get; set; }        
-        
+        public int Denominator { get; set; }
+    
     }
     
 }

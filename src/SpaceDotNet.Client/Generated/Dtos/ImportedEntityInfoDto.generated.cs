@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ImportedEntityInfoDto
+    public sealed class ImportedEntityInfoDto
     {
         [Required]
         [JsonPropertyName("source")]
-        public ImportSourceDto Source { get; set; }        
-        
+        public ImportSourceDto Source { get; set; }
+    
         [JsonPropertyName("externalName")]
-        public string? ExternalName { get; set; }        
-        
+        public string? ExternalName { get; set; }
+    
         [JsonPropertyName("externalUrl")]
-        public string? ExternalUrl { get; set; }        
-        
+        public string? ExternalUrl { get; set; }
+    
     }
     
 }

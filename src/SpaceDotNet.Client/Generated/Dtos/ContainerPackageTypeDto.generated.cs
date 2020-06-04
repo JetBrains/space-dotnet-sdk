@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ContainerPackageTypeDto
+    public sealed class ContainerPackageTypeDto
          : PackageTypeDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
     }
     
 }

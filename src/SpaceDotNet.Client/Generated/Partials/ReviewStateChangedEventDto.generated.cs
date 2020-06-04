@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.ReviewStateChangedEventExtensions
         public static Partial<ReviewStateChangedEventDto> WithState(this Partial<ReviewStateChangedEventDto> it)
             => it.AddFieldName("state");
         
+        public static Partial<ReviewStateChangedEventDto> WithState(this Partial<ReviewStateChangedEventDto> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>()));
+        
         public static Partial<ReviewStateChangedEventDto> WithReview(this Partial<ReviewStateChangedEventDto> it)
             => it.AddFieldName("review");
         

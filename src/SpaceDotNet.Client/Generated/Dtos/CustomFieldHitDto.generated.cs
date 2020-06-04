@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CustomFieldHitDto
+    public sealed class CustomFieldHitDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }        
-        
+        public string Value { get; set; }
+    
     }
     
 }

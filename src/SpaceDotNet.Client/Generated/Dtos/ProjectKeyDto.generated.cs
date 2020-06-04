@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ProjectKeyDto
+    public sealed class ProjectKeyDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }        
-        
+        public string Key { get; set; }
+    
     }
     
 }

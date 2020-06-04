@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("draftType")]
-        public DraftDocumentType DraftType { get; set; }        
-        
+        public DraftDocumentType DraftType { get; set; }
+    
     }
     
 }

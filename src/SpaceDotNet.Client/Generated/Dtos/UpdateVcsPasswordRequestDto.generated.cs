@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("password")]
-        public string Password { get; set; }        
-        
+        public string Password { get; set; }
+    
     }
     
 }

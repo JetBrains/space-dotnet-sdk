@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UneditableDocumentDto
+    public sealed class UneditableDocumentDto
          : TextDocumentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get; set; }        
-        
+        public DraftDocumentType Type { get; set; }
+    
     }
     
 }

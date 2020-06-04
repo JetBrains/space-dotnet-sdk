@@ -29,6 +29,9 @@ namespace SpaceDotNet.Client.InlineDiffLineExtensions
         public static Partial<InlineDiffLineDto> WithType(this Partial<InlineDiffLineDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<InlineDiffLineDto> WithType(this Partial<InlineDiffLineDto> it, Func<Partial<DiffLineType>, Partial<DiffLineType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<DiffLineType>()));
+        
         public static Partial<InlineDiffLineDto> WithOldLineNum(this Partial<InlineDiffLineDto> it)
             => it.AddFieldName("oldLineNum");
         

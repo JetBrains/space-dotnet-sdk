@@ -25,16 +25,16 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("x")]
-        public int X { get; set; }        
-        
+        public int X { get; set; }
+    
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get; set; }        
-        
+        public int Y { get; set; }
+    
         [Required]
         [JsonPropertyName("mapId")]
-        public string MapId { get; set; }        
-        
+        public string MapId { get; set; }
+    
     }
     
 }

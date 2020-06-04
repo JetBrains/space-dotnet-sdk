@@ -21,32 +21,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDLanguageDto
+    public sealed class TDLanguageDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }        
-        
+        public string Code { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("nativeName")]
-        public string NativeName { get; set; }        
-        
+        public string NativeName { get; set; }
+    
         [Required]
         [JsonPropertyName("firstNameTitle")]
-        public string FirstNameTitle { get; set; }        
-        
+        public string FirstNameTitle { get; set; }
+    
         [Required]
         [JsonPropertyName("lastNameTitle")]
-        public string LastNameTitle { get; set; }        
-        
+        public string LastNameTitle { get; set; }
+    
     }
     
 }

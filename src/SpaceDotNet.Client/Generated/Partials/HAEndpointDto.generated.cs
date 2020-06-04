@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.HAEndpointExtensions
         public static Partial<HAEndpointDto> WithMethod(this Partial<HAEndpointDto> it)
             => it.AddFieldName("method");
         
+        public static Partial<HAEndpointDto> WithMethod(this Partial<HAEndpointDto> it, Func<Partial<HAMethod>, Partial<HAMethod>> partialBuilder)
+            => it.AddFieldName("method", partialBuilder(new Partial<HAMethod>()));
+        
         public static Partial<HAEndpointDto> WithParameters(this Partial<HAEndpointDto> it)
             => it.AddFieldName("parameters");
         

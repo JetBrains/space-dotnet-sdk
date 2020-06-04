@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RecurrenceRuleEndsOnDateDto
+    public sealed class RecurrenceRuleEndsOnDateDto
          : RecurrenceRuleEndsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date { get; set; }        
-        
+        public SpaceDate Date { get; set; }
+    
     }
     
 }

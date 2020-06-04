@@ -25,12 +25,12 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }        
-        
+        public string Key { get; set; }
+    
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }        
-        
+        public string Value { get; set; }
+    
     }
     
 }

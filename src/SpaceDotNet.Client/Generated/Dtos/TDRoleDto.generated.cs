@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDRoleDto
+    public sealed class TDRoleDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("parent")]
-        public TDRoleDto? Parent { get; set; }        
-        
+        public TDRoleDto? Parent { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
     }
     
 }

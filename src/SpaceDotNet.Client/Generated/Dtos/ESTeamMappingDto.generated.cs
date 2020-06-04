@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESTeamMappingDto
+    public sealed class ESTeamMappingDto
     {
         [Required]
         [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }        
-        
+        public string TeamId { get; set; }
+    
         [Required]
         [JsonPropertyName("externalGroupName")]
-        public string ExternalGroupName { get; set; }        
-        
+        public string ExternalGroupName { get; set; }
+    
     }
     
 }

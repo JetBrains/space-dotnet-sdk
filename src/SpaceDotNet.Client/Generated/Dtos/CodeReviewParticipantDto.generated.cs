@@ -21,22 +21,22 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeReviewParticipantDto
+    public sealed class CodeReviewParticipantDto
     {
         [Required]
         [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }        
-        
+        public TDMemberProfileDto User { get; set; }
+    
         [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }        
-        
+        public CodeReviewParticipantRole Role { get; set; }
+    
         [JsonPropertyName("state")]
-        public ReviewerState? State { get; set; }        
-        
+        public ReviewerState? State { get; set; }
+    
         [JsonPropertyName("theirTurn")]
-        public bool? TheirTurn { get; set; }        
-        
+        public bool? TheirTurn { get; set; }
+    
     }
     
 }

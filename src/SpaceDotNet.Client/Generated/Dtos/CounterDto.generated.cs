@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CounterDto
+    public sealed class CounterDto
     {
         [Required]
         [JsonPropertyName("resolved")]
-        public int Resolved { get; set; }        
-        
+        public int Resolved { get; set; }
+    
         [Required]
         [JsonPropertyName("unresolved")]
-        public int Unresolved { get; set; }        
-        
+        public int Unresolved { get; set; }
+    
     }
     
 }

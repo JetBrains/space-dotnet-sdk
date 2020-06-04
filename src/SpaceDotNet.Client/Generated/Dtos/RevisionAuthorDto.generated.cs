@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RevisionAuthorDto
+    public sealed class RevisionAuthorDto
     {
         [Required]
         [JsonPropertyName("authorName")]
-        public string AuthorName { get; set; }        
-        
+        public string AuthorName { get; set; }
+    
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }        
-        
+        public TDMemberProfileDto? Profile { get; set; }
+    
     }
     
 }

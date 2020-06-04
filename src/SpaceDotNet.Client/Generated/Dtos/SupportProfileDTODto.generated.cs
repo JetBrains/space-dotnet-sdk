@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class SupportProfileDTODto
+    public sealed class SupportProfileDTODto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }        
-        
+        public TDMemberProfileDto Profile { get; set; }
+    
         [Required]
         [JsonPropertyName("adminPermissionsGranted")]
-        public bool AdminPermissionsGranted { get; set; }        
-        
+        public bool AdminPermissionsGranted { get; set; }
+    
     }
     
 }

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContentCodeReviewFeedDto
+    public sealed class M2ChannelContentCodeReviewFeedDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,24 +29,24 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("codeReviewId")]
-        public string CodeReviewId { get; set; }        
-        
+        public string CodeReviewId { get; set; }
+    
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
-        
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+    
         [JsonPropertyName("codeReview")]
-        public CodeReviewRecordDto? CodeReview { get; set; }        
-        
+        public CodeReviewRecordDto? CodeReview { get; set; }
+    
         [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto? Participants { get; set; }        
-        
+        public CodeReviewParticipantsDto? Participants { get; set; }
+    
         [JsonPropertyName("pendingMessageCounter")]
-        public CodeReviewPendingMessageCounterDto? PendingMessageCounter { get; set; }        
-        
+        public CodeReviewPendingMessageCounterDto? PendingMessageCounter { get; set; }
+    
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }        
-        
+        public PRProjectDto? Project { get; set; }
+    
     }
     
 }

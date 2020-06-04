@@ -26,11 +26,17 @@ namespace SpaceDotNet.Client.ClientInfoExtensions
         public static Partial<ClientInfoDto> WithOs(this Partial<ClientInfoDto> it)
             => it.AddFieldName("os");
         
+        public static Partial<ClientInfoDto> WithOs(this Partial<ClientInfoDto> it, Func<Partial<ClientOS>, Partial<ClientOS>> partialBuilder)
+            => it.AddFieldName("os", partialBuilder(new Partial<ClientOS>()));
+        
         public static Partial<ClientInfoDto> WithOsVersion(this Partial<ClientInfoDto> it)
             => it.AddFieldName("osVersion");
         
         public static Partial<ClientInfoDto> WithBrowser(this Partial<ClientInfoDto> it)
             => it.AddFieldName("browser");
+        
+        public static Partial<ClientInfoDto> WithBrowser(this Partial<ClientInfoDto> it, Func<Partial<ClientBrowser>, Partial<ClientBrowser>> partialBuilder)
+            => it.AddFieldName("browser", partialBuilder(new Partial<ClientBrowser>()));
         
         public static Partial<ClientInfoDto> WithBrowserVersion(this Partial<ClientInfoDto> it)
             => it.AddFieldName("browserVersion");

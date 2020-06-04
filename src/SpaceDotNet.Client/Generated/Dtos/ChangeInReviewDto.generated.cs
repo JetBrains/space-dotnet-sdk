@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ChangeInReviewDto
+    public sealed class ChangeInReviewDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("change")]
-        public GitCommitChangeDto Change { get; set; }        
-        
+        public GitCommitChangeDto Change { get; set; }
+    
         [Required]
         [JsonPropertyName("read")]
-        public bool Read { get; set; }        
-        
+        public bool Read { get; set; }
+    
     }
     
 }

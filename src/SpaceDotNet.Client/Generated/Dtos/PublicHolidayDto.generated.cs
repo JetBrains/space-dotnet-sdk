@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PublicHolidayDto
+    public sealed class PublicHolidayDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("calendar")]
-        public PublicHolidayCalendarRecordDto Calendar { get; set; }        
-        
+        public PublicHolidayCalendarRecordDto Calendar { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date { get; set; }        
-        
+        public SpaceDate Date { get; set; }
+    
         [Required]
         [JsonPropertyName("workingDay")]
-        public bool WorkingDay { get; set; }        
-        
+        public bool WorkingDay { get; set; }
+    
     }
     
 }

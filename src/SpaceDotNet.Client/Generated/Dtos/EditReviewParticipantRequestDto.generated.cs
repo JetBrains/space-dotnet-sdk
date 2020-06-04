@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }        
-        
+        public CodeReviewParticipantRole Role { get; set; }
+    
     }
     
 }

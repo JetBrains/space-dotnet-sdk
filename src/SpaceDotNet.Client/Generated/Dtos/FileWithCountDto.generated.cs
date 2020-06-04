@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FileWithCountDto
+    public sealed class FileWithCountDto
     {
         [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
+        public string? Name { get; set; }
+    
         [Required]
         [JsonPropertyName("count")]
-        public CounterDto Count { get; set; }        
-        
+        public CounterDto Count { get; set; }
+    
     }
     
 }

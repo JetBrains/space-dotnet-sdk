@@ -21,54 +21,54 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CustomFieldDto
+    public sealed class CustomFieldDto
     {
         [Required]
         [JsonPropertyName("extendedType")]
-        public ExtendedTypeDto ExtendedType { get; set; }        
-        
+        public ExtendedTypeDto ExtendedType { get; set; }
+    
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }        
-        
+        public string Key { get; set; }
+    
         [Required]
         [JsonPropertyName("type")]
-        public CFTypeDto Type { get; set; }        
-        
+        public CFTypeDto Type { get; set; }
+    
         [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint { get; set; }        
-        
+        public CFConstraintDto? Constraint { get; set; }
+    
         [Required]
         [JsonPropertyName("required")]
-        public bool Required { get; set; }        
-        
+        public bool Required { get; set; }
+    
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }        
-        
+        public bool Private { get; set; }
+    
         [JsonPropertyName("access")]
-        public AccessType? Access { get; set; }        
-        
+        public AccessType? Access { get; set; }
+    
         [Required]
         [JsonPropertyName("defaultValue")]
-        public CFValueDto DefaultValue { get; set; }        
-        
+        public CFValueDto DefaultValue { get; set; }
+    
         [Required]
         [JsonPropertyName("order")]
-        public int Order { get; set; }        
-        
+        public int Order { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
     }
     
 }

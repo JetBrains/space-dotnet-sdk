@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESMavenRepositorySettingsDto
+    public sealed class ESMavenRepositorySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
     }

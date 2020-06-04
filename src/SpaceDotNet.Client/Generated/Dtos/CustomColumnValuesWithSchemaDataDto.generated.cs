@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CustomColumnValuesWithSchemaDataDto
+    public sealed class CustomColumnValuesWithSchemaDataDto
     {
     }
     

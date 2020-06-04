@@ -21,51 +21,51 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AbsenceRecordDto
+    public sealed class AbsenceRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }        
-        
+        public TDMemberProfileDto Member { get; set; }
+    
         [Required]
         [JsonPropertyName("icon")]
-        public string Icon { get; set; }        
-        
+        public string Icon { get; set; }
+    
         [JsonPropertyName("reason")]
-        public AbsenceReasonRecordDto? Reason { get; set; }        
-        
+        public AbsenceReasonRecordDto? Reason { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since { get; set; }        
-        
+        public SpaceDate Since { get; set; }
+    
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till { get; set; }        
-        
+        public SpaceDate Till { get; set; }
+    
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }        
-        
+        public TDLocationDto? Location { get; set; }
+    
         [Required]
         [JsonPropertyName("available")]
-        public bool Available { get; set; }        
-        
+        public bool Available { get; set; }
+    
         [JsonPropertyName("approval")]
-        public AbsenceApprovalDto? Approval { get; set; }        
-        
+        public AbsenceApprovalDto? Approval { get; set; }
+    
         [JsonPropertyName("customFields")]
-        public List<CustomColumnValuesWithSchemaDataDto>? CustomFields { get; set; }        
-        
+        public List<CustomColumnValuesWithSchemaDataDto>? CustomFields { get; set; }
+    
     }
     
 }

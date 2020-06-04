@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitGraphLayoutNodeDto
+    public sealed class GitGraphLayoutNodeDto
     {
         [Required]
         [JsonPropertyName("pos")]
-        public int Pos { get; set; }        
-        
+        public int Pos { get; set; }
+    
         [Required]
         [JsonPropertyName("color")]
-        public int Color { get; set; }        
-        
+        public int Color { get; set; }
+    
     }
     
 }

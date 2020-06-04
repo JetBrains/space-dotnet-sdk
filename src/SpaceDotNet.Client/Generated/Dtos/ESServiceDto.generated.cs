@@ -21,38 +21,38 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESServiceDto
+    public sealed class ESServiceDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }        
-        
+        public TDMemberProfileDto? Owner { get; set; }
+    
         [Required]
         [JsonPropertyName("type")]
-        public OAuthServiceType Type { get; set; }        
-        
+        public OAuthServiceType Type { get; set; }
+    
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }        
-        
+        public string ClientId { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("redirectURIs")]
-        public string RedirectURIs { get; set; }        
-        
+        public string RedirectURIs { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [JsonPropertyName("lastClientCredentialsAccess")]
-        public AccessRecordDto? LastClientCredentialsAccess { get; set; }        
-        
+        public AccessRecordDto? LastClientCredentialsAccess { get; set; }
+    
     }
     
 }

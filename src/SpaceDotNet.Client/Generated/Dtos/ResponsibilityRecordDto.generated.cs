@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ResponsibilityRecordDto
+    public sealed class ResponsibilityRecordDto
     {
         [Required]
         [JsonPropertyName("responsibilityId")]
-        public string ResponsibilityId { get; set; }        
-        
+        public string ResponsibilityId { get; set; }
+    
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }        
-        
+        public string Summary { get; set; }
+    
         [JsonPropertyName("notes")]
-        public string? Notes { get; set; }        
-        
+        public string? Notes { get; set; }
+    
         [Required]
         [JsonPropertyName("assignedPeople")]
-        public List<AssignedPersonDto> AssignedPeople { get; set; }        
-        
+        public List<AssignedPersonDto> AssignedPeople { get; set; }
+    
     }
     
 }

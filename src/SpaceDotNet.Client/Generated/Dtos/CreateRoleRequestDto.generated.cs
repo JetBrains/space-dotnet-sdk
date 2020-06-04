@@ -25,11 +25,11 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }        
-        
+        public string? ParentId { get; set; }
+    
     }
     
 }

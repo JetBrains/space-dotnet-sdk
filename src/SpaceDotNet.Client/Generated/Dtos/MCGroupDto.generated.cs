@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCGroupDto
+    public sealed class MCGroupDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }        
-        
+        public List<MCElementDto> Elements { get; set; }
+    
     }
     
 }

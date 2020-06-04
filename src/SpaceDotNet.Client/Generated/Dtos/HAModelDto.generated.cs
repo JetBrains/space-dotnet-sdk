@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAModelDto
+    public sealed class HAModelDto
     {
         [Required]
         [JsonPropertyName("dto")]
-        public List<HADtoDto> Dto { get; set; }        
-        
+        public List<HADtoDto> Dto { get; set; }
+    
         [Required]
         [JsonPropertyName("enums")]
-        public List<HAEnumDto> Enums { get; set; }        
-        
+        public List<HAEnumDto> Enums { get; set; }
+    
         [Required]
         [JsonPropertyName("resources")]
-        public List<HAResourceDto> Resources { get; set; }        
-        
+        public List<HAResourceDto> Resources { get; set; }
+    
         [Required]
         [JsonPropertyName("allResources")]
-        public List<HAResourceDto> AllResources { get; set; }        
-        
+        public List<HAResourceDto> AllResources { get; set; }
+    
     }
     
 }

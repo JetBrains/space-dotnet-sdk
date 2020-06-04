@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.HATypeObjectExtensions
         public static Partial<HATypeObjectDto> WithKind(this Partial<HATypeObjectDto> it)
             => it.AddFieldName("kind");
         
+        public static Partial<HATypeObjectDto> WithKind(this Partial<HATypeObjectDto> it, Func<Partial<HATypeObjectKind>, Partial<HATypeObjectKind>> partialBuilder)
+            => it.AddFieldName("kind", partialBuilder(new Partial<HATypeObjectKind>()));
+        
         public static Partial<HATypeObjectDto> WithNullable(this Partial<HATypeObjectDto> it)
             => it.AddFieldName("nullable");
         

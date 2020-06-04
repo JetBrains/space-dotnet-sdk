@@ -24,8 +24,8 @@ namespace SpaceDotNet.Client
     public class AssignResponsibleRequestDto
     {
         [JsonPropertyName("role")]
-        public string? Role { get; set; }        
-        
+        public string? Role { get; set; }
+    
     }
     
 }

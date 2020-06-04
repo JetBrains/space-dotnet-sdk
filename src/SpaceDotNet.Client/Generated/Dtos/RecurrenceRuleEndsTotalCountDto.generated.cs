@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RecurrenceRuleEndsTotalCountDto
+    public sealed class RecurrenceRuleEndsTotalCountDto
          : RecurrenceRuleEndsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }        
-        
+        public int Count { get; set; }
+    
     }
     
 }

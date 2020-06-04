@@ -25,19 +25,19 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("channel")]
-        public string Channel { get; set; }        
-        
+        public string Channel { get; set; }
+    
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [Required]
         [JsonPropertyName("pending")]
-        public bool Pending { get; set; }        
-        
+        public bool Pending { get; set; }
+    
         [JsonPropertyName("temporaryId")]
-        public string? TemporaryId { get; set; }        
-        
+        public string? TemporaryId { get; set; }
+    
     }
     
 }

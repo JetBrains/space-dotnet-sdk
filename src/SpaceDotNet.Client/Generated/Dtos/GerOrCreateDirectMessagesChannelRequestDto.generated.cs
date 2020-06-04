@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("profile")]
-        public string Profile { get; set; }        
-        
+        public string Profile { get; set; }
+    
     }
     
 }

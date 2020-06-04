@@ -21,49 +21,49 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ChecklistDto
+    public sealed class ChecklistDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get; set; }        
-        
+        public string? ProjectId { get; set; }
+    
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }        
-        
+        public PRProjectDto? Project { get; set; }
+    
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get; set; }        
-        
+        public TDMemberProfileDto? Owner { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("root")]
-        public PlanItemDto? Root { get; set; }        
-        
+        public PlanItemDto? Root { get; set; }
+    
         [JsonPropertyName("rootTag")]
-        public PlanningTagDto? RootTag { get; set; }        
-        
+        public PlanningTagDto? RootTag { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [Required]
         [JsonPropertyName("totalItemsCount")]
-        public int TotalItemsCount { get; set; }        
-        
+        public int TotalItemsCount { get; set; }
+    
         [Required]
         [JsonPropertyName("doneItemsCount")]
-        public int DoneItemsCount { get; set; }        
-        
+        public int DoneItemsCount { get; set; }
+    
         [JsonPropertyName("updatedTime")]
-        public SpaceTime? UpdatedTime { get; set; }        
-        
+        public SpaceTime? UpdatedTime { get; set; }
+    
     }
     
 }

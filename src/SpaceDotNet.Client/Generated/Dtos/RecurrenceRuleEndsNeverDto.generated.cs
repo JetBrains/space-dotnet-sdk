@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RecurrenceRuleEndsNeverDto
+    public sealed class RecurrenceRuleEndsNeverDto
          : RecurrenceRuleEndsDto, IClassNameConvertible
     {
     }

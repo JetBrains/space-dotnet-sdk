@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2PackageCreatedDetailsDto
+    public sealed class M2PackageCreatedDetailsDto
          : M2PackageContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("pkg")]
-        public PackageVersionInfoDto Pkg { get; set; }        
-        
+        public PackageVersionInfoDto Pkg { get; set; }
+    
     }
     
 }

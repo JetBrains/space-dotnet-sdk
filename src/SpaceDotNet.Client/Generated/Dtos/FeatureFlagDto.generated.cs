@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FeatureFlagDto
+    public sealed class FeatureFlagDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }        
-        
+        public string Description { get; set; }
+    
         [Required]
         [JsonPropertyName("status")]
-        public FeatureFlagStatus Status { get; set; }        
-        
+        public FeatureFlagStatus Status { get; set; }
+    
         [Required]
         [JsonPropertyName("owner")]
-        public string Owner { get; set; }        
-        
+        public string Owner { get; set; }
+    
         [JsonPropertyName("introduced")]
-        public SpaceDate? Introduced { get; set; }        
-        
+        public SpaceDate? Introduced { get; set; }
+    
     }
     
 }

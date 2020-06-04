@@ -21,21 +21,21 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HATypeEnumDto
+    public sealed class HATypeEnumDto
          : HATypeDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("enum")]
-        public HAEnumDto Enum { get; set; }        
-        
+        public HAEnumDto Enum { get; set; }
+    
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }        
-        
+        public bool Nullable { get; set; }
+    
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }        
-        
+        public bool Optional { get; set; }
+    
     }
     
 }

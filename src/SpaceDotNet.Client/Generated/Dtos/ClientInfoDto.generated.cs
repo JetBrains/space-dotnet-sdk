@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ClientInfoDto
+    public sealed class ClientInfoDto
     {
         [JsonPropertyName("os")]
-        public ClientOS? Os { get; set; }        
-        
+        public ClientOS? Os { get; set; }
+    
         [JsonPropertyName("osVersion")]
-        public string? OsVersion { get; set; }        
-        
+        public string? OsVersion { get; set; }
+    
         [JsonPropertyName("browser")]
-        public ClientBrowser? Browser { get; set; }        
-        
+        public ClientBrowser? Browser { get; set; }
+    
         [JsonPropertyName("browserVersion")]
-        public string? BrowserVersion { get; set; }        
-        
+        public string? BrowserVersion { get; set; }
+    
         [JsonPropertyName("device")]
-        public string? Device { get; set; }        
-        
+        public string? Device { get; set; }
+    
     }
     
 }

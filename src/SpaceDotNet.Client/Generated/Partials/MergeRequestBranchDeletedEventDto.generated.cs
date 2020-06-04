@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.MergeRequestBranchDeletedEventExtensions
         public static Partial<MergeRequestBranchDeletedEventDto> WithBranchType(this Partial<MergeRequestBranchDeletedEventDto> it)
             => it.AddFieldName("branchType");
         
+        public static Partial<MergeRequestBranchDeletedEventDto> WithBranchType(this Partial<MergeRequestBranchDeletedEventDto> it, Func<Partial<MergeRequestBranchType>, Partial<MergeRequestBranchType>> partialBuilder)
+            => it.AddFieldName("branchType", partialBuilder(new Partial<MergeRequestBranchType>()));
+        
     }
     
 }

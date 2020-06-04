@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueCreatedDetailsDto
+    public sealed class IssueCreatedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("issue")]
-        public IssueDto? Issue { get; set; }        
-        
+        public IssueDto? Issue { get; set; }
+    
     }
     
 }

@@ -21,47 +21,47 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ExternalStatusSucceedItemContentDto
+    public sealed class M2ExternalStatusSucceedItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get; set; }        
-        
+        public string? ProjectId { get; set; }
+    
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get; set; }        
-        
+        public string Branch { get; set; }
+    
         [JsonPropertyName("revisionInfo")]
-        public RevisionAuthorInfoDto? RevisionInfo { get; set; }        
-        
+        public RevisionAuthorInfoDto? RevisionInfo { get; set; }
+    
         [JsonPropertyName("changesInfo")]
-        public LastChangesDto? ChangesInfo { get; set; }        
-        
+        public LastChangesDto? ChangesInfo { get; set; }
+    
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get; set; }        
-        
+        public string Url { get; set; }
+    
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }        
-        
+        public string ExternalServiceName { get; set; }
+    
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }        
-        
+        public string TaskName { get; set; }
+    
         [JsonPropertyName("timestamp")]
-        public long? Timestamp { get; set; }        
-        
+        public long? Timestamp { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
     }
     
 }

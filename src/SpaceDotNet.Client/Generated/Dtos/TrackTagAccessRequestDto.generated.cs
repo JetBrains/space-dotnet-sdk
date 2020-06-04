@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("tag")]
-        public string Tag { get; set; }        
-        
+        public string Tag { get; set; }
+    
     }
     
 }

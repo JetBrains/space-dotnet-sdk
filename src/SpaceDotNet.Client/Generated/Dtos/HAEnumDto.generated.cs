@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAEnumDto
+    public sealed class HAEnumDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("values")]
-        public List<string> Values { get; set; }        
-        
+        public List<string> Values { get; set; }
+    
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }        
-        
+        public HADeprecationDto? Deprecation { get; set; }
+    
     }
     
 }

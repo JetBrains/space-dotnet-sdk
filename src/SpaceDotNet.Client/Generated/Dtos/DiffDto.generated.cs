@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DiffDto
+    public sealed class DiffDto
     {
         [Required]
         [JsonPropertyName("added")]
-        public List<string> Added { get; set; }        
-        
+        public List<string> Added { get; set; }
+    
         [Required]
         [JsonPropertyName("removed")]
-        public List<string> Removed { get; set; }        
-        
+        public List<string> Removed { get; set; }
+    
         [Required]
         [JsonPropertyName("removeAll")]
-        public bool RemoveAll { get; set; }        
-        
+        public bool RemoveAll { get; set; }
+    
     }
     
 }

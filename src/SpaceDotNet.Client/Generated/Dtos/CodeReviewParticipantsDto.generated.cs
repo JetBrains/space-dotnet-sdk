@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeReviewParticipantsDto
+    public sealed class CodeReviewParticipantsDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto>? Participants { get; set; }        
-        
+        public List<CodeReviewParticipantDto>? Participants { get; set; }
+    
         [Required]
         [JsonPropertyName("reviewers")]
-        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }        
-        
+        public List<CodeReviewParticipantRecordDto> Reviewers { get; set; }
+    
         [Required]
         [JsonPropertyName("authors")]
-        public List<CodeReviewParticipantRecordDto> Authors { get; set; }        
-        
+        public List<CodeReviewParticipantRecordDto> Authors { get; set; }
+    
         [Required]
         [JsonPropertyName("watchers")]
-        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }        
-        
+        public List<CodeReviewParticipantRecordDto> Watchers { get; set; }
+    
     }
     
 }

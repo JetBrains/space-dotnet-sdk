@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PermissionSnapshotRightDTODto
+    public sealed class PermissionSnapshotRightDTODto
     {
         [Required]
         [JsonPropertyName("rightCode")]
-        public string RightCode { get; set; }        
-        
+        public string RightCode { get; set; }
+    
         [Required]
         [JsonPropertyName("targetType")]
-        public string TargetType { get; set; }        
-        
+        public string TargetType { get; set; }
+    
     }
     
 }

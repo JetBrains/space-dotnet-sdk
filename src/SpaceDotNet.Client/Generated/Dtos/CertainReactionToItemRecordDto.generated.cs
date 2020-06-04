@@ -21,35 +21,35 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CertainReactionToItemRecordDto
+    public sealed class CertainReactionToItemRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }        
-        
+        public string ItemId { get; set; }
+    
         [Required]
         [JsonPropertyName("reaction")]
-        public ReactionTypeRecordDto Reaction { get; set; }        
-        
+        public ReactionTypeRecordDto Reaction { get; set; }
+    
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }        
-        
+        public int Count { get; set; }
+    
         [Required]
         [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }        
-        
+        public bool MeReacted { get; set; }
+    
         [Required]
         [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get; set; }        
-        
+        public List<CPrincipalDto> Principals { get; set; }
+    
         [JsonPropertyName("order")]
-        public long? Order { get; set; }        
-        
+        public long? Order { get; set; }
+    
     }
     
 }

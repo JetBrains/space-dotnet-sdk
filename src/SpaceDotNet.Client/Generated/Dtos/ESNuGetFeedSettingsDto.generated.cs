@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESNuGetFeedSettingsDto
+    public sealed class ESNuGetFeedSettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
     }

@@ -25,11 +25,11 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }        
-        
+        public SpaceDate? DueDate { get; set; }
+    
     }
     
 }

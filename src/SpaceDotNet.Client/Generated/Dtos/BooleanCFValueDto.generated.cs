@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class BooleanCFValueDto
+    public sealed class BooleanCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("value")]
-        public bool? Value { get; set; }        
-        
+        public bool? Value { get; set; }
+    
     }
     
 }

@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MessageInfoDto
+    public sealed class MessageInfoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }        
-        
+        public long Time { get; set; }
+    
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }        
-        
+        public CPrincipalDto Author { get; set; }
+    
         [JsonPropertyName("attachments")]
-        public string? Attachments { get; set; }        
-        
+        public string? Attachments { get; set; }
+    
     }
     
 }

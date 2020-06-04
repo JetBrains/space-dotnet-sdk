@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("values")]
-        public List<CustomFieldValueDto> Values { get; set; }        
-        
+        public List<CustomFieldValueDto> Values { get; set; }
+    
     }
     
 }

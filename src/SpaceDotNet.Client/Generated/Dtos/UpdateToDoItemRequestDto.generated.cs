@@ -24,14 +24,14 @@ namespace SpaceDotNet.Client
     public class UpdateToDoItemRequestDto
     {
         [JsonPropertyName("text")]
-        public string? Text { get; set; }        
-        
+        public string? Text { get; set; }
+    
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }        
-        
+        public SpaceDate? DueDate { get; set; }
+    
         [JsonPropertyName("open")]
-        public bool? Open { get; set; }        
-        
+        public bool? Open { get; set; }
+    
     }
     
 }

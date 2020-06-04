@@ -53,18 +53,18 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task<string> GetParameterAsync(long id, string key)
-                    => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}&");                
-                
-                public async Task UpdateParameterAsync(long id, UpdateParameterRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);                
-                
-                public async Task DeleteParameterAsync(long id, string key)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");                
-                
-            }
+                    => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");
             
-        }
+                public async Task UpdateParameterAsync(long id, UpdateParameterRequestDto data)
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/automation/graph-executions/{id}/parameters", data);
+            
+                public async Task DeleteParameterAsync(long id, string key)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/graph-executions/{id}/parameters?key={key.ToString()}");
+            
+            }
         
+        }
+    
         public ParameterClient Parameters => new ParameterClient(_connection);
         
         public partial class ParameterClient
@@ -77,16 +77,16 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<string> GetParameterAsync(long id, string key)
-                => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/{id}/parameters?key={key.ToString()}&");            
-            
-            public async Task UpdateParameterAsync(long id, UpdateParameterRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/automation/{id}/parameters", data);            
-            
-            public async Task DeleteParameterAsync(long id, string key)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/{id}/parameters?key={key.ToString()}");            
-            
-        }
+                => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/{id}/parameters?key={key.ToString()}");
         
+            public async Task UpdateParameterAsync(long id, UpdateParameterRequestDto data)
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/automation/{id}/parameters", data);
+        
+            public async Task DeleteParameterAsync(long id, string key)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/{id}/parameters?key={key.ToString()}");
+        
+        }
+    
     }
     
 }

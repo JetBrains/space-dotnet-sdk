@@ -21,30 +21,30 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CalendarEventSpecDto
+    public sealed class CalendarEventSpecDto
     {
         [Required]
         [JsonPropertyName("start")]
-        public SpaceTime Start { get; set; }        
-        
+        public SpaceTime Start { get; set; }
+    
         [Required]
         [JsonPropertyName("end")]
-        public SpaceTime End { get; set; }        
-        
+        public SpaceTime End { get; set; }
+    
         [JsonPropertyName("recurrenceRule")]
-        public RecurrenceRuleDto? RecurrenceRule { get; set; }        
-        
+        public RecurrenceRuleDto? RecurrenceRule { get; set; }
+    
         [Required]
         [JsonPropertyName("allDay")]
-        public bool AllDay { get; set; }        
-        
+        public bool AllDay { get; set; }
+    
         [Required]
         [JsonPropertyName("timezone")]
-        public ATimeZoneDto Timezone { get; set; }        
-        
+        public ATimeZoneDto Timezone { get; set; }
+    
         [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }        
-        
+        public string? ParentId { get; set; }
+    
     }
     
 }

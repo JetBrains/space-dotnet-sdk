@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeDiscussionAddedFeedEventDto
+    public sealed class CodeDiscussionAddedFeedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecordDto CodeDiscussion { get; set; }        
-        
+        public CodeDiscussionRecordDto CodeDiscussion { get; set; }
+    
         [Required]
         [JsonPropertyName("codeReview")]
-        public CodeReviewRecordDto CodeReview { get; set; }        
-        
+        public CodeReviewRecordDto CodeReview { get; set; }
+    
     }
     
 }

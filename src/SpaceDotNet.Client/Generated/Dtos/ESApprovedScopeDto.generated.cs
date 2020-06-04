@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESApprovedScopeDto
+    public sealed class ESApprovedScopeDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }        
-        
+        public string Scope { get; set; }
+    
         [Required]
         [JsonPropertyName("offlineAllowed")]
-        public bool OfflineAllowed { get; set; }        
-        
+        public bool OfflineAllowed { get; set; }
+    
     }
     
 }

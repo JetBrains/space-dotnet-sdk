@@ -25,20 +25,20 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("projectKey")]
-        public ProjectKeyDto ProjectKey { get; set; }        
-        
+        public ProjectKeyDto ProjectKey { get; set; }
+    
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("revisions")]
-        public List<string> Revisions { get; set; }        
-        
+        public List<string> Revisions { get; set; }
+    
         [Required]
         [JsonPropertyName("change")]
-        public GitCommitChangeDto Change { get; set; }        
-        
+        public GitCommitChangeDto Change { get; set; }
+    
     }
     
 }

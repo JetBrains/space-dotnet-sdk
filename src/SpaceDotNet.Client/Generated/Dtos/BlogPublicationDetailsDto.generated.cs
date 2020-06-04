@@ -21,30 +21,30 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class BlogPublicationDetailsDto
+    public sealed class BlogPublicationDetailsDto
          : PublicationDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("teamId")]
-        public TDTeamDto? TeamId { get; set; }        
-        
+        public TDTeamDto? TeamId { get; set; }
+    
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }        
-        
+        public List<TDTeamDto>? Teams { get; set; }
+    
         [JsonPropertyName("locationId")]
-        public TDLocationDto? LocationId { get; set; }        
-        
+        public TDLocationDto? LocationId { get; set; }
+    
         [JsonPropertyName("locations")]
-        public List<TDLocationDto>? Locations { get; set; }        
-        
+        public List<TDLocationDto>? Locations { get; set; }
+    
         [JsonPropertyName("event")]
-        public CalendarEventDto? Event { get; set; }        
-        
+        public CalendarEventDto? Event { get; set; }
+    
         [JsonPropertyName("article")]
-        public ArticleRecordDto? Article { get; set; }        
-        
+        public ArticleRecordDto? Article { get; set; }
+    
     }
     
 }

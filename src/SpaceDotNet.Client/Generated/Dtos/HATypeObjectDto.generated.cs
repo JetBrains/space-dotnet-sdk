@@ -21,25 +21,25 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HATypeObjectDto
+    public sealed class HATypeObjectDto
          : HATypeDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("fields")]
-        public List<HAFieldDto> Fields { get; set; }        
-        
+        public List<HAFieldDto> Fields { get; set; }
+    
         [Required]
         [JsonPropertyName("kind")]
-        public HATypeObjectKind Kind { get; set; }        
-        
+        public HATypeObjectKind Kind { get; set; }
+    
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }        
-        
+        public bool Nullable { get; set; }
+    
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }        
-        
+        public bool Optional { get; set; }
+    
     }
     
 }

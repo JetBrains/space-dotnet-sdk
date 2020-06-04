@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlDetailsDateTimeDto
+    public sealed class UnfurlDetailsDateTimeDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("utcMilliseconds")]
-        public long UtcMilliseconds { get; set; }        
-        
+        public long UtcMilliseconds { get; set; }
+    
     }
     
 }

@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeReviewDiscussionCounterDto
+    public sealed class CodeReviewDiscussionCounterDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }        
-        
+        public string ProjectId { get; set; }
+    
         [Required]
         [JsonPropertyName("counter")]
-        public CounterDto Counter { get; set; }        
-        
+        public CounterDto Counter { get; set; }
+    
     }
     
 }

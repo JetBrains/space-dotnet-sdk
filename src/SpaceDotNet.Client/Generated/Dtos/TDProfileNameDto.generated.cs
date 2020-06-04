@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDProfileNameDto
+    public sealed class TDProfileNameDto
     {
         [Required]
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }        
-        
+        public string FirstName { get; set; }
+    
         [Required]
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }        
-        
+        public string LastName { get; set; }
+    
     }
     
 }

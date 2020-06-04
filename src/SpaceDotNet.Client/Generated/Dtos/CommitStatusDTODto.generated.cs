@@ -21,43 +21,43 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CommitStatusDTODto
+    public sealed class CommitStatusDTODto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [Required]
         [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus { get; set; }        
-        
+        public ExecutionStatus ExecutionStatus { get; set; }
+    
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get; set; }        
-        
+        public string Url { get; set; }
+    
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get; set; }        
-        
+        public string ExternalServiceName { get; set; }
+    
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get; set; }        
-        
+        public string TaskName { get; set; }
+    
         [Required]
         [JsonPropertyName("taskId")]
-        public string TaskId { get; set; }        
-        
+        public string TaskId { get; set; }
+    
         [Required]
         [JsonPropertyName("timestamp")]
-        public long Timestamp { get; set; }        
-        
+        public long Timestamp { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
     }
     
 }

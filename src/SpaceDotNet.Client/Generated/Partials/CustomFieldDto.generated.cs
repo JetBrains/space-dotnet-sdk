@@ -59,6 +59,9 @@ namespace SpaceDotNet.Client.CustomFieldExtensions
         public static Partial<CustomFieldDto> WithAccess(this Partial<CustomFieldDto> it)
             => it.AddFieldName("access");
         
+        public static Partial<CustomFieldDto> WithAccess(this Partial<CustomFieldDto> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
+            => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
+        
         public static Partial<CustomFieldDto> WithDefaultValue(this Partial<CustomFieldDto> it)
             => it.AddFieldName("defaultValue");
         

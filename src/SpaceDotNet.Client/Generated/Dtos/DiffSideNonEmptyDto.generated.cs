@@ -21,17 +21,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DiffSideNonEmptyDto
+    public sealed class DiffSideNonEmptyDto
          : DiffSideDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [Required]
         [JsonPropertyName("path")]
-        public string Path { get; set; }        
-        
+        public string Path { get; set; }
+    
     }
     
 }

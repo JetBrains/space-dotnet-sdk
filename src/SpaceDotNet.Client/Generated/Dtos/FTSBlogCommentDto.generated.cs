@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FTSBlogCommentDto
+    public sealed class FTSBlogCommentDto
     {
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }        
-        
+        public TDMemberProfileDto Author { get; set; }
+    
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }        
-        
+        public SpaceTime Date { get; set; }
+    
         [Required]
         [JsonPropertyName("snippets")]
-        public List<string> Snippets { get; set; }        
-        
+        public List<string> Snippets { get; set; }
+    
     }
     
 }

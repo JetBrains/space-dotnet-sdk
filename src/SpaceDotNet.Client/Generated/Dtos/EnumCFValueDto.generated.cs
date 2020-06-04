@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EnumCFValueDto
+    public sealed class EnumCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("value")]
-        public EnumValueDataDto? Value { get; set; }        
-        
+        public EnumValueDataDto? Value { get; set; }
+    
     }
     
 }

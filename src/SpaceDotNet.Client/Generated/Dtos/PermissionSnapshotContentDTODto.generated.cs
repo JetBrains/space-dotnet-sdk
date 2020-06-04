@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PermissionSnapshotContentDTODto
+    public sealed class PermissionSnapshotContentDTODto
     {
         [Required]
         [JsonPropertyName("entries")]
-        public List<PermissionSnapshotEntryDTODto> Entries { get; set; }        
-        
+        public List<PermissionSnapshotEntryDTODto> Entries { get; set; }
+    
         [Required]
         [JsonPropertyName("principals")]
-        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }        
-        
+        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }
+    
         [Required]
         [JsonPropertyName("rights")]
-        public List<PermissionSnapshotRightDTODto> Rights { get; set; }        
-        
+        public List<PermissionSnapshotRightDTODto> Rights { get; set; }
+    
         [Required]
         [JsonPropertyName("targets")]
-        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }        
-        
+        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }
+    
     }
     
 }

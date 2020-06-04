@@ -44,6 +44,9 @@ namespace SpaceDotNet.Client.CommitSetReviewRecordExtensions
         public static Partial<CommitSetReviewRecordDto> WithState(this Partial<CommitSetReviewRecordDto> it)
             => it.AddFieldName("state");
         
+        public static Partial<CommitSetReviewRecordDto> WithState(this Partial<CommitSetReviewRecordDto> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>()));
+        
         public static Partial<CommitSetReviewRecordDto> WithCanBeReopened(this Partial<CommitSetReviewRecordDto> it)
             => it.AddFieldName("canBeReopened");
         

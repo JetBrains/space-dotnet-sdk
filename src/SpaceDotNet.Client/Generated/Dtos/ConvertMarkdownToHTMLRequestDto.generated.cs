@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("markdown")]
-        public string Markdown { get; set; }        
-        
+        public string Markdown { get; set; }
+    
     }
     
 }

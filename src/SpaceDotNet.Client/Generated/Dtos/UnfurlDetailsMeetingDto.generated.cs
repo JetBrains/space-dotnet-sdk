@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlDetailsMeetingDto
+    public sealed class UnfurlDetailsMeetingDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("meeting")]
-        public DTOMeetingDto Meeting { get; set; }        
-        
+        public DTOMeetingDto Meeting { get; set; }
+    
     }
     
 }

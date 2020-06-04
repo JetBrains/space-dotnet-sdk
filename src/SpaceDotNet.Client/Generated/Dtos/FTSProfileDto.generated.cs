@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FTSProfileDto
+    public sealed class FTSProfileDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public FTSUserDto Profile { get; set; }        
-        
+        public FTSUserDto Profile { get; set; }
+    
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }        
-        
+        public List<FTSSnippetDto> Snippets { get; set; }
+    
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }        
-        
+        public TDMemberProfileDto Member { get; set; }
+    
     }
     
 }

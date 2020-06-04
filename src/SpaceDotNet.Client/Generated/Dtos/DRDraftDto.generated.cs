@@ -21,58 +21,58 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DRDraftDto
+    public sealed class DRDraftDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [JsonPropertyName("text")]
-        public string? Text { get; set; }        
-        
+        public string? Text { get; set; }
+    
         [JsonPropertyName("type")]
-        public DraftDocumentType? Type { get; set; }        
-        
+        public DraftDocumentType? Type { get; set; }
+    
         [Required]
         [JsonPropertyName("modified")]
-        public SpaceTime Modified { get; set; }        
-        
+        public SpaceTime Modified { get; set; }
+    
         [Required]
         [JsonPropertyName("publishedFlag")]
-        public bool PublishedFlag { get; set; }        
-        
+        public bool PublishedFlag { get; set; }
+    
         [Required]
         [JsonPropertyName("shared")]
-        public bool Shared { get; set; }        
-        
+        public bool Shared { get; set; }
+    
         [Required]
         [JsonPropertyName("accessOrdinal")]
-        public int AccessOrdinal { get; set; }        
-        
+        public int AccessOrdinal { get; set; }
+    
         [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }        
-        
+        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
+    
         [JsonPropertyName("author")]
-        public TDMemberProfileDto? Author { get; set; }        
-        
+        public TDMemberProfileDto? Author { get; set; }
+    
         [Required]
         [JsonPropertyName("editors")]
-        public List<TDMemberProfileDto> Editors { get; set; }        
-        
+        public List<TDMemberProfileDto> Editors { get; set; }
+    
         [Required]
         [JsonPropertyName("editorsTeams")]
-        public List<TDTeamDto> EditorsTeams { get; set; }        
-        
+        public List<TDTeamDto> EditorsTeams { get; set; }
+    
         [JsonPropertyName("version")]
-        public long? Version { get; set; }        
-        
+        public long? Version { get; set; }
+    
         [JsonPropertyName("document")]
-        public TextDocumentDto? Document { get; set; }        
-        
+        public TextDocumentDto? Document { get; set; }
+    
     }
     
 }

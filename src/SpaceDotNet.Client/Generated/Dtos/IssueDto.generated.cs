@@ -21,71 +21,71 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueDto
+    public sealed class IssueDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }        
-        
+        public string ProjectId { get; set; }
+    
         [JsonPropertyName("projectRef")]
-        public PRProjectDto? ProjectRef { get; set; }        
-        
+        public PRProjectDto? ProjectRef { get; set; }
+    
         [Required]
         [JsonPropertyName("number")]
-        public int Number { get; set; }        
-        
+        public int Number { get; set; }
+    
         [Required]
         [JsonPropertyName("createdBy")]
-        public CPrincipalDto CreatedBy { get; set; }        
-        
+        public CPrincipalDto CreatedBy { get; set; }
+    
         [Required]
         [JsonPropertyName("creationTime")]
-        public SpaceTime CreationTime { get; set; }        
-        
+        public SpaceTime CreationTime { get; set; }
+    
         [JsonPropertyName("assignee")]
-        public TDMemberProfileDto? Assignee { get; set; }        
-        
+        public TDMemberProfileDto? Assignee { get; set; }
+    
         [Required]
         [JsonPropertyName("status")]
-        public IssueStatusDto Status { get; set; }        
-        
+        public IssueStatusDto Status { get; set; }
+    
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }        
-        
+        public SpaceDate? DueDate { get; set; }
+    
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get; set; }        
-        
+        public ImportedEntityInfoDto? ImportInfo { get; set; }
+    
         [Required]
         [JsonPropertyName("tags")]
-        public List<PlanningTagDto> Tags { get; set; }        
-        
+        public List<PlanningTagDto> Tags { get; set; }
+    
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [Required]
         [JsonPropertyName("checklists")]
-        public List<ChecklistDto> Checklists { get; set; }        
-        
+        public List<ChecklistDto> Checklists { get; set; }
+    
         [Required]
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto> Attachments { get; set; }        
-        
+        public List<AttachmentInfoDto> Attachments { get; set; }
+    
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }        
-        
+        public M2ChannelRecordDto Channel { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
     }
     
 }

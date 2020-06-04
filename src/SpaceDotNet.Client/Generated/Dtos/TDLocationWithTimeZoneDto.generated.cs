@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDLocationWithTimeZoneDto
+    public sealed class TDLocationWithTimeZoneDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffsetDto Timezone { get; set; }        
-        
+        public ATimeZoneWithOffsetDto Timezone { get; set; }
+    
     }
     
 }

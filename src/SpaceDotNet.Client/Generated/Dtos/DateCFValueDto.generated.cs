@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DateCFValueDto
+    public sealed class DateCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("value")]
-        public SpaceDate? Value { get; set; }        
-        
+        public SpaceDate? Value { get; set; }
+    
     }
     
 }

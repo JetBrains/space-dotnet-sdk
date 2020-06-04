@@ -21,31 +21,31 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESPermanentTokenDto
+    public sealed class ESPermanentTokenDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }        
-        
+        public TDMemberProfileDto Profile { get; set; }
+    
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }        
-        
+        public string Scope { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }        
-        
+        public SpaceTime Created { get; set; }
+    
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }        
-        
+        public AccessRecordDto? LastAccess { get; set; }
+    
     }
     
 }

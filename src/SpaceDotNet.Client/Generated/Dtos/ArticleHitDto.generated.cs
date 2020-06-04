@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticleHitDto
+    public sealed class ArticleHitDto
          : EntityHitDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("score")]
-        public double Score { get; set; }        
-        
+        public double Score { get; set; }
+    
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [Required]
         [JsonPropertyName("body")]
-        public string Body { get; set; }        
-        
+        public string Body { get; set; }
+    
         [Required]
         [JsonPropertyName("ref")]
-        public ArticleRecordDto Ref { get; set; }        
-        
+        public ArticleRecordDto Ref { get; set; }
+    
     }
     
 }

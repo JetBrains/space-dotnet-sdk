@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.DRDraftExtensions
         public static Partial<DRDraftDto> WithType(this Partial<DRDraftDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<DRDraftDto> WithType(this Partial<DRDraftDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>()));
+        
         public static Partial<DRDraftDto> WithModified(this Partial<DRDraftDto> it)
             => it.AddFieldName("modified");
         

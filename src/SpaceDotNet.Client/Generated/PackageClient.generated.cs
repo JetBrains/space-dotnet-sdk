@@ -41,11 +41,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PackagesSettingsDto> GetAllSettingsAsync(string type, string method, string? repository = null, Func<Partial<PackagesSettingsDto>, Partial<PackagesSettingsDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PackagesSettingsDto>()) : Partial<PackagesSettingsDto>.Default()));            
-            
-        }
+            public async Task<PackagesSettingsDto> GetAllSettingsAsync(string type, string method, string? repository = null, Func<Partial<PackagesSettingsDto>, Partial<PackagesSettingsDto>> partial = null)
+                => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<PackagesSettingsDto>()) : Partial<PackagesSettingsDto>.Default())}");
         
+        }
+    
     }
     
 }

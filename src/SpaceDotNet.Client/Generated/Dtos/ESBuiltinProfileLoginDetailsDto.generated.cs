@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESBuiltinProfileLoginDetailsDto
+    public sealed class ESBuiltinProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("passwordChangeRequest")]
-        public string? PasswordChangeRequest { get; set; }        
-        
+        public string? PasswordChangeRequest { get; set; }
+    
     }
     
 }

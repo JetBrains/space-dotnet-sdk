@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CollabDocumentDto
+    public sealed class CollabDocumentDto
          : TextDocumentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,23 +29,23 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("resetCounter")]
-        public long ResetCounter { get; set; }        
-        
+        public long ResetCounter { get; set; }
+    
         [JsonPropertyName("version")]
-        public long? Version { get; set; }        
-        
+        public long? Version { get; set; }
+    
         [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get; set; }        
-        
+        public DraftDocumentType Type { get; set; }
+    
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
     }
     
 }

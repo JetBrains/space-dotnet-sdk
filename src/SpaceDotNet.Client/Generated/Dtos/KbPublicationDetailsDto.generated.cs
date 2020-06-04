@@ -21,21 +21,21 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class KbPublicationDetailsDto
+    public sealed class KbPublicationDetailsDto
          : PublicationDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("book")]
-        public KBBookDto? Book { get; set; }        
-        
+        public KBBookDto? Book { get; set; }
+    
         [JsonPropertyName("folder")]
-        public KBFolderDto? Folder { get; set; }        
-        
+        public KBFolderDto? Folder { get; set; }
+    
         [JsonPropertyName("articleId")]
-        public KBArticleDto? ArticleId { get; set; }        
-        
+        public KBArticleDto? ArticleId { get; set; }
+    
     }
     
 }

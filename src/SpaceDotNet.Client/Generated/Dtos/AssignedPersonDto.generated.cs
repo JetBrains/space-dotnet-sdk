@@ -21,14 +21,14 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AssignedPersonDto
+    public sealed class AssignedPersonDto
     {
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get; set; }        
-        
+        public TDMemberProfileDto? Profile { get; set; }
+    
         [JsonPropertyName("role")]
-        public string? Role { get; set; }        
-        
+        public string? Role { get; set; }
+    
     }
     
 }

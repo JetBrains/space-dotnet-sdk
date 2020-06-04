@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MdMarkupDto
+    public sealed class MdMarkupDto
     {
         [Required]
         [JsonPropertyName("unfurl")]
-        public List<UnfurlDto> Unfurl { get; set; }        
-        
+        public List<UnfurlDto> Unfurl { get; set; }
+    
     }
     
 }

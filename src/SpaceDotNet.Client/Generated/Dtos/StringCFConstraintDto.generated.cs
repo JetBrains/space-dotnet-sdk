@@ -21,21 +21,21 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class StringCFConstraintDto
+    public sealed class StringCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
         [JsonPropertyName("min")]
-        public int? Min { get; set; }        
-        
+        public int? Min { get; set; }
+    
         [JsonPropertyName("max")]
-        public int? Max { get; set; }        
-        
+        public int? Max { get; set; }
+    
         [JsonPropertyName("pattern")]
-        public string? Pattern { get; set; }        
-        
+        public string? Pattern { get; set; }
+    
         [JsonPropertyName("message")]
-        public string? Message { get; set; }        
-        
+        public string? Message { get; set; }
+    
     }
     
 }

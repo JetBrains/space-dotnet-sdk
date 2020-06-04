@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueStatusDataDto
+    public sealed class IssueStatusDataDto
     {
         [JsonPropertyName("existingId")]
-        public string? ExistingId { get; set; }        
-        
+        public string? ExistingId { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }        
-        
+        public bool Resolved { get; set; }
+    
         [Required]
         [JsonPropertyName("color")]
-        public string Color { get; set; }        
-        
+        public string Color { get; set; }
+    
     }
     
 }

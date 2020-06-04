@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitDiffSizeDto
+    public sealed class GitDiffSizeDto
     {
         [Required]
         [JsonPropertyName("added")]
-        public int Added { get; set; }        
-        
+        public int Added { get; set; }
+    
         [Required]
         [JsonPropertyName("deleted")]
-        public int Deleted { get; set; }        
-        
+        public int Deleted { get; set; }
+    
     }
     
 }

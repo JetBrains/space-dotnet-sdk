@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESHiddenAuthModuleSettingsDto
+    public sealed class ESHiddenAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible
     {
         [JsonPropertyName("passwordModule")]
-        public bool? PasswordModule { get; set; }        
-        
+        public bool? PasswordModule { get; set; }
+    
         [JsonPropertyName("federatedModule")]
-        public bool? FederatedModule { get; set; }        
-        
+        public bool? FederatedModule { get; set; }
+    
     }
     
 }

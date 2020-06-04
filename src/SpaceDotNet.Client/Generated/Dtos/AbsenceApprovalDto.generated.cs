@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AbsenceApprovalDto
+    public sealed class AbsenceApprovalDto
     {
         [Required]
         [JsonPropertyName("approved")]
-        public bool Approved { get; set; }        
-        
+        public bool Approved { get; set; }
+    
         [Required]
         [JsonPropertyName("approvedBy")]
-        public TDMemberProfileDto ApprovedBy { get; set; }        
-        
+        public TDMemberProfileDto ApprovedBy { get; set; }
+    
         [Required]
         [JsonPropertyName("approvedAt")]
-        public SpaceTime ApprovedAt { get; set; }        
-        
+        public SpaceTime ApprovedAt { get; set; }
+    
     }
     
 }

@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.CodeReviewParticipantRecordExtensions
         public static Partial<CodeReviewParticipantRecordDto> WithRole(this Partial<CodeReviewParticipantRecordDto> it)
             => it.AddFieldName("role");
         
+        public static Partial<CodeReviewParticipantRecordDto> WithRole(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
+        
         public static Partial<CodeReviewParticipantRecordDto> WithProfile(this Partial<CodeReviewParticipantRecordDto> it)
             => it.AddFieldName("profile");
         
@@ -40,6 +43,9 @@ namespace SpaceDotNet.Client.CodeReviewParticipantRecordExtensions
         
         public static Partial<CodeReviewParticipantRecordDto> WithReviewerState(this Partial<CodeReviewParticipantRecordDto> it)
             => it.AddFieldName("reviewerState");
+        
+        public static Partial<CodeReviewParticipantRecordDto> WithReviewerState(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
+            => it.AddFieldName("reviewerState", partialBuilder(new Partial<ReviewerState>()));
         
         public static Partial<CodeReviewParticipantRecordDto> WithTheirTurn(this Partial<CodeReviewParticipantRecordDto> it)
             => it.AddFieldName("theirTurn");

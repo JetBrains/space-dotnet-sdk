@@ -24,12 +24,12 @@ namespace SpaceDotNet.Client
     public class CreateHierarchicalTagRequestDto
     {
         [JsonPropertyName("parentTagId")]
-        public string? ParentTagId { get; set; }        
-        
+        public string? ParentTagId { get; set; }
+    
         [Required]
         [JsonPropertyName("path")]
-        public List<string> Path { get; set; }        
-        
+        public List<string> Path { get; set; }
+    
     }
     
 }

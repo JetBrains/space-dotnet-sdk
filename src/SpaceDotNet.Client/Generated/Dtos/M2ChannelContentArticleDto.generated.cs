@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContentArticleDto
+    public sealed class M2ChannelContentArticleDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,15 +29,15 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }        
-        
+        public ArticleRecordDto Article { get; set; }
+    
         [Required]
         [JsonPropertyName("articleContent")]
-        public ArticleContentRecordDto ArticleContent { get; set; }        
-        
+        public ArticleContentRecordDto ArticleContent { get; set; }
+    
         [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get; set; }        
-        
+        public ArticleDetailsRecordDto? Details { get; set; }
+    
     }
     
 }

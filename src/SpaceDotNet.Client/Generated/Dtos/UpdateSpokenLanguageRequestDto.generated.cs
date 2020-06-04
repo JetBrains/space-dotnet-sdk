@@ -25,14 +25,14 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("language")]
-        public string Language { get; set; }        
-        
+        public string Language { get; set; }
+    
         [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }        
-        
+        public string? FirstName { get; set; }
+    
         [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }        
-        
+        public string? LastName { get; set; }
+    
     }
     
 }

@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelIssueInfoDto
+    public sealed class M2ChannelIssueInfoDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("projectKey")]
-        public ProjectKeyDto? ProjectKey { get; set; }        
-        
+        public ProjectKeyDto? ProjectKey { get; set; }
+    
         [Required]
         [JsonPropertyName("issue")]
-        public IssueDto Issue { get; set; }        
-        
+        public IssueDto Issue { get; set; }
+    
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
-        
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+    
     }
     
 }

@@ -21,57 +21,57 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ProfileHitDto
+    public sealed class ProfileHitDto
          : EntityHitDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("score")]
-        public double Score { get; set; }        
-        
+        public double Score { get; set; }
+    
         [Required]
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }        
-        
+        public string FirstName { get; set; }
+    
         [Required]
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }        
-        
+        public string LastName { get; set; }
+    
         [Required]
         [JsonPropertyName("userName")]
-        public string UserName { get; set; }        
-        
+        public string UserName { get; set; }
+    
         [Required]
         [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }        
-        
+        public List<string> Phones { get; set; }
+    
         [Required]
         [JsonPropertyName("emails")]
-        public List<string> Emails { get; set; }        
-        
+        public List<string> Emails { get; set; }
+    
         [Required]
         [JsonPropertyName("links")]
-        public List<string> Links { get; set; }        
-        
+        public List<string> Links { get; set; }
+    
         [Required]
         [JsonPropertyName("messengers")]
-        public List<string> Messengers { get; set; }        
-        
+        public List<string> Messengers { get; set; }
+    
         [Required]
         [JsonPropertyName("notAMember")]
-        public bool NotAMember { get; set; }        
-        
+        public bool NotAMember { get; set; }
+    
         [Required]
         [JsonPropertyName("ref")]
-        public TDMemberProfileDto Ref { get; set; }        
-        
+        public TDMemberProfileDto Ref { get; set; }
+    
         [Required]
         [JsonPropertyName("customFields")]
-        public List<CustomFieldHitDto> CustomFields { get; set; }        
-        
+        public List<CustomFieldHitDto> CustomFields { get; set; }
+    
     }
     
 }

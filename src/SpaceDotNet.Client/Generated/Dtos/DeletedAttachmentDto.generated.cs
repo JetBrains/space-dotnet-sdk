@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DeletedAttachmentDto
+    public sealed class DeletedAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("deletedIdentity")]
-        public string DeletedIdentity { get; set; }        
-        
+        public string DeletedIdentity { get; set; }
+    
     }
     
 }

@@ -21,26 +21,26 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CalendarEventDto
+    public sealed class CalendarEventDto
     {
         [JsonPropertyName("calendarEvent")]
-        public bool? CalendarEvent { get; set; }        
-        
+        public bool? CalendarEvent { get; set; }
+    
         [JsonPropertyName("starts")]
-        public SpaceTime? Starts { get; set; }        
-        
+        public SpaceTime? Starts { get; set; }
+    
         [JsonPropertyName("ends")]
-        public SpaceTime? Ends { get; set; }        
-        
+        public SpaceTime? Ends { get; set; }
+    
         [JsonPropertyName("timezone")]
-        public ATimeZoneDto? Timezone { get; set; }        
-        
+        public ATimeZoneDto? Timezone { get; set; }
+    
         [JsonPropertyName("rooms")]
-        public List<TDLocationDto>? Rooms { get; set; }        
-        
+        public List<TDLocationDto>? Rooms { get; set; }
+    
         [JsonPropertyName("allDay")]
-        public bool? AllDay { get; set; }        
-        
+        public bool? AllDay { get; set; }
+    
     }
     
 }

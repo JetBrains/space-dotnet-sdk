@@ -21,39 +21,39 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class KBFolderDto
+    public sealed class KBFolderDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("parent")]
-        public KBFolderDto? Parent { get; set; }        
-        
+        public KBFolderDto? Parent { get; set; }
+    
         [Required]
         [JsonPropertyName("subfolders")]
-        public List<KBFolderDto> Subfolders { get; set; }        
-        
+        public List<KBFolderDto> Subfolders { get; set; }
+    
         [Required]
         [JsonPropertyName("articles")]
-        public List<KBArticleDto> Articles { get; set; }        
-        
+        public List<KBArticleDto> Articles { get; set; }
+    
         [Required]
         [JsonPropertyName("book")]
-        public KBBookDto Book { get; set; }        
-        
+        public KBBookDto Book { get; set; }
+    
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }        
-        
+        public string Alias { get; set; }
+    
     }
     
 }

@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESDefaultProfileLoginDetailsDto
+    public sealed class ESDefaultProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("login")]
-        public string? Login { get; set; }        
-        
+        public string? Login { get; set; }
+    
         [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }        
-        
+        public string? FirstName { get; set; }
+    
         [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }        
-        
+        public string? LastName { get; set; }
+    
         [JsonPropertyName("email")]
-        public string? Email { get; set; }        
-        
+        public string? Email { get; set; }
+    
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }        
-        
+        public bool EmailVerified { get; set; }
+    
         [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }        
-        
+        public string? AvatarUrl { get; set; }
+    
     }
     
 }

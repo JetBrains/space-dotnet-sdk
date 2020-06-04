@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESSamlAttributeNamesDto
+    public sealed class ESSamlAttributeNamesDto
     {
         [JsonPropertyName("loginAttributeName")]
-        public string? LoginAttributeName { get; set; }        
-        
+        public string? LoginAttributeName { get; set; }
+    
         [JsonPropertyName("firstNameAttributeName")]
-        public string? FirstNameAttributeName { get; set; }        
-        
+        public string? FirstNameAttributeName { get; set; }
+    
         [JsonPropertyName("lastNameAttributeName")]
-        public string? LastNameAttributeName { get; set; }        
-        
+        public string? LastNameAttributeName { get; set; }
+    
         [JsonPropertyName("fullNameAttributeName")]
-        public string? FullNameAttributeName { get; set; }        
-        
+        public string? FullNameAttributeName { get; set; }
+    
         [JsonPropertyName("emailAttributeName")]
-        public string? EmailAttributeName { get; set; }        
-        
+        public string? EmailAttributeName { get; set; }
+    
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }        
-        
+        public bool EmailVerified { get; set; }
+    
     }
     
 }

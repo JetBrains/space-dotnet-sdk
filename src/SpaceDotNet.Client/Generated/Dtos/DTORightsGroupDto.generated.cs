@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DTORightsGroupDto
+    public sealed class DTORightsGroupDto
     {
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [Required]
         [JsonPropertyName("priority")]
-        public int Priority { get; set; }        
-        
+        public int Priority { get; set; }
+    
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTORightDto> Rights { get; set; }        
-        
+        public List<DTORightDto> Rights { get; set; }
+    
     }
     
 }

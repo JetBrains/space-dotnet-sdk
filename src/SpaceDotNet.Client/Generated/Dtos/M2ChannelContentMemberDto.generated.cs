@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContentMemberDto
+    public sealed class M2ChannelContentMemberDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,18 +29,18 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }        
-        
+        public TDMemberProfileDto Member { get; set; }
+    
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
-        
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+    
         [JsonPropertyName("memberAbsences")]
-        public ProfileAbsencesRecordDto? MemberAbsences { get; set; }        
-        
+        public ProfileAbsencesRecordDto? MemberAbsences { get; set; }
+    
         [JsonPropertyName("memberTeams")]
-        public ProfileMembershipRecordDto? MemberTeams { get; set; }        
-        
+        public ProfileMembershipRecordDto? MemberTeams { get; set; }
+    
     }
     
 }

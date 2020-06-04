@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlDetailsCodeSnippetDto
+    public sealed class UnfurlDetailsCodeSnippetDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeSnippetAnchorDto Anchor { get; set; }        
-        
+        public CodeSnippetAnchorDto Anchor { get; set; }
+    
         [Required]
         [JsonPropertyName("lines")]
-        public List<CodeLineDto> Lines { get; set; }        
-        
+        public List<CodeLineDto> Lines { get; set; }
+    
     }
     
 }

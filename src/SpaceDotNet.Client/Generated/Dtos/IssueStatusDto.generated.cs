@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueStatusDto
+    public sealed class IssueStatusDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }        
-        
+        public bool Resolved { get; set; }
+    
         [Required]
         [JsonPropertyName("color")]
-        public string Color { get; set; }        
-        
+        public string Color { get; set; }
+    
     }
     
 }

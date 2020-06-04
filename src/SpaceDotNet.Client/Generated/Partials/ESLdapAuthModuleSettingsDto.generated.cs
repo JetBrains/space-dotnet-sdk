@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.ESLdapAuthModuleSettingsExtensions
         public static Partial<ESLdapAuthModuleSettingsDto> WithType(this Partial<ESLdapAuthModuleSettingsDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<ESLdapAuthModuleSettingsDto> WithType(this Partial<ESLdapAuthModuleSettingsDto> it, Func<Partial<LdapModuleType>, Partial<LdapModuleType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<LdapModuleType>()));
+        
         public static Partial<ESLdapAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESLdapAuthModuleSettingsDto> it)
             => it.AddFieldName("registerNewUsers");
         

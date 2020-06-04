@@ -21,30 +21,30 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MergeRequestBranchPairDto
+    public sealed class MergeRequestBranchPairDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }        
-        
+        public string SourceBranch { get; set; }
+    
         [Required]
         [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }        
-        
+        public string TargetBranch { get; set; }
+    
         [Required]
         [JsonPropertyName("sourceBranchRef")]
-        public string SourceBranchRef { get; set; }        
-        
+        public string SourceBranchRef { get; set; }
+    
         [JsonPropertyName("sourceBranchInfo")]
-        public MergeRequestBranchDto? SourceBranchInfo { get; set; }        
-        
+        public MergeRequestBranchDto? SourceBranchInfo { get; set; }
+    
         [JsonPropertyName("targetBranchInfo")]
-        public MergeRequestBranchDto? TargetBranchInfo { get; set; }        
-        
+        public MergeRequestBranchDto? TargetBranchInfo { get; set; }
+    
     }
     
 }

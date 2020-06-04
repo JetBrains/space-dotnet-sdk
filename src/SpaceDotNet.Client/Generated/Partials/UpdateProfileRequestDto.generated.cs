@@ -47,6 +47,9 @@ namespace SpaceDotNet.Client.UpdateProfileRequestExtensions
         public static Partial<UpdateProfileRequestDto> WithGender(this Partial<UpdateProfileRequestDto> it)
             => it.AddFieldName("gender");
         
+        public static Partial<UpdateProfileRequestDto> WithGender(this Partial<UpdateProfileRequestDto> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
+            => it.AddFieldName("gender", partialBuilder(new Partial<Gender>()));
+        
         public static Partial<UpdateProfileRequestDto> WithMessengers(this Partial<UpdateProfileRequestDto> it)
             => it.AddFieldName("messengers");
         

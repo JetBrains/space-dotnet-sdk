@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.RecurrenceRuleFreqMonthlyOnLastWeekdayExtensions
         public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekdayDto> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekdayDto> it)
             => it.AddFieldName("weekday");
         
+        public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekdayDto> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekdayDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
+            => it.AddFieldName("weekday", partialBuilder(new Partial<Weekday>()));
+        
         public static Partial<RecurrenceRuleFreqMonthlyOnLastWeekdayDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnLastWeekdayDto> it)
             => it.AddFieldName("interval");
         

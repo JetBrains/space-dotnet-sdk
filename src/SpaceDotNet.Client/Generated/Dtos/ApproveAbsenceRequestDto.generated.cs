@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("approve")]
-        public bool Approve { get; set; }        
-        
+        public bool Approve { get; set; }
+    
     }
     
 }

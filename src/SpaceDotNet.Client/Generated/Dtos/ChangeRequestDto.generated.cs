@@ -25,12 +25,12 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("oldPassword")]
-        public string OldPassword { get; set; }        
-        
+        public string OldPassword { get; set; }
+    
         [Required]
         [JsonPropertyName("newPassword")]
-        public string NewPassword { get; set; }        
-        
+        public string NewPassword { get; set; }
+    
     }
     
 }

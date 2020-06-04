@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("till")]
-        public SpaceTime Till { get; set; }        
-        
+        public SpaceTime Till { get; set; }
+    
     }
     
 }

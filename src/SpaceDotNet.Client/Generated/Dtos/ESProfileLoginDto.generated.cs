@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESProfileLoginDto
+    public sealed class ESProfileLoginDto
     {
         [Required]
         [JsonPropertyName("identifier")]
-        public string Identifier { get; set; }        
-        
+        public string Identifier { get; set; }
+    
         [Required]
         [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get; set; }        
-        
+        public ESAuthModuleDto AuthModule { get; set; }
+    
         [Required]
         [JsonPropertyName("details")]
-        public ESProfileLoginDetailsDto Details { get; set; }        
-        
+        public ESProfileLoginDetailsDto Details { get; set; }
+    
         [JsonPropertyName("access")]
-        public AccessRecordDto? Access { get; set; }        
-        
+        public AccessRecordDto? Access { get; set; }
+    
     }
     
 }

@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDMemberInLocationMapListDto
+    public sealed class TDMemberInLocationMapListDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }        
-        
+        public TDMemberProfileDto Profile { get; set; }
+    
         [Required]
         [JsonPropertyName("memberLocation")]
-        public TDMemberLocationDto MemberLocation { get; set; }        
-        
+        public TDMemberLocationDto MemberLocation { get; set; }
+    
         [JsonPropertyName("locationMapPoint")]
-        public TDLocationMapPointDto? LocationMapPoint { get; set; }        
-        
+        public TDLocationMapPointDto? LocationMapPoint { get; set; }
+    
     }
     
 }

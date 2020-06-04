@@ -29,6 +29,9 @@ namespace SpaceDotNet.Client.DocumentPublicationItemExtensions
         public static Partial<DocumentPublicationItemDto> WithDocumentType(this Partial<DocumentPublicationItemDto> it)
             => it.AddFieldName("documentType");
         
+        public static Partial<DocumentPublicationItemDto> WithDocumentType(this Partial<DocumentPublicationItemDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("documentType", partialBuilder(new Partial<DraftDocumentType>()));
+        
     }
     
 }

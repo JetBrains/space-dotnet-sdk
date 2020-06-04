@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2SharedChannelContentDto
+    public sealed class M2SharedChannelContentDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,36 +29,36 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("group")]
-        public string Group { get; set; }        
-        
+        public string Group { get; set; }
+    
         [Required]
         [JsonPropertyName("access")]
-        public M2Access Access { get; set; }        
-        
+        public M2Access Access { get; set; }
+    
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }        
-        
+        public string Description { get; set; }
+    
         [JsonPropertyName("membersCounter")]
-        public int? MembersCounter { get; set; }        
-        
+        public int? MembersCounter { get; set; }
+    
         [JsonPropertyName("iconId")]
-        public string? IconId { get; set; }        
-        
+        public string? IconId { get; set; }
+    
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }        
-        
+        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+    
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }        
-        
+        public List<TDTeamDto>? Teams { get; set; }
+    
         [JsonPropertyName("canEdit")]
-        public bool? CanEdit { get; set; }        
-        
+        public bool? CanEdit { get; set; }
+    
     }
     
 }

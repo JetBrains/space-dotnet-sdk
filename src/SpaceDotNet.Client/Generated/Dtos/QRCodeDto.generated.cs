@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class QRCodeDto
+    public sealed class QRCodeDto
     {
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }        
-        
+        public int Width { get; set; }
+    
         [Required]
         [JsonPropertyName("base64Bitmap")]
-        public string Base64Bitmap { get; set; }        
-        
+        public string Base64Bitmap { get; set; }
+    
     }
     
 }

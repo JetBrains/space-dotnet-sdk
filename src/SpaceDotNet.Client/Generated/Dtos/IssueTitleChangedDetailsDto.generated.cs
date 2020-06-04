@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueTitleChangedDetailsDto
+    public sealed class IssueTitleChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("oldTitle")]
-        public string OldTitle { get; set; }        
-        
+        public string OldTitle { get; set; }
+    
         [Required]
         [JsonPropertyName("newTitle")]
-        public string NewTitle { get; set; }        
-        
+        public string NewTitle { get; set; }
+    
     }
     
 }

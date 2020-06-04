@@ -26,11 +26,17 @@ namespace SpaceDotNet.Client.ChannelSpecificDefaultsExtensions
         public static Partial<ChannelSpecificDefaultsDto> WithFilter(this Partial<ChannelSpecificDefaultsDto> it)
             => it.AddFieldName("filter");
         
+        public static Partial<ChannelSpecificDefaultsDto> WithFilter(this Partial<ChannelSpecificDefaultsDto> it, Func<Partial<NotificationFilter>, Partial<NotificationFilter>> partialBuilder)
+            => it.AddFieldName("filter", partialBuilder(new Partial<NotificationFilter>()));
+        
         public static Partial<ChannelSpecificDefaultsDto> WithPush(this Partial<ChannelSpecificDefaultsDto> it)
             => it.AddFieldName("push");
         
         public static Partial<ChannelSpecificDefaultsDto> WithEmail(this Partial<ChannelSpecificDefaultsDto> it)
             => it.AddFieldName("email");
+        
+        public static Partial<ChannelSpecificDefaultsDto> WithEmail(this Partial<ChannelSpecificDefaultsDto> it, Func<Partial<M2EmailNotificationType>, Partial<M2EmailNotificationType>> partialBuilder)
+            => it.AddFieldName("email", partialBuilder(new Partial<M2EmailNotificationType>()));
         
     }
     

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContentNamedPrivateChannelDto
+    public sealed class M2ChannelContentNamedPrivateChannelDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,11 +29,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }        
-        
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
+    
     }
     
 }

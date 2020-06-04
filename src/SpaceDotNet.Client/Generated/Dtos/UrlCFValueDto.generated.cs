@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UrlCFValueDto
+    public sealed class UrlCFValueDto
          : CFValueDto, IClassNameConvertible
     {
         [JsonPropertyName("href")]
-        public string? Href { get; set; }        
-        
+        public string? Href { get; set; }
+    
     }
     
 }

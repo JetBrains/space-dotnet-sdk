@@ -24,15 +24,15 @@ namespace SpaceDotNet.Client
     public class AddWorkingDaysRequestDto
     {
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }        
-        
+        public SpaceDate? DateStart { get; set; }
+    
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }        
-        
+        public SpaceDate? DateEnd { get; set; }
+    
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }        
-        
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+    
     }
     
 }

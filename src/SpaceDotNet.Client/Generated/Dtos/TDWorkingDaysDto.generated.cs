@@ -21,22 +21,22 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDWorkingDaysDto
+    public sealed class TDWorkingDaysDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }        
-        
+        public SpaceDate? DateStart { get; set; }
+    
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }        
-        
+        public SpaceDate? DateEnd { get; set; }
+    
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }        
-        
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+    
     }
     
 }

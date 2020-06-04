@@ -38,6 +38,9 @@ namespace SpaceDotNet.Client.PackageRepositorySettingsExtensions
         public static Partial<PackageRepositorySettingsDto> WithPermissions(this Partial<PackageRepositorySettingsDto> it)
             => it.AddFieldName("permissions");
         
+        public static Partial<PackageRepositorySettingsDto> WithPermissions(this Partial<PackageRepositorySettingsDto> it, Func<Partial<PackagesPermission>, Partial<PackagesPermission>> partialBuilder)
+            => it.AddFieldName("permissions", partialBuilder(new Partial<PackagesPermission>()));
+        
     }
     
 }

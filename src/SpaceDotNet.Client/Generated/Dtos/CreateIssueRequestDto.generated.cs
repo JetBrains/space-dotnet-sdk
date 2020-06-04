@@ -25,35 +25,35 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [JsonPropertyName("assignee")]
-        public string? Assignee { get; set; }        
-        
+        public string? Assignee { get; set; }
+    
         [Required]
         [JsonPropertyName("status")]
-        public string Status { get; set; }        
-        
+        public string Status { get; set; }
+    
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }        
-        
+        public SpaceDate? DueDate { get; set; }
+    
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }        
-        
+        public List<string> Tags { get; set; }
+    
         [Required]
         [JsonPropertyName("checklists")]
-        public List<string> Checklists { get; set; }        
-        
+        public List<string> Checklists { get; set; }
+    
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto>? Attachments { get; set; }        
-        
+        public List<AttachmentDto>? Attachments { get; set; }
+    
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get; set; }        
-        
+        public ImportedEntityInfoDto? ImportInfo { get; set; }
+    
     }
     
 }

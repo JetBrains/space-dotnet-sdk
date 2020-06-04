@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2PollContentDto
+    public sealed class M2PollContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("poll")]
-        public PollRecordDto Poll { get; set; }        
-        
+        public PollRecordDto Poll { get; set; }
+    
     }
     
 }

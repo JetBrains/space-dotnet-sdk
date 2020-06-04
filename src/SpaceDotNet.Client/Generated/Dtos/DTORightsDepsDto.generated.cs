@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DTORightsDepsDto
+    public sealed class DTORightsDepsDto
     {
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }        
-        
+        public string Code { get; set; }
+    
         [Required]
         [JsonPropertyName("deps")]
-        public List<string> Deps { get; set; }        
-        
+        public List<string> Deps { get; set; }
+    
     }
     
 }

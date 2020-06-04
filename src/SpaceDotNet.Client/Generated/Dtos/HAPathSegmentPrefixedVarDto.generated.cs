@@ -21,17 +21,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAPathSegmentPrefixedVarDto
+    public sealed class HAPathSegmentPrefixedVarDto
          : HAPathSegmentDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("prefix")]
-        public string Prefix { get; set; }        
-        
+        public string Prefix { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
     }
     
 }

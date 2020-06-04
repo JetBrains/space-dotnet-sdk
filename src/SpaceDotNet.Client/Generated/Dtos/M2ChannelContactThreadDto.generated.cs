@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContactThreadDto
+    public sealed class M2ChannelContactThreadDto
          : M2ChannelContactInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,23 +29,23 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }        
-        
+        public M2ChannelRecordDto Parent { get; set; }
+    
         [JsonPropertyName("text")]
-        public string? Text { get; set; }        
-        
+        public string? Text { get; set; }
+    
         [JsonPropertyName("messageId")]
-        public string? MessageId { get; set; }        
-        
+        public string? MessageId { get; set; }
+    
         [JsonPropertyName("author")]
-        public TDMemberProfileDto? Author { get; set; }        
-        
+        public TDMemberProfileDto? Author { get; set; }
+    
         [JsonPropertyName("messageAuthor")]
-        public CPrincipalDto? MessageAuthor { get; set; }        
-        
+        public CPrincipalDto? MessageAuthor { get; set; }
+    
         [JsonPropertyName("attachments")]
-        public string? Attachments { get; set; }        
-        
+        public string? Attachments { get; set; }
+    
     }
     
 }

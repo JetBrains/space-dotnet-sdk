@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.GitFileExtensions
         public static Partial<GitFileDto> WithType(this Partial<GitFileDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<GitFileDto> WithType(this Partial<GitFileDto> it, Func<Partial<GitEntryType>, Partial<GitEntryType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<GitEntryType>()));
+        
     }
     
 }

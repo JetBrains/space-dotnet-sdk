@@ -21,49 +21,49 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class InvitationDto
+    public sealed class InvitationDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("expiresAt")]
-        public SpaceTime ExpiresAt { get; set; }        
-        
+        public SpaceTime ExpiresAt { get; set; }
+    
         [Required]
         [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail { get; set; }        
-        
+        public string InviteeEmail { get; set; }
+    
         [Required]
         [JsonPropertyName("inviteeEmailBlocked")]
-        public bool InviteeEmailBlocked { get; set; }        
-        
+        public bool InviteeEmailBlocked { get; set; }
+    
         [JsonPropertyName("inviteeEmailBlockedReason")]
-        public string? InviteeEmailBlockedReason { get; set; }        
-        
+        public string? InviteeEmailBlockedReason { get; set; }
+    
         [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }        
-        
+        public string? InviteeFirstName { get; set; }
+    
         [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get; set; }        
-        
+        public string? InviteeLastName { get; set; }
+    
         [JsonPropertyName("invitee")]
-        public TDMemberProfileDto? Invitee { get; set; }        
-        
+        public TDMemberProfileDto? Invitee { get; set; }
+    
         [Required]
         [JsonPropertyName("inviter")]
-        public CPrincipalDto Inviter { get; set; }        
-        
+        public CPrincipalDto Inviter { get; set; }
+    
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }        
-        
+        public TDTeamDto? Team { get; set; }
+    
         [JsonPropertyName("role")]
-        public TDRoleDto? Role { get; set; }        
-        
+        public TDRoleDto? Role { get; set; }
+    
         [JsonPropertyName("revoked")]
-        public bool? Revoked { get; set; }        
-        
+        public bool? Revoked { get; set; }
+    
     }
     
 }

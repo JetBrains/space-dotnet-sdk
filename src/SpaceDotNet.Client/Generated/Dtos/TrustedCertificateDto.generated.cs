@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TrustedCertificateDto
+    public sealed class TrustedCertificateDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }        
-        
+        public string Alias { get; set; }
+    
         [Required]
         [JsonPropertyName("data")]
-        public string Data { get; set; }        
-        
+        public string Data { get; set; }
+    
         [Required]
         [JsonPropertyName("info")]
-        public CertificateInfoDto Info { get; set; }        
-        
+        public CertificateInfoDto Info { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
     }
     
 }

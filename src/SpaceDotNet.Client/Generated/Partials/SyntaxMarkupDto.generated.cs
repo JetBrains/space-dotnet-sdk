@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.SyntaxMarkupExtensions
         public static Partial<SyntaxMarkupDto> WithType(this Partial<SyntaxMarkupDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<SyntaxMarkupDto> WithType(this Partial<SyntaxMarkupDto> it, Func<Partial<SyntaxMarkupType>, Partial<SyntaxMarkupType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<SyntaxMarkupType>()));
+        
         public static Partial<SyntaxMarkupDto> WithRange(this Partial<SyntaxMarkupDto> it)
             => it.AddFieldName("range");
         

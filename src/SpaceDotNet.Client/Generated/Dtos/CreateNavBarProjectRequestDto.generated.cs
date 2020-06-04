@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }        
-        
+        public string ProjectId { get; set; }
+    
     }
     
 }

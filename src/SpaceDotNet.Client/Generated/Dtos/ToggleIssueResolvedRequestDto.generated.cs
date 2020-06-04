@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }        
-        
+        public bool Resolved { get; set; }
+    
     }
     
 }

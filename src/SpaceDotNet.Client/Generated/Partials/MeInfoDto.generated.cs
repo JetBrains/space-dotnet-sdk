@@ -62,6 +62,9 @@ namespace SpaceDotNet.Client.MeInfoExtensions
         public static Partial<MeInfoDto> WithDraftType(this Partial<MeInfoDto> it)
             => it.AddFieldName("draftType");
         
+        public static Partial<MeInfoDto> WithDraftType(this Partial<MeInfoDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>()));
+        
     }
     
 }

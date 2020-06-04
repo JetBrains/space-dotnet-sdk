@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RepositoryActivityDto
+    public sealed class RepositoryActivityDto
     {
         [Required]
         [JsonPropertyName("lastActivity")]
-        public List<Pair<SpaceDate, int>> LastActivity { get; set; }        
-        
+        public List<Pair<SpaceDate, int>> LastActivity { get; set; }
+    
     }
     
 }

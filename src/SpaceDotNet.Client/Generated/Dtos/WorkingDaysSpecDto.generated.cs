@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class WorkingDaysSpecDto
+    public sealed class WorkingDaysSpecDto
     {
         [Required]
         [JsonPropertyName("days")]
-        public List<WorkdayDto> Days { get; set; }        
-        
+        public List<WorkdayDto> Days { get; set; }
+    
     }
     
 }

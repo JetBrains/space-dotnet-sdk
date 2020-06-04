@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AuthModuleUsageDto
+    public sealed class AuthModuleUsageDto
     {
         [Required]
         [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get; set; }        
-        
+        public ESAuthModuleDto AuthModule { get; set; }
+    
         [Required]
         [JsonPropertyName("profiles")]
-        public int Profiles { get; set; }        
-        
+        public int Profiles { get; set; }
+    
     }
     
 }

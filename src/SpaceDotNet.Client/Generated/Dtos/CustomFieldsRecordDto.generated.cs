@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CustomFieldsRecordDto
+    public sealed class CustomFieldsRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("values")]
-        public List<CustomFieldValueDto> Values { get; set; }        
-        
+        public List<CustomFieldValueDto> Values { get; set; }
+    
     }
     
 }

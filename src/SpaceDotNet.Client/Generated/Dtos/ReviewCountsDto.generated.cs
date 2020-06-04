@@ -21,32 +21,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReviewCountsDto
+    public sealed class ReviewCountsDto
     {
         [Required]
         [JsonPropertyName("opened")]
-        public int Opened { get; set; }        
-        
+        public int Opened { get; set; }
+    
         [Required]
         [JsonPropertyName("closed")]
-        public int Closed { get; set; }        
-        
+        public int Closed { get; set; }
+    
         [Required]
         [JsonPropertyName("authoredByMe")]
-        public int AuthoredByMe { get; set; }        
-        
+        public int AuthoredByMe { get; set; }
+    
         [Required]
         [JsonPropertyName("reviewedByMe")]
-        public int ReviewedByMe { get; set; }        
-        
+        public int ReviewedByMe { get; set; }
+    
         [Required]
         [JsonPropertyName("needsMyAttention")]
-        public int NeedsMyAttention { get; set; }        
-        
+        public int NeedsMyAttention { get; set; }
+    
         [Required]
         [JsonPropertyName("needsMyReview")]
-        public int NeedsMyReview { get; set; }        
-        
+        public int NeedsMyReview { get; set; }
+    
     }
     
 }

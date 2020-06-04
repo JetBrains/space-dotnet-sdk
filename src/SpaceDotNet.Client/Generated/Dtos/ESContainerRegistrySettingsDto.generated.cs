@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESContainerRegistrySettingsDto
+    public sealed class ESContainerRegistrySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("immutableTags")]
-        public bool ImmutableTags { get; set; }        
-        
+        public bool ImmutableTags { get; set; }
+    
     }
     
 }

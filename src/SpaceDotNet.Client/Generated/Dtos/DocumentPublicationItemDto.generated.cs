@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DocumentPublicationItemDto
+    public sealed class DocumentPublicationItemDto
          : PublicationItemDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("documentId")]
-        public string DocumentId { get; set; }        
-        
+        public string DocumentId { get; set; }
+    
         [Required]
         [JsonPropertyName("documentType")]
-        public DraftDocumentType DocumentType { get; set; }        
-        
+        public DraftDocumentType DocumentType { get; set; }
+    
     }
     
 }

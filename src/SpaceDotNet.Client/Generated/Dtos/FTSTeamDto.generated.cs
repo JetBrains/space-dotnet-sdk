@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FTSTeamDto
+    public sealed class FTSTeamDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }        
-        
+        public List<FTSSnippetDto> Snippets { get; set; }
+    
     }
     
 }

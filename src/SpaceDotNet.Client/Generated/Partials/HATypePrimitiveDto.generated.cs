@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.HATypePrimitiveExtensions
         public static Partial<HATypePrimitiveDto> WithPrimitive(this Partial<HATypePrimitiveDto> it)
             => it.AddFieldName("primitive");
         
+        public static Partial<HATypePrimitiveDto> WithPrimitive(this Partial<HATypePrimitiveDto> it, Func<Partial<HAPrimitive>, Partial<HAPrimitive>> partialBuilder)
+            => it.AddFieldName("primitive", partialBuilder(new Partial<HAPrimitive>()));
+        
         public static Partial<HATypePrimitiveDto> WithNullable(this Partial<HATypePrimitiveDto> it)
             => it.AddFieldName("nullable");
         

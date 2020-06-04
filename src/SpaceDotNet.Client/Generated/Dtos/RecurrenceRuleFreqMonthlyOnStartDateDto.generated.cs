@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RecurrenceRuleFreqMonthlyOnStartDateDto
+    public sealed class RecurrenceRuleFreqMonthlyOnStartDateDto
          : RecurrenceRuleFreqDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("interval")]
-        public int Interval { get; set; }        
-        
+        public int Interval { get; set; }
+    
     }
     
 }

@@ -25,50 +25,50 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }        
-        
+        public string Summary { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [Required]
         [JsonPropertyName("occurrenceRule")]
-        public CalendarEventSpecDto OccurrenceRule { get; set; }        
-        
+        public CalendarEventSpecDto OccurrenceRule { get; set; }
+    
         [Required]
         [JsonPropertyName("locations")]
-        public List<string> Locations { get; set; }        
-        
+        public List<string> Locations { get; set; }
+    
         [Required]
         [JsonPropertyName("profiles")]
-        public List<string> Profiles { get; set; }        
-        
+        public List<string> Profiles { get; set; }
+    
         [Required]
         [JsonPropertyName("externalParticipants")]
-        public List<string> ExternalParticipants { get; set; }        
-        
+        public List<string> ExternalParticipants { get; set; }
+    
         [Required]
         [JsonPropertyName("teams")]
-        public List<string> Teams { get; set; }        
-        
+        public List<string> Teams { get; set; }
+    
         [Required]
         [JsonPropertyName("visibility")]
-        public MeetingVisibility Visibility { get; set; }        
-        
+        public MeetingVisibility Visibility { get; set; }
+    
         [Required]
         [JsonPropertyName("modificationPreference")]
-        public MeetingModificationPreference ModificationPreference { get; set; }        
-        
+        public MeetingModificationPreference ModificationPreference { get; set; }
+    
         [Required]
         [JsonPropertyName("joiningPreference")]
-        public MeetingJoiningPreference JoiningPreference { get; set; }        
-        
+        public MeetingJoiningPreference JoiningPreference { get; set; }
+    
         [Required]
         [JsonPropertyName("notifyOnExport")]
-        public bool NotifyOnExport { get; set; }        
-        
+        public bool NotifyOnExport { get; set; }
+    
         [JsonPropertyName("organizer")]
-        public string? Organizer { get; set; }        
-        
+        public string? Organizer { get; set; }
+    
     }
     
 }

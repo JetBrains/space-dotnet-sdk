@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CUserWithEmailPrincipalDetailsDto
+    public sealed class CUserWithEmailPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }        
-        
+        public string Email { get; set; }
+    
     }
     
 }

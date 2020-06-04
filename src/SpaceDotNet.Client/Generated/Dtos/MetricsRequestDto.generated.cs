@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MetricsRequestDto
+    public sealed class MetricsRequestDto
     {
         [Required]
         [JsonPropertyName("client")]
-        public ClientInfoDto Client { get; set; }        
-        
+        public ClientInfoDto Client { get; set; }
+    
         [Required]
         [JsonPropertyName("events")]
-        public List<MetricsEventDto> Events { get; set; }        
-        
+        public List<MetricsEventDto> Events { get; set; }
+    
     }
     
 }

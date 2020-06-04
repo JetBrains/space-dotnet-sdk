@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class WorkdayDto
+    public sealed class WorkdayDto
     {
         [Required]
         [JsonPropertyName("weekday")]
-        public string Weekday { get; set; }        
-        
+        public string Weekday { get; set; }
+    
         [Required]
         [JsonPropertyName("working")]
-        public bool Working { get; set; }        
-        
+        public bool Working { get; set; }
+    
         [Required]
         [JsonPropertyName("hours")]
-        public int Hours { get; set; }        
-        
+        public int Hours { get; set; }
+    
         [JsonPropertyName("minutes")]
-        public int? Minutes { get; set; }        
-        
+        public int? Minutes { get; set; }
+    
     }
     
 }

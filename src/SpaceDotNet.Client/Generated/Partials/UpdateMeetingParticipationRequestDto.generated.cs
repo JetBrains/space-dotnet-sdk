@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.UpdateMeetingParticipationRequestExtensions
         public static Partial<UpdateMeetingParticipationRequestDto> WithNewStatus(this Partial<UpdateMeetingParticipationRequestDto> it)
             => it.AddFieldName("newStatus");
         
+        public static Partial<UpdateMeetingParticipationRequestDto> WithNewStatus(this Partial<UpdateMeetingParticipationRequestDto> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
+            => it.AddFieldName("newStatus", partialBuilder(new Partial<EventParticipationStatus>()));
+        
     }
     
 }

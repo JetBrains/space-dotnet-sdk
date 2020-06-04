@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.CollabDocumentExtensions
         public static Partial<CollabDocumentDto> WithType(this Partial<CollabDocumentDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<CollabDocumentDto> WithType(this Partial<CollabDocumentDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>()));
+        
         public static Partial<CollabDocumentDto> WithText(this Partial<CollabDocumentDto> it)
             => it.AddFieldName("text");
         

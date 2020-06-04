@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.ESServiceExtensions
         public static Partial<ESServiceDto> WithType(this Partial<ESServiceDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<ESServiceDto> WithType(this Partial<ESServiceDto> it, Func<Partial<OAuthServiceType>, Partial<OAuthServiceType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<OAuthServiceType>()));
+        
         public static Partial<ESServiceDto> WithClientId(this Partial<ESServiceDto> it)
             => it.AddFieldName("clientId");
         

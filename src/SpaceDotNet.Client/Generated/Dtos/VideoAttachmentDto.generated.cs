@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class VideoAttachmentDto
+    public sealed class VideoAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,24 +29,24 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
+        public string? Name { get; set; }
+    
         [JsonPropertyName("width")]
-        public int? Width { get; set; }        
-        
+        public int? Width { get; set; }
+    
         [JsonPropertyName("height")]
-        public int? Height { get; set; }        
-        
+        public int? Height { get; set; }
+    
         [Required]
         [JsonPropertyName("sizeBytes")]
-        public long SizeBytes { get; set; }        
-        
+        public long SizeBytes { get; set; }
+    
         [JsonPropertyName("previewBytes")]
-        public string? PreviewBytes { get; set; }        
-        
+        public string? PreviewBytes { get; set; }
+    
     }
     
 }

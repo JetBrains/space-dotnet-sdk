@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelCreatedItemDetailsDto
+    public sealed class M2ChannelCreatedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]

@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RevisionAuthorInfoDto
+    public sealed class RevisionAuthorInfoDto
     {
         [Required]
         [JsonPropertyName("revisionInfo")]
-        public RevisionInfoDto RevisionInfo { get; set; }        
-        
+        public RevisionInfoDto RevisionInfo { get; set; }
+    
         [Required]
         [JsonPropertyName("author")]
-        public RevisionAuthorDto Author { get; set; }        
-        
+        public RevisionAuthorDto Author { get; set; }
+    
     }
     
 }

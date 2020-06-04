@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AllReactionsToItemRecordDto
+    public sealed class AllReactionsToItemRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("reactions")]
-        public List<CertainReactionToItemRecordDto> Reactions { get; set; }        
-        
+        public List<CertainReactionToItemRecordDto> Reactions { get; set; }
+    
         [JsonPropertyName("emojiReactions")]
-        public List<EmojiReactionRecordDto>? EmojiReactions { get; set; }        
-        
+        public List<EmojiReactionRecordDto>? EmojiReactions { get; set; }
+    
     }
     
 }

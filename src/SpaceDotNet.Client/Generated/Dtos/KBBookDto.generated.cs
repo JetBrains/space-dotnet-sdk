@@ -21,44 +21,44 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class KBBookDto
+    public sealed class KBBookDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }        
-        
+        public string Summary { get; set; }
+    
         [Required]
         [JsonPropertyName("updated")]
-        public long Updated { get; set; }        
-        
+        public long Updated { get; set; }
+    
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }        
-        
+        public string Alias { get; set; }
+    
         [Required]
         [JsonPropertyName("locations")]
-        public List<TDLocationDto> Locations { get; set; }        
-        
+        public List<TDLocationDto> Locations { get; set; }
+    
         [Required]
         [JsonPropertyName("teams")]
-        public List<TDTeamDto> Teams { get; set; }        
-        
+        public List<TDTeamDto> Teams { get; set; }
+    
         [Required]
         [JsonPropertyName("rootFolder")]
-        public KBFolderDto RootFolder { get; set; }        
-        
+        public KBFolderDto RootFolder { get; set; }
+    
     }
     
 }

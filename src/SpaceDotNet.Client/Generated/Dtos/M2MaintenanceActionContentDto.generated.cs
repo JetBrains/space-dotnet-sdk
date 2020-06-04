@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2MaintenanceActionContentDto
+    public sealed class M2MaintenanceActionContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,16 +29,16 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("action")]
-        public string Action { get; set; }        
-        
+        public string Action { get; set; }
+    
         [Required]
         [JsonPropertyName("success")]
-        public bool Success { get; set; }        
-        
+        public bool Success { get; set; }
+    
         [Required]
         [JsonPropertyName("details")]
-        public string Details { get; set; }        
-        
+        public string Details { get; set; }
+    
     }
     
 }

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2AbsenceItemDeletedContentDto
+    public sealed class M2AbsenceItemDeletedContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,11 +29,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }        
-        
+        public AbsenceRecordDto Absence { get; set; }
+    
         [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }        
-        
+        public TDMemberProfileDto? By { get; set; }
+    
     }
     
 }

@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeReviewDetailedInfoDto
+    public sealed class CodeReviewDetailedInfoDto
     {
         [Required]
         [JsonPropertyName("shortInfo")]
-        public CodeReviewRecordDto ShortInfo { get; set; }        
-        
+        public CodeReviewRecordDto ShortInfo { get; set; }
+    
         [Required]
         [JsonPropertyName("commits")]
-        public List<RevisionsInReviewDto> Commits { get; set; }        
-        
+        public List<RevisionsInReviewDto> Commits { get; set; }
+    
         [Required]
         [JsonPropertyName("lostCommits")]
-        public List<RevisionsInReviewDto> LostCommits { get; set; }        
-        
+        public List<RevisionsInReviewDto> LostCommits { get; set; }
+    
         [Required]
         [JsonPropertyName("discussionCounter")]
-        public CodeReviewDiscussionCounterDto DiscussionCounter { get; set; }        
-        
+        public CodeReviewDiscussionCounterDto DiscussionCounter { get; set; }
+    
         [Required]
         [JsonPropertyName("branches")]
-        public List<TrackedBranchesInReviewDto> Branches { get; set; }        
-        
+        public List<TrackedBranchesInReviewDto> Branches { get; set; }
+    
     }
     
 }

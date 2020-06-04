@@ -25,20 +25,20 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("calendar")]
-        public string Calendar { get; set; }        
-        
+        public string Calendar { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date { get; set; }        
-        
+        public SpaceDate Date { get; set; }
+    
         [Required]
         [JsonPropertyName("workingDay")]
-        public bool WorkingDay { get; set; }        
-        
+        public bool WorkingDay { get; set; }
+    
     }
     
 }

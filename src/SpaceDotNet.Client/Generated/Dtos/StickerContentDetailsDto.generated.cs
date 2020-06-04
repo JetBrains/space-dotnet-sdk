@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class StickerContentDetailsDto
+    public sealed class StickerContentDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,11 +29,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("sticker")]
-        public StickerDto Sticker { get; set; }        
-        
+        public StickerDto Sticker { get; set; }
+    
         [JsonPropertyName("pack")]
-        public StickerPackInfoDto? Pack { get; set; }        
-        
+        public StickerPackInfoDto? Pack { get; set; }
+    
     }
     
 }

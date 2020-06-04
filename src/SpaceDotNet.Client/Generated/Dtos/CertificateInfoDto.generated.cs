@@ -21,44 +21,44 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CertificateInfoDto
+    public sealed class CertificateInfoDto
     {
         [Required]
         [JsonPropertyName("certificateType")]
-        public string CertificateType { get; set; }        
-        
+        public string CertificateType { get; set; }
+    
         [Required]
         [JsonPropertyName("version")]
-        public int Version { get; set; }        
-        
+        public int Version { get; set; }
+    
         [Required]
         [JsonPropertyName("serialNumber")]
-        public string SerialNumber { get; set; }        
-        
+        public string SerialNumber { get; set; }
+    
         [Required]
         [JsonPropertyName("issuedBy")]
-        public string IssuedBy { get; set; }        
-        
+        public string IssuedBy { get; set; }
+    
         [Required]
         [JsonPropertyName("issuedTo")]
-        public string IssuedTo { get; set; }        
-        
+        public string IssuedTo { get; set; }
+    
         [Required]
         [JsonPropertyName("validFrom")]
-        public SpaceTime ValidFrom { get; set; }        
-        
+        public SpaceTime ValidFrom { get; set; }
+    
         [Required]
         [JsonPropertyName("validTo")]
-        public SpaceTime ValidTo { get; set; }        
-        
+        public SpaceTime ValidTo { get; set; }
+    
         [Required]
         [JsonPropertyName("algorithm")]
-        public string Algorithm { get; set; }        
-        
+        public string Algorithm { get; set; }
+    
         [Required]
         [JsonPropertyName("fingerprint")]
-        public FingerprintDto Fingerprint { get; set; }        
-        
+        public FingerprintDto Fingerprint { get; set; }
+    
     }
     
 }

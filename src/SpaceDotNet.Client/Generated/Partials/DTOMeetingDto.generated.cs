@@ -62,17 +62,29 @@ namespace SpaceDotNet.Client.DTOMeetingExtensions
         public static Partial<DTOMeetingDto> WithOrigin(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("origin");
         
+        public static Partial<DTOMeetingDto> WithOrigin(this Partial<DTOMeetingDto> it, Func<Partial<MeetingOrigin>, Partial<MeetingOrigin>> partialBuilder)
+            => it.AddFieldName("origin", partialBuilder(new Partial<MeetingOrigin>()));
+        
         public static Partial<DTOMeetingDto> WithConferenceLink(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("conferenceLink");
         
         public static Partial<DTOMeetingDto> WithVisibility(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("visibility");
         
+        public static Partial<DTOMeetingDto> WithVisibility(this Partial<DTOMeetingDto> it, Func<Partial<MeetingVisibility>, Partial<MeetingVisibility>> partialBuilder)
+            => it.AddFieldName("visibility", partialBuilder(new Partial<MeetingVisibility>()));
+        
         public static Partial<DTOMeetingDto> WithModificationPreference(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("modificationPreference");
         
+        public static Partial<DTOMeetingDto> WithModificationPreference(this Partial<DTOMeetingDto> it, Func<Partial<MeetingModificationPreference>, Partial<MeetingModificationPreference>> partialBuilder)
+            => it.AddFieldName("modificationPreference", partialBuilder(new Partial<MeetingModificationPreference>()));
+        
         public static Partial<DTOMeetingDto> WithJoiningPreference(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("joiningPreference");
+        
+        public static Partial<DTOMeetingDto> WithJoiningPreference(this Partial<DTOMeetingDto> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
+            => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>()));
         
         public static Partial<DTOMeetingDto> WithOrganizer(this Partial<DTOMeetingDto> it)
             => it.AddFieldName("organizer");

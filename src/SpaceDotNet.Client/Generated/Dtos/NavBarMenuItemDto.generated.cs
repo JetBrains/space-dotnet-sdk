@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class NavBarMenuItemDto
+    public sealed class NavBarMenuItemDto
     {
         [Required]
         [JsonPropertyName("item")]
-        public string Item { get; set; }        
-        
+        public string Item { get; set; }
+    
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }        
-        
+        public bool Enabled { get; set; }
+    
     }
     
 }

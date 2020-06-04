@@ -21,26 +21,26 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ExternalEntityInfoRecordDto
+    public sealed class ExternalEntityInfoRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [JsonPropertyName("externalId")]
-        public string? ExternalId { get; set; }        
-        
+        public string? ExternalId { get; set; }
+    
         [JsonPropertyName("externalUrl")]
-        public string? ExternalUrl { get; set; }        
-        
+        public string? ExternalUrl { get; set; }
+    
         [Required]
         [JsonPropertyName("transaction")]
-        public ImportTransactionRecordDto Transaction { get; set; }        
-        
+        public ImportTransactionRecordDto Transaction { get; set; }
+    
     }
     
 }

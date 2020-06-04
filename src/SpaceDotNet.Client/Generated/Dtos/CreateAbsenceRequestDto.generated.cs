@@ -25,38 +25,38 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("member")]
-        public string Member { get; set; }        
-        
+        public string Member { get; set; }
+    
         [Required]
         [JsonPropertyName("reason")]
-        public string Reason { get; set; }        
-        
+        public string Reason { get; set; }
+    
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }        
-        
+        public string Description { get; set; }
+    
         [JsonPropertyName("location")]
-        public string? Location { get; set; }        
-        
+        public string? Location { get; set; }
+    
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since { get; set; }        
-        
+        public SpaceDate Since { get; set; }
+    
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till { get; set; }        
-        
+        public SpaceDate Till { get; set; }
+    
         [Required]
         [JsonPropertyName("available")]
-        public bool Available { get; set; }        
-        
+        public bool Available { get; set; }
+    
         [Required]
         [JsonPropertyName("icon")]
-        public string Icon { get; set; }        
-        
+        public string Icon { get; set; }
+    
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
-        
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+    
     }
     
 }

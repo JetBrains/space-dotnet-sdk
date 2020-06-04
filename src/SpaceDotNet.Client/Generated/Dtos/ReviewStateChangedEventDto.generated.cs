@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReviewStateChangedEventDto
+    public sealed class ReviewStateChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,11 +29,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }        
-        
+        public CodeReviewState State { get; set; }
+    
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }        
-        
+        public CodeReviewRecordDto? Review { get; set; }
+    
     }
     
 }

@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDStatsDto
+    public sealed class TDStatsDto
     {
         [Required]
         [JsonPropertyName("totalMembers")]
-        public int TotalMembers { get; set; }        
-        
+        public int TotalMembers { get; set; }
+    
         [Required]
         [JsonPropertyName("teams")]
-        public List<Pair<TDTeamDto, int>> Teams { get; set; }        
-        
+        public List<Pair<TDTeamDto, int>> Teams { get; set; }
+    
         [Required]
         [JsonPropertyName("roles")]
-        public List<Pair<TDRoleDto, int>> Roles { get; set; }        
-        
+        public List<Pair<TDRoleDto, int>> Roles { get; set; }
+    
         [Required]
         [JsonPropertyName("locations")]
-        public List<Pair<TDLocationDto, int>> Locations { get; set; }        
-        
+        public List<Pair<TDLocationDto, int>> Locations { get; set; }
+    
     }
     
 }

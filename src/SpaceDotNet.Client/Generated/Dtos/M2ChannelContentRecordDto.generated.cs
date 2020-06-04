@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContentRecordDto
+    public sealed class M2ChannelContentRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto? Content { get; set; }        
-        
+        public M2ChannelContentInfoDto? Content { get; set; }
+    
     }
     
 }

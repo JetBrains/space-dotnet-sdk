@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class SpaceNewsFeedChannelDto
+    public sealed class SpaceNewsFeedChannelDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }        
-        
+        public ChannelSpecificDefaultsDto? NotificationDefaults { get; set; }
+    
     }
     
 }

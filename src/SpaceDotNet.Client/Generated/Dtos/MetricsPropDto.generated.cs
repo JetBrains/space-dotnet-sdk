@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MetricsPropDto
+    public sealed class MetricsPropDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }        
-        
+        public string Key { get; set; }
+    
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }        
-        
+        public string Value { get; set; }
+    
     }
     
 }

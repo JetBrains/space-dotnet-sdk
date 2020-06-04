@@ -21,36 +21,36 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AbsenceReasonRecordDto
+    public sealed class AbsenceReasonRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }        
-        
+        public string Description { get; set; }
+    
         [Required]
         [JsonPropertyName("defaultAvailability")]
-        public bool DefaultAvailability { get; set; }        
-        
+        public bool DefaultAvailability { get; set; }
+    
         [Required]
         [JsonPropertyName("approvalRequired")]
-        public bool ApprovalRequired { get; set; }        
-        
+        public bool ApprovalRequired { get; set; }
+    
         [Required]
         [JsonPropertyName("icon")]
-        public string Icon { get; set; }        
-        
+        public string Icon { get; set; }
+    
     }
     
 }

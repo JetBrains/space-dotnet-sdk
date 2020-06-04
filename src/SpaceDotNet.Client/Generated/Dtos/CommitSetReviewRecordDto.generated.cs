@@ -21,54 +21,54 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CommitSetReviewRecordDto
+    public sealed class CommitSetReviewRecordDto
          : CodeReviewRecordDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }        
-        
+        public ProjectKeyDto Project { get; set; }
+    
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }        
-        
+        public string ProjectId { get; set; }
+    
         [Required]
         [JsonPropertyName("number")]
-        public int Number { get; set; }        
-        
+        public int Number { get; set; }
+    
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }        
-        
+        public CodeReviewState State { get; set; }
+    
         [JsonPropertyName("canBeReopened")]
-        public bool? CanBeReopened { get; set; }        
-        
+        public bool? CanBeReopened { get; set; }
+    
         [Required]
         [JsonPropertyName("createdAt")]
-        public long CreatedAt { get; set; }        
-        
+        public long CreatedAt { get; set; }
+    
         [Required]
         [JsonPropertyName("createdBy")]
-        public TDMemberProfileDto CreatedBy { get; set; }        
-        
+        public TDMemberProfileDto CreatedBy { get; set; }
+    
         [JsonPropertyName("turnBased")]
-        public bool? TurnBased { get; set; }        
-        
+        public bool? TurnBased { get; set; }
+    
         [Required]
         [JsonPropertyName("participants")]
-        public List<CodeReviewParticipantDto> Participants { get; set; }        
-        
+        public List<CodeReviewParticipantDto> Participants { get; set; }
+    
         [JsonPropertyName("feedChannel")]
-        public M2ChannelRecordDto? FeedChannel { get; set; }        
-        
+        public M2ChannelRecordDto? FeedChannel { get; set; }
+    
     }
     
 }

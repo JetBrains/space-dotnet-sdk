@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FTSSnippetDto
+    public sealed class FTSSnippetDto
     {
         [Required]
         [JsonPropertyName("field")]
-        public string Field { get; set; }        
-        
+        public string Field { get; set; }
+    
         [Required]
         [JsonPropertyName("snippet")]
-        public List<string> Snippet { get; set; }        
-        
+        public List<string> Snippet { get; set; }
+    
     }
     
 }

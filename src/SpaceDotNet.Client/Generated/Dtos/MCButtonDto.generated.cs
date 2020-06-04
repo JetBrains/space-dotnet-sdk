@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCButtonDto
+    public sealed class MCButtonDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,16 +29,16 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }        
-        
+        public string Style { get; set; }
+    
         [Required]
         [JsonPropertyName("action")]
-        public MCActionDto Action { get; set; }        
-        
+        public MCActionDto Action { get; set; }
+    
     }
     
 }

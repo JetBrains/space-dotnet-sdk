@@ -21,39 +21,39 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class StickerPackInfoDto
+    public sealed class StickerPackInfoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("favoriteByDefault")]
-        public bool FavoriteByDefault { get; set; }        
-        
+        public bool FavoriteByDefault { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }        
-        
+        public bool Private { get; set; }
+    
         [JsonPropertyName("addedAt")]
-        public SpaceTime? AddedAt { get; set; }        
-        
+        public SpaceTime? AddedAt { get; set; }
+    
         [Required]
         [JsonPropertyName("pack")]
-        public StickerPackInfoDto Pack { get; set; }        
-        
+        public StickerPackInfoDto Pack { get; set; }
+    
         [Required]
         [JsonPropertyName("stickers")]
-        public List<StickerDto> Stickers { get; set; }        
-        
+        public List<StickerDto> Stickers { get; set; }
+    
     }
     
 }

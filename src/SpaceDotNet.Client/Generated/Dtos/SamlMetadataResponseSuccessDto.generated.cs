@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class SamlMetadataResponseSuccessDto
+    public sealed class SamlMetadataResponseSuccessDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("metadata")]
-        public string Metadata { get; set; }        
-        
+        public string Metadata { get; set; }
+    
     }
     
 }

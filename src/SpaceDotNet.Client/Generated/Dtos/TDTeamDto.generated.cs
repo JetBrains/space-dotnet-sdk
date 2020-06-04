@@ -21,43 +21,43 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDTeamDto
+    public sealed class TDTeamDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }        
-        
+        public string Description { get; set; }
+    
         [JsonPropertyName("parent")]
-        public TDTeamDto? Parent { get; set; }        
-        
+        public TDTeamDto? Parent { get; set; }
+    
         [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }        
-        
+        public List<string>? Emails { get; set; }
+    
         [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }        
-        
+        public string? ChannelId { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [JsonPropertyName("disbanded")]
-        public bool? Disbanded { get; set; }        
-        
+        public bool? Disbanded { get; set; }
+    
         [JsonPropertyName("disbandedAt")]
-        public SpaceDate? DisbandedAt { get; set; }        
-        
+        public SpaceDate? DisbandedAt { get; set; }
+    
         [Required]
         [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }        
-        
+        public List<TDMembershipDto> Memberships { get; set; }
+    
     }
     
 }

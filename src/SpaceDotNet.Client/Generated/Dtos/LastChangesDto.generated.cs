@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class LastChangesDto
+    public sealed class LastChangesDto
     {
         [Required]
         [JsonPropertyName("lastChanges")]
-        public List<RevisionInfoDto> LastChanges { get; set; }        
-        
+        public List<RevisionInfoDto> LastChanges { get; set; }
+    
         [Required]
         [JsonPropertyName("totalChanges")]
-        public int TotalChanges { get; set; }        
-        
+        public int TotalChanges { get; set; }
+    
     }
     
 }

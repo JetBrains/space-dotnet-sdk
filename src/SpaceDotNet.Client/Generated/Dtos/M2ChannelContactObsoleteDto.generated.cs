@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContactObsoleteDto
+    public sealed class M2ChannelContactObsoleteDto
          : M2ChannelContactInfoDto, M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("cause")]
-        public M2ObsoleteCause? Cause { get; set; }        
-        
+        public M2ObsoleteCause? Cause { get; set; }
+    
     }
     
 }

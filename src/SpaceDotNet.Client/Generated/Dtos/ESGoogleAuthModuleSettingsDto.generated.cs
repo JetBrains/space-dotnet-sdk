@@ -21,25 +21,25 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESGoogleAuthModuleSettingsDto
+    public sealed class ESGoogleAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }        
-        
+        public string ClientId { get; set; }
+    
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }        
-        
+        public string ClientSecret { get; set; }
+    
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }        
-        
+        public bool RegisterNewUsers { get; set; }
+    
         [Required]
         [JsonPropertyName("domains")]
-        public List<string> Domains { get; set; }        
-        
+        public List<string> Domains { get; set; }
+    
     }
     
 }

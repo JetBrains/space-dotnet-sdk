@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CExternalServicePrincipalDetailsDto
+    public sealed class CExternalServicePrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("service")]
-        public ESServiceDto Service { get; set; }        
-        
+        public ESServiceDto Service { get; set; }
+    
     }
     
 }

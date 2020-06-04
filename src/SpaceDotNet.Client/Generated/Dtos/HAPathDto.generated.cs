@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAPathDto
+    public sealed class HAPathDto
     {
         [Required]
         [JsonPropertyName("segments")]
-        public List<HAPathSegmentDto> Segments { get; set; }        
-        
+        public List<HAPathSegmentDto> Segments { get; set; }
+    
     }
     
 }

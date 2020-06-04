@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2BlogItemPreviewDto
+    public sealed class M2BlogItemPreviewDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,20 +29,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }        
-        
+        public ArticleRecordDto Article { get; set; }
+    
         [Required]
         [JsonPropertyName("articlePreview")]
-        public ArticlePreviewRecordDto ArticlePreview { get; set; }        
-        
+        public ArticlePreviewRecordDto ArticlePreview { get; set; }
+    
         [Required]
         [JsonPropertyName("articleDetails")]
-        public ArticleDetailsRecordDto ArticleDetails { get; set; }        
-        
+        public ArticleDetailsRecordDto ArticleDetails { get; set; }
+    
         [Required]
         [JsonPropertyName("articleChannel")]
-        public ArticleChannelRecordDto ArticleChannel { get; set; }        
-        
+        public ArticleChannelRecordDto ArticleChannel { get; set; }
+    
     }
     
 }

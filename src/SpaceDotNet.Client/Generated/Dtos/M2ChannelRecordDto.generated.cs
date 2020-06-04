@@ -21,49 +21,49 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelRecordDto
+    public sealed class M2ChannelRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("contact")]
-        public M2ChannelContactDto Contact { get; set; }        
-        
+        public M2ChannelContactDto Contact { get; set; }
+    
         [Required]
         [JsonPropertyName("totalMessages")]
-        public int TotalMessages { get; set; }        
-        
+        public int TotalMessages { get; set; }
+    
         [JsonPropertyName("lastMessage")]
-        public MessageInfoDto? LastMessage { get; set; }        
-        
+        public MessageInfoDto? LastMessage { get; set; }
+    
         [JsonPropertyName("authors")]
-        public List<TDMemberProfileDto>? Authors { get; set; }        
-        
+        public List<TDMemberProfileDto>? Authors { get; set; }
+    
         [JsonPropertyName("commentAuthors")]
-        public List<CPrincipalDto>? CommentAuthors { get; set; }        
-        
+        public List<CPrincipalDto>? CommentAuthors { get; set; }
+    
         [JsonPropertyName("participants")]
-        public List<ChannelParticipantDto>? Participants { get; set; }        
-        
+        public List<ChannelParticipantDto>? Participants { get; set; }
+    
         [JsonPropertyName("channelArchived")]
-        public bool? ChannelArchived { get; set; }        
-        
+        public bool? ChannelArchived { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }        
-        
+        public M2ChannelRecordDto Channel { get; set; }
+    
         [JsonPropertyName("messages")]
-        public List<ChannelItemRecordDto>? Messages { get; set; }        
-        
+        public List<ChannelItemRecordDto>? Messages { get; set; }
+    
         [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto? Content { get; set; }        
-        
+        public M2ChannelContentInfoDto? Content { get; set; }
+    
     }
     
 }

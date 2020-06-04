@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RevisionInfoDto
+    public sealed class RevisionInfoDto
     {
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [Required]
         [JsonPropertyName("date")]
-        public long Date { get; set; }        
-        
+        public long Date { get; set; }
+    
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }        
-        
+        public string Message { get; set; }
+    
     }
     
 }

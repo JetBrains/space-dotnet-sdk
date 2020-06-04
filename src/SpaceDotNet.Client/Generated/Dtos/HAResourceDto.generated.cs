@@ -21,35 +21,35 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HAResourceDto
+    public sealed class HAResourceDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("path")]
-        public HAPathDto Path { get; set; }        
-        
+        public HAPathDto Path { get; set; }
+    
         [Required]
         [JsonPropertyName("displaySingular")]
-        public string DisplaySingular { get; set; }        
-        
+        public string DisplaySingular { get; set; }
+    
         [Required]
         [JsonPropertyName("displayPlural")]
-        public string DisplayPlural { get; set; }        
-        
+        public string DisplayPlural { get; set; }
+    
         [JsonPropertyName("parentResource")]
-        public HAResourceDto? ParentResource { get; set; }        
-        
+        public HAResourceDto? ParentResource { get; set; }
+    
         [Required]
         [JsonPropertyName("endpoints")]
-        public List<HAEndpointDto> Endpoints { get; set; }        
-        
+        public List<HAEndpointDto> Endpoints { get; set; }
+    
         [Required]
         [JsonPropertyName("nestedResources")]
-        public List<HAResourceDto> NestedResources { get; set; }        
-        
+        public List<HAResourceDto> NestedResources { get; set; }
+    
     }
     
 }

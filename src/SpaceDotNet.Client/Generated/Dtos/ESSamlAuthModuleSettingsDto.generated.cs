@@ -21,39 +21,39 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESSamlAuthModuleSettingsDto
+    public sealed class ESSamlAuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("idpUrl")]
-        public string IdpUrl { get; set; }        
-        
+        public string IdpUrl { get; set; }
+    
         [Required]
         [JsonPropertyName("idpEntityId")]
-        public string IdpEntityId { get; set; }        
-        
+        public string IdpEntityId { get; set; }
+    
         [Required]
         [JsonPropertyName("idpCertificateSHA256")]
-        public string IdpCertificateSHA256 { get; set; }        
-        
+        public string IdpCertificateSHA256 { get; set; }
+    
         [Required]
         [JsonPropertyName("spEntityId")]
-        public string SpEntityId { get; set; }        
-        
+        public string SpEntityId { get; set; }
+    
         [JsonPropertyName("sslKeystore")]
-        public SSLKeystoreDto? SslKeystore { get; set; }        
-        
+        public SSLKeystoreDto? SslKeystore { get; set; }
+    
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }        
-        
+        public bool RegisterNewUsers { get; set; }
+    
         [JsonPropertyName("contactProfileId")]
-        public string? ContactProfileId { get; set; }        
-        
+        public string? ContactProfileId { get; set; }
+    
         [Required]
         [JsonPropertyName("attributeNames")]
-        public ESSamlAttributeNamesDto AttributeNames { get; set; }        
-        
+        public ESSamlAttributeNamesDto AttributeNames { get; set; }
+    
     }
     
 }

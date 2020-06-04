@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueChecklistsChangedDetailsDto
+    public sealed class IssueChecklistsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("addedChecklists")]
-        public List<ChecklistDto>? AddedChecklists { get; set; }        
-        
+        public List<ChecklistDto>? AddedChecklists { get; set; }
+    
         [JsonPropertyName("removedChecklists")]
-        public List<ChecklistDto>? RemovedChecklists { get; set; }        
-        
+        public List<ChecklistDto>? RemovedChecklists { get; set; }
+    
     }
     
 }

@@ -38,6 +38,9 @@ namespace SpaceDotNet.Client.HADtoExtensions
         public static Partial<HADtoDto> WithHierarchyRole(this Partial<HADtoDto> it)
             => it.AddFieldName("hierarchyRole");
         
+        public static Partial<HADtoDto> WithHierarchyRole(this Partial<HADtoDto> it, Func<Partial<HierarchyRole>, Partial<HierarchyRole>> partialBuilder)
+            => it.AddFieldName("hierarchyRole", partialBuilder(new Partial<HierarchyRole>()));
+        
         public static Partial<HADtoDto> WithExtends(this Partial<HADtoDto> it)
             => it.AddFieldName("extends");
         

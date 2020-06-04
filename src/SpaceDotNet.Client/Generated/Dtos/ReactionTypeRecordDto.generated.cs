@@ -21,31 +21,31 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReactionTypeRecordDto
+    public sealed class ReactionTypeRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("data")]
-        public ReactionDataDto Data { get; set; }        
-        
+        public ReactionDataDto Data { get; set; }
+    
         [Required]
         [JsonPropertyName("provider")]
-        public CPrincipalDto Provider { get; set; }        
-        
+        public CPrincipalDto Provider { get; set; }
+    
         [Required]
         [JsonPropertyName("addedAt")]
-        public SpaceDate AddedAt { get; set; }        
-        
+        public SpaceDate AddedAt { get; set; }
+    
         [JsonPropertyName("order")]
-        public int? Order { get; set; }        
-        
+        public int? Order { get; set; }
+    
     }
     
 }

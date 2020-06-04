@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ImageAttachmentDto
+    public sealed class ImageAttachmentDto
          : AttachmentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,25 +29,25 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
+        public string? Name { get; set; }
+    
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }        
-        
+        public int Width { get; set; }
+    
         [Required]
         [JsonPropertyName("height")]
-        public int Height { get; set; }        
-        
+        public int Height { get; set; }
+    
         [JsonPropertyName("previewBytes")]
-        public string? PreviewBytes { get; set; }        
-        
+        public string? PreviewBytes { get; set; }
+    
         [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantDto>? Variants { get; set; }        
-        
+        public List<ImageAttachmentVariantDto>? Variants { get; set; }
+    
     }
     
 }

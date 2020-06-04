@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PackageVersionInfoDto
+    public sealed class PackageVersionInfoDto
     {
         [Required]
         [JsonPropertyName("type")]
-        public PackageTypeDto Type { get; set; }        
-        
+        public PackageTypeDto Type { get; set; }
+    
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("version")]
-        public string Version { get; set; }        
-        
+        public string Version { get; set; }
+    
         [JsonPropertyName("tags")]
-        public List<string>? Tags { get; set; }        
-        
+        public List<string>? Tags { get; set; }
+    
     }
     
 }

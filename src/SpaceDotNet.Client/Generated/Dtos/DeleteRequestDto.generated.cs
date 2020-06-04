@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }        
-        
+        public string Emoji { get; set; }
+    
     }
     
 }

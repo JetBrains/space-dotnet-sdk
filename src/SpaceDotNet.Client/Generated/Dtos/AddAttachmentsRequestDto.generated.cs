@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto> Attachments { get; set; }        
-        
+        public List<AttachmentDto> Attachments { get; set; }
+    
     }
     
 }

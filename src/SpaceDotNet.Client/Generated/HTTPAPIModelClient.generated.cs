@@ -30,9 +30,9 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<HAModelDto> GetHTTPAPIModelAsync(Func<Partial<HAModelDto>, Partial<HAModelDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<HAModelDto>()) : Partial<HAModelDto>.Default()));        
-        
+        public async Task<HAModelDto> GetHTTPAPIModelAsync(Func<Partial<HAModelDto>, Partial<HAModelDto>> partial = null)
+            => await _connection.RequestResourceAsync<HAModelDto>("GET", $"api/http/http-api-model?$fields={(partial != null ? partial(new Partial<HAModelDto>()) : Partial<HAModelDto>.Default())}");
+    
     }
     
 }

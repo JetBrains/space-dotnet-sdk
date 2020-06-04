@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HADeprecationDto
+    public sealed class HADeprecationDto
     {
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }        
-        
+        public string Message { get; set; }
+    
         [Required]
         [JsonPropertyName("since")]
-        public string Since { get; set; }        
-        
+        public string Since { get; set; }
+    
         [Required]
         [JsonPropertyName("forRemoval")]
-        public bool ForRemoval { get; set; }        
-        
+        public bool ForRemoval { get; set; }
+    
     }
     
 }

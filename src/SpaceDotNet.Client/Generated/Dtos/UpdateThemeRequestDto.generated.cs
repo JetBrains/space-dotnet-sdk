@@ -24,8 +24,8 @@ namespace SpaceDotNet.Client
     public class UpdateThemeRequestDto
     {
         [JsonPropertyName("themeName")]
-        public string? ThemeName { get; set; }        
-        
+        public string? ThemeName { get; set; }
+    
     }
     
 }

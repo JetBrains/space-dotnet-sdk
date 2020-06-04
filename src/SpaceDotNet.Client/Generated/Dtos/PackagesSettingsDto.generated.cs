@@ -21,33 +21,33 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PackagesSettingsDto
+    public sealed class PackagesSettingsDto
     {
         [Required]
         [JsonPropertyName("organizationId")]
-        public long OrganizationId { get; set; }        
-        
+        public long OrganizationId { get; set; }
+    
         [Required]
         [JsonPropertyName("principalName")]
-        public string PrincipalName { get; set; }        
-        
+        public string PrincipalName { get; set; }
+    
         [Required]
         [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get; set; }        
-        
+        public string PrincipalInfo { get; set; }
+    
         [Required]
         [JsonPropertyName("repositories")]
-        public List<MapEntry<string, PackageRepositorySettingsDto>> Repositories { get; set; }        
-        
+        public List<MapEntry<string, PackageRepositorySettingsDto>> Repositories { get; set; }
+    
         [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get; set; }        
-        
+        public DTOLimitDto? StorageLimit { get; set; }
+    
         [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get; set; }        
-        
+        public DTOLimitDto? DownloadLimit { get; set; }
+    
         [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get; set; }        
-        
+        public DTOLimitDto? UploadLimit { get; set; }
+    
     }
     
 }

@@ -24,33 +24,33 @@ namespace SpaceDotNet.Client
     public class UpdateAbsenceRequestDto
     {
         [JsonPropertyName("member")]
-        public string? Member { get; set; }        
-        
+        public string? Member { get; set; }
+    
         [JsonPropertyName("reason")]
-        public string? Reason { get; set; }        
-        
+        public string? Reason { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [JsonPropertyName("location")]
-        public string? Location { get; set; }        
-        
+        public string? Location { get; set; }
+    
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }        
-        
+        public SpaceDate? Since { get; set; }
+    
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }        
-        
+        public SpaceDate? Till { get; set; }
+    
         [Required]
         [JsonPropertyName("available")]
-        public bool Available { get; set; }        
-        
+        public bool Available { get; set; }
+    
         [JsonPropertyName("icon")]
-        public string? Icon { get; set; }        
-        
+        public string? Icon { get; set; }
+    
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
-        
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+    
     }
     
 }

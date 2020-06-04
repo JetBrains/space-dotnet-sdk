@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("customFieldOrder")]
-        public List<string> CustomFieldOrder { get; set; }        
-        
+        public List<string> CustomFieldOrder { get; set; }
+    
     }
     
 }

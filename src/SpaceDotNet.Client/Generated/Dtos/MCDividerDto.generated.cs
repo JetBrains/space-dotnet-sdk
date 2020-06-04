@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCDividerDto
+    public sealed class MCDividerDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]

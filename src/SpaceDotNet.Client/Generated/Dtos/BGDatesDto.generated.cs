@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class BGDatesDto
+    public sealed class BGDatesDto
     {
         [Required]
         [JsonPropertyName("first")]
-        public SpaceTime First { get; set; }        
-        
+        public SpaceTime First { get; set; }
+    
         [Required]
         [JsonPropertyName("last")]
-        public SpaceTime Last { get; set; }        
-        
+        public SpaceTime Last { get; set; }
+    
     }
     
 }

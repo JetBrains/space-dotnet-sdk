@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.M2ChannelContactObsoleteExtensions
         public static Partial<M2ChannelContactObsoleteDto> WithCause(this Partial<M2ChannelContactObsoleteDto> it)
             => it.AddFieldName("cause");
         
+        public static Partial<M2ChannelContactObsoleteDto> WithCause(this Partial<M2ChannelContactObsoleteDto> it, Func<Partial<M2ObsoleteCause>, Partial<M2ObsoleteCause>> partialBuilder)
+            => it.AddFieldName("cause", partialBuilder(new Partial<M2ObsoleteCause>()));
+        
     }
     
 }

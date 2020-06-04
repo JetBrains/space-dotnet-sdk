@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReviewBranchTrackEventDto
+    public sealed class ReviewBranchTrackEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,16 +29,16 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get; set; }        
-        
+        public string Branch { get; set; }
+    
         [Required]
         [JsonPropertyName("track")]
-        public bool Track { get; set; }        
-        
+        public bool Track { get; set; }
+    
     }
     
 }

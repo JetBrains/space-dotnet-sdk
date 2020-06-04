@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PropagatedCodeDiscussionDto
+    public sealed class PropagatedCodeDiscussionDto
     {
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor { get; set; }        
-        
+        public CodeDiscussionAnchorDto Anchor { get; set; }
+    
         [Required]
         [JsonPropertyName("discussion")]
-        public CodeDiscussionRecordDto Discussion { get; set; }        
-        
+        public CodeDiscussionRecordDto Discussion { get; set; }
+    
     }
     
 }

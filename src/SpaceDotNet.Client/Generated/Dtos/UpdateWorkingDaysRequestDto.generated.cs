@@ -24,18 +24,18 @@ namespace SpaceDotNet.Client
     public class UpdateWorkingDaysRequestDto
     {
         [JsonPropertyName("profile")]
-        public string? Profile { get; set; }        
-        
+        public string? Profile { get; set; }
+    
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }        
-        
+        public SpaceDate? DateStart { get; set; }
+    
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }        
-        
+        public SpaceDate? DateEnd { get; set; }
+    
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }        
-        
+        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+    
     }
     
 }

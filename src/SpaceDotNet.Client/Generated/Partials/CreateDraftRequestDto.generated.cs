@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.CreateDraftRequestExtensions
         public static Partial<CreateDraftRequestDto> WithType(this Partial<CreateDraftRequestDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<CreateDraftRequestDto> WithType(this Partial<CreateDraftRequestDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>()));
+        
         public static Partial<CreateDraftRequestDto> WithPublicationDetails(this Partial<CreateDraftRequestDto> it)
             => it.AddFieldName("publicationDetails");
         

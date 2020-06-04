@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContentThreadDto
+    public sealed class M2ChannelContentThreadDto
          : M2ChannelContentInfoDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("record")]
-        public ChannelItemRecordDto Record { get; set; }        
-        
+        public ChannelItemRecordDto Record { get; set; }
+    
         [Required]
         [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get; set; }        
-        
+        public M2ChannelRecordDto Parent { get; set; }
+    
     }
     
 }

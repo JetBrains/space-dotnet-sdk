@@ -21,11 +21,11 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AttachmentInfoDto
+    public sealed class AttachmentInfoDto
     {
         [JsonPropertyName("details")]
-        public AttachmentDto? Details { get; set; }        
-        
+        public AttachmentDto? Details { get; set; }
+    
     }
     
 }

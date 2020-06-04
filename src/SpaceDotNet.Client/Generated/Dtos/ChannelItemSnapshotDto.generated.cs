@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ChannelItemSnapshotDto
+    public sealed class ChannelItemSnapshotDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,33 +29,33 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("channelId")]
-        public string? ChannelId { get; set; }        
-        
+        public string? ChannelId { get; set; }
+    
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [JsonPropertyName("details")]
-        public M2ItemContentDetailsDto? Details { get; set; }        
-        
+        public M2ItemContentDetailsDto? Details { get; set; }
+    
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }        
-        
+        public CPrincipalDto Author { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }        
-        
+        public SpaceTime Created { get; set; }
+    
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }        
-        
+        public long Time { get; set; }
+    
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto>? Attachments { get; set; }        
-        
+        public List<AttachmentInfoDto>? Attachments { get; set; }
+    
     }
     
 }

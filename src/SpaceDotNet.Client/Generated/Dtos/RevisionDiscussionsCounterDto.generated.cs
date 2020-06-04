@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RevisionDiscussionsCounterDto
+    public sealed class RevisionDiscussionsCounterDto
     {
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [Required]
         [JsonPropertyName("filesWithCounts")]
-        public List<FileWithCountDto> FilesWithCounts { get; set; }        
-        
+        public List<FileWithCountDto> FilesWithCounts { get; set; }
+    
     }
     
 }

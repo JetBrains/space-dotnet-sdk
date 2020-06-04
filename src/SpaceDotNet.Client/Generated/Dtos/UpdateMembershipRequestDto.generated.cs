@@ -24,42 +24,42 @@ namespace SpaceDotNet.Client
     public class UpdateMembershipRequestDto
     {
         [JsonPropertyName("memberId")]
-        public string? MemberId { get; set; }        
-        
+        public string? MemberId { get; set; }
+    
         [JsonPropertyName("teamId")]
-        public string? TeamId { get; set; }        
-        
+        public string? TeamId { get; set; }
+    
         [JsonPropertyName("roleId")]
-        public string? RoleId { get; set; }        
-        
+        public string? RoleId { get; set; }
+    
         [JsonPropertyName("lead")]
-        public bool? Lead { get; set; }        
-        
+        public bool? Lead { get; set; }
+    
         [JsonPropertyName("managerId")]
-        public string? ManagerId { get; set; }        
-        
+        public string? ManagerId { get; set; }
+    
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }        
-        
+        public SpaceDate? Since { get; set; }
+    
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }        
-        
+        public SpaceDate? Till { get; set; }
+    
         [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }        
-        
+        public SpaceTime? ActiveSince { get; set; }
+    
         [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }        
-        
+        public SpaceTime? ActiveTill { get; set; }
+    
         [JsonPropertyName("previousMembershipId")]
-        public string? PreviousMembershipId { get; set; }        
-        
+        public string? PreviousMembershipId { get; set; }
+    
         [Required]
         [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }        
-        
+        public bool RequiresApproval { get; set; }
+    
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
-        
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+    
     }
     
 }

@@ -24,14 +24,14 @@ namespace SpaceDotNet.Client
     public class CreateSubscriptionRequestDto
     {
         [JsonPropertyName("locationId")]
-        public string? LocationId { get; set; }        
-        
+        public string? LocationId { get; set; }
+    
         [JsonPropertyName("teamId")]
-        public string? TeamId { get; set; }        
-        
+        public string? TeamId { get; set; }
+    
         [JsonPropertyName("reasonId")]
-        public string? ReasonId { get; set; }        
-        
+        public string? ReasonId { get; set; }
+    
     }
     
 }

@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticleMarkdownImageDto
+    public sealed class ArticleMarkdownImageDto
     {
         [Required]
         [JsonPropertyName("alt")]
-        public string Alt { get; set; }        
-        
+        public string Alt { get; set; }
+    
         [Required]
         [JsonPropertyName("src")]
-        public string Src { get; set; }        
-        
+        public string Src { get; set; }
+    
     }
     
 }

@@ -21,32 +21,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeDiscussionAnchorDto
+    public sealed class CodeDiscussionAnchorDto
     {
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }        
-        
+        public ProjectKeyDto Project { get; set; }
+    
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [JsonPropertyName("filename")]
-        public string? Filename { get; set; }        
-        
+        public string? Filename { get; set; }
+    
         [JsonPropertyName("line")]
-        public int? Line { get; set; }        
-        
+        public int? Line { get; set; }
+    
         [JsonPropertyName("oldLine")]
-        public int? OldLine { get; set; }        
-        
+        public int? OldLine { get; set; }
+    
         [JsonPropertyName("interpolatedLineState")]
-        public InterpolatedLineState? InterpolatedLineState { get; set; }        
-        
+        public InterpolatedLineState? InterpolatedLineState { get; set; }
+    
     }
     
 }

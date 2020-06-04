@@ -21,40 +21,40 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MeInfoDto
+    public sealed class MeInfoDto
     {
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }        
-        
+        public TDMemberProfileDto Profile { get; set; }
+    
         [JsonPropertyName("profilePic")]
-        public string? ProfilePic { get; set; }        
-        
+        public string? ProfilePic { get; set; }
+    
         [Required]
         [JsonPropertyName("preferredLanguage")]
-        public TDLanguageDto PreferredLanguage { get; set; }        
-        
+        public TDLanguageDto PreferredLanguage { get; set; }
+    
         [Required]
         [JsonPropertyName("englishLanguage")]
-        public TDLanguageDto EnglishLanguage { get; set; }        
-        
+        public TDLanguageDto EnglishLanguage { get; set; }
+    
         [JsonPropertyName("navBarMenuItems")]
-        public List<NavBarMenuItemDto>? NavBarMenuItems { get; set; }        
-        
+        public List<NavBarMenuItemDto>? NavBarMenuItems { get; set; }
+    
         [Required]
         [JsonPropertyName("navBarProjects")]
-        public List<string> NavBarProjects { get; set; }        
-        
+        public List<string> NavBarProjects { get; set; }
+    
         [Required]
         [JsonPropertyName("firstDayOfWeek")]
-        public int FirstDayOfWeek { get; set; }        
-        
+        public int FirstDayOfWeek { get; set; }
+    
         [JsonPropertyName("themeName")]
-        public string? ThemeName { get; set; }        
-        
+        public string? ThemeName { get; set; }
+    
         [JsonPropertyName("draftType")]
-        public DraftDocumentType? DraftType { get; set; }        
-        
+        public DraftDocumentType? DraftType { get; set; }
+    
     }
     
 }

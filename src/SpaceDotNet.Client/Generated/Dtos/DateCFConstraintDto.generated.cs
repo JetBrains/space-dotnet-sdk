@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DateCFConstraintDto
+    public sealed class DateCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
         [JsonPropertyName("min")]
-        public SpaceDate? Min { get; set; }        
-        
+        public SpaceDate? Min { get; set; }
+    
         [JsonPropertyName("max")]
-        public SpaceDate? Max { get; set; }        
-        
+        public SpaceDate? Max { get; set; }
+    
         [JsonPropertyName("message")]
-        public string? Message { get; set; }        
-        
+        public string? Message { get; set; }
+    
     }
     
 }

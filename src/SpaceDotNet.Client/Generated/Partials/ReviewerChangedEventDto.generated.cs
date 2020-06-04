@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.ReviewerChangedEventExtensions
         public static Partial<ReviewerChangedEventDto> WithChangeType(this Partial<ReviewerChangedEventDto> it)
             => it.AddFieldName("changeType");
         
+        public static Partial<ReviewerChangedEventDto> WithChangeType(this Partial<ReviewerChangedEventDto> it, Func<Partial<ReviewerChangedType>, Partial<ReviewerChangedType>> partialBuilder)
+            => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewerChangedType>()));
+        
     }
     
 }

@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCOutlineDto
+    public sealed class MCOutlineDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("icon")]
-        public MCElementDto? Icon { get; set; }        
-        
+        public MCElementDto? Icon { get; set; }
+    
         [JsonPropertyName("text")]
-        public MCTextDto? Text { get; set; }        
-        
+        public MCTextDto? Text { get; set; }
+    
     }
     
 }

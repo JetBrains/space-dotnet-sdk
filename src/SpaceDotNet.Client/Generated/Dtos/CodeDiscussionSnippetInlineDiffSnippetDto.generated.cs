@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeDiscussionSnippetInlineDiffSnippetDto
+    public sealed class CodeDiscussionSnippetInlineDiffSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("lines")]
-        public List<InlineDiffLineDto> Lines { get; set; }        
-        
+        public List<InlineDiffLineDto> Lines { get; set; }
+    
     }
     
 }

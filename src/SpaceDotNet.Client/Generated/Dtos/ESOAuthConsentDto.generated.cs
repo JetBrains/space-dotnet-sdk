@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESOAuthConsentDto
+    public sealed class ESOAuthConsentDto
     {
         [Required]
         [JsonPropertyName("clientService")]
-        public ESServiceDto ClientService { get; set; }        
-        
+        public ESServiceDto ClientService { get; set; }
+    
         [Required]
         [JsonPropertyName("approvedScopes")]
-        public List<ESApprovedScopeDto> ApprovedScopes { get; set; }        
-        
+        public List<ESApprovedScopeDto> ApprovedScopes { get; set; }
+    
         [Required]
         [JsonPropertyName("refreshTokens")]
-        public List<ESRefreshTokenDto> RefreshTokens { get; set; }        
-        
+        public List<ESRefreshTokenDto> RefreshTokens { get; set; }
+    
     }
     
 }

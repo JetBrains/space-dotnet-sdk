@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EnumValueDataDto
+    public sealed class EnumValueDataDto
     {
         [JsonPropertyName("id")]
-        public string? Id { get; set; }        
-        
+        public string? Id { get; set; }
+    
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }        
-        
+        public string Value { get; set; }
+    
     }
     
 }

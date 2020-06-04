@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReactionDataDto
+    public sealed class ReactionDataDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("symbol")]
-        public string Symbol { get; set; }        
-        
+        public string Symbol { get; set; }
+    
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }        
-        
+        public string Emoji { get; set; }
+    
     }
     
 }

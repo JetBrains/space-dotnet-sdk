@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueTagsChangedDetailsDto
+    public sealed class IssueTagsChangedDetailsDto
          : IssueChangedM2DetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("addedTags")]
-        public List<PlanningTagDto>? AddedTags { get; set; }        
-        
+        public List<PlanningTagDto>? AddedTags { get; set; }
+    
         [JsonPropertyName("removedTags")]
-        public List<PlanningTagDto>? RemovedTags { get; set; }        
-        
+        public List<PlanningTagDto>? RemovedTags { get; set; }
+    
     }
     
 }

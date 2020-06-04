@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ProfileMembershipRecordDto
+    public sealed class ProfileMembershipRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }        
-        
+        public List<TDMembershipDto> Memberships { get; set; }
+    
     }
     
 }

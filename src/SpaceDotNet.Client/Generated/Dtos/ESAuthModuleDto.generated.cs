@@ -21,35 +21,35 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESAuthModuleDto
+    public sealed class ESAuthModuleDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }        
-        
+        public string Key { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("ordinal")]
-        public int Ordinal { get; set; }        
-        
+        public int Ordinal { get; set; }
+    
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }        
-        
+        public bool Enabled { get; set; }
+    
         [JsonPropertyName("iconDataURI")]
-        public string? IconDataURI { get; set; }        
-        
+        public string? IconDataURI { get; set; }
+    
         [Required]
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto Settings { get; set; }        
-        
+        public ESAuthModuleSettingsDto Settings { get; set; }
+    
     }
     
 }

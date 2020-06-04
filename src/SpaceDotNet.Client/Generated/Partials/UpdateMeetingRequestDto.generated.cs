@@ -62,11 +62,20 @@ namespace SpaceDotNet.Client.UpdateMeetingRequestExtensions
         public static Partial<UpdateMeetingRequestDto> WithVisibility(this Partial<UpdateMeetingRequestDto> it)
             => it.AddFieldName("visibility");
         
+        public static Partial<UpdateMeetingRequestDto> WithVisibility(this Partial<UpdateMeetingRequestDto> it, Func<Partial<MeetingVisibility>, Partial<MeetingVisibility>> partialBuilder)
+            => it.AddFieldName("visibility", partialBuilder(new Partial<MeetingVisibility>()));
+        
         public static Partial<UpdateMeetingRequestDto> WithModificationPreference(this Partial<UpdateMeetingRequestDto> it)
             => it.AddFieldName("modificationPreference");
         
+        public static Partial<UpdateMeetingRequestDto> WithModificationPreference(this Partial<UpdateMeetingRequestDto> it, Func<Partial<MeetingModificationPreference>, Partial<MeetingModificationPreference>> partialBuilder)
+            => it.AddFieldName("modificationPreference", partialBuilder(new Partial<MeetingModificationPreference>()));
+        
         public static Partial<UpdateMeetingRequestDto> WithJoiningPreference(this Partial<UpdateMeetingRequestDto> it)
             => it.AddFieldName("joiningPreference");
+        
+        public static Partial<UpdateMeetingRequestDto> WithJoiningPreference(this Partial<UpdateMeetingRequestDto> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
+            => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>()));
         
         public static Partial<UpdateMeetingRequestDto> WithNotifyOnExport(this Partial<UpdateMeetingRequestDto> it)
             => it.AddFieldName("notifyOnExport");
@@ -79,6 +88,9 @@ namespace SpaceDotNet.Client.UpdateMeetingRequestExtensions
         
         public static Partial<UpdateMeetingRequestDto> WithModificationKind(this Partial<UpdateMeetingRequestDto> it)
             => it.AddFieldName("modificationKind");
+        
+        public static Partial<UpdateMeetingRequestDto> WithModificationKind(this Partial<UpdateMeetingRequestDto> it, Func<Partial<RecurrentModification>, Partial<RecurrentModification>> partialBuilder)
+            => it.AddFieldName("modificationKind", partialBuilder(new Partial<RecurrentModification>()));
         
     }
     

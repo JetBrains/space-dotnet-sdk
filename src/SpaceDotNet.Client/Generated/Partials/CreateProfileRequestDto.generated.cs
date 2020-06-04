@@ -47,6 +47,9 @@ namespace SpaceDotNet.Client.CreateProfileRequestExtensions
         public static Partial<CreateProfileRequestDto> WithGender(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("gender");
         
+        public static Partial<CreateProfileRequestDto> WithGender(this Partial<CreateProfileRequestDto> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
+            => it.AddFieldName("gender", partialBuilder(new Partial<Gender>()));
+        
         public static Partial<CreateProfileRequestDto> WithMessengers(this Partial<CreateProfileRequestDto> it)
             => it.AddFieldName("messengers");
         

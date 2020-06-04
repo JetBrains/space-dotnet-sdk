@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2TextItemContentDto
+    public sealed class M2TextItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("markdown")]
-        public bool Markdown { get; set; }        
-        
+        public bool Markdown { get; set; }
+    
     }
     
 }

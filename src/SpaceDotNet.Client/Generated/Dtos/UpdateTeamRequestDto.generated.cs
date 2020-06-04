@@ -24,20 +24,20 @@ namespace SpaceDotNet.Client
     public class UpdateTeamRequestDto
     {
         [JsonPropertyName("teamNameRaw")]
-        public string? TeamNameRaw { get; set; }        
-        
+        public string? TeamNameRaw { get; set; }
+    
         [JsonPropertyName("teamDescription")]
-        public string? TeamDescription { get; set; }        
-        
+        public string? TeamDescription { get; set; }
+    
         [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails { get; set; }        
-        
+        public List<string>? TeamEmails { get; set; }
+    
         [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }        
-        
+        public string? ParentId { get; set; }
+    
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
-        
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+    
     }
     
 }

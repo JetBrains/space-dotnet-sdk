@@ -21,21 +21,21 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HATypeArrayDto
+    public sealed class HATypeArrayDto
          : HATypeDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("elementType")]
-        public HATypeDto ElementType { get; set; }        
-        
+        public HATypeDto ElementType { get; set; }
+    
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }        
-        
+        public bool Nullable { get; set; }
+    
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }        
-        
+        public bool Optional { get; set; }
+    
     }
     
 }

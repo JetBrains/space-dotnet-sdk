@@ -21,22 +21,22 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MetricsEventDto
+    public sealed class MetricsEventDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }        
-        
+        public long Time { get; set; }
+    
         [JsonPropertyName("props")]
-        public List<MetricsPropDto>? Props { get; set; }        
-        
+        public List<MetricsPropDto>? Props { get; set; }
+    
         [JsonPropertyName("points")]
-        public List<MetricsPointDto>? Points { get; set; }        
-        
+        public List<MetricsPointDto>? Points { get; set; }
+    
     }
     
 }

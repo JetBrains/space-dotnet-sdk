@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2MemberJoinsContentDto
+    public sealed class M2MemberJoinsContentDto
          : M2MemberContentDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }        
-        
+        public TDMemberProfileDto Member { get; set; }
+    
     }
     
 }

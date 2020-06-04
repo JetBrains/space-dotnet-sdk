@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCElementDto
+    public sealed class MCElementDto
     {
         [Required]
         [JsonPropertyName("defaultText")]
-        public string DefaultText { get; set; }        
-        
+        public string DefaultText { get; set; }
+    
         [JsonPropertyName("details")]
-        public MCElementDetailsDto? Details { get; set; }        
-        
+        public MCElementDetailsDto? Details { get; set; }
+    
     }
     
 }

@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("newStatus")]
-        public EventParticipationStatus NewStatus { get; set; }        
-        
+        public EventParticipationStatus NewStatus { get; set; }
+    
     }
     
 }

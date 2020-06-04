@@ -30,45 +30,45 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<PRProjectDto> CreateProjectAsync(CreateProjectRequestDto data, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<CreateProjectRequestDto, PRProjectDto>("POST", $"api/http/projects?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default()), data);        
+        public async Task<PRProjectDto> CreateProjectAsync(CreateProjectRequestDto data, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => await _connection.RequestResourceAsync<CreateProjectRequestDto, PRProjectDto>("POST", $"api/http/projects?$fields={(partial != null ? partial(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default())}", data);
+    
+        public async Task<Batch<PRProjectDto>> GetAllProjectsAsync(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partial = null)
+            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default())}");
         
-        public async Task<Batch<PRProjectDto>> GetAllProjectsAsync(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&tag={tag?.ToString() ?? "null"}&starred={starred?.ToString()?.ToLowerInvariant() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsAsyncEnumerable(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsAsync(skip: batchSkip, top, term, tag, starred, partial: builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProjectDto>.Default())), skip);
+    
+        public async Task<PRProjectDto> GetProjectByKeyAsync(string projectKey, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields={(partial != null ? partial(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default())}");
+    
+        public async Task<Batch<PRProjectDto>> GetAllProjectsByMemberAsync(string member, string? skip = null, int? top = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partial = null)
+            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default())}");
         
-        public IAsyncEnumerable<PRProjectDto> GetAllProjectsAsyncEnumerable(string? skip = null, int? top = null, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsAsync(skip: batchSkip, top, term, tag, starred, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsByMemberAsyncEnumerable(string member, string? skip = null, int? top = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsByMemberAsync(member, skip: batchSkip, top, partial: builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProjectDto>.Default())), skip);
+    
+        public async Task<Batch<PRProjectDto>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partial = null)
+            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default())}");
         
-        public async Task<PRProjectDto> GetProjectByKeyAsync(string projectKey, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/key:{projectKey}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default()));        
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsWithRightAsync(rightCode, skip: batchSkip, top, term, path, partial: builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProjectDto>.Default())), skip);
+    
+        public async Task<Batch<PRProjectDto>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partial = null)
+            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default())}");
         
-        public async Task<Batch<PRProjectDto>> GetAllProjectsByMemberAsync(string member, string? skip = null, int? top = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/member:{member}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
-        
-        public IAsyncEnumerable<PRProjectDto> GetAllProjectsByMemberAsyncEnumerable(string member, string? skip = null, int? top = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsByMemberAsync(member, skip: batchSkip, top, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
-        
-        public async Task<Batch<PRProjectDto>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
-        
-        public IAsyncEnumerable<PRProjectDto> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = null, string? term = null, string? path = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsWithRightAsync(rightCode, skip: batchSkip, top, term, path, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
-        
-        public async Task<Batch<PRProjectDto>> GetAllProjectsByTeamAsync(string team, string? skip = null, int? top = null, Func<Partial<Batch<PRProjectDto>>, Partial<Batch<PRProjectDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<Batch<PRProjectDto>>("GET", $"api/http/projects/team:{team}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PRProjectDto>>()) : Partial<Batch<PRProjectDto>>.Default()));        
-        
-        public IAsyncEnumerable<PRProjectDto> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsByTeamAsync(team, skip: batchSkip, top, builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PRProjectDto>.Default())), skip);        
-        
-        public async Task<PRProjectDto> GetProjectAsync(string projectId, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default()));        
-        
-        public async Task<PRProjectDto> UpdateProjectAsync(string projectId, UpdateProjectRequestDto data, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<UpdateProjectRequestDto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default()), data);        
-        
+        public IAsyncEnumerable<PRProjectDto> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllProjectsByTeamAsync(team, skip: batchSkip, top, partial: builder => Partial<Batch<PRProjectDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProjectDto>.Default())), skip);
+    
+        public async Task<PRProjectDto> GetProjectAsync(string projectId, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => await _connection.RequestResourceAsync<PRProjectDto>("GET", $"api/http/projects/{projectId}?$fields={(partial != null ? partial(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default())}");
+    
+        public async Task<PRProjectDto> UpdateProjectAsync(string projectId, UpdateProjectRequestDto data, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partial = null)
+            => await _connection.RequestResourceAsync<UpdateProjectRequestDto, PRProjectDto>("PATCH", $"api/http/projects/{projectId}?$fields={(partial != null ? partial(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default())}", data);
+    
         public async Task ArchiveProjectAsync(string projectId)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");        
-        
+            => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}");
+    
         public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
         
         public partial class CodeDiscussionClient
@@ -80,9 +80,9 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<PropagatedCodeDiscussionDto>> GetAllCodeDiscussionsByChangeAsync(GetAllCodeDiscussionsByChangeRequestDto data, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<GetAllCodeDiscussionsByChangeRequestDto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default()), data);            
-            
+            public async Task<List<PropagatedCodeDiscussionDto>> GetAllCodeDiscussionsByChangeAsync(GetAllCodeDiscussionsByChangeRequestDto data, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partial = null)
+                => await _connection.RequestResourceAsync<GetAllCodeDiscussionsByChangeRequestDto, List<PropagatedCodeDiscussionDto>>("POST", $"api/http/projects/code-discussions/get-by-change?$fields={(partial != null ? partial(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default())}", data);
+        
             public DiscussionsCounterClient DiscussionsCounters => new DiscussionsCounterClient(_connection);
             
             public partial class DiscussionsCounterClient
@@ -94,13 +94,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<RevisionDiscussionsCounterDto>> GetAllDiscussionsCountersAsync(string projectKey, string repository, List<string> revisions, Func<Partial<RevisionDiscussionsCounterDto>, Partial<RevisionDiscussionsCounterDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/code-discussions/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<RevisionDiscussionsCounterDto>()) : Partial<RevisionDiscussionsCounterDto>.Default()));                
-                
-            }
+                public async Task<List<RevisionDiscussionsCounterDto>> GetAllDiscussionsCountersAsync(string projectKey, string repository, List<string> revisions, Func<Partial<RevisionDiscussionsCounterDto>, Partial<RevisionDiscussionsCounterDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/code-discussions/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields={(partial != null ? partial(new Partial<RevisionDiscussionsCounterDto>()) : Partial<RevisionDiscussionsCounterDto>.Default())}");
             
-        }
+            }
         
+        }
+    
         public DiscussionsCounterClient DiscussionsCounters => new DiscussionsCounterClient(_connection);
         
         public partial class DiscussionsCounterClient
@@ -112,11 +112,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<RevisionDiscussionsCounterDto>> GetAllDiscussionsCountersAsync(string projectKey, string repository, List<string> revisions, Func<Partial<RevisionDiscussionsCounterDto>, Partial<RevisionDiscussionsCounterDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<RevisionDiscussionsCounterDto>()) : Partial<RevisionDiscussionsCounterDto>.Default()));            
-            
-        }
+            public async Task<List<RevisionDiscussionsCounterDto>> GetAllDiscussionsCountersAsync(string projectKey, string repository, List<string> revisions, Func<Partial<RevisionDiscussionsCounterDto>, Partial<RevisionDiscussionsCounterDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<RevisionDiscussionsCounterDto>>("GET", $"api/http/projects/discussions-counters?projectKey={projectKey.ToString()}&repository={repository.ToString()}&revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields={(partial != null ? partial(new Partial<RevisionDiscussionsCounterDto>()) : Partial<RevisionDiscussionsCounterDto>.Default())}");
         
+        }
+    
         public PrivateProjectClient PrivateProjects => new PrivateProjectClient(_connection);
         
         public partial class PrivateProjectClient
@@ -129,13 +129,13 @@ namespace SpaceDotNet.Client
             }
             
             public async Task RequestAccessToProjectAsync(string projectKey)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/key:{projectKey}/request-access");            
-            
-            public async Task<List<PRPrivateProjectDto>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProjectDto>, Partial<PRPrivateProjectDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<PRPrivateProjectDto>>("GET", $"api/http/projects/private-projects?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRPrivateProjectDto>()) : Partial<PRPrivateProjectDto>.Default()));            
-            
-        }
+                => await _connection.RequestResourceAsync("POST", $"api/http/projects/private-projects/key:{projectKey}/request-access");
         
+            public async Task<List<PRPrivateProjectDto>> GetAllPrivateProjectsAsync(Func<Partial<PRPrivateProjectDto>, Partial<PRPrivateProjectDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<PRPrivateProjectDto>>("GET", $"api/http/projects/private-projects?$fields={(partial != null ? partial(new Partial<PRPrivateProjectDto>()) : Partial<PRPrivateProjectDto>.Default())}");
+        
+        }
+    
         public ResponsibilityClient Responsibilities => new ResponsibilityClient(_connection);
         
         public partial class ResponsibilityClient
@@ -148,14 +148,14 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<string> AddResponsibilityAsync(AddResponsibilityRequestDto data)
-                => await _connection.RequestResourceAsync<AddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities?", data);            
-            
+                => await _connection.RequestResourceAsync<AddResponsibilityRequestDto, string>("POST", $"api/http/projects/responsibilities", data);
+        
             public async Task UpdateResponsibilityAsync(string responsibilityId, UpdateResponsibilityRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);            
-            
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/responsibilities/{responsibilityId}", data);
+        
             public async Task DeleteResponsibilityAsync(string responsibilityId)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}");            
-            
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/{responsibilityId}");
+        
             public SubjectClient Subjects => new SubjectClient(_connection);
             
             public partial class SubjectClient
@@ -168,12 +168,12 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task DeleteResponsibilitySubjectAsync(string subjectId, string? projectId = null)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/responsibilities/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");
             
-        }
+            }
         
+        }
+    
         public partial class ResponsibilityClient
         {
             public SchemeClient Scheme => new SchemeClient(_connection);
@@ -187,21 +187,21 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<SubjectResponsibilitiesTableDto>> GetProjectResponsibilitySchemeAsync(string projectId, Func<Partial<SubjectResponsibilitiesTableDto>, Partial<SubjectResponsibilitiesTableDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/{projectId}/responsibilities/scheme?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<SubjectResponsibilitiesTableDto>()) : Partial<SubjectResponsibilitiesTableDto>.Default()));                
-                
-            }
+                public async Task<List<SubjectResponsibilitiesTableDto>> GetProjectResponsibilitySchemeAsync(string projectId, Func<Partial<SubjectResponsibilitiesTableDto>, Partial<SubjectResponsibilitiesTableDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/{projectId}/responsibilities/scheme?$fields={(partial != null ? partial(new Partial<SubjectResponsibilitiesTableDto>()) : Partial<SubjectResponsibilitiesTableDto>.Default())}");
             
+            }
+        
             public partial class SubjectClient
             {
                 public async Task<string> AddResponsibilitySubjectAsync(string projectId, AddResponsibilitySubjectRequestDto data)
-                    => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects?", data);                
-                
-                public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);                
-                
-            }
+                    => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/{projectId}/responsibilities/subjects", data);
             
+                public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/responsibilities/subjects/{subjectId}", data);
+            
+            }
+        
             public AssigneeClient Assignees => new AssigneeClient(_connection);
             
             public partial class AssigneeClient
@@ -214,15 +214,15 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AssignResponsibleAsync(string projectId, string responsibilityId, string profileId, AssignResponsibleRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);                
-                
-                public async Task RemoveResponsibleAsync(string projectId, string responsibilityId, string profileId, string? role = null)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}", data);
             
-        }
+                public async Task RemoveResponsibleAsync(string projectId, string responsibilityId, string profileId, string? role = null)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/responsibilities/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");
+            
+            }
         
+        }
+    
         public SubjectClient Subjects => new SubjectClient(_connection);
         
         public partial class SubjectClient
@@ -235,20 +235,20 @@ namespace SpaceDotNet.Client
             }
             
             public async Task DeleteResponsibilitySubjectAsync(string subjectId, string? projectId = null)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");            
-            
-        }
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/subjects/{subjectId}?projectId={projectId?.ToString() ?? "null"}");
         
+        }
+    
         public partial class SubjectClient
         {
             public async Task<string> AddResponsibilitySubjectAsync(string projectId, AddResponsibilitySubjectRequestDto data)
-                => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/subjects?", data);            
-            
-            public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/subjects/{subjectId}", data);            
-            
-        }
+                => await _connection.RequestResourceAsync<AddResponsibilitySubjectRequestDto, string>("POST", $"api/http/projects/subjects", data);
         
+            public async Task EditResponsibilitySubjectAsync(string projectId, string subjectId, AddResponsibilitySubjectRequestDto data)
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/subjects/{subjectId}", data);
+        
+        }
+    
         public TagClient Tags => new TagClient(_connection);
         
         public partial class TagClient
@@ -261,13 +261,13 @@ namespace SpaceDotNet.Client
             }
             
             public async Task TrackTagAccessAsync(TrackTagAccessRequestDto data)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/tags/track-access", data);            
-            
-            public async Task<List<PRTagDto>> GetAllTagsAsync(Func<Partial<PRTagDto>, Partial<PRTagDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PRTagDto>()) : Partial<PRTagDto>.Default()));            
-            
-        }
+                => await _connection.RequestResourceAsync("POST", $"api/http/projects/tags/track-access", data);
         
+            public async Task<List<PRTagDto>> GetAllTagsAsync(Func<Partial<PRTagDto>, Partial<PRTagDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<PRTagDto>>("GET", $"api/http/projects/tags?$fields={(partial != null ? partial(new Partial<PRTagDto>()) : Partial<PRTagDto>.Default())}");
+        
+        }
+    
         public AccesClient Access => new AccesClient(_connection);
         
         public partial class AccesClient
@@ -290,16 +290,16 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfilesAsync(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));                
+                public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfilesAsync(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partial = null)
+                    => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
                 
-                public IAsyncEnumerable<TDMemberProfileDto> GetAllMemberProfilesAsyncEnumerable(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
-                    => BatchEnumerator.AllItems(batchSkip => GetAllMemberProfilesAsync(projectKey, query, includingAdmins, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);                
-                
-            }
+                public IAsyncEnumerable<TDMemberProfileDto> GetAllMemberProfilesAsyncEnumerable(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllMemberProfilesAsync(projectKey, query, includingAdmins, skip: batchSkip, top, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
             
-        }
+            }
         
+        }
+    
         public partial class AccesClient
         {
             public AdminClient Admins => new AdminClient(_connection);
@@ -325,13 +325,13 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task AddAdministratorAsync(string projectId, AddAdministratorRequestDto data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);                    
-                    
-                    public async Task RemoveAdministratorAsync(string projectId, string profileId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/profiles/{profileId}");                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/admins/profiles", data);
                 
+                    public async Task RemoveAdministratorAsync(string projectId, string profileId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/profiles/{profileId}");
+                
+                }
+            
                 public TeamClient Teams => new TeamClient(_connection);
                 
                 public partial class TeamClient
@@ -344,15 +344,15 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task AddAdministratorsTeamAsync(string projectId, CreateTeamRequestDto data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/admins/teams", data);                    
-                    
-                    public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/teams/{teamId}");                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/admins/teams", data);
                 
-            }
+                    public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/admins/teams/{teamId}");
+                
+                }
             
+            }
+        
             public ProfileClient Profiles => new ProfileClient(_connection);
             
             public partial class ProfileClient
@@ -365,13 +365,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddAdministratorAsync(string projectId, AddAdministratorRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/profiles", data);                
-                
-                public async Task RemoveAdministratorAsync(string projectId, string profileId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/profiles/{profileId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/profiles", data);
             
+                public async Task RemoveAdministratorAsync(string projectId, string profileId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/profiles/{profileId}");
+            
+            }
+        
             public TeamClient Teams => new TeamClient(_connection);
             
             public partial class TeamClient
@@ -384,13 +384,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddAdministratorsTeamAsync(string projectId, CreateTeamRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/teams", data);                
-                
-                public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/teams/{teamId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/teams", data);
             
+                public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/teams/{teamId}");
+            
+            }
+        
             public MemberClient Members => new MemberClient(_connection);
             
             public partial class MemberClient
@@ -414,13 +414,13 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task AddMemberAsync(string projectId, AddAdministratorRequestDto data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/members/profiles", data);                    
-                    
-                    public async Task RemoveMemberAsync(string projectId, string profileId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/profiles/{profileId}");                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/members/profiles", data);
                 
+                    public async Task RemoveMemberAsync(string projectId, string profileId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/profiles/{profileId}");
+                
+                }
+            
                 public TeamClient Teams => new TeamClient(_connection);
                 
                 public partial class TeamClient
@@ -433,35 +433,35 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task AddTeamAsync(string projectId, CreateTeamRequestDto data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/members/teams", data);                    
-                    
-                    public async Task RemoveTeamAsync(string projectId, string teamId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/teams/{teamId}");                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/members/teams", data);
                 
-            }
+                    public async Task RemoveTeamAsync(string projectId, string teamId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/members/teams/{teamId}");
+                
+                }
             
+            }
+        
             public partial class ProfileClient
             {
                 public async Task AddMemberAsync(string projectId, AddAdministratorRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/profiles", data);                
-                
-                public async Task RemoveMemberAsync(string projectId, string profileId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/profiles/{profileId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/profiles", data);
             
+                public async Task RemoveMemberAsync(string projectId, string profileId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/profiles/{profileId}");
+            
+            }
+        
             public partial class TeamClient
             {
                 public async Task AddTeamAsync(string projectId, CreateTeamRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/teams", data);                
-                
-                public async Task RemoveTeamAsync(string projectId, string teamId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/teams/{teamId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/access/teams", data);
             
+                public async Task RemoveTeamAsync(string projectId, string teamId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/access/teams/{teamId}");
+            
+            }
+        
             public ViewerClient Viewers => new ViewerClient(_connection);
             
             public partial class ViewerClient
@@ -473,16 +473,16 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProjectAsync(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));                
+                public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProjectAsync(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partial = null)
+                    => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/{projectId}/access/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
                 
-                public IAsyncEnumerable<TDMemberProfileDto> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
-                    => BatchEnumerator.AllItems(batchSkip => OrganizationProfilesWhoCanViewTheProjectAsync(projectId, term, meOnTop, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);                
-                
-            }
+                public IAsyncEnumerable<TDMemberProfileDto> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => OrganizationProfilesWhoCanViewTheProjectAsync(projectId, term, meOnTop, skip: batchSkip, top, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
             
-        }
+            }
         
+        }
+    
         public MemberProfileClient MemberProfiles => new MemberProfileClient(_connection);
         
         public partial class MemberProfileClient
@@ -494,14 +494,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfilesAsync(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
+            public async Task<Batch<TDMemberProfileDto>> GetAllMemberProfilesAsync(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partial = null)
+                => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
             
-            public IAsyncEnumerable<TDMemberProfileDto> GetAllMemberProfilesAsyncEnumerable(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllMemberProfilesAsync(projectKey, query, includingAdmins, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
-            
-        }
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllMemberProfilesAsyncEnumerable(string projectKey, string query, bool includingAdmins, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllMemberProfilesAsync(projectKey, query, includingAdmins, skip: batchSkip, top, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
         
+        }
+    
         public CodeReviewClient CodeReviews => new CodeReviewClient(_connection);
         
         public partial class CodeReviewClient
@@ -513,18 +513,18 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviewsAsync(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCountDto>>, Partial<Batch<CodeReviewWithCountDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<CodeReviewWithCountDto>>()) : Partial<Batch<CodeReviewWithCountDto>>.Default()));            
+            public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviewsAsync(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCountDto>>, Partial<Batch<CodeReviewWithCountDto>>> partial = null)
+                => await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={state?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&authorProfileId={authorProfileId?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={sort.ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CodeReviewWithCountDto>>()) : Partial<Batch<CodeReviewWithCountDto>>.Default())}");
             
-            public IAsyncEnumerable<CodeReviewWithCountDto> GetAllCodeReviewsAsyncEnumerable(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCountDto>, Partial<CodeReviewWithCountDto>> partialBuilder = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllCodeReviewsAsync(projectKey, sort, skip: batchSkip, top, state, text, authorProfileId, from, to, reviewer, type, builder => Partial<Batch<CodeReviewWithCountDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<CodeReviewWithCountDto>.Default())), skip);            
-            
-            public async Task<ReviewCountsDto> GetReviewCountsAsync(string projectKey, Func<Partial<ReviewCountsDto>, Partial<ReviewCountsDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ReviewCountsDto>()) : Partial<ReviewCountsDto>.Default()));            
-            
-            public async Task<CodeReviewRecordDto> GetCodeReviewByReviewNumberAsync(string projectKey, int reviewNumber, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CodeReviewRecordDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-number:{reviewNumber}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CodeReviewRecordDto>()) : Partial<CodeReviewRecordDto>.Default()));            
-            
+            public IAsyncEnumerable<CodeReviewWithCountDto> GetAllCodeReviewsAsyncEnumerable(string projectKey, ReviewSorting sort, string? skip = null, int? top = null, CodeReviewStateFilter? state = null, string? text = null, string? authorProfileId = null, SpaceDate? from = null, SpaceDate? to = null, string? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCountDto>, Partial<CodeReviewWithCountDto>> partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllCodeReviewsAsync(projectKey, sort, skip: batchSkip, top, state, text, authorProfileId, from, to, reviewer, type, partial: builder => Partial<Batch<CodeReviewWithCountDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCountDto>.Default())), skip);
+        
+            public async Task<ReviewCountsDto> GetReviewCountsAsync(string projectKey, Func<Partial<ReviewCountsDto>, Partial<ReviewCountsDto>> partial = null)
+                => await _connection.RequestResourceAsync<ReviewCountsDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-counts?$fields={(partial != null ? partial(new Partial<ReviewCountsDto>()) : Partial<ReviewCountsDto>.Default())}");
+        
+            public async Task<CodeReviewRecordDto> GetCodeReviewByReviewNumberAsync(string projectKey, int reviewNumber, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<CodeReviewRecordDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/review-number:{reviewNumber}?$fields={(partial != null ? partial(new Partial<CodeReviewRecordDto>()) : Partial<CodeReviewRecordDto>.Default())}");
+        
             public ChangeClient Changes => new ChangeClient(_connection);
             
             public partial class ChangeClient
@@ -536,11 +536,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ChangeInReviewDto>> GetAllChangesAsync(string projectKey, string reviewId, List<string> revisions, Func<Partial<ChangeInReviewDto>, Partial<ChangeInReviewDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChangeInReviewDto>()) : Partial<ChangeInReviewDto>.Default()));                
-                
-            }
+                public async Task<List<ChangeInReviewDto>> GetAllChangesAsync(string projectKey, string reviewId, List<string> revisions, Func<Partial<ChangeInReviewDto>, Partial<ChangeInReviewDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields={(partial != null ? partial(new Partial<ChangeInReviewDto>()) : Partial<ChangeInReviewDto>.Default())}");
             
+            }
+        
             public DetailClient Details => new DetailClient(_connection);
             
             public partial class DetailClient
@@ -552,11 +552,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<CodeReviewDetailedInfoDto> GetReviewDetailsAsync(string projectKey, string reviewId, Func<Partial<CodeReviewDetailedInfoDto>, Partial<CodeReviewDetailedInfoDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CodeReviewDetailedInfoDto>()) : Partial<CodeReviewDetailedInfoDto>.Default()));                
-                
-            }
+                public async Task<CodeReviewDetailedInfoDto> GetReviewDetailsAsync(string projectKey, string reviewId, Func<Partial<CodeReviewDetailedInfoDto>, Partial<CodeReviewDetailedInfoDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/details?$fields={(partial != null ? partial(new Partial<CodeReviewDetailedInfoDto>()) : Partial<CodeReviewDetailedInfoDto>.Default())}");
             
+            }
+        
             public ParticipantClient Participants => new ParticipantClient(_connection);
             
             public partial class ParticipantClient
@@ -569,10 +569,10 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task EditReviewParticipantAsync(string projectKey, string reviewId, string user, EditReviewParticipantRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);                
-                
-            }
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/participants/{user}", data);
             
+            }
+        
             public RevisionClient Revisions => new RevisionClient(_connection);
             
             public partial class RevisionClient
@@ -585,13 +585,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddRevisionsToReviewAsync(string projectKey, string reviewId, AddRevisionsToReviewRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);                
-                
-                public async Task RemoveRevisionsFromReviewAsync(string projectKey, string reviewId, List<string> revisions)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions", data);
             
+                public async Task RemoveRevisionsFromReviewAsync(string projectKey, string reviewId, List<string> revisions)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");
+            
+            }
+        
             public StateClient State => new StateClient(_connection);
             
             public partial class StateClient
@@ -604,10 +604,10 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task EditReviewStateAsync(string projectKey, string reviewId, EditReviewStateRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);                
-                
-            }
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/state", data);
             
+            }
+        
             public SuggestedReviewerClient SuggestedReviewers => new SuggestedReviewerClient(_connection);
             
             public partial class SuggestedReviewerClient
@@ -619,11 +619,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<TDMemberProfileDto>> GetAllSuggestedReviewersAsync(string projectKey, string reviewId, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));                
-                
-            }
+                public async Task<List<TDMemberProfileDto>> GetAllSuggestedReviewersAsync(string projectKey, string reviewId, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/suggested-reviewers?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
             
+            }
+        
             public TitleClient Title => new TitleClient(_connection);
             
             public partial class TitleClient
@@ -636,10 +636,10 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task EditReviewTitleAsync(string projectKey, string reviewId, EditReviewTitleRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);                
-                
-            }
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/title", data);
             
+            }
+        
             public UnreadRevisionClient UnreadRevisions => new UnreadRevisionClient(_connection);
             
             public partial class UnreadRevisionClient
@@ -651,13 +651,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<RevisionInReviewDto>> GetAllUnreadRevisionsAsync(string projectKey, string reviewId, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<RevisionInReviewDto>()) : Partial<RevisionInReviewDto>.Default()));                
-                
-            }
+                public async Task<List<RevisionInReviewDto>> GetAllUnreadRevisionsAsync(string projectKey, string reviewId, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/key:{projectKey}/code-reviews/{reviewId}/unread-revisions?$fields={(partial != null ? partial(new Partial<RevisionInReviewDto>()) : Partial<RevisionInReviewDto>.Default())}");
             
-        }
+            }
         
+        }
+    
         public ChangeClient Changes => new ChangeClient(_connection);
         
         public partial class ChangeClient
@@ -669,11 +669,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<ChangeInReviewDto>> GetAllChangesAsync(string projectKey, string reviewId, List<string> revisions, Func<Partial<ChangeInReviewDto>, Partial<ChangeInReviewDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChangeInReviewDto>()) : Partial<ChangeInReviewDto>.Default()));            
-            
-        }
+            public async Task<List<ChangeInReviewDto>> GetAllChangesAsync(string projectKey, string reviewId, List<string> revisions, Func<Partial<ChangeInReviewDto>, Partial<ChangeInReviewDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<ChangeInReviewDto>>("GET", $"api/http/projects/{reviewId}/changes?revisions={revisions.JoinToString("revisions", it => it.ToString())}&$fields={(partial != null ? partial(new Partial<ChangeInReviewDto>()) : Partial<ChangeInReviewDto>.Default())}");
         
+        }
+    
         public DetailClient Details => new DetailClient(_connection);
         
         public partial class DetailClient
@@ -685,11 +685,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<CodeReviewDetailedInfoDto> GetReviewDetailsAsync(string projectKey, string reviewId, Func<Partial<CodeReviewDetailedInfoDto>, Partial<CodeReviewDetailedInfoDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/{reviewId}/details?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CodeReviewDetailedInfoDto>()) : Partial<CodeReviewDetailedInfoDto>.Default()));            
-            
-        }
+            public async Task<CodeReviewDetailedInfoDto> GetReviewDetailsAsync(string projectKey, string reviewId, Func<Partial<CodeReviewDetailedInfoDto>, Partial<CodeReviewDetailedInfoDto>> partial = null)
+                => await _connection.RequestResourceAsync<CodeReviewDetailedInfoDto>("GET", $"api/http/projects/{reviewId}/details?$fields={(partial != null ? partial(new Partial<CodeReviewDetailedInfoDto>()) : Partial<CodeReviewDetailedInfoDto>.Default())}");
         
+        }
+    
         public ParticipantClient Participants => new ParticipantClient(_connection);
         
         public partial class ParticipantClient
@@ -702,10 +702,10 @@ namespace SpaceDotNet.Client
             }
             
             public async Task EditReviewParticipantAsync(string projectKey, string reviewId, string user, EditReviewParticipantRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{reviewId}/participants/{user}", data);            
-            
-        }
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{reviewId}/participants/{user}", data);
         
+        }
+    
         public RevisionClient Revisions => new RevisionClient(_connection);
         
         public partial class RevisionClient
@@ -718,13 +718,13 @@ namespace SpaceDotNet.Client
             }
             
             public async Task AddRevisionsToReviewAsync(string projectKey, string reviewId, AddRevisionsToReviewRequestDto data)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/{reviewId}/revisions", data);            
-            
-            public async Task RemoveRevisionsFromReviewAsync(string projectKey, string reviewId, List<string> revisions)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");            
-            
-        }
+                => await _connection.RequestResourceAsync("POST", $"api/http/projects/{reviewId}/revisions", data);
         
+            public async Task RemoveRevisionsFromReviewAsync(string projectKey, string reviewId, List<string> revisions)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{reviewId}/revisions?revisions={revisions.JoinToString("revisions", it => it.ToString())}");
+        
+        }
+    
         public StateClient State => new StateClient(_connection);
         
         public partial class StateClient
@@ -737,10 +737,10 @@ namespace SpaceDotNet.Client
             }
             
             public async Task EditReviewStateAsync(string projectKey, string reviewId, EditReviewStateRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{reviewId}/state", data);            
-            
-        }
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{reviewId}/state", data);
         
+        }
+    
         public SuggestedReviewerClient SuggestedReviewers => new SuggestedReviewerClient(_connection);
         
         public partial class SuggestedReviewerClient
@@ -752,11 +752,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<TDMemberProfileDto>> GetAllSuggestedReviewersAsync(string projectKey, string reviewId, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/{reviewId}/suggested-reviewers?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default()));            
-            
-        }
+            public async Task<List<TDMemberProfileDto>> GetAllSuggestedReviewersAsync(string projectKey, string reviewId, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/projects/{reviewId}/suggested-reviewers?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
         
+        }
+    
         public TitleClient Title => new TitleClient(_connection);
         
         public partial class TitleClient
@@ -769,10 +769,10 @@ namespace SpaceDotNet.Client
             }
             
             public async Task EditReviewTitleAsync(string projectKey, string reviewId, EditReviewTitleRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{reviewId}/title", data);            
-            
-        }
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{reviewId}/title", data);
         
+        }
+    
         public UnreadRevisionClient UnreadRevisions => new UnreadRevisionClient(_connection);
         
         public partial class UnreadRevisionClient
@@ -784,11 +784,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<RevisionInReviewDto>> GetAllUnreadRevisionsAsync(string projectKey, string reviewId, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/{reviewId}/unread-revisions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<RevisionInReviewDto>()) : Partial<RevisionInReviewDto>.Default()));            
-            
-        }
+            public async Task<List<RevisionInReviewDto>> GetAllUnreadRevisionsAsync(string projectKey, string reviewId, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<RevisionInReviewDto>>("GET", $"api/http/projects/{reviewId}/unread-revisions?$fields={(partial != null ? partial(new Partial<RevisionInReviewDto>()) : Partial<RevisionInReviewDto>.Default())}");
         
+        }
+    
         public RepositoryClient Repositories => new RepositoryClient(_connection);
         
         public partial class RepositoryClient
@@ -811,11 +811,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<CommitSetReviewRecordDto> CreateCommitSetReviewAsync(string projectKey, string repository, CreateCommitSetReviewRequestDto data, Func<Partial<CommitSetReviewRecordDto>, Partial<CommitSetReviewRecordDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<CreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CommitSetReviewRecordDto>()) : Partial<CommitSetReviewRecordDto>.Default()), data);                
-                
-            }
+                public async Task<CommitSetReviewRecordDto> CreateCommitSetReviewAsync(string projectKey, string repository, CreateCommitSetReviewRequestDto data, Func<Partial<CommitSetReviewRecordDto>, Partial<CommitSetReviewRecordDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/commit-set-reviews?$fields={(partial != null ? partial(new Partial<CommitSetReviewRecordDto>()) : Partial<CommitSetReviewRecordDto>.Default())}", data);
             
+            }
+        
             public MergeRequestClient MergeRequests => new MergeRequestClient(_connection);
             
             public partial class MergeRequestClient
@@ -827,11 +827,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<MergeRequestRecordDto> CreateMergeRequestAsync(string projectKey, string repository, CreateMergeRequestRequestDto data, Func<Partial<MergeRequestRecordDto>, Partial<MergeRequestRecordDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<CreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MergeRequestRecordDto>()) : Partial<MergeRequestRecordDto>.Default()), data);                
-                
-            }
+                public async Task<MergeRequestRecordDto> CreateMergeRequestAsync(string projectKey, string repository, CreateMergeRequestRequestDto data, Func<Partial<MergeRequestRecordDto>, Partial<MergeRequestRecordDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/merge-requests?$fields={(partial != null ? partial(new Partial<MergeRequestRecordDto>()) : Partial<MergeRequestRecordDto>.Default())}", data);
             
+            }
+        
             public RevisionClient Revisions => new RevisionClient(_connection);
             
             public partial class RevisionClient
@@ -854,14 +854,14 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<CodeDiscussionRecordDto> CreateCodeDiscussionAsync(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CodeDiscussionRecordDto>()) : Partial<CodeDiscussionRecordDto>.Default()), data);                    
-                    
-                    public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFileAsync(string projectKey, string repository, string revision, string file, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default()));                    
-                    
-                }
+                    public async Task<CodeDiscussionRecordDto> CreateCodeDiscussionAsync(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partial = null)
+                        => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions?$fields={(partial != null ? partial(new Partial<CodeDiscussionRecordDto>()) : Partial<CodeDiscussionRecordDto>.Default())}", data);
                 
+                    public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFileAsync(string projectKey, string repository, string revision, string file, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields={(partial != null ? partial(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default())}");
+                
+                }
+            
                 public CommitStatusClient CommitStatuses => new CommitStatusClient(_connection);
                 
                 public partial class CommitStatusClient
@@ -874,15 +874,15 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task PushCommitStatusAsync(string projectKey, string repository, string revision, PushCommitStatusRequestDto data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);                    
-                    
-                    public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommitAsync(string projectKey, string repository, string revision, Func<Partial<CommitStatusDTODto>, Partial<CommitStatusDTODto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CommitStatusDTODto>()) : Partial<CommitStatusDTODto>.Default()));                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses", data);
                 
-            }
+                    public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommitAsync(string projectKey, string repository, string revision, Func<Partial<CommitStatusDTODto>, Partial<CommitStatusDTODto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields={(partial != null ? partial(new Partial<CommitStatusDTODto>()) : Partial<CommitStatusDTODto>.Default())}");
+                
+                }
             
+            }
+        
             public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
             
             public partial class CodeDiscussionClient
@@ -894,14 +894,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<CodeDiscussionRecordDto> CreateCodeDiscussionAsync(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{revision}/code-discussions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CodeDiscussionRecordDto>()) : Partial<CodeDiscussionRecordDto>.Default()), data);                
-                
-                public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFileAsync(string projectKey, string repository, string revision, string file, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default()));                
-                
-            }
+                public async Task<CodeDiscussionRecordDto> CreateCodeDiscussionAsync(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/key:{projectKey}/repositories/{revision}/code-discussions?$fields={(partial != null ? partial(new Partial<CodeDiscussionRecordDto>()) : Partial<CodeDiscussionRecordDto>.Default())}", data);
             
+                public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFileAsync(string projectKey, string repository, string revision, string file, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields={(partial != null ? partial(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default())}");
+            
+            }
+        
             public CommitStatusClient CommitStatuses => new CommitStatusClient(_connection);
             
             public partial class CommitStatusClient
@@ -914,15 +914,15 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task PushCommitStatusAsync(string projectKey, string repository, string revision, PushCommitStatusRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/repositories/{revision}/commit-statuses", data);                
-                
-                public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommitAsync(string projectKey, string repository, string revision, Func<Partial<CommitStatusDTODto>, Partial<CommitStatusDTODto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{revision}/commit-statuses?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CommitStatusDTODto>()) : Partial<CommitStatusDTODto>.Default()));                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/key:{projectKey}/repositories/{revision}/commit-statuses", data);
             
-        }
+                public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommitAsync(string projectKey, string repository, string revision, Func<Partial<CommitStatusDTODto>, Partial<CommitStatusDTODto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/key:{projectKey}/repositories/{revision}/commit-statuses?$fields={(partial != null ? partial(new Partial<CommitStatusDTODto>()) : Partial<CommitStatusDTODto>.Default())}");
+            
+            }
         
+        }
+    
         public CommitSetReviewClient CommitSetReviews => new CommitSetReviewClient(_connection);
         
         public partial class CommitSetReviewClient
@@ -934,11 +934,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<CommitSetReviewRecordDto> CreateCommitSetReviewAsync(string projectKey, string repository, CreateCommitSetReviewRequestDto data, Func<Partial<CommitSetReviewRecordDto>, Partial<CommitSetReviewRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/{repository}/commit-set-reviews?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CommitSetReviewRecordDto>()) : Partial<CommitSetReviewRecordDto>.Default()), data);            
-            
-        }
+            public async Task<CommitSetReviewRecordDto> CreateCommitSetReviewAsync(string projectKey, string repository, CreateCommitSetReviewRequestDto data, Func<Partial<CommitSetReviewRecordDto>, Partial<CommitSetReviewRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateCommitSetReviewRequestDto, CommitSetReviewRecordDto>("POST", $"api/http/projects/{repository}/commit-set-reviews?$fields={(partial != null ? partial(new Partial<CommitSetReviewRecordDto>()) : Partial<CommitSetReviewRecordDto>.Default())}", data);
         
+        }
+    
         public MergeRequestClient MergeRequests => new MergeRequestClient(_connection);
         
         public partial class MergeRequestClient
@@ -950,11 +950,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<MergeRequestRecordDto> CreateMergeRequestAsync(string projectKey, string repository, CreateMergeRequestRequestDto data, Func<Partial<MergeRequestRecordDto>, Partial<MergeRequestRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/{repository}/merge-requests?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<MergeRequestRecordDto>()) : Partial<MergeRequestRecordDto>.Default()), data);            
-            
-        }
+            public async Task<MergeRequestRecordDto> CreateMergeRequestAsync(string projectKey, string repository, CreateMergeRequestRequestDto data, Func<Partial<MergeRequestRecordDto>, Partial<MergeRequestRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateMergeRequestRequestDto, MergeRequestRecordDto>("POST", $"api/http/projects/{repository}/merge-requests?$fields={(partial != null ? partial(new Partial<MergeRequestRecordDto>()) : Partial<MergeRequestRecordDto>.Default())}", data);
         
+        }
+    
         public partial class RevisionClient
         {
             public CodeDiscussionClient CodeDiscussions => new CodeDiscussionClient(_connection);
@@ -968,14 +968,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<CodeDiscussionRecordDto> CreateCodeDiscussionAsync(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/{repository}/revisions/{revision}/code-discussions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CodeDiscussionRecordDto>()) : Partial<CodeDiscussionRecordDto>.Default()), data);                
-                
-                public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFileAsync(string projectKey, string repository, string revision, string file, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default()));                
-                
-            }
+                public async Task<CodeDiscussionRecordDto> CreateCodeDiscussionAsync(string projectKey, string repository, string revision, CreateCodeDiscussionRequestDto data, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CreateCodeDiscussionRequestDto, CodeDiscussionRecordDto>("POST", $"api/http/projects/{repository}/revisions/{revision}/code-discussions?$fields={(partial != null ? partial(new Partial<CodeDiscussionRecordDto>()) : Partial<CodeDiscussionRecordDto>.Default())}", data);
             
+                public async Task<List<PropagatedCodeDiscussionDto>> GetDiscussionInFileAsync(string projectKey, string repository, string revision, string file, Func<Partial<PropagatedCodeDiscussionDto>, Partial<PropagatedCodeDiscussionDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<PropagatedCodeDiscussionDto>>("GET", $"api/http/projects/{repository}/revisions/{revision}/code-discussions/discussions-in-file?file={file.ToString()}&$fields={(partial != null ? partial(new Partial<PropagatedCodeDiscussionDto>()) : Partial<PropagatedCodeDiscussionDto>.Default())}");
+            
+            }
+        
             public CommitStatusClient CommitStatuses => new CommitStatusClient(_connection);
             
             public partial class CommitStatusClient
@@ -988,15 +988,15 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task PushCommitStatusAsync(string projectKey, string repository, string revision, PushCommitStatusRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{repository}/revisions/{revision}/commit-statuses", data);                
-                
-                public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommitAsync(string projectKey, string repository, string revision, Func<Partial<CommitStatusDTODto>, Partial<CommitStatusDTODto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/{repository}/revisions/{revision}/commit-statuses?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<CommitStatusDTODto>()) : Partial<CommitStatusDTODto>.Default()));                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{repository}/revisions/{revision}/commit-statuses", data);
             
-        }
+                public async Task<List<CommitStatusDTODto>> GetCommitStatusesForCommitAsync(string projectKey, string repository, string revision, Func<Partial<CommitStatusDTODto>, Partial<CommitStatusDTODto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<CommitStatusDTODto>>("GET", $"api/http/projects/{repository}/revisions/{revision}/commit-statuses?$fields={(partial != null ? partial(new Partial<CommitStatusDTODto>()) : Partial<CommitStatusDTODto>.Default())}");
+            
+            }
         
+        }
+    
         public AdminClient Admins => new AdminClient(_connection);
         
         public partial class AdminClient
@@ -1020,13 +1020,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddAdministratorAsync(string projectId, AddAdministratorRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/admins/profiles", data);                
-                
-                public async Task RemoveAdministratorAsync(string projectId, string profileId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/admins/profiles/{profileId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/admins/profiles", data);
             
+                public async Task RemoveAdministratorAsync(string projectId, string profileId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/admins/profiles/{profileId}");
+            
+            }
+        
             public TeamClient Teams => new TeamClient(_connection);
             
             public partial class TeamClient
@@ -1039,15 +1039,15 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddAdministratorsTeamAsync(string projectId, CreateTeamRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/admins/teams", data);                
-                
-                public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/admins/teams/{teamId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/admins/teams", data);
             
-        }
+                public async Task RemoveAdministratorsTeamAsync(string projectId, string teamId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/admins/teams/{teamId}");
+            
+            }
         
+        }
+    
         public MemberClient Members => new MemberClient(_connection);
         
         public partial class MemberClient
@@ -1071,13 +1071,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddMemberAsync(string projectId, AddAdministratorRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/members/profiles", data);                
-                
-                public async Task RemoveMemberAsync(string projectId, string profileId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/members/profiles/{profileId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/members/profiles", data);
             
+                public async Task RemoveMemberAsync(string projectId, string profileId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/members/profiles/{profileId}");
+            
+            }
+        
             public TeamClient Teams => new TeamClient(_connection);
             
             public partial class TeamClient
@@ -1090,15 +1090,15 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddTeamAsync(string projectId, CreateTeamRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/members/teams", data);                
-                
-                public async Task RemoveTeamAsync(string projectId, string teamId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/members/teams/{teamId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/members/teams", data);
             
-        }
+                public async Task RemoveTeamAsync(string projectId, string teamId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/members/teams/{teamId}");
+            
+            }
         
+        }
+    
         public ViewerClient Viewers => new ViewerClient(_connection);
         
         public partial class ViewerClient
@@ -1110,14 +1110,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProjectAsync(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default()));            
+            public async Task<Batch<TDMemberProfileDto>> OrganizationProfilesWhoCanViewTheProjectAsync(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>> partial = null)
+                => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/projects/viewers?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
             
-            public IAsyncEnumerable<TDMemberProfileDto> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder = null)
-                => BatchEnumerator.AllItems(batchSkip => OrganizationProfilesWhoCanViewTheProjectAsync(projectId, term, meOnTop, skip: batchSkip, top, builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<TDMemberProfileDto>.Default())), skip);            
-            
-        }
+            public IAsyncEnumerable<TDMemberProfileDto> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(string projectId, string term, bool meOnTop, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partial = null)
+                => BatchEnumerator.AllItems(batchSkip => OrganizationProfilesWhoCanViewTheProjectAsync(projectId, term, meOnTop, skip: batchSkip, top, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
         
+        }
+    
         public PlanningClient Planning => new PlanningClient(_connection);
         
         public partial class PlanningClient
@@ -1140,27 +1140,27 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ChecklistDto> CreateChecklistAsync(string projectId, IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                
-                
-                public async Task<ChecklistDto> ImportChecklistAsync(string projectId, ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);                
-                
+                public async Task<ChecklistDto> CreateChecklistAsync(string projectId, IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                    => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
+            
+                public async Task<ChecklistDto> ImportChecklistAsync(string projectId, ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                    => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/{projectId}/planning/checklists/import?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
+            
                 public async Task ImportChecklistLinesAsync(string projectId, string checklistId, ImportChecklistLinesRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);                
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/import", data);
+            
+                public async Task<Batch<ChecklistDto>> GetAllChecklistsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<ChecklistDto>>, Partial<Batch<ChecklistDto>>> partial = null)
+                    => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ChecklistDto>>()) : Partial<Batch<ChecklistDto>>.Default())}");
                 
-                public async Task<Batch<ChecklistDto>> GetAllChecklistsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<ChecklistDto>>, Partial<Batch<ChecklistDto>>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ChecklistDto>>()) : Partial<Batch<ChecklistDto>>.Default()));                
-                
-                public IAsyncEnumerable<ChecklistDto> GetAllChecklistsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                    => BatchEnumerator.AllItems(batchSkip => GetAllChecklistsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<ChecklistDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ChecklistDto>.Default())), skip);                
-                
+                public IAsyncEnumerable<ChecklistDto> GetAllChecklistsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllChecklistsAsync(projectId, skip: batchSkip, top, query, partial: builder => Partial<Batch<ChecklistDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChecklistDto>.Default())), skip);
+            
                 public async Task UpdateChecklistAsync(string projectId, string checklistId, UpdateChecklistRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);                
-                
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/checklists/{checklistId}", data);
+            
                 public async Task DeleteChecklistAsync(string projectId, string checklistId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/checklists/{checklistId}");                
-                
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/checklists/{checklistId}");
+            
                 public StarredClient Starred => new StarredClient(_connection);
                 
                 public partial class StarredClient
@@ -1172,11 +1172,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(string projectId, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                    
-                    
-                }
+                    public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(string projectId, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/starred?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}");
                 
+                }
+            
                 public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
                 
                 public partial class FullChecklistTreeClient
@@ -1188,13 +1188,13 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string projectId, string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                    
-                    
-                }
+                    public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string projectId, string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/checklists/{checklistId}/full-checklist-tree?$fields={(partial != null ? partial(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default())}");
                 
-            }
+                }
             
+            }
+        
             public StarredClient Starred => new StarredClient(_connection);
             
             public partial class StarredClient
@@ -1206,11 +1206,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(string projectId, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                
-                
-            }
+                public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(string projectId, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/{projectId}/planning/starred?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}");
             
+            }
+        
             public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
             
             public partial class FullChecklistTreeClient
@@ -1222,11 +1222,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string projectId, string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                
-                
-            }
+                public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string projectId, string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/{projectId}/planning/{checklistId}/full-checklist-tree?$fields={(partial != null ? partial(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default())}");
             
+            }
+        
             public IssueClient Issues => new IssueClient(_connection);
             
             public partial class IssueClient
@@ -1238,27 +1238,27 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<IssueDto> CreateIssueAsync(string projectId, CreateIssueRequestDto data, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<CreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueDto>()) : Partial<IssueDto>.Default()), data);                
-                
+                public async Task<IssueDto> CreateIssueAsync(string projectId, CreateIssueRequestDto data, Func<Partial<IssueDto>, Partial<IssueDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/{projectId}/planning/issues?$fields={(partial != null ? partial(new Partial<IssueDto>()) : Partial<IssueDto>.Default())}", data);
+            
                 public async Task ToggleIssueResolvedAsync(string projectId, string issueId, ToggleIssueResolvedRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);                
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/toggle-resolved", data);
+            
+                public async Task<Batch<IssueDto>> GetAllIssuesAsync(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<Batch<IssueDto>>, Partial<Batch<IssueDto>>> partial = null)
+                    => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<IssueDto>>()) : Partial<Batch<IssueDto>>.Default())}");
                 
-                public async Task<Batch<IssueDto>> GetAllIssuesAsync(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<Batch<IssueDto>>, Partial<Batch<IssueDto>>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/{projectId}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<IssueDto>>()) : Partial<Batch<IssueDto>>.Default()));                
-                
-                public IAsyncEnumerable<IssueDto> GetAllIssuesAsyncEnumerable(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
-                    => BatchEnumerator.AllItems(batchSkip => GetAllIssuesAsync(projectId, statuses, sorting, descending, skip: batchSkip, top, assigneeId, createdByProfileId, tagId, query, builder => Partial<Batch<IssueDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<IssueDto>.Default())), skip);                
-                
-                public async Task<IssueDto> GetIssueByNumberAsync(string projectId, int number, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueDto>()) : Partial<IssueDto>.Default()));                
-                
+                public IAsyncEnumerable<IssueDto> GetAllIssuesAsyncEnumerable(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<IssueDto>, Partial<IssueDto>> partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllIssuesAsync(projectId, statuses, sorting, descending, skip: batchSkip, top, assigneeId, createdByProfileId, tagId, query, partial: builder => Partial<Batch<IssueDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<IssueDto>.Default())), skip);
+            
+                public async Task<IssueDto> GetIssueByNumberAsync(string projectId, int number, Func<Partial<IssueDto>, Partial<IssueDto>> partial = null)
+                    => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/{projectId}/planning/issues/number:{number}?$fields={(partial != null ? partial(new Partial<IssueDto>()) : Partial<IssueDto>.Default())}");
+            
                 public async Task UpdateIssueAsync(string projectId, string issueId, UpdateIssueRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);                
-                
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/issues/{issueId}", data);
+            
                 public async Task DeleteIssueAsync(string projectId, string issueId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}");                
-                
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}");
+            
                 public StatusClient Statuses => new StatusClient(_connection);
                 
                 public partial class StatusClient
@@ -1270,12 +1270,12 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<IssueStatusDto>> GetAllIssueStatusesAsync(string projectId, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusDto>()) : Partial<IssueStatusDto>.Default()));                    
-                    
+                    public async Task<List<IssueStatusDto>> GetAllIssueStatusesAsync(string projectId, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses?$fields={(partial != null ? partial(new Partial<IssueStatusDto>()) : Partial<IssueStatusDto>.Default())}");
+                
                     public async Task UpdateStatusAsync(string projectId, UpdateStatusRequestDto data)
-                        => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);                    
-                    
+                        => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/issues/statuses", data);
+                
                     public DistributionClient Distribution => new DistributionClient(_connection);
                     
                     public partial class DistributionClient
@@ -1287,13 +1287,13 @@ namespace SpaceDotNet.Client
                             _connection = connection;
                         }
                         
-                        public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partialBuilder = null)
-                            => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses/distribution?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default()));                        
-                        
-                    }
+                        public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partial = null)
+                            => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/issues/statuses/distribution?$fields={(partial != null ? partial(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default())}");
                     
-                }
+                    }
                 
+                }
+            
                 public DistributionClient Distribution => new DistributionClient(_connection);
                 
                 public partial class DistributionClient
@@ -1305,11 +1305,11 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/issues/distribution?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default()));                    
-                    
-                }
+                    public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/issues/distribution?$fields={(partial != null ? partial(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default())}");
                 
+                }
+            
                 public AttachmentClient Attachments => new AttachmentClient(_connection);
                 
                 public partial class AttachmentClient
@@ -1322,13 +1322,13 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task AddAttachmentsAsync(string projectId, string issueId, AddAttachmentsRequestDto data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);                    
-                    
-                    public async Task RemoveAttachmentsAsync(string projectId, string issueId, List<string> identities)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments", data);
                 
+                    public async Task RemoveAttachmentsAsync(string projectId, string issueId, List<string> identities)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");
+                
+                }
+            
                 public ChecklistClient Checklists => new ChecklistClient(_connection);
                 
                 public partial class ChecklistClient
@@ -1341,13 +1341,13 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task AddIssueChecklistAsync(string projectId, string issueId, string checklistId)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
-                    
-                    public async Task RemoveIssueChecklistAsync(string projectId, string issueId, string checklistId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");
                 
+                    public async Task RemoveIssueChecklistAsync(string projectId, string issueId, string checklistId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/checklists/{checklistId}");
+                
+                }
+            
                 public CommentClient Comments => new CommentClient(_connection);
                 
                 public partial class CommentClient
@@ -1360,10 +1360,10 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task<List<string>> ImportIssueCommentHistoryAsync(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data)
-                        => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import?", data);                    
-                    
-                }
+                        => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/comments/import", data);
                 
+                }
+            
                 public TagClient Tags => new TagClient(_connection);
                 
                 public partial class TagClient
@@ -1376,15 +1376,15 @@ namespace SpaceDotNet.Client
                     }
                     
                     public async Task AddIssueTagAsync(string projectId, string issueId, string tagId)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
-                    
-                    public async Task RemoveIssueTagAsync(string projectId, string issueId, string tagId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");                    
-                    
-                }
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");
                 
-            }
+                    public async Task RemoveIssueTagAsync(string projectId, string issueId, string tagId)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/issues/{issueId}/tags/{tagId}");
+                
+                }
             
+            }
+        
             public StatusClient Statuses => new StatusClient(_connection);
             
             public partial class StatusClient
@@ -1396,12 +1396,12 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<IssueStatusDto>> GetAllIssueStatusesAsync(string projectId, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/statuses?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusDto>()) : Partial<IssueStatusDto>.Default()));                
-                
+                public async Task<List<IssueStatusDto>> GetAllIssueStatusesAsync(string projectId, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/{projectId}/planning/statuses?$fields={(partial != null ? partial(new Partial<IssueStatusDto>()) : Partial<IssueStatusDto>.Default())}");
+            
                 public async Task UpdateStatusAsync(string projectId, UpdateStatusRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/statuses", data);                
-                
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{projectId}/planning/statuses", data);
+            
                 public DistributionClient Distribution => new DistributionClient(_connection);
                 
                 public partial class DistributionClient
@@ -1413,13 +1413,13 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/statuses/distribution?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default()));                    
-                    
-                }
+                    public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/{projectId}/planning/statuses/distribution?$fields={(partial != null ? partial(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default())}");
                 
-            }
+                }
             
+            }
+        
             public AttachmentClient Attachments => new AttachmentClient(_connection);
             
             public partial class AttachmentClient
@@ -1432,23 +1432,23 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddAttachmentsAsync(string projectId, string issueId, AddAttachmentsRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/{issueId}/attachments", data);                
-                
-                public async Task RemoveAttachmentsAsync(string projectId, string issueId, List<string> identities)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/{issueId}/attachments", data);
             
+                public async Task RemoveAttachmentsAsync(string projectId, string issueId, List<string> identities)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");
+            
+            }
+        
             public partial class ChecklistClient
             {
                 public async Task AddIssueChecklistAsync(string projectId, string issueId, string checklistId)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/{issueId}/checklists/{checklistId}");                
-                
-                public async Task RemoveIssueChecklistAsync(string projectId, string issueId, string checklistId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/{issueId}/checklists/{checklistId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/{issueId}/checklists/{checklistId}");
             
+                public async Task RemoveIssueChecklistAsync(string projectId, string issueId, string checklistId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/{issueId}/checklists/{checklistId}");
+            
+            }
+        
             public CommentClient Comments => new CommentClient(_connection);
             
             public partial class CommentClient
@@ -1461,10 +1461,10 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task<List<string>> ImportIssueCommentHistoryAsync(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data)
-                    => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/{issueId}/comments/import?", data);                
-                
-            }
+                    => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/{projectId}/planning/{issueId}/comments/import", data);
             
+            }
+        
             public TagClient Tags => new TagClient(_connection);
             
             public partial class TagClient
@@ -1477,28 +1477,28 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddIssueTagAsync(string projectId, string issueId, string tagId)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/{issueId}/tags/{tagId}");                
-                
-                public async Task RemoveIssueTagAsync(string projectId, string issueId, string tagId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/{issueId}/tags/{tagId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/{projectId}/planning/{issueId}/tags/{tagId}");
             
+                public async Task RemoveIssueTagAsync(string projectId, string issueId, string tagId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{projectId}/planning/{issueId}/tags/{tagId}");
+            
+            }
+        
             public partial class TagClient
             {
-                public async Task<PlanningTagDto> CreateHierarchicalTagAsync(string projectId, CreateHierarchicalTagRequestDto data, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<CreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanningTagDto>()) : Partial<PlanningTagDto>.Default()), data);                
-                
-                public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTagsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<PlanningTagDto>>, Partial<Batch<PlanningTagDto>>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PlanningTagDto>>()) : Partial<Batch<PlanningTagDto>>.Default()));                
-                
-                public IAsyncEnumerable<PlanningTagDto> GetAllHierarchicalTagsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder = null)
-                    => BatchEnumerator.AllItems(batchSkip => GetAllHierarchicalTagsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<PlanningTagDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PlanningTagDto>.Default())), skip);                
-                
-            }
+                public async Task<PlanningTagDto> CreateHierarchicalTagAsync(string projectId, CreateHierarchicalTagRequestDto data, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partial = null)
+                    => await _connection.RequestResourceAsync<CreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/{projectId}/planning/tags?$fields={(partial != null ? partial(new Partial<PlanningTagDto>()) : Partial<PlanningTagDto>.Default())}", data);
             
-        }
+                public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTagsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<PlanningTagDto>>, Partial<Batch<PlanningTagDto>>> partial = null)
+                    => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/{projectId}/planning/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PlanningTagDto>>()) : Partial<Batch<PlanningTagDto>>.Default())}");
+                
+                public IAsyncEnumerable<PlanningTagDto> GetAllHierarchicalTagsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllHierarchicalTagsAsync(projectId, skip: batchSkip, top, query, partial: builder => Partial<Batch<PlanningTagDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTagDto>.Default())), skip);
+            
+            }
         
+        }
+    
         public ChecklistClient Checklists => new ChecklistClient(_connection);
         
         public partial class ChecklistClient
@@ -1510,27 +1510,27 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ChecklistDto> CreateChecklistAsync(string projectId, IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/checklists?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);            
-            
-            public async Task<ChecklistDto> ImportChecklistAsync(string projectId, ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/checklists/import?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()), data);            
-            
+            public async Task<ChecklistDto> CreateChecklistAsync(string projectId, IsNameFreeRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                => await _connection.RequestResourceAsync<IsNameFreeRequestDto, ChecklistDto>("POST", $"api/http/projects/checklists?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
+        
+            public async Task<ChecklistDto> ImportChecklistAsync(string projectId, ImportChecklistRequestDto data, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                => await _connection.RequestResourceAsync<ImportChecklistRequestDto, ChecklistDto>("POST", $"api/http/projects/checklists/import?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}", data);
+        
             public async Task ImportChecklistLinesAsync(string projectId, string checklistId, ImportChecklistLinesRequestDto data)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/checklists/{checklistId}/import", data);            
+                => await _connection.RequestResourceAsync("POST", $"api/http/projects/checklists/{checklistId}/import", data);
+        
+            public async Task<Batch<ChecklistDto>> GetAllChecklistsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<ChecklistDto>>, Partial<Batch<ChecklistDto>>> partial = null)
+                => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ChecklistDto>>()) : Partial<Batch<ChecklistDto>>.Default())}");
             
-            public async Task<Batch<ChecklistDto>> GetAllChecklistsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<ChecklistDto>>, Partial<Batch<ChecklistDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<ChecklistDto>>("GET", $"api/http/projects/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<ChecklistDto>>()) : Partial<Batch<ChecklistDto>>.Default()));            
-            
-            public IAsyncEnumerable<ChecklistDto> GetAllChecklistsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllChecklistsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<ChecklistDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<ChecklistDto>.Default())), skip);            
-            
+            public IAsyncEnumerable<ChecklistDto> GetAllChecklistsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllChecklistsAsync(projectId, skip: batchSkip, top, query, partial: builder => Partial<Batch<ChecklistDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ChecklistDto>.Default())), skip);
+        
             public async Task UpdateChecklistAsync(string projectId, string checklistId, UpdateChecklistRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/checklists/{checklistId}", data);            
-            
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/checklists/{checklistId}", data);
+        
             public async Task DeleteChecklistAsync(string projectId, string checklistId)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/checklists/{checklistId}");            
-            
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/checklists/{checklistId}");
+        
             public StarredClient Starred => new StarredClient(_connection);
             
             public partial class StarredClient
@@ -1542,11 +1542,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(string projectId, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/checklists/starred?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default()));                
-                
-            }
+                public async Task<List<ChecklistDto>> GetAllStarredChecklistsAsync(string projectId, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<ChecklistDto>>("GET", $"api/http/projects/checklists/starred?$fields={(partial != null ? partial(new Partial<ChecklistDto>()) : Partial<ChecklistDto>.Default())}");
             
+            }
+        
             public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
             
             public partial class FullChecklistTreeClient
@@ -1558,13 +1558,13 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string projectId, string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/checklists/{checklistId}/full-checklist-tree?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default()));                
-                
-            }
+                public async Task<List<PlanItemChildrenDto>> GetFullChecklistTreeAsync(string projectId, string checklistId, Func<Partial<PlanItemChildrenDto>, Partial<PlanItemChildrenDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<PlanItemChildrenDto>>("GET", $"api/http/projects/checklists/{checklistId}/full-checklist-tree?$fields={(partial != null ? partial(new Partial<PlanItemChildrenDto>()) : Partial<PlanItemChildrenDto>.Default())}");
             
-        }
+            }
         
+        }
+    
         public IssueClient Issues => new IssueClient(_connection);
         
         public partial class IssueClient
@@ -1576,27 +1576,27 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<IssueDto> CreateIssueAsync(string projectId, CreateIssueRequestDto data, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/issues?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueDto>()) : Partial<IssueDto>.Default()), data);            
-            
+            public async Task<IssueDto> CreateIssueAsync(string projectId, CreateIssueRequestDto data, Func<Partial<IssueDto>, Partial<IssueDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateIssueRequestDto, IssueDto>("POST", $"api/http/projects/issues?$fields={(partial != null ? partial(new Partial<IssueDto>()) : Partial<IssueDto>.Default())}", data);
+        
             public async Task ToggleIssueResolvedAsync(string projectId, string issueId, ToggleIssueResolvedRequestDto data)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/toggle-resolved", data);            
+                => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/toggle-resolved", data);
+        
+            public async Task<Batch<IssueDto>> GetAllIssuesAsync(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<Batch<IssueDto>>, Partial<Batch<IssueDto>>> partial = null)
+                => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<IssueDto>>()) : Partial<Batch<IssueDto>>.Default())}");
             
-            public async Task<Batch<IssueDto>> GetAllIssuesAsync(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<Batch<IssueDto>>, Partial<Batch<IssueDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<IssueDto>>("GET", $"api/http/projects/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId?.ToString() ?? "null"}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<IssueDto>>()) : Partial<Batch<IssueDto>>.Default()));            
-            
-            public IAsyncEnumerable<IssueDto> GetAllIssuesAsyncEnumerable(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllIssuesAsync(projectId, statuses, sorting, descending, skip: batchSkip, top, assigneeId, createdByProfileId, tagId, query, builder => Partial<Batch<IssueDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<IssueDto>.Default())), skip);            
-            
-            public async Task<IssueDto> GetIssueByNumberAsync(string projectId, int number, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/issues/number:{number}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueDto>()) : Partial<IssueDto>.Default()));            
-            
+            public IAsyncEnumerable<IssueDto> GetAllIssuesAsyncEnumerable(string projectId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = null, string? assigneeId = null, string? createdByProfileId = null, string? tagId = null, string? query = null, Func<Partial<IssueDto>, Partial<IssueDto>> partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllIssuesAsync(projectId, statuses, sorting, descending, skip: batchSkip, top, assigneeId, createdByProfileId, tagId, query, partial: builder => Partial<Batch<IssueDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<IssueDto>.Default())), skip);
+        
+            public async Task<IssueDto> GetIssueByNumberAsync(string projectId, int number, Func<Partial<IssueDto>, Partial<IssueDto>> partial = null)
+                => await _connection.RequestResourceAsync<IssueDto>("GET", $"api/http/projects/issues/number:{number}?$fields={(partial != null ? partial(new Partial<IssueDto>()) : Partial<IssueDto>.Default())}");
+        
             public async Task UpdateIssueAsync(string projectId, string issueId, UpdateIssueRequestDto data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/issues/{issueId}", data);            
-            
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/issues/{issueId}", data);
+        
             public async Task DeleteIssueAsync(string projectId, string issueId)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}");            
-            
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}");
+        
             public StatusClient Statuses => new StatusClient(_connection);
             
             public partial class StatusClient
@@ -1608,12 +1608,12 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<IssueStatusDto>> GetAllIssueStatusesAsync(string projectId, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/issues/statuses?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusDto>()) : Partial<IssueStatusDto>.Default()));                
-                
+                public async Task<List<IssueStatusDto>> GetAllIssueStatusesAsync(string projectId, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<IssueStatusDto>>("GET", $"api/http/projects/issues/statuses?$fields={(partial != null ? partial(new Partial<IssueStatusDto>()) : Partial<IssueStatusDto>.Default())}");
+            
                 public async Task UpdateStatusAsync(string projectId, UpdateStatusRequestDto data)
-                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/issues/statuses", data);                
-                
+                    => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/issues/statuses", data);
+            
                 public DistributionClient Distribution => new DistributionClient(_connection);
                 
                 public partial class DistributionClient
@@ -1625,13 +1625,13 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partialBuilder = null)
-                        => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/issues/statuses/distribution?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default()));                    
-                    
-                }
+                    public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partial = null)
+                        => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/issues/statuses/distribution?$fields={(partial != null ? partial(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default())}");
                 
-            }
+                }
             
+            }
+        
             public DistributionClient Distribution => new DistributionClient(_connection);
             
             public partial class DistributionClient
@@ -1643,11 +1643,11 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partialBuilder = null)
-                    => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/issues/distribution?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default()));                
-                
-            }
+                public async Task<List<IssueStatusWithUsagesDto>> GetIssueStatusDistributionAsync(string projectId, Func<Partial<IssueStatusWithUsagesDto>, Partial<IssueStatusWithUsagesDto>> partial = null)
+                    => await _connection.RequestResourceAsync<List<IssueStatusWithUsagesDto>>("GET", $"api/http/projects/issues/distribution?$fields={(partial != null ? partial(new Partial<IssueStatusWithUsagesDto>()) : Partial<IssueStatusWithUsagesDto>.Default())}");
             
+            }
+        
             public AttachmentClient Attachments => new AttachmentClient(_connection);
             
             public partial class AttachmentClient
@@ -1660,13 +1660,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddAttachmentsAsync(string projectId, string issueId, AddAttachmentsRequestDto data)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/attachments", data);                
-                
-                public async Task RemoveAttachmentsAsync(string projectId, string issueId, List<string> identities)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/attachments", data);
             
+                public async Task RemoveAttachmentsAsync(string projectId, string issueId, List<string> identities)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}");
+            
+            }
+        
             public ChecklistClient Checklists => new ChecklistClient(_connection);
             
             public partial class ChecklistClient
@@ -1679,13 +1679,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddIssueChecklistAsync(string projectId, string issueId, string checklistId)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/checklists/{checklistId}");                
-                
-                public async Task RemoveIssueChecklistAsync(string projectId, string issueId, string checklistId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}/checklists/{checklistId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/checklists/{checklistId}");
             
+                public async Task RemoveIssueChecklistAsync(string projectId, string issueId, string checklistId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}/checklists/{checklistId}");
+            
+            }
+        
             public CommentClient Comments => new CommentClient(_connection);
             
             public partial class CommentClient
@@ -1698,10 +1698,10 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task<List<string>> ImportIssueCommentHistoryAsync(string projectId, string issueId, ImportIssueCommentHistoryRequestDto data)
-                    => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/issues/{issueId}/comments/import?", data);                
-                
-            }
+                    => await _connection.RequestResourceAsync<ImportIssueCommentHistoryRequestDto, List<string>>("POST", $"api/http/projects/issues/{issueId}/comments/import", data);
             
+            }
+        
             public TagClient Tags => new TagClient(_connection);
             
             public partial class TagClient
@@ -1714,28 +1714,28 @@ namespace SpaceDotNet.Client
                 }
                 
                 public async Task AddIssueTagAsync(string projectId, string issueId, string tagId)
-                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/tags/{tagId}");                
-                
-                public async Task RemoveIssueTagAsync(string projectId, string issueId, string tagId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}/tags/{tagId}");                
-                
-            }
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/issues/{issueId}/tags/{tagId}");
             
-        }
+                public async Task RemoveIssueTagAsync(string projectId, string issueId, string tagId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/issues/{issueId}/tags/{tagId}");
+            
+            }
         
+        }
+    
         public partial class TagClient
         {
-            public async Task<PlanningTagDto> CreateHierarchicalTagAsync(string projectId, CreateHierarchicalTagRequestDto data, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/tags?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<PlanningTagDto>()) : Partial<PlanningTagDto>.Default()), data);            
-            
-            public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTagsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<PlanningTagDto>>, Partial<Batch<PlanningTagDto>>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<PlanningTagDto>>()) : Partial<Batch<PlanningTagDto>>.Default()));            
-            
-            public IAsyncEnumerable<PlanningTagDto> GetAllHierarchicalTagsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllHierarchicalTagsAsync(projectId, skip: batchSkip, top, query, builder => Partial<Batch<PlanningTagDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<PlanningTagDto>.Default())), skip);            
-            
-        }
+            public async Task<PlanningTagDto> CreateHierarchicalTagAsync(string projectId, CreateHierarchicalTagRequestDto data, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateHierarchicalTagRequestDto, PlanningTagDto>("POST", $"api/http/projects/tags?$fields={(partial != null ? partial(new Partial<PlanningTagDto>()) : Partial<PlanningTagDto>.Default())}", data);
         
+            public async Task<Batch<PlanningTagDto>> GetAllHierarchicalTagsAsync(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<Batch<PlanningTagDto>>, Partial<Batch<PlanningTagDto>>> partial = null)
+                => await _connection.RequestResourceAsync<Batch<PlanningTagDto>>("GET", $"api/http/projects/tags?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PlanningTagDto>>()) : Partial<Batch<PlanningTagDto>>.Default())}");
+            
+            public IAsyncEnumerable<PlanningTagDto> GetAllHierarchicalTagsAsyncEnumerable(string projectId, string? skip = null, int? top = null, string? query = null, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllHierarchicalTagsAsync(projectId, skip: batchSkip, top, query, partial: builder => Partial<Batch<PlanningTagDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTagDto>.Default())), skip);
+        
+        }
+    
         public SchemeClient Scheme => new SchemeClient(_connection);
         
         public partial class SchemeClient
@@ -1747,11 +1747,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<SubjectResponsibilitiesTableDto>> GetProjectResponsibilitySchemeAsync(string projectId, Func<Partial<SubjectResponsibilitiesTableDto>, Partial<SubjectResponsibilitiesTableDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/scheme?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<SubjectResponsibilitiesTableDto>()) : Partial<SubjectResponsibilitiesTableDto>.Default()));            
-            
-        }
+            public async Task<List<SubjectResponsibilitiesTableDto>> GetProjectResponsibilitySchemeAsync(string projectId, Func<Partial<SubjectResponsibilitiesTableDto>, Partial<SubjectResponsibilitiesTableDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<SubjectResponsibilitiesTableDto>>("GET", $"api/http/projects/scheme?$fields={(partial != null ? partial(new Partial<SubjectResponsibilitiesTableDto>()) : Partial<SubjectResponsibilitiesTableDto>.Default())}");
         
+        }
+    
         public AssigneeClient Assignees => new AssigneeClient(_connection);
         
         public partial class AssigneeClient
@@ -1764,13 +1764,13 @@ namespace SpaceDotNet.Client
             }
             
             public async Task AssignResponsibleAsync(string projectId, string responsibilityId, string profileId, AssignResponsibleRequestDto data)
-                => await _connection.RequestResourceAsync("POST", $"api/http/projects/{responsibilityId}/assignees/{profileId}", data);            
-            
-            public async Task RemoveResponsibleAsync(string projectId, string responsibilityId, string profileId, string? role = null)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");            
-            
-        }
+                => await _connection.RequestResourceAsync("POST", $"api/http/projects/{responsibilityId}/assignees/{profileId}", data);
         
+            public async Task RemoveResponsibleAsync(string projectId, string responsibilityId, string profileId, string? role = null)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{responsibilityId}/assignees/{profileId}?role={role?.ToString() ?? "null"}");
+        
+        }
+    
     }
     
 }

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UrlCFTypeDto
+    public sealed class UrlCFTypeDto
          : CFTypeDto, IClassNameConvertible
     {
     }

@@ -21,51 +21,51 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitCommitInfoDto
+    public sealed class GitCommitInfoDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }        
-        
+        public string Message { get; set; }
+    
         [Required]
         [JsonPropertyName("authorDate")]
-        public long AuthorDate { get; set; }        
-        
+        public long AuthorDate { get; set; }
+    
         [Required]
         [JsonPropertyName("commitDate")]
-        public long CommitDate { get; set; }        
-        
+        public long CommitDate { get; set; }
+    
         [Required]
         [JsonPropertyName("author")]
-        public GitAuthorInfoDto Author { get; set; }        
-        
+        public GitAuthorInfoDto Author { get; set; }
+    
         [Required]
         [JsonPropertyName("committer")]
-        public GitAuthorInfoDto Committer { get; set; }        
-        
+        public GitAuthorInfoDto Committer { get; set; }
+    
         [JsonPropertyName("authorProfile")]
-        public TDMemberProfileDto? AuthorProfile { get; set; }        
-        
+        public TDMemberProfileDto? AuthorProfile { get; set; }
+    
         [Required]
         [JsonPropertyName("parents")]
-        public List<string> Parents { get; set; }        
-        
+        public List<string> Parents { get; set; }
+    
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }        
-        
+        public List<string> Tags { get; set; }
+    
         [Required]
         [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get; set; }        
-        
+        public List<BranchInfoDto> Branches { get; set; }
+    
         [Required]
         [JsonPropertyName("heads")]
-        public List<string> Heads { get; set; }        
-        
+        public List<string> Heads { get; set; }
+    
     }
     
 }

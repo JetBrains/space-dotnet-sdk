@@ -21,32 +21,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EmojiReactionRecordDto
+    public sealed class EmojiReactionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }        
-        
+        public string ItemId { get; set; }
+    
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }        
-        
+        public string Emoji { get; set; }
+    
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }        
-        
+        public int Count { get; set; }
+    
         [Required]
         [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }        
-        
+        public bool MeReacted { get; set; }
+    
         [Required]
         [JsonPropertyName("order")]
-        public long Order { get; set; }        
-        
+        public long Order { get; set; }
+    
     }
     
 }

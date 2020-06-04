@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DiffContextDto
+    public sealed class DiffContextDto
     {
         [JsonPropertyName("left")]
-        public DiffSideDto? Left { get; set; }        
-        
+        public DiffSideDto? Left { get; set; }
+    
         [Required]
         [JsonPropertyName("right")]
-        public DiffSideDto Right { get; set; }        
-        
+        public DiffSideDto Right { get; set; }
+    
     }
     
 }

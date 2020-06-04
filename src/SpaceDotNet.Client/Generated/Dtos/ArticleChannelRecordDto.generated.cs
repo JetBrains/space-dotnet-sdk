@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticleChannelRecordDto
+    public sealed class ArticleChannelRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }        
-        
+        public M2ChannelRecordDto Channel { get; set; }
+    
         [Required]
         [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecordDto ChannelContent { get; set; }        
-        
+        public M2ChannelContentRecordDto ChannelContent { get; set; }
+    
         [Required]
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto Reactions { get; set; }        
-        
+        public AllReactionsToItemRecordDto Reactions { get; set; }
+    
     }
     
 }

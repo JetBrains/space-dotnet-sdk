@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.PushCommitStatusRequestExtensions
         public static Partial<PushCommitStatusRequestDto> WithExecutionStatus(this Partial<PushCommitStatusRequestDto> it)
             => it.AddFieldName("executionStatus");
         
+        public static Partial<PushCommitStatusRequestDto> WithExecutionStatus(this Partial<PushCommitStatusRequestDto> it, Func<Partial<ExecutionStatus>, Partial<ExecutionStatus>> partialBuilder)
+            => it.AddFieldName("executionStatus", partialBuilder(new Partial<ExecutionStatus>()));
+        
         public static Partial<PushCommitStatusRequestDto> WithUrl(this Partial<PushCommitStatusRequestDto> it)
             => it.AddFieldName("url");
         

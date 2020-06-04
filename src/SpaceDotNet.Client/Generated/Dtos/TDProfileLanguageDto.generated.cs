@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDProfileLanguageDto
+    public sealed class TDProfileLanguageDto
     {
         [JsonPropertyName("name")]
-        public TDProfileNameDto? Name { get; set; }        
-        
+        public TDProfileNameDto? Name { get; set; }
+    
         [Required]
         [JsonPropertyName("language")]
-        public TDLanguageDto Language { get; set; }        
-        
+        public TDLanguageDto Language { get; set; }
+    
         [JsonPropertyName("languageCode")]
-        public string? LanguageCode { get; set; }        
-        
+        public string? LanguageCode { get; set; }
+    
     }
     
 }

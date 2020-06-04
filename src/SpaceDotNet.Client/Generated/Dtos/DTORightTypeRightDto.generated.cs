@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DTORightTypeRightDto
+    public sealed class DTORightTypeRightDto
     {
         [Required]
         [JsonPropertyName("rightType")]
-        public DTORightTypeDto RightType { get; set; }        
-        
+        public DTORightTypeDto RightType { get; set; }
+    
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTOFullRightWithoutTypeDto> Rights { get; set; }        
-        
+        public List<DTOFullRightWithoutTypeDto> Rights { get; set; }
+    
     }
     
 }

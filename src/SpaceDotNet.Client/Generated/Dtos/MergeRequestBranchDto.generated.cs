@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MergeRequestBranchDto
+    public sealed class MergeRequestBranchDto
     {
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }        
-        
+        public string DisplayName { get; set; }
+    
         [Required]
         [JsonPropertyName("ref")]
-        public string Ref { get; set; }        
-        
+        public string Ref { get; set; }
+    
         [Required]
         [JsonPropertyName("deleted")]
-        public bool Deleted { get; set; }        
-        
+        public bool Deleted { get; set; }
+    
     }
     
 }

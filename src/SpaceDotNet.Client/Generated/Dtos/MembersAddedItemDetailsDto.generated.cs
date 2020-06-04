@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MembersAddedItemDetailsDto
+    public sealed class MembersAddedItemDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get; set; }        
-        
+        public List<CPrincipalDto> Principals { get; set; }
+    
         [Required]
         [JsonPropertyName("othersDisplayNames")]
-        public List<string> OthersDisplayNames { get; set; }        
-        
+        public List<string> OthersDisplayNames { get; set; }
+    
     }
     
 }

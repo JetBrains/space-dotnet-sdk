@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MessageForImportDto
+    public sealed class MessageForImportDto
     {
         [Required]
         [JsonPropertyName("authorPrincipalId")]
-        public string AuthorPrincipalId { get; set; }        
-        
+        public string AuthorPrincipalId { get; set; }
+    
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [Required]
         [JsonPropertyName("createdAtUtc")]
-        public long CreatedAtUtc { get; set; }        
-        
+        public long CreatedAtUtc { get; set; }
+    
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto>? Attachments { get; set; }        
-        
+        public List<AttachmentDto>? Attachments { get; set; }
+    
     }
     
 }

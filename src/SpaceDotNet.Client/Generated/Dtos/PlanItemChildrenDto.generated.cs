@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PlanItemChildrenDto
+    public sealed class PlanItemChildrenDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("children")]
-        public List<PlanItemDto> Children { get; set; }        
-        
+        public List<PlanItemDto> Children { get; set; }
+    
     }
     
 }

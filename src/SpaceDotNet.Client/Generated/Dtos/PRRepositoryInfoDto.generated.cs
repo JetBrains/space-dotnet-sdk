@@ -21,35 +21,35 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PRRepositoryInfoDto
+    public sealed class PRRepositoryInfoDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }        
-        
+        public string Description { get; set; }
+    
         [JsonPropertyName("latestActivity")]
-        public SpaceTime? LatestActivity { get; set; }        
-        
+        public SpaceTime? LatestActivity { get; set; }
+    
         [JsonPropertyName("proxyPushNotification")]
-        public SpaceTime? ProxyPushNotification { get; set; }        
-        
+        public SpaceTime? ProxyPushNotification { get; set; }
+    
         [Required]
         [JsonPropertyName("state")]
-        public RepositoryState State { get; set; }        
-        
+        public RepositoryState State { get; set; }
+    
         [JsonPropertyName("initProgress")]
-        public string? InitProgress { get; set; }        
-        
+        public string? InitProgress { get; set; }
+    
         [JsonPropertyName("readmeName")]
-        public string? ReadmeName { get; set; }        
-        
+        public string? ReadmeName { get; set; }
+    
         [JsonPropertyName("monthlyActivity")]
-        public RepositoryActivityDto? MonthlyActivity { get; set; }        
-        
+        public RepositoryActivityDto? MonthlyActivity { get; set; }
+    
     }
     
 }

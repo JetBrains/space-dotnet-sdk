@@ -21,84 +21,84 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticleRecordDto
+    public sealed class ArticleRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }        
-        
+        public SpaceTime Created { get; set; }
+    
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }        
-        
+        public TDMemberProfileDto Author { get; set; }
+    
         [Required]
         [JsonPropertyName("aliases")]
-        public List<BGArticleAliasDto> Aliases { get; set; }        
-        
+        public List<BGArticleAliasDto> Aliases { get; set; }
+    
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }        
-        
+        public M2ChannelRecordDto Channel { get; set; }
+    
         [Required]
         [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecordDto ChannelContent { get; set; }        
-        
+        public M2ChannelContentRecordDto ChannelContent { get; set; }
+    
         [Required]
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto Reactions { get; set; }        
-        
+        public AllReactionsToItemRecordDto Reactions { get; set; }
+    
         [Required]
         [JsonPropertyName("content")]
-        public string Content { get; set; }        
-        
+        public string Content { get; set; }
+    
         [JsonPropertyName("event")]
-        public MeetingRecordDto? Event { get; set; }        
-        
+        public MeetingRecordDto? Event { get; set; }
+    
         [JsonPropertyName("externalEntityInfo")]
-        public ExternalEntityInfoRecordDto? ExternalEntityInfo { get; set; }        
-        
+        public ExternalEntityInfoRecordDto? ExternalEntityInfo { get; set; }
+    
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }        
-        
+        public TDLocationDto? Location { get; set; }
+    
         [JsonPropertyName("locations")]
-        public List<TDLocationDto>? Locations { get; set; }        
-        
+        public List<TDLocationDto>? Locations { get; set; }
+    
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }        
-        
+        public PRProjectDto? Project { get; set; }
+    
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }        
-        
+        public TDTeamDto? Team { get; set; }
+    
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }        
-        
+        public List<TDTeamDto>? Teams { get; set; }
+    
         [Required]
         [JsonPropertyName("editable")]
-        public bool Editable { get; set; }        
-        
+        public bool Editable { get; set; }
+    
         [Required]
         [JsonPropertyName("preview")]
-        public string Preview { get; set; }        
-        
+        public string Preview { get; set; }
+    
         [Required]
         [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }        
-        
+        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
+    
         [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber { get; set; }        
-        
+        public int? WordsNumber { get; set; }
+    
     }
     
 }

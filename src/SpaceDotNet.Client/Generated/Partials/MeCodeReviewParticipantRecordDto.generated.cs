@@ -29,11 +29,17 @@ namespace SpaceDotNet.Client.MeCodeReviewParticipantRecordExtensions
         public static Partial<MeCodeReviewParticipantRecordDto> WithRole(this Partial<MeCodeReviewParticipantRecordDto> it)
             => it.AddFieldName("role");
         
+        public static Partial<MeCodeReviewParticipantRecordDto> WithRole(this Partial<MeCodeReviewParticipantRecordDto> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
+        
         public static Partial<MeCodeReviewParticipantRecordDto> WithTheirTurn(this Partial<MeCodeReviewParticipantRecordDto> it)
             => it.AddFieldName("theirTurn");
         
         public static Partial<MeCodeReviewParticipantRecordDto> WithReviewerState(this Partial<MeCodeReviewParticipantRecordDto> it)
             => it.AddFieldName("reviewerState");
+        
+        public static Partial<MeCodeReviewParticipantRecordDto> WithReviewerState(this Partial<MeCodeReviewParticipantRecordDto> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
+            => it.AddFieldName("reviewerState", partialBuilder(new Partial<ReviewerState>()));
         
         public static Partial<MeCodeReviewParticipantRecordDto> WithReview(this Partial<MeCodeReviewParticipantRecordDto> it)
             => it.AddFieldName("review");

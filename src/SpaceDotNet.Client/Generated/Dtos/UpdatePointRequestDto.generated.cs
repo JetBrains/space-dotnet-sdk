@@ -24,14 +24,14 @@ namespace SpaceDotNet.Client
     public class UpdatePointRequestDto
     {
         [JsonPropertyName("x")]
-        public int? X { get; set; }        
-        
+        public int? X { get; set; }
+    
         [JsonPropertyName("y")]
-        public int? Y { get; set; }        
-        
+        public int? Y { get; set; }
+    
         [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }        
-        
+        public string? MapId { get; set; }
+    
     }
     
 }

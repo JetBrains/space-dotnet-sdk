@@ -21,34 +21,34 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class StickerDto
+    public sealed class StickerDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("symbol")]
-        public string? Symbol { get; set; }        
-        
+        public string? Symbol { get; set; }
+    
         [JsonPropertyName("attachmentId")]
-        public string? AttachmentId { get; set; }        
-        
+        public string? AttachmentId { get; set; }
+    
         [JsonPropertyName("width")]
-        public int? Width { get; set; }        
-        
+        public int? Width { get; set; }
+    
         [JsonPropertyName("height")]
-        public int? Height { get; set; }        
-        
+        public int? Height { get; set; }
+    
         [JsonPropertyName("variants")]
-        public List<StickerVariantDto>? Variants { get; set; }        
-        
+        public List<StickerVariantDto>? Variants { get; set; }
+    
         [JsonPropertyName("animated")]
-        public bool? Animated { get; set; }        
-        
+        public bool? Animated { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
     }
     
 }

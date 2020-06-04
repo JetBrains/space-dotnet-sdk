@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlDetailsChecklistDto
+    public sealed class UnfurlDetailsChecklistDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("checklist")]
-        public ChecklistDto Checklist { get; set; }        
-        
+        public ChecklistDto Checklist { get; set; }
+    
     }
     
 }

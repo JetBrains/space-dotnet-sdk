@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TrackedBranchesInReviewDto
+    public sealed class TrackedBranchesInReviewDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get; set; }        
-        
+        public List<BranchInfoDto> Branches { get; set; }
+    
     }
     
 }

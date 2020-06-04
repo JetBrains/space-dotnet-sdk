@@ -24,17 +24,17 @@ namespace SpaceDotNet.Client
     public class UpdateAuthModuleRequestDto
     {
         [JsonPropertyName("key")]
-        public string? Key { get; set; }        
-        
+        public string? Key { get; set; }
+    
         [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
+        public string? Name { get; set; }
+    
         [JsonPropertyName("enabled")]
-        public bool? Enabled { get; set; }        
-        
+        public bool? Enabled { get; set; }
+    
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto? Settings { get; set; }        
-        
+        public ESAuthModuleSettingsDto? Settings { get; set; }
+    
     }
     
 }

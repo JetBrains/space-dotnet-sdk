@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ImageAttachmentMetaDto
+    public sealed class ImageAttachmentMetaDto
     {
         [Required]
         [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantsMetaDto> Variants { get; set; }        
-        
+        public List<ImageAttachmentVariantsMetaDto> Variants { get; set; }
+    
     }
     
 }

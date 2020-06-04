@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class NonWorkingDaysDto
+    public sealed class NonWorkingDaysDto
     {
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since { get; set; }        
-        
+        public SpaceDate Since { get; set; }
+    
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till { get; set; }        
-        
+        public SpaceDate Till { get; set; }
+    
         [Required]
         [JsonPropertyName("startsEarlier")]
-        public bool StartsEarlier { get; set; }        
-        
+        public bool StartsEarlier { get; set; }
+    
         [Required]
         [JsonPropertyName("endsLater")]
-        public bool EndsLater { get; set; }        
-        
+        public bool EndsLater { get; set; }
+    
     }
     
 }

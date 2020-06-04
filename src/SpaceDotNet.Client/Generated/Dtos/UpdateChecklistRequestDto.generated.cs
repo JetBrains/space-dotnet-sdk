@@ -24,11 +24,11 @@ namespace SpaceDotNet.Client
     public class UpdateChecklistRequestDto
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
     }
     
 }

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CUserPrincipalDetailsDto
+    public sealed class CUserPrincipalDetailsDto
          : CPrincipalDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }        
-        
+        public TDMemberProfileDto User { get; set; }
+    
     }
     
 }

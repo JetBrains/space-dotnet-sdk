@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReviewCompletionStateChangedEventDto
+    public sealed class ReviewCompletionStateChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,8 +29,8 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("state")]
-        public ReviewerState State { get; set; }        
-        
+        public ReviewerState State { get; set; }
+    
     }
     
 }

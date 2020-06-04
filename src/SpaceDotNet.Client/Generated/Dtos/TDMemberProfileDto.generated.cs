@@ -21,106 +21,106 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDMemberProfileDto
+    public sealed class TDMemberProfileDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }        
-        
+        public string Username { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public TDProfileNameDto Name { get; set; }        
-        
+        public TDProfileNameDto Name { get; set; }
+    
         [Required]
         [JsonPropertyName("speaksEnglish")]
-        public bool SpeaksEnglish { get; set; }        
-        
+        public bool SpeaksEnglish { get; set; }
+    
         [JsonPropertyName("smallAvatar")]
-        public string? SmallAvatar { get; set; }        
-        
+        public string? SmallAvatar { get; set; }
+    
         [JsonPropertyName("avatar")]
-        public string? Avatar { get; set; }        
-        
+        public string? Avatar { get; set; }
+    
         [JsonPropertyName("profilePicture")]
-        public string? ProfilePicture { get; set; }        
-        
+        public string? ProfilePicture { get; set; }
+    
         [Required]
         [JsonPropertyName("languages")]
-        public List<TDProfileLanguageDto> Languages { get; set; }        
-        
+        public List<TDProfileLanguageDto> Languages { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("notAMember")]
-        public bool NotAMember { get; set; }        
-        
+        public bool NotAMember { get; set; }
+    
         [JsonPropertyName("joined")]
-        public SpaceDate? Joined { get; set; }        
-        
+        public SpaceDate? Joined { get; set; }
+    
         [JsonPropertyName("left")]
-        public SpaceDate? Left { get; set; }        
-        
+        public SpaceDate? Left { get; set; }
+    
         [JsonPropertyName("leftAt")]
-        public SpaceTime? LeftAt { get; set; }        
-        
+        public SpaceTime? LeftAt { get; set; }
+    
         [Required]
         [JsonPropertyName("absences")]
-        public List<AbsenceRecordDto> Absences { get; set; }        
-        
+        public List<AbsenceRecordDto> Absences { get; set; }
+    
         [Required]
         [JsonPropertyName("emails")]
-        public List<TDProfileEmailDto> Emails { get; set; }        
-        
+        public List<TDProfileEmailDto> Emails { get; set; }
+    
         [Required]
         [JsonPropertyName("links")]
-        public List<string> Links { get; set; }        
-        
+        public List<string> Links { get; set; }
+    
         [Required]
         [JsonPropertyName("messengers")]
-        public List<string> Messengers { get; set; }        
-        
+        public List<string> Messengers { get; set; }
+    
         [Required]
         [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }        
-        
+        public List<string> Phones { get; set; }
+    
         [Required]
         [JsonPropertyName("holidays")]
-        public List<PublicHolidayDto> Holidays { get; set; }        
-        
+        public List<PublicHolidayDto> Holidays { get; set; }
+    
         [Required]
         [JsonPropertyName("locations")]
-        public List<TDMemberLocationDto> Locations { get; set; }        
-        
+        public List<TDMemberLocationDto> Locations { get; set; }
+    
         [Required]
         [JsonPropertyName("managers")]
-        public List<TDMemberProfileDto> Managers { get; set; }        
-        
+        public List<TDMemberProfileDto> Managers { get; set; }
+    
         [Required]
         [JsonPropertyName("membershipHistory")]
-        public List<TDMembershipDto> MembershipHistory { get; set; }        
-        
+        public List<TDMembershipDto> MembershipHistory { get; set; }
+    
         [Required]
         [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }        
-        
+        public List<TDMembershipDto> Memberships { get; set; }
+    
         [JsonPropertyName("about")]
-        public string? About { get; set; }        
-        
+        public string? About { get; set; }
+    
         [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }        
-        
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
+    
         [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday { get; set; }        
-        
+        public SpaceDate? Birthday { get; set; }
+    
         [JsonPropertyName("gender")]
-        public Gender? Gender { get; set; }        
-        
+        public Gender? Gender { get; set; }
+    
     }
     
 }

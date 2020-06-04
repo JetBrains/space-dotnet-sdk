@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FingerprintDto
+    public sealed class FingerprintDto
     {
         [Required]
         [JsonPropertyName("md5")]
-        public string Md5 { get; set; }        
-        
+        public string Md5 { get; set; }
+    
         [Required]
         [JsonPropertyName("sha1")]
-        public string Sha1 { get; set; }        
-        
+        public string Sha1 { get; set; }
+    
         [Required]
         [JsonPropertyName("sha256")]
-        public string Sha256 { get; set; }        
-        
+        public string Sha256 { get; set; }
+    
         [Required]
         [JsonPropertyName("sha384")]
-        public string Sha384 { get; set; }        
-        
+        public string Sha384 { get; set; }
+    
         [Required]
         [JsonPropertyName("sha512")]
-        public string Sha512 { get; set; }        
-        
+        public string Sha512 { get; set; }
+    
     }
     
 }

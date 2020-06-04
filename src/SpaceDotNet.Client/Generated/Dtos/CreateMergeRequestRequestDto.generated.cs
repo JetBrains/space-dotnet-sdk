@@ -25,16 +25,16 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }        
-        
+        public string SourceBranch { get; set; }
+    
         [Required]
         [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }        
-        
+        public string TargetBranch { get; set; }
+    
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
     }
     
 }

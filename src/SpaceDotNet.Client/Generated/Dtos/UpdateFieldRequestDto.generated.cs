@@ -24,29 +24,29 @@ namespace SpaceDotNet.Client
     public class UpdateFieldRequestDto
     {
         [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
+        public string? Name { get; set; }
+    
         [JsonPropertyName("key")]
-        public string? Key { get; set; }        
-        
+        public string? Key { get; set; }
+    
         [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint { get; set; }        
-        
+        public CFConstraintDto? Constraint { get; set; }
+    
         [JsonPropertyName("required")]
-        public bool? Required { get; set; }        
-        
+        public bool? Required { get; set; }
+    
         [JsonPropertyName("private")]
-        public bool? Private { get; set; }        
-        
+        public bool? Private { get; set; }
+    
         [JsonPropertyName("access")]
-        public AccessType? Access { get; set; }        
-        
+        public AccessType? Access { get; set; }
+    
         [JsonPropertyName("defaultValue")]
-        public CFValueDto? DefaultValue { get; set; }        
-        
+        public CFValueDto? DefaultValue { get; set; }
+    
         [JsonPropertyName("enumValues")]
-        public List<EnumValueDataDto>? EnumValues { get; set; }        
-        
+        public List<EnumValueDataDto>? EnumValues { get; set; }
+    
     }
     
 }

@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESGithubAuthModuleSettingsDto
+    public sealed class ESGithubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("githubUrl")]
-        public string GithubUrl { get; set; }        
-        
+        public string GithubUrl { get; set; }
+    
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }        
-        
+        public string ClientId { get; set; }
+    
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }        
-        
+        public string ClientSecret { get; set; }
+    
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }        
-        
+        public bool RegisterNewUsers { get; set; }
+    
         [Required]
         [JsonPropertyName("organizations")]
-        public List<string> Organizations { get; set; }        
-        
+        public List<string> Organizations { get; set; }
+    
     }
     
 }

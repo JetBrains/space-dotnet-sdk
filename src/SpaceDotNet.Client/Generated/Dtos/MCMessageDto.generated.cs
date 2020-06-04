@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCMessageDto
+    public sealed class MCMessageDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,21 +29,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }        
-        
+        public string Style { get; set; }
+    
         [JsonPropertyName("outline")]
-        public MCOutlineDto? Outline { get; set; }        
-        
+        public MCOutlineDto? Outline { get; set; }
+    
         [Required]
         [JsonPropertyName("content")]
-        public List<MCElementDto> Content { get; set; }        
-        
+        public List<MCElementDto> Content { get; set; }
+    
         [JsonPropertyName("serviceId")]
-        public string? ServiceId { get; set; }        
-        
+        public string? ServiceId { get; set; }
+    
         [JsonPropertyName("supplementaryData")]
-        public string? SupplementaryData { get; set; }        
-        
+        public string? SupplementaryData { get; set; }
+    
     }
     
 }

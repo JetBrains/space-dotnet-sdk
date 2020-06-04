@@ -25,58 +25,58 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }        
-        
+        public string Username { get; set; }
+    
         [Required]
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }        
-        
+        public string FirstName { get; set; }
+    
         [Required]
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }        
-        
+        public string LastName { get; set; }
+    
         [JsonPropertyName("emails")]
-        public List<string>? Emails { get; set; }        
-        
+        public List<string>? Emails { get; set; }
+    
         [JsonPropertyName("phones")]
-        public List<string>? Phones { get; set; }        
-        
+        public List<string>? Phones { get; set; }
+    
         [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday { get; set; }        
-        
+        public SpaceDate? Birthday { get; set; }
+    
         [JsonPropertyName("about")]
-        public string? About { get; set; }        
-        
+        public string? About { get; set; }
+    
         [JsonPropertyName("gender")]
-        public Gender? Gender { get; set; }        
-        
+        public Gender? Gender { get; set; }
+    
         [JsonPropertyName("messengers")]
-        public List<string>? Messengers { get; set; }        
-        
+        public List<string>? Messengers { get; set; }
+    
         [JsonPropertyName("links")]
-        public List<string>? Links { get; set; }        
-        
+        public List<string>? Links { get; set; }
+    
         [JsonPropertyName("notAMember")]
-        public bool? NotAMember { get; set; }        
-        
+        public bool? NotAMember { get; set; }
+    
         [JsonPropertyName("joined")]
-        public SpaceDate? Joined { get; set; }        
-        
+        public SpaceDate? Joined { get; set; }
+    
         [JsonPropertyName("left")]
-        public SpaceDate? Left { get; set; }        
-        
+        public SpaceDate? Left { get; set; }
+    
         [JsonPropertyName("speaksEnglish")]
-        public bool? SpeaksEnglish { get; set; }        
-        
+        public bool? SpeaksEnglish { get; set; }
+    
         [JsonPropertyName("pictureAttachmentId")]
-        public string? PictureAttachmentId { get; set; }        
-        
+        public string? PictureAttachmentId { get; set; }
+    
         [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }        
-        
+        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
+    
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }        
-        
+        public List<CustomFieldValueDto>? CustomFieldValues { get; set; }
+    
     }
     
 }

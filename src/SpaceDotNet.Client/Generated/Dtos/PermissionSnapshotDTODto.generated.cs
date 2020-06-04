@@ -21,28 +21,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PermissionSnapshotDTODto
+    public sealed class PermissionSnapshotDTODto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("timestamp")]
-        public long Timestamp { get; set; }        
-        
+        public long Timestamp { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("version")]
-        public int Version { get; set; }        
-        
+        public int Version { get; set; }
+    
         [Required]
         [JsonPropertyName("size")]
-        public int Size { get; set; }        
-        
+        public int Size { get; set; }
+    
     }
     
 }

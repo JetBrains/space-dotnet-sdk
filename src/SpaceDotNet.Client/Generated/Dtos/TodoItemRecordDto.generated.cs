@@ -21,35 +21,35 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TodoItemRecordDto
+    public sealed class TodoItemRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }        
-        
+        public SpaceTime Created { get; set; }
+    
         [Required]
         [JsonPropertyName("updated")]
-        public SpaceTime Updated { get; set; }        
-        
+        public SpaceTime Updated { get; set; }
+    
         [Required]
         [JsonPropertyName("content")]
-        public TodoItemContentDto Content { get; set; }        
-        
+        public TodoItemContentDto Content { get; set; }
+    
         [Required]
         [JsonPropertyName("_status")]
-        public string Status { get; set; }        
-        
+        public string Status { get; set; }
+    
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }        
-        
+        public SpaceDate? DueDate { get; set; }
+    
     }
     
 }

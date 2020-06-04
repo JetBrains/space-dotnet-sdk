@@ -50,6 +50,9 @@ namespace SpaceDotNet.Client.CreateFieldRequestExtensions
         public static Partial<CreateFieldRequestDto> WithAccess(this Partial<CreateFieldRequestDto> it)
             => it.AddFieldName("access");
         
+        public static Partial<CreateFieldRequestDto> WithAccess(this Partial<CreateFieldRequestDto> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
+            => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
+        
         public static Partial<CreateFieldRequestDto> WithDefaultValue(this Partial<CreateFieldRequestDto> it)
             => it.AddFieldName("defaultValue");
         

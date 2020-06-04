@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TodoItemContentMdTextDto
+    public sealed class TodoItemContentMdTextDto
          : TodoItemContentDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [Required]
         [JsonPropertyName("mdMarkup")]
-        public MdMarkupDto MdMarkup { get; set; }        
-        
+        public MdMarkupDto MdMarkup { get; set; }
+    
     }
     
 }

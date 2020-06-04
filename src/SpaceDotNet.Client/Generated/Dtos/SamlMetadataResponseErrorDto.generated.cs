@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class SamlMetadataResponseErrorDto
+    public sealed class SamlMetadataResponseErrorDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("messages")]
-        public List<string> Messages { get; set; }        
-        
+        public List<string> Messages { get; set; }
+    
     }
     
 }

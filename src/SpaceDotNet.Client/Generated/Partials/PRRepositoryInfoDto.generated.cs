@@ -38,6 +38,9 @@ namespace SpaceDotNet.Client.PRRepositoryInfoExtensions
         public static Partial<PRRepositoryInfoDto> WithState(this Partial<PRRepositoryInfoDto> it)
             => it.AddFieldName("state");
         
+        public static Partial<PRRepositoryInfoDto> WithState(this Partial<PRRepositoryInfoDto> it, Func<Partial<RepositoryState>, Partial<RepositoryState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<RepositoryState>()));
+        
         public static Partial<PRRepositoryInfoDto> WithInitProgress(this Partial<PRRepositoryInfoDto> it)
             => it.AddFieldName("initProgress");
         

@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticlePreviewRecordDto
+    public sealed class ArticlePreviewRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }        
-        
+        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
+    
         [Required]
         [JsonPropertyName("preview")]
-        public string Preview { get; set; }        
-        
+        public string Preview { get; set; }
+    
         [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber { get; set; }        
-        
+        public int? WordsNumber { get; set; }
+    
     }
     
 }

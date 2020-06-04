@@ -44,6 +44,9 @@ namespace SpaceDotNet.Client.UpdateFieldRequestExtensions
         public static Partial<UpdateFieldRequestDto> WithAccess(this Partial<UpdateFieldRequestDto> it)
             => it.AddFieldName("access");
         
+        public static Partial<UpdateFieldRequestDto> WithAccess(this Partial<UpdateFieldRequestDto> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
+            => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
+        
         public static Partial<UpdateFieldRequestDto> WithDefaultValue(this Partial<UpdateFieldRequestDto> it)
             => it.AddFieldName("defaultValue");
         

@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DTOLimitDto
+    public sealed class DTOLimitDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("unit")]
-        public LimitUnit Unit { get; set; }        
-        
+        public LimitUnit Unit { get; set; }
+    
         [Required]
         [JsonPropertyName("estimate")]
-        public long Estimate { get; set; }        
-        
+        public long Estimate { get; set; }
+    
         [JsonPropertyName("specificEstimate")]
-        public long? SpecificEstimate { get; set; }        
-        
+        public long? SpecificEstimate { get; set; }
+    
         [JsonPropertyName("softCap")]
-        public long? SoftCap { get; set; }        
-        
+        public long? SoftCap { get; set; }
+    
         [JsonPropertyName("hardCap")]
-        public long? HardCap { get; set; }        
-        
+        public long? HardCap { get; set; }
+    
     }
     
 }

@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReviewRevisionsChangedEventDto
+    public sealed class ReviewRevisionsChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,18 +29,18 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("commits")]
-        public List<RepositoryCommitRecordDto> Commits { get; set; }        
-        
+        public List<RepositoryCommitRecordDto> Commits { get; set; }
+    
         [Required]
         [JsonPropertyName("changeType")]
-        public ReviewRevisionsChangedType ChangeType { get; set; }        
-        
+        public ReviewRevisionsChangedType ChangeType { get; set; }
+    
         [JsonPropertyName("projectKey")]
-        public string? ProjectKey { get; set; }        
-        
+        public string? ProjectKey { get; set; }
+    
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }        
-        
+        public CodeReviewRecordDto? Review { get; set; }
+    
     }
     
 }

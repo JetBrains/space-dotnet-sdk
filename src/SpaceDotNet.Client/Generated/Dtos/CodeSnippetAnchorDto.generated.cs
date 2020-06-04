@@ -21,33 +21,33 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeSnippetAnchorDto
+    public sealed class CodeSnippetAnchorDto
     {
         [Required]
         [JsonPropertyName("projectKey")]
-        public ProjectKeyDto ProjectKey { get; set; }        
-        
+        public ProjectKeyDto ProjectKey { get; set; }
+    
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }        
-        
+        public string Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [Required]
         [JsonPropertyName("filename")]
-        public string Filename { get; set; }        
-        
+        public string Filename { get; set; }
+    
         [JsonPropertyName("lineIndex")]
-        public int? LineIndex { get; set; }        
-        
+        public int? LineIndex { get; set; }
+    
         [JsonPropertyName("lineStart")]
-        public int? LineStart { get; set; }        
-        
+        public int? LineStart { get; set; }
+    
         [JsonPropertyName("lineEnd")]
-        public int? LineEnd { get; set; }        
-        
+        public int? LineEnd { get; set; }
+    
     }
     
 }

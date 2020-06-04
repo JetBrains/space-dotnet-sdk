@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class VcsHostingPasswordDto
+    public sealed class VcsHostingPasswordDto
     {
         [Required]
         [JsonPropertyName("fingerprint")]
-        public string Fingerprint { get; set; }        
-        
+        public string Fingerprint { get; set; }
+    
         [JsonPropertyName("lastUsed")]
-        public SpaceTime? LastUsed { get; set; }        
-        
+        public SpaceTime? LastUsed { get; set; }
+    
     }
     
 }

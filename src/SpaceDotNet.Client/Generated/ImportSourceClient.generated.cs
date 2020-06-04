@@ -30,18 +30,18 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ImportSourceDto> CreateImportSourceAsync(CreateImportSourceRequestDto data, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default()), data);        
-        
-        public async Task<List<ImportSourceDto>> GetAllImportSourcesAsync(Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default()));        
-        
+        public async Task<ImportSourceDto> CreateImportSourceAsync(CreateImportSourceRequestDto data, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partial = null)
+            => await _connection.RequestResourceAsync<CreateImportSourceRequestDto, ImportSourceDto>("POST", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default())}", data);
+    
+        public async Task<List<ImportSourceDto>> GetAllImportSourcesAsync(Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partial = null)
+            => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default())}");
+    
         public async Task UpdateImportSourceAsync(string sourceId, UpdateImportSourceRequestDto data)
-            => await _connection.RequestResourceAsync("PATCH", $"api/http/import-sources/{sourceId}", data);        
-        
+            => await _connection.RequestResourceAsync("PATCH", $"api/http/import-sources/{sourceId}", data);
+    
         public async Task DeleteImportSourceAsync(string sourceId)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");        
-        
+            => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");
+    
     }
     
 }

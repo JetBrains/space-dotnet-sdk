@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESAzureAuthModuleSettingsDto
+    public sealed class ESAzureAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("tenantId")]
-        public string TenantId { get; set; }        
-        
+        public string TenantId { get; set; }
+    
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }        
-        
+        public string ClientId { get; set; }
+    
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }        
-        
+        public string ClientSecret { get; set; }
+    
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }        
-        
+        public bool RegisterNewUsers { get; set; }
+    
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }        
-        
+        public bool EmailVerified { get; set; }
+    
     }
     
 }

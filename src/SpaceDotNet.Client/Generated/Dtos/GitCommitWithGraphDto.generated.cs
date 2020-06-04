@@ -21,27 +21,27 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitCommitWithGraphDto
+    public sealed class GitCommitWithGraphDto
     {
         [Required]
         [JsonPropertyName("repositoryName")]
-        public string RepositoryName { get; set; }        
-        
+        public string RepositoryName { get; set; }
+    
         [Required]
         [JsonPropertyName("commit")]
-        public GitCommitInfoDto Commit { get; set; }        
-        
+        public GitCommitInfoDto Commit { get; set; }
+    
         [Required]
         [JsonPropertyName("reviews")]
-        public List<CodeReviewRecordDto> Reviews { get; set; }        
-        
+        public List<CodeReviewRecordDto> Reviews { get; set; }
+    
         [JsonPropertyName("layout")]
-        public GitGraphLayoutLineDto? Layout { get; set; }        
-        
+        public GitGraphLayoutLineDto? Layout { get; set; }
+    
         [Required]
         [JsonPropertyName("unreachable")]
-        public bool Unreachable { get; set; }        
-        
+        public bool Unreachable { get; set; }
+    
     }
     
 }

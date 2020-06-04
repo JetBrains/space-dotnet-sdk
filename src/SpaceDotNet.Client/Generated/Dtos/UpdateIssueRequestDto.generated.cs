@@ -24,23 +24,23 @@ namespace SpaceDotNet.Client
     public class UpdateIssueRequestDto
     {
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [JsonPropertyName("assignee")]
-        public string? Assignee { get; set; }        
-        
+        public string? Assignee { get; set; }
+    
         [JsonPropertyName("status")]
-        public string Status { get; set; }        
-        
+        public string Status { get; set; }
+    
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }        
-        
+        public SpaceDate? DueDate { get; set; }
+    
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get; set; }        
-        
+        public ImportedEntityInfoDto? ImportInfo { get; set; }
+    
     }
     
 }

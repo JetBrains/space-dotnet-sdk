@@ -25,12 +25,12 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("calendar")]
-        public string Calendar { get; set; }        
-        
+        public string Calendar { get; set; }
+    
         [Required]
         [JsonPropertyName("attachmentId")]
-        public string AttachmentId { get; set; }        
-        
+        public string AttachmentId { get; set; }
+    
     }
     
 }

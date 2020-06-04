@@ -24,23 +24,23 @@ namespace SpaceDotNet.Client
     public class UpdateProjectRequestDto
     {
         [JsonPropertyName("key")]
-        public ProjectKeyDto? Key { get; set; }        
-        
+        public ProjectKeyDto? Key { get; set; }
+    
         [JsonPropertyName("name")]
-        public string? Name { get; set; }        
-        
+        public string? Name { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [JsonPropertyName("private")]
-        public bool? Private { get; set; }        
-        
+        public bool? Private { get; set; }
+    
         [JsonPropertyName("tags")]
-        public List<string>? Tags { get; set; }        
-        
+        public List<string>? Tags { get; set; }
+    
         [JsonPropertyName("icon")]
-        public string? Icon { get; set; }        
-        
+        public string? Icon { get; set; }
+    
     }
     
 }

@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ImportTransactionRecordDto
+    public sealed class ImportTransactionRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("importer")]
-        public CPrincipalDto Importer { get; set; }        
-        
+        public CPrincipalDto Importer { get; set; }
+    
         [Required]
         [JsonPropertyName("externalSource")]
-        public string ExternalSource { get; set; }        
-        
+        public string ExternalSource { get; set; }
+    
     }
     
 }

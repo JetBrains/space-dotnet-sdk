@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlDetailsArticleDto
+    public sealed class UnfurlDetailsArticleDto
          : UnfurlDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,19 +29,19 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }        
-        
+        public ArticleRecordDto Article { get; set; }
+    
         [Required]
         [JsonPropertyName("content")]
-        public ArticleContentRecordDto Content { get; set; }        
-        
+        public ArticleContentRecordDto Content { get; set; }
+    
         [Required]
         [JsonPropertyName("channel")]
-        public ArticleChannelRecordDto Channel { get; set; }        
-        
+        public ArticleChannelRecordDto Channel { get; set; }
+    
         [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get; set; }        
-        
+        public ArticleDetailsRecordDto? Details { get; set; }
+    
     }
     
 }

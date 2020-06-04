@@ -21,15 +21,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CPrincipalDto
+    public sealed class CPrincipalDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("details")]
-        public CPrincipalDetailsDto? Details { get; set; }        
-        
+        public CPrincipalDetailsDto? Details { get; set; }
+    
     }
     
 }

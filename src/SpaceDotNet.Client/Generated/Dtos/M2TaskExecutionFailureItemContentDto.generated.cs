@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2TaskExecutionFailureItemContentDto
+    public sealed class M2TaskExecutionFailureItemContentDto
          : M2ItemContentDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,44 +29,44 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("taskExecutionId")]
-        public string TaskExecutionId { get; set; }        
-        
+        public string TaskExecutionId { get; set; }
+    
         [Required]
         [JsonPropertyName("taskExecutionName")]
-        public string TaskExecutionName { get; set; }        
-        
+        public string TaskExecutionName { get; set; }
+    
         [Required]
         [JsonPropertyName("repoName")]
-        public string RepoName { get; set; }        
-        
+        public string RepoName { get; set; }
+    
         [Required]
         [JsonPropertyName("branchName")]
-        public string BranchName { get; set; }        
-        
+        public string BranchName { get; set; }
+    
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get; set; }        
-        
+        public string Commit { get; set; }
+    
         [Required]
         [JsonPropertyName("shortCommitMessage")]
-        public string ShortCommitMessage { get; set; }        
-        
+        public string ShortCommitMessage { get; set; }
+    
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }        
-        
+        public ProjectKeyDto Project { get; set; }
+    
         [Required]
         [JsonPropertyName("finishDateTime")]
-        public long FinishDateTime { get; set; }        
-        
+        public long FinishDateTime { get; set; }
+    
         [Required]
         [JsonPropertyName("triggerInfo")]
-        public string TriggerInfo { get; set; }        
-        
+        public string TriggerInfo { get; set; }
+    
         [Required]
         [JsonPropertyName("details")]
-        public string Details { get; set; }        
-        
+        public string Details { get; set; }
+    
     }
     
 }

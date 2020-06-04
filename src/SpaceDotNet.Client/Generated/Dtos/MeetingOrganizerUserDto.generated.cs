@@ -21,13 +21,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MeetingOrganizerUserDto
+    public sealed class MeetingOrganizerUserDto
          : MeetingOrganizerDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("profileRef")]
-        public TDMemberProfileDto ProfileRef { get; set; }        
-        
+        public TDMemberProfileDto ProfileRef { get; set; }
+    
     }
     
 }

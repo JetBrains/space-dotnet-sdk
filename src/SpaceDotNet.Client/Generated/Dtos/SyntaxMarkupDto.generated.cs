@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class SyntaxMarkupDto
+    public sealed class SyntaxMarkupDto
     {
         [Required]
         [JsonPropertyName("type")]
-        public SyntaxMarkupType Type { get; set; }        
-        
+        public SyntaxMarkupType Type { get; set; }
+    
         [Required]
         [JsonPropertyName("range")]
-        public TextRangeDto Range { get; set; }        
-        
+        public TextRangeDto Range { get; set; }
+    
     }
     
 }

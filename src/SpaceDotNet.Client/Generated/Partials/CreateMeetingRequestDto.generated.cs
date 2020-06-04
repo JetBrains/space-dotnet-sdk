@@ -50,11 +50,20 @@ namespace SpaceDotNet.Client.CreateMeetingRequestExtensions
         public static Partial<CreateMeetingRequestDto> WithVisibility(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("visibility");
         
+        public static Partial<CreateMeetingRequestDto> WithVisibility(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingVisibility>, Partial<MeetingVisibility>> partialBuilder)
+            => it.AddFieldName("visibility", partialBuilder(new Partial<MeetingVisibility>()));
+        
         public static Partial<CreateMeetingRequestDto> WithModificationPreference(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("modificationPreference");
         
+        public static Partial<CreateMeetingRequestDto> WithModificationPreference(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingModificationPreference>, Partial<MeetingModificationPreference>> partialBuilder)
+            => it.AddFieldName("modificationPreference", partialBuilder(new Partial<MeetingModificationPreference>()));
+        
         public static Partial<CreateMeetingRequestDto> WithJoiningPreference(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("joiningPreference");
+        
+        public static Partial<CreateMeetingRequestDto> WithJoiningPreference(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
+            => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>()));
         
         public static Partial<CreateMeetingRequestDto> WithNotifyOnExport(this Partial<CreateMeetingRequestDto> it)
             => it.AddFieldName("notifyOnExport");

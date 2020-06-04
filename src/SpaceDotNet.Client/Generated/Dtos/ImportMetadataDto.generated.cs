@@ -21,12 +21,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ImportMetadataDto
+    public sealed class ImportMetadataDto
     {
         [Required]
         [JsonPropertyName("importSource")]
-        public string ImportSource { get; set; }        
-        
+        public string ImportSource { get; set; }
+    
     }
     
 }

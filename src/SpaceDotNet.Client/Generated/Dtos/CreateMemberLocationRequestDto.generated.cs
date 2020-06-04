@@ -25,21 +25,21 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("member")]
-        public string Member { get; set; }        
-        
+        public string Member { get; set; }
+    
         [Required]
         [JsonPropertyName("location")]
-        public string Location { get; set; }        
-        
+        public string Location { get; set; }
+    
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }        
-        
+        public SpaceDate? Since { get; set; }
+    
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }        
-        
+        public SpaceDate? Till { get; set; }
+    
         [JsonPropertyName("previousLocation")]
-        public string? PreviousLocation { get; set; }        
-        
+        public string? PreviousLocation { get; set; }
+    
     }
     
 }

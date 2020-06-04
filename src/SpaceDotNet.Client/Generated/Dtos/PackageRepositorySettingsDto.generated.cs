@@ -21,23 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PackageRepositorySettingsDto
+    public sealed class PackageRepositorySettingsDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public long Id { get; set; }        
-        
+        public long Id { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("settings")]
-        public ESPackageRepositorySettingsDto? Settings { get; set; }        
-        
+        public ESPackageRepositorySettingsDto? Settings { get; set; }
+    
         [Required]
         [JsonPropertyName("permissions")]
-        public List<PackagesPermission> Permissions { get; set; }        
-        
+        public List<PackagesPermission> Permissions { get; set; }
+    
     }
     
 }

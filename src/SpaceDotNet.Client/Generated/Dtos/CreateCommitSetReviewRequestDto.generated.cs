@@ -25,11 +25,11 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("revisions")]
-        public List<string> Revisions { get; set; }        
-        
+        public List<string> Revisions { get; set; }
+    
         [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
+        public string? Title { get; set; }
+    
     }
     
 }

@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ATimeZoneWithOffsetDto
+    public sealed class ATimeZoneWithOffsetDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("offset")]
-        public int Offset { get; set; }        
-        
+        public int Offset { get; set; }
+    
     }
     
 }

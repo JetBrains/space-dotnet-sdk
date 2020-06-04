@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ChannelParticipantDto
+    public sealed class ChannelParticipantDto
     {
         [Required]
         [JsonPropertyName("principal")]
-        public CPrincipalDto Principal { get; set; }        
-        
+        public CPrincipalDto Principal { get; set; }
+    
         [Required]
         [JsonPropertyName("messageCount")]
-        public int MessageCount { get; set; }        
-        
+        public int MessageCount { get; set; }
+    
         [JsonPropertyName("pendingMessageCount")]
-        public int? PendingMessageCount { get; set; }        
-        
+        public int? PendingMessageCount { get; set; }
+    
     }
     
 }

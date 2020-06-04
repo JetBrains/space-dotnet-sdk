@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ChannelSpecificDefaultsDto
+    public sealed class ChannelSpecificDefaultsDto
     {
         [Required]
         [JsonPropertyName("filter")]
-        public NotificationFilter Filter { get; set; }        
-        
+        public NotificationFilter Filter { get; set; }
+    
         [Required]
         [JsonPropertyName("push")]
-        public bool Push { get; set; }        
-        
+        public bool Push { get; set; }
+    
         [Required]
         [JsonPropertyName("email")]
-        public M2EmailNotificationType Email { get; set; }        
-        
+        public M2EmailNotificationType Email { get; set; }
+    
     }
     
 }

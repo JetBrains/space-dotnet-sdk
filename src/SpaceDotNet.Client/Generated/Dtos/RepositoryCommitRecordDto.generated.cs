@@ -21,46 +21,46 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RepositoryCommitRecordDto
+    public sealed class RepositoryCommitRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("repositoryId")]
-        public string RepositoryId { get; set; }        
-        
+        public string RepositoryId { get; set; }
+    
         [Required]
         [JsonPropertyName("repositoryName")]
-        public string RepositoryName { get; set; }        
-        
+        public string RepositoryName { get; set; }
+    
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [JsonPropertyName("message")]
-        public string? Message { get; set; }        
-        
+        public string? Message { get; set; }
+    
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }        
-        
+        public SpaceTime Date { get; set; }
+    
         [JsonPropertyName("authorName")]
-        public string? AuthorName { get; set; }        
-        
+        public string? AuthorName { get; set; }
+    
         [JsonPropertyName("authorEmail")]
-        public string? AuthorEmail { get; set; }        
-        
+        public string? AuthorEmail { get; set; }
+    
         [JsonPropertyName("committerName")]
-        public string? CommitterName { get; set; }        
-        
+        public string? CommitterName { get; set; }
+    
         [JsonPropertyName("committerEmail")]
-        public string? CommitterEmail { get; set; }        
-        
+        public string? CommitterEmail { get; set; }
+    
         [JsonPropertyName("authorProfile")]
-        public TDMemberProfileDto? AuthorProfile { get; set; }        
-        
+        public TDMemberProfileDto? AuthorProfile { get; set; }
+    
     }
     
 }

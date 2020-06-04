@@ -21,14 +21,14 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DraftPublicationDetailsDto
+    public sealed class DraftPublicationDetailsDto
     {
         [JsonPropertyName("usedType")]
-        public string? UsedType { get; set; }        
-        
+        public string? UsedType { get; set; }
+    
         [JsonPropertyName("allPublicationDetails")]
-        public List<PublicationDetailsDto>? AllPublicationDetails { get; set; }        
-        
+        public List<PublicationDetailsDto>? AllPublicationDetails { get; set; }
+    
     }
     
 }

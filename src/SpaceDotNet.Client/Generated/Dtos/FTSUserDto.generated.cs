@@ -21,30 +21,30 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FTSUserDto
+    public sealed class FTSUserDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }        
-        
+        public string Username { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public TDProfileNameDto Name { get; set; }        
-        
+        public TDProfileNameDto Name { get; set; }
+    
         [JsonPropertyName("avatar")]
-        public string? Avatar { get; set; }        
-        
+        public string? Avatar { get; set; }
+    
         [Required]
         [JsonPropertyName("languages")]
-        public List<TDProfileNameDto> Languages { get; set; }        
-        
+        public List<TDProfileNameDto> Languages { get; set; }
+    
         [JsonPropertyName("notAMember")]
-        public bool? NotAMember { get; set; }        
-        
+        public bool? NotAMember { get; set; }
+    
     }
     
 }

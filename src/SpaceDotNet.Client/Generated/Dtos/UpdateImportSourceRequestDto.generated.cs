@@ -24,11 +24,11 @@ namespace SpaceDotNet.Client
     public class UpdateImportSourceRequestDto
     {
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [JsonPropertyName("importerPrincipal")]
-        public string ImporterPrincipal { get; set; }        
-        
+        public string ImporterPrincipal { get; set; }
+    
     }
     
 }

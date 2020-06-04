@@ -24,14 +24,14 @@ namespace SpaceDotNet.Client
     public class UpdateTrustedCertificateRequestDto
     {
         [JsonPropertyName("alias")]
-        public string? Alias { get; set; }        
-        
+        public string? Alias { get; set; }
+    
         [JsonPropertyName("data")]
-        public string? Data { get; set; }        
-        
+        public string? Data { get; set; }
+    
         [JsonPropertyName("archived")]
-        public bool? Archived { get; set; }        
-        
+        public bool? Archived { get; set; }
+    
     }
     
 }

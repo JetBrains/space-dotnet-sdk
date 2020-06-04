@@ -25,8 +25,8 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("revisions")]
-        public List<RevisionInReviewDto> Revisions { get; set; }        
-        
+        public List<RevisionInReviewDto> Revisions { get; set; }
+    
     }
     
 }

@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class BranchInfoDto
+    public sealed class BranchInfoDto
     {
         [Required]
         [JsonPropertyName("head")]
-        public string Head { get; set; }        
-        
+        public string Head { get; set; }
+    
         [Required]
         [JsonPropertyName("ref")]
-        public string Ref { get; set; }        
-        
+        public string Ref { get; set; }
+    
     }
     
 }

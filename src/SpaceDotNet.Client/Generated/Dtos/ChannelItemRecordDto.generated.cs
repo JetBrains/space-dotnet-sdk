@@ -21,59 +21,59 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ChannelItemRecordDto
+    public sealed class ChannelItemRecordDto
     {
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [JsonPropertyName("details")]
-        public M2ItemContentDetailsDto? Details { get; set; }        
-        
+        public M2ItemContentDetailsDto? Details { get; set; }
+    
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }        
-        
+        public CPrincipalDto Author { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }        
-        
+        public SpaceTime Created { get; set; }
+    
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }        
-        
+        public long Time { get; set; }
+    
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto? Reactions { get; set; }        
-        
+        public AllReactionsToItemRecordDto? Reactions { get; set; }
+    
         [JsonPropertyName("thread")]
-        public M2ChannelRecordDto? Thread { get; set; }        
-        
+        public M2ChannelRecordDto? Thread { get; set; }
+    
         [JsonPropertyName("projectedItem")]
-        public ChannelItemRecordDto? ProjectedItem { get; set; }        
-        
+        public ChannelItemRecordDto? ProjectedItem { get; set; }
+    
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto>? Attachments { get; set; }        
-        
+        public List<AttachmentInfoDto>? Attachments { get; set; }
+    
         [JsonPropertyName("attachmentsInfos")]
-        public List<AttachmentInfoDto>? AttachmentsInfos { get; set; }        
-        
+        public List<AttachmentInfoDto>? AttachmentsInfos { get; set; }
+    
         [JsonPropertyName("pending")]
-        public bool? Pending { get; set; }        
-        
+        public bool? Pending { get; set; }
+    
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [JsonPropertyName("edited")]
-        public SpaceTime? Edited { get; set; }        
-        
+        public SpaceTime? Edited { get; set; }
+    
         [JsonPropertyName("pinned")]
-        public bool? Pinned { get; set; }        
-        
+        public bool? Pinned { get; set; }
+    
     }
     
 }

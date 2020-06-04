@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CodeReviewWithCountDto
+    public sealed class CodeReviewWithCountDto
     {
         [Required]
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get; set; }        
-        
+        public CodeReviewRecordDto Review { get; set; }
+    
         [Required]
         [JsonPropertyName("messagesCount")]
-        public int MessagesCount { get; set; }        
-        
+        public int MessagesCount { get; set; }
+    
         [Required]
         [JsonPropertyName("authors")]
-        public List<GitCommitterProfileDto> Authors { get; set; }        
-        
+        public List<GitCommitterProfileDto> Authors { get; set; }
+    
         [Required]
         [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto Participants { get; set; }        
-        
+        public CodeReviewParticipantsDto Participants { get; set; }
+    
     }
     
 }

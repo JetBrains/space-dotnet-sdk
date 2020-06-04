@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.ESBuiltinAuthModuleSettingsExtensions
         public static Partial<ESBuiltinAuthModuleSettingsDto> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettingsDto> it)
             => it.AddFieldName("passwordStrengthPolicy");
         
+        public static Partial<ESBuiltinAuthModuleSettingsDto> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettingsDto> it, Func<Partial<PasswordStrength>, Partial<PasswordStrength>> partialBuilder)
+            => it.AddFieldName("passwordStrengthPolicy", partialBuilder(new Partial<PasswordStrength>()));
+        
         public static Partial<ESBuiltinAuthModuleSettingsDto> WithDomains(this Partial<ESBuiltinAuthModuleSettingsDto> it)
             => it.AddFieldName("domains");
         

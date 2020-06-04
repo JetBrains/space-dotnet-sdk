@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.GitCommitChangeExtensions
         public static Partial<GitCommitChangeDto> WithChangeType(this Partial<GitCommitChangeDto> it)
             => it.AddFieldName("changeType");
         
+        public static Partial<GitCommitChangeDto> WithChangeType(this Partial<GitCommitChangeDto> it, Func<Partial<GitCommitChangeType>, Partial<GitCommitChangeType>> partialBuilder)
+            => it.AddFieldName("changeType", partialBuilder(new Partial<GitCommitChangeType>()));
+        
         public static Partial<GitCommitChangeDto> WithOld(this Partial<GitCommitChangeDto> it)
             => it.AddFieldName("old");
         

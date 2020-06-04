@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESBuiltinAuthModuleSettingsDto
+    public sealed class ESBuiltinAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("passwordStrengthPolicy")]
-        public PasswordStrength PasswordStrengthPolicy { get; set; }        
-        
+        public PasswordStrength PasswordStrengthPolicy { get; set; }
+    
         [JsonPropertyName("domains")]
-        public List<string>? Domains { get; set; }        
-        
+        public List<string>? Domains { get; set; }
+    
     }
     
 }

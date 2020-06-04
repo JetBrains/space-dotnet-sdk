@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class AvatarCropSquareDto
+    public sealed class AvatarCropSquareDto
     {
         [Required]
         [JsonPropertyName("x")]
-        public int X { get; set; }        
-        
+        public int X { get; set; }
+    
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get; set; }        
-        
+        public int Y { get; set; }
+    
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get; set; }        
-        
+        public int Length { get; set; }
+    
     }
     
 }

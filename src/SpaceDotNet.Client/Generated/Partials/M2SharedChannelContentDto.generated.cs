@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.M2SharedChannelContentExtensions
         public static Partial<M2SharedChannelContentDto> WithAccess(this Partial<M2SharedChannelContentDto> it)
             => it.AddFieldName("access");
         
+        public static Partial<M2SharedChannelContentDto> WithAccess(this Partial<M2SharedChannelContentDto> it, Func<Partial<M2Access>, Partial<M2Access>> partialBuilder)
+            => it.AddFieldName("access", partialBuilder(new Partial<M2Access>()));
+        
         public static Partial<M2SharedChannelContentDto> WithDescription(this Partial<M2SharedChannelContentDto> it)
             => it.AddFieldName("description");
         

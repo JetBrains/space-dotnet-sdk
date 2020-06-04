@@ -21,37 +21,37 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ArticleDetailsRecordDto
+    public sealed class ArticleDetailsRecordDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [JsonPropertyName("event")]
-        public MeetingRecordDto? Event { get; set; }        
-        
+        public MeetingRecordDto? Event { get; set; }
+    
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }        
-        
+        public TDTeamDto? Team { get; set; }
+    
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }        
-        
+        public PRProjectDto? Project { get; set; }
+    
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }        
-        
+        public TDLocationDto? Location { get; set; }
+    
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get; set; }        
-        
+        public List<TDTeamDto>? Teams { get; set; }
+    
         [JsonPropertyName("locations")]
-        public List<TDLocationDto>? Locations { get; set; }        
-        
+        public List<TDLocationDto>? Locations { get; set; }
+    
         [JsonPropertyName("externalEntityInfo")]
-        public ExternalEntityInfoRecordDto? ExternalEntityInfo { get; set; }        
-        
+        public ExternalEntityInfoRecordDto? ExternalEntityInfo { get; set; }
+    
     }
     
 }

@@ -32,8 +32,14 @@ namespace SpaceDotNet.Client.GitGraphLayoutEdgeExtensions
         public static Partial<GitGraphLayoutEdgeDto> WithType(this Partial<GitGraphLayoutEdgeDto> it)
             => it.AddFieldName("type");
         
+        public static Partial<GitGraphLayoutEdgeDto> WithType(this Partial<GitGraphLayoutEdgeDto> it, Func<Partial<GitGraphEdgeType>, Partial<GitGraphEdgeType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<GitGraphEdgeType>()));
+        
         public static Partial<GitGraphLayoutEdgeDto> WithStyle(this Partial<GitGraphLayoutEdgeDto> it)
             => it.AddFieldName("style");
+        
+        public static Partial<GitGraphLayoutEdgeDto> WithStyle(this Partial<GitGraphLayoutEdgeDto> it, Func<Partial<GitGraphEdgeLineStyle>, Partial<GitGraphEdgeLineStyle>> partialBuilder)
+            => it.AddFieldName("style", partialBuilder(new Partial<GitGraphEdgeLineStyle>()));
         
         public static Partial<GitGraphLayoutEdgeDto> WithHasArrow(this Partial<GitGraphLayoutEdgeDto> it)
             => it.AddFieldName("hasArrow");

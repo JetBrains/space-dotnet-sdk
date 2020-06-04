@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PRTagDto
+    public sealed class PRTagDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("projectCount")]
-        public int ProjectCount { get; set; }        
-        
+        public int ProjectCount { get; set; }
+    
     }
     
 }

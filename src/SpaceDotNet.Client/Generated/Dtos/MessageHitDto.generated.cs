@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MessageHitDto
+    public sealed class MessageHitDto
          : EntityHitDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("score")]
-        public double Score { get; set; }        
-        
+        public double Score { get; set; }
+    
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }        
-        
+        public M2ChannelRecordDto Channel { get; set; }
+    
         [Required]
         [JsonPropertyName("ref")]
-        public ChannelItemRecordDto Ref { get; set; }        
-        
+        public ChannelItemRecordDto Ref { get; set; }
+    
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }        
-        
+        public string Message { get; set; }
+    
     }
     
 }

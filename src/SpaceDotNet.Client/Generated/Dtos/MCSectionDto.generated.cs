@@ -21,22 +21,22 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class MCSectionDto
+    public sealed class MCSectionDto
          : MCElementDetailsDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
         [JsonPropertyName("header")]
-        public MCTextDto? Header { get; set; }        
-        
+        public MCTextDto? Header { get; set; }
+    
         [Required]
         [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }        
-        
+        public List<MCElementDto> Elements { get; set; }
+    
         [JsonPropertyName("footer")]
-        public MCTextDto? Footer { get; set; }        
-        
+        public MCTextDto? Footer { get; set; }
+    
     }
     
 }

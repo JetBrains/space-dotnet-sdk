@@ -29,6 +29,9 @@ namespace SpaceDotNet.Client.DTOLimitExtensions
         public static Partial<DTOLimitDto> WithUnit(this Partial<DTOLimitDto> it)
             => it.AddFieldName("unit");
         
+        public static Partial<DTOLimitDto> WithUnit(this Partial<DTOLimitDto> it, Func<Partial<LimitUnit>, Partial<LimitUnit>> partialBuilder)
+            => it.AddFieldName("unit", partialBuilder(new Partial<LimitUnit>()));
+        
         public static Partial<DTOLimitDto> WithEstimate(this Partial<DTOLimitDto> it)
             => it.AddFieldName("estimate");
         

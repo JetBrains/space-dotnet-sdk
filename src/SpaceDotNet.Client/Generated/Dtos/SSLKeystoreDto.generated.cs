@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class SSLKeystoreDto
+    public sealed class SSLKeystoreDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("created")]
-        public SpaceDate Created { get; set; }        
-        
+        public SpaceDate Created { get; set; }
+    
     }
     
 }

@@ -21,25 +21,25 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitCommitChangeDto
+    public sealed class GitCommitChangeDto
     {
         [Required]
         [JsonPropertyName("changeType")]
-        public GitCommitChangeType ChangeType { get; set; }        
-        
+        public GitCommitChangeType ChangeType { get; set; }
+    
         [JsonPropertyName("old")]
-        public GitFileDto? Old { get; set; }        
-        
+        public GitFileDto? Old { get; set; }
+    
         [JsonPropertyName("new")]
-        public GitFileDto? New { get; set; }        
-        
+        public GitFileDto? New { get; set; }
+    
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }        
-        
+        public string Revision { get; set; }
+    
         [JsonPropertyName("diffSize")]
-        public GitDiffSizeDto? DiffSize { get; set; }        
-        
+        public GitDiffSizeDto? DiffSize { get; set; }
+    
     }
     
 }

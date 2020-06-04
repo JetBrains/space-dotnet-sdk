@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TextRangeDto
+    public sealed class TextRangeDto
     {
         [Required]
         [JsonPropertyName("start")]
-        public int Start { get; set; }        
-        
+        public int Start { get; set; }
+    
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get; set; }        
-        
+        public int Length { get; set; }
+    
     }
     
 }

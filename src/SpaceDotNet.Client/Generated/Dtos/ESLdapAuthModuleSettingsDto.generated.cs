@@ -21,56 +21,56 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESLdapAuthModuleSettingsDto
+    public sealed class ESLdapAuthModuleSettingsDto
          : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("type")]
-        public LdapModuleType Type { get; set; }        
-        
+        public LdapModuleType Type { get; set; }
+    
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }        
-        
+        public bool RegisterNewUsers { get; set; }
+    
         [Required]
         [JsonPropertyName("serverUrl")]
-        public string ServerUrl { get; set; }        
-        
+        public string ServerUrl { get; set; }
+    
         [Required]
         [JsonPropertyName("connectionTimeout")]
-        public int ConnectionTimeout { get; set; }        
-        
+        public int ConnectionTimeout { get; set; }
+    
         [Required]
         [JsonPropertyName("readTimeout")]
-        public int ReadTimeout { get; set; }        
-        
+        public int ReadTimeout { get; set; }
+    
         [JsonPropertyName("sslKeystore")]
-        public SSLKeystoreDto? SslKeystore { get; set; }        
-        
+        public SSLKeystoreDto? SslKeystore { get; set; }
+    
         [Required]
         [JsonPropertyName("teamMappings")]
-        public List<ESTeamMappingDto> TeamMappings { get; set; }        
-        
+        public List<ESTeamMappingDto> TeamMappings { get; set; }
+    
         [Required]
         [JsonPropertyName("referralIgnored")]
-        public bool ReferralIgnored { get; set; }        
-        
+        public bool ReferralIgnored { get; set; }
+    
         [Required]
         [JsonPropertyName("filter")]
-        public string Filter { get; set; }        
-        
+        public string Filter { get; set; }
+    
         [Required]
         [JsonPropertyName("bindUserDN")]
-        public string BindUserDN { get; set; }        
-        
+        public string BindUserDN { get; set; }
+    
         [Required]
         [JsonPropertyName("bindUserPassword")]
-        public string BindUserPassword { get; set; }        
-        
+        public string BindUserPassword { get; set; }
+    
         [Required]
         [JsonPropertyName("attributeNames")]
-        public ESLdapAttributeNamesDto AttributeNames { get; set; }        
-        
+        public ESLdapAttributeNamesDto AttributeNames { get; set; }
+    
     }
     
 }

@@ -30,33 +30,33 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<AbsenceRecordDto> CreateAbsenceAsync(CreateAbsenceRequestDto data, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<CreateAbsenceRequestDto, AbsenceRecordDto>("POST", $"api/http/absences?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default()), data);        
-        
+        public async Task<AbsenceRecordDto> CreateAbsenceAsync(CreateAbsenceRequestDto data, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partial = null)
+            => await _connection.RequestResourceAsync<CreateAbsenceRequestDto, AbsenceRecordDto>("POST", $"api/http/absences?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", data);
+    
         public async Task ApproveAbsenceAsync(string id, ApproveAbsenceRequestDto data)
-            => await _connection.RequestResourceAsync("POST", $"api/http/absences/{id}/approve", data);        
+            => await _connection.RequestResourceAsync("POST", $"api/http/absences/{id}/approve", data);
+    
+        public async Task<Batch<AbsenceRecordDto>> GetAllAbsencesAsync(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecordDto>>, Partial<Batch<AbsenceRecordDto>>> partial = null)
+            => await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<AbsenceRecordDto>>()) : Partial<Batch<AbsenceRecordDto>>.Default())}");
         
-        public async Task<Batch<AbsenceRecordDto>> GetAllAbsencesAsync(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecordDto>>, Partial<Batch<AbsenceRecordDto>>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<Batch<AbsenceRecordDto>>()) : Partial<Batch<AbsenceRecordDto>>.Default()));        
-        
-        public IAsyncEnumerable<AbsenceRecordDto> GetAllAbsencesAsyncEnumerable(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder = null)
-            => BatchEnumerator.AllItems(batchSkip => GetAllAbsencesAsync(viewMode, skip: batchSkip, top, member, location, team, since, till, reason, builder => Partial<Batch<AbsenceRecordDto>>.Default().WithNext().WithTotalCount().WithData(partialBuilder != null ? partialBuilder : _ => Partial<AbsenceRecordDto>.Default())), skip);        
-        
-        public async Task<List<AbsenceRecordDto>> GetAllAbsencesByMemberAsync(string member, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<List<AbsenceRecordDto>>("GET", $"api/http/absences/member:{member}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default()));        
-        
-        public async Task<AbsenceRecordDto> GetAbsenceAsync(string id, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default()));        
-        
-        public async Task<AbsenceRecordDto> UpdateAbsenceAsync(string id, UpdateAbsenceRequestDto data, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder = null)
-            => await _connection.RequestResourceAsync<UpdateAbsenceRequestDto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default()), data);        
-        
+        public IAsyncEnumerable<AbsenceRecordDto> GetAllAbsencesAsyncEnumerable(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partial = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllAbsencesAsync(viewMode, skip: batchSkip, top, member, location, team, since, till, reason, partial: builder => Partial<Batch<AbsenceRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AbsenceRecordDto>.Default())), skip);
+    
+        public async Task<List<AbsenceRecordDto>> GetAllAbsencesByMemberAsync(string member, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partial = null)
+            => await _connection.RequestResourceAsync<List<AbsenceRecordDto>>("GET", $"api/http/absences/member:{member}?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}");
+    
+        public async Task<AbsenceRecordDto> GetAbsenceAsync(string id, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partial = null)
+            => await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}");
+    
+        public async Task<AbsenceRecordDto> UpdateAbsenceAsync(string id, UpdateAbsenceRequestDto data, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partial = null)
+            => await _connection.RequestResourceAsync<UpdateAbsenceRequestDto, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", data);
+    
         public async Task DeleteAbsenceAsync(string id, bool delete)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}");        
-        
+            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}");
+    
         public async Task DeleteAbsenceApprovalAsync(string id)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");        
-        
+            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}/delete-approval");
+    
         public AbsenceReasonClient AbsenceReasons => new AbsenceReasonClient(_connection);
         
         public partial class AbsenceReasonClient
@@ -68,23 +68,23 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<AbsenceReasonRecordDto> CreateAbsenceReasonAsync(CreateAbsenceReasonRequestDto data, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default()), data);            
-            
-            public async Task<AbsenceReasonRecordDto> CreateAbsenceReasonAsync(string id, CreateAbsenceReasonRequestDto data, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default()), data);            
-            
-            public async Task<List<AbsenceReasonRecordDto>> GetAllAbsenceReasonsAsync(bool withArchived, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default()));            
-            
-            public async Task<AbsenceReasonRecordDto> GetAbsenceReasonAsync(string id, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<AbsenceReasonRecordDto>("GET", $"api/http/absences/absence-reasons/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default()));            
-            
-            public async Task DeleteAbsenceReasonAsync(string id, bool delete)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}");            
-            
-        }
+            public async Task<AbsenceReasonRecordDto> CreateAbsenceReasonAsync(CreateAbsenceReasonRequestDto data, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}", data);
         
+            public async Task<AbsenceReasonRecordDto> CreateAbsenceReasonAsync(string id, CreateAbsenceReasonRequestDto data, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateAbsenceReasonRequestDto, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}", data);
+        
+            public async Task<List<AbsenceReasonRecordDto>> GetAllAbsenceReasonsAsync(bool withArchived, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}");
+        
+            public async Task<AbsenceReasonRecordDto> GetAbsenceReasonAsync(string id, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partial = null)
+                => await _connection.RequestResourceAsync<AbsenceReasonRecordDto>("GET", $"api/http/absences/absence-reasons/{id}?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}");
+        
+            public async Task DeleteAbsenceReasonAsync(string id, bool delete)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}");
+        
+        }
+    
         public SubscriptionClient Subscriptions => new SubscriptionClient(_connection);
         
         public partial class SubscriptionClient
@@ -96,20 +96,20 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DTOAbsenceSubscriptionDto> CreateSubscriptionAsync(CreateSubscriptionRequestDto data, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<CreateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default()), data);            
-            
-            public async Task<List<DTOAbsenceSubscriptionDto>> GetAllSubscriptionsAsync(Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default()));            
-            
-            public async Task<DTOAbsenceSubscriptionDto> UpdateSubscriptionAsync(string id, UpdateSubscriptionRequestDto data, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>> partialBuilder = null)
-                => await _connection.RequestResourceAsync<UpdateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields=" + (partialBuilder != null ? partialBuilder(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default()), data);            
-            
-            public async Task DeleteSubscriptionAsync(string id)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");            
-            
-        }
+            public async Task<DTOAbsenceSubscriptionDto> CreateSubscriptionAsync(CreateSubscriptionRequestDto data, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", data);
         
+            public async Task<List<DTOAbsenceSubscriptionDto>> GetAllSubscriptionsAsync(Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>> partial = null)
+                => await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}");
+        
+            public async Task<DTOAbsenceSubscriptionDto> UpdateSubscriptionAsync(string id, UpdateSubscriptionRequestDto data, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>> partial = null)
+                => await _connection.RequestResourceAsync<UpdateSubscriptionRequestDto, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", data);
+        
+            public async Task DeleteSubscriptionAsync(string id)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");
+        
+        }
+    
     }
     
 }

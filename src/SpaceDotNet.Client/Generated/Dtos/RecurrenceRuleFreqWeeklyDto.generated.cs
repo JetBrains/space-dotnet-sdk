@@ -21,17 +21,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RecurrenceRuleFreqWeeklyDto
+    public sealed class RecurrenceRuleFreqWeeklyDto
          : RecurrenceRuleFreqDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("weekdays")]
-        public List<Weekday> Weekdays { get; set; }        
-        
+        public List<Weekday> Weekdays { get; set; }
+    
         [Required]
         [JsonPropertyName("interval")]
-        public int Interval { get; set; }        
-        
+        public int Interval { get; set; }
+    
     }
     
 }

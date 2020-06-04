@@ -21,30 +21,30 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ESHubAuthModuleSettingsDto
+    public sealed class ESHubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
         [Required]
         [JsonPropertyName("hubUrl")]
-        public string HubUrl { get; set; }        
-        
+        public string HubUrl { get; set; }
+    
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }        
-        
+        public string ClientId { get; set; }
+    
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }        
-        
+        public string ClientSecret { get; set; }
+    
         [JsonPropertyName("registerNewUsers")]
-        public bool? RegisterNewUsers { get; set; }        
-        
+        public bool? RegisterNewUsers { get; set; }
+    
         [JsonPropertyName("orgAuthProviderName")]
-        public string? OrgAuthProviderName { get; set; }        
-        
+        public string? OrgAuthProviderName { get; set; }
+    
         [JsonPropertyName("groups")]
-        public List<string>? Groups { get; set; }        
-        
+        public List<string>? Groups { get; set; }
+    
     }
     
 }

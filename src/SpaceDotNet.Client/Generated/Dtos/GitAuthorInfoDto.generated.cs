@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class GitAuthorInfoDto
+    public sealed class GitAuthorInfoDto
     {
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }        
-        
+        public string Email { get; set; }
+    
     }
     
 }

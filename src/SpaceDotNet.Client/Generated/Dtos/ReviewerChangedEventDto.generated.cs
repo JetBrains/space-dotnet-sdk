@@ -21,7 +21,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ReviewerChangedEventDto
+    public sealed class ReviewerChangedEventDto
          : FeedEventDto, IClassNameConvertible
     {
         [JsonPropertyName("className")]
@@ -29,12 +29,12 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("uid")]
-        public TDMemberProfileDto Uid { get; set; }        
-        
+        public TDMemberProfileDto Uid { get; set; }
+    
         [Required]
         [JsonPropertyName("changeType")]
-        public ReviewerChangedType ChangeType { get; set; }        
-        
+        public ReviewerChangedType ChangeType { get; set; }
+    
     }
     
 }

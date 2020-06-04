@@ -21,24 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PRPrivateProjectDto
+    public sealed class PRPrivateProjectDto
     {
         [Required]
         [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }        
-        
+        public ProjectKeyDto Key { get; set; }
+    
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }        
-        
+        public string Name { get; set; }
+    
         [Required]
         [JsonPropertyName("accessAllowed")]
-        public bool AccessAllowed { get; set; }        
-        
+        public bool AccessAllowed { get; set; }
+    
         [Required]
         [JsonPropertyName("admins")]
-        public List<TDMemberProfileDto> Admins { get; set; }        
-        
+        public List<TDMemberProfileDto> Admins { get; set; }
+    
     }
     
 }

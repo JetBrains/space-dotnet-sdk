@@ -21,59 +21,59 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TDMembershipDto
+    public sealed class TDMembershipDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [JsonPropertyName("member")]
-        public TDMemberProfileDto? Member { get; set; }        
-        
+        public TDMemberProfileDto? Member { get; set; }
+    
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }        
-        
+        public TDTeamDto Team { get; set; }
+    
         [Required]
         [JsonPropertyName("role")]
-        public TDRoleDto Role { get; set; }        
-        
+        public TDRoleDto Role { get; set; }
+    
         [Required]
         [JsonPropertyName("lead")]
-        public bool Lead { get; set; }        
-        
+        public bool Lead { get; set; }
+    
         [JsonPropertyName("manager")]
-        public TDMemberProfileDto? Manager { get; set; }        
-        
+        public TDMemberProfileDto? Manager { get; set; }
+    
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }        
-        
+        public SpaceDate? Since { get; set; }
+    
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }        
-        
+        public SpaceDate? Till { get; set; }
+    
         [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get; set; }        
-        
+        public SpaceTime? ActiveSince { get; set; }
+    
         [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get; set; }        
-        
+        public SpaceTime? ActiveTill { get; set; }
+    
         [Required]
         [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get; set; }        
-        
+        public bool RequiresApproval { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [JsonPropertyName("editFor")]
-        public TDMembershipDto? EditFor { get; set; }        
-        
+        public TDMembershipDto? EditFor { get; set; }
+    
         [JsonPropertyName("pendingEdit")]
-        public TDMembershipDto? PendingEdit { get; set; }        
-        
+        public TDMembershipDto? PendingEdit { get; set; }
+    
         [JsonPropertyName("approver")]
-        public TDMemberProfileDto? Approver { get; set; }        
-        
+        public TDMemberProfileDto? Approver { get; set; }
+    
     }
     
 }

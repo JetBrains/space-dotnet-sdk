@@ -21,42 +21,42 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class PlanItemDto
+    public sealed class PlanItemDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("checklistId")]
-        public string ChecklistId { get; set; }        
-        
+        public string ChecklistId { get; set; }
+    
         [JsonPropertyName("tag")]
-        public PlanningTagDto? Tag { get; set; }        
-        
+        public PlanningTagDto? Tag { get; set; }
+    
         [JsonPropertyName("simpleText")]
-        public string? SimpleText { get; set; }        
-        
+        public string? SimpleText { get; set; }
+    
         [JsonPropertyName("simpleDone")]
-        public bool? SimpleDone { get; set; }        
-        
+        public bool? SimpleDone { get; set; }
+    
         [JsonPropertyName("issue")]
-        public IssueDto? Issue { get; set; }        
-        
+        public IssueDto? Issue { get; set; }
+    
         [JsonPropertyName("issueProblem")]
-        public string? IssueProblem { get; set; }        
-        
+        public string? IssueProblem { get; set; }
+    
         [JsonPropertyName("canEditIssue")]
-        public bool? CanEditIssue { get; set; }        
-        
+        public bool? CanEditIssue { get; set; }
+    
         [Required]
         [JsonPropertyName("hasChildren")]
-        public bool HasChildren { get; set; }        
-        
+        public bool HasChildren { get; set; }
+    
         [Required]
         [JsonPropertyName("children")]
-        public List<PlanItemDto> Children { get; set; }        
-        
+        public List<PlanItemDto> Children { get; set; }
+    
     }
     
 }

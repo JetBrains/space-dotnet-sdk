@@ -21,91 +21,91 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DTOMeetingDto
+    public sealed class DTOMeetingDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }        
-        
+        public string Summary { get; set; }
+    
         [JsonPropertyName("description")]
-        public string? Description { get; set; }        
-        
+        public string? Description { get; set; }
+    
         [Required]
         [JsonPropertyName("locations")]
-        public List<TDLocationDto> Locations { get; set; }        
-        
+        public List<TDLocationDto> Locations { get; set; }
+    
         [Required]
         [JsonPropertyName("profiles")]
-        public List<TDMemberProfileDto> Profiles { get; set; }        
-        
+        public List<TDMemberProfileDto> Profiles { get; set; }
+    
         [Required]
         [JsonPropertyName("teams")]
-        public List<TDTeamDto> Teams { get; set; }        
-        
+        public List<TDTeamDto> Teams { get; set; }
+    
         [Required]
         [JsonPropertyName("occurrenceRule")]
-        public CalendarEventSpecDto OccurrenceRule { get; set; }        
-        
+        public CalendarEventSpecDto OccurrenceRule { get; set; }
+    
         [Required]
         [JsonPropertyName("origin")]
-        public MeetingOrigin Origin { get; set; }        
-        
+        public MeetingOrigin Origin { get; set; }
+    
         [JsonPropertyName("conferenceLink")]
-        public string? ConferenceLink { get; set; }        
-        
+        public string? ConferenceLink { get; set; }
+    
         [Required]
         [JsonPropertyName("visibility")]
-        public MeetingVisibility Visibility { get; set; }        
-        
+        public MeetingVisibility Visibility { get; set; }
+    
         [Required]
         [JsonPropertyName("modificationPreference")]
-        public MeetingModificationPreference ModificationPreference { get; set; }        
-        
+        public MeetingModificationPreference ModificationPreference { get; set; }
+    
         [JsonPropertyName("joiningPreference")]
-        public MeetingJoiningPreference? JoiningPreference { get; set; }        
-        
+        public MeetingJoiningPreference? JoiningPreference { get; set; }
+    
         [Required]
         [JsonPropertyName("organizer")]
-        public MeetingOrganizerDto Organizer { get; set; }        
-        
+        public MeetingOrganizerDto Organizer { get; set; }
+    
         [Required]
         [JsonPropertyName("etag")]
-        public long Etag { get; set; }        
-        
+        public long Etag { get; set; }
+    
         [Required]
         [JsonPropertyName("privateDataSubstituted")]
-        public bool PrivateDataSubstituted { get; set; }        
-        
+        public bool PrivateDataSubstituted { get; set; }
+    
         [Required]
         [JsonPropertyName("canModify")]
-        public bool CanModify { get; set; }        
-        
+        public bool CanModify { get; set; }
+    
         [Required]
         [JsonPropertyName("canDelete")]
-        public bool CanDelete { get; set; }        
-        
+        public bool CanDelete { get; set; }
+    
         [Required]
         [JsonPropertyName("canJoin")]
-        public bool CanJoin { get; set; }        
-        
+        public bool CanJoin { get; set; }
+    
         [Required]
         [JsonPropertyName("externalParticipants")]
-        public List<string> ExternalParticipants { get; set; }        
-        
+        public List<string> ExternalParticipants { get; set; }
+    
         [JsonPropertyName("linkToExternalSource")]
-        public string? LinkToExternalSource { get; set; }        
-        
+        public string? LinkToExternalSource { get; set; }
+    
         [JsonPropertyName("eventAttachments")]
-        public List<MeetingAttachmentDto>? EventAttachments { get; set; }        
-        
+        public List<MeetingAttachmentDto>? EventAttachments { get; set; }
+    
     }
     
 }

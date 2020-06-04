@@ -32,8 +32,14 @@ namespace SpaceDotNet.Client.CodeReviewParticipantExtensions
         public static Partial<CodeReviewParticipantDto> WithRole(this Partial<CodeReviewParticipantDto> it)
             => it.AddFieldName("role");
         
+        public static Partial<CodeReviewParticipantDto> WithRole(this Partial<CodeReviewParticipantDto> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
+        
         public static Partial<CodeReviewParticipantDto> WithState(this Partial<CodeReviewParticipantDto> it)
             => it.AddFieldName("state");
+        
+        public static Partial<CodeReviewParticipantDto> WithState(this Partial<CodeReviewParticipantDto> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>()));
         
         public static Partial<CodeReviewParticipantDto> WithTheirTurn(this Partial<CodeReviewParticipantDto> it)
             => it.AddFieldName("theirTurn");

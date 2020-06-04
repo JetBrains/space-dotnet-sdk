@@ -21,20 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TwoFactorAuthenticationSecretDto
+    public sealed class TwoFactorAuthenticationSecretDto
     {
         [Required]
         [JsonPropertyName("secretKey")]
-        public string SecretKey { get; set; }        
-        
+        public string SecretKey { get; set; }
+    
         [Required]
         [JsonPropertyName("qrCode")]
-        public QRCodeDto QrCode { get; set; }        
-        
+        public QRCodeDto QrCode { get; set; }
+    
         [Required]
         [JsonPropertyName("scratchCodes")]
-        public List<int> ScratchCodes { get; set; }        
-        
+        public List<int> ScratchCodes { get; set; }
+    
     }
     
 }

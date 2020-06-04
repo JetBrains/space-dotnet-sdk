@@ -21,31 +21,31 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class FTSBlogDto
+    public sealed class FTSBlogDto
     {
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }        
-        
+        public string Id { get; set; }
+    
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get; set; }        
-        
+        public TDMemberProfileDto Author { get; set; }
+    
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get; set; }        
-        
+        public SpaceTime Date { get; set; }
+    
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get; set; }        
-        
+        public List<FTSSnippetDto> Snippets { get; set; }
+    
         [JsonPropertyName("comments")]
-        public List<FTSBlogCommentDto>? Comments { get; set; }        
-        
+        public List<FTSBlogCommentDto>? Comments { get; set; }
+    
     }
     
 }

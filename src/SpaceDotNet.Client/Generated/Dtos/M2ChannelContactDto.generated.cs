@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class M2ChannelContactDto
+    public sealed class M2ChannelContactDto
     {
         [Required]
         [JsonPropertyName("defaultName")]
-        public string DefaultName { get; set; }        
-        
+        public string DefaultName { get; set; }
+    
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }        
-        
+        public string Key { get; set; }
+    
         [JsonPropertyName("ext")]
-        public M2ChannelContactInfoDto? Ext { get; set; }        
-        
+        public M2ChannelContactInfoDto? Ext { get; set; }
+    
     }
     
 }

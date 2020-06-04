@@ -25,16 +25,16 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }        
-        
+        public string Alias { get; set; }
+    
         [Required]
         [JsonPropertyName("data")]
-        public string Data { get; set; }        
-        
+        public string Data { get; set; }
+    
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }        
-        
+        public bool Archived { get; set; }
+    
     }
     
 }

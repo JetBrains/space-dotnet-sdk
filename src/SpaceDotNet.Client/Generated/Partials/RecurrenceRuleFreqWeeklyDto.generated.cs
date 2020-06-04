@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.RecurrenceRuleFreqWeeklyExtensions
         public static Partial<RecurrenceRuleFreqWeeklyDto> WithWeekdays(this Partial<RecurrenceRuleFreqWeeklyDto> it)
             => it.AddFieldName("weekdays");
         
+        public static Partial<RecurrenceRuleFreqWeeklyDto> WithWeekdays(this Partial<RecurrenceRuleFreqWeeklyDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
+            => it.AddFieldName("weekdays", partialBuilder(new Partial<Weekday>()));
+        
         public static Partial<RecurrenceRuleFreqWeeklyDto> WithInterval(this Partial<RecurrenceRuleFreqWeeklyDto> it)
             => it.AddFieldName("interval");
         

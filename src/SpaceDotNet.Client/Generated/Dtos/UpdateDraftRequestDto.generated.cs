@@ -24,20 +24,20 @@ namespace SpaceDotNet.Client
     public class UpdateDraftRequestDto
     {
         [JsonPropertyName("title")]
-        public string? Title { get; set; }        
-        
+        public string? Title { get; set; }
+    
         [JsonPropertyName("text")]
-        public string? Text { get; set; }        
-        
+        public string? Text { get; set; }
+    
         [JsonPropertyName("textVersion")]
-        public long? TextVersion { get; set; }        
-        
+        public long? TextVersion { get; set; }
+    
         [JsonPropertyName("type")]
-        public DraftDocumentType? Type { get; set; }        
-        
+        public DraftDocumentType? Type { get; set; }
+    
         [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }        
-        
+        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
+    
     }
     
 }

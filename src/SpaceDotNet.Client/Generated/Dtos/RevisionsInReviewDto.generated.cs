@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class RevisionsInReviewDto
+    public sealed class RevisionsInReviewDto
     {
         [Required]
         [JsonPropertyName("repository")]
-        public RepositoryInReviewDto Repository { get; set; }        
-        
+        public RepositoryInReviewDto Repository { get; set; }
+    
         [Required]
         [JsonPropertyName("commits")]
-        public List<GitCommitWithGraphDto> Commits { get; set; }        
-        
+        public List<GitCommitWithGraphDto> Commits { get; set; }
+    
     }
     
 }

@@ -21,16 +21,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class IssueStatusWithUsagesDto
+    public sealed class IssueStatusWithUsagesDto
     {
         [Required]
         [JsonPropertyName("status")]
-        public IssueStatusDto Status { get; set; }        
-        
+        public IssueStatusDto Status { get; set; }
+    
         [Required]
         [JsonPropertyName("usages")]
-        public int Usages { get; set; }        
-        
+        public int Usages { get; set; }
+    
     }
     
 }

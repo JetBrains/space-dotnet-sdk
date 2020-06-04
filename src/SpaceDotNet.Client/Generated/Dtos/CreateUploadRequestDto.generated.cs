@@ -25,11 +25,11 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("storagePrefix")]
-        public string StoragePrefix { get; set; }        
-        
+        public string StoragePrefix { get; set; }
+    
         [JsonPropertyName("mediaType")]
-        public string? MediaType { get; set; }        
-        
+        public string? MediaType { get; set; }
+    
     }
     
 }

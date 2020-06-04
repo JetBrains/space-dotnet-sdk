@@ -25,12 +25,12 @@ namespace SpaceDotNet.Client
     {
         [Required]
         [JsonPropertyName("metadata")]
-        public ImportMetadataDto Metadata { get; set; }        
-        
+        public ImportMetadataDto Metadata { get; set; }
+    
         [Required]
         [JsonPropertyName("articles")]
-        public List<ExternalArticleDto> Articles { get; set; }        
-        
+        public List<ExternalArticleDto> Articles { get; set; }
+    
     }
     
 }

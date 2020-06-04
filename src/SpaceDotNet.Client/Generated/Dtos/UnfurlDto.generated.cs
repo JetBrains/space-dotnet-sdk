@@ -21,56 +21,56 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class UnfurlDto
+    public sealed class UnfurlDto
     {
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }        
-        
+        public string Title { get; set; }
+    
         [Required]
         [JsonPropertyName("link")]
-        public string Link { get; set; }        
-        
+        public string Link { get; set; }
+    
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }        
-        
+        public string Text { get; set; }
+    
         [JsonPropertyName("details")]
-        public UnfurlDetailsDto? Details { get; set; }        
-        
+        public UnfurlDetailsDto? Details { get; set; }
+    
         [JsonPropertyName("sitename")]
-        public string? Sitename { get; set; }        
-        
+        public string? Sitename { get; set; }
+    
         [JsonPropertyName("image")]
-        public string? Image { get; set; }        
-        
+        public string? Image { get; set; }
+    
         [JsonPropertyName("imageMime")]
-        public string? ImageMime { get; set; }        
-        
+        public string? ImageMime { get; set; }
+    
         [JsonPropertyName("imageWidth")]
-        public int? ImageWidth { get; set; }        
-        
+        public int? ImageWidth { get; set; }
+    
         [JsonPropertyName("imageHeight")]
-        public int? ImageHeight { get; set; }        
-        
+        public int? ImageHeight { get; set; }
+    
         [JsonPropertyName("video")]
-        public string? Video { get; set; }        
-        
+        public string? Video { get; set; }
+    
         [JsonPropertyName("videoIFrame")]
-        public string? VideoIFrame { get; set; }        
-        
+        public string? VideoIFrame { get; set; }
+    
         [JsonPropertyName("videoMime")]
-        public string? VideoMime { get; set; }        
-        
+        public string? VideoMime { get; set; }
+    
         [JsonPropertyName("videoHeight")]
-        public int? VideoHeight { get; set; }        
-        
+        public int? VideoHeight { get; set; }
+    
         [JsonPropertyName("videoWidth")]
-        public int? VideoWidth { get; set; }        
-        
+        public int? VideoWidth { get; set; }
+    
         [JsonPropertyName("favicon")]
-        public string? Favicon { get; set; }        
-        
+        public string? Favicon { get; set; }
+    
     }
     
 }
