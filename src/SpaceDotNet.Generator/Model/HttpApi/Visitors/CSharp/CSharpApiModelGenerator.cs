@@ -403,7 +403,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 builder.AppendLine(
                     indent.Wrap(
-                        GenerateResourceApiEndpointDefinition(apiResource, apiEndpoint, baseEndpointPath)));
+                        GenerateMethodsForApiEndpoint(apiEndpoint, baseEndpointPath)));
             }
         
             // Group nested resources by path
@@ -440,10 +440,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             return builder.ToString();
         }
         
-        public string GenerateResourceApiEndpointDefinition(ApiResource apiResource, ApiEndpoint apiEndpoint, string baseEndpointPath)
+        public string GenerateMethodsForApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var builder = new StringBuilder();
-            builder.AppendLine(GenerateApiEndpointDefinition(apiEndpoint, baseEndpointPath));
+            builder.AppendLine(GenerateMethodForApiEndpoint(apiEndpoint, baseEndpointPath));
             
             var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object objectResponse
                 && objectResponse.Kind == ApiFieldType.Object.ObjectKind.BATCH;
@@ -451,14 +451,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             if (isResponseBatch && apiEndpoint.ResponseBody != null)
             {
                 builder.AppendLine();
-                builder.AppendLine(WriteEndpointBatchEnumeratorOverload(apiEndpoint, baseEndpointPath));
+                builder.AppendLine(GenerateMethodForBatchApiEndpoint(apiEndpoint, baseEndpointPath));
             }
 
             return builder.ToString();
         }
 
-        // TODO REFACTORING GenerateMethodFor.... is a better name
-        private string GenerateApiEndpointDefinition(ApiEndpoint apiEndpoint, string baseEndpointPath)
+        private string GenerateMethodForApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var indent = new Indent();
             var builder = new StringBuilder();
@@ -600,7 +599,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             return builder.ToString();
         }
         
-        private string WriteEndpointBatchEnumeratorOverload(ApiEndpoint apiEndpoint, string baseEndpointPath)
+        private string GenerateMethodForBatchApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var indent = new Indent();
             var builder = new StringBuilder();
