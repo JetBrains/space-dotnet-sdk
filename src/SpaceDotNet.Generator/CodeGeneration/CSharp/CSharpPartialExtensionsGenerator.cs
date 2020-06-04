@@ -170,16 +170,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     }
                     else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.REQUEST_BODY)
                     {
-                        // Request body/anonymous type - check whether we generated it before?
-                        var anonymousClassFields = apiFieldTypeObject.Fields.Select(it => new ApiDtoField { Field = it }).ToList();
-        
-                        // TODO: make this check less expensive, serializing N times is probably not the best idea
-                        var anonymousClassSignature = JsonSerializer.Serialize(anonymousClassFields);
-                        var anonymousClass = _context.IdToAnonymousClassMap.Values.FirstOrDefault(it => anonymousClassSignature == JsonSerializer.Serialize(it.Fields));
-                        if (anonymousClass != null)
-                        {
-                            return anonymousClass.Id + "Dto";
-                        }
+                        // Request body/anonymous type? Should not be part of the Dto collection...
+                        throw new ResourceException("Could not generate type name for object kind: " + apiFieldTypeObject.Kind + " - it is expected to have been mapped as a Dto instead.");
                     }
                     else
                     {

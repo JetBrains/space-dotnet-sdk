@@ -118,7 +118,7 @@ namespace SpaceDotNet.Samples.Web.Pages
                     // Check # of issues resolved this week
                     var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatusesAsync(projectDto.Id);
                 
-                    await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, partialBuilder: partial => partial
+                    await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, partial: _ => _
                         .AddAllFieldNames()
                         .WithCreationTime()
                         .WithCreatedBy(createdBy => createdBy
@@ -225,7 +225,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             try
             {
                 // Check # of TODO items resolved
-                await foreach (var todoDto in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart.AsSpaceDate(), partialBuilder: partial => partial
+                await foreach (var todoDto in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart.AsSpaceDate(), partial: _ => _
                     .WithStatus()))
                 {
                     if (todoDto.Status == "Closed")
@@ -241,7 +241,7 @@ namespace SpaceDotNet.Samples.Web.Pages
 
             try
             {
-                await foreach (var meetingDto in _calendarClient.Meetings.GetAllMeetingsAsyncEnumerable("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), partialBuilder: partial => partial
+                await foreach (var meetingDto in _calendarClient.Meetings.GetAllMeetingsAsyncEnumerable("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), partial: _ => _
                     .AddAllFieldNames()
                     .WithId()
                     .WithSummary()

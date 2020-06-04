@@ -7,20 +7,17 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
     public class CodeGenerationContext
     {
-        public ImmutableSortedDictionary<string, ApiEnum> IdToEnumMap  { get; }
-        public ImmutableSortedDictionary<string, ApiDto> IdToDtoMap  { get; }
-        public SortedDictionary<string, ApiDto> IdToAnonymousClassMap  { get; }
+        public SortedDictionary<string, ApiEnum> IdToEnumMap  { get; }
+        public SortedDictionary<string, ApiDto> IdToDtoMap  { get; }
         public HashSet<string> PropertiesToSkip { get; }
 
         public CodeGenerationContext(
-            ImmutableSortedDictionary<string, ApiEnum> idToEnumMap,
-            ImmutableSortedDictionary<string, ApiDto> idToDtoMap,
-            SortedDictionary<string, ApiDto> idToAnonymousClassMap,
+            SortedDictionary<string, ApiEnum> idToEnumMap,
+            SortedDictionary<string, ApiDto> idToDtoMap,
             HashSet<string> propertiesToSkip)
         {
             IdToEnumMap = idToEnumMap;
             IdToDtoMap = idToDtoMap;
-            IdToAnonymousClassMap = idToAnonymousClassMap;
             PropertiesToSkip = propertiesToSkip;
         }
 
@@ -28,15 +25,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         {
 #pragma warning disable 8619
             return new CodeGenerationContext(
-                idToEnumMap: apiModel.Enums.ToImmutableSortedDictionary(
-                    it => it.Id,
-                    it => it,
-                    StringComparer.OrdinalIgnoreCase)!,
-                idToDtoMap: apiModel.Dto.ToImmutableSortedDictionary(
-                    it => it.Id,
-                    it => it,
-                    StringComparer.OrdinalIgnoreCase)!,
-                idToAnonymousClassMap: new SortedDictionary<string, ApiDto>(StringComparer.OrdinalIgnoreCase),
+                idToEnumMap: new SortedDictionary<string, ApiEnum>(
+                    apiModel.Enums.ToImmutableSortedDictionary(
+                        it => it.Id,
+                        it => it)!,
+                    StringComparer.OrdinalIgnoreCase), 
+                idToDtoMap: new SortedDictionary<string, ApiDto>(
+                    apiModel.Dto.ToImmutableSortedDictionary(
+                        it => it.Id,
+                        it => it)!,
+                    StringComparer.OrdinalIgnoreCase), 
                 propertiesToSkip: new HashSet<string>
                 {
                     "TDMemberProfileDto.Logins"

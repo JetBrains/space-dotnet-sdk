@@ -26,8 +26,11 @@ namespace SpaceDotNet.Generator
             
             // Remove old code
             var generatedCodePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated");
-            Directory.Delete(generatedCodePath, recursive: true);
-            
+            if (Directory.Exists(generatedCodePath))
+            {
+                Directory.Delete(generatedCodePath, recursive: true);
+            }
+
             // Build code
             var csharpApiModelVisitor = new CSharpApiModelGenerator(apiModel);
             csharpApiModelVisitor.GenerateFiles(
