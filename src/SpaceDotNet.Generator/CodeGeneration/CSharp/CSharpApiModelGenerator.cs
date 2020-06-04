@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SpaceDotNet.Common;
-using SpaceDotNet.Generator.CodeGeneration;
-using SpaceDotNet.Generator.CodeGeneration.CSharp;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
+using SpaceDotNet.Generator.Model.HttpApi;
+using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
 using SpaceDotNet.Generator.Utilities;
 
-namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
+namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
     // TODO REFACTORING Split this into a couple classes (Dto/enum/api)
     public class CSharpApiModelGenerator

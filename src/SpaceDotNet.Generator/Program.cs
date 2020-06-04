@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp;
 using SpaceDotNet.Generator.Model.HttpApi;
-using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
 
 namespace SpaceDotNet.Generator
 {
