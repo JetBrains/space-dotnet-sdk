@@ -5,6 +5,8 @@ using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 using SpaceDotNet.Common.Types;
 
+#nullable disable
+
 namespace SpaceDotNet.Common.Json.Serialization
 {
     public class ClassNameInterfaceDtoTypeConverter : ClassNameDtoTypeConverter
