@@ -360,8 +360,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             {
                 builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
 
-                var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => x.ToCSharpType(_codeGenerationContext));
+                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                    .WithParametersForEndpoint(apiEndpoint);
                 
                 if (apiEndpoint.RequestBody != null)
                 {
@@ -407,8 +407,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.Append(">");
                 builder.Append($" {methodNameForEndpoint}Async(");
                 
-                var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => x.ToCSharpType(_codeGenerationContext));
+                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                    .WithParametersForEndpoint(apiEndpoint);
                 
                 if (apiEndpoint.RequestBody != null)
                 {
@@ -503,8 +503,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.Append(">");
                 builder.Append($" {methodNameForEndpoint}AsyncEnumerable(");
             
-                var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => x.ToCSharpType(_codeGenerationContext));
+                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
+                    .WithParametersForEndpoint(apiEndpoint);
                 
                 if (apiEndpoint.RequestBody != null)
                 {

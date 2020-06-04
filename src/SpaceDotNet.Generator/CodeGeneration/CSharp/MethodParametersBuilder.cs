@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
@@ -21,27 +20,28 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 DefaultValue = defaultValue;
             }
         }
-        
+
+        private readonly CodeGenerationContext _context;
         private readonly List<MethodParameter> _parameters;
 
-        public MethodParametersBuilder() 
-            : this(new List<MethodParameter>())
+        public MethodParametersBuilder(CodeGenerationContext context) 
+            : this(context, new List<MethodParameter>())
         {
         }
         
-        private MethodParametersBuilder(List<MethodParameter> parameters)
+        private MethodParametersBuilder(CodeGenerationContext context, List<MethodParameter> parameters)
         {
+            _context = context;
             _parameters = parameters;
         }
 
-        // TODO REFACTORING f() should disappear
-        public MethodParametersBuilder WithParametersForEndpoint(ApiEndpoint apiEndpoint, Func<ApiFieldType, string> f)
+        public MethodParametersBuilder WithParametersForEndpoint(ApiEndpoint apiEndpoint)
         {
-            var methodParametersBuilder = new MethodParametersBuilder();
+            var methodParametersBuilder = new MethodParametersBuilder(_context);
             var orderedEndpointParameters = apiEndpoint.Parameters.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
             foreach (var apiEndpointParameter in orderedEndpointParameters)
             {
-                var parameterType = f(apiEndpointParameter.Field.Type);
+                var parameterType = apiEndpointParameter.Field.Type.ToCSharpType(_context);
                 if (apiEndpointParameter.Field.Type.Nullable)
                 {
                     parameterType += "?";
@@ -66,7 +66,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         {
             var futureParameters = new List<MethodParameter>(_parameters);
             futureParameters.Add(new MethodParameter(type, name, defaultValue));
-            return new MethodParametersBuilder(futureParameters);
+            return new MethodParametersBuilder(_context, futureParameters);
         }
         
         public MethodParametersBuilder WithDefaultValueForAllParameters(string? defaultValue)
@@ -76,7 +76,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             {
                 futureParameters.Add(new MethodParameter(futureParameter.Type, futureParameter.Name, defaultValue));
             }
-            return new MethodParametersBuilder(futureParameters);
+            return new MethodParametersBuilder(_context, futureParameters);
         }
 
         public MethodParametersBuilder WithDefaultValueForParameter(string name, string? defaultValue = null)
@@ -93,7 +93,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     futureParameters.Add(futureParameter);
                 }
             }
-            return new MethodParametersBuilder(futureParameters);
+            return new MethodParametersBuilder(_context, futureParameters);
         }
 
         public string BuildMethodParametersDefinition() =>
