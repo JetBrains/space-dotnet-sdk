@@ -3,6 +3,7 @@ using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
 {
+    // TODO Refactoring
     public static class StringExtensions
     {
         private static readonly char[] IdentifierSeparators = {' ', '-', '_', '.'};

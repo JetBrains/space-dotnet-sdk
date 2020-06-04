@@ -354,8 +354,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                     return "object";
             }
         }
-
-        private HashSet<string> _resourceBreadcrumbPaths = new HashSet<string>();
         
         public string GenerateResourceDefinition(ApiResource apiResource)
         {
@@ -363,6 +361,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 apiResource, 
                 apiResource.Path.Segments.ToPath(),
                 apiResource.DisplaySingular.ToSafeIdentifier(),
+                new HashSet<string>(),
                 true);
         }
         
@@ -370,6 +369,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             ApiResource apiResource,
             string baseEndpointPath,
             string resourceBreadcrumbPath,
+            HashSet<string> resourceBreadcrumbPaths,
             bool withConstructor)
         {
             var indent = new Indent();
@@ -413,7 +413,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 {
                     var nestedResourceBreadcrumbPath = (resourceBreadcrumbPath.Length > 0 ? resourceBreadcrumbPath + "." : resourceBreadcrumbPath) + apiNestedResource.DisplaySingular.ToSafeIdentifier();
 
-                    var isFirstWrite = _resourceBreadcrumbPaths.Add(nestedResourceBreadcrumbPath);
+                    var isFirstWrite = resourceBreadcrumbPaths.Add(nestedResourceBreadcrumbPath);
                     if (isFirstResource && isFirstWrite)
                     {
                         builder.AppendLine($"{indent}public " + apiNestedResource.DisplaySingular.ToSafeIdentifier() + "Client " + apiNestedResource.DisplayPlural.ToSafeIdentifier() + " => new " + apiNestedResource.DisplaySingular.ToSafeIdentifier() + "Client(_connection);");
@@ -426,6 +426,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                                 apiNestedResource, 
                                 (baseEndpointPath.Length > 0 ? baseEndpointPath + "/" : baseEndpointPath) + apiNestedResource.Path.Segments.ToPath(),
                                 nestedResourceBreadcrumbPath,
+                                resourceBreadcrumbPaths,
                                 isFirstResource && isFirstWrite)));
         
                     isFirstResource = false;
