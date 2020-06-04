@@ -163,8 +163,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     }
                     else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.REQUEST_BODY)
                     {
-                        // Request body/anonymous type? Should not be part of the Dto collection...
-                        throw new ResourceException("Could not generate type name for object kind: " + apiFieldTypeObject.Kind + " - it is expected to have been mapped as a Dto instead.");
+                        // Request body/anonymous type?
+                        throw new ResourceException($"The method {nameof(GenerateCSharpTypeFrom)}() should not be called with object kind: " + apiFieldTypeObject.Kind 
+                            + $". Ensure {nameof(CSharpApiEndpointDtoEnricher)} has run, and then invoke apiEndpoint.{nameof(ApiEndpointExtensions.ToCSharpRequestBodyClassName)}() to retrieve the proper type name.");
                     }
                     else
                     {

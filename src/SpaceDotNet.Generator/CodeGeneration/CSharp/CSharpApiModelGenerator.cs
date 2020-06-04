@@ -23,6 +23,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         
         public void GenerateFiles(IDocumentWriter documentWriter)
         {
+            // Enrich Dto's with resource request body types
+            var apiEndpointDtoEnricher = new CSharpApiEndpointDtoEnricher();
+            apiEndpointDtoEnricher.Enrich(_codeGenerationContext, _apiModel.Resources);
+            
             // API clients/endpoints
             foreach (var apiResource in _apiModel.Resources)
             {
@@ -316,29 +320,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     }
                     else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.REQUEST_BODY)
                     {
-                        // See if we have seen the anonymous class before (and if not, add it)
-                        var anonymousClassId = !string.IsNullOrEmpty(clientMethodName)
-                            ? clientMethodName + "Request" // TODO REFACTORING
-                            : throw new Exception("Request body class requires a _clientMethodName to be specified.");
-                        
-                        if (!_codeGenerationContext.IdToDtoMap.TryGetValue(anonymousClassId, out var anonymousClass))
-                        {
-                            anonymousClass = new ApiDto
-                            {
-                                Id = anonymousClassId.ToLowerInvariant(),
-                                Name = anonymousClassId,
-                                Fields = apiFieldTypeObject.Fields.Select(it => new ApiDtoField { Field = it }).ToList()
-                            };
-        
-                            _codeGenerationContext.IdToDtoMap[anonymousClassId] = anonymousClass;
-                        }
-        
-                        return anonymousClass.ToCSharpClassName();
+                        // Request body/anonymous type?
+                        throw new ResourceException($"The method {nameof(GenerateDtoFieldDefinitionType)}() should not be called with object kind: " + apiFieldTypeObject.Kind 
+                            + $". Ensure {nameof(CSharpApiEndpointDtoEnricher)} has run, and then invoke apiEndpoint.{nameof(ApiEndpointExtensions.ToCSharpRequestBodyClassName)}() to retrieve the proper type name.");
                     }
                     else
                     {
                         // Unknown object kind
-                        throw new ResourceException("Could not generate class for object kind: " + apiFieldTypeObject.Kind);
+                        throw new ResourceException("Could not generate type for object kind: " + apiFieldTypeObject.Kind);
                     }
                 
                 case ApiFieldType.Primitive apiFieldTypePrimitive:
@@ -497,7 +486,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
+                            apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
                             "data");
                 }
 
@@ -544,7 +533,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
+                            apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
                             "data");
                 }
         
@@ -566,7 +555,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.Append($"{indent}=> await _connection.RequestResourceAsync<");
                 if (apiEndpoint.RequestBody != null)
                 {
-                    builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint));
+                    builder.Append(apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint));
                     builder.Append(", ");
                 }
                 builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody!, methodNameForEndpoint));
@@ -640,7 +629,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
+                            apiEndpoint.ToCSharpRequestBodyClassName() ?? GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
                             "data");
                 }
         
