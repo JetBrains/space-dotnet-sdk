@@ -66,7 +66,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             
             var isPrimitiveOrObject = apiField.Type is ApiFieldType.Primitive || apiField.Type is ApiFieldType.Object;
             var isArrayOfPrimitive = apiField.Type is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive;
-            if (!isPrimitiveOrObject && !isArrayOfPrimitive /* TODO REFACTORING && _currentFieldInnerTypeBuilder.Length > 0*/)
+            if (!isPrimitiveOrObject && !isArrayOfPrimitive && !string.IsNullOrEmpty(currentFieldInnerType))
             {
                 // Recursive field?
                 if (currentDtoType == currentFieldInnerType)
