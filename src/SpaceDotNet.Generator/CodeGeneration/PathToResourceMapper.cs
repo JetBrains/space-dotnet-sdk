@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using SpaceDotNet.Generator.Model.HttpApi;
-using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
 
 namespace SpaceDotNet.Generator.CodeGeneration
 {
@@ -24,7 +23,7 @@ namespace SpaceDotNet.Generator.CodeGeneration
             string currentPath, 
             int currentDepth)
         {
-            currentPath = (currentPath.Length > 0 ? currentPath + "." : currentPath) + apiResource.DisplaySingular.ToSafeIdentifier();
+            currentPath = (currentPath.Length > 0 ? currentPath + "/" : currentPath) + apiResource.DisplaySingular;
 
             // Self
             if (currentDepth >= MinDepth)

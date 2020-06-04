@@ -6,8 +6,6 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
-using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
-using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
@@ -33,7 +31,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     GenerateResourceDefinition(apiResource));
                 
                 documentWriter.WriteDocument(
-                    apiResource.DisplaySingular.ToSafeIdentifier() + "Client.generated.cs",
+                    apiResource.ToCSharpIdentifierSingular() + "Client.generated.cs",
                     document.ToString());
             }
             
@@ -45,7 +43,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     GenerateEnumDefinition(apiEnum));
                 
                 documentWriter.WriteDocument(
-                    "Enums/" + apiEnum.Name.ToSafeIdentifier() + ".generated.cs",
+                    "Enums/" + apiEnum.ToCSharpClassName() + ".generated.cs",
                     document.ToString());
             }
             
@@ -57,7 +55,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     GenerateDtoDefinition(apiDto));
                 
                 documentWriter.WriteDocument(
-                    "Dtos/" + apiDto.Name.ToSafeIdentifier() + "Dto.generated.cs",
+                    "Dtos/" + apiDto.ToCSharpClassName() + ".generated.cs",
                     document.ToString());
             }
             
@@ -65,12 +63,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var partialExtensionsVisitor = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
             foreach (var apiDto in _codeGenerationContext.IdToDtoMap.Values)
             {
-                var document = new CSharpDocument(apiDto.Name.ToSafeIdentifier() + "Extensions");
+                var document = new CSharpDocument(apiDto.ToCSharpClassName() + "Extensions");
                 document.AppendLine(
                     partialExtensionsVisitor.GeneratePartialClassFor(apiDto));
                 
                 documentWriter.WriteDocument(
-                    "Partials/" + apiDto.Name.ToSafeIdentifier() + "Dto.generated.cs",
+                    "Partials/" + apiDto.ToCSharpClassName() + ".generated.cs",
                     document.ToString());
             }
         }
@@ -80,22 +78,25 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var indent = new Indent();
             var builder = new StringBuilder();
             
+            var typeNameForEnum = apiEnum.ToCSharpClassName();
+            
             if (apiEnum.Deprecation != null)
             {
                 builder.AppendLine(apiEnum.Deprecation.ToCSharpDeprecation());
             }
             
             builder.AppendLine($"{indent}[JsonConverter(typeof(EnumerationConverter))]");
-            builder.AppendLine($"{indent}public sealed class " + apiEnum.Name.ToSafeIdentifier() + " : Enumeration");
+            builder.AppendLine($"{indent}public sealed class {typeNameForEnum} : Enumeration");
             builder.AppendLine($"{indent}{{");
                 
             indent.Increment();
-            builder.AppendLine($"{indent}private " + apiEnum.Name.ToSafeIdentifier() + "(string value) : base(value) { }");
+            builder.AppendLine($"{indent}private {typeNameForEnum}(string value) : base(value) {{ }}");
             builder.AppendLine($"{indent}");
             
             foreach (var value in apiEnum.Values)
             {
-                builder.AppendLine($"{indent}public static readonly " + apiEnum.Name.ToSafeIdentifier() + " " + value.ToSafeIdentifier() + " = new " + apiEnum.Name.ToSafeIdentifier() + "(\"" + value + "\");");
+                var identifierForValue = CSharpIdentifier.ForClassOrNamespace(value);
+                builder.AppendLine($"{indent}public static readonly {typeNameForEnum} {identifierForValue} = new {typeNameForEnum}(\"{value}\");");
             }
             
             indent.Decrement();
@@ -109,6 +110,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var indent = new Indent();
             var builder = new StringBuilder();
             
+            var typeNameForDto = apiDto.ToCSharpClassName();
+            
             if (apiDto.Deprecation != null)
             {
                 builder.AppendLine(apiDto.Deprecation.ToCSharpDeprecation());
@@ -120,7 +123,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.AppendLine($"{indent}[JsonConverter(typeof(ClassNameDtoTypeConverter))]");
             }
         
-            var dtoHierarchyType = apiDto.HierarchyRole == HierarchyRole.INTERFACE
+            var modifierForDto = apiDto.HierarchyRole == HierarchyRole.INTERFACE
                 ? "interface"
                 : apiDto.HierarchyRole == HierarchyRole.ABSTRACT
                     ? "abstract class"
@@ -132,7 +135,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var dtoHierarchyFieldNames = new List<string>();
             if (apiDto.Extends != null && _codeGenerationContext.IdToDtoMap.TryGetValue(apiDto.Extends.Id, out var apiDtoExtends))
             {
-                dtoHierarchy.Add(apiDtoExtends.Name.ToSafeIdentifier() + "Dto");
+                dtoHierarchy.Add(apiDtoExtends.ToCSharpClassName());
                 dtoHierarchyFieldNames.AddRange(apiDtoExtends.Fields.Select(it => it.Field.Name));
             }
             if (apiDto.Implements != null)
@@ -141,7 +144,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 {
                     if (_codeGenerationContext.IdToDtoMap.TryGetValue(dtoImplements.Id, out var apiDtoImplements))
                     {
-                        dtoHierarchy.Add(apiDtoImplements.Name.ToSafeIdentifier() + "Dto");
+                        dtoHierarchy.Add(apiDtoImplements.ToCSharpClassName());
                     }
                 }
             }
@@ -150,7 +153,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 dtoHierarchy.Add("IClassNameConvertible");
             }
             
-            builder.AppendLine($"{indent}public {dtoHierarchyType} " + apiDto.Name.ToSafeIdentifier() + "Dto");
+            builder.AppendLine($"{indent}public {modifierForDto} {typeNameForDto}");
             if (dtoHierarchy.Count > 0)
             {
                 indent.Increment();
@@ -186,7 +189,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             // Add own fields
             foreach (var apiDtoField in apiDto.Fields)
             {
-                if (!_codeGenerationContext.PropertiesToSkip.Contains(apiDto.Name.ToSafeIdentifier() + "Dto." + apiDtoField.Field.Name.ToSafeIdentifier().ToUppercaseFirst())
+                var propertyName = apiDtoField.Field.ToCSharpPropertyName();
+                if (!_codeGenerationContext.PropertiesToSkip.Contains($"{typeNameForDto}.{propertyName}")
                     && !dtoHierarchyFieldNames.Contains(apiDtoField.Field.Name))
                 {
                     builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDtoField.Field)));
@@ -200,8 +204,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 
         private string GenerateDtoFieldDefinition(ApiField apiField)
         {
+            // TODO CONSIDER WRITING PARTIAL PATH ERRORS?
             var indent = new Indent();
             var builder = new StringBuilder();
+
+            var propertyNameForField = apiField.ToCSharpPropertyName();
             
             if (!apiField.Type.Optional && !apiField.Type.Nullable)
             {
@@ -216,8 +223,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.Append("?");
             }
             builder.Append(" ");
-            builder.Append(apiField.Name.ToSafeIdentifier().ToUppercaseFirst());
-            builder.AppendLine(" { get; set; }");
+            builder.Append($"{propertyNameForField} {{ get; set; }}");
             return builder.ToString();
         }
 
@@ -237,7 +243,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 case ApiFieldType.Dto apiFieldTypeDto:
                     if (apiFieldTypeDto.DtoRef?.Id != null && _codeGenerationContext.IdToDtoMap.TryGetValue(apiFieldTypeDto.DtoRef.Id, out var apiDto))
                     {
-                        return apiDto.Name.ToSafeIdentifier() + "Dto";
+                        return apiDto.ToCSharpClassName();
                     }
                     else
                     {
@@ -247,7 +253,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 case ApiFieldType.Enum apiFieldTypeEnum:
                     if (apiFieldTypeEnum.EnumRef?.Id != null && _codeGenerationContext.IdToEnumMap.TryGetValue(apiFieldTypeEnum.EnumRef.Id, out var apiEnum))
                     {
-                        return apiEnum.Name.ToSafeIdentifier()!;
+                        return apiEnum.ToCSharpClassName();
                     }
                     else
                     {
@@ -327,7 +333,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                             _codeGenerationContext.IdToDtoMap[anonymousClassId] = anonymousClass;
                         }
         
-                        return anonymousClass.Name + "Dto";
+                        return anonymousClass.ToCSharpClassName();
                     }
                     else
                     {
@@ -341,7 +347,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 case ApiFieldType.Ref apiFieldTypeReference:
                     if (apiFieldTypeReference.DtoRef?.Id != null && _codeGenerationContext.IdToDtoMap.TryGetValue(apiFieldTypeReference.DtoRef.Id, out var apiReferenceDto))
                     {
-                        return apiReferenceDto.Name.ToSafeIdentifier() + "Dto";
+                        return apiReferenceDto.ToCSharpClassName();
                     }
                     else
                     {
@@ -353,15 +359,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             }
         }
         
-        public string GenerateResourceDefinition(ApiResource apiResource)
-        {
-            return GenerateResourceDefinition(
+        public string GenerateResourceDefinition(ApiResource apiResource) =>
+            GenerateResourceDefinition(
                 apiResource, 
                 apiResource.Path.Segments.ToPath(),
-                apiResource.DisplaySingular.ToSafeIdentifier()!,
+                apiResource.ToCSharpIdentifierSingular(),
                 new HashSet<string>(),
                 true);
-        }
 
         private string GenerateResourceDefinition(
             ApiResource apiResource,
@@ -372,9 +376,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         {
             var indent = new Indent();
             var builder = new StringBuilder();
+
+            var typeNameForClient = apiResource.ToCSharpIdentifierSingular() + "Client";
             
             // Client class
-            builder.AppendLine($"{indent}public partial class " + apiResource.DisplaySingular.ToSafeIdentifier() + "Client");
+            builder.AppendLine($"{indent}public partial class {typeNameForClient}");
             builder.AppendLine($"{indent}{{");
             indent.Increment();
         
@@ -383,7 +389,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             {
                 builder.AppendLine($"{indent}private readonly Connection _connection;");
                 builder.AppendLine($"{indent}");
-                builder.AppendLine($"{indent}public " + apiResource.DisplaySingular.ToSafeIdentifier() + "Client(Connection connection)");
+                builder.AppendLine($"{indent}public {typeNameForClient}(Connection connection)");
                 builder.AppendLine($"{indent}{{");
                 indent.Increment();
         
@@ -409,12 +415,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 var isFirstResource = true;
                 foreach (var apiNestedResource in apiNestedResources)
                 {
-                    var nestedResourceBreadcrumbPath = (resourceBreadcrumbPath.Length > 0 ? resourceBreadcrumbPath + "." : resourceBreadcrumbPath) + apiNestedResource.DisplaySingular.ToSafeIdentifier();
+                    var nestedResourceBreadcrumbPath = (resourceBreadcrumbPath.Length > 0 ? resourceBreadcrumbPath + "." : resourceBreadcrumbPath) + apiNestedResource.ToCSharpIdentifierSingular();
 
                     var isFirstWrite = resourceBreadcrumbPaths.Add(nestedResourceBreadcrumbPath);
                     if (isFirstResource && isFirstWrite)
                     {
-                        builder.AppendLine($"{indent}public " + apiNestedResource.DisplaySingular.ToSafeIdentifier() + "Client " + apiNestedResource.DisplayPlural.ToSafeIdentifier() + " => new " + apiNestedResource.DisplaySingular.ToSafeIdentifier() + "Client(_connection);");
+                        var propertyNameForClient = apiNestedResource.ToCSharpIdentifierPlural();
+                        builder.AppendLine($"{indent}public {typeNameForClient} {propertyNameForClient} => new {typeNameForClient}(_connection);");
                         builder.AppendLine($"{indent}");
                     }
 
@@ -461,7 +468,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
         
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
-            var clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
+            var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
         
             if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
             {
@@ -480,16 +487,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             
             if (apiEndpoint.ResponseBody == null)
             {
-                builder.Append($"{indent}public async Task " + clientMethodName + "Async(");
+                builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
 
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, clientMethodName));
+                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, methodNameForEndpoint));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName),
+                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
                             "data");
                 }
 
@@ -506,13 +513,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), clientMethodName) + ">";
+                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), methodNameForEndpoint) + ">";
                     
                     requestParametersBuilder = requestParametersBuilder
                         .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
                 }
                 
-                builder.Append(requestParametersBuilder.ForHttpQueryString());
+                builder.Append(requestParametersBuilder.BuildQueryString());
                 builder.Append("\"");
                 
                 if (apiEndpoint.RequestBody != null)
@@ -525,24 +532,24 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             else if (apiEndpoint.ResponseBody != null)
             {
                 builder.Append($"{indent}public async Task<");
-                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, clientMethodName));
+                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, methodNameForEndpoint));
                 builder.Append(">");
-                builder.Append(" " + clientMethodName + "Async(");
+                builder.Append($" {methodNameForEndpoint}Async(");
                 
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, clientMethodName));
+                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, methodNameForEndpoint));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName),
+                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
                             "data");
                 }
         
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), clientMethodName) + ">";
+                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), methodNameForEndpoint) + ">";
                     var funcType = $"Func<{partialType}, {partialType}>";
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
@@ -558,10 +565,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 builder.Append($"{indent}=> await _connection.RequestResourceAsync<");
                 if (apiEndpoint.RequestBody != null)
                 {
-                    builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName));
+                    builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint));
                     builder.Append(", ");
                 }
-                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody!, clientMethodName));
+                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody!, methodNameForEndpoint));
                 builder.Append(">");
                 builder.Append("(\"" + apiCallMethod + "\", ");
                 builder.Append("$\"api/http/" + endpointPath);
@@ -571,13 +578,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), clientMethodName) + ">";
+                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), methodNameForEndpoint) + ">";
                     
                     requestParametersBuilder = requestParametersBuilder
                         .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
                 }
                 
-                builder.Append(requestParametersBuilder.ForHttpQueryString());
+                builder.Append(requestParametersBuilder.BuildQueryString());
                 builder.Append("\"");
                 
                 if (apiEndpoint.RequestBody != null)
@@ -589,7 +596,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             }
             else
             {
-                builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - " + apiEndpoint.DisplayName.ToSafeIdentifier() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
+                builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - " + apiEndpoint.ToCSharpMethodName() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
             }
             
             return builder.ToString();
@@ -601,8 +608,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var builder = new StringBuilder();
             
             var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
-        
-            var clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
+
+            var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
         
             if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
             {
@@ -621,22 +628,22 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             if (apiEndpoint.ResponseBody != null)
             {
                 builder.Append($"{indent}public IAsyncEnumerable<");
-                builder.Append(GenerateDtoFieldDefinitionType(batchDataType.ElementType, clientMethodName));
+                builder.Append(GenerateDtoFieldDefinitionType(batchDataType.ElementType, methodNameForEndpoint));
                 builder.Append(">");
-                builder.Append(" " + clientMethodName + "AsyncEnumerable(");
+                builder.Append($" {methodNameForEndpoint}AsyncEnumerable(");
             
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, clientMethodName));
+                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, methodNameForEndpoint));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName),
+                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, methodNameForEndpoint),
                             "data");
                 }
         
-                var partialType = "Partial<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), clientMethodName) + ">";
+                var partialType = "Partial<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), methodNameForEndpoint) + ">";
                 var funcType = $"Func<{partialType}, {partialType}>";
                 methodParametersBuilder = methodParametersBuilder
                     .WithParameter(
@@ -650,9 +657,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 indent.Increment();
                 builder.Append($"{indent}=> BatchEnumerator.AllItems(batchSkip => ");
                 
-                builder.Append(clientMethodName + "Async(");
+                builder.Append($"{methodNameForEndpoint}Async(");
 
-                var partialTypeForBatch = "Partial<Batch<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), clientMethodName) + ">>";
+                var partialTypeForBatch = "Partial<Batch<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), methodNameForEndpoint) + ">>";
                 builder.Append(
                     methodParametersBuilder
                         .WithDefaultValueForAllParameters(null)
@@ -665,7 +672,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             }
             else
             {
-                builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - " + apiEndpoint.DisplayName.ToSafeIdentifier() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
+                builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - " + apiEndpoint.ToCSharpMethodName() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
             }
 
             return builder.ToString();

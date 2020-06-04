@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
-using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
@@ -47,7 +47,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     parameterType += "?";
                 }
                 
-                var parameterName = apiEndpointParameter.Field.Name.ToSafeVariableIdentifier()!;
+                var parameterName = apiEndpointParameter.Field.ToCSharpVariableName();
 
                 string? parameterDefaultValue = null;
                 if (apiEndpointParameter.Field.Type.Nullable)

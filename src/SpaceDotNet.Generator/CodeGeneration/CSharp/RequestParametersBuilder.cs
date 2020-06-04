@@ -2,8 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
-using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
@@ -43,7 +43,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 var parameterValueBuilder = new StringBuilder();
                 parameterValueBuilder .Append("{");
-                parameterValueBuilder.Append(apiEndpointParameter.Field.Name.ToSafeVariableIdentifier());
+                parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
         
                 if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
                 {
@@ -108,7 +108,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             return new RequestParametersBuilder(futureParameters);
         }
 
-        public string ForHttpQueryString()
+        public string BuildQueryString()
         {
             if (_parameters.Count > 0)
             {

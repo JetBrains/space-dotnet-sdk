@@ -3,8 +3,6 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
-using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
-using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
@@ -22,17 +20,19 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var indent = new Indent();
             var builder = new StringBuilder();
             
-            builder.AppendLine($"{indent}public static class " + apiDto.Name.ToSafeIdentifier() + "DtoPartialExtensions");
+            var typeNameForDto = apiDto.ToCSharpClassName();
+            var typeNameForPartialDto = $"Partial<{typeNameForDto}>";
+            
+            builder.AppendLine($"{indent}public static class {typeNameForDto}PartialExtensions");
             builder.AppendLine($"{indent}{{");
             indent.Increment();
             
-            var currentDtoType = apiDto.Name.ToSafeIdentifier() + "Dto";
-            var currentPartialType = $"Partial<{currentDtoType}>";
             foreach (var apiDtoField in apiDto.Fields)
             {
-                if (!_context.PropertiesToSkip.Contains(apiDto.Name.ToSafeIdentifier() + "Dto." + apiDtoField.Field.Name.ToSafeIdentifier().ToUppercaseFirst()))
+                var propertyName = apiDtoField.Field.ToCSharpPropertyName();
+                if (!_context.PropertiesToSkip.Contains($"{typeNameForDto}.{propertyName}"))
                 {
-                    builder.Append(indent.Wrap(GenerateExtensionMethodsFor(currentDtoType, currentPartialType, apiDtoField.Field)));
+                    builder.Append(indent.Wrap(GenerateExtensionMethodsFor(typeNameForDto, typeNameForPartialDto, apiDtoField.Field)));
                 }
             }
 
@@ -49,14 +49,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             var indent = new Indent();
             var builder = new StringBuilder();
             
-            var currentFieldName = apiField.Name;
+            var propertyName = apiField.ToCSharpPropertyName();
+            var apiFieldName = apiField.Name;
             
             // Field
-            builder.Append($"{indent}public static {currentPartialType} With");
-            builder.Append(currentFieldName.ToSafeIdentifier().ToUppercaseFirst());
-            builder.AppendLine($"(this {currentPartialType} it)");
+            builder.Append($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it)");
             indent.Increment();
-            builder.AppendLine($"{indent}=> it.AddFieldName(\"{currentFieldName}\");");
+            builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}\");");
             indent.Decrement();
             builder.AppendLine($"{indent}");
 
@@ -69,21 +68,17 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 // Recursive field?
                 if (currentDtoType == currentFieldInnerType)
                 {
-                    builder.Append($"{indent}public static {currentPartialType} With");
-                    builder.Append(currentFieldName.ToSafeIdentifier().ToUppercaseFirst());
-                    builder.AppendLine($"Recursive(this {currentPartialType} it)");
+                    builder.Append($"{indent}public static {currentPartialType} With{propertyName}Recursive(this {currentPartialType} it)");
                     indent.Increment();
-                    builder.AppendLine($"{indent}=> it.AddFieldName(\"{currentFieldName}!\");");
+                    builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}!\");");
                     indent.Decrement();
                     builder.AppendLine($"{indent}");
                 }
 
                 // Field with partial builder
-                builder.Append($"{indent}public static {currentPartialType} With");
-                builder.Append(currentFieldName.ToSafeIdentifier().ToUppercaseFirst());
-                builder.AppendLine($"(this {currentPartialType} it, Func<Partial<{currentFieldInnerType}>, Partial<{currentFieldInnerType}>> partialBuilder)");
+                builder.Append($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it, Func<Partial<{currentFieldInnerType}>, Partial<{currentFieldInnerType}>> partialBuilder)");
                 indent.Increment();
-                builder.AppendLine($"{indent}=> it.AddFieldName(\"{currentFieldName}\", partialBuilder(new Partial<{currentFieldInnerType}>()));");
+                builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}\", partialBuilder(new Partial<{currentFieldInnerType}>()));");
                 indent.Decrement();
                 builder.AppendLine($"{indent}");
             }
@@ -101,14 +96,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 case ApiFieldType.Dto apiFieldTypeDto:
                     if (apiFieldTypeDto.DtoRef?.Id != null && _context.IdToDtoMap.TryGetValue(apiFieldTypeDto.DtoRef.Id, out var apiDto))
                     {
-                        return apiDto.Name.ToSafeIdentifier() + "Dto";
+                        return apiDto.ToCSharpClassName();
                     }
                     break;
                 
                 case ApiFieldType.Enum apiFieldTypeEnum:
                     if (apiFieldTypeEnum.EnumRef?.Id != null && _context.IdToEnumMap.TryGetValue(apiFieldTypeEnum.EnumRef.Id, out var apiEnum))
                     {
-                        return apiEnum.Name.ToSafeIdentifier()!;
+                        return apiEnum.ToCSharpClassName();
                     }
                     break;
                 
@@ -183,7 +178,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 case ApiFieldType.Ref apiFieldTypeReference:
                     if (apiFieldTypeReference.DtoRef?.Id != null && _context.IdToDtoMap.TryGetValue(apiFieldTypeReference.DtoRef.Id, out var apiReferenceDto))
                     {
-                        return apiReferenceDto.Name.ToSafeIdentifier() + "Dto";
+                        return apiReferenceDto.ToCSharpClassName();
                     }
                     break;
             }
