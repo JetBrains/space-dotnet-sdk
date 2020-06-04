@@ -73,6 +73,6 @@ namespace SpaceDotNet.Common.Types
             return !Equals(left, right);
         }
 
-        public int CompareTo(object? other) => string.Compare(Value, ((Enumeration)other).Value, StringComparison.OrdinalIgnoreCase);
+        public int CompareTo(object? other) => string.Compare(Value, ((Enumeration)other)!.Value, StringComparison.OrdinalIgnoreCase);
     }
 }

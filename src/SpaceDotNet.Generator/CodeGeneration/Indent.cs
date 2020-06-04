@@ -1,10 +1,11 @@
 using System;
-using System.Collections.Immutable;
 using System.IO;
 using System.Text;
+using JetBrains.Annotations;
 
 namespace SpaceDotNet.Generator.CodeGeneration
 {
+    [PublicAPI]
     public class Indent
     {
         public int Level { get; private set; }

@@ -49,7 +49,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 var parameterName = apiEndpointParameter.Field.Name.ToSafeVariableIdentifier()!;
 
-                string parameterDefaultValue = null;
+                string? parameterDefaultValue = null;
                 if (apiEndpointParameter.Field.Type.Nullable)
                 {
                     parameterDefaultValue = "null";

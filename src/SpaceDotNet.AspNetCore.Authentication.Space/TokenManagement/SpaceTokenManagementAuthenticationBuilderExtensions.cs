@@ -33,7 +33,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement
 
             builder.Services.AddScoped<BearerTokenConnectionProvider>();
             builder.Services.AddScoped<Connection, BearerTokenConnection>(provider => 
-                provider.GetService<BearerTokenConnectionProvider>().CreateAsync().GetAwaiter().GetResult());
+                provider.GetService<BearerTokenConnectionProvider>().CreateAsync().GetAwaiter().GetResult()!);
 
             return builder;
         }

@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Text.Json;
@@ -173,7 +172,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 foreach (var dtoReference in apiDto.Implements)
                 {
                     if (_codeGenerationContext.IdToDtoMap.TryGetValue(dtoReference.Id, out var apiDtoImplements)
-                        /* TODO only generate for interfaces && apiDtoImplements.HierarchyRole == HierarchyRole.INTERFACE*/)
+                        /* TODO REFACTORING only generate for interfaces && apiDtoImplements.HierarchyRole == HierarchyRole.INTERFACE*/)
                     {
                         foreach (var apiDtoField in apiDtoImplements.Fields)
                         {
@@ -220,7 +219,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             return builder.ToString();
         }
         
-        public string GenerateDtoFieldDefinitionType(ApiFieldType apiFieldType, string? _clientMethodName = null)
+        public string GenerateDtoFieldDefinitionType(ApiFieldType apiFieldType, string? clientMethodName = null)
         {
             switch (apiFieldType)
             {
@@ -317,8 +316,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         var anonymousClass = _codeGenerationContext.IdToDtoMap.Values.FirstOrDefault(it => it.Name.EndsWith("Request") && anonymousClassSignature == JsonSerializer.Serialize(it.Fields));
                         if (anonymousClass == null)
                         {
-                            var anonymousClassId = !string.IsNullOrEmpty(_clientMethodName)
-                                ? _clientMethodName + "Request" // TODO REFACTORING
+                            var anonymousClassId = !string.IsNullOrEmpty(clientMethodName)
+                                ? clientMethodName + "Request" // TODO REFACTORING
                                 : throw new Exception("Request body class requires a _clientMethodName to be specified.");
                             anonymousClass = new ApiDto
                             {
@@ -360,26 +359,17 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
         
         public string GenerateResourceDefinition(ApiResource apiResource)
         {
-            var builder = new StringBuilder();
-            
-            // TOOD REFACTORING _baseEndpointPath = (_baseEndpointPath.Length > 0 ? _baseEndpointPath + "/" : _baseEndpointPath) +  apiResource.Path.Segments.ToPath();
-        
-            // TOOD REFACTORING var originalResourceBreadcrumbPath = _resourceBreadcrumbPath;
-            // TOOD REFACTORING _resourceBreadcrumbPath = (_resourceBreadcrumbPath.Length > 0 ? _resourceBreadcrumbPath + "." : _resourceBreadcrumbPath) +  apiResource.DisplaySingular.ToSafeIdentifier();
-        
-            builder.Append(
-                GenerateResourceDefinition(
-                    apiResource, 
-                    apiResource.Path.Segments.ToPath(),
-                    apiResource.DisplaySingular.ToSafeIdentifier(),
-                    true));
-            return builder.ToString();
+            return GenerateResourceDefinition(
+                apiResource, 
+                apiResource.Path.Segments.ToPath(),
+                apiResource.DisplaySingular.ToSafeIdentifier(),
+                true);
         }
         
         public string GenerateResourceDefinition(
             ApiResource apiResource,
-            string _baseEndpointPath,
-            string _resourceBreadcrumbPath,
+            string baseEndpointPath,
+            string resourceBreadcrumbPath,
             bool withConstructor)
         {
             var indent = new Indent();
@@ -411,7 +401,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             {
                 builder.AppendLine(
                     indent.Wrap(
-                        GenerateResourceApiEndpointDefinition(apiResource, apiEndpoint, _baseEndpointPath)));
+                        GenerateResourceApiEndpointDefinition(apiResource, apiEndpoint, baseEndpointPath)));
             }
         
             // Group nested resources by path
@@ -421,7 +411,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 var isFirstResource = true;
                 foreach (var apiNestedResource in apiNestedResources)
                 {
-                    var nestedResourceBreadcrumbPath = (_resourceBreadcrumbPath.Length > 0 ? _resourceBreadcrumbPath + "." : _resourceBreadcrumbPath) + apiNestedResource.DisplaySingular.ToSafeIdentifier();
+                    var nestedResourceBreadcrumbPath = (resourceBreadcrumbPath.Length > 0 ? resourceBreadcrumbPath + "." : resourceBreadcrumbPath) + apiNestedResource.DisplaySingular.ToSafeIdentifier();
 
                     var isFirstWrite = _resourceBreadcrumbPaths.Add(nestedResourceBreadcrumbPath);
                     if (isFirstResource && isFirstWrite)
@@ -434,7 +424,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                         indent.Wrap(
                             GenerateResourceDefinition(
                                 apiNestedResource, 
-                                (_baseEndpointPath.Length > 0 ? _baseEndpointPath + "/" : _baseEndpointPath) + apiResource.Path.Segments.ToPath(),
+                                (baseEndpointPath.Length > 0 ? baseEndpointPath + "/" : baseEndpointPath) + apiResource.Path.Segments.ToPath(),
                                 nestedResourceBreadcrumbPath,
                                 isFirstResource && isFirstWrite)));
         
@@ -447,10 +437,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             return builder.ToString();
         }
         
-        public string GenerateResourceApiEndpointDefinition(ApiResource apiResource, ApiEndpoint apiEndpoint, string _baseEndpointPath)
+        public string GenerateResourceApiEndpointDefinition(ApiResource apiResource, ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var builder = new StringBuilder();
-            builder.AppendLine(GenerateApiEndpointDefinition(apiEndpoint, _baseEndpointPath));
+            builder.AppendLine(GenerateApiEndpointDefinition(apiEndpoint, baseEndpointPath));
             
             var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object objectResponse
                 && objectResponse.Kind == ApiFieldType.Object.ObjectKind.BATCH;
@@ -458,22 +448,22 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             if (isResponseBatch && apiEndpoint.ResponseBody != null)
             {
                 builder.AppendLine();
-                builder.AppendLine(WriteEndpointBatchEnumeratorOverload(apiEndpoint, _baseEndpointPath));
+                builder.AppendLine(WriteEndpointBatchEnumeratorOverload(apiEndpoint, baseEndpointPath));
             }
 
             return builder.ToString();
         }
 
         // TODO REFACTORING GenerateMethodFor.... is a better name
-        private string GenerateApiEndpointDefinition(ApiEndpoint apiEndpoint, string _baseEndpointPath)
+        private string GenerateApiEndpointDefinition(ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var indent = new Indent();
             var builder = new StringBuilder();
             
-            var endpointPath = (_baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
+            var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
         
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
-            var _clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
+            var clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
         
             if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
             {
@@ -492,16 +482,16 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             
             if (apiEndpoint.ResponseBody == null)
             {
-                builder.Append($"{indent}public async Task " + _clientMethodName + "Async(");
+                builder.Append($"{indent}public async Task " + clientMethodName + "Async(");
 
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, _clientMethodName));
+                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, clientMethodName));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, _clientMethodName),
+                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName),
                             "data");
                 }
 
@@ -518,7 +508,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), _clientMethodName) + ">";
+                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), clientMethodName) + ">";
                     
                     requestParametersBuilder = requestParametersBuilder
                         .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
@@ -537,24 +527,24 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             else if (apiEndpoint.ResponseBody != null)
             {
                 builder.Append($"{indent}public async Task<");
-                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, _clientMethodName));
+                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, clientMethodName));
                 builder.Append(">");
-                builder.Append(" " + _clientMethodName + "Async(");
+                builder.Append(" " + clientMethodName + "Async(");
                 
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, _clientMethodName));
+                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, clientMethodName));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, _clientMethodName),
+                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName),
                             "data");
                 }
         
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), _clientMethodName) + ">";
+                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), clientMethodName) + ">";
                     var funcType = $"Func<{partialType}, {partialType}>";
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
@@ -570,10 +560,10 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 builder.Append($"{indent}=> await _connection.RequestResourceAsync<");
                 if (apiEndpoint.RequestBody != null)
                 {
-                    builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, _clientMethodName));
+                    builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName));
                     builder.Append(", ");
                 }
-                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, _clientMethodName));
+                builder.Append(GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody, clientMethodName));
                 builder.Append(">");
                 builder.Append("(\"" + apiCallMethod + "\", ");
                 builder.Append("$\"api/http/" + endpointPath);
@@ -583,7 +573,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
                 {
-                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), _clientMethodName) + ">";
+                    var partialType = "Partial<" + GenerateDtoFieldDefinitionType(apiEndpoint.ResponseBody.GetArrayElementTypeOrType(), clientMethodName) + ">";
                     
                     requestParametersBuilder = requestParametersBuilder
                         .WithParameter("$fields", $"{{(partial != null ? partial(new {partialType}()) : {partialType}.Default())}}");
@@ -607,14 +597,14 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             return builder.ToString();
         }
         
-        private string WriteEndpointBatchEnumeratorOverload(ApiEndpoint apiEndpoint, string _baseEndpointPath)
+        private string WriteEndpointBatchEnumeratorOverload(ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var indent = new Indent();
             var builder = new StringBuilder();
             
-            var endpointPath = (_baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
+            var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
         
-            var _clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
+            var clientMethodName = apiEndpoint.DisplayName.ToSafeIdentifier()!;
         
             if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
             {
@@ -633,22 +623,22 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
             if (apiEndpoint.ResponseBody != null)
             {
                 builder.Append($"{indent}public IAsyncEnumerable<");
-                builder.Append(GenerateDtoFieldDefinitionType(batchDataType.ElementType, _clientMethodName));
+                builder.Append(GenerateDtoFieldDefinitionType(batchDataType.ElementType, clientMethodName));
                 builder.Append(">");
-                builder.Append(" " + _clientMethodName + "AsyncEnumerable(");
+                builder.Append(" " + clientMethodName + "AsyncEnumerable(");
             
                 var methodParametersBuilder = new MethodParametersBuilder()
-                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, _clientMethodName));
+                    .WithParametersForEndpoint(apiEndpoint, x => GenerateDtoFieldDefinitionType(x, clientMethodName));
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     methodParametersBuilder = methodParametersBuilder
                         .WithParameter(
-                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, _clientMethodName),
+                            GenerateDtoFieldDefinitionType(apiEndpoint.RequestBody, clientMethodName),
                             "data");
                 }
         
-                var partialType = "Partial<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), _clientMethodName) + ">";
+                var partialType = "Partial<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), clientMethodName) + ">";
                 var funcType = $"Func<{partialType}, {partialType}>";
                 methodParametersBuilder = methodParametersBuilder
                     .WithParameter(
@@ -662,9 +652,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp
                 indent.Increment();
                 builder.Append($"{indent}=> BatchEnumerator.AllItems(batchSkip => ");
                 
-                builder.Append(_clientMethodName + "Async(");
+                builder.Append(clientMethodName + "Async(");
 
-                var partialTypeForBatch = "Partial<Batch<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), _clientMethodName) + ">>";
+                var partialTypeForBatch = "Partial<Batch<" + GenerateDtoFieldDefinitionType(batchDataType.GetBatchElementTypeOrType(), clientMethodName) + ">>";
                 builder.Append(
                     methodParametersBuilder
                         .WithDefaultValueForAllParameters(null)

@@ -9,6 +9,7 @@ namespace SpaceDotNet.Samples.CommandLine
 {
     class Program
     {
+        // ReSharper disable once UnusedParameter.Local
         static async Task Main(string[] args)
         {
             // Create a connection using a service account.

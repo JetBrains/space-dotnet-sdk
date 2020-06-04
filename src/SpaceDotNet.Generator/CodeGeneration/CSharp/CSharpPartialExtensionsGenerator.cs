@@ -1,6 +1,4 @@
-using System.Linq;
 using System.Text;
-using System.Text.Json;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
@@ -178,8 +176,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                         // Unknown object kind
                         throw new ResourceException("Could not generate type name for object kind: " + apiFieldTypeObject.Kind);
                     }
-        
-                    break;
                 
                 case ApiFieldType.Primitive apiFieldTypePrimitive:
                     return apiFieldTypePrimitive.ToCSharpPrimitiveType()!;
