@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2PackageDeletedDetailsExtensions
+namespace SpaceDotNet.Client.M2PackageDeletedDetailsDtoExtensions
 {
     public static class M2PackageDeletedDetailsDtoPartialExtensions
     {
-        public static Partial<M2PackageDeletedDetailsDto> WithPkg(this Partial<M2PackageDeletedDetailsDto> it)
-            => it.AddFieldName("pkg");
+        public static Partial<M2PackageDeletedDetailsDto> WithPkg(this Partial<M2PackageDeletedDetailsDto> it)    => it.AddFieldName("pkg");
         
-        public static Partial<M2PackageDeletedDetailsDto> WithPkg(this Partial<M2PackageDeletedDetailsDto> it, Func<Partial<PackageVersionInfoDto>, Partial<PackageVersionInfoDto>> partialBuilder)
-            => it.AddFieldName("pkg", partialBuilder(new Partial<PackageVersionInfoDto>()));
+        public static Partial<M2PackageDeletedDetailsDto> WithPkg(this Partial<M2PackageDeletedDetailsDto> it, Func<Partial<PackageVersionInfoDto>, Partial<PackageVersionInfoDto>> partialBuilder)    => it.AddFieldName("pkg", partialBuilder(new Partial<PackageVersionInfoDto>()));
         
     }
     

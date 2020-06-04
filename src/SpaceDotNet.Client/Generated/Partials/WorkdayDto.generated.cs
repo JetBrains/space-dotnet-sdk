@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.WorkdayExtensions
+namespace SpaceDotNet.Client.WorkdayDtoExtensions
 {
     public static class WorkdayDtoPartialExtensions
     {
-        public static Partial<WorkdayDto> WithWeekday(this Partial<WorkdayDto> it)
-            => it.AddFieldName("weekday");
+        public static Partial<WorkdayDto> WithWeekday(this Partial<WorkdayDto> it)    => it.AddFieldName("weekday");
         
-        public static Partial<WorkdayDto> WithWorking(this Partial<WorkdayDto> it)
-            => it.AddFieldName("working");
+        public static Partial<WorkdayDto> WithWorking(this Partial<WorkdayDto> it)    => it.AddFieldName("working");
         
-        public static Partial<WorkdayDto> WithHours(this Partial<WorkdayDto> it)
-            => it.AddFieldName("hours");
+        public static Partial<WorkdayDto> WithHours(this Partial<WorkdayDto> it)    => it.AddFieldName("hours");
         
-        public static Partial<WorkdayDto> WithMinutes(this Partial<WorkdayDto> it)
-            => it.AddFieldName("minutes");
+        public static Partial<WorkdayDto> WithMinutes(this Partial<WorkdayDto> it)    => it.AddFieldName("minutes");
         
     }
     

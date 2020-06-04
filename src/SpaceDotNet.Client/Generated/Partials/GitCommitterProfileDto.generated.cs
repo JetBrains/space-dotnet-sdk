@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.GitCommitterProfileExtensions
+namespace SpaceDotNet.Client.GitCommitterProfileDtoExtensions
 {
     public static class GitCommitterProfileDtoPartialExtensions
     {
-        public static Partial<GitCommitterProfileDto> WithAuthor(this Partial<GitCommitterProfileDto> it)
-            => it.AddFieldName("author");
+        public static Partial<GitCommitterProfileDto> WithAuthor(this Partial<GitCommitterProfileDto> it)    => it.AddFieldName("author");
         
-        public static Partial<GitCommitterProfileDto> WithEmail(this Partial<GitCommitterProfileDto> it)
-            => it.AddFieldName("email");
+        public static Partial<GitCommitterProfileDto> WithEmail(this Partial<GitCommitterProfileDto> it)    => it.AddFieldName("email");
         
-        public static Partial<GitCommitterProfileDto> WithProfile(this Partial<GitCommitterProfileDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<GitCommitterProfileDto> WithProfile(this Partial<GitCommitterProfileDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<GitCommitterProfileDto> WithProfile(this Partial<GitCommitterProfileDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<GitCommitterProfileDto> WithProfile(this Partial<GitCommitterProfileDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

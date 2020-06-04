@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportTransactionRecordExtensions
+namespace SpaceDotNet.Client.ImportTransactionRecordDtoExtensions
 {
     public static class ImportTransactionRecordDtoPartialExtensions
     {
-        public static Partial<ImportTransactionRecordDto> WithId(this Partial<ImportTransactionRecordDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ImportTransactionRecordDto> WithId(this Partial<ImportTransactionRecordDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ImportTransactionRecordDto> WithArchived(this Partial<ImportTransactionRecordDto> it)
-            => it.AddFieldName("archived");
+        public static Partial<ImportTransactionRecordDto> WithArchived(this Partial<ImportTransactionRecordDto> it)    => it.AddFieldName("archived");
         
-        public static Partial<ImportTransactionRecordDto> WithImporter(this Partial<ImportTransactionRecordDto> it)
-            => it.AddFieldName("importer");
+        public static Partial<ImportTransactionRecordDto> WithImporter(this Partial<ImportTransactionRecordDto> it)    => it.AddFieldName("importer");
         
-        public static Partial<ImportTransactionRecordDto> WithImporter(this Partial<ImportTransactionRecordDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)
-            => it.AddFieldName("importer", partialBuilder(new Partial<CPrincipalDto>()));
+        public static Partial<ImportTransactionRecordDto> WithImporter(this Partial<ImportTransactionRecordDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)    => it.AddFieldName("importer", partialBuilder(new Partial<CPrincipalDto>()));
         
-        public static Partial<ImportTransactionRecordDto> WithExternalSource(this Partial<ImportTransactionRecordDto> it)
-            => it.AddFieldName("externalSource");
+        public static Partial<ImportTransactionRecordDto> WithExternalSource(this Partial<ImportTransactionRecordDto> it)    => it.AddFieldName("externalSource");
         
     }
     

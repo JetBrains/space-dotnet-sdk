@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESGoogleAuthModuleSettingsExtensions
+namespace SpaceDotNet.Client.ESGoogleAuthModuleSettingsDtoExtensions
 {
     public static class ESGoogleAuthModuleSettingsDtoPartialExtensions
     {
-        public static Partial<ESGoogleAuthModuleSettingsDto> WithClientId(this Partial<ESGoogleAuthModuleSettingsDto> it)
-            => it.AddFieldName("clientId");
+        public static Partial<ESGoogleAuthModuleSettingsDto> WithClientId(this Partial<ESGoogleAuthModuleSettingsDto> it)    => it.AddFieldName("clientId");
         
-        public static Partial<ESGoogleAuthModuleSettingsDto> WithClientSecret(this Partial<ESGoogleAuthModuleSettingsDto> it)
-            => it.AddFieldName("clientSecret");
+        public static Partial<ESGoogleAuthModuleSettingsDto> WithClientSecret(this Partial<ESGoogleAuthModuleSettingsDto> it)    => it.AddFieldName("clientSecret");
         
-        public static Partial<ESGoogleAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESGoogleAuthModuleSettingsDto> it)
-            => it.AddFieldName("registerNewUsers");
+        public static Partial<ESGoogleAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESGoogleAuthModuleSettingsDto> it)    => it.AddFieldName("registerNewUsers");
         
-        public static Partial<ESGoogleAuthModuleSettingsDto> WithDomains(this Partial<ESGoogleAuthModuleSettingsDto> it)
-            => it.AddFieldName("domains");
+        public static Partial<ESGoogleAuthModuleSettingsDto> WithDomains(this Partial<ESGoogleAuthModuleSettingsDto> it)    => it.AddFieldName("domains");
         
     }
     

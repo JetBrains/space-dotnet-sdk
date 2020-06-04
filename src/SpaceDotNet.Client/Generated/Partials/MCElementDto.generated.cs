@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MCElementExtensions
+namespace SpaceDotNet.Client.MCElementDtoExtensions
 {
     public static class MCElementDtoPartialExtensions
     {
-        public static Partial<MCElementDto> WithDefaultText(this Partial<MCElementDto> it)
-            => it.AddFieldName("defaultText");
+        public static Partial<MCElementDto> WithDefaultText(this Partial<MCElementDto> it)    => it.AddFieldName("defaultText");
         
-        public static Partial<MCElementDto> WithDetails(this Partial<MCElementDto> it)
-            => it.AddFieldName("details");
+        public static Partial<MCElementDto> WithDetails(this Partial<MCElementDto> it)    => it.AddFieldName("details");
         
-        public static Partial<MCElementDto> WithDetails(this Partial<MCElementDto> it, Func<Partial<MCElementDetailsDto>, Partial<MCElementDetailsDto>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<MCElementDetailsDto>()));
+        public static Partial<MCElementDto> WithDetails(this Partial<MCElementDto> it, Func<Partial<MCElementDetailsDto>, Partial<MCElementDetailsDto>> partialBuilder)    => it.AddFieldName("details", partialBuilder(new Partial<MCElementDetailsDto>()));
         
     }
     

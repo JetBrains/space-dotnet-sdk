@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImageAttachmentExtensions
+namespace SpaceDotNet.Client.ImageAttachmentDtoExtensions
 {
     public static class ImageAttachmentDtoPartialExtensions
     {
-        public static Partial<ImageAttachmentDto> WithId(this Partial<ImageAttachmentDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ImageAttachmentDto> WithId(this Partial<ImageAttachmentDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ImageAttachmentDto> WithName(this Partial<ImageAttachmentDto> it)
-            => it.AddFieldName("name");
+        public static Partial<ImageAttachmentDto> WithName(this Partial<ImageAttachmentDto> it)    => it.AddFieldName("name");
         
-        public static Partial<ImageAttachmentDto> WithWidth(this Partial<ImageAttachmentDto> it)
-            => it.AddFieldName("width");
+        public static Partial<ImageAttachmentDto> WithWidth(this Partial<ImageAttachmentDto> it)    => it.AddFieldName("width");
         
-        public static Partial<ImageAttachmentDto> WithHeight(this Partial<ImageAttachmentDto> it)
-            => it.AddFieldName("height");
+        public static Partial<ImageAttachmentDto> WithHeight(this Partial<ImageAttachmentDto> it)    => it.AddFieldName("height");
         
-        public static Partial<ImageAttachmentDto> WithPreviewBytes(this Partial<ImageAttachmentDto> it)
-            => it.AddFieldName("previewBytes");
+        public static Partial<ImageAttachmentDto> WithPreviewBytes(this Partial<ImageAttachmentDto> it)    => it.AddFieldName("previewBytes");
         
-        public static Partial<ImageAttachmentDto> WithVariants(this Partial<ImageAttachmentDto> it)
-            => it.AddFieldName("variants");
+        public static Partial<ImageAttachmentDto> WithVariants(this Partial<ImageAttachmentDto> it)    => it.AddFieldName("variants");
         
-        public static Partial<ImageAttachmentDto> WithVariants(this Partial<ImageAttachmentDto> it, Func<Partial<ImageAttachmentVariantDto>, Partial<ImageAttachmentVariantDto>> partialBuilder)
-            => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariantDto>()));
+        public static Partial<ImageAttachmentDto> WithVariants(this Partial<ImageAttachmentDto> it, Func<Partial<ImageAttachmentVariantDto>, Partial<ImageAttachmentVariantDto>> partialBuilder)    => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariantDto>()));
         
     }
     

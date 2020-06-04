@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.AddMemberRequestExtensions
+namespace SpaceDotNet.Client.AddMemberRequestDtoExtensions
 {
     public static class AddMemberRequestDtoPartialExtensions
     {
-        public static Partial<AddMemberRequestDto> WithProfileId(this Partial<AddMemberRequestDto> it)
-            => it.AddFieldName("profileId");
+        public static Partial<AddMemberRequestDto> WithProfileId(this Partial<AddMemberRequestDto> it)    => it.AddFieldName("profileId");
         
     }
     

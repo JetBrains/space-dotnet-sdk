@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.IssueStatusChangedDetailsExtensions
+namespace SpaceDotNet.Client.IssueStatusChangedDetailsDtoExtensions
 {
     public static class IssueStatusChangedDetailsDtoPartialExtensions
     {
-        public static Partial<IssueStatusChangedDetailsDto> WithOldStatus(this Partial<IssueStatusChangedDetailsDto> it)
-            => it.AddFieldName("oldStatus");
+        public static Partial<IssueStatusChangedDetailsDto> WithOldStatus(this Partial<IssueStatusChangedDetailsDto> it)    => it.AddFieldName("oldStatus");
         
-        public static Partial<IssueStatusChangedDetailsDto> WithOldStatus(this Partial<IssueStatusChangedDetailsDto> it, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder)
-            => it.AddFieldName("oldStatus", partialBuilder(new Partial<IssueStatusDto>()));
+        public static Partial<IssueStatusChangedDetailsDto> WithOldStatus(this Partial<IssueStatusChangedDetailsDto> it, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder)    => it.AddFieldName("oldStatus", partialBuilder(new Partial<IssueStatusDto>()));
         
-        public static Partial<IssueStatusChangedDetailsDto> WithNewStatus(this Partial<IssueStatusChangedDetailsDto> it)
-            => it.AddFieldName("newStatus");
+        public static Partial<IssueStatusChangedDetailsDto> WithNewStatus(this Partial<IssueStatusChangedDetailsDto> it)    => it.AddFieldName("newStatus");
         
-        public static Partial<IssueStatusChangedDetailsDto> WithNewStatus(this Partial<IssueStatusChangedDetailsDto> it, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder)
-            => it.AddFieldName("newStatus", partialBuilder(new Partial<IssueStatusDto>()));
+        public static Partial<IssueStatusChangedDetailsDto> WithNewStatus(this Partial<IssueStatusChangedDetailsDto> it, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder)    => it.AddFieldName("newStatus", partialBuilder(new Partial<IssueStatusDto>()));
         
     }
     

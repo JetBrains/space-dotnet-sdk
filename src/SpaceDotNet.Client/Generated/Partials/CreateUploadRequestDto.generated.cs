@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateUploadRequestExtensions
+namespace SpaceDotNet.Client.CreateUploadRequestDtoExtensions
 {
     public static class CreateUploadRequestDtoPartialExtensions
     {
-        public static Partial<CreateUploadRequestDto> WithStoragePrefix(this Partial<CreateUploadRequestDto> it)
-            => it.AddFieldName("storagePrefix");
+        public static Partial<CreateUploadRequestDto> WithStoragePrefix(this Partial<CreateUploadRequestDto> it)    => it.AddFieldName("storagePrefix");
         
-        public static Partial<CreateUploadRequestDto> WithMediaType(this Partial<CreateUploadRequestDto> it)
-            => it.AddFieldName("mediaType");
+        public static Partial<CreateUploadRequestDto> WithMediaType(this Partial<CreateUploadRequestDto> it)    => it.AddFieldName("mediaType");
         
     }
     

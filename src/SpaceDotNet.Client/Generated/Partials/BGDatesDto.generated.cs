@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BGDatesExtensions
+namespace SpaceDotNet.Client.BGDatesDtoExtensions
 {
     public static class BGDatesDtoPartialExtensions
     {
-        public static Partial<BGDatesDto> WithFirst(this Partial<BGDatesDto> it)
-            => it.AddFieldName("first");
+        public static Partial<BGDatesDto> WithFirst(this Partial<BGDatesDto> it)    => it.AddFieldName("first");
         
-        public static Partial<BGDatesDto> WithLast(this Partial<BGDatesDto> it)
-            => it.AddFieldName("last");
+        public static Partial<BGDatesDto> WithLast(this Partial<BGDatesDto> it)    => it.AddFieldName("last");
         
     }
     

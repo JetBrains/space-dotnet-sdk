@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ChannelParticipantExtensions
+namespace SpaceDotNet.Client.ChannelParticipantDtoExtensions
 {
     public static class ChannelParticipantDtoPartialExtensions
     {
-        public static Partial<ChannelParticipantDto> WithPrincipal(this Partial<ChannelParticipantDto> it)
-            => it.AddFieldName("principal");
+        public static Partial<ChannelParticipantDto> WithPrincipal(this Partial<ChannelParticipantDto> it)    => it.AddFieldName("principal");
         
-        public static Partial<ChannelParticipantDto> WithPrincipal(this Partial<ChannelParticipantDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipalDto>()));
+        public static Partial<ChannelParticipantDto> WithPrincipal(this Partial<ChannelParticipantDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)    => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipalDto>()));
         
-        public static Partial<ChannelParticipantDto> WithMessageCount(this Partial<ChannelParticipantDto> it)
-            => it.AddFieldName("messageCount");
+        public static Partial<ChannelParticipantDto> WithMessageCount(this Partial<ChannelParticipantDto> it)    => it.AddFieldName("messageCount");
         
-        public static Partial<ChannelParticipantDto> WithPendingMessageCount(this Partial<ChannelParticipantDto> it)
-            => it.AddFieldName("pendingMessageCount");
+        public static Partial<ChannelParticipantDto> WithPendingMessageCount(this Partial<ChannelParticipantDto> it)    => it.AddFieldName("pendingMessageCount");
         
     }
     

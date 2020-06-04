@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MCGroupExtensions
+namespace SpaceDotNet.Client.MCGroupDtoExtensions
 {
     public static class MCGroupDtoPartialExtensions
     {
-        public static Partial<MCGroupDto> WithElements(this Partial<MCGroupDto> it)
-            => it.AddFieldName("elements");
+        public static Partial<MCGroupDto> WithElements(this Partial<MCGroupDto> it)    => it.AddFieldName("elements");
         
-        public static Partial<MCGroupDto> WithElements(this Partial<MCGroupDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)
-            => it.AddFieldName("elements", partialBuilder(new Partial<MCElementDto>()));
+        public static Partial<MCGroupDto> WithElements(this Partial<MCGroupDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)    => it.AddFieldName("elements", partialBuilder(new Partial<MCElementDto>()));
         
     }
     

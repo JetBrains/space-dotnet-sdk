@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateCodeDiscussionRequestExtensions
+namespace SpaceDotNet.Client.CreateCodeDiscussionRequestDtoExtensions
 {
     public static class CreateCodeDiscussionRequestDtoPartialExtensions
     {
-        public static Partial<CreateCodeDiscussionRequestDto> WithText(this Partial<CreateCodeDiscussionRequestDto> it)
-            => it.AddFieldName("text");
+        public static Partial<CreateCodeDiscussionRequestDto> WithText(this Partial<CreateCodeDiscussionRequestDto> it)    => it.AddFieldName("text");
         
-        public static Partial<CreateCodeDiscussionRequestDto> WithDiffContext(this Partial<CreateCodeDiscussionRequestDto> it)
-            => it.AddFieldName("diffContext");
+        public static Partial<CreateCodeDiscussionRequestDto> WithDiffContext(this Partial<CreateCodeDiscussionRequestDto> it)    => it.AddFieldName("diffContext");
         
-        public static Partial<CreateCodeDiscussionRequestDto> WithDiffContext(this Partial<CreateCodeDiscussionRequestDto> it, Func<Partial<DiffContextDto>, Partial<DiffContextDto>> partialBuilder)
-            => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContextDto>()));
+        public static Partial<CreateCodeDiscussionRequestDto> WithDiffContext(this Partial<CreateCodeDiscussionRequestDto> it, Func<Partial<DiffContextDto>, Partial<DiffContextDto>> partialBuilder)    => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContextDto>()));
         
-        public static Partial<CreateCodeDiscussionRequestDto> WithFilename(this Partial<CreateCodeDiscussionRequestDto> it)
-            => it.AddFieldName("filename");
+        public static Partial<CreateCodeDiscussionRequestDto> WithFilename(this Partial<CreateCodeDiscussionRequestDto> it)    => it.AddFieldName("filename");
         
-        public static Partial<CreateCodeDiscussionRequestDto> WithLine(this Partial<CreateCodeDiscussionRequestDto> it)
-            => it.AddFieldName("line");
+        public static Partial<CreateCodeDiscussionRequestDto> WithLine(this Partial<CreateCodeDiscussionRequestDto> it)    => it.AddFieldName("line");
         
-        public static Partial<CreateCodeDiscussionRequestDto> WithOldLine(this Partial<CreateCodeDiscussionRequestDto> it)
-            => it.AddFieldName("oldLine");
+        public static Partial<CreateCodeDiscussionRequestDto> WithOldLine(this Partial<CreateCodeDiscussionRequestDto> it)    => it.AddFieldName("oldLine");
         
-        public static Partial<CreateCodeDiscussionRequestDto> WithPending(this Partial<CreateCodeDiscussionRequestDto> it)
-            => it.AddFieldName("pending");
+        public static Partial<CreateCodeDiscussionRequestDto> WithPending(this Partial<CreateCodeDiscussionRequestDto> it)    => it.AddFieldName("pending");
         
     }
     

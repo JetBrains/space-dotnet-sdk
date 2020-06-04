@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TDLocationMapExtensions
+namespace SpaceDotNet.Client.TDLocationMapDtoExtensions
 {
     public static class TDLocationMapDtoPartialExtensions
     {
-        public static Partial<TDLocationMapDto> WithId(this Partial<TDLocationMapDto> it)
-            => it.AddFieldName("id");
+        public static Partial<TDLocationMapDto> WithId(this Partial<TDLocationMapDto> it)    => it.AddFieldName("id");
         
-        public static Partial<TDLocationMapDto> WithPicture(this Partial<TDLocationMapDto> it)
-            => it.AddFieldName("picture");
+        public static Partial<TDLocationMapDto> WithPicture(this Partial<TDLocationMapDto> it)    => it.AddFieldName("picture");
         
-        public static Partial<TDLocationMapDto> WithCreated(this Partial<TDLocationMapDto> it)
-            => it.AddFieldName("created");
+        public static Partial<TDLocationMapDto> WithCreated(this Partial<TDLocationMapDto> it)    => it.AddFieldName("created");
         
-        public static Partial<TDLocationMapDto> WithWidth(this Partial<TDLocationMapDto> it)
-            => it.AddFieldName("width");
+        public static Partial<TDLocationMapDto> WithWidth(this Partial<TDLocationMapDto> it)    => it.AddFieldName("width");
         
-        public static Partial<TDLocationMapDto> WithHeight(this Partial<TDLocationMapDto> it)
-            => it.AddFieldName("height");
+        public static Partial<TDLocationMapDto> WithHeight(this Partial<TDLocationMapDto> it)    => it.AddFieldName("height");
         
     }
     

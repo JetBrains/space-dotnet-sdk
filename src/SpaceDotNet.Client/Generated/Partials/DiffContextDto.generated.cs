@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DiffContextExtensions
+namespace SpaceDotNet.Client.DiffContextDtoExtensions
 {
     public static class DiffContextDtoPartialExtensions
     {
-        public static Partial<DiffContextDto> WithLeft(this Partial<DiffContextDto> it)
-            => it.AddFieldName("left");
+        public static Partial<DiffContextDto> WithLeft(this Partial<DiffContextDto> it)    => it.AddFieldName("left");
         
-        public static Partial<DiffContextDto> WithLeft(this Partial<DiffContextDto> it, Func<Partial<DiffSideDto>, Partial<DiffSideDto>> partialBuilder)
-            => it.AddFieldName("left", partialBuilder(new Partial<DiffSideDto>()));
+        public static Partial<DiffContextDto> WithLeft(this Partial<DiffContextDto> it, Func<Partial<DiffSideDto>, Partial<DiffSideDto>> partialBuilder)    => it.AddFieldName("left", partialBuilder(new Partial<DiffSideDto>()));
         
-        public static Partial<DiffContextDto> WithRight(this Partial<DiffContextDto> it)
-            => it.AddFieldName("right");
+        public static Partial<DiffContextDto> WithRight(this Partial<DiffContextDto> it)    => it.AddFieldName("right");
         
-        public static Partial<DiffContextDto> WithRight(this Partial<DiffContextDto> it, Func<Partial<DiffSideDto>, Partial<DiffSideDto>> partialBuilder)
-            => it.AddFieldName("right", partialBuilder(new Partial<DiffSideDto>()));
+        public static Partial<DiffContextDto> WithRight(this Partial<DiffContextDto> it, Func<Partial<DiffSideDto>, Partial<DiffSideDto>> partialBuilder)    => it.AddFieldName("right", partialBuilder(new Partial<DiffSideDto>()));
         
     }
     

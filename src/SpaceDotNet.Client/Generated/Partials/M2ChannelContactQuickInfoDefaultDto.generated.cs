@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContactQuickInfoDefaultExtensions
+namespace SpaceDotNet.Client.M2ChannelContactQuickInfoDefaultDtoExtensions
 {
     public static class M2ChannelContactQuickInfoDefaultDtoPartialExtensions
     {
-        public static Partial<M2ChannelContactQuickInfoDefaultDto> WithName(this Partial<M2ChannelContactQuickInfoDefaultDto> it)
-            => it.AddFieldName("name");
+        public static Partial<M2ChannelContactQuickInfoDefaultDto> WithName(this Partial<M2ChannelContactQuickInfoDefaultDto> it)    => it.AddFieldName("name");
         
-        public static Partial<M2ChannelContactQuickInfoDefaultDto> WithKey(this Partial<M2ChannelContactQuickInfoDefaultDto> it)
-            => it.AddFieldName("key");
+        public static Partial<M2ChannelContactQuickInfoDefaultDto> WithKey(this Partial<M2ChannelContactQuickInfoDefaultDto> it)    => it.AddFieldName("key");
         
     }
     

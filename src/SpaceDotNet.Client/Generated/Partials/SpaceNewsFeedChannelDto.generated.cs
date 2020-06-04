@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.SpaceNewsFeedChannelExtensions
+namespace SpaceDotNet.Client.SpaceNewsFeedChannelDtoExtensions
 {
     public static class SpaceNewsFeedChannelDtoPartialExtensions
     {
-        public static Partial<SpaceNewsFeedChannelDto> WithNotificationDefaults(this Partial<SpaceNewsFeedChannelDto> it)
-            => it.AddFieldName("notificationDefaults");
+        public static Partial<SpaceNewsFeedChannelDto> WithNotificationDefaults(this Partial<SpaceNewsFeedChannelDto> it)    => it.AddFieldName("notificationDefaults");
         
-        public static Partial<SpaceNewsFeedChannelDto> WithNotificationDefaults(this Partial<SpaceNewsFeedChannelDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<SpaceNewsFeedChannelDto> WithNotificationDefaults(this Partial<SpaceNewsFeedChannelDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
         
     }
     

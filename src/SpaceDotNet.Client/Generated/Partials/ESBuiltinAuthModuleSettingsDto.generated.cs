@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESBuiltinAuthModuleSettingsExtensions
+namespace SpaceDotNet.Client.ESBuiltinAuthModuleSettingsDtoExtensions
 {
     public static class ESBuiltinAuthModuleSettingsDtoPartialExtensions
     {
-        public static Partial<ESBuiltinAuthModuleSettingsDto> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettingsDto> it)
-            => it.AddFieldName("passwordStrengthPolicy");
+        public static Partial<ESBuiltinAuthModuleSettingsDto> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettingsDto> it)    => it.AddFieldName("passwordStrengthPolicy");
         
-        public static Partial<ESBuiltinAuthModuleSettingsDto> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettingsDto> it, Func<Partial<PasswordStrength>, Partial<PasswordStrength>> partialBuilder)
-            => it.AddFieldName("passwordStrengthPolicy", partialBuilder(new Partial<PasswordStrength>()));
+        public static Partial<ESBuiltinAuthModuleSettingsDto> WithPasswordStrengthPolicy(this Partial<ESBuiltinAuthModuleSettingsDto> it, Func<Partial<PasswordStrength>, Partial<PasswordStrength>> partialBuilder)    => it.AddFieldName("passwordStrengthPolicy", partialBuilder(new Partial<PasswordStrength>()));
         
-        public static Partial<ESBuiltinAuthModuleSettingsDto> WithDomains(this Partial<ESBuiltinAuthModuleSettingsDto> it)
-            => it.AddFieldName("domains");
+        public static Partial<ESBuiltinAuthModuleSettingsDto> WithDomains(this Partial<ESBuiltinAuthModuleSettingsDto> it)    => it.AddFieldName("domains");
         
     }
     

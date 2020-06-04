@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TDProfileNameExtensions
+namespace SpaceDotNet.Client.TDProfileNameDtoExtensions
 {
     public static class TDProfileNameDtoPartialExtensions
     {
-        public static Partial<TDProfileNameDto> WithFirstName(this Partial<TDProfileNameDto> it)
-            => it.AddFieldName("firstName");
+        public static Partial<TDProfileNameDto> WithFirstName(this Partial<TDProfileNameDto> it)    => it.AddFieldName("firstName");
         
-        public static Partial<TDProfileNameDto> WithLastName(this Partial<TDProfileNameDto> it)
-            => it.AddFieldName("lastName");
+        public static Partial<TDProfileNameDto> WithLastName(this Partial<TDProfileNameDto> it)    => it.AddFieldName("lastName");
         
     }
     

@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESContainerRegistrySettingsExtensions
+namespace SpaceDotNet.Client.ESContainerRegistrySettingsDtoExtensions
 {
     public static class ESContainerRegistrySettingsDtoPartialExtensions
     {
-        public static Partial<ESContainerRegistrySettingsDto> WithImmutableTags(this Partial<ESContainerRegistrySettingsDto> it)
-            => it.AddFieldName("immutableTags");
+        public static Partial<ESContainerRegistrySettingsDto> WithImmutableTags(this Partial<ESContainerRegistrySettingsDto> it)    => it.AddFieldName("immutableTags");
         
     }
     

@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESTeamMappingExtensions
+namespace SpaceDotNet.Client.ESTeamMappingDtoExtensions
 {
     public static class ESTeamMappingDtoPartialExtensions
     {
-        public static Partial<ESTeamMappingDto> WithTeamId(this Partial<ESTeamMappingDto> it)
-            => it.AddFieldName("teamId");
+        public static Partial<ESTeamMappingDto> WithTeamId(this Partial<ESTeamMappingDto> it)    => it.AddFieldName("teamId");
         
-        public static Partial<ESTeamMappingDto> WithExternalGroupName(this Partial<ESTeamMappingDto> it)
-            => it.AddFieldName("externalGroupName");
+        public static Partial<ESTeamMappingDto> WithExternalGroupName(this Partial<ESTeamMappingDto> it)    => it.AddFieldName("externalGroupName");
         
     }
     

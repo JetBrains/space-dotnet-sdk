@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TestLDAPSettingsRequestExtensions
+namespace SpaceDotNet.Client.TestLDAPSettingsRequestDtoExtensions
 {
     public static class TestLDAPSettingsRequestDtoPartialExtensions
     {
-        public static Partial<TestLDAPSettingsRequestDto> WithSettings(this Partial<TestLDAPSettingsRequestDto> it)
-            => it.AddFieldName("settings");
+        public static Partial<TestLDAPSettingsRequestDto> WithSettings(this Partial<TestLDAPSettingsRequestDto> it)    => it.AddFieldName("settings");
         
-        public static Partial<TestLDAPSettingsRequestDto> WithSettings(this Partial<TestLDAPSettingsRequestDto> it, Func<Partial<ESLdapAuthModuleSettingsDto>, Partial<ESLdapAuthModuleSettingsDto>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESLdapAuthModuleSettingsDto>()));
+        public static Partial<TestLDAPSettingsRequestDto> WithSettings(this Partial<TestLDAPSettingsRequestDto> it, Func<Partial<ESLdapAuthModuleSettingsDto>, Partial<ESLdapAuthModuleSettingsDto>> partialBuilder)    => it.AddFieldName("settings", partialBuilder(new Partial<ESLdapAuthModuleSettingsDto>()));
         
-        public static Partial<TestLDAPSettingsRequestDto> WithUsername(this Partial<TestLDAPSettingsRequestDto> it)
-            => it.AddFieldName("username");
+        public static Partial<TestLDAPSettingsRequestDto> WithUsername(this Partial<TestLDAPSettingsRequestDto> it)    => it.AddFieldName("username");
         
-        public static Partial<TestLDAPSettingsRequestDto> WithPassword(this Partial<TestLDAPSettingsRequestDto> it)
-            => it.AddFieldName("password");
+        public static Partial<TestLDAPSettingsRequestDto> WithPassword(this Partial<TestLDAPSettingsRequestDto> it)    => it.AddFieldName("password");
         
     }
     

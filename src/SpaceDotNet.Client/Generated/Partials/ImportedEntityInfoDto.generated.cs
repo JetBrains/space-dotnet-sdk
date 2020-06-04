@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportedEntityInfoExtensions
+namespace SpaceDotNet.Client.ImportedEntityInfoDtoExtensions
 {
     public static class ImportedEntityInfoDtoPartialExtensions
     {
-        public static Partial<ImportedEntityInfoDto> WithSource(this Partial<ImportedEntityInfoDto> it)
-            => it.AddFieldName("source");
+        public static Partial<ImportedEntityInfoDto> WithSource(this Partial<ImportedEntityInfoDto> it)    => it.AddFieldName("source");
         
-        public static Partial<ImportedEntityInfoDto> WithSource(this Partial<ImportedEntityInfoDto> it, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partialBuilder)
-            => it.AddFieldName("source", partialBuilder(new Partial<ImportSourceDto>()));
+        public static Partial<ImportedEntityInfoDto> WithSource(this Partial<ImportedEntityInfoDto> it, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>> partialBuilder)    => it.AddFieldName("source", partialBuilder(new Partial<ImportSourceDto>()));
         
-        public static Partial<ImportedEntityInfoDto> WithExternalName(this Partial<ImportedEntityInfoDto> it)
-            => it.AddFieldName("externalName");
+        public static Partial<ImportedEntityInfoDto> WithExternalName(this Partial<ImportedEntityInfoDto> it)    => it.AddFieldName("externalName");
         
-        public static Partial<ImportedEntityInfoDto> WithExternalUrl(this Partial<ImportedEntityInfoDto> it)
-            => it.AddFieldName("externalUrl");
+        public static Partial<ImportedEntityInfoDto> WithExternalUrl(this Partial<ImportedEntityInfoDto> it)    => it.AddFieldName("externalUrl");
         
     }
     

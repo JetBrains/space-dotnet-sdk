@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.SyntaxMarkupExtensions
+namespace SpaceDotNet.Client.SyntaxMarkupDtoExtensions
 {
     public static class SyntaxMarkupDtoPartialExtensions
     {
-        public static Partial<SyntaxMarkupDto> WithType(this Partial<SyntaxMarkupDto> it)
-            => it.AddFieldName("type");
+        public static Partial<SyntaxMarkupDto> WithType(this Partial<SyntaxMarkupDto> it)    => it.AddFieldName("type");
         
-        public static Partial<SyntaxMarkupDto> WithType(this Partial<SyntaxMarkupDto> it, Func<Partial<SyntaxMarkupType>, Partial<SyntaxMarkupType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<SyntaxMarkupType>()));
+        public static Partial<SyntaxMarkupDto> WithType(this Partial<SyntaxMarkupDto> it, Func<Partial<SyntaxMarkupType>, Partial<SyntaxMarkupType>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<SyntaxMarkupType>()));
         
-        public static Partial<SyntaxMarkupDto> WithRange(this Partial<SyntaxMarkupDto> it)
-            => it.AddFieldName("range");
+        public static Partial<SyntaxMarkupDto> WithRange(this Partial<SyntaxMarkupDto> it)    => it.AddFieldName("range");
         
-        public static Partial<SyntaxMarkupDto> WithRange(this Partial<SyntaxMarkupDto> it, Func<Partial<TextRangeDto>, Partial<TextRangeDto>> partialBuilder)
-            => it.AddFieldName("range", partialBuilder(new Partial<TextRangeDto>()));
+        public static Partial<SyntaxMarkupDto> WithRange(this Partial<SyntaxMarkupDto> it, Func<Partial<TextRangeDto>, Partial<TextRangeDto>> partialBuilder)    => it.AddFieldName("range", partialBuilder(new Partial<TextRangeDto>()));
         
     }
     

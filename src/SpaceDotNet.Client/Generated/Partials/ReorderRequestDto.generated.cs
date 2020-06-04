@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ReorderRequestExtensions
+namespace SpaceDotNet.Client.ReorderRequestDtoExtensions
 {
     public static class ReorderRequestDtoPartialExtensions
     {
-        public static Partial<ReorderRequestDto> WithOrder(this Partial<ReorderRequestDto> it)
-            => it.AddFieldName("order");
+        public static Partial<ReorderRequestDto> WithOrder(this Partial<ReorderRequestDto> it)    => it.AddFieldName("order");
         
     }
     

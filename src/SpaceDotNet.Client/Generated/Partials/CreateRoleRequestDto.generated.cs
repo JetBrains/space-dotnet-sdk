@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateRoleRequestExtensions
+namespace SpaceDotNet.Client.CreateRoleRequestDtoExtensions
 {
     public static class CreateRoleRequestDtoPartialExtensions
     {
-        public static Partial<CreateRoleRequestDto> WithName(this Partial<CreateRoleRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreateRoleRequestDto> WithName(this Partial<CreateRoleRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CreateRoleRequestDto> WithParentId(this Partial<CreateRoleRequestDto> it)
-            => it.AddFieldName("parentId");
+        public static Partial<CreateRoleRequestDto> WithParentId(this Partial<CreateRoleRequestDto> it)    => it.AddFieldName("parentId");
         
     }
     

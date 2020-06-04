@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.GerOrCreateDirectMessagesChannelRequestExtensions
+namespace SpaceDotNet.Client.GerOrCreateDirectMessagesChannelRequestDtoExtensions
 {
     public static class GerOrCreateDirectMessagesChannelRequestDtoPartialExtensions
     {
-        public static Partial<GerOrCreateDirectMessagesChannelRequestDto> WithProfile(this Partial<GerOrCreateDirectMessagesChannelRequestDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<GerOrCreateDirectMessagesChannelRequestDto> WithProfile(this Partial<GerOrCreateDirectMessagesChannelRequestDto> it)    => it.AddFieldName("profile");
         
     }
     

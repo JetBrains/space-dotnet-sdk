@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESProfileLoginExtensions
+namespace SpaceDotNet.Client.ESProfileLoginDtoExtensions
 {
     public static class ESProfileLoginDtoPartialExtensions
     {
-        public static Partial<ESProfileLoginDto> WithIdentifier(this Partial<ESProfileLoginDto> it)
-            => it.AddFieldName("identifier");
+        public static Partial<ESProfileLoginDto> WithIdentifier(this Partial<ESProfileLoginDto> it)    => it.AddFieldName("identifier");
         
-        public static Partial<ESProfileLoginDto> WithAuthModule(this Partial<ESProfileLoginDto> it)
-            => it.AddFieldName("authModule");
+        public static Partial<ESProfileLoginDto> WithAuthModule(this Partial<ESProfileLoginDto> it)    => it.AddFieldName("authModule");
         
-        public static Partial<ESProfileLoginDto> WithAuthModule(this Partial<ESProfileLoginDto> it, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partialBuilder)
-            => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModuleDto>()));
+        public static Partial<ESProfileLoginDto> WithAuthModule(this Partial<ESProfileLoginDto> it, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partialBuilder)    => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModuleDto>()));
         
-        public static Partial<ESProfileLoginDto> WithDetails(this Partial<ESProfileLoginDto> it)
-            => it.AddFieldName("details");
+        public static Partial<ESProfileLoginDto> WithDetails(this Partial<ESProfileLoginDto> it)    => it.AddFieldName("details");
         
-        public static Partial<ESProfileLoginDto> WithDetails(this Partial<ESProfileLoginDto> it, Func<Partial<ESProfileLoginDetailsDto>, Partial<ESProfileLoginDetailsDto>> partialBuilder)
-            => it.AddFieldName("details", partialBuilder(new Partial<ESProfileLoginDetailsDto>()));
+        public static Partial<ESProfileLoginDto> WithDetails(this Partial<ESProfileLoginDto> it, Func<Partial<ESProfileLoginDetailsDto>, Partial<ESProfileLoginDetailsDto>> partialBuilder)    => it.AddFieldName("details", partialBuilder(new Partial<ESProfileLoginDetailsDto>()));
         
-        public static Partial<ESProfileLoginDto> WithAccess(this Partial<ESProfileLoginDto> it)
-            => it.AddFieldName("access");
+        public static Partial<ESProfileLoginDto> WithAccess(this Partial<ESProfileLoginDto> it)    => it.AddFieldName("access");
         
-        public static Partial<ESProfileLoginDto> WithAccess(this Partial<ESProfileLoginDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)
-            => it.AddFieldName("access", partialBuilder(new Partial<AccessRecordDto>()));
+        public static Partial<ESProfileLoginDto> WithAccess(this Partial<ESProfileLoginDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)    => it.AddFieldName("access", partialBuilder(new Partial<AccessRecordDto>()));
         
     }
     

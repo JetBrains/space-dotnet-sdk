@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateImportSourceRequestExtensions
+namespace SpaceDotNet.Client.UpdateImportSourceRequestDtoExtensions
 {
     public static class UpdateImportSourceRequestDtoPartialExtensions
     {
-        public static Partial<UpdateImportSourceRequestDto> WithName(this Partial<UpdateImportSourceRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateImportSourceRequestDto> WithName(this Partial<UpdateImportSourceRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateImportSourceRequestDto> WithImporterPrincipal(this Partial<UpdateImportSourceRequestDto> it)
-            => it.AddFieldName("importerPrincipal");
+        public static Partial<UpdateImportSourceRequestDto> WithImporterPrincipal(this Partial<UpdateImportSourceRequestDto> it)    => it.AddFieldName("importerPrincipal");
         
     }
     

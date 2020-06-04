@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2TextItemContentExtensions
+namespace SpaceDotNet.Client.M2TextItemContentDtoExtensions
 {
     public static class M2TextItemContentDtoPartialExtensions
     {
-        public static Partial<M2TextItemContentDto> WithMarkdown(this Partial<M2TextItemContentDto> it)
-            => it.AddFieldName("markdown");
+        public static Partial<M2TextItemContentDto> WithMarkdown(this Partial<M2TextItemContentDto> it)    => it.AddFieldName("markdown");
         
     }
     

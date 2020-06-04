@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.FractionExtensions
+namespace SpaceDotNet.Client.FractionDtoExtensions
 {
     public static class FractionDtoPartialExtensions
     {
-        public static Partial<FractionDto> WithNumerator(this Partial<FractionDto> it)
-            => it.AddFieldName("numerator");
+        public static Partial<FractionDto> WithNumerator(this Partial<FractionDto> it)    => it.AddFieldName("numerator");
         
-        public static Partial<FractionDto> WithDenominator(this Partial<FractionDto> it)
-            => it.AddFieldName("denominator");
+        public static Partial<FractionDto> WithDenominator(this Partial<FractionDto> it)    => it.AddFieldName("denominator");
         
     }
     

@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ResponsibilityRecordExtensions
+namespace SpaceDotNet.Client.ResponsibilityRecordDtoExtensions
 {
     public static class ResponsibilityRecordDtoPartialExtensions
     {
-        public static Partial<ResponsibilityRecordDto> WithResponsibilityId(this Partial<ResponsibilityRecordDto> it)
-            => it.AddFieldName("responsibilityId");
+        public static Partial<ResponsibilityRecordDto> WithResponsibilityId(this Partial<ResponsibilityRecordDto> it)    => it.AddFieldName("responsibilityId");
         
-        public static Partial<ResponsibilityRecordDto> WithSummary(this Partial<ResponsibilityRecordDto> it)
-            => it.AddFieldName("summary");
+        public static Partial<ResponsibilityRecordDto> WithSummary(this Partial<ResponsibilityRecordDto> it)    => it.AddFieldName("summary");
         
-        public static Partial<ResponsibilityRecordDto> WithNotes(this Partial<ResponsibilityRecordDto> it)
-            => it.AddFieldName("notes");
+        public static Partial<ResponsibilityRecordDto> WithNotes(this Partial<ResponsibilityRecordDto> it)    => it.AddFieldName("notes");
         
-        public static Partial<ResponsibilityRecordDto> WithAssignedPeople(this Partial<ResponsibilityRecordDto> it)
-            => it.AddFieldName("assignedPeople");
+        public static Partial<ResponsibilityRecordDto> WithAssignedPeople(this Partial<ResponsibilityRecordDto> it)    => it.AddFieldName("assignedPeople");
         
-        public static Partial<ResponsibilityRecordDto> WithAssignedPeople(this Partial<ResponsibilityRecordDto> it, Func<Partial<AssignedPersonDto>, Partial<AssignedPersonDto>> partialBuilder)
-            => it.AddFieldName("assignedPeople", partialBuilder(new Partial<AssignedPersonDto>()));
+        public static Partial<ResponsibilityRecordDto> WithAssignedPeople(this Partial<ResponsibilityRecordDto> it, Func<Partial<AssignedPersonDto>, Partial<AssignedPersonDto>> partialBuilder)    => it.AddFieldName("assignedPeople", partialBuilder(new Partial<AssignedPersonDto>()));
         
     }
     

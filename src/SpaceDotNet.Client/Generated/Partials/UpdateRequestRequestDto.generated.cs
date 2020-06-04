@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateRequestRequestExtensions
+namespace SpaceDotNet.Client.UpdateRequestRequestDtoExtensions
 {
     public static class UpdateRequestRequestDtoPartialExtensions
     {
-        public static Partial<UpdateRequestRequestDto> WithApproved(this Partial<UpdateRequestRequestDto> it)
-            => it.AddFieldName("approved");
+        public static Partial<UpdateRequestRequestDto> WithApproved(this Partial<UpdateRequestRequestDto> it)    => it.AddFieldName("approved");
         
     }
     

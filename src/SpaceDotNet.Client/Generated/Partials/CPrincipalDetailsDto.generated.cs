@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CPrincipalDetailsExtensions
+namespace SpaceDotNet.Client.CPrincipalDetailsDtoExtensions
 {
     public static class CPrincipalDetailsDtoPartialExtensions
     {

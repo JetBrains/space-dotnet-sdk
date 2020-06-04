@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateProjectRequestExtensions
+namespace SpaceDotNet.Client.CreateProjectRequestDtoExtensions
 {
     public static class CreateProjectRequestDtoPartialExtensions
     {
-        public static Partial<CreateProjectRequestDto> WithKey(this Partial<CreateProjectRequestDto> it)
-            => it.AddFieldName("key");
+        public static Partial<CreateProjectRequestDto> WithKey(this Partial<CreateProjectRequestDto> it)    => it.AddFieldName("key");
         
-        public static Partial<CreateProjectRequestDto> WithKey(this Partial<CreateProjectRequestDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
-            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<CreateProjectRequestDto> WithKey(this Partial<CreateProjectRequestDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>()));
         
-        public static Partial<CreateProjectRequestDto> WithName(this Partial<CreateProjectRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreateProjectRequestDto> WithName(this Partial<CreateProjectRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CreateProjectRequestDto> WithDescription(this Partial<CreateProjectRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<CreateProjectRequestDto> WithDescription(this Partial<CreateProjectRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<CreateProjectRequestDto> WithPrivate(this Partial<CreateProjectRequestDto> it)
-            => it.AddFieldName("private");
+        public static Partial<CreateProjectRequestDto> WithPrivate(this Partial<CreateProjectRequestDto> it)    => it.AddFieldName("private");
         
-        public static Partial<CreateProjectRequestDto> WithTags(this Partial<CreateProjectRequestDto> it)
-            => it.AddFieldName("tags");
+        public static Partial<CreateProjectRequestDto> WithTags(this Partial<CreateProjectRequestDto> it)    => it.AddFieldName("tags");
         
     }
     

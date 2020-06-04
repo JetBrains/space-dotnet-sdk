@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.VcsHostingPasswordExtensions
+namespace SpaceDotNet.Client.VcsHostingPasswordDtoExtensions
 {
     public static class VcsHostingPasswordDtoPartialExtensions
     {
-        public static Partial<VcsHostingPasswordDto> WithFingerprint(this Partial<VcsHostingPasswordDto> it)
-            => it.AddFieldName("fingerprint");
+        public static Partial<VcsHostingPasswordDto> WithFingerprint(this Partial<VcsHostingPasswordDto> it)    => it.AddFieldName("fingerprint");
         
-        public static Partial<VcsHostingPasswordDto> WithLastUsed(this Partial<VcsHostingPasswordDto> it)
-            => it.AddFieldName("lastUsed");
+        public static Partial<VcsHostingPasswordDto> WithLastUsed(this Partial<VcsHostingPasswordDto> it)    => it.AddFieldName("lastUsed");
         
     }
     

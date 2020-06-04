@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EmojiReactionRecordExtensions
+namespace SpaceDotNet.Client.EmojiReactionRecordDtoExtensions
 {
     public static class EmojiReactionRecordDtoPartialExtensions
     {
-        public static Partial<EmojiReactionRecordDto> WithId(this Partial<EmojiReactionRecordDto> it)
-            => it.AddFieldName("id");
+        public static Partial<EmojiReactionRecordDto> WithId(this Partial<EmojiReactionRecordDto> it)    => it.AddFieldName("id");
         
-        public static Partial<EmojiReactionRecordDto> WithItemId(this Partial<EmojiReactionRecordDto> it)
-            => it.AddFieldName("itemId");
+        public static Partial<EmojiReactionRecordDto> WithItemId(this Partial<EmojiReactionRecordDto> it)    => it.AddFieldName("itemId");
         
-        public static Partial<EmojiReactionRecordDto> WithEmoji(this Partial<EmojiReactionRecordDto> it)
-            => it.AddFieldName("emoji");
+        public static Partial<EmojiReactionRecordDto> WithEmoji(this Partial<EmojiReactionRecordDto> it)    => it.AddFieldName("emoji");
         
-        public static Partial<EmojiReactionRecordDto> WithCount(this Partial<EmojiReactionRecordDto> it)
-            => it.AddFieldName("count");
+        public static Partial<EmojiReactionRecordDto> WithCount(this Partial<EmojiReactionRecordDto> it)    => it.AddFieldName("count");
         
-        public static Partial<EmojiReactionRecordDto> WithMeReacted(this Partial<EmojiReactionRecordDto> it)
-            => it.AddFieldName("meReacted");
+        public static Partial<EmojiReactionRecordDto> WithMeReacted(this Partial<EmojiReactionRecordDto> it)    => it.AddFieldName("meReacted");
         
-        public static Partial<EmojiReactionRecordDto> WithOrder(this Partial<EmojiReactionRecordDto> it)
-            => it.AddFieldName("order");
+        public static Partial<EmojiReactionRecordDto> WithOrder(this Partial<EmojiReactionRecordDto> it)    => it.AddFieldName("order");
         
     }
     

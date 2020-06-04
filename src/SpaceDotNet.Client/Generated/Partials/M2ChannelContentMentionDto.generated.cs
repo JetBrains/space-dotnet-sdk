@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContentMentionExtensions
+namespace SpaceDotNet.Client.M2ChannelContentMentionDtoExtensions
 {
     public static class M2ChannelContentMentionDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentMentionDto> WithRecord(this Partial<M2ChannelContentMentionDto> it)
-            => it.AddFieldName("record");
+        public static Partial<M2ChannelContentMentionDto> WithRecord(this Partial<M2ChannelContentMentionDto> it)    => it.AddFieldName("record");
         
-        public static Partial<M2ChannelContentMentionDto> WithRecord(this Partial<M2ChannelContentMentionDto> it, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder)
-            => it.AddFieldName("record", partialBuilder(new Partial<ChannelItemRecordDto>()));
+        public static Partial<M2ChannelContentMentionDto> WithRecord(this Partial<M2ChannelContentMentionDto> it, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder)    => it.AddFieldName("record", partialBuilder(new Partial<ChannelItemRecordDto>()));
         
-        public static Partial<M2ChannelContentMentionDto> WithParent(this Partial<M2ChannelContentMentionDto> it)
-            => it.AddFieldName("parent");
+        public static Partial<M2ChannelContentMentionDto> WithParent(this Partial<M2ChannelContentMentionDto> it)    => it.AddFieldName("parent");
         
-        public static Partial<M2ChannelContentMentionDto> WithParent(this Partial<M2ChannelContentMentionDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
-            => it.AddFieldName("parent", partialBuilder(new Partial<M2ChannelRecordDto>()));
+        public static Partial<M2ChannelContentMentionDto> WithParent(this Partial<M2ChannelContentMentionDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)    => it.AddFieldName("parent", partialBuilder(new Partial<M2ChannelRecordDto>()));
         
     }
     

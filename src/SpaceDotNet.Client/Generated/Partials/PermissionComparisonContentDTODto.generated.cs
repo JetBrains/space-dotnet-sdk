@@ -19,33 +19,25 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PermissionComparisonContentDTOExtensions
+namespace SpaceDotNet.Client.PermissionComparisonContentDTODtoExtensions
 {
     public static class PermissionComparisonContentDTODtoPartialExtensions
     {
-        public static Partial<PermissionComparisonContentDTODto> WithEntries(this Partial<PermissionComparisonContentDTODto> it)
-            => it.AddFieldName("entries");
+        public static Partial<PermissionComparisonContentDTODto> WithEntries(this Partial<PermissionComparisonContentDTODto> it)    => it.AddFieldName("entries");
         
-        public static Partial<PermissionComparisonContentDTODto> WithEntries(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionComparisonEntryDTODto>, Partial<PermissionComparisonEntryDTODto>> partialBuilder)
-            => it.AddFieldName("entries", partialBuilder(new Partial<PermissionComparisonEntryDTODto>()));
+        public static Partial<PermissionComparisonContentDTODto> WithEntries(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionComparisonEntryDTODto>, Partial<PermissionComparisonEntryDTODto>> partialBuilder)    => it.AddFieldName("entries", partialBuilder(new Partial<PermissionComparisonEntryDTODto>()));
         
-        public static Partial<PermissionComparisonContentDTODto> WithPrincipals(this Partial<PermissionComparisonContentDTODto> it)
-            => it.AddFieldName("principals");
+        public static Partial<PermissionComparisonContentDTODto> WithPrincipals(this Partial<PermissionComparisonContentDTODto> it)    => it.AddFieldName("principals");
         
-        public static Partial<PermissionComparisonContentDTODto> WithPrincipals(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionSnapshotPrincipalDTODto>, Partial<PermissionSnapshotPrincipalDTODto>> partialBuilder)
-            => it.AddFieldName("principals", partialBuilder(new Partial<PermissionSnapshotPrincipalDTODto>()));
+        public static Partial<PermissionComparisonContentDTODto> WithPrincipals(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionSnapshotPrincipalDTODto>, Partial<PermissionSnapshotPrincipalDTODto>> partialBuilder)    => it.AddFieldName("principals", partialBuilder(new Partial<PermissionSnapshotPrincipalDTODto>()));
         
-        public static Partial<PermissionComparisonContentDTODto> WithRights(this Partial<PermissionComparisonContentDTODto> it)
-            => it.AddFieldName("rights");
+        public static Partial<PermissionComparisonContentDTODto> WithRights(this Partial<PermissionComparisonContentDTODto> it)    => it.AddFieldName("rights");
         
-        public static Partial<PermissionComparisonContentDTODto> WithRights(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionSnapshotRightDTODto>, Partial<PermissionSnapshotRightDTODto>> partialBuilder)
-            => it.AddFieldName("rights", partialBuilder(new Partial<PermissionSnapshotRightDTODto>()));
+        public static Partial<PermissionComparisonContentDTODto> WithRights(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionSnapshotRightDTODto>, Partial<PermissionSnapshotRightDTODto>> partialBuilder)    => it.AddFieldName("rights", partialBuilder(new Partial<PermissionSnapshotRightDTODto>()));
         
-        public static Partial<PermissionComparisonContentDTODto> WithTargets(this Partial<PermissionComparisonContentDTODto> it)
-            => it.AddFieldName("targets");
+        public static Partial<PermissionComparisonContentDTODto> WithTargets(this Partial<PermissionComparisonContentDTODto> it)    => it.AddFieldName("targets");
         
-        public static Partial<PermissionComparisonContentDTODto> WithTargets(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionSnapshotTargetDTODto>, Partial<PermissionSnapshotTargetDTODto>> partialBuilder)
-            => it.AddFieldName("targets", partialBuilder(new Partial<PermissionSnapshotTargetDTODto>()));
+        public static Partial<PermissionComparisonContentDTODto> WithTargets(this Partial<PermissionComparisonContentDTODto> it, Func<Partial<PermissionSnapshotTargetDTODto>, Partial<PermissionSnapshotTargetDTODto>> partialBuilder)    => it.AddFieldName("targets", partialBuilder(new Partial<PermissionSnapshotTargetDTODto>()));
         
     }
     

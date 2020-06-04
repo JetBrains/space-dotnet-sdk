@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProjectHitExtensions
+namespace SpaceDotNet.Client.ProjectHitDtoExtensions
 {
     public static class ProjectHitDtoPartialExtensions
     {
-        public static Partial<ProjectHitDto> WithId(this Partial<ProjectHitDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ProjectHitDto> WithId(this Partial<ProjectHitDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ProjectHitDto> WithScore(this Partial<ProjectHitDto> it)
-            => it.AddFieldName("score");
+        public static Partial<ProjectHitDto> WithScore(this Partial<ProjectHitDto> it)    => it.AddFieldName("score");
         
-        public static Partial<ProjectHitDto> WithKey(this Partial<ProjectHitDto> it)
-            => it.AddFieldName("key");
+        public static Partial<ProjectHitDto> WithKey(this Partial<ProjectHitDto> it)    => it.AddFieldName("key");
         
-        public static Partial<ProjectHitDto> WithName(this Partial<ProjectHitDto> it)
-            => it.AddFieldName("name");
+        public static Partial<ProjectHitDto> WithName(this Partial<ProjectHitDto> it)    => it.AddFieldName("name");
         
-        public static Partial<ProjectHitDto> WithDescription(this Partial<ProjectHitDto> it)
-            => it.AddFieldName("description");
+        public static Partial<ProjectHitDto> WithDescription(this Partial<ProjectHitDto> it)    => it.AddFieldName("description");
         
-        public static Partial<ProjectHitDto> WithRef(this Partial<ProjectHitDto> it)
-            => it.AddFieldName("ref");
+        public static Partial<ProjectHitDto> WithRef(this Partial<ProjectHitDto> it)    => it.AddFieldName("ref");
         
-        public static Partial<ProjectHitDto> WithRef(this Partial<ProjectHitDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)
-            => it.AddFieldName("ref", partialBuilder(new Partial<PRProjectDto>()));
+        public static Partial<ProjectHitDto> WithRef(this Partial<ProjectHitDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)    => it.AddFieldName("ref", partialBuilder(new Partial<PRProjectDto>()));
         
     }
     

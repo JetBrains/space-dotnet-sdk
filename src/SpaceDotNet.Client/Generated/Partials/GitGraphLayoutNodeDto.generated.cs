@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.GitGraphLayoutNodeExtensions
+namespace SpaceDotNet.Client.GitGraphLayoutNodeDtoExtensions
 {
     public static class GitGraphLayoutNodeDtoPartialExtensions
     {
-        public static Partial<GitGraphLayoutNodeDto> WithPos(this Partial<GitGraphLayoutNodeDto> it)
-            => it.AddFieldName("pos");
+        public static Partial<GitGraphLayoutNodeDto> WithPos(this Partial<GitGraphLayoutNodeDto> it)    => it.AddFieldName("pos");
         
-        public static Partial<GitGraphLayoutNodeDto> WithColor(this Partial<GitGraphLayoutNodeDto> it)
-            => it.AddFieldName("color");
+        public static Partial<GitGraphLayoutNodeDto> WithColor(this Partial<GitGraphLayoutNodeDto> it)    => it.AddFieldName("color");
         
     }
     

@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ToggleIssueResolvedRequestExtensions
+namespace SpaceDotNet.Client.ToggleIssueResolvedRequestDtoExtensions
 {
     public static class ToggleIssueResolvedRequestDtoPartialExtensions
     {
-        public static Partial<ToggleIssueResolvedRequestDto> WithResolved(this Partial<ToggleIssueResolvedRequestDto> it)
-            => it.AddFieldName("resolved");
+        public static Partial<ToggleIssueResolvedRequestDto> WithResolved(this Partial<ToggleIssueResolvedRequestDto> it)    => it.AddFieldName("resolved");
         
     }
     

@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.IntCFTypeExtensions
+namespace SpaceDotNet.Client.IntCFTypeDtoExtensions
 {
     public static class IntCFTypeDtoPartialExtensions
     {

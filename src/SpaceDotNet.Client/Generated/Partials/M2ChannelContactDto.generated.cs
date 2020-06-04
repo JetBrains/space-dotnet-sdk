@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContactExtensions
+namespace SpaceDotNet.Client.M2ChannelContactDtoExtensions
 {
     public static class M2ChannelContactDtoPartialExtensions
     {
-        public static Partial<M2ChannelContactDto> WithDefaultName(this Partial<M2ChannelContactDto> it)
-            => it.AddFieldName("defaultName");
+        public static Partial<M2ChannelContactDto> WithDefaultName(this Partial<M2ChannelContactDto> it)    => it.AddFieldName("defaultName");
         
-        public static Partial<M2ChannelContactDto> WithKey(this Partial<M2ChannelContactDto> it)
-            => it.AddFieldName("key");
+        public static Partial<M2ChannelContactDto> WithKey(this Partial<M2ChannelContactDto> it)    => it.AddFieldName("key");
         
-        public static Partial<M2ChannelContactDto> WithExt(this Partial<M2ChannelContactDto> it)
-            => it.AddFieldName("ext");
+        public static Partial<M2ChannelContactDto> WithExt(this Partial<M2ChannelContactDto> it)    => it.AddFieldName("ext");
         
-        public static Partial<M2ChannelContactDto> WithExt(this Partial<M2ChannelContactDto> it, Func<Partial<M2ChannelContactInfoDto>, Partial<M2ChannelContactInfoDto>> partialBuilder)
-            => it.AddFieldName("ext", partialBuilder(new Partial<M2ChannelContactInfoDto>()));
+        public static Partial<M2ChannelContactDto> WithExt(this Partial<M2ChannelContactDto> it, Func<Partial<M2ChannelContactInfoDto>, Partial<M2ChannelContactInfoDto>> partialBuilder)    => it.AddFieldName("ext", partialBuilder(new Partial<M2ChannelContactInfoDto>()));
         
     }
     

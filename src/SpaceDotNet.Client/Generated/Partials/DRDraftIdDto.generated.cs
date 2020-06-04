@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DRDraftIdExtensions
+namespace SpaceDotNet.Client.DRDraftIdDtoExtensions
 {
     public static class DRDraftIdDtoPartialExtensions
     {
-        public static Partial<DRDraftIdDto> WithId(this Partial<DRDraftIdDto> it)
-            => it.AddFieldName("id");
+        public static Partial<DRDraftIdDto> WithId(this Partial<DRDraftIdDto> it)    => it.AddFieldName("id");
         
     }
     

@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.NonWorkingDaysEventExtensions
+namespace SpaceDotNet.Client.NonWorkingDaysEventDtoExtensions
 {
     public static class NonWorkingDaysEventDtoPartialExtensions
     {
-        public static Partial<NonWorkingDaysEventDto> WithProfile(this Partial<NonWorkingDaysEventDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<NonWorkingDaysEventDto> WithProfile(this Partial<NonWorkingDaysEventDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<NonWorkingDaysEventDto> WithProfile(this Partial<NonWorkingDaysEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<NonWorkingDaysEventDto> WithProfile(this Partial<NonWorkingDaysEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<NonWorkingDaysEventDto> WithDays(this Partial<NonWorkingDaysEventDto> it)
-            => it.AddFieldName("days");
+        public static Partial<NonWorkingDaysEventDto> WithDays(this Partial<NonWorkingDaysEventDto> it)    => it.AddFieldName("days");
         
-        public static Partial<NonWorkingDaysEventDto> WithDays(this Partial<NonWorkingDaysEventDto> it, Func<Partial<NonWorkingDaysDto>, Partial<NonWorkingDaysDto>> partialBuilder)
-            => it.AddFieldName("days", partialBuilder(new Partial<NonWorkingDaysDto>()));
+        public static Partial<NonWorkingDaysEventDto> WithDays(this Partial<NonWorkingDaysEventDto> it, Func<Partial<NonWorkingDaysDto>, Partial<NonWorkingDaysDto>> partialBuilder)    => it.AddFieldName("days", partialBuilder(new Partial<NonWorkingDaysDto>()));
         
     }
     

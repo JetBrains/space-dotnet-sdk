@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.AddAttachmentsRequestExtensions
+namespace SpaceDotNet.Client.AddAttachmentsRequestDtoExtensions
 {
     public static class AddAttachmentsRequestDtoPartialExtensions
     {
-        public static Partial<AddAttachmentsRequestDto> WithAttachments(this Partial<AddAttachmentsRequestDto> it)
-            => it.AddFieldName("attachments");
+        public static Partial<AddAttachmentsRequestDto> WithAttachments(this Partial<AddAttachmentsRequestDto> it)    => it.AddFieldName("attachments");
         
-        public static Partial<AddAttachmentsRequestDto> WithAttachments(this Partial<AddAttachmentsRequestDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>()));
+        public static Partial<AddAttachmentsRequestDto> WithAttachments(this Partial<AddAttachmentsRequestDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)    => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>()));
         
     }
     

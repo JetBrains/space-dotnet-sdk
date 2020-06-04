@@ -19,51 +19,37 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProfileHitExtensions
+namespace SpaceDotNet.Client.ProfileHitDtoExtensions
 {
     public static class ProfileHitDtoPartialExtensions
     {
-        public static Partial<ProfileHitDto> WithId(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ProfileHitDto> WithId(this Partial<ProfileHitDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ProfileHitDto> WithScore(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("score");
+        public static Partial<ProfileHitDto> WithScore(this Partial<ProfileHitDto> it)    => it.AddFieldName("score");
         
-        public static Partial<ProfileHitDto> WithFirstName(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("firstName");
+        public static Partial<ProfileHitDto> WithFirstName(this Partial<ProfileHitDto> it)    => it.AddFieldName("firstName");
         
-        public static Partial<ProfileHitDto> WithLastName(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("lastName");
+        public static Partial<ProfileHitDto> WithLastName(this Partial<ProfileHitDto> it)    => it.AddFieldName("lastName");
         
-        public static Partial<ProfileHitDto> WithUserName(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("userName");
+        public static Partial<ProfileHitDto> WithUserName(this Partial<ProfileHitDto> it)    => it.AddFieldName("userName");
         
-        public static Partial<ProfileHitDto> WithPhones(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("phones");
+        public static Partial<ProfileHitDto> WithPhones(this Partial<ProfileHitDto> it)    => it.AddFieldName("phones");
         
-        public static Partial<ProfileHitDto> WithEmails(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("emails");
+        public static Partial<ProfileHitDto> WithEmails(this Partial<ProfileHitDto> it)    => it.AddFieldName("emails");
         
-        public static Partial<ProfileHitDto> WithLinks(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("links");
+        public static Partial<ProfileHitDto> WithLinks(this Partial<ProfileHitDto> it)    => it.AddFieldName("links");
         
-        public static Partial<ProfileHitDto> WithMessengers(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("messengers");
+        public static Partial<ProfileHitDto> WithMessengers(this Partial<ProfileHitDto> it)    => it.AddFieldName("messengers");
         
-        public static Partial<ProfileHitDto> WithNotAMember(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("notAMember");
+        public static Partial<ProfileHitDto> WithNotAMember(this Partial<ProfileHitDto> it)    => it.AddFieldName("notAMember");
         
-        public static Partial<ProfileHitDto> WithRef(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("ref");
+        public static Partial<ProfileHitDto> WithRef(this Partial<ProfileHitDto> it)    => it.AddFieldName("ref");
         
-        public static Partial<ProfileHitDto> WithRef(this Partial<ProfileHitDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("ref", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ProfileHitDto> WithRef(this Partial<ProfileHitDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("ref", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<ProfileHitDto> WithCustomFields(this Partial<ProfileHitDto> it)
-            => it.AddFieldName("customFields");
+        public static Partial<ProfileHitDto> WithCustomFields(this Partial<ProfileHitDto> it)    => it.AddFieldName("customFields");
         
-        public static Partial<ProfileHitDto> WithCustomFields(this Partial<ProfileHitDto> it, Func<Partial<CustomFieldHitDto>, Partial<CustomFieldHitDto>> partialBuilder)
-            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldHitDto>()));
+        public static Partial<ProfileHitDto> WithCustomFields(this Partial<ProfileHitDto> it, Func<Partial<CustomFieldHitDto>, Partial<CustomFieldHitDto>> partialBuilder)    => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldHitDto>()));
         
     }
     

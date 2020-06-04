@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ReactionDataExtensions
+namespace SpaceDotNet.Client.ReactionDataDtoExtensions
 {
     public static class ReactionDataDtoPartialExtensions
     {
-        public static Partial<ReactionDataDto> WithName(this Partial<ReactionDataDto> it)
-            => it.AddFieldName("name");
+        public static Partial<ReactionDataDto> WithName(this Partial<ReactionDataDto> it)    => it.AddFieldName("name");
         
-        public static Partial<ReactionDataDto> WithSymbol(this Partial<ReactionDataDto> it)
-            => it.AddFieldName("symbol");
+        public static Partial<ReactionDataDto> WithSymbol(this Partial<ReactionDataDto> it)    => it.AddFieldName("symbol");
         
-        public static Partial<ReactionDataDto> WithEmoji(this Partial<ReactionDataDto> it)
-            => it.AddFieldName("emoji");
+        public static Partial<ReactionDataDto> WithEmoji(this Partial<ReactionDataDto> it)    => it.AddFieldName("emoji");
         
     }
     

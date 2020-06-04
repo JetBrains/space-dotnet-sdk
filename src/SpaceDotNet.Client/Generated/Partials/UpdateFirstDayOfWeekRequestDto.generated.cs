@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateFirstDayOfWeekRequestExtensions
+namespace SpaceDotNet.Client.UpdateFirstDayOfWeekRequestDtoExtensions
 {
     public static class UpdateFirstDayOfWeekRequestDtoPartialExtensions
     {
-        public static Partial<UpdateFirstDayOfWeekRequestDto> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequestDto> it)
-            => it.AddFieldName("firstDayOfWeek");
+        public static Partial<UpdateFirstDayOfWeekRequestDto> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequestDto> it)    => it.AddFieldName("firstDayOfWeek");
         
-        public static Partial<UpdateFirstDayOfWeekRequestDto> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequestDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
-            => it.AddFieldName("firstDayOfWeek", partialBuilder(new Partial<Weekday>()));
+        public static Partial<UpdateFirstDayOfWeekRequestDto> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequestDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)    => it.AddFieldName("firstDayOfWeek", partialBuilder(new Partial<Weekday>()));
         
     }
     

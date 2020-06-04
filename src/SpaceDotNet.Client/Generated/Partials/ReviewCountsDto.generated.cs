@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ReviewCountsExtensions
+namespace SpaceDotNet.Client.ReviewCountsDtoExtensions
 {
     public static class ReviewCountsDtoPartialExtensions
     {
-        public static Partial<ReviewCountsDto> WithOpened(this Partial<ReviewCountsDto> it)
-            => it.AddFieldName("opened");
+        public static Partial<ReviewCountsDto> WithOpened(this Partial<ReviewCountsDto> it)    => it.AddFieldName("opened");
         
-        public static Partial<ReviewCountsDto> WithClosed(this Partial<ReviewCountsDto> it)
-            => it.AddFieldName("closed");
+        public static Partial<ReviewCountsDto> WithClosed(this Partial<ReviewCountsDto> it)    => it.AddFieldName("closed");
         
-        public static Partial<ReviewCountsDto> WithAuthoredByMe(this Partial<ReviewCountsDto> it)
-            => it.AddFieldName("authoredByMe");
+        public static Partial<ReviewCountsDto> WithAuthoredByMe(this Partial<ReviewCountsDto> it)    => it.AddFieldName("authoredByMe");
         
-        public static Partial<ReviewCountsDto> WithReviewedByMe(this Partial<ReviewCountsDto> it)
-            => it.AddFieldName("reviewedByMe");
+        public static Partial<ReviewCountsDto> WithReviewedByMe(this Partial<ReviewCountsDto> it)    => it.AddFieldName("reviewedByMe");
         
-        public static Partial<ReviewCountsDto> WithNeedsMyAttention(this Partial<ReviewCountsDto> it)
-            => it.AddFieldName("needsMyAttention");
+        public static Partial<ReviewCountsDto> WithNeedsMyAttention(this Partial<ReviewCountsDto> it)    => it.AddFieldName("needsMyAttention");
         
-        public static Partial<ReviewCountsDto> WithNeedsMyReview(this Partial<ReviewCountsDto> it)
-            => it.AddFieldName("needsMyReview");
+        public static Partial<ReviewCountsDto> WithNeedsMyReview(this Partial<ReviewCountsDto> it)    => it.AddFieldName("needsMyReview");
         
     }
     

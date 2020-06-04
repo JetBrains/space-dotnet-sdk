@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateMapRequestExtensions
+namespace SpaceDotNet.Client.UpdateMapRequestDtoExtensions
 {
     public static class UpdateMapRequestDtoPartialExtensions
     {
-        public static Partial<UpdateMapRequestDto> WithMapPictureId(this Partial<UpdateMapRequestDto> it)
-            => it.AddFieldName("mapPictureId");
+        public static Partial<UpdateMapRequestDto> WithMapPictureId(this Partial<UpdateMapRequestDto> it)    => it.AddFieldName("mapPictureId");
         
     }
     

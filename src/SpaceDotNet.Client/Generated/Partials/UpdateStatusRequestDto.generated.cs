@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateStatusRequestExtensions
+namespace SpaceDotNet.Client.UpdateStatusRequestDtoExtensions
 {
     public static class UpdateStatusRequestDtoPartialExtensions
     {
-        public static Partial<UpdateStatusRequestDto> WithStatuses(this Partial<UpdateStatusRequestDto> it)
-            => it.AddFieldName("statuses");
+        public static Partial<UpdateStatusRequestDto> WithStatuses(this Partial<UpdateStatusRequestDto> it)    => it.AddFieldName("statuses");
         
-        public static Partial<UpdateStatusRequestDto> WithStatuses(this Partial<UpdateStatusRequestDto> it, Func<Partial<IssueStatusDataDto>, Partial<IssueStatusDataDto>> partialBuilder)
-            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusDataDto>()));
+        public static Partial<UpdateStatusRequestDto> WithStatuses(this Partial<UpdateStatusRequestDto> it, Func<Partial<IssueStatusDataDto>, Partial<IssueStatusDataDto>> partialBuilder)    => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusDataDto>()));
         
     }
     

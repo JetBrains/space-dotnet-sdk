@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProfileListCFValueExtensions
+namespace SpaceDotNet.Client.ProfileListCFValueDtoExtensions
 {
     public static class ProfileListCFValueDtoPartialExtensions
     {
-        public static Partial<ProfileListCFValueDto> WithProfiles(this Partial<ProfileListCFValueDto> it)
-            => it.AddFieldName("profiles");
+        public static Partial<ProfileListCFValueDto> WithProfiles(this Partial<ProfileListCFValueDto> it)    => it.AddFieldName("profiles");
         
-        public static Partial<ProfileListCFValueDto> WithProfiles(this Partial<ProfileListCFValueDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profiles", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ProfileListCFValueDto> WithProfiles(this Partial<ProfileListCFValueDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profiles", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

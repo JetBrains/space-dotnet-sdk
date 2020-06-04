@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MCButtonExtensions
+namespace SpaceDotNet.Client.MCButtonDtoExtensions
 {
     public static class MCButtonDtoPartialExtensions
     {
-        public static Partial<MCButtonDto> WithText(this Partial<MCButtonDto> it)
-            => it.AddFieldName("text");
+        public static Partial<MCButtonDto> WithText(this Partial<MCButtonDto> it)    => it.AddFieldName("text");
         
-        public static Partial<MCButtonDto> WithStyle(this Partial<MCButtonDto> it)
-            => it.AddFieldName("style");
+        public static Partial<MCButtonDto> WithStyle(this Partial<MCButtonDto> it)    => it.AddFieldName("style");
         
-        public static Partial<MCButtonDto> WithAction(this Partial<MCButtonDto> it)
-            => it.AddFieldName("action");
+        public static Partial<MCButtonDto> WithAction(this Partial<MCButtonDto> it)    => it.AddFieldName("action");
         
-        public static Partial<MCButtonDto> WithAction(this Partial<MCButtonDto> it, Func<Partial<MCActionDto>, Partial<MCActionDto>> partialBuilder)
-            => it.AddFieldName("action", partialBuilder(new Partial<MCActionDto>()));
+        public static Partial<MCButtonDto> WithAction(this Partial<MCButtonDto> it, Func<Partial<MCActionDto>, Partial<MCActionDto>> partialBuilder)    => it.AddFieldName("action", partialBuilder(new Partial<MCActionDto>()));
         
     }
     

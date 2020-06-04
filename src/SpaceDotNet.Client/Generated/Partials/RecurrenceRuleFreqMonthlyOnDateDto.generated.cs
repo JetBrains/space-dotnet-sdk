@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RecurrenceRuleFreqMonthlyOnDateExtensions
+namespace SpaceDotNet.Client.RecurrenceRuleFreqMonthlyOnDateDtoExtensions
 {
     public static class RecurrenceRuleFreqMonthlyOnDateDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleFreqMonthlyOnDateDto> WithDay(this Partial<RecurrenceRuleFreqMonthlyOnDateDto> it)
-            => it.AddFieldName("day");
+        public static Partial<RecurrenceRuleFreqMonthlyOnDateDto> WithDay(this Partial<RecurrenceRuleFreqMonthlyOnDateDto> it)    => it.AddFieldName("day");
         
-        public static Partial<RecurrenceRuleFreqMonthlyOnDateDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnDateDto> it)
-            => it.AddFieldName("interval");
+        public static Partial<RecurrenceRuleFreqMonthlyOnDateDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnDateDto> it)    => it.AddFieldName("interval");
         
     }
     

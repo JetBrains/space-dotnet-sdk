@@ -19,39 +19,29 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CodeReviewParticipantRecordExtensions
+namespace SpaceDotNet.Client.CodeReviewParticipantRecordDtoExtensions
 {
     public static class CodeReviewParticipantRecordDtoPartialExtensions
     {
-        public static Partial<CodeReviewParticipantRecordDto> WithId(this Partial<CodeReviewParticipantRecordDto> it)
-            => it.AddFieldName("id");
+        public static Partial<CodeReviewParticipantRecordDto> WithId(this Partial<CodeReviewParticipantRecordDto> it)    => it.AddFieldName("id");
         
-        public static Partial<CodeReviewParticipantRecordDto> WithProjectId(this Partial<CodeReviewParticipantRecordDto> it)
-            => it.AddFieldName("projectId");
+        public static Partial<CodeReviewParticipantRecordDto> WithProjectId(this Partial<CodeReviewParticipantRecordDto> it)    => it.AddFieldName("projectId");
         
-        public static Partial<CodeReviewParticipantRecordDto> WithRole(this Partial<CodeReviewParticipantRecordDto> it)
-            => it.AddFieldName("role");
+        public static Partial<CodeReviewParticipantRecordDto> WithRole(this Partial<CodeReviewParticipantRecordDto> it)    => it.AddFieldName("role");
         
-        public static Partial<CodeReviewParticipantRecordDto> WithRole(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
+        public static Partial<CodeReviewParticipantRecordDto> WithRole(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)    => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
         
-        public static Partial<CodeReviewParticipantRecordDto> WithProfile(this Partial<CodeReviewParticipantRecordDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<CodeReviewParticipantRecordDto> WithProfile(this Partial<CodeReviewParticipantRecordDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<CodeReviewParticipantRecordDto> WithProfile(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<CodeReviewParticipantRecordDto> WithProfile(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<CodeReviewParticipantRecordDto> WithReviewerState(this Partial<CodeReviewParticipantRecordDto> it)
-            => it.AddFieldName("reviewerState");
+        public static Partial<CodeReviewParticipantRecordDto> WithReviewerState(this Partial<CodeReviewParticipantRecordDto> it)    => it.AddFieldName("reviewerState");
         
-        public static Partial<CodeReviewParticipantRecordDto> WithReviewerState(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
-            => it.AddFieldName("reviewerState", partialBuilder(new Partial<ReviewerState>()));
+        public static Partial<CodeReviewParticipantRecordDto> WithReviewerState(this Partial<CodeReviewParticipantRecordDto> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)    => it.AddFieldName("reviewerState", partialBuilder(new Partial<ReviewerState>()));
         
-        public static Partial<CodeReviewParticipantRecordDto> WithTheirTurn(this Partial<CodeReviewParticipantRecordDto> it)
-            => it.AddFieldName("theirTurn");
+        public static Partial<CodeReviewParticipantRecordDto> WithTheirTurn(this Partial<CodeReviewParticipantRecordDto> it)    => it.AddFieldName("theirTurn");
         
-        public static Partial<CodeReviewParticipantRecordDto> WithArchived(this Partial<CodeReviewParticipantRecordDto> it)
-            => it.AddFieldName("archived");
+        public static Partial<CodeReviewParticipantRecordDto> WithArchived(this Partial<CodeReviewParticipantRecordDto> it)    => it.AddFieldName("archived");
         
     }
     

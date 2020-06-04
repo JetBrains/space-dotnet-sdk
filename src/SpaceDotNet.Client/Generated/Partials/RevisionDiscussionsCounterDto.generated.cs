@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RevisionDiscussionsCounterExtensions
+namespace SpaceDotNet.Client.RevisionDiscussionsCounterDtoExtensions
 {
     public static class RevisionDiscussionsCounterDtoPartialExtensions
     {
-        public static Partial<RevisionDiscussionsCounterDto> WithRevision(this Partial<RevisionDiscussionsCounterDto> it)
-            => it.AddFieldName("revision");
+        public static Partial<RevisionDiscussionsCounterDto> WithRevision(this Partial<RevisionDiscussionsCounterDto> it)    => it.AddFieldName("revision");
         
-        public static Partial<RevisionDiscussionsCounterDto> WithFilesWithCounts(this Partial<RevisionDiscussionsCounterDto> it)
-            => it.AddFieldName("filesWithCounts");
+        public static Partial<RevisionDiscussionsCounterDto> WithFilesWithCounts(this Partial<RevisionDiscussionsCounterDto> it)    => it.AddFieldName("filesWithCounts");
         
-        public static Partial<RevisionDiscussionsCounterDto> WithFilesWithCounts(this Partial<RevisionDiscussionsCounterDto> it, Func<Partial<FileWithCountDto>, Partial<FileWithCountDto>> partialBuilder)
-            => it.AddFieldName("filesWithCounts", partialBuilder(new Partial<FileWithCountDto>()));
+        public static Partial<RevisionDiscussionsCounterDto> WithFilesWithCounts(this Partial<RevisionDiscussionsCounterDto> it, Func<Partial<FileWithCountDto>, Partial<FileWithCountDto>> partialBuilder)    => it.AddFieldName("filesWithCounts", partialBuilder(new Partial<FileWithCountDto>()));
         
     }
     

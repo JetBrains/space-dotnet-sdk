@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.AccessRecordExtensions
+namespace SpaceDotNet.Client.AccessRecordDtoExtensions
 {
     public static class AccessRecordDtoPartialExtensions
     {
-        public static Partial<AccessRecordDto> WithTime(this Partial<AccessRecordDto> it)
-            => it.AddFieldName("time");
+        public static Partial<AccessRecordDto> WithTime(this Partial<AccessRecordDto> it)    => it.AddFieldName("time");
         
-        public static Partial<AccessRecordDto> WithAddress(this Partial<AccessRecordDto> it)
-            => it.AddFieldName("address");
+        public static Partial<AccessRecordDto> WithAddress(this Partial<AccessRecordDto> it)    => it.AddFieldName("address");
         
-        public static Partial<AccessRecordDto> WithUserAgent(this Partial<AccessRecordDto> it)
-            => it.AddFieldName("userAgent");
+        public static Partial<AccessRecordDto> WithUserAgent(this Partial<AccessRecordDto> it)    => it.AddFieldName("userAgent");
         
     }
     

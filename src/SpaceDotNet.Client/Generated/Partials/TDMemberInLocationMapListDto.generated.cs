@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TDMemberInLocationMapListExtensions
+namespace SpaceDotNet.Client.TDMemberInLocationMapListDtoExtensions
 {
     public static class TDMemberInLocationMapListDtoPartialExtensions
     {
-        public static Partial<TDMemberInLocationMapListDto> WithProfile(this Partial<TDMemberInLocationMapListDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<TDMemberInLocationMapListDto> WithProfile(this Partial<TDMemberInLocationMapListDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<TDMemberInLocationMapListDto> WithProfile(this Partial<TDMemberInLocationMapListDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<TDMemberInLocationMapListDto> WithProfile(this Partial<TDMemberInLocationMapListDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<TDMemberInLocationMapListDto> WithMemberLocation(this Partial<TDMemberInLocationMapListDto> it)
-            => it.AddFieldName("memberLocation");
+        public static Partial<TDMemberInLocationMapListDto> WithMemberLocation(this Partial<TDMemberInLocationMapListDto> it)    => it.AddFieldName("memberLocation");
         
-        public static Partial<TDMemberInLocationMapListDto> WithMemberLocation(this Partial<TDMemberInLocationMapListDto> it, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder)
-            => it.AddFieldName("memberLocation", partialBuilder(new Partial<TDMemberLocationDto>()));
+        public static Partial<TDMemberInLocationMapListDto> WithMemberLocation(this Partial<TDMemberInLocationMapListDto> it, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>> partialBuilder)    => it.AddFieldName("memberLocation", partialBuilder(new Partial<TDMemberLocationDto>()));
         
-        public static Partial<TDMemberInLocationMapListDto> WithLocationMapPoint(this Partial<TDMemberInLocationMapListDto> it)
-            => it.AddFieldName("locationMapPoint");
+        public static Partial<TDMemberInLocationMapListDto> WithLocationMapPoint(this Partial<TDMemberInLocationMapListDto> it)    => it.AddFieldName("locationMapPoint");
         
-        public static Partial<TDMemberInLocationMapListDto> WithLocationMapPoint(this Partial<TDMemberInLocationMapListDto> it, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder)
-            => it.AddFieldName("locationMapPoint", partialBuilder(new Partial<TDLocationMapPointDto>()));
+        public static Partial<TDMemberInLocationMapListDto> WithLocationMapPoint(this Partial<TDMemberInLocationMapListDto> it, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>> partialBuilder)    => it.AddFieldName("locationMapPoint", partialBuilder(new Partial<TDLocationMapPointDto>()));
         
     }
     

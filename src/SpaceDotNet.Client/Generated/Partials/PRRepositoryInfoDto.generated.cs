@@ -19,39 +19,29 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PRRepositoryInfoExtensions
+namespace SpaceDotNet.Client.PRRepositoryInfoDtoExtensions
 {
     public static class PRRepositoryInfoDtoPartialExtensions
     {
-        public static Partial<PRRepositoryInfoDto> WithName(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("name");
+        public static Partial<PRRepositoryInfoDto> WithName(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("name");
         
-        public static Partial<PRRepositoryInfoDto> WithDescription(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("description");
+        public static Partial<PRRepositoryInfoDto> WithDescription(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("description");
         
-        public static Partial<PRRepositoryInfoDto> WithLatestActivity(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("latestActivity");
+        public static Partial<PRRepositoryInfoDto> WithLatestActivity(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("latestActivity");
         
-        public static Partial<PRRepositoryInfoDto> WithProxyPushNotification(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("proxyPushNotification");
+        public static Partial<PRRepositoryInfoDto> WithProxyPushNotification(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("proxyPushNotification");
         
-        public static Partial<PRRepositoryInfoDto> WithState(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("state");
+        public static Partial<PRRepositoryInfoDto> WithState(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("state");
         
-        public static Partial<PRRepositoryInfoDto> WithState(this Partial<PRRepositoryInfoDto> it, Func<Partial<RepositoryState>, Partial<RepositoryState>> partialBuilder)
-            => it.AddFieldName("state", partialBuilder(new Partial<RepositoryState>()));
+        public static Partial<PRRepositoryInfoDto> WithState(this Partial<PRRepositoryInfoDto> it, Func<Partial<RepositoryState>, Partial<RepositoryState>> partialBuilder)    => it.AddFieldName("state", partialBuilder(new Partial<RepositoryState>()));
         
-        public static Partial<PRRepositoryInfoDto> WithInitProgress(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("initProgress");
+        public static Partial<PRRepositoryInfoDto> WithInitProgress(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("initProgress");
         
-        public static Partial<PRRepositoryInfoDto> WithReadmeName(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("readmeName");
+        public static Partial<PRRepositoryInfoDto> WithReadmeName(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("readmeName");
         
-        public static Partial<PRRepositoryInfoDto> WithMonthlyActivity(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("monthlyActivity");
+        public static Partial<PRRepositoryInfoDto> WithMonthlyActivity(this Partial<PRRepositoryInfoDto> it)    => it.AddFieldName("monthlyActivity");
         
-        public static Partial<PRRepositoryInfoDto> WithMonthlyActivity(this Partial<PRRepositoryInfoDto> it, Func<Partial<RepositoryActivityDto>, Partial<RepositoryActivityDto>> partialBuilder)
-            => it.AddFieldName("monthlyActivity", partialBuilder(new Partial<RepositoryActivityDto>()));
+        public static Partial<PRRepositoryInfoDto> WithMonthlyActivity(this Partial<PRRepositoryInfoDto> it, Func<Partial<RepositoryActivityDto>, Partial<RepositoryActivityDto>> partialBuilder)    => it.AddFieldName("monthlyActivity", partialBuilder(new Partial<RepositoryActivityDto>()));
         
     }
     

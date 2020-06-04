@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RestoreMultipleRequestExtensions
+namespace SpaceDotNet.Client.RestoreMultipleRequestDtoExtensions
 {
     public static class RestoreMultipleRequestDtoPartialExtensions
     {
-        public static Partial<RestoreMultipleRequestDto> WithIds(this Partial<RestoreMultipleRequestDto> it)
-            => it.AddFieldName("ids");
+        public static Partial<RestoreMultipleRequestDto> WithIds(this Partial<RestoreMultipleRequestDto> it)    => it.AddFieldName("ids");
         
     }
     

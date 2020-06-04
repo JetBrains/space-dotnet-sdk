@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateSpokenLanguageRequestExtensions
+namespace SpaceDotNet.Client.UpdateSpokenLanguageRequestDtoExtensions
 {
     public static class UpdateSpokenLanguageRequestDtoPartialExtensions
     {
-        public static Partial<UpdateSpokenLanguageRequestDto> WithLanguage(this Partial<UpdateSpokenLanguageRequestDto> it)
-            => it.AddFieldName("language");
+        public static Partial<UpdateSpokenLanguageRequestDto> WithLanguage(this Partial<UpdateSpokenLanguageRequestDto> it)    => it.AddFieldName("language");
         
-        public static Partial<UpdateSpokenLanguageRequestDto> WithFirstName(this Partial<UpdateSpokenLanguageRequestDto> it)
-            => it.AddFieldName("firstName");
+        public static Partial<UpdateSpokenLanguageRequestDto> WithFirstName(this Partial<UpdateSpokenLanguageRequestDto> it)    => it.AddFieldName("firstName");
         
-        public static Partial<UpdateSpokenLanguageRequestDto> WithLastName(this Partial<UpdateSpokenLanguageRequestDto> it)
-            => it.AddFieldName("lastName");
+        public static Partial<UpdateSpokenLanguageRequestDto> WithLastName(this Partial<UpdateSpokenLanguageRequestDto> it)    => it.AddFieldName("lastName");
         
     }
     

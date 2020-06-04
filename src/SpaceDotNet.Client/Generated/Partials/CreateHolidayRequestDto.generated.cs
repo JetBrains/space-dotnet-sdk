@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateHolidayRequestExtensions
+namespace SpaceDotNet.Client.CreateHolidayRequestDtoExtensions
 {
     public static class CreateHolidayRequestDtoPartialExtensions
     {
-        public static Partial<CreateHolidayRequestDto> WithCalendar(this Partial<CreateHolidayRequestDto> it)
-            => it.AddFieldName("calendar");
+        public static Partial<CreateHolidayRequestDto> WithCalendar(this Partial<CreateHolidayRequestDto> it)    => it.AddFieldName("calendar");
         
-        public static Partial<CreateHolidayRequestDto> WithName(this Partial<CreateHolidayRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreateHolidayRequestDto> WithName(this Partial<CreateHolidayRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CreateHolidayRequestDto> WithDate(this Partial<CreateHolidayRequestDto> it)
-            => it.AddFieldName("date");
+        public static Partial<CreateHolidayRequestDto> WithDate(this Partial<CreateHolidayRequestDto> it)    => it.AddFieldName("date");
         
-        public static Partial<CreateHolidayRequestDto> WithWorkingDay(this Partial<CreateHolidayRequestDto> it)
-            => it.AddFieldName("workingDay");
+        public static Partial<CreateHolidayRequestDto> WithWorkingDay(this Partial<CreateHolidayRequestDto> it)    => it.AddFieldName("workingDay");
         
     }
     

@@ -19,33 +19,25 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CalendarEventSpecExtensions
+namespace SpaceDotNet.Client.CalendarEventSpecDtoExtensions
 {
     public static class CalendarEventSpecDtoPartialExtensions
     {
-        public static Partial<CalendarEventSpecDto> WithStart(this Partial<CalendarEventSpecDto> it)
-            => it.AddFieldName("start");
+        public static Partial<CalendarEventSpecDto> WithStart(this Partial<CalendarEventSpecDto> it)    => it.AddFieldName("start");
         
-        public static Partial<CalendarEventSpecDto> WithEnd(this Partial<CalendarEventSpecDto> it)
-            => it.AddFieldName("end");
+        public static Partial<CalendarEventSpecDto> WithEnd(this Partial<CalendarEventSpecDto> it)    => it.AddFieldName("end");
         
-        public static Partial<CalendarEventSpecDto> WithRecurrenceRule(this Partial<CalendarEventSpecDto> it)
-            => it.AddFieldName("recurrenceRule");
+        public static Partial<CalendarEventSpecDto> WithRecurrenceRule(this Partial<CalendarEventSpecDto> it)    => it.AddFieldName("recurrenceRule");
         
-        public static Partial<CalendarEventSpecDto> WithRecurrenceRule(this Partial<CalendarEventSpecDto> it, Func<Partial<RecurrenceRuleDto>, Partial<RecurrenceRuleDto>> partialBuilder)
-            => it.AddFieldName("recurrenceRule", partialBuilder(new Partial<RecurrenceRuleDto>()));
+        public static Partial<CalendarEventSpecDto> WithRecurrenceRule(this Partial<CalendarEventSpecDto> it, Func<Partial<RecurrenceRuleDto>, Partial<RecurrenceRuleDto>> partialBuilder)    => it.AddFieldName("recurrenceRule", partialBuilder(new Partial<RecurrenceRuleDto>()));
         
-        public static Partial<CalendarEventSpecDto> WithAllDay(this Partial<CalendarEventSpecDto> it)
-            => it.AddFieldName("allDay");
+        public static Partial<CalendarEventSpecDto> WithAllDay(this Partial<CalendarEventSpecDto> it)    => it.AddFieldName("allDay");
         
-        public static Partial<CalendarEventSpecDto> WithTimezone(this Partial<CalendarEventSpecDto> it)
-            => it.AddFieldName("timezone");
+        public static Partial<CalendarEventSpecDto> WithTimezone(this Partial<CalendarEventSpecDto> it)    => it.AddFieldName("timezone");
         
-        public static Partial<CalendarEventSpecDto> WithTimezone(this Partial<CalendarEventSpecDto> it, Func<Partial<ATimeZoneDto>, Partial<ATimeZoneDto>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneDto>()));
+        public static Partial<CalendarEventSpecDto> WithTimezone(this Partial<CalendarEventSpecDto> it, Func<Partial<ATimeZoneDto>, Partial<ATimeZoneDto>> partialBuilder)    => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneDto>()));
         
-        public static Partial<CalendarEventSpecDto> WithParentId(this Partial<CalendarEventSpecDto> it)
-            => it.AddFieldName("parentId");
+        public static Partial<CalendarEventSpecDto> WithParentId(this Partial<CalendarEventSpecDto> it)    => it.AddFieldName("parentId");
         
     }
     

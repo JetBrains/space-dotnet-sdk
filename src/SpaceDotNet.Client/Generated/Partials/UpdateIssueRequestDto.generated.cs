@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateIssueRequestExtensions
+namespace SpaceDotNet.Client.UpdateIssueRequestDtoExtensions
 {
     public static class UpdateIssueRequestDtoPartialExtensions
     {
-        public static Partial<UpdateIssueRequestDto> WithTitle(this Partial<UpdateIssueRequestDto> it)
-            => it.AddFieldName("title");
+        public static Partial<UpdateIssueRequestDto> WithTitle(this Partial<UpdateIssueRequestDto> it)    => it.AddFieldName("title");
         
-        public static Partial<UpdateIssueRequestDto> WithDescription(this Partial<UpdateIssueRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<UpdateIssueRequestDto> WithDescription(this Partial<UpdateIssueRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<UpdateIssueRequestDto> WithAssignee(this Partial<UpdateIssueRequestDto> it)
-            => it.AddFieldName("assignee");
+        public static Partial<UpdateIssueRequestDto> WithAssignee(this Partial<UpdateIssueRequestDto> it)    => it.AddFieldName("assignee");
         
-        public static Partial<UpdateIssueRequestDto> WithStatus(this Partial<UpdateIssueRequestDto> it)
-            => it.AddFieldName("status");
+        public static Partial<UpdateIssueRequestDto> WithStatus(this Partial<UpdateIssueRequestDto> it)    => it.AddFieldName("status");
         
-        public static Partial<UpdateIssueRequestDto> WithDueDate(this Partial<UpdateIssueRequestDto> it)
-            => it.AddFieldName("dueDate");
+        public static Partial<UpdateIssueRequestDto> WithDueDate(this Partial<UpdateIssueRequestDto> it)    => it.AddFieldName("dueDate");
         
-        public static Partial<UpdateIssueRequestDto> WithImportInfo(this Partial<UpdateIssueRequestDto> it)
-            => it.AddFieldName("importInfo");
+        public static Partial<UpdateIssueRequestDto> WithImportInfo(this Partial<UpdateIssueRequestDto> it)    => it.AddFieldName("importInfo");
         
-        public static Partial<UpdateIssueRequestDto> WithImportInfo(this Partial<UpdateIssueRequestDto> it, Func<Partial<ImportedEntityInfoDto>, Partial<ImportedEntityInfoDto>> partialBuilder)
-            => it.AddFieldName("importInfo", partialBuilder(new Partial<ImportedEntityInfoDto>()));
+        public static Partial<UpdateIssueRequestDto> WithImportInfo(this Partial<UpdateIssueRequestDto> it, Func<Partial<ImportedEntityInfoDto>, Partial<ImportedEntityInfoDto>> partialBuilder)    => it.AddFieldName("importInfo", partialBuilder(new Partial<ImportedEntityInfoDto>()));
         
     }
     

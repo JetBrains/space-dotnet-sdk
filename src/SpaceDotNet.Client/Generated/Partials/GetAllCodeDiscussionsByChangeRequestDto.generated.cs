@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.GetAllCodeDiscussionsByChangeRequestExtensions
+namespace SpaceDotNet.Client.GetAllCodeDiscussionsByChangeRequestDtoExtensions
 {
     public static class GetAllCodeDiscussionsByChangeRequestDtoPartialExtensions
     {
-        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithProjectKey(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)
-            => it.AddFieldName("projectKey");
+        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithProjectKey(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)    => it.AddFieldName("projectKey");
         
-        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithProjectKey(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
-            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithProjectKey(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKeyDto>()));
         
-        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithRepository(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)
-            => it.AddFieldName("repository");
+        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithRepository(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)    => it.AddFieldName("repository");
         
-        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithRevisions(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)
-            => it.AddFieldName("revisions");
+        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithRevisions(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)    => it.AddFieldName("revisions");
         
-        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithChange(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)
-            => it.AddFieldName("change");
+        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithChange(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it)    => it.AddFieldName("change");
         
-        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithChange(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it, Func<Partial<GitCommitChangeDto>, Partial<GitCommitChangeDto>> partialBuilder)
-            => it.AddFieldName("change", partialBuilder(new Partial<GitCommitChangeDto>()));
+        public static Partial<GetAllCodeDiscussionsByChangeRequestDto> WithChange(this Partial<GetAllCodeDiscussionsByChangeRequestDto> it, Func<Partial<GitCommitChangeDto>, Partial<GitCommitChangeDto>> partialBuilder)    => it.AddFieldName("change", partialBuilder(new Partial<GitCommitChangeDto>()));
         
     }
     

@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TrackTagAccessRequestExtensions
+namespace SpaceDotNet.Client.TrackTagAccessRequestDtoExtensions
 {
     public static class TrackTagAccessRequestDtoPartialExtensions
     {
-        public static Partial<TrackTagAccessRequestDto> WithTag(this Partial<TrackTagAccessRequestDto> it)
-            => it.AddFieldName("tag");
+        public static Partial<TrackTagAccessRequestDto> WithTag(this Partial<TrackTagAccessRequestDto> it)    => it.AddFieldName("tag");
         
     }
     

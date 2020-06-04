@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PermissionSnapshotTargetDTOExtensions
+namespace SpaceDotNet.Client.PermissionSnapshotTargetDTODtoExtensions
 {
     public static class PermissionSnapshotTargetDTODtoPartialExtensions
     {
-        public static Partial<PermissionSnapshotTargetDTODto> WithId(this Partial<PermissionSnapshotTargetDTODto> it)
-            => it.AddFieldName("id");
+        public static Partial<PermissionSnapshotTargetDTODto> WithId(this Partial<PermissionSnapshotTargetDTODto> it)    => it.AddFieldName("id");
         
-        public static Partial<PermissionSnapshotTargetDTODto> WithType(this Partial<PermissionSnapshotTargetDTODto> it)
-            => it.AddFieldName("type");
+        public static Partial<PermissionSnapshotTargetDTODto> WithType(this Partial<PermissionSnapshotTargetDTODto> it)    => it.AddFieldName("type");
         
-        public static Partial<PermissionSnapshotTargetDTODto> WithName(this Partial<PermissionSnapshotTargetDTODto> it)
-            => it.AddFieldName("name");
+        public static Partial<PermissionSnapshotTargetDTODto> WithName(this Partial<PermissionSnapshotTargetDTODto> it)    => it.AddFieldName("name");
         
     }
     

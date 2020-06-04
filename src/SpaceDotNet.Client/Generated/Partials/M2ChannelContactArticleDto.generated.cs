@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContactArticleExtensions
+namespace SpaceDotNet.Client.M2ChannelContactArticleDtoExtensions
 {
     public static class M2ChannelContactArticleDtoPartialExtensions
     {
-        public static Partial<M2ChannelContactArticleDto> WithArticle(this Partial<M2ChannelContactArticleDto> it)
-            => it.AddFieldName("article");
+        public static Partial<M2ChannelContactArticleDto> WithArticle(this Partial<M2ChannelContactArticleDto> it)    => it.AddFieldName("article");
         
-        public static Partial<M2ChannelContactArticleDto> WithArticle(this Partial<M2ChannelContactArticleDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
+        public static Partial<M2ChannelContactArticleDto> WithArticle(this Partial<M2ChannelContactArticleDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)    => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
         
-        public static Partial<M2ChannelContactArticleDto> WithNotificationDefaults(this Partial<M2ChannelContactArticleDto> it)
-            => it.AddFieldName("notificationDefaults");
+        public static Partial<M2ChannelContactArticleDto> WithNotificationDefaults(this Partial<M2ChannelContactArticleDto> it)    => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2ChannelContactArticleDto> WithNotificationDefaults(this Partial<M2ChannelContactArticleDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2ChannelContactArticleDto> WithNotificationDefaults(this Partial<M2ChannelContactArticleDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
         
     }
     

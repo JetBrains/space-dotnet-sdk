@@ -19,39 +19,29 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESSamlAuthModuleSettingsExtensions
+namespace SpaceDotNet.Client.ESSamlAuthModuleSettingsDtoExtensions
 {
     public static class ESSamlAuthModuleSettingsDtoPartialExtensions
     {
-        public static Partial<ESSamlAuthModuleSettingsDto> WithIdpUrl(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("idpUrl");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithIdpUrl(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("idpUrl");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithIdpEntityId(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("idpEntityId");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithIdpEntityId(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("idpEntityId");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithIdpCertificateSHA256(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("idpCertificateSHA256");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithIdpCertificateSHA256(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("idpCertificateSHA256");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithSpEntityId(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("spEntityId");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithSpEntityId(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("spEntityId");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithSslKeystore(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("sslKeystore");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithSslKeystore(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("sslKeystore");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithSslKeystore(this Partial<ESSamlAuthModuleSettingsDto> it, Func<Partial<SSLKeystoreDto>, Partial<SSLKeystoreDto>> partialBuilder)
-            => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreDto>()));
+        public static Partial<ESSamlAuthModuleSettingsDto> WithSslKeystore(this Partial<ESSamlAuthModuleSettingsDto> it, Func<Partial<SSLKeystoreDto>, Partial<SSLKeystoreDto>> partialBuilder)    => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreDto>()));
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("registerNewUsers");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("registerNewUsers");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithContactProfileId(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("contactProfileId");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithContactProfileId(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("contactProfileId");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithAttributeNames(this Partial<ESSamlAuthModuleSettingsDto> it)
-            => it.AddFieldName("attributeNames");
+        public static Partial<ESSamlAuthModuleSettingsDto> WithAttributeNames(this Partial<ESSamlAuthModuleSettingsDto> it)    => it.AddFieldName("attributeNames");
         
-        public static Partial<ESSamlAuthModuleSettingsDto> WithAttributeNames(this Partial<ESSamlAuthModuleSettingsDto> it, Func<Partial<ESSamlAttributeNamesDto>, Partial<ESSamlAttributeNamesDto>> partialBuilder)
-            => it.AddFieldName("attributeNames", partialBuilder(new Partial<ESSamlAttributeNamesDto>()));
+        public static Partial<ESSamlAuthModuleSettingsDto> WithAttributeNames(this Partial<ESSamlAuthModuleSettingsDto> it, Func<Partial<ESSamlAttributeNamesDto>, Partial<ESSamlAttributeNamesDto>> partialBuilder)    => it.AddFieldName("attributeNames", partialBuilder(new Partial<ESSamlAttributeNamesDto>()));
         
     }
     

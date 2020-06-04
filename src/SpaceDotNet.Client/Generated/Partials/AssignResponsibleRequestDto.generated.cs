@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.AssignResponsibleRequestExtensions
+namespace SpaceDotNet.Client.AssignResponsibleRequestDtoExtensions
 {
     public static class AssignResponsibleRequestDtoPartialExtensions
     {
-        public static Partial<AssignResponsibleRequestDto> WithRole(this Partial<AssignResponsibleRequestDto> it)
-            => it.AddFieldName("role");
+        public static Partial<AssignResponsibleRequestDto> WithRole(this Partial<AssignResponsibleRequestDto> it)    => it.AddFieldName("role");
         
     }
     

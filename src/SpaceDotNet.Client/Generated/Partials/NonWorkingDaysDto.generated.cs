@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.NonWorkingDaysExtensions
+namespace SpaceDotNet.Client.NonWorkingDaysDtoExtensions
 {
     public static class NonWorkingDaysDtoPartialExtensions
     {
-        public static Partial<NonWorkingDaysDto> WithSince(this Partial<NonWorkingDaysDto> it)
-            => it.AddFieldName("since");
+        public static Partial<NonWorkingDaysDto> WithSince(this Partial<NonWorkingDaysDto> it)    => it.AddFieldName("since");
         
-        public static Partial<NonWorkingDaysDto> WithTill(this Partial<NonWorkingDaysDto> it)
-            => it.AddFieldName("till");
+        public static Partial<NonWorkingDaysDto> WithTill(this Partial<NonWorkingDaysDto> it)    => it.AddFieldName("till");
         
-        public static Partial<NonWorkingDaysDto> WithStartsEarlier(this Partial<NonWorkingDaysDto> it)
-            => it.AddFieldName("startsEarlier");
+        public static Partial<NonWorkingDaysDto> WithStartsEarlier(this Partial<NonWorkingDaysDto> it)    => it.AddFieldName("startsEarlier");
         
-        public static Partial<NonWorkingDaysDto> WithEndsLater(this Partial<NonWorkingDaysDto> it)
-            => it.AddFieldName("endsLater");
+        public static Partial<NonWorkingDaysDto> WithEndsLater(this Partial<NonWorkingDaysDto> it)    => it.AddFieldName("endsLater");
         
     }
     

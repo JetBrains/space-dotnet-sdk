@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESGithubProfileLoginDetailsExtensions
+namespace SpaceDotNet.Client.ESGithubProfileLoginDetailsDtoExtensions
 {
     public static class ESGithubProfileLoginDetailsDtoPartialExtensions
     {
-        public static Partial<ESGithubProfileLoginDetailsDto> WithLogin(this Partial<ESGithubProfileLoginDetailsDto> it)
-            => it.AddFieldName("login");
+        public static Partial<ESGithubProfileLoginDetailsDto> WithLogin(this Partial<ESGithubProfileLoginDetailsDto> it)    => it.AddFieldName("login");
         
-        public static Partial<ESGithubProfileLoginDetailsDto> WithFirstName(this Partial<ESGithubProfileLoginDetailsDto> it)
-            => it.AddFieldName("firstName");
+        public static Partial<ESGithubProfileLoginDetailsDto> WithFirstName(this Partial<ESGithubProfileLoginDetailsDto> it)    => it.AddFieldName("firstName");
         
-        public static Partial<ESGithubProfileLoginDetailsDto> WithLastName(this Partial<ESGithubProfileLoginDetailsDto> it)
-            => it.AddFieldName("lastName");
+        public static Partial<ESGithubProfileLoginDetailsDto> WithLastName(this Partial<ESGithubProfileLoginDetailsDto> it)    => it.AddFieldName("lastName");
         
-        public static Partial<ESGithubProfileLoginDetailsDto> WithEmail(this Partial<ESGithubProfileLoginDetailsDto> it)
-            => it.AddFieldName("email");
+        public static Partial<ESGithubProfileLoginDetailsDto> WithEmail(this Partial<ESGithubProfileLoginDetailsDto> it)    => it.AddFieldName("email");
         
-        public static Partial<ESGithubProfileLoginDetailsDto> WithEmailVerified(this Partial<ESGithubProfileLoginDetailsDto> it)
-            => it.AddFieldName("emailVerified");
+        public static Partial<ESGithubProfileLoginDetailsDto> WithEmailVerified(this Partial<ESGithubProfileLoginDetailsDto> it)    => it.AddFieldName("emailVerified");
         
-        public static Partial<ESGithubProfileLoginDetailsDto> WithAvatarUrl(this Partial<ESGithubProfileLoginDetailsDto> it)
-            => it.AddFieldName("avatarUrl");
+        public static Partial<ESGithubProfileLoginDetailsDto> WithAvatarUrl(this Partial<ESGithubProfileLoginDetailsDto> it)    => it.AddFieldName("avatarUrl");
         
-        public static Partial<ESGithubProfileLoginDetailsDto> WithOrganizations(this Partial<ESGithubProfileLoginDetailsDto> it)
-            => it.AddFieldName("organizations");
+        public static Partial<ESGithubProfileLoginDetailsDto> WithOrganizations(this Partial<ESGithubProfileLoginDetailsDto> it)    => it.AddFieldName("organizations");
         
     }
     

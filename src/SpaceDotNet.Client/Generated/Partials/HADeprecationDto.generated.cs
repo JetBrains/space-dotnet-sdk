@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HADeprecationExtensions
+namespace SpaceDotNet.Client.HADeprecationDtoExtensions
 {
     public static class HADeprecationDtoPartialExtensions
     {
-        public static Partial<HADeprecationDto> WithMessage(this Partial<HADeprecationDto> it)
-            => it.AddFieldName("message");
+        public static Partial<HADeprecationDto> WithMessage(this Partial<HADeprecationDto> it)    => it.AddFieldName("message");
         
-        public static Partial<HADeprecationDto> WithSince(this Partial<HADeprecationDto> it)
-            => it.AddFieldName("since");
+        public static Partial<HADeprecationDto> WithSince(this Partial<HADeprecationDto> it)    => it.AddFieldName("since");
         
-        public static Partial<HADeprecationDto> WithForRemoval(this Partial<HADeprecationDto> it)
-            => it.AddFieldName("forRemoval");
+        public static Partial<HADeprecationDto> WithForRemoval(this Partial<HADeprecationDto> it)    => it.AddFieldName("forRemoval");
         
     }
     

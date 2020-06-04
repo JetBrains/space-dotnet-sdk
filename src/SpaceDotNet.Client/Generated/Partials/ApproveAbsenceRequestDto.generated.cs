@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ApproveAbsenceRequestExtensions
+namespace SpaceDotNet.Client.ApproveAbsenceRequestDtoExtensions
 {
     public static class ApproveAbsenceRequestDtoPartialExtensions
     {
-        public static Partial<ApproveAbsenceRequestDto> WithApprove(this Partial<ApproveAbsenceRequestDto> it)
-            => it.AddFieldName("approve");
+        public static Partial<ApproveAbsenceRequestDto> WithApprove(this Partial<ApproveAbsenceRequestDto> it)    => it.AddFieldName("approve");
         
     }
     

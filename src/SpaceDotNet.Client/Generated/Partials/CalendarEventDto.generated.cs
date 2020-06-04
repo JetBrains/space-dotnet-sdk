@@ -19,33 +19,25 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CalendarEventExtensions
+namespace SpaceDotNet.Client.CalendarEventDtoExtensions
 {
     public static class CalendarEventDtoPartialExtensions
     {
-        public static Partial<CalendarEventDto> WithCalendarEvent(this Partial<CalendarEventDto> it)
-            => it.AddFieldName("calendarEvent");
+        public static Partial<CalendarEventDto> WithCalendarEvent(this Partial<CalendarEventDto> it)    => it.AddFieldName("calendarEvent");
         
-        public static Partial<CalendarEventDto> WithStarts(this Partial<CalendarEventDto> it)
-            => it.AddFieldName("starts");
+        public static Partial<CalendarEventDto> WithStarts(this Partial<CalendarEventDto> it)    => it.AddFieldName("starts");
         
-        public static Partial<CalendarEventDto> WithEnds(this Partial<CalendarEventDto> it)
-            => it.AddFieldName("ends");
+        public static Partial<CalendarEventDto> WithEnds(this Partial<CalendarEventDto> it)    => it.AddFieldName("ends");
         
-        public static Partial<CalendarEventDto> WithTimezone(this Partial<CalendarEventDto> it)
-            => it.AddFieldName("timezone");
+        public static Partial<CalendarEventDto> WithTimezone(this Partial<CalendarEventDto> it)    => it.AddFieldName("timezone");
         
-        public static Partial<CalendarEventDto> WithTimezone(this Partial<CalendarEventDto> it, Func<Partial<ATimeZoneDto>, Partial<ATimeZoneDto>> partialBuilder)
-            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneDto>()));
+        public static Partial<CalendarEventDto> WithTimezone(this Partial<CalendarEventDto> it, Func<Partial<ATimeZoneDto>, Partial<ATimeZoneDto>> partialBuilder)    => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneDto>()));
         
-        public static Partial<CalendarEventDto> WithRooms(this Partial<CalendarEventDto> it)
-            => it.AddFieldName("rooms");
+        public static Partial<CalendarEventDto> WithRooms(this Partial<CalendarEventDto> it)    => it.AddFieldName("rooms");
         
-        public static Partial<CalendarEventDto> WithRooms(this Partial<CalendarEventDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
-            => it.AddFieldName("rooms", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<CalendarEventDto> WithRooms(this Partial<CalendarEventDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("rooms", partialBuilder(new Partial<TDLocationDto>()));
         
-        public static Partial<CalendarEventDto> WithAllDay(this Partial<CalendarEventDto> it)
-            => it.AddFieldName("allDay");
+        public static Partial<CalendarEventDto> WithAllDay(this Partial<CalendarEventDto> it)    => it.AddFieldName("allDay");
         
     }
     

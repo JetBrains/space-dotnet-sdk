@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.StickerVariantExtensions
+namespace SpaceDotNet.Client.StickerVariantDtoExtensions
 {
     public static class StickerVariantDtoPartialExtensions
     {
-        public static Partial<StickerVariantDto> WithId(this Partial<StickerVariantDto> it)
-            => it.AddFieldName("id");
+        public static Partial<StickerVariantDto> WithId(this Partial<StickerVariantDto> it)    => it.AddFieldName("id");
         
-        public static Partial<StickerVariantDto> WithName(this Partial<StickerVariantDto> it)
-            => it.AddFieldName("name");
+        public static Partial<StickerVariantDto> WithName(this Partial<StickerVariantDto> it)    => it.AddFieldName("name");
         
-        public static Partial<StickerVariantDto> WithWidth(this Partial<StickerVariantDto> it)
-            => it.AddFieldName("width");
+        public static Partial<StickerVariantDto> WithWidth(this Partial<StickerVariantDto> it)    => it.AddFieldName("width");
         
-        public static Partial<StickerVariantDto> WithHeight(this Partial<StickerVariantDto> it)
-            => it.AddFieldName("height");
+        public static Partial<StickerVariantDto> WithHeight(this Partial<StickerVariantDto> it)    => it.AddFieldName("height");
         
     }
     

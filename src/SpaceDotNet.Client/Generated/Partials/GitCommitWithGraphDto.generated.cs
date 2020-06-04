@@ -19,33 +19,25 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.GitCommitWithGraphExtensions
+namespace SpaceDotNet.Client.GitCommitWithGraphDtoExtensions
 {
     public static class GitCommitWithGraphDtoPartialExtensions
     {
-        public static Partial<GitCommitWithGraphDto> WithRepositoryName(this Partial<GitCommitWithGraphDto> it)
-            => it.AddFieldName("repositoryName");
+        public static Partial<GitCommitWithGraphDto> WithRepositoryName(this Partial<GitCommitWithGraphDto> it)    => it.AddFieldName("repositoryName");
         
-        public static Partial<GitCommitWithGraphDto> WithCommit(this Partial<GitCommitWithGraphDto> it)
-            => it.AddFieldName("commit");
+        public static Partial<GitCommitWithGraphDto> WithCommit(this Partial<GitCommitWithGraphDto> it)    => it.AddFieldName("commit");
         
-        public static Partial<GitCommitWithGraphDto> WithCommit(this Partial<GitCommitWithGraphDto> it, Func<Partial<GitCommitInfoDto>, Partial<GitCommitInfoDto>> partialBuilder)
-            => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfoDto>()));
+        public static Partial<GitCommitWithGraphDto> WithCommit(this Partial<GitCommitWithGraphDto> it, Func<Partial<GitCommitInfoDto>, Partial<GitCommitInfoDto>> partialBuilder)    => it.AddFieldName("commit", partialBuilder(new Partial<GitCommitInfoDto>()));
         
-        public static Partial<GitCommitWithGraphDto> WithReviews(this Partial<GitCommitWithGraphDto> it)
-            => it.AddFieldName("reviews");
+        public static Partial<GitCommitWithGraphDto> WithReviews(this Partial<GitCommitWithGraphDto> it)    => it.AddFieldName("reviews");
         
-        public static Partial<GitCommitWithGraphDto> WithReviews(this Partial<GitCommitWithGraphDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
-            => it.AddFieldName("reviews", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<GitCommitWithGraphDto> WithReviews(this Partial<GitCommitWithGraphDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("reviews", partialBuilder(new Partial<CodeReviewRecordDto>()));
         
-        public static Partial<GitCommitWithGraphDto> WithLayout(this Partial<GitCommitWithGraphDto> it)
-            => it.AddFieldName("layout");
+        public static Partial<GitCommitWithGraphDto> WithLayout(this Partial<GitCommitWithGraphDto> it)    => it.AddFieldName("layout");
         
-        public static Partial<GitCommitWithGraphDto> WithLayout(this Partial<GitCommitWithGraphDto> it, Func<Partial<GitGraphLayoutLineDto>, Partial<GitGraphLayoutLineDto>> partialBuilder)
-            => it.AddFieldName("layout", partialBuilder(new Partial<GitGraphLayoutLineDto>()));
+        public static Partial<GitCommitWithGraphDto> WithLayout(this Partial<GitCommitWithGraphDto> it, Func<Partial<GitGraphLayoutLineDto>, Partial<GitGraphLayoutLineDto>> partialBuilder)    => it.AddFieldName("layout", partialBuilder(new Partial<GitGraphLayoutLineDto>()));
         
-        public static Partial<GitCommitWithGraphDto> WithUnreachable(this Partial<GitCommitWithGraphDto> it)
-            => it.AddFieldName("unreachable");
+        public static Partial<GitCommitWithGraphDto> WithUnreachable(this Partial<GitCommitWithGraphDto> it)    => it.AddFieldName("unreachable");
         
     }
     

@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MergeRequestBranchRestoredEventExtensions
+namespace SpaceDotNet.Client.MergeRequestBranchRestoredEventDtoExtensions
 {
     public static class MergeRequestBranchRestoredEventDtoPartialExtensions
     {
-        public static Partial<MergeRequestBranchRestoredEventDto> WithRepository(this Partial<MergeRequestBranchRestoredEventDto> it)
-            => it.AddFieldName("repository");
+        public static Partial<MergeRequestBranchRestoredEventDto> WithRepository(this Partial<MergeRequestBranchRestoredEventDto> it)    => it.AddFieldName("repository");
         
-        public static Partial<MergeRequestBranchRestoredEventDto> WithBranch(this Partial<MergeRequestBranchRestoredEventDto> it)
-            => it.AddFieldName("branch");
+        public static Partial<MergeRequestBranchRestoredEventDto> WithBranch(this Partial<MergeRequestBranchRestoredEventDto> it)    => it.AddFieldName("branch");
         
-        public static Partial<MergeRequestBranchRestoredEventDto> WithBranchType(this Partial<MergeRequestBranchRestoredEventDto> it)
-            => it.AddFieldName("branchType");
+        public static Partial<MergeRequestBranchRestoredEventDto> WithBranchType(this Partial<MergeRequestBranchRestoredEventDto> it)    => it.AddFieldName("branchType");
         
-        public static Partial<MergeRequestBranchRestoredEventDto> WithBranchType(this Partial<MergeRequestBranchRestoredEventDto> it, Func<Partial<MergeRequestBranchType>, Partial<MergeRequestBranchType>> partialBuilder)
-            => it.AddFieldName("branchType", partialBuilder(new Partial<MergeRequestBranchType>()));
+        public static Partial<MergeRequestBranchRestoredEventDto> WithBranchType(this Partial<MergeRequestBranchRestoredEventDto> it, Func<Partial<MergeRequestBranchType>, Partial<MergeRequestBranchType>> partialBuilder)    => it.AddFieldName("branchType", partialBuilder(new Partial<MergeRequestBranchType>()));
         
     }
     

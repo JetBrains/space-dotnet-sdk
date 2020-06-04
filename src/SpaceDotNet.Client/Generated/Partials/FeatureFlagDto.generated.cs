@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.FeatureFlagExtensions
+namespace SpaceDotNet.Client.FeatureFlagDtoExtensions
 {
     public static class FeatureFlagDtoPartialExtensions
     {
-        public static Partial<FeatureFlagDto> WithName(this Partial<FeatureFlagDto> it)
-            => it.AddFieldName("name");
+        public static Partial<FeatureFlagDto> WithName(this Partial<FeatureFlagDto> it)    => it.AddFieldName("name");
         
-        public static Partial<FeatureFlagDto> WithDescription(this Partial<FeatureFlagDto> it)
-            => it.AddFieldName("description");
+        public static Partial<FeatureFlagDto> WithDescription(this Partial<FeatureFlagDto> it)    => it.AddFieldName("description");
         
-        public static Partial<FeatureFlagDto> WithStatus(this Partial<FeatureFlagDto> it)
-            => it.AddFieldName("status");
+        public static Partial<FeatureFlagDto> WithStatus(this Partial<FeatureFlagDto> it)    => it.AddFieldName("status");
         
-        public static Partial<FeatureFlagDto> WithStatus(this Partial<FeatureFlagDto> it, Func<Partial<FeatureFlagStatus>, Partial<FeatureFlagStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<FeatureFlagStatus>()));
+        public static Partial<FeatureFlagDto> WithStatus(this Partial<FeatureFlagDto> it, Func<Partial<FeatureFlagStatus>, Partial<FeatureFlagStatus>> partialBuilder)    => it.AddFieldName("status", partialBuilder(new Partial<FeatureFlagStatus>()));
         
-        public static Partial<FeatureFlagDto> WithOwner(this Partial<FeatureFlagDto> it)
-            => it.AddFieldName("owner");
+        public static Partial<FeatureFlagDto> WithOwner(this Partial<FeatureFlagDto> it)    => it.AddFieldName("owner");
         
-        public static Partial<FeatureFlagDto> WithIntroduced(this Partial<FeatureFlagDto> it)
-            => it.AddFieldName("introduced");
+        public static Partial<FeatureFlagDto> WithIntroduced(this Partial<FeatureFlagDto> it)    => it.AddFieldName("introduced");
         
     }
     

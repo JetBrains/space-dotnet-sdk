@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.GitGraphLayoutLineExtensions
+namespace SpaceDotNet.Client.GitGraphLayoutLineDtoExtensions
 {
     public static class GitGraphLayoutLineDtoPartialExtensions
     {
-        public static Partial<GitGraphLayoutLineDto> WithNodes(this Partial<GitGraphLayoutLineDto> it)
-            => it.AddFieldName("nodes");
+        public static Partial<GitGraphLayoutLineDto> WithNodes(this Partial<GitGraphLayoutLineDto> it)    => it.AddFieldName("nodes");
         
-        public static Partial<GitGraphLayoutLineDto> WithNodes(this Partial<GitGraphLayoutLineDto> it, Func<Partial<GitGraphLayoutNodeDto>, Partial<GitGraphLayoutNodeDto>> partialBuilder)
-            => it.AddFieldName("nodes", partialBuilder(new Partial<GitGraphLayoutNodeDto>()));
+        public static Partial<GitGraphLayoutLineDto> WithNodes(this Partial<GitGraphLayoutLineDto> it, Func<Partial<GitGraphLayoutNodeDto>, Partial<GitGraphLayoutNodeDto>> partialBuilder)    => it.AddFieldName("nodes", partialBuilder(new Partial<GitGraphLayoutNodeDto>()));
         
-        public static Partial<GitGraphLayoutLineDto> WithEdges(this Partial<GitGraphLayoutLineDto> it)
-            => it.AddFieldName("edges");
+        public static Partial<GitGraphLayoutLineDto> WithEdges(this Partial<GitGraphLayoutLineDto> it)    => it.AddFieldName("edges");
         
-        public static Partial<GitGraphLayoutLineDto> WithEdges(this Partial<GitGraphLayoutLineDto> it, Func<Partial<GitGraphLayoutEdgeDto>, Partial<GitGraphLayoutEdgeDto>> partialBuilder)
-            => it.AddFieldName("edges", partialBuilder(new Partial<GitGraphLayoutEdgeDto>()));
+        public static Partial<GitGraphLayoutLineDto> WithEdges(this Partial<GitGraphLayoutLineDto> it, Func<Partial<GitGraphLayoutEdgeDto>, Partial<GitGraphLayoutEdgeDto>> partialBuilder)    => it.AddFieldName("edges", partialBuilder(new Partial<GitGraphLayoutEdgeDto>()));
         
     }
     

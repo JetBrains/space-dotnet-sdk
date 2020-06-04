@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateDraftRequestExtensions
+namespace SpaceDotNet.Client.CreateDraftRequestDtoExtensions
 {
     public static class CreateDraftRequestDtoPartialExtensions
     {
-        public static Partial<CreateDraftRequestDto> WithTitle(this Partial<CreateDraftRequestDto> it)
-            => it.AddFieldName("title");
+        public static Partial<CreateDraftRequestDto> WithTitle(this Partial<CreateDraftRequestDto> it)    => it.AddFieldName("title");
         
-        public static Partial<CreateDraftRequestDto> WithText(this Partial<CreateDraftRequestDto> it)
-            => it.AddFieldName("text");
+        public static Partial<CreateDraftRequestDto> WithText(this Partial<CreateDraftRequestDto> it)    => it.AddFieldName("text");
         
-        public static Partial<CreateDraftRequestDto> WithTextVersion(this Partial<CreateDraftRequestDto> it)
-            => it.AddFieldName("textVersion");
+        public static Partial<CreateDraftRequestDto> WithTextVersion(this Partial<CreateDraftRequestDto> it)    => it.AddFieldName("textVersion");
         
-        public static Partial<CreateDraftRequestDto> WithType(this Partial<CreateDraftRequestDto> it)
-            => it.AddFieldName("type");
+        public static Partial<CreateDraftRequestDto> WithType(this Partial<CreateDraftRequestDto> it)    => it.AddFieldName("type");
         
-        public static Partial<CreateDraftRequestDto> WithType(this Partial<CreateDraftRequestDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>()));
+        public static Partial<CreateDraftRequestDto> WithType(this Partial<CreateDraftRequestDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>()));
         
-        public static Partial<CreateDraftRequestDto> WithPublicationDetails(this Partial<CreateDraftRequestDto> it)
-            => it.AddFieldName("publicationDetails");
+        public static Partial<CreateDraftRequestDto> WithPublicationDetails(this Partial<CreateDraftRequestDto> it)    => it.AddFieldName("publicationDetails");
         
-        public static Partial<CreateDraftRequestDto> WithPublicationDetails(this Partial<CreateDraftRequestDto> it, Func<Partial<DraftPublicationDetailsDto>, Partial<DraftPublicationDetailsDto>> partialBuilder)
-            => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetailsDto>()));
+        public static Partial<CreateDraftRequestDto> WithPublicationDetails(this Partial<CreateDraftRequestDto> it, Func<Partial<DraftPublicationDetailsDto>, Partial<DraftPublicationDetailsDto>> partialBuilder)    => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetailsDto>()));
         
     }
     

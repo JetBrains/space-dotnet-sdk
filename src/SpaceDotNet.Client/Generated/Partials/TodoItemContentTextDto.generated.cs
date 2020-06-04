@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TodoItemContentTextExtensions
+namespace SpaceDotNet.Client.TodoItemContentTextDtoExtensions
 {
     public static class TodoItemContentTextDtoPartialExtensions
     {
-        public static Partial<TodoItemContentTextDto> WithText(this Partial<TodoItemContentTextDto> it)
-            => it.AddFieldName("text");
+        public static Partial<TodoItemContentTextDto> WithText(this Partial<TodoItemContentTextDto> it)    => it.AddFieldName("text");
         
     }
     

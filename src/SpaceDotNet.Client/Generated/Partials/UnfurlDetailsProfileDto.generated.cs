@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UnfurlDetailsProfileExtensions
+namespace SpaceDotNet.Client.UnfurlDetailsProfileDtoExtensions
 {
     public static class UnfurlDetailsProfileDtoPartialExtensions
     {
-        public static Partial<UnfurlDetailsProfileDto> WithProfile(this Partial<UnfurlDetailsProfileDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<UnfurlDetailsProfileDto> WithProfile(this Partial<UnfurlDetailsProfileDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<UnfurlDetailsProfileDto> WithProfile(this Partial<UnfurlDetailsProfileDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<UnfurlDetailsProfileDto> WithProfile(this Partial<UnfurlDetailsProfileDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

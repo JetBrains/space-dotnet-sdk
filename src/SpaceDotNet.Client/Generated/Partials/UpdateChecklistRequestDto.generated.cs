@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateChecklistRequestExtensions
+namespace SpaceDotNet.Client.UpdateChecklistRequestDtoExtensions
 {
     public static class UpdateChecklistRequestDtoPartialExtensions
     {
-        public static Partial<UpdateChecklistRequestDto> WithName(this Partial<UpdateChecklistRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateChecklistRequestDto> WithName(this Partial<UpdateChecklistRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateChecklistRequestDto> WithDescription(this Partial<UpdateChecklistRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<UpdateChecklistRequestDto> WithDescription(this Partial<UpdateChecklistRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<UpdateChecklistRequestDto> WithOwner(this Partial<UpdateChecklistRequestDto> it)
-            => it.AddFieldName("owner");
+        public static Partial<UpdateChecklistRequestDto> WithOwner(this Partial<UpdateChecklistRequestDto> it)    => it.AddFieldName("owner");
         
-        public static Partial<UpdateChecklistRequestDto> WithTag(this Partial<UpdateChecklistRequestDto> it)
-            => it.AddFieldName("tag");
+        public static Partial<UpdateChecklistRequestDto> WithTag(this Partial<UpdateChecklistRequestDto> it)    => it.AddFieldName("tag");
         
     }
     

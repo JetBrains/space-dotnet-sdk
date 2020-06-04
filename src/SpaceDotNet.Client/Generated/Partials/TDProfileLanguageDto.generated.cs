@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TDProfileLanguageExtensions
+namespace SpaceDotNet.Client.TDProfileLanguageDtoExtensions
 {
     public static class TDProfileLanguageDtoPartialExtensions
     {
-        public static Partial<TDProfileLanguageDto> WithName(this Partial<TDProfileLanguageDto> it)
-            => it.AddFieldName("name");
+        public static Partial<TDProfileLanguageDto> WithName(this Partial<TDProfileLanguageDto> it)    => it.AddFieldName("name");
         
-        public static Partial<TDProfileLanguageDto> WithName(this Partial<TDProfileLanguageDto> it, Func<Partial<TDProfileNameDto>, Partial<TDProfileNameDto>> partialBuilder)
-            => it.AddFieldName("name", partialBuilder(new Partial<TDProfileNameDto>()));
+        public static Partial<TDProfileLanguageDto> WithName(this Partial<TDProfileLanguageDto> it, Func<Partial<TDProfileNameDto>, Partial<TDProfileNameDto>> partialBuilder)    => it.AddFieldName("name", partialBuilder(new Partial<TDProfileNameDto>()));
         
-        public static Partial<TDProfileLanguageDto> WithLanguage(this Partial<TDProfileLanguageDto> it)
-            => it.AddFieldName("language");
+        public static Partial<TDProfileLanguageDto> WithLanguage(this Partial<TDProfileLanguageDto> it)    => it.AddFieldName("language");
         
-        public static Partial<TDProfileLanguageDto> WithLanguage(this Partial<TDProfileLanguageDto> it, Func<Partial<TDLanguageDto>, Partial<TDLanguageDto>> partialBuilder)
-            => it.AddFieldName("language", partialBuilder(new Partial<TDLanguageDto>()));
+        public static Partial<TDProfileLanguageDto> WithLanguage(this Partial<TDProfileLanguageDto> it, Func<Partial<TDLanguageDto>, Partial<TDLanguageDto>> partialBuilder)    => it.AddFieldName("language", partialBuilder(new Partial<TDLanguageDto>()));
         
-        public static Partial<TDProfileLanguageDto> WithLanguageCode(this Partial<TDProfileLanguageDto> it)
-            => it.AddFieldName("languageCode");
+        public static Partial<TDProfileLanguageDto> WithLanguageCode(this Partial<TDProfileLanguageDto> it)    => it.AddFieldName("languageCode");
         
     }
     

@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESRefreshTokenExtensions
+namespace SpaceDotNet.Client.ESRefreshTokenDtoExtensions
 {
     public static class ESRefreshTokenDtoPartialExtensions
     {
-        public static Partial<ESRefreshTokenDto> WithId(this Partial<ESRefreshTokenDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ESRefreshTokenDto> WithId(this Partial<ESRefreshTokenDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ESRefreshTokenDto> WithScope(this Partial<ESRefreshTokenDto> it)
-            => it.AddFieldName("scope");
+        public static Partial<ESRefreshTokenDto> WithScope(this Partial<ESRefreshTokenDto> it)    => it.AddFieldName("scope");
         
-        public static Partial<ESRefreshTokenDto> WithLastAccess(this Partial<ESRefreshTokenDto> it)
-            => it.AddFieldName("lastAccess");
+        public static Partial<ESRefreshTokenDto> WithLastAccess(this Partial<ESRefreshTokenDto> it)    => it.AddFieldName("lastAccess");
         
-        public static Partial<ESRefreshTokenDto> WithLastAccess(this Partial<ESRefreshTokenDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)
-            => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>()));
+        public static Partial<ESRefreshTokenDto> WithLastAccess(this Partial<ESRefreshTokenDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)    => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>()));
         
     }
     

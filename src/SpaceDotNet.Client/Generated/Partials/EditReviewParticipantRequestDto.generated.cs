@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EditReviewParticipantRequestExtensions
+namespace SpaceDotNet.Client.EditReviewParticipantRequestDtoExtensions
 {
     public static class EditReviewParticipantRequestDtoPartialExtensions
     {
-        public static Partial<EditReviewParticipantRequestDto> WithRole(this Partial<EditReviewParticipantRequestDto> it)
-            => it.AddFieldName("role");
+        public static Partial<EditReviewParticipantRequestDto> WithRole(this Partial<EditReviewParticipantRequestDto> it)    => it.AddFieldName("role");
         
-        public static Partial<EditReviewParticipantRequestDto> WithRole(this Partial<EditReviewParticipantRequestDto> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
+        public static Partial<EditReviewParticipantRequestDto> WithRole(this Partial<EditReviewParticipantRequestDto> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)    => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
         
     }
     

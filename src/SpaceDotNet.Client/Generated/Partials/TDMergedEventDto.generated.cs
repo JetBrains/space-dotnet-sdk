@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TDMergedEventExtensions
+namespace SpaceDotNet.Client.TDMergedEventDtoExtensions
 {
     public static class TDMergedEventDtoPartialExtensions
     {
-        public static Partial<TDMergedEventDto> WithEvents(this Partial<TDMergedEventDto> it)
-            => it.AddFieldName("events");
+        public static Partial<TDMergedEventDto> WithEvents(this Partial<TDMergedEventDto> it)    => it.AddFieldName("events");
         
-        public static Partial<TDMergedEventDto> WithEvents(this Partial<TDMergedEventDto> it, Func<Partial<Pair<TDMembershipDto, int>>, Partial<Pair<TDMembershipDto, int>>> partialBuilder)
-            => it.AddFieldName("events", partialBuilder(new Partial<Pair<TDMembershipDto, int>>()));
+        public static Partial<TDMergedEventDto> WithEvents(this Partial<TDMergedEventDto> it, Func<Partial<Pair<TDMembershipDto, int>>, Partial<Pair<TDMembershipDto, int>>> partialBuilder)    => it.AddFieldName("events", partialBuilder(new Partial<Pair<TDMembershipDto, int>>()));
         
-        public static Partial<TDMergedEventDto> WithProfile(this Partial<TDMergedEventDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<TDMergedEventDto> WithProfile(this Partial<TDMergedEventDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<TDMergedEventDto> WithProfile(this Partial<TDMergedEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<TDMergedEventDto> WithProfile(this Partial<TDMergedEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

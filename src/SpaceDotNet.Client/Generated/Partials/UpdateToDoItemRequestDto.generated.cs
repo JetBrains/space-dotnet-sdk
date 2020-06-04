@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateToDoItemRequestExtensions
+namespace SpaceDotNet.Client.UpdateToDoItemRequestDtoExtensions
 {
     public static class UpdateToDoItemRequestDtoPartialExtensions
     {
-        public static Partial<UpdateToDoItemRequestDto> WithText(this Partial<UpdateToDoItemRequestDto> it)
-            => it.AddFieldName("text");
+        public static Partial<UpdateToDoItemRequestDto> WithText(this Partial<UpdateToDoItemRequestDto> it)    => it.AddFieldName("text");
         
-        public static Partial<UpdateToDoItemRequestDto> WithDueDate(this Partial<UpdateToDoItemRequestDto> it)
-            => it.AddFieldName("dueDate");
+        public static Partial<UpdateToDoItemRequestDto> WithDueDate(this Partial<UpdateToDoItemRequestDto> it)    => it.AddFieldName("dueDate");
         
-        public static Partial<UpdateToDoItemRequestDto> WithOpen(this Partial<UpdateToDoItemRequestDto> it)
-            => it.AddFieldName("open");
+        public static Partial<UpdateToDoItemRequestDto> WithOpen(this Partial<UpdateToDoItemRequestDto> it)    => it.AddFieldName("open");
         
     }
     

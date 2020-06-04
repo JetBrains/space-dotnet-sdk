@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BGArticleIdExtensions
+namespace SpaceDotNet.Client.BGArticleIdDtoExtensions
 {
     public static class BGArticleIdDtoPartialExtensions
     {
-        public static Partial<BGArticleIdDto> WithId(this Partial<BGArticleIdDto> it)
-            => it.AddFieldName("id");
+        public static Partial<BGArticleIdDto> WithId(this Partial<BGArticleIdDto> it)    => it.AddFieldName("id");
         
     }
     

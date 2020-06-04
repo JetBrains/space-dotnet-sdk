@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MeetingOrganizerHiddenUserExtensions
+namespace SpaceDotNet.Client.MeetingOrganizerHiddenUserDtoExtensions
 {
     public static class MeetingOrganizerHiddenUserDtoPartialExtensions
     {

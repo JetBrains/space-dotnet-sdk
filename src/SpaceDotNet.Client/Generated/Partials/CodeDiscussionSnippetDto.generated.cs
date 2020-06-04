@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CodeDiscussionSnippetExtensions
+namespace SpaceDotNet.Client.CodeDiscussionSnippetDtoExtensions
 {
     public static class CodeDiscussionSnippetDtoPartialExtensions
     {

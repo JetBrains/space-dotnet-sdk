@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESNpmRegistrySettingsExtensions
+namespace SpaceDotNet.Client.ESNpmRegistrySettingsDtoExtensions
 {
     public static class ESNpmRegistrySettingsDtoPartialExtensions
     {

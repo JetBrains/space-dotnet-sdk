@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DocumentPublicationItemExtensions
+namespace SpaceDotNet.Client.DocumentPublicationItemDtoExtensions
 {
     public static class DocumentPublicationItemDtoPartialExtensions
     {
-        public static Partial<DocumentPublicationItemDto> WithDocumentId(this Partial<DocumentPublicationItemDto> it)
-            => it.AddFieldName("documentId");
+        public static Partial<DocumentPublicationItemDto> WithDocumentId(this Partial<DocumentPublicationItemDto> it)    => it.AddFieldName("documentId");
         
-        public static Partial<DocumentPublicationItemDto> WithDocumentType(this Partial<DocumentPublicationItemDto> it)
-            => it.AddFieldName("documentType");
+        public static Partial<DocumentPublicationItemDto> WithDocumentType(this Partial<DocumentPublicationItemDto> it)    => it.AddFieldName("documentType");
         
-        public static Partial<DocumentPublicationItemDto> WithDocumentType(this Partial<DocumentPublicationItemDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
-            => it.AddFieldName("documentType", partialBuilder(new Partial<DraftDocumentType>()));
+        public static Partial<DocumentPublicationItemDto> WithDocumentType(this Partial<DocumentPublicationItemDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)    => it.AddFieldName("documentType", partialBuilder(new Partial<DraftDocumentType>()));
         
     }
     

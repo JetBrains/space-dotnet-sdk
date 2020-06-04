@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MembersAddedItemDetailsExtensions
+namespace SpaceDotNet.Client.MembersAddedItemDetailsDtoExtensions
 {
     public static class MembersAddedItemDetailsDtoPartialExtensions
     {
-        public static Partial<MembersAddedItemDetailsDto> WithPrincipals(this Partial<MembersAddedItemDetailsDto> it)
-            => it.AddFieldName("principals");
+        public static Partial<MembersAddedItemDetailsDto> WithPrincipals(this Partial<MembersAddedItemDetailsDto> it)    => it.AddFieldName("principals");
         
-        public static Partial<MembersAddedItemDetailsDto> WithPrincipals(this Partial<MembersAddedItemDetailsDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)
-            => it.AddFieldName("principals", partialBuilder(new Partial<CPrincipalDto>()));
+        public static Partial<MembersAddedItemDetailsDto> WithPrincipals(this Partial<MembersAddedItemDetailsDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)    => it.AddFieldName("principals", partialBuilder(new Partial<CPrincipalDto>()));
         
-        public static Partial<MembersAddedItemDetailsDto> WithOthersDisplayNames(this Partial<MembersAddedItemDetailsDto> it)
-            => it.AddFieldName("othersDisplayNames");
+        public static Partial<MembersAddedItemDetailsDto> WithOthersDisplayNames(this Partial<MembersAddedItemDetailsDto> it)    => it.AddFieldName("othersDisplayNames");
         
     }
     

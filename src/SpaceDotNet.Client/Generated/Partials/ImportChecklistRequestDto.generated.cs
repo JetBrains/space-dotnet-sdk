@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportChecklistRequestExtensions
+namespace SpaceDotNet.Client.ImportChecklistRequestDtoExtensions
 {
     public static class ImportChecklistRequestDtoPartialExtensions
     {
-        public static Partial<ImportChecklistRequestDto> WithName(this Partial<ImportChecklistRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<ImportChecklistRequestDto> WithName(this Partial<ImportChecklistRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<ImportChecklistRequestDto> WithTabIndentedLines(this Partial<ImportChecklistRequestDto> it)
-            => it.AddFieldName("tabIndentedLines");
+        public static Partial<ImportChecklistRequestDto> WithTabIndentedLines(this Partial<ImportChecklistRequestDto> it)    => it.AddFieldName("tabIndentedLines");
         
     }
     

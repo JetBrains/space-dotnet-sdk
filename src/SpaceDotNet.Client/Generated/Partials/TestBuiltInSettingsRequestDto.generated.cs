@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TestBuiltInSettingsRequestExtensions
+namespace SpaceDotNet.Client.TestBuiltInSettingsRequestDtoExtensions
 {
     public static class TestBuiltInSettingsRequestDtoPartialExtensions
     {
-        public static Partial<TestBuiltInSettingsRequestDto> WithSettings(this Partial<TestBuiltInSettingsRequestDto> it)
-            => it.AddFieldName("settings");
+        public static Partial<TestBuiltInSettingsRequestDto> WithSettings(this Partial<TestBuiltInSettingsRequestDto> it)    => it.AddFieldName("settings");
         
-        public static Partial<TestBuiltInSettingsRequestDto> WithSettings(this Partial<TestBuiltInSettingsRequestDto> it, Func<Partial<ESBuiltinAuthModuleSettingsDto>, Partial<ESBuiltinAuthModuleSettingsDto>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESBuiltinAuthModuleSettingsDto>()));
+        public static Partial<TestBuiltInSettingsRequestDto> WithSettings(this Partial<TestBuiltInSettingsRequestDto> it, Func<Partial<ESBuiltinAuthModuleSettingsDto>, Partial<ESBuiltinAuthModuleSettingsDto>> partialBuilder)    => it.AddFieldName("settings", partialBuilder(new Partial<ESBuiltinAuthModuleSettingsDto>()));
         
-        public static Partial<TestBuiltInSettingsRequestDto> WithUsername(this Partial<TestBuiltInSettingsRequestDto> it)
-            => it.AddFieldName("username");
+        public static Partial<TestBuiltInSettingsRequestDto> WithUsername(this Partial<TestBuiltInSettingsRequestDto> it)    => it.AddFieldName("username");
         
-        public static Partial<TestBuiltInSettingsRequestDto> WithPassword(this Partial<TestBuiltInSettingsRequestDto> it)
-            => it.AddFieldName("password");
+        public static Partial<TestBuiltInSettingsRequestDto> WithPassword(this Partial<TestBuiltInSettingsRequestDto> it)    => it.AddFieldName("password");
         
     }
     

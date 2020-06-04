@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.NpmPackageTypeExtensions
+namespace SpaceDotNet.Client.NpmPackageTypeDtoExtensions
 {
     public static class NpmPackageTypeDtoPartialExtensions
     {
-        public static Partial<NpmPackageTypeDto> WithId(this Partial<NpmPackageTypeDto> it)
-            => it.AddFieldName("id");
+        public static Partial<NpmPackageTypeDto> WithId(this Partial<NpmPackageTypeDto> it)    => it.AddFieldName("id");
         
     }
     

@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESGithubAuthModuleSettingsExtensions
+namespace SpaceDotNet.Client.ESGithubAuthModuleSettingsDtoExtensions
 {
     public static class ESGithubAuthModuleSettingsDtoPartialExtensions
     {
-        public static Partial<ESGithubAuthModuleSettingsDto> WithGithubUrl(this Partial<ESGithubAuthModuleSettingsDto> it)
-            => it.AddFieldName("githubUrl");
+        public static Partial<ESGithubAuthModuleSettingsDto> WithGithubUrl(this Partial<ESGithubAuthModuleSettingsDto> it)    => it.AddFieldName("githubUrl");
         
-        public static Partial<ESGithubAuthModuleSettingsDto> WithClientId(this Partial<ESGithubAuthModuleSettingsDto> it)
-            => it.AddFieldName("clientId");
+        public static Partial<ESGithubAuthModuleSettingsDto> WithClientId(this Partial<ESGithubAuthModuleSettingsDto> it)    => it.AddFieldName("clientId");
         
-        public static Partial<ESGithubAuthModuleSettingsDto> WithClientSecret(this Partial<ESGithubAuthModuleSettingsDto> it)
-            => it.AddFieldName("clientSecret");
+        public static Partial<ESGithubAuthModuleSettingsDto> WithClientSecret(this Partial<ESGithubAuthModuleSettingsDto> it)    => it.AddFieldName("clientSecret");
         
-        public static Partial<ESGithubAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESGithubAuthModuleSettingsDto> it)
-            => it.AddFieldName("registerNewUsers");
+        public static Partial<ESGithubAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESGithubAuthModuleSettingsDto> it)    => it.AddFieldName("registerNewUsers");
         
-        public static Partial<ESGithubAuthModuleSettingsDto> WithOrganizations(this Partial<ESGithubAuthModuleSettingsDto> it)
-            => it.AddFieldName("organizations");
+        public static Partial<ESGithubAuthModuleSettingsDto> WithOrganizations(this Partial<ESGithubAuthModuleSettingsDto> it)    => it.AddFieldName("organizations");
         
     }
     

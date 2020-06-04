@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateChecklistRequestExtensions
+namespace SpaceDotNet.Client.CreateChecklistRequestDtoExtensions
 {
     public static class CreateChecklistRequestDtoPartialExtensions
     {
-        public static Partial<CreateChecklistRequestDto> WithName(this Partial<CreateChecklistRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreateChecklistRequestDto> WithName(this Partial<CreateChecklistRequestDto> it)    => it.AddFieldName("name");
         
     }
     

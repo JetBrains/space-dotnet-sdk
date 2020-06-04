@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateMemberLocationRequestExtensions
+namespace SpaceDotNet.Client.UpdateMemberLocationRequestDtoExtensions
 {
     public static class UpdateMemberLocationRequestDtoPartialExtensions
     {
-        public static Partial<UpdateMemberLocationRequestDto> WithMember(this Partial<UpdateMemberLocationRequestDto> it)
-            => it.AddFieldName("member");
+        public static Partial<UpdateMemberLocationRequestDto> WithMember(this Partial<UpdateMemberLocationRequestDto> it)    => it.AddFieldName("member");
         
-        public static Partial<UpdateMemberLocationRequestDto> WithLocation(this Partial<UpdateMemberLocationRequestDto> it)
-            => it.AddFieldName("location");
+        public static Partial<UpdateMemberLocationRequestDto> WithLocation(this Partial<UpdateMemberLocationRequestDto> it)    => it.AddFieldName("location");
         
-        public static Partial<UpdateMemberLocationRequestDto> WithSince(this Partial<UpdateMemberLocationRequestDto> it)
-            => it.AddFieldName("since");
+        public static Partial<UpdateMemberLocationRequestDto> WithSince(this Partial<UpdateMemberLocationRequestDto> it)    => it.AddFieldName("since");
         
-        public static Partial<UpdateMemberLocationRequestDto> WithTill(this Partial<UpdateMemberLocationRequestDto> it)
-            => it.AddFieldName("till");
+        public static Partial<UpdateMemberLocationRequestDto> WithTill(this Partial<UpdateMemberLocationRequestDto> it)    => it.AddFieldName("till");
         
-        public static Partial<UpdateMemberLocationRequestDto> WithPreviousLocation(this Partial<UpdateMemberLocationRequestDto> it)
-            => it.AddFieldName("previousLocation");
+        public static Partial<UpdateMemberLocationRequestDto> WithPreviousLocation(this Partial<UpdateMemberLocationRequestDto> it)    => it.AddFieldName("previousLocation");
         
     }
     

@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateParameterRequestExtensions
+namespace SpaceDotNet.Client.UpdateParameterRequestDtoExtensions
 {
     public static class UpdateParameterRequestDtoPartialExtensions
     {
-        public static Partial<UpdateParameterRequestDto> WithKey(this Partial<UpdateParameterRequestDto> it)
-            => it.AddFieldName("key");
+        public static Partial<UpdateParameterRequestDto> WithKey(this Partial<UpdateParameterRequestDto> it)    => it.AddFieldName("key");
         
-        public static Partial<UpdateParameterRequestDto> WithValue(this Partial<UpdateParameterRequestDto> it)
-            => it.AddFieldName("value");
+        public static Partial<UpdateParameterRequestDto> WithValue(this Partial<UpdateParameterRequestDto> it)    => it.AddFieldName("value");
         
     }
     

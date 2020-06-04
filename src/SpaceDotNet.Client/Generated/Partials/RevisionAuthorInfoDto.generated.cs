@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RevisionAuthorInfoExtensions
+namespace SpaceDotNet.Client.RevisionAuthorInfoDtoExtensions
 {
     public static class RevisionAuthorInfoDtoPartialExtensions
     {
-        public static Partial<RevisionAuthorInfoDto> WithRevisionInfo(this Partial<RevisionAuthorInfoDto> it)
-            => it.AddFieldName("revisionInfo");
+        public static Partial<RevisionAuthorInfoDto> WithRevisionInfo(this Partial<RevisionAuthorInfoDto> it)    => it.AddFieldName("revisionInfo");
         
-        public static Partial<RevisionAuthorInfoDto> WithRevisionInfo(this Partial<RevisionAuthorInfoDto> it, Func<Partial<RevisionInfoDto>, Partial<RevisionInfoDto>> partialBuilder)
-            => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionInfoDto>()));
+        public static Partial<RevisionAuthorInfoDto> WithRevisionInfo(this Partial<RevisionAuthorInfoDto> it, Func<Partial<RevisionInfoDto>, Partial<RevisionInfoDto>> partialBuilder)    => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionInfoDto>()));
         
-        public static Partial<RevisionAuthorInfoDto> WithAuthor(this Partial<RevisionAuthorInfoDto> it)
-            => it.AddFieldName("author");
+        public static Partial<RevisionAuthorInfoDto> WithAuthor(this Partial<RevisionAuthorInfoDto> it)    => it.AddFieldName("author");
         
-        public static Partial<RevisionAuthorInfoDto> WithAuthor(this Partial<RevisionAuthorInfoDto> it, Func<Partial<RevisionAuthorDto>, Partial<RevisionAuthorDto>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<RevisionAuthorDto>()));
+        public static Partial<RevisionAuthorInfoDto> WithAuthor(this Partial<RevisionAuthorInfoDto> it, Func<Partial<RevisionAuthorDto>, Partial<RevisionAuthorDto>> partialBuilder)    => it.AddFieldName("author", partialBuilder(new Partial<RevisionAuthorDto>()));
         
     }
     

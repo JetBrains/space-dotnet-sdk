@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.SamlMetadataRequestExtensions
+namespace SpaceDotNet.Client.SamlMetadataRequestDtoExtensions
 {
     public static class SamlMetadataRequestDtoPartialExtensions
     {
-        public static Partial<SamlMetadataRequestDto> WithIdpUrl(this Partial<SamlMetadataRequestDto> it)
-            => it.AddFieldName("idpUrl");
+        public static Partial<SamlMetadataRequestDto> WithIdpUrl(this Partial<SamlMetadataRequestDto> it)    => it.AddFieldName("idpUrl");
         
-        public static Partial<SamlMetadataRequestDto> WithIdpEntityId(this Partial<SamlMetadataRequestDto> it)
-            => it.AddFieldName("idpEntityId");
+        public static Partial<SamlMetadataRequestDto> WithIdpEntityId(this Partial<SamlMetadataRequestDto> it)    => it.AddFieldName("idpEntityId");
         
-        public static Partial<SamlMetadataRequestDto> WithIdpCertificateSHA256(this Partial<SamlMetadataRequestDto> it)
-            => it.AddFieldName("idpCertificateSHA256");
+        public static Partial<SamlMetadataRequestDto> WithIdpCertificateSHA256(this Partial<SamlMetadataRequestDto> it)    => it.AddFieldName("idpCertificateSHA256");
         
-        public static Partial<SamlMetadataRequestDto> WithSpEntityId(this Partial<SamlMetadataRequestDto> it)
-            => it.AddFieldName("spEntityId");
+        public static Partial<SamlMetadataRequestDto> WithSpEntityId(this Partial<SamlMetadataRequestDto> it)    => it.AddFieldName("spEntityId");
         
-        public static Partial<SamlMetadataRequestDto> WithSslKeystore(this Partial<SamlMetadataRequestDto> it)
-            => it.AddFieldName("sslKeystore");
+        public static Partial<SamlMetadataRequestDto> WithSslKeystore(this Partial<SamlMetadataRequestDto> it)    => it.AddFieldName("sslKeystore");
         
-        public static Partial<SamlMetadataRequestDto> WithSslKeystore(this Partial<SamlMetadataRequestDto> it, Func<Partial<SSLKeystoreDto>, Partial<SSLKeystoreDto>> partialBuilder)
-            => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreDto>()));
+        public static Partial<SamlMetadataRequestDto> WithSslKeystore(this Partial<SamlMetadataRequestDto> it, Func<Partial<SSLKeystoreDto>, Partial<SSLKeystoreDto>> partialBuilder)    => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreDto>()));
         
-        public static Partial<SamlMetadataRequestDto> WithContactProfileId(this Partial<SamlMetadataRequestDto> it)
-            => it.AddFieldName("contactProfileId");
+        public static Partial<SamlMetadataRequestDto> WithContactProfileId(this Partial<SamlMetadataRequestDto> it)    => it.AddFieldName("contactProfileId");
         
     }
     

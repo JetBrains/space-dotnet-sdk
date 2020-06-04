@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UnfurlDetailsCodeSnippetExtensions
+namespace SpaceDotNet.Client.UnfurlDetailsCodeSnippetDtoExtensions
 {
     public static class UnfurlDetailsCodeSnippetDtoPartialExtensions
     {
-        public static Partial<UnfurlDetailsCodeSnippetDto> WithAnchor(this Partial<UnfurlDetailsCodeSnippetDto> it)
-            => it.AddFieldName("anchor");
+        public static Partial<UnfurlDetailsCodeSnippetDto> WithAnchor(this Partial<UnfurlDetailsCodeSnippetDto> it)    => it.AddFieldName("anchor");
         
-        public static Partial<UnfurlDetailsCodeSnippetDto> WithAnchor(this Partial<UnfurlDetailsCodeSnippetDto> it, Func<Partial<CodeSnippetAnchorDto>, Partial<CodeSnippetAnchorDto>> partialBuilder)
-            => it.AddFieldName("anchor", partialBuilder(new Partial<CodeSnippetAnchorDto>()));
+        public static Partial<UnfurlDetailsCodeSnippetDto> WithAnchor(this Partial<UnfurlDetailsCodeSnippetDto> it, Func<Partial<CodeSnippetAnchorDto>, Partial<CodeSnippetAnchorDto>> partialBuilder)    => it.AddFieldName("anchor", partialBuilder(new Partial<CodeSnippetAnchorDto>()));
         
-        public static Partial<UnfurlDetailsCodeSnippetDto> WithLines(this Partial<UnfurlDetailsCodeSnippetDto> it)
-            => it.AddFieldName("lines");
+        public static Partial<UnfurlDetailsCodeSnippetDto> WithLines(this Partial<UnfurlDetailsCodeSnippetDto> it)    => it.AddFieldName("lines");
         
-        public static Partial<UnfurlDetailsCodeSnippetDto> WithLines(this Partial<UnfurlDetailsCodeSnippetDto> it, Func<Partial<CodeLineDto>, Partial<CodeLineDto>> partialBuilder)
-            => it.AddFieldName("lines", partialBuilder(new Partial<CodeLineDto>()));
+        public static Partial<UnfurlDetailsCodeSnippetDto> WithLines(this Partial<UnfurlDetailsCodeSnippetDto> it, Func<Partial<CodeLineDto>, Partial<CodeLineDto>> partialBuilder)    => it.AddFieldName("lines", partialBuilder(new Partial<CodeLineDto>()));
         
     }
     

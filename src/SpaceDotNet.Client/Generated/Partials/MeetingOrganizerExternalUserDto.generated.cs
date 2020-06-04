@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MeetingOrganizerExternalUserExtensions
+namespace SpaceDotNet.Client.MeetingOrganizerExternalUserDtoExtensions
 {
     public static class MeetingOrganizerExternalUserDtoPartialExtensions
     {
-        public static Partial<MeetingOrganizerExternalUserDto> WithEmail(this Partial<MeetingOrganizerExternalUserDto> it)
-            => it.AddFieldName("email");
+        public static Partial<MeetingOrganizerExternalUserDto> WithEmail(this Partial<MeetingOrganizerExternalUserDto> it)    => it.AddFieldName("email");
         
     }
     

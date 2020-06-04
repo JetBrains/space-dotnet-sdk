@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateAuthModuleRequestExtensions
+namespace SpaceDotNet.Client.UpdateAuthModuleRequestDtoExtensions
 {
     public static class UpdateAuthModuleRequestDtoPartialExtensions
     {
-        public static Partial<UpdateAuthModuleRequestDto> WithKey(this Partial<UpdateAuthModuleRequestDto> it)
-            => it.AddFieldName("key");
+        public static Partial<UpdateAuthModuleRequestDto> WithKey(this Partial<UpdateAuthModuleRequestDto> it)    => it.AddFieldName("key");
         
-        public static Partial<UpdateAuthModuleRequestDto> WithName(this Partial<UpdateAuthModuleRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateAuthModuleRequestDto> WithName(this Partial<UpdateAuthModuleRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateAuthModuleRequestDto> WithEnabled(this Partial<UpdateAuthModuleRequestDto> it)
-            => it.AddFieldName("enabled");
+        public static Partial<UpdateAuthModuleRequestDto> WithEnabled(this Partial<UpdateAuthModuleRequestDto> it)    => it.AddFieldName("enabled");
         
-        public static Partial<UpdateAuthModuleRequestDto> WithSettings(this Partial<UpdateAuthModuleRequestDto> it)
-            => it.AddFieldName("settings");
+        public static Partial<UpdateAuthModuleRequestDto> WithSettings(this Partial<UpdateAuthModuleRequestDto> it)    => it.AddFieldName("settings");
         
-        public static Partial<UpdateAuthModuleRequestDto> WithSettings(this Partial<UpdateAuthModuleRequestDto> it, Func<Partial<ESAuthModuleSettingsDto>, Partial<ESAuthModuleSettingsDto>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettingsDto>()));
+        public static Partial<UpdateAuthModuleRequestDto> WithSettings(this Partial<UpdateAuthModuleRequestDto> it, Func<Partial<ESAuthModuleSettingsDto>, Partial<ESAuthModuleSettingsDto>> partialBuilder)    => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettingsDto>()));
         
     }
     

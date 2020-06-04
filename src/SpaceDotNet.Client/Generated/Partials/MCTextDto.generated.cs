@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MCTextExtensions
+namespace SpaceDotNet.Client.MCTextDtoExtensions
 {
     public static class MCTextDtoPartialExtensions
     {
-        public static Partial<MCTextDto> WithContent(this Partial<MCTextDto> it)
-            => it.AddFieldName("content");
+        public static Partial<MCTextDto> WithContent(this Partial<MCTextDto> it)    => it.AddFieldName("content");
         
-        public static Partial<MCTextDto> WithMarkdown(this Partial<MCTextDto> it)
-            => it.AddFieldName("markdown");
+        public static Partial<MCTextDto> WithMarkdown(this Partial<MCTextDto> it)    => it.AddFieldName("markdown");
         
-        public static Partial<MCTextDto> WithAccessory(this Partial<MCTextDto> it)
-            => it.AddFieldName("accessory");
+        public static Partial<MCTextDto> WithAccessory(this Partial<MCTextDto> it)    => it.AddFieldName("accessory");
         
-        public static Partial<MCTextDto> WithAccessory(this Partial<MCTextDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)
-            => it.AddFieldName("accessory", partialBuilder(new Partial<MCElementDto>()));
+        public static Partial<MCTextDto> WithAccessory(this Partial<MCTextDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)    => it.AddFieldName("accessory", partialBuilder(new Partial<MCElementDto>()));
         
     }
     

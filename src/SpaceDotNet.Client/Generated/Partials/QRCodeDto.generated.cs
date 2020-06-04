@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.QRCodeExtensions
+namespace SpaceDotNet.Client.QRCodeDtoExtensions
 {
     public static class QRCodeDtoPartialExtensions
     {
-        public static Partial<QRCodeDto> WithWidth(this Partial<QRCodeDto> it)
-            => it.AddFieldName("width");
+        public static Partial<QRCodeDto> WithWidth(this Partial<QRCodeDto> it)    => it.AddFieldName("width");
         
-        public static Partial<QRCodeDto> WithBase64Bitmap(this Partial<QRCodeDto> it)
-            => it.AddFieldName("base64Bitmap");
+        public static Partial<QRCodeDto> WithBase64Bitmap(this Partial<QRCodeDto> it)    => it.AddFieldName("base64Bitmap");
         
     }
     

@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ArticleContentRecordExtensions
+namespace SpaceDotNet.Client.ArticleContentRecordDtoExtensions
 {
     public static class ArticleContentRecordDtoPartialExtensions
     {
-        public static Partial<ArticleContentRecordDto> WithId(this Partial<ArticleContentRecordDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ArticleContentRecordDto> WithId(this Partial<ArticleContentRecordDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ArticleContentRecordDto> WithArchived(this Partial<ArticleContentRecordDto> it)
-            => it.AddFieldName("archived");
+        public static Partial<ArticleContentRecordDto> WithArchived(this Partial<ArticleContentRecordDto> it)    => it.AddFieldName("archived");
         
-        public static Partial<ArticleContentRecordDto> WithContent(this Partial<ArticleContentRecordDto> it)
-            => it.AddFieldName("content");
+        public static Partial<ArticleContentRecordDto> WithContent(this Partial<ArticleContentRecordDto> it)    => it.AddFieldName("content");
         
     }
     

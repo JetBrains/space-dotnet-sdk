@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContentCodeDiscussionExtensions
+namespace SpaceDotNet.Client.M2ChannelContentCodeDiscussionDtoExtensions
 {
     public static class M2ChannelContentCodeDiscussionDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentCodeDiscussionDto> WithCodeDiscussionId(this Partial<M2ChannelContentCodeDiscussionDto> it)
-            => it.AddFieldName("codeDiscussionId");
+        public static Partial<M2ChannelContentCodeDiscussionDto> WithCodeDiscussionId(this Partial<M2ChannelContentCodeDiscussionDto> it)    => it.AddFieldName("codeDiscussionId");
         
-        public static Partial<M2ChannelContentCodeDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionDto> it)
-            => it.AddFieldName("notificationDefaults");
+        public static Partial<M2ChannelContentCodeDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionDto> it)    => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2ChannelContentCodeDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2ChannelContentCodeDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeDiscussionDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
         
-        public static Partial<M2ChannelContentCodeDiscussionDto> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionDto> it)
-            => it.AddFieldName("codeDiscussion");
+        public static Partial<M2ChannelContentCodeDiscussionDto> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionDto> it)    => it.AddFieldName("codeDiscussion");
         
-        public static Partial<M2ChannelContentCodeDiscussionDto> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionDto> it, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder)
-            => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecordDto>()));
+        public static Partial<M2ChannelContentCodeDiscussionDto> WithCodeDiscussion(this Partial<M2ChannelContentCodeDiscussionDto> it, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder)    => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecordDto>()));
         
     }
     

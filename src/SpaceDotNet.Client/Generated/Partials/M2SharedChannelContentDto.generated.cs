@@ -19,45 +19,33 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2SharedChannelContentExtensions
+namespace SpaceDotNet.Client.M2SharedChannelContentDtoExtensions
 {
     public static class M2SharedChannelContentDtoPartialExtensions
     {
-        public static Partial<M2SharedChannelContentDto> WithName(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("name");
+        public static Partial<M2SharedChannelContentDto> WithName(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("name");
         
-        public static Partial<M2SharedChannelContentDto> WithGroup(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("group");
+        public static Partial<M2SharedChannelContentDto> WithGroup(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("group");
         
-        public static Partial<M2SharedChannelContentDto> WithAccess(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("access");
+        public static Partial<M2SharedChannelContentDto> WithAccess(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("access");
         
-        public static Partial<M2SharedChannelContentDto> WithAccess(this Partial<M2SharedChannelContentDto> it, Func<Partial<M2Access>, Partial<M2Access>> partialBuilder)
-            => it.AddFieldName("access", partialBuilder(new Partial<M2Access>()));
+        public static Partial<M2SharedChannelContentDto> WithAccess(this Partial<M2SharedChannelContentDto> it, Func<Partial<M2Access>, Partial<M2Access>> partialBuilder)    => it.AddFieldName("access", partialBuilder(new Partial<M2Access>()));
         
-        public static Partial<M2SharedChannelContentDto> WithDescription(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("description");
+        public static Partial<M2SharedChannelContentDto> WithDescription(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("description");
         
-        public static Partial<M2SharedChannelContentDto> WithMembersCounter(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("membersCounter");
+        public static Partial<M2SharedChannelContentDto> WithMembersCounter(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("membersCounter");
         
-        public static Partial<M2SharedChannelContentDto> WithIconId(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("iconId");
+        public static Partial<M2SharedChannelContentDto> WithIconId(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("iconId");
         
-        public static Partial<M2SharedChannelContentDto> WithNotificationDefaults(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("notificationDefaults");
+        public static Partial<M2SharedChannelContentDto> WithNotificationDefaults(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2SharedChannelContentDto> WithNotificationDefaults(this Partial<M2SharedChannelContentDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2SharedChannelContentDto> WithNotificationDefaults(this Partial<M2SharedChannelContentDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
         
-        public static Partial<M2SharedChannelContentDto> WithTeams(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("teams");
+        public static Partial<M2SharedChannelContentDto> WithTeams(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("teams");
         
-        public static Partial<M2SharedChannelContentDto> WithTeams(this Partial<M2SharedChannelContentDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<M2SharedChannelContentDto> WithTeams(this Partial<M2SharedChannelContentDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>()));
         
-        public static Partial<M2SharedChannelContentDto> WithCanEdit(this Partial<M2SharedChannelContentDto> it)
-            => it.AddFieldName("canEdit");
+        public static Partial<M2SharedChannelContentDto> WithCanEdit(this Partial<M2SharedChannelContentDto> it)    => it.AddFieldName("canEdit");
         
     }
     

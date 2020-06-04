@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ConfirmTOTPTwoFactorAuthenticationSettingsRequestExtensions
+namespace SpaceDotNet.Client.ConfirmTOTPTwoFactorAuthenticationSettingsRequestDtoExtensions
 {
     public static class ConfirmTOTPTwoFactorAuthenticationSettingsRequestDtoPartialExtensions
     {
-        public static Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto> WithCode(this Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto> it)
-            => it.AddFieldName("code");
+        public static Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto> WithCode(this Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequestDto> it)    => it.AddFieldName("code");
         
     }
     

@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CUserPrincipalDetailsExtensions
+namespace SpaceDotNet.Client.CUserPrincipalDetailsDtoExtensions
 {
     public static class CUserPrincipalDetailsDtoPartialExtensions
     {
-        public static Partial<CUserPrincipalDetailsDto> WithUser(this Partial<CUserPrincipalDetailsDto> it)
-            => it.AddFieldName("user");
+        public static Partial<CUserPrincipalDetailsDto> WithUser(this Partial<CUserPrincipalDetailsDto> it)    => it.AddFieldName("user");
         
-        public static Partial<CUserPrincipalDetailsDto> WithUser(this Partial<CUserPrincipalDetailsDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<CUserPrincipalDetailsDto> WithUser(this Partial<CUserPrincipalDetailsDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

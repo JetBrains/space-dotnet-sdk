@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RecurrenceRuleEndsOnDateExtensions
+namespace SpaceDotNet.Client.RecurrenceRuleEndsOnDateDtoExtensions
 {
     public static class RecurrenceRuleEndsOnDateDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleEndsOnDateDto> WithDate(this Partial<RecurrenceRuleEndsOnDateDto> it)
-            => it.AddFieldName("date");
+        public static Partial<RecurrenceRuleEndsOnDateDto> WithDate(this Partial<RecurrenceRuleEndsOnDateDto> it)    => it.AddFieldName("date");
         
     }
     

@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.IssueDeletedDetailsExtensions
+namespace SpaceDotNet.Client.IssueDeletedDetailsDtoExtensions
 {
     public static class IssueDeletedDetailsDtoPartialExtensions
     {

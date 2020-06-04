@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UrlCFValueExtensions
+namespace SpaceDotNet.Client.UrlCFValueDtoExtensions
 {
     public static class UrlCFValueDtoPartialExtensions
     {
-        public static Partial<UrlCFValueDto> WithHref(this Partial<UrlCFValueDto> it)
-            => it.AddFieldName("href");
+        public static Partial<UrlCFValueDto> WithHref(this Partial<UrlCFValueDto> it)    => it.AddFieldName("href");
         
     }
     

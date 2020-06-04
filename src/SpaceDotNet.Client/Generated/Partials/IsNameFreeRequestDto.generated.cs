@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.IsNameFreeRequestExtensions
+namespace SpaceDotNet.Client.IsNameFreeRequestDtoExtensions
 {
     public static class IsNameFreeRequestDtoPartialExtensions
     {
-        public static Partial<IsNameFreeRequestDto> WithName(this Partial<IsNameFreeRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<IsNameFreeRequestDto> WithName(this Partial<IsNameFreeRequestDto> it)    => it.AddFieldName("name");
         
     }
     

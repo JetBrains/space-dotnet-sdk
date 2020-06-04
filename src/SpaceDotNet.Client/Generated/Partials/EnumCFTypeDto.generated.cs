@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EnumCFTypeExtensions
+namespace SpaceDotNet.Client.EnumCFTypeDtoExtensions
 {
     public static class EnumCFTypeDtoPartialExtensions
     {
-        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it)
-            => it.AddFieldName("values");
+        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it)    => it.AddFieldName("values");
         
-        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it, Func<Partial<EnumValueDataDto>, Partial<EnumValueDataDto>> partialBuilder)
-            => it.AddFieldName("values", partialBuilder(new Partial<EnumValueDataDto>()));
+        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it, Func<Partial<EnumValueDataDto>, Partial<EnumValueDataDto>> partialBuilder)    => it.AddFieldName("values", partialBuilder(new Partial<EnumValueDataDto>()));
         
     }
     

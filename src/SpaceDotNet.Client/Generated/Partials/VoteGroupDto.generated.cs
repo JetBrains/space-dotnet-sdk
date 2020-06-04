@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.VoteGroupExtensions
+namespace SpaceDotNet.Client.VoteGroupDtoExtensions
 {
     public static class VoteGroupDtoPartialExtensions
     {
-        public static Partial<VoteGroupDto> WithVariantName(this Partial<VoteGroupDto> it)
-            => it.AddFieldName("variantName");
+        public static Partial<VoteGroupDto> WithVariantName(this Partial<VoteGroupDto> it)    => it.AddFieldName("variantName");
         
-        public static Partial<VoteGroupDto> WithCount(this Partial<VoteGroupDto> it)
-            => it.AddFieldName("count");
+        public static Partial<VoteGroupDto> WithCount(this Partial<VoteGroupDto> it)    => it.AddFieldName("count");
         
-        public static Partial<VoteGroupDto> WithMeVote(this Partial<VoteGroupDto> it)
-            => it.AddFieldName("meVote");
+        public static Partial<VoteGroupDto> WithMeVote(this Partial<VoteGroupDto> it)    => it.AddFieldName("meVote");
         
-        public static Partial<VoteGroupDto> WithLastUsers(this Partial<VoteGroupDto> it)
-            => it.AddFieldName("lastUsers");
+        public static Partial<VoteGroupDto> WithLastUsers(this Partial<VoteGroupDto> it)    => it.AddFieldName("lastUsers");
         
-        public static Partial<VoteGroupDto> WithLastUsers(this Partial<VoteGroupDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("lastUsers", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<VoteGroupDto> WithLastUsers(this Partial<VoteGroupDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("lastUsers", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<VoteGroupDto> WithOwner(this Partial<VoteGroupDto> it)
-            => it.AddFieldName("owner");
+        public static Partial<VoteGroupDto> WithOwner(this Partial<VoteGroupDto> it)    => it.AddFieldName("owner");
         
-        public static Partial<VoteGroupDto> WithOwner(this Partial<VoteGroupDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<VoteGroupDto> WithOwner(this Partial<VoteGroupDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

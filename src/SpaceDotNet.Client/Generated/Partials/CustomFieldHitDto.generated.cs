@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CustomFieldHitExtensions
+namespace SpaceDotNet.Client.CustomFieldHitDtoExtensions
 {
     public static class CustomFieldHitDtoPartialExtensions
     {
-        public static Partial<CustomFieldHitDto> WithName(this Partial<CustomFieldHitDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CustomFieldHitDto> WithName(this Partial<CustomFieldHitDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CustomFieldHitDto> WithValue(this Partial<CustomFieldHitDto> it)
-            => it.AddFieldName("value");
+        public static Partial<CustomFieldHitDto> WithValue(this Partial<CustomFieldHitDto> it)    => it.AddFieldName("value");
         
     }
     

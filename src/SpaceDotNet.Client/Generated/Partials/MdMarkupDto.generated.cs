@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MdMarkupExtensions
+namespace SpaceDotNet.Client.MdMarkupDtoExtensions
 {
     public static class MdMarkupDtoPartialExtensions
     {
-        public static Partial<MdMarkupDto> WithUnfurl(this Partial<MdMarkupDto> it)
-            => it.AddFieldName("unfurl");
+        public static Partial<MdMarkupDto> WithUnfurl(this Partial<MdMarkupDto> it)    => it.AddFieldName("unfurl");
         
-        public static Partial<MdMarkupDto> WithUnfurl(this Partial<MdMarkupDto> it, Func<Partial<UnfurlDto>, Partial<UnfurlDto>> partialBuilder)
-            => it.AddFieldName("unfurl", partialBuilder(new Partial<UnfurlDto>()));
+        public static Partial<MdMarkupDto> WithUnfurl(this Partial<MdMarkupDto> it, Func<Partial<UnfurlDto>, Partial<UnfurlDto>> partialBuilder)    => it.AddFieldName("unfurl", partialBuilder(new Partial<UnfurlDto>()));
         
     }
     

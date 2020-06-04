@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.LastChangesExtensions
+namespace SpaceDotNet.Client.LastChangesDtoExtensions
 {
     public static class LastChangesDtoPartialExtensions
     {
-        public static Partial<LastChangesDto> WithLastChanges(this Partial<LastChangesDto> it)
-            => it.AddFieldName("lastChanges");
+        public static Partial<LastChangesDto> WithLastChanges(this Partial<LastChangesDto> it)    => it.AddFieldName("lastChanges");
         
-        public static Partial<LastChangesDto> WithLastChanges(this Partial<LastChangesDto> it, Func<Partial<RevisionInfoDto>, Partial<RevisionInfoDto>> partialBuilder)
-            => it.AddFieldName("lastChanges", partialBuilder(new Partial<RevisionInfoDto>()));
+        public static Partial<LastChangesDto> WithLastChanges(this Partial<LastChangesDto> it, Func<Partial<RevisionInfoDto>, Partial<RevisionInfoDto>> partialBuilder)    => it.AddFieldName("lastChanges", partialBuilder(new Partial<RevisionInfoDto>()));
         
-        public static Partial<LastChangesDto> WithTotalChanges(this Partial<LastChangesDto> it)
-            => it.AddFieldName("totalChanges");
+        public static Partial<LastChangesDto> WithTotalChanges(this Partial<LastChangesDto> it)    => it.AddFieldName("totalChanges");
         
     }
     

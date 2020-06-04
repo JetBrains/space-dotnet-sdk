@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TwoFactorAuthenticationSecretExtensions
+namespace SpaceDotNet.Client.TwoFactorAuthenticationSecretDtoExtensions
 {
     public static class TwoFactorAuthenticationSecretDtoPartialExtensions
     {
-        public static Partial<TwoFactorAuthenticationSecretDto> WithSecretKey(this Partial<TwoFactorAuthenticationSecretDto> it)
-            => it.AddFieldName("secretKey");
+        public static Partial<TwoFactorAuthenticationSecretDto> WithSecretKey(this Partial<TwoFactorAuthenticationSecretDto> it)    => it.AddFieldName("secretKey");
         
-        public static Partial<TwoFactorAuthenticationSecretDto> WithQrCode(this Partial<TwoFactorAuthenticationSecretDto> it)
-            => it.AddFieldName("qrCode");
+        public static Partial<TwoFactorAuthenticationSecretDto> WithQrCode(this Partial<TwoFactorAuthenticationSecretDto> it)    => it.AddFieldName("qrCode");
         
-        public static Partial<TwoFactorAuthenticationSecretDto> WithQrCode(this Partial<TwoFactorAuthenticationSecretDto> it, Func<Partial<QRCodeDto>, Partial<QRCodeDto>> partialBuilder)
-            => it.AddFieldName("qrCode", partialBuilder(new Partial<QRCodeDto>()));
+        public static Partial<TwoFactorAuthenticationSecretDto> WithQrCode(this Partial<TwoFactorAuthenticationSecretDto> it, Func<Partial<QRCodeDto>, Partial<QRCodeDto>> partialBuilder)    => it.AddFieldName("qrCode", partialBuilder(new Partial<QRCodeDto>()));
         
-        public static Partial<TwoFactorAuthenticationSecretDto> WithScratchCodes(this Partial<TwoFactorAuthenticationSecretDto> it)
-            => it.AddFieldName("scratchCodes");
+        public static Partial<TwoFactorAuthenticationSecretDto> WithScratchCodes(this Partial<TwoFactorAuthenticationSecretDto> it)    => it.AddFieldName("scratchCodes");
         
     }
     

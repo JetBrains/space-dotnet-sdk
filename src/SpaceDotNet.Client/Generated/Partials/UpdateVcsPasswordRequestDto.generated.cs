@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateVcsPasswordRequestExtensions
+namespace SpaceDotNet.Client.UpdateVcsPasswordRequestDtoExtensions
 {
     public static class UpdateVcsPasswordRequestDtoPartialExtensions
     {
-        public static Partial<UpdateVcsPasswordRequestDto> WithPassword(this Partial<UpdateVcsPasswordRequestDto> it)
-            => it.AddFieldName("password");
+        public static Partial<UpdateVcsPasswordRequestDto> WithPassword(this Partial<UpdateVcsPasswordRequestDto> it)    => it.AddFieldName("password");
         
     }
     

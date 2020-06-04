@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HATypeRefExtensions
+namespace SpaceDotNet.Client.HATypeRefDtoExtensions
 {
     public static class HATypeRefDtoPartialExtensions
     {
-        public static Partial<HATypeRefDto> WithDto(this Partial<HATypeRefDto> it)
-            => it.AddFieldName("dto");
+        public static Partial<HATypeRefDto> WithDto(this Partial<HATypeRefDto> it)    => it.AddFieldName("dto");
         
-        public static Partial<HATypeRefDto> WithDto(this Partial<HATypeRefDto> it, Func<Partial<HADtoDto>, Partial<HADtoDto>> partialBuilder)
-            => it.AddFieldName("dto", partialBuilder(new Partial<HADtoDto>()));
+        public static Partial<HATypeRefDto> WithDto(this Partial<HATypeRefDto> it, Func<Partial<HADtoDto>, Partial<HADtoDto>> partialBuilder)    => it.AddFieldName("dto", partialBuilder(new Partial<HADtoDto>()));
         
-        public static Partial<HATypeRefDto> WithNullable(this Partial<HATypeRefDto> it)
-            => it.AddFieldName("nullable");
+        public static Partial<HATypeRefDto> WithNullable(this Partial<HATypeRefDto> it)    => it.AddFieldName("nullable");
         
-        public static Partial<HATypeRefDto> WithOptional(this Partial<HATypeRefDto> it)
-            => it.AddFieldName("optional");
+        public static Partial<HATypeRefDto> WithOptional(this Partial<HATypeRefDto> it)    => it.AddFieldName("optional");
         
     }
     

@@ -19,45 +19,33 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateFieldRequestExtensions
+namespace SpaceDotNet.Client.UpdateFieldRequestDtoExtensions
 {
     public static class UpdateFieldRequestDtoPartialExtensions
     {
-        public static Partial<UpdateFieldRequestDto> WithName(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateFieldRequestDto> WithName(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateFieldRequestDto> WithKey(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("key");
+        public static Partial<UpdateFieldRequestDto> WithKey(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("key");
         
-        public static Partial<UpdateFieldRequestDto> WithConstraint(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("constraint");
+        public static Partial<UpdateFieldRequestDto> WithConstraint(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("constraint");
         
-        public static Partial<UpdateFieldRequestDto> WithConstraint(this Partial<UpdateFieldRequestDto> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)
-            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>()));
+        public static Partial<UpdateFieldRequestDto> WithConstraint(this Partial<UpdateFieldRequestDto> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)    => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>()));
         
-        public static Partial<UpdateFieldRequestDto> WithRequired(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("required");
+        public static Partial<UpdateFieldRequestDto> WithRequired(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("required");
         
-        public static Partial<UpdateFieldRequestDto> WithPrivate(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("private");
+        public static Partial<UpdateFieldRequestDto> WithPrivate(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("private");
         
-        public static Partial<UpdateFieldRequestDto> WithAccess(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("access");
+        public static Partial<UpdateFieldRequestDto> WithAccess(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("access");
         
-        public static Partial<UpdateFieldRequestDto> WithAccess(this Partial<UpdateFieldRequestDto> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
-            => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
+        public static Partial<UpdateFieldRequestDto> WithAccess(this Partial<UpdateFieldRequestDto> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)    => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
         
-        public static Partial<UpdateFieldRequestDto> WithDefaultValue(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("defaultValue");
+        public static Partial<UpdateFieldRequestDto> WithDefaultValue(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("defaultValue");
         
-        public static Partial<UpdateFieldRequestDto> WithDefaultValue(this Partial<UpdateFieldRequestDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
-            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>()));
+        public static Partial<UpdateFieldRequestDto> WithDefaultValue(this Partial<UpdateFieldRequestDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)    => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>()));
         
-        public static Partial<UpdateFieldRequestDto> WithEnumValues(this Partial<UpdateFieldRequestDto> it)
-            => it.AddFieldName("enumValues");
+        public static Partial<UpdateFieldRequestDto> WithEnumValues(this Partial<UpdateFieldRequestDto> it)    => it.AddFieldName("enumValues");
         
-        public static Partial<UpdateFieldRequestDto> WithEnumValues(this Partial<UpdateFieldRequestDto> it, Func<Partial<EnumValueDataDto>, Partial<EnumValueDataDto>> partialBuilder)
-            => it.AddFieldName("enumValues", partialBuilder(new Partial<EnumValueDataDto>()));
+        public static Partial<UpdateFieldRequestDto> WithEnumValues(this Partial<UpdateFieldRequestDto> it, Func<Partial<EnumValueDataDto>, Partial<EnumValueDataDto>> partialBuilder)    => it.AddFieldName("enumValues", partialBuilder(new Partial<EnumValueDataDto>()));
         
     }
     

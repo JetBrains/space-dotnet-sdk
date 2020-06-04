@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MessageInfoExtensions
+namespace SpaceDotNet.Client.MessageInfoDtoExtensions
 {
     public static class MessageInfoDtoPartialExtensions
     {
-        public static Partial<MessageInfoDto> WithId(this Partial<MessageInfoDto> it)
-            => it.AddFieldName("id");
+        public static Partial<MessageInfoDto> WithId(this Partial<MessageInfoDto> it)    => it.AddFieldName("id");
         
-        public static Partial<MessageInfoDto> WithText(this Partial<MessageInfoDto> it)
-            => it.AddFieldName("text");
+        public static Partial<MessageInfoDto> WithText(this Partial<MessageInfoDto> it)    => it.AddFieldName("text");
         
-        public static Partial<MessageInfoDto> WithTime(this Partial<MessageInfoDto> it)
-            => it.AddFieldName("time");
+        public static Partial<MessageInfoDto> WithTime(this Partial<MessageInfoDto> it)    => it.AddFieldName("time");
         
-        public static Partial<MessageInfoDto> WithAuthor(this Partial<MessageInfoDto> it)
-            => it.AddFieldName("author");
+        public static Partial<MessageInfoDto> WithAuthor(this Partial<MessageInfoDto> it)    => it.AddFieldName("author");
         
-        public static Partial<MessageInfoDto> WithAuthor(this Partial<MessageInfoDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<CPrincipalDto>()));
+        public static Partial<MessageInfoDto> WithAuthor(this Partial<MessageInfoDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)    => it.AddFieldName("author", partialBuilder(new Partial<CPrincipalDto>()));
         
-        public static Partial<MessageInfoDto> WithAttachments(this Partial<MessageInfoDto> it)
-            => it.AddFieldName("attachments");
+        public static Partial<MessageInfoDto> WithAttachments(this Partial<MessageInfoDto> it)    => it.AddFieldName("attachments");
         
     }
     

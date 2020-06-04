@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UnfurlDetailsDateTimeExtensions
+namespace SpaceDotNet.Client.UnfurlDetailsDateTimeDtoExtensions
 {
     public static class UnfurlDetailsDateTimeDtoPartialExtensions
     {
-        public static Partial<UnfurlDetailsDateTimeDto> WithUtcMilliseconds(this Partial<UnfurlDetailsDateTimeDto> it)
-            => it.AddFieldName("utcMilliseconds");
+        public static Partial<UnfurlDetailsDateTimeDto> WithUtcMilliseconds(this Partial<UnfurlDetailsDateTimeDto> it)    => it.AddFieldName("utcMilliseconds");
         
     }
     

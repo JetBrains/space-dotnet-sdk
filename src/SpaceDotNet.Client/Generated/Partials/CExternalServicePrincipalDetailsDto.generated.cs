@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CExternalServicePrincipalDetailsExtensions
+namespace SpaceDotNet.Client.CExternalServicePrincipalDetailsDtoExtensions
 {
     public static class CExternalServicePrincipalDetailsDtoPartialExtensions
     {
-        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it)
-            => it.AddFieldName("service");
+        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it)    => it.AddFieldName("service");
         
-        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it, Func<Partial<ESServiceDto>, Partial<ESServiceDto>> partialBuilder)
-            => it.AddFieldName("service", partialBuilder(new Partial<ESServiceDto>()));
+        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it, Func<Partial<ESServiceDto>, Partial<ESServiceDto>> partialBuilder)    => it.AddFieldName("service", partialBuilder(new Partial<ESServiceDto>()));
         
     }
     

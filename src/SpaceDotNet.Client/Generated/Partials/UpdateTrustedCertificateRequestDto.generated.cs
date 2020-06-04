@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateTrustedCertificateRequestExtensions
+namespace SpaceDotNet.Client.UpdateTrustedCertificateRequestDtoExtensions
 {
     public static class UpdateTrustedCertificateRequestDtoPartialExtensions
     {
-        public static Partial<UpdateTrustedCertificateRequestDto> WithAlias(this Partial<UpdateTrustedCertificateRequestDto> it)
-            => it.AddFieldName("alias");
+        public static Partial<UpdateTrustedCertificateRequestDto> WithAlias(this Partial<UpdateTrustedCertificateRequestDto> it)    => it.AddFieldName("alias");
         
-        public static Partial<UpdateTrustedCertificateRequestDto> WithData(this Partial<UpdateTrustedCertificateRequestDto> it)
-            => it.AddFieldName("data");
+        public static Partial<UpdateTrustedCertificateRequestDto> WithData(this Partial<UpdateTrustedCertificateRequestDto> it)    => it.AddFieldName("data");
         
-        public static Partial<UpdateTrustedCertificateRequestDto> WithArchived(this Partial<UpdateTrustedCertificateRequestDto> it)
-            => it.AddFieldName("archived");
+        public static Partial<UpdateTrustedCertificateRequestDto> WithArchived(this Partial<UpdateTrustedCertificateRequestDto> it)    => it.AddFieldName("archived");
         
     }
     

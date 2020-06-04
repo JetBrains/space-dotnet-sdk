@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.AddRevisionsToReviewRequestExtensions
+namespace SpaceDotNet.Client.AddRevisionsToReviewRequestDtoExtensions
 {
     public static class AddRevisionsToReviewRequestDtoPartialExtensions
     {
-        public static Partial<AddRevisionsToReviewRequestDto> WithRevisions(this Partial<AddRevisionsToReviewRequestDto> it)
-            => it.AddFieldName("revisions");
+        public static Partial<AddRevisionsToReviewRequestDto> WithRevisions(this Partial<AddRevisionsToReviewRequestDto> it)    => it.AddFieldName("revisions");
         
-        public static Partial<AddRevisionsToReviewRequestDto> WithRevisions(this Partial<AddRevisionsToReviewRequestDto> it, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partialBuilder)
-            => it.AddFieldName("revisions", partialBuilder(new Partial<RevisionInReviewDto>()));
+        public static Partial<AddRevisionsToReviewRequestDto> WithRevisions(this Partial<AddRevisionsToReviewRequestDto> it, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partialBuilder)    => it.AddFieldName("revisions", partialBuilder(new Partial<RevisionInReviewDto>()));
         
     }
     

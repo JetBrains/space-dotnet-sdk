@@ -420,8 +420,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     var isFirstWrite = resourceBreadcrumbPaths.Add(nestedResourceBreadcrumbPath);
                     if (isFirstResource && isFirstWrite)
                     {
-                        var propertyNameForClient = apiNestedResource.ToCSharpIdentifierPlural();
-                        builder.AppendLine($"{indent}public {typeNameForClient} {propertyNameForClient} => new {typeNameForClient}(_connection);");
+                        var typeNameForNestedClient = apiNestedResource.ToCSharpIdentifierSingular() + "Client";
+                        var propertyNameForNestedClient = apiNestedResource.ToCSharpIdentifierPlural();
+                        builder.AppendLine($"{indent}public {typeNameForNestedClient} {propertyNameForNestedClient} => new {typeNameForNestedClient}(_connection);");
                         builder.AppendLine($"{indent}");
                     }
 

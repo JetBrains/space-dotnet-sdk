@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESApprovedScopeExtensions
+namespace SpaceDotNet.Client.ESApprovedScopeDtoExtensions
 {
     public static class ESApprovedScopeDtoPartialExtensions
     {
-        public static Partial<ESApprovedScopeDto> WithId(this Partial<ESApprovedScopeDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ESApprovedScopeDto> WithId(this Partial<ESApprovedScopeDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ESApprovedScopeDto> WithScope(this Partial<ESApprovedScopeDto> it)
-            => it.AddFieldName("scope");
+        public static Partial<ESApprovedScopeDto> WithScope(this Partial<ESApprovedScopeDto> it)    => it.AddFieldName("scope");
         
-        public static Partial<ESApprovedScopeDto> WithOfflineAllowed(this Partial<ESApprovedScopeDto> it)
-            => it.AddFieldName("offlineAllowed");
+        public static Partial<ESApprovedScopeDto> WithOfflineAllowed(this Partial<ESApprovedScopeDto> it)    => it.AddFieldName("offlineAllowed");
         
     }
     

@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContentCodeReviewDiscussionExtensions
+namespace SpaceDotNet.Client.M2ChannelContentCodeReviewDiscussionDtoExtensions
 {
     public static class M2ChannelContentCodeReviewDiscussionDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentCodeReviewDiscussionDto> WithCodeReviewDiscussion(this Partial<M2ChannelContentCodeReviewDiscussionDto> it)
-            => it.AddFieldName("codeReviewDiscussion");
+        public static Partial<M2ChannelContentCodeReviewDiscussionDto> WithCodeReviewDiscussion(this Partial<M2ChannelContentCodeReviewDiscussionDto> it)    => it.AddFieldName("codeReviewDiscussion");
         
-        public static Partial<M2ChannelContentCodeReviewDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussionDto> it)
-            => it.AddFieldName("notificationDefaults");
+        public static Partial<M2ChannelContentCodeReviewDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussionDto> it)    => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2ChannelContentCodeReviewDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussionDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2ChannelContentCodeReviewDiscussionDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewDiscussionDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
         
     }
     

@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TDLanguageExtensions
+namespace SpaceDotNet.Client.TDLanguageDtoExtensions
 {
     public static class TDLanguageDtoPartialExtensions
     {
-        public static Partial<TDLanguageDto> WithId(this Partial<TDLanguageDto> it)
-            => it.AddFieldName("id");
+        public static Partial<TDLanguageDto> WithId(this Partial<TDLanguageDto> it)    => it.AddFieldName("id");
         
-        public static Partial<TDLanguageDto> WithCode(this Partial<TDLanguageDto> it)
-            => it.AddFieldName("code");
+        public static Partial<TDLanguageDto> WithCode(this Partial<TDLanguageDto> it)    => it.AddFieldName("code");
         
-        public static Partial<TDLanguageDto> WithName(this Partial<TDLanguageDto> it)
-            => it.AddFieldName("name");
+        public static Partial<TDLanguageDto> WithName(this Partial<TDLanguageDto> it)    => it.AddFieldName("name");
         
-        public static Partial<TDLanguageDto> WithNativeName(this Partial<TDLanguageDto> it)
-            => it.AddFieldName("nativeName");
+        public static Partial<TDLanguageDto> WithNativeName(this Partial<TDLanguageDto> it)    => it.AddFieldName("nativeName");
         
-        public static Partial<TDLanguageDto> WithFirstNameTitle(this Partial<TDLanguageDto> it)
-            => it.AddFieldName("firstNameTitle");
+        public static Partial<TDLanguageDto> WithFirstNameTitle(this Partial<TDLanguageDto> it)    => it.AddFieldName("firstNameTitle");
         
-        public static Partial<TDLanguageDto> WithLastNameTitle(this Partial<TDLanguageDto> it)
-            => it.AddFieldName("lastNameTitle");
+        public static Partial<TDLanguageDto> WithLastNameTitle(this Partial<TDLanguageDto> it)    => it.AddFieldName("lastNameTitle");
         
     }
     

@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProjectKeyExtensions
+namespace SpaceDotNet.Client.ProjectKeyDtoExtensions
 {
     public static class ProjectKeyDtoPartialExtensions
     {
-        public static Partial<ProjectKeyDto> WithKey(this Partial<ProjectKeyDto> it)
-            => it.AddFieldName("key");
+        public static Partial<ProjectKeyDto> WithKey(this Partial<ProjectKeyDto> it)    => it.AddFieldName("key");
         
     }
     

@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EditReviewStateRequestExtensions
+namespace SpaceDotNet.Client.EditReviewStateRequestDtoExtensions
 {
     public static class EditReviewStateRequestDtoPartialExtensions
     {
-        public static Partial<EditReviewStateRequestDto> WithState(this Partial<EditReviewStateRequestDto> it)
-            => it.AddFieldName("state");
+        public static Partial<EditReviewStateRequestDto> WithState(this Partial<EditReviewStateRequestDto> it)    => it.AddFieldName("state");
         
-        public static Partial<EditReviewStateRequestDto> WithState(this Partial<EditReviewStateRequestDto> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
-            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>()));
+        public static Partial<EditReviewStateRequestDto> WithState(this Partial<EditReviewStateRequestDto> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)    => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>()));
         
     }
     

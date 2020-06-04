@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContactObsoleteExtensions
+namespace SpaceDotNet.Client.M2ChannelContactObsoleteDtoExtensions
 {
     public static class M2ChannelContactObsoleteDtoPartialExtensions
     {
-        public static Partial<M2ChannelContactObsoleteDto> WithCause(this Partial<M2ChannelContactObsoleteDto> it)
-            => it.AddFieldName("cause");
+        public static Partial<M2ChannelContactObsoleteDto> WithCause(this Partial<M2ChannelContactObsoleteDto> it)    => it.AddFieldName("cause");
         
-        public static Partial<M2ChannelContactObsoleteDto> WithCause(this Partial<M2ChannelContactObsoleteDto> it, Func<Partial<M2ObsoleteCause>, Partial<M2ObsoleteCause>> partialBuilder)
-            => it.AddFieldName("cause", partialBuilder(new Partial<M2ObsoleteCause>()));
+        public static Partial<M2ChannelContactObsoleteDto> WithCause(this Partial<M2ChannelContactObsoleteDto> it, Func<Partial<M2ObsoleteCause>, Partial<M2ObsoleteCause>> partialBuilder)    => it.AddFieldName("cause", partialBuilder(new Partial<M2ObsoleteCause>()));
         
     }
     

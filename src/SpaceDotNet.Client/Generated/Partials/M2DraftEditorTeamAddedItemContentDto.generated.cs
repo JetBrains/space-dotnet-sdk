@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2DraftEditorTeamAddedItemContentExtensions
+namespace SpaceDotNet.Client.M2DraftEditorTeamAddedItemContentDtoExtensions
 {
     public static class M2DraftEditorTeamAddedItemContentDtoPartialExtensions
     {
-        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithId(this Partial<M2DraftEditorTeamAddedItemContentDto> it)
-            => it.AddFieldName("id");
+        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithId(this Partial<M2DraftEditorTeamAddedItemContentDto> it)    => it.AddFieldName("id");
         
-        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithTeam(this Partial<M2DraftEditorTeamAddedItemContentDto> it)
-            => it.AddFieldName("team");
+        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithTeam(this Partial<M2DraftEditorTeamAddedItemContentDto> it)    => it.AddFieldName("team");
         
-        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithTeam(this Partial<M2DraftEditorTeamAddedItemContentDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithTeam(this Partial<M2DraftEditorTeamAddedItemContentDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>()));
         
-        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithTitle(this Partial<M2DraftEditorTeamAddedItemContentDto> it)
-            => it.AddFieldName("title");
+        public static Partial<M2DraftEditorTeamAddedItemContentDto> WithTitle(this Partial<M2DraftEditorTeamAddedItemContentDto> it)    => it.AddFieldName("title");
         
     }
     

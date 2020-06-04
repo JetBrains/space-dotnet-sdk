@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HAPathSegmentConstExtensions
+namespace SpaceDotNet.Client.HAPathSegmentConstDtoExtensions
 {
     public static class HAPathSegmentConstDtoPartialExtensions
     {
-        public static Partial<HAPathSegmentConstDto> WithValue(this Partial<HAPathSegmentConstDto> it)
-            => it.AddFieldName("value");
+        public static Partial<HAPathSegmentConstDto> WithValue(this Partial<HAPathSegmentConstDto> it)    => it.AddFieldName("value");
         
     }
     

@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdatePointRequestExtensions
+namespace SpaceDotNet.Client.UpdatePointRequestDtoExtensions
 {
     public static class UpdatePointRequestDtoPartialExtensions
     {
-        public static Partial<UpdatePointRequestDto> WithX(this Partial<UpdatePointRequestDto> it)
-            => it.AddFieldName("x");
+        public static Partial<UpdatePointRequestDto> WithX(this Partial<UpdatePointRequestDto> it)    => it.AddFieldName("x");
         
-        public static Partial<UpdatePointRequestDto> WithY(this Partial<UpdatePointRequestDto> it)
-            => it.AddFieldName("y");
+        public static Partial<UpdatePointRequestDto> WithY(this Partial<UpdatePointRequestDto> it)    => it.AddFieldName("y");
         
-        public static Partial<UpdatePointRequestDto> WithMapId(this Partial<UpdatePointRequestDto> it)
-            => it.AddFieldName("mapId");
+        public static Partial<UpdatePointRequestDto> WithMapId(this Partial<UpdatePointRequestDto> it)    => it.AddFieldName("mapId");
         
     }
     

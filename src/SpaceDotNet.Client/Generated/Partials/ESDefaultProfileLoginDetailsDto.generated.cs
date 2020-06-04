@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESDefaultProfileLoginDetailsExtensions
+namespace SpaceDotNet.Client.ESDefaultProfileLoginDetailsDtoExtensions
 {
     public static class ESDefaultProfileLoginDetailsDtoPartialExtensions
     {
-        public static Partial<ESDefaultProfileLoginDetailsDto> WithLogin(this Partial<ESDefaultProfileLoginDetailsDto> it)
-            => it.AddFieldName("login");
+        public static Partial<ESDefaultProfileLoginDetailsDto> WithLogin(this Partial<ESDefaultProfileLoginDetailsDto> it)    => it.AddFieldName("login");
         
-        public static Partial<ESDefaultProfileLoginDetailsDto> WithFirstName(this Partial<ESDefaultProfileLoginDetailsDto> it)
-            => it.AddFieldName("firstName");
+        public static Partial<ESDefaultProfileLoginDetailsDto> WithFirstName(this Partial<ESDefaultProfileLoginDetailsDto> it)    => it.AddFieldName("firstName");
         
-        public static Partial<ESDefaultProfileLoginDetailsDto> WithLastName(this Partial<ESDefaultProfileLoginDetailsDto> it)
-            => it.AddFieldName("lastName");
+        public static Partial<ESDefaultProfileLoginDetailsDto> WithLastName(this Partial<ESDefaultProfileLoginDetailsDto> it)    => it.AddFieldName("lastName");
         
-        public static Partial<ESDefaultProfileLoginDetailsDto> WithEmail(this Partial<ESDefaultProfileLoginDetailsDto> it)
-            => it.AddFieldName("email");
+        public static Partial<ESDefaultProfileLoginDetailsDto> WithEmail(this Partial<ESDefaultProfileLoginDetailsDto> it)    => it.AddFieldName("email");
         
-        public static Partial<ESDefaultProfileLoginDetailsDto> WithEmailVerified(this Partial<ESDefaultProfileLoginDetailsDto> it)
-            => it.AddFieldName("emailVerified");
+        public static Partial<ESDefaultProfileLoginDetailsDto> WithEmailVerified(this Partial<ESDefaultProfileLoginDetailsDto> it)    => it.AddFieldName("emailVerified");
         
-        public static Partial<ESDefaultProfileLoginDetailsDto> WithAvatarUrl(this Partial<ESDefaultProfileLoginDetailsDto> it)
-            => it.AddFieldName("avatarUrl");
+        public static Partial<ESDefaultProfileLoginDetailsDto> WithAvatarUrl(this Partial<ESDefaultProfileLoginDetailsDto> it)    => it.AddFieldName("avatarUrl");
         
     }
     

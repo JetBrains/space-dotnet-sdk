@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateNavBarMenuItemRequestExtensions
+namespace SpaceDotNet.Client.UpdateNavBarMenuItemRequestDtoExtensions
 {
     public static class UpdateNavBarMenuItemRequestDtoPartialExtensions
     {
-        public static Partial<UpdateNavBarMenuItemRequestDto> WithItem(this Partial<UpdateNavBarMenuItemRequestDto> it)
-            => it.AddFieldName("item");
+        public static Partial<UpdateNavBarMenuItemRequestDto> WithItem(this Partial<UpdateNavBarMenuItemRequestDto> it)    => it.AddFieldName("item");
         
-        public static Partial<UpdateNavBarMenuItemRequestDto> WithEnabled(this Partial<UpdateNavBarMenuItemRequestDto> it)
-            => it.AddFieldName("enabled");
+        public static Partial<UpdateNavBarMenuItemRequestDto> WithEnabled(this Partial<UpdateNavBarMenuItemRequestDto> it)    => it.AddFieldName("enabled");
         
     }
     

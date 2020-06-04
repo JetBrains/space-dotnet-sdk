@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DTORightTypeExtensions
+namespace SpaceDotNet.Client.DTORightTypeDtoExtensions
 {
     public static class DTORightTypeDtoPartialExtensions
     {
-        public static Partial<DTORightTypeDto> WithTypeCode(this Partial<DTORightTypeDto> it)
-            => it.AddFieldName("typeCode");
+        public static Partial<DTORightTypeDto> WithTypeCode(this Partial<DTORightTypeDto> it)    => it.AddFieldName("typeCode");
         
-        public static Partial<DTORightTypeDto> WithTitle(this Partial<DTORightTypeDto> it)
-            => it.AddFieldName("title");
+        public static Partial<DTORightTypeDto> WithTitle(this Partial<DTORightTypeDto> it)    => it.AddFieldName("title");
         
     }
     

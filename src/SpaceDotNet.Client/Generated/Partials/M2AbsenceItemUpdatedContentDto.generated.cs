@@ -19,33 +19,25 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2AbsenceItemUpdatedContentExtensions
+namespace SpaceDotNet.Client.M2AbsenceItemUpdatedContentDtoExtensions
 {
     public static class M2AbsenceItemUpdatedContentDtoPartialExtensions
     {
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithAbsence(this Partial<M2AbsenceItemUpdatedContentDto> it)
-            => it.AddFieldName("absence");
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithAbsence(this Partial<M2AbsenceItemUpdatedContentDto> it)    => it.AddFieldName("absence");
         
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithAbsence(this Partial<M2AbsenceItemUpdatedContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)
-            => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>()));
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithAbsence(this Partial<M2AbsenceItemUpdatedContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)    => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>()));
         
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithReason(this Partial<M2AbsenceItemUpdatedContentDto> it)
-            => it.AddFieldName("reason");
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithReason(this Partial<M2AbsenceItemUpdatedContentDto> it)    => it.AddFieldName("reason");
         
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithDescription(this Partial<M2AbsenceItemUpdatedContentDto> it)
-            => it.AddFieldName("description");
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithDescription(this Partial<M2AbsenceItemUpdatedContentDto> it)    => it.AddFieldName("description");
         
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithSince(this Partial<M2AbsenceItemUpdatedContentDto> it)
-            => it.AddFieldName("since");
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithSince(this Partial<M2AbsenceItemUpdatedContentDto> it)    => it.AddFieldName("since");
         
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithTill(this Partial<M2AbsenceItemUpdatedContentDto> it)
-            => it.AddFieldName("till");
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithTill(this Partial<M2AbsenceItemUpdatedContentDto> it)    => it.AddFieldName("till");
         
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithBy(this Partial<M2AbsenceItemUpdatedContentDto> it)
-            => it.AddFieldName("by");
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithBy(this Partial<M2AbsenceItemUpdatedContentDto> it)    => it.AddFieldName("by");
         
-        public static Partial<M2AbsenceItemUpdatedContentDto> WithBy(this Partial<M2AbsenceItemUpdatedContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<M2AbsenceItemUpdatedContentDto> WithBy(this Partial<M2AbsenceItemUpdatedContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportMetadataExtensions
+namespace SpaceDotNet.Client.ImportMetadataDtoExtensions
 {
     public static class ImportMetadataDtoPartialExtensions
     {
-        public static Partial<ImportMetadataDto> WithImportSource(this Partial<ImportMetadataDto> it)
-            => it.AddFieldName("importSource");
+        public static Partial<ImportMetadataDto> WithImportSource(this Partial<ImportMetadataDto> it)    => it.AddFieldName("importSource");
         
     }
     

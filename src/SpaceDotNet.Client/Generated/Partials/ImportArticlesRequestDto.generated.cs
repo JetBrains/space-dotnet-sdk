@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportArticlesRequestExtensions
+namespace SpaceDotNet.Client.ImportArticlesRequestDtoExtensions
 {
     public static class ImportArticlesRequestDtoPartialExtensions
     {
-        public static Partial<ImportArticlesRequestDto> WithMetadata(this Partial<ImportArticlesRequestDto> it)
-            => it.AddFieldName("metadata");
+        public static Partial<ImportArticlesRequestDto> WithMetadata(this Partial<ImportArticlesRequestDto> it)    => it.AddFieldName("metadata");
         
-        public static Partial<ImportArticlesRequestDto> WithMetadata(this Partial<ImportArticlesRequestDto> it, Func<Partial<ImportMetadataDto>, Partial<ImportMetadataDto>> partialBuilder)
-            => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadataDto>()));
+        public static Partial<ImportArticlesRequestDto> WithMetadata(this Partial<ImportArticlesRequestDto> it, Func<Partial<ImportMetadataDto>, Partial<ImportMetadataDto>> partialBuilder)    => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadataDto>()));
         
-        public static Partial<ImportArticlesRequestDto> WithArticles(this Partial<ImportArticlesRequestDto> it)
-            => it.AddFieldName("articles");
+        public static Partial<ImportArticlesRequestDto> WithArticles(this Partial<ImportArticlesRequestDto> it)    => it.AddFieldName("articles");
         
-        public static Partial<ImportArticlesRequestDto> WithArticles(this Partial<ImportArticlesRequestDto> it, Func<Partial<ExternalArticleDto>, Partial<ExternalArticleDto>> partialBuilder)
-            => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticleDto>()));
+        public static Partial<ImportArticlesRequestDto> WithArticles(this Partial<ImportArticlesRequestDto> it, Func<Partial<ExternalArticleDto>, Partial<ExternalArticleDto>> partialBuilder)    => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticleDto>()));
         
     }
     

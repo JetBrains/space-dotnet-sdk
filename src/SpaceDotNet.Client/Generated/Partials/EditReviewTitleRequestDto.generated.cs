@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EditReviewTitleRequestExtensions
+namespace SpaceDotNet.Client.EditReviewTitleRequestDtoExtensions
 {
     public static class EditReviewTitleRequestDtoPartialExtensions
     {
-        public static Partial<EditReviewTitleRequestDto> WithTitle(this Partial<EditReviewTitleRequestDto> it)
-            => it.AddFieldName("title");
+        public static Partial<EditReviewTitleRequestDto> WithTitle(this Partial<EditReviewTitleRequestDto> it)    => it.AddFieldName("title");
         
     }
     

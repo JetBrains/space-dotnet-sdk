@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.SamlMetadataResponseSuccessExtensions
+namespace SpaceDotNet.Client.SamlMetadataResponseSuccessDtoExtensions
 {
     public static class SamlMetadataResponseSuccessDtoPartialExtensions
     {
-        public static Partial<SamlMetadataResponseSuccessDto> WithMetadata(this Partial<SamlMetadataResponseSuccessDto> it)
-            => it.AddFieldName("metadata");
+        public static Partial<SamlMetadataResponseSuccessDto> WithMetadata(this Partial<SamlMetadataResponseSuccessDto> it)    => it.AddFieldName("metadata");
         
     }
     

@@ -19,51 +19,37 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PlanItemExtensions
+namespace SpaceDotNet.Client.PlanItemDtoExtensions
 {
     public static class PlanItemDtoPartialExtensions
     {
-        public static Partial<PlanItemDto> WithId(this Partial<PlanItemDto> it)
-            => it.AddFieldName("id");
+        public static Partial<PlanItemDto> WithId(this Partial<PlanItemDto> it)    => it.AddFieldName("id");
         
-        public static Partial<PlanItemDto> WithChecklistId(this Partial<PlanItemDto> it)
-            => it.AddFieldName("checklistId");
+        public static Partial<PlanItemDto> WithChecklistId(this Partial<PlanItemDto> it)    => it.AddFieldName("checklistId");
         
-        public static Partial<PlanItemDto> WithTag(this Partial<PlanItemDto> it)
-            => it.AddFieldName("tag");
+        public static Partial<PlanItemDto> WithTag(this Partial<PlanItemDto> it)    => it.AddFieldName("tag");
         
-        public static Partial<PlanItemDto> WithTag(this Partial<PlanItemDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)
-            => it.AddFieldName("tag", partialBuilder(new Partial<PlanningTagDto>()));
+        public static Partial<PlanItemDto> WithTag(this Partial<PlanItemDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)    => it.AddFieldName("tag", partialBuilder(new Partial<PlanningTagDto>()));
         
-        public static Partial<PlanItemDto> WithSimpleText(this Partial<PlanItemDto> it)
-            => it.AddFieldName("simpleText");
+        public static Partial<PlanItemDto> WithSimpleText(this Partial<PlanItemDto> it)    => it.AddFieldName("simpleText");
         
-        public static Partial<PlanItemDto> WithSimpleDone(this Partial<PlanItemDto> it)
-            => it.AddFieldName("simpleDone");
+        public static Partial<PlanItemDto> WithSimpleDone(this Partial<PlanItemDto> it)    => it.AddFieldName("simpleDone");
         
-        public static Partial<PlanItemDto> WithIssue(this Partial<PlanItemDto> it)
-            => it.AddFieldName("issue");
+        public static Partial<PlanItemDto> WithIssue(this Partial<PlanItemDto> it)    => it.AddFieldName("issue");
         
-        public static Partial<PlanItemDto> WithIssue(this Partial<PlanItemDto> it, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder)
-            => it.AddFieldName("issue", partialBuilder(new Partial<IssueDto>()));
+        public static Partial<PlanItemDto> WithIssue(this Partial<PlanItemDto> it, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder)    => it.AddFieldName("issue", partialBuilder(new Partial<IssueDto>()));
         
-        public static Partial<PlanItemDto> WithIssueProblem(this Partial<PlanItemDto> it)
-            => it.AddFieldName("issueProblem");
+        public static Partial<PlanItemDto> WithIssueProblem(this Partial<PlanItemDto> it)    => it.AddFieldName("issueProblem");
         
-        public static Partial<PlanItemDto> WithCanEditIssue(this Partial<PlanItemDto> it)
-            => it.AddFieldName("canEditIssue");
+        public static Partial<PlanItemDto> WithCanEditIssue(this Partial<PlanItemDto> it)    => it.AddFieldName("canEditIssue");
         
-        public static Partial<PlanItemDto> WithHasChildren(this Partial<PlanItemDto> it)
-            => it.AddFieldName("hasChildren");
+        public static Partial<PlanItemDto> WithHasChildren(this Partial<PlanItemDto> it)    => it.AddFieldName("hasChildren");
         
-        public static Partial<PlanItemDto> WithChildren(this Partial<PlanItemDto> it)
-            => it.AddFieldName("children");
+        public static Partial<PlanItemDto> WithChildren(this Partial<PlanItemDto> it)    => it.AddFieldName("children");
         
-        public static Partial<PlanItemDto> WithChildrenRecursive(this Partial<PlanItemDto> it)
-            => it.AddFieldName("children!");
+        public static Partial<PlanItemDto> WithChildrenRecursive(this Partial<PlanItemDto> it)    => it.AddFieldName("children!");
         
-        public static Partial<PlanItemDto> WithChildren(this Partial<PlanItemDto> it, Func<Partial<PlanItemDto>, Partial<PlanItemDto>> partialBuilder)
-            => it.AddFieldName("children", partialBuilder(new Partial<PlanItemDto>()));
+        public static Partial<PlanItemDto> WithChildren(this Partial<PlanItemDto> it, Func<Partial<PlanItemDto>, Partial<PlanItemDto>> partialBuilder)    => it.AddFieldName("children", partialBuilder(new Partial<PlanItemDto>()));
         
     }
     

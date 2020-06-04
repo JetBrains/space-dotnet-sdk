@@ -19,48 +19,35 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HAResourceExtensions
+namespace SpaceDotNet.Client.HAResourceDtoExtensions
 {
     public static class HAResourceDtoPartialExtensions
     {
-        public static Partial<HAResourceDto> WithId(this Partial<HAResourceDto> it)
-            => it.AddFieldName("id");
+        public static Partial<HAResourceDto> WithId(this Partial<HAResourceDto> it)    => it.AddFieldName("id");
         
-        public static Partial<HAResourceDto> WithPath(this Partial<HAResourceDto> it)
-            => it.AddFieldName("path");
+        public static Partial<HAResourceDto> WithPath(this Partial<HAResourceDto> it)    => it.AddFieldName("path");
         
-        public static Partial<HAResourceDto> WithPath(this Partial<HAResourceDto> it, Func<Partial<HAPathDto>, Partial<HAPathDto>> partialBuilder)
-            => it.AddFieldName("path", partialBuilder(new Partial<HAPathDto>()));
+        public static Partial<HAResourceDto> WithPath(this Partial<HAResourceDto> it, Func<Partial<HAPathDto>, Partial<HAPathDto>> partialBuilder)    => it.AddFieldName("path", partialBuilder(new Partial<HAPathDto>()));
         
-        public static Partial<HAResourceDto> WithDisplaySingular(this Partial<HAResourceDto> it)
-            => it.AddFieldName("displaySingular");
+        public static Partial<HAResourceDto> WithDisplaySingular(this Partial<HAResourceDto> it)    => it.AddFieldName("displaySingular");
         
-        public static Partial<HAResourceDto> WithDisplayPlural(this Partial<HAResourceDto> it)
-            => it.AddFieldName("displayPlural");
+        public static Partial<HAResourceDto> WithDisplayPlural(this Partial<HAResourceDto> it)    => it.AddFieldName("displayPlural");
         
-        public static Partial<HAResourceDto> WithParentResource(this Partial<HAResourceDto> it)
-            => it.AddFieldName("parentResource");
+        public static Partial<HAResourceDto> WithParentResource(this Partial<HAResourceDto> it)    => it.AddFieldName("parentResource");
         
-        public static Partial<HAResourceDto> WithParentResourceRecursive(this Partial<HAResourceDto> it)
-            => it.AddFieldName("parentResource!");
+        public static Partial<HAResourceDto> WithParentResourceRecursive(this Partial<HAResourceDto> it)    => it.AddFieldName("parentResource!");
         
-        public static Partial<HAResourceDto> WithParentResource(this Partial<HAResourceDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)
-            => it.AddFieldName("parentResource", partialBuilder(new Partial<HAResourceDto>()));
+        public static Partial<HAResourceDto> WithParentResource(this Partial<HAResourceDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)    => it.AddFieldName("parentResource", partialBuilder(new Partial<HAResourceDto>()));
         
-        public static Partial<HAResourceDto> WithEndpoints(this Partial<HAResourceDto> it)
-            => it.AddFieldName("endpoints");
+        public static Partial<HAResourceDto> WithEndpoints(this Partial<HAResourceDto> it)    => it.AddFieldName("endpoints");
         
-        public static Partial<HAResourceDto> WithEndpoints(this Partial<HAResourceDto> it, Func<Partial<HAEndpointDto>, Partial<HAEndpointDto>> partialBuilder)
-            => it.AddFieldName("endpoints", partialBuilder(new Partial<HAEndpointDto>()));
+        public static Partial<HAResourceDto> WithEndpoints(this Partial<HAResourceDto> it, Func<Partial<HAEndpointDto>, Partial<HAEndpointDto>> partialBuilder)    => it.AddFieldName("endpoints", partialBuilder(new Partial<HAEndpointDto>()));
         
-        public static Partial<HAResourceDto> WithNestedResources(this Partial<HAResourceDto> it)
-            => it.AddFieldName("nestedResources");
+        public static Partial<HAResourceDto> WithNestedResources(this Partial<HAResourceDto> it)    => it.AddFieldName("nestedResources");
         
-        public static Partial<HAResourceDto> WithNestedResourcesRecursive(this Partial<HAResourceDto> it)
-            => it.AddFieldName("nestedResources!");
+        public static Partial<HAResourceDto> WithNestedResourcesRecursive(this Partial<HAResourceDto> it)    => it.AddFieldName("nestedResources!");
         
-        public static Partial<HAResourceDto> WithNestedResources(this Partial<HAResourceDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)
-            => it.AddFieldName("nestedResources", partialBuilder(new Partial<HAResourceDto>()));
+        public static Partial<HAResourceDto> WithNestedResources(this Partial<HAResourceDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)    => it.AddFieldName("nestedResources", partialBuilder(new Partial<HAResourceDto>()));
         
     }
     

@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.IssueTagsChangedDetailsExtensions
+namespace SpaceDotNet.Client.IssueTagsChangedDetailsDtoExtensions
 {
     public static class IssueTagsChangedDetailsDtoPartialExtensions
     {
-        public static Partial<IssueTagsChangedDetailsDto> WithAddedTags(this Partial<IssueTagsChangedDetailsDto> it)
-            => it.AddFieldName("addedTags");
+        public static Partial<IssueTagsChangedDetailsDto> WithAddedTags(this Partial<IssueTagsChangedDetailsDto> it)    => it.AddFieldName("addedTags");
         
-        public static Partial<IssueTagsChangedDetailsDto> WithAddedTags(this Partial<IssueTagsChangedDetailsDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)
-            => it.AddFieldName("addedTags", partialBuilder(new Partial<PlanningTagDto>()));
+        public static Partial<IssueTagsChangedDetailsDto> WithAddedTags(this Partial<IssueTagsChangedDetailsDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)    => it.AddFieldName("addedTags", partialBuilder(new Partial<PlanningTagDto>()));
         
-        public static Partial<IssueTagsChangedDetailsDto> WithRemovedTags(this Partial<IssueTagsChangedDetailsDto> it)
-            => it.AddFieldName("removedTags");
+        public static Partial<IssueTagsChangedDetailsDto> WithRemovedTags(this Partial<IssueTagsChangedDetailsDto> it)    => it.AddFieldName("removedTags");
         
-        public static Partial<IssueTagsChangedDetailsDto> WithRemovedTags(this Partial<IssueTagsChangedDetailsDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)
-            => it.AddFieldName("removedTags", partialBuilder(new Partial<PlanningTagDto>()));
+        public static Partial<IssueTagsChangedDetailsDto> WithRemovedTags(this Partial<IssueTagsChangedDetailsDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)    => it.AddFieldName("removedTags", partialBuilder(new Partial<PlanningTagDto>()));
         
     }
     

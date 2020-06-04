@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateWorkingDaysRequestExtensions
+namespace SpaceDotNet.Client.UpdateWorkingDaysRequestDtoExtensions
 {
     public static class UpdateWorkingDaysRequestDtoPartialExtensions
     {
-        public static Partial<UpdateWorkingDaysRequestDto> WithProfile(this Partial<UpdateWorkingDaysRequestDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<UpdateWorkingDaysRequestDto> WithProfile(this Partial<UpdateWorkingDaysRequestDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<UpdateWorkingDaysRequestDto> WithDateStart(this Partial<UpdateWorkingDaysRequestDto> it)
-            => it.AddFieldName("dateStart");
+        public static Partial<UpdateWorkingDaysRequestDto> WithDateStart(this Partial<UpdateWorkingDaysRequestDto> it)    => it.AddFieldName("dateStart");
         
-        public static Partial<UpdateWorkingDaysRequestDto> WithDateEnd(this Partial<UpdateWorkingDaysRequestDto> it)
-            => it.AddFieldName("dateEnd");
+        public static Partial<UpdateWorkingDaysRequestDto> WithDateEnd(this Partial<UpdateWorkingDaysRequestDto> it)    => it.AddFieldName("dateEnd");
         
-        public static Partial<UpdateWorkingDaysRequestDto> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequestDto> it)
-            => it.AddFieldName("workingDaysSpec");
+        public static Partial<UpdateWorkingDaysRequestDto> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequestDto> it)    => it.AddFieldName("workingDaysSpec");
         
-        public static Partial<UpdateWorkingDaysRequestDto> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequestDto> it, Func<Partial<WorkingDaysSpecDto>, Partial<WorkingDaysSpecDto>> partialBuilder)
-            => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpecDto>()));
+        public static Partial<UpdateWorkingDaysRequestDto> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequestDto> it, Func<Partial<WorkingDaysSpecDto>, Partial<WorkingDaysSpecDto>> partialBuilder)    => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpecDto>()));
         
     }
     

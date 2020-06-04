@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ConvertMarkdownToHTMLRequestExtensions
+namespace SpaceDotNet.Client.ConvertMarkdownToHTMLRequestDtoExtensions
 {
     public static class ConvertMarkdownToHTMLRequestDtoPartialExtensions
     {
-        public static Partial<ConvertMarkdownToHTMLRequestDto> WithMarkdown(this Partial<ConvertMarkdownToHTMLRequestDto> it)
-            => it.AddFieldName("markdown");
+        public static Partial<ConvertMarkdownToHTMLRequestDto> WithMarkdown(this Partial<ConvertMarkdownToHTMLRequestDto> it)    => it.AddFieldName("markdown");
         
     }
     

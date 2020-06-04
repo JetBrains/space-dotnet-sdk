@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateSubscriptionRequestExtensions
+namespace SpaceDotNet.Client.UpdateSubscriptionRequestDtoExtensions
 {
     public static class UpdateSubscriptionRequestDtoPartialExtensions
     {
-        public static Partial<UpdateSubscriptionRequestDto> WithLocationId(this Partial<UpdateSubscriptionRequestDto> it)
-            => it.AddFieldName("locationId");
+        public static Partial<UpdateSubscriptionRequestDto> WithLocationId(this Partial<UpdateSubscriptionRequestDto> it)    => it.AddFieldName("locationId");
         
-        public static Partial<UpdateSubscriptionRequestDto> WithTeamId(this Partial<UpdateSubscriptionRequestDto> it)
-            => it.AddFieldName("teamId");
+        public static Partial<UpdateSubscriptionRequestDto> WithTeamId(this Partial<UpdateSubscriptionRequestDto> it)    => it.AddFieldName("teamId");
         
-        public static Partial<UpdateSubscriptionRequestDto> WithReasonId(this Partial<UpdateSubscriptionRequestDto> it)
-            => it.AddFieldName("reasonId");
+        public static Partial<UpdateSubscriptionRequestDto> WithReasonId(this Partial<UpdateSubscriptionRequestDto> it)    => it.AddFieldName("reasonId");
         
     }
     

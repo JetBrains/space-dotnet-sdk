@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ArticleMarkdownImageExtensions
+namespace SpaceDotNet.Client.ArticleMarkdownImageDtoExtensions
 {
     public static class ArticleMarkdownImageDtoPartialExtensions
     {
-        public static Partial<ArticleMarkdownImageDto> WithAlt(this Partial<ArticleMarkdownImageDto> it)
-            => it.AddFieldName("alt");
+        public static Partial<ArticleMarkdownImageDto> WithAlt(this Partial<ArticleMarkdownImageDto> it)    => it.AddFieldName("alt");
         
-        public static Partial<ArticleMarkdownImageDto> WithSrc(this Partial<ArticleMarkdownImageDto> it)
-            => it.AddFieldName("src");
+        public static Partial<ArticleMarkdownImageDto> WithSrc(this Partial<ArticleMarkdownImageDto> it)    => it.AddFieldName("src");
         
     }
     

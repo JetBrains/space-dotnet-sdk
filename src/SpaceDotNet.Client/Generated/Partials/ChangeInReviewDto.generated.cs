@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ChangeInReviewExtensions
+namespace SpaceDotNet.Client.ChangeInReviewDtoExtensions
 {
     public static class ChangeInReviewDtoPartialExtensions
     {
-        public static Partial<ChangeInReviewDto> WithRepository(this Partial<ChangeInReviewDto> it)
-            => it.AddFieldName("repository");
+        public static Partial<ChangeInReviewDto> WithRepository(this Partial<ChangeInReviewDto> it)    => it.AddFieldName("repository");
         
-        public static Partial<ChangeInReviewDto> WithChange(this Partial<ChangeInReviewDto> it)
-            => it.AddFieldName("change");
+        public static Partial<ChangeInReviewDto> WithChange(this Partial<ChangeInReviewDto> it)    => it.AddFieldName("change");
         
-        public static Partial<ChangeInReviewDto> WithChange(this Partial<ChangeInReviewDto> it, Func<Partial<GitCommitChangeDto>, Partial<GitCommitChangeDto>> partialBuilder)
-            => it.AddFieldName("change", partialBuilder(new Partial<GitCommitChangeDto>()));
+        public static Partial<ChangeInReviewDto> WithChange(this Partial<ChangeInReviewDto> it, Func<Partial<GitCommitChangeDto>, Partial<GitCommitChangeDto>> partialBuilder)    => it.AddFieldName("change", partialBuilder(new Partial<GitCommitChangeDto>()));
         
-        public static Partial<ChangeInReviewDto> WithRead(this Partial<ChangeInReviewDto> it)
-            => it.AddFieldName("read");
+        public static Partial<ChangeInReviewDto> WithRead(this Partial<ChangeInReviewDto> it)    => it.AddFieldName("read");
         
     }
     

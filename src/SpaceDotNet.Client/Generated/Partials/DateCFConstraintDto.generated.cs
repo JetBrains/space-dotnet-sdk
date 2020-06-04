@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DateCFConstraintExtensions
+namespace SpaceDotNet.Client.DateCFConstraintDtoExtensions
 {
     public static class DateCFConstraintDtoPartialExtensions
     {
-        public static Partial<DateCFConstraintDto> WithMin(this Partial<DateCFConstraintDto> it)
-            => it.AddFieldName("min");
+        public static Partial<DateCFConstraintDto> WithMin(this Partial<DateCFConstraintDto> it)    => it.AddFieldName("min");
         
-        public static Partial<DateCFConstraintDto> WithMax(this Partial<DateCFConstraintDto> it)
-            => it.AddFieldName("max");
+        public static Partial<DateCFConstraintDto> WithMax(this Partial<DateCFConstraintDto> it)    => it.AddFieldName("max");
         
-        public static Partial<DateCFConstraintDto> WithMessage(this Partial<DateCFConstraintDto> it)
-            => it.AddFieldName("message");
+        public static Partial<DateCFConstraintDto> WithMessage(this Partial<DateCFConstraintDto> it)    => it.AddFieldName("message");
         
     }
     

@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BGArticleAliasExtensions
+namespace SpaceDotNet.Client.BGArticleAliasDtoExtensions
 {
     public static class BGArticleAliasDtoPartialExtensions
     {
-        public static Partial<BGArticleAliasDto> WithAlias(this Partial<BGArticleAliasDto> it)
-            => it.AddFieldName("alias");
+        public static Partial<BGArticleAliasDto> WithAlias(this Partial<BGArticleAliasDto> it)    => it.AddFieldName("alias");
         
-        public static Partial<BGArticleAliasDto> WithCreated(this Partial<BGArticleAliasDto> it)
-            => it.AddFieldName("created");
+        public static Partial<BGArticleAliasDto> WithCreated(this Partial<BGArticleAliasDto> it)    => it.AddFieldName("created");
         
     }
     

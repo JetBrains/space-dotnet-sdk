@@ -19,39 +19,29 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateLocationRequestExtensions
+namespace SpaceDotNet.Client.CreateLocationRequestDtoExtensions
 {
     public static class CreateLocationRequestDtoPartialExtensions
     {
-        public static Partial<CreateLocationRequestDto> WithName(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreateLocationRequestDto> WithName(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CreateLocationRequestDto> WithTimezone(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("timezone");
+        public static Partial<CreateLocationRequestDto> WithTimezone(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("timezone");
         
-        public static Partial<CreateLocationRequestDto> WithWorkdays(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("workdays");
+        public static Partial<CreateLocationRequestDto> WithWorkdays(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("workdays");
         
-        public static Partial<CreateLocationRequestDto> WithPhones(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("phones");
+        public static Partial<CreateLocationRequestDto> WithPhones(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("phones");
         
-        public static Partial<CreateLocationRequestDto> WithEmails(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("emails");
+        public static Partial<CreateLocationRequestDto> WithEmails(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("emails");
         
-        public static Partial<CreateLocationRequestDto> WithEquipment(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("equipment");
+        public static Partial<CreateLocationRequestDto> WithEquipment(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("equipment");
         
-        public static Partial<CreateLocationRequestDto> WithDescription(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<CreateLocationRequestDto> WithDescription(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<CreateLocationRequestDto> WithAddress(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("address");
+        public static Partial<CreateLocationRequestDto> WithAddress(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("address");
         
-        public static Partial<CreateLocationRequestDto> WithType(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("type");
+        public static Partial<CreateLocationRequestDto> WithType(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("type");
         
-        public static Partial<CreateLocationRequestDto> WithParentId(this Partial<CreateLocationRequestDto> it)
-            => it.AddFieldName("parentId");
+        public static Partial<CreateLocationRequestDto> WithParentId(this Partial<CreateLocationRequestDto> it)    => it.AddFieldName("parentId");
         
     }
     

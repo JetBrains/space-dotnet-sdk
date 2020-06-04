@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HADtoFieldExtensions
+namespace SpaceDotNet.Client.HADtoFieldDtoExtensions
 {
     public static class HADtoFieldDtoPartialExtensions
     {
-        public static Partial<HADtoFieldDto> WithField(this Partial<HADtoFieldDto> it)
-            => it.AddFieldName("field");
+        public static Partial<HADtoFieldDto> WithField(this Partial<HADtoFieldDto> it)    => it.AddFieldName("field");
         
-        public static Partial<HADtoFieldDto> WithField(this Partial<HADtoFieldDto> it, Func<Partial<HAFieldDto>, Partial<HAFieldDto>> partialBuilder)
-            => it.AddFieldName("field", partialBuilder(new Partial<HAFieldDto>()));
+        public static Partial<HADtoFieldDto> WithField(this Partial<HADtoFieldDto> it, Func<Partial<HAFieldDto>, Partial<HAFieldDto>> partialBuilder)    => it.AddFieldName("field", partialBuilder(new Partial<HAFieldDto>()));
         
-        public static Partial<HADtoFieldDto> WithExtension(this Partial<HADtoFieldDto> it)
-            => it.AddFieldName("extension");
+        public static Partial<HADtoFieldDto> WithExtension(this Partial<HADtoFieldDto> it)    => it.AddFieldName("extension");
         
     }
     

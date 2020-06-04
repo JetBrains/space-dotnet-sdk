@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.FingerprintExtensions
+namespace SpaceDotNet.Client.FingerprintDtoExtensions
 {
     public static class FingerprintDtoPartialExtensions
     {
-        public static Partial<FingerprintDto> WithMd5(this Partial<FingerprintDto> it)
-            => it.AddFieldName("md5");
+        public static Partial<FingerprintDto> WithMd5(this Partial<FingerprintDto> it)    => it.AddFieldName("md5");
         
-        public static Partial<FingerprintDto> WithSha1(this Partial<FingerprintDto> it)
-            => it.AddFieldName("sha1");
+        public static Partial<FingerprintDto> WithSha1(this Partial<FingerprintDto> it)    => it.AddFieldName("sha1");
         
-        public static Partial<FingerprintDto> WithSha256(this Partial<FingerprintDto> it)
-            => it.AddFieldName("sha256");
+        public static Partial<FingerprintDto> WithSha256(this Partial<FingerprintDto> it)    => it.AddFieldName("sha256");
         
-        public static Partial<FingerprintDto> WithSha384(this Partial<FingerprintDto> it)
-            => it.AddFieldName("sha384");
+        public static Partial<FingerprintDto> WithSha384(this Partial<FingerprintDto> it)    => it.AddFieldName("sha384");
         
-        public static Partial<FingerprintDto> WithSha512(this Partial<FingerprintDto> it)
-            => it.AddFieldName("sha512");
+        public static Partial<FingerprintDto> WithSha512(this Partial<FingerprintDto> it)    => it.AddFieldName("sha512");
         
     }
     

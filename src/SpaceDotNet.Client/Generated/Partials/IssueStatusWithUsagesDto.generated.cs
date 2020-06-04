@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.IssueStatusWithUsagesExtensions
+namespace SpaceDotNet.Client.IssueStatusWithUsagesDtoExtensions
 {
     public static class IssueStatusWithUsagesDtoPartialExtensions
     {
-        public static Partial<IssueStatusWithUsagesDto> WithStatus(this Partial<IssueStatusWithUsagesDto> it)
-            => it.AddFieldName("status");
+        public static Partial<IssueStatusWithUsagesDto> WithStatus(this Partial<IssueStatusWithUsagesDto> it)    => it.AddFieldName("status");
         
-        public static Partial<IssueStatusWithUsagesDto> WithStatus(this Partial<IssueStatusWithUsagesDto> it, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<IssueStatusDto>()));
+        public static Partial<IssueStatusWithUsagesDto> WithStatus(this Partial<IssueStatusWithUsagesDto> it, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder)    => it.AddFieldName("status", partialBuilder(new Partial<IssueStatusDto>()));
         
-        public static Partial<IssueStatusWithUsagesDto> WithUsages(this Partial<IssueStatusWithUsagesDto> it)
-            => it.AddFieldName("usages");
+        public static Partial<IssueStatusWithUsagesDto> WithUsages(this Partial<IssueStatusWithUsagesDto> it)    => it.AddFieldName("usages");
         
     }
     

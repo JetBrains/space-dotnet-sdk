@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UnfurlDetailsMeetingExtensions
+namespace SpaceDotNet.Client.UnfurlDetailsMeetingDtoExtensions
 {
     public static class UnfurlDetailsMeetingDtoPartialExtensions
     {
-        public static Partial<UnfurlDetailsMeetingDto> WithMeeting(this Partial<UnfurlDetailsMeetingDto> it)
-            => it.AddFieldName("meeting");
+        public static Partial<UnfurlDetailsMeetingDto> WithMeeting(this Partial<UnfurlDetailsMeetingDto> it)    => it.AddFieldName("meeting");
         
-        public static Partial<UnfurlDetailsMeetingDto> WithMeeting(this Partial<UnfurlDetailsMeetingDto> it, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder)
-            => it.AddFieldName("meeting", partialBuilder(new Partial<DTOMeetingDto>()));
+        public static Partial<UnfurlDetailsMeetingDto> WithMeeting(this Partial<UnfurlDetailsMeetingDto> it, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partialBuilder)    => it.AddFieldName("meeting", partialBuilder(new Partial<DTOMeetingDto>()));
         
     }
     

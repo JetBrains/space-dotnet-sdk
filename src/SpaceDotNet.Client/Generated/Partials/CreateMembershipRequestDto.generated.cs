@@ -19,48 +19,35 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateMembershipRequestExtensions
+namespace SpaceDotNet.Client.CreateMembershipRequestDtoExtensions
 {
     public static class CreateMembershipRequestDtoPartialExtensions
     {
-        public static Partial<CreateMembershipRequestDto> WithMemberId(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("memberId");
+        public static Partial<CreateMembershipRequestDto> WithMemberId(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("memberId");
         
-        public static Partial<CreateMembershipRequestDto> WithTeamId(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("teamId");
+        public static Partial<CreateMembershipRequestDto> WithTeamId(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("teamId");
         
-        public static Partial<CreateMembershipRequestDto> WithRoleId(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("roleId");
+        public static Partial<CreateMembershipRequestDto> WithRoleId(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("roleId");
         
-        public static Partial<CreateMembershipRequestDto> WithLead(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("lead");
+        public static Partial<CreateMembershipRequestDto> WithLead(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("lead");
         
-        public static Partial<CreateMembershipRequestDto> WithManagerId(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("managerId");
+        public static Partial<CreateMembershipRequestDto> WithManagerId(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("managerId");
         
-        public static Partial<CreateMembershipRequestDto> WithSince(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("since");
+        public static Partial<CreateMembershipRequestDto> WithSince(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("since");
         
-        public static Partial<CreateMembershipRequestDto> WithTill(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("till");
+        public static Partial<CreateMembershipRequestDto> WithTill(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("till");
         
-        public static Partial<CreateMembershipRequestDto> WithActiveSince(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("activeSince");
+        public static Partial<CreateMembershipRequestDto> WithActiveSince(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("activeSince");
         
-        public static Partial<CreateMembershipRequestDto> WithActiveTill(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("activeTill");
+        public static Partial<CreateMembershipRequestDto> WithActiveTill(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("activeTill");
         
-        public static Partial<CreateMembershipRequestDto> WithPreviousMembershipId(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("previousMembershipId");
+        public static Partial<CreateMembershipRequestDto> WithPreviousMembershipId(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("previousMembershipId");
         
-        public static Partial<CreateMembershipRequestDto> WithRequiresApproval(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("requiresApproval");
+        public static Partial<CreateMembershipRequestDto> WithRequiresApproval(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("requiresApproval");
         
-        public static Partial<CreateMembershipRequestDto> WithCustomFieldValues(this Partial<CreateMembershipRequestDto> it)
-            => it.AddFieldName("customFieldValues");
+        public static Partial<CreateMembershipRequestDto> WithCustomFieldValues(this Partial<CreateMembershipRequestDto> it)    => it.AddFieldName("customFieldValues");
         
-        public static Partial<CreateMembershipRequestDto> WithCustomFieldValues(this Partial<CreateMembershipRequestDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
+        public static Partial<CreateMembershipRequestDto> WithCustomFieldValues(this Partial<CreateMembershipRequestDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)    => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
         
     }
     

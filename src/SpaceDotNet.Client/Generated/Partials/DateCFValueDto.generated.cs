@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DateCFValueExtensions
+namespace SpaceDotNet.Client.DateCFValueDtoExtensions
 {
     public static class DateCFValueDtoPartialExtensions
     {
-        public static Partial<DateCFValueDto> WithValue(this Partial<DateCFValueDto> it)
-            => it.AddFieldName("value");
+        public static Partial<DateCFValueDto> WithValue(this Partial<DateCFValueDto> it)    => it.AddFieldName("value");
         
     }
     

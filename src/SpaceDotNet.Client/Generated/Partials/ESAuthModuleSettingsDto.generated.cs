@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESAuthModuleSettingsExtensions
+namespace SpaceDotNet.Client.ESAuthModuleSettingsDtoExtensions
 {
     public static class ESAuthModuleSettingsDtoPartialExtensions
     {

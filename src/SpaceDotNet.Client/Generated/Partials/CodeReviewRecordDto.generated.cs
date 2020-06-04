@@ -19,48 +19,35 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CodeReviewRecordExtensions
+namespace SpaceDotNet.Client.CodeReviewRecordDtoExtensions
 {
     public static class CodeReviewRecordDtoPartialExtensions
     {
-        public static Partial<CodeReviewRecordDto> WithId(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("id");
+        public static Partial<CodeReviewRecordDto> WithId(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("id");
         
-        public static Partial<CodeReviewRecordDto> WithCounter(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("counter");
+        public static Partial<CodeReviewRecordDto> WithCounter(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("counter");
         
-        public static Partial<CodeReviewRecordDto> WithCounter(this Partial<CodeReviewRecordDto> it, Func<Partial<CounterDto>, Partial<CounterDto>> partialBuilder)
-            => it.AddFieldName("counter", partialBuilder(new Partial<CounterDto>()));
+        public static Partial<CodeReviewRecordDto> WithCounter(this Partial<CodeReviewRecordDto> it, Func<Partial<CounterDto>, Partial<CounterDto>> partialBuilder)    => it.AddFieldName("counter", partialBuilder(new Partial<CounterDto>()));
         
-        public static Partial<CodeReviewRecordDto> WithProjectId(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("projectId");
+        public static Partial<CodeReviewRecordDto> WithProjectId(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("projectId");
         
-        public static Partial<CodeReviewRecordDto> WithAuthors(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("authors");
+        public static Partial<CodeReviewRecordDto> WithAuthors(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("authors");
         
-        public static Partial<CodeReviewRecordDto> WithAuthors(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantRecordDto>, Partial<CodeReviewParticipantRecordDto>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecordDto>()));
+        public static Partial<CodeReviewRecordDto> WithAuthors(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantRecordDto>, Partial<CodeReviewParticipantRecordDto>> partialBuilder)    => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecordDto>()));
         
-        public static Partial<CodeReviewRecordDto> WithParticipants(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("participants");
+        public static Partial<CodeReviewRecordDto> WithParticipants(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("participants");
         
-        public static Partial<CodeReviewRecordDto> WithParticipants(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantDto>, Partial<CodeReviewParticipantDto>> partialBuilder)
-            => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipantDto>()));
+        public static Partial<CodeReviewRecordDto> WithParticipants(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantDto>, Partial<CodeReviewParticipantDto>> partialBuilder)    => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipantDto>()));
         
-        public static Partial<CodeReviewRecordDto> WithReviewers(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("reviewers");
+        public static Partial<CodeReviewRecordDto> WithReviewers(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("reviewers");
         
-        public static Partial<CodeReviewRecordDto> WithReviewers(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantRecordDto>, Partial<CodeReviewParticipantRecordDto>> partialBuilder)
-            => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecordDto>()));
+        public static Partial<CodeReviewRecordDto> WithReviewers(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantRecordDto>, Partial<CodeReviewParticipantRecordDto>> partialBuilder)    => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecordDto>()));
         
-        public static Partial<CodeReviewRecordDto> WithWatchers(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("watchers");
+        public static Partial<CodeReviewRecordDto> WithWatchers(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("watchers");
         
-        public static Partial<CodeReviewRecordDto> WithWatchers(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantRecordDto>, Partial<CodeReviewParticipantRecordDto>> partialBuilder)
-            => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecordDto>()));
+        public static Partial<CodeReviewRecordDto> WithWatchers(this Partial<CodeReviewRecordDto> it, Func<Partial<CodeReviewParticipantRecordDto>, Partial<CodeReviewParticipantRecordDto>> partialBuilder)    => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecordDto>()));
         
-        public static Partial<CodeReviewRecordDto> WithCount(this Partial<CodeReviewRecordDto> it)
-            => it.AddFieldName("count");
+        public static Partial<CodeReviewRecordDto> WithCount(this Partial<CodeReviewRecordDto> it)    => it.AddFieldName("count");
         
     }
     

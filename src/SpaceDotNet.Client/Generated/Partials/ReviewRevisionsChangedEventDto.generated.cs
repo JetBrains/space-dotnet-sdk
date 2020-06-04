@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ReviewRevisionsChangedEventExtensions
+namespace SpaceDotNet.Client.ReviewRevisionsChangedEventDtoExtensions
 {
     public static class ReviewRevisionsChangedEventDtoPartialExtensions
     {
-        public static Partial<ReviewRevisionsChangedEventDto> WithCommits(this Partial<ReviewRevisionsChangedEventDto> it)
-            => it.AddFieldName("commits");
+        public static Partial<ReviewRevisionsChangedEventDto> WithCommits(this Partial<ReviewRevisionsChangedEventDto> it)    => it.AddFieldName("commits");
         
-        public static Partial<ReviewRevisionsChangedEventDto> WithCommits(this Partial<ReviewRevisionsChangedEventDto> it, Func<Partial<RepositoryCommitRecordDto>, Partial<RepositoryCommitRecordDto>> partialBuilder)
-            => it.AddFieldName("commits", partialBuilder(new Partial<RepositoryCommitRecordDto>()));
+        public static Partial<ReviewRevisionsChangedEventDto> WithCommits(this Partial<ReviewRevisionsChangedEventDto> it, Func<Partial<RepositoryCommitRecordDto>, Partial<RepositoryCommitRecordDto>> partialBuilder)    => it.AddFieldName("commits", partialBuilder(new Partial<RepositoryCommitRecordDto>()));
         
-        public static Partial<ReviewRevisionsChangedEventDto> WithChangeType(this Partial<ReviewRevisionsChangedEventDto> it)
-            => it.AddFieldName("changeType");
+        public static Partial<ReviewRevisionsChangedEventDto> WithChangeType(this Partial<ReviewRevisionsChangedEventDto> it)    => it.AddFieldName("changeType");
         
-        public static Partial<ReviewRevisionsChangedEventDto> WithChangeType(this Partial<ReviewRevisionsChangedEventDto> it, Func<Partial<ReviewRevisionsChangedType>, Partial<ReviewRevisionsChangedType>> partialBuilder)
-            => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewRevisionsChangedType>()));
+        public static Partial<ReviewRevisionsChangedEventDto> WithChangeType(this Partial<ReviewRevisionsChangedEventDto> it, Func<Partial<ReviewRevisionsChangedType>, Partial<ReviewRevisionsChangedType>> partialBuilder)    => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewRevisionsChangedType>()));
         
-        public static Partial<ReviewRevisionsChangedEventDto> WithProjectKey(this Partial<ReviewRevisionsChangedEventDto> it)
-            => it.AddFieldName("projectKey");
+        public static Partial<ReviewRevisionsChangedEventDto> WithProjectKey(this Partial<ReviewRevisionsChangedEventDto> it)    => it.AddFieldName("projectKey");
         
-        public static Partial<ReviewRevisionsChangedEventDto> WithReview(this Partial<ReviewRevisionsChangedEventDto> it)
-            => it.AddFieldName("review");
+        public static Partial<ReviewRevisionsChangedEventDto> WithReview(this Partial<ReviewRevisionsChangedEventDto> it)    => it.AddFieldName("review");
         
-        public static Partial<ReviewRevisionsChangedEventDto> WithReview(this Partial<ReviewRevisionsChangedEventDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
-            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<ReviewRevisionsChangedEventDto> WithReview(this Partial<ReviewRevisionsChangedEventDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>()));
         
     }
     

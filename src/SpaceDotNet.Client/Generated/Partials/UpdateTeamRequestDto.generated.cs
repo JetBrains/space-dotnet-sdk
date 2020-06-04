@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateTeamRequestExtensions
+namespace SpaceDotNet.Client.UpdateTeamRequestDtoExtensions
 {
     public static class UpdateTeamRequestDtoPartialExtensions
     {
-        public static Partial<UpdateTeamRequestDto> WithTeamNameRaw(this Partial<UpdateTeamRequestDto> it)
-            => it.AddFieldName("teamNameRaw");
+        public static Partial<UpdateTeamRequestDto> WithTeamNameRaw(this Partial<UpdateTeamRequestDto> it)    => it.AddFieldName("teamNameRaw");
         
-        public static Partial<UpdateTeamRequestDto> WithTeamDescription(this Partial<UpdateTeamRequestDto> it)
-            => it.AddFieldName("teamDescription");
+        public static Partial<UpdateTeamRequestDto> WithTeamDescription(this Partial<UpdateTeamRequestDto> it)    => it.AddFieldName("teamDescription");
         
-        public static Partial<UpdateTeamRequestDto> WithTeamEmails(this Partial<UpdateTeamRequestDto> it)
-            => it.AddFieldName("teamEmails");
+        public static Partial<UpdateTeamRequestDto> WithTeamEmails(this Partial<UpdateTeamRequestDto> it)    => it.AddFieldName("teamEmails");
         
-        public static Partial<UpdateTeamRequestDto> WithParentId(this Partial<UpdateTeamRequestDto> it)
-            => it.AddFieldName("parentId");
+        public static Partial<UpdateTeamRequestDto> WithParentId(this Partial<UpdateTeamRequestDto> it)    => it.AddFieldName("parentId");
         
-        public static Partial<UpdateTeamRequestDto> WithCustomFieldValues(this Partial<UpdateTeamRequestDto> it)
-            => it.AddFieldName("customFieldValues");
+        public static Partial<UpdateTeamRequestDto> WithCustomFieldValues(this Partial<UpdateTeamRequestDto> it)    => it.AddFieldName("customFieldValues");
         
-        public static Partial<UpdateTeamRequestDto> WithCustomFieldValues(this Partial<UpdateTeamRequestDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
+        public static Partial<UpdateTeamRequestDto> WithCustomFieldValues(this Partial<UpdateTeamRequestDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)    => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
         
     }
     

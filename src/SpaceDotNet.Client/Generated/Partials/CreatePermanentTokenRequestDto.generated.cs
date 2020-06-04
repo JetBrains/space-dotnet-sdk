@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreatePermanentTokenRequestExtensions
+namespace SpaceDotNet.Client.CreatePermanentTokenRequestDtoExtensions
 {
     public static class CreatePermanentTokenRequestDtoPartialExtensions
     {
-        public static Partial<CreatePermanentTokenRequestDto> WithName(this Partial<CreatePermanentTokenRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreatePermanentTokenRequestDto> WithName(this Partial<CreatePermanentTokenRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CreatePermanentTokenRequestDto> WithScope(this Partial<CreatePermanentTokenRequestDto> it)
-            => it.AddFieldName("scope");
+        public static Partial<CreatePermanentTokenRequestDto> WithScope(this Partial<CreatePermanentTokenRequestDto> it)    => it.AddFieldName("scope");
         
     }
     

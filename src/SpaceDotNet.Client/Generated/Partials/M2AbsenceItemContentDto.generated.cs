@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2AbsenceItemContentExtensions
+namespace SpaceDotNet.Client.M2AbsenceItemContentDtoExtensions
 {
     public static class M2AbsenceItemContentDtoPartialExtensions
     {
-        public static Partial<M2AbsenceItemContentDto> WithAbsence(this Partial<M2AbsenceItemContentDto> it)
-            => it.AddFieldName("absence");
+        public static Partial<M2AbsenceItemContentDto> WithAbsence(this Partial<M2AbsenceItemContentDto> it)    => it.AddFieldName("absence");
         
-        public static Partial<M2AbsenceItemContentDto> WithAbsence(this Partial<M2AbsenceItemContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)
-            => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>()));
+        public static Partial<M2AbsenceItemContentDto> WithAbsence(this Partial<M2AbsenceItemContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)    => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>()));
         
-        public static Partial<M2AbsenceItemContentDto> WithBy(this Partial<M2AbsenceItemContentDto> it)
-            => it.AddFieldName("by");
+        public static Partial<M2AbsenceItemContentDto> WithBy(this Partial<M2AbsenceItemContentDto> it)    => it.AddFieldName("by");
         
-        public static Partial<M2AbsenceItemContentDto> WithBy(this Partial<M2AbsenceItemContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<M2AbsenceItemContentDto> WithBy(this Partial<M2AbsenceItemContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
         
     }
     

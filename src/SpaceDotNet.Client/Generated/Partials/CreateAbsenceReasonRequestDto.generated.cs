@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateAbsenceReasonRequestExtensions
+namespace SpaceDotNet.Client.CreateAbsenceReasonRequestDtoExtensions
 {
     public static class CreateAbsenceReasonRequestDtoPartialExtensions
     {
-        public static Partial<CreateAbsenceReasonRequestDto> WithName(this Partial<CreateAbsenceReasonRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreateAbsenceReasonRequestDto> WithName(this Partial<CreateAbsenceReasonRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CreateAbsenceReasonRequestDto> WithDescription(this Partial<CreateAbsenceReasonRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<CreateAbsenceReasonRequestDto> WithDescription(this Partial<CreateAbsenceReasonRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<CreateAbsenceReasonRequestDto> WithDefaultAvailability(this Partial<CreateAbsenceReasonRequestDto> it)
-            => it.AddFieldName("defaultAvailability");
+        public static Partial<CreateAbsenceReasonRequestDto> WithDefaultAvailability(this Partial<CreateAbsenceReasonRequestDto> it)    => it.AddFieldName("defaultAvailability");
         
-        public static Partial<CreateAbsenceReasonRequestDto> WithApprovalRequired(this Partial<CreateAbsenceReasonRequestDto> it)
-            => it.AddFieldName("approvalRequired");
+        public static Partial<CreateAbsenceReasonRequestDto> WithApprovalRequired(this Partial<CreateAbsenceReasonRequestDto> it)    => it.AddFieldName("approvalRequired");
         
-        public static Partial<CreateAbsenceReasonRequestDto> WithIcon(this Partial<CreateAbsenceReasonRequestDto> it)
-            => it.AddFieldName("icon");
+        public static Partial<CreateAbsenceReasonRequestDto> WithIcon(this Partial<CreateAbsenceReasonRequestDto> it)    => it.AddFieldName("icon");
         
     }
     

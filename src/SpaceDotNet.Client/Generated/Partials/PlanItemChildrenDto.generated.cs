@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PlanItemChildrenExtensions
+namespace SpaceDotNet.Client.PlanItemChildrenDtoExtensions
 {
     public static class PlanItemChildrenDtoPartialExtensions
     {
-        public static Partial<PlanItemChildrenDto> WithId(this Partial<PlanItemChildrenDto> it)
-            => it.AddFieldName("id");
+        public static Partial<PlanItemChildrenDto> WithId(this Partial<PlanItemChildrenDto> it)    => it.AddFieldName("id");
         
-        public static Partial<PlanItemChildrenDto> WithChildren(this Partial<PlanItemChildrenDto> it)
-            => it.AddFieldName("children");
+        public static Partial<PlanItemChildrenDto> WithChildren(this Partial<PlanItemChildrenDto> it)    => it.AddFieldName("children");
         
-        public static Partial<PlanItemChildrenDto> WithChildren(this Partial<PlanItemChildrenDto> it, Func<Partial<PlanItemDto>, Partial<PlanItemDto>> partialBuilder)
-            => it.AddFieldName("children", partialBuilder(new Partial<PlanItemDto>()));
+        public static Partial<PlanItemChildrenDto> WithChildren(this Partial<PlanItemChildrenDto> it, Func<Partial<PlanItemDto>, Partial<PlanItemDto>> partialBuilder)    => it.AddFieldName("children", partialBuilder(new Partial<PlanItemDto>()));
         
     }
     

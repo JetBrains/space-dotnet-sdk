@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RecurrenceRuleFreqMonthlyOnStartDateExtensions
+namespace SpaceDotNet.Client.RecurrenceRuleFreqMonthlyOnStartDateDtoExtensions
 {
     public static class RecurrenceRuleFreqMonthlyOnStartDateDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> it)
-            => it.AddFieldName("interval");
+        public static Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> it)    => it.AddFieldName("interval");
         
     }
     

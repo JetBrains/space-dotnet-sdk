@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2MembershipCreatedContentExtensions
+namespace SpaceDotNet.Client.M2MembershipCreatedContentDtoExtensions
 {
     public static class M2MembershipCreatedContentDtoPartialExtensions
     {
-        public static Partial<M2MembershipCreatedContentDto> WithMembership(this Partial<M2MembershipCreatedContentDto> it)
-            => it.AddFieldName("membership");
+        public static Partial<M2MembershipCreatedContentDto> WithMembership(this Partial<M2MembershipCreatedContentDto> it)    => it.AddFieldName("membership");
         
-        public static Partial<M2MembershipCreatedContentDto> WithMembership(this Partial<M2MembershipCreatedContentDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)
-            => it.AddFieldName("membership", partialBuilder(new Partial<TDMembershipDto>()));
+        public static Partial<M2MembershipCreatedContentDto> WithMembership(this Partial<M2MembershipCreatedContentDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)    => it.AddFieldName("membership", partialBuilder(new Partial<TDMembershipDto>()));
         
     }
     

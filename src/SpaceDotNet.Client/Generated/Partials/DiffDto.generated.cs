@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DiffExtensions
+namespace SpaceDotNet.Client.DiffDtoExtensions
 {
     public static class DiffDtoPartialExtensions
     {
-        public static Partial<DiffDto> WithAdded(this Partial<DiffDto> it)
-            => it.AddFieldName("added");
+        public static Partial<DiffDto> WithAdded(this Partial<DiffDto> it)    => it.AddFieldName("added");
         
-        public static Partial<DiffDto> WithRemoved(this Partial<DiffDto> it)
-            => it.AddFieldName("removed");
+        public static Partial<DiffDto> WithRemoved(this Partial<DiffDto> it)    => it.AddFieldName("removed");
         
-        public static Partial<DiffDto> WithRemoveAll(this Partial<DiffDto> it)
-            => it.AddFieldName("removeAll");
+        public static Partial<DiffDto> WithRemoveAll(this Partial<DiffDto> it)    => it.AddFieldName("removeAll");
         
     }
     

@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DTOLimitExtensions
+namespace SpaceDotNet.Client.DTOLimitDtoExtensions
 {
     public static class DTOLimitDtoPartialExtensions
     {
-        public static Partial<DTOLimitDto> WithName(this Partial<DTOLimitDto> it)
-            => it.AddFieldName("name");
+        public static Partial<DTOLimitDto> WithName(this Partial<DTOLimitDto> it)    => it.AddFieldName("name");
         
-        public static Partial<DTOLimitDto> WithUnit(this Partial<DTOLimitDto> it)
-            => it.AddFieldName("unit");
+        public static Partial<DTOLimitDto> WithUnit(this Partial<DTOLimitDto> it)    => it.AddFieldName("unit");
         
-        public static Partial<DTOLimitDto> WithUnit(this Partial<DTOLimitDto> it, Func<Partial<LimitUnit>, Partial<LimitUnit>> partialBuilder)
-            => it.AddFieldName("unit", partialBuilder(new Partial<LimitUnit>()));
+        public static Partial<DTOLimitDto> WithUnit(this Partial<DTOLimitDto> it, Func<Partial<LimitUnit>, Partial<LimitUnit>> partialBuilder)    => it.AddFieldName("unit", partialBuilder(new Partial<LimitUnit>()));
         
-        public static Partial<DTOLimitDto> WithEstimate(this Partial<DTOLimitDto> it)
-            => it.AddFieldName("estimate");
+        public static Partial<DTOLimitDto> WithEstimate(this Partial<DTOLimitDto> it)    => it.AddFieldName("estimate");
         
-        public static Partial<DTOLimitDto> WithSpecificEstimate(this Partial<DTOLimitDto> it)
-            => it.AddFieldName("specificEstimate");
+        public static Partial<DTOLimitDto> WithSpecificEstimate(this Partial<DTOLimitDto> it)    => it.AddFieldName("specificEstimate");
         
-        public static Partial<DTOLimitDto> WithSoftCap(this Partial<DTOLimitDto> it)
-            => it.AddFieldName("softCap");
+        public static Partial<DTOLimitDto> WithSoftCap(this Partial<DTOLimitDto> it)    => it.AddFieldName("softCap");
         
-        public static Partial<DTOLimitDto> WithHardCap(this Partial<DTOLimitDto> it)
-            => it.AddFieldName("hardCap");
+        public static Partial<DTOLimitDto> WithHardCap(this Partial<DTOLimitDto> it)    => it.AddFieldName("hardCap");
         
     }
     

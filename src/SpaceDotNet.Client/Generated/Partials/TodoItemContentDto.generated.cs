@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TodoItemContentExtensions
+namespace SpaceDotNet.Client.TodoItemContentDtoExtensions
 {
     public static class TodoItemContentDtoPartialExtensions
     {

@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PlanningTagExtensions
+namespace SpaceDotNet.Client.PlanningTagDtoExtensions
 {
     public static class PlanningTagDtoPartialExtensions
     {
-        public static Partial<PlanningTagDto> WithId(this Partial<PlanningTagDto> it)
-            => it.AddFieldName("id");
+        public static Partial<PlanningTagDto> WithId(this Partial<PlanningTagDto> it)    => it.AddFieldName("id");
         
-        public static Partial<PlanningTagDto> WithProjectId(this Partial<PlanningTagDto> it)
-            => it.AddFieldName("projectId");
+        public static Partial<PlanningTagDto> WithProjectId(this Partial<PlanningTagDto> it)    => it.AddFieldName("projectId");
         
-        public static Partial<PlanningTagDto> WithParent(this Partial<PlanningTagDto> it)
-            => it.AddFieldName("parent");
+        public static Partial<PlanningTagDto> WithParent(this Partial<PlanningTagDto> it)    => it.AddFieldName("parent");
         
-        public static Partial<PlanningTagDto> WithParentRecursive(this Partial<PlanningTagDto> it)
-            => it.AddFieldName("parent!");
+        public static Partial<PlanningTagDto> WithParentRecursive(this Partial<PlanningTagDto> it)    => it.AddFieldName("parent!");
         
-        public static Partial<PlanningTagDto> WithParent(this Partial<PlanningTagDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)
-            => it.AddFieldName("parent", partialBuilder(new Partial<PlanningTagDto>()));
+        public static Partial<PlanningTagDto> WithParent(this Partial<PlanningTagDto> it, Func<Partial<PlanningTagDto>, Partial<PlanningTagDto>> partialBuilder)    => it.AddFieldName("parent", partialBuilder(new Partial<PlanningTagDto>()));
         
-        public static Partial<PlanningTagDto> WithName(this Partial<PlanningTagDto> it)
-            => it.AddFieldName("name");
+        public static Partial<PlanningTagDto> WithName(this Partial<PlanningTagDto> it)    => it.AddFieldName("name");
         
     }
     

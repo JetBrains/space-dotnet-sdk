@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client.CreateNavBarProjectRequestDtoExtensions
 {
     public static class CreateNavBarProjectRequestDtoPartialExtensions
     {
-        public static Partial<CreateNavBarProjectRequestDto> WithProjectId(this Partial<CreateNavBarProjectRequestDto> it)
-            => it.AddFieldName("projectId");
+        public static Partial<CreateNavBarProjectRequestDto> WithProjectId(this Partial<CreateNavBarProjectRequestDto> it)    => it.AddFieldName("projectId");
         
     }
     

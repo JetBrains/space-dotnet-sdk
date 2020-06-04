@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RepositoryActivityExtensions
+namespace SpaceDotNet.Client.RepositoryActivityDtoExtensions
 {
     public static class RepositoryActivityDtoPartialExtensions
     {
-        public static Partial<RepositoryActivityDto> WithLastActivity(this Partial<RepositoryActivityDto> it)
-            => it.AddFieldName("lastActivity");
+        public static Partial<RepositoryActivityDto> WithLastActivity(this Partial<RepositoryActivityDto> it)    => it.AddFieldName("lastActivity");
         
-        public static Partial<RepositoryActivityDto> WithLastActivity(this Partial<RepositoryActivityDto> it, Func<Partial<Pair<SpaceDate, int>>, Partial<Pair<SpaceDate, int>>> partialBuilder)
-            => it.AddFieldName("lastActivity", partialBuilder(new Partial<Pair<SpaceDate, int>>()));
+        public static Partial<RepositoryActivityDto> WithLastActivity(this Partial<RepositoryActivityDto> it, Func<Partial<Pair<SpaceDate, int>>, Partial<Pair<SpaceDate, int>>> partialBuilder)    => it.AddFieldName("lastActivity", partialBuilder(new Partial<Pair<SpaceDate, int>>()));
         
     }
     

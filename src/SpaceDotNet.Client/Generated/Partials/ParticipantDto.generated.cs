@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ParticipantExtensions
+namespace SpaceDotNet.Client.ParticipantDtoExtensions
 {
     public static class ParticipantDtoPartialExtensions
     {
-        public static Partial<ParticipantDto> WithUser(this Partial<ParticipantDto> it)
-            => it.AddFieldName("user");
+        public static Partial<ParticipantDto> WithUser(this Partial<ParticipantDto> it)    => it.AddFieldName("user");
         
-        public static Partial<ParticipantDto> WithUser(this Partial<ParticipantDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ParticipantDto> WithUser(this Partial<ParticipantDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("user", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<ParticipantDto> WithStatus(this Partial<ParticipantDto> it)
-            => it.AddFieldName("status");
+        public static Partial<ParticipantDto> WithStatus(this Partial<ParticipantDto> it)    => it.AddFieldName("status");
         
-        public static Partial<ParticipantDto> WithStatus(this Partial<ParticipantDto> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)
-            => it.AddFieldName("status", partialBuilder(new Partial<EventParticipationStatus>()));
+        public static Partial<ParticipantDto> WithStatus(this Partial<ParticipantDto> it, Func<Partial<EventParticipationStatus>, Partial<EventParticipationStatus>> partialBuilder)    => it.AddFieldName("status", partialBuilder(new Partial<EventParticipationStatus>()));
         
     }
     

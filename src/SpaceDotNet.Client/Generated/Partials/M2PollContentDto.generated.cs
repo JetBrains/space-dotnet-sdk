@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2PollContentExtensions
+namespace SpaceDotNet.Client.M2PollContentDtoExtensions
 {
     public static class M2PollContentDtoPartialExtensions
     {
-        public static Partial<M2PollContentDto> WithPoll(this Partial<M2PollContentDto> it)
-            => it.AddFieldName("poll");
+        public static Partial<M2PollContentDto> WithPoll(this Partial<M2PollContentDto> it)    => it.AddFieldName("poll");
         
-        public static Partial<M2PollContentDto> WithPoll(this Partial<M2PollContentDto> it, Func<Partial<PollRecordDto>, Partial<PollRecordDto>> partialBuilder)
-            => it.AddFieldName("poll", partialBuilder(new Partial<PollRecordDto>()));
+        public static Partial<M2PollContentDto> WithPoll(this Partial<M2PollContentDto> it, Func<Partial<PollRecordDto>, Partial<PollRecordDto>> partialBuilder)    => it.AddFieldName("poll", partialBuilder(new Partial<PollRecordDto>()));
         
     }
     

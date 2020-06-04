@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RecurrenceRuleEndsNeverExtensions
+namespace SpaceDotNet.Client.RecurrenceRuleEndsNeverDtoExtensions
 {
     public static class RecurrenceRuleEndsNeverDtoPartialExtensions
     {

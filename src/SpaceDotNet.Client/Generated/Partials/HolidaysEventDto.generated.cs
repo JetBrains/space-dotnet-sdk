@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HolidaysEventExtensions
+namespace SpaceDotNet.Client.HolidaysEventDtoExtensions
 {
     public static class HolidaysEventDtoPartialExtensions
     {
-        public static Partial<HolidaysEventDto> WithProfile(this Partial<HolidaysEventDto> it)
-            => it.AddFieldName("profile");
+        public static Partial<HolidaysEventDto> WithProfile(this Partial<HolidaysEventDto> it)    => it.AddFieldName("profile");
         
-        public static Partial<HolidaysEventDto> WithProfile(this Partial<HolidaysEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<HolidaysEventDto> WithProfile(this Partial<HolidaysEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<HolidaysEventDto> WithHolidays(this Partial<HolidaysEventDto> it)
-            => it.AddFieldName("holidays");
+        public static Partial<HolidaysEventDto> WithHolidays(this Partial<HolidaysEventDto> it)    => it.AddFieldName("holidays");
         
-        public static Partial<HolidaysEventDto> WithHolidays(this Partial<HolidaysEventDto> it, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partialBuilder)
-            => it.AddFieldName("holidays", partialBuilder(new Partial<PublicHolidayDto>()));
+        public static Partial<HolidaysEventDto> WithHolidays(this Partial<HolidaysEventDto> it, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>> partialBuilder)    => it.AddFieldName("holidays", partialBuilder(new Partial<PublicHolidayDto>()));
         
     }
     

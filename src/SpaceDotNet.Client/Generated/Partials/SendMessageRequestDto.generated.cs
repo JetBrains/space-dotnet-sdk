@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.SendMessageRequestExtensions
+namespace SpaceDotNet.Client.SendMessageRequestDtoExtensions
 {
     public static class SendMessageRequestDtoPartialExtensions
     {
-        public static Partial<SendMessageRequestDto> WithText(this Partial<SendMessageRequestDto> it)
-            => it.AddFieldName("text");
+        public static Partial<SendMessageRequestDto> WithText(this Partial<SendMessageRequestDto> it)    => it.AddFieldName("text");
         
-        public static Partial<SendMessageRequestDto> WithTemporaryId(this Partial<SendMessageRequestDto> it)
-            => it.AddFieldName("temporaryId");
+        public static Partial<SendMessageRequestDto> WithTemporaryId(this Partial<SendMessageRequestDto> it)    => it.AddFieldName("temporaryId");
         
     }
     

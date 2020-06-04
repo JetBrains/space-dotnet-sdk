@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ArticleHitExtensions
+namespace SpaceDotNet.Client.ArticleHitDtoExtensions
 {
     public static class ArticleHitDtoPartialExtensions
     {
-        public static Partial<ArticleHitDto> WithId(this Partial<ArticleHitDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ArticleHitDto> WithId(this Partial<ArticleHitDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ArticleHitDto> WithScore(this Partial<ArticleHitDto> it)
-            => it.AddFieldName("score");
+        public static Partial<ArticleHitDto> WithScore(this Partial<ArticleHitDto> it)    => it.AddFieldName("score");
         
-        public static Partial<ArticleHitDto> WithTitle(this Partial<ArticleHitDto> it)
-            => it.AddFieldName("title");
+        public static Partial<ArticleHitDto> WithTitle(this Partial<ArticleHitDto> it)    => it.AddFieldName("title");
         
-        public static Partial<ArticleHitDto> WithBody(this Partial<ArticleHitDto> it)
-            => it.AddFieldName("body");
+        public static Partial<ArticleHitDto> WithBody(this Partial<ArticleHitDto> it)    => it.AddFieldName("body");
         
-        public static Partial<ArticleHitDto> WithRef(this Partial<ArticleHitDto> it)
-            => it.AddFieldName("ref");
+        public static Partial<ArticleHitDto> WithRef(this Partial<ArticleHitDto> it)    => it.AddFieldName("ref");
         
-        public static Partial<ArticleHitDto> WithRef(this Partial<ArticleHitDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)
-            => it.AddFieldName("ref", partialBuilder(new Partial<ArticleRecordDto>()));
+        public static Partial<ArticleHitDto> WithRef(this Partial<ArticleHitDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)    => it.AddFieldName("ref", partialBuilder(new Partial<ArticleRecordDto>()));
         
     }
     

@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateHolidayRequestExtensions
+namespace SpaceDotNet.Client.UpdateHolidayRequestDtoExtensions
 {
     public static class UpdateHolidayRequestDtoPartialExtensions
     {
-        public static Partial<UpdateHolidayRequestDto> WithCalendar(this Partial<UpdateHolidayRequestDto> it)
-            => it.AddFieldName("calendar");
+        public static Partial<UpdateHolidayRequestDto> WithCalendar(this Partial<UpdateHolidayRequestDto> it)    => it.AddFieldName("calendar");
         
-        public static Partial<UpdateHolidayRequestDto> WithName(this Partial<UpdateHolidayRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateHolidayRequestDto> WithName(this Partial<UpdateHolidayRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateHolidayRequestDto> WithDate(this Partial<UpdateHolidayRequestDto> it)
-            => it.AddFieldName("date");
+        public static Partial<UpdateHolidayRequestDto> WithDate(this Partial<UpdateHolidayRequestDto> it)    => it.AddFieldName("date");
         
-        public static Partial<UpdateHolidayRequestDto> WithWorkingDay(this Partial<UpdateHolidayRequestDto> it)
-            => it.AddFieldName("workingDay");
+        public static Partial<UpdateHolidayRequestDto> WithWorkingDay(this Partial<UpdateHolidayRequestDto> it)    => it.AddFieldName("workingDay");
         
     }
     

@@ -19,30 +19,23 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateProjectRequestExtensions
+namespace SpaceDotNet.Client.UpdateProjectRequestDtoExtensions
 {
     public static class UpdateProjectRequestDtoPartialExtensions
     {
-        public static Partial<UpdateProjectRequestDto> WithKey(this Partial<UpdateProjectRequestDto> it)
-            => it.AddFieldName("key");
+        public static Partial<UpdateProjectRequestDto> WithKey(this Partial<UpdateProjectRequestDto> it)    => it.AddFieldName("key");
         
-        public static Partial<UpdateProjectRequestDto> WithKey(this Partial<UpdateProjectRequestDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
-            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<UpdateProjectRequestDto> WithKey(this Partial<UpdateProjectRequestDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>()));
         
-        public static Partial<UpdateProjectRequestDto> WithName(this Partial<UpdateProjectRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateProjectRequestDto> WithName(this Partial<UpdateProjectRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateProjectRequestDto> WithDescription(this Partial<UpdateProjectRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<UpdateProjectRequestDto> WithDescription(this Partial<UpdateProjectRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<UpdateProjectRequestDto> WithPrivate(this Partial<UpdateProjectRequestDto> it)
-            => it.AddFieldName("private");
+        public static Partial<UpdateProjectRequestDto> WithPrivate(this Partial<UpdateProjectRequestDto> it)    => it.AddFieldName("private");
         
-        public static Partial<UpdateProjectRequestDto> WithTags(this Partial<UpdateProjectRequestDto> it)
-            => it.AddFieldName("tags");
+        public static Partial<UpdateProjectRequestDto> WithTags(this Partial<UpdateProjectRequestDto> it)    => it.AddFieldName("tags");
         
-        public static Partial<UpdateProjectRequestDto> WithIcon(this Partial<UpdateProjectRequestDto> it)
-            => it.AddFieldName("icon");
+        public static Partial<UpdateProjectRequestDto> WithIcon(this Partial<UpdateProjectRequestDto> it)    => it.AddFieldName("icon");
         
     }
     

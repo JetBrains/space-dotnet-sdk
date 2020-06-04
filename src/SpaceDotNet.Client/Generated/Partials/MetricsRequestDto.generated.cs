@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MetricsRequestExtensions
+namespace SpaceDotNet.Client.MetricsRequestDtoExtensions
 {
     public static class MetricsRequestDtoPartialExtensions
     {
-        public static Partial<MetricsRequestDto> WithClient(this Partial<MetricsRequestDto> it)
-            => it.AddFieldName("client");
+        public static Partial<MetricsRequestDto> WithClient(this Partial<MetricsRequestDto> it)    => it.AddFieldName("client");
         
-        public static Partial<MetricsRequestDto> WithClient(this Partial<MetricsRequestDto> it, Func<Partial<ClientInfoDto>, Partial<ClientInfoDto>> partialBuilder)
-            => it.AddFieldName("client", partialBuilder(new Partial<ClientInfoDto>()));
+        public static Partial<MetricsRequestDto> WithClient(this Partial<MetricsRequestDto> it, Func<Partial<ClientInfoDto>, Partial<ClientInfoDto>> partialBuilder)    => it.AddFieldName("client", partialBuilder(new Partial<ClientInfoDto>()));
         
-        public static Partial<MetricsRequestDto> WithEvents(this Partial<MetricsRequestDto> it)
-            => it.AddFieldName("events");
+        public static Partial<MetricsRequestDto> WithEvents(this Partial<MetricsRequestDto> it)    => it.AddFieldName("events");
         
-        public static Partial<MetricsRequestDto> WithEvents(this Partial<MetricsRequestDto> it, Func<Partial<MetricsEventDto>, Partial<MetricsEventDto>> partialBuilder)
-            => it.AddFieldName("events", partialBuilder(new Partial<MetricsEventDto>()));
+        public static Partial<MetricsRequestDto> WithEvents(this Partial<MetricsRequestDto> it, Func<Partial<MetricsEventDto>, Partial<MetricsEventDto>> partialBuilder)    => it.AddFieldName("events", partialBuilder(new Partial<MetricsEventDto>()));
         
     }
     

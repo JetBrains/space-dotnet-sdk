@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportIssueCommentHistoryRequestExtensions
+namespace SpaceDotNet.Client.ImportIssueCommentHistoryRequestDtoExtensions
 {
     public static class ImportIssueCommentHistoryRequestDtoPartialExtensions
     {
-        public static Partial<ImportIssueCommentHistoryRequestDto> WithComments(this Partial<ImportIssueCommentHistoryRequestDto> it)
-            => it.AddFieldName("comments");
+        public static Partial<ImportIssueCommentHistoryRequestDto> WithComments(this Partial<ImportIssueCommentHistoryRequestDto> it)    => it.AddFieldName("comments");
         
-        public static Partial<ImportIssueCommentHistoryRequestDto> WithComments(this Partial<ImportIssueCommentHistoryRequestDto> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)
-            => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImportDto>()));
+        public static Partial<ImportIssueCommentHistoryRequestDto> WithComments(this Partial<ImportIssueCommentHistoryRequestDto> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)    => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImportDto>()));
         
     }
     

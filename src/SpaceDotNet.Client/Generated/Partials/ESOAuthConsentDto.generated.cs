@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESOAuthConsentExtensions
+namespace SpaceDotNet.Client.ESOAuthConsentDtoExtensions
 {
     public static class ESOAuthConsentDtoPartialExtensions
     {
-        public static Partial<ESOAuthConsentDto> WithClientService(this Partial<ESOAuthConsentDto> it)
-            => it.AddFieldName("clientService");
+        public static Partial<ESOAuthConsentDto> WithClientService(this Partial<ESOAuthConsentDto> it)    => it.AddFieldName("clientService");
         
-        public static Partial<ESOAuthConsentDto> WithClientService(this Partial<ESOAuthConsentDto> it, Func<Partial<ESServiceDto>, Partial<ESServiceDto>> partialBuilder)
-            => it.AddFieldName("clientService", partialBuilder(new Partial<ESServiceDto>()));
+        public static Partial<ESOAuthConsentDto> WithClientService(this Partial<ESOAuthConsentDto> it, Func<Partial<ESServiceDto>, Partial<ESServiceDto>> partialBuilder)    => it.AddFieldName("clientService", partialBuilder(new Partial<ESServiceDto>()));
         
-        public static Partial<ESOAuthConsentDto> WithApprovedScopes(this Partial<ESOAuthConsentDto> it)
-            => it.AddFieldName("approvedScopes");
+        public static Partial<ESOAuthConsentDto> WithApprovedScopes(this Partial<ESOAuthConsentDto> it)    => it.AddFieldName("approvedScopes");
         
-        public static Partial<ESOAuthConsentDto> WithApprovedScopes(this Partial<ESOAuthConsentDto> it, Func<Partial<ESApprovedScopeDto>, Partial<ESApprovedScopeDto>> partialBuilder)
-            => it.AddFieldName("approvedScopes", partialBuilder(new Partial<ESApprovedScopeDto>()));
+        public static Partial<ESOAuthConsentDto> WithApprovedScopes(this Partial<ESOAuthConsentDto> it, Func<Partial<ESApprovedScopeDto>, Partial<ESApprovedScopeDto>> partialBuilder)    => it.AddFieldName("approvedScopes", partialBuilder(new Partial<ESApprovedScopeDto>()));
         
-        public static Partial<ESOAuthConsentDto> WithRefreshTokens(this Partial<ESOAuthConsentDto> it)
-            => it.AddFieldName("refreshTokens");
+        public static Partial<ESOAuthConsentDto> WithRefreshTokens(this Partial<ESOAuthConsentDto> it)    => it.AddFieldName("refreshTokens");
         
-        public static Partial<ESOAuthConsentDto> WithRefreshTokens(this Partial<ESOAuthConsentDto> it, Func<Partial<ESRefreshTokenDto>, Partial<ESRefreshTokenDto>> partialBuilder)
-            => it.AddFieldName("refreshTokens", partialBuilder(new Partial<ESRefreshTokenDto>()));
+        public static Partial<ESOAuthConsentDto> WithRefreshTokens(this Partial<ESOAuthConsentDto> it, Func<Partial<ESRefreshTokenDto>, Partial<ESRefreshTokenDto>> partialBuilder)    => it.AddFieldName("refreshTokens", partialBuilder(new Partial<ESRefreshTokenDto>()));
         
     }
     

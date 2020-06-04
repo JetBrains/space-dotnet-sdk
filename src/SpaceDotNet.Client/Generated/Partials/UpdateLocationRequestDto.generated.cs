@@ -19,45 +19,33 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateLocationRequestExtensions
+namespace SpaceDotNet.Client.UpdateLocationRequestDtoExtensions
 {
     public static class UpdateLocationRequestDtoPartialExtensions
     {
-        public static Partial<UpdateLocationRequestDto> WithName(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateLocationRequestDto> WithName(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateLocationRequestDto> WithTimezone(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("timezone");
+        public static Partial<UpdateLocationRequestDto> WithTimezone(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("timezone");
         
-        public static Partial<UpdateLocationRequestDto> WithCustomWorkdays(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("customWorkdays");
+        public static Partial<UpdateLocationRequestDto> WithCustomWorkdays(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("customWorkdays");
         
-        public static Partial<UpdateLocationRequestDto> WithWorkdays(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("workdays");
+        public static Partial<UpdateLocationRequestDto> WithWorkdays(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("workdays");
         
-        public static Partial<UpdateLocationRequestDto> WithPhones(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("phones");
+        public static Partial<UpdateLocationRequestDto> WithPhones(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("phones");
         
-        public static Partial<UpdateLocationRequestDto> WithEmails(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("emails");
+        public static Partial<UpdateLocationRequestDto> WithEmails(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("emails");
         
-        public static Partial<UpdateLocationRequestDto> WithEquipment(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("equipment");
+        public static Partial<UpdateLocationRequestDto> WithEquipment(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("equipment");
         
-        public static Partial<UpdateLocationRequestDto> WithDescription(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<UpdateLocationRequestDto> WithDescription(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<UpdateLocationRequestDto> WithAddress(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("address");
+        public static Partial<UpdateLocationRequestDto> WithAddress(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("address");
         
-        public static Partial<UpdateLocationRequestDto> WithType(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("type");
+        public static Partial<UpdateLocationRequestDto> WithType(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("type");
         
-        public static Partial<UpdateLocationRequestDto> WithParentId(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("parentId");
+        public static Partial<UpdateLocationRequestDto> WithParentId(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("parentId");
         
-        public static Partial<UpdateLocationRequestDto> WithMapId(this Partial<UpdateLocationRequestDto> it)
-            => it.AddFieldName("mapId");
+        public static Partial<UpdateLocationRequestDto> WithMapId(this Partial<UpdateLocationRequestDto> it)    => it.AddFieldName("mapId");
         
     }
     

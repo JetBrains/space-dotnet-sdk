@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESSamlAttributeNamesExtensions
+namespace SpaceDotNet.Client.ESSamlAttributeNamesDtoExtensions
 {
     public static class ESSamlAttributeNamesDtoPartialExtensions
     {
-        public static Partial<ESSamlAttributeNamesDto> WithLoginAttributeName(this Partial<ESSamlAttributeNamesDto> it)
-            => it.AddFieldName("loginAttributeName");
+        public static Partial<ESSamlAttributeNamesDto> WithLoginAttributeName(this Partial<ESSamlAttributeNamesDto> it)    => it.AddFieldName("loginAttributeName");
         
-        public static Partial<ESSamlAttributeNamesDto> WithFirstNameAttributeName(this Partial<ESSamlAttributeNamesDto> it)
-            => it.AddFieldName("firstNameAttributeName");
+        public static Partial<ESSamlAttributeNamesDto> WithFirstNameAttributeName(this Partial<ESSamlAttributeNamesDto> it)    => it.AddFieldName("firstNameAttributeName");
         
-        public static Partial<ESSamlAttributeNamesDto> WithLastNameAttributeName(this Partial<ESSamlAttributeNamesDto> it)
-            => it.AddFieldName("lastNameAttributeName");
+        public static Partial<ESSamlAttributeNamesDto> WithLastNameAttributeName(this Partial<ESSamlAttributeNamesDto> it)    => it.AddFieldName("lastNameAttributeName");
         
-        public static Partial<ESSamlAttributeNamesDto> WithFullNameAttributeName(this Partial<ESSamlAttributeNamesDto> it)
-            => it.AddFieldName("fullNameAttributeName");
+        public static Partial<ESSamlAttributeNamesDto> WithFullNameAttributeName(this Partial<ESSamlAttributeNamesDto> it)    => it.AddFieldName("fullNameAttributeName");
         
-        public static Partial<ESSamlAttributeNamesDto> WithEmailAttributeName(this Partial<ESSamlAttributeNamesDto> it)
-            => it.AddFieldName("emailAttributeName");
+        public static Partial<ESSamlAttributeNamesDto> WithEmailAttributeName(this Partial<ESSamlAttributeNamesDto> it)    => it.AddFieldName("emailAttributeName");
         
-        public static Partial<ESSamlAttributeNamesDto> WithEmailVerified(this Partial<ESSamlAttributeNamesDto> it)
-            => it.AddFieldName("emailVerified");
+        public static Partial<ESSamlAttributeNamesDto> WithEmailVerified(this Partial<ESSamlAttributeNamesDto> it)    => it.AddFieldName("emailVerified");
         
     }
     

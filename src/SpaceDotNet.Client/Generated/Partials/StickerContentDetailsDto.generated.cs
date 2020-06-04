@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.StickerContentDetailsExtensions
+namespace SpaceDotNet.Client.StickerContentDetailsDtoExtensions
 {
     public static class StickerContentDetailsDtoPartialExtensions
     {
-        public static Partial<StickerContentDetailsDto> WithSticker(this Partial<StickerContentDetailsDto> it)
-            => it.AddFieldName("sticker");
+        public static Partial<StickerContentDetailsDto> WithSticker(this Partial<StickerContentDetailsDto> it)    => it.AddFieldName("sticker");
         
-        public static Partial<StickerContentDetailsDto> WithSticker(this Partial<StickerContentDetailsDto> it, Func<Partial<StickerDto>, Partial<StickerDto>> partialBuilder)
-            => it.AddFieldName("sticker", partialBuilder(new Partial<StickerDto>()));
+        public static Partial<StickerContentDetailsDto> WithSticker(this Partial<StickerContentDetailsDto> it, Func<Partial<StickerDto>, Partial<StickerDto>> partialBuilder)    => it.AddFieldName("sticker", partialBuilder(new Partial<StickerDto>()));
         
-        public static Partial<StickerContentDetailsDto> WithPack(this Partial<StickerContentDetailsDto> it)
-            => it.AddFieldName("pack");
+        public static Partial<StickerContentDetailsDto> WithPack(this Partial<StickerContentDetailsDto> it)    => it.AddFieldName("pack");
         
-        public static Partial<StickerContentDetailsDto> WithPack(this Partial<StickerContentDetailsDto> it, Func<Partial<StickerPackInfoDto>, Partial<StickerPackInfoDto>> partialBuilder)
-            => it.AddFieldName("pack", partialBuilder(new Partial<StickerPackInfoDto>()));
+        public static Partial<StickerContentDetailsDto> WithPack(this Partial<StickerContentDetailsDto> it, Func<Partial<StickerPackInfoDto>, Partial<StickerPackInfoDto>> partialBuilder)    => it.AddFieldName("pack", partialBuilder(new Partial<StickerPackInfoDto>()));
         
     }
     

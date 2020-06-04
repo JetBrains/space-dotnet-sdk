@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateCalendarRequestExtensions
+namespace SpaceDotNet.Client.CreateCalendarRequestDtoExtensions
 {
     public static class CreateCalendarRequestDtoPartialExtensions
     {
-        public static Partial<CreateCalendarRequestDto> WithName(this Partial<CreateCalendarRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CreateCalendarRequestDto> WithName(this Partial<CreateCalendarRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CreateCalendarRequestDto> WithLocation(this Partial<CreateCalendarRequestDto> it)
-            => it.AddFieldName("location");
+        public static Partial<CreateCalendarRequestDto> WithLocation(this Partial<CreateCalendarRequestDto> it)    => it.AddFieldName("location");
         
     }
     

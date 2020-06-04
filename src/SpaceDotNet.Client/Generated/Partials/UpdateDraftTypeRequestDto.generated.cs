@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateDraftTypeRequestExtensions
+namespace SpaceDotNet.Client.UpdateDraftTypeRequestDtoExtensions
 {
     public static class UpdateDraftTypeRequestDtoPartialExtensions
     {
-        public static Partial<UpdateDraftTypeRequestDto> WithDraftType(this Partial<UpdateDraftTypeRequestDto> it)
-            => it.AddFieldName("draftType");
+        public static Partial<UpdateDraftTypeRequestDto> WithDraftType(this Partial<UpdateDraftTypeRequestDto> it)    => it.AddFieldName("draftType");
         
-        public static Partial<UpdateDraftTypeRequestDto> WithDraftType(this Partial<UpdateDraftTypeRequestDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
-            => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>()));
+        public static Partial<UpdateDraftTypeRequestDto> WithDraftType(this Partial<UpdateDraftTypeRequestDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)    => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>()));
         
     }
     

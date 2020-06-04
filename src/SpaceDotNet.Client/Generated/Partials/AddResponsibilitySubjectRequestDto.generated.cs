@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.AddResponsibilitySubjectRequestExtensions
+namespace SpaceDotNet.Client.AddResponsibilitySubjectRequestDtoExtensions
 {
     public static class AddResponsibilitySubjectRequestDtoPartialExtensions
     {
-        public static Partial<AddResponsibilitySubjectRequestDto> WithName(this Partial<AddResponsibilitySubjectRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<AddResponsibilitySubjectRequestDto> WithName(this Partial<AddResponsibilitySubjectRequestDto> it)    => it.AddFieldName("name");
         
     }
     

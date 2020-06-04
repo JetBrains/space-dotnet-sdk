@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateThemeRequestExtensions
+namespace SpaceDotNet.Client.UpdateThemeRequestDtoExtensions
 {
     public static class UpdateThemeRequestDtoPartialExtensions
     {
-        public static Partial<UpdateThemeRequestDto> WithThemeName(this Partial<UpdateThemeRequestDto> it)
-            => it.AddFieldName("themeName");
+        public static Partial<UpdateThemeRequestDto> WithThemeName(this Partial<UpdateThemeRequestDto> it)    => it.AddFieldName("themeName");
         
     }
     

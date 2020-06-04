@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProfileAbsencesRecordExtensions
+namespace SpaceDotNet.Client.ProfileAbsencesRecordDtoExtensions
 {
     public static class ProfileAbsencesRecordDtoPartialExtensions
     {
-        public static Partial<ProfileAbsencesRecordDto> WithId(this Partial<ProfileAbsencesRecordDto> it)
-            => it.AddFieldName("id");
+        public static Partial<ProfileAbsencesRecordDto> WithId(this Partial<ProfileAbsencesRecordDto> it)    => it.AddFieldName("id");
         
-        public static Partial<ProfileAbsencesRecordDto> WithAbsences(this Partial<ProfileAbsencesRecordDto> it)
-            => it.AddFieldName("absences");
+        public static Partial<ProfileAbsencesRecordDto> WithAbsences(this Partial<ProfileAbsencesRecordDto> it)    => it.AddFieldName("absences");
         
-        public static Partial<ProfileAbsencesRecordDto> WithAbsences(this Partial<ProfileAbsencesRecordDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)
-            => it.AddFieldName("absences", partialBuilder(new Partial<AbsenceRecordDto>()));
+        public static Partial<ProfileAbsencesRecordDto> WithAbsences(this Partial<ProfileAbsencesRecordDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)    => it.AddFieldName("absences", partialBuilder(new Partial<AbsenceRecordDto>()));
         
     }
     

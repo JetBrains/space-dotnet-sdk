@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RecurrenceRuleEndsTotalCountExtensions
+namespace SpaceDotNet.Client.RecurrenceRuleEndsTotalCountDtoExtensions
 {
     public static class RecurrenceRuleEndsTotalCountDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleEndsTotalCountDto> WithCount(this Partial<RecurrenceRuleEndsTotalCountDto> it)
-            => it.AddFieldName("count");
+        public static Partial<RecurrenceRuleEndsTotalCountDto> WithCount(this Partial<RecurrenceRuleEndsTotalCountDto> it)    => it.AddFieldName("count");
         
     }
     

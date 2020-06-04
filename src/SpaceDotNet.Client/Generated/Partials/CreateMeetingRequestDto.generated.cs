@@ -19,57 +19,41 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateMeetingRequestExtensions
+namespace SpaceDotNet.Client.CreateMeetingRequestDtoExtensions
 {
     public static class CreateMeetingRequestDtoPartialExtensions
     {
-        public static Partial<CreateMeetingRequestDto> WithSummary(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("summary");
+        public static Partial<CreateMeetingRequestDto> WithSummary(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("summary");
         
-        public static Partial<CreateMeetingRequestDto> WithDescription(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("description");
+        public static Partial<CreateMeetingRequestDto> WithDescription(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("description");
         
-        public static Partial<CreateMeetingRequestDto> WithOccurrenceRule(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("occurrenceRule");
+        public static Partial<CreateMeetingRequestDto> WithOccurrenceRule(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("occurrenceRule");
         
-        public static Partial<CreateMeetingRequestDto> WithOccurrenceRule(this Partial<CreateMeetingRequestDto> it, Func<Partial<CalendarEventSpecDto>, Partial<CalendarEventSpecDto>> partialBuilder)
-            => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpecDto>()));
+        public static Partial<CreateMeetingRequestDto> WithOccurrenceRule(this Partial<CreateMeetingRequestDto> it, Func<Partial<CalendarEventSpecDto>, Partial<CalendarEventSpecDto>> partialBuilder)    => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpecDto>()));
         
-        public static Partial<CreateMeetingRequestDto> WithLocations(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("locations");
+        public static Partial<CreateMeetingRequestDto> WithLocations(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("locations");
         
-        public static Partial<CreateMeetingRequestDto> WithProfiles(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("profiles");
+        public static Partial<CreateMeetingRequestDto> WithProfiles(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("profiles");
         
-        public static Partial<CreateMeetingRequestDto> WithExternalParticipants(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("externalParticipants");
+        public static Partial<CreateMeetingRequestDto> WithExternalParticipants(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("externalParticipants");
         
-        public static Partial<CreateMeetingRequestDto> WithTeams(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("teams");
+        public static Partial<CreateMeetingRequestDto> WithTeams(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("teams");
         
-        public static Partial<CreateMeetingRequestDto> WithVisibility(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("visibility");
+        public static Partial<CreateMeetingRequestDto> WithVisibility(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("visibility");
         
-        public static Partial<CreateMeetingRequestDto> WithVisibility(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingVisibility>, Partial<MeetingVisibility>> partialBuilder)
-            => it.AddFieldName("visibility", partialBuilder(new Partial<MeetingVisibility>()));
+        public static Partial<CreateMeetingRequestDto> WithVisibility(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingVisibility>, Partial<MeetingVisibility>> partialBuilder)    => it.AddFieldName("visibility", partialBuilder(new Partial<MeetingVisibility>()));
         
-        public static Partial<CreateMeetingRequestDto> WithModificationPreference(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("modificationPreference");
+        public static Partial<CreateMeetingRequestDto> WithModificationPreference(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("modificationPreference");
         
-        public static Partial<CreateMeetingRequestDto> WithModificationPreference(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingModificationPreference>, Partial<MeetingModificationPreference>> partialBuilder)
-            => it.AddFieldName("modificationPreference", partialBuilder(new Partial<MeetingModificationPreference>()));
+        public static Partial<CreateMeetingRequestDto> WithModificationPreference(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingModificationPreference>, Partial<MeetingModificationPreference>> partialBuilder)    => it.AddFieldName("modificationPreference", partialBuilder(new Partial<MeetingModificationPreference>()));
         
-        public static Partial<CreateMeetingRequestDto> WithJoiningPreference(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("joiningPreference");
+        public static Partial<CreateMeetingRequestDto> WithJoiningPreference(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("joiningPreference");
         
-        public static Partial<CreateMeetingRequestDto> WithJoiningPreference(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
-            => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>()));
+        public static Partial<CreateMeetingRequestDto> WithJoiningPreference(this Partial<CreateMeetingRequestDto> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)    => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>()));
         
-        public static Partial<CreateMeetingRequestDto> WithNotifyOnExport(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("notifyOnExport");
+        public static Partial<CreateMeetingRequestDto> WithNotifyOnExport(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("notifyOnExport");
         
-        public static Partial<CreateMeetingRequestDto> WithOrganizer(this Partial<CreateMeetingRequestDto> it)
-            => it.AddFieldName("organizer");
+        public static Partial<CreateMeetingRequestDto> WithOrganizer(this Partial<CreateMeetingRequestDto> it)    => it.AddFieldName("organizer");
         
     }
     

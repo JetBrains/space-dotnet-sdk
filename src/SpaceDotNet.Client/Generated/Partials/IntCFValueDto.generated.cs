@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.IntCFValueExtensions
+namespace SpaceDotNet.Client.IntCFValueDtoExtensions
 {
     public static class IntCFValueDtoPartialExtensions
     {
-        public static Partial<IntCFValueDto> WithValue(this Partial<IntCFValueDto> it)
-            => it.AddFieldName("value");
+        public static Partial<IntCFValueDto> WithValue(this Partial<IntCFValueDto> it)    => it.AddFieldName("value");
         
     }
     

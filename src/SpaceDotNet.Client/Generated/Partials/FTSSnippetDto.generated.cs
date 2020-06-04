@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.FTSSnippetExtensions
+namespace SpaceDotNet.Client.FTSSnippetDtoExtensions
 {
     public static class FTSSnippetDtoPartialExtensions
     {
-        public static Partial<FTSSnippetDto> WithField(this Partial<FTSSnippetDto> it)
-            => it.AddFieldName("field");
+        public static Partial<FTSSnippetDto> WithField(this Partial<FTSSnippetDto> it)    => it.AddFieldName("field");
         
-        public static Partial<FTSSnippetDto> WithSnippet(this Partial<FTSSnippetDto> it)
-            => it.AddFieldName("snippet");
+        public static Partial<FTSSnippetDto> WithSnippet(this Partial<FTSSnippetDto> it)    => it.AddFieldName("snippet");
         
     }
     

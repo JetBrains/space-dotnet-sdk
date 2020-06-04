@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MetricsPointExtensions
+namespace SpaceDotNet.Client.MetricsPointDtoExtensions
 {
     public static class MetricsPointDtoPartialExtensions
     {
-        public static Partial<MetricsPointDto> WithKey(this Partial<MetricsPointDto> it)
-            => it.AddFieldName("key");
+        public static Partial<MetricsPointDto> WithKey(this Partial<MetricsPointDto> it)    => it.AddFieldName("key");
         
-        public static Partial<MetricsPointDto> WithValue(this Partial<MetricsPointDto> it)
-            => it.AddFieldName("value");
+        public static Partial<MetricsPointDto> WithValue(this Partial<MetricsPointDto> it)    => it.AddFieldName("value");
         
     }
     

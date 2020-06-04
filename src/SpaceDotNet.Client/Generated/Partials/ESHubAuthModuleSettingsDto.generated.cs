@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESHubAuthModuleSettingsExtensions
+namespace SpaceDotNet.Client.ESHubAuthModuleSettingsDtoExtensions
 {
     public static class ESHubAuthModuleSettingsDtoPartialExtensions
     {
-        public static Partial<ESHubAuthModuleSettingsDto> WithHubUrl(this Partial<ESHubAuthModuleSettingsDto> it)
-            => it.AddFieldName("hubUrl");
+        public static Partial<ESHubAuthModuleSettingsDto> WithHubUrl(this Partial<ESHubAuthModuleSettingsDto> it)    => it.AddFieldName("hubUrl");
         
-        public static Partial<ESHubAuthModuleSettingsDto> WithClientId(this Partial<ESHubAuthModuleSettingsDto> it)
-            => it.AddFieldName("clientId");
+        public static Partial<ESHubAuthModuleSettingsDto> WithClientId(this Partial<ESHubAuthModuleSettingsDto> it)    => it.AddFieldName("clientId");
         
-        public static Partial<ESHubAuthModuleSettingsDto> WithClientSecret(this Partial<ESHubAuthModuleSettingsDto> it)
-            => it.AddFieldName("clientSecret");
+        public static Partial<ESHubAuthModuleSettingsDto> WithClientSecret(this Partial<ESHubAuthModuleSettingsDto> it)    => it.AddFieldName("clientSecret");
         
-        public static Partial<ESHubAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESHubAuthModuleSettingsDto> it)
-            => it.AddFieldName("registerNewUsers");
+        public static Partial<ESHubAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESHubAuthModuleSettingsDto> it)    => it.AddFieldName("registerNewUsers");
         
-        public static Partial<ESHubAuthModuleSettingsDto> WithOrgAuthProviderName(this Partial<ESHubAuthModuleSettingsDto> it)
-            => it.AddFieldName("orgAuthProviderName");
+        public static Partial<ESHubAuthModuleSettingsDto> WithOrgAuthProviderName(this Partial<ESHubAuthModuleSettingsDto> it)    => it.AddFieldName("orgAuthProviderName");
         
-        public static Partial<ESHubAuthModuleSettingsDto> WithGroups(this Partial<ESHubAuthModuleSettingsDto> it)
-            => it.AddFieldName("groups");
+        public static Partial<ESHubAuthModuleSettingsDto> WithGroups(this Partial<ESHubAuthModuleSettingsDto> it)    => it.AddFieldName("groups");
         
     }
     

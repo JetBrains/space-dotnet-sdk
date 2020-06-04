@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelContentLocationExtensions
+namespace SpaceDotNet.Client.M2ChannelContentLocationDtoExtensions
 {
     public static class M2ChannelContentLocationDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentLocationDto> WithLocation(this Partial<M2ChannelContentLocationDto> it)
-            => it.AddFieldName("location");
+        public static Partial<M2ChannelContentLocationDto> WithLocation(this Partial<M2ChannelContentLocationDto> it)    => it.AddFieldName("location");
         
-        public static Partial<M2ChannelContentLocationDto> WithLocation(this Partial<M2ChannelContentLocationDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
-            => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<M2ChannelContentLocationDto> WithLocation(this Partial<M2ChannelContentLocationDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>()));
         
-        public static Partial<M2ChannelContentLocationDto> WithNotificationDefaults(this Partial<M2ChannelContentLocationDto> it)
-            => it.AddFieldName("notificationDefaults");
+        public static Partial<M2ChannelContentLocationDto> WithNotificationDefaults(this Partial<M2ChannelContentLocationDto> it)    => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2ChannelContentLocationDto> WithNotificationDefaults(this Partial<M2ChannelContentLocationDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
-            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2ChannelContentLocationDto> WithNotificationDefaults(this Partial<M2ChannelContentLocationDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
         
     }
     

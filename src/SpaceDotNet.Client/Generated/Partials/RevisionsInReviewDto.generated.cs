@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RevisionsInReviewExtensions
+namespace SpaceDotNet.Client.RevisionsInReviewDtoExtensions
 {
     public static class RevisionsInReviewDtoPartialExtensions
     {
-        public static Partial<RevisionsInReviewDto> WithRepository(this Partial<RevisionsInReviewDto> it)
-            => it.AddFieldName("repository");
+        public static Partial<RevisionsInReviewDto> WithRepository(this Partial<RevisionsInReviewDto> it)    => it.AddFieldName("repository");
         
-        public static Partial<RevisionsInReviewDto> WithRepository(this Partial<RevisionsInReviewDto> it, Func<Partial<RepositoryInReviewDto>, Partial<RepositoryInReviewDto>> partialBuilder)
-            => it.AddFieldName("repository", partialBuilder(new Partial<RepositoryInReviewDto>()));
+        public static Partial<RevisionsInReviewDto> WithRepository(this Partial<RevisionsInReviewDto> it, Func<Partial<RepositoryInReviewDto>, Partial<RepositoryInReviewDto>> partialBuilder)    => it.AddFieldName("repository", partialBuilder(new Partial<RepositoryInReviewDto>()));
         
-        public static Partial<RevisionsInReviewDto> WithCommits(this Partial<RevisionsInReviewDto> it)
-            => it.AddFieldName("commits");
+        public static Partial<RevisionsInReviewDto> WithCommits(this Partial<RevisionsInReviewDto> it)    => it.AddFieldName("commits");
         
-        public static Partial<RevisionsInReviewDto> WithCommits(this Partial<RevisionsInReviewDto> it, Func<Partial<GitCommitWithGraphDto>, Partial<GitCommitWithGraphDto>> partialBuilder)
-            => it.AddFieldName("commits", partialBuilder(new Partial<GitCommitWithGraphDto>()));
+        public static Partial<RevisionsInReviewDto> WithCommits(this Partial<RevisionsInReviewDto> it, Func<Partial<GitCommitWithGraphDto>, Partial<GitCommitWithGraphDto>> partialBuilder)    => it.AddFieldName("commits", partialBuilder(new Partial<GitCommitWithGraphDto>()));
         
     }
     

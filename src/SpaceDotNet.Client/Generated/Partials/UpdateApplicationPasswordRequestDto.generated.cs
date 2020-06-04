@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateApplicationPasswordRequestExtensions
+namespace SpaceDotNet.Client.UpdateApplicationPasswordRequestDtoExtensions
 {
     public static class UpdateApplicationPasswordRequestDtoPartialExtensions
     {
-        public static Partial<UpdateApplicationPasswordRequestDto> WithName(this Partial<UpdateApplicationPasswordRequestDto> it)
-            => it.AddFieldName("name");
+        public static Partial<UpdateApplicationPasswordRequestDto> WithName(this Partial<UpdateApplicationPasswordRequestDto> it)    => it.AddFieldName("name");
         
-        public static Partial<UpdateApplicationPasswordRequestDto> WithScope(this Partial<UpdateApplicationPasswordRequestDto> it)
-            => it.AddFieldName("scope");
+        public static Partial<UpdateApplicationPasswordRequestDto> WithScope(this Partial<UpdateApplicationPasswordRequestDto> it)    => it.AddFieldName("scope");
         
     }
     

@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DeletedAttachmentExtensions
+namespace SpaceDotNet.Client.DeletedAttachmentDtoExtensions
 {
     public static class DeletedAttachmentDtoPartialExtensions
     {
-        public static Partial<DeletedAttachmentDto> WithDeletedIdentity(this Partial<DeletedAttachmentDto> it)
-            => it.AddFieldName("deletedIdentity");
+        public static Partial<DeletedAttachmentDto> WithDeletedIdentity(this Partial<DeletedAttachmentDto> it)    => it.AddFieldName("deletedIdentity");
         
     }
     

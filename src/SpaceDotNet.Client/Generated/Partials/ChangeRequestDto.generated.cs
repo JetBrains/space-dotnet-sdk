@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ChangeRequestExtensions
+namespace SpaceDotNet.Client.ChangeRequestDtoExtensions
 {
     public static class ChangeRequestDtoPartialExtensions
     {
-        public static Partial<ChangeRequestDto> WithOldPassword(this Partial<ChangeRequestDto> it)
-            => it.AddFieldName("oldPassword");
+        public static Partial<ChangeRequestDto> WithOldPassword(this Partial<ChangeRequestDto> it)    => it.AddFieldName("oldPassword");
         
-        public static Partial<ChangeRequestDto> WithNewPassword(this Partial<ChangeRequestDto> it)
-            => it.AddFieldName("newPassword");
+        public static Partial<ChangeRequestDto> WithNewPassword(this Partial<ChangeRequestDto> it)    => it.AddFieldName("newPassword");
         
     }
     

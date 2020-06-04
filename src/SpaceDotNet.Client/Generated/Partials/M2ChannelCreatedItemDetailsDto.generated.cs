@@ -19,7 +19,7 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2ChannelCreatedItemDetailsExtensions
+namespace SpaceDotNet.Client.M2ChannelCreatedItemDetailsDtoExtensions
 {
     public static class M2ChannelCreatedItemDetailsDtoPartialExtensions
     {

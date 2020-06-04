@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESBuiltinProfileLoginDetailsExtensions
+namespace SpaceDotNet.Client.ESBuiltinProfileLoginDetailsDtoExtensions
 {
     public static class ESBuiltinProfileLoginDetailsDtoPartialExtensions
     {
-        public static Partial<ESBuiltinProfileLoginDetailsDto> WithPasswordChangeRequest(this Partial<ESBuiltinProfileLoginDetailsDto> it)
-            => it.AddFieldName("passwordChangeRequest");
+        public static Partial<ESBuiltinProfileLoginDetailsDto> WithPasswordChangeRequest(this Partial<ESBuiltinProfileLoginDetailsDto> it)    => it.AddFieldName("passwordChangeRequest");
         
     }
     

@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CodeReviewPendingMessageCounterExtensions
+namespace SpaceDotNet.Client.CodeReviewPendingMessageCounterDtoExtensions
 {
     public static class CodeReviewPendingMessageCounterDtoPartialExtensions
     {
-        public static Partial<CodeReviewPendingMessageCounterDto> WithId(this Partial<CodeReviewPendingMessageCounterDto> it)
-            => it.AddFieldName("id");
+        public static Partial<CodeReviewPendingMessageCounterDto> WithId(this Partial<CodeReviewPendingMessageCounterDto> it)    => it.AddFieldName("id");
         
-        public static Partial<CodeReviewPendingMessageCounterDto> WithCount(this Partial<CodeReviewPendingMessageCounterDto> it)
-            => it.AddFieldName("count");
+        public static Partial<CodeReviewPendingMessageCounterDto> WithCount(this Partial<CodeReviewPendingMessageCounterDto> it)    => it.AddFieldName("count");
         
-        public static Partial<CodeReviewPendingMessageCounterDto> WithArchived(this Partial<CodeReviewPendingMessageCounterDto> it)
-            => it.AddFieldName("archived");
+        public static Partial<CodeReviewPendingMessageCounterDto> WithArchived(this Partial<CodeReviewPendingMessageCounterDto> it)    => it.AddFieldName("archived");
         
     }
     

@@ -19,33 +19,25 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2BlogItemPreviewExtensions
+namespace SpaceDotNet.Client.M2BlogItemPreviewDtoExtensions
 {
     public static class M2BlogItemPreviewDtoPartialExtensions
     {
-        public static Partial<M2BlogItemPreviewDto> WithArticle(this Partial<M2BlogItemPreviewDto> it)
-            => it.AddFieldName("article");
+        public static Partial<M2BlogItemPreviewDto> WithArticle(this Partial<M2BlogItemPreviewDto> it)    => it.AddFieldName("article");
         
-        public static Partial<M2BlogItemPreviewDto> WithArticle(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
+        public static Partial<M2BlogItemPreviewDto> WithArticle(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)    => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
         
-        public static Partial<M2BlogItemPreviewDto> WithArticlePreview(this Partial<M2BlogItemPreviewDto> it)
-            => it.AddFieldName("articlePreview");
+        public static Partial<M2BlogItemPreviewDto> WithArticlePreview(this Partial<M2BlogItemPreviewDto> it)    => it.AddFieldName("articlePreview");
         
-        public static Partial<M2BlogItemPreviewDto> WithArticlePreview(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticlePreviewRecordDto>, Partial<ArticlePreviewRecordDto>> partialBuilder)
-            => it.AddFieldName("articlePreview", partialBuilder(new Partial<ArticlePreviewRecordDto>()));
+        public static Partial<M2BlogItemPreviewDto> WithArticlePreview(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticlePreviewRecordDto>, Partial<ArticlePreviewRecordDto>> partialBuilder)    => it.AddFieldName("articlePreview", partialBuilder(new Partial<ArticlePreviewRecordDto>()));
         
-        public static Partial<M2BlogItemPreviewDto> WithArticleDetails(this Partial<M2BlogItemPreviewDto> it)
-            => it.AddFieldName("articleDetails");
+        public static Partial<M2BlogItemPreviewDto> WithArticleDetails(this Partial<M2BlogItemPreviewDto> it)    => it.AddFieldName("articleDetails");
         
-        public static Partial<M2BlogItemPreviewDto> WithArticleDetails(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticleDetailsRecordDto>, Partial<ArticleDetailsRecordDto>> partialBuilder)
-            => it.AddFieldName("articleDetails", partialBuilder(new Partial<ArticleDetailsRecordDto>()));
+        public static Partial<M2BlogItemPreviewDto> WithArticleDetails(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticleDetailsRecordDto>, Partial<ArticleDetailsRecordDto>> partialBuilder)    => it.AddFieldName("articleDetails", partialBuilder(new Partial<ArticleDetailsRecordDto>()));
         
-        public static Partial<M2BlogItemPreviewDto> WithArticleChannel(this Partial<M2BlogItemPreviewDto> it)
-            => it.AddFieldName("articleChannel");
+        public static Partial<M2BlogItemPreviewDto> WithArticleChannel(this Partial<M2BlogItemPreviewDto> it)    => it.AddFieldName("articleChannel");
         
-        public static Partial<M2BlogItemPreviewDto> WithArticleChannel(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticleChannelRecordDto>, Partial<ArticleChannelRecordDto>> partialBuilder)
-            => it.AddFieldName("articleChannel", partialBuilder(new Partial<ArticleChannelRecordDto>()));
+        public static Partial<M2BlogItemPreviewDto> WithArticleChannel(this Partial<M2BlogItemPreviewDto> it, Func<Partial<ArticleChannelRecordDto>, Partial<ArticleChannelRecordDto>> partialBuilder)    => it.AddFieldName("articleChannel", partialBuilder(new Partial<ArticleChannelRecordDto>()));
         
     }
     

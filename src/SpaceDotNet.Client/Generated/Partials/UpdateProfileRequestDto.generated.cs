@@ -19,69 +19,49 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateProfileRequestExtensions
+namespace SpaceDotNet.Client.UpdateProfileRequestDtoExtensions
 {
     public static class UpdateProfileRequestDtoPartialExtensions
     {
-        public static Partial<UpdateProfileRequestDto> WithUsername(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("username");
+        public static Partial<UpdateProfileRequestDto> WithUsername(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("username");
         
-        public static Partial<UpdateProfileRequestDto> WithFirstName(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("firstName");
+        public static Partial<UpdateProfileRequestDto> WithFirstName(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("firstName");
         
-        public static Partial<UpdateProfileRequestDto> WithLastName(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("lastName");
+        public static Partial<UpdateProfileRequestDto> WithLastName(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("lastName");
         
-        public static Partial<UpdateProfileRequestDto> WithEmails(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("emails");
+        public static Partial<UpdateProfileRequestDto> WithEmails(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("emails");
         
-        public static Partial<UpdateProfileRequestDto> WithPhones(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("phones");
+        public static Partial<UpdateProfileRequestDto> WithPhones(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("phones");
         
-        public static Partial<UpdateProfileRequestDto> WithBirthday(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("birthday");
+        public static Partial<UpdateProfileRequestDto> WithBirthday(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("birthday");
         
-        public static Partial<UpdateProfileRequestDto> WithAbout(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("about");
+        public static Partial<UpdateProfileRequestDto> WithAbout(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("about");
         
-        public static Partial<UpdateProfileRequestDto> WithGender(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("gender");
+        public static Partial<UpdateProfileRequestDto> WithGender(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("gender");
         
-        public static Partial<UpdateProfileRequestDto> WithGender(this Partial<UpdateProfileRequestDto> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
-            => it.AddFieldName("gender", partialBuilder(new Partial<Gender>()));
+        public static Partial<UpdateProfileRequestDto> WithGender(this Partial<UpdateProfileRequestDto> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)    => it.AddFieldName("gender", partialBuilder(new Partial<Gender>()));
         
-        public static Partial<UpdateProfileRequestDto> WithMessengers(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("messengers");
+        public static Partial<UpdateProfileRequestDto> WithMessengers(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("messengers");
         
-        public static Partial<UpdateProfileRequestDto> WithLinks(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("links");
+        public static Partial<UpdateProfileRequestDto> WithLinks(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("links");
         
-        public static Partial<UpdateProfileRequestDto> WithNotAMember(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("notAMember");
+        public static Partial<UpdateProfileRequestDto> WithNotAMember(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("notAMember");
         
-        public static Partial<UpdateProfileRequestDto> WithJoined(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("joined");
+        public static Partial<UpdateProfileRequestDto> WithJoined(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("joined");
         
-        public static Partial<UpdateProfileRequestDto> WithLeft(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("left");
+        public static Partial<UpdateProfileRequestDto> WithLeft(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("left");
         
-        public static Partial<UpdateProfileRequestDto> WithSpeaksEnglish(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("speaksEnglish");
+        public static Partial<UpdateProfileRequestDto> WithSpeaksEnglish(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("speaksEnglish");
         
-        public static Partial<UpdateProfileRequestDto> WithPictureAttachmentId(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("pictureAttachmentId");
+        public static Partial<UpdateProfileRequestDto> WithPictureAttachmentId(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("pictureAttachmentId");
         
-        public static Partial<UpdateProfileRequestDto> WithAvatarCropSquare(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("avatarCropSquare");
+        public static Partial<UpdateProfileRequestDto> WithAvatarCropSquare(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("avatarCropSquare");
         
-        public static Partial<UpdateProfileRequestDto> WithAvatarCropSquare(this Partial<UpdateProfileRequestDto> it, Func<Partial<AvatarCropSquareDto>, Partial<AvatarCropSquareDto>> partialBuilder)
-            => it.AddFieldName("avatarCropSquare", partialBuilder(new Partial<AvatarCropSquareDto>()));
+        public static Partial<UpdateProfileRequestDto> WithAvatarCropSquare(this Partial<UpdateProfileRequestDto> it, Func<Partial<AvatarCropSquareDto>, Partial<AvatarCropSquareDto>> partialBuilder)    => it.AddFieldName("avatarCropSquare", partialBuilder(new Partial<AvatarCropSquareDto>()));
         
-        public static Partial<UpdateProfileRequestDto> WithCustomFieldValues(this Partial<UpdateProfileRequestDto> it)
-            => it.AddFieldName("customFieldValues");
+        public static Partial<UpdateProfileRequestDto> WithCustomFieldValues(this Partial<UpdateProfileRequestDto> it)    => it.AddFieldName("customFieldValues");
         
-        public static Partial<UpdateProfileRequestDto> WithCustomFieldValues(this Partial<UpdateProfileRequestDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
+        public static Partial<UpdateProfileRequestDto> WithCustomFieldValues(this Partial<UpdateProfileRequestDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)    => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
         
     }
     

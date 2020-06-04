@@ -19,24 +19,19 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.AllReactionsToItemRecordExtensions
+namespace SpaceDotNet.Client.AllReactionsToItemRecordDtoExtensions
 {
     public static class AllReactionsToItemRecordDtoPartialExtensions
     {
-        public static Partial<AllReactionsToItemRecordDto> WithId(this Partial<AllReactionsToItemRecordDto> it)
-            => it.AddFieldName("id");
+        public static Partial<AllReactionsToItemRecordDto> WithId(this Partial<AllReactionsToItemRecordDto> it)    => it.AddFieldName("id");
         
-        public static Partial<AllReactionsToItemRecordDto> WithReactions(this Partial<AllReactionsToItemRecordDto> it)
-            => it.AddFieldName("reactions");
+        public static Partial<AllReactionsToItemRecordDto> WithReactions(this Partial<AllReactionsToItemRecordDto> it)    => it.AddFieldName("reactions");
         
-        public static Partial<AllReactionsToItemRecordDto> WithReactions(this Partial<AllReactionsToItemRecordDto> it, Func<Partial<CertainReactionToItemRecordDto>, Partial<CertainReactionToItemRecordDto>> partialBuilder)
-            => it.AddFieldName("reactions", partialBuilder(new Partial<CertainReactionToItemRecordDto>()));
+        public static Partial<AllReactionsToItemRecordDto> WithReactions(this Partial<AllReactionsToItemRecordDto> it, Func<Partial<CertainReactionToItemRecordDto>, Partial<CertainReactionToItemRecordDto>> partialBuilder)    => it.AddFieldName("reactions", partialBuilder(new Partial<CertainReactionToItemRecordDto>()));
         
-        public static Partial<AllReactionsToItemRecordDto> WithEmojiReactions(this Partial<AllReactionsToItemRecordDto> it)
-            => it.AddFieldName("emojiReactions");
+        public static Partial<AllReactionsToItemRecordDto> WithEmojiReactions(this Partial<AllReactionsToItemRecordDto> it)    => it.AddFieldName("emojiReactions");
         
-        public static Partial<AllReactionsToItemRecordDto> WithEmojiReactions(this Partial<AllReactionsToItemRecordDto> it, Func<Partial<EmojiReactionRecordDto>, Partial<EmojiReactionRecordDto>> partialBuilder)
-            => it.AddFieldName("emojiReactions", partialBuilder(new Partial<EmojiReactionRecordDto>()));
+        public static Partial<AllReactionsToItemRecordDto> WithEmojiReactions(this Partial<AllReactionsToItemRecordDto> it, Func<Partial<EmojiReactionRecordDto>, Partial<EmojiReactionRecordDto>> partialBuilder)    => it.AddFieldName("emojiReactions", partialBuilder(new Partial<EmojiReactionRecordDto>()));
         
     }
     

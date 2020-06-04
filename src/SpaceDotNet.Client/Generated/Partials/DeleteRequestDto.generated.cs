@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DeleteRequestExtensions
+namespace SpaceDotNet.Client.DeleteRequestDtoExtensions
 {
     public static class DeleteRequestDtoPartialExtensions
     {
-        public static Partial<DeleteRequestDto> WithEmoji(this Partial<DeleteRequestDto> it)
-            => it.AddFieldName("emoji");
+        public static Partial<DeleteRequestDto> WithEmoji(this Partial<DeleteRequestDto> it)    => it.AddFieldName("emoji");
         
     }
     

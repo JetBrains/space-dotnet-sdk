@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ArticleImportResultExtensions
+namespace SpaceDotNet.Client.ArticleImportResultDtoExtensions
 {
     public static class ArticleImportResultDtoPartialExtensions
     {
-        public static Partial<ArticleImportResultDto> WithExternalId(this Partial<ArticleImportResultDto> it)
-            => it.AddFieldName("externalId");
+        public static Partial<ArticleImportResultDto> WithExternalId(this Partial<ArticleImportResultDto> it)    => it.AddFieldName("externalId");
         
-        public static Partial<ArticleImportResultDto> WithArticle(this Partial<ArticleImportResultDto> it)
-            => it.AddFieldName("article");
+        public static Partial<ArticleImportResultDto> WithArticle(this Partial<ArticleImportResultDto> it)    => it.AddFieldName("article");
         
-        public static Partial<ArticleImportResultDto> WithArticle(this Partial<ArticleImportResultDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)
-            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
+        public static Partial<ArticleImportResultDto> WithArticle(this Partial<ArticleImportResultDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)    => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
         
-        public static Partial<ArticleImportResultDto> WithError(this Partial<ArticleImportResultDto> it)
-            => it.AddFieldName("error");
+        public static Partial<ArticleImportResultDto> WithError(this Partial<ArticleImportResultDto> it)    => it.AddFieldName("error");
         
     }
     

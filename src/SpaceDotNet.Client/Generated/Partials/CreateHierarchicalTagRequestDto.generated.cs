@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateHierarchicalTagRequestExtensions
+namespace SpaceDotNet.Client.CreateHierarchicalTagRequestDtoExtensions
 {
     public static class CreateHierarchicalTagRequestDtoPartialExtensions
     {
-        public static Partial<CreateHierarchicalTagRequestDto> WithParentTagId(this Partial<CreateHierarchicalTagRequestDto> it)
-            => it.AddFieldName("parentTagId");
+        public static Partial<CreateHierarchicalTagRequestDto> WithParentTagId(this Partial<CreateHierarchicalTagRequestDto> it)    => it.AddFieldName("parentTagId");
         
-        public static Partial<CreateHierarchicalTagRequestDto> WithPath(this Partial<CreateHierarchicalTagRequestDto> it)
-            => it.AddFieldName("path");
+        public static Partial<CreateHierarchicalTagRequestDto> WithPath(this Partial<CreateHierarchicalTagRequestDto> it)    => it.AddFieldName("path");
         
     }
     

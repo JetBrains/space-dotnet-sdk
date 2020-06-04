@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportRequestExtensions
+namespace SpaceDotNet.Client.ImportRequestDtoExtensions
 {
     public static class ImportRequestDtoPartialExtensions
     {
-        public static Partial<ImportRequestDto> WithCalendar(this Partial<ImportRequestDto> it)
-            => it.AddFieldName("calendar");
+        public static Partial<ImportRequestDto> WithCalendar(this Partial<ImportRequestDto> it)    => it.AddFieldName("calendar");
         
-        public static Partial<ImportRequestDto> WithAttachmentId(this Partial<ImportRequestDto> it)
-            => it.AddFieldName("attachmentId");
+        public static Partial<ImportRequestDto> WithAttachmentId(this Partial<ImportRequestDto> it)    => it.AddFieldName("attachmentId");
         
     }
     

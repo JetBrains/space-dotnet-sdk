@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CodeDiscussionSnippetInlineDiffSnippetExtensions
+namespace SpaceDotNet.Client.CodeDiscussionSnippetInlineDiffSnippetDtoExtensions
 {
     public static class CodeDiscussionSnippetInlineDiffSnippetDtoPartialExtensions
     {
-        public static Partial<CodeDiscussionSnippetInlineDiffSnippetDto> WithLines(this Partial<CodeDiscussionSnippetInlineDiffSnippetDto> it)
-            => it.AddFieldName("lines");
+        public static Partial<CodeDiscussionSnippetInlineDiffSnippetDto> WithLines(this Partial<CodeDiscussionSnippetInlineDiffSnippetDto> it)    => it.AddFieldName("lines");
         
-        public static Partial<CodeDiscussionSnippetInlineDiffSnippetDto> WithLines(this Partial<CodeDiscussionSnippetInlineDiffSnippetDto> it, Func<Partial<InlineDiffLineDto>, Partial<InlineDiffLineDto>> partialBuilder)
-            => it.AddFieldName("lines", partialBuilder(new Partial<InlineDiffLineDto>()));
+        public static Partial<CodeDiscussionSnippetInlineDiffSnippetDto> WithLines(this Partial<CodeDiscussionSnippetInlineDiffSnippetDto> it, Func<Partial<InlineDiffLineDto>, Partial<InlineDiffLineDto>> partialBuilder)    => it.AddFieldName("lines", partialBuilder(new Partial<InlineDiffLineDto>()));
         
     }
     

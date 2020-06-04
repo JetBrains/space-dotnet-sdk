@@ -19,60 +19,43 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CustomFieldExtensions
+namespace SpaceDotNet.Client.CustomFieldDtoExtensions
 {
     public static class CustomFieldDtoPartialExtensions
     {
-        public static Partial<CustomFieldDto> WithExtendedType(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("extendedType");
+        public static Partial<CustomFieldDto> WithExtendedType(this Partial<CustomFieldDto> it)    => it.AddFieldName("extendedType");
         
-        public static Partial<CustomFieldDto> WithExtendedType(this Partial<CustomFieldDto> it, Func<Partial<ExtendedTypeDto>, Partial<ExtendedTypeDto>> partialBuilder)
-            => it.AddFieldName("extendedType", partialBuilder(new Partial<ExtendedTypeDto>()));
+        public static Partial<CustomFieldDto> WithExtendedType(this Partial<CustomFieldDto> it, Func<Partial<ExtendedTypeDto>, Partial<ExtendedTypeDto>> partialBuilder)    => it.AddFieldName("extendedType", partialBuilder(new Partial<ExtendedTypeDto>()));
         
-        public static Partial<CustomFieldDto> WithId(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("id");
+        public static Partial<CustomFieldDto> WithId(this Partial<CustomFieldDto> it)    => it.AddFieldName("id");
         
-        public static Partial<CustomFieldDto> WithName(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("name");
+        public static Partial<CustomFieldDto> WithName(this Partial<CustomFieldDto> it)    => it.AddFieldName("name");
         
-        public static Partial<CustomFieldDto> WithKey(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("key");
+        public static Partial<CustomFieldDto> WithKey(this Partial<CustomFieldDto> it)    => it.AddFieldName("key");
         
-        public static Partial<CustomFieldDto> WithType(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("type");
+        public static Partial<CustomFieldDto> WithType(this Partial<CustomFieldDto> it)    => it.AddFieldName("type");
         
-        public static Partial<CustomFieldDto> WithType(this Partial<CustomFieldDto> it, Func<Partial<CFTypeDto>, Partial<CFTypeDto>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<CFTypeDto>()));
+        public static Partial<CustomFieldDto> WithType(this Partial<CustomFieldDto> it, Func<Partial<CFTypeDto>, Partial<CFTypeDto>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<CFTypeDto>()));
         
-        public static Partial<CustomFieldDto> WithConstraint(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("constraint");
+        public static Partial<CustomFieldDto> WithConstraint(this Partial<CustomFieldDto> it)    => it.AddFieldName("constraint");
         
-        public static Partial<CustomFieldDto> WithConstraint(this Partial<CustomFieldDto> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)
-            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>()));
+        public static Partial<CustomFieldDto> WithConstraint(this Partial<CustomFieldDto> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)    => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>()));
         
-        public static Partial<CustomFieldDto> WithRequired(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("required");
+        public static Partial<CustomFieldDto> WithRequired(this Partial<CustomFieldDto> it)    => it.AddFieldName("required");
         
-        public static Partial<CustomFieldDto> WithPrivate(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("private");
+        public static Partial<CustomFieldDto> WithPrivate(this Partial<CustomFieldDto> it)    => it.AddFieldName("private");
         
-        public static Partial<CustomFieldDto> WithAccess(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("access");
+        public static Partial<CustomFieldDto> WithAccess(this Partial<CustomFieldDto> it)    => it.AddFieldName("access");
         
-        public static Partial<CustomFieldDto> WithAccess(this Partial<CustomFieldDto> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
-            => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
+        public static Partial<CustomFieldDto> WithAccess(this Partial<CustomFieldDto> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)    => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
         
-        public static Partial<CustomFieldDto> WithDefaultValue(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("defaultValue");
+        public static Partial<CustomFieldDto> WithDefaultValue(this Partial<CustomFieldDto> it)    => it.AddFieldName("defaultValue");
         
-        public static Partial<CustomFieldDto> WithDefaultValue(this Partial<CustomFieldDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
-            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>()));
+        public static Partial<CustomFieldDto> WithDefaultValue(this Partial<CustomFieldDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)    => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>()));
         
-        public static Partial<CustomFieldDto> WithOrder(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("order");
+        public static Partial<CustomFieldDto> WithOrder(this Partial<CustomFieldDto> it)    => it.AddFieldName("order");
         
-        public static Partial<CustomFieldDto> WithArchived(this Partial<CustomFieldDto> it)
-            => it.AddFieldName("archived");
+        public static Partial<CustomFieldDto> WithArchived(this Partial<CustomFieldDto> it)    => it.AddFieldName("archived");
         
     }
     

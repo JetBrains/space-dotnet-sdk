@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HATypeEnumExtensions
+namespace SpaceDotNet.Client.HATypeEnumDtoExtensions
 {
     public static class HATypeEnumDtoPartialExtensions
     {
-        public static Partial<HATypeEnumDto> WithEnum(this Partial<HATypeEnumDto> it)
-            => it.AddFieldName("enum");
+        public static Partial<HATypeEnumDto> WithEnum(this Partial<HATypeEnumDto> it)    => it.AddFieldName("enum");
         
-        public static Partial<HATypeEnumDto> WithEnum(this Partial<HATypeEnumDto> it, Func<Partial<HAEnumDto>, Partial<HAEnumDto>> partialBuilder)
-            => it.AddFieldName("enum", partialBuilder(new Partial<HAEnumDto>()));
+        public static Partial<HATypeEnumDto> WithEnum(this Partial<HATypeEnumDto> it, Func<Partial<HAEnumDto>, Partial<HAEnumDto>> partialBuilder)    => it.AddFieldName("enum", partialBuilder(new Partial<HAEnumDto>()));
         
-        public static Partial<HATypeEnumDto> WithNullable(this Partial<HATypeEnumDto> it)
-            => it.AddFieldName("nullable");
+        public static Partial<HATypeEnumDto> WithNullable(this Partial<HATypeEnumDto> it)    => it.AddFieldName("nullable");
         
-        public static Partial<HATypeEnumDto> WithOptional(this Partial<HATypeEnumDto> it)
-            => it.AddFieldName("optional");
+        public static Partial<HATypeEnumDto> WithOptional(this Partial<HATypeEnumDto> it)    => it.AddFieldName("optional");
         
     }
     

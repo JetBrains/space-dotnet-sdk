@@ -19,27 +19,21 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PackageVersionInfoExtensions
+namespace SpaceDotNet.Client.PackageVersionInfoDtoExtensions
 {
     public static class PackageVersionInfoDtoPartialExtensions
     {
-        public static Partial<PackageVersionInfoDto> WithType(this Partial<PackageVersionInfoDto> it)
-            => it.AddFieldName("type");
+        public static Partial<PackageVersionInfoDto> WithType(this Partial<PackageVersionInfoDto> it)    => it.AddFieldName("type");
         
-        public static Partial<PackageVersionInfoDto> WithType(this Partial<PackageVersionInfoDto> it, Func<Partial<PackageTypeDto>, Partial<PackageTypeDto>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<PackageTypeDto>()));
+        public static Partial<PackageVersionInfoDto> WithType(this Partial<PackageVersionInfoDto> it, Func<Partial<PackageTypeDto>, Partial<PackageTypeDto>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<PackageTypeDto>()));
         
-        public static Partial<PackageVersionInfoDto> WithRepository(this Partial<PackageVersionInfoDto> it)
-            => it.AddFieldName("repository");
+        public static Partial<PackageVersionInfoDto> WithRepository(this Partial<PackageVersionInfoDto> it)    => it.AddFieldName("repository");
         
-        public static Partial<PackageVersionInfoDto> WithName(this Partial<PackageVersionInfoDto> it)
-            => it.AddFieldName("name");
+        public static Partial<PackageVersionInfoDto> WithName(this Partial<PackageVersionInfoDto> it)    => it.AddFieldName("name");
         
-        public static Partial<PackageVersionInfoDto> WithVersion(this Partial<PackageVersionInfoDto> it)
-            => it.AddFieldName("version");
+        public static Partial<PackageVersionInfoDto> WithVersion(this Partial<PackageVersionInfoDto> it)    => it.AddFieldName("version");
         
-        public static Partial<PackageVersionInfoDto> WithTags(this Partial<PackageVersionInfoDto> it)
-            => it.AddFieldName("tags");
+        public static Partial<PackageVersionInfoDto> WithTags(this Partial<PackageVersionInfoDto> it)    => it.AddFieldName("tags");
         
     }
     

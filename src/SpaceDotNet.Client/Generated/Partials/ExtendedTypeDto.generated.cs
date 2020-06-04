@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ExtendedTypeExtensions
+namespace SpaceDotNet.Client.ExtendedTypeDtoExtensions
 {
     public static class ExtendedTypeDtoPartialExtensions
     {
-        public static Partial<ExtendedTypeDto> WithKey(this Partial<ExtendedTypeDto> it)
-            => it.AddFieldName("key");
+        public static Partial<ExtendedTypeDto> WithKey(this Partial<ExtendedTypeDto> it)    => it.AddFieldName("key");
         
-        public static Partial<ExtendedTypeDto> WithDisplayName(this Partial<ExtendedTypeDto> it)
-            => it.AddFieldName("displayName");
+        public static Partial<ExtendedTypeDto> WithDisplayName(this Partial<ExtendedTypeDto> it)    => it.AddFieldName("displayName");
         
     }
     

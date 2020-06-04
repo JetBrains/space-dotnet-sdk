@@ -19,12 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UpdateRequestRevokeRequestExtensions
+namespace SpaceDotNet.Client.UpdateRequestRevokeRequestDtoExtensions
 {
     public static class UpdateRequestRevokeRequestDtoPartialExtensions
     {
-        public static Partial<UpdateRequestRevokeRequestDto> WithTill(this Partial<UpdateRequestRevokeRequestDto> it)
-            => it.AddFieldName("till");
+        public static Partial<UpdateRequestRevokeRequestDto> WithTill(this Partial<UpdateRequestRevokeRequestDto> it)    => it.AddFieldName("till");
         
     }
     

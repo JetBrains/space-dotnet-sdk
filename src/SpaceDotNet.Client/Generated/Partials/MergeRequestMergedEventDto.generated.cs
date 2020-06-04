@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MergeRequestMergedEventExtensions
+namespace SpaceDotNet.Client.MergeRequestMergedEventDtoExtensions
 {
     public static class MergeRequestMergedEventDtoPartialExtensions
     {
-        public static Partial<MergeRequestMergedEventDto> WithRepository(this Partial<MergeRequestMergedEventDto> it)
-            => it.AddFieldName("repository");
+        public static Partial<MergeRequestMergedEventDto> WithRepository(this Partial<MergeRequestMergedEventDto> it)    => it.AddFieldName("repository");
         
-        public static Partial<MergeRequestMergedEventDto> WithSourceBranch(this Partial<MergeRequestMergedEventDto> it)
-            => it.AddFieldName("sourceBranch");
+        public static Partial<MergeRequestMergedEventDto> WithSourceBranch(this Partial<MergeRequestMergedEventDto> it)    => it.AddFieldName("sourceBranch");
         
-        public static Partial<MergeRequestMergedEventDto> WithTargetBranch(this Partial<MergeRequestMergedEventDto> it)
-            => it.AddFieldName("targetBranch");
+        public static Partial<MergeRequestMergedEventDto> WithTargetBranch(this Partial<MergeRequestMergedEventDto> it)    => it.AddFieldName("targetBranch");
         
     }
     

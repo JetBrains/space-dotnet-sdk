@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ImportMessageHistoryRequestExtensions
+namespace SpaceDotNet.Client.ImportMessageHistoryRequestDtoExtensions
 {
     public static class ImportMessageHistoryRequestDtoPartialExtensions
     {
-        public static Partial<ImportMessageHistoryRequestDto> WithMessages(this Partial<ImportMessageHistoryRequestDto> it)
-            => it.AddFieldName("messages");
+        public static Partial<ImportMessageHistoryRequestDto> WithMessages(this Partial<ImportMessageHistoryRequestDto> it)    => it.AddFieldName("messages");
         
-        public static Partial<ImportMessageHistoryRequestDto> WithMessages(this Partial<ImportMessageHistoryRequestDto> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)
-            => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImportDto>()));
+        public static Partial<ImportMessageHistoryRequestDto> WithMessages(this Partial<ImportMessageHistoryRequestDto> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)    => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImportDto>()));
         
     }
     

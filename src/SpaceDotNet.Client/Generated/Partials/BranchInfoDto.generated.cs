@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BranchInfoExtensions
+namespace SpaceDotNet.Client.BranchInfoDtoExtensions
 {
     public static class BranchInfoDtoPartialExtensions
     {
-        public static Partial<BranchInfoDto> WithHead(this Partial<BranchInfoDto> it)
-            => it.AddFieldName("head");
+        public static Partial<BranchInfoDto> WithHead(this Partial<BranchInfoDto> it)    => it.AddFieldName("head");
         
-        public static Partial<BranchInfoDto> WithRef(this Partial<BranchInfoDto> it)
-            => it.AddFieldName("ref");
+        public static Partial<BranchInfoDto> WithRef(this Partial<BranchInfoDto> it)    => it.AddFieldName("ref");
         
     }
     

@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UnfurlDetailsMCExtensions
+namespace SpaceDotNet.Client.UnfurlDetailsMCDtoExtensions
 {
     public static class UnfurlDetailsMCDtoPartialExtensions
     {
-        public static Partial<UnfurlDetailsMCDto> WithMessage(this Partial<UnfurlDetailsMCDto> it)
-            => it.AddFieldName("message");
+        public static Partial<UnfurlDetailsMCDto> WithMessage(this Partial<UnfurlDetailsMCDto> it)    => it.AddFieldName("message");
         
-        public static Partial<UnfurlDetailsMCDto> WithMessage(this Partial<UnfurlDetailsMCDto> it, Func<Partial<MCMessageDto>, Partial<MCMessageDto>> partialBuilder)
-            => it.AddFieldName("message", partialBuilder(new Partial<MCMessageDto>()));
+        public static Partial<UnfurlDetailsMCDto> WithMessage(this Partial<UnfurlDetailsMCDto> it, Func<Partial<MCMessageDto>, Partial<MCMessageDto>> partialBuilder)    => it.AddFieldName("message", partialBuilder(new Partial<MCMessageDto>()));
         
-        public static Partial<UnfurlDetailsMCDto> WithInlineUnfurls(this Partial<UnfurlDetailsMCDto> it)
-            => it.AddFieldName("inlineUnfurls");
+        public static Partial<UnfurlDetailsMCDto> WithInlineUnfurls(this Partial<UnfurlDetailsMCDto> it)    => it.AddFieldName("inlineUnfurls");
         
-        public static Partial<UnfurlDetailsMCDto> WithInlineUnfurls(this Partial<UnfurlDetailsMCDto> it, Func<Partial<AttachmentInfoDto>, Partial<AttachmentInfoDto>> partialBuilder)
-            => it.AddFieldName("inlineUnfurls", partialBuilder(new Partial<AttachmentInfoDto>()));
+        public static Partial<UnfurlDetailsMCDto> WithInlineUnfurls(this Partial<UnfurlDetailsMCDto> it, Func<Partial<AttachmentInfoDto>, Partial<AttachmentInfoDto>> partialBuilder)    => it.AddFieldName("inlineUnfurls", partialBuilder(new Partial<AttachmentInfoDto>()));
         
     }
     

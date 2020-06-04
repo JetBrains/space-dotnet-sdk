@@ -19,21 +19,17 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.FTSBlogCommentExtensions
+namespace SpaceDotNet.Client.FTSBlogCommentDtoExtensions
 {
     public static class FTSBlogCommentDtoPartialExtensions
     {
-        public static Partial<FTSBlogCommentDto> WithAuthor(this Partial<FTSBlogCommentDto> it)
-            => it.AddFieldName("author");
+        public static Partial<FTSBlogCommentDto> WithAuthor(this Partial<FTSBlogCommentDto> it)    => it.AddFieldName("author");
         
-        public static Partial<FTSBlogCommentDto> WithAuthor(this Partial<FTSBlogCommentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
-            => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<FTSBlogCommentDto> WithAuthor(this Partial<FTSBlogCommentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>()));
         
-        public static Partial<FTSBlogCommentDto> WithDate(this Partial<FTSBlogCommentDto> it)
-            => it.AddFieldName("date");
+        public static Partial<FTSBlogCommentDto> WithDate(this Partial<FTSBlogCommentDto> it)    => it.AddFieldName("date");
         
-        public static Partial<FTSBlogCommentDto> WithSnippets(this Partial<FTSBlogCommentDto> it)
-            => it.AddFieldName("snippets");
+        public static Partial<FTSBlogCommentDto> WithSnippets(this Partial<FTSBlogCommentDto> it)    => it.AddFieldName("snippets");
         
     }
     

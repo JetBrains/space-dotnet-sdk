@@ -19,15 +19,13 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.M2DraftEditorAddedItemContentExtensions
+namespace SpaceDotNet.Client.M2DraftEditorAddedItemContentDtoExtensions
 {
     public static class M2DraftEditorAddedItemContentDtoPartialExtensions
     {
-        public static Partial<M2DraftEditorAddedItemContentDto> WithId(this Partial<M2DraftEditorAddedItemContentDto> it)
-            => it.AddFieldName("id");
+        public static Partial<M2DraftEditorAddedItemContentDto> WithId(this Partial<M2DraftEditorAddedItemContentDto> it)    => it.AddFieldName("id");
         
-        public static Partial<M2DraftEditorAddedItemContentDto> WithTitle(this Partial<M2DraftEditorAddedItemContentDto> it)
-            => it.AddFieldName("title");
+        public static Partial<M2DraftEditorAddedItemContentDto> WithTitle(this Partial<M2DraftEditorAddedItemContentDto> it)    => it.AddFieldName("title");
         
     }
     

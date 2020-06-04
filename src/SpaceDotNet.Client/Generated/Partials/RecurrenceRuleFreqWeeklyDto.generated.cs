@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.RecurrenceRuleFreqWeeklyExtensions
+namespace SpaceDotNet.Client.RecurrenceRuleFreqWeeklyDtoExtensions
 {
     public static class RecurrenceRuleFreqWeeklyDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleFreqWeeklyDto> WithWeekdays(this Partial<RecurrenceRuleFreqWeeklyDto> it)
-            => it.AddFieldName("weekdays");
+        public static Partial<RecurrenceRuleFreqWeeklyDto> WithWeekdays(this Partial<RecurrenceRuleFreqWeeklyDto> it)    => it.AddFieldName("weekdays");
         
-        public static Partial<RecurrenceRuleFreqWeeklyDto> WithWeekdays(this Partial<RecurrenceRuleFreqWeeklyDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
-            => it.AddFieldName("weekdays", partialBuilder(new Partial<Weekday>()));
+        public static Partial<RecurrenceRuleFreqWeeklyDto> WithWeekdays(this Partial<RecurrenceRuleFreqWeeklyDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)    => it.AddFieldName("weekdays", partialBuilder(new Partial<Weekday>()));
         
-        public static Partial<RecurrenceRuleFreqWeeklyDto> WithInterval(this Partial<RecurrenceRuleFreqWeeklyDto> it)
-            => it.AddFieldName("interval");
+        public static Partial<RecurrenceRuleFreqWeeklyDto> WithInterval(this Partial<RecurrenceRuleFreqWeeklyDto> it)    => it.AddFieldName("interval");
         
     }
     

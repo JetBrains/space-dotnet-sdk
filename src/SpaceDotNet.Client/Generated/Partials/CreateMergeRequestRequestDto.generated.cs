@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateMergeRequestRequestExtensions
+namespace SpaceDotNet.Client.CreateMergeRequestRequestDtoExtensions
 {
     public static class CreateMergeRequestRequestDtoPartialExtensions
     {
-        public static Partial<CreateMergeRequestRequestDto> WithSourceBranch(this Partial<CreateMergeRequestRequestDto> it)
-            => it.AddFieldName("sourceBranch");
+        public static Partial<CreateMergeRequestRequestDto> WithSourceBranch(this Partial<CreateMergeRequestRequestDto> it)    => it.AddFieldName("sourceBranch");
         
-        public static Partial<CreateMergeRequestRequestDto> WithTargetBranch(this Partial<CreateMergeRequestRequestDto> it)
-            => it.AddFieldName("targetBranch");
+        public static Partial<CreateMergeRequestRequestDto> WithTargetBranch(this Partial<CreateMergeRequestRequestDto> it)    => it.AddFieldName("targetBranch");
         
-        public static Partial<CreateMergeRequestRequestDto> WithTitle(this Partial<CreateMergeRequestRequestDto> it)
-            => it.AddFieldName("title");
+        public static Partial<CreateMergeRequestRequestDto> WithTitle(this Partial<CreateMergeRequestRequestDto> it)    => it.AddFieldName("title");
         
     }
     
