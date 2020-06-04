@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Common;
+using SpaceDotNet.Generator.CodeGeneration.CSharp;
 using SpaceDotNet.Generator.Model.HttpApi;
 using SpaceDotNet.Generator.Model.HttpApi.Visitors.CSharp;
 
@@ -28,13 +29,10 @@ namespace SpaceDotNet.Generator
             Directory.Delete(generatedCodePath, recursive: true);
             
             // Build code
-            var csharpApiModelVisitor = new CSharpApiModelVisitor((fileName, fileContents) =>
-            {
-                var filePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated/" + fileName);
-                Directory.GetParent(filePath).Create();
-                File.WriteAllText(filePath, fileContents);
-            });
-            csharpApiModelVisitor.Visit(apiModel);
+            var csharpApiModelVisitor = new CSharpApiModelGenerator(apiModel);
+            csharpApiModelVisitor.GenerateFiles(
+                new CSharpDocumentWriter(
+                    new DirectoryInfo(Path.GetFullPath("../../../../SpaceDotNet.Client/Generated/"))));
         }
     }
 }
