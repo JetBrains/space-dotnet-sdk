@@ -30,8 +30,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> CreateUploadAsync(CreateUploadRequestDto data)
-            => await _connection.RequestResourceAsync<CreateUploadRequestDto, string>("POST", $"api/http/uploads", data);
+        public async Task<string> CreateUploadAsync(CreateUploadRequest data)
+            => await _connection.RequestResourceAsync<CreateUploadRequest, string>("POST", $"api/http/uploads", data);
     
         public ImageClient Image => new ImageClient(_connection);
         

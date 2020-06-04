@@ -2,7 +2,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Client;
-using SpaceDotNet.Client.TDMemberProfileExtensions;
+using SpaceDotNet.Client.TDMemberProfileDtoExtensions;
 using SpaceDotNet.Common;
 
 namespace SpaceDotNet.Samples.CommandLine

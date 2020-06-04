@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task DeleteAsync(DeleteRequestDto data)
+        public async Task DeleteAsync(DeleteRequest data)
             => await _connection.RequestResourceAsync("POST", $"api/http/emojis/delete", data);
     
         public async Task<bool> ExistsAsync(string emoji)

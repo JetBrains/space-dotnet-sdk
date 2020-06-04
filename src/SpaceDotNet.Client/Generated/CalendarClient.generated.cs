@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a meeting. Note: all-day events are not supported yet.
             /// </summary>
-            public async Task<DTOMeetingDto> CreateMeetingAsync(CreateMeetingRequestDto data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partial = null)
-                => await _connection.RequestResourceAsync<CreateMeetingRequestDto, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", data);
+            public async Task<DTOMeetingDto> CreateMeetingAsync(CreateMeetingRequest data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partial = null)
+                => await _connection.RequestResourceAsync<CreateMeetingRequest, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", data);
         
             /// <summary>
             /// Search meetings by name, location, time period and other parameters. Parameters are applied as 'AND' filters while values in lists of locations, profiles and teams have 'OR' semantics.
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Patch a meeting. Only not-null parameters and not empty diffs will be applied.
             /// </summary>
-            public async Task<DTOMeetingDto> UpdateMeetingAsync(string id, UpdateMeetingRequestDto data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partial = null)
-                => await _connection.RequestResourceAsync<UpdateMeetingRequestDto, DTOMeetingDto>("PATCH", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", data);
+            public async Task<DTOMeetingDto> UpdateMeetingAsync(string id, UpdateMeetingRequest data, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partial = null)
+                => await _connection.RequestResourceAsync<UpdateMeetingRequest, DTOMeetingDto>("PATCH", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", data);
         
             public async Task<DTOMeetingDto> DeleteMeetingAsync(string id, RecurrentModification modificationKind, SpaceTime? targetDate = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>> partial = null)
                 => await _connection.RequestResourceAsync<DTOMeetingDto>("DELETE", $"api/http/calendars/meetings/{id}?targetDate={targetDate?.ToString() ?? "null"}&modificationKind={modificationKind.ToString()}&$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}");

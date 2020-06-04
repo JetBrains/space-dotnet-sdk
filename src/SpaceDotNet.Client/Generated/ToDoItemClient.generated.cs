@@ -30,8 +30,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<TodoItemRecordDto> CreateToDoItemAsync(CreateToDoItemRequestDto data, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>> partial = null)
-            => await _connection.RequestResourceAsync<CreateToDoItemRequestDto, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", data);
+        public async Task<TodoItemRecordDto> CreateToDoItemAsync(CreateToDoItemRequest data, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>> partial = null)
+            => await _connection.RequestResourceAsync<CreateToDoItemRequest, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", data);
     
         public async Task<Batch<TodoItemRecordDto>> GetAllToDoItemsAsync(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<Batch<TodoItemRecordDto>>, Partial<Batch<TodoItemRecordDto>>> partial = null)
             => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TodoItemRecordDto>>()) : Partial<Batch<TodoItemRecordDto>>.Default())}");
@@ -39,7 +39,7 @@ namespace SpaceDotNet.Client
         public IAsyncEnumerable<TodoItemRecordDto> GetAllToDoItemsAsyncEnumerable(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>> partial = null)
             => BatchEnumerator.AllItems(batchSkip => GetAllToDoItemsAsync(skip: batchSkip, top, open, from, till, partial: builder => Partial<Batch<TodoItemRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecordDto>.Default())), skip);
     
-        public async Task UpdateToDoItemAsync(string id, UpdateToDoItemRequestDto data)
+        public async Task UpdateToDoItemAsync(string id, UpdateToDoItemRequest data)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/todo/{id}", data);
     
         public async Task DeleteToDoItemAsync(string id)
