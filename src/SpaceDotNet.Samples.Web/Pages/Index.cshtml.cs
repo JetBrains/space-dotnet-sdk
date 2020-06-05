@@ -224,7 +224,7 @@ namespace SpaceDotNet.Samples.Web.Pages
 
             try
             {
-                // Check # of TODO items resolved
+                // Check # of TO-DO items resolved
                 await foreach (var todoDto in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart.AsSpaceDate(), partial: _ => _
                     .WithStatus()))
                 {

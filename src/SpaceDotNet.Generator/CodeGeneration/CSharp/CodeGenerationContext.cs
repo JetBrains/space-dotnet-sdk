@@ -7,24 +7,32 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
     public class CodeGenerationContext
     {
-        public SortedDictionary<string, ApiEnum> IdToEnumMap  { get; }
-        public SortedDictionary<string, ApiDto> IdToDtoMap  { get; }
+        public ApiModel ApiModel { get; }
         public HashSet<string> PropertiesToSkip { get; }
+        private readonly SortedDictionary<string, ApiEnum> _idToEnumMap;
+        private readonly SortedDictionary<string, ApiDto> _idToDtoMap;
 
-        public CodeGenerationContext(
+        private CodeGenerationContext(
+            ApiModel apiModel,
+            HashSet<string> propertiesToSkip,
             SortedDictionary<string, ApiEnum> idToEnumMap,
-            SortedDictionary<string, ApiDto> idToDtoMap,
-            HashSet<string> propertiesToSkip)
+            SortedDictionary<string, ApiDto> idToDtoMap)
         {
-            IdToEnumMap = idToEnumMap;
-            IdToDtoMap = idToDtoMap;
+            ApiModel = apiModel;
             PropertiesToSkip = propertiesToSkip;
+            _idToEnumMap = idToEnumMap;
+            _idToDtoMap = idToDtoMap;
         }
 
         public static CodeGenerationContext CreateFrom(ApiModel apiModel)
         {
 #pragma warning disable 8619
             return new CodeGenerationContext(
+                apiModel: apiModel, 
+                propertiesToSkip: new HashSet<string>
+                {
+                    "TDMemberProfileDto.Logins"
+                },
                 idToEnumMap: new SortedDictionary<string, ApiEnum>(
                     apiModel.Enums.ToImmutableSortedDictionary(
                         it => it.Id,
@@ -34,12 +42,15 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     apiModel.Dto.ToImmutableSortedDictionary(
                         it => it.Id,
                         it => it)!,
-                    StringComparer.OrdinalIgnoreCase), 
-                propertiesToSkip: new HashSet<string>
-                {
-                    "TDMemberProfileDto.Logins"
-                });
+                    StringComparer.OrdinalIgnoreCase));
 #pragma warning restore 8619
         }
+
+        public IEnumerable<ApiResource> GetResources() => ApiModel.Resources;
+        public IEnumerable<ApiEnum> GetEnums() => _idToEnumMap.Values;
+        public bool TryGetEnum(string id, out ApiEnum? apiEnum) => _idToEnumMap.TryGetValue(id, out apiEnum);
+        public IEnumerable<ApiDto> GetDtos() => _idToDtoMap.Values;
+        public bool TryGetDto(string id, out ApiDto? apiDto) => _idToDtoMap.TryGetValue(id, out apiDto);
+        public void AddDto(string id, ApiDto apiDto) => _idToDtoMap[id] = apiDto;
     }
 }

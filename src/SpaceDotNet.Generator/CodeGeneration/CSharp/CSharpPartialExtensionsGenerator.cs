@@ -94,16 +94,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     return GenerateCSharpTypeFrom(apiFieldTypeArray.ElementType);
                 
                 case ApiFieldType.Dto apiFieldTypeDto:
-                    if (apiFieldTypeDto.DtoRef?.Id != null && _context.IdToDtoMap.TryGetValue(apiFieldTypeDto.DtoRef.Id, out var apiDto))
+                    if (apiFieldTypeDto.DtoRef?.Id != null && _context.TryGetDto(apiFieldTypeDto.DtoRef.Id, out var apiDto))
                     {
-                        return apiDto.ToCSharpClassName();
+                        return apiDto!.ToCSharpClassName();
                     }
                     break;
                 
                 case ApiFieldType.Enum apiFieldTypeEnum:
-                    if (apiFieldTypeEnum.EnumRef?.Id != null && _context.IdToEnumMap.TryGetValue(apiFieldTypeEnum.EnumRef.Id, out var apiEnum))
+                    if (apiFieldTypeEnum.EnumRef?.Id != null && _context.TryGetEnum(apiFieldTypeEnum.EnumRef.Id, out var apiEnum))
                     {
-                        return apiEnum.ToCSharpClassName();
+                        return apiEnum!.ToCSharpClassName();
                     }
                     break;
                 
@@ -177,9 +177,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     return apiFieldTypePrimitive.ToCSharpPrimitiveType()!;
         
                 case ApiFieldType.Ref apiFieldTypeReference:
-                    if (apiFieldTypeReference.DtoRef?.Id != null && _context.IdToDtoMap.TryGetValue(apiFieldTypeReference.DtoRef.Id, out var apiReferenceDto))
+                    if (apiFieldTypeReference.DtoRef?.Id != null && _context.TryGetDto(apiFieldTypeReference.DtoRef.Id, out var apiReferenceDto))
                     {
-                        return apiReferenceDto.ToCSharpClassName();
+                        return apiReferenceDto!.ToCSharpClassName();
                     }
                     break;
             }

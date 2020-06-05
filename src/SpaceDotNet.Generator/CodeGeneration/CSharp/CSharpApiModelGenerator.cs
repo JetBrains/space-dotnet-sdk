@@ -10,23 +10,21 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
     // TODO REFACTORING Split this into a couple classes (Dto/enum/api)
     public class CSharpApiModelGenerator
     {
-        private readonly ApiModel _apiModel;
         private readonly CodeGenerationContext _codeGenerationContext;
         
-        public CSharpApiModelGenerator(ApiModel apiModel)
+        public CSharpApiModelGenerator(CodeGenerationContext codeGenerationContext)
         {
-            _apiModel = apiModel;
-            _codeGenerationContext = CodeGenerationContext.CreateFrom(_apiModel);
+            _codeGenerationContext = codeGenerationContext;
         }
         
         public void GenerateFiles(IDocumentWriter documentWriter)
         {
             // Enrich Dto's with resource request body types
             var apiEndpointDtoEnricher = new CSharpApiEndpointDtoEnricher();
-            apiEndpointDtoEnricher.Enrich(_codeGenerationContext, _apiModel.Resources);
+            apiEndpointDtoEnricher.Enrich(_codeGenerationContext);
             
             // API clients/endpoints
-            foreach (var apiResource in _apiModel.Resources)
+            foreach (var apiResource in _codeGenerationContext.GetResources())
             {
                 var document = new CSharpDocument();
                 document.AppendLine(
@@ -38,7 +36,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             }
             
             // Enums
-            foreach (var apiEnum in _apiModel.Enums)
+            foreach (var apiEnum in _codeGenerationContext.GetEnums())
             {
                 var document = new CSharpDocument();
                 document.AppendLine(
@@ -50,7 +48,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             }
             
             // Dtos
-            foreach (var apiDto in _codeGenerationContext.IdToDtoMap.Values)
+            foreach (var apiDto in _codeGenerationContext.GetDtos())
             {
                 var document = new CSharpDocument();
                 document.AppendLine(
@@ -63,7 +61,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             
             // Partial extensions
             var partialExtensionsVisitor = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
-            foreach (var apiDto in _codeGenerationContext.IdToDtoMap.Values)
+            foreach (var apiDto in _codeGenerationContext.GetDtos())
             {
                 var document = new CSharpDocument(apiDto.ToCSharpClassName() + "Extensions");
                 document.AppendLine(
@@ -135,18 +133,18 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         
             var dtoHierarchy = new List<string>();
             var dtoHierarchyFieldNames = new List<string>();
-            if (apiDto.Extends != null && _codeGenerationContext.IdToDtoMap.TryGetValue(apiDto.Extends.Id, out var apiDtoExtends))
+            if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
             {
-                dtoHierarchy.Add(apiDtoExtends.ToCSharpClassName());
-                dtoHierarchyFieldNames.AddRange(apiDtoExtends.Fields.Select(it => it.Field.Name));
+                dtoHierarchy.Add(apiDtoExtends!.ToCSharpClassName());
+                dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
             }
             if (apiDto.Implements != null)
             {
                 foreach (var dtoImplements in apiDto.Implements)
                 {
-                    if (_codeGenerationContext.IdToDtoMap.TryGetValue(dtoImplements.Id, out var apiDtoImplements))
+                    if (_codeGenerationContext.TryGetDto(dtoImplements.Id, out var apiDtoImplements))
                     {
-                        dtoHierarchy.Add(apiDtoImplements.ToCSharpClassName());
+                        dtoHierarchy.Add(apiDtoImplements!.ToCSharpClassName());
                     }
                 }
             }
@@ -178,9 +176,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             {
                 foreach (var dtoReference in apiDto.Implements)
                 {
-                    if (_codeGenerationContext.IdToDtoMap.TryGetValue(dtoReference.Id, out var apiDtoImplements))
+                    if (_codeGenerationContext.TryGetDto(dtoReference.Id, out var apiDtoImplements))
                     {
-                        foreach (var apiDtoField in apiDtoImplements.Fields)
+                        foreach (var apiDtoField in apiDtoImplements!.Fields)
                         {
                             builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDtoField.Field)));
                         }

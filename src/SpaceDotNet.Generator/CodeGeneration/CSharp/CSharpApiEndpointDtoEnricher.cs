@@ -8,9 +8,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
     // TODO REFACTOR rename to proper use once context flows
     public class CSharpApiEndpointDtoEnricher
     {
-        public void Enrich(CodeGenerationContext context, IEnumerable<ApiResource> apiResources)
+        public void Enrich(CodeGenerationContext context)
         {
-            foreach (var apiResource in apiResources)
+            foreach (var apiResource in context.ApiModel.Resources)
             {
                 foreach (var apiEndpoint in apiResource.Endpoints)
                 {
@@ -21,21 +21,21 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                         var classIdForRequestBody = typeNameForRequestBody.ToLowerInvariant();
                         
                         // See if we have seen the anonymous class before (and if not, add it)
-                        if (!context.IdToDtoMap.TryGetValue(classIdForRequestBody, out var requestBodyClass))
+                        if (!context.TryGetDto(classIdForRequestBody, out var requestBodyClass))
                         {
                             requestBodyClass = new ApiDto
                             {
-                                Id = typeNameForRequestBody.ToLowerInvariant(),
+                                Id = classIdForRequestBody,
                                 Name = typeNameForRequestBody,
                                 Fields = apiEndpoint.RequestBody.Fields.Select(it => new ApiDtoField { Field = it }).ToList()
                             };
         
-                            context.IdToDtoMap[classIdForRequestBody] = requestBodyClass;
+                            context.AddDto(classIdForRequestBody, requestBodyClass);
                         }
                     }
                 }
 
-                Enrich(context, apiResource.NestedResources);
+                Enrich(context);
             }
         }
     }

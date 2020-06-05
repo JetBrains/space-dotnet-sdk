@@ -31,7 +31,8 @@ namespace SpaceDotNet.Generator
             }
 
             // Build code
-            var csharpApiModelVisitor = new CSharpApiModelGenerator(apiModel);
+            var csharpApiModelVisitor = new CSharpApiModelGenerator(
+                CodeGenerationContext.CreateFrom(apiModel));
             csharpApiModelVisitor.GenerateFiles(
                 new CSharpDocumentWriter(
                     new DirectoryInfo(Path.GetFullPath("../../../../SpaceDotNet.Client/Generated/"))));
