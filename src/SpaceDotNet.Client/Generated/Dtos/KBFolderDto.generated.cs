@@ -23,36 +23,52 @@ namespace SpaceDotNet.Client
 {
     public sealed class KBFolderDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBFolderDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBFolderDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(KBFolderDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<KBFolderDto?> _parent = new PropertyValue<KBFolderDto?>(nameof(KBFolderDto), nameof(Parent));
+        
         [JsonPropertyName("parent")]
-        public KBFolderDto? Parent { get; set; }
+        public KBFolderDto? Parent { get { return _parent.GetValue(); } set { _parent.SetValue(value); } }
     
+        private PropertyValue<List<KBFolderDto>> _subfolders = new PropertyValue<List<KBFolderDto>>(nameof(KBFolderDto), nameof(Subfolders));
+        
         [Required]
         [JsonPropertyName("subfolders")]
-        public List<KBFolderDto> Subfolders { get; set; }
+        public List<KBFolderDto> Subfolders { get { return _subfolders.GetValue(); } set { _subfolders.SetValue(value); } }
     
+        private PropertyValue<List<KBArticleDto>> _articles = new PropertyValue<List<KBArticleDto>>(nameof(KBFolderDto), nameof(Articles));
+        
         [Required]
         [JsonPropertyName("articles")]
-        public List<KBArticleDto> Articles { get; set; }
+        public List<KBArticleDto> Articles { get { return _articles.GetValue(); } set { _articles.SetValue(value); } }
     
+        private PropertyValue<KBBookDto> _book = new PropertyValue<KBBookDto>(nameof(KBFolderDto), nameof(Book));
+        
         [Required]
         [JsonPropertyName("book")]
-        public KBBookDto Book { get; set; }
+        public KBBookDto Book { get { return _book.GetValue(); } set { _book.SetValue(value); } }
     
+        private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBFolderDto), nameof(Alias));
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
+        public string Alias { get { return _alias.GetValue(); } set { _alias.SetValue(value); } }
     
     }
     

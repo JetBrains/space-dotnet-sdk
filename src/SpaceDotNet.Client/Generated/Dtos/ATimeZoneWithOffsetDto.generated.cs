@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class ATimeZoneWithOffsetDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ATimeZoneWithOffsetDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<int> _offset = new PropertyValue<int>(nameof(ATimeZoneWithOffsetDto), nameof(Offset));
+        
         [Required]
         [JsonPropertyName("offset")]
-        public int Offset { get; set; }
+        public int Offset { get { return _offset.GetValue(); } set { _offset.SetValue(value); } }
     
     }
     

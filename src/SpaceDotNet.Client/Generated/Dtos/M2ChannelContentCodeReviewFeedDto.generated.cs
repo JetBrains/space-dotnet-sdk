@@ -27,25 +27,37 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _codeReviewId = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewFeedDto), nameof(CodeReviewId));
+        
         [Required]
         [JsonPropertyName("codeReviewId")]
-        public string CodeReviewId { get; set; }
+        public string CodeReviewId { get { return _codeReviewId.GetValue(); } set { _codeReviewId.SetValue(value); } }
     
+        private PropertyValue<ChannelSpecificDefaultsDto> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto>(nameof(M2ChannelContentCodeReviewFeedDto), nameof(NotificationDefaults));
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+        public ChannelSpecificDefaultsDto NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
     
+        private PropertyValue<CodeReviewRecordDto?> _codeReview = new PropertyValue<CodeReviewRecordDto?>(nameof(M2ChannelContentCodeReviewFeedDto), nameof(CodeReview));
+        
         [JsonPropertyName("codeReview")]
-        public CodeReviewRecordDto? CodeReview { get; set; }
+        public CodeReviewRecordDto? CodeReview { get { return _codeReview.GetValue(); } set { _codeReview.SetValue(value); } }
     
+        private PropertyValue<CodeReviewParticipantsDto?> _participants = new PropertyValue<CodeReviewParticipantsDto?>(nameof(M2ChannelContentCodeReviewFeedDto), nameof(Participants));
+        
         [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto? Participants { get; set; }
+        public CodeReviewParticipantsDto? Participants { get { return _participants.GetValue(); } set { _participants.SetValue(value); } }
     
+        private PropertyValue<CodeReviewPendingMessageCounterDto?> _pendingMessageCounter = new PropertyValue<CodeReviewPendingMessageCounterDto?>(nameof(M2ChannelContentCodeReviewFeedDto), nameof(PendingMessageCounter));
+        
         [JsonPropertyName("pendingMessageCounter")]
-        public CodeReviewPendingMessageCounterDto? PendingMessageCounter { get; set; }
+        public CodeReviewPendingMessageCounterDto? PendingMessageCounter { get { return _pendingMessageCounter.GetValue(); } set { _pendingMessageCounter.SetValue(value); } }
     
+        private PropertyValue<PRProjectDto?> _project = new PropertyValue<PRProjectDto?>(nameof(M2ChannelContentCodeReviewFeedDto), nameof(Project));
+        
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get; set; }
+        public PRProjectDto? Project { get { return _project.GetValue(); } set { _project.SetValue(value); } }
     
     }
     

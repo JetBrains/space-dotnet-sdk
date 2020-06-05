@@ -27,13 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<TDLocationDto> _location = new PropertyValue<TDLocationDto>(nameof(M2ChannelContentLocationDto), nameof(Location));
+        
         [Required]
         [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
+        public TDLocationDto Location { get { return _location.GetValue(); } set { _location.SetValue(value); } }
     
+        private PropertyValue<ChannelSpecificDefaultsDto> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto>(nameof(M2ChannelContentLocationDto), nameof(NotificationDefaults));
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+        public ChannelSpecificDefaultsDto NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
     
     }
     

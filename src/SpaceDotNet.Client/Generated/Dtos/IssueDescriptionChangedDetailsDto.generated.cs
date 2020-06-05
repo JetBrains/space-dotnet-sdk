@@ -27,11 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string?> _oldDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetailsDto), nameof(OldDescription));
+        
         [JsonPropertyName("oldDescription")]
-        public string? OldDescription { get; set; }
+        public string? OldDescription { get { return _oldDescription.GetValue(); } set { _oldDescription.SetValue(value); } }
     
+        private PropertyValue<string?> _newDescription = new PropertyValue<string?>(nameof(IssueDescriptionChangedDetailsDto), nameof(NewDescription));
+        
         [JsonPropertyName("newDescription")]
-        public string? NewDescription { get; set; }
+        public string? NewDescription { get { return _newDescription.GetValue(); } set { _newDescription.SetValue(value); } }
     
     }
     

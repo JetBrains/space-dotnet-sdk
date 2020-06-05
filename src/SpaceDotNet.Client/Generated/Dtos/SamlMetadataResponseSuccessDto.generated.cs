@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class SamlMetadataResponseSuccessDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
+        private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccessDto), nameof(Metadata));
+        
         [Required]
         [JsonPropertyName("metadata")]
-        public string Metadata { get; set; }
+        public string Metadata { get { return _metadata.GetValue(); } set { _metadata.SetValue(value); } }
     
     }
     

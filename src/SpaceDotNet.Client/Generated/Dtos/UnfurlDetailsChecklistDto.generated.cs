@@ -27,9 +27,11 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<ChecklistDto> _checklist = new PropertyValue<ChecklistDto>(nameof(UnfurlDetailsChecklistDto), nameof(Checklist));
+        
         [Required]
         [JsonPropertyName("checklist")]
-        public ChecklistDto Checklist { get; set; }
+        public ChecklistDto Checklist { get { return _checklist.GetValue(); } set { _checklist.SetValue(value); } }
     
     }
     

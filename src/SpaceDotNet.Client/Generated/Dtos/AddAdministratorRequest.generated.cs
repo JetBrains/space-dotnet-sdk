@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class AddAdministratorRequest
     {
+        private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(AddAdministratorRequest), nameof(ProfileId));
+        
         [Required]
         [JsonPropertyName("profileId")]
-        public string ProfileId { get; set; }
+        public string ProfileId { get { return _profileId.GetValue(); } set { _profileId.SetValue(value); } }
     
     }
     

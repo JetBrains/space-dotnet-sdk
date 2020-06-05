@@ -23,21 +23,31 @@ namespace SpaceDotNet.Client
 {
     public class CreateInvitationRequest
     {
+        private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(CreateInvitationRequest), nameof(InviteeEmail));
+        
         [Required]
         [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail { get; set; }
+        public string InviteeEmail { get { return _inviteeEmail.GetValue(); } set { _inviteeEmail.SetValue(value); } }
     
+        private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(CreateInvitationRequest), nameof(InviteeFirstName));
+        
         [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get; set; }
+        public string? InviteeFirstName { get { return _inviteeFirstName.GetValue(); } set { _inviteeFirstName.SetValue(value); } }
     
+        private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(CreateInvitationRequest), nameof(InviteeLastName));
+        
         [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get; set; }
+        public string? InviteeLastName { get { return _inviteeLastName.GetValue(); } set { _inviteeLastName.SetValue(value); } }
     
+        private PropertyValue<TDTeamDto?> _team = new PropertyValue<TDTeamDto?>(nameof(CreateInvitationRequest), nameof(Team));
+        
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
+        public TDTeamDto? Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
     
+        private PropertyValue<TDRoleDto?> _role = new PropertyValue<TDRoleDto?>(nameof(CreateInvitationRequest), nameof(Role));
+        
         [JsonPropertyName("role")]
-        public TDRoleDto? Role { get; set; }
+        public TDRoleDto? Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
     
     }
     

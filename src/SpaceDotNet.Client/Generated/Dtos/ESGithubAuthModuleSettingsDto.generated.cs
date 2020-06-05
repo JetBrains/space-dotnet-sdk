@@ -24,25 +24,35 @@ namespace SpaceDotNet.Client
     public sealed class ESGithubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
+        private PropertyValue<string> _githubUrl = new PropertyValue<string>(nameof(ESGithubAuthModuleSettingsDto), nameof(GithubUrl));
+        
         [Required]
         [JsonPropertyName("githubUrl")]
-        public string GithubUrl { get; set; }
+        public string GithubUrl { get { return _githubUrl.GetValue(); } set { _githubUrl.SetValue(value); } }
     
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGithubAuthModuleSettingsDto), nameof(ClientId));
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
+        public string ClientId { get { return _clientId.GetValue(); } set { _clientId.SetValue(value); } }
     
+        private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGithubAuthModuleSettingsDto), nameof(ClientSecret));
+        
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
+        public string ClientSecret { get { return _clientSecret.GetValue(); } set { _clientSecret.SetValue(value); } }
     
+        private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGithubAuthModuleSettingsDto), nameof(RegisterNewUsers));
+        
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
+        public bool RegisterNewUsers { get { return _registerNewUsers.GetValue(); } set { _registerNewUsers.SetValue(value); } }
     
+        private PropertyValue<List<string>> _organizations = new PropertyValue<List<string>>(nameof(ESGithubAuthModuleSettingsDto), nameof(Organizations));
+        
         [Required]
         [JsonPropertyName("organizations")]
-        public List<string> Organizations { get; set; }
+        public List<string> Organizations { get { return _organizations.GetValue(); } set { _organizations.SetValue(value); } }
     
     }
     

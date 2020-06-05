@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class MeetingOrganizerExternalUserDto
          : MeetingOrganizerDto, IClassNameConvertible
     {
+        private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUserDto), nameof(Email));
+        
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get; set; }
+        public string Email { get { return _email.GetValue(); } set { _email.SetValue(value); } }
     
     }
     

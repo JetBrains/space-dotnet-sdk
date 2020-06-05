@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateVcsPasswordRequest
     {
+        private PropertyValue<string> _password = new PropertyValue<string>(nameof(UpdateVcsPasswordRequest), nameof(Password));
+        
         [Required]
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        public string Password { get { return _password.GetValue(); } set { _password.SetValue(value); } }
     
     }
     

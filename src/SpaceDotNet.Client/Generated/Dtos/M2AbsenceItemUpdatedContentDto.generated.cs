@@ -27,24 +27,36 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<AbsenceRecordDto> _absence = new PropertyValue<AbsenceRecordDto>(nameof(M2AbsenceItemUpdatedContentDto), nameof(Absence));
+        
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
+        public AbsenceRecordDto Absence { get { return _absence.GetValue(); } set { _absence.SetValue(value); } }
     
+        private PropertyValue<Modification<AbsenceReasonRecordDto>?> _reason = new PropertyValue<Modification<AbsenceReasonRecordDto>?>(nameof(M2AbsenceItemUpdatedContentDto), nameof(Reason));
+        
         [JsonPropertyName("reason")]
-        public Modification<AbsenceReasonRecordDto>? Reason { get; set; }
+        public Modification<AbsenceReasonRecordDto>? Reason { get { return _reason.GetValue(); } set { _reason.SetValue(value); } }
     
+        private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(M2AbsenceItemUpdatedContentDto), nameof(Description));
+        
         [JsonPropertyName("description")]
-        public Modification<string>? Description { get; set; }
+        public Modification<string>? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
     
+        private PropertyValue<Modification<SpaceDate>?> _since = new PropertyValue<Modification<SpaceDate>?>(nameof(M2AbsenceItemUpdatedContentDto), nameof(Since));
+        
         [JsonPropertyName("since")]
-        public Modification<SpaceDate>? Since { get; set; }
+        public Modification<SpaceDate>? Since { get { return _since.GetValue(); } set { _since.SetValue(value); } }
     
+        private PropertyValue<Modification<SpaceDate>?> _till = new PropertyValue<Modification<SpaceDate>?>(nameof(M2AbsenceItemUpdatedContentDto), nameof(Till));
+        
         [JsonPropertyName("till")]
-        public Modification<SpaceDate>? Till { get; set; }
+        public Modification<SpaceDate>? Till { get { return _till.GetValue(); } set { _till.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto?> _by = new PropertyValue<TDMemberProfileDto?>(nameof(M2AbsenceItemUpdatedContentDto), nameof(By));
+        
         [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get; set; }
+        public TDMemberProfileDto? By { get { return _by.GetValue(); } set { _by.SetValue(value); } }
     
     }
     

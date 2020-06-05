@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client
 {
     public sealed class PermissionComparisonEntryDTODto
     {
+        private PropertyValue<int> _principalIndex = new PropertyValue<int>(nameof(PermissionComparisonEntryDTODto), nameof(PrincipalIndex));
+        
         [Required]
         [JsonPropertyName("principalIndex")]
-        public int PrincipalIndex { get; set; }
+        public int PrincipalIndex { get { return _principalIndex.GetValue(); } set { _principalIndex.SetValue(value); } }
     
+        private PropertyValue<int> _rightIndex = new PropertyValue<int>(nameof(PermissionComparisonEntryDTODto), nameof(RightIndex));
+        
         [Required]
         [JsonPropertyName("rightIndex")]
-        public int RightIndex { get; set; }
+        public int RightIndex { get { return _rightIndex.GetValue(); } set { _rightIndex.SetValue(value); } }
     
+        private PropertyValue<bool> _allTargets1 = new PropertyValue<bool>(nameof(PermissionComparisonEntryDTODto), nameof(AllTargets1));
+        
         [Required]
         [JsonPropertyName("allTargets1")]
-        public bool AllTargets1 { get; set; }
+        public bool AllTargets1 { get { return _allTargets1.GetValue(); } set { _allTargets1.SetValue(value); } }
     
+        private PropertyValue<List<int>> _targetIndices1 = new PropertyValue<List<int>>(nameof(PermissionComparisonEntryDTODto), nameof(TargetIndices1));
+        
         [Required]
         [JsonPropertyName("targetIndices1")]
-        public List<int> TargetIndices1 { get; set; }
+        public List<int> TargetIndices1 { get { return _targetIndices1.GetValue(); } set { _targetIndices1.SetValue(value); } }
     
+        private PropertyValue<bool> _allTargets2 = new PropertyValue<bool>(nameof(PermissionComparisonEntryDTODto), nameof(AllTargets2));
+        
         [Required]
         [JsonPropertyName("allTargets2")]
-        public bool AllTargets2 { get; set; }
+        public bool AllTargets2 { get { return _allTargets2.GetValue(); } set { _allTargets2.SetValue(value); } }
     
+        private PropertyValue<List<int>> _targetIndices2 = new PropertyValue<List<int>>(nameof(PermissionComparisonEntryDTODto), nameof(TargetIndices2));
+        
         [Required]
         [JsonPropertyName("targetIndices2")]
-        public List<int> TargetIndices2 { get; set; }
+        public List<int> TargetIndices2 { get { return _targetIndices2.GetValue(); } set { _targetIndices2.SetValue(value); } }
     
     }
     

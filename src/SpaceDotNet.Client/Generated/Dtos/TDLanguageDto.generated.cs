@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client
 {
     public sealed class TDLanguageDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLanguageDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _code = new PropertyValue<string>(nameof(TDLanguageDto), nameof(Code));
+        
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }
+        public string Code { get { return _code.GetValue(); } set { _code.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLanguageDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _nativeName = new PropertyValue<string>(nameof(TDLanguageDto), nameof(NativeName));
+        
         [Required]
         [JsonPropertyName("nativeName")]
-        public string NativeName { get; set; }
+        public string NativeName { get { return _nativeName.GetValue(); } set { _nativeName.SetValue(value); } }
     
+        private PropertyValue<string> _firstNameTitle = new PropertyValue<string>(nameof(TDLanguageDto), nameof(FirstNameTitle));
+        
         [Required]
         [JsonPropertyName("firstNameTitle")]
-        public string FirstNameTitle { get; set; }
+        public string FirstNameTitle { get { return _firstNameTitle.GetValue(); } set { _firstNameTitle.SetValue(value); } }
     
+        private PropertyValue<string> _lastNameTitle = new PropertyValue<string>(nameof(TDLanguageDto), nameof(LastNameTitle));
+        
         [Required]
         [JsonPropertyName("lastNameTitle")]
-        public string LastNameTitle { get; set; }
+        public string LastNameTitle { get { return _lastNameTitle.GetValue(); } set { _lastNameTitle.SetValue(value); } }
     
     }
     

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Client;
@@ -27,6 +28,22 @@ namespace SpaceDotNet.Samples.CommandLine
                 .WithName()))
             {
                 Console.WriteLine($"{profile.Name.FirstName} {profile.Name.LastName}");
+            }
+            
+            // Get profiles with their Id. Accessing another property (such as name) will throw.
+            var firstProfile = await teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
+                .WithId()).FirstOrDefaultAsync();
+            try
+            {
+                // This will fail...
+                Console.WriteLine($"{firstProfile.Name.FirstName} {firstProfile.Name.LastName}");
+            }
+            catch (PropertyAccessException e)
+            {
+                Console.WriteLine($"The Space API client tells us which partial query should be added to access {e.PropertyName}:");
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(e.Message);
+                Console.ResetColor();
             }
         }
     }

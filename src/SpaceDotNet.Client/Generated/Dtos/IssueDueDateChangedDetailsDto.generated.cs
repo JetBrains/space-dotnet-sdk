@@ -27,11 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<SpaceDate?> _oldDueDate = new PropertyValue<SpaceDate?>(nameof(IssueDueDateChangedDetailsDto), nameof(OldDueDate));
+        
         [JsonPropertyName("oldDueDate")]
-        public SpaceDate? OldDueDate { get; set; }
+        public SpaceDate? OldDueDate { get { return _oldDueDate.GetValue(); } set { _oldDueDate.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _newDueDate = new PropertyValue<SpaceDate?>(nameof(IssueDueDateChangedDetailsDto), nameof(NewDueDate));
+        
         [JsonPropertyName("newDueDate")]
-        public SpaceDate? NewDueDate { get; set; }
+        public SpaceDate? NewDueDate { get { return _newDueDate.GetValue(); } set { _newDueDate.SetValue(value); } }
     
     }
     

@@ -23,34 +23,50 @@ namespace SpaceDotNet.Client
 {
     public sealed class MeCodeReviewParticipantRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeCodeReviewParticipantRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<CodeReviewParticipantRole?> _role = new PropertyValue<CodeReviewParticipantRole?>(nameof(MeCodeReviewParticipantRecordDto), nameof(Role));
+        
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole? Role { get; set; }
+        public CodeReviewParticipantRole? Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
     
+        private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(MeCodeReviewParticipantRecordDto), nameof(TheirTurn));
+        
         [JsonPropertyName("theirTurn")]
-        public bool? TheirTurn { get; set; }
+        public bool? TheirTurn { get { return _theirTurn.GetValue(); } set { _theirTurn.SetValue(value); } }
     
+        private PropertyValue<ReviewerState?> _reviewerState = new PropertyValue<ReviewerState?>(nameof(MeCodeReviewParticipantRecordDto), nameof(ReviewerState));
+        
         [JsonPropertyName("reviewerState")]
-        public ReviewerState? ReviewerState { get; set; }
+        public ReviewerState? ReviewerState { get { return _reviewerState.GetValue(); } set { _reviewerState.SetValue(value); } }
     
+        private PropertyValue<CodeReviewRecordDto> _review = new PropertyValue<CodeReviewRecordDto>(nameof(MeCodeReviewParticipantRecordDto), nameof(Review));
+        
         [Required]
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get; set; }
+        public CodeReviewRecordDto Review { get { return _review.GetValue(); } set { _review.SetValue(value); } }
     
+        private PropertyValue<CodeReviewParticipantsDto> _participants = new PropertyValue<CodeReviewParticipantsDto>(nameof(MeCodeReviewParticipantRecordDto), nameof(Participants));
+        
         [Required]
         [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto Participants { get; set; }
+        public CodeReviewParticipantsDto Participants { get { return _participants.GetValue(); } set { _participants.SetValue(value); } }
     
+        private PropertyValue<CodeReviewPendingMessageCounterDto> _pendingCounter = new PropertyValue<CodeReviewPendingMessageCounterDto>(nameof(MeCodeReviewParticipantRecordDto), nameof(PendingCounter));
+        
         [Required]
         [JsonPropertyName("pendingCounter")]
-        public CodeReviewPendingMessageCounterDto PendingCounter { get; set; }
+        public CodeReviewPendingMessageCounterDto PendingCounter { get { return _pendingCounter.GetValue(); } set { _pendingCounter.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeCodeReviewParticipantRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
     }
     

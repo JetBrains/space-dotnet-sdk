@@ -27,17 +27,23 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileAttachmentDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(FileAttachmentDto), nameof(SizeBytes));
+        
         [Required]
         [JsonPropertyName("sizeBytes")]
-        public long SizeBytes { get; set; }
+        public long SizeBytes { get { return _sizeBytes.GetValue(); } set { _sizeBytes.SetValue(value); } }
     
+        private PropertyValue<string> _filename = new PropertyValue<string>(nameof(FileAttachmentDto), nameof(Filename));
+        
         [Required]
         [JsonPropertyName("filename")]
-        public string Filename { get; set; }
+        public string Filename { get { return _filename.GetValue(); } set { _filename.SetValue(value); } }
     
     }
     

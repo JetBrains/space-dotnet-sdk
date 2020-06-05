@@ -27,9 +27,11 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<List<MCElementDto>> _elements = new PropertyValue<List<MCElementDto>>(nameof(MCGroupDto), nameof(Elements));
+        
         [Required]
         [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }
+        public List<MCElementDto> Elements { get { return _elements.GetValue(); } set { _elements.SetValue(value); } }
     
     }
     

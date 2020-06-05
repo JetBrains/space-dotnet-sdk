@@ -23,26 +23,38 @@ namespace SpaceDotNet.Client
 {
     public sealed class DTOLimitDto
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(DTOLimitDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<LimitUnit> _unit = new PropertyValue<LimitUnit>(nameof(DTOLimitDto), nameof(Unit));
+        
         [Required]
         [JsonPropertyName("unit")]
-        public LimitUnit Unit { get; set; }
+        public LimitUnit Unit { get { return _unit.GetValue(); } set { _unit.SetValue(value); } }
     
+        private PropertyValue<long> _estimate = new PropertyValue<long>(nameof(DTOLimitDto), nameof(Estimate));
+        
         [Required]
         [JsonPropertyName("estimate")]
-        public long Estimate { get; set; }
+        public long Estimate { get { return _estimate.GetValue(); } set { _estimate.SetValue(value); } }
     
+        private PropertyValue<long?> _specificEstimate = new PropertyValue<long?>(nameof(DTOLimitDto), nameof(SpecificEstimate));
+        
         [JsonPropertyName("specificEstimate")]
-        public long? SpecificEstimate { get; set; }
+        public long? SpecificEstimate { get { return _specificEstimate.GetValue(); } set { _specificEstimate.SetValue(value); } }
     
+        private PropertyValue<long?> _softCap = new PropertyValue<long?>(nameof(DTOLimitDto), nameof(SoftCap));
+        
         [JsonPropertyName("softCap")]
-        public long? SoftCap { get; set; }
+        public long? SoftCap { get { return _softCap.GetValue(); } set { _softCap.SetValue(value); } }
     
+        private PropertyValue<long?> _hardCap = new PropertyValue<long?>(nameof(DTOLimitDto), nameof(HardCap));
+        
         [JsonPropertyName("hardCap")]
-        public long? HardCap { get; set; }
+        public long? HardCap { get { return _hardCap.GetValue(); } set { _hardCap.SetValue(value); } }
     
     }
     

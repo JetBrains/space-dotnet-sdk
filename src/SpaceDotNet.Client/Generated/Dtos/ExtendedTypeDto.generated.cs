@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class ExtendedTypeDto
     {
+        private PropertyValue<string> _key = new PropertyValue<string>(nameof(ExtendedTypeDto), nameof(Key));
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
+        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
     
+        private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(ExtendedTypeDto), nameof(DisplayName));
+        
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
+        public string DisplayName { get { return _displayName.GetValue(); } set { _displayName.SetValue(value); } }
     
     }
     

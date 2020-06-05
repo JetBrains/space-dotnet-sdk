@@ -27,26 +27,38 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImageAttachmentDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ImageAttachmentDto), nameof(Name));
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string? Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<int> _width = new PropertyValue<int>(nameof(ImageAttachmentDto), nameof(Width));
+        
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }
+        public int Width { get { return _width.GetValue(); } set { _width.SetValue(value); } }
     
+        private PropertyValue<int> _height = new PropertyValue<int>(nameof(ImageAttachmentDto), nameof(Height));
+        
         [Required]
         [JsonPropertyName("height")]
-        public int Height { get; set; }
+        public int Height { get { return _height.GetValue(); } set { _height.SetValue(value); } }
     
+        private PropertyValue<string?> _previewBytes = new PropertyValue<string?>(nameof(ImageAttachmentDto), nameof(PreviewBytes));
+        
         [JsonPropertyName("previewBytes")]
-        public string? PreviewBytes { get; set; }
+        public string? PreviewBytes { get { return _previewBytes.GetValue(); } set { _previewBytes.SetValue(value); } }
     
+        private PropertyValue<List<ImageAttachmentVariantDto>?> _variants = new PropertyValue<List<ImageAttachmentVariantDto>?>(nameof(ImageAttachmentDto), nameof(Variants));
+        
         [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantDto>? Variants { get; set; }
+        public List<ImageAttachmentVariantDto>? Variants { get { return _variants.GetValue(); } set { _variants.SetValue(value); } }
     
     }
     

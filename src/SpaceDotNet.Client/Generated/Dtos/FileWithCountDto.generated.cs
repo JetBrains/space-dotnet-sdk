@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public sealed class FileWithCountDto
     {
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(FileWithCountDto), nameof(Name));
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string? Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<CounterDto> _count = new PropertyValue<CounterDto>(nameof(FileWithCountDto), nameof(Count));
+        
         [Required]
         [JsonPropertyName("count")]
-        public CounterDto Count { get; set; }
+        public CounterDto Count { get { return _count.GetValue(); } set { _count.SetValue(value); } }
     
     }
     

@@ -27,9 +27,11 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<bool> _markdown = new PropertyValue<bool>(nameof(M2TextItemContentDto), nameof(Markdown));
+        
         [Required]
         [JsonPropertyName("markdown")]
-        public bool Markdown { get; set; }
+        public bool Markdown { get { return _markdown.GetValue(); } set { _markdown.SetValue(value); } }
     
     }
     

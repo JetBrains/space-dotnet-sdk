@@ -23,35 +23,51 @@ namespace SpaceDotNet.Client
 {
     public class CreateFieldRequest
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateFieldRequest), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _key = new PropertyValue<string>(nameof(CreateFieldRequest), nameof(Key));
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
+        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
     
+        private PropertyValue<CFTypeDto> _type = new PropertyValue<CFTypeDto>(nameof(CreateFieldRequest), nameof(Type));
+        
         [Required]
         [JsonPropertyName("type")]
-        public CFTypeDto Type { get; set; }
+        public CFTypeDto Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
+        private PropertyValue<CFConstraintDto?> _constraint = new PropertyValue<CFConstraintDto?>(nameof(CreateFieldRequest), nameof(Constraint));
+        
         [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint { get; set; }
+        public CFConstraintDto? Constraint { get { return _constraint.GetValue(); } set { _constraint.SetValue(value); } }
     
+        private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CreateFieldRequest), nameof(Required));
+        
         [Required]
         [JsonPropertyName("required")]
-        public bool Required { get; set; }
+        public bool Required { get { return _required.GetValue(); } set { _required.SetValue(value); } }
     
+        private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CreateFieldRequest), nameof(Private));
+        
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }
+        public bool Private { get { return _private.GetValue(); } set { _private.SetValue(value); } }
     
+        private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CreateFieldRequest), nameof(Access));
+        
         [JsonPropertyName("access")]
-        public AccessType? Access { get; set; }
+        public AccessType? Access { get { return _access.GetValue(); } set { _access.SetValue(value); } }
     
+        private PropertyValue<CFValueDto> _defaultValue = new PropertyValue<CFValueDto>(nameof(CreateFieldRequest), nameof(DefaultValue));
+        
         [Required]
         [JsonPropertyName("defaultValue")]
-        public CFValueDto DefaultValue { get; set; }
+        public CFValueDto DefaultValue { get { return _defaultValue.GetValue(); } set { _defaultValue.SetValue(value); } }
     
     }
     

@@ -27,9 +27,11 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<TDTeamDto> _team = new PropertyValue<TDTeamDto>(nameof(UnfurlDetailsTeamDto), nameof(Team));
+        
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
+        public TDTeamDto Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
     
     }
     

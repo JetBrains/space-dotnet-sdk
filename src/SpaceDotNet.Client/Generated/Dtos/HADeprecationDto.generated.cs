@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class HADeprecationDto
     {
+        private PropertyValue<string> _message = new PropertyValue<string>(nameof(HADeprecationDto), nameof(Message));
+        
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }
+        public string Message { get { return _message.GetValue(); } set { _message.SetValue(value); } }
     
+        private PropertyValue<string> _since = new PropertyValue<string>(nameof(HADeprecationDto), nameof(Since));
+        
         [Required]
         [JsonPropertyName("since")]
-        public string Since { get; set; }
+        public string Since { get { return _since.GetValue(); } set { _since.SetValue(value); } }
     
+        private PropertyValue<bool> _forRemoval = new PropertyValue<bool>(nameof(HADeprecationDto), nameof(ForRemoval));
+        
         [Required]
         [JsonPropertyName("forRemoval")]
-        public bool ForRemoval { get; set; }
+        public bool ForRemoval { get { return _forRemoval.GetValue(); } set { _forRemoval.SetValue(value); } }
     
     }
     

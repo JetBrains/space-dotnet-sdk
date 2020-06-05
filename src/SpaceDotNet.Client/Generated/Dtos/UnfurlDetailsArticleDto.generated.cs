@@ -27,20 +27,28 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<ArticleRecordDto> _article = new PropertyValue<ArticleRecordDto>(nameof(UnfurlDetailsArticleDto), nameof(Article));
+        
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
+        public ArticleRecordDto Article { get { return _article.GetValue(); } set { _article.SetValue(value); } }
     
+        private PropertyValue<ArticleContentRecordDto> _content = new PropertyValue<ArticleContentRecordDto>(nameof(UnfurlDetailsArticleDto), nameof(Content));
+        
         [Required]
         [JsonPropertyName("content")]
-        public ArticleContentRecordDto Content { get; set; }
+        public ArticleContentRecordDto Content { get { return _content.GetValue(); } set { _content.SetValue(value); } }
     
+        private PropertyValue<ArticleChannelRecordDto> _channel = new PropertyValue<ArticleChannelRecordDto>(nameof(UnfurlDetailsArticleDto), nameof(Channel));
+        
         [Required]
         [JsonPropertyName("channel")]
-        public ArticleChannelRecordDto Channel { get; set; }
+        public ArticleChannelRecordDto Channel { get { return _channel.GetValue(); } set { _channel.SetValue(value); } }
     
+        private PropertyValue<ArticleDetailsRecordDto?> _details = new PropertyValue<ArticleDetailsRecordDto?>(nameof(UnfurlDetailsArticleDto), nameof(Details));
+        
         [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get; set; }
+        public ArticleDetailsRecordDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
     
     }
     

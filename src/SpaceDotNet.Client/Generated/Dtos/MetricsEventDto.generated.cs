@@ -23,19 +23,27 @@ namespace SpaceDotNet.Client
 {
     public sealed class MetricsEventDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(MetricsEventDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<long> _time = new PropertyValue<long>(nameof(MetricsEventDto), nameof(Time));
+        
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }
+        public long Time { get { return _time.GetValue(); } set { _time.SetValue(value); } }
     
+        private PropertyValue<List<MetricsPropDto>?> _props = new PropertyValue<List<MetricsPropDto>?>(nameof(MetricsEventDto), nameof(Props));
+        
         [JsonPropertyName("props")]
-        public List<MetricsPropDto>? Props { get; set; }
+        public List<MetricsPropDto>? Props { get { return _props.GetValue(); } set { _props.SetValue(value); } }
     
+        private PropertyValue<List<MetricsPointDto>?> _points = new PropertyValue<List<MetricsPointDto>?>(nameof(MetricsEventDto), nameof(Points));
+        
         [JsonPropertyName("points")]
-        public List<MetricsPointDto>? Points { get; set; }
+        public List<MetricsPointDto>? Points { get { return _points.GetValue(); } set { _points.SetValue(value); } }
     
     }
     

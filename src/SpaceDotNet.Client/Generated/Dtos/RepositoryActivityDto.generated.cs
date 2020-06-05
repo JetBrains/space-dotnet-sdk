@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public sealed class RepositoryActivityDto
     {
+        private PropertyValue<List<Pair<SpaceDate, int>>> _lastActivity = new PropertyValue<List<Pair<SpaceDate, int>>>(nameof(RepositoryActivityDto), nameof(LastActivity));
+        
         [Required]
         [JsonPropertyName("lastActivity")]
-        public List<Pair<SpaceDate, int>> LastActivity { get; set; }
+        public List<Pair<SpaceDate, int>> LastActivity { get { return _lastActivity.GetValue(); } set { _lastActivity.SetValue(value); } }
     
     }
     

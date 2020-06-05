@@ -23,20 +23,28 @@ namespace SpaceDotNet.Client
 {
     public sealed class PackageRepositorySettingsDto
     {
+        private PropertyValue<long> _id = new PropertyValue<long>(nameof(PackageRepositorySettingsDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public long Id { get; set; }
+        public long Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageRepositorySettingsDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<ESPackageRepositorySettingsDto?> _settings = new PropertyValue<ESPackageRepositorySettingsDto?>(nameof(PackageRepositorySettingsDto), nameof(Settings));
+        
         [JsonPropertyName("settings")]
-        public ESPackageRepositorySettingsDto? Settings { get; set; }
+        public ESPackageRepositorySettingsDto? Settings { get { return _settings.GetValue(); } set { _settings.SetValue(value); } }
     
+        private PropertyValue<List<PackagesPermission>> _permissions = new PropertyValue<List<PackagesPermission>>(nameof(PackageRepositorySettingsDto), nameof(Permissions));
+        
         [Required]
         [JsonPropertyName("permissions")]
-        public List<PackagesPermission> Permissions { get; set; }
+        public List<PackagesPermission> Permissions { get { return _permissions.GetValue(); } set { _permissions.SetValue(value); } }
     
     }
     

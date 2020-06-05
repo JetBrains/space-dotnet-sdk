@@ -23,41 +23,59 @@ namespace SpaceDotNet.Client
 {
     public sealed class KBBookDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBBookDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBBookDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(KBBookDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _summary = new PropertyValue<string>(nameof(KBBookDto), nameof(Summary));
+        
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }
+        public string Summary { get { return _summary.GetValue(); } set { _summary.SetValue(value); } }
     
+        private PropertyValue<long> _updated = new PropertyValue<long>(nameof(KBBookDto), nameof(Updated));
+        
         [Required]
         [JsonPropertyName("updated")]
-        public long Updated { get; set; }
+        public long Updated { get { return _updated.GetValue(); } set { _updated.SetValue(value); } }
     
+        private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBBookDto), nameof(Alias));
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
+        public string Alias { get { return _alias.GetValue(); } set { _alias.SetValue(value); } }
     
+        private PropertyValue<List<TDLocationDto>> _locations = new PropertyValue<List<TDLocationDto>>(nameof(KBBookDto), nameof(Locations));
+        
         [Required]
         [JsonPropertyName("locations")]
-        public List<TDLocationDto> Locations { get; set; }
+        public List<TDLocationDto> Locations { get { return _locations.GetValue(); } set { _locations.SetValue(value); } }
     
+        private PropertyValue<List<TDTeamDto>> _teams = new PropertyValue<List<TDTeamDto>>(nameof(KBBookDto), nameof(Teams));
+        
         [Required]
         [JsonPropertyName("teams")]
-        public List<TDTeamDto> Teams { get; set; }
+        public List<TDTeamDto> Teams { get { return _teams.GetValue(); } set { _teams.SetValue(value); } }
     
+        private PropertyValue<KBFolderDto> _rootFolder = new PropertyValue<KBFolderDto>(nameof(KBBookDto), nameof(RootFolder));
+        
         [Required]
         [JsonPropertyName("rootFolder")]
-        public KBFolderDto RootFolder { get; set; }
+        public KBFolderDto RootFolder { get { return _rootFolder.GetValue(); } set { _rootFolder.SetValue(value); } }
     
     }
     

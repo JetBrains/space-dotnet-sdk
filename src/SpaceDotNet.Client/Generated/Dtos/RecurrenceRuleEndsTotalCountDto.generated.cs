@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class RecurrenceRuleEndsTotalCountDto
          : RecurrenceRuleEndsDto, IClassNameConvertible
     {
+        private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCountDto), nameof(Count));
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
+        public int Count { get { return _count.GetValue(); } set { _count.SetValue(value); } }
     
     }
     

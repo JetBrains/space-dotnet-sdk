@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class ProfileListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
+        private PropertyValue<List<TDMemberProfileDto>> _profiles = new PropertyValue<List<TDMemberProfileDto>>(nameof(ProfileListCFValueDto), nameof(Profiles));
+        
         [Required]
         [JsonPropertyName("profiles")]
-        public List<TDMemberProfileDto> Profiles { get; set; }
+        public List<TDMemberProfileDto> Profiles { get { return _profiles.GetValue(); } set { _profiles.SetValue(value); } }
     
     }
     

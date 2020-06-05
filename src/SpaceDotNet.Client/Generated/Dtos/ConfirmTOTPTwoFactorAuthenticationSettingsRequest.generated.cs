@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class ConfirmTOTPTwoFactorAuthenticationSettingsRequest
     {
+        private PropertyValue<int> _code = new PropertyValue<int>(nameof(ConfirmTOTPTwoFactorAuthenticationSettingsRequest), nameof(Code));
+        
         [Required]
         [JsonPropertyName("code")]
-        public int Code { get; set; }
+        public int Code { get { return _code.GetValue(); } set { _code.SetValue(value); } }
     
     }
     

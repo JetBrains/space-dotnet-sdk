@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class TrackedBranchesInReviewDto
     {
+        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(TrackedBranchesInReviewDto), nameof(Repository));
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
     
+        private PropertyValue<List<BranchInfoDto>> _branches = new PropertyValue<List<BranchInfoDto>>(nameof(TrackedBranchesInReviewDto), nameof(Branches));
+        
         [Required]
         [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get; set; }
+        public List<BranchInfoDto> Branches { get { return _branches.GetValue(); } set { _branches.SetValue(value); } }
     
     }
     

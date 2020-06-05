@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class ToggleIssueResolvedRequest
     {
+        private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ToggleIssueResolvedRequest), nameof(Resolved));
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
+        public bool Resolved { get { return _resolved.GetValue(); } set { _resolved.SetValue(value); } }
     
     }
     

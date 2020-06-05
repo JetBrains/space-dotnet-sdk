@@ -24,17 +24,23 @@ namespace SpaceDotNet.Client
     public sealed class HATypeEnumDto
          : HATypeDto, IClassNameConvertible
     {
+        private PropertyValue<HAEnumDto> _enum = new PropertyValue<HAEnumDto>(nameof(HATypeEnumDto), nameof(Enum));
+        
         [Required]
         [JsonPropertyName("enum")]
-        public HAEnumDto Enum { get; set; }
+        public HAEnumDto Enum { get { return _enum.GetValue(); } set { _enum.SetValue(value); } }
     
+        private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeEnumDto), nameof(Nullable));
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
+        public bool Nullable { get { return _nullable.GetValue(); } set { _nullable.SetValue(value); } }
     
+        private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypeEnumDto), nameof(Optional));
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
+        public bool Optional { get { return _optional.GetValue(); } set { _optional.SetValue(value); } }
     
     }
     

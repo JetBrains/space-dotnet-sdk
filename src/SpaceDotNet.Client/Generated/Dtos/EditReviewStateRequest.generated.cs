@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class EditReviewStateRequest
     {
+        private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(EditReviewStateRequest), nameof(State));
+        
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
+        public CodeReviewState State { get { return _state.GetValue(); } set { _state.SetValue(value); } }
     
     }
     

@@ -23,16 +23,22 @@ namespace SpaceDotNet.Client
 {
     public sealed class AccessRecordDto
     {
+        private PropertyValue<SpaceTime> _time = new PropertyValue<SpaceTime>(nameof(AccessRecordDto), nameof(Time));
+        
         [Required]
         [JsonPropertyName("time")]
-        public SpaceTime Time { get; set; }
+        public SpaceTime Time { get { return _time.GetValue(); } set { _time.SetValue(value); } }
     
+        private PropertyValue<string> _address = new PropertyValue<string>(nameof(AccessRecordDto), nameof(Address));
+        
         [Required]
         [JsonPropertyName("address")]
-        public string Address { get; set; }
+        public string Address { get { return _address.GetValue(); } set { _address.SetValue(value); } }
     
+        private PropertyValue<string?> _userAgent = new PropertyValue<string?>(nameof(AccessRecordDto), nameof(UserAgent));
+        
         [JsonPropertyName("userAgent")]
-        public string? UserAgent { get; set; }
+        public string? UserAgent { get { return _userAgent.GetValue(); } set { _userAgent.SetValue(value); } }
     
     }
     

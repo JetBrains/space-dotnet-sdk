@@ -23,24 +23,34 @@ namespace SpaceDotNet.Client
 {
     public sealed class FeatureFlagDto
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlagDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _description = new PropertyValue<string>(nameof(FeatureFlagDto), nameof(Description));
+        
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get; set; }
+        public string Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
     
+        private PropertyValue<FeatureFlagStatus> _status = new PropertyValue<FeatureFlagStatus>(nameof(FeatureFlagDto), nameof(Status));
+        
         [Required]
         [JsonPropertyName("status")]
-        public FeatureFlagStatus Status { get; set; }
+        public FeatureFlagStatus Status { get { return _status.GetValue(); } set { _status.SetValue(value); } }
     
+        private PropertyValue<string> _owner = new PropertyValue<string>(nameof(FeatureFlagDto), nameof(Owner));
+        
         [Required]
         [JsonPropertyName("owner")]
-        public string Owner { get; set; }
+        public string Owner { get { return _owner.GetValue(); } set { _owner.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _introduced = new PropertyValue<SpaceDate?>(nameof(FeatureFlagDto), nameof(Introduced));
+        
         [JsonPropertyName("introduced")]
-        public SpaceDate? Introduced { get; set; }
+        public SpaceDate? Introduced { get { return _introduced.GetValue(); } set { _introduced.SetValue(value); } }
     
     }
     

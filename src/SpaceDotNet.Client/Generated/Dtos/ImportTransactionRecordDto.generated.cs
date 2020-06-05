@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client
 {
     public sealed class ImportTransactionRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportTransactionRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportTransactionRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<CPrincipalDto> _importer = new PropertyValue<CPrincipalDto>(nameof(ImportTransactionRecordDto), nameof(Importer));
+        
         [Required]
         [JsonPropertyName("importer")]
-        public CPrincipalDto Importer { get; set; }
+        public CPrincipalDto Importer { get { return _importer.GetValue(); } set { _importer.SetValue(value); } }
     
+        private PropertyValue<string> _externalSource = new PropertyValue<string>(nameof(ImportTransactionRecordDto), nameof(ExternalSource));
+        
         [Required]
         [JsonPropertyName("externalSource")]
-        public string ExternalSource { get; set; }
+        public string ExternalSource { get { return _externalSource.GetValue(); } set { _externalSource.SetValue(value); } }
     
     }
     

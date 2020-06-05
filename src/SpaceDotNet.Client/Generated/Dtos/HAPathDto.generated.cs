@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public sealed class HAPathDto
     {
+        private PropertyValue<List<HAPathSegmentDto>> _segments = new PropertyValue<List<HAPathSegmentDto>>(nameof(HAPathDto), nameof(Segments));
+        
         [Required]
         [JsonPropertyName("segments")]
-        public List<HAPathSegmentDto> Segments { get; set; }
+        public List<HAPathSegmentDto> Segments { get { return _segments.GetValue(); } set { _segments.SetValue(value); } }
     
     }
     

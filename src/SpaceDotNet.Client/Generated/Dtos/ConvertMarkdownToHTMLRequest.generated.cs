@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class ConvertMarkdownToHTMLRequest
     {
+        private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(ConvertMarkdownToHTMLRequest), nameof(Markdown));
+        
         [Required]
         [JsonPropertyName("markdown")]
-        public string Markdown { get; set; }
+        public string Markdown { get { return _markdown.GetValue(); } set { _markdown.SetValue(value); } }
     
     }
     

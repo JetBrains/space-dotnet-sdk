@@ -24,25 +24,35 @@ namespace SpaceDotNet.Client
     public sealed class ESAzureAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
+        private PropertyValue<string> _tenantId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettingsDto), nameof(TenantId));
+        
         [Required]
         [JsonPropertyName("tenantId")]
-        public string TenantId { get; set; }
+        public string TenantId { get { return _tenantId.GetValue(); } set { _tenantId.SetValue(value); } }
     
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettingsDto), nameof(ClientId));
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
+        public string ClientId { get { return _clientId.GetValue(); } set { _clientId.SetValue(value); } }
     
+        private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESAzureAuthModuleSettingsDto), nameof(ClientSecret));
+        
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
+        public string ClientSecret { get { return _clientSecret.GetValue(); } set { _clientSecret.SetValue(value); } }
     
+        private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettingsDto), nameof(RegisterNewUsers));
+        
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get; set; }
+        public bool RegisterNewUsers { get { return _registerNewUsers.GetValue(); } set { _registerNewUsers.SetValue(value); } }
     
+        private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettingsDto), nameof(EmailVerified));
+        
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
+        public bool EmailVerified { get { return _emailVerified.GetValue(); } set { _emailVerified.SetValue(value); } }
     
     }
     

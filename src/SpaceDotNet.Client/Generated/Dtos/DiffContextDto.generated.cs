@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public sealed class DiffContextDto
     {
+        private PropertyValue<DiffSideDto?> _left = new PropertyValue<DiffSideDto?>(nameof(DiffContextDto), nameof(Left));
+        
         [JsonPropertyName("left")]
-        public DiffSideDto? Left { get; set; }
+        public DiffSideDto? Left { get { return _left.GetValue(); } set { _left.SetValue(value); } }
     
+        private PropertyValue<DiffSideDto> _right = new PropertyValue<DiffSideDto>(nameof(DiffContextDto), nameof(Right));
+        
         [Required]
         [JsonPropertyName("right")]
-        public DiffSideDto Right { get; set; }
+        public DiffSideDto Right { get { return _right.GetValue(); } set { _right.SetValue(value); } }
     
     }
     

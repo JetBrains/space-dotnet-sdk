@@ -27,13 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _draft = new PropertyValue<string>(nameof(UnfurlDetailsDraftDto), nameof(Draft));
+        
         [Required]
         [JsonPropertyName("draft")]
-        public string Draft { get; set; }
+        public string Draft { get { return _draft.GetValue(); } set { _draft.SetValue(value); } }
     
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsDraftDto), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
     }
     

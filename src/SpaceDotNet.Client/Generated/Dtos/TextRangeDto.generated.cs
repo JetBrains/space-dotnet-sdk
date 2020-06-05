@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class TextRangeDto
     {
+        private PropertyValue<int> _start = new PropertyValue<int>(nameof(TextRangeDto), nameof(Start));
+        
         [Required]
         [JsonPropertyName("start")]
-        public int Start { get; set; }
+        public int Start { get { return _start.GetValue(); } set { _start.SetValue(value); } }
     
+        private PropertyValue<int> _length = new PropertyValue<int>(nameof(TextRangeDto), nameof(Length));
+        
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get; set; }
+        public int Length { get { return _length.GetValue(); } set { _length.SetValue(value); } }
     
     }
     

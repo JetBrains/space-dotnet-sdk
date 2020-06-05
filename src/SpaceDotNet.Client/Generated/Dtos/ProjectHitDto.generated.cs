@@ -24,28 +24,40 @@ namespace SpaceDotNet.Client
     public sealed class ProjectHitDto
          : EntityHitDto, IClassNameConvertible
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectHitDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<double> _score = new PropertyValue<double>(nameof(ProjectHitDto), nameof(Score));
+        
         [Required]
         [JsonPropertyName("score")]
-        public double Score { get; set; }
+        public double Score { get { return _score.GetValue(); } set { _score.SetValue(value); } }
     
+        private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectHitDto), nameof(Key));
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
+        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectHitDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectHitDto), nameof(Description));
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
     
+        private PropertyValue<PRProjectDto> _ref = new PropertyValue<PRProjectDto>(nameof(ProjectHitDto), nameof(Ref));
+        
         [Required]
         [JsonPropertyName("ref")]
-        public PRProjectDto Ref { get; set; }
+        public PRProjectDto Ref { get { return _ref.GetValue(); } set { _ref.SetValue(value); } }
     
     }
     

@@ -24,13 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class M2MembershipRequestedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
+        private PropertyValue<TDMembershipDto> _membership = new PropertyValue<TDMembershipDto>(nameof(M2MembershipRequestedContentDto), nameof(Membership));
+        
         [Required]
         [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
+        public TDMembershipDto Membership { get { return _membership.GetValue(); } set { _membership.SetValue(value); } }
     
+        private PropertyValue<bool> _leave = new PropertyValue<bool>(nameof(M2MembershipRequestedContentDto), nameof(Leave));
+        
         [Required]
         [JsonPropertyName("leave")]
-        public bool Leave { get; set; }
+        public bool Leave { get { return _leave.GetValue(); } set { _leave.SetValue(value); } }
     
     }
     

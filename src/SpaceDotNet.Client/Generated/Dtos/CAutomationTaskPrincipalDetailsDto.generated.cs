@@ -27,17 +27,23 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<PRProjectDto> _project = new PropertyValue<PRProjectDto>(nameof(CAutomationTaskPrincipalDetailsDto), nameof(Project));
+        
         [Required]
         [JsonPropertyName("project")]
-        public PRProjectDto Project { get; set; }
+        public PRProjectDto Project { get { return _project.GetValue(); } set { _project.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetailsDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CAutomationTaskPrincipalDetailsDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
     }
     

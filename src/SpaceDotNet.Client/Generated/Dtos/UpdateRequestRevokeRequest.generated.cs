@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateRequestRevokeRequest
     {
+        private PropertyValue<SpaceTime> _till = new PropertyValue<SpaceTime>(nameof(UpdateRequestRevokeRequest), nameof(Till));
+        
         [Required]
         [JsonPropertyName("till")]
-        public SpaceTime Till { get; set; }
+        public SpaceTime Till { get { return _till.GetValue(); } set { _till.SetValue(value); } }
     
     }
     

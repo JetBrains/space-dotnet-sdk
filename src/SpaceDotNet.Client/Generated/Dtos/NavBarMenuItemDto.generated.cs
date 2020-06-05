@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class NavBarMenuItemDto
     {
+        private PropertyValue<string> _item = new PropertyValue<string>(nameof(NavBarMenuItemDto), nameof(Item));
+        
         [Required]
         [JsonPropertyName("item")]
-        public string Item { get; set; }
+        public string Item { get { return _item.GetValue(); } set { _item.SetValue(value); } }
     
+        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NavBarMenuItemDto), nameof(Enabled));
+        
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }
+        public bool Enabled { get { return _enabled.GetValue(); } set { _enabled.SetValue(value); } }
     
     }
     

@@ -27,21 +27,29 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<ArticleRecordDto> _article = new PropertyValue<ArticleRecordDto>(nameof(M2BlogItemPreviewDto), nameof(Article));
+        
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get; set; }
+        public ArticleRecordDto Article { get { return _article.GetValue(); } set { _article.SetValue(value); } }
     
+        private PropertyValue<ArticlePreviewRecordDto> _articlePreview = new PropertyValue<ArticlePreviewRecordDto>(nameof(M2BlogItemPreviewDto), nameof(ArticlePreview));
+        
         [Required]
         [JsonPropertyName("articlePreview")]
-        public ArticlePreviewRecordDto ArticlePreview { get; set; }
+        public ArticlePreviewRecordDto ArticlePreview { get { return _articlePreview.GetValue(); } set { _articlePreview.SetValue(value); } }
     
+        private PropertyValue<ArticleDetailsRecordDto> _articleDetails = new PropertyValue<ArticleDetailsRecordDto>(nameof(M2BlogItemPreviewDto), nameof(ArticleDetails));
+        
         [Required]
         [JsonPropertyName("articleDetails")]
-        public ArticleDetailsRecordDto ArticleDetails { get; set; }
+        public ArticleDetailsRecordDto ArticleDetails { get { return _articleDetails.GetValue(); } set { _articleDetails.SetValue(value); } }
     
+        private PropertyValue<ArticleChannelRecordDto> _articleChannel = new PropertyValue<ArticleChannelRecordDto>(nameof(M2BlogItemPreviewDto), nameof(ArticleChannel));
+        
         [Required]
         [JsonPropertyName("articleChannel")]
-        public ArticleChannelRecordDto ArticleChannel { get; set; }
+        public ArticleChannelRecordDto ArticleChannel { get { return _articleChannel.GetValue(); } set { _articleChannel.SetValue(value); } }
     
     }
     

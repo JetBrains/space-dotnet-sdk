@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateTOTPTwoFactorAuthenticationSettingsRequest
     {
+        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(UpdateTOTPTwoFactorAuthenticationSettingsRequest), nameof(Enabled));
+        
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get; set; }
+        public bool Enabled { get { return _enabled.GetValue(); } set { _enabled.SetValue(value); } }
     
     }
     

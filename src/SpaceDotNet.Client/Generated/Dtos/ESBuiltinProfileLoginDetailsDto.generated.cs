@@ -24,8 +24,10 @@ namespace SpaceDotNet.Client
     public sealed class ESBuiltinProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
+        private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetailsDto), nameof(PasswordChangeRequest));
+        
         [JsonPropertyName("passwordChangeRequest")]
-        public string? PasswordChangeRequest { get; set; }
+        public string? PasswordChangeRequest { get { return _passwordChangeRequest.GetValue(); } set { _passwordChangeRequest.SetValue(value); } }
     
     }
     

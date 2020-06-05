@@ -27,22 +27,32 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessageDto), nameof(Style));
+        
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }
+        public string Style { get { return _style.GetValue(); } set { _style.SetValue(value); } }
     
+        private PropertyValue<MCOutlineDto?> _outline = new PropertyValue<MCOutlineDto?>(nameof(MCMessageDto), nameof(Outline));
+        
         [JsonPropertyName("outline")]
-        public MCOutlineDto? Outline { get; set; }
+        public MCOutlineDto? Outline { get { return _outline.GetValue(); } set { _outline.SetValue(value); } }
     
+        private PropertyValue<List<MCElementDto>> _content = new PropertyValue<List<MCElementDto>>(nameof(MCMessageDto), nameof(Content));
+        
         [Required]
         [JsonPropertyName("content")]
-        public List<MCElementDto> Content { get; set; }
+        public List<MCElementDto> Content { get { return _content.GetValue(); } set { _content.SetValue(value); } }
     
+        private PropertyValue<string?> _serviceId = new PropertyValue<string?>(nameof(MCMessageDto), nameof(ServiceId));
+        
         [JsonPropertyName("serviceId")]
-        public string? ServiceId { get; set; }
+        public string? ServiceId { get { return _serviceId.GetValue(); } set { _serviceId.SetValue(value); } }
     
+        private PropertyValue<string?> _supplementaryData = new PropertyValue<string?>(nameof(MCMessageDto), nameof(SupplementaryData));
+        
         [JsonPropertyName("supplementaryData")]
-        public string? SupplementaryData { get; set; }
+        public string? SupplementaryData { get { return _supplementaryData.GetValue(); } set { _supplementaryData.SetValue(value); } }
     
     }
     

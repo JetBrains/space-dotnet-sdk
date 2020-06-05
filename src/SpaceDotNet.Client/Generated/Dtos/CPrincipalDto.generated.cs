@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public sealed class CPrincipalDto
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CPrincipalDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<CPrincipalDetailsDto?> _details = new PropertyValue<CPrincipalDetailsDto?>(nameof(CPrincipalDto), nameof(Details));
+        
         [JsonPropertyName("details")]
-        public CPrincipalDetailsDto? Details { get; set; }
+        public CPrincipalDetailsDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
     
     }
     

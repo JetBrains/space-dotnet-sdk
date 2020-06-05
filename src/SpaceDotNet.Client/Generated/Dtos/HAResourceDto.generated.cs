@@ -23,32 +23,46 @@ namespace SpaceDotNet.Client
 {
     public sealed class HAResourceDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAResourceDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<HAPathDto> _path = new PropertyValue<HAPathDto>(nameof(HAResourceDto), nameof(Path));
+        
         [Required]
         [JsonPropertyName("path")]
-        public HAPathDto Path { get; set; }
+        public HAPathDto Path { get { return _path.GetValue(); } set { _path.SetValue(value); } }
     
+        private PropertyValue<string> _displaySingular = new PropertyValue<string>(nameof(HAResourceDto), nameof(DisplaySingular));
+        
         [Required]
         [JsonPropertyName("displaySingular")]
-        public string DisplaySingular { get; set; }
+        public string DisplaySingular { get { return _displaySingular.GetValue(); } set { _displaySingular.SetValue(value); } }
     
+        private PropertyValue<string> _displayPlural = new PropertyValue<string>(nameof(HAResourceDto), nameof(DisplayPlural));
+        
         [Required]
         [JsonPropertyName("displayPlural")]
-        public string DisplayPlural { get; set; }
+        public string DisplayPlural { get { return _displayPlural.GetValue(); } set { _displayPlural.SetValue(value); } }
     
+        private PropertyValue<HAResourceDto?> _parentResource = new PropertyValue<HAResourceDto?>(nameof(HAResourceDto), nameof(ParentResource));
+        
         [JsonPropertyName("parentResource")]
-        public HAResourceDto? ParentResource { get; set; }
+        public HAResourceDto? ParentResource { get { return _parentResource.GetValue(); } set { _parentResource.SetValue(value); } }
     
+        private PropertyValue<List<HAEndpointDto>> _endpoints = new PropertyValue<List<HAEndpointDto>>(nameof(HAResourceDto), nameof(Endpoints));
+        
         [Required]
         [JsonPropertyName("endpoints")]
-        public List<HAEndpointDto> Endpoints { get; set; }
+        public List<HAEndpointDto> Endpoints { get { return _endpoints.GetValue(); } set { _endpoints.SetValue(value); } }
     
+        private PropertyValue<List<HAResourceDto>> _nestedResources = new PropertyValue<List<HAResourceDto>>(nameof(HAResourceDto), nameof(NestedResources));
+        
         [Required]
         [JsonPropertyName("nestedResources")]
-        public List<HAResourceDto> NestedResources { get; set; }
+        public List<HAResourceDto> NestedResources { get { return _nestedResources.GetValue(); } set { _nestedResources.SetValue(value); } }
     
     }
     

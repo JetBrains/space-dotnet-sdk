@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class ArticleMarkdownImageDto
     {
+        private PropertyValue<string> _alt = new PropertyValue<string>(nameof(ArticleMarkdownImageDto), nameof(Alt));
+        
         [Required]
         [JsonPropertyName("alt")]
-        public string Alt { get; set; }
+        public string Alt { get { return _alt.GetValue(); } set { _alt.SetValue(value); } }
     
+        private PropertyValue<string> _src = new PropertyValue<string>(nameof(ArticleMarkdownImageDto), nameof(Src));
+        
         [Required]
         [JsonPropertyName("src")]
-        public string Src { get; set; }
+        public string Src { get { return _src.GetValue(); } set { _src.SetValue(value); } }
     
     }
     

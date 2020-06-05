@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class CodeDiscussionSnippetPlainSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
+        private PropertyValue<List<CodeLineDto>> _lines = new PropertyValue<List<CodeLineDto>>(nameof(CodeDiscussionSnippetPlainSnippetDto), nameof(Lines));
+        
         [Required]
         [JsonPropertyName("lines")]
-        public List<CodeLineDto> Lines { get; set; }
+        public List<CodeLineDto> Lines { get { return _lines.GetValue(); } set { _lines.SetValue(value); } }
     
     }
     

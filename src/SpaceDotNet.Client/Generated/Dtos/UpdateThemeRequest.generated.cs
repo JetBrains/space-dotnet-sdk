@@ -23,8 +23,10 @@ namespace SpaceDotNet.Client
 {
     public class UpdateThemeRequest
     {
+        private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(UpdateThemeRequest), nameof(ThemeName));
+        
         [JsonPropertyName("themeName")]
-        public string? ThemeName { get; set; }
+        public string? ThemeName { get { return _themeName.GetValue(); } set { _themeName.SetValue(value); } }
     
     }
     

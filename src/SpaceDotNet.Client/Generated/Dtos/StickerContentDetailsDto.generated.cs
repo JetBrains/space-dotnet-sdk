@@ -27,12 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<StickerDto> _sticker = new PropertyValue<StickerDto>(nameof(StickerContentDetailsDto), nameof(Sticker));
+        
         [Required]
         [JsonPropertyName("sticker")]
-        public StickerDto Sticker { get; set; }
+        public StickerDto Sticker { get { return _sticker.GetValue(); } set { _sticker.SetValue(value); } }
     
+        private PropertyValue<StickerPackInfoDto?> _pack = new PropertyValue<StickerPackInfoDto?>(nameof(StickerContentDetailsDto), nameof(Pack));
+        
         [JsonPropertyName("pack")]
-        public StickerPackInfoDto? Pack { get; set; }
+        public StickerPackInfoDto? Pack { get { return _pack.GetValue(); } set { _pack.SetValue(value); } }
     
     }
     

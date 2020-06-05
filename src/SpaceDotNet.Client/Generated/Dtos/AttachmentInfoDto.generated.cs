@@ -23,8 +23,10 @@ namespace SpaceDotNet.Client
 {
     public sealed class AttachmentInfoDto
     {
+        private PropertyValue<AttachmentDto?> _details = new PropertyValue<AttachmentDto?>(nameof(AttachmentInfoDto), nameof(Details));
+        
         [JsonPropertyName("details")]
-        public AttachmentDto? Details { get; set; }
+        public AttachmentDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
     
     }
     

@@ -27,17 +27,23 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContentDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<TDTeamDto> _team = new PropertyValue<TDTeamDto>(nameof(M2DraftEditorTeamAddedItemContentDto), nameof(Team));
+        
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get; set; }
+        public TDTeamDto Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
     
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContentDto), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
     }
     

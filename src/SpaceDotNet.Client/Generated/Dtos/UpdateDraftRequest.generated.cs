@@ -23,20 +23,30 @@ namespace SpaceDotNet.Client
 {
     public class UpdateDraftRequest
     {
+        private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(UpdateDraftRequest), nameof(Title));
+        
         [JsonPropertyName("title")]
-        public string? Title { get; set; }
+        public string? Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
+        private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(UpdateDraftRequest), nameof(Text));
+        
         [JsonPropertyName("text")]
-        public string? Text { get; set; }
+        public string? Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
+        private PropertyValue<long?> _textVersion = new PropertyValue<long?>(nameof(UpdateDraftRequest), nameof(TextVersion));
+        
         [JsonPropertyName("textVersion")]
-        public long? TextVersion { get; set; }
+        public long? TextVersion { get { return _textVersion.GetValue(); } set { _textVersion.SetValue(value); } }
     
+        private PropertyValue<DraftDocumentType?> _type = new PropertyValue<DraftDocumentType?>(nameof(UpdateDraftRequest), nameof(Type));
+        
         [JsonPropertyName("type")]
-        public DraftDocumentType? Type { get; set; }
+        public DraftDocumentType? Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
+        private PropertyValue<DraftPublicationDetailsDto?> _publicationDetails = new PropertyValue<DraftPublicationDetailsDto?>(nameof(UpdateDraftRequest), nameof(PublicationDetails));
+        
         [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
+        public DraftPublicationDetailsDto? PublicationDetails { get { return _publicationDetails.GetValue(); } set { _publicationDetails.SetValue(value); } }
     
     }
     

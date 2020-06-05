@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class RevisionAuthorInfoDto
     {
+        private PropertyValue<RevisionInfoDto> _revisionInfo = new PropertyValue<RevisionInfoDto>(nameof(RevisionAuthorInfoDto), nameof(RevisionInfo));
+        
         [Required]
         [JsonPropertyName("revisionInfo")]
-        public RevisionInfoDto RevisionInfo { get; set; }
+        public RevisionInfoDto RevisionInfo { get { return _revisionInfo.GetValue(); } set { _revisionInfo.SetValue(value); } }
     
+        private PropertyValue<RevisionAuthorDto> _author = new PropertyValue<RevisionAuthorDto>(nameof(RevisionAuthorInfoDto), nameof(Author));
+        
         [Required]
         [JsonPropertyName("author")]
-        public RevisionAuthorDto Author { get; set; }
+        public RevisionAuthorDto Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
     
     }
     

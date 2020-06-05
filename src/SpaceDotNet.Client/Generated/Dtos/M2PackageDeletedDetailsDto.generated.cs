@@ -27,9 +27,11 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<PackageVersionInfoDto> _pkg = new PropertyValue<PackageVersionInfoDto>(nameof(M2PackageDeletedDetailsDto), nameof(Pkg));
+        
         [Required]
         [JsonPropertyName("pkg")]
-        public PackageVersionInfoDto Pkg { get; set; }
+        public PackageVersionInfoDto Pkg { get { return _pkg.GetValue(); } set { _pkg.SetValue(value); } }
     
     }
     

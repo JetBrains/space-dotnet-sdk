@@ -23,28 +23,40 @@ namespace SpaceDotNet.Client
 {
     public sealed class ESApplicationPasswordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApplicationPasswordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(ESApplicationPasswordDto), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApplicationPasswordDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPasswordDto), nameof(Scope));
+        
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }
+        public string Scope { get { return _scope.GetValue(); } set { _scope.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ESApplicationPasswordDto), nameof(Created));
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
+        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
     
+        private PropertyValue<AccessRecordDto?> _lastAccess = new PropertyValue<AccessRecordDto?>(nameof(ESApplicationPasswordDto), nameof(LastAccess));
+        
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }
+        public AccessRecordDto? LastAccess { get { return _lastAccess.GetValue(); } set { _lastAccess.SetValue(value); } }
     
     }
     

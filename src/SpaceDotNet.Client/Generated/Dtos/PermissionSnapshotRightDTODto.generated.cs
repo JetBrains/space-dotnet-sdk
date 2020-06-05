@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class PermissionSnapshotRightDTODto
     {
+        private PropertyValue<string> _rightCode = new PropertyValue<string>(nameof(PermissionSnapshotRightDTODto), nameof(RightCode));
+        
         [Required]
         [JsonPropertyName("rightCode")]
-        public string RightCode { get; set; }
+        public string RightCode { get { return _rightCode.GetValue(); } set { _rightCode.SetValue(value); } }
     
+        private PropertyValue<string> _targetType = new PropertyValue<string>(nameof(PermissionSnapshotRightDTODto), nameof(TargetType));
+        
         [Required]
         [JsonPropertyName("targetType")]
-        public string TargetType { get; set; }
+        public string TargetType { get { return _targetType.GetValue(); } set { _targetType.SetValue(value); } }
     
     }
     

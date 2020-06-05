@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class AvatarCropSquareDto
     {
+        private PropertyValue<int> _x = new PropertyValue<int>(nameof(AvatarCropSquareDto), nameof(X));
+        
         [Required]
         [JsonPropertyName("x")]
-        public int X { get; set; }
+        public int X { get { return _x.GetValue(); } set { _x.SetValue(value); } }
     
+        private PropertyValue<int> _y = new PropertyValue<int>(nameof(AvatarCropSquareDto), nameof(Y));
+        
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get; set; }
+        public int Y { get { return _y.GetValue(); } set { _y.SetValue(value); } }
     
+        private PropertyValue<int> _length = new PropertyValue<int>(nameof(AvatarCropSquareDto), nameof(Length));
+        
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get; set; }
+        public int Length { get { return _length.GetValue(); } set { _length.SetValue(value); } }
     
     }
     

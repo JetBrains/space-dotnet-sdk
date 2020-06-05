@@ -27,13 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<TDMemberProfileDto> _uid = new PropertyValue<TDMemberProfileDto>(nameof(ReviewerChangedEventDto), nameof(Uid));
+        
         [Required]
         [JsonPropertyName("uid")]
-        public TDMemberProfileDto Uid { get; set; }
+        public TDMemberProfileDto Uid { get { return _uid.GetValue(); } set { _uid.SetValue(value); } }
     
+        private PropertyValue<ReviewerChangedType> _changeType = new PropertyValue<ReviewerChangedType>(nameof(ReviewerChangedEventDto), nameof(ChangeType));
+        
         [Required]
         [JsonPropertyName("changeType")]
-        public ReviewerChangedType ChangeType { get; set; }
+        public ReviewerChangedType ChangeType { get { return _changeType.GetValue(); } set { _changeType.SetValue(value); } }
     
     }
     

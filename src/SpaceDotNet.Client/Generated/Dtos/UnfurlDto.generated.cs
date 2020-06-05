@@ -23,53 +23,83 @@ namespace SpaceDotNet.Client
 {
     public sealed class UnfurlDto
     {
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDto), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
+        private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlDto), nameof(Link));
+        
         [Required]
         [JsonPropertyName("link")]
-        public string Link { get; set; }
+        public string Link { get { return _link.GetValue(); } set { _link.SetValue(value); } }
     
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(UnfurlDto), nameof(Text));
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
+        private PropertyValue<UnfurlDetailsDto?> _details = new PropertyValue<UnfurlDetailsDto?>(nameof(UnfurlDto), nameof(Details));
+        
         [JsonPropertyName("details")]
-        public UnfurlDetailsDto? Details { get; set; }
+        public UnfurlDetailsDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
     
+        private PropertyValue<string?> _sitename = new PropertyValue<string?>(nameof(UnfurlDto), nameof(Sitename));
+        
         [JsonPropertyName("sitename")]
-        public string? Sitename { get; set; }
+        public string? Sitename { get { return _sitename.GetValue(); } set { _sitename.SetValue(value); } }
     
+        private PropertyValue<string?> _image = new PropertyValue<string?>(nameof(UnfurlDto), nameof(Image));
+        
         [JsonPropertyName("image")]
-        public string? Image { get; set; }
+        public string? Image { get { return _image.GetValue(); } set { _image.SetValue(value); } }
     
+        private PropertyValue<string?> _imageMime = new PropertyValue<string?>(nameof(UnfurlDto), nameof(ImageMime));
+        
         [JsonPropertyName("imageMime")]
-        public string? ImageMime { get; set; }
+        public string? ImageMime { get { return _imageMime.GetValue(); } set { _imageMime.SetValue(value); } }
     
+        private PropertyValue<int?> _imageWidth = new PropertyValue<int?>(nameof(UnfurlDto), nameof(ImageWidth));
+        
         [JsonPropertyName("imageWidth")]
-        public int? ImageWidth { get; set; }
+        public int? ImageWidth { get { return _imageWidth.GetValue(); } set { _imageWidth.SetValue(value); } }
     
+        private PropertyValue<int?> _imageHeight = new PropertyValue<int?>(nameof(UnfurlDto), nameof(ImageHeight));
+        
         [JsonPropertyName("imageHeight")]
-        public int? ImageHeight { get; set; }
+        public int? ImageHeight { get { return _imageHeight.GetValue(); } set { _imageHeight.SetValue(value); } }
     
+        private PropertyValue<string?> _video = new PropertyValue<string?>(nameof(UnfurlDto), nameof(Video));
+        
         [JsonPropertyName("video")]
-        public string? Video { get; set; }
+        public string? Video { get { return _video.GetValue(); } set { _video.SetValue(value); } }
     
+        private PropertyValue<string?> _videoIFrame = new PropertyValue<string?>(nameof(UnfurlDto), nameof(VideoIFrame));
+        
         [JsonPropertyName("videoIFrame")]
-        public string? VideoIFrame { get; set; }
+        public string? VideoIFrame { get { return _videoIFrame.GetValue(); } set { _videoIFrame.SetValue(value); } }
     
+        private PropertyValue<string?> _videoMime = new PropertyValue<string?>(nameof(UnfurlDto), nameof(VideoMime));
+        
         [JsonPropertyName("videoMime")]
-        public string? VideoMime { get; set; }
+        public string? VideoMime { get { return _videoMime.GetValue(); } set { _videoMime.SetValue(value); } }
     
+        private PropertyValue<int?> _videoHeight = new PropertyValue<int?>(nameof(UnfurlDto), nameof(VideoHeight));
+        
         [JsonPropertyName("videoHeight")]
-        public int? VideoHeight { get; set; }
+        public int? VideoHeight { get { return _videoHeight.GetValue(); } set { _videoHeight.SetValue(value); } }
     
+        private PropertyValue<int?> _videoWidth = new PropertyValue<int?>(nameof(UnfurlDto), nameof(VideoWidth));
+        
         [JsonPropertyName("videoWidth")]
-        public int? VideoWidth { get; set; }
+        public int? VideoWidth { get { return _videoWidth.GetValue(); } set { _videoWidth.SetValue(value); } }
     
+        private PropertyValue<string?> _favicon = new PropertyValue<string?>(nameof(UnfurlDto), nameof(Favicon));
+        
         [JsonPropertyName("favicon")]
-        public string? Favicon { get; set; }
+        public string? Favicon { get { return _favicon.GetValue(); } set { _favicon.SetValue(value); } }
     
     }
     

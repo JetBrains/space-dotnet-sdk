@@ -23,11 +23,15 @@ namespace SpaceDotNet.Client
 {
     public class UpdatePermanentTokenRequest
     {
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(UpdatePermanentTokenRequest), nameof(Name));
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string? Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(UpdatePermanentTokenRequest), nameof(Scope));
+        
         [JsonPropertyName("scope")]
-        public string? Scope { get; set; }
+        public string? Scope { get { return _scope.GetValue(); } set { _scope.SetValue(value); } }
     
     }
     

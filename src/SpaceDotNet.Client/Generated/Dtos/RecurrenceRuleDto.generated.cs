@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class RecurrenceRuleDto
     {
+        private PropertyValue<RecurrenceRuleFreqDto> _freq = new PropertyValue<RecurrenceRuleFreqDto>(nameof(RecurrenceRuleDto), nameof(Freq));
+        
         [Required]
         [JsonPropertyName("freq")]
-        public RecurrenceRuleFreqDto Freq { get; set; }
+        public RecurrenceRuleFreqDto Freq { get { return _freq.GetValue(); } set { _freq.SetValue(value); } }
     
+        private PropertyValue<RecurrenceRuleEndsDto> _ends = new PropertyValue<RecurrenceRuleEndsDto>(nameof(RecurrenceRuleDto), nameof(Ends));
+        
         [Required]
         [JsonPropertyName("ends")]
-        public RecurrenceRuleEndsDto Ends { get; set; }
+        public RecurrenceRuleEndsDto Ends { get { return _ends.GetValue(); } set { _ends.SetValue(value); } }
     
     }
     

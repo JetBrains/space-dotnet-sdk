@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class SupportProfileDTODto
     {
+        private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(SupportProfileDTODto), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
+        private PropertyValue<bool> _adminPermissionsGranted = new PropertyValue<bool>(nameof(SupportProfileDTODto), nameof(AdminPermissionsGranted));
+        
         [Required]
         [JsonPropertyName("adminPermissionsGranted")]
-        public bool AdminPermissionsGranted { get; set; }
+        public bool AdminPermissionsGranted { get { return _adminPermissionsGranted.GetValue(); } set { _adminPermissionsGranted.SetValue(value); } }
     
     }
     

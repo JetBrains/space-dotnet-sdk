@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public class TestLDAPSettingsRequest
     {
+        private PropertyValue<ESLdapAuthModuleSettingsDto> _settings = new PropertyValue<ESLdapAuthModuleSettingsDto>(nameof(TestLDAPSettingsRequest), nameof(Settings));
+        
         [Required]
         [JsonPropertyName("settings")]
-        public ESLdapAuthModuleSettingsDto Settings { get; set; }
+        public ESLdapAuthModuleSettingsDto Settings { get { return _settings.GetValue(); } set { _settings.SetValue(value); } }
     
+        private PropertyValue<string> _username = new PropertyValue<string>(nameof(TestLDAPSettingsRequest), nameof(Username));
+        
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string Username { get { return _username.GetValue(); } set { _username.SetValue(value); } }
     
+        private PropertyValue<string> _password = new PropertyValue<string>(nameof(TestLDAPSettingsRequest), nameof(Password));
+        
         [Required]
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        public string Password { get { return _password.GetValue(); } set { _password.SetValue(value); } }
     
     }
     

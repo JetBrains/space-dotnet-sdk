@@ -23,15 +23,21 @@ namespace SpaceDotNet.Client
 {
     public class AddWorkingDaysRequest
     {
+        private PropertyValue<SpaceDate?> _dateStart = new PropertyValue<SpaceDate?>(nameof(AddWorkingDaysRequest), nameof(DateStart));
+        
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
+        public SpaceDate? DateStart { get { return _dateStart.GetValue(); } set { _dateStart.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _dateEnd = new PropertyValue<SpaceDate?>(nameof(AddWorkingDaysRequest), nameof(DateEnd));
+        
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
+        public SpaceDate? DateEnd { get { return _dateEnd.GetValue(); } set { _dateEnd.SetValue(value); } }
     
+        private PropertyValue<WorkingDaysSpecDto> _workingDaysSpec = new PropertyValue<WorkingDaysSpecDto>(nameof(AddWorkingDaysRequest), nameof(WorkingDaysSpec));
+        
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+        public WorkingDaysSpecDto WorkingDaysSpec { get { return _workingDaysSpec.GetValue(); } set { _workingDaysSpec.SetValue(value); } }
     
     }
     

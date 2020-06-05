@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class ESTeamMappingDto
     {
+        private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ESTeamMappingDto), nameof(TeamId));
+        
         [Required]
         [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
+        public string TeamId { get { return _teamId.GetValue(); } set { _teamId.SetValue(value); } }
     
+        private PropertyValue<string> _externalGroupName = new PropertyValue<string>(nameof(ESTeamMappingDto), nameof(ExternalGroupName));
+        
         [Required]
         [JsonPropertyName("externalGroupName")]
-        public string ExternalGroupName { get; set; }
+        public string ExternalGroupName { get { return _externalGroupName.GetValue(); } set { _externalGroupName.SetValue(value); } }
     
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public class ImportArticlesRequest
     {
+        private PropertyValue<ImportMetadataDto> _metadata = new PropertyValue<ImportMetadataDto>(nameof(ImportArticlesRequest), nameof(Metadata));
+        
         [Required]
         [JsonPropertyName("metadata")]
-        public ImportMetadataDto Metadata { get; set; }
+        public ImportMetadataDto Metadata { get { return _metadata.GetValue(); } set { _metadata.SetValue(value); } }
     
+        private PropertyValue<List<ExternalArticleDto>> _articles = new PropertyValue<List<ExternalArticleDto>>(nameof(ImportArticlesRequest), nameof(Articles));
+        
         [Required]
         [JsonPropertyName("articles")]
-        public List<ExternalArticleDto> Articles { get; set; }
+        public List<ExternalArticleDto> Articles { get { return _articles.GetValue(); } set { _articles.SetValue(value); } }
     
     }
     

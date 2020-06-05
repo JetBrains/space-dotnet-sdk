@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class DeleteRequest
     {
+        private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(DeleteRequest), nameof(Emoji));
+        
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
+        public string Emoji { get { return _emoji.GetValue(); } set { _emoji.SetValue(value); } }
     
     }
     

@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public class TestBuiltInSettingsRequest
     {
+        private PropertyValue<ESBuiltinAuthModuleSettingsDto> _settings = new PropertyValue<ESBuiltinAuthModuleSettingsDto>(nameof(TestBuiltInSettingsRequest), nameof(Settings));
+        
         [Required]
         [JsonPropertyName("settings")]
-        public ESBuiltinAuthModuleSettingsDto Settings { get; set; }
+        public ESBuiltinAuthModuleSettingsDto Settings { get { return _settings.GetValue(); } set { _settings.SetValue(value); } }
     
+        private PropertyValue<string> _username = new PropertyValue<string>(nameof(TestBuiltInSettingsRequest), nameof(Username));
+        
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string Username { get { return _username.GetValue(); } set { _username.SetValue(value); } }
     
+        private PropertyValue<string> _password = new PropertyValue<string>(nameof(TestBuiltInSettingsRequest), nameof(Password));
+        
         [Required]
         [JsonPropertyName("password")]
-        public string Password { get; set; }
+        public string Password { get { return _password.GetValue(); } set { _password.SetValue(value); } }
     
     }
     

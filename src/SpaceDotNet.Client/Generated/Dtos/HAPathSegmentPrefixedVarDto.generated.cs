@@ -24,13 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class HAPathSegmentPrefixedVarDto
          : HAPathSegmentDto, IClassNameConvertible
     {
+        private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVarDto), nameof(Prefix));
+        
         [Required]
         [JsonPropertyName("prefix")]
-        public string Prefix { get; set; }
+        public string Prefix { get { return _prefix.GetValue(); } set { _prefix.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVarDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
     }
     

@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client
 {
     public sealed class PermissionSnapshotContentDTODto
     {
+        private PropertyValue<List<PermissionSnapshotEntryDTODto>> _entries = new PropertyValue<List<PermissionSnapshotEntryDTODto>>(nameof(PermissionSnapshotContentDTODto), nameof(Entries));
+        
         [Required]
         [JsonPropertyName("entries")]
-        public List<PermissionSnapshotEntryDTODto> Entries { get; set; }
+        public List<PermissionSnapshotEntryDTODto> Entries { get { return _entries.GetValue(); } set { _entries.SetValue(value); } }
     
+        private PropertyValue<List<PermissionSnapshotPrincipalDTODto>> _principals = new PropertyValue<List<PermissionSnapshotPrincipalDTODto>>(nameof(PermissionSnapshotContentDTODto), nameof(Principals));
+        
         [Required]
         [JsonPropertyName("principals")]
-        public List<PermissionSnapshotPrincipalDTODto> Principals { get; set; }
+        public List<PermissionSnapshotPrincipalDTODto> Principals { get { return _principals.GetValue(); } set { _principals.SetValue(value); } }
     
+        private PropertyValue<List<PermissionSnapshotRightDTODto>> _rights = new PropertyValue<List<PermissionSnapshotRightDTODto>>(nameof(PermissionSnapshotContentDTODto), nameof(Rights));
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<PermissionSnapshotRightDTODto> Rights { get; set; }
+        public List<PermissionSnapshotRightDTODto> Rights { get { return _rights.GetValue(); } set { _rights.SetValue(value); } }
     
+        private PropertyValue<List<PermissionSnapshotTargetDTODto>> _targets = new PropertyValue<List<PermissionSnapshotTargetDTODto>>(nameof(PermissionSnapshotContentDTODto), nameof(Targets));
+        
         [Required]
         [JsonPropertyName("targets")]
-        public List<PermissionSnapshotTargetDTODto> Targets { get; set; }
+        public List<PermissionSnapshotTargetDTODto> Targets { get { return _targets.GetValue(); } set { _targets.SetValue(value); } }
     
     }
     

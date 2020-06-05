@@ -23,19 +23,27 @@ namespace SpaceDotNet.Client
 {
     public sealed class CodeLineDto
     {
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeLineDto), nameof(Text));
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
+        private PropertyValue<int?> _index = new PropertyValue<int?>(nameof(CodeLineDto), nameof(Index));
+        
         [JsonPropertyName("index")]
-        public int? Index { get; set; }
+        public int? Index { get { return _index.GetValue(); } set { _index.SetValue(value); } }
     
+        private PropertyValue<int> _offset = new PropertyValue<int>(nameof(CodeLineDto), nameof(Offset));
+        
         [Required]
         [JsonPropertyName("offset")]
-        public int Offset { get; set; }
+        public int Offset { get { return _offset.GetValue(); } set { _offset.SetValue(value); } }
     
+        private PropertyValue<List<SyntaxMarkupDto>?> _syntax = new PropertyValue<List<SyntaxMarkupDto>?>(nameof(CodeLineDto), nameof(Syntax));
+        
         [JsonPropertyName("syntax")]
-        public List<SyntaxMarkupDto>? Syntax { get; set; }
+        public List<SyntaxMarkupDto>? Syntax { get { return _syntax.GetValue(); } set { _syntax.SetValue(value); } }
     
     }
     

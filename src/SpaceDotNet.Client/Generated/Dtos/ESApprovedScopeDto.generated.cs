@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class ESApprovedScopeDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScopeDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApprovedScopeDto), nameof(Scope));
+        
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }
+        public string Scope { get { return _scope.GetValue(); } set { _scope.SetValue(value); } }
     
+        private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScopeDto), nameof(OfflineAllowed));
+        
         [Required]
         [JsonPropertyName("offlineAllowed")]
-        public bool OfflineAllowed { get; set; }
+        public bool OfflineAllowed { get { return _offlineAllowed.GetValue(); } set { _offlineAllowed.SetValue(value); } }
     
     }
     

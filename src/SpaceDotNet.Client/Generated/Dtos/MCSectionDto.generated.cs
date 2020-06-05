@@ -27,15 +27,21 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<MCTextDto?> _header = new PropertyValue<MCTextDto?>(nameof(MCSectionDto), nameof(Header));
+        
         [JsonPropertyName("header")]
-        public MCTextDto? Header { get; set; }
+        public MCTextDto? Header { get { return _header.GetValue(); } set { _header.SetValue(value); } }
     
+        private PropertyValue<List<MCElementDto>> _elements = new PropertyValue<List<MCElementDto>>(nameof(MCSectionDto), nameof(Elements));
+        
         [Required]
         [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get; set; }
+        public List<MCElementDto> Elements { get { return _elements.GetValue(); } set { _elements.SetValue(value); } }
     
+        private PropertyValue<MCTextDto?> _footer = new PropertyValue<MCTextDto?>(nameof(MCSectionDto), nameof(Footer));
+        
         [JsonPropertyName("footer")]
-        public MCTextDto? Footer { get; set; }
+        public MCTextDto? Footer { get { return _footer.GetValue(); } set { _footer.SetValue(value); } }
     
     }
     

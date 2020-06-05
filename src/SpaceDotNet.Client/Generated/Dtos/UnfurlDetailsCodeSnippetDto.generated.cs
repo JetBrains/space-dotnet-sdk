@@ -27,13 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<CodeSnippetAnchorDto> _anchor = new PropertyValue<CodeSnippetAnchorDto>(nameof(UnfurlDetailsCodeSnippetDto), nameof(Anchor));
+        
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeSnippetAnchorDto Anchor { get; set; }
+        public CodeSnippetAnchorDto Anchor { get { return _anchor.GetValue(); } set { _anchor.SetValue(value); } }
     
+        private PropertyValue<List<CodeLineDto>> _lines = new PropertyValue<List<CodeLineDto>>(nameof(UnfurlDetailsCodeSnippetDto), nameof(Lines));
+        
         [Required]
         [JsonPropertyName("lines")]
-        public List<CodeLineDto> Lines { get; set; }
+        public List<CodeLineDto> Lines { get { return _lines.GetValue(); } set { _lines.SetValue(value); } }
     
     }
     

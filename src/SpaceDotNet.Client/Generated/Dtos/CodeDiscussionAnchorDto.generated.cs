@@ -23,29 +23,43 @@ namespace SpaceDotNet.Client
 {
     public sealed class CodeDiscussionAnchorDto
     {
+        private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(CodeDiscussionAnchorDto), nameof(Project));
+        
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get; set; }
+        public ProjectKeyDto Project { get { return _project.GetValue(); } set { _project.SetValue(value); } }
     
+        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeDiscussionAnchorDto), nameof(Repository));
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
     
+        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CodeDiscussionAnchorDto), nameof(Revision));
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
+        public string Revision { get { return _revision.GetValue(); } set { _revision.SetValue(value); } }
     
+        private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(CodeDiscussionAnchorDto), nameof(Filename));
+        
         [JsonPropertyName("filename")]
-        public string? Filename { get; set; }
+        public string? Filename { get { return _filename.GetValue(); } set { _filename.SetValue(value); } }
     
+        private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(CodeDiscussionAnchorDto), nameof(Line));
+        
         [JsonPropertyName("line")]
-        public int? Line { get; set; }
+        public int? Line { get { return _line.GetValue(); } set { _line.SetValue(value); } }
     
+        private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(CodeDiscussionAnchorDto), nameof(OldLine));
+        
         [JsonPropertyName("oldLine")]
-        public int? OldLine { get; set; }
+        public int? OldLine { get { return _oldLine.GetValue(); } set { _oldLine.SetValue(value); } }
     
+        private PropertyValue<InterpolatedLineState?> _interpolatedLineState = new PropertyValue<InterpolatedLineState?>(nameof(CodeDiscussionAnchorDto), nameof(InterpolatedLineState));
+        
         [JsonPropertyName("interpolatedLineState")]
-        public InterpolatedLineState? InterpolatedLineState { get; set; }
+        public InterpolatedLineState? InterpolatedLineState { get { return _interpolatedLineState.GetValue(); } set { _interpolatedLineState.SetValue(value); } }
     
     }
     

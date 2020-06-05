@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class RepositoryInReviewDto
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepositoryInReviewDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(RepositoryInReviewDto), nameof(Deleted));
+        
         [Required]
         [JsonPropertyName("deleted")]
-        public bool Deleted { get; set; }
+        public bool Deleted { get { return _deleted.GetValue(); } set { _deleted.SetValue(value); } }
     
     }
     

@@ -23,32 +23,46 @@ namespace SpaceDotNet.Client
 {
     public sealed class TodoItemRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TodoItemRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TodoItemRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(TodoItemRecordDto), nameof(Created));
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
+        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _updated = new PropertyValue<SpaceTime>(nameof(TodoItemRecordDto), nameof(Updated));
+        
         [Required]
         [JsonPropertyName("updated")]
-        public SpaceTime Updated { get; set; }
+        public SpaceTime Updated { get { return _updated.GetValue(); } set { _updated.SetValue(value); } }
     
+        private PropertyValue<TodoItemContentDto> _content = new PropertyValue<TodoItemContentDto>(nameof(TodoItemRecordDto), nameof(Content));
+        
         [Required]
         [JsonPropertyName("content")]
-        public TodoItemContentDto Content { get; set; }
+        public TodoItemContentDto Content { get { return _content.GetValue(); } set { _content.SetValue(value); } }
     
+        private PropertyValue<string> __status = new PropertyValue<string>(nameof(TodoItemRecordDto), nameof(Status));
+        
         [Required]
         [JsonPropertyName("_status")]
-        public string Status { get; set; }
+        public string Status { get { return __status.GetValue(); } set { __status.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(TodoItemRecordDto), nameof(DueDate));
+        
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get; set; }
+        public SpaceDate? DueDate { get { return _dueDate.GetValue(); } set { _dueDate.SetValue(value); } }
     
     }
     

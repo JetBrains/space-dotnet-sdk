@@ -23,28 +23,40 @@ namespace SpaceDotNet.Client
 {
     public sealed class ESAuthenticationSessionDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthenticationSessionDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(ESAuthenticationSessionDto), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ESAuthenticationSessionDto), nameof(Created));
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
+        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _expires = new PropertyValue<SpaceTime>(nameof(ESAuthenticationSessionDto), nameof(Expires));
+        
         [Required]
         [JsonPropertyName("expires")]
-        public SpaceTime Expires { get; set; }
+        public SpaceTime Expires { get { return _expires.GetValue(); } set { _expires.SetValue(value); } }
     
+        private PropertyValue<AccessRecordDto?> _lastAccess = new PropertyValue<AccessRecordDto?>(nameof(ESAuthenticationSessionDto), nameof(LastAccess));
+        
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }
+        public AccessRecordDto? LastAccess { get { return _lastAccess.GetValue(); } set { _lastAccess.SetValue(value); } }
     
+        private PropertyValue<bool> _current = new PropertyValue<bool>(nameof(ESAuthenticationSessionDto), nameof(Current));
+        
         [Required]
         [JsonPropertyName("current")]
-        public bool Current { get; set; }
+        public bool Current { get { return _current.GetValue(); } set { _current.SetValue(value); } }
     
     }
     

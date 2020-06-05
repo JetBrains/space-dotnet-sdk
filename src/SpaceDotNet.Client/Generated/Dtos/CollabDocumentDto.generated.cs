@@ -27,24 +27,34 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CollabDocumentDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<long> _resetCounter = new PropertyValue<long>(nameof(CollabDocumentDto), nameof(ResetCounter));
+        
         [Required]
         [JsonPropertyName("resetCounter")]
-        public long ResetCounter { get; set; }
+        public long ResetCounter { get { return _resetCounter.GetValue(); } set { _resetCounter.SetValue(value); } }
     
+        private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(CollabDocumentDto), nameof(Version));
+        
         [JsonPropertyName("version")]
-        public long? Version { get; set; }
+        public long? Version { get { return _version.GetValue(); } set { _version.SetValue(value); } }
     
+        private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(CollabDocumentDto), nameof(Type));
+        
         [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get; set; }
+        public DraftDocumentType Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(CollabDocumentDto), nameof(Text));
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
     }
     

@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class CodeReviewPendingMessageCounterDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewPendingMessageCounterDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<int> _count = new PropertyValue<int>(nameof(CodeReviewPendingMessageCounterDto), nameof(Count));
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
+        public int Count { get { return _count.GetValue(); } set { _count.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewPendingMessageCounterDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
     }
     

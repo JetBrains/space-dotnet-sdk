@@ -23,39 +23,57 @@ namespace SpaceDotNet.Client
 {
     public sealed class MeetingRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeetingRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeetingRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _starts = new PropertyValue<SpaceTime>(nameof(MeetingRecordDto), nameof(Starts));
+        
         [Required]
         [JsonPropertyName("starts")]
-        public SpaceTime Starts { get; set; }
+        public SpaceTime Starts { get { return _starts.GetValue(); } set { _starts.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _finishes = new PropertyValue<SpaceTime>(nameof(MeetingRecordDto), nameof(Finishes));
+        
         [Required]
         [JsonPropertyName("finishes")]
-        public SpaceTime Finishes { get; set; }
+        public SpaceTime Finishes { get { return _finishes.GetValue(); } set { _finishes.SetValue(value); } }
     
+        private PropertyValue<ATimeZoneDto?> _timezone = new PropertyValue<ATimeZoneDto?>(nameof(MeetingRecordDto), nameof(Timezone));
+        
         [JsonPropertyName("timezone")]
-        public ATimeZoneDto? Timezone { get; set; }
+        public ATimeZoneDto? Timezone { get { return _timezone.GetValue(); } set { _timezone.SetValue(value); } }
     
+        private PropertyValue<bool> _allDay = new PropertyValue<bool>(nameof(MeetingRecordDto), nameof(AllDay));
+        
         [Required]
         [JsonPropertyName("allDay")]
-        public bool AllDay { get; set; }
+        public bool AllDay { get { return _allDay.GetValue(); } set { _allDay.SetValue(value); } }
     
+        private PropertyValue<List<TDLocationDto>> _rooms = new PropertyValue<List<TDLocationDto>>(nameof(MeetingRecordDto), nameof(Rooms));
+        
         [Required]
         [JsonPropertyName("rooms")]
-        public List<TDLocationDto> Rooms { get; set; }
+        public List<TDLocationDto> Rooms { get { return _rooms.GetValue(); } set { _rooms.SetValue(value); } }
     
+        private PropertyValue<List<ParticipantDto>> _participants = new PropertyValue<List<ParticipantDto>>(nameof(MeetingRecordDto), nameof(Participants));
+        
         [Required]
         [JsonPropertyName("participants")]
-        public List<ParticipantDto> Participants { get; set; }
+        public List<ParticipantDto> Participants { get { return _participants.GetValue(); } set { _participants.SetValue(value); } }
     
+        private PropertyValue<ArticleRecordDto?> _article = new PropertyValue<ArticleRecordDto?>(nameof(MeetingRecordDto), nameof(Article));
+        
         [JsonPropertyName("article")]
-        public ArticleRecordDto? Article { get; set; }
+        public ArticleRecordDto? Article { get { return _article.GetValue(); } set { _article.SetValue(value); } }
     
     }
     

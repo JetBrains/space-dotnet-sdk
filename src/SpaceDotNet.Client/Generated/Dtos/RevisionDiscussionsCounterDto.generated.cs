@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class RevisionDiscussionsCounterDto
     {
+        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RevisionDiscussionsCounterDto), nameof(Revision));
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
+        public string Revision { get { return _revision.GetValue(); } set { _revision.SetValue(value); } }
     
+        private PropertyValue<List<FileWithCountDto>> _filesWithCounts = new PropertyValue<List<FileWithCountDto>>(nameof(RevisionDiscussionsCounterDto), nameof(FilesWithCounts));
+        
         [Required]
         [JsonPropertyName("filesWithCounts")]
-        public List<FileWithCountDto> FilesWithCounts { get; set; }
+        public List<FileWithCountDto> FilesWithCounts { get { return _filesWithCounts.GetValue(); } set { _filesWithCounts.SetValue(value); } }
     
     }
     

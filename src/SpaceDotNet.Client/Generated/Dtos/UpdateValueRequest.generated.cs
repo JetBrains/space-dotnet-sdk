@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateValueRequest
     {
+        private PropertyValue<List<CustomFieldValueDto>> _values = new PropertyValue<List<CustomFieldValueDto>>(nameof(UpdateValueRequest), nameof(Values));
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<CustomFieldValueDto> Values { get; set; }
+        public List<CustomFieldValueDto> Values { get { return _values.GetValue(); } set { _values.SetValue(value); } }
     
     }
     

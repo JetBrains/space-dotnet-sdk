@@ -23,31 +23,45 @@ namespace SpaceDotNet.Client
 {
     public sealed class CodeReviewParticipantRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewParticipantRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewParticipantRecordDto), nameof(ProjectId));
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
+        public string ProjectId { get { return _projectId.GetValue(); } set { _projectId.SetValue(value); } }
     
+        private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(CodeReviewParticipantRecordDto), nameof(Role));
+        
         [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }
+        public CodeReviewParticipantRole Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(CodeReviewParticipantRecordDto), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
+        private PropertyValue<ReviewerState?> _reviewerState = new PropertyValue<ReviewerState?>(nameof(CodeReviewParticipantRecordDto), nameof(ReviewerState));
+        
         [JsonPropertyName("reviewerState")]
-        public ReviewerState? ReviewerState { get; set; }
+        public ReviewerState? ReviewerState { get { return _reviewerState.GetValue(); } set { _reviewerState.SetValue(value); } }
     
+        private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(CodeReviewParticipantRecordDto), nameof(TheirTurn));
+        
         [JsonPropertyName("theirTurn")]
-        public bool? TheirTurn { get; set; }
+        public bool? TheirTurn { get { return _theirTurn.GetValue(); } set { _theirTurn.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewParticipantRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
     }
     

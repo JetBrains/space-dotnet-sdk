@@ -24,8 +24,10 @@ namespace SpaceDotNet.Client
     public sealed class DateCFValueDto
          : CFValueDto, IClassNameConvertible
     {
+        private PropertyValue<SpaceDate?> _value = new PropertyValue<SpaceDate?>(nameof(DateCFValueDto), nameof(Value));
+        
         [JsonPropertyName("value")]
-        public SpaceDate? Value { get; set; }
+        public SpaceDate? Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
     
     }
     

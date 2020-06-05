@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class ReorderRequest
     {
+        private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(ReorderRequest), nameof(Order));
+        
         [Required]
         [JsonPropertyName("order")]
-        public List<string> Order { get; set; }
+        public List<string> Order { get { return _order.GetValue(); } set { _order.SetValue(value); } }
     
     }
     

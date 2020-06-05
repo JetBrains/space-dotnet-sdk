@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class AddRevisionsToReviewRequest
     {
+        private PropertyValue<List<RevisionInReviewDto>> _revisions = new PropertyValue<List<RevisionInReviewDto>>(nameof(AddRevisionsToReviewRequest), nameof(Revisions));
+        
         [Required]
         [JsonPropertyName("revisions")]
-        public List<RevisionInReviewDto> Revisions { get; set; }
+        public List<RevisionInReviewDto> Revisions { get { return _revisions.GetValue(); } set { _revisions.SetValue(value); } }
     
     }
     

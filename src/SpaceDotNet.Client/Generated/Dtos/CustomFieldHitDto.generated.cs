@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class CustomFieldHitDto
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomFieldHitDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _value = new PropertyValue<string>(nameof(CustomFieldHitDto), nameof(Value));
+        
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }
+        public string Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
     
     }
     

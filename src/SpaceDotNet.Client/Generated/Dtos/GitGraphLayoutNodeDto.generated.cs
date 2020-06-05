@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class GitGraphLayoutNodeDto
     {
+        private PropertyValue<int> _pos = new PropertyValue<int>(nameof(GitGraphLayoutNodeDto), nameof(Pos));
+        
         [Required]
         [JsonPropertyName("pos")]
-        public int Pos { get; set; }
+        public int Pos { get { return _pos.GetValue(); } set { _pos.SetValue(value); } }
     
+        private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutNodeDto), nameof(Color));
+        
         [Required]
         [JsonPropertyName("color")]
-        public int Color { get; set; }
+        public int Color { get { return _color.GetValue(); } set { _color.SetValue(value); } }
     
     }
     

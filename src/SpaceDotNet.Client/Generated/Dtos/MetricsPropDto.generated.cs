@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class MetricsPropDto
     {
+        private PropertyValue<string> _key = new PropertyValue<string>(nameof(MetricsPropDto), nameof(Key));
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
+        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
     
+        private PropertyValue<string> _value = new PropertyValue<string>(nameof(MetricsPropDto), nameof(Value));
+        
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }
+        public string Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
     
     }
     

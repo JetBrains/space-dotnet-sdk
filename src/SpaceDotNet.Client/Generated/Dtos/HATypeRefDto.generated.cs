@@ -24,17 +24,23 @@ namespace SpaceDotNet.Client
     public sealed class HATypeRefDto
          : HATypeDto, IClassNameConvertible
     {
+        private PropertyValue<HADtoDto> _dto = new PropertyValue<HADtoDto>(nameof(HATypeRefDto), nameof(Dto));
+        
         [Required]
         [JsonPropertyName("dto")]
-        public HADtoDto Dto { get; set; }
+        public HADtoDto Dto { get { return _dto.GetValue(); } set { _dto.SetValue(value); } }
     
+        private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeRefDto), nameof(Nullable));
+        
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get; set; }
+        public bool Nullable { get { return _nullable.GetValue(); } set { _nullable.SetValue(value); } }
     
+        private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypeRefDto), nameof(Optional));
+        
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
+        public bool Optional { get { return _optional.GetValue(); } set { _optional.SetValue(value); } }
     
     }
     

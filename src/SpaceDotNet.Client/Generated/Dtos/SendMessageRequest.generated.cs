@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public class SendMessageRequest
     {
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(SendMessageRequest), nameof(Text));
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
+        private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(SendMessageRequest), nameof(TemporaryId));
+        
         [JsonPropertyName("temporaryId")]
-        public string? TemporaryId { get; set; }
+        public string? TemporaryId { get { return _temporaryId.GetValue(); } set { _temporaryId.SetValue(value); } }
     
     }
     

@@ -23,16 +23,22 @@ namespace SpaceDotNet.Client
 {
     public sealed class TDMemberInLocationMapListDto
     {
+        private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(TDMemberInLocationMapListDto), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
+        private PropertyValue<TDMemberLocationDto> _memberLocation = new PropertyValue<TDMemberLocationDto>(nameof(TDMemberInLocationMapListDto), nameof(MemberLocation));
+        
         [Required]
         [JsonPropertyName("memberLocation")]
-        public TDMemberLocationDto MemberLocation { get; set; }
+        public TDMemberLocationDto MemberLocation { get { return _memberLocation.GetValue(); } set { _memberLocation.SetValue(value); } }
     
+        private PropertyValue<TDLocationMapPointDto?> _locationMapPoint = new PropertyValue<TDLocationMapPointDto?>(nameof(TDMemberInLocationMapListDto), nameof(LocationMapPoint));
+        
         [JsonPropertyName("locationMapPoint")]
-        public TDLocationMapPointDto? LocationMapPoint { get; set; }
+        public TDLocationMapPointDto? LocationMapPoint { get { return _locationMapPoint.GetValue(); } set { _locationMapPoint.SetValue(value); } }
     
     }
     

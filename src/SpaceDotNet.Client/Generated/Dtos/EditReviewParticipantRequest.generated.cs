@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class EditReviewParticipantRequest
     {
+        private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(EditReviewParticipantRequest), nameof(Role));
+        
         [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }
+        public CodeReviewParticipantRole Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
     
     }
     

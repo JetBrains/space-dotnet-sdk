@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public class CreateImportSourceRequest
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateImportSourceRequest), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string?> _importerPrincipal = new PropertyValue<string?>(nameof(CreateImportSourceRequest), nameof(ImporterPrincipal));
+        
         [JsonPropertyName("importerPrincipal")]
-        public string? ImporterPrincipal { get; set; }
+        public string? ImporterPrincipal { get { return _importerPrincipal.GetValue(); } set { _importerPrincipal.SetValue(value); } }
     
     }
     

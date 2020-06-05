@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class SamlMetadataResponseErrorDto
          : SamlMetadataResponseDto, IClassNameConvertible
     {
+        private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseErrorDto), nameof(Messages));
+        
         [Required]
         [JsonPropertyName("messages")]
-        public List<string> Messages { get; set; }
+        public List<string> Messages { get { return _messages.GetValue(); } set { _messages.SetValue(value); } }
     
     }
     

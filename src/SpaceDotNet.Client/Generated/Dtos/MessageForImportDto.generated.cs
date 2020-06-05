@@ -23,20 +23,28 @@ namespace SpaceDotNet.Client
 {
     public sealed class MessageForImportDto
     {
+        private PropertyValue<string> _authorPrincipalId = new PropertyValue<string>(nameof(MessageForImportDto), nameof(AuthorPrincipalId));
+        
         [Required]
         [JsonPropertyName("authorPrincipalId")]
-        public string AuthorPrincipalId { get; set; }
+        public string AuthorPrincipalId { get { return _authorPrincipalId.GetValue(); } set { _authorPrincipalId.SetValue(value); } }
     
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageForImportDto), nameof(Text));
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
+        private PropertyValue<long> _createdAtUtc = new PropertyValue<long>(nameof(MessageForImportDto), nameof(CreatedAtUtc));
+        
         [Required]
         [JsonPropertyName("createdAtUtc")]
-        public long CreatedAtUtc { get; set; }
+        public long CreatedAtUtc { get { return _createdAtUtc.GetValue(); } set { _createdAtUtc.SetValue(value); } }
     
+        private PropertyValue<List<AttachmentDto>?> _attachments = new PropertyValue<List<AttachmentDto>?>(nameof(MessageForImportDto), nameof(Attachments));
+        
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto>? Attachments { get; set; }
+        public List<AttachmentDto>? Attachments { get { return _attachments.GetValue(); } set { _attachments.SetValue(value); } }
     
     }
     

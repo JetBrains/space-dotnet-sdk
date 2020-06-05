@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public class CreateTrustedCertificateRequest
     {
+        private PropertyValue<string> _alias = new PropertyValue<string>(nameof(CreateTrustedCertificateRequest), nameof(Alias));
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
+        public string Alias { get { return _alias.GetValue(); } set { _alias.SetValue(value); } }
     
+        private PropertyValue<string> _data = new PropertyValue<string>(nameof(CreateTrustedCertificateRequest), nameof(Data));
+        
         [Required]
         [JsonPropertyName("data")]
-        public string Data { get; set; }
+        public string Data { get { return _data.GetValue(); } set { _data.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CreateTrustedCertificateRequest), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
     }
     

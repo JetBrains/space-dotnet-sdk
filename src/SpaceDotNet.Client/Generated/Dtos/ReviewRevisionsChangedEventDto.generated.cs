@@ -27,19 +27,27 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<List<RepositoryCommitRecordDto>> _commits = new PropertyValue<List<RepositoryCommitRecordDto>>(nameof(ReviewRevisionsChangedEventDto), nameof(Commits));
+        
         [Required]
         [JsonPropertyName("commits")]
-        public List<RepositoryCommitRecordDto> Commits { get; set; }
+        public List<RepositoryCommitRecordDto> Commits { get { return _commits.GetValue(); } set { _commits.SetValue(value); } }
     
+        private PropertyValue<ReviewRevisionsChangedType> _changeType = new PropertyValue<ReviewRevisionsChangedType>(nameof(ReviewRevisionsChangedEventDto), nameof(ChangeType));
+        
         [Required]
         [JsonPropertyName("changeType")]
-        public ReviewRevisionsChangedType ChangeType { get; set; }
+        public ReviewRevisionsChangedType ChangeType { get { return _changeType.GetValue(); } set { _changeType.SetValue(value); } }
     
+        private PropertyValue<string?> _projectKey = new PropertyValue<string?>(nameof(ReviewRevisionsChangedEventDto), nameof(ProjectKey));
+        
         [JsonPropertyName("projectKey")]
-        public string? ProjectKey { get; set; }
+        public string? ProjectKey { get { return _projectKey.GetValue(); } set { _projectKey.SetValue(value); } }
     
+        private PropertyValue<CodeReviewRecordDto?> _review = new PropertyValue<CodeReviewRecordDto?>(nameof(ReviewRevisionsChangedEventDto), nameof(Review));
+        
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
+        public CodeReviewRecordDto? Review { get { return _review.GetValue(); } set { _review.SetValue(value); } }
     
     }
     

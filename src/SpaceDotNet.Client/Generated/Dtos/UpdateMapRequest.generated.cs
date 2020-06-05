@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateMapRequest
     {
+        private PropertyValue<string> _mapPictureId = new PropertyValue<string>(nameof(UpdateMapRequest), nameof(MapPictureId));
+        
         [Required]
         [JsonPropertyName("mapPictureId")]
-        public string MapPictureId { get; set; }
+        public string MapPictureId { get { return _mapPictureId.GetValue(); } set { _mapPictureId.SetValue(value); } }
     
     }
     

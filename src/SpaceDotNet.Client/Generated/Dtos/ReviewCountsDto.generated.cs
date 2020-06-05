@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client
 {
     public sealed class ReviewCountsDto
     {
+        private PropertyValue<int> _opened = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(Opened));
+        
         [Required]
         [JsonPropertyName("opened")]
-        public int Opened { get; set; }
+        public int Opened { get { return _opened.GetValue(); } set { _opened.SetValue(value); } }
     
+        private PropertyValue<int> _closed = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(Closed));
+        
         [Required]
         [JsonPropertyName("closed")]
-        public int Closed { get; set; }
+        public int Closed { get { return _closed.GetValue(); } set { _closed.SetValue(value); } }
     
+        private PropertyValue<int> _authoredByMe = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(AuthoredByMe));
+        
         [Required]
         [JsonPropertyName("authoredByMe")]
-        public int AuthoredByMe { get; set; }
+        public int AuthoredByMe { get { return _authoredByMe.GetValue(); } set { _authoredByMe.SetValue(value); } }
     
+        private PropertyValue<int> _reviewedByMe = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(ReviewedByMe));
+        
         [Required]
         [JsonPropertyName("reviewedByMe")]
-        public int ReviewedByMe { get; set; }
+        public int ReviewedByMe { get { return _reviewedByMe.GetValue(); } set { _reviewedByMe.SetValue(value); } }
     
+        private PropertyValue<int> _needsMyAttention = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(NeedsMyAttention));
+        
         [Required]
         [JsonPropertyName("needsMyAttention")]
-        public int NeedsMyAttention { get; set; }
+        public int NeedsMyAttention { get { return _needsMyAttention.GetValue(); } set { _needsMyAttention.SetValue(value); } }
     
+        private PropertyValue<int> _needsMyReview = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(NeedsMyReview));
+        
         [Required]
         [JsonPropertyName("needsMyReview")]
-        public int NeedsMyReview { get; set; }
+        public int NeedsMyReview { get { return _needsMyReview.GetValue(); } set { _needsMyReview.SetValue(value); } }
     
     }
     

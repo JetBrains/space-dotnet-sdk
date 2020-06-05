@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class ChannelSpecificDefaultsDto
     {
+        private PropertyValue<NotificationFilter> _filter = new PropertyValue<NotificationFilter>(nameof(ChannelSpecificDefaultsDto), nameof(Filter));
+        
         [Required]
         [JsonPropertyName("filter")]
-        public NotificationFilter Filter { get; set; }
+        public NotificationFilter Filter { get { return _filter.GetValue(); } set { _filter.SetValue(value); } }
     
+        private PropertyValue<bool> _push = new PropertyValue<bool>(nameof(ChannelSpecificDefaultsDto), nameof(Push));
+        
         [Required]
         [JsonPropertyName("push")]
-        public bool Push { get; set; }
+        public bool Push { get { return _push.GetValue(); } set { _push.SetValue(value); } }
     
+        private PropertyValue<M2EmailNotificationType> _email = new PropertyValue<M2EmailNotificationType>(nameof(ChannelSpecificDefaultsDto), nameof(Email));
+        
         [Required]
         [JsonPropertyName("email")]
-        public M2EmailNotificationType Email { get; set; }
+        public M2EmailNotificationType Email { get { return _email.GetValue(); } set { _email.SetValue(value); } }
     
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public sealed class WorkingDaysSpecDto
     {
+        private PropertyValue<List<WorkdayDto>> _days = new PropertyValue<List<WorkdayDto>>(nameof(WorkingDaysSpecDto), nameof(Days));
+        
         [Required]
         [JsonPropertyName("days")]
-        public List<WorkdayDto> Days { get; set; }
+        public List<WorkdayDto> Days { get { return _days.GetValue(); } set { _days.SetValue(value); } }
     
     }
     

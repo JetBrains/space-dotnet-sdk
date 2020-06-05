@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class DTORightsWithHierarchyDto
     {
+        private PropertyValue<List<DTORightTypeRightDto>> _rights = new PropertyValue<List<DTORightTypeRightDto>>(nameof(DTORightsWithHierarchyDto), nameof(Rights));
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTORightTypeRightDto> Rights { get; set; }
+        public List<DTORightTypeRightDto> Rights { get { return _rights.GetValue(); } set { _rights.SetValue(value); } }
     
+        private PropertyValue<List<DTORightsGroupDto>> _rightsGroups = new PropertyValue<List<DTORightsGroupDto>>(nameof(DTORightsWithHierarchyDto), nameof(RightsGroups));
+        
         [Required]
         [JsonPropertyName("rightsGroups")]
-        public List<DTORightsGroupDto> RightsGroups { get; set; }
+        public List<DTORightsGroupDto> RightsGroups { get { return _rightsGroups.GetValue(); } set { _rightsGroups.SetValue(value); } }
     
+        private PropertyValue<List<DTORightsDepsDto>> _deps = new PropertyValue<List<DTORightsDepsDto>>(nameof(DTORightsWithHierarchyDto), nameof(Deps));
+        
         [Required]
         [JsonPropertyName("deps")]
-        public List<DTORightsDepsDto> Deps { get; set; }
+        public List<DTORightsDepsDto> Deps { get { return _deps.GetValue(); } set { _deps.SetValue(value); } }
     
     }
     

@@ -23,45 +23,67 @@ namespace SpaceDotNet.Client
 {
     public sealed class CodeDiscussionRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeDiscussionRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeDiscussionRecordDto), nameof(ProjectId));
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
+        public string ProjectId { get { return _projectId.GetValue(); } set { _projectId.SetValue(value); } }
     
+        private PropertyValue<CodeDiscussionAnchorDto> _anchor = new PropertyValue<CodeDiscussionAnchorDto>(nameof(CodeDiscussionRecordDto), nameof(Anchor));
+        
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor { get; set; }
+        public CodeDiscussionAnchorDto Anchor { get { return _anchor.GetValue(); } set { _anchor.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(CodeDiscussionRecordDto), nameof(Created));
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
+        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
     
+        private PropertyValue<M2ChannelRecordDto> _channel = new PropertyValue<M2ChannelRecordDto>(nameof(CodeDiscussionRecordDto), nameof(Channel));
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
+        public M2ChannelRecordDto Channel { get { return _channel.GetValue(); } set { _channel.SetValue(value); } }
     
+        private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeDiscussionRecordDto), nameof(Resolved));
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
+        public bool Resolved { get { return _resolved.GetValue(); } set { _resolved.SetValue(value); } }
     
+        private PropertyValue<CodeDiscussionSnippetDto?> _snippet = new PropertyValue<CodeDiscussionSnippetDto?>(nameof(CodeDiscussionRecordDto), nameof(Snippet));
+        
         [JsonPropertyName("snippet")]
-        public CodeDiscussionSnippetDto? Snippet { get; set; }
+        public CodeDiscussionSnippetDto? Snippet { get { return _snippet.GetValue(); } set { _snippet.SetValue(value); } }
     
+        private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(CodeDiscussionRecordDto), nameof(Pending));
+        
         [JsonPropertyName("pending")]
-        public bool? Pending { get; set; }
+        public bool? Pending { get { return _pending.GetValue(); } set { _pending.SetValue(value); } }
     
+        private PropertyValue<CodeReviewRecordDto?> _review = new PropertyValue<CodeReviewRecordDto?>(nameof(CodeDiscussionRecordDto), nameof(Review));
+        
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
+        public CodeReviewRecordDto? Review { get { return _review.GetValue(); } set { _review.SetValue(value); } }
     
+        private PropertyValue<List<CodeReviewRecordDto>?> _reviews = new PropertyValue<List<CodeReviewRecordDto>?>(nameof(CodeDiscussionRecordDto), nameof(Reviews));
+        
         [JsonPropertyName("reviews")]
-        public List<CodeReviewRecordDto>? Reviews { get; set; }
+        public List<CodeReviewRecordDto>? Reviews { get { return _reviews.GetValue(); } set { _reviews.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeDiscussionRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
     }
     

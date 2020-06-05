@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class FractionDto
     {
+        private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(FractionDto), nameof(Numerator));
+        
         [Required]
         [JsonPropertyName("numerator")]
-        public int Numerator { get; set; }
+        public int Numerator { get { return _numerator.GetValue(); } set { _numerator.SetValue(value); } }
     
+        private PropertyValue<int> _denominator = new PropertyValue<int>(nameof(FractionDto), nameof(Denominator));
+        
         [Required]
         [JsonPropertyName("denominator")]
-        public int Denominator { get; set; }
+        public int Denominator { get { return _denominator.GetValue(); } set { _denominator.SetValue(value); } }
     
     }
     

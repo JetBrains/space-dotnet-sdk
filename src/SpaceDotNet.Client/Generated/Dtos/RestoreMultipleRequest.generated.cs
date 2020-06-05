@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class RestoreMultipleRequest
     {
+        private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(RestoreMultipleRequest), nameof(Ids));
+        
         [Required]
         [JsonPropertyName("ids")]
-        public List<string> Ids { get; set; }
+        public List<string> Ids { get { return _ids.GetValue(); } set { _ids.SetValue(value); } }
     
     }
     

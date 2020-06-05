@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class NonWorkingDaysEventDto
     {
+        private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(NonWorkingDaysEventDto), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
+        private PropertyValue<List<NonWorkingDaysDto>> _days = new PropertyValue<List<NonWorkingDaysDto>>(nameof(NonWorkingDaysEventDto), nameof(Days));
+        
         [Required]
         [JsonPropertyName("days")]
-        public List<NonWorkingDaysDto> Days { get; set; }
+        public List<NonWorkingDaysDto> Days { get { return _days.GetValue(); } set { _days.SetValue(value); } }
     
     }
     

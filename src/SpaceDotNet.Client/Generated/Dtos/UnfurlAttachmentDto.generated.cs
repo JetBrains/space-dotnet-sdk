@@ -27,12 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<UnfurlDto> _unfurl = new PropertyValue<UnfurlDto>(nameof(UnfurlAttachmentDto), nameof(Unfurl));
+        
         [Required]
         [JsonPropertyName("unfurl")]
-        public UnfurlDto Unfurl { get; set; }
+        public UnfurlDto Unfurl { get { return _unfurl.GetValue(); } set { _unfurl.SetValue(value); } }
     
+        private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(UnfurlAttachmentDto), nameof(Id));
+        
         [JsonPropertyName("id")]
-        public string? Id { get; set; }
+        public string? Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
     }
     

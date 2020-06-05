@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateDraftTypeRequest
     {
+        private PropertyValue<DraftDocumentType> _draftType = new PropertyValue<DraftDocumentType>(nameof(UpdateDraftTypeRequest), nameof(DraftType));
+        
         [Required]
         [JsonPropertyName("draftType")]
-        public DraftDocumentType DraftType { get; set; }
+        public DraftDocumentType DraftType { get { return _draftType.GetValue(); } set { _draftType.SetValue(value); } }
     
     }
     

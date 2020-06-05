@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class CreateProfileRequest
     {
+        private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(CreateProfileRequest), nameof(EditorId));
+        
         [Required]
         [JsonPropertyName("editorId")]
-        public string EditorId { get; set; }
+        public string EditorId { get { return _editorId.GetValue(); } set { _editorId.SetValue(value); } }
     
     }
     

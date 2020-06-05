@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class TDMergedEventDto
     {
+        private PropertyValue<List<Pair<TDMembershipDto, int>>> _events = new PropertyValue<List<Pair<TDMembershipDto, int>>>(nameof(TDMergedEventDto), nameof(Events));
+        
         [Required]
         [JsonPropertyName("events")]
-        public List<Pair<TDMembershipDto, int>> Events { get; set; }
+        public List<Pair<TDMembershipDto, int>> Events { get { return _events.GetValue(); } set { _events.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(TDMergedEventDto), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get; set; }
+        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
     }
     

@@ -24,14 +24,20 @@ namespace SpaceDotNet.Client
     public sealed class IntCFConstraintDto
          : CFConstraintDto, IClassNameConvertible
     {
+        private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(IntCFConstraintDto), nameof(Min));
+        
         [JsonPropertyName("min")]
-        public int? Min { get; set; }
+        public int? Min { get { return _min.GetValue(); } set { _min.SetValue(value); } }
     
+        private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(IntCFConstraintDto), nameof(Max));
+        
         [JsonPropertyName("max")]
-        public int? Max { get; set; }
+        public int? Max { get { return _max.GetValue(); } set { _max.SetValue(value); } }
     
+        private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(IntCFConstraintDto), nameof(Message));
+        
         [JsonPropertyName("message")]
-        public string? Message { get; set; }
+        public string? Message { get { return _message.GetValue(); } set { _message.SetValue(value); } }
     
     }
     

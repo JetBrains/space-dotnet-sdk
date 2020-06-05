@@ -23,16 +23,22 @@ namespace SpaceDotNet.Client
 {
     public sealed class AllReactionsToItemRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(AllReactionsToItemRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<List<CertainReactionToItemRecordDto>> _reactions = new PropertyValue<List<CertainReactionToItemRecordDto>>(nameof(AllReactionsToItemRecordDto), nameof(Reactions));
+        
         [Required]
         [JsonPropertyName("reactions")]
-        public List<CertainReactionToItemRecordDto> Reactions { get; set; }
+        public List<CertainReactionToItemRecordDto> Reactions { get { return _reactions.GetValue(); } set { _reactions.SetValue(value); } }
     
+        private PropertyValue<List<EmojiReactionRecordDto>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecordDto>?>(nameof(AllReactionsToItemRecordDto), nameof(EmojiReactions));
+        
         [JsonPropertyName("emojiReactions")]
-        public List<EmojiReactionRecordDto>? EmojiReactions { get; set; }
+        public List<EmojiReactionRecordDto>? EmojiReactions { get { return _emojiReactions.GetValue(); } set { _emojiReactions.SetValue(value); } }
     
     }
     

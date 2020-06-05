@@ -23,17 +23,25 @@ namespace SpaceDotNet.Client
 {
     public class UpdateHolidayRequest
     {
+        private PropertyValue<string?> _calendar = new PropertyValue<string?>(nameof(UpdateHolidayRequest), nameof(Calendar));
+        
         [JsonPropertyName("calendar")]
-        public string? Calendar { get; set; }
+        public string? Calendar { get { return _calendar.GetValue(); } set { _calendar.SetValue(value); } }
     
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(UpdateHolidayRequest), nameof(Name));
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string? Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _date = new PropertyValue<SpaceDate?>(nameof(UpdateHolidayRequest), nameof(Date));
+        
         [JsonPropertyName("date")]
-        public SpaceDate? Date { get; set; }
+        public SpaceDate? Date { get { return _date.GetValue(); } set { _date.SetValue(value); } }
     
+        private PropertyValue<bool?> _workingDay = new PropertyValue<bool?>(nameof(UpdateHolidayRequest), nameof(WorkingDay));
+        
         [JsonPropertyName("workingDay")]
-        public bool? WorkingDay { get; set; }
+        public bool? WorkingDay { get { return _workingDay.GetValue(); } set { _workingDay.SetValue(value); } }
     
     }
     

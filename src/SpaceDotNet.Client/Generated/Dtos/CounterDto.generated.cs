@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class CounterDto
     {
+        private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(CounterDto), nameof(Resolved));
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public int Resolved { get; set; }
+        public int Resolved { get { return _resolved.GetValue(); } set { _resolved.SetValue(value); } }
     
+        private PropertyValue<int> _unresolved = new PropertyValue<int>(nameof(CounterDto), nameof(Unresolved));
+        
         [Required]
         [JsonPropertyName("unresolved")]
-        public int Unresolved { get; set; }
+        public int Unresolved { get { return _unresolved.GetValue(); } set { _unresolved.SetValue(value); } }
     
     }
     

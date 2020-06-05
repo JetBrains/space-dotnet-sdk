@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class HADtoFieldDto
     {
+        private PropertyValue<HAFieldDto> _field = new PropertyValue<HAFieldDto>(nameof(HADtoFieldDto), nameof(Field));
+        
         [Required]
         [JsonPropertyName("field")]
-        public HAFieldDto Field { get; set; }
+        public HAFieldDto Field { get { return _field.GetValue(); } set { _field.SetValue(value); } }
     
+        private PropertyValue<bool> _extension = new PropertyValue<bool>(nameof(HADtoFieldDto), nameof(Extension));
+        
         [Required]
         [JsonPropertyName("extension")]
-        public bool Extension { get; set; }
+        public bool Extension { get { return _extension.GetValue(); } set { _extension.SetValue(value); } }
     
     }
     

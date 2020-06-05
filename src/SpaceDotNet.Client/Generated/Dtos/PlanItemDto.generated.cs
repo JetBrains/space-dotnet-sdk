@@ -23,39 +23,59 @@ namespace SpaceDotNet.Client
 {
     public sealed class PlanItemDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItemDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _checklistId = new PropertyValue<string>(nameof(PlanItemDto), nameof(ChecklistId));
+        
         [Required]
         [JsonPropertyName("checklistId")]
-        public string ChecklistId { get; set; }
+        public string ChecklistId { get { return _checklistId.GetValue(); } set { _checklistId.SetValue(value); } }
     
+        private PropertyValue<PlanningTagDto?> _tag = new PropertyValue<PlanningTagDto?>(nameof(PlanItemDto), nameof(Tag));
+        
         [JsonPropertyName("tag")]
-        public PlanningTagDto? Tag { get; set; }
+        public PlanningTagDto? Tag { get { return _tag.GetValue(); } set { _tag.SetValue(value); } }
     
+        private PropertyValue<string?> _simpleText = new PropertyValue<string?>(nameof(PlanItemDto), nameof(SimpleText));
+        
         [JsonPropertyName("simpleText")]
-        public string? SimpleText { get; set; }
+        public string? SimpleText { get { return _simpleText.GetValue(); } set { _simpleText.SetValue(value); } }
     
+        private PropertyValue<bool?> _simpleDone = new PropertyValue<bool?>(nameof(PlanItemDto), nameof(SimpleDone));
+        
         [JsonPropertyName("simpleDone")]
-        public bool? SimpleDone { get; set; }
+        public bool? SimpleDone { get { return _simpleDone.GetValue(); } set { _simpleDone.SetValue(value); } }
     
+        private PropertyValue<IssueDto?> _issue = new PropertyValue<IssueDto?>(nameof(PlanItemDto), nameof(Issue));
+        
         [JsonPropertyName("issue")]
-        public IssueDto? Issue { get; set; }
+        public IssueDto? Issue { get { return _issue.GetValue(); } set { _issue.SetValue(value); } }
     
+        private PropertyValue<string?> _issueProblem = new PropertyValue<string?>(nameof(PlanItemDto), nameof(IssueProblem));
+        
         [JsonPropertyName("issueProblem")]
-        public string? IssueProblem { get; set; }
+        public string? IssueProblem { get { return _issueProblem.GetValue(); } set { _issueProblem.SetValue(value); } }
     
+        private PropertyValue<bool?> _canEditIssue = new PropertyValue<bool?>(nameof(PlanItemDto), nameof(CanEditIssue));
+        
         [JsonPropertyName("canEditIssue")]
-        public bool? CanEditIssue { get; set; }
+        public bool? CanEditIssue { get { return _canEditIssue.GetValue(); } set { _canEditIssue.SetValue(value); } }
     
+        private PropertyValue<bool> _hasChildren = new PropertyValue<bool>(nameof(PlanItemDto), nameof(HasChildren));
+        
         [Required]
         [JsonPropertyName("hasChildren")]
-        public bool HasChildren { get; set; }
+        public bool HasChildren { get { return _hasChildren.GetValue(); } set { _hasChildren.SetValue(value); } }
     
+        private PropertyValue<List<PlanItemDto>> _children = new PropertyValue<List<PlanItemDto>>(nameof(PlanItemDto), nameof(Children));
+        
         [Required]
         [JsonPropertyName("children")]
-        public List<PlanItemDto> Children { get; set; }
+        public List<PlanItemDto> Children { get { return _children.GetValue(); } set { _children.SetValue(value); } }
     
     }
     

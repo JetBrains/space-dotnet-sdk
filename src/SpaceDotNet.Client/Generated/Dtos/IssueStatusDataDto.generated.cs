@@ -23,20 +23,28 @@ namespace SpaceDotNet.Client
 {
     public sealed class IssueStatusDataDto
     {
+        private PropertyValue<string?> _existingId = new PropertyValue<string?>(nameof(IssueStatusDataDto), nameof(ExistingId));
+        
         [JsonPropertyName("existingId")]
-        public string? ExistingId { get; set; }
+        public string? ExistingId { get { return _existingId.GetValue(); } set { _existingId.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(IssueStatusDataDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(IssueStatusDataDto), nameof(Resolved));
+        
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get; set; }
+        public bool Resolved { get { return _resolved.GetValue(); } set { _resolved.SetValue(value); } }
     
+        private PropertyValue<string> _color = new PropertyValue<string>(nameof(IssueStatusDataDto), nameof(Color));
+        
         [Required]
         [JsonPropertyName("color")]
-        public string Color { get; set; }
+        public string Color { get { return _color.GetValue(); } set { _color.SetValue(value); } }
     
     }
     

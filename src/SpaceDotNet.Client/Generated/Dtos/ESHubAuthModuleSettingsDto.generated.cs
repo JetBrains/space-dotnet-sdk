@@ -24,26 +24,38 @@ namespace SpaceDotNet.Client
     public sealed class ESHubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
     {
+        private PropertyValue<string> _hubUrl = new PropertyValue<string>(nameof(ESHubAuthModuleSettingsDto), nameof(HubUrl));
+        
         [Required]
         [JsonPropertyName("hubUrl")]
-        public string HubUrl { get; set; }
+        public string HubUrl { get { return _hubUrl.GetValue(); } set { _hubUrl.SetValue(value); } }
     
+        private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESHubAuthModuleSettingsDto), nameof(ClientId));
+        
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get; set; }
+        public string ClientId { get { return _clientId.GetValue(); } set { _clientId.SetValue(value); } }
     
+        private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESHubAuthModuleSettingsDto), nameof(ClientSecret));
+        
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get; set; }
+        public string ClientSecret { get { return _clientSecret.GetValue(); } set { _clientSecret.SetValue(value); } }
     
+        private PropertyValue<bool?> _registerNewUsers = new PropertyValue<bool?>(nameof(ESHubAuthModuleSettingsDto), nameof(RegisterNewUsers));
+        
         [JsonPropertyName("registerNewUsers")]
-        public bool? RegisterNewUsers { get; set; }
+        public bool? RegisterNewUsers { get { return _registerNewUsers.GetValue(); } set { _registerNewUsers.SetValue(value); } }
     
+        private PropertyValue<string?> _orgAuthProviderName = new PropertyValue<string?>(nameof(ESHubAuthModuleSettingsDto), nameof(OrgAuthProviderName));
+        
         [JsonPropertyName("orgAuthProviderName")]
-        public string? OrgAuthProviderName { get; set; }
+        public string? OrgAuthProviderName { get { return _orgAuthProviderName.GetValue(); } set { _orgAuthProviderName.SetValue(value); } }
     
+        private PropertyValue<List<string>?> _groups = new PropertyValue<List<string>?>(nameof(ESHubAuthModuleSettingsDto), nameof(Groups));
+        
         [JsonPropertyName("groups")]
-        public List<string>? Groups { get; set; }
+        public List<string>? Groups { get { return _groups.GetValue(); } set { _groups.SetValue(value); } }
     
     }
     

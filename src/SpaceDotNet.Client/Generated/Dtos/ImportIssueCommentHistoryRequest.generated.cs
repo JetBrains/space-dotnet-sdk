@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class ImportIssueCommentHistoryRequest
     {
+        private PropertyValue<List<MessageForImportDto>> _comments = new PropertyValue<List<MessageForImportDto>>(nameof(ImportIssueCommentHistoryRequest), nameof(Comments));
+        
         [Required]
         [JsonPropertyName("comments")]
-        public List<MessageForImportDto> Comments { get; set; }
+        public List<MessageForImportDto> Comments { get { return _comments.GetValue(); } set { _comments.SetValue(value); } }
     
     }
     

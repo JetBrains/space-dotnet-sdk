@@ -24,8 +24,10 @@ namespace SpaceDotNet.Client
     public sealed class EnumCFValueDto
          : CFValueDto, IClassNameConvertible
     {
+        private PropertyValue<EnumValueDataDto?> _value = new PropertyValue<EnumValueDataDto?>(nameof(EnumCFValueDto), nameof(Value));
+        
         [JsonPropertyName("value")]
-        public EnumValueDataDto? Value { get; set; }
+        public EnumValueDataDto? Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
     
     }
     

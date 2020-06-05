@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class M2MembershipCreatedContentDto
          : M2MembershipContentDto, IClassNameConvertible
     {
+        private PropertyValue<TDMembershipDto> _membership = new PropertyValue<TDMembershipDto>(nameof(M2MembershipCreatedContentDto), nameof(Membership));
+        
         [Required]
         [JsonPropertyName("membership")]
-        public TDMembershipDto Membership { get; set; }
+        public TDMembershipDto Membership { get { return _membership.GetValue(); } set { _membership.SetValue(value); } }
     
     }
     

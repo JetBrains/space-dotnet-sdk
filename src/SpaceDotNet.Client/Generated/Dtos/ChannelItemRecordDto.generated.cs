@@ -23,56 +23,86 @@ namespace SpaceDotNet.Client
 {
     public sealed class ChannelItemRecordDto
     {
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemRecordDto), nameof(Text));
+        
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get; set; }
+        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
+        private PropertyValue<M2ItemContentDetailsDto?> _details = new PropertyValue<M2ItemContentDetailsDto?>(nameof(ChannelItemRecordDto), nameof(Details));
+        
         [JsonPropertyName("details")]
-        public M2ItemContentDetailsDto? Details { get; set; }
+        public M2ItemContentDetailsDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
     
+        private PropertyValue<CPrincipalDto> _author = new PropertyValue<CPrincipalDto>(nameof(ChannelItemRecordDto), nameof(Author));
+        
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get; set; }
+        public CPrincipalDto Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ChannelItemRecordDto), nameof(Created));
+        
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get; set; }
+        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
     
+        private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemRecordDto), nameof(Time));
+        
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get; set; }
+        public long Time { get { return _time.GetValue(); } set { _time.SetValue(value); } }
     
+        private PropertyValue<AllReactionsToItemRecordDto?> _reactions = new PropertyValue<AllReactionsToItemRecordDto?>(nameof(ChannelItemRecordDto), nameof(Reactions));
+        
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto? Reactions { get; set; }
+        public AllReactionsToItemRecordDto? Reactions { get { return _reactions.GetValue(); } set { _reactions.SetValue(value); } }
     
+        private PropertyValue<M2ChannelRecordDto?> _thread = new PropertyValue<M2ChannelRecordDto?>(nameof(ChannelItemRecordDto), nameof(Thread));
+        
         [JsonPropertyName("thread")]
-        public M2ChannelRecordDto? Thread { get; set; }
+        public M2ChannelRecordDto? Thread { get { return _thread.GetValue(); } set { _thread.SetValue(value); } }
     
+        private PropertyValue<ChannelItemRecordDto?> _projectedItem = new PropertyValue<ChannelItemRecordDto?>(nameof(ChannelItemRecordDto), nameof(ProjectedItem));
+        
         [JsonPropertyName("projectedItem")]
-        public ChannelItemRecordDto? ProjectedItem { get; set; }
+        public ChannelItemRecordDto? ProjectedItem { get { return _projectedItem.GetValue(); } set { _projectedItem.SetValue(value); } }
     
+        private PropertyValue<List<AttachmentInfoDto>?> _attachments = new PropertyValue<List<AttachmentInfoDto>?>(nameof(ChannelItemRecordDto), nameof(Attachments));
+        
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto>? Attachments { get; set; }
+        public List<AttachmentInfoDto>? Attachments { get { return _attachments.GetValue(); } set { _attachments.SetValue(value); } }
     
+        private PropertyValue<List<AttachmentInfoDto>?> _attachmentsInfos = new PropertyValue<List<AttachmentInfoDto>?>(nameof(ChannelItemRecordDto), nameof(AttachmentsInfos));
+        
         [JsonPropertyName("attachmentsInfos")]
-        public List<AttachmentInfoDto>? AttachmentsInfos { get; set; }
+        public List<AttachmentInfoDto>? AttachmentsInfos { get { return _attachmentsInfos.GetValue(); } set { _attachmentsInfos.SetValue(value); } }
     
+        private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChannelItemRecordDto), nameof(Pending));
+        
         [JsonPropertyName("pending")]
-        public bool? Pending { get; set; }
+        public bool? Pending { get { return _pending.GetValue(); } set { _pending.SetValue(value); } }
     
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ChannelItemRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<SpaceTime?> _edited = new PropertyValue<SpaceTime?>(nameof(ChannelItemRecordDto), nameof(Edited));
+        
         [JsonPropertyName("edited")]
-        public SpaceTime? Edited { get; set; }
+        public SpaceTime? Edited { get { return _edited.GetValue(); } set { _edited.SetValue(value); } }
     
+        private PropertyValue<bool?> _pinned = new PropertyValue<bool?>(nameof(ChannelItemRecordDto), nameof(Pinned));
+        
         [JsonPropertyName("pinned")]
-        public bool? Pinned { get; set; }
+        public bool? Pinned { get { return _pinned.GetValue(); } set { _pinned.SetValue(value); } }
     
     }
     

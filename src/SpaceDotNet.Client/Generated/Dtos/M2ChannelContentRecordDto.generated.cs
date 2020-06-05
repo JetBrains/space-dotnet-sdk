@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public sealed class M2ChannelContentRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelContentRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<M2ChannelContentInfoDto?> _content = new PropertyValue<M2ChannelContentInfoDto?>(nameof(M2ChannelContentRecordDto), nameof(Content));
+        
         [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto? Content { get; set; }
+        public M2ChannelContentInfoDto? Content { get { return _content.GetValue(); } set { _content.SetValue(value); } }
     
     }
     

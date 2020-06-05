@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateMeetingParticipationRequest
     {
+        private PropertyValue<EventParticipationStatus> _newStatus = new PropertyValue<EventParticipationStatus>(nameof(UpdateMeetingParticipationRequest), nameof(NewStatus));
+        
         [Required]
         [JsonPropertyName("newStatus")]
-        public EventParticipationStatus NewStatus { get; set; }
+        public EventParticipationStatus NewStatus { get { return _newStatus.GetValue(); } set { _newStatus.SetValue(value); } }
     
     }
     

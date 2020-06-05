@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class StringListCFValueDto
          : CFValueDto, IClassNameConvertible
     {
+        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(StringListCFValueDto), nameof(Values));
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<string> Values { get; set; }
+        public List<string> Values { get { return _values.GetValue(); } set { _values.SetValue(value); } }
     
     }
     

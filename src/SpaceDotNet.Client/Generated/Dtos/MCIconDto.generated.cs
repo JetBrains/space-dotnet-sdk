@@ -27,13 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(MCIconDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCIconDto), nameof(Style));
+        
         [Required]
         [JsonPropertyName("style")]
-        public string Style { get; set; }
+        public string Style { get { return _style.GetValue(); } set { _style.SetValue(value); } }
     
     }
     

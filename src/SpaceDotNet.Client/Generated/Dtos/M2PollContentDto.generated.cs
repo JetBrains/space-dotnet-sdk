@@ -27,9 +27,11 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<PollRecordDto> _poll = new PropertyValue<PollRecordDto>(nameof(M2PollContentDto), nameof(Poll));
+        
         [Required]
         [JsonPropertyName("poll")]
-        public PollRecordDto Poll { get; set; }
+        public PollRecordDto Poll { get { return _poll.GetValue(); } set { _poll.SetValue(value); } }
     
     }
     

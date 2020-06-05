@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public sealed class MdMarkupDto
     {
+        private PropertyValue<List<UnfurlDto>> _unfurl = new PropertyValue<List<UnfurlDto>>(nameof(MdMarkupDto), nameof(Unfurl));
+        
         [Required]
         [JsonPropertyName("unfurl")]
-        public List<UnfurlDto> Unfurl { get; set; }
+        public List<UnfurlDto> Unfurl { get { return _unfurl.GetValue(); } set { _unfurl.SetValue(value); } }
     
     }
     

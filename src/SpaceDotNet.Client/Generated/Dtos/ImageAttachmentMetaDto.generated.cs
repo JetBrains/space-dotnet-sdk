@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public sealed class ImageAttachmentMetaDto
     {
+        private PropertyValue<List<ImageAttachmentVariantsMetaDto>> _variants = new PropertyValue<List<ImageAttachmentVariantsMetaDto>>(nameof(ImageAttachmentMetaDto), nameof(Variants));
+        
         [Required]
         [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantsMetaDto> Variants { get; set; }
+        public List<ImageAttachmentVariantsMetaDto> Variants { get { return _variants.GetValue(); } set { _variants.SetValue(value); } }
     
     }
     

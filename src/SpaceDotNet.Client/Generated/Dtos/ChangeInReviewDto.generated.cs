@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class ChangeInReviewDto
     {
+        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ChangeInReviewDto), nameof(Repository));
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
     
+        private PropertyValue<GitCommitChangeDto> _change = new PropertyValue<GitCommitChangeDto>(nameof(ChangeInReviewDto), nameof(Change));
+        
         [Required]
         [JsonPropertyName("change")]
-        public GitCommitChangeDto Change { get; set; }
+        public GitCommitChangeDto Change { get { return _change.GetValue(); } set { _change.SetValue(value); } }
     
+        private PropertyValue<bool> _read = new PropertyValue<bool>(nameof(ChangeInReviewDto), nameof(Read));
+        
         [Required]
         [JsonPropertyName("read")]
-        public bool Read { get; set; }
+        public bool Read { get { return _read.GetValue(); } set { _read.SetValue(value); } }
     
     }
     

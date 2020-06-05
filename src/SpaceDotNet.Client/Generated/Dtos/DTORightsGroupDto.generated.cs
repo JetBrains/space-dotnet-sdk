@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class DTORightsGroupDto
     {
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(DTORightsGroupDto), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
+        private PropertyValue<int> _priority = new PropertyValue<int>(nameof(DTORightsGroupDto), nameof(Priority));
+        
         [Required]
         [JsonPropertyName("priority")]
-        public int Priority { get; set; }
+        public int Priority { get { return _priority.GetValue(); } set { _priority.SetValue(value); } }
     
+        private PropertyValue<List<DTORightDto>> _rights = new PropertyValue<List<DTORightDto>>(nameof(DTORightsGroupDto), nameof(Rights));
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTORightDto> Rights { get; set; }
+        public List<DTORightDto> Rights { get { return _rights.GetValue(); } set { _rights.SetValue(value); } }
     
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class IsNameFreeRequest
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(IsNameFreeRequest), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
     }
     

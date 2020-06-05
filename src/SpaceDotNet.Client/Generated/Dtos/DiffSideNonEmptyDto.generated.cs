@@ -24,13 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class DiffSideNonEmptyDto
          : DiffSideDto, IClassNameConvertible
     {
+        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideNonEmptyDto), nameof(Revision));
+        
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get; set; }
+        public string Revision { get { return _revision.GetValue(); } set { _revision.SetValue(value); } }
     
+        private PropertyValue<string> _path = new PropertyValue<string>(nameof(DiffSideNonEmptyDto), nameof(Path));
+        
         [Required]
         [JsonPropertyName("path")]
-        public string Path { get; set; }
+        public string Path { get { return _path.GetValue(); } set { _path.SetValue(value); } }
     
     }
     

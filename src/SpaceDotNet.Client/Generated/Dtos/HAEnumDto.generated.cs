@@ -23,20 +23,28 @@ namespace SpaceDotNet.Client
 {
     public sealed class HAEnumDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAEnumDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAEnumDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HAEnumDto), nameof(Values));
+        
         [Required]
         [JsonPropertyName("values")]
-        public List<string> Values { get; set; }
+        public List<string> Values { get { return _values.GetValue(); } set { _values.SetValue(value); } }
     
+        private PropertyValue<HADeprecationDto?> _deprecation = new PropertyValue<HADeprecationDto?>(nameof(HAEnumDto), nameof(Deprecation));
+        
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get; set; }
+        public HADeprecationDto? Deprecation { get { return _deprecation.GetValue(); } set { _deprecation.SetValue(value); } }
     
     }
     

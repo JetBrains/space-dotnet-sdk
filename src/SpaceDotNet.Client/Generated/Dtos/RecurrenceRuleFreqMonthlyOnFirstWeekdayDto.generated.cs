@@ -24,17 +24,23 @@ namespace SpaceDotNet.Client
     public sealed class RecurrenceRuleFreqMonthlyOnFirstWeekdayDto
          : RecurrenceRuleFreqDto, IClassNameConvertible
     {
+        private PropertyValue<Weekday> _weekday = new PropertyValue<Weekday>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekdayDto), nameof(Weekday));
+        
         [Required]
         [JsonPropertyName("weekday")]
-        public Weekday Weekday { get; set; }
+        public Weekday Weekday { get { return _weekday.GetValue(); } set { _weekday.SetValue(value); } }
     
+        private PropertyValue<int> _shift = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekdayDto), nameof(Shift));
+        
         [Required]
         [JsonPropertyName("shift")]
-        public int Shift { get; set; }
+        public int Shift { get { return _shift.GetValue(); } set { _shift.SetValue(value); } }
     
+        private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekdayDto), nameof(Interval));
+        
         [Required]
         [JsonPropertyName("interval")]
-        public int Interval { get; set; }
+        public int Interval { get { return _interval.GetValue(); } set { _interval.SetValue(value); } }
     
     }
     

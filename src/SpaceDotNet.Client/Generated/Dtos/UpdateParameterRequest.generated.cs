@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public class UpdateParameterRequest
     {
+        private PropertyValue<string> _key = new PropertyValue<string>(nameof(UpdateParameterRequest), nameof(Key));
+        
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get; set; }
+        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
     
+        private PropertyValue<string> _value = new PropertyValue<string>(nameof(UpdateParameterRequest), nameof(Value));
+        
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get; set; }
+        public string Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
     
     }
     

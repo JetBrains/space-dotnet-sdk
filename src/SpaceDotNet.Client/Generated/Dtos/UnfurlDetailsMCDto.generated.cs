@@ -27,12 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<MCMessageDto> _message = new PropertyValue<MCMessageDto>(nameof(UnfurlDetailsMCDto), nameof(Message));
+        
         [Required]
         [JsonPropertyName("message")]
-        public MCMessageDto Message { get; set; }
+        public MCMessageDto Message { get { return _message.GetValue(); } set { _message.SetValue(value); } }
     
+        private PropertyValue<List<AttachmentInfoDto>?> _inlineUnfurls = new PropertyValue<List<AttachmentInfoDto>?>(nameof(UnfurlDetailsMCDto), nameof(InlineUnfurls));
+        
         [JsonPropertyName("inlineUnfurls")]
-        public List<AttachmentInfoDto>? InlineUnfurls { get; set; }
+        public List<AttachmentInfoDto>? InlineUnfurls { get { return _inlineUnfurls.GetValue(); } set { _inlineUnfurls.SetValue(value); } }
     
     }
     

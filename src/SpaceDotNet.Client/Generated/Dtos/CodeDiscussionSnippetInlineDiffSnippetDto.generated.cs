@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class CodeDiscussionSnippetInlineDiffSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible
     {
+        private PropertyValue<List<InlineDiffLineDto>> _lines = new PropertyValue<List<InlineDiffLineDto>>(nameof(CodeDiscussionSnippetInlineDiffSnippetDto), nameof(Lines));
+        
         [Required]
         [JsonPropertyName("lines")]
-        public List<InlineDiffLineDto> Lines { get; set; }
+        public List<InlineDiffLineDto> Lines { get { return _lines.GetValue(); } set { _lines.SetValue(value); } }
     
     }
     

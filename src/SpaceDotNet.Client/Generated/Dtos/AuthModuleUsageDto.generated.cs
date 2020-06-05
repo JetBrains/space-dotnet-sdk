@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class AuthModuleUsageDto
     {
+        private PropertyValue<ESAuthModuleDto> _authModule = new PropertyValue<ESAuthModuleDto>(nameof(AuthModuleUsageDto), nameof(AuthModule));
+        
         [Required]
         [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get; set; }
+        public ESAuthModuleDto AuthModule { get { return _authModule.GetValue(); } set { _authModule.SetValue(value); } }
     
+        private PropertyValue<int> _profiles = new PropertyValue<int>(nameof(AuthModuleUsageDto), nameof(Profiles));
+        
         [Required]
         [JsonPropertyName("profiles")]
-        public int Profiles { get; set; }
+        public int Profiles { get { return _profiles.GetValue(); } set { _profiles.SetValue(value); } }
     
     }
     

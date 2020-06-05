@@ -23,15 +23,21 @@ namespace SpaceDotNet.Client
 {
     public class UpdateSpokenLanguageRequest
     {
+        private PropertyValue<string> _language = new PropertyValue<string>(nameof(UpdateSpokenLanguageRequest), nameof(Language));
+        
         [Required]
         [JsonPropertyName("language")]
-        public string Language { get; set; }
+        public string Language { get { return _language.GetValue(); } set { _language.SetValue(value); } }
     
+        private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(UpdateSpokenLanguageRequest), nameof(FirstName));
+        
         [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
+        public string? FirstName { get { return _firstName.GetValue(); } set { _firstName.SetValue(value); } }
     
+        private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(UpdateSpokenLanguageRequest), nameof(LastName));
+        
         [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
+        public string? LastName { get { return _lastName.GetValue(); } set { _lastName.SetValue(value); } }
     
     }
     

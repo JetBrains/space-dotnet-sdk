@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class PropagatedCodeDiscussionDto
     {
+        private PropertyValue<CodeDiscussionAnchorDto> _anchor = new PropertyValue<CodeDiscussionAnchorDto>(nameof(PropagatedCodeDiscussionDto), nameof(Anchor));
+        
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor { get; set; }
+        public CodeDiscussionAnchorDto Anchor { get { return _anchor.GetValue(); } set { _anchor.SetValue(value); } }
     
+        private PropertyValue<CodeDiscussionRecordDto> _discussion = new PropertyValue<CodeDiscussionRecordDto>(nameof(PropagatedCodeDiscussionDto), nameof(Discussion));
+        
         [Required]
         [JsonPropertyName("discussion")]
-        public CodeDiscussionRecordDto Discussion { get; set; }
+        public CodeDiscussionRecordDto Discussion { get { return _discussion.GetValue(); } set { _discussion.SetValue(value); } }
     
     }
     

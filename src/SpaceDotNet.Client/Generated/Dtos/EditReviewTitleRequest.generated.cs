@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class EditReviewTitleRequest
     {
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(EditReviewTitleRequest), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
     }
     

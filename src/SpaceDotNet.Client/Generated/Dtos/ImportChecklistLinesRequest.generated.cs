@@ -23,16 +23,22 @@ namespace SpaceDotNet.Client
 {
     public class ImportChecklistLinesRequest
     {
+        private PropertyValue<string> _targetParentId = new PropertyValue<string>(nameof(ImportChecklistLinesRequest), nameof(TargetParentId));
+        
         [Required]
         [JsonPropertyName("targetParentId")]
-        public string TargetParentId { get; set; }
+        public string TargetParentId { get { return _targetParentId.GetValue(); } set { _targetParentId.SetValue(value); } }
     
+        private PropertyValue<string?> _afterItemId = new PropertyValue<string?>(nameof(ImportChecklistLinesRequest), nameof(AfterItemId));
+        
         [JsonPropertyName("afterItemId")]
-        public string? AfterItemId { get; set; }
+        public string? AfterItemId { get { return _afterItemId.GetValue(); } set { _afterItemId.SetValue(value); } }
     
+        private PropertyValue<string> _tabIndentedLines = new PropertyValue<string>(nameof(ImportChecklistLinesRequest), nameof(TabIndentedLines));
+        
         [Required]
         [JsonPropertyName("tabIndentedLines")]
-        public string TabIndentedLines { get; set; }
+        public string TabIndentedLines { get { return _tabIndentedLines.GetValue(); } set { _tabIndentedLines.SetValue(value); } }
     
     }
     

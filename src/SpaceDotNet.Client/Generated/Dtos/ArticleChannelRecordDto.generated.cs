@@ -23,25 +23,35 @@ namespace SpaceDotNet.Client
 {
     public sealed class ArticleChannelRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleChannelRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleChannelRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<M2ChannelRecordDto> _channel = new PropertyValue<M2ChannelRecordDto>(nameof(ArticleChannelRecordDto), nameof(Channel));
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
+        public M2ChannelRecordDto Channel { get { return _channel.GetValue(); } set { _channel.SetValue(value); } }
     
+        private PropertyValue<M2ChannelContentRecordDto> _channelContent = new PropertyValue<M2ChannelContentRecordDto>(nameof(ArticleChannelRecordDto), nameof(ChannelContent));
+        
         [Required]
         [JsonPropertyName("channelContent")]
-        public M2ChannelContentRecordDto ChannelContent { get; set; }
+        public M2ChannelContentRecordDto ChannelContent { get { return _channelContent.GetValue(); } set { _channelContent.SetValue(value); } }
     
+        private PropertyValue<AllReactionsToItemRecordDto> _reactions = new PropertyValue<AllReactionsToItemRecordDto>(nameof(ArticleChannelRecordDto), nameof(Reactions));
+        
         [Required]
         [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecordDto Reactions { get; set; }
+        public AllReactionsToItemRecordDto Reactions { get { return _reactions.GetValue(); } set { _reactions.SetValue(value); } }
     
     }
     

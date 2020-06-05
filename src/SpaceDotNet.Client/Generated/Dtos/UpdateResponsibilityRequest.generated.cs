@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public class UpdateResponsibilityRequest
     {
+        private PropertyValue<string> _summary = new PropertyValue<string>(nameof(UpdateResponsibilityRequest), nameof(Summary));
+        
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get; set; }
+        public string Summary { get { return _summary.GetValue(); } set { _summary.SetValue(value); } }
     
+        private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(UpdateResponsibilityRequest), nameof(Notes));
+        
         [JsonPropertyName("notes")]
-        public string? Notes { get; set; }
+        public string? Notes { get { return _notes.GetValue(); } set { _notes.SetValue(value); } }
     
     }
     

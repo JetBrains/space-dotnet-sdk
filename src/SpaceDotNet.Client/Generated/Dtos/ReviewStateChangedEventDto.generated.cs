@@ -27,12 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ReviewStateChangedEventDto), nameof(State));
+        
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get; set; }
+        public CodeReviewState State { get { return _state.GetValue(); } set { _state.SetValue(value); } }
     
+        private PropertyValue<CodeReviewRecordDto?> _review = new PropertyValue<CodeReviewRecordDto?>(nameof(ReviewStateChangedEventDto), nameof(Review));
+        
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get; set; }
+        public CodeReviewRecordDto? Review { get { return _review.GetValue(); } set { _review.SetValue(value); } }
     
     }
     

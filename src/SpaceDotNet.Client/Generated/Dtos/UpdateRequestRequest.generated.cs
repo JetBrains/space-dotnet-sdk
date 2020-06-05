@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateRequestRequest
     {
+        private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(UpdateRequestRequest), nameof(Approved));
+        
         [Required]
         [JsonPropertyName("approved")]
-        public bool Approved { get; set; }
+        public bool Approved { get { return _approved.GetValue(); } set { _approved.SetValue(value); } }
     
     }
     

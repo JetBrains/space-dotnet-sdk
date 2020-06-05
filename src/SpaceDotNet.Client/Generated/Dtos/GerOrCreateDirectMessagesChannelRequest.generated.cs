@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class GerOrCreateDirectMessagesChannelRequest
     {
+        private PropertyValue<string> _profile = new PropertyValue<string>(nameof(GerOrCreateDirectMessagesChannelRequest), nameof(Profile));
+        
         [Required]
         [JsonPropertyName("profile")]
-        public string Profile { get; set; }
+        public string Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
     
     }
     

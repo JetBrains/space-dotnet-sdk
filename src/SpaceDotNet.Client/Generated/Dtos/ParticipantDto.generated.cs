@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class ParticipantDto
     {
+        private PropertyValue<TDMemberProfileDto> _user = new PropertyValue<TDMemberProfileDto>(nameof(ParticipantDto), nameof(User));
+        
         [Required]
         [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }
+        public TDMemberProfileDto User { get { return _user.GetValue(); } set { _user.SetValue(value); } }
     
+        private PropertyValue<EventParticipationStatus> _status = new PropertyValue<EventParticipationStatus>(nameof(ParticipantDto), nameof(Status));
+        
         [Required]
         [JsonPropertyName("status")]
-        public EventParticipationStatus Status { get; set; }
+        public EventParticipationStatus Status { get { return _status.GetValue(); } set { _status.SetValue(value); } }
     
     }
     

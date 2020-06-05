@@ -24,25 +24,35 @@ namespace SpaceDotNet.Client
     public sealed class MessageHitDto
          : EntityHitDto, IClassNameConvertible
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageHitDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<double> _score = new PropertyValue<double>(nameof(MessageHitDto), nameof(Score));
+        
         [Required]
         [JsonPropertyName("score")]
-        public double Score { get; set; }
+        public double Score { get { return _score.GetValue(); } set { _score.SetValue(value); } }
     
+        private PropertyValue<M2ChannelRecordDto> _channel = new PropertyValue<M2ChannelRecordDto>(nameof(MessageHitDto), nameof(Channel));
+        
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get; set; }
+        public M2ChannelRecordDto Channel { get { return _channel.GetValue(); } set { _channel.SetValue(value); } }
     
+        private PropertyValue<ChannelItemRecordDto> _ref = new PropertyValue<ChannelItemRecordDto>(nameof(MessageHitDto), nameof(Ref));
+        
         [Required]
         [JsonPropertyName("ref")]
-        public ChannelItemRecordDto Ref { get; set; }
+        public ChannelItemRecordDto Ref { get { return _ref.GetValue(); } set { _ref.SetValue(value); } }
     
+        private PropertyValue<string> _message = new PropertyValue<string>(nameof(MessageHitDto), nameof(Message));
+        
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get; set; }
+        public string Message { get { return _message.GetValue(); } set { _message.SetValue(value); } }
     
     }
     

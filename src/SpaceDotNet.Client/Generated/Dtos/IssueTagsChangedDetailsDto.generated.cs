@@ -27,11 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<List<PlanningTagDto>?> _addedTags = new PropertyValue<List<PlanningTagDto>?>(nameof(IssueTagsChangedDetailsDto), nameof(AddedTags));
+        
         [JsonPropertyName("addedTags")]
-        public List<PlanningTagDto>? AddedTags { get; set; }
+        public List<PlanningTagDto>? AddedTags { get { return _addedTags.GetValue(); } set { _addedTags.SetValue(value); } }
     
+        private PropertyValue<List<PlanningTagDto>?> _removedTags = new PropertyValue<List<PlanningTagDto>?>(nameof(IssueTagsChangedDetailsDto), nameof(RemovedTags));
+        
         [JsonPropertyName("removedTags")]
-        public List<PlanningTagDto>? RemovedTags { get; set; }
+        public List<PlanningTagDto>? RemovedTags { get { return _removedTags.GetValue(); } set { _removedTags.SetValue(value); } }
     
     }
     

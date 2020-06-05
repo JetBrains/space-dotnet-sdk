@@ -23,24 +23,34 @@ namespace SpaceDotNet.Client
 {
     public sealed class ArticlePreviewRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticlePreviewRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticlePreviewRecordDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<List<ArticleMarkdownImageDto>> _previewImages = new PropertyValue<List<ArticleMarkdownImageDto>>(nameof(ArticlePreviewRecordDto), nameof(PreviewImages));
+        
         [Required]
         [JsonPropertyName("previewImages")]
-        public List<ArticleMarkdownImageDto> PreviewImages { get; set; }
+        public List<ArticleMarkdownImageDto> PreviewImages { get { return _previewImages.GetValue(); } set { _previewImages.SetValue(value); } }
     
+        private PropertyValue<string> _preview = new PropertyValue<string>(nameof(ArticlePreviewRecordDto), nameof(Preview));
+        
         [Required]
         [JsonPropertyName("preview")]
-        public string Preview { get; set; }
+        public string Preview { get { return _preview.GetValue(); } set { _preview.SetValue(value); } }
     
+        private PropertyValue<int?> _wordsNumber = new PropertyValue<int?>(nameof(ArticlePreviewRecordDto), nameof(WordsNumber));
+        
         [JsonPropertyName("wordsNumber")]
-        public int? WordsNumber { get; set; }
+        public int? WordsNumber { get { return _wordsNumber.GetValue(); } set { _wordsNumber.SetValue(value); } }
     
     }
     

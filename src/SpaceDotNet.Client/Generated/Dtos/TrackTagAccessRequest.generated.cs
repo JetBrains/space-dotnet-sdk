@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class TrackTagAccessRequest
     {
+        private PropertyValue<string> _tag = new PropertyValue<string>(nameof(TrackTagAccessRequest), nameof(Tag));
+        
         [Required]
         [JsonPropertyName("tag")]
-        public string Tag { get; set; }
+        public string Tag { get { return _tag.GetValue(); } set { _tag.SetValue(value); } }
     
     }
     

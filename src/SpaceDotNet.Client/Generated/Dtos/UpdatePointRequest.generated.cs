@@ -23,14 +23,20 @@ namespace SpaceDotNet.Client
 {
     public class UpdatePointRequest
     {
+        private PropertyValue<int?> _x = new PropertyValue<int?>(nameof(UpdatePointRequest), nameof(X));
+        
         [JsonPropertyName("x")]
-        public int? X { get; set; }
+        public int? X { get { return _x.GetValue(); } set { _x.SetValue(value); } }
     
+        private PropertyValue<int?> _y = new PropertyValue<int?>(nameof(UpdatePointRequest), nameof(Y));
+        
         [JsonPropertyName("y")]
-        public int? Y { get; set; }
+        public int? Y { get { return _y.GetValue(); } set { _y.SetValue(value); } }
     
+        private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(UpdatePointRequest), nameof(MapId));
+        
         [JsonPropertyName("mapId")]
-        public string? MapId { get; set; }
+        public string? MapId { get { return _mapId.GetValue(); } set { _mapId.SetValue(value); } }
     
     }
     

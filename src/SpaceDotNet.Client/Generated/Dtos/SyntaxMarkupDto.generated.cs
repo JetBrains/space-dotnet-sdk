@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class SyntaxMarkupDto
     {
+        private PropertyValue<SyntaxMarkupType> _type = new PropertyValue<SyntaxMarkupType>(nameof(SyntaxMarkupDto), nameof(Type));
+        
         [Required]
         [JsonPropertyName("type")]
-        public SyntaxMarkupType Type { get; set; }
+        public SyntaxMarkupType Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
+        private PropertyValue<TextRangeDto> _range = new PropertyValue<TextRangeDto>(nameof(SyntaxMarkupDto), nameof(Range));
+        
         [Required]
         [JsonPropertyName("range")]
-        public TextRangeDto Range { get; set; }
+        public TextRangeDto Range { get { return _range.GetValue(); } set { _range.SetValue(value); } }
     
     }
     

@@ -23,23 +23,33 @@ namespace SpaceDotNet.Client
 {
     public sealed class DTOFullRightWithoutTypeDto
     {
+        private PropertyValue<string> _code = new PropertyValue<string>(nameof(DTOFullRightWithoutTypeDto), nameof(Code));
+        
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get; set; }
+        public string Code { get { return _code.GetValue(); } set { _code.SetValue(value); } }
     
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(DTOFullRightWithoutTypeDto), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(DTOFullRightWithoutTypeDto), nameof(Description));
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
     
+        private PropertyValue<bool> _grantedForUsers = new PropertyValue<bool>(nameof(DTOFullRightWithoutTypeDto), nameof(GrantedForUsers));
+        
         [Required]
         [JsonPropertyName("grantedForUsers")]
-        public bool GrantedForUsers { get; set; }
+        public bool GrantedForUsers { get { return _grantedForUsers.GetValue(); } set { _grantedForUsers.SetValue(value); } }
     
+        private PropertyValue<FeatureFlagDto?> _featureFlag = new PropertyValue<FeatureFlagDto?>(nameof(DTOFullRightWithoutTypeDto), nameof(FeatureFlag));
+        
         [JsonPropertyName("featureFlag")]
-        public FeatureFlagDto? FeatureFlag { get; set; }
+        public FeatureFlagDto? FeatureFlag { get { return _featureFlag.GetValue(); } set { _featureFlag.SetValue(value); } }
     
     }
     

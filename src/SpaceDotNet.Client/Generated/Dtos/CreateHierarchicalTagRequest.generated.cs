@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public class CreateHierarchicalTagRequest
     {
+        private PropertyValue<string?> _parentTagId = new PropertyValue<string?>(nameof(CreateHierarchicalTagRequest), nameof(ParentTagId));
+        
         [JsonPropertyName("parentTagId")]
-        public string? ParentTagId { get; set; }
+        public string? ParentTagId { get { return _parentTagId.GetValue(); } set { _parentTagId.SetValue(value); } }
     
+        private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(CreateHierarchicalTagRequest), nameof(Path));
+        
         [Required]
         [JsonPropertyName("path")]
-        public List<string> Path { get; set; }
+        public List<string> Path { get { return _path.GetValue(); } set { _path.SetValue(value); } }
     
     }
     

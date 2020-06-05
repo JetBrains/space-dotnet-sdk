@@ -23,11 +23,15 @@ namespace SpaceDotNet.Client
 {
     public sealed class DraftPublicationDetailsDto
     {
+        private PropertyValue<string?> _usedType = new PropertyValue<string?>(nameof(DraftPublicationDetailsDto), nameof(UsedType));
+        
         [JsonPropertyName("usedType")]
-        public string? UsedType { get; set; }
+        public string? UsedType { get { return _usedType.GetValue(); } set { _usedType.SetValue(value); } }
     
+        private PropertyValue<List<PublicationDetailsDto>?> _allPublicationDetails = new PropertyValue<List<PublicationDetailsDto>?>(nameof(DraftPublicationDetailsDto), nameof(AllPublicationDetails));
+        
         [JsonPropertyName("allPublicationDetails")]
-        public List<PublicationDetailsDto>? AllPublicationDetails { get; set; }
+        public List<PublicationDetailsDto>? AllPublicationDetails { get { return _allPublicationDetails.GetValue(); } set { _allPublicationDetails.SetValue(value); } }
     
     }
     

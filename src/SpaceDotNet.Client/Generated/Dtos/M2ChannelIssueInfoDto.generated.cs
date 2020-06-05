@@ -27,16 +27,22 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<ProjectKeyDto?> _projectKey = new PropertyValue<ProjectKeyDto?>(nameof(M2ChannelIssueInfoDto), nameof(ProjectKey));
+        
         [JsonPropertyName("projectKey")]
-        public ProjectKeyDto? ProjectKey { get; set; }
+        public ProjectKeyDto? ProjectKey { get { return _projectKey.GetValue(); } set { _projectKey.SetValue(value); } }
     
+        private PropertyValue<IssueDto> _issue = new PropertyValue<IssueDto>(nameof(M2ChannelIssueInfoDto), nameof(Issue));
+        
         [Required]
         [JsonPropertyName("issue")]
-        public IssueDto Issue { get; set; }
+        public IssueDto Issue { get { return _issue.GetValue(); } set { _issue.SetValue(value); } }
     
+        private PropertyValue<ChannelSpecificDefaultsDto> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto>(nameof(M2ChannelIssueInfoDto), nameof(NotificationDefaults));
+        
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get; set; }
+        public ChannelSpecificDefaultsDto NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
     
     }
     

@@ -27,17 +27,23 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestMergedEventDto), nameof(Repository));
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
     
+        private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(MergeRequestMergedEventDto), nameof(SourceBranch));
+        
         [Required]
         [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get; set; }
+        public string SourceBranch { get { return _sourceBranch.GetValue(); } set { _sourceBranch.SetValue(value); } }
     
+        private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(MergeRequestMergedEventDto), nameof(TargetBranch));
+        
         [Required]
         [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get; set; }
+        public string TargetBranch { get { return _targetBranch.GetValue(); } set { _targetBranch.SetValue(value); } }
     
     }
     

@@ -23,103 +23,157 @@ namespace SpaceDotNet.Client
 {
     public sealed class TDMemberProfileDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberProfileDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _username = new PropertyValue<string>(nameof(TDMemberProfileDto), nameof(Username));
+        
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get; set; }
+        public string Username { get { return _username.GetValue(); } set { _username.SetValue(value); } }
     
+        private PropertyValue<TDProfileNameDto> _name = new PropertyValue<TDProfileNameDto>(nameof(TDMemberProfileDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public TDProfileNameDto Name { get; set; }
+        public TDProfileNameDto Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<bool> _speaksEnglish = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(SpeaksEnglish));
+        
         [Required]
         [JsonPropertyName("speaksEnglish")]
-        public bool SpeaksEnglish { get; set; }
+        public bool SpeaksEnglish { get { return _speaksEnglish.GetValue(); } set { _speaksEnglish.SetValue(value); } }
     
+        private PropertyValue<string?> _smallAvatar = new PropertyValue<string?>(nameof(TDMemberProfileDto), nameof(SmallAvatar));
+        
         [JsonPropertyName("smallAvatar")]
-        public string? SmallAvatar { get; set; }
+        public string? SmallAvatar { get { return _smallAvatar.GetValue(); } set { _smallAvatar.SetValue(value); } }
     
+        private PropertyValue<string?> _avatar = new PropertyValue<string?>(nameof(TDMemberProfileDto), nameof(Avatar));
+        
         [JsonPropertyName("avatar")]
-        public string? Avatar { get; set; }
+        public string? Avatar { get { return _avatar.GetValue(); } set { _avatar.SetValue(value); } }
     
+        private PropertyValue<string?> _profilePicture = new PropertyValue<string?>(nameof(TDMemberProfileDto), nameof(ProfilePicture));
+        
         [JsonPropertyName("profilePicture")]
-        public string? ProfilePicture { get; set; }
+        public string? ProfilePicture { get { return _profilePicture.GetValue(); } set { _profilePicture.SetValue(value); } }
     
+        private PropertyValue<List<TDProfileLanguageDto>> _languages = new PropertyValue<List<TDProfileLanguageDto>>(nameof(TDMemberProfileDto), nameof(Languages));
+        
         [Required]
         [JsonPropertyName("languages")]
-        public List<TDProfileLanguageDto> Languages { get; set; }
+        public List<TDProfileLanguageDto> Languages { get { return _languages.GetValue(); } set { _languages.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
+        private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(NotAMember));
+        
         [Required]
         [JsonPropertyName("notAMember")]
-        public bool NotAMember { get; set; }
+        public bool NotAMember { get { return _notAMember.GetValue(); } set { _notAMember.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _joined = new PropertyValue<SpaceDate?>(nameof(TDMemberProfileDto), nameof(Joined));
+        
         [JsonPropertyName("joined")]
-        public SpaceDate? Joined { get; set; }
+        public SpaceDate? Joined { get { return _joined.GetValue(); } set { _joined.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _left = new PropertyValue<SpaceDate?>(nameof(TDMemberProfileDto), nameof(Left));
+        
         [JsonPropertyName("left")]
-        public SpaceDate? Left { get; set; }
+        public SpaceDate? Left { get { return _left.GetValue(); } set { _left.SetValue(value); } }
     
+        private PropertyValue<SpaceTime?> _leftAt = new PropertyValue<SpaceTime?>(nameof(TDMemberProfileDto), nameof(LeftAt));
+        
         [JsonPropertyName("leftAt")]
-        public SpaceTime? LeftAt { get; set; }
+        public SpaceTime? LeftAt { get { return _leftAt.GetValue(); } set { _leftAt.SetValue(value); } }
     
+        private PropertyValue<List<AbsenceRecordDto>> _absences = new PropertyValue<List<AbsenceRecordDto>>(nameof(TDMemberProfileDto), nameof(Absences));
+        
         [Required]
         [JsonPropertyName("absences")]
-        public List<AbsenceRecordDto> Absences { get; set; }
+        public List<AbsenceRecordDto> Absences { get { return _absences.GetValue(); } set { _absences.SetValue(value); } }
     
+        private PropertyValue<List<TDProfileEmailDto>> _emails = new PropertyValue<List<TDProfileEmailDto>>(nameof(TDMemberProfileDto), nameof(Emails));
+        
         [Required]
         [JsonPropertyName("emails")]
-        public List<TDProfileEmailDto> Emails { get; set; }
+        public List<TDProfileEmailDto> Emails { get { return _emails.GetValue(); } set { _emails.SetValue(value); } }
     
+        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TDMemberProfileDto), nameof(Links));
+        
         [Required]
         [JsonPropertyName("links")]
-        public List<string> Links { get; set; }
+        public List<string> Links { get { return _links.GetValue(); } set { _links.SetValue(value); } }
     
+        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TDMemberProfileDto), nameof(Messengers));
+        
         [Required]
         [JsonPropertyName("messengers")]
-        public List<string> Messengers { get; set; }
+        public List<string> Messengers { get { return _messengers.GetValue(); } set { _messengers.SetValue(value); } }
     
+        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDMemberProfileDto), nameof(Phones));
+        
         [Required]
         [JsonPropertyName("phones")]
-        public List<string> Phones { get; set; }
+        public List<string> Phones { get { return _phones.GetValue(); } set { _phones.SetValue(value); } }
     
+        private PropertyValue<List<PublicHolidayDto>> _holidays = new PropertyValue<List<PublicHolidayDto>>(nameof(TDMemberProfileDto), nameof(Holidays));
+        
         [Required]
         [JsonPropertyName("holidays")]
-        public List<PublicHolidayDto> Holidays { get; set; }
+        public List<PublicHolidayDto> Holidays { get { return _holidays.GetValue(); } set { _holidays.SetValue(value); } }
     
+        private PropertyValue<List<TDMemberLocationDto>> _locations = new PropertyValue<List<TDMemberLocationDto>>(nameof(TDMemberProfileDto), nameof(Locations));
+        
         [Required]
         [JsonPropertyName("locations")]
-        public List<TDMemberLocationDto> Locations { get; set; }
+        public List<TDMemberLocationDto> Locations { get { return _locations.GetValue(); } set { _locations.SetValue(value); } }
     
+        private PropertyValue<List<TDMemberProfileDto>> _managers = new PropertyValue<List<TDMemberProfileDto>>(nameof(TDMemberProfileDto), nameof(Managers));
+        
         [Required]
         [JsonPropertyName("managers")]
-        public List<TDMemberProfileDto> Managers { get; set; }
+        public List<TDMemberProfileDto> Managers { get { return _managers.GetValue(); } set { _managers.SetValue(value); } }
     
+        private PropertyValue<List<TDMembershipDto>> _membershipHistory = new PropertyValue<List<TDMembershipDto>>(nameof(TDMemberProfileDto), nameof(MembershipHistory));
+        
         [Required]
         [JsonPropertyName("membershipHistory")]
-        public List<TDMembershipDto> MembershipHistory { get; set; }
+        public List<TDMembershipDto> MembershipHistory { get { return _membershipHistory.GetValue(); } set { _membershipHistory.SetValue(value); } }
     
+        private PropertyValue<List<TDMembershipDto>> _memberships = new PropertyValue<List<TDMembershipDto>>(nameof(TDMemberProfileDto), nameof(Memberships));
+        
         [Required]
         [JsonPropertyName("memberships")]
-        public List<TDMembershipDto> Memberships { get; set; }
+        public List<TDMembershipDto> Memberships { get { return _memberships.GetValue(); } set { _memberships.SetValue(value); } }
     
+        private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfileDto), nameof(About));
+        
         [JsonPropertyName("about")]
-        public string? About { get; set; }
+        public string? About { get { return _about.GetValue(); } set { _about.SetValue(value); } }
     
+        private PropertyValue<AvatarCropSquareDto?> _avatarCropSquare = new PropertyValue<AvatarCropSquareDto?>(nameof(TDMemberProfileDto), nameof(AvatarCropSquare));
+        
         [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare { get; set; }
+        public AvatarCropSquareDto? AvatarCropSquare { get { return _avatarCropSquare.GetValue(); } set { _avatarCropSquare.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _birthday = new PropertyValue<SpaceDate?>(nameof(TDMemberProfileDto), nameof(Birthday));
+        
         [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday { get; set; }
+        public SpaceDate? Birthday { get { return _birthday.GetValue(); } set { _birthday.SetValue(value); } }
     
+        private PropertyValue<Gender?> _gender = new PropertyValue<Gender?>(nameof(TDMemberProfileDto), nameof(Gender));
+        
         [JsonPropertyName("gender")]
-        public Gender? Gender { get; set; }
+        public Gender? Gender { get { return _gender.GetValue(); } set { _gender.SetValue(value); } }
     
     }
     

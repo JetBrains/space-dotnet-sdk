@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class CreateNavBarProjectRequest
     {
+        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CreateNavBarProjectRequest), nameof(ProjectId));
+        
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get; set; }
+        public string ProjectId { get { return _projectId.GetValue(); } set { _projectId.SetValue(value); } }
     
     }
     

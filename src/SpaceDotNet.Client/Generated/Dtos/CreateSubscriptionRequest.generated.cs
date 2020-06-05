@@ -23,14 +23,20 @@ namespace SpaceDotNet.Client
 {
     public class CreateSubscriptionRequest
     {
+        private PropertyValue<string?> _locationId = new PropertyValue<string?>(nameof(CreateSubscriptionRequest), nameof(LocationId));
+        
         [JsonPropertyName("locationId")]
-        public string? LocationId { get; set; }
+        public string? LocationId { get { return _locationId.GetValue(); } set { _locationId.SetValue(value); } }
     
+        private PropertyValue<string?> _teamId = new PropertyValue<string?>(nameof(CreateSubscriptionRequest), nameof(TeamId));
+        
         [JsonPropertyName("teamId")]
-        public string? TeamId { get; set; }
+        public string? TeamId { get { return _teamId.GetValue(); } set { _teamId.SetValue(value); } }
     
+        private PropertyValue<string?> _reasonId = new PropertyValue<string?>(nameof(CreateSubscriptionRequest), nameof(ReasonId));
+        
         [JsonPropertyName("reasonId")]
-        public string? ReasonId { get; set; }
+        public string? ReasonId { get { return _reasonId.GetValue(); } set { _reasonId.SetValue(value); } }
     
     }
     

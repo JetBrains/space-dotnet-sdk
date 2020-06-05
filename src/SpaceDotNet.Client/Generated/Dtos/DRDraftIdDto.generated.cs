@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public sealed class DRDraftIdDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftIdDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public class CreateCalendarRequest
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateCalendarRequest), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _location = new PropertyValue<string>(nameof(CreateCalendarRequest), nameof(Location));
+        
         [Required]
         [JsonPropertyName("location")]
-        public string Location { get; set; }
+        public string Location { get { return _location.GetValue(); } set { _location.SetValue(value); } }
     
     }
     

@@ -27,9 +27,11 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(UneditableDocumentDto), nameof(Type));
+        
         [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get; set; }
+        public DraftDocumentType Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
     }
     

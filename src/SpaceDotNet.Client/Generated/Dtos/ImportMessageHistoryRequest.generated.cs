@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class ImportMessageHistoryRequest
     {
+        private PropertyValue<List<MessageForImportDto>> _messages = new PropertyValue<List<MessageForImportDto>>(nameof(ImportMessageHistoryRequest), nameof(Messages));
+        
         [Required]
         [JsonPropertyName("messages")]
-        public List<MessageForImportDto> Messages { get; set; }
+        public List<MessageForImportDto> Messages { get { return _messages.GetValue(); } set { _messages.SetValue(value); } }
     
     }
     

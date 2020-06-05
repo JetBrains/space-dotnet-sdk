@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client
 {
     public sealed class MergeRequestBranchDto
     {
+        private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MergeRequestBranchDto), nameof(DisplayName));
+        
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get; set; }
+        public string DisplayName { get { return _displayName.GetValue(); } set { _displayName.SetValue(value); } }
     
+        private PropertyValue<string> _ref = new PropertyValue<string>(nameof(MergeRequestBranchDto), nameof(Ref));
+        
         [Required]
         [JsonPropertyName("ref")]
-        public string Ref { get; set; }
+        public string Ref { get { return _ref.GetValue(); } set { _ref.SetValue(value); } }
     
+        private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(MergeRequestBranchDto), nameof(Deleted));
+        
         [Required]
         [JsonPropertyName("deleted")]
-        public bool Deleted { get; set; }
+        public bool Deleted { get { return _deleted.GetValue(); } set { _deleted.SetValue(value); } }
     
     }
     

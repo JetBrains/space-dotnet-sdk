@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class TDProfileNameDto
     {
+        private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TDProfileNameDto), nameof(FirstName));
+        
         [Required]
         [JsonPropertyName("firstName")]
-        public string FirstName { get; set; }
+        public string FirstName { get { return _firstName.GetValue(); } set { _firstName.SetValue(value); } }
     
+        private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TDProfileNameDto), nameof(LastName));
+        
         [Required]
         [JsonPropertyName("lastName")]
-        public string LastName { get; set; }
+        public string LastName { get { return _lastName.GetValue(); } set { _lastName.SetValue(value); } }
     
     }
     

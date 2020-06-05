@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class QRCodeDto
     {
+        private PropertyValue<int> _width = new PropertyValue<int>(nameof(QRCodeDto), nameof(Width));
+        
         [Required]
         [JsonPropertyName("width")]
-        public int Width { get; set; }
+        public int Width { get { return _width.GetValue(); } set { _width.SetValue(value); } }
     
+        private PropertyValue<string> _base64Bitmap = new PropertyValue<string>(nameof(QRCodeDto), nameof(Base64Bitmap));
+        
         [Required]
         [JsonPropertyName("base64Bitmap")]
-        public string Base64Bitmap { get; set; }
+        public string Base64Bitmap { get { return _base64Bitmap.GetValue(); } set { _base64Bitmap.SetValue(value); } }
     
     }
     

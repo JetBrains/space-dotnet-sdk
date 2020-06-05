@@ -23,55 +23,83 @@ namespace SpaceDotNet.Client
 {
     public sealed class DRDraftDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(DRDraftDto), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
+        private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(DRDraftDto), nameof(Text));
+        
         [JsonPropertyName("text")]
-        public string? Text { get; set; }
+        public string? Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
     
+        private PropertyValue<DraftDocumentType?> _type = new PropertyValue<DraftDocumentType?>(nameof(DRDraftDto), nameof(Type));
+        
         [JsonPropertyName("type")]
-        public DraftDocumentType? Type { get; set; }
+        public DraftDocumentType? Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _modified = new PropertyValue<SpaceTime>(nameof(DRDraftDto), nameof(Modified));
+        
         [Required]
         [JsonPropertyName("modified")]
-        public SpaceTime Modified { get; set; }
+        public SpaceTime Modified { get { return _modified.GetValue(); } set { _modified.SetValue(value); } }
     
+        private PropertyValue<bool> _publishedFlag = new PropertyValue<bool>(nameof(DRDraftDto), nameof(PublishedFlag));
+        
         [Required]
         [JsonPropertyName("publishedFlag")]
-        public bool PublishedFlag { get; set; }
+        public bool PublishedFlag { get { return _publishedFlag.GetValue(); } set { _publishedFlag.SetValue(value); } }
     
+        private PropertyValue<bool> _shared = new PropertyValue<bool>(nameof(DRDraftDto), nameof(Shared));
+        
         [Required]
         [JsonPropertyName("shared")]
-        public bool Shared { get; set; }
+        public bool Shared { get { return _shared.GetValue(); } set { _shared.SetValue(value); } }
     
+        private PropertyValue<int> _accessOrdinal = new PropertyValue<int>(nameof(DRDraftDto), nameof(AccessOrdinal));
+        
         [Required]
         [JsonPropertyName("accessOrdinal")]
-        public int AccessOrdinal { get; set; }
+        public int AccessOrdinal { get { return _accessOrdinal.GetValue(); } set { _accessOrdinal.SetValue(value); } }
     
+        private PropertyValue<DraftPublicationDetailsDto?> _publicationDetails = new PropertyValue<DraftPublicationDetailsDto?>(nameof(DRDraftDto), nameof(PublicationDetails));
+        
         [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails { get; set; }
+        public DraftPublicationDetailsDto? PublicationDetails { get { return _publicationDetails.GetValue(); } set { _publicationDetails.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto?> _author = new PropertyValue<TDMemberProfileDto?>(nameof(DRDraftDto), nameof(Author));
+        
         [JsonPropertyName("author")]
-        public TDMemberProfileDto? Author { get; set; }
+        public TDMemberProfileDto? Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
     
+        private PropertyValue<List<TDMemberProfileDto>> _editors = new PropertyValue<List<TDMemberProfileDto>>(nameof(DRDraftDto), nameof(Editors));
+        
         [Required]
         [JsonPropertyName("editors")]
-        public List<TDMemberProfileDto> Editors { get; set; }
+        public List<TDMemberProfileDto> Editors { get { return _editors.GetValue(); } set { _editors.SetValue(value); } }
     
+        private PropertyValue<List<TDTeamDto>> _editorsTeams = new PropertyValue<List<TDTeamDto>>(nameof(DRDraftDto), nameof(EditorsTeams));
+        
         [Required]
         [JsonPropertyName("editorsTeams")]
-        public List<TDTeamDto> EditorsTeams { get; set; }
+        public List<TDTeamDto> EditorsTeams { get { return _editorsTeams.GetValue(); } set { _editorsTeams.SetValue(value); } }
     
+        private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(DRDraftDto), nameof(Version));
+        
         [JsonPropertyName("version")]
-        public long? Version { get; set; }
+        public long? Version { get { return _version.GetValue(); } set { _version.SetValue(value); } }
     
+        private PropertyValue<TextDocumentDto?> _document = new PropertyValue<TextDocumentDto?>(nameof(DRDraftDto), nameof(Document));
+        
         [JsonPropertyName("document")]
-        public TextDocumentDto? Document { get; set; }
+        public TextDocumentDto? Document { get { return _document.GetValue(); } set { _document.SetValue(value); } }
     
     }
     

@@ -23,25 +23,35 @@ namespace SpaceDotNet.Client
 {
     public sealed class TrustedCertificateDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrustedCertificateDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _alias = new PropertyValue<string>(nameof(TrustedCertificateDto), nameof(Alias));
+        
         [Required]
         [JsonPropertyName("alias")]
-        public string Alias { get; set; }
+        public string Alias { get { return _alias.GetValue(); } set { _alias.SetValue(value); } }
     
+        private PropertyValue<string> _data = new PropertyValue<string>(nameof(TrustedCertificateDto), nameof(Data));
+        
         [Required]
         [JsonPropertyName("data")]
-        public string Data { get; set; }
+        public string Data { get { return _data.GetValue(); } set { _data.SetValue(value); } }
     
+        private PropertyValue<CertificateInfoDto> _info = new PropertyValue<CertificateInfoDto>(nameof(TrustedCertificateDto), nameof(Info));
+        
         [Required]
         [JsonPropertyName("info")]
-        public CertificateInfoDto Info { get; set; }
+        public CertificateInfoDto Info { get { return _info.GetValue(); } set { _info.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TrustedCertificateDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
     }
     

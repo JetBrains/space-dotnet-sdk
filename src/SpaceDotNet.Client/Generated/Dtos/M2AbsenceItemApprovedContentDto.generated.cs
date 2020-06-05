@@ -27,17 +27,23 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<AbsenceRecordDto> _absence = new PropertyValue<AbsenceRecordDto>(nameof(M2AbsenceItemApprovedContentDto), nameof(Absence));
+        
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get; set; }
+        public AbsenceRecordDto Absence { get { return _absence.GetValue(); } set { _absence.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto> _by = new PropertyValue<TDMemberProfileDto>(nameof(M2AbsenceItemApprovedContentDto), nameof(By));
+        
         [Required]
         [JsonPropertyName("by")]
-        public TDMemberProfileDto By { get; set; }
+        public TDMemberProfileDto By { get { return _by.GetValue(); } set { _by.SetValue(value); } }
     
+        private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(M2AbsenceItemApprovedContentDto), nameof(Approve));
+        
         [Required]
         [JsonPropertyName("approve")]
-        public bool Approve { get; set; }
+        public bool Approve { get { return _approve.GetValue(); } set { _approve.SetValue(value); } }
     
     }
     

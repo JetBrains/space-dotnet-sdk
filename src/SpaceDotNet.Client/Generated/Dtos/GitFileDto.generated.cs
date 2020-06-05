@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client
 {
     public sealed class GitFileDto
     {
+        private PropertyValue<string> _commit = new PropertyValue<string>(nameof(GitFileDto), nameof(Commit));
+        
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get; set; }
+        public string Commit { get { return _commit.GetValue(); } set { _commit.SetValue(value); } }
     
+        private PropertyValue<string> _path = new PropertyValue<string>(nameof(GitFileDto), nameof(Path));
+        
         [Required]
         [JsonPropertyName("path")]
-        public string Path { get; set; }
+        public string Path { get { return _path.GetValue(); } set { _path.SetValue(value); } }
     
+        private PropertyValue<string> _blob = new PropertyValue<string>(nameof(GitFileDto), nameof(Blob));
+        
         [Required]
         [JsonPropertyName("blob")]
-        public string Blob { get; set; }
+        public string Blob { get { return _blob.GetValue(); } set { _blob.SetValue(value); } }
     
+        private PropertyValue<GitEntryType> _type = new PropertyValue<GitEntryType>(nameof(GitFileDto), nameof(Type));
+        
         [Required]
         [JsonPropertyName("type")]
-        public GitEntryType Type { get; set; }
+        public GitEntryType Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
     }
     

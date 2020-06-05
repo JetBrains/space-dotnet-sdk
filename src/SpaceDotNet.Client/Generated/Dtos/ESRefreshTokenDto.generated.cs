@@ -23,16 +23,22 @@ namespace SpaceDotNet.Client
 {
     public sealed class ESRefreshTokenDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESRefreshTokenDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESRefreshTokenDto), nameof(Scope));
+        
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get; set; }
+        public string Scope { get { return _scope.GetValue(); } set { _scope.SetValue(value); } }
     
+        private PropertyValue<AccessRecordDto?> _lastAccess = new PropertyValue<AccessRecordDto?>(nameof(ESRefreshTokenDto), nameof(LastAccess));
+        
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get; set; }
+        public AccessRecordDto? LastAccess { get { return _lastAccess.GetValue(); } set { _lastAccess.SetValue(value); } }
     
     }
     

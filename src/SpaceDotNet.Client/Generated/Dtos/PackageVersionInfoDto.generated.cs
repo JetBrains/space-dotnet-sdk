@@ -23,24 +23,34 @@ namespace SpaceDotNet.Client
 {
     public sealed class PackageVersionInfoDto
     {
+        private PropertyValue<PackageTypeDto> _type = new PropertyValue<PackageTypeDto>(nameof(PackageVersionInfoDto), nameof(Type));
+        
         [Required]
         [JsonPropertyName("type")]
-        public PackageTypeDto Type { get; set; }
+        public PackageTypeDto Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
     
+        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(PackageVersionInfoDto), nameof(Repository));
+        
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get; set; }
+        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageVersionInfoDto), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string> _version = new PropertyValue<string>(nameof(PackageVersionInfoDto), nameof(Version));
+        
         [Required]
         [JsonPropertyName("version")]
-        public string Version { get; set; }
+        public string Version { get { return _version.GetValue(); } set { _version.SetValue(value); } }
     
+        private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(PackageVersionInfoDto), nameof(Tags));
+        
         [JsonPropertyName("tags")]
-        public List<string>? Tags { get; set; }
+        public List<string>? Tags { get { return _tags.GetValue(); } set { _tags.SetValue(value); } }
     
     }
     

@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public class CreateRoleRequest
     {
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateRoleRequest), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(CreateRoleRequest), nameof(ParentId));
+        
         [JsonPropertyName("parentId")]
-        public string? ParentId { get; set; }
+        public string? ParentId { get { return _parentId.GetValue(); } set { _parentId.SetValue(value); } }
     
     }
     

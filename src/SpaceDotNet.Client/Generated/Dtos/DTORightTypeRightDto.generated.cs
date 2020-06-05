@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class DTORightTypeRightDto
     {
+        private PropertyValue<DTORightTypeDto> _rightType = new PropertyValue<DTORightTypeDto>(nameof(DTORightTypeRightDto), nameof(RightType));
+        
         [Required]
         [JsonPropertyName("rightType")]
-        public DTORightTypeDto RightType { get; set; }
+        public DTORightTypeDto RightType { get { return _rightType.GetValue(); } set { _rightType.SetValue(value); } }
     
+        private PropertyValue<List<DTOFullRightWithoutTypeDto>> _rights = new PropertyValue<List<DTOFullRightWithoutTypeDto>>(nameof(DTORightTypeRightDto), nameof(Rights));
+        
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTOFullRightWithoutTypeDto> Rights { get; set; }
+        public List<DTOFullRightWithoutTypeDto> Rights { get { return _rights.GetValue(); } set { _rights.SetValue(value); } }
     
     }
     

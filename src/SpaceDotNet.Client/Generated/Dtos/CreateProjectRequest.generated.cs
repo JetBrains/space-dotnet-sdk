@@ -23,24 +23,34 @@ namespace SpaceDotNet.Client
 {
     public class CreateProjectRequest
     {
+        private PropertyValue<ProjectKeyDto> _key = new PropertyValue<ProjectKeyDto>(nameof(CreateProjectRequest), nameof(Key));
+        
         [Required]
         [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get; set; }
+        public ProjectKeyDto Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
     
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateProjectRequest), nameof(Name));
+        
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get; set; }
+        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CreateProjectRequest), nameof(Description));
+        
         [JsonPropertyName("description")]
-        public string? Description { get; set; }
+        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
     
+        private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CreateProjectRequest), nameof(Private));
+        
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get; set; }
+        public bool Private { get { return _private.GetValue(); } set { _private.SetValue(value); } }
     
+        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(CreateProjectRequest), nameof(Tags));
+        
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get; set; }
+        public List<string> Tags { get { return _tags.GetValue(); } set { _tags.SetValue(value); } }
     
     }
     

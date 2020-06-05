@@ -24,25 +24,35 @@ namespace SpaceDotNet.Client
     public sealed class ArticleHitDto
          : EntityHitDto, IClassNameConvertible
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleHitDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<double> _score = new PropertyValue<double>(nameof(ArticleHitDto), nameof(Score));
+        
         [Required]
         [JsonPropertyName("score")]
-        public double Score { get; set; }
+        public double Score { get { return _score.GetValue(); } set { _score.SetValue(value); } }
     
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(ArticleHitDto), nameof(Title));
+        
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get; set; }
+        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
     
+        private PropertyValue<string> _body = new PropertyValue<string>(nameof(ArticleHitDto), nameof(Body));
+        
         [Required]
         [JsonPropertyName("body")]
-        public string Body { get; set; }
+        public string Body { get { return _body.GetValue(); } set { _body.SetValue(value); } }
     
+        private PropertyValue<ArticleRecordDto> _ref = new PropertyValue<ArticleRecordDto>(nameof(ArticleHitDto), nameof(Ref));
+        
         [Required]
         [JsonPropertyName("ref")]
-        public ArticleRecordDto Ref { get; set; }
+        public ArticleRecordDto Ref { get { return _ref.GetValue(); } set { _ref.SetValue(value); } }
     
     }
     

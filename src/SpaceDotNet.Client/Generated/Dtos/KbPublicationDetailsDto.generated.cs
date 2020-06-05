@@ -27,14 +27,20 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<KBBookDto?> _book = new PropertyValue<KBBookDto?>(nameof(KbPublicationDetailsDto), nameof(Book));
+        
         [JsonPropertyName("book")]
-        public KBBookDto? Book { get; set; }
+        public KBBookDto? Book { get { return _book.GetValue(); } set { _book.SetValue(value); } }
     
+        private PropertyValue<KBFolderDto?> _folder = new PropertyValue<KBFolderDto?>(nameof(KbPublicationDetailsDto), nameof(Folder));
+        
         [JsonPropertyName("folder")]
-        public KBFolderDto? Folder { get; set; }
+        public KBFolderDto? Folder { get { return _folder.GetValue(); } set { _folder.SetValue(value); } }
     
+        private PropertyValue<KBArticleDto?> _articleId = new PropertyValue<KBArticleDto?>(nameof(KbPublicationDetailsDto), nameof(ArticleId));
+        
         [JsonPropertyName("articleId")]
-        public KBArticleDto? ArticleId { get; set; }
+        public KBArticleDto? ArticleId { get { return _articleId.GetValue(); } set { _articleId.SetValue(value); } }
     
     }
     

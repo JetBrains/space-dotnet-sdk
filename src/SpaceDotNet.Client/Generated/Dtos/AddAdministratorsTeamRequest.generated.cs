@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class AddAdministratorsTeamRequest
     {
+        private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(AddAdministratorsTeamRequest), nameof(TeamId));
+        
         [Required]
         [JsonPropertyName("teamId")]
-        public string TeamId { get; set; }
+        public string TeamId { get { return _teamId.GetValue(); } set { _teamId.SetValue(value); } }
     
     }
     

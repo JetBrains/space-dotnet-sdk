@@ -23,32 +23,46 @@ namespace SpaceDotNet.Client
 {
     public sealed class CertainReactionToItemRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(CertainReactionToItemRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(CertainReactionToItemRecordDto), nameof(ItemId));
+        
         [Required]
         [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }
+        public string ItemId { get { return _itemId.GetValue(); } set { _itemId.SetValue(value); } }
     
+        private PropertyValue<ReactionTypeRecordDto> _reaction = new PropertyValue<ReactionTypeRecordDto>(nameof(CertainReactionToItemRecordDto), nameof(Reaction));
+        
         [Required]
         [JsonPropertyName("reaction")]
-        public ReactionTypeRecordDto Reaction { get; set; }
+        public ReactionTypeRecordDto Reaction { get { return _reaction.GetValue(); } set { _reaction.SetValue(value); } }
     
+        private PropertyValue<int> _count = new PropertyValue<int>(nameof(CertainReactionToItemRecordDto), nameof(Count));
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
+        public int Count { get { return _count.GetValue(); } set { _count.SetValue(value); } }
     
+        private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(CertainReactionToItemRecordDto), nameof(MeReacted));
+        
         [Required]
         [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }
+        public bool MeReacted { get { return _meReacted.GetValue(); } set { _meReacted.SetValue(value); } }
     
+        private PropertyValue<List<CPrincipalDto>> _principals = new PropertyValue<List<CPrincipalDto>>(nameof(CertainReactionToItemRecordDto), nameof(Principals));
+        
         [Required]
         [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get; set; }
+        public List<CPrincipalDto> Principals { get { return _principals.GetValue(); } set { _principals.SetValue(value); } }
     
+        private PropertyValue<long?> _order = new PropertyValue<long?>(nameof(CertainReactionToItemRecordDto), nameof(Order));
+        
         [JsonPropertyName("order")]
-        public long? Order { get; set; }
+        public long? Order { get { return _order.GetValue(); } set { _order.SetValue(value); } }
     
     }
     

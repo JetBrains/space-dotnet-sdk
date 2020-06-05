@@ -24,9 +24,11 @@ namespace SpaceDotNet.Client
     public sealed class MeetingOrganizerUserDto
          : MeetingOrganizerDto, IClassNameConvertible
     {
+        private PropertyValue<TDMemberProfileDto> _profileRef = new PropertyValue<TDMemberProfileDto>(nameof(MeetingOrganizerUserDto), nameof(ProfileRef));
+        
         [Required]
         [JsonPropertyName("profileRef")]
-        public TDMemberProfileDto ProfileRef { get; set; }
+        public TDMemberProfileDto ProfileRef { get { return _profileRef.GetValue(); } set { _profileRef.SetValue(value); } }
     
     }
     

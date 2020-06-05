@@ -23,19 +23,27 @@ namespace SpaceDotNet.Client
 {
     public sealed class CodeReviewParticipantDto
     {
+        private PropertyValue<TDMemberProfileDto> _user = new PropertyValue<TDMemberProfileDto>(nameof(CodeReviewParticipantDto), nameof(User));
+        
         [Required]
         [JsonPropertyName("user")]
-        public TDMemberProfileDto User { get; set; }
+        public TDMemberProfileDto User { get { return _user.GetValue(); } set { _user.SetValue(value); } }
     
+        private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(CodeReviewParticipantDto), nameof(Role));
+        
         [Required]
         [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role { get; set; }
+        public CodeReviewParticipantRole Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
     
+        private PropertyValue<ReviewerState?> _state = new PropertyValue<ReviewerState?>(nameof(CodeReviewParticipantDto), nameof(State));
+        
         [JsonPropertyName("state")]
-        public ReviewerState? State { get; set; }
+        public ReviewerState? State { get { return _state.GetValue(); } set { _state.SetValue(value); } }
     
+        private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(CodeReviewParticipantDto), nameof(TheirTurn));
+        
         [JsonPropertyName("theirTurn")]
-        public bool? TheirTurn { get; set; }
+        public bool? TheirTurn { get { return _theirTurn.GetValue(); } set { _theirTurn.SetValue(value); } }
     
     }
     

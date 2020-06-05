@@ -23,30 +23,44 @@ namespace SpaceDotNet.Client
 {
     public sealed class TDMemberLocationDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberLocationDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<TDLocationDto> _location = new PropertyValue<TDLocationDto>(nameof(TDMemberLocationDto), nameof(Location));
+        
         [Required]
         [JsonPropertyName("location")]
-        public TDLocationDto Location { get; set; }
+        public TDLocationDto Location { get { return _location.GetValue(); } set { _location.SetValue(value); } }
     
+        private PropertyValue<List<TDLocationMapPointDto>?> _locationMapPoints = new PropertyValue<List<TDLocationMapPointDto>?>(nameof(TDMemberLocationDto), nameof(LocationMapPoints));
+        
         [JsonPropertyName("locationMapPoints")]
-        public List<TDLocationMapPointDto>? LocationMapPoints { get; set; }
+        public List<TDLocationMapPointDto>? LocationMapPoints { get { return _locationMapPoints.GetValue(); } set { _locationMapPoints.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _since = new PropertyValue<SpaceDate?>(nameof(TDMemberLocationDto), nameof(Since));
+        
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get; set; }
+        public SpaceDate? Since { get { return _since.GetValue(); } set { _since.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _till = new PropertyValue<SpaceDate?>(nameof(TDMemberLocationDto), nameof(Till));
+        
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get; set; }
+        public SpaceDate? Till { get { return _till.GetValue(); } set { _till.SetValue(value); } }
     
+        private PropertyValue<TDMemberProfileDto> _member = new PropertyValue<TDMemberProfileDto>(nameof(TDMemberLocationDto), nameof(Member));
+        
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get; set; }
+        public TDMemberProfileDto Member { get { return _member.GetValue(); } set { _member.SetValue(value); } }
     
+        private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberLocationDto), nameof(Archived));
+        
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get; set; }
+        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
     
     }
     

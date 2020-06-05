@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class UpdateStatusRequest
     {
+        private PropertyValue<List<IssueStatusDataDto>> _statuses = new PropertyValue<List<IssueStatusDataDto>>(nameof(UpdateStatusRequest), nameof(Statuses));
+        
         [Required]
         [JsonPropertyName("statuses")]
-        public List<IssueStatusDataDto> Statuses { get; set; }
+        public List<IssueStatusDataDto> Statuses { get { return _statuses.GetValue(); } set { _statuses.SetValue(value); } }
     
     }
     

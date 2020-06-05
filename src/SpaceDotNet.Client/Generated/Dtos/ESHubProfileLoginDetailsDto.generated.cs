@@ -24,27 +24,41 @@ namespace SpaceDotNet.Client
     public sealed class ESHubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible
     {
+        private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(Login));
+        
         [JsonPropertyName("login")]
-        public string? Login { get; set; }
+        public string? Login { get { return _login.GetValue(); } set { _login.SetValue(value); } }
     
+        private PropertyValue<string?> _hubAuthModuleLogin = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(HubAuthModuleLogin));
+        
         [JsonPropertyName("hubAuthModuleLogin")]
-        public string? HubAuthModuleLogin { get; set; }
+        public string? HubAuthModuleLogin { get { return _hubAuthModuleLogin.GetValue(); } set { _hubAuthModuleLogin.SetValue(value); } }
     
+        private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(FirstName));
+        
         [JsonPropertyName("firstName")]
-        public string? FirstName { get; set; }
+        public string? FirstName { get { return _firstName.GetValue(); } set { _firstName.SetValue(value); } }
     
+        private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(LastName));
+        
         [JsonPropertyName("lastName")]
-        public string? LastName { get; set; }
+        public string? LastName { get { return _lastName.GetValue(); } set { _lastName.SetValue(value); } }
     
+        private PropertyValue<string?> _email = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(Email));
+        
         [JsonPropertyName("email")]
-        public string? Email { get; set; }
+        public string? Email { get { return _email.GetValue(); } set { _email.SetValue(value); } }
     
+        private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESHubProfileLoginDetailsDto), nameof(EmailVerified));
+        
         [Required]
         [JsonPropertyName("emailVerified")]
-        public bool EmailVerified { get; set; }
+        public bool EmailVerified { get { return _emailVerified.GetValue(); } set { _emailVerified.SetValue(value); } }
     
+        private PropertyValue<string?> _avatarUrl = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(AvatarUrl));
+        
         [JsonPropertyName("avatarUrl")]
-        public string? AvatarUrl { get; set; }
+        public string? AvatarUrl { get { return _avatarUrl.GetValue(); } set { _avatarUrl.SetValue(value); } }
     
     }
     

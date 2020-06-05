@@ -23,18 +23,26 @@ namespace SpaceDotNet.Client
 {
     public sealed class DTOAbsenceSubscriptionDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(DTOAbsenceSubscriptionDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<TDLocationDto?> _location = new PropertyValue<TDLocationDto?>(nameof(DTOAbsenceSubscriptionDto), nameof(Location));
+        
         [JsonPropertyName("location")]
-        public TDLocationDto? Location { get; set; }
+        public TDLocationDto? Location { get { return _location.GetValue(); } set { _location.SetValue(value); } }
     
+        private PropertyValue<TDTeamDto?> _team = new PropertyValue<TDTeamDto?>(nameof(DTOAbsenceSubscriptionDto), nameof(Team));
+        
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get; set; }
+        public TDTeamDto? Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
     
+        private PropertyValue<AbsenceReasonRecordDto?> _reason = new PropertyValue<AbsenceReasonRecordDto?>(nameof(DTOAbsenceSubscriptionDto), nameof(Reason));
+        
         [JsonPropertyName("reason")]
-        public AbsenceReasonRecordDto? Reason { get; set; }
+        public AbsenceReasonRecordDto? Reason { get { return _reason.GetValue(); } set { _reason.SetValue(value); } }
     
     }
     

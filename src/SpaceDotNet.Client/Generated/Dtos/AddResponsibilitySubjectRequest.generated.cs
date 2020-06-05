@@ -23,8 +23,10 @@ namespace SpaceDotNet.Client
 {
     public class AddResponsibilitySubjectRequest
     {
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(AddResponsibilitySubjectRequest), nameof(Name));
+        
         [JsonPropertyName("name")]
-        public string? Name { get; set; }
+        public string? Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
     
     }
     

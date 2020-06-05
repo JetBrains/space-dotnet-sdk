@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client
 {
     public class ApproveAbsenceRequest
     {
+        private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(ApproveAbsenceRequest), nameof(Approve));
+        
         [Required]
         [JsonPropertyName("approve")]
-        public bool Approve { get; set; }
+        public bool Approve { get { return _approve.GetValue(); } set { _approve.SetValue(value); } }
     
     }
     

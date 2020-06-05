@@ -27,17 +27,23 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        private PropertyValue<string> _action = new PropertyValue<string>(nameof(M2MaintenanceActionContentDto), nameof(Action));
+        
         [Required]
         [JsonPropertyName("action")]
-        public string Action { get; set; }
+        public string Action { get { return _action.GetValue(); } set { _action.SetValue(value); } }
     
+        private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(M2MaintenanceActionContentDto), nameof(Success));
+        
         [Required]
         [JsonPropertyName("success")]
-        public bool Success { get; set; }
+        public bool Success { get { return _success.GetValue(); } set { _success.SetValue(value); } }
     
+        private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2MaintenanceActionContentDto), nameof(Details));
+        
         [Required]
         [JsonPropertyName("details")]
-        public string Details { get; set; }
+        public string Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
     
     }
     

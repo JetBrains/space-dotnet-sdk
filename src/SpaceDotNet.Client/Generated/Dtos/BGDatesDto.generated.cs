@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client
 {
     public sealed class BGDatesDto
     {
+        private PropertyValue<SpaceTime> _first = new PropertyValue<SpaceTime>(nameof(BGDatesDto), nameof(First));
+        
         [Required]
         [JsonPropertyName("first")]
-        public SpaceTime First { get; set; }
+        public SpaceTime First { get { return _first.GetValue(); } set { _first.SetValue(value); } }
     
+        private PropertyValue<SpaceTime> _last = new PropertyValue<SpaceTime>(nameof(BGDatesDto), nameof(Last));
+        
         [Required]
         [JsonPropertyName("last")]
-        public SpaceTime Last { get; set; }
+        public SpaceTime Last { get { return _last.GetValue(); } set { _last.SetValue(value); } }
     
     }
     

@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client
 {
     public sealed class EmojiReactionRecordDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(EmojiReactionRecordDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(EmojiReactionRecordDto), nameof(ItemId));
+        
         [Required]
         [JsonPropertyName("itemId")]
-        public string ItemId { get; set; }
+        public string ItemId { get { return _itemId.GetValue(); } set { _itemId.SetValue(value); } }
     
+        private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojiReactionRecordDto), nameof(Emoji));
+        
         [Required]
         [JsonPropertyName("emoji")]
-        public string Emoji { get; set; }
+        public string Emoji { get { return _emoji.GetValue(); } set { _emoji.SetValue(value); } }
     
+        private PropertyValue<int> _count = new PropertyValue<int>(nameof(EmojiReactionRecordDto), nameof(Count));
+        
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get; set; }
+        public int Count { get { return _count.GetValue(); } set { _count.SetValue(value); } }
     
+        private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(EmojiReactionRecordDto), nameof(MeReacted));
+        
         [Required]
         [JsonPropertyName("meReacted")]
-        public bool MeReacted { get; set; }
+        public bool MeReacted { get { return _meReacted.GetValue(); } set { _meReacted.SetValue(value); } }
     
+        private PropertyValue<long> _order = new PropertyValue<long>(nameof(EmojiReactionRecordDto), nameof(Order));
+        
         [Required]
         [JsonPropertyName("order")]
-        public long Order { get; set; }
+        public long Order { get { return _order.GetValue(); } set { _order.SetValue(value); } }
     
     }
     

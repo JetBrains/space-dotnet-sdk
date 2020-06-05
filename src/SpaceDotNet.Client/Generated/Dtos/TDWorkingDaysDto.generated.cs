@@ -23,19 +23,27 @@ namespace SpaceDotNet.Client
 {
     public sealed class TDWorkingDaysDto
     {
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDWorkingDaysDto), nameof(Id));
+        
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get; set; }
+        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _dateStart = new PropertyValue<SpaceDate?>(nameof(TDWorkingDaysDto), nameof(DateStart));
+        
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get; set; }
+        public SpaceDate? DateStart { get { return _dateStart.GetValue(); } set { _dateStart.SetValue(value); } }
     
+        private PropertyValue<SpaceDate?> _dateEnd = new PropertyValue<SpaceDate?>(nameof(TDWorkingDaysDto), nameof(DateEnd));
+        
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get; set; }
+        public SpaceDate? DateEnd { get { return _dateEnd.GetValue(); } set { _dateEnd.SetValue(value); } }
     
+        private PropertyValue<WorkingDaysSpecDto> _workingDaysSpec = new PropertyValue<WorkingDaysSpecDto>(nameof(TDWorkingDaysDto), nameof(WorkingDaysSpec));
+        
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get; set; }
+        public WorkingDaysSpecDto WorkingDaysSpec { get { return _workingDaysSpec.GetValue(); } set { _workingDaysSpec.SetValue(value); } }
     
     }
     

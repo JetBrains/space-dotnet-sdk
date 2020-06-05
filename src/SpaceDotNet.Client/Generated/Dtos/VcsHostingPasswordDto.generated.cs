@@ -23,12 +23,16 @@ namespace SpaceDotNet.Client
 {
     public sealed class VcsHostingPasswordDto
     {
+        private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPasswordDto), nameof(Fingerprint));
+        
         [Required]
         [JsonPropertyName("fingerprint")]
-        public string Fingerprint { get; set; }
+        public string Fingerprint { get { return _fingerprint.GetValue(); } set { _fingerprint.SetValue(value); } }
     
+        private PropertyValue<SpaceTime?> _lastUsed = new PropertyValue<SpaceTime?>(nameof(VcsHostingPasswordDto), nameof(LastUsed));
+        
         [JsonPropertyName("lastUsed")]
-        public SpaceTime? LastUsed { get; set; }
+        public SpaceTime? LastUsed { get { return _lastUsed.GetValue(); } set { _lastUsed.SetValue(value); } }
     
     }
     
