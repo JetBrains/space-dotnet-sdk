@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("importSource")]
-        public string ImportSource { get { return _importSource.GetValue(); } set { _importSource.SetValue(value); } }
+        public string ImportSource
+        {
+            get { return _importSource.GetValue(); }
+            set { _importSource.SetValue(value); }
+        }
     
     }
     

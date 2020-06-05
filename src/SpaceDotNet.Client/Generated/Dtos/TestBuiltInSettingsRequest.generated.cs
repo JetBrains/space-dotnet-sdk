@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("settings")]
-        public ESBuiltinAuthModuleSettingsDto Settings { get { return _settings.GetValue(); } set { _settings.SetValue(value); } }
+        public ESBuiltinAuthModuleSettingsDto Settings
+        {
+            get { return _settings.GetValue(); }
+            set { _settings.SetValue(value); }
+        }
     
         private PropertyValue<string> _username = new PropertyValue<string>(nameof(TestBuiltInSettingsRequest), nameof(Username));
         
         [Required]
         [JsonPropertyName("username")]
-        public string Username { get { return _username.GetValue(); } set { _username.SetValue(value); } }
+        public string Username
+        {
+            get { return _username.GetValue(); }
+            set { _username.SetValue(value); }
+        }
     
         private PropertyValue<string> _password = new PropertyValue<string>(nameof(TestBuiltInSettingsRequest), nameof(Password));
         
         [Required]
         [JsonPropertyName("password")]
-        public string Password { get { return _password.GetValue(); } set { _password.SetValue(value); } }
+        public string Password
+        {
+            get { return _password.GetValue(); }
+            set { _password.SetValue(value); }
+        }
     
     }
     

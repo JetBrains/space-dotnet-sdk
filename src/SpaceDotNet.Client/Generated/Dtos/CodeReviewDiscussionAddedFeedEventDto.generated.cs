@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("discussion")]
-        public CodeReviewDiscussionRecordDto Discussion { get { return _discussion.GetValue(); } set { _discussion.SetValue(value); } }
+        public CodeReviewDiscussionRecordDto Discussion
+        {
+            get { return _discussion.GetValue(); }
+            set { _discussion.SetValue(value); }
+        }
     
     }
     

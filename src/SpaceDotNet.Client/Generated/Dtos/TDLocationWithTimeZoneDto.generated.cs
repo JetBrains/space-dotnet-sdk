@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocationWithTimeZoneDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<ATimeZoneWithOffsetDto> _timezone = new PropertyValue<ATimeZoneWithOffsetDto>(nameof(TDLocationWithTimeZoneDto), nameof(Timezone));
         
         [Required]
         [JsonPropertyName("timezone")]
-        public ATimeZoneWithOffsetDto Timezone { get { return _timezone.GetValue(); } set { _timezone.SetValue(value); } }
+        public ATimeZoneWithOffsetDto Timezone
+        {
+            get { return _timezone.GetValue(); }
+            set { _timezone.SetValue(value); }
+        }
     
     }
     

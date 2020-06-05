@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<List<PlanItemDto>> _children = new PropertyValue<List<PlanItemDto>>(nameof(PlanItemChildrenDto), nameof(Children));
         
         [Required]
         [JsonPropertyName("children")]
-        public List<PlanItemDto> Children { get { return _children.GetValue(); } set { _children.SetValue(value); } }
+        public List<PlanItemDto> Children
+        {
+            get { return _children.GetValue(); }
+            set { _children.SetValue(value); }
+        }
     
     }
     

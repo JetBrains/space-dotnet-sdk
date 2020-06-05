@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettingsDto), nameof(PasswordModule));
         
         [JsonPropertyName("passwordModule")]
-        public bool? PasswordModule { get { return _passwordModule.GetValue(); } set { _passwordModule.SetValue(value); } }
+        public bool? PasswordModule
+        {
+            get { return _passwordModule.GetValue(); }
+            set { _passwordModule.SetValue(value); }
+        }
     
         private PropertyValue<bool?> _federatedModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettingsDto), nameof(FederatedModule));
         
         [JsonPropertyName("federatedModule")]
-        public bool? FederatedModule { get { return _federatedModule.GetValue(); } set { _federatedModule.SetValue(value); } }
+        public bool? FederatedModule
+        {
+            get { return _federatedModule.GetValue(); }
+            set { _federatedModule.SetValue(value); }
+        }
     
     }
     

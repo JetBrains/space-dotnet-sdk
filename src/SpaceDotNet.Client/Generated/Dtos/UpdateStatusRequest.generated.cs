@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("statuses")]
-        public List<IssueStatusDataDto> Statuses { get { return _statuses.GetValue(); } set { _statuses.SetValue(value); } }
+        public List<IssueStatusDataDto> Statuses
+        {
+            get { return _statuses.GetValue(); }
+            set { _statuses.SetValue(value); }
+        }
     
     }
     

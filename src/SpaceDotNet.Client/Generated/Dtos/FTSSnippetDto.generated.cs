@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("field")]
-        public string Field { get { return _field.GetValue(); } set { _field.SetValue(value); } }
+        public string Field
+        {
+            get { return _field.GetValue(); }
+            set { _field.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _snippet = new PropertyValue<List<string>>(nameof(FTSSnippetDto), nameof(Snippet));
         
         [Required]
         [JsonPropertyName("snippet")]
-        public List<string> Snippet { get { return _snippet.GetValue(); } set { _snippet.SetValue(value); } }
+        public List<string> Snippet
+        {
+            get { return _snippet.GetValue(); }
+            set { _snippet.SetValue(value); }
+        }
     
     }
     

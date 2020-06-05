@@ -27,40 +27,68 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TDLocationMapPointDto), nameof(MapId));
         
         [JsonPropertyName("mapId")]
-        public string? MapId { get { return _mapId.GetValue(); } set { _mapId.SetValue(value); } }
+        public string? MapId
+        {
+            get { return _mapId.GetValue(); }
+            set { _mapId.SetValue(value); }
+        }
     
         private PropertyValue<int> _x = new PropertyValue<int>(nameof(TDLocationMapPointDto), nameof(X));
         
         [Required]
         [JsonPropertyName("x")]
-        public int X { get { return _x.GetValue(); } set { _x.SetValue(value); } }
+        public int X
+        {
+            get { return _x.GetValue(); }
+            set { _x.SetValue(value); }
+        }
     
         private PropertyValue<int> _y = new PropertyValue<int>(nameof(TDLocationMapPointDto), nameof(Y));
         
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get { return _y.GetValue(); } set { _y.SetValue(value); } }
+        public int Y
+        {
+            get { return _y.GetValue(); }
+            set { _y.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(TDLocationMapPointDto), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
+        public SpaceTime Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
+        }
     
         private PropertyValue<string?> _memberLocation = new PropertyValue<string?>(nameof(TDLocationMapPointDto), nameof(MemberLocation));
         
         [JsonPropertyName("memberLocation")]
-        public string? MemberLocation { get { return _memberLocation.GetValue(); } set { _memberLocation.SetValue(value); } }
+        public string? MemberLocation
+        {
+            get { return _memberLocation.GetValue(); }
+            set { _memberLocation.SetValue(value); }
+        }
     
         private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(TDLocationMapPointDto), nameof(Deleted));
         
         [JsonPropertyName("deleted")]
-        public bool? Deleted { get { return _deleted.GetValue(); } set { _deleted.SetValue(value); } }
+        public bool? Deleted
+        {
+            get { return _deleted.GetValue(); }
+            set { _deleted.SetValue(value); }
+        }
     
     }
     

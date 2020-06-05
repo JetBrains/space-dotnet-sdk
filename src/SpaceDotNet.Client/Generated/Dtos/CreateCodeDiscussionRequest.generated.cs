@@ -27,33 +27,57 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<DiffContextDto?> _diffContext = new PropertyValue<DiffContextDto?>(nameof(CreateCodeDiscussionRequest), nameof(DiffContext));
         
         [JsonPropertyName("diffContext")]
-        public DiffContextDto? DiffContext { get { return _diffContext.GetValue(); } set { _diffContext.SetValue(value); } }
+        public DiffContextDto? DiffContext
+        {
+            get { return _diffContext.GetValue(); }
+            set { _diffContext.SetValue(value); }
+        }
     
         private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(CreateCodeDiscussionRequest), nameof(Filename));
         
         [JsonPropertyName("filename")]
-        public string? Filename { get { return _filename.GetValue(); } set { _filename.SetValue(value); } }
+        public string? Filename
+        {
+            get { return _filename.GetValue(); }
+            set { _filename.SetValue(value); }
+        }
     
         private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(CreateCodeDiscussionRequest), nameof(Line));
         
         [JsonPropertyName("line")]
-        public int? Line { get { return _line.GetValue(); } set { _line.SetValue(value); } }
+        public int? Line
+        {
+            get { return _line.GetValue(); }
+            set { _line.SetValue(value); }
+        }
     
         private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(CreateCodeDiscussionRequest), nameof(OldLine));
         
         [JsonPropertyName("oldLine")]
-        public int? OldLine { get { return _oldLine.GetValue(); } set { _oldLine.SetValue(value); } }
+        public int? OldLine
+        {
+            get { return _oldLine.GetValue(); }
+            set { _oldLine.SetValue(value); }
+        }
     
         private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(CreateCodeDiscussionRequest), nameof(Pending));
         
         [Required]
         [JsonPropertyName("pending")]
-        public bool Pending { get { return _pending.GetValue(); } set { _pending.SetValue(value); } }
+        public bool Pending
+        {
+            get { return _pending.GetValue(); }
+            set { _pending.SetValue(value); }
+        }
     
     }
     

@@ -27,22 +27,38 @@ namespace SpaceDotNet.Client
         private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(StringCFConstraintDto), nameof(Min));
         
         [JsonPropertyName("min")]
-        public int? Min { get { return _min.GetValue(); } set { _min.SetValue(value); } }
+        public int? Min
+        {
+            get { return _min.GetValue(); }
+            set { _min.SetValue(value); }
+        }
     
         private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(StringCFConstraintDto), nameof(Max));
         
         [JsonPropertyName("max")]
-        public int? Max { get { return _max.GetValue(); } set { _max.SetValue(value); } }
+        public int? Max
+        {
+            get { return _max.GetValue(); }
+            set { _max.SetValue(value); }
+        }
     
         private PropertyValue<string?> _pattern = new PropertyValue<string?>(nameof(StringCFConstraintDto), nameof(Pattern));
         
         [JsonPropertyName("pattern")]
-        public string? Pattern { get { return _pattern.GetValue(); } set { _pattern.SetValue(value); } }
+        public string? Pattern
+        {
+            get { return _pattern.GetValue(); }
+            set { _pattern.SetValue(value); }
+        }
     
         private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(StringCFConstraintDto), nameof(Message));
         
         [JsonPropertyName("message")]
-        public string? Message { get { return _message.GetValue(); } set { _message.SetValue(value); } }
+        public string? Message
+        {
+            get { return _message.GetValue(); }
+            set { _message.SetValue(value); }
+        }
     
     }
     

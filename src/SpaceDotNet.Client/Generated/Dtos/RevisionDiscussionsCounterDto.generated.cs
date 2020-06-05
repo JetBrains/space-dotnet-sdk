@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get { return _revision.GetValue(); } set { _revision.SetValue(value); } }
+        public string Revision
+        {
+            get { return _revision.GetValue(); }
+            set { _revision.SetValue(value); }
+        }
     
         private PropertyValue<List<FileWithCountDto>> _filesWithCounts = new PropertyValue<List<FileWithCountDto>>(nameof(RevisionDiscussionsCounterDto), nameof(FilesWithCounts));
         
         [Required]
         [JsonPropertyName("filesWithCounts")]
-        public List<FileWithCountDto> FilesWithCounts { get { return _filesWithCounts.GetValue(); } set { _filesWithCounts.SetValue(value); } }
+        public List<FileWithCountDto> FilesWithCounts
+        {
+            get { return _filesWithCounts.GetValue(); }
+            set { _filesWithCounts.SetValue(value); }
+        }
     
     }
     

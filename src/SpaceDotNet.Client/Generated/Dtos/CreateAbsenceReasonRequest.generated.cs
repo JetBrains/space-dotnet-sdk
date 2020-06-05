@@ -27,30 +27,50 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(CreateAbsenceReasonRequest), nameof(Description));
         
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<bool> _defaultAvailability = new PropertyValue<bool>(nameof(CreateAbsenceReasonRequest), nameof(DefaultAvailability));
         
         [Required]
         [JsonPropertyName("defaultAvailability")]
-        public bool DefaultAvailability { get { return _defaultAvailability.GetValue(); } set { _defaultAvailability.SetValue(value); } }
+        public bool DefaultAvailability
+        {
+            get { return _defaultAvailability.GetValue(); }
+            set { _defaultAvailability.SetValue(value); }
+        }
     
         private PropertyValue<bool> _approvalRequired = new PropertyValue<bool>(nameof(CreateAbsenceReasonRequest), nameof(ApprovalRequired));
         
         [Required]
         [JsonPropertyName("approvalRequired")]
-        public bool ApprovalRequired { get { return _approvalRequired.GetValue(); } set { _approvalRequired.SetValue(value); } }
+        public bool ApprovalRequired
+        {
+            get { return _approvalRequired.GetValue(); }
+            set { _approvalRequired.SetValue(value); }
+        }
     
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(CreateAbsenceReasonRequest), nameof(Icon));
         
         [JsonPropertyName("icon")]
-        public string? Icon { get { return _icon.GetValue(); } set { _icon.SetValue(value); } }
+        public string? Icon
+        {
+            get { return _icon.GetValue(); }
+            set { _icon.SetValue(value); }
+        }
     
     }
     

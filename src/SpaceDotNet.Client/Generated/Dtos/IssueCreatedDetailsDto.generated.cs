@@ -30,7 +30,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<IssueDto?> _issue = new PropertyValue<IssueDto?>(nameof(IssueCreatedDetailsDto), nameof(Issue));
         
         [JsonPropertyName("issue")]
-        public IssueDto? Issue { get { return _issue.GetValue(); } set { _issue.SetValue(value); } }
+        public IssueDto? Issue
+        {
+            get { return _issue.GetValue(); }
+            set { _issue.SetValue(value); }
+        }
     
     }
     

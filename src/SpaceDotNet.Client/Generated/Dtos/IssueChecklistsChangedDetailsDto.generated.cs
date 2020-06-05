@@ -30,12 +30,20 @@ namespace SpaceDotNet.Client
         private PropertyValue<List<ChecklistDto>?> _addedChecklists = new PropertyValue<List<ChecklistDto>?>(nameof(IssueChecklistsChangedDetailsDto), nameof(AddedChecklists));
         
         [JsonPropertyName("addedChecklists")]
-        public List<ChecklistDto>? AddedChecklists { get { return _addedChecklists.GetValue(); } set { _addedChecklists.SetValue(value); } }
+        public List<ChecklistDto>? AddedChecklists
+        {
+            get { return _addedChecklists.GetValue(); }
+            set { _addedChecklists.SetValue(value); }
+        }
     
         private PropertyValue<List<ChecklistDto>?> _removedChecklists = new PropertyValue<List<ChecklistDto>?>(nameof(IssueChecklistsChangedDetailsDto), nameof(RemovedChecklists));
         
         [JsonPropertyName("removedChecklists")]
-        public List<ChecklistDto>? RemovedChecklists { get { return _removedChecklists.GetValue(); } set { _removedChecklists.SetValue(value); } }
+        public List<ChecklistDto>? RemovedChecklists
+        {
+            get { return _removedChecklists.GetValue(); }
+            set { _removedChecklists.SetValue(value); }
+        }
     
     }
     

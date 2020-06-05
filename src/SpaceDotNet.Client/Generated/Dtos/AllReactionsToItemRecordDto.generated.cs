@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<List<CertainReactionToItemRecordDto>> _reactions = new PropertyValue<List<CertainReactionToItemRecordDto>>(nameof(AllReactionsToItemRecordDto), nameof(Reactions));
         
         [Required]
         [JsonPropertyName("reactions")]
-        public List<CertainReactionToItemRecordDto> Reactions { get { return _reactions.GetValue(); } set { _reactions.SetValue(value); } }
+        public List<CertainReactionToItemRecordDto> Reactions
+        {
+            get { return _reactions.GetValue(); }
+            set { _reactions.SetValue(value); }
+        }
     
         private PropertyValue<List<EmojiReactionRecordDto>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecordDto>?>(nameof(AllReactionsToItemRecordDto), nameof(EmojiReactions));
         
         [JsonPropertyName("emojiReactions")]
-        public List<EmojiReactionRecordDto>? EmojiReactions { get { return _emojiReactions.GetValue(); } set { _emojiReactions.SetValue(value); } }
+        public List<EmojiReactionRecordDto>? EmojiReactions
+        {
+            get { return _emojiReactions.GetValue(); }
+            set { _emojiReactions.SetValue(value); }
+        }
     
     }
     

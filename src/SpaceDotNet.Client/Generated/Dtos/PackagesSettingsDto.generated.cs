@@ -27,40 +27,68 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("organizationId")]
-        public long OrganizationId { get { return _organizationId.GetValue(); } set { _organizationId.SetValue(value); } }
+        public long OrganizationId
+        {
+            get { return _organizationId.GetValue(); }
+            set { _organizationId.SetValue(value); }
+        }
     
         private PropertyValue<string> _principalName = new PropertyValue<string>(nameof(PackagesSettingsDto), nameof(PrincipalName));
         
         [Required]
         [JsonPropertyName("principalName")]
-        public string PrincipalName { get { return _principalName.GetValue(); } set { _principalName.SetValue(value); } }
+        public string PrincipalName
+        {
+            get { return _principalName.GetValue(); }
+            set { _principalName.SetValue(value); }
+        }
     
         private PropertyValue<string> _principalInfo = new PropertyValue<string>(nameof(PackagesSettingsDto), nameof(PrincipalInfo));
         
         [Required]
         [JsonPropertyName("principalInfo")]
-        public string PrincipalInfo { get { return _principalInfo.GetValue(); } set { _principalInfo.SetValue(value); } }
+        public string PrincipalInfo
+        {
+            get { return _principalInfo.GetValue(); }
+            set { _principalInfo.SetValue(value); }
+        }
     
         private PropertyValue<List<MapEntry<string, PackageRepositorySettingsDto>>> _repositories = new PropertyValue<List<MapEntry<string, PackageRepositorySettingsDto>>>(nameof(PackagesSettingsDto), nameof(Repositories));
         
         [Required]
         [JsonPropertyName("repositories")]
-        public List<MapEntry<string, PackageRepositorySettingsDto>> Repositories { get { return _repositories.GetValue(); } set { _repositories.SetValue(value); } }
+        public List<MapEntry<string, PackageRepositorySettingsDto>> Repositories
+        {
+            get { return _repositories.GetValue(); }
+            set { _repositories.SetValue(value); }
+        }
     
         private PropertyValue<DTOLimitDto?> _storageLimit = new PropertyValue<DTOLimitDto?>(nameof(PackagesSettingsDto), nameof(StorageLimit));
         
         [JsonPropertyName("storageLimit")]
-        public DTOLimitDto? StorageLimit { get { return _storageLimit.GetValue(); } set { _storageLimit.SetValue(value); } }
+        public DTOLimitDto? StorageLimit
+        {
+            get { return _storageLimit.GetValue(); }
+            set { _storageLimit.SetValue(value); }
+        }
     
         private PropertyValue<DTOLimitDto?> _downloadLimit = new PropertyValue<DTOLimitDto?>(nameof(PackagesSettingsDto), nameof(DownloadLimit));
         
         [JsonPropertyName("downloadLimit")]
-        public DTOLimitDto? DownloadLimit { get { return _downloadLimit.GetValue(); } set { _downloadLimit.SetValue(value); } }
+        public DTOLimitDto? DownloadLimit
+        {
+            get { return _downloadLimit.GetValue(); }
+            set { _downloadLimit.SetValue(value); }
+        }
     
         private PropertyValue<DTOLimitDto?> _uploadLimit = new PropertyValue<DTOLimitDto?>(nameof(PackagesSettingsDto), nameof(UploadLimit));
         
         [JsonPropertyName("uploadLimit")]
-        public DTOLimitDto? UploadLimit { get { return _uploadLimit.GetValue(); } set { _uploadLimit.SetValue(value); } }
+        public DTOLimitDto? UploadLimit
+        {
+            get { return _uploadLimit.GetValue(); }
+            set { _uploadLimit.SetValue(value); }
+        }
     
     }
     

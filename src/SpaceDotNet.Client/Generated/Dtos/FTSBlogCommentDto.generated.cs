@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
+        public TDMemberProfileDto Author
+        {
+            get { return _author.GetValue(); }
+            set { _author.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _date = new PropertyValue<SpaceTime>(nameof(FTSBlogCommentDto), nameof(Date));
         
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get { return _date.GetValue(); } set { _date.SetValue(value); } }
+        public SpaceTime Date
+        {
+            get { return _date.GetValue(); }
+            set { _date.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _snippets = new PropertyValue<List<string>>(nameof(FTSBlogCommentDto), nameof(Snippets));
         
         [Required]
         [JsonPropertyName("snippets")]
-        public List<string> Snippets { get { return _snippets.GetValue(); } set { _snippets.SetValue(value); } }
+        public List<string> Snippets
+        {
+            get { return _snippets.GetValue(); }
+            set { _snippets.SetValue(value); }
+        }
     
     }
     

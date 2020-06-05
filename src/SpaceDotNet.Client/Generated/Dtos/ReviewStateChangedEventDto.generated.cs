@@ -31,12 +31,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("state")]
-        public CodeReviewState State { get { return _state.GetValue(); } set { _state.SetValue(value); } }
+        public CodeReviewState State
+        {
+            get { return _state.GetValue(); }
+            set { _state.SetValue(value); }
+        }
     
         private PropertyValue<CodeReviewRecordDto?> _review = new PropertyValue<CodeReviewRecordDto?>(nameof(ReviewStateChangedEventDto), nameof(Review));
         
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto? Review { get { return _review.GetValue(); } set { _review.SetValue(value); } }
+        public CodeReviewRecordDto? Review
+        {
+            get { return _review.GetValue(); }
+            set { _review.SetValue(value); }
+        }
     
     }
     

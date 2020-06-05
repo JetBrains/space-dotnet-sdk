@@ -28,19 +28,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("dto")]
-        public HADtoDto Dto { get { return _dto.GetValue(); } set { _dto.SetValue(value); } }
+        public HADtoDto Dto
+        {
+            get { return _dto.GetValue(); }
+            set { _dto.SetValue(value); }
+        }
     
         private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeDtoDto), nameof(Nullable));
         
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get { return _nullable.GetValue(); } set { _nullable.SetValue(value); } }
+        public bool Nullable
+        {
+            get { return _nullable.GetValue(); }
+            set { _nullable.SetValue(value); }
+        }
     
         private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypeDtoDto), nameof(Optional));
         
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get { return _optional.GetValue(); } set { _optional.SetValue(value); } }
+        public bool Optional
+        {
+            get { return _optional.GetValue(); }
+            set { _optional.SetValue(value); }
+        }
     
     }
     

@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("metadata")]
-        public ImportMetadataDto Metadata { get { return _metadata.GetValue(); } set { _metadata.SetValue(value); } }
+        public ImportMetadataDto Metadata
+        {
+            get { return _metadata.GetValue(); }
+            set { _metadata.SetValue(value); }
+        }
     
         private PropertyValue<List<ExternalArticleDto>> _articles = new PropertyValue<List<ExternalArticleDto>>(nameof(ImportArticlesRequest), nameof(Articles));
         
         [Required]
         [JsonPropertyName("articles")]
-        public List<ExternalArticleDto> Articles { get { return _articles.GetValue(); } set { _articles.SetValue(value); } }
+        public List<ExternalArticleDto> Articles
+        {
+            get { return _articles.GetValue(); }
+            set { _articles.SetValue(value); }
+        }
     
     }
     

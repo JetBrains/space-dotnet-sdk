@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDetailsDto?> _details = new PropertyValue<CPrincipalDetailsDto?>(nameof(CPrincipalDto), nameof(Details));
         
         [JsonPropertyName("details")]
-        public CPrincipalDetailsDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
+        public CPrincipalDetailsDto? Details
+        {
+            get { return _details.GetValue(); }
+            set { _details.SetValue(value); }
+        }
     
     }
     

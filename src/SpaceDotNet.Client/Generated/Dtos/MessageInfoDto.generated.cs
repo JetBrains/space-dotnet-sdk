@@ -27,30 +27,50 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageInfoDto), nameof(Text));
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<long> _time = new PropertyValue<long>(nameof(MessageInfoDto), nameof(Time));
         
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get { return _time.GetValue(); } set { _time.SetValue(value); } }
+        public long Time
+        {
+            get { return _time.GetValue(); }
+            set { _time.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto> _author = new PropertyValue<CPrincipalDto>(nameof(MessageInfoDto), nameof(Author));
         
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
+        public CPrincipalDto Author
+        {
+            get { return _author.GetValue(); }
+            set { _author.SetValue(value); }
+        }
     
         private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(MessageInfoDto), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public string? Attachments { get { return _attachments.GetValue(); } set { _attachments.SetValue(value); } }
+        public string? Attachments
+        {
+            get { return _attachments.GetValue(); }
+            set { _attachments.SetValue(value); }
+        }
     
     }
     

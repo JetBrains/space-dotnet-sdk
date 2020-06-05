@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("teamId")]
-        public string TeamId { get { return _teamId.GetValue(); } set { _teamId.SetValue(value); } }
+        public string TeamId
+        {
+            get { return _teamId.GetValue(); }
+            set { _teamId.SetValue(value); }
+        }
     
     }
     

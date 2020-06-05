@@ -27,31 +27,51 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<CodeReviewRecordDto> _review = new PropertyValue<CodeReviewRecordDto>(nameof(CodeReviewDiscussionRecordDto), nameof(Review));
         
         [Required]
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get { return _review.GetValue(); } set { _review.SetValue(value); } }
+        public CodeReviewRecordDto Review
+        {
+            get { return _review.GetValue(); }
+            set { _review.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(CodeReviewDiscussionRecordDto), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
+        public SpaceTime Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
+        }
     
         private PropertyValue<M2ChannelRecordDto> _channel = new PropertyValue<M2ChannelRecordDto>(nameof(CodeReviewDiscussionRecordDto), nameof(Channel));
         
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get { return _channel.GetValue(); } set { _channel.SetValue(value); } }
+        public M2ChannelRecordDto Channel
+        {
+            get { return _channel.GetValue(); }
+            set { _channel.SetValue(value); }
+        }
     
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecordDto), nameof(Resolved));
         
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get { return _resolved.GetValue(); } set { _resolved.SetValue(value); } }
+        public bool Resolved
+        {
+            get { return _resolved.GetValue(); }
+            set { _resolved.SetValue(value); }
+        }
     
     }
     

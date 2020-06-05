@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(SendMessageRequest), nameof(TemporaryId));
         
         [JsonPropertyName("temporaryId")]
-        public string? TemporaryId { get { return _temporaryId.GetValue(); } set { _temporaryId.SetValue(value); } }
+        public string? TemporaryId
+        {
+            get { return _temporaryId.GetValue(); }
+            set { _temporaryId.SetValue(value); }
+        }
     
     }
     

@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("defaultText")]
-        public string DefaultText { get { return _defaultText.GetValue(); } set { _defaultText.SetValue(value); } }
+        public string DefaultText
+        {
+            get { return _defaultText.GetValue(); }
+            set { _defaultText.SetValue(value); }
+        }
     
         private PropertyValue<MCElementDetailsDto?> _details = new PropertyValue<MCElementDetailsDto?>(nameof(MCElementDto), nameof(Details));
         
         [JsonPropertyName("details")]
-        public MCElementDetailsDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
+        public MCElementDetailsDto? Details
+        {
+            get { return _details.GetValue(); }
+            set { _details.SetValue(value); }
+        }
     
     }
     

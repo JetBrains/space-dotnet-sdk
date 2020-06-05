@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("lastChanges")]
-        public List<RevisionInfoDto> LastChanges { get { return _lastChanges.GetValue(); } set { _lastChanges.SetValue(value); } }
+        public List<RevisionInfoDto> LastChanges
+        {
+            get { return _lastChanges.GetValue(); }
+            set { _lastChanges.SetValue(value); }
+        }
     
         private PropertyValue<int> _totalChanges = new PropertyValue<int>(nameof(LastChangesDto), nameof(TotalChanges));
         
         [Required]
         [JsonPropertyName("totalChanges")]
-        public int TotalChanges { get { return _totalChanges.GetValue(); } set { _totalChanges.SetValue(value); } }
+        public int TotalChanges
+        {
+            get { return _totalChanges.GetValue(); }
+            set { _totalChanges.SetValue(value); }
+        }
     
     }
     

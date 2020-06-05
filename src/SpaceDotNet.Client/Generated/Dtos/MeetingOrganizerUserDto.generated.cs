@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("profileRef")]
-        public TDMemberProfileDto ProfileRef { get { return _profileRef.GetValue(); } set { _profileRef.SetValue(value); } }
+        public TDMemberProfileDto ProfileRef
+        {
+            get { return _profileRef.GetValue(); }
+            set { _profileRef.SetValue(value); }
+        }
     
     }
     

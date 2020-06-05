@@ -27,29 +27,49 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _picture = new PropertyValue<string>(nameof(TDLocationMapDto), nameof(Picture));
         
         [Required]
         [JsonPropertyName("picture")]
-        public string Picture { get { return _picture.GetValue(); } set { _picture.SetValue(value); } }
+        public string Picture
+        {
+            get { return _picture.GetValue(); }
+            set { _picture.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(TDLocationMapDto), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
+        public SpaceTime Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
+        }
     
         private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(TDLocationMapDto), nameof(Width));
         
         [JsonPropertyName("width")]
-        public int? Width { get { return _width.GetValue(); } set { _width.SetValue(value); } }
+        public int? Width
+        {
+            get { return _width.GetValue(); }
+            set { _width.SetValue(value); }
+        }
     
         private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(TDLocationMapDto), nameof(Height));
         
         [JsonPropertyName("height")]
-        public int? Height { get { return _height.GetValue(); } set { _height.SetValue(value); } }
+        public int? Height
+        {
+            get { return _height.GetValue(); }
+            set { _height.SetValue(value); }
+        }
     
     }
     

@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("deletedIdentity")]
-        public string DeletedIdentity { get { return _deletedIdentity.GetValue(); } set { _deletedIdentity.SetValue(value); } }
+        public string DeletedIdentity
+        {
+            get { return _deletedIdentity.GetValue(); }
+            set { _deletedIdentity.SetValue(value); }
+        }
     
     }
     

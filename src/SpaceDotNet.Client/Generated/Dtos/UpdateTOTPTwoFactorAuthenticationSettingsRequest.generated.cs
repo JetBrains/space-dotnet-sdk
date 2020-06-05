@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get { return _enabled.GetValue(); } set { _enabled.SetValue(value); } }
+        public bool Enabled
+        {
+            get { return _enabled.GetValue(); }
+            set { _enabled.SetValue(value); }
+        }
     
     }
     

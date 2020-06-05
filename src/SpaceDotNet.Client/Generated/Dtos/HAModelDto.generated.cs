@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("dto")]
-        public List<HADtoDto> Dto { get { return _dto.GetValue(); } set { _dto.SetValue(value); } }
+        public List<HADtoDto> Dto
+        {
+            get { return _dto.GetValue(); }
+            set { _dto.SetValue(value); }
+        }
     
         private PropertyValue<List<HAEnumDto>> _enums = new PropertyValue<List<HAEnumDto>>(nameof(HAModelDto), nameof(Enums));
         
         [Required]
         [JsonPropertyName("enums")]
-        public List<HAEnumDto> Enums { get { return _enums.GetValue(); } set { _enums.SetValue(value); } }
+        public List<HAEnumDto> Enums
+        {
+            get { return _enums.GetValue(); }
+            set { _enums.SetValue(value); }
+        }
     
         private PropertyValue<List<HAResourceDto>> _resources = new PropertyValue<List<HAResourceDto>>(nameof(HAModelDto), nameof(Resources));
         
         [Required]
         [JsonPropertyName("resources")]
-        public List<HAResourceDto> Resources { get { return _resources.GetValue(); } set { _resources.SetValue(value); } }
+        public List<HAResourceDto> Resources
+        {
+            get { return _resources.GetValue(); }
+            set { _resources.SetValue(value); }
+        }
     
         private PropertyValue<List<HAResourceDto>> _allResources = new PropertyValue<List<HAResourceDto>>(nameof(HAModelDto), nameof(AllResources));
         
         [Required]
         [JsonPropertyName("allResources")]
-        public List<HAResourceDto> AllResources { get { return _allResources.GetValue(); } set { _allResources.SetValue(value); } }
+        public List<HAResourceDto> AllResources
+        {
+            get { return _allResources.GetValue(); }
+            set { _allResources.SetValue(value); }
+        }
     
     }
     

@@ -26,13 +26,21 @@ namespace SpaceDotNet.Client
         private PropertyValue<DiffSideDto?> _left = new PropertyValue<DiffSideDto?>(nameof(DiffContextDto), nameof(Left));
         
         [JsonPropertyName("left")]
-        public DiffSideDto? Left { get { return _left.GetValue(); } set { _left.SetValue(value); } }
+        public DiffSideDto? Left
+        {
+            get { return _left.GetValue(); }
+            set { _left.SetValue(value); }
+        }
     
         private PropertyValue<DiffSideDto> _right = new PropertyValue<DiffSideDto>(nameof(DiffContextDto), nameof(Right));
         
         [Required]
         [JsonPropertyName("right")]
-        public DiffSideDto Right { get { return _right.GetValue(); } set { _right.SetValue(value); } }
+        public DiffSideDto Right
+        {
+            get { return _right.GetValue(); }
+            set { _right.SetValue(value); }
+        }
     
     }
     

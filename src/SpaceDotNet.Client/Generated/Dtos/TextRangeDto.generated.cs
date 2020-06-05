@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("start")]
-        public int Start { get { return _start.GetValue(); } set { _start.SetValue(value); } }
+        public int Start
+        {
+            get { return _start.GetValue(); }
+            set { _start.SetValue(value); }
+        }
     
         private PropertyValue<int> _length = new PropertyValue<int>(nameof(TextRangeDto), nameof(Length));
         
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get { return _length.GetValue(); } set { _length.SetValue(value); } }
+        public int Length
+        {
+            get { return _length.GetValue(); }
+            set { _length.SetValue(value); }
+        }
     
     }
     

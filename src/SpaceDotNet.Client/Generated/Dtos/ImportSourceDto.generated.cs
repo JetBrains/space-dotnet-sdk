@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportSourceDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto> _importer = new PropertyValue<CPrincipalDto>(nameof(ImportSourceDto), nameof(Importer));
         
         [Required]
         [JsonPropertyName("importer")]
-        public CPrincipalDto Importer { get { return _importer.GetValue(); } set { _importer.SetValue(value); } }
+        public CPrincipalDto Importer
+        {
+            get { return _importer.GetValue(); }
+            set { _importer.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ImportSourceDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
     }
     

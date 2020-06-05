@@ -27,48 +27,80 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(StickerPackInfoDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<bool> _favoriteByDefault = new PropertyValue<bool>(nameof(StickerPackInfoDto), nameof(FavoriteByDefault));
         
         [Required]
         [JsonPropertyName("favoriteByDefault")]
-        public bool FavoriteByDefault { get { return _favoriteByDefault.GetValue(); } set { _favoriteByDefault.SetValue(value); } }
+        public bool FavoriteByDefault
+        {
+            get { return _favoriteByDefault.GetValue(); }
+            set { _favoriteByDefault.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(StickerPackInfoDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(StickerPackInfoDto), nameof(Private));
         
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get { return _private.GetValue(); } set { _private.SetValue(value); } }
+        public bool Private
+        {
+            get { return _private.GetValue(); }
+            set { _private.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _addedAt = new PropertyValue<SpaceTime?>(nameof(StickerPackInfoDto), nameof(AddedAt));
         
         [JsonPropertyName("addedAt")]
-        public SpaceTime? AddedAt { get { return _addedAt.GetValue(); } set { _addedAt.SetValue(value); } }
+        public SpaceTime? AddedAt
+        {
+            get { return _addedAt.GetValue(); }
+            set { _addedAt.SetValue(value); }
+        }
     
         private PropertyValue<StickerPackInfoDto> _pack = new PropertyValue<StickerPackInfoDto>(nameof(StickerPackInfoDto), nameof(Pack));
         
         [Required]
         [JsonPropertyName("pack")]
-        public StickerPackInfoDto Pack { get { return _pack.GetValue(); } set { _pack.SetValue(value); } }
+        public StickerPackInfoDto Pack
+        {
+            get { return _pack.GetValue(); }
+            set { _pack.SetValue(value); }
+        }
     
         private PropertyValue<List<StickerDto>> _stickers = new PropertyValue<List<StickerDto>>(nameof(StickerPackInfoDto), nameof(Stickers));
         
         [Required]
         [JsonPropertyName("stickers")]
-        public List<StickerDto> Stickers { get { return _stickers.GetValue(); } set { _stickers.SetValue(value); } }
+        public List<StickerDto> Stickers
+        {
+            get { return _stickers.GetValue(); }
+            set { _stickers.SetValue(value); }
+        }
     
     }
     

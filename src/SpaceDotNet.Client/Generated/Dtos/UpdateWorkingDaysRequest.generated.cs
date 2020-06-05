@@ -26,23 +26,39 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _profile = new PropertyValue<string?>(nameof(UpdateWorkingDaysRequest), nameof(Profile));
         
         [JsonPropertyName("profile")]
-        public string? Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public string? Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _dateStart = new PropertyValue<SpaceDate?>(nameof(UpdateWorkingDaysRequest), nameof(DateStart));
         
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart { get { return _dateStart.GetValue(); } set { _dateStart.SetValue(value); } }
+        public SpaceDate? DateStart
+        {
+            get { return _dateStart.GetValue(); }
+            set { _dateStart.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _dateEnd = new PropertyValue<SpaceDate?>(nameof(UpdateWorkingDaysRequest), nameof(DateEnd));
         
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd { get { return _dateEnd.GetValue(); } set { _dateEnd.SetValue(value); } }
+        public SpaceDate? DateEnd
+        {
+            get { return _dateEnd.GetValue(); }
+            set { _dateEnd.SetValue(value); }
+        }
     
         private PropertyValue<WorkingDaysSpecDto> _workingDaysSpec = new PropertyValue<WorkingDaysSpecDto>(nameof(UpdateWorkingDaysRequest), nameof(WorkingDaysSpec));
         
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec { get { return _workingDaysSpec.GetValue(); } set { _workingDaysSpec.SetValue(value); } }
+        public WorkingDaysSpecDto WorkingDaysSpec
+        {
+            get { return _workingDaysSpec.GetValue(); }
+            set { _workingDaysSpec.SetValue(value); }
+        }
     
     }
     

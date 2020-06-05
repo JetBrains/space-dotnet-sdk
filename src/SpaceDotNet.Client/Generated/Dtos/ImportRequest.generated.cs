@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("calendar")]
-        public string Calendar { get { return _calendar.GetValue(); } set { _calendar.SetValue(value); } }
+        public string Calendar
+        {
+            get { return _calendar.GetValue(); }
+            set { _calendar.SetValue(value); }
+        }
     
         private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(ImportRequest), nameof(AttachmentId));
         
         [Required]
         [JsonPropertyName("attachmentId")]
-        public string AttachmentId { get { return _attachmentId.GetValue(); } set { _attachmentId.SetValue(value); } }
+        public string AttachmentId
+        {
+            get { return _attachmentId.GetValue(); }
+            set { _attachmentId.SetValue(value); }
+        }
     
     }
     

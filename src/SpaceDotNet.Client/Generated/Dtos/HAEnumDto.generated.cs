@@ -27,24 +27,40 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAEnumDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _values = new PropertyValue<List<string>>(nameof(HAEnumDto), nameof(Values));
         
         [Required]
         [JsonPropertyName("values")]
-        public List<string> Values { get { return _values.GetValue(); } set { _values.SetValue(value); } }
+        public List<string> Values
+        {
+            get { return _values.GetValue(); }
+            set { _values.SetValue(value); }
+        }
     
         private PropertyValue<HADeprecationDto?> _deprecation = new PropertyValue<HADeprecationDto?>(nameof(HAEnumDto), nameof(Deprecation));
         
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get { return _deprecation.GetValue(); } set { _deprecation.SetValue(value); } }
+        public HADeprecationDto? Deprecation
+        {
+            get { return _deprecation.GetValue(); }
+            set { _deprecation.SetValue(value); }
+        }
     
     }
     

@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("x")]
-        public int X { get { return _x.GetValue(); } set { _x.SetValue(value); } }
+        public int X
+        {
+            get { return _x.GetValue(); }
+            set { _x.SetValue(value); }
+        }
     
         private PropertyValue<int> _y = new PropertyValue<int>(nameof(CreatePointRequest), nameof(Y));
         
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get { return _y.GetValue(); } set { _y.SetValue(value); } }
+        public int Y
+        {
+            get { return _y.GetValue(); }
+            set { _y.SetValue(value); }
+        }
     
         private PropertyValue<string> _mapId = new PropertyValue<string>(nameof(CreatePointRequest), nameof(MapId));
         
         [Required]
         [JsonPropertyName("mapId")]
-        public string MapId { get { return _mapId.GetValue(); } set { _mapId.SetValue(value); } }
+        public string MapId
+        {
+            get { return _mapId.GetValue(); }
+            set { _mapId.SetValue(value); }
+        }
     
     }
     

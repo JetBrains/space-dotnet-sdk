@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor { get { return _anchor.GetValue(); } set { _anchor.SetValue(value); } }
+        public CodeDiscussionAnchorDto Anchor
+        {
+            get { return _anchor.GetValue(); }
+            set { _anchor.SetValue(value); }
+        }
     
         private PropertyValue<CodeDiscussionRecordDto> _discussion = new PropertyValue<CodeDiscussionRecordDto>(nameof(PropagatedCodeDiscussionDto), nameof(Discussion));
         
         [Required]
         [JsonPropertyName("discussion")]
-        public CodeDiscussionRecordDto Discussion { get { return _discussion.GetValue(); } set { _discussion.SetValue(value); } }
+        public CodeDiscussionRecordDto Discussion
+        {
+            get { return _discussion.GetValue(); }
+            set { _discussion.SetValue(value); }
+        }
     
     }
     

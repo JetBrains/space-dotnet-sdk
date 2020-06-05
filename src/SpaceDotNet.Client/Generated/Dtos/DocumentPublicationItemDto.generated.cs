@@ -31,13 +31,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("documentId")]
-        public string DocumentId { get { return _documentId.GetValue(); } set { _documentId.SetValue(value); } }
+        public string DocumentId
+        {
+            get { return _documentId.GetValue(); }
+            set { _documentId.SetValue(value); }
+        }
     
         private PropertyValue<DraftDocumentType> _documentType = new PropertyValue<DraftDocumentType>(nameof(DocumentPublicationItemDto), nameof(DocumentType));
         
         [Required]
         [JsonPropertyName("documentType")]
-        public DraftDocumentType DocumentType { get { return _documentType.GetValue(); } set { _documentType.SetValue(value); } }
+        public DraftDocumentType DocumentType
+        {
+            get { return _documentType.GetValue(); }
+            set { _documentType.SetValue(value); }
+        }
     
     }
     

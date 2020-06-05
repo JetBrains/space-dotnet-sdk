@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("principal")]
-        public CPrincipalDto Principal { get { return _principal.GetValue(); } set { _principal.SetValue(value); } }
+        public CPrincipalDto Principal
+        {
+            get { return _principal.GetValue(); }
+            set { _principal.SetValue(value); }
+        }
     
         private PropertyValue<int> _messageCount = new PropertyValue<int>(nameof(ChannelParticipantDto), nameof(MessageCount));
         
         [Required]
         [JsonPropertyName("messageCount")]
-        public int MessageCount { get { return _messageCount.GetValue(); } set { _messageCount.SetValue(value); } }
+        public int MessageCount
+        {
+            get { return _messageCount.GetValue(); }
+            set { _messageCount.SetValue(value); }
+        }
     
         private PropertyValue<int?> _pendingMessageCount = new PropertyValue<int?>(nameof(ChannelParticipantDto), nameof(PendingMessageCount));
         
         [JsonPropertyName("pendingMessageCount")]
-        public int? PendingMessageCount { get { return _pendingMessageCount.GetValue(); } set { _pendingMessageCount.SetValue(value); } }
+        public int? PendingMessageCount
+        {
+            get { return _pendingMessageCount.GetValue(); }
+            set { _pendingMessageCount.SetValue(value); }
+        }
     
     }
     

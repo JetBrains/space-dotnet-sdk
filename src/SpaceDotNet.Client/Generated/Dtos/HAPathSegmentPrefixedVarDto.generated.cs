@@ -28,13 +28,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("prefix")]
-        public string Prefix { get { return _prefix.GetValue(); } set { _prefix.SetValue(value); } }
+        public string Prefix
+        {
+            get { return _prefix.GetValue(); }
+            set { _prefix.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVarDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
     }
     

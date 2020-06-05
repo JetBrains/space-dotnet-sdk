@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewDiscussionCounterDto), nameof(ProjectId));
         
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get { return _projectId.GetValue(); } set { _projectId.SetValue(value); } }
+        public string ProjectId
+        {
+            get { return _projectId.GetValue(); }
+            set { _projectId.SetValue(value); }
+        }
     
         private PropertyValue<CounterDto> _counter = new PropertyValue<CounterDto>(nameof(CodeReviewDiscussionCounterDto), nameof(Counter));
         
         [Required]
         [JsonPropertyName("counter")]
-        public CounterDto Counter { get { return _counter.GetValue(); } set { _counter.SetValue(value); } }
+        public CounterDto Counter
+        {
+            get { return _counter.GetValue(); }
+            set { _counter.SetValue(value); }
+        }
     
     }
     

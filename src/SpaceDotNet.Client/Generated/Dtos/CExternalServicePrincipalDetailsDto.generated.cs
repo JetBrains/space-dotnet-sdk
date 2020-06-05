@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("service")]
-        public ESServiceDto Service { get { return _service.GetValue(); } set { _service.SetValue(value); } }
+        public ESServiceDto Service
+        {
+            get { return _service.GetValue(); }
+            set { _service.SetValue(value); }
+        }
     
     }
     

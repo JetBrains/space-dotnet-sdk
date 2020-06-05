@@ -27,31 +27,51 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("shortInfo")]
-        public CodeReviewRecordDto ShortInfo { get { return _shortInfo.GetValue(); } set { _shortInfo.SetValue(value); } }
+        public CodeReviewRecordDto ShortInfo
+        {
+            get { return _shortInfo.GetValue(); }
+            set { _shortInfo.SetValue(value); }
+        }
     
         private PropertyValue<List<RevisionsInReviewDto>> _commits = new PropertyValue<List<RevisionsInReviewDto>>(nameof(CodeReviewDetailedInfoDto), nameof(Commits));
         
         [Required]
         [JsonPropertyName("commits")]
-        public List<RevisionsInReviewDto> Commits { get { return _commits.GetValue(); } set { _commits.SetValue(value); } }
+        public List<RevisionsInReviewDto> Commits
+        {
+            get { return _commits.GetValue(); }
+            set { _commits.SetValue(value); }
+        }
     
         private PropertyValue<List<RevisionsInReviewDto>> _lostCommits = new PropertyValue<List<RevisionsInReviewDto>>(nameof(CodeReviewDetailedInfoDto), nameof(LostCommits));
         
         [Required]
         [JsonPropertyName("lostCommits")]
-        public List<RevisionsInReviewDto> LostCommits { get { return _lostCommits.GetValue(); } set { _lostCommits.SetValue(value); } }
+        public List<RevisionsInReviewDto> LostCommits
+        {
+            get { return _lostCommits.GetValue(); }
+            set { _lostCommits.SetValue(value); }
+        }
     
         private PropertyValue<CodeReviewDiscussionCounterDto> _discussionCounter = new PropertyValue<CodeReviewDiscussionCounterDto>(nameof(CodeReviewDetailedInfoDto), nameof(DiscussionCounter));
         
         [Required]
         [JsonPropertyName("discussionCounter")]
-        public CodeReviewDiscussionCounterDto DiscussionCounter { get { return _discussionCounter.GetValue(); } set { _discussionCounter.SetValue(value); } }
+        public CodeReviewDiscussionCounterDto DiscussionCounter
+        {
+            get { return _discussionCounter.GetValue(); }
+            set { _discussionCounter.SetValue(value); }
+        }
     
         private PropertyValue<List<TrackedBranchesInReviewDto>> _branches = new PropertyValue<List<TrackedBranchesInReviewDto>>(nameof(CodeReviewDetailedInfoDto), nameof(Branches));
         
         [Required]
         [JsonPropertyName("branches")]
-        public List<TrackedBranchesInReviewDto> Branches { get { return _branches.GetValue(); } set { _branches.SetValue(value); } }
+        public List<TrackedBranchesInReviewDto> Branches
+        {
+            get { return _branches.GetValue(); }
+            set { _branches.SetValue(value); }
+        }
     
     }
     

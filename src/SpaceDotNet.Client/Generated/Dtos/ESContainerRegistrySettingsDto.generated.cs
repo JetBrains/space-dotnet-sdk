@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("immutableTags")]
-        public bool ImmutableTags { get { return _immutableTags.GetValue(); } set { _immutableTags.SetValue(value); } }
+        public bool ImmutableTags
+        {
+            get { return _immutableTags.GetValue(); }
+            set { _immutableTags.SetValue(value); }
+        }
     
     }
     

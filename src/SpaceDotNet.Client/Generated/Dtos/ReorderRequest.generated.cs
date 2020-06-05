@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("order")]
-        public List<string> Order { get { return _order.GetValue(); } set { _order.SetValue(value); } }
+        public List<string> Order
+        {
+            get { return _order.GetValue(); }
+            set { _order.SetValue(value); }
+        }
     
     }
     

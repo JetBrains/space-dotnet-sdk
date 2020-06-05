@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("head")]
-        public string Head { get { return _head.GetValue(); } set { _head.SetValue(value); } }
+        public string Head
+        {
+            get { return _head.GetValue(); }
+            set { _head.SetValue(value); }
+        }
     
         private PropertyValue<string> _ref = new PropertyValue<string>(nameof(BranchInfoDto), nameof(Ref));
         
         [Required]
         [JsonPropertyName("ref")]
-        public string Ref { get { return _ref.GetValue(); } set { _ref.SetValue(value); } }
+        public string Ref
+        {
+            get { return _ref.GetValue(); }
+            set { _ref.SetValue(value); }
+        }
     
     }
     

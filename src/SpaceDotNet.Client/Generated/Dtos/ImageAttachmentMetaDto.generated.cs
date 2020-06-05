@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("variants")]
-        public List<ImageAttachmentVariantsMetaDto> Variants { get { return _variants.GetValue(); } set { _variants.SetValue(value); } }
+        public List<ImageAttachmentVariantsMetaDto> Variants
+        {
+            get { return _variants.GetValue(); }
+            set { _variants.SetValue(value); }
+        }
     
     }
     

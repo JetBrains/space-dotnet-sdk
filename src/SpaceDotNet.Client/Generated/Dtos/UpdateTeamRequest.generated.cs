@@ -26,27 +26,47 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _teamNameRaw = new PropertyValue<string?>(nameof(UpdateTeamRequest), nameof(TeamNameRaw));
         
         [JsonPropertyName("teamNameRaw")]
-        public string? TeamNameRaw { get { return _teamNameRaw.GetValue(); } set { _teamNameRaw.SetValue(value); } }
+        public string? TeamNameRaw
+        {
+            get { return _teamNameRaw.GetValue(); }
+            set { _teamNameRaw.SetValue(value); }
+        }
     
         private PropertyValue<string?> _teamDescription = new PropertyValue<string?>(nameof(UpdateTeamRequest), nameof(TeamDescription));
         
         [JsonPropertyName("teamDescription")]
-        public string? TeamDescription { get { return _teamDescription.GetValue(); } set { _teamDescription.SetValue(value); } }
+        public string? TeamDescription
+        {
+            get { return _teamDescription.GetValue(); }
+            set { _teamDescription.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _teamEmails = new PropertyValue<List<string>?>(nameof(UpdateTeamRequest), nameof(TeamEmails));
         
         [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails { get { return _teamEmails.GetValue(); } set { _teamEmails.SetValue(value); } }
+        public List<string>? TeamEmails
+        {
+            get { return _teamEmails.GetValue(); }
+            set { _teamEmails.SetValue(value); }
+        }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(UpdateTeamRequest), nameof(ParentId));
         
         [JsonPropertyName("parentId")]
-        public string? ParentId { get { return _parentId.GetValue(); } set { _parentId.SetValue(value); } }
+        public string? ParentId
+        {
+            get { return _parentId.GetValue(); }
+            set { _parentId.SetValue(value); }
+        }
     
         private PropertyValue<List<CustomFieldValueDto>?> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>?>(nameof(UpdateTeamRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues { get { return _customFieldValues.GetValue(); } set { _customFieldValues.SetValue(value); } }
+        public List<CustomFieldValueDto>? CustomFieldValues
+        {
+            get { return _customFieldValues.GetValue(); }
+            set { _customFieldValues.SetValue(value); }
+        }
     
     }
     

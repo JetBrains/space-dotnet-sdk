@@ -26,27 +26,47 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachmentDto), nameof(FileUrl));
         
         [JsonPropertyName("fileUrl")]
-        public string? FileUrl { get { return _fileUrl.GetValue(); } set { _fileUrl.SetValue(value); } }
+        public string? FileUrl
+        {
+            get { return _fileUrl.GetValue(); }
+            set { _fileUrl.SetValue(value); }
+        }
     
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(MeetingAttachmentDto), nameof(Title));
         
         [JsonPropertyName("title")]
-        public string? Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string? Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
         private PropertyValue<string?> _mimeType = new PropertyValue<string?>(nameof(MeetingAttachmentDto), nameof(MimeType));
         
         [JsonPropertyName("mimeType")]
-        public string? MimeType { get { return _mimeType.GetValue(); } set { _mimeType.SetValue(value); } }
+        public string? MimeType
+        {
+            get { return _mimeType.GetValue(); }
+            set { _mimeType.SetValue(value); }
+        }
     
         private PropertyValue<string?> _fileId = new PropertyValue<string?>(nameof(MeetingAttachmentDto), nameof(FileId));
         
         [JsonPropertyName("fileId")]
-        public string? FileId { get { return _fileId.GetValue(); } set { _fileId.SetValue(value); } }
+        public string? FileId
+        {
+            get { return _fileId.GetValue(); }
+            set { _fileId.SetValue(value); }
+        }
     
         private PropertyValue<string?> _source = new PropertyValue<string?>(nameof(MeetingAttachmentDto), nameof(Source));
         
         [JsonPropertyName("source")]
-        public string? Source { get { return _source.GetValue(); } set { _source.SetValue(value); } }
+        public string? Source
+        {
+            get { return _source.GetValue(); }
+            set { _source.SetValue(value); }
+        }
     
     }
     

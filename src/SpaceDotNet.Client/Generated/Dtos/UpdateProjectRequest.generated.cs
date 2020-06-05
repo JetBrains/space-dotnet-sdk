@@ -26,32 +26,56 @@ namespace SpaceDotNet.Client
         private PropertyValue<ProjectKeyDto?> _key = new PropertyValue<ProjectKeyDto?>(nameof(UpdateProjectRequest), nameof(Key));
         
         [JsonPropertyName("key")]
-        public ProjectKeyDto? Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
+        public ProjectKeyDto? Key
+        {
+            get { return _key.GetValue(); }
+            set { _key.SetValue(value); }
+        }
     
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(UpdateProjectRequest), nameof(Name));
         
         [JsonPropertyName("name")]
-        public string? Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string? Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(UpdateProjectRequest), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(UpdateProjectRequest), nameof(Private));
         
         [JsonPropertyName("private")]
-        public bool? Private { get { return _private.GetValue(); } set { _private.SetValue(value); } }
+        public bool? Private
+        {
+            get { return _private.GetValue(); }
+            set { _private.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(UpdateProjectRequest), nameof(Tags));
         
         [JsonPropertyName("tags")]
-        public List<string>? Tags { get { return _tags.GetValue(); } set { _tags.SetValue(value); } }
+        public List<string>? Tags
+        {
+            get { return _tags.GetValue(); }
+            set { _tags.SetValue(value); }
+        }
     
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(UpdateProjectRequest), nameof(Icon));
         
         [JsonPropertyName("icon")]
-        public string? Icon { get { return _icon.GetValue(); } set { _icon.SetValue(value); } }
+        public string? Icon
+        {
+            get { return _icon.GetValue(); }
+            set { _icon.SetValue(value); }
+        }
     
     }
     

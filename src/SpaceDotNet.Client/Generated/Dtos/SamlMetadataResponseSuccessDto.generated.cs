@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("metadata")]
-        public string Metadata { get { return _metadata.GetValue(); } set { _metadata.SetValue(value); } }
+        public string Metadata
+        {
+            get { return _metadata.GetValue(); }
+            set { _metadata.SetValue(value); }
+        }
     
     }
     

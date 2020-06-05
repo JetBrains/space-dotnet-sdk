@@ -31,18 +31,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get { return _article.GetValue(); } set { _article.SetValue(value); } }
+        public ArticleRecordDto Article
+        {
+            get { return _article.GetValue(); }
+            set { _article.SetValue(value); }
+        }
     
         private PropertyValue<ArticleContentRecordDto> _articleContent = new PropertyValue<ArticleContentRecordDto>(nameof(M2ChannelContentArticleDto), nameof(ArticleContent));
         
         [Required]
         [JsonPropertyName("articleContent")]
-        public ArticleContentRecordDto ArticleContent { get { return _articleContent.GetValue(); } set { _articleContent.SetValue(value); } }
+        public ArticleContentRecordDto ArticleContent
+        {
+            get { return _articleContent.GetValue(); }
+            set { _articleContent.SetValue(value); }
+        }
     
         private PropertyValue<ArticleDetailsRecordDto?> _details = new PropertyValue<ArticleDetailsRecordDto?>(nameof(M2ChannelContentArticleDto), nameof(Details));
         
         [JsonPropertyName("details")]
-        public ArticleDetailsRecordDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
+        public ArticleDetailsRecordDto? Details
+        {
+            get { return _details.GetValue(); }
+            set { _details.SetValue(value); }
+        }
     
     }
     

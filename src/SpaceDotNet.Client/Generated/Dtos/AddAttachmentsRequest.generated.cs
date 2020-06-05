@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto> Attachments { get { return _attachments.GetValue(); } set { _attachments.SetValue(value); } }
+        public List<AttachmentDto> Attachments
+        {
+            get { return _attachments.GetValue(); }
+            set { _attachments.SetValue(value); }
+        }
     
     }
     

@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("author")]
-        public string Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
+        public string Author
+        {
+            get { return _author.GetValue(); }
+            set { _author.SetValue(value); }
+        }
     
         private PropertyValue<string> _email = new PropertyValue<string>(nameof(GitCommitterProfileDto), nameof(Email));
         
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get { return _email.GetValue(); } set { _email.SetValue(value); } }
+        public string Email
+        {
+            get { return _email.GetValue(); }
+            set { _email.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _profile = new PropertyValue<TDMemberProfileDto?>(nameof(GitCommitterProfileDto), nameof(Profile));
         
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto? Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
     }
     

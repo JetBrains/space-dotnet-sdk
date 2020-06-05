@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate> _created = new PropertyValue<SpaceDate>(nameof(SSLKeystoreDto), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceDate Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
+        public SpaceDate Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
+        }
     
     }
     

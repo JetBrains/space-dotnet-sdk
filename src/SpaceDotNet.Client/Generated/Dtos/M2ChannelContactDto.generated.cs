@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("defaultName")]
-        public string DefaultName { get { return _defaultName.GetValue(); } set { _defaultName.SetValue(value); } }
+        public string DefaultName
+        {
+            get { return _defaultName.GetValue(); }
+            set { _defaultName.SetValue(value); }
+        }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContactDto), nameof(Key));
         
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
+        public string Key
+        {
+            get { return _key.GetValue(); }
+            set { _key.SetValue(value); }
+        }
     
         private PropertyValue<M2ChannelContactInfoDto?> _ext = new PropertyValue<M2ChannelContactInfoDto?>(nameof(M2ChannelContactDto), nameof(Ext));
         
         [JsonPropertyName("ext")]
-        public M2ChannelContactInfoDto? Ext { get { return _ext.GetValue(); } set { _ext.SetValue(value); } }
+        public M2ChannelContactInfoDto? Ext
+        {
+            get { return _ext.GetValue(); }
+            set { _ext.SetValue(value); }
+        }
     
     }
     

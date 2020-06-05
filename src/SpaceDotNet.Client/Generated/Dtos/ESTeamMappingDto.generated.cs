@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("teamId")]
-        public string TeamId { get { return _teamId.GetValue(); } set { _teamId.SetValue(value); } }
+        public string TeamId
+        {
+            get { return _teamId.GetValue(); }
+            set { _teamId.SetValue(value); }
+        }
     
         private PropertyValue<string> _externalGroupName = new PropertyValue<string>(nameof(ESTeamMappingDto), nameof(ExternalGroupName));
         
         [Required]
         [JsonPropertyName("externalGroupName")]
-        public string ExternalGroupName { get { return _externalGroupName.GetValue(); } set { _externalGroupName.SetValue(value); } }
+        public string ExternalGroupName
+        {
+            get { return _externalGroupName.GetValue(); }
+            set { _externalGroupName.SetValue(value); }
+        }
     
     }
     

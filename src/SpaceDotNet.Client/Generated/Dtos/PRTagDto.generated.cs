@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<int> _projectCount = new PropertyValue<int>(nameof(PRTagDto), nameof(ProjectCount));
         
         [Required]
         [JsonPropertyName("projectCount")]
-        public int ProjectCount { get { return _projectCount.GetValue(); } set { _projectCount.SetValue(value); } }
+        public int ProjectCount
+        {
+            get { return _projectCount.GetValue(); }
+            set { _projectCount.SetValue(value); }
+        }
     
     }
     

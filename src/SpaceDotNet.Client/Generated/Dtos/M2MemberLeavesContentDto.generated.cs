@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get { return _member.GetValue(); } set { _member.SetValue(value); } }
+        public TDMemberProfileDto Member
+        {
+            get { return _member.GetValue(); }
+            set { _member.SetValue(value); }
+        }
     
     }
     

@@ -30,12 +30,20 @@ namespace SpaceDotNet.Client
         private PropertyValue<TDMemberProfileDto?> _oldAssignee = new PropertyValue<TDMemberProfileDto?>(nameof(IssueAssigneeChangedDetailsDto), nameof(OldAssignee));
         
         [JsonPropertyName("oldAssignee")]
-        public TDMemberProfileDto? OldAssignee { get { return _oldAssignee.GetValue(); } set { _oldAssignee.SetValue(value); } }
+        public TDMemberProfileDto? OldAssignee
+        {
+            get { return _oldAssignee.GetValue(); }
+            set { _oldAssignee.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _newAssignee = new PropertyValue<TDMemberProfileDto?>(nameof(IssueAssigneeChangedDetailsDto), nameof(NewAssignee));
         
         [JsonPropertyName("newAssignee")]
-        public TDMemberProfileDto? NewAssignee { get { return _newAssignee.GetValue(); } set { _newAssignee.SetValue(value); } }
+        public TDMemberProfileDto? NewAssignee
+        {
+            get { return _newAssignee.GetValue(); }
+            set { _newAssignee.SetValue(value); }
+        }
     
     }
     

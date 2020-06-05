@@ -31,13 +31,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("record")]
-        public ChannelItemRecordDto Record { get { return _record.GetValue(); } set { _record.SetValue(value); } }
+        public ChannelItemRecordDto Record
+        {
+            get { return _record.GetValue(); }
+            set { _record.SetValue(value); }
+        }
     
         private PropertyValue<M2ChannelRecordDto> _parent = new PropertyValue<M2ChannelRecordDto>(nameof(M2ChannelContentThreadDto), nameof(Parent));
         
         [Required]
         [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get { return _parent.GetValue(); } set { _parent.SetValue(value); } }
+        public M2ChannelRecordDto Parent
+        {
+            get { return _parent.GetValue(); }
+            set { _parent.SetValue(value); }
+        }
     
     }
     

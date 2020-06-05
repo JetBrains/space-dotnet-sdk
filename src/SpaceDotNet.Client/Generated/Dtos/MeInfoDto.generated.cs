@@ -27,51 +27,87 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<string?> _profilePic = new PropertyValue<string?>(nameof(MeInfoDto), nameof(ProfilePic));
         
         [JsonPropertyName("profilePic")]
-        public string? ProfilePic { get { return _profilePic.GetValue(); } set { _profilePic.SetValue(value); } }
+        public string? ProfilePic
+        {
+            get { return _profilePic.GetValue(); }
+            set { _profilePic.SetValue(value); }
+        }
     
         private PropertyValue<TDLanguageDto> _preferredLanguage = new PropertyValue<TDLanguageDto>(nameof(MeInfoDto), nameof(PreferredLanguage));
         
         [Required]
         [JsonPropertyName("preferredLanguage")]
-        public TDLanguageDto PreferredLanguage { get { return _preferredLanguage.GetValue(); } set { _preferredLanguage.SetValue(value); } }
+        public TDLanguageDto PreferredLanguage
+        {
+            get { return _preferredLanguage.GetValue(); }
+            set { _preferredLanguage.SetValue(value); }
+        }
     
         private PropertyValue<TDLanguageDto> _englishLanguage = new PropertyValue<TDLanguageDto>(nameof(MeInfoDto), nameof(EnglishLanguage));
         
         [Required]
         [JsonPropertyName("englishLanguage")]
-        public TDLanguageDto EnglishLanguage { get { return _englishLanguage.GetValue(); } set { _englishLanguage.SetValue(value); } }
+        public TDLanguageDto EnglishLanguage
+        {
+            get { return _englishLanguage.GetValue(); }
+            set { _englishLanguage.SetValue(value); }
+        }
     
         private PropertyValue<List<NavBarMenuItemDto>?> _navBarMenuItems = new PropertyValue<List<NavBarMenuItemDto>?>(nameof(MeInfoDto), nameof(NavBarMenuItems));
         
         [JsonPropertyName("navBarMenuItems")]
-        public List<NavBarMenuItemDto>? NavBarMenuItems { get { return _navBarMenuItems.GetValue(); } set { _navBarMenuItems.SetValue(value); } }
+        public List<NavBarMenuItemDto>? NavBarMenuItems
+        {
+            get { return _navBarMenuItems.GetValue(); }
+            set { _navBarMenuItems.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _navBarProjects = new PropertyValue<List<string>>(nameof(MeInfoDto), nameof(NavBarProjects));
         
         [Required]
         [JsonPropertyName("navBarProjects")]
-        public List<string> NavBarProjects { get { return _navBarProjects.GetValue(); } set { _navBarProjects.SetValue(value); } }
+        public List<string> NavBarProjects
+        {
+            get { return _navBarProjects.GetValue(); }
+            set { _navBarProjects.SetValue(value); }
+        }
     
         private PropertyValue<int> _firstDayOfWeek = new PropertyValue<int>(nameof(MeInfoDto), nameof(FirstDayOfWeek));
         
         [Required]
         [JsonPropertyName("firstDayOfWeek")]
-        public int FirstDayOfWeek { get { return _firstDayOfWeek.GetValue(); } set { _firstDayOfWeek.SetValue(value); } }
+        public int FirstDayOfWeek
+        {
+            get { return _firstDayOfWeek.GetValue(); }
+            set { _firstDayOfWeek.SetValue(value); }
+        }
     
         private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(MeInfoDto), nameof(ThemeName));
         
         [JsonPropertyName("themeName")]
-        public string? ThemeName { get { return _themeName.GetValue(); } set { _themeName.SetValue(value); } }
+        public string? ThemeName
+        {
+            get { return _themeName.GetValue(); }
+            set { _themeName.SetValue(value); }
+        }
     
         private PropertyValue<DraftDocumentType?> _draftType = new PropertyValue<DraftDocumentType?>(nameof(MeInfoDto), nameof(DraftType));
         
         [JsonPropertyName("draftType")]
-        public DraftDocumentType? DraftType { get { return _draftType.GetValue(); } set { _draftType.SetValue(value); } }
+        public DraftDocumentType? DraftType
+        {
+            get { return _draftType.GetValue(); }
+            set { _draftType.SetValue(value); }
+        }
     
     }
     

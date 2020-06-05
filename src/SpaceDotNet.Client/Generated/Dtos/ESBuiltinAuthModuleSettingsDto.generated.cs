@@ -28,12 +28,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("passwordStrengthPolicy")]
-        public PasswordStrength PasswordStrengthPolicy { get { return _passwordStrengthPolicy.GetValue(); } set { _passwordStrengthPolicy.SetValue(value); } }
+        public PasswordStrength PasswordStrengthPolicy
+        {
+            get { return _passwordStrengthPolicy.GetValue(); }
+            set { _passwordStrengthPolicy.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _domains = new PropertyValue<List<string>?>(nameof(ESBuiltinAuthModuleSettingsDto), nameof(Domains));
         
         [JsonPropertyName("domains")]
-        public List<string>? Domains { get { return _domains.GetValue(); } set { _domains.SetValue(value); } }
+        public List<string>? Domains
+        {
+            get { return _domains.GetValue(); }
+            set { _domains.SetValue(value); }
+        }
     
     }
     

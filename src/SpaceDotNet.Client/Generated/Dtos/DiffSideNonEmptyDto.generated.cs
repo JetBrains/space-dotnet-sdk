@@ -28,13 +28,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get { return _revision.GetValue(); } set { _revision.SetValue(value); } }
+        public string Revision
+        {
+            get { return _revision.GetValue(); }
+            set { _revision.SetValue(value); }
+        }
     
         private PropertyValue<string> _path = new PropertyValue<string>(nameof(DiffSideNonEmptyDto), nameof(Path));
         
         [Required]
         [JsonPropertyName("path")]
-        public string Path { get { return _path.GetValue(); } set { _path.SetValue(value); } }
+        public string Path
+        {
+            get { return _path.GetValue(); }
+            set { _path.SetValue(value); }
+        }
     
     }
     

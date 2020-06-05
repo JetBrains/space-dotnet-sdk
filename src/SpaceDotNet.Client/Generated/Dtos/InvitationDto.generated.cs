@@ -27,66 +27,114 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _expiresAt = new PropertyValue<SpaceTime>(nameof(InvitationDto), nameof(ExpiresAt));
         
         [Required]
         [JsonPropertyName("expiresAt")]
-        public SpaceTime ExpiresAt { get { return _expiresAt.GetValue(); } set { _expiresAt.SetValue(value); } }
+        public SpaceTime ExpiresAt
+        {
+            get { return _expiresAt.GetValue(); }
+            set { _expiresAt.SetValue(value); }
+        }
     
         private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(InvitationDto), nameof(InviteeEmail));
         
         [Required]
         [JsonPropertyName("inviteeEmail")]
-        public string InviteeEmail { get { return _inviteeEmail.GetValue(); } set { _inviteeEmail.SetValue(value); } }
+        public string InviteeEmail
+        {
+            get { return _inviteeEmail.GetValue(); }
+            set { _inviteeEmail.SetValue(value); }
+        }
     
         private PropertyValue<bool> _inviteeEmailBlocked = new PropertyValue<bool>(nameof(InvitationDto), nameof(InviteeEmailBlocked));
         
         [Required]
         [JsonPropertyName("inviteeEmailBlocked")]
-        public bool InviteeEmailBlocked { get { return _inviteeEmailBlocked.GetValue(); } set { _inviteeEmailBlocked.SetValue(value); } }
+        public bool InviteeEmailBlocked
+        {
+            get { return _inviteeEmailBlocked.GetValue(); }
+            set { _inviteeEmailBlocked.SetValue(value); }
+        }
     
         private PropertyValue<string?> _inviteeEmailBlockedReason = new PropertyValue<string?>(nameof(InvitationDto), nameof(InviteeEmailBlockedReason));
         
         [JsonPropertyName("inviteeEmailBlockedReason")]
-        public string? InviteeEmailBlockedReason { get { return _inviteeEmailBlockedReason.GetValue(); } set { _inviteeEmailBlockedReason.SetValue(value); } }
+        public string? InviteeEmailBlockedReason
+        {
+            get { return _inviteeEmailBlockedReason.GetValue(); }
+            set { _inviteeEmailBlockedReason.SetValue(value); }
+        }
     
         private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(InvitationDto), nameof(InviteeFirstName));
         
         [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get { return _inviteeFirstName.GetValue(); } set { _inviteeFirstName.SetValue(value); } }
+        public string? InviteeFirstName
+        {
+            get { return _inviteeFirstName.GetValue(); }
+            set { _inviteeFirstName.SetValue(value); }
+        }
     
         private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(InvitationDto), nameof(InviteeLastName));
         
         [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get { return _inviteeLastName.GetValue(); } set { _inviteeLastName.SetValue(value); } }
+        public string? InviteeLastName
+        {
+            get { return _inviteeLastName.GetValue(); }
+            set { _inviteeLastName.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _invitee = new PropertyValue<TDMemberProfileDto?>(nameof(InvitationDto), nameof(Invitee));
         
         [JsonPropertyName("invitee")]
-        public TDMemberProfileDto? Invitee { get { return _invitee.GetValue(); } set { _invitee.SetValue(value); } }
+        public TDMemberProfileDto? Invitee
+        {
+            get { return _invitee.GetValue(); }
+            set { _invitee.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto> _inviter = new PropertyValue<CPrincipalDto>(nameof(InvitationDto), nameof(Inviter));
         
         [Required]
         [JsonPropertyName("inviter")]
-        public CPrincipalDto Inviter { get { return _inviter.GetValue(); } set { _inviter.SetValue(value); } }
+        public CPrincipalDto Inviter
+        {
+            get { return _inviter.GetValue(); }
+            set { _inviter.SetValue(value); }
+        }
     
         private PropertyValue<TDTeamDto?> _team = new PropertyValue<TDTeamDto?>(nameof(InvitationDto), nameof(Team));
         
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
+        public TDTeamDto? Team
+        {
+            get { return _team.GetValue(); }
+            set { _team.SetValue(value); }
+        }
     
         private PropertyValue<TDRoleDto?> _role = new PropertyValue<TDRoleDto?>(nameof(InvitationDto), nameof(Role));
         
         [JsonPropertyName("role")]
-        public TDRoleDto? Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
+        public TDRoleDto? Role
+        {
+            get { return _role.GetValue(); }
+            set { _role.SetValue(value); }
+        }
     
         private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(InvitationDto), nameof(Revoked));
         
         [JsonPropertyName("revoked")]
-        public bool? Revoked { get { return _revoked.GetValue(); } set { _revoked.SetValue(value); } }
+        public bool? Revoked
+        {
+            get { return _revoked.GetValue(); }
+            set { _revoked.SetValue(value); }
+        }
     
     }
     

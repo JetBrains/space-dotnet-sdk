@@ -26,52 +26,88 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _branch = new PropertyValue<string?>(nameof(PushCommitStatusRequest), nameof(Branch));
         
         [JsonPropertyName("branch")]
-        public string? Branch { get { return _branch.GetValue(); } set { _branch.SetValue(value); } }
+        public string? Branch
+        {
+            get { return _branch.GetValue(); }
+            set { _branch.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _changes = new PropertyValue<List<string>?>(nameof(PushCommitStatusRequest), nameof(Changes));
         
         [JsonPropertyName("changes")]
-        public List<string>? Changes { get { return _changes.GetValue(); } set { _changes.SetValue(value); } }
+        public List<string>? Changes
+        {
+            get { return _changes.GetValue(); }
+            set { _changes.SetValue(value); }
+        }
     
         private PropertyValue<ExecutionStatus> _executionStatus = new PropertyValue<ExecutionStatus>(nameof(PushCommitStatusRequest), nameof(ExecutionStatus));
         
         [Required]
         [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus { get { return _executionStatus.GetValue(); } set { _executionStatus.SetValue(value); } }
+        public ExecutionStatus ExecutionStatus
+        {
+            get { return _executionStatus.GetValue(); }
+            set { _executionStatus.SetValue(value); }
+        }
     
         private PropertyValue<string> _url = new PropertyValue<string>(nameof(PushCommitStatusRequest), nameof(Url));
         
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get { return _url.GetValue(); } set { _url.SetValue(value); } }
+        public string Url
+        {
+            get { return _url.GetValue(); }
+            set { _url.SetValue(value); }
+        }
     
         private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(PushCommitStatusRequest), nameof(ExternalServiceName));
         
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get { return _externalServiceName.GetValue(); } set { _externalServiceName.SetValue(value); } }
+        public string ExternalServiceName
+        {
+            get { return _externalServiceName.GetValue(); }
+            set { _externalServiceName.SetValue(value); }
+        }
     
         private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(PushCommitStatusRequest), nameof(TaskName));
         
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get { return _taskName.GetValue(); } set { _taskName.SetValue(value); } }
+        public string TaskName
+        {
+            get { return _taskName.GetValue(); }
+            set { _taskName.SetValue(value); }
+        }
     
         private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(PushCommitStatusRequest), nameof(TaskId));
         
         [Required]
         [JsonPropertyName("taskId")]
-        public string TaskId { get { return _taskId.GetValue(); } set { _taskId.SetValue(value); } }
+        public string TaskId
+        {
+            get { return _taskId.GetValue(); }
+            set { _taskId.SetValue(value); }
+        }
     
         private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(PushCommitStatusRequest), nameof(Timestamp));
         
         [JsonPropertyName("timestamp")]
-        public long? Timestamp { get { return _timestamp.GetValue(); } set { _timestamp.SetValue(value); } }
+        public long? Timestamp
+        {
+            get { return _timestamp.GetValue(); }
+            set { _timestamp.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PushCommitStatusRequest), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
     }
     

@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("authModule")]
-        public ESAuthModuleDto AuthModule { get { return _authModule.GetValue(); } set { _authModule.SetValue(value); } }
+        public ESAuthModuleDto AuthModule
+        {
+            get { return _authModule.GetValue(); }
+            set { _authModule.SetValue(value); }
+        }
     
         private PropertyValue<int> _profiles = new PropertyValue<int>(nameof(AuthModuleUsageDto), nameof(Profiles));
         
         [Required]
         [JsonPropertyName("profiles")]
-        public int Profiles { get { return _profiles.GetValue(); } set { _profiles.SetValue(value); } }
+        public int Profiles
+        {
+            get { return _profiles.GetValue(); }
+            set { _profiles.SetValue(value); }
+        }
     
     }
     

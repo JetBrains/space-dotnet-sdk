@@ -27,24 +27,40 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDRoleDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<TDRoleDto?> _parent = new PropertyValue<TDRoleDto?>(nameof(TDRoleDto), nameof(Parent));
         
         [JsonPropertyName("parent")]
-        public TDRoleDto? Parent { get { return _parent.GetValue(); } set { _parent.SetValue(value); } }
+        public TDRoleDto? Parent
+        {
+            get { return _parent.GetValue(); }
+            set { _parent.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDRoleDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
     }
     

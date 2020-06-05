@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("repository")]
-        public RepositoryInReviewDto Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
+        public RepositoryInReviewDto Repository
+        {
+            get { return _repository.GetValue(); }
+            set { _repository.SetValue(value); }
+        }
     
         private PropertyValue<List<GitCommitWithGraphDto>> _commits = new PropertyValue<List<GitCommitWithGraphDto>>(nameof(RevisionsInReviewDto), nameof(Commits));
         
         [Required]
         [JsonPropertyName("commits")]
-        public List<GitCommitWithGraphDto> Commits { get { return _commits.GetValue(); } set { _commits.SetValue(value); } }
+        public List<GitCommitWithGraphDto> Commits
+        {
+            get { return _commits.GetValue(); }
+            set { _commits.SetValue(value); }
+        }
     
     }
     

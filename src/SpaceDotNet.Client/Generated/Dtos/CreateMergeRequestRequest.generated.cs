@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("sourceBranch")]
-        public string SourceBranch { get { return _sourceBranch.GetValue(); } set { _sourceBranch.SetValue(value); } }
+        public string SourceBranch
+        {
+            get { return _sourceBranch.GetValue(); }
+            set { _sourceBranch.SetValue(value); }
+        }
     
         private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(CreateMergeRequestRequest), nameof(TargetBranch));
         
         [Required]
         [JsonPropertyName("targetBranch")]
-        public string TargetBranch { get { return _targetBranch.GetValue(); } set { _targetBranch.SetValue(value); } }
+        public string TargetBranch
+        {
+            get { return _targetBranch.GetValue(); }
+            set { _targetBranch.SetValue(value); }
+        }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(CreateMergeRequestRequest), nameof(Title));
         
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
     }
     

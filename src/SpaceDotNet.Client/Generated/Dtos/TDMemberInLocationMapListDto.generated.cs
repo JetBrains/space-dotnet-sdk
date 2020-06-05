@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberLocationDto> _memberLocation = new PropertyValue<TDMemberLocationDto>(nameof(TDMemberInLocationMapListDto), nameof(MemberLocation));
         
         [Required]
         [JsonPropertyName("memberLocation")]
-        public TDMemberLocationDto MemberLocation { get { return _memberLocation.GetValue(); } set { _memberLocation.SetValue(value); } }
+        public TDMemberLocationDto MemberLocation
+        {
+            get { return _memberLocation.GetValue(); }
+            set { _memberLocation.SetValue(value); }
+        }
     
         private PropertyValue<TDLocationMapPointDto?> _locationMapPoint = new PropertyValue<TDLocationMapPointDto?>(nameof(TDMemberInLocationMapListDto), nameof(LocationMapPoint));
         
         [JsonPropertyName("locationMapPoint")]
-        public TDLocationMapPointDto? LocationMapPoint { get { return _locationMapPoint.GetValue(); } set { _locationMapPoint.SetValue(value); } }
+        public TDLocationMapPointDto? LocationMapPoint
+        {
+            get { return _locationMapPoint.GetValue(); }
+            set { _locationMapPoint.SetValue(value); }
+        }
     
     }
     

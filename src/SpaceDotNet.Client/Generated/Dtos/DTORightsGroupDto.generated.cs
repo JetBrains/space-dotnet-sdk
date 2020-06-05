@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
         private PropertyValue<int> _priority = new PropertyValue<int>(nameof(DTORightsGroupDto), nameof(Priority));
         
         [Required]
         [JsonPropertyName("priority")]
-        public int Priority { get { return _priority.GetValue(); } set { _priority.SetValue(value); } }
+        public int Priority
+        {
+            get { return _priority.GetValue(); }
+            set { _priority.SetValue(value); }
+        }
     
         private PropertyValue<List<DTORightDto>> _rights = new PropertyValue<List<DTORightDto>>(nameof(DTORightsGroupDto), nameof(Rights));
         
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTORightDto> Rights { get { return _rights.GetValue(); } set { _rights.SetValue(value); } }
+        public List<DTORightDto> Rights
+        {
+            get { return _rights.GetValue(); }
+            set { _rights.SetValue(value); }
+        }
     
     }
     

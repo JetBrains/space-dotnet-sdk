@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("messages")]
-        public List<MessageForImportDto> Messages { get { return _messages.GetValue(); } set { _messages.SetValue(value); } }
+        public List<MessageForImportDto> Messages
+        {
+            get { return _messages.GetValue(); }
+            set { _messages.SetValue(value); }
+        }
     
     }
     

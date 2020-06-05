@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("issue")]
-        public IssueDto Issue { get { return _issue.GetValue(); } set { _issue.SetValue(value); } }
+        public IssueDto Issue
+        {
+            get { return _issue.GetValue(); }
+            set { _issue.SetValue(value); }
+        }
     
     }
     

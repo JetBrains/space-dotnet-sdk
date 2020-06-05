@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("revisions")]
-        public List<RevisionInReviewDto> Revisions { get { return _revisions.GetValue(); } set { _revisions.SetValue(value); } }
+        public List<RevisionInReviewDto> Revisions
+        {
+            get { return _revisions.GetValue(); }
+            set { _revisions.SetValue(value); }
+        }
     
     }
     

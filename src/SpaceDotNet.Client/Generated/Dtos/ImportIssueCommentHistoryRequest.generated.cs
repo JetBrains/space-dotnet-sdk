@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("comments")]
-        public List<MessageForImportDto> Comments { get { return _comments.GetValue(); } set { _comments.SetValue(value); } }
+        public List<MessageForImportDto> Comments
+        {
+            get { return _comments.GetValue(); }
+            set { _comments.SetValue(value); }
+        }
     
     }
     

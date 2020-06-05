@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("ids")]
-        public List<string> Ids { get { return _ids.GetValue(); } set { _ids.SetValue(value); } }
+        public List<string> Ids
+        {
+            get { return _ids.GetValue(); }
+            set { _ids.SetValue(value); }
+        }
     
     }
     

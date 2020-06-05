@@ -31,18 +31,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("codeDiscussionId")]
-        public string CodeDiscussionId { get { return _codeDiscussionId.GetValue(); } set { _codeDiscussionId.SetValue(value); } }
+        public string CodeDiscussionId
+        {
+            get { return _codeDiscussionId.GetValue(); }
+            set { _codeDiscussionId.SetValue(value); }
+        }
     
         private PropertyValue<ChannelSpecificDefaultsDto> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto>(nameof(M2ChannelContentCodeDiscussionDto), nameof(NotificationDefaults));
         
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
+        public ChannelSpecificDefaultsDto NotificationDefaults
+        {
+            get { return _notificationDefaults.GetValue(); }
+            set { _notificationDefaults.SetValue(value); }
+        }
     
         private PropertyValue<CodeDiscussionRecordDto?> _codeDiscussion = new PropertyValue<CodeDiscussionRecordDto?>(nameof(M2ChannelContentCodeDiscussionDto), nameof(CodeDiscussion));
         
         [JsonPropertyName("codeDiscussion")]
-        public CodeDiscussionRecordDto? CodeDiscussion { get { return _codeDiscussion.GetValue(); } set { _codeDiscussion.SetValue(value); } }
+        public CodeDiscussionRecordDto? CodeDiscussion
+        {
+            get { return _codeDiscussion.GetValue(); }
+            set { _codeDiscussion.SetValue(value); }
+        }
     
     }
     

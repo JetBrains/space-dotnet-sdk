@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
+        public string Repository
+        {
+            get { return _repository.GetValue(); }
+            set { _repository.SetValue(value); }
+        }
     
         private PropertyValue<string> _commit = new PropertyValue<string>(nameof(RevisionInReviewDto), nameof(Commit));
         
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get { return _commit.GetValue(); } set { _commit.SetValue(value); } }
+        public string Commit
+        {
+            get { return _commit.GetValue(); }
+            set { _commit.SetValue(value); }
+        }
     
     }
     

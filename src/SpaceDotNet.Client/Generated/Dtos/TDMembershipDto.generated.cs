@@ -27,82 +27,142 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _member = new PropertyValue<TDMemberProfileDto?>(nameof(TDMembershipDto), nameof(Member));
         
         [JsonPropertyName("member")]
-        public TDMemberProfileDto? Member { get { return _member.GetValue(); } set { _member.SetValue(value); } }
+        public TDMemberProfileDto? Member
+        {
+            get { return _member.GetValue(); }
+            set { _member.SetValue(value); }
+        }
     
         private PropertyValue<TDTeamDto> _team = new PropertyValue<TDTeamDto>(nameof(TDMembershipDto), nameof(Team));
         
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
+        public TDTeamDto Team
+        {
+            get { return _team.GetValue(); }
+            set { _team.SetValue(value); }
+        }
     
         private PropertyValue<TDRoleDto> _role = new PropertyValue<TDRoleDto>(nameof(TDMembershipDto), nameof(Role));
         
         [Required]
         [JsonPropertyName("role")]
-        public TDRoleDto Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
+        public TDRoleDto Role
+        {
+            get { return _role.GetValue(); }
+            set { _role.SetValue(value); }
+        }
     
         private PropertyValue<bool> _lead = new PropertyValue<bool>(nameof(TDMembershipDto), nameof(Lead));
         
         [Required]
         [JsonPropertyName("lead")]
-        public bool Lead { get { return _lead.GetValue(); } set { _lead.SetValue(value); } }
+        public bool Lead
+        {
+            get { return _lead.GetValue(); }
+            set { _lead.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _manager = new PropertyValue<TDMemberProfileDto?>(nameof(TDMembershipDto), nameof(Manager));
         
         [JsonPropertyName("manager")]
-        public TDMemberProfileDto? Manager { get { return _manager.GetValue(); } set { _manager.SetValue(value); } }
+        public TDMemberProfileDto? Manager
+        {
+            get { return _manager.GetValue(); }
+            set { _manager.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _since = new PropertyValue<SpaceDate?>(nameof(TDMembershipDto), nameof(Since));
         
         [JsonPropertyName("since")]
-        public SpaceDate? Since { get { return _since.GetValue(); } set { _since.SetValue(value); } }
+        public SpaceDate? Since
+        {
+            get { return _since.GetValue(); }
+            set { _since.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _till = new PropertyValue<SpaceDate?>(nameof(TDMembershipDto), nameof(Till));
         
         [JsonPropertyName("till")]
-        public SpaceDate? Till { get { return _till.GetValue(); } set { _till.SetValue(value); } }
+        public SpaceDate? Till
+        {
+            get { return _till.GetValue(); }
+            set { _till.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _activeSince = new PropertyValue<SpaceTime?>(nameof(TDMembershipDto), nameof(ActiveSince));
         
         [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince { get { return _activeSince.GetValue(); } set { _activeSince.SetValue(value); } }
+        public SpaceTime? ActiveSince
+        {
+            get { return _activeSince.GetValue(); }
+            set { _activeSince.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _activeTill = new PropertyValue<SpaceTime?>(nameof(TDMembershipDto), nameof(ActiveTill));
         
         [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill { get { return _activeTill.GetValue(); } set { _activeTill.SetValue(value); } }
+        public SpaceTime? ActiveTill
+        {
+            get { return _activeTill.GetValue(); }
+            set { _activeTill.SetValue(value); }
+        }
     
         private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TDMembershipDto), nameof(RequiresApproval));
         
         [Required]
         [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval { get { return _requiresApproval.GetValue(); } set { _requiresApproval.SetValue(value); } }
+        public bool RequiresApproval
+        {
+            get { return _requiresApproval.GetValue(); }
+            set { _requiresApproval.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMembershipDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<TDMembershipDto?> _editFor = new PropertyValue<TDMembershipDto?>(nameof(TDMembershipDto), nameof(EditFor));
         
         [JsonPropertyName("editFor")]
-        public TDMembershipDto? EditFor { get { return _editFor.GetValue(); } set { _editFor.SetValue(value); } }
+        public TDMembershipDto? EditFor
+        {
+            get { return _editFor.GetValue(); }
+            set { _editFor.SetValue(value); }
+        }
     
         private PropertyValue<TDMembershipDto?> _pendingEdit = new PropertyValue<TDMembershipDto?>(nameof(TDMembershipDto), nameof(PendingEdit));
         
         [JsonPropertyName("pendingEdit")]
-        public TDMembershipDto? PendingEdit { get { return _pendingEdit.GetValue(); } set { _pendingEdit.SetValue(value); } }
+        public TDMembershipDto? PendingEdit
+        {
+            get { return _pendingEdit.GetValue(); }
+            set { _pendingEdit.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _approver = new PropertyValue<TDMemberProfileDto?>(nameof(TDMembershipDto), nameof(Approver));
         
         [JsonPropertyName("approver")]
-        public TDMemberProfileDto? Approver { get { return _approver.GetValue(); } set { _approver.SetValue(value); } }
+        public TDMemberProfileDto? Approver
+        {
+            get { return _approver.GetValue(); }
+            set { _approver.SetValue(value); }
+        }
     
     }
     

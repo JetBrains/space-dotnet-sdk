@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("revision")]
-        public string Revision { get { return _revision.GetValue(); } set { _revision.SetValue(value); } }
+        public string Revision
+        {
+            get { return _revision.GetValue(); }
+            set { _revision.SetValue(value); }
+        }
     
         private PropertyValue<long> _date = new PropertyValue<long>(nameof(RevisionInfoDto), nameof(Date));
         
         [Required]
         [JsonPropertyName("date")]
-        public long Date { get { return _date.GetValue(); } set { _date.SetValue(value); } }
+        public long Date
+        {
+            get { return _date.GetValue(); }
+            set { _date.SetValue(value); }
+        }
     
         private PropertyValue<string> _message = new PropertyValue<string>(nameof(RevisionInfoDto), nameof(Message));
         
         [Required]
         [JsonPropertyName("message")]
-        public string Message { get { return _message.GetValue(); } set { _message.SetValue(value); } }
+        public string Message
+        {
+            get { return _message.GetValue(); }
+            set { _message.SetValue(value); }
+        }
     
     }
     

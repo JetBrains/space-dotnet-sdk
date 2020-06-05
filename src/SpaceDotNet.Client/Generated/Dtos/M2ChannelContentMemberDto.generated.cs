@@ -31,23 +31,39 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get { return _member.GetValue(); } set { _member.SetValue(value); } }
+        public TDMemberProfileDto Member
+        {
+            get { return _member.GetValue(); }
+            set { _member.SetValue(value); }
+        }
     
         private PropertyValue<ChannelSpecificDefaultsDto> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto>(nameof(M2ChannelContentMemberDto), nameof(NotificationDefaults));
         
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
+        public ChannelSpecificDefaultsDto NotificationDefaults
+        {
+            get { return _notificationDefaults.GetValue(); }
+            set { _notificationDefaults.SetValue(value); }
+        }
     
         private PropertyValue<ProfileAbsencesRecordDto?> _memberAbsences = new PropertyValue<ProfileAbsencesRecordDto?>(nameof(M2ChannelContentMemberDto), nameof(MemberAbsences));
         
         [JsonPropertyName("memberAbsences")]
-        public ProfileAbsencesRecordDto? MemberAbsences { get { return _memberAbsences.GetValue(); } set { _memberAbsences.SetValue(value); } }
+        public ProfileAbsencesRecordDto? MemberAbsences
+        {
+            get { return _memberAbsences.GetValue(); }
+            set { _memberAbsences.SetValue(value); }
+        }
     
         private PropertyValue<ProfileMembershipRecordDto?> _memberTeams = new PropertyValue<ProfileMembershipRecordDto?>(nameof(M2ChannelContentMemberDto), nameof(MemberTeams));
         
         [JsonPropertyName("memberTeams")]
-        public ProfileMembershipRecordDto? MemberTeams { get { return _memberTeams.GetValue(); } set { _memberTeams.SetValue(value); } }
+        public ProfileMembershipRecordDto? MemberTeams
+        {
+            get { return _memberTeams.GetValue(); }
+            set { _memberTeams.SetValue(value); }
+        }
     
     }
     

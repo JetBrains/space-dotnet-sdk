@@ -30,12 +30,20 @@ namespace SpaceDotNet.Client
         private PropertyValue<List<string>?> _addedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetailsDto), nameof(AddedNames));
         
         [JsonPropertyName("addedNames")]
-        public List<string>? AddedNames { get { return _addedNames.GetValue(); } set { _addedNames.SetValue(value); } }
+        public List<string>? AddedNames
+        {
+            get { return _addedNames.GetValue(); }
+            set { _addedNames.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _removedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetailsDto), nameof(RemovedNames));
         
         [JsonPropertyName("removedNames")]
-        public List<string>? RemovedNames { get { return _removedNames.GetValue(); } set { _removedNames.SetValue(value); } }
+        public List<string>? RemovedNames
+        {
+            get { return _removedNames.GetValue(); }
+            set { _removedNames.SetValue(value); }
+        }
     
     }
     

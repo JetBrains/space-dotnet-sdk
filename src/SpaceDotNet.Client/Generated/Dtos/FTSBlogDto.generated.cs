@@ -27,36 +27,60 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(FTSBlogDto), nameof(Title));
         
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto> _author = new PropertyValue<TDMemberProfileDto>(nameof(FTSBlogDto), nameof(Author));
         
         [Required]
         [JsonPropertyName("author")]
-        public TDMemberProfileDto Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
+        public TDMemberProfileDto Author
+        {
+            get { return _author.GetValue(); }
+            set { _author.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _date = new PropertyValue<SpaceTime>(nameof(FTSBlogDto), nameof(Date));
         
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date { get { return _date.GetValue(); } set { _date.SetValue(value); } }
+        public SpaceTime Date
+        {
+            get { return _date.GetValue(); }
+            set { _date.SetValue(value); }
+        }
     
         private PropertyValue<List<FTSSnippetDto>> _snippets = new PropertyValue<List<FTSSnippetDto>>(nameof(FTSBlogDto), nameof(Snippets));
         
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get { return _snippets.GetValue(); } set { _snippets.SetValue(value); } }
+        public List<FTSSnippetDto> Snippets
+        {
+            get { return _snippets.GetValue(); }
+            set { _snippets.SetValue(value); }
+        }
     
         private PropertyValue<List<FTSBlogCommentDto>?> _comments = new PropertyValue<List<FTSBlogCommentDto>?>(nameof(FTSBlogDto), nameof(Comments));
         
         [JsonPropertyName("comments")]
-        public List<FTSBlogCommentDto>? Comments { get { return _comments.GetValue(); } set { _comments.SetValue(value); } }
+        public List<FTSBlogCommentDto>? Comments
+        {
+            get { return _comments.GetValue(); }
+            set { _comments.SetValue(value); }
+        }
     
     }
     

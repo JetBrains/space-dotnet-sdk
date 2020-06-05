@@ -26,12 +26,20 @@ namespace SpaceDotNet.Client
         private PropertyValue<TDMemberProfileDto?> _profile = new PropertyValue<TDMemberProfileDto?>(nameof(AssignedPersonDto), nameof(Profile));
         
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto? Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(AssignedPersonDto), nameof(Role));
         
         [JsonPropertyName("role")]
-        public string? Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
+        public string? Role
+        {
+            get { return _role.GetValue(); }
+            set { _role.SetValue(value); }
+        }
     
     }
     

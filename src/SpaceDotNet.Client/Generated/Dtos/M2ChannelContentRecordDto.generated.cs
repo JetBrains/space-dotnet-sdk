@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<M2ChannelContentInfoDto?> _content = new PropertyValue<M2ChannelContentInfoDto?>(nameof(M2ChannelContentRecordDto), nameof(Content));
         
         [JsonPropertyName("content")]
-        public M2ChannelContentInfoDto? Content { get { return _content.GetValue(); } set { _content.SetValue(value); } }
+        public M2ChannelContentInfoDto? Content
+        {
+            get { return _content.GetValue(); }
+            set { _content.SetValue(value); }
+        }
     
     }
     

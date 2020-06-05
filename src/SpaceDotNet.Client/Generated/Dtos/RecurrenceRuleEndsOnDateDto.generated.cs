@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date { get { return _date.GetValue(); } set { _date.SetValue(value); } }
+        public SpaceDate Date
+        {
+            get { return _date.GetValue(); }
+            set { _date.SetValue(value); }
+        }
     
     }
     

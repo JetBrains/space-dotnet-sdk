@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("lastActivity")]
-        public List<Pair<SpaceDate, int>> LastActivity { get { return _lastActivity.GetValue(); } set { _lastActivity.SetValue(value); } }
+        public List<Pair<SpaceDate, int>> LastActivity
+        {
+            get { return _lastActivity.GetValue(); }
+            set { _lastActivity.SetValue(value); }
+        }
     
     }
     

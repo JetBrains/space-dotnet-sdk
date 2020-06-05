@@ -27,42 +27,70 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ESAuthModuleDto), nameof(Key));
         
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
+        public string Key
+        {
+            get { return _key.GetValue(); }
+            set { _key.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESAuthModuleDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<int> _ordinal = new PropertyValue<int>(nameof(ESAuthModuleDto), nameof(Ordinal));
         
         [Required]
         [JsonPropertyName("ordinal")]
-        public int Ordinal { get { return _ordinal.GetValue(); } set { _ordinal.SetValue(value); } }
+        public int Ordinal
+        {
+            get { return _ordinal.GetValue(); }
+            set { _ordinal.SetValue(value); }
+        }
     
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ESAuthModuleDto), nameof(Enabled));
         
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get { return _enabled.GetValue(); } set { _enabled.SetValue(value); } }
+        public bool Enabled
+        {
+            get { return _enabled.GetValue(); }
+            set { _enabled.SetValue(value); }
+        }
     
         private PropertyValue<string?> _iconDataURI = new PropertyValue<string?>(nameof(ESAuthModuleDto), nameof(IconDataURI));
         
         [JsonPropertyName("iconDataURI")]
-        public string? IconDataURI { get { return _iconDataURI.GetValue(); } set { _iconDataURI.SetValue(value); } }
+        public string? IconDataURI
+        {
+            get { return _iconDataURI.GetValue(); }
+            set { _iconDataURI.SetValue(value); }
+        }
     
         private PropertyValue<ESAuthModuleSettingsDto> _settings = new PropertyValue<ESAuthModuleSettingsDto>(nameof(ESAuthModuleDto), nameof(Settings));
         
         [Required]
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto Settings { get { return _settings.GetValue(); } set { _settings.SetValue(value); } }
+        public ESAuthModuleSettingsDto Settings
+        {
+            get { return _settings.GetValue(); }
+            set { _settings.SetValue(value); }
+        }
     
     }
     

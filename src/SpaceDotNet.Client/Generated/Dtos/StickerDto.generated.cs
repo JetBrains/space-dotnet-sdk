@@ -27,43 +27,75 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string?> _symbol = new PropertyValue<string?>(nameof(StickerDto), nameof(Symbol));
         
         [JsonPropertyName("symbol")]
-        public string? Symbol { get { return _symbol.GetValue(); } set { _symbol.SetValue(value); } }
+        public string? Symbol
+        {
+            get { return _symbol.GetValue(); }
+            set { _symbol.SetValue(value); }
+        }
     
         private PropertyValue<string?> _attachmentId = new PropertyValue<string?>(nameof(StickerDto), nameof(AttachmentId));
         
         [JsonPropertyName("attachmentId")]
-        public string? AttachmentId { get { return _attachmentId.GetValue(); } set { _attachmentId.SetValue(value); } }
+        public string? AttachmentId
+        {
+            get { return _attachmentId.GetValue(); }
+            set { _attachmentId.SetValue(value); }
+        }
     
         private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(StickerDto), nameof(Width));
         
         [JsonPropertyName("width")]
-        public int? Width { get { return _width.GetValue(); } set { _width.SetValue(value); } }
+        public int? Width
+        {
+            get { return _width.GetValue(); }
+            set { _width.SetValue(value); }
+        }
     
         private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(StickerDto), nameof(Height));
         
         [JsonPropertyName("height")]
-        public int? Height { get { return _height.GetValue(); } set { _height.SetValue(value); } }
+        public int? Height
+        {
+            get { return _height.GetValue(); }
+            set { _height.SetValue(value); }
+        }
     
         private PropertyValue<List<StickerVariantDto>?> _variants = new PropertyValue<List<StickerVariantDto>?>(nameof(StickerDto), nameof(Variants));
         
         [JsonPropertyName("variants")]
-        public List<StickerVariantDto>? Variants { get { return _variants.GetValue(); } set { _variants.SetValue(value); } }
+        public List<StickerVariantDto>? Variants
+        {
+            get { return _variants.GetValue(); }
+            set { _variants.SetValue(value); }
+        }
     
         private PropertyValue<bool?> _animated = new PropertyValue<bool?>(nameof(StickerDto), nameof(Animated));
         
         [JsonPropertyName("animated")]
-        public bool? Animated { get { return _animated.GetValue(); } set { _animated.SetValue(value); } }
+        public bool? Animated
+        {
+            get { return _animated.GetValue(); }
+            set { _animated.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(StickerDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
     }
     

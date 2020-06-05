@@ -26,13 +26,21 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(EnumValueDataDto), nameof(Id));
         
         [JsonPropertyName("id")]
-        public string? Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string? Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(EnumValueDataDto), nameof(Value));
         
         [Required]
         [JsonPropertyName("value")]
-        public string Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
+        public string Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
     
     }
     

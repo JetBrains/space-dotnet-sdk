@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get { return _summary.GetValue(); } set { _summary.SetValue(value); } }
+        public string Summary
+        {
+            get { return _summary.GetValue(); }
+            set { _summary.SetValue(value); }
+        }
     
         private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(UpdateResponsibilityRequest), nameof(Notes));
         
         [JsonPropertyName("notes")]
-        public string? Notes { get { return _notes.GetValue(); } set { _notes.SetValue(value); } }
+        public string? Notes
+        {
+            get { return _notes.GetValue(); }
+            set { _notes.SetValue(value); }
+        }
     
     }
     

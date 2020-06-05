@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("segments")]
-        public List<HAPathSegmentDto> Segments { get { return _segments.GetValue(); } set { _segments.SetValue(value); } }
+        public List<HAPathSegmentDto> Segments
+        {
+            get { return _segments.GetValue(); }
+            set { _segments.SetValue(value); }
+        }
     
     }
     

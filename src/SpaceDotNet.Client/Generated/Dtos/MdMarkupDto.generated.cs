@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("unfurl")]
-        public List<UnfurlDto> Unfurl { get { return _unfurl.GetValue(); } set { _unfurl.SetValue(value); } }
+        public List<UnfurlDto> Unfurl
+        {
+            get { return _unfurl.GetValue(); }
+            set { _unfurl.SetValue(value); }
+        }
     
     }
     

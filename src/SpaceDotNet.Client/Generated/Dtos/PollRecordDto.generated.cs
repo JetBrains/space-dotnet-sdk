@@ -27,72 +27,120 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto> _owner = new PropertyValue<TDMemberProfileDto>(nameof(PollRecordDto), nameof(Owner));
         
         [Required]
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto Owner { get { return _owner.GetValue(); } set { _owner.SetValue(value); } }
+        public TDMemberProfileDto Owner
+        {
+            get { return _owner.GetValue(); }
+            set { _owner.SetValue(value); }
+        }
     
         private PropertyValue<string> _question = new PropertyValue<string>(nameof(PollRecordDto), nameof(Question));
         
         [Required]
         [JsonPropertyName("question")]
-        public string Question { get { return _question.GetValue(); } set { _question.SetValue(value); } }
+        public string Question
+        {
+            get { return _question.GetValue(); }
+            set { _question.SetValue(value); }
+        }
     
         private PropertyValue<bool> _meVote = new PropertyValue<bool>(nameof(PollRecordDto), nameof(MeVote));
         
         [Required]
         [JsonPropertyName("meVote")]
-        public bool MeVote { get { return _meVote.GetValue(); } set { _meVote.SetValue(value); } }
+        public bool MeVote
+        {
+            get { return _meVote.GetValue(); }
+            set { _meVote.SetValue(value); }
+        }
     
         private PropertyValue<int> _countPeople = new PropertyValue<int>(nameof(PollRecordDto), nameof(CountPeople));
         
         [Required]
         [JsonPropertyName("countPeople")]
-        public int CountPeople { get { return _countPeople.GetValue(); } set { _countPeople.SetValue(value); } }
+        public int CountPeople
+        {
+            get { return _countPeople.GetValue(); }
+            set { _countPeople.SetValue(value); }
+        }
     
         private PropertyValue<bool> _anonymous = new PropertyValue<bool>(nameof(PollRecordDto), nameof(Anonymous));
         
         [Required]
         [JsonPropertyName("anonymous")]
-        public bool Anonymous { get { return _anonymous.GetValue(); } set { _anonymous.SetValue(value); } }
+        public bool Anonymous
+        {
+            get { return _anonymous.GetValue(); }
+            set { _anonymous.SetValue(value); }
+        }
     
         private PropertyValue<bool> _closed = new PropertyValue<bool>(nameof(PollRecordDto), nameof(Closed));
         
         [Required]
         [JsonPropertyName("closed")]
-        public bool Closed { get { return _closed.GetValue(); } set { _closed.SetValue(value); } }
+        public bool Closed
+        {
+            get { return _closed.GetValue(); }
+            set { _closed.SetValue(value); }
+        }
     
         private PropertyValue<bool> _extendable = new PropertyValue<bool>(nameof(PollRecordDto), nameof(Extendable));
         
         [Required]
         [JsonPropertyName("extendable")]
-        public bool Extendable { get { return _extendable.GetValue(); } set { _extendable.SetValue(value); } }
+        public bool Extendable
+        {
+            get { return _extendable.GetValue(); }
+            set { _extendable.SetValue(value); }
+        }
     
         private PropertyValue<bool> _multiChoice = new PropertyValue<bool>(nameof(PollRecordDto), nameof(MultiChoice));
         
         [Required]
         [JsonPropertyName("multiChoice")]
-        public bool MultiChoice { get { return _multiChoice.GetValue(); } set { _multiChoice.SetValue(value); } }
+        public bool MultiChoice
+        {
+            get { return _multiChoice.GetValue(); }
+            set { _multiChoice.SetValue(value); }
+        }
     
         private PropertyValue<bool> _ended = new PropertyValue<bool>(nameof(PollRecordDto), nameof(Ended));
         
         [Required]
         [JsonPropertyName("ended")]
-        public bool Ended { get { return _ended.GetValue(); } set { _ended.SetValue(value); } }
+        public bool Ended
+        {
+            get { return _ended.GetValue(); }
+            set { _ended.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _expirationTime = new PropertyValue<SpaceTime?>(nameof(PollRecordDto), nameof(ExpirationTime));
         
         [JsonPropertyName("expirationTime")]
-        public SpaceTime? ExpirationTime { get { return _expirationTime.GetValue(); } set { _expirationTime.SetValue(value); } }
+        public SpaceTime? ExpirationTime
+        {
+            get { return _expirationTime.GetValue(); }
+            set { _expirationTime.SetValue(value); }
+        }
     
         private PropertyValue<List<VoteGroupDto>> _votes = new PropertyValue<List<VoteGroupDto>>(nameof(PollRecordDto), nameof(Votes));
         
         [Required]
         [JsonPropertyName("votes")]
-        public List<VoteGroupDto> Votes { get { return _votes.GetValue(); } set { _votes.SetValue(value); } }
+        public List<VoteGroupDto> Votes
+        {
+            get { return _votes.GetValue(); }
+            set { _votes.SetValue(value); }
+        }
     
     }
     

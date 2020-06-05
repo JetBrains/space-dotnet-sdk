@@ -31,13 +31,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("principals")]
-        public List<CPrincipalDto> Principals { get { return _principals.GetValue(); } set { _principals.SetValue(value); } }
+        public List<CPrincipalDto> Principals
+        {
+            get { return _principals.GetValue(); }
+            set { _principals.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _othersDisplayNames = new PropertyValue<List<string>>(nameof(MembersAddedItemDetailsDto), nameof(OthersDisplayNames));
         
         [Required]
         [JsonPropertyName("othersDisplayNames")]
-        public List<string> OthersDisplayNames { get { return _othersDisplayNames.GetValue(); } set { _othersDisplayNames.SetValue(value); } }
+        public List<string> OthersDisplayNames
+        {
+            get { return _othersDisplayNames.GetValue(); }
+            set { _othersDisplayNames.SetValue(value); }
+        }
     
     }
     

@@ -27,31 +27,51 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<long> _timestamp = new PropertyValue<long>(nameof(PermissionSnapshotDTODto), nameof(Timestamp));
         
         [Required]
         [JsonPropertyName("timestamp")]
-        public long Timestamp { get { return _timestamp.GetValue(); } set { _timestamp.SetValue(value); } }
+        public long Timestamp
+        {
+            get { return _timestamp.GetValue(); }
+            set { _timestamp.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PermissionSnapshotDTODto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<int> _version = new PropertyValue<int>(nameof(PermissionSnapshotDTODto), nameof(Version));
         
         [Required]
         [JsonPropertyName("version")]
-        public int Version { get { return _version.GetValue(); } set { _version.SetValue(value); } }
+        public int Version
+        {
+            get { return _version.GetValue(); }
+            set { _version.SetValue(value); }
+        }
     
         private PropertyValue<int> _size = new PropertyValue<int>(nameof(PermissionSnapshotDTODto), nameof(Size));
         
         [Required]
         [JsonPropertyName("size")]
-        public int Size { get { return _size.GetValue(); } set { _size.SetValue(value); } }
+        public int Size
+        {
+            get { return _size.GetValue(); }
+            set { _size.SetValue(value); }
+        }
     
     }
     

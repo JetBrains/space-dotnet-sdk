@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
+        public string Key
+        {
+            get { return _key.GetValue(); }
+            set { _key.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateAuthModuleRequest), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(CreateAuthModuleRequest), nameof(Enabled));
         
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get { return _enabled.GetValue(); } set { _enabled.SetValue(value); } }
+        public bool Enabled
+        {
+            get { return _enabled.GetValue(); }
+            set { _enabled.SetValue(value); }
+        }
     
         private PropertyValue<ESAuthModuleSettingsDto> _settings = new PropertyValue<ESAuthModuleSettingsDto>(nameof(CreateAuthModuleRequest), nameof(Settings));
         
         [Required]
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto Settings { get { return _settings.GetValue(); } set { _settings.SetValue(value); } }
+        public ESAuthModuleSettingsDto Settings
+        {
+            get { return _settings.GetValue(); }
+            set { _settings.SetValue(value); }
+        }
     
     }
     

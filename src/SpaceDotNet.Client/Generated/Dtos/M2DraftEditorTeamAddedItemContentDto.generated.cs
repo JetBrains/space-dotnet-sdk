@@ -31,19 +31,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<TDTeamDto> _team = new PropertyValue<TDTeamDto>(nameof(M2DraftEditorTeamAddedItemContentDto), nameof(Team));
         
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
+        public TDTeamDto Team
+        {
+            get { return _team.GetValue(); }
+            set { _team.SetValue(value); }
+        }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContentDto), nameof(Title));
         
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
     }
     

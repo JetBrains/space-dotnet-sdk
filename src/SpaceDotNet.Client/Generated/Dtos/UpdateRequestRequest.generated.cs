@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("approved")]
-        public bool Approved { get { return _approved.GetValue(); } set { _approved.SetValue(value); } }
+        public bool Approved
+        {
+            get { return _approved.GetValue(); }
+            set { _approved.SetValue(value); }
+        }
     
     }
     

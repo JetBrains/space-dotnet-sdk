@@ -31,61 +31,101 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("taskExecutionId")]
-        public string TaskExecutionId { get { return _taskExecutionId.GetValue(); } set { _taskExecutionId.SetValue(value); } }
+        public string TaskExecutionId
+        {
+            get { return _taskExecutionId.GetValue(); }
+            set { _taskExecutionId.SetValue(value); }
+        }
     
         private PropertyValue<string> _taskExecutionName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(TaskExecutionName));
         
         [Required]
         [JsonPropertyName("taskExecutionName")]
-        public string TaskExecutionName { get { return _taskExecutionName.GetValue(); } set { _taskExecutionName.SetValue(value); } }
+        public string TaskExecutionName
+        {
+            get { return _taskExecutionName.GetValue(); }
+            set { _taskExecutionName.SetValue(value); }
+        }
     
         private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(RepoName));
         
         [Required]
         [JsonPropertyName("repoName")]
-        public string RepoName { get { return _repoName.GetValue(); } set { _repoName.SetValue(value); } }
+        public string RepoName
+        {
+            get { return _repoName.GetValue(); }
+            set { _repoName.SetValue(value); }
+        }
     
         private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(BranchName));
         
         [Required]
         [JsonPropertyName("branchName")]
-        public string BranchName { get { return _branchName.GetValue(); } set { _branchName.SetValue(value); } }
+        public string BranchName
+        {
+            get { return _branchName.GetValue(); }
+            set { _branchName.SetValue(value); }
+        }
     
         private PropertyValue<string> _commit = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(Commit));
         
         [Required]
         [JsonPropertyName("commit")]
-        public string Commit { get { return _commit.GetValue(); } set { _commit.SetValue(value); } }
+        public string Commit
+        {
+            get { return _commit.GetValue(); }
+            set { _commit.SetValue(value); }
+        }
     
         private PropertyValue<string> _shortCommitMessage = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(ShortCommitMessage));
         
         [Required]
         [JsonPropertyName("shortCommitMessage")]
-        public string ShortCommitMessage { get { return _shortCommitMessage.GetValue(); } set { _shortCommitMessage.SetValue(value); } }
+        public string ShortCommitMessage
+        {
+            get { return _shortCommitMessage.GetValue(); }
+            set { _shortCommitMessage.SetValue(value); }
+        }
     
         private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(M2TaskExecutionFailureItemContentDto), nameof(Project));
         
         [Required]
         [JsonPropertyName("project")]
-        public ProjectKeyDto Project { get { return _project.GetValue(); } set { _project.SetValue(value); } }
+        public ProjectKeyDto Project
+        {
+            get { return _project.GetValue(); }
+            set { _project.SetValue(value); }
+        }
     
         private PropertyValue<long> _finishDateTime = new PropertyValue<long>(nameof(M2TaskExecutionFailureItemContentDto), nameof(FinishDateTime));
         
         [Required]
         [JsonPropertyName("finishDateTime")]
-        public long FinishDateTime { get { return _finishDateTime.GetValue(); } set { _finishDateTime.SetValue(value); } }
+        public long FinishDateTime
+        {
+            get { return _finishDateTime.GetValue(); }
+            set { _finishDateTime.SetValue(value); }
+        }
     
         private PropertyValue<string> _triggerInfo = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(TriggerInfo));
         
         [Required]
         [JsonPropertyName("triggerInfo")]
-        public string TriggerInfo { get { return _triggerInfo.GetValue(); } set { _triggerInfo.SetValue(value); } }
+        public string TriggerInfo
+        {
+            get { return _triggerInfo.GetValue(); }
+            set { _triggerInfo.SetValue(value); }
+        }
     
         private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(Details));
         
         [Required]
         [JsonPropertyName("details")]
-        public string Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
+        public string Details
+        {
+            get { return _details.GetValue(); }
+            set { _details.SetValue(value); }
+        }
     
     }
     

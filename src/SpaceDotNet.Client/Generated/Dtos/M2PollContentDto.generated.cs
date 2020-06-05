@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("poll")]
-        public PollRecordDto Poll { get { return _poll.GetValue(); } set { _poll.SetValue(value); } }
+        public PollRecordDto Poll
+        {
+            get { return _poll.GetValue(); }
+            set { _poll.SetValue(value); }
+        }
     
     }
     

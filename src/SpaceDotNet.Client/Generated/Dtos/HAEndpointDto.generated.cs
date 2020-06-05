@@ -27,51 +27,87 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("resource")]
-        public HAResourceDto Resource { get { return _resource.GetValue(); } set { _resource.SetValue(value); } }
+        public HAResourceDto Resource
+        {
+            get { return _resource.GetValue(); }
+            set { _resource.SetValue(value); }
+        }
     
         private PropertyValue<HAMethod> _method = new PropertyValue<HAMethod>(nameof(HAEndpointDto), nameof(Method));
         
         [Required]
         [JsonPropertyName("method")]
-        public HAMethod Method { get { return _method.GetValue(); } set { _method.SetValue(value); } }
+        public HAMethod Method
+        {
+            get { return _method.GetValue(); }
+            set { _method.SetValue(value); }
+        }
     
         private PropertyValue<List<HAParameterDto>> _parameters = new PropertyValue<List<HAParameterDto>>(nameof(HAEndpointDto), nameof(Parameters));
         
         [Required]
         [JsonPropertyName("parameters")]
-        public List<HAParameterDto> Parameters { get { return _parameters.GetValue(); } set { _parameters.SetValue(value); } }
+        public List<HAParameterDto> Parameters
+        {
+            get { return _parameters.GetValue(); }
+            set { _parameters.SetValue(value); }
+        }
     
         private PropertyValue<HATypeObjectDto?> _requestBody = new PropertyValue<HATypeObjectDto?>(nameof(HAEndpointDto), nameof(RequestBody));
         
         [JsonPropertyName("requestBody")]
-        public HATypeObjectDto? RequestBody { get { return _requestBody.GetValue(); } set { _requestBody.SetValue(value); } }
+        public HATypeObjectDto? RequestBody
+        {
+            get { return _requestBody.GetValue(); }
+            set { _requestBody.SetValue(value); }
+        }
     
         private PropertyValue<HATypeDto?> _responseBody = new PropertyValue<HATypeDto?>(nameof(HAEndpointDto), nameof(ResponseBody));
         
         [JsonPropertyName("responseBody")]
-        public HATypeDto? ResponseBody { get { return _responseBody.GetValue(); } set { _responseBody.SetValue(value); } }
+        public HATypeDto? ResponseBody
+        {
+            get { return _responseBody.GetValue(); }
+            set { _responseBody.SetValue(value); }
+        }
     
         private PropertyValue<HAPathDto> _path = new PropertyValue<HAPathDto>(nameof(HAEndpointDto), nameof(Path));
         
         [Required]
         [JsonPropertyName("path")]
-        public HAPathDto Path { get { return _path.GetValue(); } set { _path.SetValue(value); } }
+        public HAPathDto Path
+        {
+            get { return _path.GetValue(); }
+            set { _path.SetValue(value); }
+        }
     
         private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(HAEndpointDto), nameof(DisplayName));
         
         [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName { get { return _displayName.GetValue(); } set { _displayName.SetValue(value); } }
+        public string DisplayName
+        {
+            get { return _displayName.GetValue(); }
+            set { _displayName.SetValue(value); }
+        }
     
         private PropertyValue<string?> _doc = new PropertyValue<string?>(nameof(HAEndpointDto), nameof(Doc));
         
         [JsonPropertyName("doc")]
-        public string? Doc { get { return _doc.GetValue(); } set { _doc.SetValue(value); } }
+        public string? Doc
+        {
+            get { return _doc.GetValue(); }
+            set { _doc.SetValue(value); }
+        }
     
         private PropertyValue<HADeprecationDto?> _deprecation = new PropertyValue<HADeprecationDto?>(nameof(HAEndpointDto), nameof(Deprecation));
         
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get { return _deprecation.GetValue(); } set { _deprecation.SetValue(value); } }
+        public HADeprecationDto? Deprecation
+        {
+            get { return _deprecation.GetValue(); }
+            set { _deprecation.SetValue(value); }
+        }
     
     }
     

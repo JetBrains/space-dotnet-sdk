@@ -31,13 +31,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
+        public TDTeamDto Team
+        {
+            get { return _team.GetValue(); }
+            set { _team.SetValue(value); }
+        }
     
         private PropertyValue<ChannelSpecificDefaultsDto> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto>(nameof(M2ChannelContentTeamDto), nameof(NotificationDefaults));
         
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
+        public ChannelSpecificDefaultsDto NotificationDefaults
+        {
+            get { return _notificationDefaults.GetValue(); }
+            set { _notificationDefaults.SetValue(value); }
+        }
     
     }
     

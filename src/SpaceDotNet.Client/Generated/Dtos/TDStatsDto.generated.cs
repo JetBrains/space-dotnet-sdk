@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("totalMembers")]
-        public int TotalMembers { get { return _totalMembers.GetValue(); } set { _totalMembers.SetValue(value); } }
+        public int TotalMembers
+        {
+            get { return _totalMembers.GetValue(); }
+            set { _totalMembers.SetValue(value); }
+        }
     
         private PropertyValue<List<Pair<TDTeamDto, int>>> _teams = new PropertyValue<List<Pair<TDTeamDto, int>>>(nameof(TDStatsDto), nameof(Teams));
         
         [Required]
         [JsonPropertyName("teams")]
-        public List<Pair<TDTeamDto, int>> Teams { get { return _teams.GetValue(); } set { _teams.SetValue(value); } }
+        public List<Pair<TDTeamDto, int>> Teams
+        {
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
+        }
     
         private PropertyValue<List<Pair<TDRoleDto, int>>> _roles = new PropertyValue<List<Pair<TDRoleDto, int>>>(nameof(TDStatsDto), nameof(Roles));
         
         [Required]
         [JsonPropertyName("roles")]
-        public List<Pair<TDRoleDto, int>> Roles { get { return _roles.GetValue(); } set { _roles.SetValue(value); } }
+        public List<Pair<TDRoleDto, int>> Roles
+        {
+            get { return _roles.GetValue(); }
+            set { _roles.SetValue(value); }
+        }
     
         private PropertyValue<List<Pair<TDLocationDto, int>>> _locations = new PropertyValue<List<Pair<TDLocationDto, int>>>(nameof(TDStatsDto), nameof(Locations));
         
         [Required]
         [JsonPropertyName("locations")]
-        public List<Pair<TDLocationDto, int>> Locations { get { return _locations.GetValue(); } set { _locations.SetValue(value); } }
+        public List<Pair<TDLocationDto, int>> Locations
+        {
+            get { return _locations.GetValue(); }
+            set { _locations.SetValue(value); }
+        }
     
     }
     

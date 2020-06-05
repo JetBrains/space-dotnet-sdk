@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
+        public string Repository
+        {
+            get { return _repository.GetValue(); }
+            set { _repository.SetValue(value); }
+        }
     
         private PropertyValue<List<BranchInfoDto>> _branches = new PropertyValue<List<BranchInfoDto>>(nameof(TrackedBranchesInReviewDto), nameof(Branches));
         
         [Required]
         [JsonPropertyName("branches")]
-        public List<BranchInfoDto> Branches { get { return _branches.GetValue(); } set { _branches.SetValue(value); } }
+        public List<BranchInfoDto> Branches
+        {
+            get { return _branches.GetValue(); }
+            set { _branches.SetValue(value); }
+        }
     
     }
     

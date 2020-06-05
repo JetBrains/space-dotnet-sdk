@@ -28,13 +28,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("day")]
-        public int Day { get { return _day.GetValue(); } set { _day.SetValue(value); } }
+        public int Day
+        {
+            get { return _day.GetValue(); }
+            set { _day.SetValue(value); }
+        }
     
         private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnDateDto), nameof(Interval));
         
         [Required]
         [JsonPropertyName("interval")]
-        public int Interval { get { return _interval.GetValue(); } set { _interval.SetValue(value); } }
+        public int Interval
+        {
+            get { return _interval.GetValue(); }
+            set { _interval.SetValue(value); }
+        }
     
     }
     

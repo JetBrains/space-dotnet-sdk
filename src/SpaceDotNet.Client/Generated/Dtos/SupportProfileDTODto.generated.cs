@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<bool> _adminPermissionsGranted = new PropertyValue<bool>(nameof(SupportProfileDTODto), nameof(AdminPermissionsGranted));
         
         [Required]
         [JsonPropertyName("adminPermissionsGranted")]
-        public bool AdminPermissionsGranted { get { return _adminPermissionsGranted.GetValue(); } set { _adminPermissionsGranted.SetValue(value); } }
+        public bool AdminPermissionsGranted
+        {
+            get { return _adminPermissionsGranted.GetValue(); }
+            set { _adminPermissionsGranted.SetValue(value); }
+        }
     
     }
     

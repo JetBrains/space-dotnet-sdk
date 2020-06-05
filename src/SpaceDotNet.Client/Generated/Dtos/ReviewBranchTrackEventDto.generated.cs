@@ -31,19 +31,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
+        public string Repository
+        {
+            get { return _repository.GetValue(); }
+            set { _repository.SetValue(value); }
+        }
     
         private PropertyValue<string> _branch = new PropertyValue<string>(nameof(ReviewBranchTrackEventDto), nameof(Branch));
         
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get { return _branch.GetValue(); } set { _branch.SetValue(value); } }
+        public string Branch
+        {
+            get { return _branch.GetValue(); }
+            set { _branch.SetValue(value); }
+        }
     
         private PropertyValue<bool> _track = new PropertyValue<bool>(nameof(ReviewBranchTrackEventDto), nameof(Track));
         
         [Required]
         [JsonPropertyName("track")]
-        public bool Track { get { return _track.GetValue(); } set { _track.SetValue(value); } }
+        public bool Track
+        {
+            get { return _track.GetValue(); }
+            set { _track.SetValue(value); }
+        }
     
     }
     

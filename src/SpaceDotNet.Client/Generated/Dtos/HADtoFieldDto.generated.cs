@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("field")]
-        public HAFieldDto Field { get { return _field.GetValue(); } set { _field.SetValue(value); } }
+        public HAFieldDto Field
+        {
+            get { return _field.GetValue(); }
+            set { _field.SetValue(value); }
+        }
     
         private PropertyValue<bool> _extension = new PropertyValue<bool>(nameof(HADtoFieldDto), nameof(Extension));
         
         [Required]
         [JsonPropertyName("extension")]
-        public bool Extension { get { return _extension.GetValue(); } set { _extension.SetValue(value); } }
+        public bool Extension
+        {
+            get { return _extension.GetValue(); }
+            set { _extension.SetValue(value); }
+        }
     
     }
     

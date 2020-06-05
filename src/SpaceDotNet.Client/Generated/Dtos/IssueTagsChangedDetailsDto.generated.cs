@@ -30,12 +30,20 @@ namespace SpaceDotNet.Client
         private PropertyValue<List<PlanningTagDto>?> _addedTags = new PropertyValue<List<PlanningTagDto>?>(nameof(IssueTagsChangedDetailsDto), nameof(AddedTags));
         
         [JsonPropertyName("addedTags")]
-        public List<PlanningTagDto>? AddedTags { get { return _addedTags.GetValue(); } set { _addedTags.SetValue(value); } }
+        public List<PlanningTagDto>? AddedTags
+        {
+            get { return _addedTags.GetValue(); }
+            set { _addedTags.SetValue(value); }
+        }
     
         private PropertyValue<List<PlanningTagDto>?> _removedTags = new PropertyValue<List<PlanningTagDto>?>(nameof(IssueTagsChangedDetailsDto), nameof(RemovedTags));
         
         [JsonPropertyName("removedTags")]
-        public List<PlanningTagDto>? RemovedTags { get { return _removedTags.GetValue(); } set { _removedTags.SetValue(value); } }
+        public List<PlanningTagDto>? RemovedTags
+        {
+            get { return _removedTags.GetValue(); }
+            set { _removedTags.SetValue(value); }
+        }
     
     }
     

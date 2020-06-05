@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("approved")]
-        public bool Approved { get { return _approved.GetValue(); } set { _approved.SetValue(value); } }
+        public bool Approved
+        {
+            get { return _approved.GetValue(); }
+            set { _approved.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto> _approvedBy = new PropertyValue<TDMemberProfileDto>(nameof(AbsenceApprovalDto), nameof(ApprovedBy));
         
         [Required]
         [JsonPropertyName("approvedBy")]
-        public TDMemberProfileDto ApprovedBy { get { return _approvedBy.GetValue(); } set { _approvedBy.SetValue(value); } }
+        public TDMemberProfileDto ApprovedBy
+        {
+            get { return _approvedBy.GetValue(); }
+            set { _approvedBy.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _approvedAt = new PropertyValue<SpaceTime>(nameof(AbsenceApprovalDto), nameof(ApprovedAt));
         
         [Required]
         [JsonPropertyName("approvedAt")]
-        public SpaceTime ApprovedAt { get { return _approvedAt.GetValue(); } set { _approvedAt.SetValue(value); } }
+        public SpaceTime ApprovedAt
+        {
+            get { return _approvedAt.GetValue(); }
+            set { _approvedAt.SetValue(value); }
+        }
     
     }
     

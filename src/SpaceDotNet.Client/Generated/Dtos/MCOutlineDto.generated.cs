@@ -30,12 +30,20 @@ namespace SpaceDotNet.Client
         private PropertyValue<MCElementDto?> _icon = new PropertyValue<MCElementDto?>(nameof(MCOutlineDto), nameof(Icon));
         
         [JsonPropertyName("icon")]
-        public MCElementDto? Icon { get { return _icon.GetValue(); } set { _icon.SetValue(value); } }
+        public MCElementDto? Icon
+        {
+            get { return _icon.GetValue(); }
+            set { _icon.SetValue(value); }
+        }
     
         private PropertyValue<MCTextDto?> _text = new PropertyValue<MCTextDto?>(nameof(MCOutlineDto), nameof(Text));
         
         [JsonPropertyName("text")]
-        public MCTextDto? Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public MCTextDto? Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
     }
     

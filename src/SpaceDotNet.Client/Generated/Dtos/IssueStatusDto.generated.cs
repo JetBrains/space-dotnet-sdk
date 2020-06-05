@@ -27,31 +27,51 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(IssueStatusDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(IssueStatusDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(IssueStatusDto), nameof(Resolved));
         
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved { get { return _resolved.GetValue(); } set { _resolved.SetValue(value); } }
+        public bool Resolved
+        {
+            get { return _resolved.GetValue(); }
+            set { _resolved.SetValue(value); }
+        }
     
         private PropertyValue<string> _color = new PropertyValue<string>(nameof(IssueStatusDto), nameof(Color));
         
         [Required]
         [JsonPropertyName("color")]
-        public string Color { get { return _color.GetValue(); } set { _color.SetValue(value); } }
+        public string Color
+        {
+            get { return _color.GetValue(); }
+            set { _color.SetValue(value); }
+        }
     
     }
     

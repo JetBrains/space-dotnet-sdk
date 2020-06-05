@@ -31,30 +31,50 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<long> _resetCounter = new PropertyValue<long>(nameof(CollabDocumentDto), nameof(ResetCounter));
         
         [Required]
         [JsonPropertyName("resetCounter")]
-        public long ResetCounter { get { return _resetCounter.GetValue(); } set { _resetCounter.SetValue(value); } }
+        public long ResetCounter
+        {
+            get { return _resetCounter.GetValue(); }
+            set { _resetCounter.SetValue(value); }
+        }
     
         private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(CollabDocumentDto), nameof(Version));
         
         [JsonPropertyName("version")]
-        public long? Version { get { return _version.GetValue(); } set { _version.SetValue(value); } }
+        public long? Version
+        {
+            get { return _version.GetValue(); }
+            set { _version.SetValue(value); }
+        }
     
         private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(CollabDocumentDto), nameof(Type));
         
         [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
+        public DraftDocumentType Type
+        {
+            get { return _type.GetValue(); }
+            set { _type.SetValue(value); }
+        }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(CollabDocumentDto), nameof(Text));
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
     }
     

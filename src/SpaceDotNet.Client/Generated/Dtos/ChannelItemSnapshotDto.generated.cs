@@ -31,46 +31,78 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelItemSnapshotDto), nameof(ChannelId));
         
         [JsonPropertyName("channelId")]
-        public string? ChannelId { get { return _channelId.GetValue(); } set { _channelId.SetValue(value); } }
+        public string? ChannelId
+        {
+            get { return _channelId.GetValue(); }
+            set { _channelId.SetValue(value); }
+        }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemSnapshotDto), nameof(Text));
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<M2ItemContentDetailsDto?> _details = new PropertyValue<M2ItemContentDetailsDto?>(nameof(ChannelItemSnapshotDto), nameof(Details));
         
         [JsonPropertyName("details")]
-        public M2ItemContentDetailsDto? Details { get { return _details.GetValue(); } set { _details.SetValue(value); } }
+        public M2ItemContentDetailsDto? Details
+        {
+            get { return _details.GetValue(); }
+            set { _details.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto> _author = new PropertyValue<CPrincipalDto>(nameof(ChannelItemSnapshotDto), nameof(Author));
         
         [Required]
         [JsonPropertyName("author")]
-        public CPrincipalDto Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
+        public CPrincipalDto Author
+        {
+            get { return _author.GetValue(); }
+            set { _author.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ChannelItemSnapshotDto), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
+        public SpaceTime Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
+        }
     
         private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemSnapshotDto), nameof(Time));
         
         [Required]
         [JsonPropertyName("time")]
-        public long Time { get { return _time.GetValue(); } set { _time.SetValue(value); } }
+        public long Time
+        {
+            get { return _time.GetValue(); }
+            set { _time.SetValue(value); }
+        }
     
         private PropertyValue<List<AttachmentInfoDto>?> _attachments = new PropertyValue<List<AttachmentInfoDto>?>(nameof(ChannelItemSnapshotDto), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto>? Attachments { get { return _attachments.GetValue(); } set { _attachments.SetValue(value); } }
+        public List<AttachmentInfoDto>? Attachments
+        {
+            get { return _attachments.GetValue(); }
+            set { _attachments.SetValue(value); }
+        }
     
     }
     

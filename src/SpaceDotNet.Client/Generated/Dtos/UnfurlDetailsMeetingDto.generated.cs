@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("meeting")]
-        public DTOMeetingDto Meeting { get { return _meeting.GetValue(); } set { _meeting.SetValue(value); } }
+        public DTOMeetingDto Meeting
+        {
+            get { return _meeting.GetValue(); }
+            set { _meeting.SetValue(value); }
+        }
     
     }
     

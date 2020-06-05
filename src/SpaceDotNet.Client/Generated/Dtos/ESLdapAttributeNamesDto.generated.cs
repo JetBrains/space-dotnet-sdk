@@ -26,22 +26,38 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNamesDto), nameof(FullNameAttributeName));
         
         [JsonPropertyName("fullNameAttributeName")]
-        public string? FullNameAttributeName { get { return _fullNameAttributeName.GetValue(); } set { _fullNameAttributeName.SetValue(value); } }
+        public string? FullNameAttributeName
+        {
+            get { return _fullNameAttributeName.GetValue(); }
+            set { _fullNameAttributeName.SetValue(value); }
+        }
     
         private PropertyValue<string?> _usernameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNamesDto), nameof(UsernameAttributeName));
         
         [JsonPropertyName("usernameAttributeName")]
-        public string? UsernameAttributeName { get { return _usernameAttributeName.GetValue(); } set { _usernameAttributeName.SetValue(value); } }
+        public string? UsernameAttributeName
+        {
+            get { return _usernameAttributeName.GetValue(); }
+            set { _usernameAttributeName.SetValue(value); }
+        }
     
         private PropertyValue<string?> _emailAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNamesDto), nameof(EmailAttributeName));
         
         [JsonPropertyName("emailAttributeName")]
-        public string? EmailAttributeName { get { return _emailAttributeName.GetValue(); } set { _emailAttributeName.SetValue(value); } }
+        public string? EmailAttributeName
+        {
+            get { return _emailAttributeName.GetValue(); }
+            set { _emailAttributeName.SetValue(value); }
+        }
     
         private PropertyValue<string?> _groupsAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNamesDto), nameof(GroupsAttributeName));
         
         [JsonPropertyName("groupsAttributeName")]
-        public string? GroupsAttributeName { get { return _groupsAttributeName.GetValue(); } set { _groupsAttributeName.SetValue(value); } }
+        public string? GroupsAttributeName
+        {
+            get { return _groupsAttributeName.GetValue(); }
+            set { _groupsAttributeName.SetValue(value); }
+        }
     
     }
     

@@ -27,82 +27,138 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<ProjectKeyDto> _key = new PropertyValue<ProjectKeyDto>(nameof(PRProjectDto), nameof(Key));
         
         [Required]
         [JsonPropertyName("key")]
-        public ProjectKeyDto Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
+        public ProjectKeyDto Key
+        {
+            get { return _key.GetValue(); }
+            set { _key.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRProjectDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(PRProjectDto), nameof(Private));
         
         [Required]
         [JsonPropertyName("private")]
-        public bool Private { get { return _private.GetValue(); } set { _private.SetValue(value); } }
+        public bool Private
+        {
+            get { return _private.GetValue(); }
+            set { _private.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PRProjectDto), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(PRProjectDto), nameof(Icon));
         
         [JsonPropertyName("icon")]
-        public string? Icon { get { return _icon.GetValue(); } set { _icon.SetValue(value); } }
+        public string? Icon
+        {
+            get { return _icon.GetValue(); }
+            set { _icon.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _latestRepositoryActivity = new PropertyValue<SpaceTime?>(nameof(PRProjectDto), nameof(LatestRepositoryActivity));
         
         [JsonPropertyName("latestRepositoryActivity")]
-        public SpaceTime? LatestRepositoryActivity { get { return _latestRepositoryActivity.GetValue(); } set { _latestRepositoryActivity.SetValue(value); } }
+        public SpaceTime? LatestRepositoryActivity
+        {
+            get { return _latestRepositoryActivity.GetValue(); }
+            set { _latestRepositoryActivity.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PRProjectDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<List<TDMemberProfileDto>> _adminProfiles = new PropertyValue<List<TDMemberProfileDto>>(nameof(PRProjectDto), nameof(AdminProfiles));
         
         [Required]
         [JsonPropertyName("adminProfiles")]
-        public List<TDMemberProfileDto> AdminProfiles { get { return _adminProfiles.GetValue(); } set { _adminProfiles.SetValue(value); } }
+        public List<TDMemberProfileDto> AdminProfiles
+        {
+            get { return _adminProfiles.GetValue(); }
+            set { _adminProfiles.SetValue(value); }
+        }
     
         private PropertyValue<List<TDTeamDto>> _adminTeams = new PropertyValue<List<TDTeamDto>>(nameof(PRProjectDto), nameof(AdminTeams));
         
         [Required]
         [JsonPropertyName("adminTeams")]
-        public List<TDTeamDto> AdminTeams { get { return _adminTeams.GetValue(); } set { _adminTeams.SetValue(value); } }
+        public List<TDTeamDto> AdminTeams
+        {
+            get { return _adminTeams.GetValue(); }
+            set { _adminTeams.SetValue(value); }
+        }
     
         private PropertyValue<List<TDMemberProfileDto>> _memberProfiles = new PropertyValue<List<TDMemberProfileDto>>(nameof(PRProjectDto), nameof(MemberProfiles));
         
         [Required]
         [JsonPropertyName("memberProfiles")]
-        public List<TDMemberProfileDto> MemberProfiles { get { return _memberProfiles.GetValue(); } set { _memberProfiles.SetValue(value); } }
+        public List<TDMemberProfileDto> MemberProfiles
+        {
+            get { return _memberProfiles.GetValue(); }
+            set { _memberProfiles.SetValue(value); }
+        }
     
         private PropertyValue<List<TDTeamDto>> _memberTeams = new PropertyValue<List<TDTeamDto>>(nameof(PRProjectDto), nameof(MemberTeams));
         
         [Required]
         [JsonPropertyName("memberTeams")]
-        public List<TDTeamDto> MemberTeams { get { return _memberTeams.GetValue(); } set { _memberTeams.SetValue(value); } }
+        public List<TDTeamDto> MemberTeams
+        {
+            get { return _memberTeams.GetValue(); }
+            set { _memberTeams.SetValue(value); }
+        }
     
         private PropertyValue<List<PRRepositoryInfoDto>> _repos = new PropertyValue<List<PRRepositoryInfoDto>>(nameof(PRProjectDto), nameof(Repos));
         
         [Required]
         [JsonPropertyName("repos")]
-        public List<PRRepositoryInfoDto> Repos { get { return _repos.GetValue(); } set { _repos.SetValue(value); } }
+        public List<PRRepositoryInfoDto> Repos
+        {
+            get { return _repos.GetValue(); }
+            set { _repos.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(PRProjectDto), nameof(Tags));
         
         [Required]
         [JsonPropertyName("tags")]
-        public List<string> Tags { get { return _tags.GetValue(); } set { _tags.SetValue(value); } }
+        public List<string> Tags
+        {
+            get { return _tags.GetValue(); }
+            set { _tags.SetValue(value); }
+        }
     
     }
     

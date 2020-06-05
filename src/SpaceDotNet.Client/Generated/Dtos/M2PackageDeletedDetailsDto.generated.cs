@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("pkg")]
-        public PackageVersionInfoDto Pkg { get { return _pkg.GetValue(); } set { _pkg.SetValue(value); } }
+        public PackageVersionInfoDto Pkg
+        {
+            get { return _pkg.GetValue(); }
+            set { _pkg.SetValue(value); }
+        }
     
     }
     

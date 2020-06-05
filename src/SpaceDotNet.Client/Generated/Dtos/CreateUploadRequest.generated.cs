@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("storagePrefix")]
-        public string StoragePrefix { get { return _storagePrefix.GetValue(); } set { _storagePrefix.SetValue(value); } }
+        public string StoragePrefix
+        {
+            get { return _storagePrefix.GetValue(); }
+            set { _storagePrefix.SetValue(value); }
+        }
     
         private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(CreateUploadRequest), nameof(MediaType));
         
         [JsonPropertyName("mediaType")]
-        public string? MediaType { get { return _mediaType.GetValue(); } set { _mediaType.SetValue(value); } }
+        public string? MediaType
+        {
+            get { return _mediaType.GetValue(); }
+            set { _mediaType.SetValue(value); }
+        }
     
     }
     

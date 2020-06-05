@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("days")]
-        public List<WorkdayDto> Days { get { return _days.GetValue(); } set { _days.SetValue(value); } }
+        public List<WorkdayDto> Days
+        {
+            get { return _days.GetValue(); }
+            set { _days.SetValue(value); }
+        }
     
     }
     

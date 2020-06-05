@@ -26,22 +26,38 @@ namespace SpaceDotNet.Client
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(UpdateChecklistRequest), nameof(Name));
         
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(UpdateChecklistRequest), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<string?> _owner = new PropertyValue<string?>(nameof(UpdateChecklistRequest), nameof(Owner));
         
         [JsonPropertyName("owner")]
-        public string? Owner { get { return _owner.GetValue(); } set { _owner.SetValue(value); } }
+        public string? Owner
+        {
+            get { return _owner.GetValue(); }
+            set { _owner.SetValue(value); }
+        }
     
         private PropertyValue<string?> _tag = new PropertyValue<string?>(nameof(UpdateChecklistRequest), nameof(Tag));
         
         [JsonPropertyName("tag")]
-        public string? Tag { get { return _tag.GetValue(); } set { _tag.SetValue(value); } }
+        public string? Tag
+        {
+            get { return _tag.GetValue(); }
+            set { _tag.SetValue(value); }
+        }
     
     }
     

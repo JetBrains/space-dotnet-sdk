@@ -27,55 +27,91 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("certificateType")]
-        public string CertificateType { get { return _certificateType.GetValue(); } set { _certificateType.SetValue(value); } }
+        public string CertificateType
+        {
+            get { return _certificateType.GetValue(); }
+            set { _certificateType.SetValue(value); }
+        }
     
         private PropertyValue<int> _version = new PropertyValue<int>(nameof(CertificateInfoDto), nameof(Version));
         
         [Required]
         [JsonPropertyName("version")]
-        public int Version { get { return _version.GetValue(); } set { _version.SetValue(value); } }
+        public int Version
+        {
+            get { return _version.GetValue(); }
+            set { _version.SetValue(value); }
+        }
     
         private PropertyValue<string> _serialNumber = new PropertyValue<string>(nameof(CertificateInfoDto), nameof(SerialNumber));
         
         [Required]
         [JsonPropertyName("serialNumber")]
-        public string SerialNumber { get { return _serialNumber.GetValue(); } set { _serialNumber.SetValue(value); } }
+        public string SerialNumber
+        {
+            get { return _serialNumber.GetValue(); }
+            set { _serialNumber.SetValue(value); }
+        }
     
         private PropertyValue<string> _issuedBy = new PropertyValue<string>(nameof(CertificateInfoDto), nameof(IssuedBy));
         
         [Required]
         [JsonPropertyName("issuedBy")]
-        public string IssuedBy { get { return _issuedBy.GetValue(); } set { _issuedBy.SetValue(value); } }
+        public string IssuedBy
+        {
+            get { return _issuedBy.GetValue(); }
+            set { _issuedBy.SetValue(value); }
+        }
     
         private PropertyValue<string> _issuedTo = new PropertyValue<string>(nameof(CertificateInfoDto), nameof(IssuedTo));
         
         [Required]
         [JsonPropertyName("issuedTo")]
-        public string IssuedTo { get { return _issuedTo.GetValue(); } set { _issuedTo.SetValue(value); } }
+        public string IssuedTo
+        {
+            get { return _issuedTo.GetValue(); }
+            set { _issuedTo.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _validFrom = new PropertyValue<SpaceTime>(nameof(CertificateInfoDto), nameof(ValidFrom));
         
         [Required]
         [JsonPropertyName("validFrom")]
-        public SpaceTime ValidFrom { get { return _validFrom.GetValue(); } set { _validFrom.SetValue(value); } }
+        public SpaceTime ValidFrom
+        {
+            get { return _validFrom.GetValue(); }
+            set { _validFrom.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _validTo = new PropertyValue<SpaceTime>(nameof(CertificateInfoDto), nameof(ValidTo));
         
         [Required]
         [JsonPropertyName("validTo")]
-        public SpaceTime ValidTo { get { return _validTo.GetValue(); } set { _validTo.SetValue(value); } }
+        public SpaceTime ValidTo
+        {
+            get { return _validTo.GetValue(); }
+            set { _validTo.SetValue(value); }
+        }
     
         private PropertyValue<string> _algorithm = new PropertyValue<string>(nameof(CertificateInfoDto), nameof(Algorithm));
         
         [Required]
         [JsonPropertyName("algorithm")]
-        public string Algorithm { get { return _algorithm.GetValue(); } set { _algorithm.SetValue(value); } }
+        public string Algorithm
+        {
+            get { return _algorithm.GetValue(); }
+            set { _algorithm.SetValue(value); }
+        }
     
         private PropertyValue<FingerprintDto> _fingerprint = new PropertyValue<FingerprintDto>(nameof(CertificateInfoDto), nameof(Fingerprint));
         
         [Required]
         [JsonPropertyName("fingerprint")]
-        public FingerprintDto Fingerprint { get { return _fingerprint.GetValue(); } set { _fingerprint.SetValue(value); } }
+        public FingerprintDto Fingerprint
+        {
+            get { return _fingerprint.GetValue(); }
+            set { _fingerprint.SetValue(value); }
+        }
     
     }
     

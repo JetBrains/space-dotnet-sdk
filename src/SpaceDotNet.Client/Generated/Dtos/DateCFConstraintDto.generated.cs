@@ -27,17 +27,29 @@ namespace SpaceDotNet.Client
         private PropertyValue<SpaceDate?> _min = new PropertyValue<SpaceDate?>(nameof(DateCFConstraintDto), nameof(Min));
         
         [JsonPropertyName("min")]
-        public SpaceDate? Min { get { return _min.GetValue(); } set { _min.SetValue(value); } }
+        public SpaceDate? Min
+        {
+            get { return _min.GetValue(); }
+            set { _min.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _max = new PropertyValue<SpaceDate?>(nameof(DateCFConstraintDto), nameof(Max));
         
         [JsonPropertyName("max")]
-        public SpaceDate? Max { get { return _max.GetValue(); } set { _max.SetValue(value); } }
+        public SpaceDate? Max
+        {
+            get { return _max.GetValue(); }
+            set { _max.SetValue(value); }
+        }
     
         private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(DateCFConstraintDto), nameof(Message));
         
         [JsonPropertyName("message")]
-        public string? Message { get { return _message.GetValue(); } set { _message.SetValue(value); } }
+        public string? Message
+        {
+            get { return _message.GetValue(); }
+            set { _message.SetValue(value); }
+        }
     
     }
     

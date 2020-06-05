@@ -27,41 +27,69 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PublicHolidayCalendarRecordDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidayCalendarRecordDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _firstDate = new PropertyValue<SpaceDate?>(nameof(PublicHolidayCalendarRecordDto), nameof(FirstDate));
         
         [JsonPropertyName("firstDate")]
-        public SpaceDate? FirstDate { get { return _firstDate.GetValue(); } set { _firstDate.SetValue(value); } }
+        public SpaceDate? FirstDate
+        {
+            get { return _firstDate.GetValue(); }
+            set { _firstDate.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _lastDate = new PropertyValue<SpaceDate?>(nameof(PublicHolidayCalendarRecordDto), nameof(LastDate));
         
         [JsonPropertyName("lastDate")]
-        public SpaceDate? LastDate { get { return _lastDate.GetValue(); } set { _lastDate.SetValue(value); } }
+        public SpaceDate? LastDate
+        {
+            get { return _lastDate.GetValue(); }
+            set { _lastDate.SetValue(value); }
+        }
     
         private PropertyValue<int> _eventsCount = new PropertyValue<int>(nameof(PublicHolidayCalendarRecordDto), nameof(EventsCount));
         
         [Required]
         [JsonPropertyName("eventsCount")]
-        public int EventsCount { get { return _eventsCount.GetValue(); } set { _eventsCount.SetValue(value); } }
+        public int EventsCount
+        {
+            get { return _eventsCount.GetValue(); }
+            set { _eventsCount.SetValue(value); }
+        }
     
         private PropertyValue<TDLocationDto> _location = new PropertyValue<TDLocationDto>(nameof(PublicHolidayCalendarRecordDto), nameof(Location));
         
         [Required]
         [JsonPropertyName("location")]
-        public TDLocationDto Location { get { return _location.GetValue(); } set { _location.SetValue(value); } }
+        public TDLocationDto Location
+        {
+            get { return _location.GetValue(); }
+            set { _location.SetValue(value); }
+        }
     
     }
     

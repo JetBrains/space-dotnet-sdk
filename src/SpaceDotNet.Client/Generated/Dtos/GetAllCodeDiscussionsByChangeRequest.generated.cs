@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("projectKey")]
-        public ProjectKeyDto ProjectKey { get { return _projectKey.GetValue(); } set { _projectKey.SetValue(value); } }
+        public ProjectKeyDto ProjectKey
+        {
+            get { return _projectKey.GetValue(); }
+            set { _projectKey.SetValue(value); }
+        }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(GetAllCodeDiscussionsByChangeRequest), nameof(Repository));
         
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
+        public string Repository
+        {
+            get { return _repository.GetValue(); }
+            set { _repository.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(GetAllCodeDiscussionsByChangeRequest), nameof(Revisions));
         
         [Required]
         [JsonPropertyName("revisions")]
-        public List<string> Revisions { get { return _revisions.GetValue(); } set { _revisions.SetValue(value); } }
+        public List<string> Revisions
+        {
+            get { return _revisions.GetValue(); }
+            set { _revisions.SetValue(value); }
+        }
     
         private PropertyValue<GitCommitChangeDto> _change = new PropertyValue<GitCommitChangeDto>(nameof(GetAllCodeDiscussionsByChangeRequest), nameof(Change));
         
         [Required]
         [JsonPropertyName("change")]
-        public GitCommitChangeDto Change { get { return _change.GetValue(); } set { _change.SetValue(value); } }
+        public GitCommitChangeDto Change
+        {
+            get { return _change.GetValue(); }
+            set { _change.SetValue(value); }
+        }
     
     }
     

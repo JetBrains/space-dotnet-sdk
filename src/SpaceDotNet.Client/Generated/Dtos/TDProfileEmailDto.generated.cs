@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _email = new PropertyValue<string>(nameof(TDProfileEmailDto), nameof(Email));
         
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get { return _email.GetValue(); } set { _email.SetValue(value); } }
+        public string Email
+        {
+            get { return _email.GetValue(); }
+            set { _email.SetValue(value); }
+        }
     
     }
     

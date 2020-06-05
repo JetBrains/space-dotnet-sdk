@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("firstDayOfWeek")]
-        public Weekday FirstDayOfWeek { get { return _firstDayOfWeek.GetValue(); } set { _firstDayOfWeek.SetValue(value); } }
+        public Weekday FirstDayOfWeek
+        {
+            get { return _firstDayOfWeek.GetValue(); }
+            set { _firstDayOfWeek.SetValue(value); }
+        }
     
     }
     

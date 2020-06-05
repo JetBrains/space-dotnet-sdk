@@ -28,19 +28,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("primitive")]
-        public HAPrimitive Primitive { get { return _primitive.GetValue(); } set { _primitive.SetValue(value); } }
+        public HAPrimitive Primitive
+        {
+            get { return _primitive.GetValue(); }
+            set { _primitive.SetValue(value); }
+        }
     
         private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypePrimitiveDto), nameof(Nullable));
         
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get { return _nullable.GetValue(); } set { _nullable.SetValue(value); } }
+        public bool Nullable
+        {
+            get { return _nullable.GetValue(); }
+            set { _nullable.SetValue(value); }
+        }
     
         private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypePrimitiveDto), nameof(Optional));
         
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get { return _optional.GetValue(); } set { _optional.SetValue(value); } }
+        public bool Optional
+        {
+            get { return _optional.GetValue(); }
+            set { _optional.SetValue(value); }
+        }
     
     }
     

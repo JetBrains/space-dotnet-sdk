@@ -31,12 +31,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("absence")]
-        public AbsenceRecordDto Absence { get { return _absence.GetValue(); } set { _absence.SetValue(value); } }
+        public AbsenceRecordDto Absence
+        {
+            get { return _absence.GetValue(); }
+            set { _absence.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _by = new PropertyValue<TDMemberProfileDto?>(nameof(M2AbsenceItemContentDto), nameof(By));
         
         [JsonPropertyName("by")]
-        public TDMemberProfileDto? By { get { return _by.GetValue(); } set { _by.SetValue(value); } }
+        public TDMemberProfileDto? By
+        {
+            get { return _by.GetValue(); }
+            set { _by.SetValue(value); }
+        }
     
     }
     

@@ -31,13 +31,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("oldStatus")]
-        public IssueStatusDto OldStatus { get { return _oldStatus.GetValue(); } set { _oldStatus.SetValue(value); } }
+        public IssueStatusDto OldStatus
+        {
+            get { return _oldStatus.GetValue(); }
+            set { _oldStatus.SetValue(value); }
+        }
     
         private PropertyValue<IssueStatusDto> _newStatus = new PropertyValue<IssueStatusDto>(nameof(IssueStatusChangedDetailsDto), nameof(NewStatus));
         
         [Required]
         [JsonPropertyName("newStatus")]
-        public IssueStatusDto NewStatus { get { return _newStatus.GetValue(); } set { _newStatus.SetValue(value); } }
+        public IssueStatusDto NewStatus
+        {
+            get { return _newStatus.GetValue(); }
+            set { _newStatus.SetValue(value); }
+        }
     
     }
     

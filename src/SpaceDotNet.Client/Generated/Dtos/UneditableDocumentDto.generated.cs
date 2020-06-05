@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("type")]
-        public DraftDocumentType Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
+        public DraftDocumentType Type
+        {
+            get { return _type.GetValue(); }
+            set { _type.SetValue(value); }
+        }
     
     }
     

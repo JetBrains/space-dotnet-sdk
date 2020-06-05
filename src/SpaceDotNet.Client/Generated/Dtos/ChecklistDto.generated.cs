@@ -27,66 +27,114 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ChecklistDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(ChecklistDto), nameof(ProjectId));
         
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return _projectId.GetValue(); } set { _projectId.SetValue(value); } }
+        public string? ProjectId
+        {
+            get { return _projectId.GetValue(); }
+            set { _projectId.SetValue(value); }
+        }
     
         private PropertyValue<PRProjectDto?> _project = new PropertyValue<PRProjectDto?>(nameof(ChecklistDto), nameof(Project));
         
         [JsonPropertyName("project")]
-        public PRProjectDto? Project { get { return _project.GetValue(); } set { _project.SetValue(value); } }
+        public PRProjectDto? Project
+        {
+            get { return _project.GetValue(); }
+            set { _project.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _owner = new PropertyValue<TDMemberProfileDto?>(nameof(ChecklistDto), nameof(Owner));
         
         [JsonPropertyName("owner")]
-        public TDMemberProfileDto? Owner { get { return _owner.GetValue(); } set { _owner.SetValue(value); } }
+        public TDMemberProfileDto? Owner
+        {
+            get { return _owner.GetValue(); }
+            set { _owner.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ChecklistDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<PlanItemDto?> _root = new PropertyValue<PlanItemDto?>(nameof(ChecklistDto), nameof(Root));
         
         [JsonPropertyName("root")]
-        public PlanItemDto? Root { get { return _root.GetValue(); } set { _root.SetValue(value); } }
+        public PlanItemDto? Root
+        {
+            get { return _root.GetValue(); }
+            set { _root.SetValue(value); }
+        }
     
         private PropertyValue<PlanningTagDto?> _rootTag = new PropertyValue<PlanningTagDto?>(nameof(ChecklistDto), nameof(RootTag));
         
         [JsonPropertyName("rootTag")]
-        public PlanningTagDto? RootTag { get { return _rootTag.GetValue(); } set { _rootTag.SetValue(value); } }
+        public PlanningTagDto? RootTag
+        {
+            get { return _rootTag.GetValue(); }
+            set { _rootTag.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ChecklistDto), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<int> _totalItemsCount = new PropertyValue<int>(nameof(ChecklistDto), nameof(TotalItemsCount));
         
         [Required]
         [JsonPropertyName("totalItemsCount")]
-        public int TotalItemsCount { get { return _totalItemsCount.GetValue(); } set { _totalItemsCount.SetValue(value); } }
+        public int TotalItemsCount
+        {
+            get { return _totalItemsCount.GetValue(); }
+            set { _totalItemsCount.SetValue(value); }
+        }
     
         private PropertyValue<int> _doneItemsCount = new PropertyValue<int>(nameof(ChecklistDto), nameof(DoneItemsCount));
         
         [Required]
         [JsonPropertyName("doneItemsCount")]
-        public int DoneItemsCount { get { return _doneItemsCount.GetValue(); } set { _doneItemsCount.SetValue(value); } }
+        public int DoneItemsCount
+        {
+            get { return _doneItemsCount.GetValue(); }
+            set { _doneItemsCount.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _updatedTime = new PropertyValue<SpaceTime?>(nameof(ChecklistDto), nameof(UpdatedTime));
         
         [JsonPropertyName("updatedTime")]
-        public SpaceTime? UpdatedTime { get { return _updatedTime.GetValue(); } set { _updatedTime.SetValue(value); } }
+        public SpaceTime? UpdatedTime
+        {
+            get { return _updatedTime.GetValue(); }
+            set { _updatedTime.SetValue(value); }
+        }
     
     }
     

@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("item")]
-        public string Item { get { return _item.GetValue(); } set { _item.SetValue(value); } }
+        public string Item
+        {
+            get { return _item.GetValue(); }
+            set { _item.SetValue(value); }
+        }
     
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(NavBarMenuItemDto), nameof(Enabled));
         
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled { get { return _enabled.GetValue(); } set { _enabled.SetValue(value); } }
+        public bool Enabled
+        {
+            get { return _enabled.GetValue(); }
+            set { _enabled.SetValue(value); }
+        }
     
     }
     

@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("oldPassword")]
-        public string OldPassword { get { return _oldPassword.GetValue(); } set { _oldPassword.SetValue(value); } }
+        public string OldPassword
+        {
+            get { return _oldPassword.GetValue(); }
+            set { _oldPassword.SetValue(value); }
+        }
     
         private PropertyValue<string> _newPassword = new PropertyValue<string>(nameof(ChangeRequest), nameof(NewPassword));
         
         [Required]
         [JsonPropertyName("newPassword")]
-        public string NewPassword { get { return _newPassword.GetValue(); } set { _newPassword.SetValue(value); } }
+        public string NewPassword
+        {
+            get { return _newPassword.GetValue(); }
+            set { _newPassword.SetValue(value); }
+        }
     
     }
     

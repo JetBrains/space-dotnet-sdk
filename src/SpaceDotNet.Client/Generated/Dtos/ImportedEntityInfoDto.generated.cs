@@ -27,17 +27,29 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("source")]
-        public ImportSourceDto Source { get { return _source.GetValue(); } set { _source.SetValue(value); } }
+        public ImportSourceDto Source
+        {
+            get { return _source.GetValue(); }
+            set { _source.SetValue(value); }
+        }
     
         private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ImportedEntityInfoDto), nameof(ExternalName));
         
         [JsonPropertyName("externalName")]
-        public string? ExternalName { get { return _externalName.GetValue(); } set { _externalName.SetValue(value); } }
+        public string? ExternalName
+        {
+            get { return _externalName.GetValue(); }
+            set { _externalName.SetValue(value); }
+        }
     
         private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ImportedEntityInfoDto), nameof(ExternalUrl));
         
         [JsonPropertyName("externalUrl")]
-        public string? ExternalUrl { get { return _externalUrl.GetValue(); } set { _externalUrl.SetValue(value); } }
+        public string? ExternalUrl
+        {
+            get { return _externalUrl.GetValue(); }
+            set { _externalUrl.SetValue(value); }
+        }
     
     }
     

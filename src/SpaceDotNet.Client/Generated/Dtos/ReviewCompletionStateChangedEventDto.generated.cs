@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("state")]
-        public ReviewerState State { get { return _state.GetValue(); } set { _state.SetValue(value); } }
+        public ReviewerState State
+        {
+            get { return _state.GetValue(); }
+            set { _state.SetValue(value); }
+        }
     
     }
     

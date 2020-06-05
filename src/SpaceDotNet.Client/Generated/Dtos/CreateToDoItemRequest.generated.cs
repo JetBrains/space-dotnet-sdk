@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(CreateToDoItemRequest), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get { return _dueDate.GetValue(); } set { _dueDate.SetValue(value); } }
+        public SpaceDate? DueDate
+        {
+            get { return _dueDate.GetValue(); }
+            set { _dueDate.SetValue(value); }
+        }
     
     }
     

@@ -27,52 +27,92 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string?> _timezone = new PropertyValue<string?>(nameof(CreateLocationRequest), nameof(Timezone));
         
         [JsonPropertyName("timezone")]
-        public string? Timezone { get { return _timezone.GetValue(); } set { _timezone.SetValue(value); } }
+        public string? Timezone
+        {
+            get { return _timezone.GetValue(); }
+            set { _timezone.SetValue(value); }
+        }
     
         private PropertyValue<List<int>?> _workdays = new PropertyValue<List<int>?>(nameof(CreateLocationRequest), nameof(Workdays));
         
         [JsonPropertyName("workdays")]
-        public List<int>? Workdays { get { return _workdays.GetValue(); } set { _workdays.SetValue(value); } }
+        public List<int>? Workdays
+        {
+            get { return _workdays.GetValue(); }
+            set { _workdays.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _phones = new PropertyValue<List<string>?>(nameof(CreateLocationRequest), nameof(Phones));
         
         [JsonPropertyName("phones")]
-        public List<string>? Phones { get { return _phones.GetValue(); } set { _phones.SetValue(value); } }
+        public List<string>? Phones
+        {
+            get { return _phones.GetValue(); }
+            set { _phones.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(CreateLocationRequest), nameof(Emails));
         
         [JsonPropertyName("emails")]
-        public List<string>? Emails { get { return _emails.GetValue(); } set { _emails.SetValue(value); } }
+        public List<string>? Emails
+        {
+            get { return _emails.GetValue(); }
+            set { _emails.SetValue(value); }
+        }
     
         private PropertyValue<List<string>?> _equipment = new PropertyValue<List<string>?>(nameof(CreateLocationRequest), nameof(Equipment));
         
         [JsonPropertyName("equipment")]
-        public List<string>? Equipment { get { return _equipment.GetValue(); } set { _equipment.SetValue(value); } }
+        public List<string>? Equipment
+        {
+            get { return _equipment.GetValue(); }
+            set { _equipment.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CreateLocationRequest), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<string?> _address = new PropertyValue<string?>(nameof(CreateLocationRequest), nameof(Address));
         
         [JsonPropertyName("address")]
-        public string? Address { get { return _address.GetValue(); } set { _address.SetValue(value); } }
+        public string? Address
+        {
+            get { return _address.GetValue(); }
+            set { _address.SetValue(value); }
+        }
     
         private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(CreateLocationRequest), nameof(Type));
         
         [JsonPropertyName("type")]
-        public string? Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
+        public string? Type
+        {
+            get { return _type.GetValue(); }
+            set { _type.SetValue(value); }
+        }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(CreateLocationRequest), nameof(ParentId));
         
         [JsonPropertyName("parentId")]
-        public string? ParentId { get { return _parentId.GetValue(); } set { _parentId.SetValue(value); } }
+        public string? ParentId
+        {
+            get { return _parentId.GetValue(); }
+            set { _parentId.SetValue(value); }
+        }
     
     }
     

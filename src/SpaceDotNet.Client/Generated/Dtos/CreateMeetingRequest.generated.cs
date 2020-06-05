@@ -27,71 +27,119 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get { return _summary.GetValue(); } set { _summary.SetValue(value); } }
+        public string Summary
+        {
+            get { return _summary.GetValue(); }
+            set { _summary.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CreateMeetingRequest), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<CalendarEventSpecDto> _occurrenceRule = new PropertyValue<CalendarEventSpecDto>(nameof(CreateMeetingRequest), nameof(OccurrenceRule));
         
         [Required]
         [JsonPropertyName("occurrenceRule")]
-        public CalendarEventSpecDto OccurrenceRule { get { return _occurrenceRule.GetValue(); } set { _occurrenceRule.SetValue(value); } }
+        public CalendarEventSpecDto OccurrenceRule
+        {
+            get { return _occurrenceRule.GetValue(); }
+            set { _occurrenceRule.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(CreateMeetingRequest), nameof(Locations));
         
         [Required]
         [JsonPropertyName("locations")]
-        public List<string> Locations { get { return _locations.GetValue(); } set { _locations.SetValue(value); } }
+        public List<string> Locations
+        {
+            get { return _locations.GetValue(); }
+            set { _locations.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _profiles = new PropertyValue<List<string>>(nameof(CreateMeetingRequest), nameof(Profiles));
         
         [Required]
         [JsonPropertyName("profiles")]
-        public List<string> Profiles { get { return _profiles.GetValue(); } set { _profiles.SetValue(value); } }
+        public List<string> Profiles
+        {
+            get { return _profiles.GetValue(); }
+            set { _profiles.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(CreateMeetingRequest), nameof(ExternalParticipants));
         
         [Required]
         [JsonPropertyName("externalParticipants")]
-        public List<string> ExternalParticipants { get { return _externalParticipants.GetValue(); } set { _externalParticipants.SetValue(value); } }
+        public List<string> ExternalParticipants
+        {
+            get { return _externalParticipants.GetValue(); }
+            set { _externalParticipants.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(CreateMeetingRequest), nameof(Teams));
         
         [Required]
         [JsonPropertyName("teams")]
-        public List<string> Teams { get { return _teams.GetValue(); } set { _teams.SetValue(value); } }
+        public List<string> Teams
+        {
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
+        }
     
         private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(CreateMeetingRequest), nameof(Visibility));
         
         [Required]
         [JsonPropertyName("visibility")]
-        public MeetingVisibility Visibility { get { return _visibility.GetValue(); } set { _visibility.SetValue(value); } }
+        public MeetingVisibility Visibility
+        {
+            get { return _visibility.GetValue(); }
+            set { _visibility.SetValue(value); }
+        }
     
         private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(CreateMeetingRequest), nameof(ModificationPreference));
         
         [Required]
         [JsonPropertyName("modificationPreference")]
-        public MeetingModificationPreference ModificationPreference { get { return _modificationPreference.GetValue(); } set { _modificationPreference.SetValue(value); } }
+        public MeetingModificationPreference ModificationPreference
+        {
+            get { return _modificationPreference.GetValue(); }
+            set { _modificationPreference.SetValue(value); }
+        }
     
         private PropertyValue<MeetingJoiningPreference> _joiningPreference = new PropertyValue<MeetingJoiningPreference>(nameof(CreateMeetingRequest), nameof(JoiningPreference));
         
         [Required]
         [JsonPropertyName("joiningPreference")]
-        public MeetingJoiningPreference JoiningPreference { get { return _joiningPreference.GetValue(); } set { _joiningPreference.SetValue(value); } }
+        public MeetingJoiningPreference JoiningPreference
+        {
+            get { return _joiningPreference.GetValue(); }
+            set { _joiningPreference.SetValue(value); }
+        }
     
         private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CreateMeetingRequest), nameof(NotifyOnExport));
         
         [Required]
         [JsonPropertyName("notifyOnExport")]
-        public bool NotifyOnExport { get { return _notifyOnExport.GetValue(); } set { _notifyOnExport.SetValue(value); } }
+        public bool NotifyOnExport
+        {
+            get { return _notifyOnExport.GetValue(); }
+            set { _notifyOnExport.SetValue(value); }
+        }
     
         private PropertyValue<string?> _organizer = new PropertyValue<string?>(nameof(CreateMeetingRequest), nameof(Organizer));
         
         [JsonPropertyName("organizer")]
-        public string? Organizer { get { return _organizer.GetValue(); } set { _organizer.SetValue(value); } }
+        public string? Organizer
+        {
+            get { return _organizer.GetValue(); }
+            set { _organizer.SetValue(value); }
+        }
     
     }
     

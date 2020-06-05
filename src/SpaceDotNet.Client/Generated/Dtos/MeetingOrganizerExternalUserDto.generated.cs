@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("email")]
-        public string Email { get { return _email.GetValue(); } set { _email.SetValue(value); } }
+        public string Email
+        {
+            get { return _email.GetValue(); }
+            set { _email.SetValue(value); }
+        }
     
     }
     

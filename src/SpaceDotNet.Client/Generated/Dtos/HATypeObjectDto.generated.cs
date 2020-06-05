@@ -28,25 +28,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("fields")]
-        public List<HAFieldDto> Fields { get { return _fields.GetValue(); } set { _fields.SetValue(value); } }
+        public List<HAFieldDto> Fields
+        {
+            get { return _fields.GetValue(); }
+            set { _fields.SetValue(value); }
+        }
     
         private PropertyValue<HATypeObjectKind> _kind = new PropertyValue<HATypeObjectKind>(nameof(HATypeObjectDto), nameof(Kind));
         
         [Required]
         [JsonPropertyName("kind")]
-        public HATypeObjectKind Kind { get { return _kind.GetValue(); } set { _kind.SetValue(value); } }
+        public HATypeObjectKind Kind
+        {
+            get { return _kind.GetValue(); }
+            set { _kind.SetValue(value); }
+        }
     
         private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeObjectDto), nameof(Nullable));
         
         [Required]
         [JsonPropertyName("nullable")]
-        public bool Nullable { get { return _nullable.GetValue(); } set { _nullable.SetValue(value); } }
+        public bool Nullable
+        {
+            get { return _nullable.GetValue(); }
+            set { _nullable.SetValue(value); }
+        }
     
         private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypeObjectDto), nameof(Optional));
         
         [Required]
         [JsonPropertyName("optional")]
-        public bool Optional { get { return _optional.GetValue(); } set { _optional.SetValue(value); } }
+        public bool Optional
+        {
+            get { return _optional.GetValue(); }
+            set { _optional.SetValue(value); }
+        }
     
     }
     

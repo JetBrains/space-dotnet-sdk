@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("rightType")]
-        public DTORightTypeDto RightType { get { return _rightType.GetValue(); } set { _rightType.SetValue(value); } }
+        public DTORightTypeDto RightType
+        {
+            get { return _rightType.GetValue(); }
+            set { _rightType.SetValue(value); }
+        }
     
         private PropertyValue<List<DTOFullRightWithoutTypeDto>> _rights = new PropertyValue<List<DTOFullRightWithoutTypeDto>>(nameof(DTORightTypeRightDto), nameof(Rights));
         
         [Required]
         [JsonPropertyName("rights")]
-        public List<DTOFullRightWithoutTypeDto> Rights { get { return _rights.GetValue(); } set { _rights.SetValue(value); } }
+        public List<DTOFullRightWithoutTypeDto> Rights
+        {
+            get { return _rights.GetValue(); }
+            set { _rights.SetValue(value); }
+        }
     
     }
     

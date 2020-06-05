@@ -31,32 +31,56 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("parent")]
-        public M2ChannelRecordDto Parent { get { return _parent.GetValue(); } set { _parent.SetValue(value); } }
+        public M2ChannelRecordDto Parent
+        {
+            get { return _parent.GetValue(); }
+            set { _parent.SetValue(value); }
+        }
     
         private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(M2ChannelContactThreadDto), nameof(Text));
         
         [JsonPropertyName("text")]
-        public string? Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string? Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<string?> _messageId = new PropertyValue<string?>(nameof(M2ChannelContactThreadDto), nameof(MessageId));
         
         [JsonPropertyName("messageId")]
-        public string? MessageId { get { return _messageId.GetValue(); } set { _messageId.SetValue(value); } }
+        public string? MessageId
+        {
+            get { return _messageId.GetValue(); }
+            set { _messageId.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _author = new PropertyValue<TDMemberProfileDto?>(nameof(M2ChannelContactThreadDto), nameof(Author));
         
         [JsonPropertyName("author")]
-        public TDMemberProfileDto? Author { get { return _author.GetValue(); } set { _author.SetValue(value); } }
+        public TDMemberProfileDto? Author
+        {
+            get { return _author.GetValue(); }
+            set { _author.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto?> _messageAuthor = new PropertyValue<CPrincipalDto?>(nameof(M2ChannelContactThreadDto), nameof(MessageAuthor));
         
         [JsonPropertyName("messageAuthor")]
-        public CPrincipalDto? MessageAuthor { get { return _messageAuthor.GetValue(); } set { _messageAuthor.SetValue(value); } }
+        public CPrincipalDto? MessageAuthor
+        {
+            get { return _messageAuthor.GetValue(); }
+            set { _messageAuthor.SetValue(value); }
+        }
     
         private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(M2ChannelContactThreadDto), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public string? Attachments { get { return _attachments.GetValue(); } set { _attachments.SetValue(value); } }
+        public string? Attachments
+        {
+            get { return _attachments.GetValue(); }
+            set { _attachments.SetValue(value); }
+        }
     
     }
     

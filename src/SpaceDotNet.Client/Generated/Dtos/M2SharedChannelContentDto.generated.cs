@@ -31,51 +31,87 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string> _group = new PropertyValue<string>(nameof(M2SharedChannelContentDto), nameof(Group));
         
         [Required]
         [JsonPropertyName("group")]
-        public string Group { get { return _group.GetValue(); } set { _group.SetValue(value); } }
+        public string Group
+        {
+            get { return _group.GetValue(); }
+            set { _group.SetValue(value); }
+        }
     
         private PropertyValue<M2Access> _access = new PropertyValue<M2Access>(nameof(M2SharedChannelContentDto), nameof(Access));
         
         [Required]
         [JsonPropertyName("access")]
-        public M2Access Access { get { return _access.GetValue(); } set { _access.SetValue(value); } }
+        public M2Access Access
+        {
+            get { return _access.GetValue(); }
+            set { _access.SetValue(value); }
+        }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(M2SharedChannelContentDto), nameof(Description));
         
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<int?> _membersCounter = new PropertyValue<int?>(nameof(M2SharedChannelContentDto), nameof(MembersCounter));
         
         [JsonPropertyName("membersCounter")]
-        public int? MembersCounter { get { return _membersCounter.GetValue(); } set { _membersCounter.SetValue(value); } }
+        public int? MembersCounter
+        {
+            get { return _membersCounter.GetValue(); }
+            set { _membersCounter.SetValue(value); }
+        }
     
         private PropertyValue<string?> _iconId = new PropertyValue<string?>(nameof(M2SharedChannelContentDto), nameof(IconId));
         
         [JsonPropertyName("iconId")]
-        public string? IconId { get { return _iconId.GetValue(); } set { _iconId.SetValue(value); } }
+        public string? IconId
+        {
+            get { return _iconId.GetValue(); }
+            set { _iconId.SetValue(value); }
+        }
     
         private PropertyValue<ChannelSpecificDefaultsDto> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto>(nameof(M2SharedChannelContentDto), nameof(NotificationDefaults));
         
         [Required]
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
+        public ChannelSpecificDefaultsDto NotificationDefaults
+        {
+            get { return _notificationDefaults.GetValue(); }
+            set { _notificationDefaults.SetValue(value); }
+        }
     
         private PropertyValue<List<TDTeamDto>?> _teams = new PropertyValue<List<TDTeamDto>?>(nameof(M2SharedChannelContentDto), nameof(Teams));
         
         [JsonPropertyName("teams")]
-        public List<TDTeamDto>? Teams { get { return _teams.GetValue(); } set { _teams.SetValue(value); } }
+        public List<TDTeamDto>? Teams
+        {
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
+        }
     
         private PropertyValue<bool?> _canEdit = new PropertyValue<bool?>(nameof(M2SharedChannelContentDto), nameof(CanEdit));
         
         [JsonPropertyName("canEdit")]
-        public bool? CanEdit { get { return _canEdit.GetValue(); } set { _canEdit.SetValue(value); } }
+        public bool? CanEdit
+        {
+            get { return _canEdit.GetValue(); }
+            set { _canEdit.SetValue(value); }
+        }
     
     }
     

@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("added")]
-        public int Added { get { return _added.GetValue(); } set { _added.SetValue(value); } }
+        public int Added
+        {
+            get { return _added.GetValue(); }
+            set { _added.SetValue(value); }
+        }
     
         private PropertyValue<int> _deleted = new PropertyValue<int>(nameof(GitDiffSizeDto), nameof(Deleted));
         
         [Required]
         [JsonPropertyName("deleted")]
-        public int Deleted { get { return _deleted.GetValue(); } set { _deleted.SetValue(value); } }
+        public int Deleted
+        {
+            get { return _deleted.GetValue(); }
+            set { _deleted.SetValue(value); }
+        }
     
     }
     

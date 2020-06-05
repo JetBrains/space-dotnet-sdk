@@ -31,25 +31,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("article")]
-        public ArticleRecordDto Article { get { return _article.GetValue(); } set { _article.SetValue(value); } }
+        public ArticleRecordDto Article
+        {
+            get { return _article.GetValue(); }
+            set { _article.SetValue(value); }
+        }
     
         private PropertyValue<ArticleContentRecordDto> _articleContent = new PropertyValue<ArticleContentRecordDto>(nameof(M2BlogItemContentDto), nameof(ArticleContent));
         
         [Required]
         [JsonPropertyName("articleContent")]
-        public ArticleContentRecordDto ArticleContent { get { return _articleContent.GetValue(); } set { _articleContent.SetValue(value); } }
+        public ArticleContentRecordDto ArticleContent
+        {
+            get { return _articleContent.GetValue(); }
+            set { _articleContent.SetValue(value); }
+        }
     
         private PropertyValue<ArticleDetailsRecordDto> _articleDetails = new PropertyValue<ArticleDetailsRecordDto>(nameof(M2BlogItemContentDto), nameof(ArticleDetails));
         
         [Required]
         [JsonPropertyName("articleDetails")]
-        public ArticleDetailsRecordDto ArticleDetails { get { return _articleDetails.GetValue(); } set { _articleDetails.SetValue(value); } }
+        public ArticleDetailsRecordDto ArticleDetails
+        {
+            get { return _articleDetails.GetValue(); }
+            set { _articleDetails.SetValue(value); }
+        }
     
         private PropertyValue<ArticleChannelRecordDto> _articleChannel = new PropertyValue<ArticleChannelRecordDto>(nameof(M2BlogItemContentDto), nameof(ArticleChannel));
         
         [Required]
         [JsonPropertyName("articleChannel")]
-        public ArticleChannelRecordDto ArticleChannel { get { return _articleChannel.GetValue(); } set { _articleChannel.SetValue(value); } }
+        public ArticleChannelRecordDto ArticleChannel
+        {
+            get { return _articleChannel.GetValue(); }
+            set { _articleChannel.SetValue(value); }
+        }
     
     }
     

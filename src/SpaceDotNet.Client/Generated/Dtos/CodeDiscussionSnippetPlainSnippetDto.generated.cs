@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("lines")]
-        public List<CodeLineDto> Lines { get { return _lines.GetValue(); } set { _lines.SetValue(value); } }
+        public List<CodeLineDto> Lines
+        {
+            get { return _lines.GetValue(); }
+            set { _lines.SetValue(value); }
+        }
     
     }
     

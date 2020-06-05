@@ -27,44 +27,76 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(PRRepositoryInfoDto), nameof(Description));
         
         [Required]
         [JsonPropertyName("description")]
-        public string Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _latestActivity = new PropertyValue<SpaceTime?>(nameof(PRRepositoryInfoDto), nameof(LatestActivity));
         
         [JsonPropertyName("latestActivity")]
-        public SpaceTime? LatestActivity { get { return _latestActivity.GetValue(); } set { _latestActivity.SetValue(value); } }
+        public SpaceTime? LatestActivity
+        {
+            get { return _latestActivity.GetValue(); }
+            set { _latestActivity.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime?> _proxyPushNotification = new PropertyValue<SpaceTime?>(nameof(PRRepositoryInfoDto), nameof(ProxyPushNotification));
         
         [JsonPropertyName("proxyPushNotification")]
-        public SpaceTime? ProxyPushNotification { get { return _proxyPushNotification.GetValue(); } set { _proxyPushNotification.SetValue(value); } }
+        public SpaceTime? ProxyPushNotification
+        {
+            get { return _proxyPushNotification.GetValue(); }
+            set { _proxyPushNotification.SetValue(value); }
+        }
     
         private PropertyValue<RepositoryState> _state = new PropertyValue<RepositoryState>(nameof(PRRepositoryInfoDto), nameof(State));
         
         [Required]
         [JsonPropertyName("state")]
-        public RepositoryState State { get { return _state.GetValue(); } set { _state.SetValue(value); } }
+        public RepositoryState State
+        {
+            get { return _state.GetValue(); }
+            set { _state.SetValue(value); }
+        }
     
         private PropertyValue<string?> _initProgress = new PropertyValue<string?>(nameof(PRRepositoryInfoDto), nameof(InitProgress));
         
         [JsonPropertyName("initProgress")]
-        public string? InitProgress { get { return _initProgress.GetValue(); } set { _initProgress.SetValue(value); } }
+        public string? InitProgress
+        {
+            get { return _initProgress.GetValue(); }
+            set { _initProgress.SetValue(value); }
+        }
     
         private PropertyValue<string?> _readmeName = new PropertyValue<string?>(nameof(PRRepositoryInfoDto), nameof(ReadmeName));
         
         [JsonPropertyName("readmeName")]
-        public string? ReadmeName { get { return _readmeName.GetValue(); } set { _readmeName.SetValue(value); } }
+        public string? ReadmeName
+        {
+            get { return _readmeName.GetValue(); }
+            set { _readmeName.SetValue(value); }
+        }
     
         private PropertyValue<RepositoryActivityDto?> _monthlyActivity = new PropertyValue<RepositoryActivityDto?>(nameof(PRRepositoryInfoDto), nameof(MonthlyActivity));
         
         [JsonPropertyName("monthlyActivity")]
-        public RepositoryActivityDto? MonthlyActivity { get { return _monthlyActivity.GetValue(); } set { _monthlyActivity.SetValue(value); } }
+        public RepositoryActivityDto? MonthlyActivity
+        {
+            get { return _monthlyActivity.GetValue(); }
+            set { _monthlyActivity.SetValue(value); }
+        }
     
     }
     

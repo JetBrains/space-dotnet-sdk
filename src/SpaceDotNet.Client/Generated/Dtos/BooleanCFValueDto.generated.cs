@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<bool?> _value = new PropertyValue<bool?>(nameof(BooleanCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]
-        public bool? Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
+        public bool? Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
     
     }
     

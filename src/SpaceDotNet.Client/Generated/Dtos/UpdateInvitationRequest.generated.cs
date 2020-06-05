@@ -26,27 +26,47 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _inviteeEmail = new PropertyValue<string?>(nameof(UpdateInvitationRequest), nameof(InviteeEmail));
         
         [JsonPropertyName("inviteeEmail")]
-        public string? InviteeEmail { get { return _inviteeEmail.GetValue(); } set { _inviteeEmail.SetValue(value); } }
+        public string? InviteeEmail
+        {
+            get { return _inviteeEmail.GetValue(); }
+            set { _inviteeEmail.SetValue(value); }
+        }
     
         private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(UpdateInvitationRequest), nameof(InviteeFirstName));
         
         [JsonPropertyName("inviteeFirstName")]
-        public string? InviteeFirstName { get { return _inviteeFirstName.GetValue(); } set { _inviteeFirstName.SetValue(value); } }
+        public string? InviteeFirstName
+        {
+            get { return _inviteeFirstName.GetValue(); }
+            set { _inviteeFirstName.SetValue(value); }
+        }
     
         private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(UpdateInvitationRequest), nameof(InviteeLastName));
         
         [JsonPropertyName("inviteeLastName")]
-        public string? InviteeLastName { get { return _inviteeLastName.GetValue(); } set { _inviteeLastName.SetValue(value); } }
+        public string? InviteeLastName
+        {
+            get { return _inviteeLastName.GetValue(); }
+            set { _inviteeLastName.SetValue(value); }
+        }
     
         private PropertyValue<TDTeamDto?> _team = new PropertyValue<TDTeamDto?>(nameof(UpdateInvitationRequest), nameof(Team));
         
         [JsonPropertyName("team")]
-        public TDTeamDto? Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
+        public TDTeamDto? Team
+        {
+            get { return _team.GetValue(); }
+            set { _team.SetValue(value); }
+        }
     
         private PropertyValue<TDRoleDto?> _role = new PropertyValue<TDRoleDto?>(nameof(UpdateInvitationRequest), nameof(Role));
         
         [JsonPropertyName("role")]
-        public TDRoleDto? Role { get { return _role.GetValue(); } set { _role.SetValue(value); } }
+        public TDRoleDto? Role
+        {
+            get { return _role.GetValue(); }
+            set { _role.SetValue(value); }
+        }
     
     }
     

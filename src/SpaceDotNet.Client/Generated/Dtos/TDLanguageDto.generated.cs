@@ -27,37 +27,61 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(TDLanguageDto), nameof(Code));
         
         [Required]
         [JsonPropertyName("code")]
-        public string Code { get { return _code.GetValue(); } set { _code.SetValue(value); } }
+        public string Code
+        {
+            get { return _code.GetValue(); }
+            set { _code.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLanguageDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string> _nativeName = new PropertyValue<string>(nameof(TDLanguageDto), nameof(NativeName));
         
         [Required]
         [JsonPropertyName("nativeName")]
-        public string NativeName { get { return _nativeName.GetValue(); } set { _nativeName.SetValue(value); } }
+        public string NativeName
+        {
+            get { return _nativeName.GetValue(); }
+            set { _nativeName.SetValue(value); }
+        }
     
         private PropertyValue<string> _firstNameTitle = new PropertyValue<string>(nameof(TDLanguageDto), nameof(FirstNameTitle));
         
         [Required]
         [JsonPropertyName("firstNameTitle")]
-        public string FirstNameTitle { get { return _firstNameTitle.GetValue(); } set { _firstNameTitle.SetValue(value); } }
+        public string FirstNameTitle
+        {
+            get { return _firstNameTitle.GetValue(); }
+            set { _firstNameTitle.SetValue(value); }
+        }
     
         private PropertyValue<string> _lastNameTitle = new PropertyValue<string>(nameof(TDLanguageDto), nameof(LastNameTitle));
         
         [Required]
         [JsonPropertyName("lastNameTitle")]
-        public string LastNameTitle { get { return _lastNameTitle.GetValue(); } set { _lastNameTitle.SetValue(value); } }
+        public string LastNameTitle
+        {
+            get { return _lastNameTitle.GetValue(); }
+            set { _lastNameTitle.SetValue(value); }
+        }
     
     }
     

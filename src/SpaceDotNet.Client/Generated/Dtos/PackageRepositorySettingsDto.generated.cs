@@ -27,24 +27,40 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public long Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public long Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageRepositorySettingsDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<ESPackageRepositorySettingsDto?> _settings = new PropertyValue<ESPackageRepositorySettingsDto?>(nameof(PackageRepositorySettingsDto), nameof(Settings));
         
         [JsonPropertyName("settings")]
-        public ESPackageRepositorySettingsDto? Settings { get { return _settings.GetValue(); } set { _settings.SetValue(value); } }
+        public ESPackageRepositorySettingsDto? Settings
+        {
+            get { return _settings.GetValue(); }
+            set { _settings.SetValue(value); }
+        }
     
         private PropertyValue<List<PackagesPermission>> _permissions = new PropertyValue<List<PackagesPermission>>(nameof(PackageRepositorySettingsDto), nameof(Permissions));
         
         [Required]
         [JsonPropertyName("permissions")]
-        public List<PackagesPermission> Permissions { get { return _permissions.GetValue(); } set { _permissions.SetValue(value); } }
+        public List<PackagesPermission> Permissions
+        {
+            get { return _permissions.GetValue(); }
+            set { _permissions.SetValue(value); }
+        }
     
     }
     

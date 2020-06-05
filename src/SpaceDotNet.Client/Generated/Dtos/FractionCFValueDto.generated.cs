@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<FractionDto?> _value = new PropertyValue<FractionDto?>(nameof(FractionCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]
-        public FractionDto? Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
+        public FractionDto? Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
     
     }
     

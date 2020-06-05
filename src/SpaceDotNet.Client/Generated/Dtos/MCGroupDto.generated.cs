@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("elements")]
-        public List<MCElementDto> Elements { get { return _elements.GetValue(); } set { _elements.SetValue(value); } }
+        public List<MCElementDto> Elements
+        {
+            get { return _elements.GetValue(); }
+            set { _elements.SetValue(value); }
+        }
     
     }
     

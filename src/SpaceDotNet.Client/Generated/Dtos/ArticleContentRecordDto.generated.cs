@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleContentRecordDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleContentRecordDto), nameof(Content));
         
         [Required]
         [JsonPropertyName("content")]
-        public string Content { get { return _content.GetValue(); } set { _content.SetValue(value); } }
+        public string Content
+        {
+            get { return _content.GetValue(); }
+            set { _content.SetValue(value); }
+        }
     
     }
     

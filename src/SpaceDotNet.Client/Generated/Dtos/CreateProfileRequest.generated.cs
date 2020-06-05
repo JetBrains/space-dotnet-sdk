@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("editorId")]
-        public string EditorId { get { return _editorId.GetValue(); } set { _editorId.SetValue(value); } }
+        public string EditorId
+        {
+            get { return _editorId.GetValue(); }
+            set { _editorId.SetValue(value); }
+        }
     
     }
     

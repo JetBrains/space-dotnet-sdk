@@ -27,29 +27,49 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ExternalEntityInfoRecordDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalEntityInfoRecordDto), nameof(ExternalId));
         
         [JsonPropertyName("externalId")]
-        public string? ExternalId { get { return _externalId.GetValue(); } set { _externalId.SetValue(value); } }
+        public string? ExternalId
+        {
+            get { return _externalId.GetValue(); }
+            set { _externalId.SetValue(value); }
+        }
     
         private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalEntityInfoRecordDto), nameof(ExternalUrl));
         
         [JsonPropertyName("externalUrl")]
-        public string? ExternalUrl { get { return _externalUrl.GetValue(); } set { _externalUrl.SetValue(value); } }
+        public string? ExternalUrl
+        {
+            get { return _externalUrl.GetValue(); }
+            set { _externalUrl.SetValue(value); }
+        }
     
         private PropertyValue<ImportTransactionRecordDto> _transaction = new PropertyValue<ImportTransactionRecordDto>(nameof(ExternalEntityInfoRecordDto), nameof(Transaction));
         
         [Required]
         [JsonPropertyName("transaction")]
-        public ImportTransactionRecordDto Transaction { get { return _transaction.GetValue(); } set { _transaction.SetValue(value); } }
+        public ImportTransactionRecordDto Transaction
+        {
+            get { return _transaction.GetValue(); }
+            set { _transaction.SetValue(value); }
+        }
     
     }
     

@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApprovedScopeDto), nameof(Scope));
         
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get { return _scope.GetValue(); } set { _scope.SetValue(value); } }
+        public string Scope
+        {
+            get { return _scope.GetValue(); }
+            set { _scope.SetValue(value); }
+        }
     
         private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScopeDto), nameof(OfflineAllowed));
         
         [Required]
         [JsonPropertyName("offlineAllowed")]
-        public bool OfflineAllowed { get { return _offlineAllowed.GetValue(); } set { _offlineAllowed.SetValue(value); } }
+        public bool OfflineAllowed
+        {
+            get { return _offlineAllowed.GetValue(); }
+            set { _offlineAllowed.SetValue(value); }
+        }
     
     }
     

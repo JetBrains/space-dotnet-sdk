@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<TDMemberProfileDto?> _profile = new PropertyValue<TDMemberProfileDto?>(nameof(ProfileCFValueDto), nameof(Profile));
         
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto? Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto? Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
     }
     

@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<int?> _value = new PropertyValue<int?>(nameof(IntCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]
-        public int? Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
+        public int? Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
     
     }
     

@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("team")]
-        public TDTeamDto Team { get { return _team.GetValue(); } set { _team.SetValue(value); } }
+        public TDTeamDto Team
+        {
+            get { return _team.GetValue(); }
+            set { _team.SetValue(value); }
+        }
     
     }
     

@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("review")]
-        public CodeReviewRecordDto Review { get { return _review.GetValue(); } set { _review.SetValue(value); } }
+        public CodeReviewRecordDto Review
+        {
+            get { return _review.GetValue(); }
+            set { _review.SetValue(value); }
+        }
     
         private PropertyValue<int> _messagesCount = new PropertyValue<int>(nameof(CodeReviewWithCountDto), nameof(MessagesCount));
         
         [Required]
         [JsonPropertyName("messagesCount")]
-        public int MessagesCount { get { return _messagesCount.GetValue(); } set { _messagesCount.SetValue(value); } }
+        public int MessagesCount
+        {
+            get { return _messagesCount.GetValue(); }
+            set { _messagesCount.SetValue(value); }
+        }
     
         private PropertyValue<List<GitCommitterProfileDto>> _authors = new PropertyValue<List<GitCommitterProfileDto>>(nameof(CodeReviewWithCountDto), nameof(Authors));
         
         [Required]
         [JsonPropertyName("authors")]
-        public List<GitCommitterProfileDto> Authors { get { return _authors.GetValue(); } set { _authors.SetValue(value); } }
+        public List<GitCommitterProfileDto> Authors
+        {
+            get { return _authors.GetValue(); }
+            set { _authors.SetValue(value); }
+        }
     
         private PropertyValue<CodeReviewParticipantsDto> _participants = new PropertyValue<CodeReviewParticipantsDto>(nameof(CodeReviewWithCountDto), nameof(Participants));
         
         [Required]
         [JsonPropertyName("participants")]
-        public CodeReviewParticipantsDto Participants { get { return _participants.GetValue(); } set { _participants.SetValue(value); } }
+        public CodeReviewParticipantsDto Participants
+        {
+            get { return _participants.GetValue(); }
+            set { _participants.SetValue(value); }
+        }
     
     }
     

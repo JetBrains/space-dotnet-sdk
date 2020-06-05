@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("count")]
-        public int Count { get { return _count.GetValue(); } set { _count.SetValue(value); } }
+        public int Count
+        {
+            get { return _count.GetValue(); }
+            set { _count.SetValue(value); }
+        }
     
     }
     

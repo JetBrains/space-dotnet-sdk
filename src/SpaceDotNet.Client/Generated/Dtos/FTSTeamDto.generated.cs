@@ -27,24 +27,40 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(FTSTeamDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(FTSTeamDto), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<List<FTSSnippetDto>> _snippets = new PropertyValue<List<FTSSnippetDto>>(nameof(FTSTeamDto), nameof(Snippets));
         
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get { return _snippets.GetValue(); } set { _snippets.SetValue(value); } }
+        public List<FTSSnippetDto> Snippets
+        {
+            get { return _snippets.GetValue(); }
+            set { _snippets.SetValue(value); }
+        }
     
     }
     

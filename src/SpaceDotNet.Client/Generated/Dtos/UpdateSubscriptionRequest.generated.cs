@@ -26,17 +26,29 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _locationId = new PropertyValue<string?>(nameof(UpdateSubscriptionRequest), nameof(LocationId));
         
         [JsonPropertyName("locationId")]
-        public string? LocationId { get { return _locationId.GetValue(); } set { _locationId.SetValue(value); } }
+        public string? LocationId
+        {
+            get { return _locationId.GetValue(); }
+            set { _locationId.SetValue(value); }
+        }
     
         private PropertyValue<string?> _teamId = new PropertyValue<string?>(nameof(UpdateSubscriptionRequest), nameof(TeamId));
         
         [JsonPropertyName("teamId")]
-        public string? TeamId { get { return _teamId.GetValue(); } set { _teamId.SetValue(value); } }
+        public string? TeamId
+        {
+            get { return _teamId.GetValue(); }
+            set { _teamId.SetValue(value); }
+        }
     
         private PropertyValue<string?> _reasonId = new PropertyValue<string?>(nameof(UpdateSubscriptionRequest), nameof(ReasonId));
         
         [JsonPropertyName("reasonId")]
-        public string? ReasonId { get { return _reasonId.GetValue(); } set { _reasonId.SetValue(value); } }
+        public string? ReasonId
+        {
+            get { return _reasonId.GetValue(); }
+            set { _reasonId.SetValue(value); }
+        }
     
     }
     

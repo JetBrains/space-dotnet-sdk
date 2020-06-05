@@ -31,23 +31,39 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("channelId")]
-        public string ChannelId { get { return _channelId.GetValue(); } set { _channelId.SetValue(value); } }
+        public string ChannelId
+        {
+            get { return _channelId.GetValue(); }
+            set { _channelId.SetValue(value); }
+        }
     
         private PropertyValue<string?> _subject = new PropertyValue<string?>(nameof(M2PrivateConversationChannelContentDto), nameof(Subject));
         
         [JsonPropertyName("subject")]
-        public string? Subject { get { return _subject.GetValue(); } set { _subject.SetValue(value); } }
+        public string? Subject
+        {
+            get { return _subject.GetValue(); }
+            set { _subject.SetValue(value); }
+        }
     
         private PropertyValue<List<TDMemberProfileDto>> _members = new PropertyValue<List<TDMemberProfileDto>>(nameof(M2PrivateConversationChannelContentDto), nameof(Members));
         
         [Required]
         [JsonPropertyName("members")]
-        public List<TDMemberProfileDto> Members { get { return _members.GetValue(); } set { _members.SetValue(value); } }
+        public List<TDMemberProfileDto> Members
+        {
+            get { return _members.GetValue(); }
+            set { _members.SetValue(value); }
+        }
     
         private PropertyValue<ChannelSpecificDefaultsDto?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto?>(nameof(M2PrivateConversationChannelContentDto), nameof(NotificationDefaults));
         
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
+        public ChannelSpecificDefaultsDto? NotificationDefaults
+        {
+            get { return _notificationDefaults.GetValue(); }
+            set { _notificationDefaults.SetValue(value); }
+        }
     
     }
     

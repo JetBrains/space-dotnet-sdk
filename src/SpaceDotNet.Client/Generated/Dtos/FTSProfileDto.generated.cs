@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("profile")]
-        public FTSUserDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public FTSUserDto Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<List<FTSSnippetDto>> _snippets = new PropertyValue<List<FTSSnippetDto>>(nameof(FTSProfileDto), nameof(Snippets));
         
         [Required]
         [JsonPropertyName("snippets")]
-        public List<FTSSnippetDto> Snippets { get { return _snippets.GetValue(); } set { _snippets.SetValue(value); } }
+        public List<FTSSnippetDto> Snippets
+        {
+            get { return _snippets.GetValue(); }
+            set { _snippets.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto> _member = new PropertyValue<TDMemberProfileDto>(nameof(FTSProfileDto), nameof(Member));
         
         [Required]
         [JsonPropertyName("member")]
-        public TDMemberProfileDto Member { get { return _member.GetValue(); } set { _member.SetValue(value); } }
+        public TDMemberProfileDto Member
+        {
+            get { return _member.GetValue(); }
+            set { _member.SetValue(value); }
+        }
     
     }
     

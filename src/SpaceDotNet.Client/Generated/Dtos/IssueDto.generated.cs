@@ -27,98 +27,166 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(IssueDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(IssueDto), nameof(ProjectId));
         
         [Required]
         [JsonPropertyName("projectId")]
-        public string ProjectId { get { return _projectId.GetValue(); } set { _projectId.SetValue(value); } }
+        public string ProjectId
+        {
+            get { return _projectId.GetValue(); }
+            set { _projectId.SetValue(value); }
+        }
     
         private PropertyValue<PRProjectDto?> _projectRef = new PropertyValue<PRProjectDto?>(nameof(IssueDto), nameof(ProjectRef));
         
         [JsonPropertyName("projectRef")]
-        public PRProjectDto? ProjectRef { get { return _projectRef.GetValue(); } set { _projectRef.SetValue(value); } }
+        public PRProjectDto? ProjectRef
+        {
+            get { return _projectRef.GetValue(); }
+            set { _projectRef.SetValue(value); }
+        }
     
         private PropertyValue<int> _number = new PropertyValue<int>(nameof(IssueDto), nameof(Number));
         
         [Required]
         [JsonPropertyName("number")]
-        public int Number { get { return _number.GetValue(); } set { _number.SetValue(value); } }
+        public int Number
+        {
+            get { return _number.GetValue(); }
+            set { _number.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto> _createdBy = new PropertyValue<CPrincipalDto>(nameof(IssueDto), nameof(CreatedBy));
         
         [Required]
         [JsonPropertyName("createdBy")]
-        public CPrincipalDto CreatedBy { get { return _createdBy.GetValue(); } set { _createdBy.SetValue(value); } }
+        public CPrincipalDto CreatedBy
+        {
+            get { return _createdBy.GetValue(); }
+            set { _createdBy.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _creationTime = new PropertyValue<SpaceTime>(nameof(IssueDto), nameof(CreationTime));
         
         [Required]
         [JsonPropertyName("creationTime")]
-        public SpaceTime CreationTime { get { return _creationTime.GetValue(); } set { _creationTime.SetValue(value); } }
+        public SpaceTime CreationTime
+        {
+            get { return _creationTime.GetValue(); }
+            set { _creationTime.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto?> _assignee = new PropertyValue<TDMemberProfileDto?>(nameof(IssueDto), nameof(Assignee));
         
         [JsonPropertyName("assignee")]
-        public TDMemberProfileDto? Assignee { get { return _assignee.GetValue(); } set { _assignee.SetValue(value); } }
+        public TDMemberProfileDto? Assignee
+        {
+            get { return _assignee.GetValue(); }
+            set { _assignee.SetValue(value); }
+        }
     
         private PropertyValue<IssueStatusDto> _status = new PropertyValue<IssueStatusDto>(nameof(IssueDto), nameof(Status));
         
         [Required]
         [JsonPropertyName("status")]
-        public IssueStatusDto Status { get { return _status.GetValue(); } set { _status.SetValue(value); } }
+        public IssueStatusDto Status
+        {
+            get { return _status.GetValue(); }
+            set { _status.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(IssueDto), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get { return _dueDate.GetValue(); } set { _dueDate.SetValue(value); } }
+        public SpaceDate? DueDate
+        {
+            get { return _dueDate.GetValue(); }
+            set { _dueDate.SetValue(value); }
+        }
     
         private PropertyValue<ImportedEntityInfoDto?> _importInfo = new PropertyValue<ImportedEntityInfoDto?>(nameof(IssueDto), nameof(ImportInfo));
         
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get { return _importInfo.GetValue(); } set { _importInfo.SetValue(value); } }
+        public ImportedEntityInfoDto? ImportInfo
+        {
+            get { return _importInfo.GetValue(); }
+            set { _importInfo.SetValue(value); }
+        }
     
         private PropertyValue<List<PlanningTagDto>> _tags = new PropertyValue<List<PlanningTagDto>>(nameof(IssueDto), nameof(Tags));
         
         [Required]
         [JsonPropertyName("tags")]
-        public List<PlanningTagDto> Tags { get { return _tags.GetValue(); } set { _tags.SetValue(value); } }
+        public List<PlanningTagDto> Tags
+        {
+            get { return _tags.GetValue(); }
+            set { _tags.SetValue(value); }
+        }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(IssueDto), nameof(Title));
         
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
         private PropertyValue<List<ChecklistDto>> _checklists = new PropertyValue<List<ChecklistDto>>(nameof(IssueDto), nameof(Checklists));
         
         [Required]
         [JsonPropertyName("checklists")]
-        public List<ChecklistDto> Checklists { get { return _checklists.GetValue(); } set { _checklists.SetValue(value); } }
+        public List<ChecklistDto> Checklists
+        {
+            get { return _checklists.GetValue(); }
+            set { _checklists.SetValue(value); }
+        }
     
         private PropertyValue<List<AttachmentInfoDto>> _attachments = new PropertyValue<List<AttachmentInfoDto>>(nameof(IssueDto), nameof(Attachments));
         
         [Required]
         [JsonPropertyName("attachments")]
-        public List<AttachmentInfoDto> Attachments { get { return _attachments.GetValue(); } set { _attachments.SetValue(value); } }
+        public List<AttachmentInfoDto> Attachments
+        {
+            get { return _attachments.GetValue(); }
+            set { _attachments.SetValue(value); }
+        }
     
         private PropertyValue<M2ChannelRecordDto> _channel = new PropertyValue<M2ChannelRecordDto>(nameof(IssueDto), nameof(Channel));
         
         [Required]
         [JsonPropertyName("channel")]
-        public M2ChannelRecordDto Channel { get { return _channel.GetValue(); } set { _channel.SetValue(value); } }
+        public M2ChannelRecordDto Channel
+        {
+            get { return _channel.GetValue(); }
+            set { _channel.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(IssueDto), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
     }
     

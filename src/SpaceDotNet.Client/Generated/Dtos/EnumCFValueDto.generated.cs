@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<EnumValueDataDto?> _value = new PropertyValue<EnumValueDataDto?>(nameof(EnumCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]
-        public EnumValueDataDto? Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
+        public EnumValueDataDto? Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
     
     }
     

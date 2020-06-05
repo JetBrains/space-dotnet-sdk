@@ -30,57 +30,97 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(M2ExternalStatusFailureItemContentDto), nameof(ProjectId));
         
         [JsonPropertyName("projectId")]
-        public string? ProjectId { get { return _projectId.GetValue(); } set { _projectId.SetValue(value); } }
+        public string? ProjectId
+        {
+            get { return _projectId.GetValue(); }
+            set { _projectId.SetValue(value); }
+        }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContentDto), nameof(Repository));
         
         [Required]
         [JsonPropertyName("repository")]
-        public string Repository { get { return _repository.GetValue(); } set { _repository.SetValue(value); } }
+        public string Repository
+        {
+            get { return _repository.GetValue(); }
+            set { _repository.SetValue(value); }
+        }
     
         private PropertyValue<string> _branch = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContentDto), nameof(Branch));
         
         [Required]
         [JsonPropertyName("branch")]
-        public string Branch { get { return _branch.GetValue(); } set { _branch.SetValue(value); } }
+        public string Branch
+        {
+            get { return _branch.GetValue(); }
+            set { _branch.SetValue(value); }
+        }
     
         private PropertyValue<RevisionAuthorInfoDto?> _revisionInfo = new PropertyValue<RevisionAuthorInfoDto?>(nameof(M2ExternalStatusFailureItemContentDto), nameof(RevisionInfo));
         
         [JsonPropertyName("revisionInfo")]
-        public RevisionAuthorInfoDto? RevisionInfo { get { return _revisionInfo.GetValue(); } set { _revisionInfo.SetValue(value); } }
+        public RevisionAuthorInfoDto? RevisionInfo
+        {
+            get { return _revisionInfo.GetValue(); }
+            set { _revisionInfo.SetValue(value); }
+        }
     
         private PropertyValue<LastChangesDto?> _changesInfo = new PropertyValue<LastChangesDto?>(nameof(M2ExternalStatusFailureItemContentDto), nameof(ChangesInfo));
         
         [JsonPropertyName("changesInfo")]
-        public LastChangesDto? ChangesInfo { get { return _changesInfo.GetValue(); } set { _changesInfo.SetValue(value); } }
+        public LastChangesDto? ChangesInfo
+        {
+            get { return _changesInfo.GetValue(); }
+            set { _changesInfo.SetValue(value); }
+        }
     
         private PropertyValue<string> _url = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContentDto), nameof(Url));
         
         [Required]
         [JsonPropertyName("url")]
-        public string Url { get { return _url.GetValue(); } set { _url.SetValue(value); } }
+        public string Url
+        {
+            get { return _url.GetValue(); }
+            set { _url.SetValue(value); }
+        }
     
         private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContentDto), nameof(ExternalServiceName));
         
         [Required]
         [JsonPropertyName("externalServiceName")]
-        public string ExternalServiceName { get { return _externalServiceName.GetValue(); } set { _externalServiceName.SetValue(value); } }
+        public string ExternalServiceName
+        {
+            get { return _externalServiceName.GetValue(); }
+            set { _externalServiceName.SetValue(value); }
+        }
     
         private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(M2ExternalStatusFailureItemContentDto), nameof(TaskName));
         
         [Required]
         [JsonPropertyName("taskName")]
-        public string TaskName { get { return _taskName.GetValue(); } set { _taskName.SetValue(value); } }
+        public string TaskName
+        {
+            get { return _taskName.GetValue(); }
+            set { _taskName.SetValue(value); }
+        }
     
         private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(M2ExternalStatusFailureItemContentDto), nameof(Timestamp));
         
         [JsonPropertyName("timestamp")]
-        public long? Timestamp { get { return _timestamp.GetValue(); } set { _timestamp.SetValue(value); } }
+        public long? Timestamp
+        {
+            get { return _timestamp.GetValue(); }
+            set { _timestamp.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(M2ExternalStatusFailureItemContentDto), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
     }
     

@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(RepositoryInReviewDto), nameof(Deleted));
         
         [Required]
         [JsonPropertyName("deleted")]
-        public bool Deleted { get { return _deleted.GetValue(); } set { _deleted.SetValue(value); } }
+        public bool Deleted
+        {
+            get { return _deleted.GetValue(); }
+            set { _deleted.SetValue(value); }
+        }
     
     }
     

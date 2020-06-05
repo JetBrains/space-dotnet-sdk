@@ -31,13 +31,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<MdMarkupDto> _mdMarkup = new PropertyValue<MdMarkupDto>(nameof(TodoItemContentMdTextDto), nameof(MdMarkup));
         
         [Required]
         [JsonPropertyName("mdMarkup")]
-        public MdMarkupDto MdMarkup { get { return _mdMarkup.GetValue(); } set { _mdMarkup.SetValue(value); } }
+        public MdMarkupDto MdMarkup
+        {
+            get { return _mdMarkup.GetValue(); }
+            set { _mdMarkup.SetValue(value); }
+        }
     
     }
     

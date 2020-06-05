@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("markdown")]
-        public bool Markdown { get { return _markdown.GetValue(); } set { _markdown.SetValue(value); } }
+        public bool Markdown
+        {
+            get { return _markdown.GetValue(); }
+            set { _markdown.SetValue(value); }
+        }
     
     }
     

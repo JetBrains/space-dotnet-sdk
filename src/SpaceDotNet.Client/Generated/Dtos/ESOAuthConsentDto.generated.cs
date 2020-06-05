@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("clientService")]
-        public ESServiceDto ClientService { get { return _clientService.GetValue(); } set { _clientService.SetValue(value); } }
+        public ESServiceDto ClientService
+        {
+            get { return _clientService.GetValue(); }
+            set { _clientService.SetValue(value); }
+        }
     
         private PropertyValue<List<ESApprovedScopeDto>> _approvedScopes = new PropertyValue<List<ESApprovedScopeDto>>(nameof(ESOAuthConsentDto), nameof(ApprovedScopes));
         
         [Required]
         [JsonPropertyName("approvedScopes")]
-        public List<ESApprovedScopeDto> ApprovedScopes { get { return _approvedScopes.GetValue(); } set { _approvedScopes.SetValue(value); } }
+        public List<ESApprovedScopeDto> ApprovedScopes
+        {
+            get { return _approvedScopes.GetValue(); }
+            set { _approvedScopes.SetValue(value); }
+        }
     
         private PropertyValue<List<ESRefreshTokenDto>> _refreshTokens = new PropertyValue<List<ESRefreshTokenDto>>(nameof(ESOAuthConsentDto), nameof(RefreshTokens));
         
         [Required]
         [JsonPropertyName("refreshTokens")]
-        public List<ESRefreshTokenDto> RefreshTokens { get { return _refreshTokens.GetValue(); } set { _refreshTokens.SetValue(value); } }
+        public List<ESRefreshTokenDto> RefreshTokens
+        {
+            get { return _refreshTokens.GetValue(); }
+            set { _refreshTokens.SetValue(value); }
+        }
     
     }
     

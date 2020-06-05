@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("field")]
-        public CustomFieldDto Field { get { return _field.GetValue(); } set { _field.SetValue(value); } }
+        public CustomFieldDto Field
+        {
+            get { return _field.GetValue(); }
+            set { _field.SetValue(value); }
+        }
     
         private PropertyValue<CFValueDto> _value = new PropertyValue<CFValueDto>(nameof(CustomFieldValueDto), nameof(Value));
         
         [Required]
         [JsonPropertyName("value")]
-        public CFValueDto Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
+        public CFValueDto Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
     
     }
     

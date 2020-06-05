@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since { get { return _since.GetValue(); } set { _since.SetValue(value); } }
+        public SpaceDate Since
+        {
+            get { return _since.GetValue(); }
+            set { _since.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate> _till = new PropertyValue<SpaceDate>(nameof(NonWorkingDaysDto), nameof(Till));
         
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till { get { return _till.GetValue(); } set { _till.SetValue(value); } }
+        public SpaceDate Till
+        {
+            get { return _till.GetValue(); }
+            set { _till.SetValue(value); }
+        }
     
         private PropertyValue<bool> _startsEarlier = new PropertyValue<bool>(nameof(NonWorkingDaysDto), nameof(StartsEarlier));
         
         [Required]
         [JsonPropertyName("startsEarlier")]
-        public bool StartsEarlier { get { return _startsEarlier.GetValue(); } set { _startsEarlier.SetValue(value); } }
+        public bool StartsEarlier
+        {
+            get { return _startsEarlier.GetValue(); }
+            set { _startsEarlier.SetValue(value); }
+        }
     
         private PropertyValue<bool> _endsLater = new PropertyValue<bool>(nameof(NonWorkingDaysDto), nameof(EndsLater));
         
         [Required]
         [JsonPropertyName("endsLater")]
-        public bool EndsLater { get { return _endsLater.GetValue(); } set { _endsLater.SetValue(value); } }
+        public bool EndsLater
+        {
+            get { return _endsLater.GetValue(); }
+            set { _endsLater.SetValue(value); }
+        }
     
     }
     

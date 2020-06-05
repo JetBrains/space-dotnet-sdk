@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("key")]
-        public string Key { get { return _key.GetValue(); } set { _key.SetValue(value); } }
+        public string Key
+        {
+            get { return _key.GetValue(); }
+            set { _key.SetValue(value); }
+        }
     
         private PropertyValue<long> _value = new PropertyValue<long>(nameof(MetricsPointDto), nameof(Value));
         
         [Required]
         [JsonPropertyName("value")]
-        public long Value { get { return _value.GetValue(); } set { _value.SetValue(value); } }
+        public long Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
     
     }
     

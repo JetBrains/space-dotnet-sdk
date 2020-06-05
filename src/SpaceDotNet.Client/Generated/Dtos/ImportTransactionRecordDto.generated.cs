@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportTransactionRecordDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto> _importer = new PropertyValue<CPrincipalDto>(nameof(ImportTransactionRecordDto), nameof(Importer));
         
         [Required]
         [JsonPropertyName("importer")]
-        public CPrincipalDto Importer { get { return _importer.GetValue(); } set { _importer.SetValue(value); } }
+        public CPrincipalDto Importer
+        {
+            get { return _importer.GetValue(); }
+            set { _importer.SetValue(value); }
+        }
     
         private PropertyValue<string> _externalSource = new PropertyValue<string>(nameof(ImportTransactionRecordDto), nameof(ExternalSource));
         
         [Required]
         [JsonPropertyName("externalSource")]
-        public string ExternalSource { get { return _externalSource.GetValue(); } set { _externalSource.SetValue(value); } }
+        public string ExternalSource
+        {
+            get { return _externalSource.GetValue(); }
+            set { _externalSource.SetValue(value); }
+        }
     
     }
     

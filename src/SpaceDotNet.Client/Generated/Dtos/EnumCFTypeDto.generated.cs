@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("values")]
-        public List<EnumValueDataDto> Values { get { return _values.GetValue(); } set { _values.SetValue(value); } }
+        public List<EnumValueDataDto> Values
+        {
+            get { return _values.GetValue(); }
+            set { _values.SetValue(value); }
+        }
     
     }
     

@@ -30,7 +30,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<ChannelSpecificDefaultsDto?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto?>(nameof(SpaceNewsFeedChannelDto), nameof(NotificationDefaults));
         
         [JsonPropertyName("notificationDefaults")]
-        public ChannelSpecificDefaultsDto? NotificationDefaults { get { return _notificationDefaults.GetValue(); } set { _notificationDefaults.SetValue(value); } }
+        public ChannelSpecificDefaultsDto? NotificationDefaults
+        {
+            get { return _notificationDefaults.GetValue(); }
+            set { _notificationDefaults.SetValue(value); }
+        }
     
     }
     

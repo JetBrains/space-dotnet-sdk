@@ -27,49 +27,85 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("text")]
-        public string Text { get { return _text.GetValue(); } set { _text.SetValue(value); } }
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
     
         private PropertyValue<DiffLineType?> _type = new PropertyValue<DiffLineType?>(nameof(InlineDiffLineDto), nameof(Type));
         
         [JsonPropertyName("type")]
-        public DiffLineType? Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
+        public DiffLineType? Type
+        {
+            get { return _type.GetValue(); }
+            set { _type.SetValue(value); }
+        }
     
         private PropertyValue<int?> _oldLineNum = new PropertyValue<int?>(nameof(InlineDiffLineDto), nameof(OldLineNum));
         
         [JsonPropertyName("oldLineNum")]
-        public int? OldLineNum { get { return _oldLineNum.GetValue(); } set { _oldLineNum.SetValue(value); } }
+        public int? OldLineNum
+        {
+            get { return _oldLineNum.GetValue(); }
+            set { _oldLineNum.SetValue(value); }
+        }
     
         private PropertyValue<int?> _newLineNum = new PropertyValue<int?>(nameof(InlineDiffLineDto), nameof(NewLineNum));
         
         [JsonPropertyName("newLineNum")]
-        public int? NewLineNum { get { return _newLineNum.GetValue(); } set { _newLineNum.SetValue(value); } }
+        public int? NewLineNum
+        {
+            get { return _newLineNum.GetValue(); }
+            set { _newLineNum.SetValue(value); }
+        }
     
         private PropertyValue<int> _oldFileOffset = new PropertyValue<int>(nameof(InlineDiffLineDto), nameof(OldFileOffset));
         
         [Required]
         [JsonPropertyName("oldFileOffset")]
-        public int OldFileOffset { get { return _oldFileOffset.GetValue(); } set { _oldFileOffset.SetValue(value); } }
+        public int OldFileOffset
+        {
+            get { return _oldFileOffset.GetValue(); }
+            set { _oldFileOffset.SetValue(value); }
+        }
     
         private PropertyValue<int> _newFileOffset = new PropertyValue<int>(nameof(InlineDiffLineDto), nameof(NewFileOffset));
         
         [Required]
         [JsonPropertyName("newFileOffset")]
-        public int NewFileOffset { get { return _newFileOffset.GetValue(); } set { _newFileOffset.SetValue(value); } }
+        public int NewFileOffset
+        {
+            get { return _newFileOffset.GetValue(); }
+            set { _newFileOffset.SetValue(value); }
+        }
     
         private PropertyValue<List<SyntaxMarkupDto>?> _syntax = new PropertyValue<List<SyntaxMarkupDto>?>(nameof(InlineDiffLineDto), nameof(Syntax));
         
         [JsonPropertyName("syntax")]
-        public List<SyntaxMarkupDto>? Syntax { get { return _syntax.GetValue(); } set { _syntax.SetValue(value); } }
+        public List<SyntaxMarkupDto>? Syntax
+        {
+            get { return _syntax.GetValue(); }
+            set { _syntax.SetValue(value); }
+        }
     
         private PropertyValue<List<TextRangeDto>?> _deletes = new PropertyValue<List<TextRangeDto>?>(nameof(InlineDiffLineDto), nameof(Deletes));
         
         [JsonPropertyName("deletes")]
-        public List<TextRangeDto>? Deletes { get { return _deletes.GetValue(); } set { _deletes.SetValue(value); } }
+        public List<TextRangeDto>? Deletes
+        {
+            get { return _deletes.GetValue(); }
+            set { _deletes.SetValue(value); }
+        }
     
         private PropertyValue<List<TextRangeDto>?> _inserts = new PropertyValue<List<TextRangeDto>?>(nameof(InlineDiffLineDto), nameof(Inserts));
         
         [JsonPropertyName("inserts")]
-        public List<TextRangeDto>? Inserts { get { return _inserts.GetValue(); } set { _inserts.SetValue(value); } }
+        public List<TextRangeDto>? Inserts
+        {
+            get { return _inserts.GetValue(); }
+            set { _inserts.SetValue(value); }
+        }
     
     }
     

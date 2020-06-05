@@ -28,31 +28,51 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<double> _score = new PropertyValue<double>(nameof(ArticleHitDto), nameof(Score));
         
         [Required]
         [JsonPropertyName("score")]
-        public double Score { get { return _score.GetValue(); } set { _score.SetValue(value); } }
+        public double Score
+        {
+            get { return _score.GetValue(); }
+            set { _score.SetValue(value); }
+        }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ArticleHitDto), nameof(Title));
         
         [Required]
         [JsonPropertyName("title")]
-        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
         private PropertyValue<string> _body = new PropertyValue<string>(nameof(ArticleHitDto), nameof(Body));
         
         [Required]
         [JsonPropertyName("body")]
-        public string Body { get { return _body.GetValue(); } set { _body.SetValue(value); } }
+        public string Body
+        {
+            get { return _body.GetValue(); }
+            set { _body.SetValue(value); }
+        }
     
         private PropertyValue<ArticleRecordDto> _ref = new PropertyValue<ArticleRecordDto>(nameof(ArticleHitDto), nameof(Ref));
         
         [Required]
         [JsonPropertyName("ref")]
-        public ArticleRecordDto Ref { get { return _ref.GetValue(); } set { _ref.SetValue(value); } }
+        public ArticleRecordDto Ref
+        {
+            get { return _ref.GetValue(); }
+            set { _ref.SetValue(value); }
+        }
     
     }
     

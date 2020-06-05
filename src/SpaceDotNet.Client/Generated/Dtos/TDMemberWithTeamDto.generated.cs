@@ -27,13 +27,21 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<List<TDTeamDto>> _teams = new PropertyValue<List<TDTeamDto>>(nameof(TDMemberWithTeamDto), nameof(Teams));
         
         [Required]
         [JsonPropertyName("teams")]
-        public List<TDTeamDto> Teams { get { return _teams.GetValue(); } set { _teams.SetValue(value); } }
+        public List<TDTeamDto> Teams
+        {
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
+        }
     
     }
     

@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("checklist")]
-        public ChecklistDto Checklist { get { return _checklist.GetValue(); } set { _checklist.SetValue(value); } }
+        public ChecklistDto Checklist
+        {
+            get { return _checklist.GetValue(); }
+            set { _checklist.SetValue(value); }
+        }
     
     }
     

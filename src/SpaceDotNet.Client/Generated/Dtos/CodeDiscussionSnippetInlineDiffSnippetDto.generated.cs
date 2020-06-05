@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("lines")]
-        public List<InlineDiffLineDto> Lines { get { return _lines.GetValue(); } set { _lines.SetValue(value); } }
+        public List<InlineDiffLineDto> Lines
+        {
+            get { return _lines.GetValue(); }
+            set { _lines.SetValue(value); }
+        }
     
     }
     

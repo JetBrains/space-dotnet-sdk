@@ -26,27 +26,47 @@ namespace SpaceDotNet.Client
         private PropertyValue<ClientOS?> _os = new PropertyValue<ClientOS?>(nameof(ClientInfoDto), nameof(Os));
         
         [JsonPropertyName("os")]
-        public ClientOS? Os { get { return _os.GetValue(); } set { _os.SetValue(value); } }
+        public ClientOS? Os
+        {
+            get { return _os.GetValue(); }
+            set { _os.SetValue(value); }
+        }
     
         private PropertyValue<string?> _osVersion = new PropertyValue<string?>(nameof(ClientInfoDto), nameof(OsVersion));
         
         [JsonPropertyName("osVersion")]
-        public string? OsVersion { get { return _osVersion.GetValue(); } set { _osVersion.SetValue(value); } }
+        public string? OsVersion
+        {
+            get { return _osVersion.GetValue(); }
+            set { _osVersion.SetValue(value); }
+        }
     
         private PropertyValue<ClientBrowser?> _browser = new PropertyValue<ClientBrowser?>(nameof(ClientInfoDto), nameof(Browser));
         
         [JsonPropertyName("browser")]
-        public ClientBrowser? Browser { get { return _browser.GetValue(); } set { _browser.SetValue(value); } }
+        public ClientBrowser? Browser
+        {
+            get { return _browser.GetValue(); }
+            set { _browser.SetValue(value); }
+        }
     
         private PropertyValue<string?> _browserVersion = new PropertyValue<string?>(nameof(ClientInfoDto), nameof(BrowserVersion));
         
         [JsonPropertyName("browserVersion")]
-        public string? BrowserVersion { get { return _browserVersion.GetValue(); } set { _browserVersion.SetValue(value); } }
+        public string? BrowserVersion
+        {
+            get { return _browserVersion.GetValue(); }
+            set { _browserVersion.SetValue(value); }
+        }
     
         private PropertyValue<string?> _device = new PropertyValue<string?>(nameof(ClientInfoDto), nameof(Device));
         
         [JsonPropertyName("device")]
-        public string? Device { get { return _device.GetValue(); } set { _device.SetValue(value); } }
+        public string? Device
+        {
+            get { return _device.GetValue(); }
+            set { _device.SetValue(value); }
+        }
     
     }
     

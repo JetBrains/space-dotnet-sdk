@@ -27,30 +27,50 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("repositoryName")]
-        public string RepositoryName { get { return _repositoryName.GetValue(); } set { _repositoryName.SetValue(value); } }
+        public string RepositoryName
+        {
+            get { return _repositoryName.GetValue(); }
+            set { _repositoryName.SetValue(value); }
+        }
     
         private PropertyValue<GitCommitInfoDto> _commit = new PropertyValue<GitCommitInfoDto>(nameof(GitCommitWithGraphDto), nameof(Commit));
         
         [Required]
         [JsonPropertyName("commit")]
-        public GitCommitInfoDto Commit { get { return _commit.GetValue(); } set { _commit.SetValue(value); } }
+        public GitCommitInfoDto Commit
+        {
+            get { return _commit.GetValue(); }
+            set { _commit.SetValue(value); }
+        }
     
         private PropertyValue<List<CodeReviewRecordDto>> _reviews = new PropertyValue<List<CodeReviewRecordDto>>(nameof(GitCommitWithGraphDto), nameof(Reviews));
         
         [Required]
         [JsonPropertyName("reviews")]
-        public List<CodeReviewRecordDto> Reviews { get { return _reviews.GetValue(); } set { _reviews.SetValue(value); } }
+        public List<CodeReviewRecordDto> Reviews
+        {
+            get { return _reviews.GetValue(); }
+            set { _reviews.SetValue(value); }
+        }
     
         private PropertyValue<GitGraphLayoutLineDto?> _layout = new PropertyValue<GitGraphLayoutLineDto?>(nameof(GitCommitWithGraphDto), nameof(Layout));
         
         [JsonPropertyName("layout")]
-        public GitGraphLayoutLineDto? Layout { get { return _layout.GetValue(); } set { _layout.SetValue(value); } }
+        public GitGraphLayoutLineDto? Layout
+        {
+            get { return _layout.GetValue(); }
+            set { _layout.SetValue(value); }
+        }
     
         private PropertyValue<bool> _unreachable = new PropertyValue<bool>(nameof(GitCommitWithGraphDto), nameof(Unreachable));
         
         [Required]
         [JsonPropertyName("unreachable")]
-        public bool Unreachable { get { return _unreachable.GetValue(); } set { _unreachable.SetValue(value); } }
+        public bool Unreachable
+        {
+            get { return _unreachable.GetValue(); }
+            set { _unreachable.SetValue(value); }
+        }
     
     }
     

@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<string?> _importerPrincipal = new PropertyValue<string?>(nameof(CreateImportSourceRequest), nameof(ImporterPrincipal));
         
         [JsonPropertyName("importerPrincipal")]
-        public string? ImporterPrincipal { get { return _importerPrincipal.GetValue(); } set { _importerPrincipal.SetValue(value); } }
+        public string? ImporterPrincipal
+        {
+            get { return _importerPrincipal.GetValue(); }
+            set { _importerPrincipal.SetValue(value); }
+        }
     
     }
     

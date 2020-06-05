@@ -27,24 +27,40 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("responsibilityId")]
-        public string ResponsibilityId { get { return _responsibilityId.GetValue(); } set { _responsibilityId.SetValue(value); } }
+        public string ResponsibilityId
+        {
+            get { return _responsibilityId.GetValue(); }
+            set { _responsibilityId.SetValue(value); }
+        }
     
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ResponsibilityRecordDto), nameof(Summary));
         
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get { return _summary.GetValue(); } set { _summary.SetValue(value); } }
+        public string Summary
+        {
+            get { return _summary.GetValue(); }
+            set { _summary.SetValue(value); }
+        }
     
         private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ResponsibilityRecordDto), nameof(Notes));
         
         [JsonPropertyName("notes")]
-        public string? Notes { get { return _notes.GetValue(); } set { _notes.SetValue(value); } }
+        public string? Notes
+        {
+            get { return _notes.GetValue(); }
+            set { _notes.SetValue(value); }
+        }
     
         private PropertyValue<List<AssignedPersonDto>> _assignedPeople = new PropertyValue<List<AssignedPersonDto>>(nameof(ResponsibilityRecordDto), nameof(AssignedPeople));
         
         [Required]
         [JsonPropertyName("assignedPeople")]
-        public List<AssignedPersonDto> AssignedPeople { get { return _assignedPeople.GetValue(); } set { _assignedPeople.SetValue(value); } }
+        public List<AssignedPersonDto> AssignedPeople
+        {
+            get { return _assignedPeople.GetValue(); }
+            set { _assignedPeople.SetValue(value); }
+        }
     
     }
     

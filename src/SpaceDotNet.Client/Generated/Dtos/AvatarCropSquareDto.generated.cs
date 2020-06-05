@@ -27,19 +27,31 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("x")]
-        public int X { get { return _x.GetValue(); } set { _x.SetValue(value); } }
+        public int X
+        {
+            get { return _x.GetValue(); }
+            set { _x.SetValue(value); }
+        }
     
         private PropertyValue<int> _y = new PropertyValue<int>(nameof(AvatarCropSquareDto), nameof(Y));
         
         [Required]
         [JsonPropertyName("y")]
-        public int Y { get { return _y.GetValue(); } set { _y.SetValue(value); } }
+        public int Y
+        {
+            get { return _y.GetValue(); }
+            set { _y.SetValue(value); }
+        }
     
         private PropertyValue<int> _length = new PropertyValue<int>(nameof(AvatarCropSquareDto), nameof(Length));
         
         [Required]
         [JsonPropertyName("length")]
-        public int Length { get { return _length.GetValue(); } set { _length.SetValue(value); } }
+        public int Length
+        {
+            get { return _length.GetValue(); }
+            set { _length.SetValue(value); }
+        }
     
     }
     

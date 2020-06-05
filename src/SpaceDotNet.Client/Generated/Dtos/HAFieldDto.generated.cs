@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<HATypeDto> _type = new PropertyValue<HATypeDto>(nameof(HAFieldDto), nameof(Type));
         
         [Required]
         [JsonPropertyName("type")]
-        public HATypeDto Type { get { return _type.GetValue(); } set { _type.SetValue(value); } }
+        public HATypeDto Type
+        {
+            get { return _type.GetValue(); }
+            set { _type.SetValue(value); }
+        }
     
         private PropertyValue<HADeprecationDto?> _deprecation = new PropertyValue<HADeprecationDto?>(nameof(HAFieldDto), nameof(Deprecation));
         
         [JsonPropertyName("deprecation")]
-        public HADeprecationDto? Deprecation { get { return _deprecation.GetValue(); } set { _deprecation.SetValue(value); } }
+        public HADeprecationDto? Deprecation
+        {
+            get { return _deprecation.GetValue(); }
+            set { _deprecation.SetValue(value); }
+        }
     
     }
     

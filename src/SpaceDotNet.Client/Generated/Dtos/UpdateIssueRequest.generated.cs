@@ -26,32 +26,56 @@ namespace SpaceDotNet.Client
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(UpdateIssueRequest), nameof(Title));
         
         [JsonPropertyName("title")]
-        public string Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(UpdateIssueRequest), nameof(Description));
         
         [JsonPropertyName("description")]
-        public string? Description { get { return _description.GetValue(); } set { _description.SetValue(value); } }
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
     
         private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(UpdateIssueRequest), nameof(Assignee));
         
         [JsonPropertyName("assignee")]
-        public string? Assignee { get { return _assignee.GetValue(); } set { _assignee.SetValue(value); } }
+        public string? Assignee
+        {
+            get { return _assignee.GetValue(); }
+            set { _assignee.SetValue(value); }
+        }
     
         private PropertyValue<string> _status = new PropertyValue<string>(nameof(UpdateIssueRequest), nameof(Status));
         
         [JsonPropertyName("status")]
-        public string Status { get { return _status.GetValue(); } set { _status.SetValue(value); } }
+        public string Status
+        {
+            get { return _status.GetValue(); }
+            set { _status.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(UpdateIssueRequest), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate { get { return _dueDate.GetValue(); } set { _dueDate.SetValue(value); } }
+        public SpaceDate? DueDate
+        {
+            get { return _dueDate.GetValue(); }
+            set { _dueDate.SetValue(value); }
+        }
     
         private PropertyValue<ImportedEntityInfoDto?> _importInfo = new PropertyValue<ImportedEntityInfoDto?>(nameof(UpdateIssueRequest), nameof(ImportInfo));
         
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo { get { return _importInfo.GetValue(); } set { _importInfo.SetValue(value); } }
+        public ImportedEntityInfoDto? ImportInfo
+        {
+            get { return _importInfo.GetValue(); }
+            set { _importInfo.SetValue(value); }
+        }
     
     }
     

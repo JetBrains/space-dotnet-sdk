@@ -27,7 +27,11 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValueDto), nameof(Href));
         
         [JsonPropertyName("href")]
-        public string? Href { get { return _href.GetValue(); } set { _href.SetValue(value); } }
+        public string? Href
+        {
+            get { return _href.GetValue(); }
+            set { _href.SetValue(value); }
+        }
     
     }
     

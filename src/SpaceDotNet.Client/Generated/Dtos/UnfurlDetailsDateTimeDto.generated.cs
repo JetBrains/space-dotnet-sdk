@@ -31,7 +31,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("utcMilliseconds")]
-        public long UtcMilliseconds { get { return _utcMilliseconds.GetValue(); } set { _utcMilliseconds.SetValue(value); } }
+        public long UtcMilliseconds
+        {
+            get { return _utcMilliseconds.GetValue(); }
+            set { _utcMilliseconds.SetValue(value); }
+        }
     
     }
     

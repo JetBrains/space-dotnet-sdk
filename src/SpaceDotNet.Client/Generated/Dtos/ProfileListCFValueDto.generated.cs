@@ -28,7 +28,11 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("profiles")]
-        public List<TDMemberProfileDto> Profiles { get { return _profiles.GetValue(); } set { _profiles.SetValue(value); } }
+        public List<TDMemberProfileDto> Profiles
+        {
+            get { return _profiles.GetValue(); }
+            set { _profiles.SetValue(value); }
+        }
     
     }
     

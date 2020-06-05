@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("time")]
-        public SpaceTime Time { get { return _time.GetValue(); } set { _time.SetValue(value); } }
+        public SpaceTime Time
+        {
+            get { return _time.GetValue(); }
+            set { _time.SetValue(value); }
+        }
     
         private PropertyValue<string> _address = new PropertyValue<string>(nameof(AccessRecordDto), nameof(Address));
         
         [Required]
         [JsonPropertyName("address")]
-        public string Address { get { return _address.GetValue(); } set { _address.SetValue(value); } }
+        public string Address
+        {
+            get { return _address.GetValue(); }
+            set { _address.SetValue(value); }
+        }
     
         private PropertyValue<string?> _userAgent = new PropertyValue<string?>(nameof(AccessRecordDto), nameof(UserAgent));
         
         [JsonPropertyName("userAgent")]
-        public string? UserAgent { get { return _userAgent.GetValue(); } set { _userAgent.SetValue(value); } }
+        public string? UserAgent
+        {
+            get { return _userAgent.GetValue(); }
+            set { _userAgent.SetValue(value); }
+        }
     
     }
     

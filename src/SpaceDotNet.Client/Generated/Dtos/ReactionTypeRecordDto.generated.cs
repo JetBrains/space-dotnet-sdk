@@ -27,36 +27,60 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ReactionTypeRecordDto), nameof(Archived));
         
         [Required]
         [JsonPropertyName("archived")]
-        public bool Archived { get { return _archived.GetValue(); } set { _archived.SetValue(value); } }
+        public bool Archived
+        {
+            get { return _archived.GetValue(); }
+            set { _archived.SetValue(value); }
+        }
     
         private PropertyValue<ReactionDataDto> _data = new PropertyValue<ReactionDataDto>(nameof(ReactionTypeRecordDto), nameof(Data));
         
         [Required]
         [JsonPropertyName("data")]
-        public ReactionDataDto Data { get { return _data.GetValue(); } set { _data.SetValue(value); } }
+        public ReactionDataDto Data
+        {
+            get { return _data.GetValue(); }
+            set { _data.SetValue(value); }
+        }
     
         private PropertyValue<CPrincipalDto> _provider = new PropertyValue<CPrincipalDto>(nameof(ReactionTypeRecordDto), nameof(Provider));
         
         [Required]
         [JsonPropertyName("provider")]
-        public CPrincipalDto Provider { get { return _provider.GetValue(); } set { _provider.SetValue(value); } }
+        public CPrincipalDto Provider
+        {
+            get { return _provider.GetValue(); }
+            set { _provider.SetValue(value); }
+        }
     
         private PropertyValue<SpaceDate> _addedAt = new PropertyValue<SpaceDate>(nameof(ReactionTypeRecordDto), nameof(AddedAt));
         
         [Required]
         [JsonPropertyName("addedAt")]
-        public SpaceDate AddedAt { get { return _addedAt.GetValue(); } set { _addedAt.SetValue(value); } }
+        public SpaceDate AddedAt
+        {
+            get { return _addedAt.GetValue(); }
+            set { _addedAt.SetValue(value); }
+        }
     
         private PropertyValue<int?> _order = new PropertyValue<int?>(nameof(ReactionTypeRecordDto), nameof(Order));
         
         [JsonPropertyName("order")]
-        public int? Order { get { return _order.GetValue(); } set { _order.SetValue(value); } }
+        public int? Order
+        {
+            get { return _order.GetValue(); }
+            set { _order.SetValue(value); }
+        }
     
     }
     

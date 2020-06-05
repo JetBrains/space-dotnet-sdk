@@ -27,25 +27,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("principalIndex")]
-        public int PrincipalIndex { get { return _principalIndex.GetValue(); } set { _principalIndex.SetValue(value); } }
+        public int PrincipalIndex
+        {
+            get { return _principalIndex.GetValue(); }
+            set { _principalIndex.SetValue(value); }
+        }
     
         private PropertyValue<int> _rightIndex = new PropertyValue<int>(nameof(PermissionSnapshotEntryDTODto), nameof(RightIndex));
         
         [Required]
         [JsonPropertyName("rightIndex")]
-        public int RightIndex { get { return _rightIndex.GetValue(); } set { _rightIndex.SetValue(value); } }
+        public int RightIndex
+        {
+            get { return _rightIndex.GetValue(); }
+            set { _rightIndex.SetValue(value); }
+        }
     
         private PropertyValue<bool> _allTargets = new PropertyValue<bool>(nameof(PermissionSnapshotEntryDTODto), nameof(AllTargets));
         
         [Required]
         [JsonPropertyName("allTargets")]
-        public bool AllTargets { get { return _allTargets.GetValue(); } set { _allTargets.SetValue(value); } }
+        public bool AllTargets
+        {
+            get { return _allTargets.GetValue(); }
+            set { _allTargets.SetValue(value); }
+        }
     
         private PropertyValue<List<int>> _targetIndices = new PropertyValue<List<int>>(nameof(PermissionSnapshotEntryDTODto), nameof(TargetIndices));
         
         [Required]
         [JsonPropertyName("targetIndices")]
-        public List<int> TargetIndices { get { return _targetIndices.GetValue(); } set { _targetIndices.SetValue(value); } }
+        public List<int> TargetIndices
+        {
+            get { return _targetIndices.GetValue(); }
+            set { _targetIndices.SetValue(value); }
+        }
     
     }
     

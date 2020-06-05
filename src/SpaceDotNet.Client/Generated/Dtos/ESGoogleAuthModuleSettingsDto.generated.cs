@@ -28,25 +28,41 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("clientId")]
-        public string ClientId { get { return _clientId.GetValue(); } set { _clientId.SetValue(value); } }
+        public string ClientId
+        {
+            get { return _clientId.GetValue(); }
+            set { _clientId.SetValue(value); }
+        }
     
         private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettingsDto), nameof(ClientSecret));
         
         [Required]
         [JsonPropertyName("clientSecret")]
-        public string ClientSecret { get { return _clientSecret.GetValue(); } set { _clientSecret.SetValue(value); } }
+        public string ClientSecret
+        {
+            get { return _clientSecret.GetValue(); }
+            set { _clientSecret.SetValue(value); }
+        }
     
         private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGoogleAuthModuleSettingsDto), nameof(RegisterNewUsers));
         
         [Required]
         [JsonPropertyName("registerNewUsers")]
-        public bool RegisterNewUsers { get { return _registerNewUsers.GetValue(); } set { _registerNewUsers.SetValue(value); } }
+        public bool RegisterNewUsers
+        {
+            get { return _registerNewUsers.GetValue(); }
+            set { _registerNewUsers.SetValue(value); }
+        }
     
         private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettingsDto), nameof(Domains));
         
         [Required]
         [JsonPropertyName("domains")]
-        public List<string> Domains { get { return _domains.GetValue(); } set { _domains.SetValue(value); } }
+        public List<string> Domains
+        {
+            get { return _domains.GetValue(); }
+            set { _domains.SetValue(value); }
+        }
     
     }
     

@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESRefreshTokenDto), nameof(Scope));
         
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get { return _scope.GetValue(); } set { _scope.SetValue(value); } }
+        public string Scope
+        {
+            get { return _scope.GetValue(); }
+            set { _scope.SetValue(value); }
+        }
     
         private PropertyValue<AccessRecordDto?> _lastAccess = new PropertyValue<AccessRecordDto?>(nameof(ESRefreshTokenDto), nameof(LastAccess));
         
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get { return _lastAccess.GetValue(); } set { _lastAccess.SetValue(value); } }
+        public AccessRecordDto? LastAccess
+        {
+            get { return _lastAccess.GetValue(); }
+            set { _lastAccess.SetValue(value); }
+        }
     
     }
     

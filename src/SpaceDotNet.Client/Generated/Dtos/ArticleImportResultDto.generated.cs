@@ -26,17 +26,29 @@ namespace SpaceDotNet.Client
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ArticleImportResultDto), nameof(ExternalId));
         
         [JsonPropertyName("externalId")]
-        public string? ExternalId { get { return _externalId.GetValue(); } set { _externalId.SetValue(value); } }
+        public string? ExternalId
+        {
+            get { return _externalId.GetValue(); }
+            set { _externalId.SetValue(value); }
+        }
     
         private PropertyValue<ArticleRecordDto?> _article = new PropertyValue<ArticleRecordDto?>(nameof(ArticleImportResultDto), nameof(Article));
         
         [JsonPropertyName("article")]
-        public ArticleRecordDto? Article { get { return _article.GetValue(); } set { _article.SetValue(value); } }
+        public ArticleRecordDto? Article
+        {
+            get { return _article.GetValue(); }
+            set { _article.SetValue(value); }
+        }
     
         private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(ArticleImportResultDto), nameof(Error));
         
         [JsonPropertyName("error")]
-        public string? Error { get { return _error.GetValue(); } set { _error.SetValue(value); } }
+        public string? Error
+        {
+            get { return _error.GetValue(); }
+            set { _error.SetValue(value); }
+        }
     
     }
     

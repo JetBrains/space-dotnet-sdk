@@ -27,35 +27,59 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("start")]
-        public SpaceTime Start { get { return _start.GetValue(); } set { _start.SetValue(value); } }
+        public SpaceTime Start
+        {
+            get { return _start.GetValue(); }
+            set { _start.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _end = new PropertyValue<SpaceTime>(nameof(CalendarEventSpecDto), nameof(End));
         
         [Required]
         [JsonPropertyName("end")]
-        public SpaceTime End { get { return _end.GetValue(); } set { _end.SetValue(value); } }
+        public SpaceTime End
+        {
+            get { return _end.GetValue(); }
+            set { _end.SetValue(value); }
+        }
     
         private PropertyValue<RecurrenceRuleDto?> _recurrenceRule = new PropertyValue<RecurrenceRuleDto?>(nameof(CalendarEventSpecDto), nameof(RecurrenceRule));
         
         [JsonPropertyName("recurrenceRule")]
-        public RecurrenceRuleDto? RecurrenceRule { get { return _recurrenceRule.GetValue(); } set { _recurrenceRule.SetValue(value); } }
+        public RecurrenceRuleDto? RecurrenceRule
+        {
+            get { return _recurrenceRule.GetValue(); }
+            set { _recurrenceRule.SetValue(value); }
+        }
     
         private PropertyValue<bool> _allDay = new PropertyValue<bool>(nameof(CalendarEventSpecDto), nameof(AllDay));
         
         [Required]
         [JsonPropertyName("allDay")]
-        public bool AllDay { get { return _allDay.GetValue(); } set { _allDay.SetValue(value); } }
+        public bool AllDay
+        {
+            get { return _allDay.GetValue(); }
+            set { _allDay.SetValue(value); }
+        }
     
         private PropertyValue<ATimeZoneDto> _timezone = new PropertyValue<ATimeZoneDto>(nameof(CalendarEventSpecDto), nameof(Timezone));
         
         [Required]
         [JsonPropertyName("timezone")]
-        public ATimeZoneDto Timezone { get { return _timezone.GetValue(); } set { _timezone.SetValue(value); } }
+        public ATimeZoneDto Timezone
+        {
+            get { return _timezone.GetValue(); }
+            set { _timezone.SetValue(value); }
+        }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(CalendarEventSpecDto), nameof(ParentId));
         
         [JsonPropertyName("parentId")]
-        public string? ParentId { get { return _parentId.GetValue(); } set { _parentId.SetValue(value); } }
+        public string? ParentId
+        {
+            get { return _parentId.GetValue(); }
+            set { _parentId.SetValue(value); }
+        }
     
     }
     

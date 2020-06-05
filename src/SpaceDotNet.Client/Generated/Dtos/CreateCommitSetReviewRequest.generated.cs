@@ -27,12 +27,20 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("revisions")]
-        public List<string> Revisions { get { return _revisions.GetValue(); } set { _revisions.SetValue(value); } }
+        public List<string> Revisions
+        {
+            get { return _revisions.GetValue(); }
+            set { _revisions.SetValue(value); }
+        }
     
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(CreateCommitSetReviewRequest), nameof(Title));
         
         [JsonPropertyName("title")]
-        public string? Title { get { return _title.GetValue(); } set { _title.SetValue(value); } }
+        public string? Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
     
     }
     

@@ -27,31 +27,51 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("md5")]
-        public string Md5 { get { return _md5.GetValue(); } set { _md5.SetValue(value); } }
+        public string Md5
+        {
+            get { return _md5.GetValue(); }
+            set { _md5.SetValue(value); }
+        }
     
         private PropertyValue<string> _sha1 = new PropertyValue<string>(nameof(FingerprintDto), nameof(Sha1));
         
         [Required]
         [JsonPropertyName("sha1")]
-        public string Sha1 { get { return _sha1.GetValue(); } set { _sha1.SetValue(value); } }
+        public string Sha1
+        {
+            get { return _sha1.GetValue(); }
+            set { _sha1.SetValue(value); }
+        }
     
         private PropertyValue<string> _sha256 = new PropertyValue<string>(nameof(FingerprintDto), nameof(Sha256));
         
         [Required]
         [JsonPropertyName("sha256")]
-        public string Sha256 { get { return _sha256.GetValue(); } set { _sha256.SetValue(value); } }
+        public string Sha256
+        {
+            get { return _sha256.GetValue(); }
+            set { _sha256.SetValue(value); }
+        }
     
         private PropertyValue<string> _sha384 = new PropertyValue<string>(nameof(FingerprintDto), nameof(Sha384));
         
         [Required]
         [JsonPropertyName("sha384")]
-        public string Sha384 { get { return _sha384.GetValue(); } set { _sha384.SetValue(value); } }
+        public string Sha384
+        {
+            get { return _sha384.GetValue(); }
+            set { _sha384.SetValue(value); }
+        }
     
         private PropertyValue<string> _sha512 = new PropertyValue<string>(nameof(FingerprintDto), nameof(Sha512));
         
         [Required]
         [JsonPropertyName("sha512")]
-        public string Sha512 { get { return _sha512.GetValue(); } set { _sha512.SetValue(value); } }
+        public string Sha512
+        {
+            get { return _sha512.GetValue(); }
+            set { _sha512.SetValue(value); }
+        }
     
     }
     

@@ -27,36 +27,60 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("id")]
-        public string Id { get { return _id.GetValue(); } set { _id.SetValue(value); } }
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESPermanentTokenDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
-        public string Name { get { return _name.GetValue(); } set { _name.SetValue(value); } }
+        public string Name
+        {
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
+        }
     
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(ESPermanentTokenDto), nameof(Profile));
         
         [Required]
         [JsonPropertyName("profile")]
-        public TDMemberProfileDto Profile { get { return _profile.GetValue(); } set { _profile.SetValue(value); } }
+        public TDMemberProfileDto Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
     
         private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESPermanentTokenDto), nameof(Scope));
         
         [Required]
         [JsonPropertyName("scope")]
-        public string Scope { get { return _scope.GetValue(); } set { _scope.SetValue(value); } }
+        public string Scope
+        {
+            get { return _scope.GetValue(); }
+            set { _scope.SetValue(value); }
+        }
     
         private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ESPermanentTokenDto), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created { get { return _created.GetValue(); } set { _created.SetValue(value); } }
+        public SpaceTime Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
+        }
     
         private PropertyValue<AccessRecordDto?> _lastAccess = new PropertyValue<AccessRecordDto?>(nameof(ESPermanentTokenDto), nameof(LastAccess));
         
         [JsonPropertyName("lastAccess")]
-        public AccessRecordDto? LastAccess { get { return _lastAccess.GetValue(); } set { _lastAccess.SetValue(value); } }
+        public AccessRecordDto? LastAccess
+        {
+            get { return _lastAccess.GetValue(); }
+            set { _lastAccess.SetValue(value); }
+        }
     
     }
     

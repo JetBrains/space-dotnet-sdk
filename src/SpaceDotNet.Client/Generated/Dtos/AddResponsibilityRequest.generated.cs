@@ -27,18 +27,30 @@ namespace SpaceDotNet.Client
         
         [Required]
         [JsonPropertyName("subjectId")]
-        public string SubjectId { get { return _subjectId.GetValue(); } set { _subjectId.SetValue(value); } }
+        public string SubjectId
+        {
+            get { return _subjectId.GetValue(); }
+            set { _subjectId.SetValue(value); }
+        }
     
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(AddResponsibilityRequest), nameof(Summary));
         
         [Required]
         [JsonPropertyName("summary")]
-        public string Summary { get { return _summary.GetValue(); } set { _summary.SetValue(value); } }
+        public string Summary
+        {
+            get { return _summary.GetValue(); }
+            set { _summary.SetValue(value); }
+        }
     
         private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(AddResponsibilityRequest), nameof(Notes));
         
         [JsonPropertyName("notes")]
-        public string? Notes { get { return _notes.GetValue(); } set { _notes.SetValue(value); } }
+        public string? Notes
+        {
+            get { return _notes.GetValue(); }
+            set { _notes.SetValue(value); }
+        }
     
     }
     
