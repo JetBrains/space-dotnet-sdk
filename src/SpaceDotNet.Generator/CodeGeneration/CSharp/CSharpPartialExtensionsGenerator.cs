@@ -165,7 +165,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     {
                         // Request body/anonymous type?
                         throw new ResourceException($"The method {nameof(GenerateCSharpTypeFrom)}() should not be called with object kind: " + apiFieldTypeObject.Kind 
-                            + $". Ensure {nameof(CSharpApiEndpointDtoEnricher)} has run, and then invoke apiEndpoint.{nameof(ApiEndpointExtensions.ToCSharpRequestBodyClassName)}() to retrieve the proper type name.");
+                            + $". Ensure {nameof(CodeGenerationContextEnricher)} has run, and then invoke apiEndpoint.{nameof(ApiEndpointExtensions.ToCSharpRequestBodyClassName)}() to retrieve the proper type name.");
                     }
                     else
                     {

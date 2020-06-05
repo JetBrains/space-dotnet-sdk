@@ -19,10 +19,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         
         public void GenerateFiles(IDocumentWriter documentWriter)
         {
-            // Enrich Dto's with resource request body types
-            var apiEndpointDtoEnricher = new CSharpApiEndpointDtoEnricher();
-            apiEndpointDtoEnricher.Enrich(_codeGenerationContext);
-            
             // API clients/endpoints
             foreach (var apiResource in _codeGenerationContext.GetResources())
             {

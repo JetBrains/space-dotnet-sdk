@@ -27,7 +27,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         public static CodeGenerationContext CreateFrom(ApiModel apiModel)
         {
 #pragma warning disable 8619
-            return new CodeGenerationContext(
+            var context = new CodeGenerationContext(
                 apiModel: apiModel, 
                 propertiesToSkip: new HashSet<string>
                 {
@@ -44,6 +44,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                         it => it)!,
                     StringComparer.OrdinalIgnoreCase));
 #pragma warning restore 8619
+            
+            // Enrich Dto's with resource request body types
+            CodeGenerationContextEnricher.EnrichDtosWithRequestBodyTypes(context);
+
+            return context;
         }
 
         public IEnumerable<ApiResource> GetResources() => ApiModel.Resources;

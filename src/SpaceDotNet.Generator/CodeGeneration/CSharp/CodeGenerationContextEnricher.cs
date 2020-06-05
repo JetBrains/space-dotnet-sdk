@@ -1,14 +1,12 @@
-using System.Collections.Generic;
 using System.Linq;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
-    // TODO REFACTOR rename to proper use once context flows
-    public class CSharpApiEndpointDtoEnricher
+    public static class CodeGenerationContextEnricher
     {
-        public void Enrich(CodeGenerationContext context)
+        public static void EnrichDtosWithRequestBodyTypes(CodeGenerationContext context)
         {
             foreach (var apiResource in context.ApiModel.Resources)
             {
@@ -35,7 +33,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     }
                 }
 
-                Enrich(context);
+                EnrichDtosWithRequestBodyTypes(context);
             }
         }
     }
