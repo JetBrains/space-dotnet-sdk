@@ -161,10 +161,18 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 
             if (FeatureFlags.GenerateBackingFieldsForDtoProperties)
             {
-                builder.Append($"{propertyNameForField} {{ get {{ return {backingFieldNameForField}.GetValue(); }} set {{ {backingFieldNameForField}.SetValue(value); }} }}");
+                builder.AppendLine($"{indent}{propertyNameForField}");
+                builder.AppendLine($"{indent}{{");
+                indent.Increment();
+                
+                builder.AppendLine($"{indent}get {{ return {backingFieldNameForField}.GetValue(); }}");
+                builder.AppendLine($"{indent}set {{ {backingFieldNameForField}.SetValue(value); }}");
+
+                indent.Decrement();
+                builder.AppendLine($"{indent}}}");
             } 
             else {
-                builder.Append($"{propertyNameForField} {{ get; set; }}");
+                builder.Append($"{indent}{propertyNameForField} {{ get; set; }}");
             }
 
             return builder.ToString();
