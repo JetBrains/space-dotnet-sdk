@@ -238,7 +238,7 @@ Here's an example retrieving issues from a project. For the `CreatedBy` property
 
 ```csharp
 await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(
-    "project1234", IssuesSorting.UPDATED,
+    ProjectIdentifier.Key("ABC"), IssuesSorting.UPDATED,
     partial: _ => _
         .WithAllFieldsWildcard()
         .WithCreationTime()

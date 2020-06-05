@@ -11,6 +11,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         [JsonPropertyName("enums")]
         public List<ApiEnum> Enums { get; set; } = new List<ApiEnum>();
         
+        [JsonPropertyName("urlParams")]
+        public List<ApiUrlParameter> UrlParameters { get; set; } = new List<ApiUrlParameter>();
+        
         [JsonPropertyName("resources")]
         public List<ApiResource> Resources { get; set; } = new List<ApiResource>();
     }

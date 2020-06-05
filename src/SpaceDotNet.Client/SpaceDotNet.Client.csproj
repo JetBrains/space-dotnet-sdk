@@ -16,6 +16,7 @@
 
     <ItemGroup>
       <Folder Include="Generated" />
+      <Folder Include="Generated\UrlParams" />
     </ItemGroup>
 
 </Project>

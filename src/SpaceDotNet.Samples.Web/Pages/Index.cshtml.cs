@@ -114,9 +114,9 @@ namespace SpaceDotNet.Samples.Web.Pages
                 try
                 {
                     // Check # of issues resolved this week
-                    var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatusesAsync(projectDto.Id);
+                    var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatusesAsync(ProjectIdentifier.Id(projectDto.Id));
                 
-                    await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, partial: _ => _
+                    await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, partial: _ => _
                         .WithAllFieldsWildcard()
                         .WithCreationTime()
                         .WithCreatedBy(createdBy => createdBy
@@ -173,10 +173,10 @@ namespace SpaceDotNet.Samples.Web.Pages
                 try
                 {
                     // Check # of reviews created and participated in
-                    var reviews1 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, @from: weekStart.AsSpaceDate()).ToListAsync();
-                    var reviews2 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate()).ToListAsync();
-                    var reviews3 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate()).ToListAsync();
-                    var reviews4 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(projectDto.Key.Key, ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate()).ToListAsync();
+                    var reviews1 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, @from: weekStart.AsSpaceDate()).ToListAsync();
+                    var reviews2 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate()).ToListAsync();
+                    var reviews3 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate()).ToListAsync();
+                    var reviews4 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate()).ToListAsync();
                     
                     foreach (var reviewDto in reviews1.Union(reviews2).Union(reviews3).Union(reviews4))
                     {

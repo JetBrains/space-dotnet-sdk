@@ -6,27 +6,20 @@ using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 using SpaceDotNet.Common.Json.Serialization;
 
-#nullable disable
-
 namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 {
-    public class ApiFieldTypeConverter : JsonConverter<ApiFieldType>
+    public class ApiUrlParameterOptionConverter : JsonConverter<ApiUrlParameterOption>
     {
         private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase)
         {
-            { "HA_Type.Array", typeof(ApiFieldType.Array) },
-            { "HA_Type.Dto", typeof(ApiFieldType.Dto) },
-            { "HA_Type.Enum", typeof(ApiFieldType.Enum) },
-            { "HA_Type.UrlParam", typeof(ApiFieldType.UrlParam) },
-            { "HA_Type.Object", typeof(ApiFieldType.Object) },
-            { "HA_Type.Primitive", typeof(ApiFieldType.Primitive) },
-            { "HA_Type.Ref", typeof(ApiFieldType.Ref) }
+            { "HA_UrlParameterOption.Var", typeof(ApiUrlParameterOption.Var) },
+            { "HA_UrlParameterOption.Const", typeof(ApiUrlParameterOption.Const) }
         };
         
-        public override bool CanConvert(Type objectType) => typeof(ApiFieldType).IsAssignableFrom(objectType);
+        public override bool CanConvert(Type objectType) => typeof(ApiUrlParameterOption).IsAssignableFrom(objectType);
 
         [CanBeNull]
-        public override ApiFieldType Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override ApiUrlParameterOption Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType == JsonTokenType.Null) return null;
 
@@ -38,13 +31,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
             var className = jsonObject.GetStringValue("className");
             if (!string.IsNullOrEmpty(className) && TypeMap.TryGetValue(className, out var targetType))
             {
-                return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as ApiFieldType;
+                return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as ApiUrlParameterOption;
             }
             
-            return JsonSerializer.Deserialize<ApiFieldType.Object>(ref readerAtStart);
+            throw new JsonException("No className field was found that maps to a ApiUrlParameterOption subtype.");
         }
 
-        public override void Write(Utf8JsonWriter writer, ApiFieldType value, JsonSerializerOptions options)
+        public override void Write(Utf8JsonWriter writer, ApiUrlParameterOption value, JsonSerializerOptions options)
         {
             if (string.IsNullOrEmpty(value.ClassName))
             {

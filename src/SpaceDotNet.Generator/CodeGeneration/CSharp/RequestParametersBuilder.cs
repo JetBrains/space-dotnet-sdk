@@ -21,21 +21,23 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             }
         }
         
+        private readonly CodeGenerationContext _context;
         private readonly List<RequestParameter> _parameters;
 
-        public RequestParametersBuilder() 
-            : this(new List<RequestParameter>())
+        public RequestParametersBuilder(CodeGenerationContext context) 
+            : this(context, new List<RequestParameter>())
         {
         }
         
-        private RequestParametersBuilder(List<RequestParameter> parameters)
+        private RequestParametersBuilder(CodeGenerationContext context, List<RequestParameter> parameters)
         {
+            _context = context;
             _parameters = parameters;
         }
 
         public RequestParametersBuilder WithParametersForEndpoint(ApiEndpoint apiEndpoint)
         {
-            var requestParametersBuilder = new RequestParametersBuilder();
+            var requestParametersBuilder = new RequestParametersBuilder(_context);
             var orderedEndpointParameters = apiEndpoint.Parameters.Where(it => !it.Path).ToList();
             foreach (var apiEndpointParameter in orderedEndpointParameters)
             {
@@ -105,7 +107,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         {
             var futureParameters = new List<RequestParameter>(_parameters);
             futureParameters.Add(new RequestParameter(name, value));
-            return new RequestParametersBuilder(futureParameters);
+            return new RequestParametersBuilder(_context, futureParameters);
         }
 
         public string BuildQueryString()

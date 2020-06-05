@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
@@ -54,6 +55,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                     else
                     {
                         return "string";
+                    }
+                
+                case ApiFieldType.UrlParam apiFieldTypeUrlParam:
+                    if (apiFieldTypeUrlParam.UrlParamRef?.Id != null && context.TryGetUrlParameter(apiFieldTypeUrlParam.UrlParamRef.Id, out var apiUrlParam))
+                    {
+                        return apiUrlParam!.ToCSharpClassName();
+                    }
+                    else
+                    {
+                        throw new ResourceException("Could not generate type name for URL parameter with ref id: " + apiFieldTypeUrlParam.UrlParamRef?.Id);
                     }
                 
                 case ApiFieldType.Object apiFieldTypeObject:

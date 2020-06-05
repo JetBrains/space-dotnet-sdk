@@ -9,22 +9,17 @@ using Xunit;
 
 namespace SpaceDotNet.Client.Tests.Json.Serialization
 {
-    public class ApiFieldTypeConverterTests
+    public class ApiUrlParameterOptionConverterTests
     {
         [Theory]
-        [InlineData(typeof(ApiFieldType.Array), true)]
-        [InlineData(typeof(ApiFieldType.Dto), true)]
-        [InlineData(typeof(ApiFieldType.Enum), true)]
-        [InlineData(typeof(ApiFieldType.UrlParam), true)]
-        [InlineData(typeof(ApiFieldType.Object), true)]
-        [InlineData(typeof(ApiFieldType.Primitive), true)]
-        [InlineData(typeof(ApiFieldType.Ref), true)]
+        [InlineData(typeof(ApiUrlParameterOption.Var), true)]
+        [InlineData(typeof(ApiUrlParameterOption.Const), true)]
         [InlineData(typeof(Enumeration), false)]
         [InlineData(typeof(object), false)]
         public void CanConvertTests(Type requestedType, bool expectedResult)
         {
             // Arrange
-            var target = new ApiFieldTypeConverter();
+            var target = new ApiUrlParameterOptionConverter();
             
             // Act
             var result = target.CanConvert(requestedType);
@@ -37,38 +32,36 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
         public void ReadKnownValuesTests()
         {
             // Arrange
-            var json = "{\"className\":\"HA_Type.Primitive\",\"primitive\":\"String\",\"nullable\":true,\"optional\":false}";
-            var target = new ApiFieldTypeConverter();
+            var json = "{\"className\":\"HA_UrlParameterOption.Const\",\"value\":\"Test\",\"optionName\":\"OptionTest\"}";
+            var target = new ApiUrlParameterOptionConverter();
             
             // Act
-            ApiFieldType? result = null;
+            ApiUrlParameterOption? result = null;
             var utf8JsonBytes = Encoding.UTF8.GetBytes(json);
             var reader = new Utf8JsonReader(utf8JsonBytes, true, new JsonReaderState());
             while (reader.Read())
             {
-                result = target.Read(ref reader, typeof(ApiFieldType), new JsonSerializerOptions());
+                result = target.Read(ref reader, typeof(ApiUrlParameterOption), new JsonSerializerOptions());
             }
                 
             // Assert
-            Assert.IsType<ApiFieldType.Primitive>(result);
+            Assert.IsType<ApiUrlParameterOption.Const>(result);
             
-            var primitiveResult = result as ApiFieldType.Primitive;
-            Assert.Equal("String", primitiveResult?.Type);
-            Assert.True(primitiveResult?.Nullable);
-            Assert.False(primitiveResult?.Optional);
+            var constResult = result as ApiUrlParameterOption.Const;
+            Assert.Equal("Test", constResult?.Value);
+            Assert.Equal("OptionTest", constResult?.OptionName);
         }
         
         [Fact]
         public void WriteTests()
         {
             // Arrange
-            var input = new ApiFieldType.Primitive
+            var input = new ApiUrlParameterOption.Const
             {
-                Type = "String",
-                Nullable = true,
-                Optional = false
+                Value = "Test",
+                OptionName = "OptionTest"
             };
-            var target = new ApiFieldTypeConverter();
+            var target = new ApiUrlParameterOptionConverter();
             
             // Act
             using var memoryStream = new MemoryStream();
@@ -81,7 +74,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             var result = reader.ReadToEnd();
             
             // Assert
-            Assert.Equal("{\"primitive\":\"String\",\"className\":\"HA_Type.Primitive\",\"nullable\":true,\"optional\":false}", result);
+            Assert.Equal("{\"value\":\"Test\",\"className\":\"HA_UrlParameterOption.Const\",\"optionName\":\"OptionTest\",\"deprecation\":null}", result);
         }
     }
 }

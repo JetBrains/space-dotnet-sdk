@@ -166,7 +166,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append("(\"" + apiCallMethod + "\", ");
                 builder.Append("$\"api/http/" + endpointPath);
                 
-                var requestParametersBuilder = new RequestParametersBuilder()
+                var requestParametersBuilder = new RequestParametersBuilder(_codeGenerationContext)
                     .WithParametersForEndpoint(apiEndpoint);
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
@@ -231,7 +231,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append("(\"" + apiCallMethod + "\", ");
                 builder.Append("$\"api/http/" + endpointPath);
                 
-                var requestParametersBuilder = new RequestParametersBuilder()
+                var requestParametersBuilder = new RequestParametersBuilder(_codeGenerationContext)
                     .WithParametersForEndpoint(apiEndpoint);
                 
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)

@@ -59,6 +59,12 @@ namespace SpaceDotNet.Generator.Model.HttpApi
             public Reference<ApiEnum>? EnumRef { get; set; }
         }
         
+        public class UrlParam : ApiFieldType
+        {
+            [JsonPropertyName("urlParam")]
+            public Reference<ApiUrlParameter>? UrlParamRef { get; set; }
+        }
+        
         public class Dto : ApiFieldType
         {
             [JsonPropertyName("dto")]

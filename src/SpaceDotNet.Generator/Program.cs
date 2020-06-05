@@ -22,7 +22,7 @@ namespace SpaceDotNet.Generator
                 new HttpClient());
             
             var apiModel = await connection.RequestResourceAsync<ApiModel>(
-                "GET", "api/http/http-api-model?$fields=dto(id,deprecation,extends,fields,hierarchyRole,implements,inheritors,name,record),enums(id,deprecation,name,values),resources(id,displayPlural,displaySingular,endpoints,nestedResources!,parentResource,path)");
+                "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!)");
             
             // Remove old code
             var generatedCodePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated");

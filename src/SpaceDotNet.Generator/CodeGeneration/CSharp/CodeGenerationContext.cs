@@ -11,21 +11,25 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         public HashSet<string> PropertiesToSkip { get; }
         private readonly SortedDictionary<string, ApiEnum> _idToEnumMap;
         private readonly SortedDictionary<string, ApiDto> _idToDtoMap;
+        private readonly SortedDictionary<string, ApiUrlParameter> _idToUrlParameterMap;
 
         private CodeGenerationContext(
             ApiModel apiModel,
             HashSet<string> propertiesToSkip,
             SortedDictionary<string, ApiEnum> idToEnumMap,
-            SortedDictionary<string, ApiDto> idToDtoMap)
+            SortedDictionary<string, ApiDto> idToDtoMap,
+            SortedDictionary<string, ApiUrlParameter> idToUrlParameterMap)
         {
             ApiModel = apiModel;
             PropertiesToSkip = propertiesToSkip;
             _idToEnumMap = idToEnumMap;
             _idToDtoMap = idToDtoMap;
+            _idToUrlParameterMap = idToUrlParameterMap;
         }
 
         public static CodeGenerationContext CreateFrom(ApiModel apiModel)
         {
+            var dtoAndUrlParams = new List<ApiDto>();
 #pragma warning disable 8619
             var context = new CodeGenerationContext(
                 apiModel: apiModel, 
@@ -42,6 +46,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     apiModel.Dto.ToImmutableSortedDictionary(
                         it => it.Id,
                         it => it)!,
+                    StringComparer.OrdinalIgnoreCase), 
+                idToUrlParameterMap: new SortedDictionary<string, ApiUrlParameter>(
+                    apiModel.UrlParameters.ToImmutableSortedDictionary(
+                        it => it.Id,
+                        it => it)!,
                     StringComparer.OrdinalIgnoreCase));
 #pragma warning restore 8619
             
@@ -52,10 +61,15 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         }
 
         public IEnumerable<ApiResource> GetResources() => ApiModel.Resources;
+        
         public IEnumerable<ApiEnum> GetEnums() => _idToEnumMap.Values;
         public bool TryGetEnum(string id, out ApiEnum? apiEnum) => _idToEnumMap.TryGetValue(id, out apiEnum);
+        
         public IEnumerable<ApiDto> GetDtos() => _idToDtoMap.Values;
         public bool TryGetDto(string id, out ApiDto? apiDto) => _idToDtoMap.TryGetValue(id, out apiDto);
         public void AddDto(string id, ApiDto apiDto) => _idToDtoMap[id] = apiDto;
+        
+        public IEnumerable<ApiUrlParameter> GetUrlParameters() => _idToUrlParameterMap.Values;
+        public bool TryGetUrlParameter(string id, out ApiUrlParameter? apiUrlParameter) => _idToUrlParameterMap.TryGetValue(id, out apiUrlParameter);
     }
 }
