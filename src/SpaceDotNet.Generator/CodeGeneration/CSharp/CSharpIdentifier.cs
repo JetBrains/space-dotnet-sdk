@@ -50,5 +50,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             
             return ReservedKeywords.Contains(variableName) ? "@" + variableName : variableName;
         }
+
+        public static string ForBackingField(string subject) =>
+            "_" + subject
+                .WithStartingDigitReplaced()
+                .Replace("$", string.Empty);
     }
 }
