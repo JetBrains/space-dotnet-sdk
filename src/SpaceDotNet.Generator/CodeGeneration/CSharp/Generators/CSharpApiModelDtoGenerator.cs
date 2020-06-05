@@ -90,7 +90,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     {
                         foreach (var apiDtoField in apiDtoImplements!.Fields)
                         {
-                            builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDtoField.Field)));
+                            builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(typeNameForDto, apiDtoField.Field)));
                         }
                     }
                 }
@@ -103,7 +103,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 if (!_codeGenerationContext.PropertiesToSkip.Contains($"{typeNameForDto}.{propertyName}")
                     && !dtoHierarchyFieldNames.Contains(apiDtoField.Field.Name))
                 {
-                    builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDtoField.Field)));
+                    builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(typeNameForDto, apiDtoField.Field)));
                 }
             }
         
@@ -112,14 +112,39 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             return builder.ToString();
         }
 
-        private string GenerateDtoFieldDefinition(ApiField apiField)
+        private string GenerateDtoFieldDefinition(string typeNameForDto, ApiField apiField)
         {
-            // TODO CONSIDER WRITING PARTIAL PATH ERRORS?
             var indent = new Indent();
             var builder = new StringBuilder();
 
             var propertyNameForField = apiField.ToCSharpPropertyName();
-            
+            var backingFieldNameForField = apiField.ToCSharpBackingFieldName();
+
+            // Backing field
+            if (FeatureFlags.GenerateBackingFieldsForDtoProperties)
+            {
+                // Generate a backing field that throws an Exception when a field has not been
+                // requested from the API.
+                builder.Append($"{indent}private PropertyValue<");
+                builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+                if (apiField.Type.Nullable)
+                {
+                    builder.Append("?");
+                }
+
+                builder.Append("> ");
+                builder.Append($"{backingFieldNameForField} = new PropertyValue<");
+                builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+                if (apiField.Type.Nullable)
+                {
+                    builder.Append("?");
+                }
+
+                builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
+                builder.AppendLine($"{indent}");
+            }
+
+            // Property
             if (!apiField.Type.Optional && !apiField.Type.Nullable)
             {
                 builder.AppendLine($"{indent}[Required]");
@@ -133,7 +158,15 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append("?");
             }
             builder.Append(" ");
-            builder.Append($"{propertyNameForField} {{ get; set; }}");
+
+            if (FeatureFlags.GenerateBackingFieldsForDtoProperties)
+            {
+                builder.Append($"{propertyNameForField} {{ get {{ return {backingFieldNameForField}.GetValue(); }} set {{ {backingFieldNameForField}.SetValue(value); }} }}");
+            } 
+            else {
+                builder.Append($"{propertyNameForField} {{ get; set; }}");
+            }
+
             return builder.ToString();
         }
     }
