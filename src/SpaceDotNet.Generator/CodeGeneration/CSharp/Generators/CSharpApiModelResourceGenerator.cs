@@ -1,224 +1,18 @@
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
 
-namespace SpaceDotNet.Generator.CodeGeneration.CSharp
+namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 {
-    // TODO REFACTORING Split this into a couple classes (Dto/enum/api)
-    public class CSharpApiModelGenerator
+    public class CSharpApiModelResourceGenerator
     {
         private readonly CodeGenerationContext _codeGenerationContext;
         
-        public CSharpApiModelGenerator(CodeGenerationContext codeGenerationContext)
+        public CSharpApiModelResourceGenerator(CodeGenerationContext codeGenerationContext)
         {
             _codeGenerationContext = codeGenerationContext;
-        }
-        
-        public void GenerateFiles(IDocumentWriter documentWriter)
-        {
-            // API clients/endpoints
-            foreach (var apiResource in _codeGenerationContext.GetResources())
-            {
-                WriteToDocument(documentWriter, 
-                    apiResource.ToCSharpIdentifierSingular() + "Client.generated.cs",
-                    GenerateResourceDefinition(apiResource));
-            }
-            
-            // Enums
-            foreach (var apiEnum in _codeGenerationContext.GetEnums())
-            {
-                WriteToDocument(documentWriter, 
-                    "Enums/" + apiEnum.ToCSharpClassName() + ".generated.cs",
-                    GenerateEnumDefinition(apiEnum));
-            }
-            
-            // Dtos
-            foreach (var apiDto in _codeGenerationContext.GetDtos())
-            {
-                WriteToDocument(documentWriter, 
-                    "Dtos/" + apiDto.ToCSharpClassName() + ".generated.cs",
-                    GenerateDtoDefinition(apiDto));
-            }
-            
-            // Partial extensions
-            var partialExtensionsGenerator = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
-            foreach (var apiDto in _codeGenerationContext.GetDtos())
-            {
-                WriteToDocument(documentWriter, 
-                    "Partials/" + apiDto.ToCSharpClassName() + ".generated.cs",
-                    partialExtensionsGenerator.GeneratePartialClassFor(apiDto),
-                    apiDto.ToCSharpClassName() + "Extensions");
-            }
-        }
-
-        private static void WriteToDocument(
-            IDocumentWriter documentWriter, 
-            string relativePath, 
-            string contents, 
-            string? namespaceSuffix = null)
-        {
-            var document = new CSharpDocument(namespaceSuffix);
-            document.AppendLine(contents);
-            documentWriter.WriteDocument(
-                relativePath,
-                document.ToString());
-        }
-
-        public string GenerateEnumDefinition(ApiEnum apiEnum)
-        {
-            var indent = new Indent();
-            var builder = new StringBuilder();
-            
-            var typeNameForEnum = apiEnum.ToCSharpClassName();
-            
-            if (apiEnum.Deprecation != null)
-            {
-                builder.AppendLine(apiEnum.Deprecation.ToCSharpDeprecation());
-            }
-            
-            builder.AppendLine($"{indent}[JsonConverter(typeof(EnumerationConverter))]");
-            builder.AppendLine($"{indent}public sealed class {typeNameForEnum} : Enumeration");
-            builder.AppendLine($"{indent}{{");
-                
-            indent.Increment();
-            builder.AppendLine($"{indent}private {typeNameForEnum}(string value) : base(value) {{ }}");
-            builder.AppendLine($"{indent}");
-            
-            foreach (var value in apiEnum.Values)
-            {
-                var identifierForValue = CSharpIdentifier.ForClassOrNamespace(value);
-                builder.AppendLine($"{indent}public static readonly {typeNameForEnum} {identifierForValue} = new {typeNameForEnum}(\"{value}\");");
-            }
-            
-            indent.Decrement();
-                
-            builder.AppendLine($"{indent}}}");
-            return builder.ToString();
-        }
-
-        public string GenerateDtoDefinition(ApiDto apiDto)
-        {
-            var indent = new Indent();
-            var builder = new StringBuilder();
-            
-            var typeNameForDto = apiDto.ToCSharpClassName();
-            
-            if (apiDto.Deprecation != null)
-            {
-                builder.AppendLine(apiDto.Deprecation.ToCSharpDeprecation());
-            }
-                
-            if (apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null && apiDto.Inheritors.Count > 0)
-            {
-                // When extending another DTO, make sure to apply a converter
-                builder.AppendLine($"{indent}[JsonConverter(typeof(ClassNameDtoTypeConverter))]");
-            }
-        
-            var modifierForDto = apiDto.HierarchyRole == HierarchyRole.INTERFACE
-                ? "interface"
-                : apiDto.HierarchyRole == HierarchyRole.ABSTRACT
-                    ? "abstract class"
-                    : apiDto.HierarchyRole == HierarchyRole.SEALED || apiDto.HierarchyRole == HierarchyRole.FINAL
-                        ? "sealed class"
-                        : "class";
-        
-            var dtoHierarchy = new List<string>();
-            var dtoHierarchyFieldNames = new List<string>();
-            if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
-            {
-                dtoHierarchy.Add(apiDtoExtends!.ToCSharpClassName());
-                dtoHierarchyFieldNames.AddRange(apiDtoExtends!.Fields.Select(it => it.Field.Name));
-            }
-            if (apiDto.Implements != null)
-            {
-                foreach (var dtoImplements in apiDto.Implements)
-                {
-                    if (_codeGenerationContext.TryGetDto(dtoImplements.Id, out var apiDtoImplements))
-                    {
-                        dtoHierarchy.Add(apiDtoImplements!.ToCSharpClassName());
-                    }
-                }
-            }
-            if (dtoHierarchy.Count > 0 || apiDto.Inheritors.Count > 0)
-            {
-                dtoHierarchy.Add("IClassNameConvertible");
-            }
-            
-            builder.AppendLine($"{indent}public {modifierForDto} {typeNameForDto}");
-            if (dtoHierarchy.Count > 0)
-            {
-                indent.Increment();
-                builder.AppendLine($"{indent} : " + string.Join(", ", dtoHierarchy));
-                indent.Decrement();
-            }
-            builder.AppendLine($"{indent}{{");
-            indent.Increment();
-            
-            // When in a hierarchy, make sure we can capture the class name.
-            if (dtoHierarchy.Count > 0 && apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null)
-            {
-                builder.AppendLine($"{indent}[JsonPropertyName(\"className\")]");
-                builder.AppendLine($"{indent}public string? ClassName {{ get; set; }}"); // TODO C# 9 make this init only
-                builder.AppendLine($"{indent}");
-            }
-                
-            // For implements, add all referenced types' fields
-            if (apiDto.Implements != null)
-            {
-                foreach (var dtoReference in apiDto.Implements)
-                {
-                    if (_codeGenerationContext.TryGetDto(dtoReference.Id, out var apiDtoImplements))
-                    {
-                        foreach (var apiDtoField in apiDtoImplements!.Fields)
-                        {
-                            builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDtoField.Field)));
-                        }
-                    }
-                }
-            }
-        
-            // Add own fields
-            foreach (var apiDtoField in apiDto.Fields)
-            {
-                var propertyName = apiDtoField.Field.ToCSharpPropertyName();
-                if (!_codeGenerationContext.PropertiesToSkip.Contains($"{typeNameForDto}.{propertyName}")
-                    && !dtoHierarchyFieldNames.Contains(apiDtoField.Field.Name))
-                {
-                    builder.AppendLine(indent.Wrap(GenerateDtoFieldDefinition(apiDtoField.Field)));
-                }
-            }
-        
-            indent.Decrement();
-            builder.AppendLine($"{indent}}}");
-            return builder.ToString();
-        }
-
-        private string GenerateDtoFieldDefinition(ApiField apiField)
-        {
-            // TODO CONSIDER WRITING PARTIAL PATH ERRORS?
-            var indent = new Indent();
-            var builder = new StringBuilder();
-
-            var propertyNameForField = apiField.ToCSharpPropertyName();
-            
-            if (!apiField.Type.Optional && !apiField.Type.Nullable)
-            {
-                builder.AppendLine($"{indent}[Required]");
-            }
-            builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
-            
-            builder.Append($"{indent}public ");
-            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
-            if (apiField.Type.Nullable)
-            {
-                builder.Append("?");
-            }
-            builder.Append(" ");
-            builder.Append($"{propertyNameForField} {{ get; set; }}");
-            return builder.ToString();
         }
 
         public string GenerateResourceDefinition(ApiResource apiResource) =>
@@ -312,7 +106,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             builder.AppendLine(GenerateMethodForApiEndpoint(apiEndpoint, baseEndpointPath));
             
             var isResponseBatch = apiEndpoint.ResponseBody is ApiFieldType.Object objectResponse
-                && objectResponse.Kind == ApiFieldType.Object.ObjectKind.BATCH;
+                                  && objectResponse.Kind == ApiFieldType.Object.ObjectKind.BATCH;
         
             if (isResponseBatch && apiEndpoint.ResponseBody != null)
             {
@@ -346,7 +140,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             }
             
             var isResponsePrimitiveOrArrayOfPrimitive = apiEndpoint.ResponseBody is ApiFieldType.Primitive 
-                || (apiEndpoint.ResponseBody is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive);
+                                                        || (apiEndpoint.ResponseBody is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive);
             
             if (apiEndpoint.ResponseBody == null)
             {

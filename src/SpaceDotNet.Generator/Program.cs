@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp;
+using SpaceDotNet.Generator.CodeGeneration.CSharp.Generators;
 using SpaceDotNet.Generator.Model.HttpApi;
 
 namespace SpaceDotNet.Generator

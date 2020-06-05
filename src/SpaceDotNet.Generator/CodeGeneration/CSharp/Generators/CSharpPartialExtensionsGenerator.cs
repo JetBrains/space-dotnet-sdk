@@ -4,7 +4,7 @@ using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
 
-namespace SpaceDotNet.Generator.CodeGeneration.CSharp
+namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 {
     public class CSharpPartialExtensionsGenerator
     {
