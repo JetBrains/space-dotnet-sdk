@@ -22,51 +22,49 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             // API clients/endpoints
             foreach (var apiResource in _codeGenerationContext.GetResources())
             {
-                var document = new CSharpDocument();
-                document.AppendLine(
-                    GenerateResourceDefinition(apiResource));
-                
-                documentWriter.WriteDocument(
+                WriteToDocument(documentWriter, 
                     apiResource.ToCSharpIdentifierSingular() + "Client.generated.cs",
-                    document.ToString());
+                    GenerateResourceDefinition(apiResource));
             }
             
             // Enums
             foreach (var apiEnum in _codeGenerationContext.GetEnums())
             {
-                var document = new CSharpDocument();
-                document.AppendLine(
-                    GenerateEnumDefinition(apiEnum));
-                
-                documentWriter.WriteDocument(
+                WriteToDocument(documentWriter, 
                     "Enums/" + apiEnum.ToCSharpClassName() + ".generated.cs",
-                    document.ToString());
+                    GenerateEnumDefinition(apiEnum));
             }
             
             // Dtos
             foreach (var apiDto in _codeGenerationContext.GetDtos())
             {
-                var document = new CSharpDocument();
-                document.AppendLine(
-                    GenerateDtoDefinition(apiDto));
-                
-                documentWriter.WriteDocument(
+                WriteToDocument(documentWriter, 
                     "Dtos/" + apiDto.ToCSharpClassName() + ".generated.cs",
-                    document.ToString());
+                    GenerateDtoDefinition(apiDto));
             }
             
             // Partial extensions
-            var partialExtensionsVisitor = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
+            var partialExtensionsGenerator = new CSharpPartialExtensionsGenerator(_codeGenerationContext);
             foreach (var apiDto in _codeGenerationContext.GetDtos())
             {
-                var document = new CSharpDocument(apiDto.ToCSharpClassName() + "Extensions");
-                document.AppendLine(
-                    partialExtensionsVisitor.GeneratePartialClassFor(apiDto));
-                
-                documentWriter.WriteDocument(
+                WriteToDocument(documentWriter, 
                     "Partials/" + apiDto.ToCSharpClassName() + ".generated.cs",
-                    document.ToString());
+                    partialExtensionsGenerator.GeneratePartialClassFor(apiDto),
+                    apiDto.ToCSharpClassName() + "Extensions");
             }
+        }
+
+        private static void WriteToDocument(
+            IDocumentWriter documentWriter, 
+            string relativePath, 
+            string contents, 
+            string? namespaceSuffix = null)
+        {
+            var document = new CSharpDocument(namespaceSuffix);
+            document.AppendLine(contents);
+            documentWriter.WriteDocument(
+                relativePath,
+                document.ToString());
         }
 
         public string GenerateEnumDefinition(ApiEnum apiEnum)
