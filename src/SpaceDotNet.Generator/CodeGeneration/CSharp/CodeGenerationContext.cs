@@ -45,7 +45,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     StringComparer.OrdinalIgnoreCase));
 #pragma warning restore 8619
             
-            // Enrich Dto's with resource request body types
+            // Enrich Dtos with resource request body types
             CodeGenerationContextEnricher.EnrichDtosWithRequestBodyTypes(context);
 
             return context;

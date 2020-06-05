@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
@@ -6,9 +7,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
     public static class CodeGenerationContextEnricher
     {
-        public static void EnrichDtosWithRequestBodyTypes(CodeGenerationContext context)
+        public static void EnrichDtosWithRequestBodyTypes(CodeGenerationContext context) => 
+            EnrichDtosWithRequestBodyTypes(context, context.ApiModel.Resources);
+
+        private static void EnrichDtosWithRequestBodyTypes(CodeGenerationContext context, IEnumerable<ApiResource> resources)
         {
-            foreach (var apiResource in context.ApiModel.Resources)
+            foreach (var apiResource in resources)
             {
                 foreach (var apiEndpoint in apiResource.Endpoints)
                 {
@@ -33,7 +37,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     }
                 }
 
-                EnrichDtosWithRequestBodyTypes(context);
+                EnrichDtosWithRequestBodyTypes(context, apiResource.NestedResources);
             }
         }
     }
