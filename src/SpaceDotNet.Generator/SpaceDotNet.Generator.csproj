@@ -3,6 +3,7 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Description>Generates the SDK client for the JetBrains Space API.</Description>
     </PropertyGroup>
 
     <ItemGroup>

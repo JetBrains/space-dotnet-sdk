@@ -12,7 +12,7 @@
         <PackageTags>JetBrains;JetBrains Space;SDK;API</PackageTags>
         <AssemblyVersion>0.0.1</AssemblyVersion>
         <FileVersion>0.0.1</FileVersion>
-        <Description>A .NET library to talk to JetBrains Space.</Description>
+        <Description>The JetBrains Space SDK for .NET is a .NET library to work with the JetBrains Space API.</Description>
         <!--        <Authors>JetBrains</Authors>-->
         <!--        <Company>JetBrains</Company>-->
         <!--        <Copyright>JetBrains</Copyright>-->

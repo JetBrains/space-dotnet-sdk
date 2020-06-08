@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-        <Description>Common types and utility classes for SpaceDotNet, a .NET library to talk to JetBrains Space.</Description>
+        <Description>Common types and utility classes for SpaceDotNet.</Description>
     </PropertyGroup>
     
     <ItemGroup>
