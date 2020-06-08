@@ -1,25 +1,31 @@
 # SpaceDotNet
 
-A .NET Library to talk to JetBrains Space.
+The JetBrains Space SDK for .NET is a .NET library to work with the [JetBrains Space](https://jetbrains.com/space) API. 
 
 ## Getting Started
 
-Download links:
+Default package: SpaceDotNet.Client
+Generated client, depends on SpaceDotNet.Common for JSON serialization and more.
 
-SSH clone URL: ssh://git@git.jetbrains.team/SpaceDotNet.git
+* Authentication/OAuth
+* Various clients
+* Partials (Default, Specific + extension methods)
+* Batch vs IAsyncEnumerable
 
-HTTPS clone URL: https://git.jetbrains.team/SpaceDotNet.git
+ASP.NET Core - SpaceDotNet.AspNetCore - Not required but helper to register all Space clients
+IServiceCollection AddSpaceClientApi(this IServiceCollection services)
+            services.AddHttpClient();
+            + Add Space ...Client types (transient)
+            
+ASP.NET Core Authentication - SpaceDotNet.AspNetCore.Authentication.Space
+Add Space auth, needs options:
+            builder.Services.AddOptions<SpaceOptions>(authenticationScheme)
+                .Validate(o => o.ServerUrl != null, "Space.ServerUrl is required.")
+                .Validate(o => !string.IsNullOrEmpty(o.ClientId), "Space.ClientId is required.")
+                .Validate(o => !string.IsNullOrEmpty(o.ClientSecret), "Space.ClientSecret is required.");
 
-## Generating an API client
+If not using identity model, can be used for token management to access Space API. Note this is experimental!
 
-1) Set the following environment variables:
+## Contributing
 
-  * `SPACE_SERVERURL`
-  * `SPACE_CLIENTID`
-  * `SPACE_CLIENTSECRET`
-
-2) Run `SpaceDotNet.Generator`
-
-## Resources
-
-Add links to external resources for this project, such as CI server, bug tracker, etc.
+TODO
