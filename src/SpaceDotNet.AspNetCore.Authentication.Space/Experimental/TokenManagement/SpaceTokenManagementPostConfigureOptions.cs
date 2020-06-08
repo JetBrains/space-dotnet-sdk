@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using Microsoft.Extensions.Options;
 
-namespace SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement
+namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement
 {
     [UsedImplicitly]
     public class SpaceTokenManagementPostConfigureOptions : IPostConfigureOptions<SpaceOptions>

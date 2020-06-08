@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SpaceDotNet.Common;
 
-namespace SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement
+namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement
 {
     internal class BearerTokenConnectionProvider
     {

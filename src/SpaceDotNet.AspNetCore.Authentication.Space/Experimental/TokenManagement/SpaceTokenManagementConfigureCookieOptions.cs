@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 
-namespace SpaceDotNet.AspNetCore.Authentication.Space.TokenManagement
+namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement
 {
     /// <remarks>
     /// Inspired by <a href="https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement">IdentityServer4</a>
