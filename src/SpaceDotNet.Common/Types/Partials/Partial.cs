@@ -76,13 +76,27 @@ namespace SpaceDotNet.Common
         }
         
         /// <summary>
-        /// Add all field names of <typeparamref name="T"/> to the current partial definition.
+        /// Add all field names of <typeparamref name="T"/> to the current partial definition explicitly.
         /// </summary>
-        /// <remarks>When combining <see cref="AddAllFieldNames"/> with methods such as <see cref="AddFieldName"/>, make sure to use <see cref="AddAllFieldNames"/> first in the partial definition.</remarks>
+        /// <remarks>
+        /// It is preferred to use <see cref="WithAllFieldsWildcard"/>.
+        ///
+        /// When combining <see cref="AddAllFieldNamesExplicitly"/> with methods such as <see cref="AddFieldName"/>, make sure to use <see cref="AddAllFieldNamesExplicitly"/> first in the partial definition.</remarks>
         /// <returns>The current <see cref="Partial{T}"/>.</returns>
-        public Partial<T> AddAllFieldNames()
+        [Obsolete("Use WithAllFieldsWildcard() instead, unless it is required to add all field names explicitly.")]
+        public Partial<T> AddAllFieldNamesExplicitly()
         {
             AddFieldNames(FieldsFor(typeof(T), currentDepth: 0, maxDepth: 0));
+            return this;
+        }
+        
+        /// <summary>
+        /// Add all field names of <typeparamref name="T"/> to the current partial definition using a wildcard (*).
+        /// </summary>
+        /// <returns>The current <see cref="Partial{T}"/>.</returns>
+        public Partial<T> WithAllFieldsWildcard()
+        {
+            AddFieldName("*");
             return this;
         }
 
@@ -111,7 +125,7 @@ namespace SpaceDotNet.Common
         /// Creates a default partial definition, fetching the default set of fields the Space API returns for <typeparamref name="T"/>.
         /// </summary>
         /// <returns>A <see cref="Partial{T}"/> that can be extended.</returns>
-        public static Partial<T> Default() => new Partial<T>().AddAllFieldNames();
+        public static Partial<T> Default() => new Partial<T>().WithAllFieldsWildcard();
 
         /// <summary>
         /// Creates a recursive partial definition, fetching all fields and sub-fields recursively.

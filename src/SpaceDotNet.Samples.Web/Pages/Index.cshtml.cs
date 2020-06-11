@@ -80,22 +80,22 @@ namespace SpaceDotNet.Samples.Web.Pages
             #region Example with full field definitions
             
             MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync(partial => partial
-                .AddAllFieldNames() // adds all fields for the current partial request (one level)
+                .WithAllFieldsWildcard() // adds all fields for the current partial request (one level)
                 .WithId()
                 .WithName(name => name
                     .WithFirstName()
                     .WithLastName())
-                .WithEmails(emails => emails.AddAllFieldNames())
+                .WithEmails(emails => emails.WithAllFieldsWildcard())
                 .WithMessengers()
                 .WithPhones()
                 .WithLinks()
                 .WithBirthday()
                 .WithLanguages(languages => languages
-                    .AddAllFieldNames()
-                    .WithLanguage(language => language.AddAllFieldNames()))
-                .WithAbsences(absence => absence.AddAllFieldNames())
+                    .WithAllFieldsWildcard()
+                    .WithLanguage(language => language.WithAllFieldsWildcard()))
+                .WithAbsences(absence => absence.WithAllFieldsWildcard())
                 .WithMemberships(membership => membership
-                    .AddAllFieldNames()
+                    .WithAllFieldsWildcard()
                     .WithRole(role => role.WithName())
                     .WithTeam(team => team.WithName()))
                 .WithLocations(locations => locations
@@ -123,7 +123,7 @@ namespace SpaceDotNet.Samples.Web.Pages
                     var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatusesAsync(projectDto.Id);
                 
                     await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(projectDto.Id, issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, partial: _ => _
-                        .AddAllFieldNames()
+                        .WithAllFieldsWildcard()
                         .WithCreationTime()
                         .WithCreatedBy(createdBy => createdBy
                             .WithDetails(details => details
@@ -246,7 +246,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             try
             {
                 await foreach (var meetingDto in _calendarClient.Meetings.GetAllMeetingsAsyncEnumerable("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), partial: _ => _
-                    .AddAllFieldNames()
+                    .WithAllFieldsWildcard()
                     .WithId()
                     .WithSummary()
                     .WithDescription()
