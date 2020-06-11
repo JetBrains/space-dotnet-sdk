@@ -31,15 +31,13 @@ namespace SpaceDotNet.Client
         public static async IAsyncEnumerable<Batch<T>> AllPages<T>(RetrieveBatch<T> batchResponse, string? initialSkip = null)
         {
             var batch = await batchResponse(initialSkip);
-            do
-            {
-                yield return batch;
+            yield return batch;
 
-                if (batch.HasNext())
-                {
-                    batch = await batchResponse(batch.Next);
-                }
-            } while (batch.HasNext());
+            while (batch.HasNext())
+            {
+                batch = await batchResponse(batch.Next);
+                yield return batch;
+            }
         }
     }
 }
