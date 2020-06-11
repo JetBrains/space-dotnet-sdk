@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ExtendedTypeDtoExtensions
 {
     public static class ExtendedTypeDtoPartialExtensions
     {
-        public static Partial<ExtendedTypeDto> WithKey(this Partial<ExtendedTypeDto> it)    => it.AddFieldName("key");
+        public static Partial<ExtendedTypeDto> WithKey(this Partial<ExtendedTypeDto> it)
+            => it.AddFieldName("key");
         
-        public static Partial<ExtendedTypeDto> WithDisplayName(this Partial<ExtendedTypeDto> it)    => it.AddFieldName("displayName");
+        public static Partial<ExtendedTypeDto> WithDisplayName(this Partial<ExtendedTypeDto> it)
+            => it.AddFieldName("displayName");
         
     }
     

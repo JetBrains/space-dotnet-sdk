@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.PermissionComparisonEntryDTODtoExtensions
 {
     public static class PermissionComparisonEntryDTODtoPartialExtensions
     {
-        public static Partial<PermissionComparisonEntryDTODto> WithPrincipalIndex(this Partial<PermissionComparisonEntryDTODto> it)    => it.AddFieldName("principalIndex");
+        public static Partial<PermissionComparisonEntryDTODto> WithPrincipalIndex(this Partial<PermissionComparisonEntryDTODto> it)
+            => it.AddFieldName("principalIndex");
         
-        public static Partial<PermissionComparisonEntryDTODto> WithRightIndex(this Partial<PermissionComparisonEntryDTODto> it)    => it.AddFieldName("rightIndex");
+        public static Partial<PermissionComparisonEntryDTODto> WithRightIndex(this Partial<PermissionComparisonEntryDTODto> it)
+            => it.AddFieldName("rightIndex");
         
-        public static Partial<PermissionComparisonEntryDTODto> WithAllTargets1(this Partial<PermissionComparisonEntryDTODto> it)    => it.AddFieldName("allTargets1");
+        public static Partial<PermissionComparisonEntryDTODto> WithAllTargets1(this Partial<PermissionComparisonEntryDTODto> it)
+            => it.AddFieldName("allTargets1");
         
-        public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices1(this Partial<PermissionComparisonEntryDTODto> it)    => it.AddFieldName("targetIndices1");
+        public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices1(this Partial<PermissionComparisonEntryDTODto> it)
+            => it.AddFieldName("targetIndices1");
         
-        public static Partial<PermissionComparisonEntryDTODto> WithAllTargets2(this Partial<PermissionComparisonEntryDTODto> it)    => it.AddFieldName("allTargets2");
+        public static Partial<PermissionComparisonEntryDTODto> WithAllTargets2(this Partial<PermissionComparisonEntryDTODto> it)
+            => it.AddFieldName("allTargets2");
         
-        public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices2(this Partial<PermissionComparisonEntryDTODto> it)    => it.AddFieldName("targetIndices2");
+        public static Partial<PermissionComparisonEntryDTODto> WithTargetIndices2(this Partial<PermissionComparisonEntryDTODto> it)
+            => it.AddFieldName("targetIndices2");
         
     }
     

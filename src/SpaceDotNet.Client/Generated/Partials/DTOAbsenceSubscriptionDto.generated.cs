@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.DTOAbsenceSubscriptionDtoExtensions
 {
     public static class DTOAbsenceSubscriptionDtoPartialExtensions
     {
-        public static Partial<DTOAbsenceSubscriptionDto> WithId(this Partial<DTOAbsenceSubscriptionDto> it)    => it.AddFieldName("id");
+        public static Partial<DTOAbsenceSubscriptionDto> WithId(this Partial<DTOAbsenceSubscriptionDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<DTOAbsenceSubscriptionDto> WithLocation(this Partial<DTOAbsenceSubscriptionDto> it)    => it.AddFieldName("location");
+        public static Partial<DTOAbsenceSubscriptionDto> WithLocation(this Partial<DTOAbsenceSubscriptionDto> it)
+            => it.AddFieldName("location");
         
-        public static Partial<DTOAbsenceSubscriptionDto> WithLocation(this Partial<DTOAbsenceSubscriptionDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<DTOAbsenceSubscriptionDto> WithLocation(this Partial<DTOAbsenceSubscriptionDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
+            => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>(it)));
         
-        public static Partial<DTOAbsenceSubscriptionDto> WithTeam(this Partial<DTOAbsenceSubscriptionDto> it)    => it.AddFieldName("team");
+        public static Partial<DTOAbsenceSubscriptionDto> WithTeam(this Partial<DTOAbsenceSubscriptionDto> it)
+            => it.AddFieldName("team");
         
-        public static Partial<DTOAbsenceSubscriptionDto> WithTeam(this Partial<DTOAbsenceSubscriptionDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<DTOAbsenceSubscriptionDto> WithTeam(this Partial<DTOAbsenceSubscriptionDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>(it)));
         
-        public static Partial<DTOAbsenceSubscriptionDto> WithReason(this Partial<DTOAbsenceSubscriptionDto> it)    => it.AddFieldName("reason");
+        public static Partial<DTOAbsenceSubscriptionDto> WithReason(this Partial<DTOAbsenceSubscriptionDto> it)
+            => it.AddFieldName("reason");
         
-        public static Partial<DTOAbsenceSubscriptionDto> WithReason(this Partial<DTOAbsenceSubscriptionDto> it, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partialBuilder)    => it.AddFieldName("reason", partialBuilder(new Partial<AbsenceReasonRecordDto>()));
+        public static Partial<DTOAbsenceSubscriptionDto> WithReason(this Partial<DTOAbsenceSubscriptionDto> it, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>> partialBuilder)
+            => it.AddFieldName("reason", partialBuilder(new Partial<AbsenceReasonRecordDto>(it)));
         
     }
     

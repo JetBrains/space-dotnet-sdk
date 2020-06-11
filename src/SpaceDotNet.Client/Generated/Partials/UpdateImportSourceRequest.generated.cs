@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateImportSourceRequestExtensions
 {
     public static class UpdateImportSourceRequestPartialExtensions
     {
-        public static Partial<UpdateImportSourceRequest> WithName(this Partial<UpdateImportSourceRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdateImportSourceRequest> WithName(this Partial<UpdateImportSourceRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdateImportSourceRequest> WithImporterPrincipal(this Partial<UpdateImportSourceRequest> it)    => it.AddFieldName("importerPrincipal");
+        public static Partial<UpdateImportSourceRequest> WithImporterPrincipal(this Partial<UpdateImportSourceRequest> it)
+            => it.AddFieldName("importerPrincipal");
         
     }
     

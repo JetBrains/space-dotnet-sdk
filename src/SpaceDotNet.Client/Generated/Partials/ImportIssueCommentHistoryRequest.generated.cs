@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ImportIssueCommentHistoryRequestExtensions
 {
     public static class ImportIssueCommentHistoryRequestPartialExtensions
     {
-        public static Partial<ImportIssueCommentHistoryRequest> WithComments(this Partial<ImportIssueCommentHistoryRequest> it)    => it.AddFieldName("comments");
+        public static Partial<ImportIssueCommentHistoryRequest> WithComments(this Partial<ImportIssueCommentHistoryRequest> it)
+            => it.AddFieldName("comments");
         
-        public static Partial<ImportIssueCommentHistoryRequest> WithComments(this Partial<ImportIssueCommentHistoryRequest> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)    => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImportDto>()));
+        public static Partial<ImportIssueCommentHistoryRequest> WithComments(this Partial<ImportIssueCommentHistoryRequest> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)
+            => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImportDto>(it)));
         
     }
     

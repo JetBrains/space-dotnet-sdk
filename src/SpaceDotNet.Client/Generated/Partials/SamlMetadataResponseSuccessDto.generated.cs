@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.SamlMetadataResponseSuccessDtoExtensions
 {
     public static class SamlMetadataResponseSuccessDtoPartialExtensions
     {
-        public static Partial<SamlMetadataResponseSuccessDto> WithMetadata(this Partial<SamlMetadataResponseSuccessDto> it)    => it.AddFieldName("metadata");
+        public static Partial<SamlMetadataResponseSuccessDto> WithMetadata(this Partial<SamlMetadataResponseSuccessDto> it)
+            => it.AddFieldName("metadata");
         
     }
     

@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.M2AbsenceItemApproveDeletedContentDtoExtensions
 {
     public static class M2AbsenceItemApproveDeletedContentDtoPartialExtensions
     {
-        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemApproveDeletedContentDto> it)    => it.AddFieldName("absence");
+        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemApproveDeletedContentDto> it)
+            => it.AddFieldName("absence");
         
-        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemApproveDeletedContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)    => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>()));
+        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemApproveDeletedContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)
+            => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>(it)));
         
-        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithBy(this Partial<M2AbsenceItemApproveDeletedContentDto> it)    => it.AddFieldName("by");
+        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithBy(this Partial<M2AbsenceItemApproveDeletedContentDto> it)
+            => it.AddFieldName("by");
         
-        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithBy(this Partial<M2AbsenceItemApproveDeletedContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithBy(this Partial<M2AbsenceItemApproveDeletedContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithApprove(this Partial<M2AbsenceItemApproveDeletedContentDto> it)    => it.AddFieldName("approve");
+        public static Partial<M2AbsenceItemApproveDeletedContentDto> WithApprove(this Partial<M2AbsenceItemApproveDeletedContentDto> it)
+            => it.AddFieldName("approve");
         
     }
     

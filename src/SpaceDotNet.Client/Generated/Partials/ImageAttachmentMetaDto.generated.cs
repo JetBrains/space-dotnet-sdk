@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ImageAttachmentMetaDtoExtensions
 {
     public static class ImageAttachmentMetaDtoPartialExtensions
     {
-        public static Partial<ImageAttachmentMetaDto> WithVariants(this Partial<ImageAttachmentMetaDto> it)    => it.AddFieldName("variants");
+        public static Partial<ImageAttachmentMetaDto> WithVariants(this Partial<ImageAttachmentMetaDto> it)
+            => it.AddFieldName("variants");
         
-        public static Partial<ImageAttachmentMetaDto> WithVariants(this Partial<ImageAttachmentMetaDto> it, Func<Partial<ImageAttachmentVariantsMetaDto>, Partial<ImageAttachmentVariantsMetaDto>> partialBuilder)    => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariantsMetaDto>()));
+        public static Partial<ImageAttachmentMetaDto> WithVariants(this Partial<ImageAttachmentMetaDto> it, Func<Partial<ImageAttachmentVariantsMetaDto>, Partial<ImageAttachmentVariantsMetaDto>> partialBuilder)
+            => it.AddFieldName("variants", partialBuilder(new Partial<ImageAttachmentVariantsMetaDto>(it)));
         
     }
     

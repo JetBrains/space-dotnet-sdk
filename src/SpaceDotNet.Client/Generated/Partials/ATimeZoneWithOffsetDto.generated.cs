@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ATimeZoneWithOffsetDtoExtensions
 {
     public static class ATimeZoneWithOffsetDtoPartialExtensions
     {
-        public static Partial<ATimeZoneWithOffsetDto> WithId(this Partial<ATimeZoneWithOffsetDto> it)    => it.AddFieldName("id");
+        public static Partial<ATimeZoneWithOffsetDto> WithId(this Partial<ATimeZoneWithOffsetDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ATimeZoneWithOffsetDto> WithOffset(this Partial<ATimeZoneWithOffsetDto> it)    => it.AddFieldName("offset");
+        public static Partial<ATimeZoneWithOffsetDto> WithOffset(this Partial<ATimeZoneWithOffsetDto> it)
+            => it.AddFieldName("offset");
         
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateCommitSetReviewRequestExtensions
 {
     public static class CreateCommitSetReviewRequestPartialExtensions
     {
-        public static Partial<CreateCommitSetReviewRequest> WithRevisions(this Partial<CreateCommitSetReviewRequest> it)    => it.AddFieldName("revisions");
+        public static Partial<CreateCommitSetReviewRequest> WithRevisions(this Partial<CreateCommitSetReviewRequest> it)
+            => it.AddFieldName("revisions");
         
-        public static Partial<CreateCommitSetReviewRequest> WithTitle(this Partial<CreateCommitSetReviewRequest> it)    => it.AddFieldName("title");
+        public static Partial<CreateCommitSetReviewRequest> WithTitle(this Partial<CreateCommitSetReviewRequest> it)
+            => it.AddFieldName("title");
         
     }
     

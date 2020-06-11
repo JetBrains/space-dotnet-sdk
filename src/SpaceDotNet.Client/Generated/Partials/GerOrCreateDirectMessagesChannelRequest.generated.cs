@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.GerOrCreateDirectMessagesChannelRequestExtensions
 {
     public static class GerOrCreateDirectMessagesChannelRequestPartialExtensions
     {
-        public static Partial<GerOrCreateDirectMessagesChannelRequest> WithProfile(this Partial<GerOrCreateDirectMessagesChannelRequest> it)    => it.AddFieldName("profile");
+        public static Partial<GerOrCreateDirectMessagesChannelRequest> WithProfile(this Partial<GerOrCreateDirectMessagesChannelRequest> it)
+            => it.AddFieldName("profile");
         
     }
     

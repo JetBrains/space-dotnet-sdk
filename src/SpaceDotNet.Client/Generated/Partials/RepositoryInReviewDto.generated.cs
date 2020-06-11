@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.RepositoryInReviewDtoExtensions
 {
     public static class RepositoryInReviewDtoPartialExtensions
     {
-        public static Partial<RepositoryInReviewDto> WithName(this Partial<RepositoryInReviewDto> it)    => it.AddFieldName("name");
+        public static Partial<RepositoryInReviewDto> WithName(this Partial<RepositoryInReviewDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<RepositoryInReviewDto> WithDeleted(this Partial<RepositoryInReviewDto> it)    => it.AddFieldName("deleted");
+        public static Partial<RepositoryInReviewDto> WithDeleted(this Partial<RepositoryInReviewDto> it)
+            => it.AddFieldName("deleted");
         
     }
     

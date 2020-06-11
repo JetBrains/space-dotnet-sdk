@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.HAModelDtoExtensions
 {
     public static class HAModelDtoPartialExtensions
     {
-        public static Partial<HAModelDto> WithDto(this Partial<HAModelDto> it)    => it.AddFieldName("dto");
+        public static Partial<HAModelDto> WithDto(this Partial<HAModelDto> it)
+            => it.AddFieldName("dto");
         
-        public static Partial<HAModelDto> WithDto(this Partial<HAModelDto> it, Func<Partial<HADtoDto>, Partial<HADtoDto>> partialBuilder)    => it.AddFieldName("dto", partialBuilder(new Partial<HADtoDto>()));
+        public static Partial<HAModelDto> WithDto(this Partial<HAModelDto> it, Func<Partial<HADtoDto>, Partial<HADtoDto>> partialBuilder)
+            => it.AddFieldName("dto", partialBuilder(new Partial<HADtoDto>(it)));
         
-        public static Partial<HAModelDto> WithEnums(this Partial<HAModelDto> it)    => it.AddFieldName("enums");
+        public static Partial<HAModelDto> WithEnums(this Partial<HAModelDto> it)
+            => it.AddFieldName("enums");
         
-        public static Partial<HAModelDto> WithEnums(this Partial<HAModelDto> it, Func<Partial<HAEnumDto>, Partial<HAEnumDto>> partialBuilder)    => it.AddFieldName("enums", partialBuilder(new Partial<HAEnumDto>()));
+        public static Partial<HAModelDto> WithEnums(this Partial<HAModelDto> it, Func<Partial<HAEnumDto>, Partial<HAEnumDto>> partialBuilder)
+            => it.AddFieldName("enums", partialBuilder(new Partial<HAEnumDto>(it)));
         
-        public static Partial<HAModelDto> WithResources(this Partial<HAModelDto> it)    => it.AddFieldName("resources");
+        public static Partial<HAModelDto> WithResources(this Partial<HAModelDto> it)
+            => it.AddFieldName("resources");
         
-        public static Partial<HAModelDto> WithResources(this Partial<HAModelDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)    => it.AddFieldName("resources", partialBuilder(new Partial<HAResourceDto>()));
+        public static Partial<HAModelDto> WithResources(this Partial<HAModelDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)
+            => it.AddFieldName("resources", partialBuilder(new Partial<HAResourceDto>(it)));
         
-        public static Partial<HAModelDto> WithAllResources(this Partial<HAModelDto> it)    => it.AddFieldName("allResources");
+        public static Partial<HAModelDto> WithAllResources(this Partial<HAModelDto> it)
+            => it.AddFieldName("allResources");
         
-        public static Partial<HAModelDto> WithAllResources(this Partial<HAModelDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)    => it.AddFieldName("allResources", partialBuilder(new Partial<HAResourceDto>()));
+        public static Partial<HAModelDto> WithAllResources(this Partial<HAModelDto> it, Func<Partial<HAResourceDto>, Partial<HAResourceDto>> partialBuilder)
+            => it.AddFieldName("allResources", partialBuilder(new Partial<HAResourceDto>(it)));
         
     }
     

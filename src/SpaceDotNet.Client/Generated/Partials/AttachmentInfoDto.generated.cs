@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.AttachmentInfoDtoExtensions
 {
     public static class AttachmentInfoDtoPartialExtensions
     {
-        public static Partial<AttachmentInfoDto> WithDetails(this Partial<AttachmentInfoDto> it)    => it.AddFieldName("details");
+        public static Partial<AttachmentInfoDto> WithDetails(this Partial<AttachmentInfoDto> it)
+            => it.AddFieldName("details");
         
-        public static Partial<AttachmentInfoDto> WithDetails(this Partial<AttachmentInfoDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)    => it.AddFieldName("details", partialBuilder(new Partial<AttachmentDto>()));
+        public static Partial<AttachmentInfoDto> WithDetails(this Partial<AttachmentInfoDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
+            => it.AddFieldName("details", partialBuilder(new Partial<AttachmentDto>(it)));
         
     }
     

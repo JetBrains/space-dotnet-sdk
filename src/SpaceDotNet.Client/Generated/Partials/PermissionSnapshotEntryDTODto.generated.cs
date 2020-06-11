@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.PermissionSnapshotEntryDTODtoExtensions
 {
     public static class PermissionSnapshotEntryDTODtoPartialExtensions
     {
-        public static Partial<PermissionSnapshotEntryDTODto> WithPrincipalIndex(this Partial<PermissionSnapshotEntryDTODto> it)    => it.AddFieldName("principalIndex");
+        public static Partial<PermissionSnapshotEntryDTODto> WithPrincipalIndex(this Partial<PermissionSnapshotEntryDTODto> it)
+            => it.AddFieldName("principalIndex");
         
-        public static Partial<PermissionSnapshotEntryDTODto> WithRightIndex(this Partial<PermissionSnapshotEntryDTODto> it)    => it.AddFieldName("rightIndex");
+        public static Partial<PermissionSnapshotEntryDTODto> WithRightIndex(this Partial<PermissionSnapshotEntryDTODto> it)
+            => it.AddFieldName("rightIndex");
         
-        public static Partial<PermissionSnapshotEntryDTODto> WithAllTargets(this Partial<PermissionSnapshotEntryDTODto> it)    => it.AddFieldName("allTargets");
+        public static Partial<PermissionSnapshotEntryDTODto> WithAllTargets(this Partial<PermissionSnapshotEntryDTODto> it)
+            => it.AddFieldName("allTargets");
         
-        public static Partial<PermissionSnapshotEntryDTODto> WithTargetIndices(this Partial<PermissionSnapshotEntryDTODto> it)    => it.AddFieldName("targetIndices");
+        public static Partial<PermissionSnapshotEntryDTODto> WithTargetIndices(this Partial<PermissionSnapshotEntryDTODto> it)
+            => it.AddFieldName("targetIndices");
         
     }
     

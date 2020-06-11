@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ArticleMarkdownImageDtoExtensions
 {
     public static class ArticleMarkdownImageDtoPartialExtensions
     {
-        public static Partial<ArticleMarkdownImageDto> WithAlt(this Partial<ArticleMarkdownImageDto> it)    => it.AddFieldName("alt");
+        public static Partial<ArticleMarkdownImageDto> WithAlt(this Partial<ArticleMarkdownImageDto> it)
+            => it.AddFieldName("alt");
         
-        public static Partial<ArticleMarkdownImageDto> WithSrc(this Partial<ArticleMarkdownImageDto> it)    => it.AddFieldName("src");
+        public static Partial<ArticleMarkdownImageDto> WithSrc(this Partial<ArticleMarkdownImageDto> it)
+            => it.AddFieldName("src");
         
     }
     

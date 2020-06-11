@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.MCOutlineDtoExtensions
 {
     public static class MCOutlineDtoPartialExtensions
     {
-        public static Partial<MCOutlineDto> WithIcon(this Partial<MCOutlineDto> it)    => it.AddFieldName("icon");
+        public static Partial<MCOutlineDto> WithIcon(this Partial<MCOutlineDto> it)
+            => it.AddFieldName("icon");
         
-        public static Partial<MCOutlineDto> WithIcon(this Partial<MCOutlineDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)    => it.AddFieldName("icon", partialBuilder(new Partial<MCElementDto>()));
+        public static Partial<MCOutlineDto> WithIcon(this Partial<MCOutlineDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)
+            => it.AddFieldName("icon", partialBuilder(new Partial<MCElementDto>(it)));
         
-        public static Partial<MCOutlineDto> WithText(this Partial<MCOutlineDto> it)    => it.AddFieldName("text");
+        public static Partial<MCOutlineDto> WithText(this Partial<MCOutlineDto> it)
+            => it.AddFieldName("text");
         
-        public static Partial<MCOutlineDto> WithText(this Partial<MCOutlineDto> it, Func<Partial<MCTextDto>, Partial<MCTextDto>> partialBuilder)    => it.AddFieldName("text", partialBuilder(new Partial<MCTextDto>()));
+        public static Partial<MCOutlineDto> WithText(this Partial<MCOutlineDto> it, Func<Partial<MCTextDto>, Partial<MCTextDto>> partialBuilder)
+            => it.AddFieldName("text", partialBuilder(new Partial<MCTextDto>(it)));
         
     }
     

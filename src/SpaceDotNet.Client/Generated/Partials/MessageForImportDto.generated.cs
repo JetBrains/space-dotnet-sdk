@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.MessageForImportDtoExtensions
 {
     public static class MessageForImportDtoPartialExtensions
     {
-        public static Partial<MessageForImportDto> WithAuthorPrincipalId(this Partial<MessageForImportDto> it)    => it.AddFieldName("authorPrincipalId");
+        public static Partial<MessageForImportDto> WithAuthorPrincipalId(this Partial<MessageForImportDto> it)
+            => it.AddFieldName("authorPrincipalId");
         
-        public static Partial<MessageForImportDto> WithText(this Partial<MessageForImportDto> it)    => it.AddFieldName("text");
+        public static Partial<MessageForImportDto> WithText(this Partial<MessageForImportDto> it)
+            => it.AddFieldName("text");
         
-        public static Partial<MessageForImportDto> WithCreatedAtUtc(this Partial<MessageForImportDto> it)    => it.AddFieldName("createdAtUtc");
+        public static Partial<MessageForImportDto> WithCreatedAtUtc(this Partial<MessageForImportDto> it)
+            => it.AddFieldName("createdAtUtc");
         
-        public static Partial<MessageForImportDto> WithAttachments(this Partial<MessageForImportDto> it)    => it.AddFieldName("attachments");
+        public static Partial<MessageForImportDto> WithAttachments(this Partial<MessageForImportDto> it)
+            => it.AddFieldName("attachments");
         
-        public static Partial<MessageForImportDto> WithAttachments(this Partial<MessageForImportDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)    => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>()));
+        public static Partial<MessageForImportDto> WithAttachments(this Partial<MessageForImportDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>(it)));
         
     }
     

@@ -23,25 +23,35 @@ namespace SpaceDotNet.Client.CommitStatusDTODtoExtensions
 {
     public static class CommitStatusDTODtoPartialExtensions
     {
-        public static Partial<CommitStatusDTODto> WithRepository(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("repository");
+        public static Partial<CommitStatusDTODto> WithRepository(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<CommitStatusDTODto> WithRevision(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("revision");
+        public static Partial<CommitStatusDTODto> WithRevision(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("revision");
         
-        public static Partial<CommitStatusDTODto> WithExecutionStatus(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("executionStatus");
+        public static Partial<CommitStatusDTODto> WithExecutionStatus(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("executionStatus");
         
-        public static Partial<CommitStatusDTODto> WithExecutionStatus(this Partial<CommitStatusDTODto> it, Func<Partial<ExecutionStatus>, Partial<ExecutionStatus>> partialBuilder)    => it.AddFieldName("executionStatus", partialBuilder(new Partial<ExecutionStatus>()));
+        public static Partial<CommitStatusDTODto> WithExecutionStatus(this Partial<CommitStatusDTODto> it, Func<Partial<ExecutionStatus>, Partial<ExecutionStatus>> partialBuilder)
+            => it.AddFieldName("executionStatus", partialBuilder(new Partial<ExecutionStatus>(it)));
         
-        public static Partial<CommitStatusDTODto> WithUrl(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("url");
+        public static Partial<CommitStatusDTODto> WithUrl(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("url");
         
-        public static Partial<CommitStatusDTODto> WithExternalServiceName(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("externalServiceName");
+        public static Partial<CommitStatusDTODto> WithExternalServiceName(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("externalServiceName");
         
-        public static Partial<CommitStatusDTODto> WithTaskName(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("taskName");
+        public static Partial<CommitStatusDTODto> WithTaskName(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("taskName");
         
-        public static Partial<CommitStatusDTODto> WithTaskId(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("taskId");
+        public static Partial<CommitStatusDTODto> WithTaskId(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("taskId");
         
-        public static Partial<CommitStatusDTODto> WithTimestamp(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("timestamp");
+        public static Partial<CommitStatusDTODto> WithTimestamp(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("timestamp");
         
-        public static Partial<CommitStatusDTODto> WithDescription(this Partial<CommitStatusDTODto> it)    => it.AddFieldName("description");
+        public static Partial<CommitStatusDTODto> WithDescription(this Partial<CommitStatusDTODto> it)
+            => it.AddFieldName("description");
         
     }
     

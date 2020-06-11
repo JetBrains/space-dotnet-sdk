@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.PRTagDtoExtensions
 {
     public static class PRTagDtoPartialExtensions
     {
-        public static Partial<PRTagDto> WithName(this Partial<PRTagDto> it)    => it.AddFieldName("name");
+        public static Partial<PRTagDto> WithName(this Partial<PRTagDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<PRTagDto> WithProjectCount(this Partial<PRTagDto> it)    => it.AddFieldName("projectCount");
+        public static Partial<PRTagDto> WithProjectCount(this Partial<PRTagDto> it)
+            => it.AddFieldName("projectCount");
         
     }
     

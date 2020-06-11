@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.TDLocationMapPointDtoExtensions
 {
     public static class TDLocationMapPointDtoPartialExtensions
     {
-        public static Partial<TDLocationMapPointDto> WithId(this Partial<TDLocationMapPointDto> it)    => it.AddFieldName("id");
+        public static Partial<TDLocationMapPointDto> WithId(this Partial<TDLocationMapPointDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<TDLocationMapPointDto> WithMapId(this Partial<TDLocationMapPointDto> it)    => it.AddFieldName("mapId");
+        public static Partial<TDLocationMapPointDto> WithMapId(this Partial<TDLocationMapPointDto> it)
+            => it.AddFieldName("mapId");
         
-        public static Partial<TDLocationMapPointDto> WithX(this Partial<TDLocationMapPointDto> it)    => it.AddFieldName("x");
+        public static Partial<TDLocationMapPointDto> WithX(this Partial<TDLocationMapPointDto> it)
+            => it.AddFieldName("x");
         
-        public static Partial<TDLocationMapPointDto> WithY(this Partial<TDLocationMapPointDto> it)    => it.AddFieldName("y");
+        public static Partial<TDLocationMapPointDto> WithY(this Partial<TDLocationMapPointDto> it)
+            => it.AddFieldName("y");
         
-        public static Partial<TDLocationMapPointDto> WithCreated(this Partial<TDLocationMapPointDto> it)    => it.AddFieldName("created");
+        public static Partial<TDLocationMapPointDto> WithCreated(this Partial<TDLocationMapPointDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<TDLocationMapPointDto> WithMemberLocation(this Partial<TDLocationMapPointDto> it)    => it.AddFieldName("memberLocation");
+        public static Partial<TDLocationMapPointDto> WithMemberLocation(this Partial<TDLocationMapPointDto> it)
+            => it.AddFieldName("memberLocation");
         
-        public static Partial<TDLocationMapPointDto> WithDeleted(this Partial<TDLocationMapPointDto> it)    => it.AddFieldName("deleted");
+        public static Partial<TDLocationMapPointDto> WithDeleted(this Partial<TDLocationMapPointDto> it)
+            => it.AddFieldName("deleted");
         
     }
     

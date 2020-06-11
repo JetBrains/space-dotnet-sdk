@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateStatusRequestExtensions
 {
     public static class UpdateStatusRequestPartialExtensions
     {
-        public static Partial<UpdateStatusRequest> WithStatuses(this Partial<UpdateStatusRequest> it)    => it.AddFieldName("statuses");
+        public static Partial<UpdateStatusRequest> WithStatuses(this Partial<UpdateStatusRequest> it)
+            => it.AddFieldName("statuses");
         
-        public static Partial<UpdateStatusRequest> WithStatuses(this Partial<UpdateStatusRequest> it, Func<Partial<IssueStatusDataDto>, Partial<IssueStatusDataDto>> partialBuilder)    => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusDataDto>()));
+        public static Partial<UpdateStatusRequest> WithStatuses(this Partial<UpdateStatusRequest> it, Func<Partial<IssueStatusDataDto>, Partial<IssueStatusDataDto>> partialBuilder)
+            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusDataDto>(it)));
         
     }
     

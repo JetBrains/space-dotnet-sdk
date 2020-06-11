@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.ESAzureAuthModuleSettingsDtoExtensions
 {
     public static class ESAzureAuthModuleSettingsDtoPartialExtensions
     {
-        public static Partial<ESAzureAuthModuleSettingsDto> WithTenantId(this Partial<ESAzureAuthModuleSettingsDto> it)    => it.AddFieldName("tenantId");
+        public static Partial<ESAzureAuthModuleSettingsDto> WithTenantId(this Partial<ESAzureAuthModuleSettingsDto> it)
+            => it.AddFieldName("tenantId");
         
-        public static Partial<ESAzureAuthModuleSettingsDto> WithClientId(this Partial<ESAzureAuthModuleSettingsDto> it)    => it.AddFieldName("clientId");
+        public static Partial<ESAzureAuthModuleSettingsDto> WithClientId(this Partial<ESAzureAuthModuleSettingsDto> it)
+            => it.AddFieldName("clientId");
         
-        public static Partial<ESAzureAuthModuleSettingsDto> WithClientSecret(this Partial<ESAzureAuthModuleSettingsDto> it)    => it.AddFieldName("clientSecret");
+        public static Partial<ESAzureAuthModuleSettingsDto> WithClientSecret(this Partial<ESAzureAuthModuleSettingsDto> it)
+            => it.AddFieldName("clientSecret");
         
-        public static Partial<ESAzureAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESAzureAuthModuleSettingsDto> it)    => it.AddFieldName("registerNewUsers");
+        public static Partial<ESAzureAuthModuleSettingsDto> WithRegisterNewUsers(this Partial<ESAzureAuthModuleSettingsDto> it)
+            => it.AddFieldName("registerNewUsers");
         
-        public static Partial<ESAzureAuthModuleSettingsDto> WithEmailVerified(this Partial<ESAzureAuthModuleSettingsDto> it)    => it.AddFieldName("emailVerified");
+        public static Partial<ESAzureAuthModuleSettingsDto> WithEmailVerified(this Partial<ESAzureAuthModuleSettingsDto> it)
+            => it.AddFieldName("emailVerified");
         
     }
     

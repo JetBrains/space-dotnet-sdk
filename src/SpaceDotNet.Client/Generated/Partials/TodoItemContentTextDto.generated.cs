@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.TodoItemContentTextDtoExtensions
 {
     public static class TodoItemContentTextDtoPartialExtensions
     {
-        public static Partial<TodoItemContentTextDto> WithText(this Partial<TodoItemContentTextDto> it)    => it.AddFieldName("text");
+        public static Partial<TodoItemContentTextDto> WithText(this Partial<TodoItemContentTextDto> it)
+            => it.AddFieldName("text");
         
     }
     

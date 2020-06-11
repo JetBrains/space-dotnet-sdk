@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client.CreateFieldRequestExtensions
 {
     public static class CreateFieldRequestPartialExtensions
     {
-        public static Partial<CreateFieldRequest> WithName(this Partial<CreateFieldRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateFieldRequest> WithName(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CreateFieldRequest> WithKey(this Partial<CreateFieldRequest> it)    => it.AddFieldName("key");
+        public static Partial<CreateFieldRequest> WithKey(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("key");
         
-        public static Partial<CreateFieldRequest> WithType(this Partial<CreateFieldRequest> it)    => it.AddFieldName("type");
+        public static Partial<CreateFieldRequest> WithType(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("type");
         
-        public static Partial<CreateFieldRequest> WithType(this Partial<CreateFieldRequest> it, Func<Partial<CFTypeDto>, Partial<CFTypeDto>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<CFTypeDto>()));
+        public static Partial<CreateFieldRequest> WithType(this Partial<CreateFieldRequest> it, Func<Partial<CFTypeDto>, Partial<CFTypeDto>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<CFTypeDto>(it)));
         
-        public static Partial<CreateFieldRequest> WithConstraint(this Partial<CreateFieldRequest> it)    => it.AddFieldName("constraint");
+        public static Partial<CreateFieldRequest> WithConstraint(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("constraint");
         
-        public static Partial<CreateFieldRequest> WithConstraint(this Partial<CreateFieldRequest> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)    => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>()));
+        public static Partial<CreateFieldRequest> WithConstraint(this Partial<CreateFieldRequest> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)
+            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>(it)));
         
-        public static Partial<CreateFieldRequest> WithRequired(this Partial<CreateFieldRequest> it)    => it.AddFieldName("required");
+        public static Partial<CreateFieldRequest> WithRequired(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("required");
         
-        public static Partial<CreateFieldRequest> WithPrivate(this Partial<CreateFieldRequest> it)    => it.AddFieldName("private");
+        public static Partial<CreateFieldRequest> WithPrivate(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("private");
         
-        public static Partial<CreateFieldRequest> WithAccess(this Partial<CreateFieldRequest> it)    => it.AddFieldName("access");
+        public static Partial<CreateFieldRequest> WithAccess(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("access");
         
-        public static Partial<CreateFieldRequest> WithAccess(this Partial<CreateFieldRequest> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)    => it.AddFieldName("access", partialBuilder(new Partial<AccessType>()));
+        public static Partial<CreateFieldRequest> WithAccess(this Partial<CreateFieldRequest> it, Func<Partial<AccessType>, Partial<AccessType>> partialBuilder)
+            => it.AddFieldName("access", partialBuilder(new Partial<AccessType>(it)));
         
-        public static Partial<CreateFieldRequest> WithDefaultValue(this Partial<CreateFieldRequest> it)    => it.AddFieldName("defaultValue");
+        public static Partial<CreateFieldRequest> WithDefaultValue(this Partial<CreateFieldRequest> it)
+            => it.AddFieldName("defaultValue");
         
-        public static Partial<CreateFieldRequest> WithDefaultValue(this Partial<CreateFieldRequest> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)    => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>()));
+        public static Partial<CreateFieldRequest> WithDefaultValue(this Partial<CreateFieldRequest> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
+            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>(it)));
         
     }
     

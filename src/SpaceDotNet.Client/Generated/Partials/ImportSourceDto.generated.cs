@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.ImportSourceDtoExtensions
 {
     public static class ImportSourceDtoPartialExtensions
     {
-        public static Partial<ImportSourceDto> WithId(this Partial<ImportSourceDto> it)    => it.AddFieldName("id");
+        public static Partial<ImportSourceDto> WithId(this Partial<ImportSourceDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ImportSourceDto> WithArchived(this Partial<ImportSourceDto> it)    => it.AddFieldName("archived");
+        public static Partial<ImportSourceDto> WithArchived(this Partial<ImportSourceDto> it)
+            => it.AddFieldName("archived");
         
-        public static Partial<ImportSourceDto> WithImporter(this Partial<ImportSourceDto> it)    => it.AddFieldName("importer");
+        public static Partial<ImportSourceDto> WithImporter(this Partial<ImportSourceDto> it)
+            => it.AddFieldName("importer");
         
-        public static Partial<ImportSourceDto> WithImporter(this Partial<ImportSourceDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)    => it.AddFieldName("importer", partialBuilder(new Partial<CPrincipalDto>()));
+        public static Partial<ImportSourceDto> WithImporter(this Partial<ImportSourceDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)
+            => it.AddFieldName("importer", partialBuilder(new Partial<CPrincipalDto>(it)));
         
-        public static Partial<ImportSourceDto> WithName(this Partial<ImportSourceDto> it)    => it.AddFieldName("name");
+        public static Partial<ImportSourceDto> WithName(this Partial<ImportSourceDto> it)
+            => it.AddFieldName("name");
         
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateRoleRequestExtensions
 {
     public static class CreateRoleRequestPartialExtensions
     {
-        public static Partial<CreateRoleRequest> WithName(this Partial<CreateRoleRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateRoleRequest> WithName(this Partial<CreateRoleRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CreateRoleRequest> WithParentId(this Partial<CreateRoleRequest> it)    => it.AddFieldName("parentId");
+        public static Partial<CreateRoleRequest> WithParentId(this Partial<CreateRoleRequest> it)
+            => it.AddFieldName("parentId");
         
     }
     

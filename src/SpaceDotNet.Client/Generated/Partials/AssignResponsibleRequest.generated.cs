@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.AssignResponsibleRequestExtensions
 {
     public static class AssignResponsibleRequestPartialExtensions
     {
-        public static Partial<AssignResponsibleRequest> WithRole(this Partial<AssignResponsibleRequest> it)    => it.AddFieldName("role");
+        public static Partial<AssignResponsibleRequest> WithRole(this Partial<AssignResponsibleRequest> it)
+            => it.AddFieldName("role");
         
     }
     

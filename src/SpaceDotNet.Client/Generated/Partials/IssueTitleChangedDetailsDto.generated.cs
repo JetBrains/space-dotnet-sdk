@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.IssueTitleChangedDetailsDtoExtensions
 {
     public static class IssueTitleChangedDetailsDtoPartialExtensions
     {
-        public static Partial<IssueTitleChangedDetailsDto> WithOldTitle(this Partial<IssueTitleChangedDetailsDto> it)    => it.AddFieldName("oldTitle");
+        public static Partial<IssueTitleChangedDetailsDto> WithOldTitle(this Partial<IssueTitleChangedDetailsDto> it)
+            => it.AddFieldName("oldTitle");
         
-        public static Partial<IssueTitleChangedDetailsDto> WithNewTitle(this Partial<IssueTitleChangedDetailsDto> it)    => it.AddFieldName("newTitle");
+        public static Partial<IssueTitleChangedDetailsDto> WithNewTitle(this Partial<IssueTitleChangedDetailsDto> it)
+            => it.AddFieldName("newTitle");
         
     }
     

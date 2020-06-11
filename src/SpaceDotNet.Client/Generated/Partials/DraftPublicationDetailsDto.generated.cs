@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.DraftPublicationDetailsDtoExtensions
 {
     public static class DraftPublicationDetailsDtoPartialExtensions
     {
-        public static Partial<DraftPublicationDetailsDto> WithUsedType(this Partial<DraftPublicationDetailsDto> it)    => it.AddFieldName("usedType");
+        public static Partial<DraftPublicationDetailsDto> WithUsedType(this Partial<DraftPublicationDetailsDto> it)
+            => it.AddFieldName("usedType");
         
-        public static Partial<DraftPublicationDetailsDto> WithAllPublicationDetails(this Partial<DraftPublicationDetailsDto> it)    => it.AddFieldName("allPublicationDetails");
+        public static Partial<DraftPublicationDetailsDto> WithAllPublicationDetails(this Partial<DraftPublicationDetailsDto> it)
+            => it.AddFieldName("allPublicationDetails");
         
-        public static Partial<DraftPublicationDetailsDto> WithAllPublicationDetails(this Partial<DraftPublicationDetailsDto> it, Func<Partial<PublicationDetailsDto>, Partial<PublicationDetailsDto>> partialBuilder)    => it.AddFieldName("allPublicationDetails", partialBuilder(new Partial<PublicationDetailsDto>()));
+        public static Partial<DraftPublicationDetailsDto> WithAllPublicationDetails(this Partial<DraftPublicationDetailsDto> it, Func<Partial<PublicationDetailsDto>, Partial<PublicationDetailsDto>> partialBuilder)
+            => it.AddFieldName("allPublicationDetails", partialBuilder(new Partial<PublicationDetailsDto>(it)));
         
     }
     

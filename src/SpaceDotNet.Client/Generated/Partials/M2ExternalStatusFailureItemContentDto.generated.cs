@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client.M2ExternalStatusFailureItemContentDtoExtensions
 {
     public static class M2ExternalStatusFailureItemContentDtoPartialExtensions
     {
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithProjectId(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("projectId");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithProjectId(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("projectId");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithRepository(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("repository");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithRepository(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithBranch(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("branch");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithBranch(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("branch");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithRevisionInfo(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("revisionInfo");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithRevisionInfo(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("revisionInfo");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithRevisionInfo(this Partial<M2ExternalStatusFailureItemContentDto> it, Func<Partial<RevisionAuthorInfoDto>, Partial<RevisionAuthorInfoDto>> partialBuilder)    => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionAuthorInfoDto>()));
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithRevisionInfo(this Partial<M2ExternalStatusFailureItemContentDto> it, Func<Partial<RevisionAuthorInfoDto>, Partial<RevisionAuthorInfoDto>> partialBuilder)
+            => it.AddFieldName("revisionInfo", partialBuilder(new Partial<RevisionAuthorInfoDto>(it)));
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithChangesInfo(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("changesInfo");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithChangesInfo(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("changesInfo");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithChangesInfo(this Partial<M2ExternalStatusFailureItemContentDto> it, Func<Partial<LastChangesDto>, Partial<LastChangesDto>> partialBuilder)    => it.AddFieldName("changesInfo", partialBuilder(new Partial<LastChangesDto>()));
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithChangesInfo(this Partial<M2ExternalStatusFailureItemContentDto> it, Func<Partial<LastChangesDto>, Partial<LastChangesDto>> partialBuilder)
+            => it.AddFieldName("changesInfo", partialBuilder(new Partial<LastChangesDto>(it)));
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithUrl(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("url");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithUrl(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("url");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithExternalServiceName(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("externalServiceName");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithExternalServiceName(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("externalServiceName");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithTaskName(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("taskName");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithTaskName(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("taskName");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithTimestamp(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("timestamp");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithTimestamp(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("timestamp");
         
-        public static Partial<M2ExternalStatusFailureItemContentDto> WithDescription(this Partial<M2ExternalStatusFailureItemContentDto> it)    => it.AddFieldName("description");
+        public static Partial<M2ExternalStatusFailureItemContentDto> WithDescription(this Partial<M2ExternalStatusFailureItemContentDto> it)
+            => it.AddFieldName("description");
         
     }
     

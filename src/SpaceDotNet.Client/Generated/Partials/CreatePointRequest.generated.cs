@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.CreatePointRequestExtensions
 {
     public static class CreatePointRequestPartialExtensions
     {
-        public static Partial<CreatePointRequest> WithX(this Partial<CreatePointRequest> it)    => it.AddFieldName("x");
+        public static Partial<CreatePointRequest> WithX(this Partial<CreatePointRequest> it)
+            => it.AddFieldName("x");
         
-        public static Partial<CreatePointRequest> WithY(this Partial<CreatePointRequest> it)    => it.AddFieldName("y");
+        public static Partial<CreatePointRequest> WithY(this Partial<CreatePointRequest> it)
+            => it.AddFieldName("y");
         
-        public static Partial<CreatePointRequest> WithMapId(this Partial<CreatePointRequest> it)    => it.AddFieldName("mapId");
+        public static Partial<CreatePointRequest> WithMapId(this Partial<CreatePointRequest> it)
+            => it.AddFieldName("mapId");
         
     }
     

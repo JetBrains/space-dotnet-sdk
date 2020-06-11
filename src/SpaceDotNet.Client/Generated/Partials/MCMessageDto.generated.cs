@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.MCMessageDtoExtensions
 {
     public static class MCMessageDtoPartialExtensions
     {
-        public static Partial<MCMessageDto> WithStyle(this Partial<MCMessageDto> it)    => it.AddFieldName("style");
+        public static Partial<MCMessageDto> WithStyle(this Partial<MCMessageDto> it)
+            => it.AddFieldName("style");
         
-        public static Partial<MCMessageDto> WithOutline(this Partial<MCMessageDto> it)    => it.AddFieldName("outline");
+        public static Partial<MCMessageDto> WithOutline(this Partial<MCMessageDto> it)
+            => it.AddFieldName("outline");
         
-        public static Partial<MCMessageDto> WithOutline(this Partial<MCMessageDto> it, Func<Partial<MCOutlineDto>, Partial<MCOutlineDto>> partialBuilder)    => it.AddFieldName("outline", partialBuilder(new Partial<MCOutlineDto>()));
+        public static Partial<MCMessageDto> WithOutline(this Partial<MCMessageDto> it, Func<Partial<MCOutlineDto>, Partial<MCOutlineDto>> partialBuilder)
+            => it.AddFieldName("outline", partialBuilder(new Partial<MCOutlineDto>(it)));
         
-        public static Partial<MCMessageDto> WithContent(this Partial<MCMessageDto> it)    => it.AddFieldName("content");
+        public static Partial<MCMessageDto> WithContent(this Partial<MCMessageDto> it)
+            => it.AddFieldName("content");
         
-        public static Partial<MCMessageDto> WithContent(this Partial<MCMessageDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)    => it.AddFieldName("content", partialBuilder(new Partial<MCElementDto>()));
+        public static Partial<MCMessageDto> WithContent(this Partial<MCMessageDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)
+            => it.AddFieldName("content", partialBuilder(new Partial<MCElementDto>(it)));
         
-        public static Partial<MCMessageDto> WithServiceId(this Partial<MCMessageDto> it)    => it.AddFieldName("serviceId");
+        public static Partial<MCMessageDto> WithServiceId(this Partial<MCMessageDto> it)
+            => it.AddFieldName("serviceId");
         
-        public static Partial<MCMessageDto> WithSupplementaryData(this Partial<MCMessageDto> it)    => it.AddFieldName("supplementaryData");
+        public static Partial<MCMessageDto> WithSupplementaryData(this Partial<MCMessageDto> it)
+            => it.AddFieldName("supplementaryData");
         
     }
     

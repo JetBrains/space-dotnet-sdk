@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.CodeReviewDiscussionCounterDtoExtensions
 {
     public static class CodeReviewDiscussionCounterDtoPartialExtensions
     {
-        public static Partial<CodeReviewDiscussionCounterDto> WithId(this Partial<CodeReviewDiscussionCounterDto> it)    => it.AddFieldName("id");
+        public static Partial<CodeReviewDiscussionCounterDto> WithId(this Partial<CodeReviewDiscussionCounterDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<CodeReviewDiscussionCounterDto> WithProjectId(this Partial<CodeReviewDiscussionCounterDto> it)    => it.AddFieldName("projectId");
+        public static Partial<CodeReviewDiscussionCounterDto> WithProjectId(this Partial<CodeReviewDiscussionCounterDto> it)
+            => it.AddFieldName("projectId");
         
-        public static Partial<CodeReviewDiscussionCounterDto> WithCounter(this Partial<CodeReviewDiscussionCounterDto> it)    => it.AddFieldName("counter");
+        public static Partial<CodeReviewDiscussionCounterDto> WithCounter(this Partial<CodeReviewDiscussionCounterDto> it)
+            => it.AddFieldName("counter");
         
-        public static Partial<CodeReviewDiscussionCounterDto> WithCounter(this Partial<CodeReviewDiscussionCounterDto> it, Func<Partial<CounterDto>, Partial<CounterDto>> partialBuilder)    => it.AddFieldName("counter", partialBuilder(new Partial<CounterDto>()));
+        public static Partial<CodeReviewDiscussionCounterDto> WithCounter(this Partial<CodeReviewDiscussionCounterDto> it, Func<Partial<CounterDto>, Partial<CounterDto>> partialBuilder)
+            => it.AddFieldName("counter", partialBuilder(new Partial<CounterDto>(it)));
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.MergeRequestBranchDeletedEventDtoExtensions
 {
     public static class MergeRequestBranchDeletedEventDtoPartialExtensions
     {
-        public static Partial<MergeRequestBranchDeletedEventDto> WithRepository(this Partial<MergeRequestBranchDeletedEventDto> it)    => it.AddFieldName("repository");
+        public static Partial<MergeRequestBranchDeletedEventDto> WithRepository(this Partial<MergeRequestBranchDeletedEventDto> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<MergeRequestBranchDeletedEventDto> WithBranch(this Partial<MergeRequestBranchDeletedEventDto> it)    => it.AddFieldName("branch");
+        public static Partial<MergeRequestBranchDeletedEventDto> WithBranch(this Partial<MergeRequestBranchDeletedEventDto> it)
+            => it.AddFieldName("branch");
         
-        public static Partial<MergeRequestBranchDeletedEventDto> WithBranchType(this Partial<MergeRequestBranchDeletedEventDto> it)    => it.AddFieldName("branchType");
+        public static Partial<MergeRequestBranchDeletedEventDto> WithBranchType(this Partial<MergeRequestBranchDeletedEventDto> it)
+            => it.AddFieldName("branchType");
         
-        public static Partial<MergeRequestBranchDeletedEventDto> WithBranchType(this Partial<MergeRequestBranchDeletedEventDto> it, Func<Partial<MergeRequestBranchType>, Partial<MergeRequestBranchType>> partialBuilder)    => it.AddFieldName("branchType", partialBuilder(new Partial<MergeRequestBranchType>()));
+        public static Partial<MergeRequestBranchDeletedEventDto> WithBranchType(this Partial<MergeRequestBranchDeletedEventDto> it, Func<Partial<MergeRequestBranchType>, Partial<MergeRequestBranchType>> partialBuilder)
+            => it.AddFieldName("branchType", partialBuilder(new Partial<MergeRequestBranchType>(it)));
         
     }
     

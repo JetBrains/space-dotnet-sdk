@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.ESApplicationPasswordDtoExtensions
 {
     public static class ESApplicationPasswordDtoPartialExtensions
     {
-        public static Partial<ESApplicationPasswordDto> WithId(this Partial<ESApplicationPasswordDto> it)    => it.AddFieldName("id");
+        public static Partial<ESApplicationPasswordDto> WithId(this Partial<ESApplicationPasswordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ESApplicationPasswordDto> WithProfile(this Partial<ESApplicationPasswordDto> it)    => it.AddFieldName("profile");
+        public static Partial<ESApplicationPasswordDto> WithProfile(this Partial<ESApplicationPasswordDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<ESApplicationPasswordDto> WithProfile(this Partial<ESApplicationPasswordDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ESApplicationPasswordDto> WithProfile(this Partial<ESApplicationPasswordDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<ESApplicationPasswordDto> WithName(this Partial<ESApplicationPasswordDto> it)    => it.AddFieldName("name");
+        public static Partial<ESApplicationPasswordDto> WithName(this Partial<ESApplicationPasswordDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<ESApplicationPasswordDto> WithScope(this Partial<ESApplicationPasswordDto> it)    => it.AddFieldName("scope");
+        public static Partial<ESApplicationPasswordDto> WithScope(this Partial<ESApplicationPasswordDto> it)
+            => it.AddFieldName("scope");
         
-        public static Partial<ESApplicationPasswordDto> WithCreated(this Partial<ESApplicationPasswordDto> it)    => it.AddFieldName("created");
+        public static Partial<ESApplicationPasswordDto> WithCreated(this Partial<ESApplicationPasswordDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<ESApplicationPasswordDto> WithLastAccess(this Partial<ESApplicationPasswordDto> it)    => it.AddFieldName("lastAccess");
+        public static Partial<ESApplicationPasswordDto> WithLastAccess(this Partial<ESApplicationPasswordDto> it)
+            => it.AddFieldName("lastAccess");
         
-        public static Partial<ESApplicationPasswordDto> WithLastAccess(this Partial<ESApplicationPasswordDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)    => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>()));
+        public static Partial<ESApplicationPasswordDto> WithLastAccess(this Partial<ESApplicationPasswordDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)
+            => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>(it)));
         
     }
     

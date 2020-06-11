@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.UpdateMapRequestExtensions
 {
     public static class UpdateMapRequestPartialExtensions
     {
-        public static Partial<UpdateMapRequest> WithMapPictureId(this Partial<UpdateMapRequest> it)    => it.AddFieldName("mapPictureId");
+        public static Partial<UpdateMapRequest> WithMapPictureId(this Partial<UpdateMapRequest> it)
+            => it.AddFieldName("mapPictureId");
         
     }
     

@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.HAFieldDtoExtensions
 {
     public static class HAFieldDtoPartialExtensions
     {
-        public static Partial<HAFieldDto> WithName(this Partial<HAFieldDto> it)    => it.AddFieldName("name");
+        public static Partial<HAFieldDto> WithName(this Partial<HAFieldDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<HAFieldDto> WithType(this Partial<HAFieldDto> it)    => it.AddFieldName("type");
+        public static Partial<HAFieldDto> WithType(this Partial<HAFieldDto> it)
+            => it.AddFieldName("type");
         
-        public static Partial<HAFieldDto> WithType(this Partial<HAFieldDto> it, Func<Partial<HATypeDto>, Partial<HATypeDto>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<HATypeDto>()));
+        public static Partial<HAFieldDto> WithType(this Partial<HAFieldDto> it, Func<Partial<HATypeDto>, Partial<HATypeDto>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<HATypeDto>(it)));
         
-        public static Partial<HAFieldDto> WithDeprecation(this Partial<HAFieldDto> it)    => it.AddFieldName("deprecation");
+        public static Partial<HAFieldDto> WithDeprecation(this Partial<HAFieldDto> it)
+            => it.AddFieldName("deprecation");
         
-        public static Partial<HAFieldDto> WithDeprecation(this Partial<HAFieldDto> it, Func<Partial<HADeprecationDto>, Partial<HADeprecationDto>> partialBuilder)    => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecationDto>()));
+        public static Partial<HAFieldDto> WithDeprecation(this Partial<HAFieldDto> it, Func<Partial<HADeprecationDto>, Partial<HADeprecationDto>> partialBuilder)
+            => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecationDto>(it)));
         
     }
     

@@ -23,73 +23,107 @@ namespace SpaceDotNet.Client.ArticleRecordDtoExtensions
 {
     public static class ArticleRecordDtoPartialExtensions
     {
-        public static Partial<ArticleRecordDto> WithId(this Partial<ArticleRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<ArticleRecordDto> WithId(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ArticleRecordDto> WithArchived(this Partial<ArticleRecordDto> it)    => it.AddFieldName("archived");
+        public static Partial<ArticleRecordDto> WithArchived(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("archived");
         
-        public static Partial<ArticleRecordDto> WithTitle(this Partial<ArticleRecordDto> it)    => it.AddFieldName("title");
+        public static Partial<ArticleRecordDto> WithTitle(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("title");
         
-        public static Partial<ArticleRecordDto> WithCreated(this Partial<ArticleRecordDto> it)    => it.AddFieldName("created");
+        public static Partial<ArticleRecordDto> WithCreated(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<ArticleRecordDto> WithAuthor(this Partial<ArticleRecordDto> it)    => it.AddFieldName("author");
+        public static Partial<ArticleRecordDto> WithAuthor(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("author");
         
-        public static Partial<ArticleRecordDto> WithAuthor(this Partial<ArticleRecordDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ArticleRecordDto> WithAuthor(this Partial<ArticleRecordDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithAliases(this Partial<ArticleRecordDto> it)    => it.AddFieldName("aliases");
+        public static Partial<ArticleRecordDto> WithAliases(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("aliases");
         
-        public static Partial<ArticleRecordDto> WithAliases(this Partial<ArticleRecordDto> it, Func<Partial<BGArticleAliasDto>, Partial<BGArticleAliasDto>> partialBuilder)    => it.AddFieldName("aliases", partialBuilder(new Partial<BGArticleAliasDto>()));
+        public static Partial<ArticleRecordDto> WithAliases(this Partial<ArticleRecordDto> it, Func<Partial<BGArticleAliasDto>, Partial<BGArticleAliasDto>> partialBuilder)
+            => it.AddFieldName("aliases", partialBuilder(new Partial<BGArticleAliasDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithChannel(this Partial<ArticleRecordDto> it)    => it.AddFieldName("channel");
+        public static Partial<ArticleRecordDto> WithChannel(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("channel");
         
-        public static Partial<ArticleRecordDto> WithChannel(this Partial<ArticleRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)    => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>()));
+        public static Partial<ArticleRecordDto> WithChannel(this Partial<ArticleRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithChannelContent(this Partial<ArticleRecordDto> it)    => it.AddFieldName("channelContent");
+        public static Partial<ArticleRecordDto> WithChannelContent(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("channelContent");
         
-        public static Partial<ArticleRecordDto> WithChannelContent(this Partial<ArticleRecordDto> it, Func<Partial<M2ChannelContentRecordDto>, Partial<M2ChannelContentRecordDto>> partialBuilder)    => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecordDto>()));
+        public static Partial<ArticleRecordDto> WithChannelContent(this Partial<ArticleRecordDto> it, Func<Partial<M2ChannelContentRecordDto>, Partial<M2ChannelContentRecordDto>> partialBuilder)
+            => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecordDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithReactions(this Partial<ArticleRecordDto> it)    => it.AddFieldName("reactions");
+        public static Partial<ArticleRecordDto> WithReactions(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("reactions");
         
-        public static Partial<ArticleRecordDto> WithReactions(this Partial<ArticleRecordDto> it, Func<Partial<AllReactionsToItemRecordDto>, Partial<AllReactionsToItemRecordDto>> partialBuilder)    => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecordDto>()));
+        public static Partial<ArticleRecordDto> WithReactions(this Partial<ArticleRecordDto> it, Func<Partial<AllReactionsToItemRecordDto>, Partial<AllReactionsToItemRecordDto>> partialBuilder)
+            => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecordDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithContent(this Partial<ArticleRecordDto> it)    => it.AddFieldName("content");
+        public static Partial<ArticleRecordDto> WithContent(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("content");
         
-        public static Partial<ArticleRecordDto> WithEvent(this Partial<ArticleRecordDto> it)    => it.AddFieldName("event");
+        public static Partial<ArticleRecordDto> WithEvent(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("event");
         
-        public static Partial<ArticleRecordDto> WithEvent(this Partial<ArticleRecordDto> it, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder)    => it.AddFieldName("event", partialBuilder(new Partial<MeetingRecordDto>()));
+        public static Partial<ArticleRecordDto> WithEvent(this Partial<ArticleRecordDto> it, Func<Partial<MeetingRecordDto>, Partial<MeetingRecordDto>> partialBuilder)
+            => it.AddFieldName("event", partialBuilder(new Partial<MeetingRecordDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithExternalEntityInfo(this Partial<ArticleRecordDto> it)    => it.AddFieldName("externalEntityInfo");
+        public static Partial<ArticleRecordDto> WithExternalEntityInfo(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("externalEntityInfo");
         
-        public static Partial<ArticleRecordDto> WithExternalEntityInfo(this Partial<ArticleRecordDto> it, Func<Partial<ExternalEntityInfoRecordDto>, Partial<ExternalEntityInfoRecordDto>> partialBuilder)    => it.AddFieldName("externalEntityInfo", partialBuilder(new Partial<ExternalEntityInfoRecordDto>()));
+        public static Partial<ArticleRecordDto> WithExternalEntityInfo(this Partial<ArticleRecordDto> it, Func<Partial<ExternalEntityInfoRecordDto>, Partial<ExternalEntityInfoRecordDto>> partialBuilder)
+            => it.AddFieldName("externalEntityInfo", partialBuilder(new Partial<ExternalEntityInfoRecordDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithLocation(this Partial<ArticleRecordDto> it)    => it.AddFieldName("location");
+        public static Partial<ArticleRecordDto> WithLocation(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("location");
         
-        public static Partial<ArticleRecordDto> WithLocation(this Partial<ArticleRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<ArticleRecordDto> WithLocation(this Partial<ArticleRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
+            => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithLocations(this Partial<ArticleRecordDto> it)    => it.AddFieldName("locations");
+        public static Partial<ArticleRecordDto> WithLocations(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("locations");
         
-        public static Partial<ArticleRecordDto> WithLocations(this Partial<ArticleRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("locations", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<ArticleRecordDto> WithLocations(this Partial<ArticleRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
+            => it.AddFieldName("locations", partialBuilder(new Partial<TDLocationDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithProject(this Partial<ArticleRecordDto> it)    => it.AddFieldName("project");
+        public static Partial<ArticleRecordDto> WithProject(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("project");
         
-        public static Partial<ArticleRecordDto> WithProject(this Partial<ArticleRecordDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)    => it.AddFieldName("project", partialBuilder(new Partial<PRProjectDto>()));
+        public static Partial<ArticleRecordDto> WithProject(this Partial<ArticleRecordDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<PRProjectDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithTeam(this Partial<ArticleRecordDto> it)    => it.AddFieldName("team");
+        public static Partial<ArticleRecordDto> WithTeam(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("team");
         
-        public static Partial<ArticleRecordDto> WithTeam(this Partial<ArticleRecordDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<ArticleRecordDto> WithTeam(this Partial<ArticleRecordDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithTeams(this Partial<ArticleRecordDto> it)    => it.AddFieldName("teams");
+        public static Partial<ArticleRecordDto> WithTeams(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("teams");
         
-        public static Partial<ArticleRecordDto> WithTeams(this Partial<ArticleRecordDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<ArticleRecordDto> WithTeams(this Partial<ArticleRecordDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithEditable(this Partial<ArticleRecordDto> it)    => it.AddFieldName("editable");
+        public static Partial<ArticleRecordDto> WithEditable(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("editable");
         
-        public static Partial<ArticleRecordDto> WithPreview(this Partial<ArticleRecordDto> it)    => it.AddFieldName("preview");
+        public static Partial<ArticleRecordDto> WithPreview(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("preview");
         
-        public static Partial<ArticleRecordDto> WithPreviewImages(this Partial<ArticleRecordDto> it)    => it.AddFieldName("previewImages");
+        public static Partial<ArticleRecordDto> WithPreviewImages(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("previewImages");
         
-        public static Partial<ArticleRecordDto> WithPreviewImages(this Partial<ArticleRecordDto> it, Func<Partial<ArticleMarkdownImageDto>, Partial<ArticleMarkdownImageDto>> partialBuilder)    => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImageDto>()));
+        public static Partial<ArticleRecordDto> WithPreviewImages(this Partial<ArticleRecordDto> it, Func<Partial<ArticleMarkdownImageDto>, Partial<ArticleMarkdownImageDto>> partialBuilder)
+            => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImageDto>(it)));
         
-        public static Partial<ArticleRecordDto> WithWordsNumber(this Partial<ArticleRecordDto> it)    => it.AddFieldName("wordsNumber");
+        public static Partial<ArticleRecordDto> WithWordsNumber(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("wordsNumber");
         
     }
     

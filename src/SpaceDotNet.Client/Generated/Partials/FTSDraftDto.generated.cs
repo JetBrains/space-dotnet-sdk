@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.FTSDraftDtoExtensions
 {
     public static class FTSDraftDtoPartialExtensions
     {
-        public static Partial<FTSDraftDto> WithId(this Partial<FTSDraftDto> it)    => it.AddFieldName("id");
+        public static Partial<FTSDraftDto> WithId(this Partial<FTSDraftDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<FTSDraftDto> WithTitle(this Partial<FTSDraftDto> it)    => it.AddFieldName("title");
+        public static Partial<FTSDraftDto> WithTitle(this Partial<FTSDraftDto> it)
+            => it.AddFieldName("title");
         
-        public static Partial<FTSDraftDto> WithAuthor(this Partial<FTSDraftDto> it)    => it.AddFieldName("author");
+        public static Partial<FTSDraftDto> WithAuthor(this Partial<FTSDraftDto> it)
+            => it.AddFieldName("author");
         
-        public static Partial<FTSDraftDto> WithAuthor(this Partial<FTSDraftDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<FTSDraftDto> WithAuthor(this Partial<FTSDraftDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<FTSDraftDto> WithDate(this Partial<FTSDraftDto> it)    => it.AddFieldName("date");
+        public static Partial<FTSDraftDto> WithDate(this Partial<FTSDraftDto> it)
+            => it.AddFieldName("date");
         
-        public static Partial<FTSDraftDto> WithSnippets(this Partial<FTSDraftDto> it)    => it.AddFieldName("snippets");
+        public static Partial<FTSDraftDto> WithSnippets(this Partial<FTSDraftDto> it)
+            => it.AddFieldName("snippets");
         
-        public static Partial<FTSDraftDto> WithSnippets(this Partial<FTSDraftDto> it, Func<Partial<FTSSnippetDto>, Partial<FTSSnippetDto>> partialBuilder)    => it.AddFieldName("snippets", partialBuilder(new Partial<FTSSnippetDto>()));
+        public static Partial<FTSDraftDto> WithSnippets(this Partial<FTSDraftDto> it, Func<Partial<FTSSnippetDto>, Partial<FTSSnippetDto>> partialBuilder)
+            => it.AddFieldName("snippets", partialBuilder(new Partial<FTSSnippetDto>(it)));
         
     }
     

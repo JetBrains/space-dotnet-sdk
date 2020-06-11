@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CExternalServicePrincipalDetailsDtoExtensions
 {
     public static class CExternalServicePrincipalDetailsDtoPartialExtensions
     {
-        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it)    => it.AddFieldName("service");
+        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it)
+            => it.AddFieldName("service");
         
-        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it, Func<Partial<ESServiceDto>, Partial<ESServiceDto>> partialBuilder)    => it.AddFieldName("service", partialBuilder(new Partial<ESServiceDto>()));
+        public static Partial<CExternalServicePrincipalDetailsDto> WithService(this Partial<CExternalServicePrincipalDetailsDto> it, Func<Partial<ESServiceDto>, Partial<ESServiceDto>> partialBuilder)
+            => it.AddFieldName("service", partialBuilder(new Partial<ESServiceDto>(it)));
         
     }
     

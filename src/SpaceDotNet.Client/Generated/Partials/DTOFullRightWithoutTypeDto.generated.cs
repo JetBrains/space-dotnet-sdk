@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.DTOFullRightWithoutTypeDtoExtensions
 {
     public static class DTOFullRightWithoutTypeDtoPartialExtensions
     {
-        public static Partial<DTOFullRightWithoutTypeDto> WithCode(this Partial<DTOFullRightWithoutTypeDto> it)    => it.AddFieldName("code");
+        public static Partial<DTOFullRightWithoutTypeDto> WithCode(this Partial<DTOFullRightWithoutTypeDto> it)
+            => it.AddFieldName("code");
         
-        public static Partial<DTOFullRightWithoutTypeDto> WithTitle(this Partial<DTOFullRightWithoutTypeDto> it)    => it.AddFieldName("title");
+        public static Partial<DTOFullRightWithoutTypeDto> WithTitle(this Partial<DTOFullRightWithoutTypeDto> it)
+            => it.AddFieldName("title");
         
-        public static Partial<DTOFullRightWithoutTypeDto> WithDescription(this Partial<DTOFullRightWithoutTypeDto> it)    => it.AddFieldName("description");
+        public static Partial<DTOFullRightWithoutTypeDto> WithDescription(this Partial<DTOFullRightWithoutTypeDto> it)
+            => it.AddFieldName("description");
         
-        public static Partial<DTOFullRightWithoutTypeDto> WithGrantedForUsers(this Partial<DTOFullRightWithoutTypeDto> it)    => it.AddFieldName("grantedForUsers");
+        public static Partial<DTOFullRightWithoutTypeDto> WithGrantedForUsers(this Partial<DTOFullRightWithoutTypeDto> it)
+            => it.AddFieldName("grantedForUsers");
         
-        public static Partial<DTOFullRightWithoutTypeDto> WithFeatureFlag(this Partial<DTOFullRightWithoutTypeDto> it)    => it.AddFieldName("featureFlag");
+        public static Partial<DTOFullRightWithoutTypeDto> WithFeatureFlag(this Partial<DTOFullRightWithoutTypeDto> it)
+            => it.AddFieldName("featureFlag");
         
-        public static Partial<DTOFullRightWithoutTypeDto> WithFeatureFlag(this Partial<DTOFullRightWithoutTypeDto> it, Func<Partial<FeatureFlagDto>, Partial<FeatureFlagDto>> partialBuilder)    => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlagDto>()));
+        public static Partial<DTOFullRightWithoutTypeDto> WithFeatureFlag(this Partial<DTOFullRightWithoutTypeDto> it, Func<Partial<FeatureFlagDto>, Partial<FeatureFlagDto>> partialBuilder)
+            => it.AddFieldName("featureFlag", partialBuilder(new Partial<FeatureFlagDto>(it)));
         
     }
     

@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.M2ChannelIssueInfoDtoExtensions
 {
     public static class M2ChannelIssueInfoDtoPartialExtensions
     {
-        public static Partial<M2ChannelIssueInfoDto> WithProjectKey(this Partial<M2ChannelIssueInfoDto> it)    => it.AddFieldName("projectKey");
+        public static Partial<M2ChannelIssueInfoDto> WithProjectKey(this Partial<M2ChannelIssueInfoDto> it)
+            => it.AddFieldName("projectKey");
         
-        public static Partial<M2ChannelIssueInfoDto> WithProjectKey(this Partial<M2ChannelIssueInfoDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<M2ChannelIssueInfoDto> WithProjectKey(this Partial<M2ChannelIssueInfoDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
+            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKeyDto>(it)));
         
-        public static Partial<M2ChannelIssueInfoDto> WithIssue(this Partial<M2ChannelIssueInfoDto> it)    => it.AddFieldName("issue");
+        public static Partial<M2ChannelIssueInfoDto> WithIssue(this Partial<M2ChannelIssueInfoDto> it)
+            => it.AddFieldName("issue");
         
-        public static Partial<M2ChannelIssueInfoDto> WithIssue(this Partial<M2ChannelIssueInfoDto> it, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder)    => it.AddFieldName("issue", partialBuilder(new Partial<IssueDto>()));
+        public static Partial<M2ChannelIssueInfoDto> WithIssue(this Partial<M2ChannelIssueInfoDto> it, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder)
+            => it.AddFieldName("issue", partialBuilder(new Partial<IssueDto>(it)));
         
-        public static Partial<M2ChannelIssueInfoDto> WithNotificationDefaults(this Partial<M2ChannelIssueInfoDto> it)    => it.AddFieldName("notificationDefaults");
+        public static Partial<M2ChannelIssueInfoDto> WithNotificationDefaults(this Partial<M2ChannelIssueInfoDto> it)
+            => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2ChannelIssueInfoDto> WithNotificationDefaults(this Partial<M2ChannelIssueInfoDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2ChannelIssueInfoDto> WithNotificationDefaults(this Partial<M2ChannelIssueInfoDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
+            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>(it)));
         
     }
     

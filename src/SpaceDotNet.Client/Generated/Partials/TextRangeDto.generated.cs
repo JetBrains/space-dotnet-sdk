@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.TextRangeDtoExtensions
 {
     public static class TextRangeDtoPartialExtensions
     {
-        public static Partial<TextRangeDto> WithStart(this Partial<TextRangeDto> it)    => it.AddFieldName("start");
+        public static Partial<TextRangeDto> WithStart(this Partial<TextRangeDto> it)
+            => it.AddFieldName("start");
         
-        public static Partial<TextRangeDto> WithLength(this Partial<TextRangeDto> it)    => it.AddFieldName("length");
+        public static Partial<TextRangeDto> WithLength(this Partial<TextRangeDto> it)
+            => it.AddFieldName("length");
         
     }
     

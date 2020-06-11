@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.RecurrenceRuleDtoExtensions
 {
     public static class RecurrenceRuleDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleDto> WithFreq(this Partial<RecurrenceRuleDto> it)    => it.AddFieldName("freq");
+        public static Partial<RecurrenceRuleDto> WithFreq(this Partial<RecurrenceRuleDto> it)
+            => it.AddFieldName("freq");
         
-        public static Partial<RecurrenceRuleDto> WithFreq(this Partial<RecurrenceRuleDto> it, Func<Partial<RecurrenceRuleFreqDto>, Partial<RecurrenceRuleFreqDto>> partialBuilder)    => it.AddFieldName("freq", partialBuilder(new Partial<RecurrenceRuleFreqDto>()));
+        public static Partial<RecurrenceRuleDto> WithFreq(this Partial<RecurrenceRuleDto> it, Func<Partial<RecurrenceRuleFreqDto>, Partial<RecurrenceRuleFreqDto>> partialBuilder)
+            => it.AddFieldName("freq", partialBuilder(new Partial<RecurrenceRuleFreqDto>(it)));
         
-        public static Partial<RecurrenceRuleDto> WithEnds(this Partial<RecurrenceRuleDto> it)    => it.AddFieldName("ends");
+        public static Partial<RecurrenceRuleDto> WithEnds(this Partial<RecurrenceRuleDto> it)
+            => it.AddFieldName("ends");
         
-        public static Partial<RecurrenceRuleDto> WithEnds(this Partial<RecurrenceRuleDto> it, Func<Partial<RecurrenceRuleEndsDto>, Partial<RecurrenceRuleEndsDto>> partialBuilder)    => it.AddFieldName("ends", partialBuilder(new Partial<RecurrenceRuleEndsDto>()));
+        public static Partial<RecurrenceRuleDto> WithEnds(this Partial<RecurrenceRuleDto> it, Func<Partial<RecurrenceRuleEndsDto>, Partial<RecurrenceRuleEndsDto>> partialBuilder)
+            => it.AddFieldName("ends", partialBuilder(new Partial<RecurrenceRuleEndsDto>(it)));
         
     }
     

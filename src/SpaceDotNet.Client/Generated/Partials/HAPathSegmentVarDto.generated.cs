@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.HAPathSegmentVarDtoExtensions
 {
     public static class HAPathSegmentVarDtoPartialExtensions
     {
-        public static Partial<HAPathSegmentVarDto> WithName(this Partial<HAPathSegmentVarDto> it)    => it.AddFieldName("name");
+        public static Partial<HAPathSegmentVarDto> WithName(this Partial<HAPathSegmentVarDto> it)
+            => it.AddFieldName("name");
         
     }
     

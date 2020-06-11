@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.CreateProjectRequestExtensions
 {
     public static class CreateProjectRequestPartialExtensions
     {
-        public static Partial<CreateProjectRequest> WithKey(this Partial<CreateProjectRequest> it)    => it.AddFieldName("key");
+        public static Partial<CreateProjectRequest> WithKey(this Partial<CreateProjectRequest> it)
+            => it.AddFieldName("key");
         
-        public static Partial<CreateProjectRequest> WithKey(this Partial<CreateProjectRequest> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<CreateProjectRequest> WithKey(this Partial<CreateProjectRequest> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
+            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>(it)));
         
-        public static Partial<CreateProjectRequest> WithName(this Partial<CreateProjectRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateProjectRequest> WithName(this Partial<CreateProjectRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CreateProjectRequest> WithDescription(this Partial<CreateProjectRequest> it)    => it.AddFieldName("description");
+        public static Partial<CreateProjectRequest> WithDescription(this Partial<CreateProjectRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<CreateProjectRequest> WithPrivate(this Partial<CreateProjectRequest> it)    => it.AddFieldName("private");
+        public static Partial<CreateProjectRequest> WithPrivate(this Partial<CreateProjectRequest> it)
+            => it.AddFieldName("private");
         
-        public static Partial<CreateProjectRequest> WithTags(this Partial<CreateProjectRequest> it)    => it.AddFieldName("tags");
+        public static Partial<CreateProjectRequest> WithTags(this Partial<CreateProjectRequest> it)
+            => it.AddFieldName("tags");
         
     }
     

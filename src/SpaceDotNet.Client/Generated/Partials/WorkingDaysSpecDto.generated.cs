@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.WorkingDaysSpecDtoExtensions
 {
     public static class WorkingDaysSpecDtoPartialExtensions
     {
-        public static Partial<WorkingDaysSpecDto> WithDays(this Partial<WorkingDaysSpecDto> it)    => it.AddFieldName("days");
+        public static Partial<WorkingDaysSpecDto> WithDays(this Partial<WorkingDaysSpecDto> it)
+            => it.AddFieldName("days");
         
-        public static Partial<WorkingDaysSpecDto> WithDays(this Partial<WorkingDaysSpecDto> it, Func<Partial<WorkdayDto>, Partial<WorkdayDto>> partialBuilder)    => it.AddFieldName("days", partialBuilder(new Partial<WorkdayDto>()));
+        public static Partial<WorkingDaysSpecDto> WithDays(this Partial<WorkingDaysSpecDto> it, Func<Partial<WorkdayDto>, Partial<WorkdayDto>> partialBuilder)
+            => it.AddFieldName("days", partialBuilder(new Partial<WorkdayDto>(it)));
         
     }
     

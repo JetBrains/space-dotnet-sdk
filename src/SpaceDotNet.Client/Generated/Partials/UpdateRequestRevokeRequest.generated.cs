@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.UpdateRequestRevokeRequestExtensions
 {
     public static class UpdateRequestRevokeRequestPartialExtensions
     {
-        public static Partial<UpdateRequestRevokeRequest> WithTill(this Partial<UpdateRequestRevokeRequest> it)    => it.AddFieldName("till");
+        public static Partial<UpdateRequestRevokeRequest> WithTill(this Partial<UpdateRequestRevokeRequest> it)
+            => it.AddFieldName("till");
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.CAutomationTaskPrincipalDetailsDtoExtensions
 {
     public static class CAutomationTaskPrincipalDetailsDtoPartialExtensions
     {
-        public static Partial<CAutomationTaskPrincipalDetailsDto> WithProject(this Partial<CAutomationTaskPrincipalDetailsDto> it)    => it.AddFieldName("project");
+        public static Partial<CAutomationTaskPrincipalDetailsDto> WithProject(this Partial<CAutomationTaskPrincipalDetailsDto> it)
+            => it.AddFieldName("project");
         
-        public static Partial<CAutomationTaskPrincipalDetailsDto> WithProject(this Partial<CAutomationTaskPrincipalDetailsDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)    => it.AddFieldName("project", partialBuilder(new Partial<PRProjectDto>()));
+        public static Partial<CAutomationTaskPrincipalDetailsDto> WithProject(this Partial<CAutomationTaskPrincipalDetailsDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<PRProjectDto>(it)));
         
-        public static Partial<CAutomationTaskPrincipalDetailsDto> WithName(this Partial<CAutomationTaskPrincipalDetailsDto> it)    => it.AddFieldName("name");
+        public static Partial<CAutomationTaskPrincipalDetailsDto> WithName(this Partial<CAutomationTaskPrincipalDetailsDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CAutomationTaskPrincipalDetailsDto> WithId(this Partial<CAutomationTaskPrincipalDetailsDto> it)    => it.AddFieldName("id");
+        public static Partial<CAutomationTaskPrincipalDetailsDto> WithId(this Partial<CAutomationTaskPrincipalDetailsDto> it)
+            => it.AddFieldName("id");
         
     }
     

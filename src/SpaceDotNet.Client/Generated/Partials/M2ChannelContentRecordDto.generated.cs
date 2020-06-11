@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.M2ChannelContentRecordDtoExtensions
 {
     public static class M2ChannelContentRecordDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentRecordDto> WithId(this Partial<M2ChannelContentRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<M2ChannelContentRecordDto> WithId(this Partial<M2ChannelContentRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<M2ChannelContentRecordDto> WithContent(this Partial<M2ChannelContentRecordDto> it)    => it.AddFieldName("content");
+        public static Partial<M2ChannelContentRecordDto> WithContent(this Partial<M2ChannelContentRecordDto> it)
+            => it.AddFieldName("content");
         
-        public static Partial<M2ChannelContentRecordDto> WithContent(this Partial<M2ChannelContentRecordDto> it, Func<Partial<M2ChannelContentInfoDto>, Partial<M2ChannelContentInfoDto>> partialBuilder)    => it.AddFieldName("content", partialBuilder(new Partial<M2ChannelContentInfoDto>()));
+        public static Partial<M2ChannelContentRecordDto> WithContent(this Partial<M2ChannelContentRecordDto> it, Func<Partial<M2ChannelContentInfoDto>, Partial<M2ChannelContentInfoDto>> partialBuilder)
+            => it.AddFieldName("content", partialBuilder(new Partial<M2ChannelContentInfoDto>(it)));
         
     }
     

@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.BooleanCFValueDtoExtensions
 {
     public static class BooleanCFValueDtoPartialExtensions
     {
-        public static Partial<BooleanCFValueDto> WithValue(this Partial<BooleanCFValueDto> it)    => it.AddFieldName("value");
+        public static Partial<BooleanCFValueDto> WithValue(this Partial<BooleanCFValueDto> it)
+            => it.AddFieldName("value");
         
     }
     

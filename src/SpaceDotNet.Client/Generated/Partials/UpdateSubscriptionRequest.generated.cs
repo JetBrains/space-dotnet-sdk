@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.UpdateSubscriptionRequestExtensions
 {
     public static class UpdateSubscriptionRequestPartialExtensions
     {
-        public static Partial<UpdateSubscriptionRequest> WithLocationId(this Partial<UpdateSubscriptionRequest> it)    => it.AddFieldName("locationId");
+        public static Partial<UpdateSubscriptionRequest> WithLocationId(this Partial<UpdateSubscriptionRequest> it)
+            => it.AddFieldName("locationId");
         
-        public static Partial<UpdateSubscriptionRequest> WithTeamId(this Partial<UpdateSubscriptionRequest> it)    => it.AddFieldName("teamId");
+        public static Partial<UpdateSubscriptionRequest> WithTeamId(this Partial<UpdateSubscriptionRequest> it)
+            => it.AddFieldName("teamId");
         
-        public static Partial<UpdateSubscriptionRequest> WithReasonId(this Partial<UpdateSubscriptionRequest> it)    => it.AddFieldName("reasonId");
+        public static Partial<UpdateSubscriptionRequest> WithReasonId(this Partial<UpdateSubscriptionRequest> it)
+            => it.AddFieldName("reasonId");
         
     }
     

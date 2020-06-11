@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.IntCFConstraintDtoExtensions
 {
     public static class IntCFConstraintDtoPartialExtensions
     {
-        public static Partial<IntCFConstraintDto> WithMin(this Partial<IntCFConstraintDto> it)    => it.AddFieldName("min");
+        public static Partial<IntCFConstraintDto> WithMin(this Partial<IntCFConstraintDto> it)
+            => it.AddFieldName("min");
         
-        public static Partial<IntCFConstraintDto> WithMax(this Partial<IntCFConstraintDto> it)    => it.AddFieldName("max");
+        public static Partial<IntCFConstraintDto> WithMax(this Partial<IntCFConstraintDto> it)
+            => it.AddFieldName("max");
         
-        public static Partial<IntCFConstraintDto> WithMessage(this Partial<IntCFConstraintDto> it)    => it.AddFieldName("message");
+        public static Partial<IntCFConstraintDto> WithMessage(this Partial<IntCFConstraintDto> it)
+            => it.AddFieldName("message");
         
     }
     

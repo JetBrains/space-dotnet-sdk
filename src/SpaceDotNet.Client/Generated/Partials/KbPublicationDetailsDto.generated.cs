@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.KbPublicationDetailsDtoExtensions
 {
     public static class KbPublicationDetailsDtoPartialExtensions
     {
-        public static Partial<KbPublicationDetailsDto> WithBook(this Partial<KbPublicationDetailsDto> it)    => it.AddFieldName("book");
+        public static Partial<KbPublicationDetailsDto> WithBook(this Partial<KbPublicationDetailsDto> it)
+            => it.AddFieldName("book");
         
-        public static Partial<KbPublicationDetailsDto> WithBook(this Partial<KbPublicationDetailsDto> it, Func<Partial<KBBookDto>, Partial<KBBookDto>> partialBuilder)    => it.AddFieldName("book", partialBuilder(new Partial<KBBookDto>()));
+        public static Partial<KbPublicationDetailsDto> WithBook(this Partial<KbPublicationDetailsDto> it, Func<Partial<KBBookDto>, Partial<KBBookDto>> partialBuilder)
+            => it.AddFieldName("book", partialBuilder(new Partial<KBBookDto>(it)));
         
-        public static Partial<KbPublicationDetailsDto> WithFolder(this Partial<KbPublicationDetailsDto> it)    => it.AddFieldName("folder");
+        public static Partial<KbPublicationDetailsDto> WithFolder(this Partial<KbPublicationDetailsDto> it)
+            => it.AddFieldName("folder");
         
-        public static Partial<KbPublicationDetailsDto> WithFolder(this Partial<KbPublicationDetailsDto> it, Func<Partial<KBFolderDto>, Partial<KBFolderDto>> partialBuilder)    => it.AddFieldName("folder", partialBuilder(new Partial<KBFolderDto>()));
+        public static Partial<KbPublicationDetailsDto> WithFolder(this Partial<KbPublicationDetailsDto> it, Func<Partial<KBFolderDto>, Partial<KBFolderDto>> partialBuilder)
+            => it.AddFieldName("folder", partialBuilder(new Partial<KBFolderDto>(it)));
         
-        public static Partial<KbPublicationDetailsDto> WithArticleId(this Partial<KbPublicationDetailsDto> it)    => it.AddFieldName("articleId");
+        public static Partial<KbPublicationDetailsDto> WithArticleId(this Partial<KbPublicationDetailsDto> it)
+            => it.AddFieldName("articleId");
         
-        public static Partial<KbPublicationDetailsDto> WithArticleId(this Partial<KbPublicationDetailsDto> it, Func<Partial<KBArticleDto>, Partial<KBArticleDto>> partialBuilder)    => it.AddFieldName("articleId", partialBuilder(new Partial<KBArticleDto>()));
+        public static Partial<KbPublicationDetailsDto> WithArticleId(this Partial<KbPublicationDetailsDto> it, Func<Partial<KBArticleDto>, Partial<KBArticleDto>> partialBuilder)
+            => it.AddFieldName("articleId", partialBuilder(new Partial<KBArticleDto>(it)));
         
     }
     

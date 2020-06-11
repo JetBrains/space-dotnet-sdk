@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.EnumValueDataDtoExtensions
 {
     public static class EnumValueDataDtoPartialExtensions
     {
-        public static Partial<EnumValueDataDto> WithId(this Partial<EnumValueDataDto> it)    => it.AddFieldName("id");
+        public static Partial<EnumValueDataDto> WithId(this Partial<EnumValueDataDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<EnumValueDataDto> WithValue(this Partial<EnumValueDataDto> it)    => it.AddFieldName("value");
+        public static Partial<EnumValueDataDto> WithValue(this Partial<EnumValueDataDto> it)
+            => it.AddFieldName("value");
         
     }
     

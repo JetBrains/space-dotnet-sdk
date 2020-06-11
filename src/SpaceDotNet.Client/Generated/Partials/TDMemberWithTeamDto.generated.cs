@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.TDMemberWithTeamDtoExtensions
 {
     public static class TDMemberWithTeamDtoPartialExtensions
     {
-        public static Partial<TDMemberWithTeamDto> WithProfile(this Partial<TDMemberWithTeamDto> it)    => it.AddFieldName("profile");
+        public static Partial<TDMemberWithTeamDto> WithProfile(this Partial<TDMemberWithTeamDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<TDMemberWithTeamDto> WithProfile(this Partial<TDMemberWithTeamDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<TDMemberWithTeamDto> WithProfile(this Partial<TDMemberWithTeamDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<TDMemberWithTeamDto> WithTeams(this Partial<TDMemberWithTeamDto> it)    => it.AddFieldName("teams");
+        public static Partial<TDMemberWithTeamDto> WithTeams(this Partial<TDMemberWithTeamDto> it)
+            => it.AddFieldName("teams");
         
-        public static Partial<TDMemberWithTeamDto> WithTeams(this Partial<TDMemberWithTeamDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<TDMemberWithTeamDto> WithTeams(this Partial<TDMemberWithTeamDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>(it)));
         
     }
     

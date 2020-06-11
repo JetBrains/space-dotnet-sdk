@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.ESHubProfileLoginDetailsDtoExtensions
 {
     public static class ESHubProfileLoginDetailsDtoPartialExtensions
     {
-        public static Partial<ESHubProfileLoginDetailsDto> WithLogin(this Partial<ESHubProfileLoginDetailsDto> it)    => it.AddFieldName("login");
+        public static Partial<ESHubProfileLoginDetailsDto> WithLogin(this Partial<ESHubProfileLoginDetailsDto> it)
+            => it.AddFieldName("login");
         
-        public static Partial<ESHubProfileLoginDetailsDto> WithHubAuthModuleLogin(this Partial<ESHubProfileLoginDetailsDto> it)    => it.AddFieldName("hubAuthModuleLogin");
+        public static Partial<ESHubProfileLoginDetailsDto> WithHubAuthModuleLogin(this Partial<ESHubProfileLoginDetailsDto> it)
+            => it.AddFieldName("hubAuthModuleLogin");
         
-        public static Partial<ESHubProfileLoginDetailsDto> WithFirstName(this Partial<ESHubProfileLoginDetailsDto> it)    => it.AddFieldName("firstName");
+        public static Partial<ESHubProfileLoginDetailsDto> WithFirstName(this Partial<ESHubProfileLoginDetailsDto> it)
+            => it.AddFieldName("firstName");
         
-        public static Partial<ESHubProfileLoginDetailsDto> WithLastName(this Partial<ESHubProfileLoginDetailsDto> it)    => it.AddFieldName("lastName");
+        public static Partial<ESHubProfileLoginDetailsDto> WithLastName(this Partial<ESHubProfileLoginDetailsDto> it)
+            => it.AddFieldName("lastName");
         
-        public static Partial<ESHubProfileLoginDetailsDto> WithEmail(this Partial<ESHubProfileLoginDetailsDto> it)    => it.AddFieldName("email");
+        public static Partial<ESHubProfileLoginDetailsDto> WithEmail(this Partial<ESHubProfileLoginDetailsDto> it)
+            => it.AddFieldName("email");
         
-        public static Partial<ESHubProfileLoginDetailsDto> WithEmailVerified(this Partial<ESHubProfileLoginDetailsDto> it)    => it.AddFieldName("emailVerified");
+        public static Partial<ESHubProfileLoginDetailsDto> WithEmailVerified(this Partial<ESHubProfileLoginDetailsDto> it)
+            => it.AddFieldName("emailVerified");
         
-        public static Partial<ESHubProfileLoginDetailsDto> WithAvatarUrl(this Partial<ESHubProfileLoginDetailsDto> it)    => it.AddFieldName("avatarUrl");
+        public static Partial<ESHubProfileLoginDetailsDto> WithAvatarUrl(this Partial<ESHubProfileLoginDetailsDto> it)
+            => it.AddFieldName("avatarUrl");
         
     }
     

@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.ImportChecklistLinesRequestExtensions
 {
     public static class ImportChecklistLinesRequestPartialExtensions
     {
-        public static Partial<ImportChecklistLinesRequest> WithTargetParentId(this Partial<ImportChecklistLinesRequest> it)    => it.AddFieldName("targetParentId");
+        public static Partial<ImportChecklistLinesRequest> WithTargetParentId(this Partial<ImportChecklistLinesRequest> it)
+            => it.AddFieldName("targetParentId");
         
-        public static Partial<ImportChecklistLinesRequest> WithAfterItemId(this Partial<ImportChecklistLinesRequest> it)    => it.AddFieldName("afterItemId");
+        public static Partial<ImportChecklistLinesRequest> WithAfterItemId(this Partial<ImportChecklistLinesRequest> it)
+            => it.AddFieldName("afterItemId");
         
-        public static Partial<ImportChecklistLinesRequest> WithTabIndentedLines(this Partial<ImportChecklistLinesRequest> it)    => it.AddFieldName("tabIndentedLines");
+        public static Partial<ImportChecklistLinesRequest> WithTabIndentedLines(this Partial<ImportChecklistLinesRequest> it)
+            => it.AddFieldName("tabIndentedLines");
         
     }
     

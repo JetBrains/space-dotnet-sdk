@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.CodeReviewWithCountDtoExtensions
 {
     public static class CodeReviewWithCountDtoPartialExtensions
     {
-        public static Partial<CodeReviewWithCountDto> WithReview(this Partial<CodeReviewWithCountDto> it)    => it.AddFieldName("review");
+        public static Partial<CodeReviewWithCountDto> WithReview(this Partial<CodeReviewWithCountDto> it)
+            => it.AddFieldName("review");
         
-        public static Partial<CodeReviewWithCountDto> WithReview(this Partial<CodeReviewWithCountDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<CodeReviewWithCountDto> WithReview(this Partial<CodeReviewWithCountDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
+            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
         
-        public static Partial<CodeReviewWithCountDto> WithMessagesCount(this Partial<CodeReviewWithCountDto> it)    => it.AddFieldName("messagesCount");
+        public static Partial<CodeReviewWithCountDto> WithMessagesCount(this Partial<CodeReviewWithCountDto> it)
+            => it.AddFieldName("messagesCount");
         
-        public static Partial<CodeReviewWithCountDto> WithAuthors(this Partial<CodeReviewWithCountDto> it)    => it.AddFieldName("authors");
+        public static Partial<CodeReviewWithCountDto> WithAuthors(this Partial<CodeReviewWithCountDto> it)
+            => it.AddFieldName("authors");
         
-        public static Partial<CodeReviewWithCountDto> WithAuthors(this Partial<CodeReviewWithCountDto> it, Func<Partial<GitCommitterProfileDto>, Partial<GitCommitterProfileDto>> partialBuilder)    => it.AddFieldName("authors", partialBuilder(new Partial<GitCommitterProfileDto>()));
+        public static Partial<CodeReviewWithCountDto> WithAuthors(this Partial<CodeReviewWithCountDto> it, Func<Partial<GitCommitterProfileDto>, Partial<GitCommitterProfileDto>> partialBuilder)
+            => it.AddFieldName("authors", partialBuilder(new Partial<GitCommitterProfileDto>(it)));
         
-        public static Partial<CodeReviewWithCountDto> WithParticipants(this Partial<CodeReviewWithCountDto> it)    => it.AddFieldName("participants");
+        public static Partial<CodeReviewWithCountDto> WithParticipants(this Partial<CodeReviewWithCountDto> it)
+            => it.AddFieldName("participants");
         
-        public static Partial<CodeReviewWithCountDto> WithParticipants(this Partial<CodeReviewWithCountDto> it, Func<Partial<CodeReviewParticipantsDto>, Partial<CodeReviewParticipantsDto>> partialBuilder)    => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipantsDto>()));
+        public static Partial<CodeReviewWithCountDto> WithParticipants(this Partial<CodeReviewWithCountDto> it, Func<Partial<CodeReviewParticipantsDto>, Partial<CodeReviewParticipantsDto>> partialBuilder)
+            => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipantsDto>(it)));
         
     }
     

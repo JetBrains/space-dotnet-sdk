@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.CreateChecklistRequestExtensions
 {
     public static class CreateChecklistRequestPartialExtensions
     {
-        public static Partial<CreateChecklistRequest> WithName(this Partial<CreateChecklistRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateChecklistRequest> WithName(this Partial<CreateChecklistRequest> it)
+            => it.AddFieldName("name");
         
     }
     

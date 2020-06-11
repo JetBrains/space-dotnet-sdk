@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.RestoreMultipleRequestExtensions
 {
     public static class RestoreMultipleRequestPartialExtensions
     {
-        public static Partial<RestoreMultipleRequest> WithIds(this Partial<RestoreMultipleRequest> it)    => it.AddFieldName("ids");
+        public static Partial<RestoreMultipleRequest> WithIds(this Partial<RestoreMultipleRequest> it)
+            => it.AddFieldName("ids");
         
     }
     

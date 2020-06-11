@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.IsNameFreeRequestExtensions
 {
     public static class IsNameFreeRequestPartialExtensions
     {
-        public static Partial<IsNameFreeRequest> WithName(this Partial<IsNameFreeRequest> it)    => it.AddFieldName("name");
+        public static Partial<IsNameFreeRequest> WithName(this Partial<IsNameFreeRequest> it)
+            => it.AddFieldName("name");
         
     }
     

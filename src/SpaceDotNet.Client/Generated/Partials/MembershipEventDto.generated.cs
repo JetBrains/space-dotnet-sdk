@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.MembershipEventDtoExtensions
 {
     public static class MembershipEventDtoPartialExtensions
     {
-        public static Partial<MembershipEventDto> WithProfile(this Partial<MembershipEventDto> it)    => it.AddFieldName("profile");
+        public static Partial<MembershipEventDto> WithProfile(this Partial<MembershipEventDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<MembershipEventDto> WithProfile(this Partial<MembershipEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<MembershipEventDto> WithProfile(this Partial<MembershipEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<MembershipEventDto> WithMembership(this Partial<MembershipEventDto> it)    => it.AddFieldName("membership");
+        public static Partial<MembershipEventDto> WithMembership(this Partial<MembershipEventDto> it)
+            => it.AddFieldName("membership");
         
-        public static Partial<MembershipEventDto> WithMembership(this Partial<MembershipEventDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)    => it.AddFieldName("membership", partialBuilder(new Partial<TDMembershipDto>()));
+        public static Partial<MembershipEventDto> WithMembership(this Partial<MembershipEventDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)
+            => it.AddFieldName("membership", partialBuilder(new Partial<TDMembershipDto>(it)));
         
     }
     

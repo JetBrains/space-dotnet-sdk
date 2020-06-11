@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.UpdateThemeRequestExtensions
 {
     public static class UpdateThemeRequestPartialExtensions
     {
-        public static Partial<UpdateThemeRequest> WithThemeName(this Partial<UpdateThemeRequest> it)    => it.AddFieldName("themeName");
+        public static Partial<UpdateThemeRequest> WithThemeName(this Partial<UpdateThemeRequest> it)
+            => it.AddFieldName("themeName");
         
     }
     

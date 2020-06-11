@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.UpdateDraftRequestExtensions
 {
     public static class UpdateDraftRequestPartialExtensions
     {
-        public static Partial<UpdateDraftRequest> WithTitle(this Partial<UpdateDraftRequest> it)    => it.AddFieldName("title");
+        public static Partial<UpdateDraftRequest> WithTitle(this Partial<UpdateDraftRequest> it)
+            => it.AddFieldName("title");
         
-        public static Partial<UpdateDraftRequest> WithText(this Partial<UpdateDraftRequest> it)    => it.AddFieldName("text");
+        public static Partial<UpdateDraftRequest> WithText(this Partial<UpdateDraftRequest> it)
+            => it.AddFieldName("text");
         
-        public static Partial<UpdateDraftRequest> WithTextVersion(this Partial<UpdateDraftRequest> it)    => it.AddFieldName("textVersion");
+        public static Partial<UpdateDraftRequest> WithTextVersion(this Partial<UpdateDraftRequest> it)
+            => it.AddFieldName("textVersion");
         
-        public static Partial<UpdateDraftRequest> WithType(this Partial<UpdateDraftRequest> it)    => it.AddFieldName("type");
+        public static Partial<UpdateDraftRequest> WithType(this Partial<UpdateDraftRequest> it)
+            => it.AddFieldName("type");
         
-        public static Partial<UpdateDraftRequest> WithType(this Partial<UpdateDraftRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>()));
+        public static Partial<UpdateDraftRequest> WithType(this Partial<UpdateDraftRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
         
-        public static Partial<UpdateDraftRequest> WithPublicationDetails(this Partial<UpdateDraftRequest> it)    => it.AddFieldName("publicationDetails");
+        public static Partial<UpdateDraftRequest> WithPublicationDetails(this Partial<UpdateDraftRequest> it)
+            => it.AddFieldName("publicationDetails");
         
-        public static Partial<UpdateDraftRequest> WithPublicationDetails(this Partial<UpdateDraftRequest> it, Func<Partial<DraftPublicationDetailsDto>, Partial<DraftPublicationDetailsDto>> partialBuilder)    => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetailsDto>()));
+        public static Partial<UpdateDraftRequest> WithPublicationDetails(this Partial<UpdateDraftRequest> it, Func<Partial<DraftPublicationDetailsDto>, Partial<DraftPublicationDetailsDto>> partialBuilder)
+            => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetailsDto>(it)));
         
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UneditableDocumentDtoExtensions
 {
     public static class UneditableDocumentDtoPartialExtensions
     {
-        public static Partial<UneditableDocumentDto> WithType(this Partial<UneditableDocumentDto> it)    => it.AddFieldName("type");
+        public static Partial<UneditableDocumentDto> WithType(this Partial<UneditableDocumentDto> it)
+            => it.AddFieldName("type");
         
-        public static Partial<UneditableDocumentDto> WithType(this Partial<UneditableDocumentDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>()));
+        public static Partial<UneditableDocumentDto> WithType(this Partial<UneditableDocumentDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
         
     }
     

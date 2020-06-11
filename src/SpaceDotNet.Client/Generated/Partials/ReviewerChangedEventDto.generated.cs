@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.ReviewerChangedEventDtoExtensions
 {
     public static class ReviewerChangedEventDtoPartialExtensions
     {
-        public static Partial<ReviewerChangedEventDto> WithUid(this Partial<ReviewerChangedEventDto> it)    => it.AddFieldName("uid");
+        public static Partial<ReviewerChangedEventDto> WithUid(this Partial<ReviewerChangedEventDto> it)
+            => it.AddFieldName("uid");
         
-        public static Partial<ReviewerChangedEventDto> WithUid(this Partial<ReviewerChangedEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("uid", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ReviewerChangedEventDto> WithUid(this Partial<ReviewerChangedEventDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("uid", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<ReviewerChangedEventDto> WithChangeType(this Partial<ReviewerChangedEventDto> it)    => it.AddFieldName("changeType");
+        public static Partial<ReviewerChangedEventDto> WithChangeType(this Partial<ReviewerChangedEventDto> it)
+            => it.AddFieldName("changeType");
         
-        public static Partial<ReviewerChangedEventDto> WithChangeType(this Partial<ReviewerChangedEventDto> it, Func<Partial<ReviewerChangedType>, Partial<ReviewerChangedType>> partialBuilder)    => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewerChangedType>()));
+        public static Partial<ReviewerChangedEventDto> WithChangeType(this Partial<ReviewerChangedEventDto> it, Func<Partial<ReviewerChangedType>, Partial<ReviewerChangedType>> partialBuilder)
+            => it.AddFieldName("changeType", partialBuilder(new Partial<ReviewerChangedType>(it)));
         
     }
     

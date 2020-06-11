@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.IssueChecklistsChangedDetailsDtoExtensions
 {
     public static class IssueChecklistsChangedDetailsDtoPartialExtensions
     {
-        public static Partial<IssueChecklistsChangedDetailsDto> WithAddedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it)    => it.AddFieldName("addedChecklists");
+        public static Partial<IssueChecklistsChangedDetailsDto> WithAddedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it)
+            => it.AddFieldName("addedChecklists");
         
-        public static Partial<IssueChecklistsChangedDetailsDto> WithAddedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)    => it.AddFieldName("addedChecklists", partialBuilder(new Partial<ChecklistDto>()));
+        public static Partial<IssueChecklistsChangedDetailsDto> WithAddedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)
+            => it.AddFieldName("addedChecklists", partialBuilder(new Partial<ChecklistDto>(it)));
         
-        public static Partial<IssueChecklistsChangedDetailsDto> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it)    => it.AddFieldName("removedChecklists");
+        public static Partial<IssueChecklistsChangedDetailsDto> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it)
+            => it.AddFieldName("removedChecklists");
         
-        public static Partial<IssueChecklistsChangedDetailsDto> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)    => it.AddFieldName("removedChecklists", partialBuilder(new Partial<ChecklistDto>()));
+        public static Partial<IssueChecklistsChangedDetailsDto> WithRemovedChecklists(this Partial<IssueChecklistsChangedDetailsDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)
+            => it.AddFieldName("removedChecklists", partialBuilder(new Partial<ChecklistDto>(it)));
         
     }
     

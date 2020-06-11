@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ConfirmTOTPTwoFactorAuthenticationSettingsRequestEx
 {
     public static class ConfirmTOTPTwoFactorAuthenticationSettingsRequestPartialExtensions
     {
-        public static Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequest> WithCode(this Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequest> it)    => it.AddFieldName("code");
+        public static Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequest> WithCode(this Partial<ConfirmTOTPTwoFactorAuthenticationSettingsRequest> it)
+            => it.AddFieldName("code");
         
     }
     

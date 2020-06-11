@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.DTORightTypeRightDtoExtensions
 {
     public static class DTORightTypeRightDtoPartialExtensions
     {
-        public static Partial<DTORightTypeRightDto> WithRightType(this Partial<DTORightTypeRightDto> it)    => it.AddFieldName("rightType");
+        public static Partial<DTORightTypeRightDto> WithRightType(this Partial<DTORightTypeRightDto> it)
+            => it.AddFieldName("rightType");
         
-        public static Partial<DTORightTypeRightDto> WithRightType(this Partial<DTORightTypeRightDto> it, Func<Partial<DTORightTypeDto>, Partial<DTORightTypeDto>> partialBuilder)    => it.AddFieldName("rightType", partialBuilder(new Partial<DTORightTypeDto>()));
+        public static Partial<DTORightTypeRightDto> WithRightType(this Partial<DTORightTypeRightDto> it, Func<Partial<DTORightTypeDto>, Partial<DTORightTypeDto>> partialBuilder)
+            => it.AddFieldName("rightType", partialBuilder(new Partial<DTORightTypeDto>(it)));
         
-        public static Partial<DTORightTypeRightDto> WithRights(this Partial<DTORightTypeRightDto> it)    => it.AddFieldName("rights");
+        public static Partial<DTORightTypeRightDto> WithRights(this Partial<DTORightTypeRightDto> it)
+            => it.AddFieldName("rights");
         
-        public static Partial<DTORightTypeRightDto> WithRights(this Partial<DTORightTypeRightDto> it, Func<Partial<DTOFullRightWithoutTypeDto>, Partial<DTOFullRightWithoutTypeDto>> partialBuilder)    => it.AddFieldName("rights", partialBuilder(new Partial<DTOFullRightWithoutTypeDto>()));
+        public static Partial<DTORightTypeRightDto> WithRights(this Partial<DTORightTypeRightDto> it, Func<Partial<DTOFullRightWithoutTypeDto>, Partial<DTOFullRightWithoutTypeDto>> partialBuilder)
+            => it.AddFieldName("rights", partialBuilder(new Partial<DTOFullRightWithoutTypeDto>(it)));
         
     }
     

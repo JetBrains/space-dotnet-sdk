@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.PublicHolidayCalendarRecordDtoExtensions
 {
     public static class PublicHolidayCalendarRecordDtoPartialExtensions
     {
-        public static Partial<PublicHolidayCalendarRecordDto> WithId(this Partial<PublicHolidayCalendarRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<PublicHolidayCalendarRecordDto> WithId(this Partial<PublicHolidayCalendarRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<PublicHolidayCalendarRecordDto> WithArchived(this Partial<PublicHolidayCalendarRecordDto> it)    => it.AddFieldName("archived");
+        public static Partial<PublicHolidayCalendarRecordDto> WithArchived(this Partial<PublicHolidayCalendarRecordDto> it)
+            => it.AddFieldName("archived");
         
-        public static Partial<PublicHolidayCalendarRecordDto> WithName(this Partial<PublicHolidayCalendarRecordDto> it)    => it.AddFieldName("name");
+        public static Partial<PublicHolidayCalendarRecordDto> WithName(this Partial<PublicHolidayCalendarRecordDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<PublicHolidayCalendarRecordDto> WithFirstDate(this Partial<PublicHolidayCalendarRecordDto> it)    => it.AddFieldName("firstDate");
+        public static Partial<PublicHolidayCalendarRecordDto> WithFirstDate(this Partial<PublicHolidayCalendarRecordDto> it)
+            => it.AddFieldName("firstDate");
         
-        public static Partial<PublicHolidayCalendarRecordDto> WithLastDate(this Partial<PublicHolidayCalendarRecordDto> it)    => it.AddFieldName("lastDate");
+        public static Partial<PublicHolidayCalendarRecordDto> WithLastDate(this Partial<PublicHolidayCalendarRecordDto> it)
+            => it.AddFieldName("lastDate");
         
-        public static Partial<PublicHolidayCalendarRecordDto> WithEventsCount(this Partial<PublicHolidayCalendarRecordDto> it)    => it.AddFieldName("eventsCount");
+        public static Partial<PublicHolidayCalendarRecordDto> WithEventsCount(this Partial<PublicHolidayCalendarRecordDto> it)
+            => it.AddFieldName("eventsCount");
         
-        public static Partial<PublicHolidayCalendarRecordDto> WithLocation(this Partial<PublicHolidayCalendarRecordDto> it)    => it.AddFieldName("location");
+        public static Partial<PublicHolidayCalendarRecordDto> WithLocation(this Partial<PublicHolidayCalendarRecordDto> it)
+            => it.AddFieldName("location");
         
-        public static Partial<PublicHolidayCalendarRecordDto> WithLocation(this Partial<PublicHolidayCalendarRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<PublicHolidayCalendarRecordDto> WithLocation(this Partial<PublicHolidayCalendarRecordDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
+            => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>(it)));
         
     }
     

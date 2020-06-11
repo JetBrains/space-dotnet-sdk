@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.TDStatsDtoExtensions
 {
     public static class TDStatsDtoPartialExtensions
     {
-        public static Partial<TDStatsDto> WithTotalMembers(this Partial<TDStatsDto> it)    => it.AddFieldName("totalMembers");
+        public static Partial<TDStatsDto> WithTotalMembers(this Partial<TDStatsDto> it)
+            => it.AddFieldName("totalMembers");
         
-        public static Partial<TDStatsDto> WithTeams(this Partial<TDStatsDto> it)    => it.AddFieldName("teams");
+        public static Partial<TDStatsDto> WithTeams(this Partial<TDStatsDto> it)
+            => it.AddFieldName("teams");
         
-        public static Partial<TDStatsDto> WithTeams(this Partial<TDStatsDto> it, Func<Partial<Pair<TDTeamDto, int>>, Partial<Pair<TDTeamDto, int>>> partialBuilder)    => it.AddFieldName("teams", partialBuilder(new Partial<Pair<TDTeamDto, int>>()));
+        public static Partial<TDStatsDto> WithTeams(this Partial<TDStatsDto> it, Func<Partial<Pair<TDTeamDto, int>>, Partial<Pair<TDTeamDto, int>>> partialBuilder)
+            => it.AddFieldName("teams", partialBuilder(new Partial<Pair<TDTeamDto, int>>(it)));
         
-        public static Partial<TDStatsDto> WithRoles(this Partial<TDStatsDto> it)    => it.AddFieldName("roles");
+        public static Partial<TDStatsDto> WithRoles(this Partial<TDStatsDto> it)
+            => it.AddFieldName("roles");
         
-        public static Partial<TDStatsDto> WithRoles(this Partial<TDStatsDto> it, Func<Partial<Pair<TDRoleDto, int>>, Partial<Pair<TDRoleDto, int>>> partialBuilder)    => it.AddFieldName("roles", partialBuilder(new Partial<Pair<TDRoleDto, int>>()));
+        public static Partial<TDStatsDto> WithRoles(this Partial<TDStatsDto> it, Func<Partial<Pair<TDRoleDto, int>>, Partial<Pair<TDRoleDto, int>>> partialBuilder)
+            => it.AddFieldName("roles", partialBuilder(new Partial<Pair<TDRoleDto, int>>(it)));
         
-        public static Partial<TDStatsDto> WithLocations(this Partial<TDStatsDto> it)    => it.AddFieldName("locations");
+        public static Partial<TDStatsDto> WithLocations(this Partial<TDStatsDto> it)
+            => it.AddFieldName("locations");
         
-        public static Partial<TDStatsDto> WithLocations(this Partial<TDStatsDto> it, Func<Partial<Pair<TDLocationDto, int>>, Partial<Pair<TDLocationDto, int>>> partialBuilder)    => it.AddFieldName("locations", partialBuilder(new Partial<Pair<TDLocationDto, int>>()));
+        public static Partial<TDStatsDto> WithLocations(this Partial<TDStatsDto> it, Func<Partial<Pair<TDLocationDto, int>>, Partial<Pair<TDLocationDto, int>>> partialBuilder)
+            => it.AddFieldName("locations", partialBuilder(new Partial<Pair<TDLocationDto, int>>(it)));
         
     }
     

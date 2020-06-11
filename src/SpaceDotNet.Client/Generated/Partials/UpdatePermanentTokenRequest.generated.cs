@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdatePermanentTokenRequestExtensions
 {
     public static class UpdatePermanentTokenRequestPartialExtensions
     {
-        public static Partial<UpdatePermanentTokenRequest> WithName(this Partial<UpdatePermanentTokenRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdatePermanentTokenRequest> WithName(this Partial<UpdatePermanentTokenRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdatePermanentTokenRequest> WithScope(this Partial<UpdatePermanentTokenRequest> it)    => it.AddFieldName("scope");
+        public static Partial<UpdatePermanentTokenRequest> WithScope(this Partial<UpdatePermanentTokenRequest> it)
+            => it.AddFieldName("scope");
         
     }
     

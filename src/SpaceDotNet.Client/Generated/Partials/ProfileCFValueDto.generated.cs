@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ProfileCFValueDtoExtensions
 {
     public static class ProfileCFValueDtoPartialExtensions
     {
-        public static Partial<ProfileCFValueDto> WithProfile(this Partial<ProfileCFValueDto> it)    => it.AddFieldName("profile");
+        public static Partial<ProfileCFValueDto> WithProfile(this Partial<ProfileCFValueDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<ProfileCFValueDto> WithProfile(this Partial<ProfileCFValueDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ProfileCFValueDto> WithProfile(this Partial<ProfileCFValueDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
     }
     

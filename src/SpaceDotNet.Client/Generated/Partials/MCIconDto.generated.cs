@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.MCIconDtoExtensions
 {
     public static class MCIconDtoPartialExtensions
     {
-        public static Partial<MCIconDto> WithName(this Partial<MCIconDto> it)    => it.AddFieldName("name");
+        public static Partial<MCIconDto> WithName(this Partial<MCIconDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<MCIconDto> WithStyle(this Partial<MCIconDto> it)    => it.AddFieldName("style");
+        public static Partial<MCIconDto> WithStyle(this Partial<MCIconDto> it)
+            => it.AddFieldName("style");
         
     }
     

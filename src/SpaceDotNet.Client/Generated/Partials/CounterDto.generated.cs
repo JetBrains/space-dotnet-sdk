@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CounterDtoExtensions
 {
     public static class CounterDtoPartialExtensions
     {
-        public static Partial<CounterDto> WithResolved(this Partial<CounterDto> it)    => it.AddFieldName("resolved");
+        public static Partial<CounterDto> WithResolved(this Partial<CounterDto> it)
+            => it.AddFieldName("resolved");
         
-        public static Partial<CounterDto> WithUnresolved(this Partial<CounterDto> it)    => it.AddFieldName("unresolved");
+        public static Partial<CounterDto> WithUnresolved(this Partial<CounterDto> it)
+            => it.AddFieldName("unresolved");
         
     }
     

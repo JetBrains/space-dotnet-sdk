@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CodeReviewDiscussionAddedFeedEventDtoExtensions
 {
     public static class CodeReviewDiscussionAddedFeedEventDtoPartialExtensions
     {
-        public static Partial<CodeReviewDiscussionAddedFeedEventDto> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEventDto> it)    => it.AddFieldName("discussion");
+        public static Partial<CodeReviewDiscussionAddedFeedEventDto> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEventDto> it)
+            => it.AddFieldName("discussion");
         
-        public static Partial<CodeReviewDiscussionAddedFeedEventDto> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEventDto> it, Func<Partial<CodeReviewDiscussionRecordDto>, Partial<CodeReviewDiscussionRecordDto>> partialBuilder)    => it.AddFieldName("discussion", partialBuilder(new Partial<CodeReviewDiscussionRecordDto>()));
+        public static Partial<CodeReviewDiscussionAddedFeedEventDto> WithDiscussion(this Partial<CodeReviewDiscussionAddedFeedEventDto> it, Func<Partial<CodeReviewDiscussionRecordDto>, Partial<CodeReviewDiscussionRecordDto>> partialBuilder)
+            => it.AddFieldName("discussion", partialBuilder(new Partial<CodeReviewDiscussionRecordDto>(it)));
         
     }
     

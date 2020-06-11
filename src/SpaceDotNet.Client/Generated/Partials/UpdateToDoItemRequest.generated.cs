@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.UpdateToDoItemRequestExtensions
 {
     public static class UpdateToDoItemRequestPartialExtensions
     {
-        public static Partial<UpdateToDoItemRequest> WithText(this Partial<UpdateToDoItemRequest> it)    => it.AddFieldName("text");
+        public static Partial<UpdateToDoItemRequest> WithText(this Partial<UpdateToDoItemRequest> it)
+            => it.AddFieldName("text");
         
-        public static Partial<UpdateToDoItemRequest> WithDueDate(this Partial<UpdateToDoItemRequest> it)    => it.AddFieldName("dueDate");
+        public static Partial<UpdateToDoItemRequest> WithDueDate(this Partial<UpdateToDoItemRequest> it)
+            => it.AddFieldName("dueDate");
         
-        public static Partial<UpdateToDoItemRequest> WithOpen(this Partial<UpdateToDoItemRequest> it)    => it.AddFieldName("open");
+        public static Partial<UpdateToDoItemRequest> WithOpen(this Partial<UpdateToDoItemRequest> it)
+            => it.AddFieldName("open");
         
     }
     

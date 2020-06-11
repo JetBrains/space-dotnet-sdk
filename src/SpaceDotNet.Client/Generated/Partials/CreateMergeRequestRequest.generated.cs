@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.CreateMergeRequestRequestExtensions
 {
     public static class CreateMergeRequestRequestPartialExtensions
     {
-        public static Partial<CreateMergeRequestRequest> WithSourceBranch(this Partial<CreateMergeRequestRequest> it)    => it.AddFieldName("sourceBranch");
+        public static Partial<CreateMergeRequestRequest> WithSourceBranch(this Partial<CreateMergeRequestRequest> it)
+            => it.AddFieldName("sourceBranch");
         
-        public static Partial<CreateMergeRequestRequest> WithTargetBranch(this Partial<CreateMergeRequestRequest> it)    => it.AddFieldName("targetBranch");
+        public static Partial<CreateMergeRequestRequest> WithTargetBranch(this Partial<CreateMergeRequestRequest> it)
+            => it.AddFieldName("targetBranch");
         
-        public static Partial<CreateMergeRequestRequest> WithTitle(this Partial<CreateMergeRequestRequest> it)    => it.AddFieldName("title");
+        public static Partial<CreateMergeRequestRequest> WithTitle(this Partial<CreateMergeRequestRequest> it)
+            => it.AddFieldName("title");
         
     }
     

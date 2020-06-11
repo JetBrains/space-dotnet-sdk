@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.AddRevisionsToReviewRequestExtensions
 {
     public static class AddRevisionsToReviewRequestPartialExtensions
     {
-        public static Partial<AddRevisionsToReviewRequest> WithRevisions(this Partial<AddRevisionsToReviewRequest> it)    => it.AddFieldName("revisions");
+        public static Partial<AddRevisionsToReviewRequest> WithRevisions(this Partial<AddRevisionsToReviewRequest> it)
+            => it.AddFieldName("revisions");
         
-        public static Partial<AddRevisionsToReviewRequest> WithRevisions(this Partial<AddRevisionsToReviewRequest> it, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partialBuilder)    => it.AddFieldName("revisions", partialBuilder(new Partial<RevisionInReviewDto>()));
+        public static Partial<AddRevisionsToReviewRequest> WithRevisions(this Partial<AddRevisionsToReviewRequest> it, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partialBuilder)
+            => it.AddFieldName("revisions", partialBuilder(new Partial<RevisionInReviewDto>(it)));
         
     }
     

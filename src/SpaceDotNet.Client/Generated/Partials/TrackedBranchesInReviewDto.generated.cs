@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.TrackedBranchesInReviewDtoExtensions
 {
     public static class TrackedBranchesInReviewDtoPartialExtensions
     {
-        public static Partial<TrackedBranchesInReviewDto> WithRepository(this Partial<TrackedBranchesInReviewDto> it)    => it.AddFieldName("repository");
+        public static Partial<TrackedBranchesInReviewDto> WithRepository(this Partial<TrackedBranchesInReviewDto> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<TrackedBranchesInReviewDto> WithBranches(this Partial<TrackedBranchesInReviewDto> it)    => it.AddFieldName("branches");
+        public static Partial<TrackedBranchesInReviewDto> WithBranches(this Partial<TrackedBranchesInReviewDto> it)
+            => it.AddFieldName("branches");
         
-        public static Partial<TrackedBranchesInReviewDto> WithBranches(this Partial<TrackedBranchesInReviewDto> it, Func<Partial<BranchInfoDto>, Partial<BranchInfoDto>> partialBuilder)    => it.AddFieldName("branches", partialBuilder(new Partial<BranchInfoDto>()));
+        public static Partial<TrackedBranchesInReviewDto> WithBranches(this Partial<TrackedBranchesInReviewDto> it, Func<Partial<BranchInfoDto>, Partial<BranchInfoDto>> partialBuilder)
+            => it.AddFieldName("branches", partialBuilder(new Partial<BranchInfoDto>(it)));
         
     }
     

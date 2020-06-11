@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.DiffSideNonEmptyDtoExtensions
 {
     public static class DiffSideNonEmptyDtoPartialExtensions
     {
-        public static Partial<DiffSideNonEmptyDto> WithRevision(this Partial<DiffSideNonEmptyDto> it)    => it.AddFieldName("revision");
+        public static Partial<DiffSideNonEmptyDto> WithRevision(this Partial<DiffSideNonEmptyDto> it)
+            => it.AddFieldName("revision");
         
-        public static Partial<DiffSideNonEmptyDto> WithPath(this Partial<DiffSideNonEmptyDto> it)    => it.AddFieldName("path");
+        public static Partial<DiffSideNonEmptyDto> WithPath(this Partial<DiffSideNonEmptyDto> it)
+            => it.AddFieldName("path");
         
     }
     

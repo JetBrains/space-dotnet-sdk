@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.SamlMetadataResponseErrorDtoExtensions
 {
     public static class SamlMetadataResponseErrorDtoPartialExtensions
     {
-        public static Partial<SamlMetadataResponseErrorDto> WithMessages(this Partial<SamlMetadataResponseErrorDto> it)    => it.AddFieldName("messages");
+        public static Partial<SamlMetadataResponseErrorDto> WithMessages(this Partial<SamlMetadataResponseErrorDto> it)
+            => it.AddFieldName("messages");
         
     }
     

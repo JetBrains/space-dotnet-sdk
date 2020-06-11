@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ReviewCompletionStateChangedEventDtoExtensions
 {
     public static class ReviewCompletionStateChangedEventDtoPartialExtensions
     {
-        public static Partial<ReviewCompletionStateChangedEventDto> WithState(this Partial<ReviewCompletionStateChangedEventDto> it)    => it.AddFieldName("state");
+        public static Partial<ReviewCompletionStateChangedEventDto> WithState(this Partial<ReviewCompletionStateChangedEventDto> it)
+            => it.AddFieldName("state");
         
-        public static Partial<ReviewCompletionStateChangedEventDto> WithState(this Partial<ReviewCompletionStateChangedEventDto> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)    => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>()));
+        public static Partial<ReviewCompletionStateChangedEventDto> WithState(this Partial<ReviewCompletionStateChangedEventDto> it, Func<Partial<ReviewerState>, Partial<ReviewerState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<ReviewerState>(it)));
         
     }
     

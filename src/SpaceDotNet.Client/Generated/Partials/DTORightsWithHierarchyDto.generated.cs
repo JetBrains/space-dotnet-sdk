@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.DTORightsWithHierarchyDtoExtensions
 {
     public static class DTORightsWithHierarchyDtoPartialExtensions
     {
-        public static Partial<DTORightsWithHierarchyDto> WithRights(this Partial<DTORightsWithHierarchyDto> it)    => it.AddFieldName("rights");
+        public static Partial<DTORightsWithHierarchyDto> WithRights(this Partial<DTORightsWithHierarchyDto> it)
+            => it.AddFieldName("rights");
         
-        public static Partial<DTORightsWithHierarchyDto> WithRights(this Partial<DTORightsWithHierarchyDto> it, Func<Partial<DTORightTypeRightDto>, Partial<DTORightTypeRightDto>> partialBuilder)    => it.AddFieldName("rights", partialBuilder(new Partial<DTORightTypeRightDto>()));
+        public static Partial<DTORightsWithHierarchyDto> WithRights(this Partial<DTORightsWithHierarchyDto> it, Func<Partial<DTORightTypeRightDto>, Partial<DTORightTypeRightDto>> partialBuilder)
+            => it.AddFieldName("rights", partialBuilder(new Partial<DTORightTypeRightDto>(it)));
         
-        public static Partial<DTORightsWithHierarchyDto> WithRightsGroups(this Partial<DTORightsWithHierarchyDto> it)    => it.AddFieldName("rightsGroups");
+        public static Partial<DTORightsWithHierarchyDto> WithRightsGroups(this Partial<DTORightsWithHierarchyDto> it)
+            => it.AddFieldName("rightsGroups");
         
-        public static Partial<DTORightsWithHierarchyDto> WithRightsGroups(this Partial<DTORightsWithHierarchyDto> it, Func<Partial<DTORightsGroupDto>, Partial<DTORightsGroupDto>> partialBuilder)    => it.AddFieldName("rightsGroups", partialBuilder(new Partial<DTORightsGroupDto>()));
+        public static Partial<DTORightsWithHierarchyDto> WithRightsGroups(this Partial<DTORightsWithHierarchyDto> it, Func<Partial<DTORightsGroupDto>, Partial<DTORightsGroupDto>> partialBuilder)
+            => it.AddFieldName("rightsGroups", partialBuilder(new Partial<DTORightsGroupDto>(it)));
         
-        public static Partial<DTORightsWithHierarchyDto> WithDeps(this Partial<DTORightsWithHierarchyDto> it)    => it.AddFieldName("deps");
+        public static Partial<DTORightsWithHierarchyDto> WithDeps(this Partial<DTORightsWithHierarchyDto> it)
+            => it.AddFieldName("deps");
         
-        public static Partial<DTORightsWithHierarchyDto> WithDeps(this Partial<DTORightsWithHierarchyDto> it, Func<Partial<DTORightsDepsDto>, Partial<DTORightsDepsDto>> partialBuilder)    => it.AddFieldName("deps", partialBuilder(new Partial<DTORightsDepsDto>()));
+        public static Partial<DTORightsWithHierarchyDto> WithDeps(this Partial<DTORightsWithHierarchyDto> it, Func<Partial<DTORightsDepsDto>, Partial<DTORightsDepsDto>> partialBuilder)
+            => it.AddFieldName("deps", partialBuilder(new Partial<DTORightsDepsDto>(it)));
         
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.AddAttachmentsRequestExtensions
 {
     public static class AddAttachmentsRequestPartialExtensions
     {
-        public static Partial<AddAttachmentsRequest> WithAttachments(this Partial<AddAttachmentsRequest> it)    => it.AddFieldName("attachments");
+        public static Partial<AddAttachmentsRequest> WithAttachments(this Partial<AddAttachmentsRequest> it)
+            => it.AddFieldName("attachments");
         
-        public static Partial<AddAttachmentsRequest> WithAttachments(this Partial<AddAttachmentsRequest> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)    => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>()));
+        public static Partial<AddAttachmentsRequest> WithAttachments(this Partial<AddAttachmentsRequest> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>(it)));
         
     }
     

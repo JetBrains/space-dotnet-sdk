@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.M2ChannelContentNamedPrivateChannelDtoExtensions
 {
     public static class M2ChannelContentNamedPrivateChannelDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentNamedPrivateChannelDto> WithName(this Partial<M2ChannelContentNamedPrivateChannelDto> it)    => it.AddFieldName("name");
+        public static Partial<M2ChannelContentNamedPrivateChannelDto> WithName(this Partial<M2ChannelContentNamedPrivateChannelDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<M2ChannelContentNamedPrivateChannelDto> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannelDto> it)    => it.AddFieldName("notificationDefaults");
+        public static Partial<M2ChannelContentNamedPrivateChannelDto> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannelDto> it)
+            => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2ChannelContentNamedPrivateChannelDto> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannelDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2ChannelContentNamedPrivateChannelDto> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannelDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
+            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>(it)));
         
     }
     

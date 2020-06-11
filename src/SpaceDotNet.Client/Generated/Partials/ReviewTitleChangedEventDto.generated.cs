@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ReviewTitleChangedEventDtoExtensions
 {
     public static class ReviewTitleChangedEventDtoPartialExtensions
     {
-        public static Partial<ReviewTitleChangedEventDto> WithOldTitle(this Partial<ReviewTitleChangedEventDto> it)    => it.AddFieldName("oldTitle");
+        public static Partial<ReviewTitleChangedEventDto> WithOldTitle(this Partial<ReviewTitleChangedEventDto> it)
+            => it.AddFieldName("oldTitle");
         
-        public static Partial<ReviewTitleChangedEventDto> WithNewTitle(this Partial<ReviewTitleChangedEventDto> it)    => it.AddFieldName("newTitle");
+        public static Partial<ReviewTitleChangedEventDto> WithNewTitle(this Partial<ReviewTitleChangedEventDto> it)
+            => it.AddFieldName("newTitle");
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.AbsenceApprovalDtoExtensions
 {
     public static class AbsenceApprovalDtoPartialExtensions
     {
-        public static Partial<AbsenceApprovalDto> WithApproved(this Partial<AbsenceApprovalDto> it)    => it.AddFieldName("approved");
+        public static Partial<AbsenceApprovalDto> WithApproved(this Partial<AbsenceApprovalDto> it)
+            => it.AddFieldName("approved");
         
-        public static Partial<AbsenceApprovalDto> WithApprovedBy(this Partial<AbsenceApprovalDto> it)    => it.AddFieldName("approvedBy");
+        public static Partial<AbsenceApprovalDto> WithApprovedBy(this Partial<AbsenceApprovalDto> it)
+            => it.AddFieldName("approvedBy");
         
-        public static Partial<AbsenceApprovalDto> WithApprovedBy(this Partial<AbsenceApprovalDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("approvedBy", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<AbsenceApprovalDto> WithApprovedBy(this Partial<AbsenceApprovalDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("approvedBy", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<AbsenceApprovalDto> WithApprovedAt(this Partial<AbsenceApprovalDto> it)    => it.AddFieldName("approvedAt");
+        public static Partial<AbsenceApprovalDto> WithApprovedAt(this Partial<AbsenceApprovalDto> it)
+            => it.AddFieldName("approvedAt");
         
     }
     

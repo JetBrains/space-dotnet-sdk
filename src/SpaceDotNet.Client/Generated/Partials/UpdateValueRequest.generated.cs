@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateValueRequestExtensions
 {
     public static class UpdateValueRequestPartialExtensions
     {
-        public static Partial<UpdateValueRequest> WithValues(this Partial<UpdateValueRequest> it)    => it.AddFieldName("values");
+        public static Partial<UpdateValueRequest> WithValues(this Partial<UpdateValueRequest> it)
+            => it.AddFieldName("values");
         
-        public static Partial<UpdateValueRequest> WithValues(this Partial<UpdateValueRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)    => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldValueDto>()));
+        public static Partial<UpdateValueRequest> WithValues(this Partial<UpdateValueRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
+            => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldValueDto>(it)));
         
     }
     

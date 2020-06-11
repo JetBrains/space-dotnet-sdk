@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.UpdatePointRequestExtensions
 {
     public static class UpdatePointRequestPartialExtensions
     {
-        public static Partial<UpdatePointRequest> WithX(this Partial<UpdatePointRequest> it)    => it.AddFieldName("x");
+        public static Partial<UpdatePointRequest> WithX(this Partial<UpdatePointRequest> it)
+            => it.AddFieldName("x");
         
-        public static Partial<UpdatePointRequest> WithY(this Partial<UpdatePointRequest> it)    => it.AddFieldName("y");
+        public static Partial<UpdatePointRequest> WithY(this Partial<UpdatePointRequest> it)
+            => it.AddFieldName("y");
         
-        public static Partial<UpdatePointRequest> WithMapId(this Partial<UpdatePointRequest> it)    => it.AddFieldName("mapId");
+        public static Partial<UpdatePointRequest> WithMapId(this Partial<UpdatePointRequest> it)
+            => it.AddFieldName("mapId");
         
     }
     

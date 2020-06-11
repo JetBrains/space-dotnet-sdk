@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.BirthdayEventDtoExtensions
 {
     public static class BirthdayEventDtoPartialExtensions
     {
-        public static Partial<BirthdayEventDto> WithProfile(this Partial<BirthdayEventDto> it)    => it.AddFieldName("profile");
+        public static Partial<BirthdayEventDto> WithProfile(this Partial<BirthdayEventDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<BirthdayEventDto> WithProfile(this Partial<BirthdayEventDto> it, Func<Partial<TDMemberWithTeamDto>, Partial<TDMemberWithTeamDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberWithTeamDto>()));
+        public static Partial<BirthdayEventDto> WithProfile(this Partial<BirthdayEventDto> it, Func<Partial<TDMemberWithTeamDto>, Partial<TDMemberWithTeamDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberWithTeamDto>(it)));
         
-        public static Partial<BirthdayEventDto> WithBirthday(this Partial<BirthdayEventDto> it)    => it.AddFieldName("birthday");
+        public static Partial<BirthdayEventDto> WithBirthday(this Partial<BirthdayEventDto> it)
+            => it.AddFieldName("birthday");
         
     }
     

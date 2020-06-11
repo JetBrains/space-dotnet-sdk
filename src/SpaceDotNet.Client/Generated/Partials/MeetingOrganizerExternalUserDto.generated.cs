@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.MeetingOrganizerExternalUserDtoExtensions
 {
     public static class MeetingOrganizerExternalUserDtoPartialExtensions
     {
-        public static Partial<MeetingOrganizerExternalUserDto> WithEmail(this Partial<MeetingOrganizerExternalUserDto> it)    => it.AddFieldName("email");
+        public static Partial<MeetingOrganizerExternalUserDto> WithEmail(this Partial<MeetingOrganizerExternalUserDto> it)
+            => it.AddFieldName("email");
         
     }
     

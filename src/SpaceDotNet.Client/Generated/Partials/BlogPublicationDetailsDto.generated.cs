@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client.BlogPublicationDetailsDtoExtensions
 {
     public static class BlogPublicationDetailsDtoPartialExtensions
     {
-        public static Partial<BlogPublicationDetailsDto> WithTeamId(this Partial<BlogPublicationDetailsDto> it)    => it.AddFieldName("teamId");
+        public static Partial<BlogPublicationDetailsDto> WithTeamId(this Partial<BlogPublicationDetailsDto> it)
+            => it.AddFieldName("teamId");
         
-        public static Partial<BlogPublicationDetailsDto> WithTeamId(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("teamId", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<BlogPublicationDetailsDto> WithTeamId(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("teamId", partialBuilder(new Partial<TDTeamDto>(it)));
         
-        public static Partial<BlogPublicationDetailsDto> WithTeams(this Partial<BlogPublicationDetailsDto> it)    => it.AddFieldName("teams");
+        public static Partial<BlogPublicationDetailsDto> WithTeams(this Partial<BlogPublicationDetailsDto> it)
+            => it.AddFieldName("teams");
         
-        public static Partial<BlogPublicationDetailsDto> WithTeams(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<BlogPublicationDetailsDto> WithTeams(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeamDto>(it)));
         
-        public static Partial<BlogPublicationDetailsDto> WithLocationId(this Partial<BlogPublicationDetailsDto> it)    => it.AddFieldName("locationId");
+        public static Partial<BlogPublicationDetailsDto> WithLocationId(this Partial<BlogPublicationDetailsDto> it)
+            => it.AddFieldName("locationId");
         
-        public static Partial<BlogPublicationDetailsDto> WithLocationId(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("locationId", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<BlogPublicationDetailsDto> WithLocationId(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
+            => it.AddFieldName("locationId", partialBuilder(new Partial<TDLocationDto>(it)));
         
-        public static Partial<BlogPublicationDetailsDto> WithLocations(this Partial<BlogPublicationDetailsDto> it)    => it.AddFieldName("locations");
+        public static Partial<BlogPublicationDetailsDto> WithLocations(this Partial<BlogPublicationDetailsDto> it)
+            => it.AddFieldName("locations");
         
-        public static Partial<BlogPublicationDetailsDto> WithLocations(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)    => it.AddFieldName("locations", partialBuilder(new Partial<TDLocationDto>()));
+        public static Partial<BlogPublicationDetailsDto> WithLocations(this Partial<BlogPublicationDetailsDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
+            => it.AddFieldName("locations", partialBuilder(new Partial<TDLocationDto>(it)));
         
-        public static Partial<BlogPublicationDetailsDto> WithEvent(this Partial<BlogPublicationDetailsDto> it)    => it.AddFieldName("event");
+        public static Partial<BlogPublicationDetailsDto> WithEvent(this Partial<BlogPublicationDetailsDto> it)
+            => it.AddFieldName("event");
         
-        public static Partial<BlogPublicationDetailsDto> WithEvent(this Partial<BlogPublicationDetailsDto> it, Func<Partial<CalendarEventDto>, Partial<CalendarEventDto>> partialBuilder)    => it.AddFieldName("event", partialBuilder(new Partial<CalendarEventDto>()));
+        public static Partial<BlogPublicationDetailsDto> WithEvent(this Partial<BlogPublicationDetailsDto> it, Func<Partial<CalendarEventDto>, Partial<CalendarEventDto>> partialBuilder)
+            => it.AddFieldName("event", partialBuilder(new Partial<CalendarEventDto>(it)));
         
-        public static Partial<BlogPublicationDetailsDto> WithArticle(this Partial<BlogPublicationDetailsDto> it)    => it.AddFieldName("article");
+        public static Partial<BlogPublicationDetailsDto> WithArticle(this Partial<BlogPublicationDetailsDto> it)
+            => it.AddFieldName("article");
         
-        public static Partial<BlogPublicationDetailsDto> WithArticle(this Partial<BlogPublicationDetailsDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)    => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
+        public static Partial<BlogPublicationDetailsDto> WithArticle(this Partial<BlogPublicationDetailsDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)
+            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>(it)));
         
     }
     

@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.MavenPackageTypeDtoExtensions
 {
     public static class MavenPackageTypeDtoPartialExtensions
     {
-        public static Partial<MavenPackageTypeDto> WithId(this Partial<MavenPackageTypeDto> it)    => it.AddFieldName("id");
+        public static Partial<MavenPackageTypeDto> WithId(this Partial<MavenPackageTypeDto> it)
+            => it.AddFieldName("id");
         
     }
     

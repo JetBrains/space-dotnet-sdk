@@ -23,37 +23,53 @@ namespace SpaceDotNet.Client.CodeDiscussionRecordDtoExtensions
 {
     public static class CodeDiscussionRecordDtoPartialExtensions
     {
-        public static Partial<CodeDiscussionRecordDto> WithId(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<CodeDiscussionRecordDto> WithId(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<CodeDiscussionRecordDto> WithProjectId(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("projectId");
+        public static Partial<CodeDiscussionRecordDto> WithProjectId(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("projectId");
         
-        public static Partial<CodeDiscussionRecordDto> WithAnchor(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("anchor");
+        public static Partial<CodeDiscussionRecordDto> WithAnchor(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("anchor");
         
-        public static Partial<CodeDiscussionRecordDto> WithAnchor(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeDiscussionAnchorDto>, Partial<CodeDiscussionAnchorDto>> partialBuilder)    => it.AddFieldName("anchor", partialBuilder(new Partial<CodeDiscussionAnchorDto>()));
+        public static Partial<CodeDiscussionRecordDto> WithAnchor(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeDiscussionAnchorDto>, Partial<CodeDiscussionAnchorDto>> partialBuilder)
+            => it.AddFieldName("anchor", partialBuilder(new Partial<CodeDiscussionAnchorDto>(it)));
         
-        public static Partial<CodeDiscussionRecordDto> WithCreated(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("created");
+        public static Partial<CodeDiscussionRecordDto> WithCreated(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<CodeDiscussionRecordDto> WithChannel(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("channel");
+        public static Partial<CodeDiscussionRecordDto> WithChannel(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("channel");
         
-        public static Partial<CodeDiscussionRecordDto> WithChannel(this Partial<CodeDiscussionRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)    => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>()));
+        public static Partial<CodeDiscussionRecordDto> WithChannel(this Partial<CodeDiscussionRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>(it)));
         
-        public static Partial<CodeDiscussionRecordDto> WithResolved(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("resolved");
+        public static Partial<CodeDiscussionRecordDto> WithResolved(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("resolved");
         
-        public static Partial<CodeDiscussionRecordDto> WithSnippet(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("snippet");
+        public static Partial<CodeDiscussionRecordDto> WithSnippet(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("snippet");
         
-        public static Partial<CodeDiscussionRecordDto> WithSnippet(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeDiscussionSnippetDto>, Partial<CodeDiscussionSnippetDto>> partialBuilder)    => it.AddFieldName("snippet", partialBuilder(new Partial<CodeDiscussionSnippetDto>()));
+        public static Partial<CodeDiscussionRecordDto> WithSnippet(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeDiscussionSnippetDto>, Partial<CodeDiscussionSnippetDto>> partialBuilder)
+            => it.AddFieldName("snippet", partialBuilder(new Partial<CodeDiscussionSnippetDto>(it)));
         
-        public static Partial<CodeDiscussionRecordDto> WithPending(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("pending");
+        public static Partial<CodeDiscussionRecordDto> WithPending(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("pending");
         
-        public static Partial<CodeDiscussionRecordDto> WithReview(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("review");
+        public static Partial<CodeDiscussionRecordDto> WithReview(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("review");
         
-        public static Partial<CodeDiscussionRecordDto> WithReview(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<CodeDiscussionRecordDto> WithReview(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
+            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
         
-        public static Partial<CodeDiscussionRecordDto> WithReviews(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("reviews");
+        public static Partial<CodeDiscussionRecordDto> WithReviews(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("reviews");
         
-        public static Partial<CodeDiscussionRecordDto> WithReviews(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("reviews", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<CodeDiscussionRecordDto> WithReviews(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
+            => it.AddFieldName("reviews", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
         
-        public static Partial<CodeDiscussionRecordDto> WithArchived(this Partial<CodeDiscussionRecordDto> it)    => it.AddFieldName("archived");
+        public static Partial<CodeDiscussionRecordDto> WithArchived(this Partial<CodeDiscussionRecordDto> it)
+            => it.AddFieldName("archived");
         
     }
     

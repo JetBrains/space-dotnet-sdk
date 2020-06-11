@@ -23,25 +23,35 @@ namespace SpaceDotNet.Client.CreateAbsenceRequestExtensions
 {
     public static class CreateAbsenceRequestPartialExtensions
     {
-        public static Partial<CreateAbsenceRequest> WithMember(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("member");
+        public static Partial<CreateAbsenceRequest> WithMember(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("member");
         
-        public static Partial<CreateAbsenceRequest> WithReason(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("reason");
+        public static Partial<CreateAbsenceRequest> WithReason(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("reason");
         
-        public static Partial<CreateAbsenceRequest> WithDescription(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("description");
+        public static Partial<CreateAbsenceRequest> WithDescription(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<CreateAbsenceRequest> WithLocation(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("location");
+        public static Partial<CreateAbsenceRequest> WithLocation(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("location");
         
-        public static Partial<CreateAbsenceRequest> WithSince(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("since");
+        public static Partial<CreateAbsenceRequest> WithSince(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("since");
         
-        public static Partial<CreateAbsenceRequest> WithTill(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("till");
+        public static Partial<CreateAbsenceRequest> WithTill(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("till");
         
-        public static Partial<CreateAbsenceRequest> WithAvailable(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("available");
+        public static Partial<CreateAbsenceRequest> WithAvailable(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("available");
         
-        public static Partial<CreateAbsenceRequest> WithIcon(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("icon");
+        public static Partial<CreateAbsenceRequest> WithIcon(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("icon");
         
-        public static Partial<CreateAbsenceRequest> WithCustomFieldValues(this Partial<CreateAbsenceRequest> it)    => it.AddFieldName("customFieldValues");
+        public static Partial<CreateAbsenceRequest> WithCustomFieldValues(this Partial<CreateAbsenceRequest> it)
+            => it.AddFieldName("customFieldValues");
         
-        public static Partial<CreateAbsenceRequest> WithCustomFieldValues(this Partial<CreateAbsenceRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)    => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>()));
+        public static Partial<CreateAbsenceRequest> WithCustomFieldValues(this Partial<CreateAbsenceRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>(it)));
         
     }
     

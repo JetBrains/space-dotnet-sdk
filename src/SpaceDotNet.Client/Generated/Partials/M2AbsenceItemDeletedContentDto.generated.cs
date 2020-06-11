@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.M2AbsenceItemDeletedContentDtoExtensions
 {
     public static class M2AbsenceItemDeletedContentDtoPartialExtensions
     {
-        public static Partial<M2AbsenceItemDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemDeletedContentDto> it)    => it.AddFieldName("absence");
+        public static Partial<M2AbsenceItemDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemDeletedContentDto> it)
+            => it.AddFieldName("absence");
         
-        public static Partial<M2AbsenceItemDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemDeletedContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)    => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>()));
+        public static Partial<M2AbsenceItemDeletedContentDto> WithAbsence(this Partial<M2AbsenceItemDeletedContentDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)
+            => it.AddFieldName("absence", partialBuilder(new Partial<AbsenceRecordDto>(it)));
         
-        public static Partial<M2AbsenceItemDeletedContentDto> WithBy(this Partial<M2AbsenceItemDeletedContentDto> it)    => it.AddFieldName("by");
+        public static Partial<M2AbsenceItemDeletedContentDto> WithBy(this Partial<M2AbsenceItemDeletedContentDto> it)
+            => it.AddFieldName("by");
         
-        public static Partial<M2AbsenceItemDeletedContentDto> WithBy(this Partial<M2AbsenceItemDeletedContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<M2AbsenceItemDeletedContentDto> WithBy(this Partial<M2AbsenceItemDeletedContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("by", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
     }
     

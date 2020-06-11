@@ -23,27 +23,38 @@ namespace SpaceDotNet.Client.KBArticleDtoExtensions
 {
     public static class KBArticleDtoPartialExtensions
     {
-        public static Partial<KBArticleDto> WithId(this Partial<KBArticleDto> it)    => it.AddFieldName("id");
+        public static Partial<KBArticleDto> WithId(this Partial<KBArticleDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<KBArticleDto> WithArchived(this Partial<KBArticleDto> it)    => it.AddFieldName("archived");
+        public static Partial<KBArticleDto> WithArchived(this Partial<KBArticleDto> it)
+            => it.AddFieldName("archived");
         
-        public static Partial<KBArticleDto> WithTitle(this Partial<KBArticleDto> it)    => it.AddFieldName("title");
+        public static Partial<KBArticleDto> WithTitle(this Partial<KBArticleDto> it)
+            => it.AddFieldName("title");
         
-        public static Partial<KBArticleDto> WithBook(this Partial<KBArticleDto> it)    => it.AddFieldName("book");
+        public static Partial<KBArticleDto> WithBook(this Partial<KBArticleDto> it)
+            => it.AddFieldName("book");
         
-        public static Partial<KBArticleDto> WithBook(this Partial<KBArticleDto> it, Func<Partial<KBBookDto>, Partial<KBBookDto>> partialBuilder)    => it.AddFieldName("book", partialBuilder(new Partial<KBBookDto>()));
+        public static Partial<KBArticleDto> WithBook(this Partial<KBArticleDto> it, Func<Partial<KBBookDto>, Partial<KBBookDto>> partialBuilder)
+            => it.AddFieldName("book", partialBuilder(new Partial<KBBookDto>(it)));
         
-        public static Partial<KBArticleDto> WithFolder(this Partial<KBArticleDto> it)    => it.AddFieldName("folder");
+        public static Partial<KBArticleDto> WithFolder(this Partial<KBArticleDto> it)
+            => it.AddFieldName("folder");
         
-        public static Partial<KBArticleDto> WithFolder(this Partial<KBArticleDto> it, Func<Partial<KBFolderDto>, Partial<KBFolderDto>> partialBuilder)    => it.AddFieldName("folder", partialBuilder(new Partial<KBFolderDto>()));
+        public static Partial<KBArticleDto> WithFolder(this Partial<KBArticleDto> it, Func<Partial<KBFolderDto>, Partial<KBFolderDto>> partialBuilder)
+            => it.AddFieldName("folder", partialBuilder(new Partial<KBFolderDto>(it)));
         
-        public static Partial<KBArticleDto> WithItem(this Partial<KBArticleDto> it)    => it.AddFieldName("item");
+        public static Partial<KBArticleDto> WithItem(this Partial<KBArticleDto> it)
+            => it.AddFieldName("item");
         
-        public static Partial<KBArticleDto> WithItem(this Partial<KBArticleDto> it, Func<Partial<PublicationItemDto>, Partial<PublicationItemDto>> partialBuilder)    => it.AddFieldName("item", partialBuilder(new Partial<PublicationItemDto>()));
+        public static Partial<KBArticleDto> WithItem(this Partial<KBArticleDto> it, Func<Partial<PublicationItemDto>, Partial<PublicationItemDto>> partialBuilder)
+            => it.AddFieldName("item", partialBuilder(new Partial<PublicationItemDto>(it)));
         
-        public static Partial<KBArticleDto> WithCreated(this Partial<KBArticleDto> it)    => it.AddFieldName("created");
+        public static Partial<KBArticleDto> WithCreated(this Partial<KBArticleDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<KBArticleDto> WithAlias(this Partial<KBArticleDto> it)    => it.AddFieldName("alias");
+        public static Partial<KBArticleDto> WithAlias(this Partial<KBArticleDto> it)
+            => it.AddFieldName("alias");
         
     }
     

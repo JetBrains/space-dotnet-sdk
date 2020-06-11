@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.UnfurlDetailsArticleDtoExtensions
 {
     public static class UnfurlDetailsArticleDtoPartialExtensions
     {
-        public static Partial<UnfurlDetailsArticleDto> WithArticle(this Partial<UnfurlDetailsArticleDto> it)    => it.AddFieldName("article");
+        public static Partial<UnfurlDetailsArticleDto> WithArticle(this Partial<UnfurlDetailsArticleDto> it)
+            => it.AddFieldName("article");
         
-        public static Partial<UnfurlDetailsArticleDto> WithArticle(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)    => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>()));
+        public static Partial<UnfurlDetailsArticleDto> WithArticle(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>> partialBuilder)
+            => it.AddFieldName("article", partialBuilder(new Partial<ArticleRecordDto>(it)));
         
-        public static Partial<UnfurlDetailsArticleDto> WithContent(this Partial<UnfurlDetailsArticleDto> it)    => it.AddFieldName("content");
+        public static Partial<UnfurlDetailsArticleDto> WithContent(this Partial<UnfurlDetailsArticleDto> it)
+            => it.AddFieldName("content");
         
-        public static Partial<UnfurlDetailsArticleDto> WithContent(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleContentRecordDto>, Partial<ArticleContentRecordDto>> partialBuilder)    => it.AddFieldName("content", partialBuilder(new Partial<ArticleContentRecordDto>()));
+        public static Partial<UnfurlDetailsArticleDto> WithContent(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleContentRecordDto>, Partial<ArticleContentRecordDto>> partialBuilder)
+            => it.AddFieldName("content", partialBuilder(new Partial<ArticleContentRecordDto>(it)));
         
-        public static Partial<UnfurlDetailsArticleDto> WithChannel(this Partial<UnfurlDetailsArticleDto> it)    => it.AddFieldName("channel");
+        public static Partial<UnfurlDetailsArticleDto> WithChannel(this Partial<UnfurlDetailsArticleDto> it)
+            => it.AddFieldName("channel");
         
-        public static Partial<UnfurlDetailsArticleDto> WithChannel(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleChannelRecordDto>, Partial<ArticleChannelRecordDto>> partialBuilder)    => it.AddFieldName("channel", partialBuilder(new Partial<ArticleChannelRecordDto>()));
+        public static Partial<UnfurlDetailsArticleDto> WithChannel(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleChannelRecordDto>, Partial<ArticleChannelRecordDto>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<ArticleChannelRecordDto>(it)));
         
-        public static Partial<UnfurlDetailsArticleDto> WithDetails(this Partial<UnfurlDetailsArticleDto> it)    => it.AddFieldName("details");
+        public static Partial<UnfurlDetailsArticleDto> WithDetails(this Partial<UnfurlDetailsArticleDto> it)
+            => it.AddFieldName("details");
         
-        public static Partial<UnfurlDetailsArticleDto> WithDetails(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleDetailsRecordDto>, Partial<ArticleDetailsRecordDto>> partialBuilder)    => it.AddFieldName("details", partialBuilder(new Partial<ArticleDetailsRecordDto>()));
+        public static Partial<UnfurlDetailsArticleDto> WithDetails(this Partial<UnfurlDetailsArticleDto> it, Func<Partial<ArticleDetailsRecordDto>, Partial<ArticleDetailsRecordDto>> partialBuilder)
+            => it.AddFieldName("details", partialBuilder(new Partial<ArticleDetailsRecordDto>(it)));
         
     }
     

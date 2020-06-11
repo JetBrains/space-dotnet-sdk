@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.TodoItemContentMdTextDtoExtensions
 {
     public static class TodoItemContentMdTextDtoPartialExtensions
     {
-        public static Partial<TodoItemContentMdTextDto> WithText(this Partial<TodoItemContentMdTextDto> it)    => it.AddFieldName("text");
+        public static Partial<TodoItemContentMdTextDto> WithText(this Partial<TodoItemContentMdTextDto> it)
+            => it.AddFieldName("text");
         
-        public static Partial<TodoItemContentMdTextDto> WithMdMarkup(this Partial<TodoItemContentMdTextDto> it)    => it.AddFieldName("mdMarkup");
+        public static Partial<TodoItemContentMdTextDto> WithMdMarkup(this Partial<TodoItemContentMdTextDto> it)
+            => it.AddFieldName("mdMarkup");
         
-        public static Partial<TodoItemContentMdTextDto> WithMdMarkup(this Partial<TodoItemContentMdTextDto> it, Func<Partial<MdMarkupDto>, Partial<MdMarkupDto>> partialBuilder)    => it.AddFieldName("mdMarkup", partialBuilder(new Partial<MdMarkupDto>()));
+        public static Partial<TodoItemContentMdTextDto> WithMdMarkup(this Partial<TodoItemContentMdTextDto> it, Func<Partial<MdMarkupDto>, Partial<MdMarkupDto>> partialBuilder)
+            => it.AddFieldName("mdMarkup", partialBuilder(new Partial<MdMarkupDto>(it)));
         
     }
     

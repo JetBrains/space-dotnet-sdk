@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.CreateTeamRequestExtensions
 {
     public static class CreateTeamRequestPartialExtensions
     {
-        public static Partial<CreateTeamRequest> WithTeamId(this Partial<CreateTeamRequest> it)    => it.AddFieldName("teamId");
+        public static Partial<CreateTeamRequest> WithTeamId(this Partial<CreateTeamRequest> it)
+            => it.AddFieldName("teamId");
         
     }
     

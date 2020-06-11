@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.CodeSnippetAnchorDtoExtensions
 {
     public static class CodeSnippetAnchorDtoPartialExtensions
     {
-        public static Partial<CodeSnippetAnchorDto> WithProjectKey(this Partial<CodeSnippetAnchorDto> it)    => it.AddFieldName("projectKey");
+        public static Partial<CodeSnippetAnchorDto> WithProjectKey(this Partial<CodeSnippetAnchorDto> it)
+            => it.AddFieldName("projectKey");
         
-        public static Partial<CodeSnippetAnchorDto> WithProjectKey(this Partial<CodeSnippetAnchorDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<CodeSnippetAnchorDto> WithProjectKey(this Partial<CodeSnippetAnchorDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
+            => it.AddFieldName("projectKey", partialBuilder(new Partial<ProjectKeyDto>(it)));
         
-        public static Partial<CodeSnippetAnchorDto> WithRepository(this Partial<CodeSnippetAnchorDto> it)    => it.AddFieldName("repository");
+        public static Partial<CodeSnippetAnchorDto> WithRepository(this Partial<CodeSnippetAnchorDto> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<CodeSnippetAnchorDto> WithRevision(this Partial<CodeSnippetAnchorDto> it)    => it.AddFieldName("revision");
+        public static Partial<CodeSnippetAnchorDto> WithRevision(this Partial<CodeSnippetAnchorDto> it)
+            => it.AddFieldName("revision");
         
-        public static Partial<CodeSnippetAnchorDto> WithFilename(this Partial<CodeSnippetAnchorDto> it)    => it.AddFieldName("filename");
+        public static Partial<CodeSnippetAnchorDto> WithFilename(this Partial<CodeSnippetAnchorDto> it)
+            => it.AddFieldName("filename");
         
-        public static Partial<CodeSnippetAnchorDto> WithLineIndex(this Partial<CodeSnippetAnchorDto> it)    => it.AddFieldName("lineIndex");
+        public static Partial<CodeSnippetAnchorDto> WithLineIndex(this Partial<CodeSnippetAnchorDto> it)
+            => it.AddFieldName("lineIndex");
         
-        public static Partial<CodeSnippetAnchorDto> WithLineStart(this Partial<CodeSnippetAnchorDto> it)    => it.AddFieldName("lineStart");
+        public static Partial<CodeSnippetAnchorDto> WithLineStart(this Partial<CodeSnippetAnchorDto> it)
+            => it.AddFieldName("lineStart");
         
-        public static Partial<CodeSnippetAnchorDto> WithLineEnd(this Partial<CodeSnippetAnchorDto> it)    => it.AddFieldName("lineEnd");
+        public static Partial<CodeSnippetAnchorDto> WithLineEnd(this Partial<CodeSnippetAnchorDto> it)
+            => it.AddFieldName("lineEnd");
         
     }
     

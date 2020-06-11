@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.EditReviewParticipantRequestExtensions
 {
     public static class EditReviewParticipantRequestPartialExtensions
     {
-        public static Partial<EditReviewParticipantRequest> WithRole(this Partial<EditReviewParticipantRequest> it)    => it.AddFieldName("role");
+        public static Partial<EditReviewParticipantRequest> WithRole(this Partial<EditReviewParticipantRequest> it)
+            => it.AddFieldName("role");
         
-        public static Partial<EditReviewParticipantRequest> WithRole(this Partial<EditReviewParticipantRequest> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)    => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>()));
+        public static Partial<EditReviewParticipantRequest> WithRole(this Partial<EditReviewParticipantRequest> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.TDLocationWithTimeZoneDtoExtensions
 {
     public static class TDLocationWithTimeZoneDtoPartialExtensions
     {
-        public static Partial<TDLocationWithTimeZoneDto> WithId(this Partial<TDLocationWithTimeZoneDto> it)    => it.AddFieldName("id");
+        public static Partial<TDLocationWithTimeZoneDto> WithId(this Partial<TDLocationWithTimeZoneDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<TDLocationWithTimeZoneDto> WithName(this Partial<TDLocationWithTimeZoneDto> it)    => it.AddFieldName("name");
+        public static Partial<TDLocationWithTimeZoneDto> WithName(this Partial<TDLocationWithTimeZoneDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<TDLocationWithTimeZoneDto> WithTimezone(this Partial<TDLocationWithTimeZoneDto> it)    => it.AddFieldName("timezone");
+        public static Partial<TDLocationWithTimeZoneDto> WithTimezone(this Partial<TDLocationWithTimeZoneDto> it)
+            => it.AddFieldName("timezone");
         
-        public static Partial<TDLocationWithTimeZoneDto> WithTimezone(this Partial<TDLocationWithTimeZoneDto> it, Func<Partial<ATimeZoneWithOffsetDto>, Partial<ATimeZoneWithOffsetDto>> partialBuilder)    => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneWithOffsetDto>()));
+        public static Partial<TDLocationWithTimeZoneDto> WithTimezone(this Partial<TDLocationWithTimeZoneDto> it, Func<Partial<ATimeZoneWithOffsetDto>, Partial<ATimeZoneWithOffsetDto>> partialBuilder)
+            => it.AddFieldName("timezone", partialBuilder(new Partial<ATimeZoneWithOffsetDto>(it)));
         
     }
     

@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.NuGetPackageTypeDtoExtensions
 {
     public static class NuGetPackageTypeDtoPartialExtensions
     {
-        public static Partial<NuGetPackageTypeDto> WithId(this Partial<NuGetPackageTypeDto> it)    => it.AddFieldName("id");
+        public static Partial<NuGetPackageTypeDto> WithId(this Partial<NuGetPackageTypeDto> it)
+            => it.AddFieldName("id");
         
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.MCTagDtoExtensions
 {
     public static class MCTagDtoPartialExtensions
     {
-        public static Partial<MCTagDto> WithText(this Partial<MCTagDto> it)    => it.AddFieldName("text");
+        public static Partial<MCTagDto> WithText(this Partial<MCTagDto> it)
+            => it.AddFieldName("text");
         
-        public static Partial<MCTagDto> WithStyle(this Partial<MCTagDto> it)    => it.AddFieldName("style");
+        public static Partial<MCTagDto> WithStyle(this Partial<MCTagDto> it)
+            => it.AddFieldName("style");
         
     }
     

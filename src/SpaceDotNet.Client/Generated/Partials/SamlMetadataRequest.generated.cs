@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.SamlMetadataRequestExtensions
 {
     public static class SamlMetadataRequestPartialExtensions
     {
-        public static Partial<SamlMetadataRequest> WithIdpUrl(this Partial<SamlMetadataRequest> it)    => it.AddFieldName("idpUrl");
+        public static Partial<SamlMetadataRequest> WithIdpUrl(this Partial<SamlMetadataRequest> it)
+            => it.AddFieldName("idpUrl");
         
-        public static Partial<SamlMetadataRequest> WithIdpEntityId(this Partial<SamlMetadataRequest> it)    => it.AddFieldName("idpEntityId");
+        public static Partial<SamlMetadataRequest> WithIdpEntityId(this Partial<SamlMetadataRequest> it)
+            => it.AddFieldName("idpEntityId");
         
-        public static Partial<SamlMetadataRequest> WithIdpCertificateSHA256(this Partial<SamlMetadataRequest> it)    => it.AddFieldName("idpCertificateSHA256");
+        public static Partial<SamlMetadataRequest> WithIdpCertificateSHA256(this Partial<SamlMetadataRequest> it)
+            => it.AddFieldName("idpCertificateSHA256");
         
-        public static Partial<SamlMetadataRequest> WithSpEntityId(this Partial<SamlMetadataRequest> it)    => it.AddFieldName("spEntityId");
+        public static Partial<SamlMetadataRequest> WithSpEntityId(this Partial<SamlMetadataRequest> it)
+            => it.AddFieldName("spEntityId");
         
-        public static Partial<SamlMetadataRequest> WithSslKeystore(this Partial<SamlMetadataRequest> it)    => it.AddFieldName("sslKeystore");
+        public static Partial<SamlMetadataRequest> WithSslKeystore(this Partial<SamlMetadataRequest> it)
+            => it.AddFieldName("sslKeystore");
         
-        public static Partial<SamlMetadataRequest> WithSslKeystore(this Partial<SamlMetadataRequest> it, Func<Partial<SSLKeystoreDto>, Partial<SSLKeystoreDto>> partialBuilder)    => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreDto>()));
+        public static Partial<SamlMetadataRequest> WithSslKeystore(this Partial<SamlMetadataRequest> it, Func<Partial<SSLKeystoreDto>, Partial<SSLKeystoreDto>> partialBuilder)
+            => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreDto>(it)));
         
-        public static Partial<SamlMetadataRequest> WithContactProfileId(this Partial<SamlMetadataRequest> it)    => it.AddFieldName("contactProfileId");
+        public static Partial<SamlMetadataRequest> WithContactProfileId(this Partial<SamlMetadataRequest> it)
+            => it.AddFieldName("contactProfileId");
         
     }
     

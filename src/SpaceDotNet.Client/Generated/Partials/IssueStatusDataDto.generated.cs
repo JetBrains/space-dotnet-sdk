@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.IssueStatusDataDtoExtensions
 {
     public static class IssueStatusDataDtoPartialExtensions
     {
-        public static Partial<IssueStatusDataDto> WithExistingId(this Partial<IssueStatusDataDto> it)    => it.AddFieldName("existingId");
+        public static Partial<IssueStatusDataDto> WithExistingId(this Partial<IssueStatusDataDto> it)
+            => it.AddFieldName("existingId");
         
-        public static Partial<IssueStatusDataDto> WithName(this Partial<IssueStatusDataDto> it)    => it.AddFieldName("name");
+        public static Partial<IssueStatusDataDto> WithName(this Partial<IssueStatusDataDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<IssueStatusDataDto> WithResolved(this Partial<IssueStatusDataDto> it)    => it.AddFieldName("resolved");
+        public static Partial<IssueStatusDataDto> WithResolved(this Partial<IssueStatusDataDto> it)
+            => it.AddFieldName("resolved");
         
-        public static Partial<IssueStatusDataDto> WithColor(this Partial<IssueStatusDataDto> it)    => it.AddFieldName("color");
+        public static Partial<IssueStatusDataDto> WithColor(this Partial<IssueStatusDataDto> it)
+            => it.AddFieldName("color");
         
     }
     

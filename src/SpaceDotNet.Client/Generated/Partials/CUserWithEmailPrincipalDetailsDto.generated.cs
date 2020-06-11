@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CUserWithEmailPrincipalDetailsDtoExtensions
 {
     public static class CUserWithEmailPrincipalDetailsDtoPartialExtensions
     {
-        public static Partial<CUserWithEmailPrincipalDetailsDto> WithName(this Partial<CUserWithEmailPrincipalDetailsDto> it)    => it.AddFieldName("name");
+        public static Partial<CUserWithEmailPrincipalDetailsDto> WithName(this Partial<CUserWithEmailPrincipalDetailsDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CUserWithEmailPrincipalDetailsDto> WithEmail(this Partial<CUserWithEmailPrincipalDetailsDto> it)    => it.AddFieldName("email");
+        public static Partial<CUserWithEmailPrincipalDetailsDto> WithEmail(this Partial<CUserWithEmailPrincipalDetailsDto> it)
+            => it.AddFieldName("email");
         
     }
     

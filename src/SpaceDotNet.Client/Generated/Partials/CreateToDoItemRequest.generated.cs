@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateToDoItemRequestExtensions
 {
     public static class CreateToDoItemRequestPartialExtensions
     {
-        public static Partial<CreateToDoItemRequest> WithText(this Partial<CreateToDoItemRequest> it)    => it.AddFieldName("text");
+        public static Partial<CreateToDoItemRequest> WithText(this Partial<CreateToDoItemRequest> it)
+            => it.AddFieldName("text");
         
-        public static Partial<CreateToDoItemRequest> WithDueDate(this Partial<CreateToDoItemRequest> it)    => it.AddFieldName("dueDate");
+        public static Partial<CreateToDoItemRequest> WithDueDate(this Partial<CreateToDoItemRequest> it)
+            => it.AddFieldName("dueDate");
         
     }
     

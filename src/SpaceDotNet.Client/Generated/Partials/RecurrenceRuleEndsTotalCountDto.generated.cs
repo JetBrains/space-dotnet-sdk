@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.RecurrenceRuleEndsTotalCountDtoExtensions
 {
     public static class RecurrenceRuleEndsTotalCountDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleEndsTotalCountDto> WithCount(this Partial<RecurrenceRuleEndsTotalCountDto> it)    => it.AddFieldName("count");
+        public static Partial<RecurrenceRuleEndsTotalCountDto> WithCount(this Partial<RecurrenceRuleEndsTotalCountDto> it)
+            => it.AddFieldName("count");
         
     }
     

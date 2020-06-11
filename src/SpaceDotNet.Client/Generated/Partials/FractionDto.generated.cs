@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.FractionDtoExtensions
 {
     public static class FractionDtoPartialExtensions
     {
-        public static Partial<FractionDto> WithNumerator(this Partial<FractionDto> it)    => it.AddFieldName("numerator");
+        public static Partial<FractionDto> WithNumerator(this Partial<FractionDto> it)
+            => it.AddFieldName("numerator");
         
-        public static Partial<FractionDto> WithDenominator(this Partial<FractionDto> it)    => it.AddFieldName("denominator");
+        public static Partial<FractionDto> WithDenominator(this Partial<FractionDto> it)
+            => it.AddFieldName("denominator");
         
     }
     

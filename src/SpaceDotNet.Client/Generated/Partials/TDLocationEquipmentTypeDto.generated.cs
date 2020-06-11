@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.TDLocationEquipmentTypeDtoExtensions
 {
     public static class TDLocationEquipmentTypeDtoPartialExtensions
     {
-        public static Partial<TDLocationEquipmentTypeDto> WithName(this Partial<TDLocationEquipmentTypeDto> it)    => it.AddFieldName("name");
+        public static Partial<TDLocationEquipmentTypeDto> WithName(this Partial<TDLocationEquipmentTypeDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<TDLocationEquipmentTypeDto> WithArchived(this Partial<TDLocationEquipmentTypeDto> it)    => it.AddFieldName("archived");
+        public static Partial<TDLocationEquipmentTypeDto> WithArchived(this Partial<TDLocationEquipmentTypeDto> it)
+            => it.AddFieldName("archived");
         
     }
     

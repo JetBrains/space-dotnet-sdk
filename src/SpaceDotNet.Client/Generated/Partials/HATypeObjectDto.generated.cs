@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.HATypeObjectDtoExtensions
 {
     public static class HATypeObjectDtoPartialExtensions
     {
-        public static Partial<HATypeObjectDto> WithFields(this Partial<HATypeObjectDto> it)    => it.AddFieldName("fields");
+        public static Partial<HATypeObjectDto> WithFields(this Partial<HATypeObjectDto> it)
+            => it.AddFieldName("fields");
         
-        public static Partial<HATypeObjectDto> WithFields(this Partial<HATypeObjectDto> it, Func<Partial<HAFieldDto>, Partial<HAFieldDto>> partialBuilder)    => it.AddFieldName("fields", partialBuilder(new Partial<HAFieldDto>()));
+        public static Partial<HATypeObjectDto> WithFields(this Partial<HATypeObjectDto> it, Func<Partial<HAFieldDto>, Partial<HAFieldDto>> partialBuilder)
+            => it.AddFieldName("fields", partialBuilder(new Partial<HAFieldDto>(it)));
         
-        public static Partial<HATypeObjectDto> WithKind(this Partial<HATypeObjectDto> it)    => it.AddFieldName("kind");
+        public static Partial<HATypeObjectDto> WithKind(this Partial<HATypeObjectDto> it)
+            => it.AddFieldName("kind");
         
-        public static Partial<HATypeObjectDto> WithKind(this Partial<HATypeObjectDto> it, Func<Partial<HATypeObjectKind>, Partial<HATypeObjectKind>> partialBuilder)    => it.AddFieldName("kind", partialBuilder(new Partial<HATypeObjectKind>()));
+        public static Partial<HATypeObjectDto> WithKind(this Partial<HATypeObjectDto> it, Func<Partial<HATypeObjectKind>, Partial<HATypeObjectKind>> partialBuilder)
+            => it.AddFieldName("kind", partialBuilder(new Partial<HATypeObjectKind>(it)));
         
-        public static Partial<HATypeObjectDto> WithNullable(this Partial<HATypeObjectDto> it)    => it.AddFieldName("nullable");
+        public static Partial<HATypeObjectDto> WithNullable(this Partial<HATypeObjectDto> it)
+            => it.AddFieldName("nullable");
         
-        public static Partial<HATypeObjectDto> WithOptional(this Partial<HATypeObjectDto> it)    => it.AddFieldName("optional");
+        public static Partial<HATypeObjectDto> WithOptional(this Partial<HATypeObjectDto> it)
+            => it.AddFieldName("optional");
         
     }
     

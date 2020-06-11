@@ -23,29 +23,41 @@ namespace SpaceDotNet.Client.UpdateLocationRequestExtensions
 {
     public static class UpdateLocationRequestPartialExtensions
     {
-        public static Partial<UpdateLocationRequest> WithName(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdateLocationRequest> WithName(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdateLocationRequest> WithTimezone(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("timezone");
+        public static Partial<UpdateLocationRequest> WithTimezone(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("timezone");
         
-        public static Partial<UpdateLocationRequest> WithCustomWorkdays(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("customWorkdays");
+        public static Partial<UpdateLocationRequest> WithCustomWorkdays(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("customWorkdays");
         
-        public static Partial<UpdateLocationRequest> WithWorkdays(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("workdays");
+        public static Partial<UpdateLocationRequest> WithWorkdays(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("workdays");
         
-        public static Partial<UpdateLocationRequest> WithPhones(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("phones");
+        public static Partial<UpdateLocationRequest> WithPhones(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("phones");
         
-        public static Partial<UpdateLocationRequest> WithEmails(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("emails");
+        public static Partial<UpdateLocationRequest> WithEmails(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("emails");
         
-        public static Partial<UpdateLocationRequest> WithEquipment(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("equipment");
+        public static Partial<UpdateLocationRequest> WithEquipment(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("equipment");
         
-        public static Partial<UpdateLocationRequest> WithDescription(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("description");
+        public static Partial<UpdateLocationRequest> WithDescription(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<UpdateLocationRequest> WithAddress(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("address");
+        public static Partial<UpdateLocationRequest> WithAddress(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("address");
         
-        public static Partial<UpdateLocationRequest> WithType(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("type");
+        public static Partial<UpdateLocationRequest> WithType(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("type");
         
-        public static Partial<UpdateLocationRequest> WithParentId(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("parentId");
+        public static Partial<UpdateLocationRequest> WithParentId(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("parentId");
         
-        public static Partial<UpdateLocationRequest> WithMapId(this Partial<UpdateLocationRequest> it)    => it.AddFieldName("mapId");
+        public static Partial<UpdateLocationRequest> WithMapId(this Partial<UpdateLocationRequest> it)
+            => it.AddFieldName("mapId");
         
     }
     

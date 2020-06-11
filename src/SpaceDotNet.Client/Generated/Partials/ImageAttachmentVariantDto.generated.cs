@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.ImageAttachmentVariantDtoExtensions
 {
     public static class ImageAttachmentVariantDtoPartialExtensions
     {
-        public static Partial<ImageAttachmentVariantDto> WithId(this Partial<ImageAttachmentVariantDto> it)    => it.AddFieldName("id");
+        public static Partial<ImageAttachmentVariantDto> WithId(this Partial<ImageAttachmentVariantDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ImageAttachmentVariantDto> WithName(this Partial<ImageAttachmentVariantDto> it)    => it.AddFieldName("name");
+        public static Partial<ImageAttachmentVariantDto> WithName(this Partial<ImageAttachmentVariantDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<ImageAttachmentVariantDto> WithWidth(this Partial<ImageAttachmentVariantDto> it)    => it.AddFieldName("width");
+        public static Partial<ImageAttachmentVariantDto> WithWidth(this Partial<ImageAttachmentVariantDto> it)
+            => it.AddFieldName("width");
         
-        public static Partial<ImageAttachmentVariantDto> WithHeight(this Partial<ImageAttachmentVariantDto> it)    => it.AddFieldName("height");
+        public static Partial<ImageAttachmentVariantDto> WithHeight(this Partial<ImageAttachmentVariantDto> it)
+            => it.AddFieldName("height");
         
     }
     

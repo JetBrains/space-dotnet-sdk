@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.TeamAddedItemDetailsDtoExtensions
 {
     public static class TeamAddedItemDetailsDtoPartialExtensions
     {
-        public static Partial<TeamAddedItemDetailsDto> WithTeam(this Partial<TeamAddedItemDetailsDto> it)    => it.AddFieldName("team");
+        public static Partial<TeamAddedItemDetailsDto> WithTeam(this Partial<TeamAddedItemDetailsDto> it)
+            => it.AddFieldName("team");
         
-        public static Partial<TeamAddedItemDetailsDto> WithTeam(this Partial<TeamAddedItemDetailsDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<TeamAddedItemDetailsDto> WithTeam(this Partial<TeamAddedItemDetailsDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>(it)));
         
     }
     

@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.UpdateMemberLocationRequestExtensions
 {
     public static class UpdateMemberLocationRequestPartialExtensions
     {
-        public static Partial<UpdateMemberLocationRequest> WithMember(this Partial<UpdateMemberLocationRequest> it)    => it.AddFieldName("member");
+        public static Partial<UpdateMemberLocationRequest> WithMember(this Partial<UpdateMemberLocationRequest> it)
+            => it.AddFieldName("member");
         
-        public static Partial<UpdateMemberLocationRequest> WithLocation(this Partial<UpdateMemberLocationRequest> it)    => it.AddFieldName("location");
+        public static Partial<UpdateMemberLocationRequest> WithLocation(this Partial<UpdateMemberLocationRequest> it)
+            => it.AddFieldName("location");
         
-        public static Partial<UpdateMemberLocationRequest> WithSince(this Partial<UpdateMemberLocationRequest> it)    => it.AddFieldName("since");
+        public static Partial<UpdateMemberLocationRequest> WithSince(this Partial<UpdateMemberLocationRequest> it)
+            => it.AddFieldName("since");
         
-        public static Partial<UpdateMemberLocationRequest> WithTill(this Partial<UpdateMemberLocationRequest> it)    => it.AddFieldName("till");
+        public static Partial<UpdateMemberLocationRequest> WithTill(this Partial<UpdateMemberLocationRequest> it)
+            => it.AddFieldName("till");
         
-        public static Partial<UpdateMemberLocationRequest> WithPreviousLocation(this Partial<UpdateMemberLocationRequest> it)    => it.AddFieldName("previousLocation");
+        public static Partial<UpdateMemberLocationRequest> WithPreviousLocation(this Partial<UpdateMemberLocationRequest> it)
+            => it.AddFieldName("previousLocation");
         
     }
     

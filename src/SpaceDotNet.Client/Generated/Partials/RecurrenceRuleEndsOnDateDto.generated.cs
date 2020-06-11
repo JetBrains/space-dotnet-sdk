@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.RecurrenceRuleEndsOnDateDtoExtensions
 {
     public static class RecurrenceRuleEndsOnDateDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleEndsOnDateDto> WithDate(this Partial<RecurrenceRuleEndsOnDateDto> it)    => it.AddFieldName("date");
+        public static Partial<RecurrenceRuleEndsOnDateDto> WithDate(this Partial<RecurrenceRuleEndsOnDateDto> it)
+            => it.AddFieldName("date");
         
     }
     

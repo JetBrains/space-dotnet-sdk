@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.ExternalEntityInfoRecordDtoExtensions
 {
     public static class ExternalEntityInfoRecordDtoPartialExtensions
     {
-        public static Partial<ExternalEntityInfoRecordDto> WithId(this Partial<ExternalEntityInfoRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<ExternalEntityInfoRecordDto> WithId(this Partial<ExternalEntityInfoRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ExternalEntityInfoRecordDto> WithArchived(this Partial<ExternalEntityInfoRecordDto> it)    => it.AddFieldName("archived");
+        public static Partial<ExternalEntityInfoRecordDto> WithArchived(this Partial<ExternalEntityInfoRecordDto> it)
+            => it.AddFieldName("archived");
         
-        public static Partial<ExternalEntityInfoRecordDto> WithExternalId(this Partial<ExternalEntityInfoRecordDto> it)    => it.AddFieldName("externalId");
+        public static Partial<ExternalEntityInfoRecordDto> WithExternalId(this Partial<ExternalEntityInfoRecordDto> it)
+            => it.AddFieldName("externalId");
         
-        public static Partial<ExternalEntityInfoRecordDto> WithExternalUrl(this Partial<ExternalEntityInfoRecordDto> it)    => it.AddFieldName("externalUrl");
+        public static Partial<ExternalEntityInfoRecordDto> WithExternalUrl(this Partial<ExternalEntityInfoRecordDto> it)
+            => it.AddFieldName("externalUrl");
         
-        public static Partial<ExternalEntityInfoRecordDto> WithTransaction(this Partial<ExternalEntityInfoRecordDto> it)    => it.AddFieldName("transaction");
+        public static Partial<ExternalEntityInfoRecordDto> WithTransaction(this Partial<ExternalEntityInfoRecordDto> it)
+            => it.AddFieldName("transaction");
         
-        public static Partial<ExternalEntityInfoRecordDto> WithTransaction(this Partial<ExternalEntityInfoRecordDto> it, Func<Partial<ImportTransactionRecordDto>, Partial<ImportTransactionRecordDto>> partialBuilder)    => it.AddFieldName("transaction", partialBuilder(new Partial<ImportTransactionRecordDto>()));
+        public static Partial<ExternalEntityInfoRecordDto> WithTransaction(this Partial<ExternalEntityInfoRecordDto> it, Func<Partial<ImportTransactionRecordDto>, Partial<ImportTransactionRecordDto>> partialBuilder)
+            => it.AddFieldName("transaction", partialBuilder(new Partial<ImportTransactionRecordDto>(it)));
         
     }
     

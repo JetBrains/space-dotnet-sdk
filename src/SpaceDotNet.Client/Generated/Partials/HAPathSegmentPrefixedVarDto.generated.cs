@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.HAPathSegmentPrefixedVarDtoExtensions
 {
     public static class HAPathSegmentPrefixedVarDtoPartialExtensions
     {
-        public static Partial<HAPathSegmentPrefixedVarDto> WithPrefix(this Partial<HAPathSegmentPrefixedVarDto> it)    => it.AddFieldName("prefix");
+        public static Partial<HAPathSegmentPrefixedVarDto> WithPrefix(this Partial<HAPathSegmentPrefixedVarDto> it)
+            => it.AddFieldName("prefix");
         
-        public static Partial<HAPathSegmentPrefixedVarDto> WithName(this Partial<HAPathSegmentPrefixedVarDto> it)    => it.AddFieldName("name");
+        public static Partial<HAPathSegmentPrefixedVarDto> WithName(this Partial<HAPathSegmentPrefixedVarDto> it)
+            => it.AddFieldName("name");
         
     }
     

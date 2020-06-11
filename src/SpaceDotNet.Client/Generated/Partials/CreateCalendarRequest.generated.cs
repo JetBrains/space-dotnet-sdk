@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateCalendarRequestExtensions
 {
     public static class CreateCalendarRequestPartialExtensions
     {
-        public static Partial<CreateCalendarRequest> WithName(this Partial<CreateCalendarRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateCalendarRequest> WithName(this Partial<CreateCalendarRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CreateCalendarRequest> WithLocation(this Partial<CreateCalendarRequest> it)    => it.AddFieldName("location");
+        public static Partial<CreateCalendarRequest> WithLocation(this Partial<CreateCalendarRequest> it)
+            => it.AddFieldName("location");
         
     }
     

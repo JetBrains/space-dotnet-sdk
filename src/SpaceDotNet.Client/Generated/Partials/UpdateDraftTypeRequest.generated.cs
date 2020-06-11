@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateDraftTypeRequestExtensions
 {
     public static class UpdateDraftTypeRequestPartialExtensions
     {
-        public static Partial<UpdateDraftTypeRequest> WithDraftType(this Partial<UpdateDraftTypeRequest> it)    => it.AddFieldName("draftType");
+        public static Partial<UpdateDraftTypeRequest> WithDraftType(this Partial<UpdateDraftTypeRequest> it)
+            => it.AddFieldName("draftType");
         
-        public static Partial<UpdateDraftTypeRequest> WithDraftType(this Partial<UpdateDraftTypeRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)    => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>()));
+        public static Partial<UpdateDraftTypeRequest> WithDraftType(this Partial<UpdateDraftTypeRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
+            => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>(it)));
         
     }
     

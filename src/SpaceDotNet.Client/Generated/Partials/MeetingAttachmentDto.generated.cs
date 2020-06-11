@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.MeetingAttachmentDtoExtensions
 {
     public static class MeetingAttachmentDtoPartialExtensions
     {
-        public static Partial<MeetingAttachmentDto> WithFileUrl(this Partial<MeetingAttachmentDto> it)    => it.AddFieldName("fileUrl");
+        public static Partial<MeetingAttachmentDto> WithFileUrl(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("fileUrl");
         
-        public static Partial<MeetingAttachmentDto> WithTitle(this Partial<MeetingAttachmentDto> it)    => it.AddFieldName("title");
+        public static Partial<MeetingAttachmentDto> WithTitle(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("title");
         
-        public static Partial<MeetingAttachmentDto> WithMimeType(this Partial<MeetingAttachmentDto> it)    => it.AddFieldName("mimeType");
+        public static Partial<MeetingAttachmentDto> WithMimeType(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("mimeType");
         
-        public static Partial<MeetingAttachmentDto> WithFileId(this Partial<MeetingAttachmentDto> it)    => it.AddFieldName("fileId");
+        public static Partial<MeetingAttachmentDto> WithFileId(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("fileId");
         
-        public static Partial<MeetingAttachmentDto> WithSource(this Partial<MeetingAttachmentDto> it)    => it.AddFieldName("source");
+        public static Partial<MeetingAttachmentDto> WithSource(this Partial<MeetingAttachmentDto> it)
+            => it.AddFieldName("source");
         
     }
     

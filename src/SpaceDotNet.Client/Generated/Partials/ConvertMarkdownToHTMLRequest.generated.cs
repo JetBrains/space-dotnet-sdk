@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ConvertMarkdownToHTMLRequestExtensions
 {
     public static class ConvertMarkdownToHTMLRequestPartialExtensions
     {
-        public static Partial<ConvertMarkdownToHTMLRequest> WithMarkdown(this Partial<ConvertMarkdownToHTMLRequest> it)    => it.AddFieldName("markdown");
+        public static Partial<ConvertMarkdownToHTMLRequest> WithMarkdown(this Partial<ConvertMarkdownToHTMLRequest> it)
+            => it.AddFieldName("markdown");
         
     }
     

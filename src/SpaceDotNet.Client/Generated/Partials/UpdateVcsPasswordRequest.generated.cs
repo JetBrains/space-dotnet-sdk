@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.UpdateVcsPasswordRequestExtensions
 {
     public static class UpdateVcsPasswordRequestPartialExtensions
     {
-        public static Partial<UpdateVcsPasswordRequest> WithPassword(this Partial<UpdateVcsPasswordRequest> it)    => it.AddFieldName("password");
+        public static Partial<UpdateVcsPasswordRequest> WithPassword(this Partial<UpdateVcsPasswordRequest> it)
+            => it.AddFieldName("password");
         
     }
     

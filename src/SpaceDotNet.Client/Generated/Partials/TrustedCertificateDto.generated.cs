@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.TrustedCertificateDtoExtensions
 {
     public static class TrustedCertificateDtoPartialExtensions
     {
-        public static Partial<TrustedCertificateDto> WithId(this Partial<TrustedCertificateDto> it)    => it.AddFieldName("id");
+        public static Partial<TrustedCertificateDto> WithId(this Partial<TrustedCertificateDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<TrustedCertificateDto> WithAlias(this Partial<TrustedCertificateDto> it)    => it.AddFieldName("alias");
+        public static Partial<TrustedCertificateDto> WithAlias(this Partial<TrustedCertificateDto> it)
+            => it.AddFieldName("alias");
         
-        public static Partial<TrustedCertificateDto> WithData(this Partial<TrustedCertificateDto> it)    => it.AddFieldName("data");
+        public static Partial<TrustedCertificateDto> WithData(this Partial<TrustedCertificateDto> it)
+            => it.AddFieldName("data");
         
-        public static Partial<TrustedCertificateDto> WithInfo(this Partial<TrustedCertificateDto> it)    => it.AddFieldName("info");
+        public static Partial<TrustedCertificateDto> WithInfo(this Partial<TrustedCertificateDto> it)
+            => it.AddFieldName("info");
         
-        public static Partial<TrustedCertificateDto> WithInfo(this Partial<TrustedCertificateDto> it, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>> partialBuilder)    => it.AddFieldName("info", partialBuilder(new Partial<CertificateInfoDto>()));
+        public static Partial<TrustedCertificateDto> WithInfo(this Partial<TrustedCertificateDto> it, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>> partialBuilder)
+            => it.AddFieldName("info", partialBuilder(new Partial<CertificateInfoDto>(it)));
         
-        public static Partial<TrustedCertificateDto> WithArchived(this Partial<TrustedCertificateDto> it)    => it.AddFieldName("archived");
+        public static Partial<TrustedCertificateDto> WithArchived(this Partial<TrustedCertificateDto> it)
+            => it.AddFieldName("archived");
         
     }
     

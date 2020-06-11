@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.UpdateTrustedCertificateRequestExtensions
 {
     public static class UpdateTrustedCertificateRequestPartialExtensions
     {
-        public static Partial<UpdateTrustedCertificateRequest> WithAlias(this Partial<UpdateTrustedCertificateRequest> it)    => it.AddFieldName("alias");
+        public static Partial<UpdateTrustedCertificateRequest> WithAlias(this Partial<UpdateTrustedCertificateRequest> it)
+            => it.AddFieldName("alias");
         
-        public static Partial<UpdateTrustedCertificateRequest> WithData(this Partial<UpdateTrustedCertificateRequest> it)    => it.AddFieldName("data");
+        public static Partial<UpdateTrustedCertificateRequest> WithData(this Partial<UpdateTrustedCertificateRequest> it)
+            => it.AddFieldName("data");
         
-        public static Partial<UpdateTrustedCertificateRequest> WithArchived(this Partial<UpdateTrustedCertificateRequest> it)    => it.AddFieldName("archived");
+        public static Partial<UpdateTrustedCertificateRequest> WithArchived(this Partial<UpdateTrustedCertificateRequest> it)
+            => it.AddFieldName("archived");
         
     }
     

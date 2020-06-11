@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.CodeReviewDiscussionRecordDtoExtensions
 {
     public static class CodeReviewDiscussionRecordDtoPartialExtensions
     {
-        public static Partial<CodeReviewDiscussionRecordDto> WithId(this Partial<CodeReviewDiscussionRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<CodeReviewDiscussionRecordDto> WithId(this Partial<CodeReviewDiscussionRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<CodeReviewDiscussionRecordDto> WithReview(this Partial<CodeReviewDiscussionRecordDto> it)    => it.AddFieldName("review");
+        public static Partial<CodeReviewDiscussionRecordDto> WithReview(this Partial<CodeReviewDiscussionRecordDto> it)
+            => it.AddFieldName("review");
         
-        public static Partial<CodeReviewDiscussionRecordDto> WithReview(this Partial<CodeReviewDiscussionRecordDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<CodeReviewDiscussionRecordDto> WithReview(this Partial<CodeReviewDiscussionRecordDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
+            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
         
-        public static Partial<CodeReviewDiscussionRecordDto> WithCreated(this Partial<CodeReviewDiscussionRecordDto> it)    => it.AddFieldName("created");
+        public static Partial<CodeReviewDiscussionRecordDto> WithCreated(this Partial<CodeReviewDiscussionRecordDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<CodeReviewDiscussionRecordDto> WithChannel(this Partial<CodeReviewDiscussionRecordDto> it)    => it.AddFieldName("channel");
+        public static Partial<CodeReviewDiscussionRecordDto> WithChannel(this Partial<CodeReviewDiscussionRecordDto> it)
+            => it.AddFieldName("channel");
         
-        public static Partial<CodeReviewDiscussionRecordDto> WithChannel(this Partial<CodeReviewDiscussionRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)    => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>()));
+        public static Partial<CodeReviewDiscussionRecordDto> WithChannel(this Partial<CodeReviewDiscussionRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>(it)));
         
-        public static Partial<CodeReviewDiscussionRecordDto> WithResolved(this Partial<CodeReviewDiscussionRecordDto> it)    => it.AddFieldName("resolved");
+        public static Partial<CodeReviewDiscussionRecordDto> WithResolved(this Partial<CodeReviewDiscussionRecordDto> it)
+            => it.AddFieldName("resolved");
         
     }
     

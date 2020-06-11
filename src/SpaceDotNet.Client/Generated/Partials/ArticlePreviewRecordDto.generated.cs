@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.ArticlePreviewRecordDtoExtensions
 {
     public static class ArticlePreviewRecordDtoPartialExtensions
     {
-        public static Partial<ArticlePreviewRecordDto> WithId(this Partial<ArticlePreviewRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<ArticlePreviewRecordDto> WithId(this Partial<ArticlePreviewRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ArticlePreviewRecordDto> WithArchived(this Partial<ArticlePreviewRecordDto> it)    => it.AddFieldName("archived");
+        public static Partial<ArticlePreviewRecordDto> WithArchived(this Partial<ArticlePreviewRecordDto> it)
+            => it.AddFieldName("archived");
         
-        public static Partial<ArticlePreviewRecordDto> WithPreviewImages(this Partial<ArticlePreviewRecordDto> it)    => it.AddFieldName("previewImages");
+        public static Partial<ArticlePreviewRecordDto> WithPreviewImages(this Partial<ArticlePreviewRecordDto> it)
+            => it.AddFieldName("previewImages");
         
-        public static Partial<ArticlePreviewRecordDto> WithPreviewImages(this Partial<ArticlePreviewRecordDto> it, Func<Partial<ArticleMarkdownImageDto>, Partial<ArticleMarkdownImageDto>> partialBuilder)    => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImageDto>()));
+        public static Partial<ArticlePreviewRecordDto> WithPreviewImages(this Partial<ArticlePreviewRecordDto> it, Func<Partial<ArticleMarkdownImageDto>, Partial<ArticleMarkdownImageDto>> partialBuilder)
+            => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImageDto>(it)));
         
-        public static Partial<ArticlePreviewRecordDto> WithPreview(this Partial<ArticlePreviewRecordDto> it)    => it.AddFieldName("preview");
+        public static Partial<ArticlePreviewRecordDto> WithPreview(this Partial<ArticlePreviewRecordDto> it)
+            => it.AddFieldName("preview");
         
-        public static Partial<ArticlePreviewRecordDto> WithWordsNumber(this Partial<ArticlePreviewRecordDto> it)    => it.AddFieldName("wordsNumber");
+        public static Partial<ArticlePreviewRecordDto> WithWordsNumber(this Partial<ArticlePreviewRecordDto> it)
+            => it.AddFieldName("wordsNumber");
         
     }
     

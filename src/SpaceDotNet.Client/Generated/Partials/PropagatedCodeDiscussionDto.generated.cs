@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.PropagatedCodeDiscussionDtoExtensions
 {
     public static class PropagatedCodeDiscussionDtoPartialExtensions
     {
-        public static Partial<PropagatedCodeDiscussionDto> WithAnchor(this Partial<PropagatedCodeDiscussionDto> it)    => it.AddFieldName("anchor");
+        public static Partial<PropagatedCodeDiscussionDto> WithAnchor(this Partial<PropagatedCodeDiscussionDto> it)
+            => it.AddFieldName("anchor");
         
-        public static Partial<PropagatedCodeDiscussionDto> WithAnchor(this Partial<PropagatedCodeDiscussionDto> it, Func<Partial<CodeDiscussionAnchorDto>, Partial<CodeDiscussionAnchorDto>> partialBuilder)    => it.AddFieldName("anchor", partialBuilder(new Partial<CodeDiscussionAnchorDto>()));
+        public static Partial<PropagatedCodeDiscussionDto> WithAnchor(this Partial<PropagatedCodeDiscussionDto> it, Func<Partial<CodeDiscussionAnchorDto>, Partial<CodeDiscussionAnchorDto>> partialBuilder)
+            => it.AddFieldName("anchor", partialBuilder(new Partial<CodeDiscussionAnchorDto>(it)));
         
-        public static Partial<PropagatedCodeDiscussionDto> WithDiscussion(this Partial<PropagatedCodeDiscussionDto> it)    => it.AddFieldName("discussion");
+        public static Partial<PropagatedCodeDiscussionDto> WithDiscussion(this Partial<PropagatedCodeDiscussionDto> it)
+            => it.AddFieldName("discussion");
         
-        public static Partial<PropagatedCodeDiscussionDto> WithDiscussion(this Partial<PropagatedCodeDiscussionDto> it, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder)    => it.AddFieldName("discussion", partialBuilder(new Partial<CodeDiscussionRecordDto>()));
+        public static Partial<PropagatedCodeDiscussionDto> WithDiscussion(this Partial<PropagatedCodeDiscussionDto> it, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder)
+            => it.AddFieldName("discussion", partialBuilder(new Partial<CodeDiscussionRecordDto>(it)));
         
     }
     

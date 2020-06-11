@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.IssueCreatedDetailsDtoExtensions
 {
     public static class IssueCreatedDetailsDtoPartialExtensions
     {
-        public static Partial<IssueCreatedDetailsDto> WithIssue(this Partial<IssueCreatedDetailsDto> it)    => it.AddFieldName("issue");
+        public static Partial<IssueCreatedDetailsDto> WithIssue(this Partial<IssueCreatedDetailsDto> it)
+            => it.AddFieldName("issue");
         
-        public static Partial<IssueCreatedDetailsDto> WithIssue(this Partial<IssueCreatedDetailsDto> it, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder)    => it.AddFieldName("issue", partialBuilder(new Partial<IssueDto>()));
+        public static Partial<IssueCreatedDetailsDto> WithIssue(this Partial<IssueCreatedDetailsDto> it, Func<Partial<IssueDto>, Partial<IssueDto>> partialBuilder)
+            => it.AddFieldName("issue", partialBuilder(new Partial<IssueDto>(it)));
         
     }
     

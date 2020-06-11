@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.UpdateProjectRequestExtensions
 {
     public static class UpdateProjectRequestPartialExtensions
     {
-        public static Partial<UpdateProjectRequest> WithKey(this Partial<UpdateProjectRequest> it)    => it.AddFieldName("key");
+        public static Partial<UpdateProjectRequest> WithKey(this Partial<UpdateProjectRequest> it)
+            => it.AddFieldName("key");
         
-        public static Partial<UpdateProjectRequest> WithKey(this Partial<UpdateProjectRequest> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<UpdateProjectRequest> WithKey(this Partial<UpdateProjectRequest> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
+            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>(it)));
         
-        public static Partial<UpdateProjectRequest> WithName(this Partial<UpdateProjectRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdateProjectRequest> WithName(this Partial<UpdateProjectRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdateProjectRequest> WithDescription(this Partial<UpdateProjectRequest> it)    => it.AddFieldName("description");
+        public static Partial<UpdateProjectRequest> WithDescription(this Partial<UpdateProjectRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<UpdateProjectRequest> WithPrivate(this Partial<UpdateProjectRequest> it)    => it.AddFieldName("private");
+        public static Partial<UpdateProjectRequest> WithPrivate(this Partial<UpdateProjectRequest> it)
+            => it.AddFieldName("private");
         
-        public static Partial<UpdateProjectRequest> WithTags(this Partial<UpdateProjectRequest> it)    => it.AddFieldName("tags");
+        public static Partial<UpdateProjectRequest> WithTags(this Partial<UpdateProjectRequest> it)
+            => it.AddFieldName("tags");
         
-        public static Partial<UpdateProjectRequest> WithIcon(this Partial<UpdateProjectRequest> it)    => it.AddFieldName("icon");
+        public static Partial<UpdateProjectRequest> WithIcon(this Partial<UpdateProjectRequest> it)
+            => it.AddFieldName("icon");
         
     }
     

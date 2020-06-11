@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateFirstDayOfWeekRequestExtensions
 {
     public static class UpdateFirstDayOfWeekRequestPartialExtensions
     {
-        public static Partial<UpdateFirstDayOfWeekRequest> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequest> it)    => it.AddFieldName("firstDayOfWeek");
+        public static Partial<UpdateFirstDayOfWeekRequest> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequest> it)
+            => it.AddFieldName("firstDayOfWeek");
         
-        public static Partial<UpdateFirstDayOfWeekRequest> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequest> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)    => it.AddFieldName("firstDayOfWeek", partialBuilder(new Partial<Weekday>()));
+        public static Partial<UpdateFirstDayOfWeekRequest> WithFirstDayOfWeek(this Partial<UpdateFirstDayOfWeekRequest> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
+            => it.AddFieldName("firstDayOfWeek", partialBuilder(new Partial<Weekday>(it)));
         
     }
     

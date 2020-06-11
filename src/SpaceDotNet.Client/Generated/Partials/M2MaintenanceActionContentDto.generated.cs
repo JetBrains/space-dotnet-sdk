@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.M2MaintenanceActionContentDtoExtensions
 {
     public static class M2MaintenanceActionContentDtoPartialExtensions
     {
-        public static Partial<M2MaintenanceActionContentDto> WithAction(this Partial<M2MaintenanceActionContentDto> it)    => it.AddFieldName("action");
+        public static Partial<M2MaintenanceActionContentDto> WithAction(this Partial<M2MaintenanceActionContentDto> it)
+            => it.AddFieldName("action");
         
-        public static Partial<M2MaintenanceActionContentDto> WithSuccess(this Partial<M2MaintenanceActionContentDto> it)    => it.AddFieldName("success");
+        public static Partial<M2MaintenanceActionContentDto> WithSuccess(this Partial<M2MaintenanceActionContentDto> it)
+            => it.AddFieldName("success");
         
-        public static Partial<M2MaintenanceActionContentDto> WithDetails(this Partial<M2MaintenanceActionContentDto> it)    => it.AddFieldName("details");
+        public static Partial<M2MaintenanceActionContentDto> WithDetails(this Partial<M2MaintenanceActionContentDto> it)
+            => it.AddFieldName("details");
         
     }
     

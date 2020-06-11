@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.EditReviewStateRequestExtensions
 {
     public static class EditReviewStateRequestPartialExtensions
     {
-        public static Partial<EditReviewStateRequest> WithState(this Partial<EditReviewStateRequest> it)    => it.AddFieldName("state");
+        public static Partial<EditReviewStateRequest> WithState(this Partial<EditReviewStateRequest> it)
+            => it.AddFieldName("state");
         
-        public static Partial<EditReviewStateRequest> WithState(this Partial<EditReviewStateRequest> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)    => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>()));
+        public static Partial<EditReviewStateRequest> WithState(this Partial<EditReviewStateRequest> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
         
     }
     

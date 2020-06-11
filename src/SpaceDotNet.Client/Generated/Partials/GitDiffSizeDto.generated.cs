@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.GitDiffSizeDtoExtensions
 {
     public static class GitDiffSizeDtoPartialExtensions
     {
-        public static Partial<GitDiffSizeDto> WithAdded(this Partial<GitDiffSizeDto> it)    => it.AddFieldName("added");
+        public static Partial<GitDiffSizeDto> WithAdded(this Partial<GitDiffSizeDto> it)
+            => it.AddFieldName("added");
         
-        public static Partial<GitDiffSizeDto> WithDeleted(this Partial<GitDiffSizeDto> it)    => it.AddFieldName("deleted");
+        public static Partial<GitDiffSizeDto> WithDeleted(this Partial<GitDiffSizeDto> it)
+            => it.AddFieldName("deleted");
         
     }
     

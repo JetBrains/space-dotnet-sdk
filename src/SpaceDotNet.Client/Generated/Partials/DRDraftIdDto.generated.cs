@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.DRDraftIdDtoExtensions
 {
     public static class DRDraftIdDtoPartialExtensions
     {
-        public static Partial<DRDraftIdDto> WithId(this Partial<DRDraftIdDto> it)    => it.AddFieldName("id");
+        public static Partial<DRDraftIdDto> WithId(this Partial<DRDraftIdDto> it)
+            => it.AddFieldName("id");
         
     }
     

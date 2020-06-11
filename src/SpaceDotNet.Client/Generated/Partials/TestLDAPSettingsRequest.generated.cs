@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.TestLDAPSettingsRequestExtensions
 {
     public static class TestLDAPSettingsRequestPartialExtensions
     {
-        public static Partial<TestLDAPSettingsRequest> WithSettings(this Partial<TestLDAPSettingsRequest> it)    => it.AddFieldName("settings");
+        public static Partial<TestLDAPSettingsRequest> WithSettings(this Partial<TestLDAPSettingsRequest> it)
+            => it.AddFieldName("settings");
         
-        public static Partial<TestLDAPSettingsRequest> WithSettings(this Partial<TestLDAPSettingsRequest> it, Func<Partial<ESLdapAuthModuleSettingsDto>, Partial<ESLdapAuthModuleSettingsDto>> partialBuilder)    => it.AddFieldName("settings", partialBuilder(new Partial<ESLdapAuthModuleSettingsDto>()));
+        public static Partial<TestLDAPSettingsRequest> WithSettings(this Partial<TestLDAPSettingsRequest> it, Func<Partial<ESLdapAuthModuleSettingsDto>, Partial<ESLdapAuthModuleSettingsDto>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<ESLdapAuthModuleSettingsDto>(it)));
         
-        public static Partial<TestLDAPSettingsRequest> WithUsername(this Partial<TestLDAPSettingsRequest> it)    => it.AddFieldName("username");
+        public static Partial<TestLDAPSettingsRequest> WithUsername(this Partial<TestLDAPSettingsRequest> it)
+            => it.AddFieldName("username");
         
-        public static Partial<TestLDAPSettingsRequest> WithPassword(this Partial<TestLDAPSettingsRequest> it)    => it.AddFieldName("password");
+        public static Partial<TestLDAPSettingsRequest> WithPassword(this Partial<TestLDAPSettingsRequest> it)
+            => it.AddFieldName("password");
         
     }
     

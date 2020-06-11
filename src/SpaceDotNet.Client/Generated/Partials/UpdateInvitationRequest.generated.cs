@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.UpdateInvitationRequestExtensions
 {
     public static class UpdateInvitationRequestPartialExtensions
     {
-        public static Partial<UpdateInvitationRequest> WithInviteeEmail(this Partial<UpdateInvitationRequest> it)    => it.AddFieldName("inviteeEmail");
+        public static Partial<UpdateInvitationRequest> WithInviteeEmail(this Partial<UpdateInvitationRequest> it)
+            => it.AddFieldName("inviteeEmail");
         
-        public static Partial<UpdateInvitationRequest> WithInviteeFirstName(this Partial<UpdateInvitationRequest> it)    => it.AddFieldName("inviteeFirstName");
+        public static Partial<UpdateInvitationRequest> WithInviteeFirstName(this Partial<UpdateInvitationRequest> it)
+            => it.AddFieldName("inviteeFirstName");
         
-        public static Partial<UpdateInvitationRequest> WithInviteeLastName(this Partial<UpdateInvitationRequest> it)    => it.AddFieldName("inviteeLastName");
+        public static Partial<UpdateInvitationRequest> WithInviteeLastName(this Partial<UpdateInvitationRequest> it)
+            => it.AddFieldName("inviteeLastName");
         
-        public static Partial<UpdateInvitationRequest> WithTeam(this Partial<UpdateInvitationRequest> it)    => it.AddFieldName("team");
+        public static Partial<UpdateInvitationRequest> WithTeam(this Partial<UpdateInvitationRequest> it)
+            => it.AddFieldName("team");
         
-        public static Partial<UpdateInvitationRequest> WithTeam(this Partial<UpdateInvitationRequest> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)    => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>()));
+        public static Partial<UpdateInvitationRequest> WithTeam(this Partial<UpdateInvitationRequest> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>(it)));
         
-        public static Partial<UpdateInvitationRequest> WithRole(this Partial<UpdateInvitationRequest> it)    => it.AddFieldName("role");
+        public static Partial<UpdateInvitationRequest> WithRole(this Partial<UpdateInvitationRequest> it)
+            => it.AddFieldName("role");
         
-        public static Partial<UpdateInvitationRequest> WithRole(this Partial<UpdateInvitationRequest> it, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder)    => it.AddFieldName("role", partialBuilder(new Partial<TDRoleDto>()));
+        public static Partial<UpdateInvitationRequest> WithRole(this Partial<UpdateInvitationRequest> it, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<TDRoleDto>(it)));
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.TestBuiltInSettingsRequestExtensions
 {
     public static class TestBuiltInSettingsRequestPartialExtensions
     {
-        public static Partial<TestBuiltInSettingsRequest> WithSettings(this Partial<TestBuiltInSettingsRequest> it)    => it.AddFieldName("settings");
+        public static Partial<TestBuiltInSettingsRequest> WithSettings(this Partial<TestBuiltInSettingsRequest> it)
+            => it.AddFieldName("settings");
         
-        public static Partial<TestBuiltInSettingsRequest> WithSettings(this Partial<TestBuiltInSettingsRequest> it, Func<Partial<ESBuiltinAuthModuleSettingsDto>, Partial<ESBuiltinAuthModuleSettingsDto>> partialBuilder)    => it.AddFieldName("settings", partialBuilder(new Partial<ESBuiltinAuthModuleSettingsDto>()));
+        public static Partial<TestBuiltInSettingsRequest> WithSettings(this Partial<TestBuiltInSettingsRequest> it, Func<Partial<ESBuiltinAuthModuleSettingsDto>, Partial<ESBuiltinAuthModuleSettingsDto>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<ESBuiltinAuthModuleSettingsDto>(it)));
         
-        public static Partial<TestBuiltInSettingsRequest> WithUsername(this Partial<TestBuiltInSettingsRequest> it)    => it.AddFieldName("username");
+        public static Partial<TestBuiltInSettingsRequest> WithUsername(this Partial<TestBuiltInSettingsRequest> it)
+            => it.AddFieldName("username");
         
-        public static Partial<TestBuiltInSettingsRequest> WithPassword(this Partial<TestBuiltInSettingsRequest> it)    => it.AddFieldName("password");
+        public static Partial<TestBuiltInSettingsRequest> WithPassword(this Partial<TestBuiltInSettingsRequest> it)
+            => it.AddFieldName("password");
         
     }
     

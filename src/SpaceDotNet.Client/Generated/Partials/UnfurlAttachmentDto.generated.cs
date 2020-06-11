@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.UnfurlAttachmentDtoExtensions
 {
     public static class UnfurlAttachmentDtoPartialExtensions
     {
-        public static Partial<UnfurlAttachmentDto> WithUnfurl(this Partial<UnfurlAttachmentDto> it)    => it.AddFieldName("unfurl");
+        public static Partial<UnfurlAttachmentDto> WithUnfurl(this Partial<UnfurlAttachmentDto> it)
+            => it.AddFieldName("unfurl");
         
-        public static Partial<UnfurlAttachmentDto> WithUnfurl(this Partial<UnfurlAttachmentDto> it, Func<Partial<UnfurlDto>, Partial<UnfurlDto>> partialBuilder)    => it.AddFieldName("unfurl", partialBuilder(new Partial<UnfurlDto>()));
+        public static Partial<UnfurlAttachmentDto> WithUnfurl(this Partial<UnfurlAttachmentDto> it, Func<Partial<UnfurlDto>, Partial<UnfurlDto>> partialBuilder)
+            => it.AddFieldName("unfurl", partialBuilder(new Partial<UnfurlDto>(it)));
         
-        public static Partial<UnfurlAttachmentDto> WithId(this Partial<UnfurlAttachmentDto> it)    => it.AddFieldName("id");
+        public static Partial<UnfurlAttachmentDto> WithId(this Partial<UnfurlAttachmentDto> it)
+            => it.AddFieldName("id");
         
     }
     

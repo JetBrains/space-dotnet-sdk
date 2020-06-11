@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.TDProfileEmailDtoExtensions
 {
     public static class TDProfileEmailDtoPartialExtensions
     {
-        public static Partial<TDProfileEmailDto> WithId(this Partial<TDProfileEmailDto> it)    => it.AddFieldName("id");
+        public static Partial<TDProfileEmailDto> WithId(this Partial<TDProfileEmailDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<TDProfileEmailDto> WithEmail(this Partial<TDProfileEmailDto> it)    => it.AddFieldName("email");
+        public static Partial<TDProfileEmailDto> WithEmail(this Partial<TDProfileEmailDto> it)
+            => it.AddFieldName("email");
         
     }
     

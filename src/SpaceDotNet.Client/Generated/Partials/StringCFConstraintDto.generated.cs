@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.StringCFConstraintDtoExtensions
 {
     public static class StringCFConstraintDtoPartialExtensions
     {
-        public static Partial<StringCFConstraintDto> WithMin(this Partial<StringCFConstraintDto> it)    => it.AddFieldName("min");
+        public static Partial<StringCFConstraintDto> WithMin(this Partial<StringCFConstraintDto> it)
+            => it.AddFieldName("min");
         
-        public static Partial<StringCFConstraintDto> WithMax(this Partial<StringCFConstraintDto> it)    => it.AddFieldName("max");
+        public static Partial<StringCFConstraintDto> WithMax(this Partial<StringCFConstraintDto> it)
+            => it.AddFieldName("max");
         
-        public static Partial<StringCFConstraintDto> WithPattern(this Partial<StringCFConstraintDto> it)    => it.AddFieldName("pattern");
+        public static Partial<StringCFConstraintDto> WithPattern(this Partial<StringCFConstraintDto> it)
+            => it.AddFieldName("pattern");
         
-        public static Partial<StringCFConstraintDto> WithMessage(this Partial<StringCFConstraintDto> it)    => it.AddFieldName("message");
+        public static Partial<StringCFConstraintDto> WithMessage(this Partial<StringCFConstraintDto> it)
+            => it.AddFieldName("message");
         
     }
     

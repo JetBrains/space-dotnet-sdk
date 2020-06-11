@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.ReviewStateChangedEventDtoExtensions
 {
     public static class ReviewStateChangedEventDtoPartialExtensions
     {
-        public static Partial<ReviewStateChangedEventDto> WithState(this Partial<ReviewStateChangedEventDto> it)    => it.AddFieldName("state");
+        public static Partial<ReviewStateChangedEventDto> WithState(this Partial<ReviewStateChangedEventDto> it)
+            => it.AddFieldName("state");
         
-        public static Partial<ReviewStateChangedEventDto> WithState(this Partial<ReviewStateChangedEventDto> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)    => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>()));
+        public static Partial<ReviewStateChangedEventDto> WithState(this Partial<ReviewStateChangedEventDto> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
+            => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
         
-        public static Partial<ReviewStateChangedEventDto> WithReview(this Partial<ReviewStateChangedEventDto> it)    => it.AddFieldName("review");
+        public static Partial<ReviewStateChangedEventDto> WithReview(this Partial<ReviewStateChangedEventDto> it)
+            => it.AddFieldName("review");
         
-        public static Partial<ReviewStateChangedEventDto> WithReview(this Partial<ReviewStateChangedEventDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<ReviewStateChangedEventDto> WithReview(this Partial<ReviewStateChangedEventDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
+            => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
         
     }
     

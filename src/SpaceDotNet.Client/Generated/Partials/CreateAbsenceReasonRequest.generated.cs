@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.CreateAbsenceReasonRequestExtensions
 {
     public static class CreateAbsenceReasonRequestPartialExtensions
     {
-        public static Partial<CreateAbsenceReasonRequest> WithName(this Partial<CreateAbsenceReasonRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateAbsenceReasonRequest> WithName(this Partial<CreateAbsenceReasonRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CreateAbsenceReasonRequest> WithDescription(this Partial<CreateAbsenceReasonRequest> it)    => it.AddFieldName("description");
+        public static Partial<CreateAbsenceReasonRequest> WithDescription(this Partial<CreateAbsenceReasonRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<CreateAbsenceReasonRequest> WithDefaultAvailability(this Partial<CreateAbsenceReasonRequest> it)    => it.AddFieldName("defaultAvailability");
+        public static Partial<CreateAbsenceReasonRequest> WithDefaultAvailability(this Partial<CreateAbsenceReasonRequest> it)
+            => it.AddFieldName("defaultAvailability");
         
-        public static Partial<CreateAbsenceReasonRequest> WithApprovalRequired(this Partial<CreateAbsenceReasonRequest> it)    => it.AddFieldName("approvalRequired");
+        public static Partial<CreateAbsenceReasonRequest> WithApprovalRequired(this Partial<CreateAbsenceReasonRequest> it)
+            => it.AddFieldName("approvalRequired");
         
-        public static Partial<CreateAbsenceReasonRequest> WithIcon(this Partial<CreateAbsenceReasonRequest> it)    => it.AddFieldName("icon");
+        public static Partial<CreateAbsenceReasonRequest> WithIcon(this Partial<CreateAbsenceReasonRequest> it)
+            => it.AddFieldName("icon");
         
     }
     

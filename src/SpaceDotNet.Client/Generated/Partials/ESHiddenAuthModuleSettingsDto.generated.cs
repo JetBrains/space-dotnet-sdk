@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ESHiddenAuthModuleSettingsDtoExtensions
 {
     public static class ESHiddenAuthModuleSettingsDtoPartialExtensions
     {
-        public static Partial<ESHiddenAuthModuleSettingsDto> WithPasswordModule(this Partial<ESHiddenAuthModuleSettingsDto> it)    => it.AddFieldName("passwordModule");
+        public static Partial<ESHiddenAuthModuleSettingsDto> WithPasswordModule(this Partial<ESHiddenAuthModuleSettingsDto> it)
+            => it.AddFieldName("passwordModule");
         
-        public static Partial<ESHiddenAuthModuleSettingsDto> WithFederatedModule(this Partial<ESHiddenAuthModuleSettingsDto> it)    => it.AddFieldName("federatedModule");
+        public static Partial<ESHiddenAuthModuleSettingsDto> WithFederatedModule(this Partial<ESHiddenAuthModuleSettingsDto> it)
+            => it.AddFieldName("federatedModule");
         
     }
     

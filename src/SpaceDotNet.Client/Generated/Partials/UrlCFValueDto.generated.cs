@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.UrlCFValueDtoExtensions
 {
     public static class UrlCFValueDtoPartialExtensions
     {
-        public static Partial<UrlCFValueDto> WithHref(this Partial<UrlCFValueDto> it)    => it.AddFieldName("href");
+        public static Partial<UrlCFValueDto> WithHref(this Partial<UrlCFValueDto> it)
+            => it.AddFieldName("href");
         
     }
     

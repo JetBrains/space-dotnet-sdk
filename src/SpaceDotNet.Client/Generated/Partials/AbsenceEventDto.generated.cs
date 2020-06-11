@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.AbsenceEventDtoExtensions
 {
     public static class AbsenceEventDtoPartialExtensions
     {
-        public static Partial<AbsenceEventDto> WithProfile(this Partial<AbsenceEventDto> it)    => it.AddFieldName("profile");
+        public static Partial<AbsenceEventDto> WithProfile(this Partial<AbsenceEventDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<AbsenceEventDto> WithProfile(this Partial<AbsenceEventDto> it, Func<Partial<TDMemberWithTeamDto>, Partial<TDMemberWithTeamDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberWithTeamDto>()));
+        public static Partial<AbsenceEventDto> WithProfile(this Partial<AbsenceEventDto> it, Func<Partial<TDMemberWithTeamDto>, Partial<TDMemberWithTeamDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberWithTeamDto>(it)));
         
-        public static Partial<AbsenceEventDto> WithEvents(this Partial<AbsenceEventDto> it)    => it.AddFieldName("events");
+        public static Partial<AbsenceEventDto> WithEvents(this Partial<AbsenceEventDto> it)
+            => it.AddFieldName("events");
         
-        public static Partial<AbsenceEventDto> WithEvents(this Partial<AbsenceEventDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)    => it.AddFieldName("events", partialBuilder(new Partial<AbsenceRecordDto>()));
+        public static Partial<AbsenceEventDto> WithEvents(this Partial<AbsenceEventDto> it, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>> partialBuilder)
+            => it.AddFieldName("events", partialBuilder(new Partial<AbsenceRecordDto>(it)));
         
     }
     

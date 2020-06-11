@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ReorderRequestExtensions
 {
     public static class ReorderRequestPartialExtensions
     {
-        public static Partial<ReorderRequest> WithOrder(this Partial<ReorderRequest> it)    => it.AddFieldName("order");
+        public static Partial<ReorderRequest> WithOrder(this Partial<ReorderRequest> it)
+            => it.AddFieldName("order");
         
     }
     

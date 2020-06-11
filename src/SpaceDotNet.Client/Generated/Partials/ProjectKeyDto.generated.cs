@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ProjectKeyDtoExtensions
 {
     public static class ProjectKeyDtoPartialExtensions
     {
-        public static Partial<ProjectKeyDto> WithKey(this Partial<ProjectKeyDto> it)    => it.AddFieldName("key");
+        public static Partial<ProjectKeyDto> WithKey(this Partial<ProjectKeyDto> it)
+            => it.AddFieldName("key");
         
     }
     

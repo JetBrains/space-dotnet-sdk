@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.TrackTagAccessRequestExtensions
 {
     public static class TrackTagAccessRequestPartialExtensions
     {
-        public static Partial<TrackTagAccessRequest> WithTag(this Partial<TrackTagAccessRequest> it)    => it.AddFieldName("tag");
+        public static Partial<TrackTagAccessRequest> WithTag(this Partial<TrackTagAccessRequest> it)
+            => it.AddFieldName("tag");
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.CustomFieldValueDtoExtensions
 {
     public static class CustomFieldValueDtoPartialExtensions
     {
-        public static Partial<CustomFieldValueDto> WithField(this Partial<CustomFieldValueDto> it)    => it.AddFieldName("field");
+        public static Partial<CustomFieldValueDto> WithField(this Partial<CustomFieldValueDto> it)
+            => it.AddFieldName("field");
         
-        public static Partial<CustomFieldValueDto> WithField(this Partial<CustomFieldValueDto> it, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>> partialBuilder)    => it.AddFieldName("field", partialBuilder(new Partial<CustomFieldDto>()));
+        public static Partial<CustomFieldValueDto> WithField(this Partial<CustomFieldValueDto> it, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>> partialBuilder)
+            => it.AddFieldName("field", partialBuilder(new Partial<CustomFieldDto>(it)));
         
-        public static Partial<CustomFieldValueDto> WithValue(this Partial<CustomFieldValueDto> it)    => it.AddFieldName("value");
+        public static Partial<CustomFieldValueDto> WithValue(this Partial<CustomFieldValueDto> it)
+            => it.AddFieldName("value");
         
-        public static Partial<CustomFieldValueDto> WithValue(this Partial<CustomFieldValueDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)    => it.AddFieldName("value", partialBuilder(new Partial<CFValueDto>()));
+        public static Partial<CustomFieldValueDto> WithValue(this Partial<CustomFieldValueDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
+            => it.AddFieldName("value", partialBuilder(new Partial<CFValueDto>(it)));
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.M2ChannelContentThreadDtoExtensions
 {
     public static class M2ChannelContentThreadDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentThreadDto> WithRecord(this Partial<M2ChannelContentThreadDto> it)    => it.AddFieldName("record");
+        public static Partial<M2ChannelContentThreadDto> WithRecord(this Partial<M2ChannelContentThreadDto> it)
+            => it.AddFieldName("record");
         
-        public static Partial<M2ChannelContentThreadDto> WithRecord(this Partial<M2ChannelContentThreadDto> it, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder)    => it.AddFieldName("record", partialBuilder(new Partial<ChannelItemRecordDto>()));
+        public static Partial<M2ChannelContentThreadDto> WithRecord(this Partial<M2ChannelContentThreadDto> it, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder)
+            => it.AddFieldName("record", partialBuilder(new Partial<ChannelItemRecordDto>(it)));
         
-        public static Partial<M2ChannelContentThreadDto> WithParent(this Partial<M2ChannelContentThreadDto> it)    => it.AddFieldName("parent");
+        public static Partial<M2ChannelContentThreadDto> WithParent(this Partial<M2ChannelContentThreadDto> it)
+            => it.AddFieldName("parent");
         
-        public static Partial<M2ChannelContentThreadDto> WithParent(this Partial<M2ChannelContentThreadDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)    => it.AddFieldName("parent", partialBuilder(new Partial<M2ChannelRecordDto>()));
+        public static Partial<M2ChannelContentThreadDto> WithParent(this Partial<M2ChannelContentThreadDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
+            => it.AddFieldName("parent", partialBuilder(new Partial<M2ChannelRecordDto>(it)));
         
     }
     

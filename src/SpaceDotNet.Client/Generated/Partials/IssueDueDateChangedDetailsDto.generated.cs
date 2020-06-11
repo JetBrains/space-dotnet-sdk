@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.IssueDueDateChangedDetailsDtoExtensions
 {
     public static class IssueDueDateChangedDetailsDtoPartialExtensions
     {
-        public static Partial<IssueDueDateChangedDetailsDto> WithOldDueDate(this Partial<IssueDueDateChangedDetailsDto> it)    => it.AddFieldName("oldDueDate");
+        public static Partial<IssueDueDateChangedDetailsDto> WithOldDueDate(this Partial<IssueDueDateChangedDetailsDto> it)
+            => it.AddFieldName("oldDueDate");
         
-        public static Partial<IssueDueDateChangedDetailsDto> WithNewDueDate(this Partial<IssueDueDateChangedDetailsDto> it)    => it.AddFieldName("newDueDate");
+        public static Partial<IssueDueDateChangedDetailsDto> WithNewDueDate(this Partial<IssueDueDateChangedDetailsDto> it)
+            => it.AddFieldName("newDueDate");
         
     }
     

@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ImportMetadataDtoExtensions
 {
     public static class ImportMetadataDtoPartialExtensions
     {
-        public static Partial<ImportMetadataDto> WithImportSource(this Partial<ImportMetadataDto> it)    => it.AddFieldName("importSource");
+        public static Partial<ImportMetadataDto> WithImportSource(this Partial<ImportMetadataDto> it)
+            => it.AddFieldName("importSource");
         
     }
     

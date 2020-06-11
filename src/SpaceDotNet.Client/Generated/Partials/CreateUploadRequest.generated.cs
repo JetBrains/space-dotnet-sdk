@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateUploadRequestExtensions
 {
     public static class CreateUploadRequestPartialExtensions
     {
-        public static Partial<CreateUploadRequest> WithStoragePrefix(this Partial<CreateUploadRequest> it)    => it.AddFieldName("storagePrefix");
+        public static Partial<CreateUploadRequest> WithStoragePrefix(this Partial<CreateUploadRequest> it)
+            => it.AddFieldName("storagePrefix");
         
-        public static Partial<CreateUploadRequest> WithMediaType(this Partial<CreateUploadRequest> it)    => it.AddFieldName("mediaType");
+        public static Partial<CreateUploadRequest> WithMediaType(this Partial<CreateUploadRequest> it)
+            => it.AddFieldName("mediaType");
         
     }
     

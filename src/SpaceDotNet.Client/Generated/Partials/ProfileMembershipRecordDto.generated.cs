@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.ProfileMembershipRecordDtoExtensions
 {
     public static class ProfileMembershipRecordDtoPartialExtensions
     {
-        public static Partial<ProfileMembershipRecordDto> WithId(this Partial<ProfileMembershipRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<ProfileMembershipRecordDto> WithId(this Partial<ProfileMembershipRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ProfileMembershipRecordDto> WithMemberships(this Partial<ProfileMembershipRecordDto> it)    => it.AddFieldName("memberships");
+        public static Partial<ProfileMembershipRecordDto> WithMemberships(this Partial<ProfileMembershipRecordDto> it)
+            => it.AddFieldName("memberships");
         
-        public static Partial<ProfileMembershipRecordDto> WithMemberships(this Partial<ProfileMembershipRecordDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)    => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembershipDto>()));
+        public static Partial<ProfileMembershipRecordDto> WithMemberships(this Partial<ProfileMembershipRecordDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)
+            => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembershipDto>(it)));
         
     }
     

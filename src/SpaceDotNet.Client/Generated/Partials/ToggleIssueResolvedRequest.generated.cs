@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ToggleIssueResolvedRequestExtensions
 {
     public static class ToggleIssueResolvedRequestPartialExtensions
     {
-        public static Partial<ToggleIssueResolvedRequest> WithResolved(this Partial<ToggleIssueResolvedRequest> it)    => it.AddFieldName("resolved");
+        public static Partial<ToggleIssueResolvedRequest> WithResolved(this Partial<ToggleIssueResolvedRequest> it)
+            => it.AddFieldName("resolved");
         
     }
     

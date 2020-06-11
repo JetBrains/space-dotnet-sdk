@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.UpdateTOTPTwoFactorAuthenticationSettingsRequestExt
 {
     public static class UpdateTOTPTwoFactorAuthenticationSettingsRequestPartialExtensions
     {
-        public static Partial<UpdateTOTPTwoFactorAuthenticationSettingsRequest> WithEnabled(this Partial<UpdateTOTPTwoFactorAuthenticationSettingsRequest> it)    => it.AddFieldName("enabled");
+        public static Partial<UpdateTOTPTwoFactorAuthenticationSettingsRequest> WithEnabled(this Partial<UpdateTOTPTwoFactorAuthenticationSettingsRequest> it)
+            => it.AddFieldName("enabled");
         
     }
     

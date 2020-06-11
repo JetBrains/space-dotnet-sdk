@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.RecurrenceRuleFreqMonthlyOnStartDateDtoExtensions
 {
     public static class RecurrenceRuleFreqMonthlyOnStartDateDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> it)    => it.AddFieldName("interval");
+        public static Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnStartDateDto> it)
+            => it.AddFieldName("interval");
         
     }
     

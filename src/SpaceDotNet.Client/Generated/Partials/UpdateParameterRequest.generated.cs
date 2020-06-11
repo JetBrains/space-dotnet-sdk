@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateParameterRequestExtensions
 {
     public static class UpdateParameterRequestPartialExtensions
     {
-        public static Partial<UpdateParameterRequest> WithKey(this Partial<UpdateParameterRequest> it)    => it.AddFieldName("key");
+        public static Partial<UpdateParameterRequest> WithKey(this Partial<UpdateParameterRequest> it)
+            => it.AddFieldName("key");
         
-        public static Partial<UpdateParameterRequest> WithValue(this Partial<UpdateParameterRequest> it)    => it.AddFieldName("value");
+        public static Partial<UpdateParameterRequest> WithValue(this Partial<UpdateParameterRequest> it)
+            => it.AddFieldName("value");
         
     }
     

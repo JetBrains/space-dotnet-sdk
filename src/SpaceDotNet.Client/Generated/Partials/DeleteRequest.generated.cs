@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.DeleteRequestExtensions
 {
     public static class DeleteRequestPartialExtensions
     {
-        public static Partial<DeleteRequest> WithEmoji(this Partial<DeleteRequest> it)    => it.AddFieldName("emoji");
+        public static Partial<DeleteRequest> WithEmoji(this Partial<DeleteRequest> it)
+            => it.AddFieldName("emoji");
         
     }
     

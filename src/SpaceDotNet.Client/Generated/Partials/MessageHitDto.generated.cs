@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.MessageHitDtoExtensions
 {
     public static class MessageHitDtoPartialExtensions
     {
-        public static Partial<MessageHitDto> WithId(this Partial<MessageHitDto> it)    => it.AddFieldName("id");
+        public static Partial<MessageHitDto> WithId(this Partial<MessageHitDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<MessageHitDto> WithScore(this Partial<MessageHitDto> it)    => it.AddFieldName("score");
+        public static Partial<MessageHitDto> WithScore(this Partial<MessageHitDto> it)
+            => it.AddFieldName("score");
         
-        public static Partial<MessageHitDto> WithChannel(this Partial<MessageHitDto> it)    => it.AddFieldName("channel");
+        public static Partial<MessageHitDto> WithChannel(this Partial<MessageHitDto> it)
+            => it.AddFieldName("channel");
         
-        public static Partial<MessageHitDto> WithChannel(this Partial<MessageHitDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)    => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>()));
+        public static Partial<MessageHitDto> WithChannel(this Partial<MessageHitDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>(it)));
         
-        public static Partial<MessageHitDto> WithRef(this Partial<MessageHitDto> it)    => it.AddFieldName("ref");
+        public static Partial<MessageHitDto> WithRef(this Partial<MessageHitDto> it)
+            => it.AddFieldName("ref");
         
-        public static Partial<MessageHitDto> WithRef(this Partial<MessageHitDto> it, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder)    => it.AddFieldName("ref", partialBuilder(new Partial<ChannelItemRecordDto>()));
+        public static Partial<MessageHitDto> WithRef(this Partial<MessageHitDto> it, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>> partialBuilder)
+            => it.AddFieldName("ref", partialBuilder(new Partial<ChannelItemRecordDto>(it)));
         
-        public static Partial<MessageHitDto> WithMessage(this Partial<MessageHitDto> it)    => it.AddFieldName("message");
+        public static Partial<MessageHitDto> WithMessage(this Partial<MessageHitDto> it)
+            => it.AddFieldName("message");
         
     }
     

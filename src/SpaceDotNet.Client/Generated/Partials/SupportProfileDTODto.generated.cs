@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.SupportProfileDTODtoExtensions
 {
     public static class SupportProfileDTODtoPartialExtensions
     {
-        public static Partial<SupportProfileDTODto> WithProfile(this Partial<SupportProfileDTODto> it)    => it.AddFieldName("profile");
+        public static Partial<SupportProfileDTODto> WithProfile(this Partial<SupportProfileDTODto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<SupportProfileDTODto> WithProfile(this Partial<SupportProfileDTODto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<SupportProfileDTODto> WithProfile(this Partial<SupportProfileDTODto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<SupportProfileDTODto> WithAdminPermissionsGranted(this Partial<SupportProfileDTODto> it)    => it.AddFieldName("adminPermissionsGranted");
+        public static Partial<SupportProfileDTODto> WithAdminPermissionsGranted(this Partial<SupportProfileDTODto> it)
+            => it.AddFieldName("adminPermissionsGranted");
         
     }
     

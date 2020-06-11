@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.EnumCFTypeDtoExtensions
 {
     public static class EnumCFTypeDtoPartialExtensions
     {
-        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it)    => it.AddFieldName("values");
+        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it)
+            => it.AddFieldName("values");
         
-        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it, Func<Partial<EnumValueDataDto>, Partial<EnumValueDataDto>> partialBuilder)    => it.AddFieldName("values", partialBuilder(new Partial<EnumValueDataDto>()));
+        public static Partial<EnumCFTypeDto> WithValues(this Partial<EnumCFTypeDto> it, Func<Partial<EnumValueDataDto>, Partial<EnumValueDataDto>> partialBuilder)
+            => it.AddFieldName("values", partialBuilder(new Partial<EnumValueDataDto>(it)));
         
     }
     

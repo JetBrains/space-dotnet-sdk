@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.CreateTrustedCertificateRequestExtensions
 {
     public static class CreateTrustedCertificateRequestPartialExtensions
     {
-        public static Partial<CreateTrustedCertificateRequest> WithAlias(this Partial<CreateTrustedCertificateRequest> it)    => it.AddFieldName("alias");
+        public static Partial<CreateTrustedCertificateRequest> WithAlias(this Partial<CreateTrustedCertificateRequest> it)
+            => it.AddFieldName("alias");
         
-        public static Partial<CreateTrustedCertificateRequest> WithData(this Partial<CreateTrustedCertificateRequest> it)    => it.AddFieldName("data");
+        public static Partial<CreateTrustedCertificateRequest> WithData(this Partial<CreateTrustedCertificateRequest> it)
+            => it.AddFieldName("data");
         
-        public static Partial<CreateTrustedCertificateRequest> WithArchived(this Partial<CreateTrustedCertificateRequest> it)    => it.AddFieldName("archived");
+        public static Partial<CreateTrustedCertificateRequest> WithArchived(this Partial<CreateTrustedCertificateRequest> it)
+            => it.AddFieldName("archived");
         
     }
     

@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.ImportArticlesRequestExtensions
 {
     public static class ImportArticlesRequestPartialExtensions
     {
-        public static Partial<ImportArticlesRequest> WithMetadata(this Partial<ImportArticlesRequest> it)    => it.AddFieldName("metadata");
+        public static Partial<ImportArticlesRequest> WithMetadata(this Partial<ImportArticlesRequest> it)
+            => it.AddFieldName("metadata");
         
-        public static Partial<ImportArticlesRequest> WithMetadata(this Partial<ImportArticlesRequest> it, Func<Partial<ImportMetadataDto>, Partial<ImportMetadataDto>> partialBuilder)    => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadataDto>()));
+        public static Partial<ImportArticlesRequest> WithMetadata(this Partial<ImportArticlesRequest> it, Func<Partial<ImportMetadataDto>, Partial<ImportMetadataDto>> partialBuilder)
+            => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadataDto>(it)));
         
-        public static Partial<ImportArticlesRequest> WithArticles(this Partial<ImportArticlesRequest> it)    => it.AddFieldName("articles");
+        public static Partial<ImportArticlesRequest> WithArticles(this Partial<ImportArticlesRequest> it)
+            => it.AddFieldName("articles");
         
-        public static Partial<ImportArticlesRequest> WithArticles(this Partial<ImportArticlesRequest> it, Func<Partial<ExternalArticleDto>, Partial<ExternalArticleDto>> partialBuilder)    => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticleDto>()));
+        public static Partial<ImportArticlesRequest> WithArticles(this Partial<ImportArticlesRequest> it, Func<Partial<ExternalArticleDto>, Partial<ExternalArticleDto>> partialBuilder)
+            => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticleDto>(it)));
         
     }
     

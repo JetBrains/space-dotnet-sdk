@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateResponsibilityRequestExtensions
 {
     public static class UpdateResponsibilityRequestPartialExtensions
     {
-        public static Partial<UpdateResponsibilityRequest> WithSummary(this Partial<UpdateResponsibilityRequest> it)    => it.AddFieldName("summary");
+        public static Partial<UpdateResponsibilityRequest> WithSummary(this Partial<UpdateResponsibilityRequest> it)
+            => it.AddFieldName("summary");
         
-        public static Partial<UpdateResponsibilityRequest> WithNotes(this Partial<UpdateResponsibilityRequest> it)    => it.AddFieldName("notes");
+        public static Partial<UpdateResponsibilityRequest> WithNotes(this Partial<UpdateResponsibilityRequest> it)
+            => it.AddFieldName("notes");
         
     }
     

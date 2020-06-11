@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.AvatarCropSquareDtoExtensions
 {
     public static class AvatarCropSquareDtoPartialExtensions
     {
-        public static Partial<AvatarCropSquareDto> WithX(this Partial<AvatarCropSquareDto> it)    => it.AddFieldName("x");
+        public static Partial<AvatarCropSquareDto> WithX(this Partial<AvatarCropSquareDto> it)
+            => it.AddFieldName("x");
         
-        public static Partial<AvatarCropSquareDto> WithY(this Partial<AvatarCropSquareDto> it)    => it.AddFieldName("y");
+        public static Partial<AvatarCropSquareDto> WithY(this Partial<AvatarCropSquareDto> it)
+            => it.AddFieldName("y");
         
-        public static Partial<AvatarCropSquareDto> WithLength(this Partial<AvatarCropSquareDto> it)    => it.AddFieldName("length");
+        public static Partial<AvatarCropSquareDto> WithLength(this Partial<AvatarCropSquareDto> it)
+            => it.AddFieldName("length");
         
     }
     

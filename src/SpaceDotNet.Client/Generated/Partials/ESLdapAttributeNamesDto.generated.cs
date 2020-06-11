@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.ESLdapAttributeNamesDtoExtensions
 {
     public static class ESLdapAttributeNamesDtoPartialExtensions
     {
-        public static Partial<ESLdapAttributeNamesDto> WithFullNameAttributeName(this Partial<ESLdapAttributeNamesDto> it)    => it.AddFieldName("fullNameAttributeName");
+        public static Partial<ESLdapAttributeNamesDto> WithFullNameAttributeName(this Partial<ESLdapAttributeNamesDto> it)
+            => it.AddFieldName("fullNameAttributeName");
         
-        public static Partial<ESLdapAttributeNamesDto> WithUsernameAttributeName(this Partial<ESLdapAttributeNamesDto> it)    => it.AddFieldName("usernameAttributeName");
+        public static Partial<ESLdapAttributeNamesDto> WithUsernameAttributeName(this Partial<ESLdapAttributeNamesDto> it)
+            => it.AddFieldName("usernameAttributeName");
         
-        public static Partial<ESLdapAttributeNamesDto> WithEmailAttributeName(this Partial<ESLdapAttributeNamesDto> it)    => it.AddFieldName("emailAttributeName");
+        public static Partial<ESLdapAttributeNamesDto> WithEmailAttributeName(this Partial<ESLdapAttributeNamesDto> it)
+            => it.AddFieldName("emailAttributeName");
         
-        public static Partial<ESLdapAttributeNamesDto> WithGroupsAttributeName(this Partial<ESLdapAttributeNamesDto> it)    => it.AddFieldName("groupsAttributeName");
+        public static Partial<ESLdapAttributeNamesDto> WithGroupsAttributeName(this Partial<ESLdapAttributeNamesDto> it)
+            => it.AddFieldName("groupsAttributeName");
         
     }
     

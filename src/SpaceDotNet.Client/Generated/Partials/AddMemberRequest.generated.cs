@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.AddMemberRequestExtensions
 {
     public static class AddMemberRequestPartialExtensions
     {
-        public static Partial<AddMemberRequest> WithProfileId(this Partial<AddMemberRequest> it)    => it.AddFieldName("profileId");
+        public static Partial<AddMemberRequest> WithProfileId(this Partial<AddMemberRequest> it)
+            => it.AddFieldName("profileId");
         
     }
     

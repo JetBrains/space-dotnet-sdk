@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.CreateSubscriptionRequestExtensions
 {
     public static class CreateSubscriptionRequestPartialExtensions
     {
-        public static Partial<CreateSubscriptionRequest> WithLocationId(this Partial<CreateSubscriptionRequest> it)    => it.AddFieldName("locationId");
+        public static Partial<CreateSubscriptionRequest> WithLocationId(this Partial<CreateSubscriptionRequest> it)
+            => it.AddFieldName("locationId");
         
-        public static Partial<CreateSubscriptionRequest> WithTeamId(this Partial<CreateSubscriptionRequest> it)    => it.AddFieldName("teamId");
+        public static Partial<CreateSubscriptionRequest> WithTeamId(this Partial<CreateSubscriptionRequest> it)
+            => it.AddFieldName("teamId");
         
-        public static Partial<CreateSubscriptionRequest> WithReasonId(this Partial<CreateSubscriptionRequest> it)    => it.AddFieldName("reasonId");
+        public static Partial<CreateSubscriptionRequest> WithReasonId(this Partial<CreateSubscriptionRequest> it)
+            => it.AddFieldName("reasonId");
         
     }
     

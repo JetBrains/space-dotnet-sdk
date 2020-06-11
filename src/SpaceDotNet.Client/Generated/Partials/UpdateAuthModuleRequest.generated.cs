@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.UpdateAuthModuleRequestExtensions
 {
     public static class UpdateAuthModuleRequestPartialExtensions
     {
-        public static Partial<UpdateAuthModuleRequest> WithKey(this Partial<UpdateAuthModuleRequest> it)    => it.AddFieldName("key");
+        public static Partial<UpdateAuthModuleRequest> WithKey(this Partial<UpdateAuthModuleRequest> it)
+            => it.AddFieldName("key");
         
-        public static Partial<UpdateAuthModuleRequest> WithName(this Partial<UpdateAuthModuleRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdateAuthModuleRequest> WithName(this Partial<UpdateAuthModuleRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdateAuthModuleRequest> WithEnabled(this Partial<UpdateAuthModuleRequest> it)    => it.AddFieldName("enabled");
+        public static Partial<UpdateAuthModuleRequest> WithEnabled(this Partial<UpdateAuthModuleRequest> it)
+            => it.AddFieldName("enabled");
         
-        public static Partial<UpdateAuthModuleRequest> WithSettings(this Partial<UpdateAuthModuleRequest> it)    => it.AddFieldName("settings");
+        public static Partial<UpdateAuthModuleRequest> WithSettings(this Partial<UpdateAuthModuleRequest> it)
+            => it.AddFieldName("settings");
         
-        public static Partial<UpdateAuthModuleRequest> WithSettings(this Partial<UpdateAuthModuleRequest> it, Func<Partial<ESAuthModuleSettingsDto>, Partial<ESAuthModuleSettingsDto>> partialBuilder)    => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettingsDto>()));
+        public static Partial<UpdateAuthModuleRequest> WithSettings(this Partial<UpdateAuthModuleRequest> it, Func<Partial<ESAuthModuleSettingsDto>, Partial<ESAuthModuleSettingsDto>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettingsDto>(it)));
         
     }
     

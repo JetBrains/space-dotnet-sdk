@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ImportRequestExtensions
 {
     public static class ImportRequestPartialExtensions
     {
-        public static Partial<ImportRequest> WithCalendar(this Partial<ImportRequest> it)    => it.AddFieldName("calendar");
+        public static Partial<ImportRequest> WithCalendar(this Partial<ImportRequest> it)
+            => it.AddFieldName("calendar");
         
-        public static Partial<ImportRequest> WithAttachmentId(this Partial<ImportRequest> it)    => it.AddFieldName("attachmentId");
+        public static Partial<ImportRequest> WithAttachmentId(this Partial<ImportRequest> it)
+            => it.AddFieldName("attachmentId");
         
     }
     

@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.CPrincipalDtoExtensions
 {
     public static class CPrincipalDtoPartialExtensions
     {
-        public static Partial<CPrincipalDto> WithName(this Partial<CPrincipalDto> it)    => it.AddFieldName("name");
+        public static Partial<CPrincipalDto> WithName(this Partial<CPrincipalDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CPrincipalDto> WithDetails(this Partial<CPrincipalDto> it)    => it.AddFieldName("details");
+        public static Partial<CPrincipalDto> WithDetails(this Partial<CPrincipalDto> it)
+            => it.AddFieldName("details");
         
-        public static Partial<CPrincipalDto> WithDetails(this Partial<CPrincipalDto> it, Func<Partial<CPrincipalDetailsDto>, Partial<CPrincipalDetailsDto>> partialBuilder)    => it.AddFieldName("details", partialBuilder(new Partial<CPrincipalDetailsDto>()));
+        public static Partial<CPrincipalDto> WithDetails(this Partial<CPrincipalDto> it, Func<Partial<CPrincipalDetailsDto>, Partial<CPrincipalDetailsDto>> partialBuilder)
+            => it.AddFieldName("details", partialBuilder(new Partial<CPrincipalDetailsDto>(it)));
         
     }
     

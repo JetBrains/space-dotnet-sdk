@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.HAPathDtoExtensions
 {
     public static class HAPathDtoPartialExtensions
     {
-        public static Partial<HAPathDto> WithSegments(this Partial<HAPathDto> it)    => it.AddFieldName("segments");
+        public static Partial<HAPathDto> WithSegments(this Partial<HAPathDto> it)
+            => it.AddFieldName("segments");
         
-        public static Partial<HAPathDto> WithSegments(this Partial<HAPathDto> it, Func<Partial<HAPathSegmentDto>, Partial<HAPathSegmentDto>> partialBuilder)    => it.AddFieldName("segments", partialBuilder(new Partial<HAPathSegmentDto>()));
+        public static Partial<HAPathDto> WithSegments(this Partial<HAPathDto> it, Func<Partial<HAPathSegmentDto>, Partial<HAPathSegmentDto>> partialBuilder)
+            => it.AddFieldName("segments", partialBuilder(new Partial<HAPathSegmentDto>(it)));
         
     }
     

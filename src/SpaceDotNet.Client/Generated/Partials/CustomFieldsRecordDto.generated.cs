@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.CustomFieldsRecordDtoExtensions
 {
     public static class CustomFieldsRecordDtoPartialExtensions
     {
-        public static Partial<CustomFieldsRecordDto> WithId(this Partial<CustomFieldsRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<CustomFieldsRecordDto> WithId(this Partial<CustomFieldsRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<CustomFieldsRecordDto> WithValues(this Partial<CustomFieldsRecordDto> it)    => it.AddFieldName("values");
+        public static Partial<CustomFieldsRecordDto> WithValues(this Partial<CustomFieldsRecordDto> it)
+            => it.AddFieldName("values");
         
-        public static Partial<CustomFieldsRecordDto> WithValues(this Partial<CustomFieldsRecordDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)    => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldValueDto>()));
+        public static Partial<CustomFieldsRecordDto> WithValues(this Partial<CustomFieldsRecordDto> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
+            => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldValueDto>(it)));
         
     }
     

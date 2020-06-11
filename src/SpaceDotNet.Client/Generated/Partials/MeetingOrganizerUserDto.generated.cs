@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.MeetingOrganizerUserDtoExtensions
 {
     public static class MeetingOrganizerUserDtoPartialExtensions
     {
-        public static Partial<MeetingOrganizerUserDto> WithProfileRef(this Partial<MeetingOrganizerUserDto> it)    => it.AddFieldName("profileRef");
+        public static Partial<MeetingOrganizerUserDto> WithProfileRef(this Partial<MeetingOrganizerUserDto> it)
+            => it.AddFieldName("profileRef");
         
-        public static Partial<MeetingOrganizerUserDto> WithProfileRef(this Partial<MeetingOrganizerUserDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profileRef", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<MeetingOrganizerUserDto> WithProfileRef(this Partial<MeetingOrganizerUserDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profileRef", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
     }
     

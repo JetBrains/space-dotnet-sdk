@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.PublicHolidayDtoExtensions
 {
     public static class PublicHolidayDtoPartialExtensions
     {
-        public static Partial<PublicHolidayDto> WithId(this Partial<PublicHolidayDto> it)    => it.AddFieldName("id");
+        public static Partial<PublicHolidayDto> WithId(this Partial<PublicHolidayDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<PublicHolidayDto> WithCalendar(this Partial<PublicHolidayDto> it)    => it.AddFieldName("calendar");
+        public static Partial<PublicHolidayDto> WithCalendar(this Partial<PublicHolidayDto> it)
+            => it.AddFieldName("calendar");
         
-        public static Partial<PublicHolidayDto> WithCalendar(this Partial<PublicHolidayDto> it, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partialBuilder)    => it.AddFieldName("calendar", partialBuilder(new Partial<PublicHolidayCalendarRecordDto>()));
+        public static Partial<PublicHolidayDto> WithCalendar(this Partial<PublicHolidayDto> it, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>> partialBuilder)
+            => it.AddFieldName("calendar", partialBuilder(new Partial<PublicHolidayCalendarRecordDto>(it)));
         
-        public static Partial<PublicHolidayDto> WithName(this Partial<PublicHolidayDto> it)    => it.AddFieldName("name");
+        public static Partial<PublicHolidayDto> WithName(this Partial<PublicHolidayDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<PublicHolidayDto> WithDate(this Partial<PublicHolidayDto> it)    => it.AddFieldName("date");
+        public static Partial<PublicHolidayDto> WithDate(this Partial<PublicHolidayDto> it)
+            => it.AddFieldName("date");
         
-        public static Partial<PublicHolidayDto> WithWorkingDay(this Partial<PublicHolidayDto> it)    => it.AddFieldName("workingDay");
+        public static Partial<PublicHolidayDto> WithWorkingDay(this Partial<PublicHolidayDto> it)
+            => it.AddFieldName("workingDay");
         
     }
     

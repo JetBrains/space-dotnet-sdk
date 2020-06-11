@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.DTORightDtoExtensions
 {
     public static class DTORightDtoPartialExtensions
     {
-        public static Partial<DTORightDto> WithTypeCode(this Partial<DTORightDto> it)    => it.AddFieldName("typeCode");
+        public static Partial<DTORightDto> WithTypeCode(this Partial<DTORightDto> it)
+            => it.AddFieldName("typeCode");
         
-        public static Partial<DTORightDto> WithCode(this Partial<DTORightDto> it)    => it.AddFieldName("code");
+        public static Partial<DTORightDto> WithCode(this Partial<DTORightDto> it)
+            => it.AddFieldName("code");
         
     }
     

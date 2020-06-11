@@ -23,23 +23,32 @@ namespace SpaceDotNet.Client.StickerDtoExtensions
 {
     public static class StickerDtoPartialExtensions
     {
-        public static Partial<StickerDto> WithId(this Partial<StickerDto> it)    => it.AddFieldName("id");
+        public static Partial<StickerDto> WithId(this Partial<StickerDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<StickerDto> WithSymbol(this Partial<StickerDto> it)    => it.AddFieldName("symbol");
+        public static Partial<StickerDto> WithSymbol(this Partial<StickerDto> it)
+            => it.AddFieldName("symbol");
         
-        public static Partial<StickerDto> WithAttachmentId(this Partial<StickerDto> it)    => it.AddFieldName("attachmentId");
+        public static Partial<StickerDto> WithAttachmentId(this Partial<StickerDto> it)
+            => it.AddFieldName("attachmentId");
         
-        public static Partial<StickerDto> WithWidth(this Partial<StickerDto> it)    => it.AddFieldName("width");
+        public static Partial<StickerDto> WithWidth(this Partial<StickerDto> it)
+            => it.AddFieldName("width");
         
-        public static Partial<StickerDto> WithHeight(this Partial<StickerDto> it)    => it.AddFieldName("height");
+        public static Partial<StickerDto> WithHeight(this Partial<StickerDto> it)
+            => it.AddFieldName("height");
         
-        public static Partial<StickerDto> WithVariants(this Partial<StickerDto> it)    => it.AddFieldName("variants");
+        public static Partial<StickerDto> WithVariants(this Partial<StickerDto> it)
+            => it.AddFieldName("variants");
         
-        public static Partial<StickerDto> WithVariants(this Partial<StickerDto> it, Func<Partial<StickerVariantDto>, Partial<StickerVariantDto>> partialBuilder)    => it.AddFieldName("variants", partialBuilder(new Partial<StickerVariantDto>()));
+        public static Partial<StickerDto> WithVariants(this Partial<StickerDto> it, Func<Partial<StickerVariantDto>, Partial<StickerVariantDto>> partialBuilder)
+            => it.AddFieldName("variants", partialBuilder(new Partial<StickerVariantDto>(it)));
         
-        public static Partial<StickerDto> WithAnimated(this Partial<StickerDto> it)    => it.AddFieldName("animated");
+        public static Partial<StickerDto> WithAnimated(this Partial<StickerDto> it)
+            => it.AddFieldName("animated");
         
-        public static Partial<StickerDto> WithArchived(this Partial<StickerDto> it)    => it.AddFieldName("archived");
+        public static Partial<StickerDto> WithArchived(this Partial<StickerDto> it)
+            => it.AddFieldName("archived");
         
     }
     

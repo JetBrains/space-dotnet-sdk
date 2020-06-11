@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
 {
     public static class CreateNavBarProjectRequestPartialExtensions
     {
-        public static Partial<CreateNavBarProjectRequest> WithProjectId(this Partial<CreateNavBarProjectRequest> it)    => it.AddFieldName("projectId");
+        public static Partial<CreateNavBarProjectRequest> WithProjectId(this Partial<CreateNavBarProjectRequest> it)
+            => it.AddFieldName("projectId");
         
     }
     

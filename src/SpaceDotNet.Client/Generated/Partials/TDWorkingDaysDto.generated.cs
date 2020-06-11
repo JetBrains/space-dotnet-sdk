@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.TDWorkingDaysDtoExtensions
 {
     public static class TDWorkingDaysDtoPartialExtensions
     {
-        public static Partial<TDWorkingDaysDto> WithId(this Partial<TDWorkingDaysDto> it)    => it.AddFieldName("id");
+        public static Partial<TDWorkingDaysDto> WithId(this Partial<TDWorkingDaysDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<TDWorkingDaysDto> WithDateStart(this Partial<TDWorkingDaysDto> it)    => it.AddFieldName("dateStart");
+        public static Partial<TDWorkingDaysDto> WithDateStart(this Partial<TDWorkingDaysDto> it)
+            => it.AddFieldName("dateStart");
         
-        public static Partial<TDWorkingDaysDto> WithDateEnd(this Partial<TDWorkingDaysDto> it)    => it.AddFieldName("dateEnd");
+        public static Partial<TDWorkingDaysDto> WithDateEnd(this Partial<TDWorkingDaysDto> it)
+            => it.AddFieldName("dateEnd");
         
-        public static Partial<TDWorkingDaysDto> WithWorkingDaysSpec(this Partial<TDWorkingDaysDto> it)    => it.AddFieldName("workingDaysSpec");
+        public static Partial<TDWorkingDaysDto> WithWorkingDaysSpec(this Partial<TDWorkingDaysDto> it)
+            => it.AddFieldName("workingDaysSpec");
         
-        public static Partial<TDWorkingDaysDto> WithWorkingDaysSpec(this Partial<TDWorkingDaysDto> it, Func<Partial<WorkingDaysSpecDto>, Partial<WorkingDaysSpecDto>> partialBuilder)    => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpecDto>()));
+        public static Partial<TDWorkingDaysDto> WithWorkingDaysSpec(this Partial<TDWorkingDaysDto> it, Func<Partial<WorkingDaysSpecDto>, Partial<WorkingDaysSpecDto>> partialBuilder)
+            => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpecDto>(it)));
         
     }
     

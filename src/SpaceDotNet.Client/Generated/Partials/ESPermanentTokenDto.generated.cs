@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.ESPermanentTokenDtoExtensions
 {
     public static class ESPermanentTokenDtoPartialExtensions
     {
-        public static Partial<ESPermanentTokenDto> WithId(this Partial<ESPermanentTokenDto> it)    => it.AddFieldName("id");
+        public static Partial<ESPermanentTokenDto> WithId(this Partial<ESPermanentTokenDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ESPermanentTokenDto> WithName(this Partial<ESPermanentTokenDto> it)    => it.AddFieldName("name");
+        public static Partial<ESPermanentTokenDto> WithName(this Partial<ESPermanentTokenDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<ESPermanentTokenDto> WithProfile(this Partial<ESPermanentTokenDto> it)    => it.AddFieldName("profile");
+        public static Partial<ESPermanentTokenDto> WithProfile(this Partial<ESPermanentTokenDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<ESPermanentTokenDto> WithProfile(this Partial<ESPermanentTokenDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ESPermanentTokenDto> WithProfile(this Partial<ESPermanentTokenDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<ESPermanentTokenDto> WithScope(this Partial<ESPermanentTokenDto> it)    => it.AddFieldName("scope");
+        public static Partial<ESPermanentTokenDto> WithScope(this Partial<ESPermanentTokenDto> it)
+            => it.AddFieldName("scope");
         
-        public static Partial<ESPermanentTokenDto> WithCreated(this Partial<ESPermanentTokenDto> it)    => it.AddFieldName("created");
+        public static Partial<ESPermanentTokenDto> WithCreated(this Partial<ESPermanentTokenDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<ESPermanentTokenDto> WithLastAccess(this Partial<ESPermanentTokenDto> it)    => it.AddFieldName("lastAccess");
+        public static Partial<ESPermanentTokenDto> WithLastAccess(this Partial<ESPermanentTokenDto> it)
+            => it.AddFieldName("lastAccess");
         
-        public static Partial<ESPermanentTokenDto> WithLastAccess(this Partial<ESPermanentTokenDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)    => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>()));
+        public static Partial<ESPermanentTokenDto> WithLastAccess(this Partial<ESPermanentTokenDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)
+            => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>(it)));
         
     }
     

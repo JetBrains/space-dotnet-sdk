@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.AddAdministratorRequestExtensions
 {
     public static class AddAdministratorRequestPartialExtensions
     {
-        public static Partial<AddAdministratorRequest> WithProfileId(this Partial<AddAdministratorRequest> it)    => it.AddFieldName("profileId");
+        public static Partial<AddAdministratorRequest> WithProfileId(this Partial<AddAdministratorRequest> it)
+            => it.AddFieldName("profileId");
         
     }
     

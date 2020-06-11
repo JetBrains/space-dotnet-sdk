@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.MCImageDtoExtensions
 {
     public static class MCImageDtoPartialExtensions
     {
-        public static Partial<MCImageDto> WithSrc(this Partial<MCImageDto> it)    => it.AddFieldName("src");
+        public static Partial<MCImageDto> WithSrc(this Partial<MCImageDto> it)
+            => it.AddFieldName("src");
         
     }
     

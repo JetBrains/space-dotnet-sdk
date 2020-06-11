@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.MCActionDtoExtensions
 {
     public static class MCActionDtoPartialExtensions
     {
-        public static Partial<MCActionDto> WithId(this Partial<MCActionDto> it)    => it.AddFieldName("id");
+        public static Partial<MCActionDto> WithId(this Partial<MCActionDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<MCActionDto> WithValue(this Partial<MCActionDto> it)    => it.AddFieldName("value");
+        public static Partial<MCActionDto> WithValue(this Partial<MCActionDto> it)
+            => it.AddFieldName("value");
         
     }
     

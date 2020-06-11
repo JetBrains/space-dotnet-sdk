@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.IntListCFValueDtoExtensions
 {
     public static class IntListCFValueDtoPartialExtensions
     {
-        public static Partial<IntListCFValueDto> WithValues(this Partial<IntListCFValueDto> it)    => it.AddFieldName("values");
+        public static Partial<IntListCFValueDto> WithValues(this Partial<IntListCFValueDto> it)
+            => it.AddFieldName("values");
         
     }
     

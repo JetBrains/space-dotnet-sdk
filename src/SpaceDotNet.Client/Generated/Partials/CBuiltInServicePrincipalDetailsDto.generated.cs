@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.CBuiltInServicePrincipalDetailsDtoExtensions
 {
     public static class CBuiltInServicePrincipalDetailsDtoPartialExtensions
     {
-        public static Partial<CBuiltInServicePrincipalDetailsDto> WithName(this Partial<CBuiltInServicePrincipalDetailsDto> it)    => it.AddFieldName("name");
+        public static Partial<CBuiltInServicePrincipalDetailsDto> WithName(this Partial<CBuiltInServicePrincipalDetailsDto> it)
+            => it.AddFieldName("name");
         
     }
     

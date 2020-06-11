@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ImportMessageHistoryRequestExtensions
 {
     public static class ImportMessageHistoryRequestPartialExtensions
     {
-        public static Partial<ImportMessageHistoryRequest> WithMessages(this Partial<ImportMessageHistoryRequest> it)    => it.AddFieldName("messages");
+        public static Partial<ImportMessageHistoryRequest> WithMessages(this Partial<ImportMessageHistoryRequest> it)
+            => it.AddFieldName("messages");
         
-        public static Partial<ImportMessageHistoryRequest> WithMessages(this Partial<ImportMessageHistoryRequest> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)    => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImportDto>()));
+        public static Partial<ImportMessageHistoryRequest> WithMessages(this Partial<ImportMessageHistoryRequest> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)
+            => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImportDto>(it)));
         
     }
     

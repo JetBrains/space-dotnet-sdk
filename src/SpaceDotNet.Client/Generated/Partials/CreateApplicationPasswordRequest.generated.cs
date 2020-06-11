@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateApplicationPasswordRequestExtensions
 {
     public static class CreateApplicationPasswordRequestPartialExtensions
     {
-        public static Partial<CreateApplicationPasswordRequest> WithName(this Partial<CreateApplicationPasswordRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateApplicationPasswordRequest> WithName(this Partial<CreateApplicationPasswordRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CreateApplicationPasswordRequest> WithScope(this Partial<CreateApplicationPasswordRequest> it)    => it.AddFieldName("scope");
+        public static Partial<CreateApplicationPasswordRequest> WithScope(this Partial<CreateApplicationPasswordRequest> it)
+            => it.AddFieldName("scope");
         
     }
     

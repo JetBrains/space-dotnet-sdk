@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.EditReviewTitleRequestExtensions
 {
     public static class EditReviewTitleRequestPartialExtensions
     {
-        public static Partial<EditReviewTitleRequest> WithTitle(this Partial<EditReviewTitleRequest> it)    => it.AddFieldName("title");
+        public static Partial<EditReviewTitleRequest> WithTitle(this Partial<EditReviewTitleRequest> it)
+            => it.AddFieldName("title");
         
     }
     

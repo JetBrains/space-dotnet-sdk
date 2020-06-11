@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ATimeZoneDtoExtensions
 {
     public static class ATimeZoneDtoPartialExtensions
     {
-        public static Partial<ATimeZoneDto> WithId(this Partial<ATimeZoneDto> it)    => it.AddFieldName("id");
+        public static Partial<ATimeZoneDto> WithId(this Partial<ATimeZoneDto> it)
+            => it.AddFieldName("id");
         
     }
     

@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.GitGraphLayoutEdgeDtoExtensions
 {
     public static class GitGraphLayoutEdgeDtoPartialExtensions
     {
-        public static Partial<GitGraphLayoutEdgeDto> WithFrom(this Partial<GitGraphLayoutEdgeDto> it)    => it.AddFieldName("from");
+        public static Partial<GitGraphLayoutEdgeDto> WithFrom(this Partial<GitGraphLayoutEdgeDto> it)
+            => it.AddFieldName("from");
         
-        public static Partial<GitGraphLayoutEdgeDto> WithTo(this Partial<GitGraphLayoutEdgeDto> it)    => it.AddFieldName("to");
+        public static Partial<GitGraphLayoutEdgeDto> WithTo(this Partial<GitGraphLayoutEdgeDto> it)
+            => it.AddFieldName("to");
         
-        public static Partial<GitGraphLayoutEdgeDto> WithType(this Partial<GitGraphLayoutEdgeDto> it)    => it.AddFieldName("type");
+        public static Partial<GitGraphLayoutEdgeDto> WithType(this Partial<GitGraphLayoutEdgeDto> it)
+            => it.AddFieldName("type");
         
-        public static Partial<GitGraphLayoutEdgeDto> WithType(this Partial<GitGraphLayoutEdgeDto> it, Func<Partial<GitGraphEdgeType>, Partial<GitGraphEdgeType>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<GitGraphEdgeType>()));
+        public static Partial<GitGraphLayoutEdgeDto> WithType(this Partial<GitGraphLayoutEdgeDto> it, Func<Partial<GitGraphEdgeType>, Partial<GitGraphEdgeType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<GitGraphEdgeType>(it)));
         
-        public static Partial<GitGraphLayoutEdgeDto> WithStyle(this Partial<GitGraphLayoutEdgeDto> it)    => it.AddFieldName("style");
+        public static Partial<GitGraphLayoutEdgeDto> WithStyle(this Partial<GitGraphLayoutEdgeDto> it)
+            => it.AddFieldName("style");
         
-        public static Partial<GitGraphLayoutEdgeDto> WithStyle(this Partial<GitGraphLayoutEdgeDto> it, Func<Partial<GitGraphEdgeLineStyle>, Partial<GitGraphEdgeLineStyle>> partialBuilder)    => it.AddFieldName("style", partialBuilder(new Partial<GitGraphEdgeLineStyle>()));
+        public static Partial<GitGraphLayoutEdgeDto> WithStyle(this Partial<GitGraphLayoutEdgeDto> it, Func<Partial<GitGraphEdgeLineStyle>, Partial<GitGraphEdgeLineStyle>> partialBuilder)
+            => it.AddFieldName("style", partialBuilder(new Partial<GitGraphEdgeLineStyle>(it)));
         
-        public static Partial<GitGraphLayoutEdgeDto> WithHasArrow(this Partial<GitGraphLayoutEdgeDto> it)    => it.AddFieldName("hasArrow");
+        public static Partial<GitGraphLayoutEdgeDto> WithHasArrow(this Partial<GitGraphLayoutEdgeDto> it)
+            => it.AddFieldName("hasArrow");
         
-        public static Partial<GitGraphLayoutEdgeDto> WithColor(this Partial<GitGraphLayoutEdgeDto> it)    => it.AddFieldName("color");
+        public static Partial<GitGraphLayoutEdgeDto> WithColor(this Partial<GitGraphLayoutEdgeDto> it)
+            => it.AddFieldName("color");
         
     }
     

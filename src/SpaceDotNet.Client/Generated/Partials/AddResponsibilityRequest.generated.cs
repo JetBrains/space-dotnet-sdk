@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.AddResponsibilityRequestExtensions
 {
     public static class AddResponsibilityRequestPartialExtensions
     {
-        public static Partial<AddResponsibilityRequest> WithSubjectId(this Partial<AddResponsibilityRequest> it)    => it.AddFieldName("subjectId");
+        public static Partial<AddResponsibilityRequest> WithSubjectId(this Partial<AddResponsibilityRequest> it)
+            => it.AddFieldName("subjectId");
         
-        public static Partial<AddResponsibilityRequest> WithSummary(this Partial<AddResponsibilityRequest> it)    => it.AddFieldName("summary");
+        public static Partial<AddResponsibilityRequest> WithSummary(this Partial<AddResponsibilityRequest> it)
+            => it.AddFieldName("summary");
         
-        public static Partial<AddResponsibilityRequest> WithNotes(this Partial<AddResponsibilityRequest> it)    => it.AddFieldName("notes");
+        public static Partial<AddResponsibilityRequest> WithNotes(this Partial<AddResponsibilityRequest> it)
+            => it.AddFieldName("notes");
         
     }
     

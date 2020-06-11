@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ChangeRequestExtensions
 {
     public static class ChangeRequestPartialExtensions
     {
-        public static Partial<ChangeRequest> WithOldPassword(this Partial<ChangeRequest> it)    => it.AddFieldName("oldPassword");
+        public static Partial<ChangeRequest> WithOldPassword(this Partial<ChangeRequest> it)
+            => it.AddFieldName("oldPassword");
         
-        public static Partial<ChangeRequest> WithNewPassword(this Partial<ChangeRequest> it)    => it.AddFieldName("newPassword");
+        public static Partial<ChangeRequest> WithNewPassword(this Partial<ChangeRequest> it)
+            => it.AddFieldName("newPassword");
         
     }
     

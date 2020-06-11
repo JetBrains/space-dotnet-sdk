@@ -23,23 +23,32 @@ namespace SpaceDotNet.Client.GitCommitChangeDtoExtensions
 {
     public static class GitCommitChangeDtoPartialExtensions
     {
-        public static Partial<GitCommitChangeDto> WithChangeType(this Partial<GitCommitChangeDto> it)    => it.AddFieldName("changeType");
+        public static Partial<GitCommitChangeDto> WithChangeType(this Partial<GitCommitChangeDto> it)
+            => it.AddFieldName("changeType");
         
-        public static Partial<GitCommitChangeDto> WithChangeType(this Partial<GitCommitChangeDto> it, Func<Partial<GitCommitChangeType>, Partial<GitCommitChangeType>> partialBuilder)    => it.AddFieldName("changeType", partialBuilder(new Partial<GitCommitChangeType>()));
+        public static Partial<GitCommitChangeDto> WithChangeType(this Partial<GitCommitChangeDto> it, Func<Partial<GitCommitChangeType>, Partial<GitCommitChangeType>> partialBuilder)
+            => it.AddFieldName("changeType", partialBuilder(new Partial<GitCommitChangeType>(it)));
         
-        public static Partial<GitCommitChangeDto> WithOld(this Partial<GitCommitChangeDto> it)    => it.AddFieldName("old");
+        public static Partial<GitCommitChangeDto> WithOld(this Partial<GitCommitChangeDto> it)
+            => it.AddFieldName("old");
         
-        public static Partial<GitCommitChangeDto> WithOld(this Partial<GitCommitChangeDto> it, Func<Partial<GitFileDto>, Partial<GitFileDto>> partialBuilder)    => it.AddFieldName("old", partialBuilder(new Partial<GitFileDto>()));
+        public static Partial<GitCommitChangeDto> WithOld(this Partial<GitCommitChangeDto> it, Func<Partial<GitFileDto>, Partial<GitFileDto>> partialBuilder)
+            => it.AddFieldName("old", partialBuilder(new Partial<GitFileDto>(it)));
         
-        public static Partial<GitCommitChangeDto> WithNew(this Partial<GitCommitChangeDto> it)    => it.AddFieldName("new");
+        public static Partial<GitCommitChangeDto> WithNew(this Partial<GitCommitChangeDto> it)
+            => it.AddFieldName("new");
         
-        public static Partial<GitCommitChangeDto> WithNew(this Partial<GitCommitChangeDto> it, Func<Partial<GitFileDto>, Partial<GitFileDto>> partialBuilder)    => it.AddFieldName("new", partialBuilder(new Partial<GitFileDto>()));
+        public static Partial<GitCommitChangeDto> WithNew(this Partial<GitCommitChangeDto> it, Func<Partial<GitFileDto>, Partial<GitFileDto>> partialBuilder)
+            => it.AddFieldName("new", partialBuilder(new Partial<GitFileDto>(it)));
         
-        public static Partial<GitCommitChangeDto> WithRevision(this Partial<GitCommitChangeDto> it)    => it.AddFieldName("revision");
+        public static Partial<GitCommitChangeDto> WithRevision(this Partial<GitCommitChangeDto> it)
+            => it.AddFieldName("revision");
         
-        public static Partial<GitCommitChangeDto> WithDiffSize(this Partial<GitCommitChangeDto> it)    => it.AddFieldName("diffSize");
+        public static Partial<GitCommitChangeDto> WithDiffSize(this Partial<GitCommitChangeDto> it)
+            => it.AddFieldName("diffSize");
         
-        public static Partial<GitCommitChangeDto> WithDiffSize(this Partial<GitCommitChangeDto> it, Func<Partial<GitDiffSizeDto>, Partial<GitDiffSizeDto>> partialBuilder)    => it.AddFieldName("diffSize", partialBuilder(new Partial<GitDiffSizeDto>()));
+        public static Partial<GitCommitChangeDto> WithDiffSize(this Partial<GitCommitChangeDto> it, Func<Partial<GitDiffSizeDto>, Partial<GitDiffSizeDto>> partialBuilder)
+            => it.AddFieldName("diffSize", partialBuilder(new Partial<GitDiffSizeDto>(it)));
         
     }
     

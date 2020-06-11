@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.RecurrenceRuleFreqMonthlyOnFirstWeekdayDtoExtension
 {
     public static class RecurrenceRuleFreqMonthlyOnFirstWeekdayDtoPartialExtensions
     {
-        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it)    => it.AddFieldName("weekday");
+        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it)
+            => it.AddFieldName("weekday");
         
-        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)    => it.AddFieldName("weekday", partialBuilder(new Partial<Weekday>()));
+        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithWeekday(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it, Func<Partial<Weekday>, Partial<Weekday>> partialBuilder)
+            => it.AddFieldName("weekday", partialBuilder(new Partial<Weekday>(it)));
         
-        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithShift(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it)    => it.AddFieldName("shift");
+        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithShift(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it)
+            => it.AddFieldName("shift");
         
-        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it)    => it.AddFieldName("interval");
+        public static Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> WithInterval(this Partial<RecurrenceRuleFreqMonthlyOnFirstWeekdayDto> it)
+            => it.AddFieldName("interval");
         
     }
     

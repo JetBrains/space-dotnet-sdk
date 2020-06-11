@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UnfurlDetailsChecklistDtoExtensions
 {
     public static class UnfurlDetailsChecklistDtoPartialExtensions
     {
-        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it)    => it.AddFieldName("checklist");
+        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it)
+            => it.AddFieldName("checklist");
         
-        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)    => it.AddFieldName("checklist", partialBuilder(new Partial<ChecklistDto>()));
+        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)
+            => it.AddFieldName("checklist", partialBuilder(new Partial<ChecklistDto>(it)));
         
     }
     

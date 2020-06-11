@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateImportSourceRequestExtensions
 {
     public static class CreateImportSourceRequestPartialExtensions
     {
-        public static Partial<CreateImportSourceRequest> WithName(this Partial<CreateImportSourceRequest> it)    => it.AddFieldName("name");
+        public static Partial<CreateImportSourceRequest> WithName(this Partial<CreateImportSourceRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<CreateImportSourceRequest> WithImporterPrincipal(this Partial<CreateImportSourceRequest> it)    => it.AddFieldName("importerPrincipal");
+        public static Partial<CreateImportSourceRequest> WithImporterPrincipal(this Partial<CreateImportSourceRequest> it)
+            => it.AddFieldName("importerPrincipal");
         
     }
     

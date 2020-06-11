@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.GitFileDtoExtensions
 {
     public static class GitFileDtoPartialExtensions
     {
-        public static Partial<GitFileDto> WithCommit(this Partial<GitFileDto> it)    => it.AddFieldName("commit");
+        public static Partial<GitFileDto> WithCommit(this Partial<GitFileDto> it)
+            => it.AddFieldName("commit");
         
-        public static Partial<GitFileDto> WithPath(this Partial<GitFileDto> it)    => it.AddFieldName("path");
+        public static Partial<GitFileDto> WithPath(this Partial<GitFileDto> it)
+            => it.AddFieldName("path");
         
-        public static Partial<GitFileDto> WithBlob(this Partial<GitFileDto> it)    => it.AddFieldName("blob");
+        public static Partial<GitFileDto> WithBlob(this Partial<GitFileDto> it)
+            => it.AddFieldName("blob");
         
-        public static Partial<GitFileDto> WithType(this Partial<GitFileDto> it)    => it.AddFieldName("type");
+        public static Partial<GitFileDto> WithType(this Partial<GitFileDto> it)
+            => it.AddFieldName("type");
         
-        public static Partial<GitFileDto> WithType(this Partial<GitFileDto> it, Func<Partial<GitEntryType>, Partial<GitEntryType>> partialBuilder)    => it.AddFieldName("type", partialBuilder(new Partial<GitEntryType>()));
+        public static Partial<GitFileDto> WithType(this Partial<GitFileDto> it, Func<Partial<GitEntryType>, Partial<GitEntryType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<GitEntryType>(it)));
         
     }
     

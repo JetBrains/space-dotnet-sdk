@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.VcsHostingPasswordDtoExtensions
 {
     public static class VcsHostingPasswordDtoPartialExtensions
     {
-        public static Partial<VcsHostingPasswordDto> WithFingerprint(this Partial<VcsHostingPasswordDto> it)    => it.AddFieldName("fingerprint");
+        public static Partial<VcsHostingPasswordDto> WithFingerprint(this Partial<VcsHostingPasswordDto> it)
+            => it.AddFieldName("fingerprint");
         
-        public static Partial<VcsHostingPasswordDto> WithLastUsed(this Partial<VcsHostingPasswordDto> it)    => it.AddFieldName("lastUsed");
+        public static Partial<VcsHostingPasswordDto> WithLastUsed(this Partial<VcsHostingPasswordDto> it)
+            => it.AddFieldName("lastUsed");
         
     }
     

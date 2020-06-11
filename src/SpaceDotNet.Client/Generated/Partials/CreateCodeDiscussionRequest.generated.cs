@@ -23,19 +23,26 @@ namespace SpaceDotNet.Client.CreateCodeDiscussionRequestExtensions
 {
     public static class CreateCodeDiscussionRequestPartialExtensions
     {
-        public static Partial<CreateCodeDiscussionRequest> WithText(this Partial<CreateCodeDiscussionRequest> it)    => it.AddFieldName("text");
+        public static Partial<CreateCodeDiscussionRequest> WithText(this Partial<CreateCodeDiscussionRequest> it)
+            => it.AddFieldName("text");
         
-        public static Partial<CreateCodeDiscussionRequest> WithDiffContext(this Partial<CreateCodeDiscussionRequest> it)    => it.AddFieldName("diffContext");
+        public static Partial<CreateCodeDiscussionRequest> WithDiffContext(this Partial<CreateCodeDiscussionRequest> it)
+            => it.AddFieldName("diffContext");
         
-        public static Partial<CreateCodeDiscussionRequest> WithDiffContext(this Partial<CreateCodeDiscussionRequest> it, Func<Partial<DiffContextDto>, Partial<DiffContextDto>> partialBuilder)    => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContextDto>()));
+        public static Partial<CreateCodeDiscussionRequest> WithDiffContext(this Partial<CreateCodeDiscussionRequest> it, Func<Partial<DiffContextDto>, Partial<DiffContextDto>> partialBuilder)
+            => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContextDto>(it)));
         
-        public static Partial<CreateCodeDiscussionRequest> WithFilename(this Partial<CreateCodeDiscussionRequest> it)    => it.AddFieldName("filename");
+        public static Partial<CreateCodeDiscussionRequest> WithFilename(this Partial<CreateCodeDiscussionRequest> it)
+            => it.AddFieldName("filename");
         
-        public static Partial<CreateCodeDiscussionRequest> WithLine(this Partial<CreateCodeDiscussionRequest> it)    => it.AddFieldName("line");
+        public static Partial<CreateCodeDiscussionRequest> WithLine(this Partial<CreateCodeDiscussionRequest> it)
+            => it.AddFieldName("line");
         
-        public static Partial<CreateCodeDiscussionRequest> WithOldLine(this Partial<CreateCodeDiscussionRequest> it)    => it.AddFieldName("oldLine");
+        public static Partial<CreateCodeDiscussionRequest> WithOldLine(this Partial<CreateCodeDiscussionRequest> it)
+            => it.AddFieldName("oldLine");
         
-        public static Partial<CreateCodeDiscussionRequest> WithPending(this Partial<CreateCodeDiscussionRequest> it)    => it.AddFieldName("pending");
+        public static Partial<CreateCodeDiscussionRequest> WithPending(this Partial<CreateCodeDiscussionRequest> it)
+            => it.AddFieldName("pending");
         
     }
     

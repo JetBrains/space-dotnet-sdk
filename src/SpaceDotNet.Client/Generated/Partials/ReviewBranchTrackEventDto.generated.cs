@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.ReviewBranchTrackEventDtoExtensions
 {
     public static class ReviewBranchTrackEventDtoPartialExtensions
     {
-        public static Partial<ReviewBranchTrackEventDto> WithRepository(this Partial<ReviewBranchTrackEventDto> it)    => it.AddFieldName("repository");
+        public static Partial<ReviewBranchTrackEventDto> WithRepository(this Partial<ReviewBranchTrackEventDto> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<ReviewBranchTrackEventDto> WithBranch(this Partial<ReviewBranchTrackEventDto> it)    => it.AddFieldName("branch");
+        public static Partial<ReviewBranchTrackEventDto> WithBranch(this Partial<ReviewBranchTrackEventDto> it)
+            => it.AddFieldName("branch");
         
-        public static Partial<ReviewBranchTrackEventDto> WithTrack(this Partial<ReviewBranchTrackEventDto> it)    => it.AddFieldName("track");
+        public static Partial<ReviewBranchTrackEventDto> WithTrack(this Partial<ReviewBranchTrackEventDto> it)
+            => it.AddFieldName("track");
         
     }
     

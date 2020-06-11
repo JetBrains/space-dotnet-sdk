@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.FTSTeamDtoExtensions
 {
     public static class FTSTeamDtoPartialExtensions
     {
-        public static Partial<FTSTeamDto> WithId(this Partial<FTSTeamDto> it)    => it.AddFieldName("id");
+        public static Partial<FTSTeamDto> WithId(this Partial<FTSTeamDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<FTSTeamDto> WithName(this Partial<FTSTeamDto> it)    => it.AddFieldName("name");
+        public static Partial<FTSTeamDto> WithName(this Partial<FTSTeamDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<FTSTeamDto> WithDescription(this Partial<FTSTeamDto> it)    => it.AddFieldName("description");
+        public static Partial<FTSTeamDto> WithDescription(this Partial<FTSTeamDto> it)
+            => it.AddFieldName("description");
         
-        public static Partial<FTSTeamDto> WithSnippets(this Partial<FTSTeamDto> it)    => it.AddFieldName("snippets");
+        public static Partial<FTSTeamDto> WithSnippets(this Partial<FTSTeamDto> it)
+            => it.AddFieldName("snippets");
         
-        public static Partial<FTSTeamDto> WithSnippets(this Partial<FTSTeamDto> it, Func<Partial<FTSSnippetDto>, Partial<FTSSnippetDto>> partialBuilder)    => it.AddFieldName("snippets", partialBuilder(new Partial<FTSSnippetDto>()));
+        public static Partial<FTSTeamDto> WithSnippets(this Partial<FTSTeamDto> it, Func<Partial<FTSSnippetDto>, Partial<FTSSnippetDto>> partialBuilder)
+            => it.AddFieldName("snippets", partialBuilder(new Partial<FTSSnippetDto>(it)));
         
     }
     

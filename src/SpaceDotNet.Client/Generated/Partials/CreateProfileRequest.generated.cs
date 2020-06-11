@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.CreateProfileRequestExtensions
 {
     public static class CreateProfileRequestPartialExtensions
     {
-        public static Partial<CreateProfileRequest> WithEditorId(this Partial<CreateProfileRequest> it)    => it.AddFieldName("editorId");
+        public static Partial<CreateProfileRequest> WithEditorId(this Partial<CreateProfileRequest> it)
+            => it.AddFieldName("editorId");
         
     }
     

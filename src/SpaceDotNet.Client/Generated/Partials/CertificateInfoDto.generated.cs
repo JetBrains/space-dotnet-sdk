@@ -23,25 +23,35 @@ namespace SpaceDotNet.Client.CertificateInfoDtoExtensions
 {
     public static class CertificateInfoDtoPartialExtensions
     {
-        public static Partial<CertificateInfoDto> WithCertificateType(this Partial<CertificateInfoDto> it)    => it.AddFieldName("certificateType");
+        public static Partial<CertificateInfoDto> WithCertificateType(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("certificateType");
         
-        public static Partial<CertificateInfoDto> WithVersion(this Partial<CertificateInfoDto> it)    => it.AddFieldName("version");
+        public static Partial<CertificateInfoDto> WithVersion(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("version");
         
-        public static Partial<CertificateInfoDto> WithSerialNumber(this Partial<CertificateInfoDto> it)    => it.AddFieldName("serialNumber");
+        public static Partial<CertificateInfoDto> WithSerialNumber(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("serialNumber");
         
-        public static Partial<CertificateInfoDto> WithIssuedBy(this Partial<CertificateInfoDto> it)    => it.AddFieldName("issuedBy");
+        public static Partial<CertificateInfoDto> WithIssuedBy(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("issuedBy");
         
-        public static Partial<CertificateInfoDto> WithIssuedTo(this Partial<CertificateInfoDto> it)    => it.AddFieldName("issuedTo");
+        public static Partial<CertificateInfoDto> WithIssuedTo(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("issuedTo");
         
-        public static Partial<CertificateInfoDto> WithValidFrom(this Partial<CertificateInfoDto> it)    => it.AddFieldName("validFrom");
+        public static Partial<CertificateInfoDto> WithValidFrom(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("validFrom");
         
-        public static Partial<CertificateInfoDto> WithValidTo(this Partial<CertificateInfoDto> it)    => it.AddFieldName("validTo");
+        public static Partial<CertificateInfoDto> WithValidTo(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("validTo");
         
-        public static Partial<CertificateInfoDto> WithAlgorithm(this Partial<CertificateInfoDto> it)    => it.AddFieldName("algorithm");
+        public static Partial<CertificateInfoDto> WithAlgorithm(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("algorithm");
         
-        public static Partial<CertificateInfoDto> WithFingerprint(this Partial<CertificateInfoDto> it)    => it.AddFieldName("fingerprint");
+        public static Partial<CertificateInfoDto> WithFingerprint(this Partial<CertificateInfoDto> it)
+            => it.AddFieldName("fingerprint");
         
-        public static Partial<CertificateInfoDto> WithFingerprint(this Partial<CertificateInfoDto> it, Func<Partial<FingerprintDto>, Partial<FingerprintDto>> partialBuilder)    => it.AddFieldName("fingerprint", partialBuilder(new Partial<FingerprintDto>()));
+        public static Partial<CertificateInfoDto> WithFingerprint(this Partial<CertificateInfoDto> it, Func<Partial<FingerprintDto>, Partial<FingerprintDto>> partialBuilder)
+            => it.AddFieldName("fingerprint", partialBuilder(new Partial<FingerprintDto>(it)));
         
     }
     

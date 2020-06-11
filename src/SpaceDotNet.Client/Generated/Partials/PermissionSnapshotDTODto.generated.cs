@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.PermissionSnapshotDTODtoExtensions
 {
     public static class PermissionSnapshotDTODtoPartialExtensions
     {
-        public static Partial<PermissionSnapshotDTODto> WithId(this Partial<PermissionSnapshotDTODto> it)    => it.AddFieldName("id");
+        public static Partial<PermissionSnapshotDTODto> WithId(this Partial<PermissionSnapshotDTODto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<PermissionSnapshotDTODto> WithTimestamp(this Partial<PermissionSnapshotDTODto> it)    => it.AddFieldName("timestamp");
+        public static Partial<PermissionSnapshotDTODto> WithTimestamp(this Partial<PermissionSnapshotDTODto> it)
+            => it.AddFieldName("timestamp");
         
-        public static Partial<PermissionSnapshotDTODto> WithName(this Partial<PermissionSnapshotDTODto> it)    => it.AddFieldName("name");
+        public static Partial<PermissionSnapshotDTODto> WithName(this Partial<PermissionSnapshotDTODto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<PermissionSnapshotDTODto> WithVersion(this Partial<PermissionSnapshotDTODto> it)    => it.AddFieldName("version");
+        public static Partial<PermissionSnapshotDTODto> WithVersion(this Partial<PermissionSnapshotDTODto> it)
+            => it.AddFieldName("version");
         
-        public static Partial<PermissionSnapshotDTODto> WithSize(this Partial<PermissionSnapshotDTODto> it)    => it.AddFieldName("size");
+        public static Partial<PermissionSnapshotDTODto> WithSize(this Partial<PermissionSnapshotDTODto> it)
+            => it.AddFieldName("size");
         
     }
     

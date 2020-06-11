@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.AuthModuleUsageDtoExtensions
 {
     public static class AuthModuleUsageDtoPartialExtensions
     {
-        public static Partial<AuthModuleUsageDto> WithAuthModule(this Partial<AuthModuleUsageDto> it)    => it.AddFieldName("authModule");
+        public static Partial<AuthModuleUsageDto> WithAuthModule(this Partial<AuthModuleUsageDto> it)
+            => it.AddFieldName("authModule");
         
-        public static Partial<AuthModuleUsageDto> WithAuthModule(this Partial<AuthModuleUsageDto> it, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partialBuilder)    => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModuleDto>()));
+        public static Partial<AuthModuleUsageDto> WithAuthModule(this Partial<AuthModuleUsageDto> it, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>> partialBuilder)
+            => it.AddFieldName("authModule", partialBuilder(new Partial<ESAuthModuleDto>(it)));
         
-        public static Partial<AuthModuleUsageDto> WithProfiles(this Partial<AuthModuleUsageDto> it)    => it.AddFieldName("profiles");
+        public static Partial<AuthModuleUsageDto> WithProfiles(this Partial<AuthModuleUsageDto> it)
+            => it.AddFieldName("profiles");
         
     }
     

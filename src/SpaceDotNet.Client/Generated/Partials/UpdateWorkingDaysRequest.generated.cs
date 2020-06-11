@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.UpdateWorkingDaysRequestExtensions
 {
     public static class UpdateWorkingDaysRequestPartialExtensions
     {
-        public static Partial<UpdateWorkingDaysRequest> WithProfile(this Partial<UpdateWorkingDaysRequest> it)    => it.AddFieldName("profile");
+        public static Partial<UpdateWorkingDaysRequest> WithProfile(this Partial<UpdateWorkingDaysRequest> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<UpdateWorkingDaysRequest> WithDateStart(this Partial<UpdateWorkingDaysRequest> it)    => it.AddFieldName("dateStart");
+        public static Partial<UpdateWorkingDaysRequest> WithDateStart(this Partial<UpdateWorkingDaysRequest> it)
+            => it.AddFieldName("dateStart");
         
-        public static Partial<UpdateWorkingDaysRequest> WithDateEnd(this Partial<UpdateWorkingDaysRequest> it)    => it.AddFieldName("dateEnd");
+        public static Partial<UpdateWorkingDaysRequest> WithDateEnd(this Partial<UpdateWorkingDaysRequest> it)
+            => it.AddFieldName("dateEnd");
         
-        public static Partial<UpdateWorkingDaysRequest> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequest> it)    => it.AddFieldName("workingDaysSpec");
+        public static Partial<UpdateWorkingDaysRequest> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequest> it)
+            => it.AddFieldName("workingDaysSpec");
         
-        public static Partial<UpdateWorkingDaysRequest> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequest> it, Func<Partial<WorkingDaysSpecDto>, Partial<WorkingDaysSpecDto>> partialBuilder)    => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpecDto>()));
+        public static Partial<UpdateWorkingDaysRequest> WithWorkingDaysSpec(this Partial<UpdateWorkingDaysRequest> it, Func<Partial<WorkingDaysSpecDto>, Partial<WorkingDaysSpecDto>> partialBuilder)
+            => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpecDto>(it)));
         
     }
     

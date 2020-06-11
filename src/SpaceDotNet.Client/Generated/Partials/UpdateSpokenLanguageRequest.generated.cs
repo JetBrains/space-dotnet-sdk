@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.UpdateSpokenLanguageRequestExtensions
 {
     public static class UpdateSpokenLanguageRequestPartialExtensions
     {
-        public static Partial<UpdateSpokenLanguageRequest> WithLanguage(this Partial<UpdateSpokenLanguageRequest> it)    => it.AddFieldName("language");
+        public static Partial<UpdateSpokenLanguageRequest> WithLanguage(this Partial<UpdateSpokenLanguageRequest> it)
+            => it.AddFieldName("language");
         
-        public static Partial<UpdateSpokenLanguageRequest> WithFirstName(this Partial<UpdateSpokenLanguageRequest> it)    => it.AddFieldName("firstName");
+        public static Partial<UpdateSpokenLanguageRequest> WithFirstName(this Partial<UpdateSpokenLanguageRequest> it)
+            => it.AddFieldName("firstName");
         
-        public static Partial<UpdateSpokenLanguageRequest> WithLastName(this Partial<UpdateSpokenLanguageRequest> it)    => it.AddFieldName("lastName");
+        public static Partial<UpdateSpokenLanguageRequest> WithLastName(this Partial<UpdateSpokenLanguageRequest> it)
+            => it.AddFieldName("lastName");
         
     }
     

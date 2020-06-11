@@ -23,23 +23,32 @@ namespace SpaceDotNet.Client.FTSBlogDtoExtensions
 {
     public static class FTSBlogDtoPartialExtensions
     {
-        public static Partial<FTSBlogDto> WithId(this Partial<FTSBlogDto> it)    => it.AddFieldName("id");
+        public static Partial<FTSBlogDto> WithId(this Partial<FTSBlogDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<FTSBlogDto> WithTitle(this Partial<FTSBlogDto> it)    => it.AddFieldName("title");
+        public static Partial<FTSBlogDto> WithTitle(this Partial<FTSBlogDto> it)
+            => it.AddFieldName("title");
         
-        public static Partial<FTSBlogDto> WithAuthor(this Partial<FTSBlogDto> it)    => it.AddFieldName("author");
+        public static Partial<FTSBlogDto> WithAuthor(this Partial<FTSBlogDto> it)
+            => it.AddFieldName("author");
         
-        public static Partial<FTSBlogDto> WithAuthor(this Partial<FTSBlogDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<FTSBlogDto> WithAuthor(this Partial<FTSBlogDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<FTSBlogDto> WithDate(this Partial<FTSBlogDto> it)    => it.AddFieldName("date");
+        public static Partial<FTSBlogDto> WithDate(this Partial<FTSBlogDto> it)
+            => it.AddFieldName("date");
         
-        public static Partial<FTSBlogDto> WithSnippets(this Partial<FTSBlogDto> it)    => it.AddFieldName("snippets");
+        public static Partial<FTSBlogDto> WithSnippets(this Partial<FTSBlogDto> it)
+            => it.AddFieldName("snippets");
         
-        public static Partial<FTSBlogDto> WithSnippets(this Partial<FTSBlogDto> it, Func<Partial<FTSSnippetDto>, Partial<FTSSnippetDto>> partialBuilder)    => it.AddFieldName("snippets", partialBuilder(new Partial<FTSSnippetDto>()));
+        public static Partial<FTSBlogDto> WithSnippets(this Partial<FTSBlogDto> it, Func<Partial<FTSSnippetDto>, Partial<FTSSnippetDto>> partialBuilder)
+            => it.AddFieldName("snippets", partialBuilder(new Partial<FTSSnippetDto>(it)));
         
-        public static Partial<FTSBlogDto> WithComments(this Partial<FTSBlogDto> it)    => it.AddFieldName("comments");
+        public static Partial<FTSBlogDto> WithComments(this Partial<FTSBlogDto> it)
+            => it.AddFieldName("comments");
         
-        public static Partial<FTSBlogDto> WithComments(this Partial<FTSBlogDto> it, Func<Partial<FTSBlogCommentDto>, Partial<FTSBlogCommentDto>> partialBuilder)    => it.AddFieldName("comments", partialBuilder(new Partial<FTSBlogCommentDto>()));
+        public static Partial<FTSBlogDto> WithComments(this Partial<FTSBlogDto> it, Func<Partial<FTSBlogCommentDto>, Partial<FTSBlogCommentDto>> partialBuilder)
+            => it.AddFieldName("comments", partialBuilder(new Partial<FTSBlogCommentDto>(it)));
         
     }
     

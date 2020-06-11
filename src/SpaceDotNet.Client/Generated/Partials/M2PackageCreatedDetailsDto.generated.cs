@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.M2PackageCreatedDetailsDtoExtensions
 {
     public static class M2PackageCreatedDetailsDtoPartialExtensions
     {
-        public static Partial<M2PackageCreatedDetailsDto> WithPkg(this Partial<M2PackageCreatedDetailsDto> it)    => it.AddFieldName("pkg");
+        public static Partial<M2PackageCreatedDetailsDto> WithPkg(this Partial<M2PackageCreatedDetailsDto> it)
+            => it.AddFieldName("pkg");
         
-        public static Partial<M2PackageCreatedDetailsDto> WithPkg(this Partial<M2PackageCreatedDetailsDto> it, Func<Partial<PackageVersionInfoDto>, Partial<PackageVersionInfoDto>> partialBuilder)    => it.AddFieldName("pkg", partialBuilder(new Partial<PackageVersionInfoDto>()));
+        public static Partial<M2PackageCreatedDetailsDto> WithPkg(this Partial<M2PackageCreatedDetailsDto> it, Func<Partial<PackageVersionInfoDto>, Partial<PackageVersionInfoDto>> partialBuilder)
+            => it.AddFieldName("pkg", partialBuilder(new Partial<PackageVersionInfoDto>(it)));
         
     }
     

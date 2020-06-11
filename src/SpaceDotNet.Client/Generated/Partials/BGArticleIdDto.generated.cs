@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.BGArticleIdDtoExtensions
 {
     public static class BGArticleIdDtoPartialExtensions
     {
-        public static Partial<BGArticleIdDto> WithId(this Partial<BGArticleIdDto> it)    => it.AddFieldName("id");
+        public static Partial<BGArticleIdDto> WithId(this Partial<BGArticleIdDto> it)
+            => it.AddFieldName("id");
         
     }
     

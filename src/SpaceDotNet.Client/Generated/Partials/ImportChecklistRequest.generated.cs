@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.ImportChecklistRequestExtensions
 {
     public static class ImportChecklistRequestPartialExtensions
     {
-        public static Partial<ImportChecklistRequest> WithName(this Partial<ImportChecklistRequest> it)    => it.AddFieldName("name");
+        public static Partial<ImportChecklistRequest> WithName(this Partial<ImportChecklistRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<ImportChecklistRequest> WithTabIndentedLines(this Partial<ImportChecklistRequest> it)    => it.AddFieldName("tabIndentedLines");
+        public static Partial<ImportChecklistRequest> WithTabIndentedLines(this Partial<ImportChecklistRequest> it)
+            => it.AddFieldName("tabIndentedLines");
         
     }
     

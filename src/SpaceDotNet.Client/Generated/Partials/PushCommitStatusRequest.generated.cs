@@ -23,25 +23,35 @@ namespace SpaceDotNet.Client.PushCommitStatusRequestExtensions
 {
     public static class PushCommitStatusRequestPartialExtensions
     {
-        public static Partial<PushCommitStatusRequest> WithBranch(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("branch");
+        public static Partial<PushCommitStatusRequest> WithBranch(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("branch");
         
-        public static Partial<PushCommitStatusRequest> WithChanges(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("changes");
+        public static Partial<PushCommitStatusRequest> WithChanges(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("changes");
         
-        public static Partial<PushCommitStatusRequest> WithExecutionStatus(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("executionStatus");
+        public static Partial<PushCommitStatusRequest> WithExecutionStatus(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("executionStatus");
         
-        public static Partial<PushCommitStatusRequest> WithExecutionStatus(this Partial<PushCommitStatusRequest> it, Func<Partial<ExecutionStatus>, Partial<ExecutionStatus>> partialBuilder)    => it.AddFieldName("executionStatus", partialBuilder(new Partial<ExecutionStatus>()));
+        public static Partial<PushCommitStatusRequest> WithExecutionStatus(this Partial<PushCommitStatusRequest> it, Func<Partial<ExecutionStatus>, Partial<ExecutionStatus>> partialBuilder)
+            => it.AddFieldName("executionStatus", partialBuilder(new Partial<ExecutionStatus>(it)));
         
-        public static Partial<PushCommitStatusRequest> WithUrl(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("url");
+        public static Partial<PushCommitStatusRequest> WithUrl(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("url");
         
-        public static Partial<PushCommitStatusRequest> WithExternalServiceName(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("externalServiceName");
+        public static Partial<PushCommitStatusRequest> WithExternalServiceName(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("externalServiceName");
         
-        public static Partial<PushCommitStatusRequest> WithTaskName(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("taskName");
+        public static Partial<PushCommitStatusRequest> WithTaskName(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("taskName");
         
-        public static Partial<PushCommitStatusRequest> WithTaskId(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("taskId");
+        public static Partial<PushCommitStatusRequest> WithTaskId(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("taskId");
         
-        public static Partial<PushCommitStatusRequest> WithTimestamp(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("timestamp");
+        public static Partial<PushCommitStatusRequest> WithTimestamp(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("timestamp");
         
-        public static Partial<PushCommitStatusRequest> WithDescription(this Partial<PushCommitStatusRequest> it)    => it.AddFieldName("description");
+        public static Partial<PushCommitStatusRequest> WithDescription(this Partial<PushCommitStatusRequest> it)
+            => it.AddFieldName("description");
         
     }
     

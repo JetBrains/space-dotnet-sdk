@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.AddResponsibilitySubjectRequestExtensions
 {
     public static class AddResponsibilitySubjectRequestPartialExtensions
     {
-        public static Partial<AddResponsibilitySubjectRequest> WithName(this Partial<AddResponsibilitySubjectRequest> it)    => it.AddFieldName("name");
+        public static Partial<AddResponsibilitySubjectRequest> WithName(this Partial<AddResponsibilitySubjectRequest> it)
+            => it.AddFieldName("name");
         
     }
     

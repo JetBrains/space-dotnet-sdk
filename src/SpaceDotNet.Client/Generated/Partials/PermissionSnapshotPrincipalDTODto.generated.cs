@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.PermissionSnapshotPrincipalDTODtoExtensions
 {
     public static class PermissionSnapshotPrincipalDTODtoPartialExtensions
     {
-        public static Partial<PermissionSnapshotPrincipalDTODto> WithId(this Partial<PermissionSnapshotPrincipalDTODto> it)    => it.AddFieldName("id");
+        public static Partial<PermissionSnapshotPrincipalDTODto> WithId(this Partial<PermissionSnapshotPrincipalDTODto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<PermissionSnapshotPrincipalDTODto> WithType(this Partial<PermissionSnapshotPrincipalDTODto> it)    => it.AddFieldName("type");
+        public static Partial<PermissionSnapshotPrincipalDTODto> WithType(this Partial<PermissionSnapshotPrincipalDTODto> it)
+            => it.AddFieldName("type");
         
-        public static Partial<PermissionSnapshotPrincipalDTODto> WithName(this Partial<PermissionSnapshotPrincipalDTODto> it)    => it.AddFieldName("name");
+        public static Partial<PermissionSnapshotPrincipalDTODto> WithName(this Partial<PermissionSnapshotPrincipalDTODto> it)
+            => it.AddFieldName("name");
         
     }
     

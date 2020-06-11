@@ -23,15 +23,20 @@ namespace SpaceDotNet.Client.CodeLineDtoExtensions
 {
     public static class CodeLineDtoPartialExtensions
     {
-        public static Partial<CodeLineDto> WithText(this Partial<CodeLineDto> it)    => it.AddFieldName("text");
+        public static Partial<CodeLineDto> WithText(this Partial<CodeLineDto> it)
+            => it.AddFieldName("text");
         
-        public static Partial<CodeLineDto> WithIndex(this Partial<CodeLineDto> it)    => it.AddFieldName("index");
+        public static Partial<CodeLineDto> WithIndex(this Partial<CodeLineDto> it)
+            => it.AddFieldName("index");
         
-        public static Partial<CodeLineDto> WithOffset(this Partial<CodeLineDto> it)    => it.AddFieldName("offset");
+        public static Partial<CodeLineDto> WithOffset(this Partial<CodeLineDto> it)
+            => it.AddFieldName("offset");
         
-        public static Partial<CodeLineDto> WithSyntax(this Partial<CodeLineDto> it)    => it.AddFieldName("syntax");
+        public static Partial<CodeLineDto> WithSyntax(this Partial<CodeLineDto> it)
+            => it.AddFieldName("syntax");
         
-        public static Partial<CodeLineDto> WithSyntax(this Partial<CodeLineDto> it, Func<Partial<SyntaxMarkupDto>, Partial<SyntaxMarkupDto>> partialBuilder)    => it.AddFieldName("syntax", partialBuilder(new Partial<SyntaxMarkupDto>()));
+        public static Partial<CodeLineDto> WithSyntax(this Partial<CodeLineDto> it, Func<Partial<SyntaxMarkupDto>, Partial<SyntaxMarkupDto>> partialBuilder)
+            => it.AddFieldName("syntax", partialBuilder(new Partial<SyntaxMarkupDto>(it)));
         
     }
     

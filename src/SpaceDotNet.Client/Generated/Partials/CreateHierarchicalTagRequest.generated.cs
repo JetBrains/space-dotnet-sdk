@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.CreateHierarchicalTagRequestExtensions
 {
     public static class CreateHierarchicalTagRequestPartialExtensions
     {
-        public static Partial<CreateHierarchicalTagRequest> WithParentTagId(this Partial<CreateHierarchicalTagRequest> it)    => it.AddFieldName("parentTagId");
+        public static Partial<CreateHierarchicalTagRequest> WithParentTagId(this Partial<CreateHierarchicalTagRequest> it)
+            => it.AddFieldName("parentTagId");
         
-        public static Partial<CreateHierarchicalTagRequest> WithPath(this Partial<CreateHierarchicalTagRequest> it)    => it.AddFieldName("path");
+        public static Partial<CreateHierarchicalTagRequest> WithPath(this Partial<CreateHierarchicalTagRequest> it)
+            => it.AddFieldName("path");
         
     }
     

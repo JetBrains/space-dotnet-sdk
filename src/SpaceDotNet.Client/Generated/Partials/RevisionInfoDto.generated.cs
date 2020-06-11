@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.RevisionInfoDtoExtensions
 {
     public static class RevisionInfoDtoPartialExtensions
     {
-        public static Partial<RevisionInfoDto> WithRevision(this Partial<RevisionInfoDto> it)    => it.AddFieldName("revision");
+        public static Partial<RevisionInfoDto> WithRevision(this Partial<RevisionInfoDto> it)
+            => it.AddFieldName("revision");
         
-        public static Partial<RevisionInfoDto> WithDate(this Partial<RevisionInfoDto> it)    => it.AddFieldName("date");
+        public static Partial<RevisionInfoDto> WithDate(this Partial<RevisionInfoDto> it)
+            => it.AddFieldName("date");
         
-        public static Partial<RevisionInfoDto> WithMessage(this Partial<RevisionInfoDto> it)    => it.AddFieldName("message");
+        public static Partial<RevisionInfoDto> WithMessage(this Partial<RevisionInfoDto> it)
+            => it.AddFieldName("message");
         
     }
     

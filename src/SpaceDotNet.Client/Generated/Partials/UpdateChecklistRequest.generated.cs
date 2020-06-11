@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.UpdateChecklistRequestExtensions
 {
     public static class UpdateChecklistRequestPartialExtensions
     {
-        public static Partial<UpdateChecklistRequest> WithName(this Partial<UpdateChecklistRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdateChecklistRequest> WithName(this Partial<UpdateChecklistRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdateChecklistRequest> WithDescription(this Partial<UpdateChecklistRequest> it)    => it.AddFieldName("description");
+        public static Partial<UpdateChecklistRequest> WithDescription(this Partial<UpdateChecklistRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<UpdateChecklistRequest> WithOwner(this Partial<UpdateChecklistRequest> it)    => it.AddFieldName("owner");
+        public static Partial<UpdateChecklistRequest> WithOwner(this Partial<UpdateChecklistRequest> it)
+            => it.AddFieldName("owner");
         
-        public static Partial<UpdateChecklistRequest> WithTag(this Partial<UpdateChecklistRequest> it)    => it.AddFieldName("tag");
+        public static Partial<UpdateChecklistRequest> WithTag(this Partial<UpdateChecklistRequest> it)
+            => it.AddFieldName("tag");
         
     }
     

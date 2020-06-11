@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.GitAuthorInfoDtoExtensions
 {
     public static class GitAuthorInfoDtoPartialExtensions
     {
-        public static Partial<GitAuthorInfoDto> WithName(this Partial<GitAuthorInfoDto> it)    => it.AddFieldName("name");
+        public static Partial<GitAuthorInfoDto> WithName(this Partial<GitAuthorInfoDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<GitAuthorInfoDto> WithEmail(this Partial<GitAuthorInfoDto> it)    => it.AddFieldName("email");
+        public static Partial<GitAuthorInfoDto> WithEmail(this Partial<GitAuthorInfoDto> it)
+            => it.AddFieldName("email");
         
     }
     

@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.SSLKeystoreDtoExtensions
 {
     public static class SSLKeystoreDtoPartialExtensions
     {
-        public static Partial<SSLKeystoreDto> WithName(this Partial<SSLKeystoreDto> it)    => it.AddFieldName("name");
+        public static Partial<SSLKeystoreDto> WithName(this Partial<SSLKeystoreDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<SSLKeystoreDto> WithCreated(this Partial<SSLKeystoreDto> it)    => it.AddFieldName("created");
+        public static Partial<SSLKeystoreDto> WithCreated(this Partial<SSLKeystoreDto> it)
+            => it.AddFieldName("created");
         
     }
     

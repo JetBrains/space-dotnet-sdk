@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.UpdateHolidayRequestExtensions
 {
     public static class UpdateHolidayRequestPartialExtensions
     {
-        public static Partial<UpdateHolidayRequest> WithCalendar(this Partial<UpdateHolidayRequest> it)    => it.AddFieldName("calendar");
+        public static Partial<UpdateHolidayRequest> WithCalendar(this Partial<UpdateHolidayRequest> it)
+            => it.AddFieldName("calendar");
         
-        public static Partial<UpdateHolidayRequest> WithName(this Partial<UpdateHolidayRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdateHolidayRequest> WithName(this Partial<UpdateHolidayRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdateHolidayRequest> WithDate(this Partial<UpdateHolidayRequest> it)    => it.AddFieldName("date");
+        public static Partial<UpdateHolidayRequest> WithDate(this Partial<UpdateHolidayRequest> it)
+            => it.AddFieldName("date");
         
-        public static Partial<UpdateHolidayRequest> WithWorkingDay(this Partial<UpdateHolidayRequest> it)    => it.AddFieldName("workingDay");
+        public static Partial<UpdateHolidayRequest> WithWorkingDay(this Partial<UpdateHolidayRequest> it)
+            => it.AddFieldName("workingDay");
         
     }
     

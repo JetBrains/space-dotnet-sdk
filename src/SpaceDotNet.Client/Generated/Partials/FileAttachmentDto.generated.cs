@@ -23,11 +23,14 @@ namespace SpaceDotNet.Client.FileAttachmentDtoExtensions
 {
     public static class FileAttachmentDtoPartialExtensions
     {
-        public static Partial<FileAttachmentDto> WithId(this Partial<FileAttachmentDto> it)    => it.AddFieldName("id");
+        public static Partial<FileAttachmentDto> WithId(this Partial<FileAttachmentDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<FileAttachmentDto> WithSizeBytes(this Partial<FileAttachmentDto> it)    => it.AddFieldName("sizeBytes");
+        public static Partial<FileAttachmentDto> WithSizeBytes(this Partial<FileAttachmentDto> it)
+            => it.AddFieldName("sizeBytes");
         
-        public static Partial<FileAttachmentDto> WithFilename(this Partial<FileAttachmentDto> it)    => it.AddFieldName("filename");
+        public static Partial<FileAttachmentDto> WithFilename(this Partial<FileAttachmentDto> it)
+            => it.AddFieldName("filename");
         
     }
     

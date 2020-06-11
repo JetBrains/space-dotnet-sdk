@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.MetricsPointDtoExtensions
 {
     public static class MetricsPointDtoPartialExtensions
     {
-        public static Partial<MetricsPointDto> WithKey(this Partial<MetricsPointDto> it)    => it.AddFieldName("key");
+        public static Partial<MetricsPointDto> WithKey(this Partial<MetricsPointDto> it)
+            => it.AddFieldName("key");
         
-        public static Partial<MetricsPointDto> WithValue(this Partial<MetricsPointDto> it)    => it.AddFieldName("value");
+        public static Partial<MetricsPointDto> WithValue(this Partial<MetricsPointDto> it)
+            => it.AddFieldName("value");
         
     }
     

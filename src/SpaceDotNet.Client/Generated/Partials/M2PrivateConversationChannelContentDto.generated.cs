@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.M2PrivateConversationChannelContentDtoExtensions
 {
     public static class M2PrivateConversationChannelContentDtoPartialExtensions
     {
-        public static Partial<M2PrivateConversationChannelContentDto> WithChannelId(this Partial<M2PrivateConversationChannelContentDto> it)    => it.AddFieldName("channelId");
+        public static Partial<M2PrivateConversationChannelContentDto> WithChannelId(this Partial<M2PrivateConversationChannelContentDto> it)
+            => it.AddFieldName("channelId");
         
-        public static Partial<M2PrivateConversationChannelContentDto> WithSubject(this Partial<M2PrivateConversationChannelContentDto> it)    => it.AddFieldName("subject");
+        public static Partial<M2PrivateConversationChannelContentDto> WithSubject(this Partial<M2PrivateConversationChannelContentDto> it)
+            => it.AddFieldName("subject");
         
-        public static Partial<M2PrivateConversationChannelContentDto> WithMembers(this Partial<M2PrivateConversationChannelContentDto> it)    => it.AddFieldName("members");
+        public static Partial<M2PrivateConversationChannelContentDto> WithMembers(this Partial<M2PrivateConversationChannelContentDto> it)
+            => it.AddFieldName("members");
         
-        public static Partial<M2PrivateConversationChannelContentDto> WithMembers(this Partial<M2PrivateConversationChannelContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("members", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<M2PrivateConversationChannelContentDto> WithMembers(this Partial<M2PrivateConversationChannelContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("members", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<M2PrivateConversationChannelContentDto> WithNotificationDefaults(this Partial<M2PrivateConversationChannelContentDto> it)    => it.AddFieldName("notificationDefaults");
+        public static Partial<M2PrivateConversationChannelContentDto> WithNotificationDefaults(this Partial<M2PrivateConversationChannelContentDto> it)
+            => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2PrivateConversationChannelContentDto> WithNotificationDefaults(this Partial<M2PrivateConversationChannelContentDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2PrivateConversationChannelContentDto> WithNotificationDefaults(this Partial<M2PrivateConversationChannelContentDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
+            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>(it)));
         
     }
     

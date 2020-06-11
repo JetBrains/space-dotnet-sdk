@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.MetricsEventDtoExtensions
 {
     public static class MetricsEventDtoPartialExtensions
     {
-        public static Partial<MetricsEventDto> WithId(this Partial<MetricsEventDto> it)    => it.AddFieldName("id");
+        public static Partial<MetricsEventDto> WithId(this Partial<MetricsEventDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<MetricsEventDto> WithTime(this Partial<MetricsEventDto> it)    => it.AddFieldName("time");
+        public static Partial<MetricsEventDto> WithTime(this Partial<MetricsEventDto> it)
+            => it.AddFieldName("time");
         
-        public static Partial<MetricsEventDto> WithProps(this Partial<MetricsEventDto> it)    => it.AddFieldName("props");
+        public static Partial<MetricsEventDto> WithProps(this Partial<MetricsEventDto> it)
+            => it.AddFieldName("props");
         
-        public static Partial<MetricsEventDto> WithProps(this Partial<MetricsEventDto> it, Func<Partial<MetricsPropDto>, Partial<MetricsPropDto>> partialBuilder)    => it.AddFieldName("props", partialBuilder(new Partial<MetricsPropDto>()));
+        public static Partial<MetricsEventDto> WithProps(this Partial<MetricsEventDto> it, Func<Partial<MetricsPropDto>, Partial<MetricsPropDto>> partialBuilder)
+            => it.AddFieldName("props", partialBuilder(new Partial<MetricsPropDto>(it)));
         
-        public static Partial<MetricsEventDto> WithPoints(this Partial<MetricsEventDto> it)    => it.AddFieldName("points");
+        public static Partial<MetricsEventDto> WithPoints(this Partial<MetricsEventDto> it)
+            => it.AddFieldName("points");
         
-        public static Partial<MetricsEventDto> WithPoints(this Partial<MetricsEventDto> it, Func<Partial<MetricsPointDto>, Partial<MetricsPointDto>> partialBuilder)    => it.AddFieldName("points", partialBuilder(new Partial<MetricsPointDto>()));
+        public static Partial<MetricsEventDto> WithPoints(this Partial<MetricsEventDto> it, Func<Partial<MetricsPointDto>, Partial<MetricsPointDto>> partialBuilder)
+            => it.AddFieldName("points", partialBuilder(new Partial<MetricsPointDto>(it)));
         
     }
     

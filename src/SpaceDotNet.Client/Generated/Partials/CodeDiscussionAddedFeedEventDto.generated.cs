@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.CodeDiscussionAddedFeedEventDtoExtensions
 {
     public static class CodeDiscussionAddedFeedEventDtoPartialExtensions
     {
-        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEventDto> it)    => it.AddFieldName("codeDiscussion");
+        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEventDto> it)
+            => it.AddFieldName("codeDiscussion");
         
-        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEventDto> it, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder)    => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecordDto>()));
+        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeDiscussion(this Partial<CodeDiscussionAddedFeedEventDto> it, Func<Partial<CodeDiscussionRecordDto>, Partial<CodeDiscussionRecordDto>> partialBuilder)
+            => it.AddFieldName("codeDiscussion", partialBuilder(new Partial<CodeDiscussionRecordDto>(it)));
         
-        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeReview(this Partial<CodeDiscussionAddedFeedEventDto> it)    => it.AddFieldName("codeReview");
+        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeReview(this Partial<CodeDiscussionAddedFeedEventDto> it)
+            => it.AddFieldName("codeReview");
         
-        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeReview(this Partial<CodeDiscussionAddedFeedEventDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("codeReview", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<CodeDiscussionAddedFeedEventDto> WithCodeReview(this Partial<CodeDiscussionAddedFeedEventDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
+            => it.AddFieldName("codeReview", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
         
     }
     

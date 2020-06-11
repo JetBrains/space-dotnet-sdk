@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.UpdateApplicationPasswordRequestExtensions
 {
     public static class UpdateApplicationPasswordRequestPartialExtensions
     {
-        public static Partial<UpdateApplicationPasswordRequest> WithName(this Partial<UpdateApplicationPasswordRequest> it)    => it.AddFieldName("name");
+        public static Partial<UpdateApplicationPasswordRequest> WithName(this Partial<UpdateApplicationPasswordRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<UpdateApplicationPasswordRequest> WithScope(this Partial<UpdateApplicationPasswordRequest> it)    => it.AddFieldName("scope");
+        public static Partial<UpdateApplicationPasswordRequest> WithScope(this Partial<UpdateApplicationPasswordRequest> it)
+            => it.AddFieldName("scope");
         
     }
     

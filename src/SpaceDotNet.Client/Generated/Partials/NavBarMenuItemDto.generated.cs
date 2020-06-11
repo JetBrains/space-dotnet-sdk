@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.NavBarMenuItemDtoExtensions
 {
     public static class NavBarMenuItemDtoPartialExtensions
     {
-        public static Partial<NavBarMenuItemDto> WithItem(this Partial<NavBarMenuItemDto> it)    => it.AddFieldName("item");
+        public static Partial<NavBarMenuItemDto> WithItem(this Partial<NavBarMenuItemDto> it)
+            => it.AddFieldName("item");
         
-        public static Partial<NavBarMenuItemDto> WithEnabled(this Partial<NavBarMenuItemDto> it)    => it.AddFieldName("enabled");
+        public static Partial<NavBarMenuItemDto> WithEnabled(this Partial<NavBarMenuItemDto> it)
+            => it.AddFieldName("enabled");
         
     }
     

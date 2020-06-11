@@ -23,13 +23,17 @@ namespace SpaceDotNet.Client.DTORightsGroupDtoExtensions
 {
     public static class DTORightsGroupDtoPartialExtensions
     {
-        public static Partial<DTORightsGroupDto> WithTitle(this Partial<DTORightsGroupDto> it)    => it.AddFieldName("title");
+        public static Partial<DTORightsGroupDto> WithTitle(this Partial<DTORightsGroupDto> it)
+            => it.AddFieldName("title");
         
-        public static Partial<DTORightsGroupDto> WithPriority(this Partial<DTORightsGroupDto> it)    => it.AddFieldName("priority");
+        public static Partial<DTORightsGroupDto> WithPriority(this Partial<DTORightsGroupDto> it)
+            => it.AddFieldName("priority");
         
-        public static Partial<DTORightsGroupDto> WithRights(this Partial<DTORightsGroupDto> it)    => it.AddFieldName("rights");
+        public static Partial<DTORightsGroupDto> WithRights(this Partial<DTORightsGroupDto> it)
+            => it.AddFieldName("rights");
         
-        public static Partial<DTORightsGroupDto> WithRights(this Partial<DTORightsGroupDto> it, Func<Partial<DTORightDto>, Partial<DTORightDto>> partialBuilder)    => it.AddFieldName("rights", partialBuilder(new Partial<DTORightDto>()));
+        public static Partial<DTORightsGroupDto> WithRights(this Partial<DTORightsGroupDto> it, Func<Partial<DTORightDto>, Partial<DTORightDto>> partialBuilder)
+            => it.AddFieldName("rights", partialBuilder(new Partial<DTORightDto>(it)));
         
     }
     

@@ -23,27 +23,38 @@ namespace SpaceDotNet.Client.M2ChannelContentCodeReviewFeedDtoExtensions
 {
     public static class M2ChannelContentCodeReviewFeedDtoPartialExtensions
     {
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithCodeReviewId(this Partial<M2ChannelContentCodeReviewFeedDto> it)    => it.AddFieldName("codeReviewId");
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithCodeReviewId(this Partial<M2ChannelContentCodeReviewFeedDto> it)
+            => it.AddFieldName("codeReviewId");
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewFeedDto> it)    => it.AddFieldName("notificationDefaults");
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewFeedDto> it)
+            => it.AddFieldName("notificationDefaults");
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)    => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>()));
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithNotificationDefaults(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<ChannelSpecificDefaultsDto>, Partial<ChannelSpecificDefaultsDto>> partialBuilder)
+            => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaultsDto>(it)));
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithCodeReview(this Partial<M2ChannelContentCodeReviewFeedDto> it)    => it.AddFieldName("codeReview");
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithCodeReview(this Partial<M2ChannelContentCodeReviewFeedDto> it)
+            => it.AddFieldName("codeReview");
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithCodeReview(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)    => it.AddFieldName("codeReview", partialBuilder(new Partial<CodeReviewRecordDto>()));
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithCodeReview(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
+            => it.AddFieldName("codeReview", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithParticipants(this Partial<M2ChannelContentCodeReviewFeedDto> it)    => it.AddFieldName("participants");
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithParticipants(this Partial<M2ChannelContentCodeReviewFeedDto> it)
+            => it.AddFieldName("participants");
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithParticipants(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<CodeReviewParticipantsDto>, Partial<CodeReviewParticipantsDto>> partialBuilder)    => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipantsDto>()));
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithParticipants(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<CodeReviewParticipantsDto>, Partial<CodeReviewParticipantsDto>> partialBuilder)
+            => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipantsDto>(it)));
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithPendingMessageCounter(this Partial<M2ChannelContentCodeReviewFeedDto> it)    => it.AddFieldName("pendingMessageCounter");
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithPendingMessageCounter(this Partial<M2ChannelContentCodeReviewFeedDto> it)
+            => it.AddFieldName("pendingMessageCounter");
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithPendingMessageCounter(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<CodeReviewPendingMessageCounterDto>, Partial<CodeReviewPendingMessageCounterDto>> partialBuilder)    => it.AddFieldName("pendingMessageCounter", partialBuilder(new Partial<CodeReviewPendingMessageCounterDto>()));
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithPendingMessageCounter(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<CodeReviewPendingMessageCounterDto>, Partial<CodeReviewPendingMessageCounterDto>> partialBuilder)
+            => it.AddFieldName("pendingMessageCounter", partialBuilder(new Partial<CodeReviewPendingMessageCounterDto>(it)));
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithProject(this Partial<M2ChannelContentCodeReviewFeedDto> it)    => it.AddFieldName("project");
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithProject(this Partial<M2ChannelContentCodeReviewFeedDto> it)
+            => it.AddFieldName("project");
         
-        public static Partial<M2ChannelContentCodeReviewFeedDto> WithProject(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)    => it.AddFieldName("project", partialBuilder(new Partial<PRProjectDto>()));
+        public static Partial<M2ChannelContentCodeReviewFeedDto> WithProject(this Partial<M2ChannelContentCodeReviewFeedDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<PRProjectDto>(it)));
         
     }
     

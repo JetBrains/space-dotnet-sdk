@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.UpdateRequestRequestExtensions
 {
     public static class UpdateRequestRequestPartialExtensions
     {
-        public static Partial<UpdateRequestRequest> WithApproved(this Partial<UpdateRequestRequest> it)    => it.AddFieldName("approved");
+        public static Partial<UpdateRequestRequest> WithApproved(this Partial<UpdateRequestRequest> it)
+            => it.AddFieldName("approved");
         
     }
     

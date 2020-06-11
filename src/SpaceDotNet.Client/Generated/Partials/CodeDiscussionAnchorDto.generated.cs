@@ -23,23 +23,32 @@ namespace SpaceDotNet.Client.CodeDiscussionAnchorDtoExtensions
 {
     public static class CodeDiscussionAnchorDtoPartialExtensions
     {
-        public static Partial<CodeDiscussionAnchorDto> WithProject(this Partial<CodeDiscussionAnchorDto> it)    => it.AddFieldName("project");
+        public static Partial<CodeDiscussionAnchorDto> WithProject(this Partial<CodeDiscussionAnchorDto> it)
+            => it.AddFieldName("project");
         
-        public static Partial<CodeDiscussionAnchorDto> WithProject(this Partial<CodeDiscussionAnchorDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("project", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<CodeDiscussionAnchorDto> WithProject(this Partial<CodeDiscussionAnchorDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
+            => it.AddFieldName("project", partialBuilder(new Partial<ProjectKeyDto>(it)));
         
-        public static Partial<CodeDiscussionAnchorDto> WithRepository(this Partial<CodeDiscussionAnchorDto> it)    => it.AddFieldName("repository");
+        public static Partial<CodeDiscussionAnchorDto> WithRepository(this Partial<CodeDiscussionAnchorDto> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<CodeDiscussionAnchorDto> WithRevision(this Partial<CodeDiscussionAnchorDto> it)    => it.AddFieldName("revision");
+        public static Partial<CodeDiscussionAnchorDto> WithRevision(this Partial<CodeDiscussionAnchorDto> it)
+            => it.AddFieldName("revision");
         
-        public static Partial<CodeDiscussionAnchorDto> WithFilename(this Partial<CodeDiscussionAnchorDto> it)    => it.AddFieldName("filename");
+        public static Partial<CodeDiscussionAnchorDto> WithFilename(this Partial<CodeDiscussionAnchorDto> it)
+            => it.AddFieldName("filename");
         
-        public static Partial<CodeDiscussionAnchorDto> WithLine(this Partial<CodeDiscussionAnchorDto> it)    => it.AddFieldName("line");
+        public static Partial<CodeDiscussionAnchorDto> WithLine(this Partial<CodeDiscussionAnchorDto> it)
+            => it.AddFieldName("line");
         
-        public static Partial<CodeDiscussionAnchorDto> WithOldLine(this Partial<CodeDiscussionAnchorDto> it)    => it.AddFieldName("oldLine");
+        public static Partial<CodeDiscussionAnchorDto> WithOldLine(this Partial<CodeDiscussionAnchorDto> it)
+            => it.AddFieldName("oldLine");
         
-        public static Partial<CodeDiscussionAnchorDto> WithInterpolatedLineState(this Partial<CodeDiscussionAnchorDto> it)    => it.AddFieldName("interpolatedLineState");
+        public static Partial<CodeDiscussionAnchorDto> WithInterpolatedLineState(this Partial<CodeDiscussionAnchorDto> it)
+            => it.AddFieldName("interpolatedLineState");
         
-        public static Partial<CodeDiscussionAnchorDto> WithInterpolatedLineState(this Partial<CodeDiscussionAnchorDto> it, Func<Partial<InterpolatedLineState>, Partial<InterpolatedLineState>> partialBuilder)    => it.AddFieldName("interpolatedLineState", partialBuilder(new Partial<InterpolatedLineState>()));
+        public static Partial<CodeDiscussionAnchorDto> WithInterpolatedLineState(this Partial<CodeDiscussionAnchorDto> it, Func<Partial<InterpolatedLineState>, Partial<InterpolatedLineState>> partialBuilder)
+            => it.AddFieldName("interpolatedLineState", partialBuilder(new Partial<InterpolatedLineState>(it)));
         
     }
     

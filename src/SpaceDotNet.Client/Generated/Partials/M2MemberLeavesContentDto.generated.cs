@@ -23,9 +23,11 @@ namespace SpaceDotNet.Client.M2MemberLeavesContentDtoExtensions
 {
     public static class M2MemberLeavesContentDtoPartialExtensions
     {
-        public static Partial<M2MemberLeavesContentDto> WithMember(this Partial<M2MemberLeavesContentDto> it)    => it.AddFieldName("member");
+        public static Partial<M2MemberLeavesContentDto> WithMember(this Partial<M2MemberLeavesContentDto> it)
+            => it.AddFieldName("member");
         
-        public static Partial<M2MemberLeavesContentDto> WithMember(this Partial<M2MemberLeavesContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<M2MemberLeavesContentDto> WithMember(this Partial<M2MemberLeavesContentDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("member", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
     }
     

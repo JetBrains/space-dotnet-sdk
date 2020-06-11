@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.PRPrivateProjectDtoExtensions
 {
     public static class PRPrivateProjectDtoPartialExtensions
     {
-        public static Partial<PRPrivateProjectDto> WithKey(this Partial<PRPrivateProjectDto> it)    => it.AddFieldName("key");
+        public static Partial<PRPrivateProjectDto> WithKey(this Partial<PRPrivateProjectDto> it)
+            => it.AddFieldName("key");
         
-        public static Partial<PRPrivateProjectDto> WithKey(this Partial<PRPrivateProjectDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)    => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>()));
+        public static Partial<PRPrivateProjectDto> WithKey(this Partial<PRPrivateProjectDto> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
+            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>(it)));
         
-        public static Partial<PRPrivateProjectDto> WithName(this Partial<PRPrivateProjectDto> it)    => it.AddFieldName("name");
+        public static Partial<PRPrivateProjectDto> WithName(this Partial<PRPrivateProjectDto> it)
+            => it.AddFieldName("name");
         
-        public static Partial<PRPrivateProjectDto> WithAccessAllowed(this Partial<PRPrivateProjectDto> it)    => it.AddFieldName("accessAllowed");
+        public static Partial<PRPrivateProjectDto> WithAccessAllowed(this Partial<PRPrivateProjectDto> it)
+            => it.AddFieldName("accessAllowed");
         
-        public static Partial<PRPrivateProjectDto> WithAdmins(this Partial<PRPrivateProjectDto> it)    => it.AddFieldName("admins");
+        public static Partial<PRPrivateProjectDto> WithAdmins(this Partial<PRPrivateProjectDto> it)
+            => it.AddFieldName("admins");
         
-        public static Partial<PRPrivateProjectDto> WithAdmins(this Partial<PRPrivateProjectDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("admins", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<PRPrivateProjectDto> WithAdmins(this Partial<PRPrivateProjectDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("admins", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
     }
     

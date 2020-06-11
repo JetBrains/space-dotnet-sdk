@@ -23,17 +23,23 @@ namespace SpaceDotNet.Client.MCSectionDtoExtensions
 {
     public static class MCSectionDtoPartialExtensions
     {
-        public static Partial<MCSectionDto> WithHeader(this Partial<MCSectionDto> it)    => it.AddFieldName("header");
+        public static Partial<MCSectionDto> WithHeader(this Partial<MCSectionDto> it)
+            => it.AddFieldName("header");
         
-        public static Partial<MCSectionDto> WithHeader(this Partial<MCSectionDto> it, Func<Partial<MCTextDto>, Partial<MCTextDto>> partialBuilder)    => it.AddFieldName("header", partialBuilder(new Partial<MCTextDto>()));
+        public static Partial<MCSectionDto> WithHeader(this Partial<MCSectionDto> it, Func<Partial<MCTextDto>, Partial<MCTextDto>> partialBuilder)
+            => it.AddFieldName("header", partialBuilder(new Partial<MCTextDto>(it)));
         
-        public static Partial<MCSectionDto> WithElements(this Partial<MCSectionDto> it)    => it.AddFieldName("elements");
+        public static Partial<MCSectionDto> WithElements(this Partial<MCSectionDto> it)
+            => it.AddFieldName("elements");
         
-        public static Partial<MCSectionDto> WithElements(this Partial<MCSectionDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)    => it.AddFieldName("elements", partialBuilder(new Partial<MCElementDto>()));
+        public static Partial<MCSectionDto> WithElements(this Partial<MCSectionDto> it, Func<Partial<MCElementDto>, Partial<MCElementDto>> partialBuilder)
+            => it.AddFieldName("elements", partialBuilder(new Partial<MCElementDto>(it)));
         
-        public static Partial<MCSectionDto> WithFooter(this Partial<MCSectionDto> it)    => it.AddFieldName("footer");
+        public static Partial<MCSectionDto> WithFooter(this Partial<MCSectionDto> it)
+            => it.AddFieldName("footer");
         
-        public static Partial<MCSectionDto> WithFooter(this Partial<MCSectionDto> it, Func<Partial<MCTextDto>, Partial<MCTextDto>> partialBuilder)    => it.AddFieldName("footer", partialBuilder(new Partial<MCTextDto>()));
+        public static Partial<MCSectionDto> WithFooter(this Partial<MCSectionDto> it, Func<Partial<MCTextDto>, Partial<MCTextDto>> partialBuilder)
+            => it.AddFieldName("footer", partialBuilder(new Partial<MCTextDto>(it)));
         
     }
     

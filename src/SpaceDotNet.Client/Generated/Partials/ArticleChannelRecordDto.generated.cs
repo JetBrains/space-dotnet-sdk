@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.ArticleChannelRecordDtoExtensions
 {
     public static class ArticleChannelRecordDtoPartialExtensions
     {
-        public static Partial<ArticleChannelRecordDto> WithId(this Partial<ArticleChannelRecordDto> it)    => it.AddFieldName("id");
+        public static Partial<ArticleChannelRecordDto> WithId(this Partial<ArticleChannelRecordDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ArticleChannelRecordDto> WithArchived(this Partial<ArticleChannelRecordDto> it)    => it.AddFieldName("archived");
+        public static Partial<ArticleChannelRecordDto> WithArchived(this Partial<ArticleChannelRecordDto> it)
+            => it.AddFieldName("archived");
         
-        public static Partial<ArticleChannelRecordDto> WithChannel(this Partial<ArticleChannelRecordDto> it)    => it.AddFieldName("channel");
+        public static Partial<ArticleChannelRecordDto> WithChannel(this Partial<ArticleChannelRecordDto> it)
+            => it.AddFieldName("channel");
         
-        public static Partial<ArticleChannelRecordDto> WithChannel(this Partial<ArticleChannelRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)    => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>()));
+        public static Partial<ArticleChannelRecordDto> WithChannel(this Partial<ArticleChannelRecordDto> it, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecordDto>(it)));
         
-        public static Partial<ArticleChannelRecordDto> WithChannelContent(this Partial<ArticleChannelRecordDto> it)    => it.AddFieldName("channelContent");
+        public static Partial<ArticleChannelRecordDto> WithChannelContent(this Partial<ArticleChannelRecordDto> it)
+            => it.AddFieldName("channelContent");
         
-        public static Partial<ArticleChannelRecordDto> WithChannelContent(this Partial<ArticleChannelRecordDto> it, Func<Partial<M2ChannelContentRecordDto>, Partial<M2ChannelContentRecordDto>> partialBuilder)    => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecordDto>()));
+        public static Partial<ArticleChannelRecordDto> WithChannelContent(this Partial<ArticleChannelRecordDto> it, Func<Partial<M2ChannelContentRecordDto>, Partial<M2ChannelContentRecordDto>> partialBuilder)
+            => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecordDto>(it)));
         
-        public static Partial<ArticleChannelRecordDto> WithReactions(this Partial<ArticleChannelRecordDto> it)    => it.AddFieldName("reactions");
+        public static Partial<ArticleChannelRecordDto> WithReactions(this Partial<ArticleChannelRecordDto> it)
+            => it.AddFieldName("reactions");
         
-        public static Partial<ArticleChannelRecordDto> WithReactions(this Partial<ArticleChannelRecordDto> it, Func<Partial<AllReactionsToItemRecordDto>, Partial<AllReactionsToItemRecordDto>> partialBuilder)    => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecordDto>()));
+        public static Partial<ArticleChannelRecordDto> WithReactions(this Partial<ArticleChannelRecordDto> it, Func<Partial<AllReactionsToItemRecordDto>, Partial<AllReactionsToItemRecordDto>> partialBuilder)
+            => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecordDto>(it)));
         
     }
     

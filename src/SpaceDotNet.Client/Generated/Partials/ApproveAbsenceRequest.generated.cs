@@ -23,7 +23,8 @@ namespace SpaceDotNet.Client.ApproveAbsenceRequestExtensions
 {
     public static class ApproveAbsenceRequestPartialExtensions
     {
-        public static Partial<ApproveAbsenceRequest> WithApprove(this Partial<ApproveAbsenceRequest> it)    => it.AddFieldName("approve");
+        public static Partial<ApproveAbsenceRequest> WithApprove(this Partial<ApproveAbsenceRequest> it)
+            => it.AddFieldName("approve");
         
     }
     

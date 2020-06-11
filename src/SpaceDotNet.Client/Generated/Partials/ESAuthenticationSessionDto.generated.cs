@@ -23,21 +23,29 @@ namespace SpaceDotNet.Client.ESAuthenticationSessionDtoExtensions
 {
     public static class ESAuthenticationSessionDtoPartialExtensions
     {
-        public static Partial<ESAuthenticationSessionDto> WithId(this Partial<ESAuthenticationSessionDto> it)    => it.AddFieldName("id");
+        public static Partial<ESAuthenticationSessionDto> WithId(this Partial<ESAuthenticationSessionDto> it)
+            => it.AddFieldName("id");
         
-        public static Partial<ESAuthenticationSessionDto> WithProfile(this Partial<ESAuthenticationSessionDto> it)    => it.AddFieldName("profile");
+        public static Partial<ESAuthenticationSessionDto> WithProfile(this Partial<ESAuthenticationSessionDto> it)
+            => it.AddFieldName("profile");
         
-        public static Partial<ESAuthenticationSessionDto> WithProfile(this Partial<ESAuthenticationSessionDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)    => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>()));
+        public static Partial<ESAuthenticationSessionDto> WithProfile(this Partial<ESAuthenticationSessionDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
-        public static Partial<ESAuthenticationSessionDto> WithCreated(this Partial<ESAuthenticationSessionDto> it)    => it.AddFieldName("created");
+        public static Partial<ESAuthenticationSessionDto> WithCreated(this Partial<ESAuthenticationSessionDto> it)
+            => it.AddFieldName("created");
         
-        public static Partial<ESAuthenticationSessionDto> WithExpires(this Partial<ESAuthenticationSessionDto> it)    => it.AddFieldName("expires");
+        public static Partial<ESAuthenticationSessionDto> WithExpires(this Partial<ESAuthenticationSessionDto> it)
+            => it.AddFieldName("expires");
         
-        public static Partial<ESAuthenticationSessionDto> WithLastAccess(this Partial<ESAuthenticationSessionDto> it)    => it.AddFieldName("lastAccess");
+        public static Partial<ESAuthenticationSessionDto> WithLastAccess(this Partial<ESAuthenticationSessionDto> it)
+            => it.AddFieldName("lastAccess");
         
-        public static Partial<ESAuthenticationSessionDto> WithLastAccess(this Partial<ESAuthenticationSessionDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)    => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>()));
+        public static Partial<ESAuthenticationSessionDto> WithLastAccess(this Partial<ESAuthenticationSessionDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)
+            => it.AddFieldName("lastAccess", partialBuilder(new Partial<AccessRecordDto>(it)));
         
-        public static Partial<ESAuthenticationSessionDto> WithCurrent(this Partial<ESAuthenticationSessionDto> it)    => it.AddFieldName("current");
+        public static Partial<ESAuthenticationSessionDto> WithCurrent(this Partial<ESAuthenticationSessionDto> it)
+            => it.AddFieldName("current");
         
     }
     
