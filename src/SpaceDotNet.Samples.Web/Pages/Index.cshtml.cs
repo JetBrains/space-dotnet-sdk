@@ -16,6 +16,8 @@ using SpaceDotNet.Client.M2ChannelRecordDtoExtensions;
 using SpaceDotNet.Client.MessageInfoDtoExtensions;
 using SpaceDotNet.Client.TDMemberProfileDtoExtensions;
 using SpaceDotNet.Client.TDMembershipDtoExtensions;
+using SpaceDotNet.Client.TDMemberLocationDtoExtensions;
+using SpaceDotNet.Client.TDLocationDtoExtensions;
 using SpaceDotNet.Client.TDProfileLanguageDtoExtensions;
 using SpaceDotNet.Client.TDProfileNameDtoExtensions;
 using SpaceDotNet.Client.TDRoleDtoExtensions;
@@ -95,11 +97,13 @@ namespace SpaceDotNet.Samples.Web.Pages
                 .WithMemberships(membership => membership
                     .AddAllFieldNames()
                     .WithRole(role => role.WithName())
-                    .WithTeam(team => team.WithName())));
+                    .WithTeam(team => team.WithName()))
+                .WithLocations(locations => locations
+                    .WithId()
+                    .WithLocation(location => location
+                        .WithName())));
             
             #endregion
-            
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync();
             
             var weekStart = StartOfWeek(DateTime.UtcNow, DayOfWeek.Monday);
             var weekEnd = weekStart.AddDays(7).AddHours(23).AddMinutes(59).AddSeconds(59);
