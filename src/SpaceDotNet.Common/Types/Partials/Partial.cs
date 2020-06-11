@@ -15,7 +15,7 @@ namespace SpaceDotNet.Common
     /// </summary>
     /// <typeparam name="T">The type to select properties from.</typeparam>
     [PublicAPI]
-    public sealed class Partial<T>
+    public sealed class Partial<T> : PartialBase
     {
         // ReSharper disable once StaticMemberInGenericType
         private static readonly string CommonTypesNamespace = typeof(Batch<>).Namespace!;
@@ -25,7 +25,9 @@ namespace SpaceDotNet.Common
         
         private HashSet<string> _fieldNames = new HashSet<string>();
 
-        public Partial()
+        public Partial() : this(null) { }
+        
+        public Partial(PartialBase? parent) : base(typeof(T), parent)
         {
             if (typeof(IClassNameConvertible).IsAssignableFrom(typeof(T)))
             {
@@ -74,31 +76,25 @@ namespace SpaceDotNet.Common
             _fieldNames.Add(fieldName + "(" + fieldPartial + ")");
             return this;
         }
-        
+
         /// <summary>
         /// Add all field names of <typeparamref name="T"/> to the current partial definition explicitly.
         /// </summary>
         /// <remarks>
         /// It is preferred to use <see cref="WithAllFieldsWildcard"/>.
         ///
-        /// When combining <see cref="AddAllFieldNamesExplicitly"/> with methods such as <see cref="AddFieldName"/>, make sure to use <see cref="AddAllFieldNamesExplicitly"/> first in the partial definition.</remarks>
+        /// When combining <see cref="WithAllFieldNamesExplicitly"/> with methods such as <see cref="AddFieldName"/>, make sure to use <see cref="WithAllFieldNamesExplicitly"/> first in the partial definition.</remarks>
         /// <returns>The current <see cref="Partial{T}"/>.</returns>
         [Obsolete("Use WithAllFieldsWildcard() instead, unless it is required to add all field names explicitly.")]
-        public Partial<T> AddAllFieldNamesExplicitly()
-        {
+        public Partial<T> WithAllFieldNamesExplicitly() =>
             AddFieldNames(FieldsFor(typeof(T), currentDepth: 0, maxDepth: 0));
-            return this;
-        }
         
         /// <summary>
         /// Add all field names of <typeparamref name="T"/> to the current partial definition using a wildcard (*).
         /// </summary>
         /// <returns>The current <see cref="Partial{T}"/>.</returns>
-        public Partial<T> WithAllFieldsWildcard()
-        {
-            AddFieldName("*");
-            return this;
-        }
+        public Partial<T> WithAllFieldsWildcard() =>
+            WithAllFieldNamesExplicitly(); // AddFieldName("*"); TODO when wildcard support lands
 
         /// <summary>
         /// Add partial for an inheritor.

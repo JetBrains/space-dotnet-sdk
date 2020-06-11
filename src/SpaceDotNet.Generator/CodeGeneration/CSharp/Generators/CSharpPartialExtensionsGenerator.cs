@@ -53,7 +53,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             var apiFieldName = apiField.Name;
             
             // Field
-            builder.Append($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it)");
+            builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it)");
             indent.Increment();
             builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}\");");
             indent.Decrement();
@@ -68,7 +68,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 // Recursive field?
                 if (currentDtoType == currentFieldInnerType)
                 {
-                    builder.Append($"{indent}public static {currentPartialType} With{propertyName}Recursive(this {currentPartialType} it)");
+                    builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}Recursive(this {currentPartialType} it)");
                     indent.Increment();
                     builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}!\");");
                     indent.Decrement();
@@ -76,9 +76,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 }
 
                 // Field with partial builder
-                builder.Append($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it, Func<Partial<{currentFieldInnerType}>, Partial<{currentFieldInnerType}>> partialBuilder)");
+                builder.AppendLine($"{indent}public static {currentPartialType} With{propertyName}(this {currentPartialType} it, Func<Partial<{currentFieldInnerType}>, Partial<{currentFieldInnerType}>> partialBuilder)");
                 indent.Increment();
-                builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}\", partialBuilder(new Partial<{currentFieldInnerType}>()));");
+                builder.AppendLine($"{indent}=> it.AddFieldName(\"{apiFieldName}\", partialBuilder(new Partial<{currentFieldInnerType}>(it)));");
                 indent.Decrement();
                 builder.AppendLine($"{indent}");
             }
