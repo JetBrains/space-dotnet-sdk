@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using JetBrains.Annotations;
 
 namespace SpaceDotNet.Common.Types
@@ -24,12 +25,14 @@ namespace SpaceDotNet.Common.Types
             _propertyName = propertyName;
         }
 
+        [DebuggerHidden]
         public void SetValue(T value)
         {
             _value = value;
             _hasBeenSet = true;
         }
 
+        [DebuggerHidden]
         public T GetValue()
         {
             if (!_hasBeenSet)
