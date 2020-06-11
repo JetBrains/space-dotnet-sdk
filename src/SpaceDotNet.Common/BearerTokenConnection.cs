@@ -50,7 +50,7 @@ namespace SpaceDotNet.Common
 
         protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
+            var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
                 Headers =
                 {
@@ -70,7 +70,7 @@ namespace SpaceDotNet.Common
 
         protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
+            var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
                 Headers =
                 {
@@ -92,7 +92,7 @@ namespace SpaceDotNet.Common
 
         protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
+            var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
                 Headers =
                 {
@@ -113,7 +113,7 @@ namespace SpaceDotNet.Common
         
         protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
         {
-            var request = new HttpRequestMessage(HttpMethod.Get, ServerUrl + urlPath)
+            var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
                 Headers =
                 {
