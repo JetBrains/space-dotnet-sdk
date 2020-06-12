@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.PackagesSettingsDtoExtensions
         public static Partial<PackagesSettingsDto> WithOrganizationId(this Partial<PackagesSettingsDto> it)
             => it.AddFieldName("organizationId");
         
+        public static Partial<PackagesSettingsDto> WithPrincipalId(this Partial<PackagesSettingsDto> it)
+            => it.AddFieldName("principalId");
+        
         public static Partial<PackagesSettingsDto> WithPrincipalName(this Partial<PackagesSettingsDto> it)
             => it.AddFieldName("principalName");
         

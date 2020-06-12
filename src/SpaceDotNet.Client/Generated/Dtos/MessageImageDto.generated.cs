@@ -21,25 +21,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class FileWithCountDto
+    public sealed class MessageImageDto
+         : MessageAccessoryElementDto, IClassNameConvertible
     {
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(FileWithCountDto), nameof(Name));
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
-        [JsonPropertyName("name")]
-        public string? Name
-        {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
-        }
-    
-        private PropertyValue<CounterDto> _count = new PropertyValue<CounterDto>(nameof(FileWithCountDto), nameof(Count));
+        private PropertyValue<string> _src = new PropertyValue<string>(nameof(MessageImageDto), nameof(Src));
         
         [Required]
-        [JsonPropertyName("count")]
-        public CounterDto Count
+        [JsonPropertyName("src")]
+        public string Src
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get { return _src.GetValue(); }
+            set { _src.SetValue(value); }
         }
     
     }

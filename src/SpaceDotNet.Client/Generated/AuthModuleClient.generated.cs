@@ -30,11 +30,14 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
+        /// <summary>
+        /// Create a new authentication module. Settings are specific to the type of authentication module being created.
+        /// </summary>
         public async Task<ESAuthModuleDto> CreateAuthModuleAsync(CreateAuthModuleRequest data, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
             => await _connection.RequestResourceAsync<CreateAuthModuleRequest, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}", data);
     
         /// <summary>
-        /// Define order of auth modules. It affects the order of the federated auth module buttons on the sign-in page.
+        /// Define the order of authentication modules. This affects the order of the federated authentication module buttons on the sign-in page.
         /// </summary>
         public async Task ReorderAsync(ReorderRequest data)
             => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", data);
@@ -42,15 +45,27 @@ namespace SpaceDotNet.Client
         public async Task<SamlMetadataResponseDto> SamlMetadataAsync(string id, SamlMetadataRequest data, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>>? partial = null)
             => await _connection.RequestResourceAsync<SamlMetadataRequest, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields={(partial != null ? partial(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default())}", data);
     
+        /// <summary>
+        /// Get all authentication modules.
+        /// </summary>
         public async Task<List<ESAuthModuleDto>> GetAllAuthModulesAsync(bool withDisabled, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
             => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}");
     
+        /// <summary>
+        /// Get an existing authentication module.
+        /// </summary>
         public async Task<ESAuthModuleDto> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
             => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}");
     
+        /// <summary>
+        /// Update an existing authentication module. Optional parameters will be ignored when null, and updated otherwise.
+        /// </summary>
         public async Task UpdateAuthModuleAsync(string id, UpdateAuthModuleRequest data)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", data);
     
+        /// <summary>
+        /// Delete an existing authentication module.
+        /// </summary>
         public async Task DeleteAuthModuleAsync(string id)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}");
     
@@ -84,6 +99,9 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Retrieve a list of authentication module usage count.
+            /// </summary>
             public async Task<List<AuthModuleUsageDto>> GetAllUsagesAsync(Func<Partial<AuthModuleUsageDto>, Partial<AuthModuleUsageDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<AuthModuleUsageDto>>("GET", $"api/http/auth-modules/usages?$fields={(partial != null ? partial(new Partial<AuthModuleUsageDto>()) : Partial<AuthModuleUsageDto>.Default())}");
         
@@ -100,12 +118,21 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Change password for a given authentication module (id) and profile (identifier).
+            /// </summary>
             public async Task ChangeAsync(string id, string identifier, ChangeRequest data)
                 => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);
         
+            /// <summary>
+            /// Request a password reset for a given authentication module (id) and profile (identifier).
+            /// </summary>
             public async Task ResetAsync(string id, string identifier)
                 => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/reset");
         
+            /// <summary>
+            /// Detach a profile login from an authentication module. The id parameter refers to the authentication module, the identifier parameter refers to the login.
+            /// </summary>
             public async Task DeleteLoginAsync(string identifier, string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}/logins/{identifier}");
         

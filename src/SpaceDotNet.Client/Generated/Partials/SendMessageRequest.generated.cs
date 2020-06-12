@@ -23,11 +23,20 @@ namespace SpaceDotNet.Client.SendMessageRequestExtensions
 {
     public static class SendMessageRequestPartialExtensions
     {
-        public static Partial<SendMessageRequest> WithText(this Partial<SendMessageRequest> it)
-            => it.AddFieldName("text");
+        public static Partial<SendMessageRequest> WithRecipient(this Partial<SendMessageRequest> it)
+            => it.AddFieldName("recipient");
         
-        public static Partial<SendMessageRequest> WithTemporaryId(this Partial<SendMessageRequest> it)
-            => it.AddFieldName("temporaryId");
+        public static Partial<SendMessageRequest> WithRecipient(this Partial<SendMessageRequest> it, Func<Partial<MessageRecipientDto>, Partial<MessageRecipientDto>> partialBuilder)
+            => it.AddFieldName("recipient", partialBuilder(new Partial<MessageRecipientDto>(it)));
+        
+        public static Partial<SendMessageRequest> WithContent(this Partial<SendMessageRequest> it)
+            => it.AddFieldName("content");
+        
+        public static Partial<SendMessageRequest> WithContent(this Partial<SendMessageRequest> it, Func<Partial<ChatMessageDto>, Partial<ChatMessageDto>> partialBuilder)
+            => it.AddFieldName("content", partialBuilder(new Partial<ChatMessageDto>(it)));
+        
+        public static Partial<SendMessageRequest> WithUnfurlLinks(this Partial<SendMessageRequest> it)
+            => it.AddFieldName("unfurlLinks");
         
     }
     

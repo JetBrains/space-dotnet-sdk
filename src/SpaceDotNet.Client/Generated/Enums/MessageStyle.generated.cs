@@ -19,16 +19,18 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.UnfurlDetailsChecklistDtoExtensions
+namespace SpaceDotNet.Client
 {
-    public static class UnfurlDetailsChecklistDtoPartialExtensions
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class MessageStyle : Enumeration
     {
-        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it)
-            => it.AddFieldName("checklist");
+        private MessageStyle(string value) : base(value) { }
         
-        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)
-            => it.AddFieldName("checklist", partialBuilder(new Partial<ChecklistDto>(it)));
-        
+        public static readonly MessageStyle PRIMARY = new MessageStyle("PRIMARY");
+        public static readonly MessageStyle SECONDARY = new MessageStyle("SECONDARY");
+        public static readonly MessageStyle SUCCESS = new MessageStyle("SUCCESS");
+        public static readonly MessageStyle ERROR = new MessageStyle("ERROR");
+        public static readonly MessageStyle WARNING = new MessageStyle("WARNING");
     }
     
 }

@@ -23,23 +23,33 @@ namespace SpaceDotNet.Client
 {
     public class SendMessageRequest
     {
-        private PropertyValue<string> _text = new PropertyValue<string>(nameof(SendMessageRequest), nameof(Text));
+        private PropertyValue<MessageRecipientDto> _recipient = new PropertyValue<MessageRecipientDto>(nameof(SendMessageRequest), nameof(Recipient));
         
         [Required]
-        [JsonPropertyName("text")]
-        public string Text
+        [JsonPropertyName("recipient")]
+        public MessageRecipientDto Recipient
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get { return _recipient.GetValue(); }
+            set { _recipient.SetValue(value); }
         }
     
-        private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(SendMessageRequest), nameof(TemporaryId));
+        private PropertyValue<ChatMessageDto> _content = new PropertyValue<ChatMessageDto>(nameof(SendMessageRequest), nameof(Content));
         
-        [JsonPropertyName("temporaryId")]
-        public string? TemporaryId
+        [Required]
+        [JsonPropertyName("content")]
+        public ChatMessageDto Content
         {
-            get { return _temporaryId.GetValue(); }
-            set { _temporaryId.SetValue(value); }
+            get { return _content.GetValue(); }
+            set { _content.SetValue(value); }
+        }
+    
+        private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(SendMessageRequest), nameof(UnfurlLinks));
+        
+        [JsonPropertyName("unfurlLinks")]
+        public bool? UnfurlLinks
+        {
+            get { return _unfurlLinks.GetValue(); }
+            set { _unfurlLinks.SetValue(value); }
         }
     
     }

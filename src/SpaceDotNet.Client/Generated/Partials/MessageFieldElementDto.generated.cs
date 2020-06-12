@@ -19,19 +19,10 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.FileWithCountDtoExtensions
+namespace SpaceDotNet.Client.MessageFieldElementDtoExtensions
 {
-    public static class FileWithCountDtoPartialExtensions
+    public static class MessageFieldElementDtoPartialExtensions
     {
-        public static Partial<FileWithCountDto> WithName(this Partial<FileWithCountDto> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<FileWithCountDto> WithCount(this Partial<FileWithCountDto> it)
-            => it.AddFieldName("count");
-        
-        public static Partial<FileWithCountDto> WithCount(this Partial<FileWithCountDto> it, Func<Partial<CounterDto>, Partial<CounterDto>> partialBuilder)
-            => it.AddFieldName("count", partialBuilder(new Partial<CounterDto>(it)));
-        
     }
     
 }

@@ -122,6 +122,9 @@ namespace SpaceDotNet.Client.TDMemberProfileDtoExtensions
         public static Partial<TDMemberProfileDto> WithMemberships(this Partial<TDMemberProfileDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)
             => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembershipDto>(it)));
         
+        public static Partial<TDMemberProfileDto> WithOnboardingRequired(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("onboardingRequired");
+        
         public static Partial<TDMemberProfileDto> WithAbout(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("about");
         

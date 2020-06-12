@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
-                    => await _connection.RequestResourceAsync<SendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
+                public async Task<ChannelItemRecordDto> SendTextMessageAsync(string channelId, SendTextMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
+                    => await _connection.RequestResourceAsync<SendTextMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
             
             }
         
@@ -88,16 +88,29 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<ChannelItemRecordDto> SendMessageAsync(string channelId, SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<SendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
+            public async Task<ChannelItemRecordDto> SendTextMessageAsync(string channelId, SendTextMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
+                => await _connection.RequestResourceAsync<SendTextMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
         
         }
     
         public partial class MessageClient
         {
+            public async Task DeleteMessageAsync(DeleteMessageRequest data)
+                => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/delete-message", data);
+        
+            public async Task EditMessageAsync(EditMessageRequest data)
+                => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/edit-message", data);
+        
+            [Obsolete("Use POST chats/messages/edit-message (since 2020-06-06) (marked for removal)")]
+            public async Task EditTextMessageAsync(EditTextMessageRequest data)
+                => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/edit-text-message", data);
+        
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]
+            public async Task<ChannelItemRecordDto> SendTextMessageAsync(SendTextMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
+                => await _connection.RequestResourceAsync<SendTextMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
+        
             public async Task<ChannelItemRecordDto> SendMessageAsync(SendMessageRequest data, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<SendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
+                => await _connection.RequestResourceAsync<SendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send-message?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", data);
         
         }
     

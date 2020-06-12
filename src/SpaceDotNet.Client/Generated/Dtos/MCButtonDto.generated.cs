@@ -57,6 +57,15 @@ namespace SpaceDotNet.Client
             set { _action.SetValue(value); }
         }
     
+        private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MCButtonDto), nameof(Disabled));
+        
+        [JsonPropertyName("disabled")]
+        public bool? Disabled
+        {
+            get { return _disabled.GetValue(); }
+            set { _disabled.SetValue(value); }
+        }
+    
     }
     
 }

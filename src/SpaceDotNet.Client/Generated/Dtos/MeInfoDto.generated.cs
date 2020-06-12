@@ -109,6 +109,15 @@ namespace SpaceDotNet.Client
             set { _draftType.SetValue(value); }
         }
     
+        private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(MeInfoDto), nameof(TodoFilters));
+        
+        [JsonPropertyName("todoFilters")]
+        public bool? TodoFilters
+        {
+            get { return _todoFilters.GetValue(); }
+            set { _todoFilters.SetValue(value); }
+        }
+    
     }
     
 }

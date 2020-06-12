@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.MCButtonDtoExtensions
         public static Partial<MCButtonDto> WithAction(this Partial<MCButtonDto> it, Func<Partial<MCActionDto>, Partial<MCActionDto>> partialBuilder)
             => it.AddFieldName("action", partialBuilder(new Partial<MCActionDto>(it)));
         
+        public static Partial<MCButtonDto> WithDisabled(this Partial<MCButtonDto> it)
+            => it.AddFieldName("disabled");
+        
     }
     
 }

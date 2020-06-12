@@ -247,6 +247,16 @@ namespace SpaceDotNet.Client
             set { _memberships.SetValue(value); }
         }
     
+        private PropertyValue<bool> _onboardingRequired = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(OnboardingRequired));
+        
+        [Required]
+        [JsonPropertyName("onboardingRequired")]
+        public bool OnboardingRequired
+        {
+            get { return _onboardingRequired.GetValue(); }
+            set { _onboardingRequired.SetValue(value); }
+        }
+    
         private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfileDto), nameof(About));
         
         [JsonPropertyName("about")]

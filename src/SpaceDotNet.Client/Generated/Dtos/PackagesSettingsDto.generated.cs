@@ -33,6 +33,16 @@ namespace SpaceDotNet.Client
             set { _organizationId.SetValue(value); }
         }
     
+        private PropertyValue<long> _principalId = new PropertyValue<long>(nameof(PackagesSettingsDto), nameof(PrincipalId));
+        
+        [Required]
+        [JsonPropertyName("principalId")]
+        public long PrincipalId
+        {
+            get { return _principalId.GetValue(); }
+            set { _principalId.SetValue(value); }
+        }
+    
         private PropertyValue<string> _principalName = new PropertyValue<string>(nameof(PackagesSettingsDto), nameof(PrincipalName));
         
         [Required]

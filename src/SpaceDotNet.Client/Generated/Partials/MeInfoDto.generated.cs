@@ -65,6 +65,9 @@ namespace SpaceDotNet.Client.MeInfoDtoExtensions
         public static Partial<MeInfoDto> WithDraftType(this Partial<MeInfoDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
             => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>(it)));
         
+        public static Partial<MeInfoDto> WithTodoFilters(this Partial<MeInfoDto> it)
+            => it.AddFieldName("todoFilters");
+        
     }
     
 }

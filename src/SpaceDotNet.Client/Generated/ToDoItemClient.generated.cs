@@ -30,18 +30,33 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
+        /// <summary>
+        /// Create a new To-Do item, with an optional due date.
+        /// </summary>
         public async Task<TodoItemRecordDto> CreateToDoItemAsync(CreateToDoItemRequest data, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
             => await _connection.RequestResourceAsync<CreateToDoItemRequest, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", data);
     
+        /// <summary>
+        /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
+        /// </summary>
         public async Task<Batch<TodoItemRecordDto>> GetAllToDoItemsAsync(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<Batch<TodoItemRecordDto>>, Partial<Batch<TodoItemRecordDto>>>? partial = null)
             => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TodoItemRecordDto>>()) : Partial<Batch<TodoItemRecordDto>>.Default())}");
         
+        /// <summary>
+        /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
+        /// </summary>
         public IAsyncEnumerable<TodoItemRecordDto> GetAllToDoItemsAsyncEnumerable(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
             => BatchEnumerator.AllItems(batchSkip => GetAllToDoItemsAsync(skip: batchSkip, top, open, from, till, partial: builder => Partial<Batch<TodoItemRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecordDto>.Default())), skip);
     
+        /// <summary>
+        /// Update an existing To-Do item. Optional parameters will be ignored when null, and updated otherwise.
+        /// </summary>
         public async Task UpdateToDoItemAsync(string id, UpdateToDoItemRequest data)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/todo/{id}", data);
     
+        /// <summary>
+        /// Delete an existing To-Do item.
+        /// </summary>
         public async Task DeleteToDoItemAsync(string id)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/todo/{id}");
     

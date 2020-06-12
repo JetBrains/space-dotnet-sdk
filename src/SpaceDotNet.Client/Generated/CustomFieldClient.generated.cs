@@ -41,6 +41,9 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Get all types that support custom fields.
+            /// </summary>
             public async Task<List<ExtendedTypeDto>> GetAllExtendedTypesAsync(Func<Partial<ExtendedTypeDto>, Partial<ExtendedTypeDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields={(partial != null ? partial(new Partial<ExtendedTypeDto>()) : Partial<ExtendedTypeDto>.Default())}");
         
@@ -57,9 +60,15 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
+            /// </summary>
             public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValuesAsync(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CustomFieldsRecordDto>>()) : Partial<Batch<CustomFieldsRecordDto>>.Default())}");
             
+            /// <summary>
+            /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
+            /// </summary>
             public IAsyncEnumerable<CustomFieldsRecordDto> GetAllAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllAllValuesAsync(typeKey, skip: batchSkip, top, extendedEntityIds, partial: builder => Partial<Batch<CustomFieldsRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecordDto>.Default())), skip);
         
@@ -76,24 +85,45 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Create custom field for a type.
+            /// </summary>
             public async Task<CustomFieldDto> CreateFieldAsync(string typeKey, CreateFieldRequest data, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
                 => await _connection.RequestResourceAsync<CreateFieldRequest, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}", data);
         
+            /// <summary>
+            /// Re-order custom fields.
+            /// </summary>
             public async Task ReorderAsync(string typeKey, ReorderRequest data)
                 => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", data);
         
+            /// <summary>
+            /// Archive a custom field for a type.
+            /// </summary>
             public async Task ArchiveAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/archive");
         
+            /// <summary>
+            /// Restore custom field for a type.
+            /// </summary>
             public async Task RestoreAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/{id}/restore");
         
+            /// <summary>
+            /// Get custom fields for a type.
+            /// </summary>
             public async Task<List<CustomFieldDto>> GetAllFieldsAsync(string typeKey, bool withArchived, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}");
         
+            /// <summary>
+            /// Update custom field for a type. Optional parameters will be ignored when null, and updated otherwise.
+            /// </summary>
             public async Task UpdateFieldAsync(string typeKey, string id, UpdateFieldRequest data)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", data);
         
+            /// <summary>
+            /// Remove custom field for a type.
+            /// </summary>
             public async Task DeleteFieldAsync(string typeKey, string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/custom-fields/{typeKey}/fields/{id}");
         
@@ -110,9 +140,15 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Get custom field value for a type and entity id.
+            /// </summary>
             public async Task<CustomFieldsRecordDto> GetValueAsync(string typeKey, string entityId, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields={(partial != null ? partial(new Partial<CustomFieldsRecordDto>()) : Partial<CustomFieldsRecordDto>.Default())}");
         
+            /// <summary>
+            /// Update custom field value(s) for a type and entity id.
+            /// </summary>
             public async Task UpdateValueAsync(string entityId, string typeKey, UpdateValueRequest data)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", data);
         

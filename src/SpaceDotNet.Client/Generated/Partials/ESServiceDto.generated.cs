@@ -56,6 +56,9 @@ namespace SpaceDotNet.Client.ESServiceDtoExtensions
         public static Partial<ESServiceDto> WithLastClientCredentialsAccess(this Partial<ESServiceDto> it, Func<Partial<AccessRecordDto>, Partial<AccessRecordDto>> partialBuilder)
             => it.AddFieldName("lastClientCredentialsAccess", partialBuilder(new Partial<AccessRecordDto>(it)));
         
+        public static Partial<ESServiceDto> WithEndpointURI(this Partial<ESServiceDto> it)
+            => it.AddFieldName("endpointURI");
+        
     }
     
 }

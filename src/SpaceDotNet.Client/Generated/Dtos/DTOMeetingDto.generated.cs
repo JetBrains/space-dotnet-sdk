@@ -150,11 +150,10 @@ namespace SpaceDotNet.Client
             set { _joiningPreference.SetValue(value); }
         }
     
-        private PropertyValue<MeetingOrganizerDto> _organizer = new PropertyValue<MeetingOrganizerDto>(nameof(DTOMeetingDto), nameof(Organizer));
+        private PropertyValue<MeetingOrganizerDto?> _organizer = new PropertyValue<MeetingOrganizerDto?>(nameof(DTOMeetingDto), nameof(Organizer));
         
-        [Required]
         [JsonPropertyName("organizer")]
-        public MeetingOrganizerDto Organizer
+        public MeetingOrganizerDto? Organizer
         {
             get { return _organizer.GetValue(); }
             set { _organizer.SetValue(value); }

@@ -21,26 +21,30 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class PropagatedCodeDiscussionDto
+    public sealed class MessageFieldDto
+         : MessageFieldElementDto, IClassNameConvertible
     {
-        private PropertyValue<CodeDiscussionAnchorDto> _anchor = new PropertyValue<CodeDiscussionAnchorDto>(nameof(PropagatedCodeDiscussionDto), nameof(Anchor));
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        private PropertyValue<string> _first = new PropertyValue<string>(nameof(MessageFieldDto), nameof(First));
         
         [Required]
-        [JsonPropertyName("anchor")]
-        public CodeDiscussionAnchorDto Anchor
+        [JsonPropertyName("first")]
+        public string First
         {
-            get { return _anchor.GetValue(); }
-            set { _anchor.SetValue(value); }
+            get { return _first.GetValue(); }
+            set { _first.SetValue(value); }
         }
     
-        private PropertyValue<CodeDiscussionRecordDto> _discussion = new PropertyValue<CodeDiscussionRecordDto>(nameof(PropagatedCodeDiscussionDto), nameof(Discussion));
+        private PropertyValue<string> _second = new PropertyValue<string>(nameof(MessageFieldDto), nameof(Second));
         
         [Required]
-        [JsonPropertyName("discussion")]
-        public CodeDiscussionRecordDto Discussion
+        [JsonPropertyName("second")]
+        public string Second
         {
-            get { return _discussion.GetValue(); }
-            set { _discussion.SetValue(value); }
+            get { return _second.GetValue(); }
+            set { _second.SetValue(value); }
         }
     
     }

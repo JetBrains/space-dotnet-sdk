@@ -21,26 +21,25 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class RevisionDiscussionsCounterDto
+    public class SendTextMessageRequest
     {
-        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RevisionDiscussionsCounterDto), nameof(Revision));
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(SendTextMessageRequest), nameof(Text));
         
         [Required]
-        [JsonPropertyName("revision")]
-        public string Revision
+        [JsonPropertyName("text")]
+        public string Text
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
         }
     
-        private PropertyValue<List<FileWithCountDto>> _filesWithCounts = new PropertyValue<List<FileWithCountDto>>(nameof(RevisionDiscussionsCounterDto), nameof(FilesWithCounts));
+        private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(SendTextMessageRequest), nameof(TemporaryId));
         
-        [Required]
-        [JsonPropertyName("filesWithCounts")]
-        public List<FileWithCountDto> FilesWithCounts
+        [JsonPropertyName("temporaryId")]
+        public string? TemporaryId
         {
-            get { return _filesWithCounts.GetValue(); }
-            set { _filesWithCounts.SetValue(value); }
+            get { return _temporaryId.GetValue(); }
+            set { _temporaryId.SetValue(value); }
         }
     
     }

@@ -101,6 +101,15 @@ namespace SpaceDotNet.Client
             set { _lastClientCredentialsAccess.SetValue(value); }
         }
     
+        private PropertyValue<string?> _endpointURI = new PropertyValue<string?>(nameof(ESServiceDto), nameof(EndpointURI));
+        
+        [JsonPropertyName("endpointURI")]
+        public string? EndpointURI
+        {
+            get { return _endpointURI.GetValue(); }
+            set { _endpointURI.SetValue(value); }
+        }
+    
     }
     
 }
