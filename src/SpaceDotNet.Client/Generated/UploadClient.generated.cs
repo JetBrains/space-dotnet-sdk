@@ -32,9 +32,9 @@ namespace SpaceDotNet.Client
         
         /// <summary>
         /// Request a URL that can be used to upload an attachment.
-        An attachment can be uploaded to the URL that is returned, by making a PUT request that has a proper content-type header and the attachment data as the request body.
-        The 'storagePrefix' parameter can be one of file, maps, emoji or attachments.
-        The 'mediaType' parameter can be omitted for all uploads. For image uploads that need to be resized automatically for specific use, such as chat stickers or emoji, use one of `chat-image-attachment`, `chat-sticker`, `chat-animated-sticker`, `emoji`.
+        /// An attachment can be uploaded to the URL that is returned, by making a PUT request that has a proper content-type header and the attachment data as the request body.
+        /// The 'storagePrefix' parameter can be one of file, maps, emoji or attachments.
+        /// The 'mediaType' parameter can be omitted for all uploads. For image uploads that need to be resized automatically for specific use, such as chat stickers or emoji, use one of `chat-image-attachment`, `chat-sticker`, `chat-animated-sticker`, `emoji`.
         /// </summary>
         public async Task<string> CreateUploadAsync(CreateUploadRequest data)
             => await _connection.RequestResourceAsync<CreateUploadRequest, string>("POST", $"api/http/uploads", data);

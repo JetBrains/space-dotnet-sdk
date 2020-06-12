@@ -1,3 +1,5 @@
+using System;
+using System.IO;
 using System.Text;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
@@ -8,7 +10,15 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
         {
             var builder = new StringBuilder();
             builder.AppendLine("/// <summary>");
-            builder.AppendLine("/// " + subject);
+            
+            var reader = new StringReader(subject);
+            var line = reader.ReadLine();
+            while (line != null)
+            {
+                builder.AppendLine("/// " + line);
+                line = reader.ReadLine();
+            }
+            
             builder.AppendLine("/// </summary>");
             return builder.ToString();
         }
