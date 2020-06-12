@@ -245,7 +245,7 @@ namespace SpaceDotNet.Samples.Web.Pages
 
             try
             {
-                await foreach (var meetingDto in _calendarClient.Meetings.GetAllMeetingsAsyncEnumerable("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), partial: _ => _
+                await foreach (var meetingDto in _calendarClient.Meetings.GetAllMeetingsAsyncEnumerable("", new List<string>(), new List<string> { MemberProfile.Id }, new List<string>(), true, false, true, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), partial: _ => _
                     .WithAllFieldsWildcard()
                     .WithId()
                     .WithSummary()
