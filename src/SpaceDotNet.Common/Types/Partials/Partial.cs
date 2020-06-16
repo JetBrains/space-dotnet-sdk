@@ -103,7 +103,7 @@ namespace SpaceDotNet.Common
         /// <typeparam name="TInheritor">Type of the inheritor.</typeparam>
         /// <remarks>This method does not check whether <typeparamref name="TInheritor"/> is an inheritor of <typeparamref name="T"/>.</remarks>
         /// <returns>The current partial.</returns>
-        public Partial<T> WithInherited<TInheritor>(Func<Partial<TInheritor>, Partial<TInheritor>> inheritorPartialBuilder)
+        public Partial<T> ForInherited<TInheritor>(Func<Partial<TInheritor>, Partial<TInheritor>> inheritorPartialBuilder)
             where TInheritor : IClassNameConvertible
         {
             var inheritorPartial = inheritorPartialBuilder(new Partial<TInheritor>());

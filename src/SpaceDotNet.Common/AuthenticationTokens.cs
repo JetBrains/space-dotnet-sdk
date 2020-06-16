@@ -4,16 +4,16 @@ namespace SpaceDotNet.Common
 {
     public class AuthenticationTokens
     {
-        public AuthenticationTokens(string? accessToken, string? refreshToken, DateTimeOffset? expires)
+        public AuthenticationTokens(string? accessToken, string? refreshToken = null, DateTimeOffset? expires = null)
         {
             AccessToken = accessToken;
             RefreshToken = refreshToken;
             Expires = expires;
         }
 
-        public string? AccessToken { get; set; }
-        public string? RefreshToken { get; set; }
-        public DateTimeOffset? Expires { get; set; }
+        public string? AccessToken { get; }
+        public string? RefreshToken { get; }
+        public DateTimeOffset? Expires { get; }
 
         public bool HasExpired()
         {

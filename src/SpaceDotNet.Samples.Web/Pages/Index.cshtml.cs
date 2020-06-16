@@ -127,10 +127,10 @@ namespace SpaceDotNet.Samples.Web.Pages
                         .WithCreationTime()
                         .WithCreatedBy(createdBy => createdBy
                             .WithDetails(details => details
-                                .WithInherited<CUserPrincipalDetailsDto>(detailsDto => detailsDto
+                                .ForInherited<CUserPrincipalDetailsDto>(detailsDto => detailsDto
                                     .WithUser(user => user
                                         .WithId()))
-                                .WithInherited<CUserWithEmailPrincipalDetailsDto>(detailsDto => detailsDto
+                                .ForInherited<CUserWithEmailPrincipalDetailsDto>(detailsDto => detailsDto
                                     .WithName()
                                     .WithEmail())))
                         .WithStatus()
@@ -230,6 +230,10 @@ namespace SpaceDotNet.Samples.Web.Pages
             {
                 // Check # of TO-DO items resolved
                 await foreach (var todoDto in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart.AsSpaceDate(), partial: _ => _
+                    .WithId()
+                    .WithContent(content => content
+                        .ForInherited<TodoItemContentMdTextDto>(md => md
+                            .WithAllFieldsWildcard()))
                     .WithStatus()))
                 {
                     if (todoDto.Status == "Closed")
