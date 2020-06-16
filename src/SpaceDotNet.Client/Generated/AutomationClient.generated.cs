@@ -65,28 +65,6 @@ namespace SpaceDotNet.Client
         
         }
     
-        public ParameterClient Parameters => new ParameterClient(_connection);
-        
-        public partial class ParameterClient
-        {
-            private readonly Connection _connection;
-            
-            public ParameterClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<string> GetParameterAsync(long id, string key)
-                => await _connection.RequestResourceAsync<string>("GET", $"api/http/automation/{id}/parameters?key={key.ToString()}");
-        
-            public async Task UpdateParameterAsync(long id, UpdateParameterRequest data)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/automation/{id}/parameters", data);
-        
-            public async Task DeleteParameterAsync(long id, string key)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/automation/{id}/parameters?key={key.ToString()}");
-        
-        }
-    
     }
     
 }
