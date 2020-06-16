@@ -38,11 +38,12 @@ namespace SpaceDotNet.Generator.CodeGeneration
             }
 
             // Nested resources
-            if (currentDepth < MaxDepth)
+            var newDepth = currentDepth + 1;
+            if (newDepth < MaxDepth)
             {
                 foreach (var apiNestedResource in apiResource.NestedResources)
                 {
-                    Build(targetMap, apiNestedResource, currentPath, currentDepth + 1);
+                    Build(targetMap, apiNestedResource, currentPath, newDepth);
                 }
             }
         }

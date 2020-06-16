@@ -65,8 +65,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             }
         
             // Group nested resources by path
-            var resourcePathBuildingVisitor = new PathToResourceMapper();
-            foreach (var (_, apiNestedResources) in resourcePathBuildingVisitor.CreateMapOfPathToResources(apiResource))
+            var pathToResourceMapper = new PathToResourceMapper();
+            var mapOfPathToResources = pathToResourceMapper.CreateMapOfPathToResources(apiResource);
+            foreach (var (_, apiNestedResources) in mapOfPathToResources)
             {
                 var isFirstResource = true;
                 foreach (var apiNestedResource in apiNestedResources)
@@ -126,7 +127,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
         
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
             var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
-        
+
             if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
             {
                 builder.Append(
