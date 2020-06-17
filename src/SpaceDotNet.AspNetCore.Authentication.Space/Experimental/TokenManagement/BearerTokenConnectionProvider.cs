@@ -62,10 +62,8 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
                 var scheme = await _schemeProvider.GetDefaultChallengeSchemeAsync();
                 return _spaceOptions.Get(scheme.Name);
             }
-            else
-            {
-                return _spaceOptions.Get(_options.Scheme);
-            }
+
+            return _spaceOptions.Get(_options.Scheme);
         }
 
     }
