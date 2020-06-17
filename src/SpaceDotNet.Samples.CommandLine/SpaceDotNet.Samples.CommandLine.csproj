@@ -10,8 +10,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\src\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
-      <ProjectReference Include="..\src\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
     </ItemGroup>
 
 </Project>

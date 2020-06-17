@@ -30,7 +30,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.AspNetCore", "src\SpaceDotNet.AspNetCore\SpaceDotNet.AspNetCore.csproj", "{96D76BCD-972C-4F71-8483-D26F9D44AE7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.CommandLine", "SpaceDotNet.Samples.CommandLine\SpaceDotNet.Samples.CommandLine.csproj", "{84D67980-E6F0-45C8-B030-392FEB83848B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.CommandLine", "src\SpaceDotNet.Samples.CommandLine\SpaceDotNet.Samples.CommandLine.csproj", "{84D67980-E6F0-45C8-B030-392FEB83848B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
