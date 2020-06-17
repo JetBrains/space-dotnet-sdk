@@ -71,7 +71,7 @@ To retrieve nested properties, check [nested properties](#nested-properties).
 
 The `SpaceDotNet.Client` package provides necessary types to connect to and interact with the Space API.
 
-### Authentication
+### Authentication and Connection
 
 Communication with Space is handled by the `Connection` base class. A connection keeps track of the Space organization URL, and registers the required JSON serializers that are used under the hood.
 
@@ -84,6 +84,20 @@ Communication with Space is handled by the `Connection` base class. A connection
 SpaceDotNet does not handle retrieving an access token that can be used with `BearerTokenConnection` or `RefreshTokenConnection`.
 
 > **Tip:** The Space ASP.NET Core authentication provider (in the `SpaceDotNet.AspNetCore.Authentication.Space` package) includes support for the [Implicit Flow](https://www.jetbrains.com/help/space/implicit.html).
+
+#### Scope
+
+Scope is a mechanism in OAuth 2.0 to limit an application's access to a user's account.
+
+On a `Connection` instance, use the `Scope` property to specify the scope required by an application. By default, SpaceDotNet uses the `**` scope, which requests all available scopes.
+
+More [examples of available scopes](https://www.jetbrains.com/help/space/oauth-2-0-authorization.html) are available in the Space documentation.
+
+### Service Client
+
+Clients for endpoints are mapped to the [top level of endpoints](docs/images/http-api-playground-levels.png) we can find in the [HTTP API Playground](https://www.jetbrains.com/help/space/api.html#api-playground):
+
+As an example, the top level *Team Directory* has a client class named `TeamDirectoryClient`, with methods that correspond to endpoints seen in the HTTP API Playground.
 
 ### Properties, Fields and Partials
 
@@ -288,25 +302,140 @@ The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGe
 
 > **Tip:** To retrieve the total result count, without any other properties, don't use the `IAsyncEnumerable` overload. 
 >
-> Instead, retrieve just the `TotalCount` property for this batch: 
-> `var batch = await _todoClient.GetAllToDoItemsAsync(from: weekStart.AsSpaceDate(), partial: _ => _.WithTotalCount());`
+> Instead, retrieve just the `TotalCount` property for this batch:
+>
+> ```csharp
+> var batch = await _todoClient.GetAllToDoItemsAsync(
+>     from: weekStart.AsSpaceDate(), partial: _ => _.WithTotalCount());
+> var numberOfResults = batch.TotalCount;
+> ```
 
-## TODO FROM HERE
+## SpaceDotNet.AspNetCore
 
-ASP.NET Core — SpaceDotNet.AspNetCore — Not required but helper to register all Space clients
-IServiceCollection AddSpaceClientApi(this IServiceCollection services)
-            services.AddHttpClient();
-            + Add Space ...Client types (transient)
-            
-ASP.NET Core Authentication — SpaceDotNet.AspNetCore.Authentication.Space
-Add Space auth, needs options:
-            builder.Services.AddOptions<SpaceOptions>(authenticationScheme)
-                .Validate(o => o.ServerUrl != null, "Space.ServerUrl is required.")
-                .Validate(o => !string.IsNullOrEmpty(o.ClientId), "Space.ClientId is required.")
-                .Validate(o => !string.IsNullOrEmpty(o.ClientSecret), "Space.ClientSecret is required.");
+The `SpaceDotNet.AspNetCore` package provides helpers for using SpaceDotNet with ASP.NET Core.
 
-If not using identity model, can be used for token management to access Space API. Note this is experimental!
+There are extension methods for `IServiceCollection`:
 
-## Contributing
+* `AddSpaceConnection()` — Registers a [`Connection`](#authentication-connection) as a service. The registration lifetime is transient by default.
+* `AddSpaceClientApi()` — Registers SpaceDotNet [clients](#create-service-client) as transient services. The registration lifetime is transient by default. Note that this method will throw an exception when no `Connection` has been registered.
 
-TODO
+## SpaceDotNet.AspNetCore.Authentication.Space
+
+The `SpaceDotNet.AspNetCore.Authentication.Space` package contains an authentication provider that integrates with ASP.NET Core. It can be used to authenticate a web application's users with Space, much like [other external authentication providers](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-3.1).
+
+### Registering Space as an Authentication Provider
+
+Registering Space as an authentication provider is typically done in our application's `Startup` class. In the `ConfigureServices()` method, we can extend the existing authentication options by adding Space:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;            
+            options.DefaultChallengeScheme = "Space";
+        })
+        .AddCookie()
+        .AddSpace(options => Configuration.Bind("Space", options))
+}
+```
+          
+In the above code sample, we did two things:
+
+* `options.DefaultChallengeScheme = "Space";` — Default to using Space as the default provider to challenge when login is required.
+* `.AddSpace(options => Configuration.Bind("Space", options))` — Add Space authentication, and use settings from configuration.
+
+The next step is to add configuration. In `appsettings.json`, add the `"Space"` section:
+
+```json             
+{
+ "ConnectionStrings": { },
+ "Logging": { },
+ "AllowedHosts": "*",
+
+ "Space": {
+   "ServerUrl": "https://{organization}.jetbrains.space",
+   "ClientId": "{client-id}",
+   "ClientSecret": "{client-secret}"
+ }
+}
+```
+
+Optionally, we can further configure Space authentication behavior in our application. There are several options available:
+
+```csharp
+.AddSpace(options =>
+{
+    Configuration.Bind("Space", options);
+
+    options.Scope.Add("**");   // Set scope (defaults to **)
+    options.SaveTokens = true; // Save tokens (defaults to true)
+
+    // ...
+});
+```
+ 
+Once added, our application will now challenge authentication with Space, and request the user to log in and grant access:
+
+![Authenticate ASP.NET Core with JetBrains Space](docs/images/space-auth-consent.png)
+
+When access is granted, the user will be redirected back to our application and will be authenticated. 
+
+### Space Identity and Claims
+
+An identity constructed by Space provides us with several claims and their values. The `SpaceClaimTypes` class provides access to these values:
+
+* `SpaceClaimTypes.UserId` / `urn:space:userid` — The user id.
+* `SpaceClaimTypes.UserName` / `urn:space:username` — The username.
+* `SpaceClaimTypes.SmallAvatar` / `urn:space:smallAvatar` — The small avatar picture URL path. When appended to our Space organization URL, can be used to render a small profile picture.
+* `SpaceClaimTypes.ProfilePicture` / `urn:space:profilePicture` — The profile picture URL path. When appended to our Space organization URL, can be used to render a profile picture.
+* `SpaceClaimTypes.FirstName` / `urn:space:firstName` — The user's first name.
+* `SpaceClaimTypes.LastName` / `urn:space:lastName` — The user's last name.
+
+These claims and their values are available on identities created by SpaceDotNet. When using multiple authentication providers, it may be required to [enrich our application identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/additional-claims?view=aspnetcore-3.1).
+
+The `SpaceDotNet.Samples.Web` project in the SpaceDotNet repository uses these claims to render user information in the site header, including the user's full name and profile picture:
+
+![Use Space identity claims to personalize the application experience](docs/images/profile-picture-claims.png)
+
+Using these identity properties helps personalize our application's experience.
+
+### Experimental - Space Token Management
+
+Some web applications can be considered a "100% Space integration". For example, we may build an application that lets a user authenticate with Space, and then generates a personalized dashboard with data obtained using the Space API.
+
+The `SpaceDotNet.AspNetCore.Authentication.Space` package contains an experimental feature, token management, to assist with authenticating and making sure the current user's identity is used to access the Space APIs. It also handles refresh tokens, when the current access token has expired.
+
+> **Warning:** The functionality described in this section is experimental. It may not work for every setup, depending on how ASP.NET Authentication is configured.
+> The following has to be true to use Space Token Management in an ASP.NET Core application:
+>
+>  * Space is the only authentication provider used;
+>  * ASP.NET Core Identity storage providers are not in use.
+
+Space Token Management has to be configured in application's `Startup` class, in the `ConfigureServices()` method:
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddAuthentication(options =>
+        {
+            options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+            options.DefaultChallengeScheme = "Space";
+        })
+        .AddCookie()
+        .AddSpace(options => Configuration.Bind("Space", options))
+        .AddSpaceTokenManagement(); // auto-refreshes tokens in the background and provides a Space connection
+
+    services.AddSpaceClientApi(); // register Space API clients
+}
+```
+
+Our web application will now authenticate every user using the Space Authentication Provider.
+
+The `AddSpaceTokenManagement()` call registers Space Token Management, and will inject a `Connection` that is authenticated for the current user of our application. Combined with `AddSpaceClientApi()`, which registers the Space API clients with the current service collection, we can now make use of the Space API throughout our application, and let SpaceDotNet handle all authentication needs.
+
+Have a look at the `SpaceDotNet.Samples.Web` project in the SpaceDotNet repository, which uses this technique to build a personal dashboard:
+
+![Personal Space dashboard using Token Management and SpaceDotNet](docs/images/dashboard-token-management.png)
