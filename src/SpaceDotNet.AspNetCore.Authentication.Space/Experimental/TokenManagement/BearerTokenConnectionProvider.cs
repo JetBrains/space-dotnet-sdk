@@ -52,7 +52,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
                 return null;
             }
             
-            return new BearerTokenConnection(spaceOptions.ServerUrl.ToString(), new AuthenticationTokens(accessToken, null, null));
+            return new BearerTokenConnection(spaceOptions.ServerUrl.ToString(), new AuthenticationTokens(accessToken));
         }
         
         private async Task<SpaceOptions> GetSpaceOptionsAsync()
