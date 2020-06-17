@@ -110,15 +110,10 @@ class Build : NukeBuild
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
-
-            var myGetSourceUrl = "https://www.myget.org/F/spacedotnet/api/v3/index.json";
-            var myGetApiKey = "71f22ebd-f554-4bf5-b1f3-2f9ea126eba4"; // write-only to SpaceDotNet feed
             
             DotNetNuGetPush(_ => _
-                    //.SetSource(NuGetSourceUrl)
-                    //.SetApiKey(SpaceClientSecret)
-                    .SetSource(myGetSourceUrl)
-                    .SetApiKey(myGetApiKey)
+                    .SetSource(NuGetSourceUrl)
+                    .SetApiKey(SpaceClientSecret)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
