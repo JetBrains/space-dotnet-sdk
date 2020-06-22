@@ -31,6 +31,9 @@ class Build : NukeBuild
 
     [Parameter("Space API Client Secret", Name = "JB_SPACE_CLIENT_SECRET")]
     readonly string? SpaceClientSecret;
+
+    [Parameter("Space API access token", Name = "JB_SPACE_CLIENT_TOKEN")]
+    readonly string? SpaceAccessToken;
     
     [Solution] readonly Solution? Solution;
     [GitRepository] readonly GitRepository? GitRepository;
@@ -105,7 +108,8 @@ class Build : NukeBuild
             !string.IsNullOrEmpty(NuGetSourceUrl) && 
             !string.IsNullOrEmpty(SpaceApiUrl) &&
             !string.IsNullOrEmpty(SpaceClientId) && 
-            !string.IsNullOrEmpty(SpaceClientSecret))
+            !string.IsNullOrEmpty(SpaceClientSecret) && 
+            !string.IsNullOrEmpty(SpaceAccessToken))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
@@ -113,7 +117,7 @@ class Build : NukeBuild
             
             DotNetNuGetPush(_ => _
                     .SetSource(NuGetSourceUrl)
-                    .SetApiKey(SpaceClientSecret)
+                    .SetApiKey(SpaceAccessToken)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
