@@ -43,7 +43,7 @@ namespace Microsoft.Extensions.DependencyInjection
         /// <returns>The current <see cref="IServiceCollection"/>, with registered Space Client APIs.</returns>
         /// <param name="lifetime">The <see cref="ServiceLifetime"/> for these registrations. Defaults to <see cref="ServiceLifetime.Transient"/>.</param>
         /// <exception cref="ArgumentNullException">Thrown when no <see cref="IServiceCollection"/> is provided.</exception>
-        /// <exception cref="Exception">Thrown when the current <see cref="IServiceCollection"/> does not yet contain a registration for <see cref="Connection"/>. Call <see cref="AddSpaceConnection"/> before <see cref="AddSpaceClientApi"/>, or manually register a <see cref="Connection"/>.</exception>
+        /// <exception cref="Exception">Thrown when the current <see cref="IServiceCollection"/> does not yet contain a registration for <see cref="Connection"/>. Call <see cref="AddSpaceConnection{TService}"/> before <see cref="AddSpaceClientApi"/>, or manually register a <see cref="Connection"/>.</exception>
         public static IServiceCollection AddSpaceClientApi(
             this IServiceCollection services,
             ServiceLifetime lifetime = ServiceLifetime.Transient)

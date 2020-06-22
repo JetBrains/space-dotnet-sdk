@@ -9,7 +9,7 @@ namespace SpaceDotNet.Common
     /// accessing a property that has not been requested from the API.
     /// </summary>
     [PublicAPI]
-    public class PropertyAccessException 
+    public class PropertyNotRequestedException 
         : Exception
     {
         /// <summary>
@@ -18,7 +18,7 @@ namespace SpaceDotNet.Common
         /// <param name="message">A message that describes the current exception.</param>
         /// <param name="typeName">The Dto type name on which an uninitialized property was accessed.</param>
         /// <param name="propertyName">The uninitialized property name.</param>
-        public PropertyAccessException(string message, string typeName, string propertyName) 
+        public PropertyNotRequestedException(string message, string typeName, string propertyName) 
             : base(message)
         {
             TypeName = typeName;

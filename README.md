@@ -158,7 +158,7 @@ var memberProfile = await teamDirectoryClient.Profiles
         .WithUsername());
 ```
 
-When we try to access the `Name` property for this profile, which we did not request, SpaceDotNet will throw a `PropertyAccessException` with additional information.
+When we try to access the `Name` property for this profile, which we did not request, SpaceDotNet will throw a `PropertyNotRequestedException` with additional information.
 
 ```csharp
 try
@@ -166,11 +166,12 @@ try
     // This will fail...
     Console.WriteLine($"Hello, {memberProfile.Name.FirstName}");
 }
-catch (PropertyAccessException e)
+catch (PropertyNotRequestedException e)
 {
     // ...and we'll get a pointer about why it fails:
     // "The property Name was not requested in the partial builder
-    //  for TDMemberProfileDto. Use .WithName() to include it."
+    //  for TDMemberProfileDto. Use .WithName() to include it.
+    //  Full path: Batch`1->WithData()->WithName()"
     Console.WriteLine(e.Message);
 }
 ```
@@ -223,18 +224,20 @@ Here's an example retrieving issues from a project. For the `CreatedBy` property
 * `CUserWithEmailPrincipalDetailsDto` with the `Name` and `Email` properties.
 
 ```csharp
-await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable("project1234", IssuesSorting.UPDATED, partial: _ => _
-    .WithAllFieldsWildcard()
-    .WithCreationTime()
-    .WithCreatedBy(createdBy => createdBy
-        .WithDetails(details => details
-            .ForInherited<CUserPrincipalDetailsDto>(detailsDto => detailsDto
-                .WithUser(user => user
-                    .WithId()))
-            .ForInherited<CUserWithEmailPrincipalDetailsDto>(detailsDto => detailsDto
-                .WithName()
-                .WithEmail())))
-    .WithStatus()))
+await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(
+    "project1234", IssuesSorting.UPDATED,
+    partial: _ => _
+        .WithAllFieldsWildcard()
+        .WithCreationTime()
+        .WithCreatedBy(createdBy => createdBy
+            .WithDetails(details => details
+                .ForInherited<CUserPrincipalDetailsDto>(detailsDto => detailsDto
+                    .WithUser(user => user
+                        .WithId()))
+                .ForInherited<CUserWithEmailPrincipalDetailsDto>(detailsDto => detailsDto
+                    .WithName()
+                    .WithEmail())))
+        .WithStatus()))
 {
     if (issueDto.CreatedBy.Details is CUserPrincipalDetailsDto userPrincipal)
     {
@@ -271,15 +274,31 @@ We have to specify the properties of the `Batch` type to retrieve, and all the f
 As an example, let's retrieve the current user's To-Do items for this week, skipping the first 10 items, with their `Id`, `Content` and `Status`:
 
 ```csharp
-var batch = await _todoClient.GetAllToDoItemsAsync(from: weekStart.AsSpaceDate(), skip: 10, partial: _ => _
-    .WithData(data => data
-        .WithId()
-        .WithContent(content => content
-            .ForInherited<TodoItemContentMdTextDto>(md => md
-            .WithAllFieldsWildcard()))
-        .WithStatus())
-    .WithTotalCount()
-    .WithNext());
+var batch = await _todoClient.GetAllToDoItemsAsync(
+    from: weekStart.AsSpaceDate(),
+    partial: _ => _
+        .WithData(data => data
+            .WithId()
+            .WithContent(content => content
+                .ForInherited<TodoItemContentMdTextDto>(md => md
+                .WithAllFieldsWildcard()))
+            .WithStatus())
+        .WithTotalCount()
+        .WithNext());
+
+do
+{
+    foreach (var todoDto in batch.Data)
+    {
+        // ...
+    }
+    
+    batch = await _todoClient.GetAllToDoItemsAsync(
+        from: weekStart.AsSpaceDate(),
+        skip: batch.Next,
+        partial: _ => _ /* ... */);
+}
+while (batch.HasNext());
 ```
 
 The resulting `batch` will contain one page of results. To retrieve more To-Do items, we will have to make additional API calls. This gets cumbersome rather quickly, which is why API endpoints that return a `Batch<T>` also have an overload that supports `IAsyncEnumerable`.
@@ -287,12 +306,14 @@ The resulting `batch` will contain one page of results. To retrieve more To-Do i
 With the `IAsyncEnumerable` overload for these endpoints, we can iterate over items that are returned. The underlying SpaceDotNet implementation will handle pagination and additional API calls for us. The same example as before, using the `IAsyncEnumerable` overload:
 
 ```csharp
-await foreach (var todoDto in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart.AsSpaceDate(), partial: _ => _
-    .WithId()
-    .WithContent(content => content
-        .ForInherited<TodoItemContentMdTextDto>(md => md
-            .WithAllFieldsWildcard()))
-    .WithStatus()))
+await foreach (var todoDto in _todoClient.GetAllToDoItemsAsyncEnumerable(
+    from: weekStart.AsSpaceDate(),
+    partial: _ => _
+        .WithId()
+        .WithContent(content => content
+            .ForInherited<TodoItemContentMdTextDto>(md => md
+                .WithAllFieldsWildcard()))
+        .WithStatus()))
 {
     // ...
 }

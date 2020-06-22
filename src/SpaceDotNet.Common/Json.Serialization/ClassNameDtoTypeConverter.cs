@@ -47,7 +47,11 @@ namespace SpaceDotNet.Common.Json.Serialization
                 }
                 if (targetType != null && typeof(IClassNameConvertible).IsAssignableFrom(targetType))
                 {
-                    return JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as IClassNameConvertible;
+                    var value = JsonSerializer.Deserialize(ref readerAtStart, targetType, options) as IClassNameConvertible;
+                    
+                    PropagatePropertyAccessPathHelper.SetAccessPathForValue(targetType.Name, true, value);
+
+                    return value;
                 }
             }
 

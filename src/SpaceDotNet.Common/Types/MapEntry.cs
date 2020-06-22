@@ -6,6 +6,7 @@ namespace SpaceDotNet.Common.Types
 {
     [PublicAPI]
     public class MapEntry<TKey, TValue>
+        : IPropagatePropertyAccessPath
     {
         [Required]
         [JsonPropertyName("key")]
@@ -14,5 +15,11 @@ namespace SpaceDotNet.Common.Types
         [Required]
         [JsonPropertyName("value")]
         public TValue Value { get; set; } = default!;
+
+        public void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(Key)}()", validateHasBeenSet, Key);
+            PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(Value)}()", validateHasBeenSet, Value);
+        }
     }
 }

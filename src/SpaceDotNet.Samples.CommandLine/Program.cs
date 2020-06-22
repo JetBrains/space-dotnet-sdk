@@ -38,7 +38,7 @@ namespace SpaceDotNet.Samples.CommandLine
                 // This will fail...
                 Console.WriteLine($"{firstProfile.Name.FirstName} {firstProfile.Name.LastName}");
             }
-            catch (PropertyAccessException e)
+            catch (PropertyNotRequestedException e)
             {
                 Console.WriteLine($"The Space API client tells us which partial query should be added to access {e.PropertyName}:");
                 Console.ForegroundColor = ConsoleColor.Red;

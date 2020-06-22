@@ -5,19 +5,23 @@ namespace SpaceDotNet.Common.Types
 {
     /// <summary>
     /// Property value backing field type for Dtos.
-    /// Throws a <see cref="PropertyAccessException"/> when accessing a property
+    /// Throws a <see cref="PropertyNotRequestedException"/> when accessing a property
     /// that has not been requested from the API.
     /// </summary>
     /// <remarks>Should only be used in generated code.</remarks>
     /// <typeparam name="T">Type for the Dto backing field.</typeparam>
     [PublicAPI]
-    public sealed class PropertyValue<T>
+    public sealed class PropertyValue<T> 
+        : IPropagatePropertyAccessPath
     {
         private readonly string _className;
         private readonly string _propertyName;
+        private string _accessPath = string.Empty;
 
-        private T _value = default!;
         private bool _hasBeenSet;
+        private bool _validateHasBeenSet;
+        
+        private T _value = default!;
 
         public PropertyValue(string className, string propertyName)
         {
@@ -35,11 +39,19 @@ namespace SpaceDotNet.Common.Types
         [DebuggerHidden]
         public T GetValue()
         {
-            if (!_hasBeenSet)
+            if (!_hasBeenSet && _validateHasBeenSet)
             {
-                throw new PropertyAccessException($"The property {_propertyName} was not requested in the partial builder for {_className}. Use .With{_propertyName}() to include it.", _className, _propertyName);
+                throw new PropertyNotRequestedException($"The property {_propertyName} was not requested in the partial builder for {_className}. Use .With{_propertyName}() to include it. Full path: {_accessPath}", _className, _propertyName);
             }
             return _value;
+        }
+
+        public void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _accessPath = path;
+            _validateHasBeenSet = validateHasBeenSet;
+            
+            PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{_propertyName}()", validateHasBeenSet, _value);
         }
     }
 }

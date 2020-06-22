@@ -71,12 +71,6 @@ namespace SpaceDotNet.Samples.Web.Pages
             
             #endregion
             
-            #region Example with full recursive (not recommended as it is too eager)
-            
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync(partial => Partial<TDMemberProfileDto>.Recursive());
-            
-            #endregion
-            
             #region Example with full field definitions
             
             MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync(partial => partial

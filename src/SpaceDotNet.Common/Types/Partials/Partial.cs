@@ -129,7 +129,7 @@ namespace SpaceDotNet.Common
         /// <remarks>This is too greedy for most use cases and should be avoided.</remarks>
         /// <returns>A <see cref="Partial{T}"/> that can be extended.</returns>
         [Obsolete("This is too greedy for most use cases and should be avoided. The method will be removed in the future.")]
-        public static Partial<T> Recursive()
+        internal static Partial<T> Recursive()
         {
             var partial = new Partial<T>();
             partial.AddFieldNames(FieldsFor(typeof(T)));

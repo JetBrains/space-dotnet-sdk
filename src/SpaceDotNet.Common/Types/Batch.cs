@@ -5,7 +5,8 @@ using JetBrains.Annotations;
 namespace SpaceDotNet.Common.Types
 {
     [PublicAPI]
-    public class Batch<T>
+    public class Batch<T> 
+        : IPropagatePropertyAccessPath
     {
         [JsonPropertyName("data")]
         public List<T>? Data { get; set; }
@@ -17,5 +18,10 @@ namespace SpaceDotNet.Common.Types
         public int? TotalCount { get; set; }
 
         public bool HasNext() => TotalCount != null && !string.IsNullOrEmpty(Next) && Next != TotalCount.ToString();
+        
+        public void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            PropagatePropertyAccessPathHelper.SetAccessPathForValue($"{path}->With{nameof(Data)}()", validateHasBeenSet, Data);
+        }
     }
 }

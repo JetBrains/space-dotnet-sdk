@@ -3,6 +3,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using System.Web;
 using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Common
 {
@@ -107,7 +108,11 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath)
         {
-            return await RequestResourceInternalAsync<TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath));
+            var value = await RequestResourceInternalAsync<TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath));
+           
+            PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
+            
+            return value;
         }
 
         /// <summary>
@@ -132,7 +137,11 @@ namespace SpaceDotNet.Common
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
         {
-            return await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
+            var value = await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
+            
+            PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
+            
+            return value;
         }
         
         protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath);
