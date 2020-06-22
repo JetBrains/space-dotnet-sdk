@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESLdapAttributeNamesDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNamesDto), nameof(FullNameAttributeName));
         
@@ -57,6 +58,14 @@ namespace SpaceDotNet.Client
         {
             get { return _groupsAttributeName.GetValue(); }
             set { _groupsAttributeName.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _fullNameAttributeName.SetAccessPath(path + "->WithFullNameAttributeName()", validateHasBeenSet);
+            _usernameAttributeName.SetAccessPath(path + "->WithUsernameAttributeName()", validateHasBeenSet);
+            _emailAttributeName.SetAccessPath(path + "->WithEmailAttributeName()", validateHasBeenSet);
+            _groupsAttributeName.SetAccessPath(path + "->WithGroupsAttributeName()", validateHasBeenSet);
         }
     
     }

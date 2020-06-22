@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateMeetingRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(UpdateMeetingRequest), nameof(Summary));
         
@@ -153,6 +154,24 @@ namespace SpaceDotNet.Client
         {
             get { return _modificationKind.GetValue(); }
             set { _modificationKind.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _occurrenceRule.SetAccessPath(path + "->WithOccurrenceRule()", validateHasBeenSet);
+            _locationsDiff.SetAccessPath(path + "->WithLocationsDiff()", validateHasBeenSet);
+            _profilesDiff.SetAccessPath(path + "->WithProfilesDiff()", validateHasBeenSet);
+            _externalParticipantsDiff.SetAccessPath(path + "->WithExternalParticipantsDiff()", validateHasBeenSet);
+            _teamsDiff.SetAccessPath(path + "->WithTeamsDiff()", validateHasBeenSet);
+            _visibility.SetAccessPath(path + "->WithVisibility()", validateHasBeenSet);
+            _modificationPreference.SetAccessPath(path + "->WithModificationPreference()", validateHasBeenSet);
+            _joiningPreference.SetAccessPath(path + "->WithJoiningPreference()", validateHasBeenSet);
+            _notifyOnExport.SetAccessPath(path + "->WithNotifyOnExport()", validateHasBeenSet);
+            _organizer.SetAccessPath(path + "->WithOrganizer()", validateHasBeenSet);
+            _targetDate.SetAccessPath(path + "->WithTargetDate()", validateHasBeenSet);
+            _modificationKind.SetAccessPath(path + "->WithModificationKind()", validateHasBeenSet);
         }
     
     }

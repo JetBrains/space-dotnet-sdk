@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDLanguageDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLanguageDto), nameof(Id));
         
@@ -81,6 +82,16 @@ namespace SpaceDotNet.Client
         {
             get { return _lastNameTitle.GetValue(); }
             set { _lastNameTitle.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _code.SetAccessPath(path + "->WithCode()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _nativeName.SetAccessPath(path + "->WithNativeName()", validateHasBeenSet);
+            _firstNameTitle.SetAccessPath(path + "->WithFirstNameTitle()", validateHasBeenSet);
+            _lastNameTitle.SetAccessPath(path + "->WithLastNameTitle()", validateHasBeenSet);
         }
     
     }

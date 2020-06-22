@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TextRangeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _start = new PropertyValue<int>(nameof(TextRangeDto), nameof(Start));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _length.GetValue(); }
             set { _length.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _start.SetAccessPath(path + "->WithStart()", validateHasBeenSet);
+            _length.SetAccessPath(path + "->WithLength()", validateHasBeenSet);
         }
     
     }

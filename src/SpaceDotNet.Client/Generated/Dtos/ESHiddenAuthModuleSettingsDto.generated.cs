@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESHiddenAuthModuleSettingsDto
-         : ESAuthModuleSettingsDto, IClassNameConvertible
+         : ESAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettingsDto), nameof(PasswordModule));
         
@@ -40,6 +40,12 @@ namespace SpaceDotNet.Client
         {
             get { return _federatedModule.GetValue(); }
             set { _federatedModule.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _passwordModule.SetAccessPath(path + "->WithPasswordModule()", validateHasBeenSet);
+            _federatedModule.SetAccessPath(path + "->WithFederatedModule()", validateHasBeenSet);
         }
     
     }

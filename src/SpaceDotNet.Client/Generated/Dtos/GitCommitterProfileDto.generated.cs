@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class GitCommitterProfileDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _author = new PropertyValue<string>(nameof(GitCommitterProfileDto), nameof(Author));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _profile.GetValue(); }
             set { _profile.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
+            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
         }
     
     }

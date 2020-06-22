@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateRequestRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(UpdateRequestRequest), nameof(Approved));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _approved.GetValue(); }
             set { _approved.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _approved.SetAccessPath(path + "->WithApproved()", validateHasBeenSet);
         }
     
     }

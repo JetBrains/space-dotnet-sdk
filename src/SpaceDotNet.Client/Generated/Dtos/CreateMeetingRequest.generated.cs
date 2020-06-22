@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateMeetingRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(CreateMeetingRequest), nameof(Summary));
         
@@ -139,6 +140,22 @@ namespace SpaceDotNet.Client
         {
             get { return _organizer.GetValue(); }
             set { _organizer.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _occurrenceRule.SetAccessPath(path + "->WithOccurrenceRule()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
+            _profiles.SetAccessPath(path + "->WithProfiles()", validateHasBeenSet);
+            _externalParticipants.SetAccessPath(path + "->WithExternalParticipants()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _visibility.SetAccessPath(path + "->WithVisibility()", validateHasBeenSet);
+            _modificationPreference.SetAccessPath(path + "->WithModificationPreference()", validateHasBeenSet);
+            _joiningPreference.SetAccessPath(path + "->WithJoiningPreference()", validateHasBeenSet);
+            _notifyOnExport.SetAccessPath(path + "->WithNotifyOnExport()", validateHasBeenSet);
+            _organizer.SetAccessPath(path + "->WithOrganizer()", validateHasBeenSet);
         }
     
     }

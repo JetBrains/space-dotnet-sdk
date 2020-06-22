@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class SamlMetadataRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(SamlMetadataRequest), nameof(IdpUrl));
         
@@ -79,6 +80,16 @@ namespace SpaceDotNet.Client
         {
             get { return _contactProfileId.GetValue(); }
             set { _contactProfileId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _idpUrl.SetAccessPath(path + "->WithIdpUrl()", validateHasBeenSet);
+            _idpEntityId.SetAccessPath(path + "->WithIdpEntityId()", validateHasBeenSet);
+            _idpCertificateSHA256.SetAccessPath(path + "->WithIdpCertificateSHA256()", validateHasBeenSet);
+            _spEntityId.SetAccessPath(path + "->WithSpEntityId()", validateHasBeenSet);
+            _sslKeystore.SetAccessPath(path + "->WithSslKeystore()", validateHasBeenSet);
+            _contactProfileId.SetAccessPath(path + "->WithContactProfileId()", validateHasBeenSet);
         }
     
     }

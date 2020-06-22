@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateRequestRevokeRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<SpaceTime> _till = new PropertyValue<SpaceTime>(nameof(UpdateRequestRevokeRequest), nameof(Till));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _till.GetValue(); }
             set { _till.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
         }
     
     }

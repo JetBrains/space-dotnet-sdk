@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MarketApplicationRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MarketApplicationRecordDto), nameof(Id));
         
@@ -71,6 +72,15 @@ namespace SpaceDotNet.Client
         {
             get { return _lastUpdated.GetValue(); }
             set { _lastUpdated.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _lastUpdated.SetAccessPath(path + "->WithLastUpdated()", validateHasBeenSet);
         }
     
     }

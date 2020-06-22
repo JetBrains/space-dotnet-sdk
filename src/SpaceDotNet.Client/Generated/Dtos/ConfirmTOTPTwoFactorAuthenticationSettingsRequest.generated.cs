@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ConfirmTOTPTwoFactorAuthenticationSettingsRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _code = new PropertyValue<int>(nameof(ConfirmTOTPTwoFactorAuthenticationSettingsRequest), nameof(Code));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _code.GetValue(); }
             set { _code.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _code.SetAccessPath(path + "->WithCode()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class AllReactionsToItemRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(AllReactionsToItemRecordDto), nameof(Id));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _emojiReactions.GetValue(); }
             set { _emojiReactions.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
+            _emojiReactions.SetAccessPath(path + "->WithEmojiReactions()", validateHasBeenSet);
         }
     
     }

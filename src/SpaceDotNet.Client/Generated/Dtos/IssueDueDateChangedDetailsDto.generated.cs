@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class IssueDueDateChangedDetailsDto
-         : IssueChangedM2DetailsDto, IClassNameConvertible
+         : IssueChangedM2DetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -43,6 +43,12 @@ namespace SpaceDotNet.Client
         {
             get { return _newDueDate.GetValue(); }
             set { _newDueDate.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _oldDueDate.SetAccessPath(path + "->WithOldDueDate()", validateHasBeenSet);
+            _newDueDate.SetAccessPath(path + "->WithNewDueDate()", validateHasBeenSet);
         }
     
     }

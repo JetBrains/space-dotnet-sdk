@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ArticleChannelRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleChannelRecordDto), nameof(Id));
         
@@ -71,6 +72,15 @@ namespace SpaceDotNet.Client
         {
             get { return _reactions.GetValue(); }
             set { _reactions.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
+            _channelContent.SetAccessPath(path + "->WithChannelContent()", validateHasBeenSet);
+            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateAuthModuleRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(UpdateAuthModuleRequest), nameof(Key));
         
@@ -57,6 +58,14 @@ namespace SpaceDotNet.Client
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _enabled.SetAccessPath(path + "->WithEnabled()", validateHasBeenSet);
+            _settings.SetAccessPath(path + "->WithSettings()", validateHasBeenSet);
         }
     
     }

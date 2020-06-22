@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TrackedBranchesInReviewDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(TrackedBranchesInReviewDto), nameof(Repository));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _branches.GetValue(); }
             set { _branches.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
+            _branches.SetAccessPath(path + "->WithBranches()", validateHasBeenSet);
         }
     
     }

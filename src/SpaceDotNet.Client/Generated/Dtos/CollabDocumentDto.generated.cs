@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CollabDocumentDto
-         : TextDocumentDto, IClassNameConvertible
+         : TextDocumentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -74,6 +74,15 @@ namespace SpaceDotNet.Client
         {
             get { return _text.GetValue(); }
             set { _text.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _resetCounter.SetAccessPath(path + "->WithResetCounter()", validateHasBeenSet);
+            _version.SetAccessPath(path + "->WithVersion()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
         }
     
     }

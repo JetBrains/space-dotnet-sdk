@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ChatChannelFromIdDto
-         : ChatChannelDto, IClassNameConvertible
+         : ChatChannelDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChatChannelFromIdDto), nameof(Id));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _id.GetValue(); }
             set { _id.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
         }
     
     }

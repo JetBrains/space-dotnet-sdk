@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAEnumDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAEnumDto), nameof(Id));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _deprecation.GetValue(); }
             set { _deprecation.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _values.SetAccessPath(path + "->WithValues()", validateHasBeenSet);
+            _deprecation.SetAccessPath(path + "->WithDeprecation()", validateHasBeenSet);
         }
     
     }

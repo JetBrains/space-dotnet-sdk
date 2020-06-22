@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ChangeRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _oldPassword = new PropertyValue<string>(nameof(ChangeRequest), nameof(OldPassword));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _newPassword.GetValue(); }
             set { _newPassword.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _oldPassword.SetAccessPath(path + "->WithOldPassword()", validateHasBeenSet);
+            _newPassword.SetAccessPath(path + "->WithNewPassword()", validateHasBeenSet);
         }
     
     }

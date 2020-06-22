@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CommitSetReviewRecordDto
-         : CodeReviewRecordDto, IClassNameConvertible
+         : CodeReviewRecordDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(CommitSetReviewRecordDto), nameof(Project));
         
@@ -109,6 +109,19 @@ namespace SpaceDotNet.Client
         {
             get { return _feedChannel.GetValue(); }
             set { _feedChannel.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
+            _number.SetAccessPath(path + "->WithNumber()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _state.SetAccessPath(path + "->WithState()", validateHasBeenSet);
+            _canBeReopened.SetAccessPath(path + "->WithCanBeReopened()", validateHasBeenSet);
+            _createdAt.SetAccessPath(path + "->WithCreatedAt()", validateHasBeenSet);
+            _createdBy.SetAccessPath(path + "->WithCreatedBy()", validateHasBeenSet);
+            _turnBased.SetAccessPath(path + "->WithTurnBased()", validateHasBeenSet);
+            _feedChannel.SetAccessPath(path + "->WithFeedChannel()", validateHasBeenSet);
         }
     
     }

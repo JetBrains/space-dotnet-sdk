@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2ChannelContactDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _defaultName = new PropertyValue<string>(nameof(M2ChannelContactDto), nameof(DefaultName));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _ext.GetValue(); }
             set { _ext.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _defaultName.SetAccessPath(path + "->WithDefaultName()", validateHasBeenSet);
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _ext.SetAccessPath(path + "->WithExt()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ImportRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _calendar = new PropertyValue<string>(nameof(ImportRequest), nameof(Calendar));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _attachmentId.GetValue(); }
             set { _attachmentId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _calendar.SetAccessPath(path + "->WithCalendar()", validateHasBeenSet);
+            _attachmentId.SetAccessPath(path + "->WithAttachmentId()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class TestBuiltInSettingsRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ESBuiltinAuthModuleSettingsDto> _settings = new PropertyValue<ESBuiltinAuthModuleSettingsDto>(nameof(TestBuiltInSettingsRequest), nameof(Settings));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _password.GetValue(); }
             set { _password.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _settings.SetAccessPath(path + "->WithSettings()", validateHasBeenSet);
+            _username.SetAccessPath(path + "->WithUsername()", validateHasBeenSet);
+            _password.SetAccessPath(path + "->WithPassword()", validateHasBeenSet);
         }
     
     }

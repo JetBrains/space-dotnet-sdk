@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ATimeZoneWithOffsetDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ATimeZoneWithOffsetDto), nameof(Id));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _offset.GetValue(); }
             set { _offset.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _offset.SetAccessPath(path + "->WithOffset()", validateHasBeenSet);
         }
     
     }

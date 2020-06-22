@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeReviewDetailedInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<CodeReviewRecordDto> _shortInfo = new PropertyValue<CodeReviewRecordDto>(nameof(CodeReviewDetailedInfoDto), nameof(ShortInfo));
         
@@ -71,6 +72,15 @@ namespace SpaceDotNet.Client
         {
             get { return _branches.GetValue(); }
             set { _branches.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _shortInfo.SetAccessPath(path + "->WithShortInfo()", validateHasBeenSet);
+            _commits.SetAccessPath(path + "->WithCommits()", validateHasBeenSet);
+            _lostCommits.SetAccessPath(path + "->WithLostCommits()", validateHasBeenSet);
+            _discussionCounter.SetAccessPath(path + "->WithDiscussionCounter()", validateHasBeenSet);
+            _branches.SetAccessPath(path + "->WithBranches()", validateHasBeenSet);
         }
     
     }

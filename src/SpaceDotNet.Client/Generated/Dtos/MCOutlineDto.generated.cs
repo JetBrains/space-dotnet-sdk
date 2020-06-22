@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MCOutlineDto
-         : MCElementDetailsDto, IClassNameConvertible
+         : MCElementDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -43,6 +43,12 @@ namespace SpaceDotNet.Client
         {
             get { return _text.GetValue(); }
             set { _text.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
         }
     
     }

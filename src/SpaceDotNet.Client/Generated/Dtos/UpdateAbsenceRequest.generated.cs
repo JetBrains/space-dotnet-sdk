@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateAbsenceRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _member = new PropertyValue<string?>(nameof(UpdateAbsenceRequest), nameof(Member));
         
@@ -103,6 +104,19 @@ namespace SpaceDotNet.Client
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _member.SetAccessPath(path + "->WithMember()", validateHasBeenSet);
+            _reason.SetAccessPath(path + "->WithReason()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
+            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
+            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
+            _available.SetAccessPath(path + "->WithAvailable()", validateHasBeenSet);
+            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
+            _customFieldValues.SetAccessPath(path + "->WithCustomFieldValues()", validateHasBeenSet);
         }
     
     }

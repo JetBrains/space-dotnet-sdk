@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeDiscussionAnchorDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(CodeDiscussionAnchorDto), nameof(Project));
         
@@ -87,6 +88,17 @@ namespace SpaceDotNet.Client
         {
             get { return _interpolatedLineState.GetValue(); }
             set { _interpolatedLineState.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
+            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
+            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
+            _filename.SetAccessPath(path + "->WithFilename()", validateHasBeenSet);
+            _line.SetAccessPath(path + "->WithLine()", validateHasBeenSet);
+            _oldLine.SetAccessPath(path + "->WithOldLine()", validateHasBeenSet);
+            _interpolatedLineState.SetAccessPath(path + "->WithInterpolatedLineState()", validateHasBeenSet);
         }
     
     }

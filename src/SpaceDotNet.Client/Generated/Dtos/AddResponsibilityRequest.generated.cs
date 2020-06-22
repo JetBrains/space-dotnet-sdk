@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class AddResponsibilityRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(AddResponsibilityRequest), nameof(SubjectId));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _notes.GetValue(); }
             set { _notes.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _subjectId.SetAccessPath(path + "->WithSubjectId()", validateHasBeenSet);
+            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
+            _notes.SetAccessPath(path + "->WithNotes()", validateHasBeenSet);
         }
     
     }

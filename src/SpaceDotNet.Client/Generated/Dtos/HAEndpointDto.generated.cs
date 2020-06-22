@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAEndpointDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<HAResourceDto> _resource = new PropertyValue<HAResourceDto>(nameof(HAEndpointDto), nameof(Resource));
         
@@ -107,6 +108,19 @@ namespace SpaceDotNet.Client
         {
             get { return _deprecation.GetValue(); }
             set { _deprecation.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _resource.SetAccessPath(path + "->WithResource()", validateHasBeenSet);
+            _method.SetAccessPath(path + "->WithMethod()", validateHasBeenSet);
+            _parameters.SetAccessPath(path + "->WithParameters()", validateHasBeenSet);
+            _requestBody.SetAccessPath(path + "->WithRequestBody()", validateHasBeenSet);
+            _responseBody.SetAccessPath(path + "->WithResponseBody()", validateHasBeenSet);
+            _path.SetAccessPath(path + "->WithPath()", validateHasBeenSet);
+            _displayName.SetAccessPath(path + "->WithDisplayName()", validateHasBeenSet);
+            _doc.SetAccessPath(path + "->WithDoc()", validateHasBeenSet);
+            _deprecation.SetAccessPath(path + "->WithDeprecation()", validateHasBeenSet);
         }
     
     }

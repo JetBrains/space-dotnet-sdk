@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DTOFullRightWithoutTypeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(DTOFullRightWithoutTypeDto), nameof(Code));
         
@@ -69,6 +70,15 @@ namespace SpaceDotNet.Client
         {
             get { return _featureFlag.GetValue(); }
             set { _featureFlag.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _code.SetAccessPath(path + "->WithCode()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _grantedForUsers.SetAccessPath(path + "->WithGrantedForUsers()", validateHasBeenSet);
+            _featureFlag.SetAccessPath(path + "->WithFeatureFlag()", validateHasBeenSet);
         }
     
     }

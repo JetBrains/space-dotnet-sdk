@@ -23,11 +23,15 @@ namespace SpaceDotNet.Client
 {
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public class M2MemberContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+         : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

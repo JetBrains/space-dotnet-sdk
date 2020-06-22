@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDMergedEventDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<Pair<TDMembershipDto, int>>> _events = new PropertyValue<List<Pair<TDMembershipDto, int>>>(nameof(TDMergedEventDto), nameof(Events));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _profile.GetValue(); }
             set { _profile.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _events.SetAccessPath(path + "->WithEvents()", validateHasBeenSet);
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
         }
     
     }

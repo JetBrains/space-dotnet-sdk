@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class SSLKeystoreDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(SSLKeystoreDto), nameof(Name));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
         }
     
     }

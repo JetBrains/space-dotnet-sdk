@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateIssueRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(CreateIssueRequest), nameof(Title));
         
@@ -106,6 +107,19 @@ namespace SpaceDotNet.Client
         {
             get { return _importInfo.GetValue(); }
             set { _importInfo.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _assignee.SetAccessPath(path + "->WithAssignee()", validateHasBeenSet);
+            _status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
+            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
+            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
+            _checklists.SetAccessPath(path + "->WithChecklists()", validateHasBeenSet);
+            _attachments.SetAccessPath(path + "->WithAttachments()", validateHasBeenSet);
+            _importInfo.SetAccessPath(path + "->WithImportInfo()", validateHasBeenSet);
         }
     
     }

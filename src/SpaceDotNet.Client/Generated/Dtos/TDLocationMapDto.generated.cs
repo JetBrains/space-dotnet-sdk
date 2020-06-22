@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDLocationMapDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMapDto), nameof(Id));
         
@@ -69,6 +70,15 @@ namespace SpaceDotNet.Client
         {
             get { return _height.GetValue(); }
             set { _height.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _picture.SetAccessPath(path + "->WithPicture()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
+            _width.SetAccessPath(path + "->WithWidth()", validateHasBeenSet);
+            _height.SetAccessPath(path + "->WithHeight()", validateHasBeenSet);
         }
     
     }

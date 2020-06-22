@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DraftPublicationDetailsDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _usedType = new PropertyValue<string?>(nameof(DraftPublicationDetailsDto), nameof(UsedType));
         
@@ -39,6 +40,12 @@ namespace SpaceDotNet.Client
         {
             get { return _allPublicationDetails.GetValue(); }
             set { _allPublicationDetails.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _usedType.SetAccessPath(path + "->WithUsedType()", validateHasBeenSet);
+            _allPublicationDetails.SetAccessPath(path + "->WithAllPublicationDetails()", validateHasBeenSet);
         }
     
     }

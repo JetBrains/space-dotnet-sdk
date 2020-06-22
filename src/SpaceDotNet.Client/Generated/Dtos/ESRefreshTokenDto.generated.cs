@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESRefreshTokenDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESRefreshTokenDto), nameof(Id));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _lastAccess.GetValue(); }
             set { _lastAccess.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _scope.SetAccessPath(path + "->WithScope()", validateHasBeenSet);
+            _lastAccess.SetAccessPath(path + "->WithLastAccess()", validateHasBeenSet);
         }
     
     }

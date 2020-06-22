@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeReviewParticipantDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMemberProfileDto> _user = new PropertyValue<TDMemberProfileDto>(nameof(CodeReviewParticipantDto), nameof(User));
         
@@ -59,6 +60,14 @@ namespace SpaceDotNet.Client
         {
             get { return _theirTurn.GetValue(); }
             set { _theirTurn.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _user.SetAccessPath(path + "->WithUser()", validateHasBeenSet);
+            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
+            _state.SetAccessPath(path + "->WithState()", validateHasBeenSet);
+            _theirTurn.SetAccessPath(path + "->WithTheirTurn()", validateHasBeenSet);
         }
     
     }

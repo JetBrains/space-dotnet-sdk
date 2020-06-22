@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DTOMeetingDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DTOMeetingDto), nameof(Id));
         
@@ -235,6 +236,32 @@ namespace SpaceDotNet.Client
         {
             get { return _eventAttachments.GetValue(); }
             set { _eventAttachments.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
+            _profiles.SetAccessPath(path + "->WithProfiles()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _occurrenceRule.SetAccessPath(path + "->WithOccurrenceRule()", validateHasBeenSet);
+            _origin.SetAccessPath(path + "->WithOrigin()", validateHasBeenSet);
+            _conferenceLink.SetAccessPath(path + "->WithConferenceLink()", validateHasBeenSet);
+            _visibility.SetAccessPath(path + "->WithVisibility()", validateHasBeenSet);
+            _modificationPreference.SetAccessPath(path + "->WithModificationPreference()", validateHasBeenSet);
+            _joiningPreference.SetAccessPath(path + "->WithJoiningPreference()", validateHasBeenSet);
+            _organizer.SetAccessPath(path + "->WithOrganizer()", validateHasBeenSet);
+            _etag.SetAccessPath(path + "->WithEtag()", validateHasBeenSet);
+            _privateDataSubstituted.SetAccessPath(path + "->WithPrivateDataSubstituted()", validateHasBeenSet);
+            _canModify.SetAccessPath(path + "->WithCanModify()", validateHasBeenSet);
+            _canDelete.SetAccessPath(path + "->WithCanDelete()", validateHasBeenSet);
+            _canJoin.SetAccessPath(path + "->WithCanJoin()", validateHasBeenSet);
+            _externalParticipants.SetAccessPath(path + "->WithExternalParticipants()", validateHasBeenSet);
+            _linkToExternalSource.SetAccessPath(path + "->WithLinkToExternalSource()", validateHasBeenSet);
+            _eventAttachments.SetAccessPath(path + "->WithEventAttachments()", validateHasBeenSet);
         }
     
     }

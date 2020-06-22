@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateImportSourceRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateImportSourceRequest), nameof(Name));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _importerPrincipal.GetValue(); }
             set { _importerPrincipal.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _importerPrincipal.SetAccessPath(path + "->WithImporterPrincipal()", validateHasBeenSet);
         }
     
     }

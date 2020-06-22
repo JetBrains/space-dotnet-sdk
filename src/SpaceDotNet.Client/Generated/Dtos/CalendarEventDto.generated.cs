@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CalendarEventDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<bool?> _calendarEvent = new PropertyValue<bool?>(nameof(CalendarEventDto), nameof(CalendarEvent));
         
@@ -75,6 +76,16 @@ namespace SpaceDotNet.Client
         {
             get { return _allDay.GetValue(); }
             set { _allDay.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _calendarEvent.SetAccessPath(path + "->WithCalendarEvent()", validateHasBeenSet);
+            _starts.SetAccessPath(path + "->WithStarts()", validateHasBeenSet);
+            _ends.SetAccessPath(path + "->WithEnds()", validateHasBeenSet);
+            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
+            _rooms.SetAccessPath(path + "->WithRooms()", validateHasBeenSet);
+            _allDay.SetAccessPath(path + "->WithAllDay()", validateHasBeenSet);
         }
     
     }

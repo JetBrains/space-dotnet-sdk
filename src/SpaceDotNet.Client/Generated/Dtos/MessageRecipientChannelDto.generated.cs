@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MessageRecipientChannelDto
-         : MessageRecipientDto, IClassNameConvertible
+         : MessageRecipientDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<ChatChannelDto> _channel = new PropertyValue<ChatChannelDto>(nameof(MessageRecipientChannelDto), nameof(Channel));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _channel.GetValue(); }
             set { _channel.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MetricsPropDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(MetricsPropDto), nameof(Key));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _value.GetValue(); }
             set { _value.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _value.SetAccessPath(path + "->WithValue()", validateHasBeenSet);
         }
     
     }

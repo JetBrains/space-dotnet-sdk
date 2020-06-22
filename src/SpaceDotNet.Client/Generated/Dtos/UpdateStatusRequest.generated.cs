@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateStatusRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<IssueStatusDataDto>> _statuses = new PropertyValue<List<IssueStatusDataDto>>(nameof(UpdateStatusRequest), nameof(Statuses));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _statuses.GetValue(); }
             set { _statuses.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _statuses.SetAccessPath(path + "->WithStatuses()", validateHasBeenSet);
         }
     
     }

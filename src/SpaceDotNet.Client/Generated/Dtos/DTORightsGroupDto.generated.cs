@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DTORightsGroupDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(DTORightsGroupDto), nameof(Title));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _rights.GetValue(); }
             set { _rights.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _priority.SetAccessPath(path + "->WithPriority()", validateHasBeenSet);
+            _rights.SetAccessPath(path + "->WithRights()", validateHasBeenSet);
         }
     
     }

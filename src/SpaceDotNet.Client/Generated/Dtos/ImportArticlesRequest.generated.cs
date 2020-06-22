@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ImportArticlesRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ImportMetadataDto> _metadata = new PropertyValue<ImportMetadataDto>(nameof(ImportArticlesRequest), nameof(Metadata));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _articles.GetValue(); }
             set { _articles.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _metadata.SetAccessPath(path + "->WithMetadata()", validateHasBeenSet);
+            _articles.SetAccessPath(path + "->WithArticles()", validateHasBeenSet);
         }
     
     }

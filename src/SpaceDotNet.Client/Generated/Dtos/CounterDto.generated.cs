@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CounterDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(CounterDto), nameof(Resolved));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _unresolved.GetValue(); }
             set { _unresolved.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _resolved.SetAccessPath(path + "->WithResolved()", validateHasBeenSet);
+            _unresolved.SetAccessPath(path + "->WithUnresolved()", validateHasBeenSet);
         }
     
     }

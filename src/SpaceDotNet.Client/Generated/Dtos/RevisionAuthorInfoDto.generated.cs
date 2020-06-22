@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RevisionAuthorInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<RevisionInfoDto> _revisionInfo = new PropertyValue<RevisionInfoDto>(nameof(RevisionAuthorInfoDto), nameof(RevisionInfo));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _author.GetValue(); }
             set { _author.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _revisionInfo.SetAccessPath(path + "->WithRevisionInfo()", validateHasBeenSet);
+            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
         }
     
     }

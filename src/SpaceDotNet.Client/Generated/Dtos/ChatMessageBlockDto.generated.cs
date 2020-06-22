@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ChatMessageBlockDto
-         : ChatMessageDto, IClassNameConvertible
+         : ChatMessageDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(ChatMessageBlockDto), nameof(Style));
         
@@ -59,6 +59,14 @@ namespace SpaceDotNet.Client
         {
             get { return _messageData.GetValue(); }
             set { _messageData.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _style.SetAccessPath(path + "->WithStyle()", validateHasBeenSet);
+            _outline.SetAccessPath(path + "->WithOutline()", validateHasBeenSet);
+            _sections.SetAccessPath(path + "->WithSections()", validateHasBeenSet);
+            _messageData.SetAccessPath(path + "->WithMessageData()", validateHasBeenSet);
         }
     
     }

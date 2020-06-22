@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateTOTPTwoFactorAuthenticationSettingsRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(UpdateTOTPTwoFactorAuthenticationSettingsRequest), nameof(Enabled));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _enabled.GetValue(); }
             set { _enabled.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _enabled.SetAccessPath(path + "->WithEnabled()", validateHasBeenSet);
         }
     
     }

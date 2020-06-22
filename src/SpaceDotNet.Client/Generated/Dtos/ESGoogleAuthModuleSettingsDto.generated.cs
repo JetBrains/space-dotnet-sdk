@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESGoogleAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettingsDto), nameof(ClientId));
         
@@ -62,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _domains.GetValue(); }
             set { _domains.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
+            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
+            _domains.SetAccessPath(path + "->WithDomains()", validateHasBeenSet);
         }
     
     }

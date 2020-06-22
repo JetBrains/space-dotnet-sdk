@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateProfileRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(CreateProfileRequest), nameof(EditorId));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _editorId.GetValue(); }
             set { _editorId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _editorId.SetAccessPath(path + "->WithEditorId()", validateHasBeenSet);
         }
     
     }

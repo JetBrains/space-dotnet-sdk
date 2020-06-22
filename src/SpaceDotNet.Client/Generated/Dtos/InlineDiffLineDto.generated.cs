@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class InlineDiffLineDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(InlineDiffLineDto), nameof(Text));
         
@@ -105,6 +106,19 @@ namespace SpaceDotNet.Client
         {
             get { return _inserts.GetValue(); }
             set { _inserts.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _oldLineNum.SetAccessPath(path + "->WithOldLineNum()", validateHasBeenSet);
+            _newLineNum.SetAccessPath(path + "->WithNewLineNum()", validateHasBeenSet);
+            _oldFileOffset.SetAccessPath(path + "->WithOldFileOffset()", validateHasBeenSet);
+            _newFileOffset.SetAccessPath(path + "->WithNewFileOffset()", validateHasBeenSet);
+            _syntax.SetAccessPath(path + "->WithSyntax()", validateHasBeenSet);
+            _deletes.SetAccessPath(path + "->WithDeletes()", validateHasBeenSet);
+            _inserts.SetAccessPath(path + "->WithInserts()", validateHasBeenSet);
         }
     
     }

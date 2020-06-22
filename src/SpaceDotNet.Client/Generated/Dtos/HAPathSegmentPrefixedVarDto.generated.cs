@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAPathSegmentPrefixedVarDto
-         : HAPathSegmentDto, IClassNameConvertible
+         : HAPathSegmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVarDto), nameof(Prefix));
         
@@ -42,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _name.GetValue(); }
             set { _name.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _prefix.SetAccessPath(path + "->WithPrefix()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
         }
     
     }

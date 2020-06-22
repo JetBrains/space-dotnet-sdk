@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DTOAbsenceSubscriptionDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DTOAbsenceSubscriptionDto), nameof(Id));
         
@@ -58,6 +59,14 @@ namespace SpaceDotNet.Client
         {
             get { return _reason.GetValue(); }
             set { _reason.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
+            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
+            _reason.SetAccessPath(path + "->WithReason()", validateHasBeenSet);
         }
     
     }

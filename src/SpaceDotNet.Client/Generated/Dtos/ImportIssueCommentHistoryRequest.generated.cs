@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ImportIssueCommentHistoryRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<MessageForImportDto>> _comments = new PropertyValue<List<MessageForImportDto>>(nameof(ImportIssueCommentHistoryRequest), nameof(Comments));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _comments.GetValue(); }
             set { _comments.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _comments.SetAccessPath(path + "->WithComments()", validateHasBeenSet);
         }
     
     }

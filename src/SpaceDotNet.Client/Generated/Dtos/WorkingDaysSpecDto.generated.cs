@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class WorkingDaysSpecDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<WorkdayDto>> _days = new PropertyValue<List<WorkdayDto>>(nameof(WorkingDaysSpecDto), nameof(Days));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _days.GetValue(); }
             set { _days.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _days.SetAccessPath(path + "->WithDays()", validateHasBeenSet);
         }
     
     }

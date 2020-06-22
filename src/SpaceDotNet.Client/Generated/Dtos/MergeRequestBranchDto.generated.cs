@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MergeRequestBranchDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MergeRequestBranchDto), nameof(DisplayName));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _deleted.GetValue(); }
             set { _deleted.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _displayName.SetAccessPath(path + "->WithDisplayName()", validateHasBeenSet);
+            _ref.SetAccessPath(path + "->WithRef()", validateHasBeenSet);
+            _deleted.SetAccessPath(path + "->WithDeleted()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESAuthModuleDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthModuleDto), nameof(Id));
         
@@ -90,6 +91,17 @@ namespace SpaceDotNet.Client
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _ordinal.SetAccessPath(path + "->WithOrdinal()", validateHasBeenSet);
+            _enabled.SetAccessPath(path + "->WithEnabled()", validateHasBeenSet);
+            _iconDataURI.SetAccessPath(path + "->WithIconDataURI()", validateHasBeenSet);
+            _settings.SetAccessPath(path + "->WithSettings()", validateHasBeenSet);
         }
     
     }

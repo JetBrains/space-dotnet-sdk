@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RepositoryCommitRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(RepositoryCommitRecordDto), nameof(Id));
         
@@ -125,6 +126,21 @@ namespace SpaceDotNet.Client
         {
             get { return _authorProfile.GetValue(); }
             set { _authorProfile.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _repositoryId.SetAccessPath(path + "->WithRepositoryId()", validateHasBeenSet);
+            _repositoryName.SetAccessPath(path + "->WithRepositoryName()", validateHasBeenSet);
+            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
+            _message.SetAccessPath(path + "->WithMessage()", validateHasBeenSet);
+            _date.SetAccessPath(path + "->WithDate()", validateHasBeenSet);
+            _authorName.SetAccessPath(path + "->WithAuthorName()", validateHasBeenSet);
+            _authorEmail.SetAccessPath(path + "->WithAuthorEmail()", validateHasBeenSet);
+            _committerName.SetAccessPath(path + "->WithCommitterName()", validateHasBeenSet);
+            _committerEmail.SetAccessPath(path + "->WithCommitterEmail()", validateHasBeenSet);
+            _authorProfile.SetAccessPath(path + "->WithAuthorProfile()", validateHasBeenSet);
         }
     
     }

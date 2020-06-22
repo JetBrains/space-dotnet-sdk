@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ProjectHitDto
-         : EntityHitDto, IClassNameConvertible
+         : EntityHitDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectHitDto), nameof(Id));
         
@@ -81,6 +81,16 @@ namespace SpaceDotNet.Client
         {
             get { return _ref.GetValue(); }
             set { _ref.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _score.SetAccessPath(path + "->WithScore()", validateHasBeenSet);
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _ref.SetAccessPath(path + "->WithRef()", validateHasBeenSet);
         }
     
     }

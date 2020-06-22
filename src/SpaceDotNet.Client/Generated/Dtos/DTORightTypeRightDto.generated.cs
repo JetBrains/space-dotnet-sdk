@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DTORightTypeRightDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<DTORightTypeDto> _rightType = new PropertyValue<DTORightTypeDto>(nameof(DTORightTypeRightDto), nameof(RightType));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _rights.GetValue(); }
             set { _rights.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _rightType.SetAccessPath(path + "->WithRightType()", validateHasBeenSet);
+            _rights.SetAccessPath(path + "->WithRights()", validateHasBeenSet);
         }
     
     }

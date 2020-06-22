@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DiffContextDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<DiffSideDto?> _left = new PropertyValue<DiffSideDto?>(nameof(DiffContextDto), nameof(Left));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _right.GetValue(); }
             set { _right.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _left.SetAccessPath(path + "->WithLeft()", validateHasBeenSet);
+            _right.SetAccessPath(path + "->WithRight()", validateHasBeenSet);
         }
     
     }

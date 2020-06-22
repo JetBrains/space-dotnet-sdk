@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PRRepositoryInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRRepositoryInfoDto), nameof(Name));
         
@@ -96,6 +97,18 @@ namespace SpaceDotNet.Client
         {
             get { return _monthlyActivity.GetValue(); }
             set { _monthlyActivity.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _latestActivity.SetAccessPath(path + "->WithLatestActivity()", validateHasBeenSet);
+            _proxyPushNotification.SetAccessPath(path + "->WithProxyPushNotification()", validateHasBeenSet);
+            _state.SetAccessPath(path + "->WithState()", validateHasBeenSet);
+            _initProgress.SetAccessPath(path + "->WithInitProgress()", validateHasBeenSet);
+            _readmeName.SetAccessPath(path + "->WithReadmeName()", validateHasBeenSet);
+            _monthlyActivity.SetAccessPath(path + "->WithMonthlyActivity()", validateHasBeenSet);
         }
     
     }

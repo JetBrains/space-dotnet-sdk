@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ImageAttachmentMetaDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<ImageAttachmentVariantsMetaDto>> _variants = new PropertyValue<List<ImageAttachmentVariantsMetaDto>>(nameof(ImageAttachmentMetaDto), nameof(Variants));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _variants.GetValue(); }
             set { _variants.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _variants.SetAccessPath(path + "->WithVariants()", validateHasBeenSet);
         }
     
     }

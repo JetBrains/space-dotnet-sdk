@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDMembershipDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMembershipDto), nameof(Id));
         
@@ -162,6 +163,25 @@ namespace SpaceDotNet.Client
         {
             get { return _approver.GetValue(); }
             set { _approver.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _member.SetAccessPath(path + "->WithMember()", validateHasBeenSet);
+            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
+            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
+            _lead.SetAccessPath(path + "->WithLead()", validateHasBeenSet);
+            _manager.SetAccessPath(path + "->WithManager()", validateHasBeenSet);
+            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
+            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
+            _activeSince.SetAccessPath(path + "->WithActiveSince()", validateHasBeenSet);
+            _activeTill.SetAccessPath(path + "->WithActiveTill()", validateHasBeenSet);
+            _requiresApproval.SetAccessPath(path + "->WithRequiresApproval()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _editFor.SetAccessPath(path + "->WithEditFor()", validateHasBeenSet);
+            _pendingEdit.SetAccessPath(path + "->WithPendingEdit()", validateHasBeenSet);
+            _approver.SetAccessPath(path + "->WithApprover()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HADtoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(HADtoDto), nameof(Id));
         
@@ -109,6 +110,19 @@ namespace SpaceDotNet.Client
         {
             get { return _record.GetValue(); }
             set { _record.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _fields.SetAccessPath(path + "->WithFields()", validateHasBeenSet);
+            _hierarchyRole.SetAccessPath(path + "->WithHierarchyRole()", validateHasBeenSet);
+            _extends.SetAccessPath(path + "->WithExtends()", validateHasBeenSet);
+            _implements.SetAccessPath(path + "->WithImplements()", validateHasBeenSet);
+            _inheritors.SetAccessPath(path + "->WithInheritors()", validateHasBeenSet);
+            _deprecation.SetAccessPath(path + "->WithDeprecation()", validateHasBeenSet);
+            _record.SetAccessPath(path + "->WithRecord()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDStatsDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _totalMembers = new PropertyValue<int>(nameof(TDStatsDto), nameof(TotalMembers));
         
@@ -61,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _locations.GetValue(); }
             set { _locations.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _totalMembers.SetAccessPath(path + "->WithTotalMembers()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _roles.SetAccessPath(path + "->WithRoles()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
         }
     
     }

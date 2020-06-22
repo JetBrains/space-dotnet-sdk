@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class DeleteRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(DeleteRequest), nameof(Emoji));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _emoji.GetValue(); }
             set { _emoji.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _emoji.SetAccessPath(path + "->WithEmoji()", validateHasBeenSet);
         }
     
     }

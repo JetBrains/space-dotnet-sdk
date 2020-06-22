@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateApplicationPasswordRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(UpdateApplicationPasswordRequest), nameof(Name));
         
@@ -39,6 +40,12 @@ namespace SpaceDotNet.Client
         {
             get { return _scope.GetValue(); }
             set { _scope.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _scope.SetAccessPath(path + "->WithScope()", validateHasBeenSet);
         }
     
     }

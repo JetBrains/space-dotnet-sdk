@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAModelDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<HADtoDto>> _dto = new PropertyValue<List<HADtoDto>>(nameof(HAModelDto), nameof(Dto));
         
@@ -61,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _allResources.GetValue(); }
             set { _allResources.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _dto.SetAccessPath(path + "->WithDto()", validateHasBeenSet);
+            _enums.SetAccessPath(path + "->WithEnums()", validateHasBeenSet);
+            _resources.SetAccessPath(path + "->WithResources()", validateHasBeenSet);
+            _allResources.SetAccessPath(path + "->WithAllResources()", validateHasBeenSet);
         }
     
     }

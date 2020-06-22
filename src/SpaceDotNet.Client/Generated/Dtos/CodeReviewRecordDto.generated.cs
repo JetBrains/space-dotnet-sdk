@@ -23,7 +23,7 @@ namespace SpaceDotNet.Client
 {
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class CodeReviewRecordDto
-         : IClassNameConvertible
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -105,6 +105,18 @@ namespace SpaceDotNet.Client
         {
             get { return _count.GetValue(); }
             set { _count.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _counter.SetAccessPath(path + "->WithCounter()", validateHasBeenSet);
+            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
+            _authors.SetAccessPath(path + "->WithAuthors()", validateHasBeenSet);
+            _participants.SetAccessPath(path + "->WithParticipants()", validateHasBeenSet);
+            _reviewers.SetAccessPath(path + "->WithReviewers()", validateHasBeenSet);
+            _watchers.SetAccessPath(path + "->WithWatchers()", validateHasBeenSet);
+            _count.SetAccessPath(path + "->WithCount()", validateHasBeenSet);
         }
     
     }

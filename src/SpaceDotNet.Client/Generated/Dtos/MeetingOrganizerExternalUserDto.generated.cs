@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MeetingOrganizerExternalUserDto
-         : MeetingOrganizerDto, IClassNameConvertible
+         : MeetingOrganizerDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUserDto), nameof(Email));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _email.GetValue(); }
             set { _email.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
         }
     
     }

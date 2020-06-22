@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateFieldRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(UpdateFieldRequest), nameof(Name));
         
@@ -93,6 +94,18 @@ namespace SpaceDotNet.Client
         {
             get { return _enumValues.GetValue(); }
             set { _enumValues.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _constraint.SetAccessPath(path + "->WithConstraint()", validateHasBeenSet);
+            _required.SetAccessPath(path + "->WithRequired()", validateHasBeenSet);
+            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
+            _access.SetAccessPath(path + "->WithAccess()", validateHasBeenSet);
+            _defaultValue.SetAccessPath(path + "->WithDefaultValue()", validateHasBeenSet);
+            _enumValues.SetAccessPath(path + "->WithEnumValues()", validateHasBeenSet);
         }
     
     }

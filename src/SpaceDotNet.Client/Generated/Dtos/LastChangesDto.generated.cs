@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class LastChangesDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<RevisionInfoDto>> _lastChanges = new PropertyValue<List<RevisionInfoDto>>(nameof(LastChangesDto), nameof(LastChanges));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _totalChanges.GetValue(); }
             set { _totalChanges.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _lastChanges.SetAccessPath(path + "->WithLastChanges()", validateHasBeenSet);
+            _totalChanges.SetAccessPath(path + "->WithTotalChanges()", validateHasBeenSet);
         }
     
     }

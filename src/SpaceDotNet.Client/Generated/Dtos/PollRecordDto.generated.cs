@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PollRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PollRecordDto), nameof(Id));
         
@@ -140,6 +141,22 @@ namespace SpaceDotNet.Client
         {
             get { return _votes.GetValue(); }
             set { _votes.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
+            _question.SetAccessPath(path + "->WithQuestion()", validateHasBeenSet);
+            _meVote.SetAccessPath(path + "->WithMeVote()", validateHasBeenSet);
+            _countPeople.SetAccessPath(path + "->WithCountPeople()", validateHasBeenSet);
+            _anonymous.SetAccessPath(path + "->WithAnonymous()", validateHasBeenSet);
+            _closed.SetAccessPath(path + "->WithClosed()", validateHasBeenSet);
+            _extendable.SetAccessPath(path + "->WithExtendable()", validateHasBeenSet);
+            _multiChoice.SetAccessPath(path + "->WithMultiChoice()", validateHasBeenSet);
+            _ended.SetAccessPath(path + "->WithEnded()", validateHasBeenSet);
+            _expirationTime.SetAccessPath(path + "->WithExpirationTime()", validateHasBeenSet);
+            _votes.SetAccessPath(path + "->WithVotes()", validateHasBeenSet);
         }
     
     }

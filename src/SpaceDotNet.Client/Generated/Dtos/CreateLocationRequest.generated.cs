@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateLocationRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateLocationRequest), nameof(Name));
         
@@ -112,6 +113,20 @@ namespace SpaceDotNet.Client
         {
             get { return _parentId.GetValue(); }
             set { _parentId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
+            _workdays.SetAccessPath(path + "->WithWorkdays()", validateHasBeenSet);
+            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
+            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
+            _equipment.SetAccessPath(path + "->WithEquipment()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _address.SetAccessPath(path + "->WithAddress()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _parentId.SetAccessPath(path + "->WithParentId()", validateHasBeenSet);
         }
     
     }

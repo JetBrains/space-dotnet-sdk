@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class SyntaxMarkupDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<SyntaxMarkupType> _type = new PropertyValue<SyntaxMarkupType>(nameof(SyntaxMarkupDto), nameof(Type));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _range.GetValue(); }
             set { _range.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _range.SetAccessPath(path + "->WithRange()", validateHasBeenSet);
         }
     
     }

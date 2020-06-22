@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public interface TodoItemContentDto
-         : IClassNameConvertible
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
     }
     

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ImageAttachmentDto
-         : AttachmentDto, IClassNameConvertible
+         : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -82,6 +82,16 @@ namespace SpaceDotNet.Client
         {
             get { return _variants.GetValue(); }
             set { _variants.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _width.SetAccessPath(path + "->WithWidth()", validateHasBeenSet);
+            _height.SetAccessPath(path + "->WithHeight()", validateHasBeenSet);
+            _previewBytes.SetAccessPath(path + "->WithPreviewBytes()", validateHasBeenSet);
+            _variants.SetAccessPath(path + "->WithVariants()", validateHasBeenSet);
         }
     
     }

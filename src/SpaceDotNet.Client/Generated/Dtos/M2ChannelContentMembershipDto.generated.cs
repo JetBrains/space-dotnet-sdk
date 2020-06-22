@@ -22,11 +22,15 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2ChannelContentMembershipDto
-         : M2ChannelContentInfoDto, IClassNameConvertible
+         : M2ChannelContentInfoDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

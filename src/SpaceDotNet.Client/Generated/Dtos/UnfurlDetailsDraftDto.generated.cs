@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class UnfurlDetailsDraftDto
-         : UnfurlDetailsDto, IClassNameConvertible
+         : UnfurlDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -45,6 +45,12 @@ namespace SpaceDotNet.Client
         {
             get { return _title.GetValue(); }
             set { _title.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _draft.SetAccessPath(path + "->WithDraft()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
         }
     
     }

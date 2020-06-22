@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeReviewPendingMessageCounterDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewPendingMessageCounterDto), nameof(Id));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _archived.GetValue(); }
             set { _archived.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _count.SetAccessPath(path + "->WithCount()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class AddResponsibilitySubjectRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(AddResponsibilitySubjectRequest), nameof(Name));
         
@@ -30,6 +31,11 @@ namespace SpaceDotNet.Client
         {
             get { return _name.GetValue(); }
             set { _name.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
         }
     
     }

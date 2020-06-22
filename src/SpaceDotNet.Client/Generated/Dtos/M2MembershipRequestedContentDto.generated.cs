@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2MembershipRequestedContentDto
-         : M2MembershipContentDto, IClassNameConvertible
+         : M2MembershipContentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMembershipDto> _membership = new PropertyValue<TDMembershipDto>(nameof(M2MembershipRequestedContentDto), nameof(Membership));
         
@@ -42,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _leave.GetValue(); }
             set { _leave.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _membership.SetAccessPath(path + "->WithMembership()", validateHasBeenSet);
+            _leave.SetAccessPath(path + "->WithLeave()", validateHasBeenSet);
         }
     
     }

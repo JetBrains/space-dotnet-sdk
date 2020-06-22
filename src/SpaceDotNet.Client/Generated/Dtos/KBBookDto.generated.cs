@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class KBBookDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBBookDto), nameof(Id));
         
@@ -111,6 +112,19 @@ namespace SpaceDotNet.Client
         {
             get { return _rootFolder.GetValue(); }
             set { _rootFolder.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
+            _updated.SetAccessPath(path + "->WithUpdated()", validateHasBeenSet);
+            _alias.SetAccessPath(path + "->WithAlias()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _rootFolder.SetAccessPath(path + "->WithRootFolder()", validateHasBeenSet);
         }
     
     }

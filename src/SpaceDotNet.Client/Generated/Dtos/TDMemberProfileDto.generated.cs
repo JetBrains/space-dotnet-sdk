@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDMemberProfileDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberProfileDto), nameof(Id));
         
@@ -291,6 +292,38 @@ namespace SpaceDotNet.Client
         {
             get { return _gender.GetValue(); }
             set { _gender.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _username.SetAccessPath(path + "->WithUsername()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _speaksEnglish.SetAccessPath(path + "->WithSpeaksEnglish()", validateHasBeenSet);
+            _smallAvatar.SetAccessPath(path + "->WithSmallAvatar()", validateHasBeenSet);
+            _avatar.SetAccessPath(path + "->WithAvatar()", validateHasBeenSet);
+            _profilePicture.SetAccessPath(path + "->WithProfilePicture()", validateHasBeenSet);
+            _languages.SetAccessPath(path + "->WithLanguages()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _notAMember.SetAccessPath(path + "->WithNotAMember()", validateHasBeenSet);
+            _joined.SetAccessPath(path + "->WithJoined()", validateHasBeenSet);
+            _left.SetAccessPath(path + "->WithLeft()", validateHasBeenSet);
+            _leftAt.SetAccessPath(path + "->WithLeftAt()", validateHasBeenSet);
+            _absences.SetAccessPath(path + "->WithAbsences()", validateHasBeenSet);
+            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
+            _links.SetAccessPath(path + "->WithLinks()", validateHasBeenSet);
+            _messengers.SetAccessPath(path + "->WithMessengers()", validateHasBeenSet);
+            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
+            _holidays.SetAccessPath(path + "->WithHolidays()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
+            _managers.SetAccessPath(path + "->WithManagers()", validateHasBeenSet);
+            _membershipHistory.SetAccessPath(path + "->WithMembershipHistory()", validateHasBeenSet);
+            _memberships.SetAccessPath(path + "->WithMemberships()", validateHasBeenSet);
+            _onboardingRequired.SetAccessPath(path + "->WithOnboardingRequired()", validateHasBeenSet);
+            _about.SetAccessPath(path + "->WithAbout()", validateHasBeenSet);
+            _avatarCropSquare.SetAccessPath(path + "->WithAvatarCropSquare()", validateHasBeenSet);
+            _birthday.SetAccessPath(path + "->WithBirthday()", validateHasBeenSet);
+            _gender.SetAccessPath(path + "->WithGender()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ArticleRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleRecordDto), nameof(Id));
         
@@ -223,6 +224,31 @@ namespace SpaceDotNet.Client
         {
             get { return _wordsNumber.GetValue(); }
             set { _wordsNumber.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
+            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
+            _aliases.SetAccessPath(path + "->WithAliases()", validateHasBeenSet);
+            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
+            _channelContent.SetAccessPath(path + "->WithChannelContent()", validateHasBeenSet);
+            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
+            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
+            _event.SetAccessPath(path + "->WithEvent()", validateHasBeenSet);
+            _externalEntityInfo.SetAccessPath(path + "->WithExternalEntityInfo()", validateHasBeenSet);
+            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
+            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
+            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _editable.SetAccessPath(path + "->WithEditable()", validateHasBeenSet);
+            _preview.SetAccessPath(path + "->WithPreview()", validateHasBeenSet);
+            _previewImages.SetAccessPath(path + "->WithPreviewImages()", validateHasBeenSet);
+            _wordsNumber.SetAccessPath(path + "->WithWordsNumber()", validateHasBeenSet);
         }
     
     }

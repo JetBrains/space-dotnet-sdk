@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateParameterRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(UpdateParameterRequest), nameof(Key));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _value.GetValue(); }
             set { _value.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _value.SetAccessPath(path + "->WithValue()", validateHasBeenSet);
         }
     
     }

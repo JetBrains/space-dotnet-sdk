@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DiffSideNonEmptyDto
-         : DiffSideDto, IClassNameConvertible
+         : DiffSideDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideNonEmptyDto), nameof(Revision));
         
@@ -42,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _path.GetValue(); }
             set { _path.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
+            _path.SetAccessPath(path + "->WithPath()", validateHasBeenSet);
         }
     
     }

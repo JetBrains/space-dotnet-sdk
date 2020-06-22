@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESContainerRegistrySettingsDto
-         : ESPackageRepositorySettingsDto, IClassNameConvertible
+         : ESPackageRepositorySettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettingsDto), nameof(ImmutableTags));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _immutableTags.GetValue(); }
             set { _immutableTags.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _immutableTags.SetAccessPath(path + "->WithImmutableTags()", validateHasBeenSet);
         }
     
     }

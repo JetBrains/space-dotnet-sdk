@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESTeamMappingDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ESTeamMappingDto), nameof(TeamId));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _externalGroupName.GetValue(); }
             set { _externalGroupName.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _teamId.SetAccessPath(path + "->WithTeamId()", validateHasBeenSet);
+            _externalGroupName.SetAccessPath(path + "->WithExternalGroupName()", validateHasBeenSet);
         }
     
     }

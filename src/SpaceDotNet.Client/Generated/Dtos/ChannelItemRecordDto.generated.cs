@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ChannelItemRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemRecordDto), nameof(Text));
         
@@ -162,6 +163,25 @@ namespace SpaceDotNet.Client
         {
             get { return _pinned.GetValue(); }
             set { _pinned.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
+            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
+            _time.SetAccessPath(path + "->WithTime()", validateHasBeenSet);
+            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
+            _thread.SetAccessPath(path + "->WithThread()", validateHasBeenSet);
+            _projectedItem.SetAccessPath(path + "->WithProjectedItem()", validateHasBeenSet);
+            _attachments.SetAccessPath(path + "->WithAttachments()", validateHasBeenSet);
+            _attachmentsInfos.SetAccessPath(path + "->WithAttachmentsInfos()", validateHasBeenSet);
+            _pending.SetAccessPath(path + "->WithPending()", validateHasBeenSet);
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _edited.SetAccessPath(path + "->WithEdited()", validateHasBeenSet);
+            _pinned.SetAccessPath(path + "->WithPinned()", validateHasBeenSet);
         }
     
     }

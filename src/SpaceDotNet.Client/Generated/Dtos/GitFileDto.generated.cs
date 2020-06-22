@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class GitFileDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _commit = new PropertyValue<string>(nameof(GitFileDto), nameof(Commit));
         
@@ -61,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _type.GetValue(); }
             set { _type.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _commit.SetAccessPath(path + "->WithCommit()", validateHasBeenSet);
+            _path.SetAccessPath(path + "->WithPath()", validateHasBeenSet);
+            _blob.SetAccessPath(path + "->WithBlob()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
         }
     
     }

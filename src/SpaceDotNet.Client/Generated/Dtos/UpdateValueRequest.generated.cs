@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateValueRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<CustomFieldValueDto>> _values = new PropertyValue<List<CustomFieldValueDto>>(nameof(UpdateValueRequest), nameof(Values));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _values.GetValue(); }
             set { _values.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _values.SetAccessPath(path + "->WithValues()", validateHasBeenSet);
         }
     
     }

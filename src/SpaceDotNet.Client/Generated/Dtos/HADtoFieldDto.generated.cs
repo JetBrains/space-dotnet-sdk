@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HADtoFieldDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<HAFieldDto> _field = new PropertyValue<HAFieldDto>(nameof(HADtoFieldDto), nameof(Field));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _extension.GetValue(); }
             set { _extension.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _field.SetAccessPath(path + "->WithField()", validateHasBeenSet);
+            _extension.SetAccessPath(path + "->WithExtension()", validateHasBeenSet);
         }
     
     }

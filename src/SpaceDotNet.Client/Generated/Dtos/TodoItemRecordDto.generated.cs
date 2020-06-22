@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TodoItemRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TodoItemRecordDto), nameof(Id));
         
@@ -90,6 +91,17 @@ namespace SpaceDotNet.Client
         {
             get { return _dueDate.GetValue(); }
             set { _dueDate.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
+            _updated.SetAccessPath(path + "->WithUpdated()", validateHasBeenSet);
+            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
+            __status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
+            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
         }
     
     }

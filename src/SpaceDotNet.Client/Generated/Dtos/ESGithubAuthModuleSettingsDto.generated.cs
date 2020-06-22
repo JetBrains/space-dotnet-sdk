@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESGithubAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _githubUrl = new PropertyValue<string>(nameof(ESGithubAuthModuleSettingsDto), nameof(GithubUrl));
         
@@ -72,6 +72,15 @@ namespace SpaceDotNet.Client
         {
             get { return _organizations.GetValue(); }
             set { _organizations.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _githubUrl.SetAccessPath(path + "->WithGithubUrl()", validateHasBeenSet);
+            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
+            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
+            _organizations.SetAccessPath(path + "->WithOrganizations()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateInvitationRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(CreateInvitationRequest), nameof(InviteeEmail));
         
@@ -67,6 +68,15 @@ namespace SpaceDotNet.Client
         {
             get { return _role.GetValue(); }
             set { _role.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _inviteeEmail.SetAccessPath(path + "->WithInviteeEmail()", validateHasBeenSet);
+            _inviteeFirstName.SetAccessPath(path + "->WithInviteeFirstName()", validateHasBeenSet);
+            _inviteeLastName.SetAccessPath(path + "->WithInviteeLastName()", validateHasBeenSet);
+            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
+            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAResourceDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAResourceDto), nameof(Id));
         
@@ -90,6 +91,17 @@ namespace SpaceDotNet.Client
         {
             get { return _nestedResources.GetValue(); }
             set { _nestedResources.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _path.SetAccessPath(path + "->WithPath()", validateHasBeenSet);
+            _displaySingular.SetAccessPath(path + "->WithDisplaySingular()", validateHasBeenSet);
+            _displayPlural.SetAccessPath(path + "->WithDisplayPlural()", validateHasBeenSet);
+            _parentResource.SetAccessPath(path + "->WithParentResource()", validateHasBeenSet);
+            _endpoints.SetAccessPath(path + "->WithEndpoints()", validateHasBeenSet);
+            _nestedResources.SetAccessPath(path + "->WithNestedResources()", validateHasBeenSet);
         }
     
     }

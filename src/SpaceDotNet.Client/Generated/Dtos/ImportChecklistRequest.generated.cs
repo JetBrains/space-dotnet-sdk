@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ImportChecklistRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ImportChecklistRequest), nameof(Name));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _tabIndentedLines.GetValue(); }
             set { _tabIndentedLines.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _tabIndentedLines.SetAccessPath(path + "->WithTabIndentedLines()", validateHasBeenSet);
         }
     
     }

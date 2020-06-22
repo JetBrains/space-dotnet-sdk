@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESLdapAuthModuleSettingsDto
-         : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible
+         : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<LdapModuleType> _type = new PropertyValue<LdapModuleType>(nameof(ESLdapAuthModuleSettingsDto), nameof(Type));
         
@@ -141,6 +141,22 @@ namespace SpaceDotNet.Client
         {
             get { return _attributeNames.GetValue(); }
             set { _attributeNames.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
+            _serverUrl.SetAccessPath(path + "->WithServerUrl()", validateHasBeenSet);
+            _connectionTimeout.SetAccessPath(path + "->WithConnectionTimeout()", validateHasBeenSet);
+            _readTimeout.SetAccessPath(path + "->WithReadTimeout()", validateHasBeenSet);
+            _sslKeystore.SetAccessPath(path + "->WithSslKeystore()", validateHasBeenSet);
+            _teamMappings.SetAccessPath(path + "->WithTeamMappings()", validateHasBeenSet);
+            _referralIgnored.SetAccessPath(path + "->WithReferralIgnored()", validateHasBeenSet);
+            _filter.SetAccessPath(path + "->WithFilter()", validateHasBeenSet);
+            _bindUserDN.SetAccessPath(path + "->WithBindUserDN()", validateHasBeenSet);
+            _bindUserPassword.SetAccessPath(path + "->WithBindUserPassword()", validateHasBeenSet);
+            _attributeNames.SetAccessPath(path + "->WithAttributeNames()", validateHasBeenSet);
         }
     
     }

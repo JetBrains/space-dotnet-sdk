@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MergeRequestMergedEventDto
-         : FeedEventDto, IClassNameConvertible
+         : FeedEventDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -55,6 +55,13 @@ namespace SpaceDotNet.Client
         {
             get { return _targetBranch.GetValue(); }
             set { _targetBranch.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
+            _sourceBranch.SetAccessPath(path + "->WithSourceBranch()", validateHasBeenSet);
+            _targetBranch.SetAccessPath(path + "->WithTargetBranch()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateProfileRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _username = new PropertyValue<string?>(nameof(UpdateProfileRequest), nameof(Username));
         
@@ -174,6 +175,27 @@ namespace SpaceDotNet.Client
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _username.SetAccessPath(path + "->WithUsername()", validateHasBeenSet);
+            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
+            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
+            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
+            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
+            _birthday.SetAccessPath(path + "->WithBirthday()", validateHasBeenSet);
+            _about.SetAccessPath(path + "->WithAbout()", validateHasBeenSet);
+            _gender.SetAccessPath(path + "->WithGender()", validateHasBeenSet);
+            _messengers.SetAccessPath(path + "->WithMessengers()", validateHasBeenSet);
+            _links.SetAccessPath(path + "->WithLinks()", validateHasBeenSet);
+            _notAMember.SetAccessPath(path + "->WithNotAMember()", validateHasBeenSet);
+            _joined.SetAccessPath(path + "->WithJoined()", validateHasBeenSet);
+            _left.SetAccessPath(path + "->WithLeft()", validateHasBeenSet);
+            _speaksEnglish.SetAccessPath(path + "->WithSpeaksEnglish()", validateHasBeenSet);
+            _pictureAttachmentId.SetAccessPath(path + "->WithPictureAttachmentId()", validateHasBeenSet);
+            _avatarCropSquare.SetAccessPath(path + "->WithAvatarCropSquare()", validateHasBeenSet);
+            _customFieldValues.SetAccessPath(path + "->WithCustomFieldValues()", validateHasBeenSet);
         }
     
     }

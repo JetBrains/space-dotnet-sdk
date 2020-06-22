@@ -23,11 +23,15 @@ namespace SpaceDotNet.Client
 {
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
     public abstract class ESPackageRepositorySettingsDto
-         : IClassNameConvertible
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ChannelParticipantDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<CPrincipalDto> _principal = new PropertyValue<CPrincipalDto>(nameof(ChannelParticipantDto), nameof(Principal));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _pendingMessageCount.GetValue(); }
             set { _pendingMessageCount.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _principal.SetAccessPath(path + "->WithPrincipal()", validateHasBeenSet);
+            _messageCount.SetAccessPath(path + "->WithMessageCount()", validateHasBeenSet);
+            _pendingMessageCount.SetAccessPath(path + "->WithPendingMessageCount()", validateHasBeenSet);
         }
     
     }

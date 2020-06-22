@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MessageRecipientIssueDto
-         : MessageRecipientDto, IClassNameConvertible
+         : MessageRecipientDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _issue = new PropertyValue<string>(nameof(MessageRecipientIssueDto), nameof(Issue));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _issue.GetValue(); }
             set { _issue.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _issue.SetAccessPath(path + "->WithIssue()", validateHasBeenSet);
         }
     
     }

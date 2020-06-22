@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class UneditableDocumentDto
-         : TextDocumentDto, IClassNameConvertible
+         : TextDocumentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -35,6 +35,11 @@ namespace SpaceDotNet.Client
         {
             get { return _type.GetValue(); }
             set { _type.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
         }
     
     }

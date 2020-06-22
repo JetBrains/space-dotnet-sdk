@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class UnfurlAttachmentDto
-         : AttachmentDto, IClassNameConvertible
+         : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -44,6 +44,12 @@ namespace SpaceDotNet.Client
         {
             get { return _id.GetValue(); }
             set { _id.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _unfurl.SetAccessPath(path + "->WithUnfurl()", validateHasBeenSet);
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
         }
     
     }

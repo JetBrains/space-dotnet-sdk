@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class IssueDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueDto), nameof(Id));
         
@@ -186,6 +187,27 @@ namespace SpaceDotNet.Client
         {
             get { return _description.GetValue(); }
             set { _description.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
+            _projectRef.SetAccessPath(path + "->WithProjectRef()", validateHasBeenSet);
+            _number.SetAccessPath(path + "->WithNumber()", validateHasBeenSet);
+            _createdBy.SetAccessPath(path + "->WithCreatedBy()", validateHasBeenSet);
+            _creationTime.SetAccessPath(path + "->WithCreationTime()", validateHasBeenSet);
+            _assignee.SetAccessPath(path + "->WithAssignee()", validateHasBeenSet);
+            _status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
+            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
+            _importInfo.SetAccessPath(path + "->WithImportInfo()", validateHasBeenSet);
+            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _checklists.SetAccessPath(path + "->WithChecklists()", validateHasBeenSet);
+            _attachments.SetAccessPath(path + "->WithAttachments()", validateHasBeenSet);
+            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
         }
     
     }

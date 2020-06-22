@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PRProjectDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PRProjectDto), nameof(Id));
         
@@ -158,6 +159,24 @@ namespace SpaceDotNet.Client
         {
             get { return _tags.GetValue(); }
             set { _tags.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
+            _latestRepositoryActivity.SetAccessPath(path + "->WithLatestRepositoryActivity()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _adminProfiles.SetAccessPath(path + "->WithAdminProfiles()", validateHasBeenSet);
+            _adminTeams.SetAccessPath(path + "->WithAdminTeams()", validateHasBeenSet);
+            _memberProfiles.SetAccessPath(path + "->WithMemberProfiles()", validateHasBeenSet);
+            _memberTeams.SetAccessPath(path + "->WithMemberTeams()", validateHasBeenSet);
+            _repos.SetAccessPath(path + "->WithRepos()", validateHasBeenSet);
+            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
         }
     
     }

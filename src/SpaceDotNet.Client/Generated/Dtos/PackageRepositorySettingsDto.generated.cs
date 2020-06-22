@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PackageRepositorySettingsDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<long> _id = new PropertyValue<long>(nameof(PackageRepositorySettingsDto), nameof(Id));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _permissions.GetValue(); }
             set { _permissions.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _settings.SetAccessPath(path + "->WithSettings()", validateHasBeenSet);
+            _permissions.SetAccessPath(path + "->WithPermissions()", validateHasBeenSet);
         }
     
     }

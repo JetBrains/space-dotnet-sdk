@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeDiscussionRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeDiscussionRecordDto), nameof(Id));
         
@@ -127,6 +128,21 @@ namespace SpaceDotNet.Client
         {
             get { return _archived.GetValue(); }
             set { _archived.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
+            _anchor.SetAccessPath(path + "->WithAnchor()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
+            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
+            _resolved.SetAccessPath(path + "->WithResolved()", validateHasBeenSet);
+            _snippet.SetAccessPath(path + "->WithSnippet()", validateHasBeenSet);
+            _pending.SetAccessPath(path + "->WithPending()", validateHasBeenSet);
+            _review.SetAccessPath(path + "->WithReview()", validateHasBeenSet);
+            _reviews.SetAccessPath(path + "->WithReviews()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
         }
     
     }

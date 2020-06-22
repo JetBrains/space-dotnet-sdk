@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateAbsenceReasonRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CreateAbsenceReasonRequest), nameof(Name));
         
@@ -70,6 +71,15 @@ namespace SpaceDotNet.Client
         {
             get { return _icon.GetValue(); }
             set { _icon.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _defaultAvailability.SetAccessPath(path + "->WithDefaultAvailability()", validateHasBeenSet);
+            _approvalRequired.SetAccessPath(path + "->WithApprovalRequired()", validateHasBeenSet);
+            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeDiscussionSnippetPlainSnippetDto
-         : CodeDiscussionSnippetDto, IClassNameConvertible
+         : CodeDiscussionSnippetDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<List<CodeLineDto>> _lines = new PropertyValue<List<CodeLineDto>>(nameof(CodeDiscussionSnippetPlainSnippetDto), nameof(Lines));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _lines.GetValue(); }
             set { _lines.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _lines.SetAccessPath(path + "->WithLines()", validateHasBeenSet);
         }
     
     }

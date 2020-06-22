@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class NonWorkingDaysDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<SpaceDate> _since = new PropertyValue<SpaceDate>(nameof(NonWorkingDaysDto), nameof(Since));
         
@@ -61,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _endsLater.GetValue(); }
             set { _endsLater.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
+            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
+            _startsEarlier.SetAccessPath(path + "->WithStartsEarlier()", validateHasBeenSet);
+            _endsLater.SetAccessPath(path + "->WithEndsLater()", validateHasBeenSet);
         }
     
     }

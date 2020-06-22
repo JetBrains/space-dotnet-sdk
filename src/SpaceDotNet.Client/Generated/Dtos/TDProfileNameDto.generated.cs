@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDProfileNameDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TDProfileNameDto), nameof(FirstName));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _lastName.GetValue(); }
             set { _lastName.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
+            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
         }
     
     }

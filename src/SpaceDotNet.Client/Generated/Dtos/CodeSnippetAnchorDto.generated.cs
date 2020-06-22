@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeSnippetAnchorDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ProjectKeyDto> _projectKey = new PropertyValue<ProjectKeyDto>(nameof(CodeSnippetAnchorDto), nameof(ProjectKey));
         
@@ -88,6 +89,17 @@ namespace SpaceDotNet.Client
         {
             get { return _lineEnd.GetValue(); }
             set { _lineEnd.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _projectKey.SetAccessPath(path + "->WithProjectKey()", validateHasBeenSet);
+            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
+            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
+            _filename.SetAccessPath(path + "->WithFilename()", validateHasBeenSet);
+            _lineIndex.SetAccessPath(path + "->WithLineIndex()", validateHasBeenSet);
+            _lineStart.SetAccessPath(path + "->WithLineStart()", validateHasBeenSet);
+            _lineEnd.SetAccessPath(path + "->WithLineEnd()", validateHasBeenSet);
         }
     
     }

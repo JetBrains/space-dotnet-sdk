@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class AccessRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<SpaceTime> _time = new PropertyValue<SpaceTime>(nameof(AccessRecordDto), nameof(Time));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _userAgent.GetValue(); }
             set { _userAgent.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _time.SetAccessPath(path + "->WithTime()", validateHasBeenSet);
+            _address.SetAccessPath(path + "->WithAddress()", validateHasBeenSet);
+            _userAgent.SetAccessPath(path + "->WithUserAgent()", validateHasBeenSet);
         }
     
     }

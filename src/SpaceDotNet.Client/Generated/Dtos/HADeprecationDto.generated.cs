@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HADeprecationDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _message = new PropertyValue<string>(nameof(HADeprecationDto), nameof(Message));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _forRemoval.GetValue(); }
             set { _forRemoval.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _message.SetAccessPath(path + "->WithMessage()", validateHasBeenSet);
+            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
+            _forRemoval.SetAccessPath(path + "->WithForRemoval()", validateHasBeenSet);
         }
     
     }

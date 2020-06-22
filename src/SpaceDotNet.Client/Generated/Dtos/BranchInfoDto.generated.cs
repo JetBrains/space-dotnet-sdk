@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class BranchInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _head = new PropertyValue<string>(nameof(BranchInfoDto), nameof(Head));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _ref.GetValue(); }
             set { _ref.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _head.SetAccessPath(path + "->WithHead()", validateHasBeenSet);
+            _ref.SetAccessPath(path + "->WithRef()", validateHasBeenSet);
         }
     
     }

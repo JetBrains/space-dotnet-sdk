@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateSpokenLanguageRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _language = new PropertyValue<string>(nameof(UpdateSpokenLanguageRequest), nameof(Language));
         
@@ -49,6 +50,13 @@ namespace SpaceDotNet.Client
         {
             get { return _lastName.GetValue(); }
             set { _lastName.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _language.SetAccessPath(path + "->WithLanguage()", validateHasBeenSet);
+            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
+            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
         }
     
     }

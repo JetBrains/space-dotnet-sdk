@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class FractionDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(FractionDto), nameof(Numerator));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _denominator.GetValue(); }
             set { _denominator.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _numerator.SetAccessPath(path + "->WithNumerator()", validateHasBeenSet);
+            _denominator.SetAccessPath(path + "->WithDenominator()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class AddRevisionsToReviewRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<RevisionInReviewDto>> _revisions = new PropertyValue<List<RevisionInReviewDto>>(nameof(AddRevisionsToReviewRequest), nameof(Revisions));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _revisions.GetValue(); }
             set { _revisions.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _revisions.SetAccessPath(path + "->WithRevisions()", validateHasBeenSet);
         }
     
     }

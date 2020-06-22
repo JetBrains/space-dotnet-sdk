@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HATypeEnumDto
-         : HATypeDto, IClassNameConvertible
+         : HATypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<HAEnumDto> _enum = new PropertyValue<HAEnumDto>(nameof(HATypeEnumDto), nameof(Enum));
         
@@ -52,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _optional.GetValue(); }
             set { _optional.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _enum.SetAccessPath(path + "->WithEnum()", validateHasBeenSet);
+            _nullable.SetAccessPath(path + "->WithNullable()", validateHasBeenSet);
+            _optional.SetAccessPath(path + "->WithOptional()", validateHasBeenSet);
         }
     
     }

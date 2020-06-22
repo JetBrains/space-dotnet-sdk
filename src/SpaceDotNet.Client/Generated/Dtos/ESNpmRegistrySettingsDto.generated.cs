@@ -22,8 +22,12 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESNpmRegistrySettingsDto
-         : ESPackageRepositorySettingsDto, IClassNameConvertible
+         : ESPackageRepositorySettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

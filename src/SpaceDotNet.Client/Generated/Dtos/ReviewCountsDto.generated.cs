@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ReviewCountsDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _opened = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(Opened));
         
@@ -81,6 +82,16 @@ namespace SpaceDotNet.Client
         {
             get { return _needsMyReview.GetValue(); }
             set { _needsMyReview.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _opened.SetAccessPath(path + "->WithOpened()", validateHasBeenSet);
+            _closed.SetAccessPath(path + "->WithClosed()", validateHasBeenSet);
+            _authoredByMe.SetAccessPath(path + "->WithAuthoredByMe()", validateHasBeenSet);
+            _reviewedByMe.SetAccessPath(path + "->WithReviewedByMe()", validateHasBeenSet);
+            _needsMyAttention.SetAccessPath(path + "->WithNeedsMyAttention()", validateHasBeenSet);
+            _needsMyReview.SetAccessPath(path + "->WithNeedsMyReview()", validateHasBeenSet);
         }
     
     }

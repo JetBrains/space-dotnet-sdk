@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PlanItemDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItemDto), nameof(Id));
         
@@ -115,6 +116,20 @@ namespace SpaceDotNet.Client
         {
             get { return _children.GetValue(); }
             set { _children.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _checklistId.SetAccessPath(path + "->WithChecklistId()", validateHasBeenSet);
+            _tag.SetAccessPath(path + "->WithTag()", validateHasBeenSet);
+            _simpleText.SetAccessPath(path + "->WithSimpleText()", validateHasBeenSet);
+            _simpleDone.SetAccessPath(path + "->WithSimpleDone()", validateHasBeenSet);
+            _issue.SetAccessPath(path + "->WithIssue()", validateHasBeenSet);
+            _issueProblem.SetAccessPath(path + "->WithIssueProblem()", validateHasBeenSet);
+            _canEditIssue.SetAccessPath(path + "->WithCanEditIssue()", validateHasBeenSet);
+            _hasChildren.SetAccessPath(path + "->WithHasChildren()", validateHasBeenSet);
+            _children.SetAccessPath(path + "->WithChildren()", validateHasBeenSet);
         }
     
     }

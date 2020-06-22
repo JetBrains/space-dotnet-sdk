@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DTOLimitDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(DTOLimitDto), nameof(Name));
         
@@ -78,6 +79,16 @@ namespace SpaceDotNet.Client
         {
             get { return _hardCap.GetValue(); }
             set { _hardCap.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _unit.SetAccessPath(path + "->WithUnit()", validateHasBeenSet);
+            _estimate.SetAccessPath(path + "->WithEstimate()", validateHasBeenSet);
+            _specificEstimate.SetAccessPath(path + "->WithSpecificEstimate()", validateHasBeenSet);
+            _softCap.SetAccessPath(path + "->WithSoftCap()", validateHasBeenSet);
+            _hardCap.SetAccessPath(path + "->WithHardCap()", validateHasBeenSet);
         }
     
     }

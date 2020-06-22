@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MeetingAttachmentDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachmentDto), nameof(FileUrl));
         
@@ -66,6 +67,15 @@ namespace SpaceDotNet.Client
         {
             get { return _source.GetValue(); }
             set { _source.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _fileUrl.SetAccessPath(path + "->WithFileUrl()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _mimeType.SetAccessPath(path + "->WithMimeType()", validateHasBeenSet);
+            _fileId.SetAccessPath(path + "->WithFileId()", validateHasBeenSet);
+            _source.SetAccessPath(path + "->WithSource()", validateHasBeenSet);
         }
     
     }

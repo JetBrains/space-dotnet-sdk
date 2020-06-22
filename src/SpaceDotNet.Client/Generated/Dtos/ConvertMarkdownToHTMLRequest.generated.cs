@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ConvertMarkdownToHTMLRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(ConvertMarkdownToHTMLRequest), nameof(Markdown));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _markdown.GetValue(); }
             set { _markdown.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _markdown.SetAccessPath(path + "->WithMarkdown()", validateHasBeenSet);
         }
     
     }

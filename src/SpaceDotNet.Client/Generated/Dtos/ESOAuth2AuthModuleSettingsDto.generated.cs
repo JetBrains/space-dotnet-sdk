@@ -22,8 +22,12 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public abstract class ESOAuth2AuthModuleSettingsDto
-         : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
+         : ESFederatedAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

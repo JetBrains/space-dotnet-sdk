@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class IssueStatusDataDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _existingId = new PropertyValue<string?>(nameof(IssueStatusDataDto), nameof(ExistingId));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _color.GetValue(); }
             set { _color.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _existingId.SetAccessPath(path + "->WithExistingId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _resolved.SetAccessPath(path + "->WithResolved()", validateHasBeenSet);
+            _color.SetAccessPath(path + "->WithColor()", validateHasBeenSet);
         }
     
     }

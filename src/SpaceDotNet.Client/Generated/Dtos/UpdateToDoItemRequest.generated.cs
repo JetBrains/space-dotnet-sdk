@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateToDoItemRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(UpdateToDoItemRequest), nameof(Text));
         
@@ -48,6 +49,13 @@ namespace SpaceDotNet.Client
         {
             get { return _open.GetValue(); }
             set { _open.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
+            _open.SetAccessPath(path + "->WithOpen()", validateHasBeenSet);
         }
     
     }

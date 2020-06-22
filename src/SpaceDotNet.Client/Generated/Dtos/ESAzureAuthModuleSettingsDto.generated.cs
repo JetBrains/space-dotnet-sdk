@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESAzureAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _tenantId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettingsDto), nameof(TenantId));
         
@@ -72,6 +72,15 @@ namespace SpaceDotNet.Client
         {
             get { return _emailVerified.GetValue(); }
             set { _emailVerified.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _tenantId.SetAccessPath(path + "->WithTenantId()", validateHasBeenSet);
+            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
+            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
+            _emailVerified.SetAccessPath(path + "->WithEmailVerified()", validateHasBeenSet);
         }
     
     }

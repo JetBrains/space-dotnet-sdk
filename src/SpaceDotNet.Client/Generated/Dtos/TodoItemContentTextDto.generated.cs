@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TodoItemContentTextDto
-         : TodoItemContentDto, IClassNameConvertible
+         : TodoItemContentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -35,6 +35,11 @@ namespace SpaceDotNet.Client
         {
             get { return _text.GetValue(); }
             set { _text.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
         }
     
     }

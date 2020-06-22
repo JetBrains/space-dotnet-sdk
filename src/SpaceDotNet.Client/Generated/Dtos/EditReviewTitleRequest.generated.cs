@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class EditReviewTitleRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(EditReviewTitleRequest), nameof(Title));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _title.GetValue(); }
             set { _title.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
         }
     
     }

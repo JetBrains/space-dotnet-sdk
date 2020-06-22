@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ClientInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ClientOS?> _os = new PropertyValue<ClientOS?>(nameof(ClientInfoDto), nameof(Os));
         
@@ -66,6 +67,15 @@ namespace SpaceDotNet.Client
         {
             get { return _device.GetValue(); }
             set { _device.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _os.SetAccessPath(path + "->WithOs()", validateHasBeenSet);
+            _osVersion.SetAccessPath(path + "->WithOsVersion()", validateHasBeenSet);
+            _browser.SetAccessPath(path + "->WithBrowser()", validateHasBeenSet);
+            _browserVersion.SetAccessPath(path + "->WithBrowserVersion()", validateHasBeenSet);
+            _device.SetAccessPath(path + "->WithDevice()", validateHasBeenSet);
         }
     
     }

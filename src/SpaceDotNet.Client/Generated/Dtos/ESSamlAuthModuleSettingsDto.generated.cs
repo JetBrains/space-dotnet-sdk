@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESSamlAuthModuleSettingsDto
-         : ESFederatedAuthModuleSettingsDto, IClassNameConvertible
+         : ESFederatedAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(ESSamlAuthModuleSettingsDto), nameof(IdpUrl));
         
@@ -100,6 +100,18 @@ namespace SpaceDotNet.Client
         {
             get { return _attributeNames.GetValue(); }
             set { _attributeNames.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _idpUrl.SetAccessPath(path + "->WithIdpUrl()", validateHasBeenSet);
+            _idpEntityId.SetAccessPath(path + "->WithIdpEntityId()", validateHasBeenSet);
+            _idpCertificateSHA256.SetAccessPath(path + "->WithIdpCertificateSHA256()", validateHasBeenSet);
+            _spEntityId.SetAccessPath(path + "->WithSpEntityId()", validateHasBeenSet);
+            _sslKeystore.SetAccessPath(path + "->WithSslKeystore()", validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
+            _contactProfileId.SetAccessPath(path + "->WithContactProfileId()", validateHasBeenSet);
+            _attributeNames.SetAccessPath(path + "->WithAttributeNames()", validateHasBeenSet);
         }
     
     }

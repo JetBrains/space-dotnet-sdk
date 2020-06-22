@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public interface IssueChangedM2DetailsDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+         : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
     }
     

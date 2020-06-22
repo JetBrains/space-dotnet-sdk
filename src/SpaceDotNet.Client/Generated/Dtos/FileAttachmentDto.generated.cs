@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class FileAttachmentDto
-         : AttachmentDto, IClassNameConvertible
+         : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -55,6 +55,13 @@ namespace SpaceDotNet.Client
         {
             get { return _filename.GetValue(); }
             set { _filename.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _sizeBytes.SetAccessPath(path + "->WithSizeBytes()", validateHasBeenSet);
+            _filename.SetAccessPath(path + "->WithFilename()", validateHasBeenSet);
         }
     
     }

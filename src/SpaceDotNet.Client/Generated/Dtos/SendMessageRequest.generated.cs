@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class SendMessageRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<MessageRecipientDto> _recipient = new PropertyValue<MessageRecipientDto>(nameof(SendMessageRequest), nameof(Recipient));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _unfurlLinks.GetValue(); }
             set { _unfurlLinks.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _recipient.SetAccessPath(path + "->WithRecipient()", validateHasBeenSet);
+            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
+            _unfurlLinks.SetAccessPath(path + "->WithUnfurlLinks()", validateHasBeenSet);
         }
     
     }

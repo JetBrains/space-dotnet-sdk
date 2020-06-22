@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RecurrenceRuleEndsTotalCountDto
-         : RecurrenceRuleEndsDto, IClassNameConvertible
+         : RecurrenceRuleEndsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCountDto), nameof(Count));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _count.GetValue(); }
             set { _count.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _count.SetAccessPath(path + "->WithCount()", validateHasBeenSet);
         }
     
     }

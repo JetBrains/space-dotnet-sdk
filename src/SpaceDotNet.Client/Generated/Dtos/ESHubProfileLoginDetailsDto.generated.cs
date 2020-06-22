@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESHubProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto, IClassNameConvertible
+         : ESProfileLoginDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(Login));
         
@@ -86,6 +86,17 @@ namespace SpaceDotNet.Client
         {
             get { return _avatarUrl.GetValue(); }
             set { _avatarUrl.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _login.SetAccessPath(path + "->WithLogin()", validateHasBeenSet);
+            _hubAuthModuleLogin.SetAccessPath(path + "->WithHubAuthModuleLogin()", validateHasBeenSet);
+            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
+            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
+            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
+            _emailVerified.SetAccessPath(path + "->WithEmailVerified()", validateHasBeenSet);
+            _avatarUrl.SetAccessPath(path + "->WithAvatarUrl()", validateHasBeenSet);
         }
     
     }

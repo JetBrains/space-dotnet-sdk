@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MessageOutlineDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(MessageOutlineDto), nameof(Icon));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _text.GetValue(); }
             set { _text.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class AvatarCropSquareDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _x = new PropertyValue<int>(nameof(AvatarCropSquareDto), nameof(X));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _length.GetValue(); }
             set { _length.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _x.SetAccessPath(path + "->WithX()", validateHasBeenSet);
+            _y.SetAccessPath(path + "->WithY()", validateHasBeenSet);
+            _length.SetAccessPath(path + "->WithLength()", validateHasBeenSet);
         }
     
     }

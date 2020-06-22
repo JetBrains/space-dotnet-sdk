@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESBuiltinAuthModuleSettingsDto
-         : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
+         : ESPasswordAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<PasswordStrength> _passwordStrengthPolicy = new PropertyValue<PasswordStrength>(nameof(ESBuiltinAuthModuleSettingsDto), nameof(PasswordStrengthPolicy));
         
@@ -41,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _domains.GetValue(); }
             set { _domains.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _passwordStrengthPolicy.SetAccessPath(path + "->WithPasswordStrengthPolicy()", validateHasBeenSet);
+            _domains.SetAccessPath(path + "->WithDomains()", validateHasBeenSet);
         }
     
     }

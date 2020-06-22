@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MCElementDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _defaultText = new PropertyValue<string>(nameof(MCElementDto), nameof(DefaultText));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _details.GetValue(); }
             set { _details.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _defaultText.SetAccessPath(path + "->WithDefaultText()", validateHasBeenSet);
+            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
         }
     
     }

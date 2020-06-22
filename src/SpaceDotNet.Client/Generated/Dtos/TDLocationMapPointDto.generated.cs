@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDLocationMapPointDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMapPointDto), nameof(Id));
         
@@ -88,6 +89,17 @@ namespace SpaceDotNet.Client
         {
             get { return _deleted.GetValue(); }
             set { _deleted.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _mapId.SetAccessPath(path + "->WithMapId()", validateHasBeenSet);
+            _x.SetAccessPath(path + "->WithX()", validateHasBeenSet);
+            _y.SetAccessPath(path + "->WithY()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
+            _memberLocation.SetAccessPath(path + "->WithMemberLocation()", validateHasBeenSet);
+            _deleted.SetAccessPath(path + "->WithDeleted()", validateHasBeenSet);
         }
     
     }

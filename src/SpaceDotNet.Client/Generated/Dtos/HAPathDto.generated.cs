@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAPathDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<HAPathSegmentDto>> _segments = new PropertyValue<List<HAPathSegmentDto>>(nameof(HAPathDto), nameof(Segments));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _segments.GetValue(); }
             set { _segments.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _segments.SetAccessPath(path + "->WithSegments()", validateHasBeenSet);
         }
     
     }

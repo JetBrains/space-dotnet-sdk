@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateMemberLocationRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _member = new PropertyValue<string?>(nameof(UpdateMemberLocationRequest), nameof(Member));
         
@@ -66,6 +67,15 @@ namespace SpaceDotNet.Client
         {
             get { return _previousLocation.GetValue(); }
             set { _previousLocation.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _member.SetAccessPath(path + "->WithMember()", validateHasBeenSet);
+            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
+            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
+            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
+            _previousLocation.SetAccessPath(path + "->WithPreviousLocation()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2TaskExecutionFailureItemContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+         : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -125,6 +125,20 @@ namespace SpaceDotNet.Client
         {
             get { return _details.GetValue(); }
             set { _details.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _taskExecutionId.SetAccessPath(path + "->WithTaskExecutionId()", validateHasBeenSet);
+            _taskExecutionName.SetAccessPath(path + "->WithTaskExecutionName()", validateHasBeenSet);
+            _repoName.SetAccessPath(path + "->WithRepoName()", validateHasBeenSet);
+            _branchName.SetAccessPath(path + "->WithBranchName()", validateHasBeenSet);
+            _commit.SetAccessPath(path + "->WithCommit()", validateHasBeenSet);
+            _shortCommitMessage.SetAccessPath(path + "->WithShortCommitMessage()", validateHasBeenSet);
+            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
+            _finishDateTime.SetAccessPath(path + "->WithFinishDateTime()", validateHasBeenSet);
+            _triggerInfo.SetAccessPath(path + "->WithTriggerInfo()", validateHasBeenSet);
+            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RecurrenceRuleFreqMonthlyOnStartDateDto
-         : RecurrenceRuleFreqDto, IClassNameConvertible
+         : RecurrenceRuleFreqDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnStartDateDto), nameof(Interval));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _interval.GetValue(); }
             set { _interval.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _interval.SetAccessPath(path + "->WithInterval()", validateHasBeenSet);
         }
     
     }

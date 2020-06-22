@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateCodeDiscussionRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(CreateCodeDiscussionRequest), nameof(Text));
         
@@ -77,6 +78,16 @@ namespace SpaceDotNet.Client
         {
             get { return _pending.GetValue(); }
             set { _pending.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _diffContext.SetAccessPath(path + "->WithDiffContext()", validateHasBeenSet);
+            _filename.SetAccessPath(path + "->WithFilename()", validateHasBeenSet);
+            _line.SetAccessPath(path + "->WithLine()", validateHasBeenSet);
+            _oldLine.SetAccessPath(path + "->WithOldLine()", validateHasBeenSet);
+            _pending.SetAccessPath(path + "->WithPending()", validateHasBeenSet);
         }
     
     }

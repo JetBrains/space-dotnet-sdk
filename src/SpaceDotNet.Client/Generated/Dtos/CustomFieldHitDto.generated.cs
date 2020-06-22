@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CustomFieldHitDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomFieldHitDto), nameof(Name));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _value.GetValue(); }
             set { _value.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _value.SetAccessPath(path + "->WithValue()", validateHasBeenSet);
         }
     
     }

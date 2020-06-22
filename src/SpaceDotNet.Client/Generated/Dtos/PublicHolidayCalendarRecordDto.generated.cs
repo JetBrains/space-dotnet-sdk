@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PublicHolidayCalendarRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHolidayCalendarRecordDto), nameof(Id));
         
@@ -89,6 +90,17 @@ namespace SpaceDotNet.Client
         {
             get { return _location.GetValue(); }
             set { _location.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _firstDate.SetAccessPath(path + "->WithFirstDate()", validateHasBeenSet);
+            _lastDate.SetAccessPath(path + "->WithLastDate()", validateHasBeenSet);
+            _eventsCount.SetAccessPath(path + "->WithEventsCount()", validateHasBeenSet);
+            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
         }
     
     }

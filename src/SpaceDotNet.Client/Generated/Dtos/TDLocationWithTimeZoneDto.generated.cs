@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDLocationWithTimeZoneDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationWithTimeZoneDto), nameof(Id));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _timezone.GetValue(); }
             set { _timezone.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
         }
     
     }

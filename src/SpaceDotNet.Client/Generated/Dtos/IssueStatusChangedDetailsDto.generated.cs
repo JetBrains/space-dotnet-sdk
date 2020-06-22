@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class IssueStatusChangedDetailsDto
-         : IssueChangedM2DetailsDto, IClassNameConvertible
+         : IssueChangedM2DetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -45,6 +45,12 @@ namespace SpaceDotNet.Client
         {
             get { return _newStatus.GetValue(); }
             set { _newStatus.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _oldStatus.SetAccessPath(path + "->WithOldStatus()", validateHasBeenSet);
+            _newStatus.SetAccessPath(path + "->WithNewStatus()", validateHasBeenSet);
         }
     
     }

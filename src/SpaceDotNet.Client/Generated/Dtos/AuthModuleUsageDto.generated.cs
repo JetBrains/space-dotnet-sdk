@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class AuthModuleUsageDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ESAuthModuleDto> _authModule = new PropertyValue<ESAuthModuleDto>(nameof(AuthModuleUsageDto), nameof(AuthModule));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _profiles.GetValue(); }
             set { _profiles.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _authModule.SetAccessPath(path + "->WithAuthModule()", validateHasBeenSet);
+            _profiles.SetAccessPath(path + "->WithProfiles()", validateHasBeenSet);
         }
     
     }

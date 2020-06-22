@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RevisionAuthorDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _authorName = new PropertyValue<string>(nameof(RevisionAuthorDto), nameof(AuthorName));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _profile.GetValue(); }
             set { _profile.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _authorName.SetAccessPath(path + "->WithAuthorName()", validateHasBeenSet);
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
         }
     
     }

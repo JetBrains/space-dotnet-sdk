@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateSubscriptionRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _locationId = new PropertyValue<string?>(nameof(CreateSubscriptionRequest), nameof(LocationId));
         
@@ -48,6 +49,13 @@ namespace SpaceDotNet.Client
         {
             get { return _reasonId.GetValue(); }
             set { _reasonId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _locationId.SetAccessPath(path + "->WithLocationId()", validateHasBeenSet);
+            _teamId.SetAccessPath(path + "->WithTeamId()", validateHasBeenSet);
+            _reasonId.SetAccessPath(path + "->WithReasonId()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ImportedEntityInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ImportSourceDto> _source = new PropertyValue<ImportSourceDto>(nameof(ImportedEntityInfoDto), nameof(Source));
         
@@ -49,6 +50,13 @@ namespace SpaceDotNet.Client
         {
             get { return _externalUrl.GetValue(); }
             set { _externalUrl.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _source.SetAccessPath(path + "->WithSource()", validateHasBeenSet);
+            _externalName.SetAccessPath(path + "->WithExternalName()", validateHasBeenSet);
+            _externalUrl.SetAccessPath(path + "->WithExternalUrl()", validateHasBeenSet);
         }
     
     }

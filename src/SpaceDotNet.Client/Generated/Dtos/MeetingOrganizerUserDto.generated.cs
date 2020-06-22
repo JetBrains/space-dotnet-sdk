@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MeetingOrganizerUserDto
-         : MeetingOrganizerDto, IClassNameConvertible
+         : MeetingOrganizerDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMemberProfileDto> _profileRef = new PropertyValue<TDMemberProfileDto>(nameof(MeetingOrganizerUserDto), nameof(ProfileRef));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _profileRef.GetValue(); }
             set { _profileRef.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profileRef.SetAccessPath(path + "->WithProfileRef()", validateHasBeenSet);
         }
     
     }

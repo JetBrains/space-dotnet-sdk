@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESServiceDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESServiceDto), nameof(Id));
         
@@ -108,6 +109,19 @@ namespace SpaceDotNet.Client
         {
             get { return _endpointURI.GetValue(); }
             set { _endpointURI.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _redirectURIs.SetAccessPath(path + "->WithRedirectURIs()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _lastClientCredentialsAccess.SetAccessPath(path + "->WithLastClientCredentialsAccess()", validateHasBeenSet);
+            _endpointURI.SetAccessPath(path + "->WithEndpointURI()", validateHasBeenSet);
         }
     
     }

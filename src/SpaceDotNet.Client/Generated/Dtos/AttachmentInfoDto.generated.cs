@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class AttachmentInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<AttachmentDto?> _details = new PropertyValue<AttachmentDto?>(nameof(AttachmentInfoDto), nameof(Details));
         
@@ -30,6 +31,11 @@ namespace SpaceDotNet.Client
         {
             get { return _details.GetValue(); }
             set { _details.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class AddMemberRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(AddMemberRequest), nameof(ProfileId));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _profileId.GetValue(); }
             set { _profileId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profileId.SetAccessPath(path + "->WithProfileId()", validateHasBeenSet);
         }
     
     }

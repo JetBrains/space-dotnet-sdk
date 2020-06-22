@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class RestoreMultipleRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(RestoreMultipleRequest), nameof(Ids));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _ids.GetValue(); }
             set { _ids.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _ids.SetAccessPath(path + "->WithIds()", validateHasBeenSet);
         }
     
     }

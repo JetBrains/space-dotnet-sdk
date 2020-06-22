@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateNavBarMenuItemRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _item = new PropertyValue<string>(nameof(UpdateNavBarMenuItemRequest), nameof(Item));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _enabled.GetValue(); }
             set { _enabled.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _item.SetAccessPath(path + "->WithItem()", validateHasBeenSet);
+            _enabled.SetAccessPath(path + "->WithEnabled()", validateHasBeenSet);
         }
     
     }

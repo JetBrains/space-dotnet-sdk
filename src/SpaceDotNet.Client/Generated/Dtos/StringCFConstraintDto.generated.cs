@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class StringCFConstraintDto
-         : CFConstraintDto, IClassNameConvertible
+         : CFConstraintDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(StringCFConstraintDto), nameof(Min));
         
@@ -58,6 +58,14 @@ namespace SpaceDotNet.Client
         {
             get { return _message.GetValue(); }
             set { _message.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _min.SetAccessPath(path + "->WithMin()", validateHasBeenSet);
+            _max.SetAccessPath(path + "->WithMax()", validateHasBeenSet);
+            _pattern.SetAccessPath(path + "->WithPattern()", validateHasBeenSet);
+            _message.SetAccessPath(path + "->WithMessage()", validateHasBeenSet);
         }
     
     }

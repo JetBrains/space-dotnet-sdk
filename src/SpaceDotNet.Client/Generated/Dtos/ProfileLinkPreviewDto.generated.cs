@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ProfileLinkPreviewDto
-         : AttachmentDto, IClassNameConvertible
+         : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -35,6 +35,11 @@ namespace SpaceDotNet.Client
         {
             get { return _profile.GetValue(); }
             set { _profile.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
         }
     
     }

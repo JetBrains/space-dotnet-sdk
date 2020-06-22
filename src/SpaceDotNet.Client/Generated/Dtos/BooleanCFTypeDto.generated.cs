@@ -22,8 +22,12 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class BooleanCFTypeDto
-         : CFTypeDto, IClassNameConvertible
+         : CFTypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

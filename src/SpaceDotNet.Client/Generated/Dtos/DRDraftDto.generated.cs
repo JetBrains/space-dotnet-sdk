@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DRDraftDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftDto), nameof(Id));
         
@@ -155,6 +156,24 @@ namespace SpaceDotNet.Client
         {
             get { return _document.GetValue(); }
             set { _document.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _modified.SetAccessPath(path + "->WithModified()", validateHasBeenSet);
+            _publishedFlag.SetAccessPath(path + "->WithPublishedFlag()", validateHasBeenSet);
+            _shared.SetAccessPath(path + "->WithShared()", validateHasBeenSet);
+            _accessOrdinal.SetAccessPath(path + "->WithAccessOrdinal()", validateHasBeenSet);
+            _publicationDetails.SetAccessPath(path + "->WithPublicationDetails()", validateHasBeenSet);
+            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
+            _editors.SetAccessPath(path + "->WithEditors()", validateHasBeenSet);
+            _editorsTeams.SetAccessPath(path + "->WithEditorsTeams()", validateHasBeenSet);
+            _version.SetAccessPath(path + "->WithVersion()", validateHasBeenSet);
+            _document.SetAccessPath(path + "->WithDocument()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateHierarchicalTagRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _parentTagId = new PropertyValue<string?>(nameof(CreateHierarchicalTagRequest), nameof(ParentTagId));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _path.GetValue(); }
             set { _path.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _parentTagId.SetAccessPath(path + "->WithParentTagId()", validateHasBeenSet);
+            _path.SetAccessPath(path + "->WithPath()", validateHasBeenSet);
         }
     
     }

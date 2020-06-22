@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class GitDiffSizeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _added = new PropertyValue<int>(nameof(GitDiffSizeDto), nameof(Added));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _deleted.GetValue(); }
             set { _deleted.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _added.SetAccessPath(path + "->WithAdded()", validateHasBeenSet);
+            _deleted.SetAccessPath(path + "->WithDeleted()", validateHasBeenSet);
         }
     
     }

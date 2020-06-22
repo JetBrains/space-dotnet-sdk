@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ChannelSpecificDefaultsDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<NotificationFilter> _filter = new PropertyValue<NotificationFilter>(nameof(ChannelSpecificDefaultsDto), nameof(Filter));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _email.GetValue(); }
             set { _email.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _filter.SetAccessPath(path + "->WithFilter()", validateHasBeenSet);
+            _push.SetAccessPath(path + "->WithPush()", validateHasBeenSet);
+            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
         }
     
     }

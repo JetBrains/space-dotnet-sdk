@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RecurrenceRuleDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<RecurrenceRuleFreqDto> _freq = new PropertyValue<RecurrenceRuleFreqDto>(nameof(RecurrenceRuleDto), nameof(Freq));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _ends.GetValue(); }
             set { _ends.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _freq.SetAccessPath(path + "->WithFreq()", validateHasBeenSet);
+            _ends.SetAccessPath(path + "->WithEnds()", validateHasBeenSet);
         }
     
     }

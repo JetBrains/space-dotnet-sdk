@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PackageVersionInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<PackageTypeDto> _type = new PropertyValue<PackageTypeDto>(nameof(PackageVersionInfoDto), nameof(Type));
         
@@ -70,6 +71,15 @@ namespace SpaceDotNet.Client
         {
             get { return _tags.GetValue(); }
             set { _tags.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _version.SetAccessPath(path + "->WithVersion()", validateHasBeenSet);
+            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
         }
     
     }

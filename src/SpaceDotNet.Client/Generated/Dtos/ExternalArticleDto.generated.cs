@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ExternalArticleDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ExternalArticleDto), nameof(Title));
         
@@ -97,6 +98,18 @@ namespace SpaceDotNet.Client
         {
             get { return _externalUrl.GetValue(); }
             set { _externalUrl.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
+            _authorId.SetAccessPath(path + "->WithAuthorId()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
+            _externalId.SetAccessPath(path + "->WithExternalId()", validateHasBeenSet);
+            _externalUrl.SetAccessPath(path + "->WithExternalUrl()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2ChannelContactArticleDto
-         : M2ChannelContactInfoDto, IClassNameConvertible
+         : M2ChannelContactInfoDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -45,6 +45,12 @@ namespace SpaceDotNet.Client
         {
             get { return _notificationDefaults.GetValue(); }
             set { _notificationDefaults.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _article.SetAccessPath(path + "->WithArticle()", validateHasBeenSet);
+            _notificationDefaults.SetAccessPath(path + "->WithNotificationDefaults()", validateHasBeenSet);
         }
     
     }

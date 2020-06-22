@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class UnfurlDetailsDateTimeDto
-         : UnfurlDetailsDto, IClassNameConvertible
+         : UnfurlDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -35,6 +35,11 @@ namespace SpaceDotNet.Client
         {
             get { return _utcMilliseconds.GetValue(); }
             set { _utcMilliseconds.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _utcMilliseconds.SetAccessPath(path + "->WithUtcMilliseconds()", validateHasBeenSet);
         }
     
     }

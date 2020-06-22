@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class TrackTagAccessRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _tag = new PropertyValue<string>(nameof(TrackTagAccessRequest), nameof(Tag));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _tag.GetValue(); }
             set { _tag.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _tag.SetAccessPath(path + "->WithTag()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class EditTextMessageRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(EditTextMessageRequest), nameof(ChannelId));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _messageId.GetValue(); }
             set { _messageId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _channelId.SetAccessPath(path + "->WithChannelId()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _messageId.SetAccessPath(path + "->WithMessageId()", validateHasBeenSet);
         }
     
     }

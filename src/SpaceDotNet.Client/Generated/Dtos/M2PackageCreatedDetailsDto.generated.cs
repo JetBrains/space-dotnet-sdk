@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2PackageCreatedDetailsDto
-         : M2PackageContentDetailsDto, IClassNameConvertible
+         : M2PackageContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -35,6 +35,11 @@ namespace SpaceDotNet.Client
         {
             get { return _pkg.GetValue(); }
             set { _pkg.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _pkg.SetAccessPath(path + "->WithPkg()", validateHasBeenSet);
         }
     
     }

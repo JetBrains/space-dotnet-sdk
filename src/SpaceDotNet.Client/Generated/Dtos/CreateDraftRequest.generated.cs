@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateDraftRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(CreateDraftRequest), nameof(Title));
         
@@ -67,6 +68,15 @@ namespace SpaceDotNet.Client
         {
             get { return _publicationDetails.GetValue(); }
             set { _publicationDetails.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _textVersion.SetAccessPath(path + "->WithTextVersion()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _publicationDetails.SetAccessPath(path + "->WithPublicationDetails()", validateHasBeenSet);
         }
     
     }

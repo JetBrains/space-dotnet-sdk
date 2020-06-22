@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateChecklistRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(UpdateChecklistRequest), nameof(Name));
         
@@ -57,6 +58,14 @@ namespace SpaceDotNet.Client
         {
             get { return _tag.GetValue(); }
             set { _tag.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
+            _tag.SetAccessPath(path + "->WithTag()", validateHasBeenSet);
         }
     
     }

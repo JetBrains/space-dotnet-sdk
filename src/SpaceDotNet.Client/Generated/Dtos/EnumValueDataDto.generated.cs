@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class EnumValueDataDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(EnumValueDataDto), nameof(Id));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _value.GetValue(); }
             set { _value.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _value.SetAccessPath(path + "->WithValue()", validateHasBeenSet);
         }
     
     }

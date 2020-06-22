@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateTeamRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _teamNameRaw = new PropertyValue<string?>(nameof(UpdateTeamRequest), nameof(TeamNameRaw));
         
@@ -66,6 +67,15 @@ namespace SpaceDotNet.Client
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _teamNameRaw.SetAccessPath(path + "->WithTeamNameRaw()", validateHasBeenSet);
+            _teamDescription.SetAccessPath(path + "->WithTeamDescription()", validateHasBeenSet);
+            _teamEmails.SetAccessPath(path + "->WithTeamEmails()", validateHasBeenSet);
+            _parentId.SetAccessPath(path + "->WithParentId()", validateHasBeenSet);
+            _customFieldValues.SetAccessPath(path + "->WithCustomFieldValues()", validateHasBeenSet);
         }
     
     }

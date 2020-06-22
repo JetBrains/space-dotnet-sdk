@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RecurrenceRuleEndsOnDateDto
-         : RecurrenceRuleEndsDto, IClassNameConvertible
+         : RecurrenceRuleEndsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<SpaceDate> _date = new PropertyValue<SpaceDate>(nameof(RecurrenceRuleEndsOnDateDto), nameof(Date));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _date.GetValue(); }
             set { _date.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _date.SetAccessPath(path + "->WithDate()", validateHasBeenSet);
         }
     
     }

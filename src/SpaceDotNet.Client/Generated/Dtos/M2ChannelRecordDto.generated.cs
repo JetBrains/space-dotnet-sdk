@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2ChannelRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelRecordDto), nameof(Id));
         
@@ -134,6 +135,22 @@ namespace SpaceDotNet.Client
         {
             get { return _content.GetValue(); }
             set { _content.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _contact.SetAccessPath(path + "->WithContact()", validateHasBeenSet);
+            _totalMessages.SetAccessPath(path + "->WithTotalMessages()", validateHasBeenSet);
+            _lastMessage.SetAccessPath(path + "->WithLastMessage()", validateHasBeenSet);
+            _authors.SetAccessPath(path + "->WithAuthors()", validateHasBeenSet);
+            _commentAuthors.SetAccessPath(path + "->WithCommentAuthors()", validateHasBeenSet);
+            _participants.SetAccessPath(path + "->WithParticipants()", validateHasBeenSet);
+            _channelArchived.SetAccessPath(path + "->WithChannelArchived()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
+            _messages.SetAccessPath(path + "->WithMessages()", validateHasBeenSet);
+            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
         }
     
     }

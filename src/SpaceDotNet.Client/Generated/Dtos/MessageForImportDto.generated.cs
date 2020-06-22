@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MessageForImportDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _authorPrincipalId = new PropertyValue<string>(nameof(MessageForImportDto), nameof(AuthorPrincipalId));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _attachments.GetValue(); }
             set { _attachments.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _authorPrincipalId.SetAccessPath(path + "->WithAuthorPrincipalId()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _createdAtUtc.SetAccessPath(path + "->WithCreatedAtUtc()", validateHasBeenSet);
+            _attachments.SetAccessPath(path + "->WithAttachments()", validateHasBeenSet);
         }
     
     }

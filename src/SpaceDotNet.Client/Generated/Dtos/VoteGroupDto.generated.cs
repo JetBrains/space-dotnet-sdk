@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class VoteGroupDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _variantName = new PropertyValue<string>(nameof(VoteGroupDto), nameof(VariantName));
         
@@ -70,6 +71,15 @@ namespace SpaceDotNet.Client
         {
             get { return _owner.GetValue(); }
             set { _owner.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _variantName.SetAccessPath(path + "->WithVariantName()", validateHasBeenSet);
+            _count.SetAccessPath(path + "->WithCount()", validateHasBeenSet);
+            _meVote.SetAccessPath(path + "->WithMeVote()", validateHasBeenSet);
+            _lastUsers.SetAccessPath(path + "->WithLastUsers()", validateHasBeenSet);
+            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class FTSProfileDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<FTSUserDto> _profile = new PropertyValue<FTSUserDto>(nameof(FTSProfileDto), nameof(Profile));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _member.GetValue(); }
             set { _member.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
+            _snippets.SetAccessPath(path + "->WithSnippets()", validateHasBeenSet);
+            _member.SetAccessPath(path + "->WithMember()", validateHasBeenSet);
         }
     
     }

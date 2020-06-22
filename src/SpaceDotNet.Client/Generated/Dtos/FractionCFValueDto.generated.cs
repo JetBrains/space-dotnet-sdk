@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class FractionCFValueDto
-         : CFValueDto, IClassNameConvertible
+         : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<FractionDto?> _value = new PropertyValue<FractionDto?>(nameof(FractionCFValueDto), nameof(Value));
         
@@ -31,6 +31,11 @@ namespace SpaceDotNet.Client
         {
             get { return _value.GetValue(); }
             set { _value.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _value.SetAccessPath(path + "->WithValue()", validateHasBeenSet);
         }
     
     }

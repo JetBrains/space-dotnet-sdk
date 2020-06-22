@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public interface LinkPreviewDto
-         : AttachmentDto, IClassNameConvertible
+         : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
     }
     

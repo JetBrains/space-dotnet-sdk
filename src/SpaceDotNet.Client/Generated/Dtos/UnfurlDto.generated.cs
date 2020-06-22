@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class UnfurlDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDto), nameof(Title));
         
@@ -159,6 +160,25 @@ namespace SpaceDotNet.Client
         {
             get { return _favicon.GetValue(); }
             set { _favicon.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _link.SetAccessPath(path + "->WithLink()", validateHasBeenSet);
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
+            _sitename.SetAccessPath(path + "->WithSitename()", validateHasBeenSet);
+            _image.SetAccessPath(path + "->WithImage()", validateHasBeenSet);
+            _imageMime.SetAccessPath(path + "->WithImageMime()", validateHasBeenSet);
+            _imageWidth.SetAccessPath(path + "->WithImageWidth()", validateHasBeenSet);
+            _imageHeight.SetAccessPath(path + "->WithImageHeight()", validateHasBeenSet);
+            _video.SetAccessPath(path + "->WithVideo()", validateHasBeenSet);
+            _videoIFrame.SetAccessPath(path + "->WithVideoIFrame()", validateHasBeenSet);
+            _videoMime.SetAccessPath(path + "->WithVideoMime()", validateHasBeenSet);
+            _videoHeight.SetAccessPath(path + "->WithVideoHeight()", validateHasBeenSet);
+            _videoWidth.SetAccessPath(path + "->WithVideoWidth()", validateHasBeenSet);
+            _favicon.SetAccessPath(path + "->WithFavicon()", validateHasBeenSet);
         }
     
     }

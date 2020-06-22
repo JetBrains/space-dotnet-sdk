@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateDraftTypeRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<DraftDocumentType> _draftType = new PropertyValue<DraftDocumentType>(nameof(UpdateDraftTypeRequest), nameof(DraftType));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _draftType.GetValue(); }
             set { _draftType.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _draftType.SetAccessPath(path + "->WithDraftType()", validateHasBeenSet);
         }
     
     }

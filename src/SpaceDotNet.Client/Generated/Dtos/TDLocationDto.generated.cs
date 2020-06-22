@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDLocationDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationDto), nameof(Id));
         
@@ -162,6 +163,25 @@ namespace SpaceDotNet.Client
         {
             get { return _archived.GetValue(); }
             set { _archived.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
+            _tz.SetAccessPath(path + "->WithTz()", validateHasBeenSet);
+            _workdays.SetAccessPath(path + "->WithWorkdays()", validateHasBeenSet);
+            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
+            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
+            _equipment.SetAccessPath(path + "->WithEquipment()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _address.SetAccessPath(path + "->WithAddress()", validateHasBeenSet);
+            _parent.SetAccessPath(path + "->WithParent()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _mapId.SetAccessPath(path + "->WithMapId()", validateHasBeenSet);
+            _channelId.SetAccessPath(path + "->WithChannelId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
         }
     
     }

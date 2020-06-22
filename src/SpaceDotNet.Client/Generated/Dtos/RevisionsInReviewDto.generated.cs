@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RevisionsInReviewDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<RepositoryInReviewDto> _repository = new PropertyValue<RepositoryInReviewDto>(nameof(RevisionsInReviewDto), nameof(Repository));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _commits.GetValue(); }
             set { _commits.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
+            _commits.SetAccessPath(path + "->WithCommits()", validateHasBeenSet);
         }
     
     }

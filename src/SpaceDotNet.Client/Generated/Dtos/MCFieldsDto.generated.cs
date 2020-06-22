@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MCFieldsDto
-         : MCElementDetailsDto, IClassNameConvertible
+         : MCElementDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -35,6 +35,11 @@ namespace SpaceDotNet.Client
         {
             get { return _fields.GetValue(); }
             set { _fields.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _fields.SetAccessPath(path + "->WithFields()", validateHasBeenSet);
         }
     
     }

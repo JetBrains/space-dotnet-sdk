@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class NonWorkingDaysEventDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(NonWorkingDaysEventDto), nameof(Profile));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _days.GetValue(); }
             set { _days.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
+            _days.SetAccessPath(path + "->WithDays()", validateHasBeenSet);
         }
     
     }

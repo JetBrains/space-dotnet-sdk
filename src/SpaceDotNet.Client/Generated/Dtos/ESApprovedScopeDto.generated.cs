@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESApprovedScopeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScopeDto), nameof(Id));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _offlineAllowed.GetValue(); }
             set { _offlineAllowed.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _scope.SetAccessPath(path + "->WithScope()", validateHasBeenSet);
+            _offlineAllowed.SetAccessPath(path + "->WithOfflineAllowed()", validateHasBeenSet);
         }
     
     }

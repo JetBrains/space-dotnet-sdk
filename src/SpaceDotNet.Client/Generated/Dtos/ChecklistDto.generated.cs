@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ChecklistDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChecklistDto), nameof(Id));
         
@@ -134,6 +135,22 @@ namespace SpaceDotNet.Client
         {
             get { return _updatedTime.GetValue(); }
             set { _updatedTime.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
+            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
+            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _root.SetAccessPath(path + "->WithRoot()", validateHasBeenSet);
+            _rootTag.SetAccessPath(path + "->WithRootTag()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _totalItemsCount.SetAccessPath(path + "->WithTotalItemsCount()", validateHasBeenSet);
+            _doneItemsCount.SetAccessPath(path + "->WithDoneItemsCount()", validateHasBeenSet);
+            _updatedTime.SetAccessPath(path + "->WithUpdatedTime()", validateHasBeenSet);
         }
     
     }

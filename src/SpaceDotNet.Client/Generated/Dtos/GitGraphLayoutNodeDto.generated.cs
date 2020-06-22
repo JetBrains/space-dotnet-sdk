@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class GitGraphLayoutNodeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _pos = new PropertyValue<int>(nameof(GitGraphLayoutNodeDto), nameof(Pos));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _color.GetValue(); }
             set { _color.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _pos.SetAccessPath(path + "->WithPos()", validateHasBeenSet);
+            _color.SetAccessPath(path + "->WithColor()", validateHasBeenSet);
         }
     
     }

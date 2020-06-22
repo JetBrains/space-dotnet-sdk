@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class BGDatesDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<SpaceTime> _first = new PropertyValue<SpaceTime>(nameof(BGDatesDto), nameof(First));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _last.GetValue(); }
             set { _last.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _first.SetAccessPath(path + "->WithFirst()", validateHasBeenSet);
+            _last.SetAccessPath(path + "->WithLast()", validateHasBeenSet);
         }
     
     }

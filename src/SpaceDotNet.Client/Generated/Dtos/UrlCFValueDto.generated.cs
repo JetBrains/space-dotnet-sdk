@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class UrlCFValueDto
-         : CFValueDto, IClassNameConvertible
+         : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValueDto), nameof(Href));
         
@@ -31,6 +31,11 @@ namespace SpaceDotNet.Client
         {
             get { return _href.GetValue(); }
             set { _href.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _href.SetAccessPath(path + "->WithHref()", validateHasBeenSet);
         }
     
     }

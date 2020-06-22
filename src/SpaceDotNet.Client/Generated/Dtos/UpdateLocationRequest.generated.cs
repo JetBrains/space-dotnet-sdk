@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateLocationRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(UpdateLocationRequest), nameof(Name));
         
@@ -129,6 +130,22 @@ namespace SpaceDotNet.Client
         {
             get { return _mapId.GetValue(); }
             set { _mapId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
+            _customWorkdays.SetAccessPath(path + "->WithCustomWorkdays()", validateHasBeenSet);
+            _workdays.SetAccessPath(path + "->WithWorkdays()", validateHasBeenSet);
+            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
+            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
+            _equipment.SetAccessPath(path + "->WithEquipment()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _address.SetAccessPath(path + "->WithAddress()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _parentId.SetAccessPath(path + "->WithParentId()", validateHasBeenSet);
+            _mapId.SetAccessPath(path + "->WithMapId()", validateHasBeenSet);
         }
     
     }

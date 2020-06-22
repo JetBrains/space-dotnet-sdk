@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class StickerDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(StickerDto), nameof(Id));
         
@@ -95,6 +96,18 @@ namespace SpaceDotNet.Client
         {
             get { return _archived.GetValue(); }
             set { _archived.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _symbol.SetAccessPath(path + "->WithSymbol()", validateHasBeenSet);
+            _attachmentId.SetAccessPath(path + "->WithAttachmentId()", validateHasBeenSet);
+            _width.SetAccessPath(path + "->WithWidth()", validateHasBeenSet);
+            _height.SetAccessPath(path + "->WithHeight()", validateHasBeenSet);
+            _variants.SetAccessPath(path + "->WithVariants()", validateHasBeenSet);
+            _animated.SetAccessPath(path + "->WithAnimated()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
         }
     
     }

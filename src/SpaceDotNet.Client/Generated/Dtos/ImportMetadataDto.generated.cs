@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ImportMetadataDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _importSource = new PropertyValue<string>(nameof(ImportMetadataDto), nameof(ImportSource));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _importSource.GetValue(); }
             set { _importSource.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _importSource.SetAccessPath(path + "->WithImportSource()", validateHasBeenSet);
         }
     
     }

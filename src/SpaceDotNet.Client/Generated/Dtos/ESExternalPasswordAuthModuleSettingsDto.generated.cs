@@ -22,8 +22,12 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public abstract class ESExternalPasswordAuthModuleSettingsDto
-         : ESPasswordAuthModuleSettingsDto, IClassNameConvertible
+         : ESPasswordAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

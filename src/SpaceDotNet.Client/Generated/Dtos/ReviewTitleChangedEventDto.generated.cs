@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ReviewTitleChangedEventDto
-         : FeedEventDto, IClassNameConvertible
+         : FeedEventDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -45,6 +45,12 @@ namespace SpaceDotNet.Client
         {
             get { return _newTitle.GetValue(); }
             set { _newTitle.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _oldTitle.SetAccessPath(path + "->WithOldTitle()", validateHasBeenSet);
+            _newTitle.SetAccessPath(path + "->WithNewTitle()", validateHasBeenSet);
         }
     
     }

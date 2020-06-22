@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDMemberInLocationMapListDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(TDMemberInLocationMapListDto), nameof(Profile));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _locationMapPoint.GetValue(); }
             set { _locationMapPoint.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
+            _memberLocation.SetAccessPath(path + "->WithMemberLocation()", validateHasBeenSet);
+            _locationMapPoint.SetAccessPath(path + "->WithLocationMapPoint()", validateHasBeenSet);
         }
     
     }

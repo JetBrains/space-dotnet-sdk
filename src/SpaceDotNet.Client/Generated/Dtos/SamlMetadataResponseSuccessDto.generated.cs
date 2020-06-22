@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class SamlMetadataResponseSuccessDto
-         : SamlMetadataResponseDto, IClassNameConvertible
+         : SamlMetadataResponseDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccessDto), nameof(Metadata));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _metadata.GetValue(); }
             set { _metadata.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _metadata.SetAccessPath(path + "->WithMetadata()", validateHasBeenSet);
         }
     
     }

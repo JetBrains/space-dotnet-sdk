@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateUploadRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _storagePrefix = new PropertyValue<string>(nameof(CreateUploadRequest), nameof(StoragePrefix));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _mediaType.GetValue(); }
             set { _mediaType.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _storagePrefix.SetAccessPath(path + "->WithStoragePrefix()", validateHasBeenSet);
+            _mediaType.SetAccessPath(path + "->WithMediaType()", validateHasBeenSet);
         }
     
     }

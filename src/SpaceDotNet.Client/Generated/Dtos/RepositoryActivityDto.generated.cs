@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class RepositoryActivityDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<Pair<SpaceDate, int>>> _lastActivity = new PropertyValue<List<Pair<SpaceDate, int>>>(nameof(RepositoryActivityDto), nameof(LastActivity));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _lastActivity.GetValue(); }
             set { _lastActivity.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _lastActivity.SetAccessPath(path + "->WithLastActivity()", validateHasBeenSet);
         }
     
     }

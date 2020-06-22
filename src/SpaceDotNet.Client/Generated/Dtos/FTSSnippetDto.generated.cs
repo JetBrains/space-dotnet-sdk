@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class FTSSnippetDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _field = new PropertyValue<string>(nameof(FTSSnippetDto), nameof(Field));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _snippet.GetValue(); }
             set { _snippet.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _field.SetAccessPath(path + "->WithField()", validateHasBeenSet);
+            _snippet.SetAccessPath(path + "->WithSnippet()", validateHasBeenSet);
         }
     
     }

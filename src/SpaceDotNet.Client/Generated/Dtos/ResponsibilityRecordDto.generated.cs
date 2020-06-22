@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ResponsibilityRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _responsibilityId = new PropertyValue<string>(nameof(ResponsibilityRecordDto), nameof(ResponsibilityId));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _assignedPeople.GetValue(); }
             set { _assignedPeople.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _responsibilityId.SetAccessPath(path + "->WithResponsibilityId()", validateHasBeenSet);
+            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
+            _notes.SetAccessPath(path + "->WithNotes()", validateHasBeenSet);
+            _assignedPeople.SetAccessPath(path + "->WithAssignedPeople()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2MaintenanceActionContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+         : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -55,6 +55,13 @@ namespace SpaceDotNet.Client
         {
             get { return _details.GetValue(); }
             set { _details.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _action.SetAccessPath(path + "->WithAction()", validateHasBeenSet);
+            _success.SetAccessPath(path + "->WithSuccess()", validateHasBeenSet);
+            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
         }
     
     }

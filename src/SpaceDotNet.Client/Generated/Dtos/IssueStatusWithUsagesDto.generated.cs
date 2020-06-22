@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class IssueStatusWithUsagesDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<IssueStatusDto> _status = new PropertyValue<IssueStatusDto>(nameof(IssueStatusWithUsagesDto), nameof(Status));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _usages.GetValue(); }
             set { _usages.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
+            _usages.SetAccessPath(path + "->WithUsages()", validateHasBeenSet);
         }
     
     }

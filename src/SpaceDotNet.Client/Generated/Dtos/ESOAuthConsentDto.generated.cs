@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESOAuthConsentDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ESServiceDto> _clientService = new PropertyValue<ESServiceDto>(nameof(ESOAuthConsentDto), nameof(ClientService));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _refreshTokens.GetValue(); }
             set { _refreshTokens.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _clientService.SetAccessPath(path + "->WithClientService()", validateHasBeenSet);
+            _approvedScopes.SetAccessPath(path + "->WithApprovedScopes()", validateHasBeenSet);
+            _refreshTokens.SetAccessPath(path + "->WithRefreshTokens()", validateHasBeenSet);
         }
     
     }

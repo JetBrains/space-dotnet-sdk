@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class InvitationDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(InvitationDto), nameof(Id));
         
@@ -134,6 +135,22 @@ namespace SpaceDotNet.Client
         {
             get { return _revoked.GetValue(); }
             set { _revoked.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _expiresAt.SetAccessPath(path + "->WithExpiresAt()", validateHasBeenSet);
+            _inviteeEmail.SetAccessPath(path + "->WithInviteeEmail()", validateHasBeenSet);
+            _inviteeEmailBlocked.SetAccessPath(path + "->WithInviteeEmailBlocked()", validateHasBeenSet);
+            _inviteeEmailBlockedReason.SetAccessPath(path + "->WithInviteeEmailBlockedReason()", validateHasBeenSet);
+            _inviteeFirstName.SetAccessPath(path + "->WithInviteeFirstName()", validateHasBeenSet);
+            _inviteeLastName.SetAccessPath(path + "->WithInviteeLastName()", validateHasBeenSet);
+            _invitee.SetAccessPath(path + "->WithInvitee()", validateHasBeenSet);
+            _inviter.SetAccessPath(path + "->WithInviter()", validateHasBeenSet);
+            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
+            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
+            _revoked.SetAccessPath(path + "->WithRevoked()", validateHasBeenSet);
         }
     
     }

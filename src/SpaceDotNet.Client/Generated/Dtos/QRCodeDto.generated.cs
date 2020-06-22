@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class QRCodeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _width = new PropertyValue<int>(nameof(QRCodeDto), nameof(Width));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _base64Bitmap.GetValue(); }
             set { _base64Bitmap.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _width.SetAccessPath(path + "->WithWidth()", validateHasBeenSet);
+            _base64Bitmap.SetAccessPath(path + "->WithBase64Bitmap()", validateHasBeenSet);
         }
     
     }

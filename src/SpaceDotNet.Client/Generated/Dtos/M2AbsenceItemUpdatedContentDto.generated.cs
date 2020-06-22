@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2AbsenceItemUpdatedContentDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+         : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -80,6 +80,16 @@ namespace SpaceDotNet.Client
         {
             get { return _by.GetValue(); }
             set { _by.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _absence.SetAccessPath(path + "->WithAbsence()", validateHasBeenSet);
+            _reason.SetAccessPath(path + "->WithReason()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
+            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
+            _by.SetAccessPath(path + "->WithBy()", validateHasBeenSet);
         }
     
     }

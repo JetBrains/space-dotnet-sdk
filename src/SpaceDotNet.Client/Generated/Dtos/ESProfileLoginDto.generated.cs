@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESProfileLoginDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _identifier = new PropertyValue<string>(nameof(ESProfileLoginDto), nameof(Identifier));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _access.GetValue(); }
             set { _access.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _identifier.SetAccessPath(path + "->WithIdentifier()", validateHasBeenSet);
+            _authModule.SetAccessPath(path + "->WithAuthModule()", validateHasBeenSet);
+            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
+            _access.SetAccessPath(path + "->WithAccess()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MeInfoDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(MeInfoDto), nameof(Profile));
         
@@ -116,6 +117,20 @@ namespace SpaceDotNet.Client
         {
             get { return _todoFilters.GetValue(); }
             set { _todoFilters.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
+            _profilePic.SetAccessPath(path + "->WithProfilePic()", validateHasBeenSet);
+            _preferredLanguage.SetAccessPath(path + "->WithPreferredLanguage()", validateHasBeenSet);
+            _englishLanguage.SetAccessPath(path + "->WithEnglishLanguage()", validateHasBeenSet);
+            _navBarMenuItems.SetAccessPath(path + "->WithNavBarMenuItems()", validateHasBeenSet);
+            _navBarProjects.SetAccessPath(path + "->WithNavBarProjects()", validateHasBeenSet);
+            _firstDayOfWeek.SetAccessPath(path + "->WithFirstDayOfWeek()", validateHasBeenSet);
+            _themeName.SetAccessPath(path + "->WithThemeName()", validateHasBeenSet);
+            _draftType.SetAccessPath(path + "->WithDraftType()", validateHasBeenSet);
+            _todoFilters.SetAccessPath(path + "->WithTodoFilters()", validateHasBeenSet);
         }
     
     }

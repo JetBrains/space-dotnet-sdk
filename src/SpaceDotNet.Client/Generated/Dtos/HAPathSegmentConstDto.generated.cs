@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAPathSegmentConstDto
-         : HAPathSegmentDto, IClassNameConvertible
+         : HAPathSegmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAPathSegmentConstDto), nameof(Value));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _value.GetValue(); }
             set { _value.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _value.SetAccessPath(path + "->WithValue()", validateHasBeenSet);
         }
     
     }

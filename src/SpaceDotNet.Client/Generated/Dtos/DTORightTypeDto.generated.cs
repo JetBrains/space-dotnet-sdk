@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class DTORightTypeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(DTORightTypeDto), nameof(TypeCode));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _title.GetValue(); }
             set { _title.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _typeCode.SetAccessPath(path + "->WithTypeCode()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeDiscussionAddedFeedEventDto
-         : FeedEventDto, IClassNameConvertible
+         : FeedEventDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -45,6 +45,12 @@ namespace SpaceDotNet.Client
         {
             get { return _codeReview.GetValue(); }
             set { _codeReview.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _codeDiscussion.SetAccessPath(path + "->WithCodeDiscussion()", validateHasBeenSet);
+            _codeReview.SetAccessPath(path + "->WithCodeReview()", validateHasBeenSet);
         }
     
     }

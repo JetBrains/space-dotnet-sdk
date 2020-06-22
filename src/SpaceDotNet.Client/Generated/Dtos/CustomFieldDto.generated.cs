@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CustomFieldDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ExtendedTypeDto> _extendedType = new PropertyValue<ExtendedTypeDto>(nameof(CustomFieldDto), nameof(ExtendedType));
         
@@ -139,6 +140,22 @@ namespace SpaceDotNet.Client
         {
             get { return _archived.GetValue(); }
             set { _archived.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _extendedType.SetAccessPath(path + "->WithExtendedType()", validateHasBeenSet);
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _constraint.SetAccessPath(path + "->WithConstraint()", validateHasBeenSet);
+            _required.SetAccessPath(path + "->WithRequired()", validateHasBeenSet);
+            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
+            _access.SetAccessPath(path + "->WithAccess()", validateHasBeenSet);
+            _defaultValue.SetAccessPath(path + "->WithDefaultValue()", validateHasBeenSet);
+            _order.SetAccessPath(path + "->WithOrder()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
         }
     
     }

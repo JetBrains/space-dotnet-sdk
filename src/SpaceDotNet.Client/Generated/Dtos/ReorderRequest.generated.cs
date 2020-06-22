@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ReorderRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(ReorderRequest), nameof(Order));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _order.GetValue(); }
             set { _order.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _order.SetAccessPath(path + "->WithOrder()", validateHasBeenSet);
         }
     
     }

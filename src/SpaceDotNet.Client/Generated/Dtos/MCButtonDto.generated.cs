@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MCButtonDto
-         : MCElementDetailsDto, IClassNameConvertible
+         : MCElementDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -64,6 +64,14 @@ namespace SpaceDotNet.Client
         {
             get { return _disabled.GetValue(); }
             set { _disabled.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _style.SetAccessPath(path + "->WithStyle()", validateHasBeenSet);
+            _action.SetAccessPath(path + "->WithAction()", validateHasBeenSet);
+            _disabled.SetAccessPath(path + "->WithDisabled()", validateHasBeenSet);
         }
     
     }

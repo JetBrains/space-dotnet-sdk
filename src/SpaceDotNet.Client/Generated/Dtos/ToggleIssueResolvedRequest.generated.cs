@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ToggleIssueResolvedRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ToggleIssueResolvedRequest), nameof(Resolved));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _resolved.GetValue(); }
             set { _resolved.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _resolved.SetAccessPath(path + "->WithResolved()", validateHasBeenSet);
         }
     
     }

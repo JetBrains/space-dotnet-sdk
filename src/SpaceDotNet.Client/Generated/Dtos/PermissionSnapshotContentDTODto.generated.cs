@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PermissionSnapshotContentDTODto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<PermissionSnapshotEntryDTODto>> _entries = new PropertyValue<List<PermissionSnapshotEntryDTODto>>(nameof(PermissionSnapshotContentDTODto), nameof(Entries));
         
@@ -61,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _targets.GetValue(); }
             set { _targets.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _entries.SetAccessPath(path + "->WithEntries()", validateHasBeenSet);
+            _principals.SetAccessPath(path + "->WithPrincipals()", validateHasBeenSet);
+            _rights.SetAccessPath(path + "->WithRights()", validateHasBeenSet);
+            _targets.SetAccessPath(path + "->WithTargets()", validateHasBeenSet);
         }
     
     }

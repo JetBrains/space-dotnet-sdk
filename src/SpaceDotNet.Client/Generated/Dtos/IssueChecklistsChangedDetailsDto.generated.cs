@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class IssueChecklistsChangedDetailsDto
-         : IssueChangedM2DetailsDto, IClassNameConvertible
+         : IssueChangedM2DetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -43,6 +43,12 @@ namespace SpaceDotNet.Client
         {
             get { return _removedChecklists.GetValue(); }
             set { _removedChecklists.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _addedChecklists.SetAccessPath(path + "->WithAddedChecklists()", validateHasBeenSet);
+            _removedChecklists.SetAccessPath(path + "->WithRemovedChecklists()", validateHasBeenSet);
         }
     
     }

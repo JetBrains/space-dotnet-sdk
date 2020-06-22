@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class BGArticleAliasDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(BGArticleAliasDto), nameof(Alias));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _alias.SetAccessPath(path + "->WithAlias()", validateHasBeenSet);
+            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
         }
     
     }

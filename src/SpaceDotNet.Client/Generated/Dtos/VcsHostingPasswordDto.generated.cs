@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class VcsHostingPasswordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPasswordDto), nameof(Fingerprint));
         
@@ -40,6 +41,12 @@ namespace SpaceDotNet.Client
         {
             get { return _lastUsed.GetValue(); }
             set { _lastUsed.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _fingerprint.SetAccessPath(path + "->WithFingerprint()", validateHasBeenSet);
+            _lastUsed.SetAccessPath(path + "->WithLastUsed()", validateHasBeenSet);
         }
     
     }

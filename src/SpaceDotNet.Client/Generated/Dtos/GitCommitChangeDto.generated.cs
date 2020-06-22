@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class GitCommitChangeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<GitCommitChangeType> _changeType = new PropertyValue<GitCommitChangeType>(nameof(GitCommitChangeDto), nameof(ChangeType));
         
@@ -68,6 +69,15 @@ namespace SpaceDotNet.Client
         {
             get { return _diffSize.GetValue(); }
             set { _diffSize.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _changeType.SetAccessPath(path + "->WithChangeType()", validateHasBeenSet);
+            _old.SetAccessPath(path + "->WithOld()", validateHasBeenSet);
+            _new.SetAccessPath(path + "->WithNew()", validateHasBeenSet);
+            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
+            _diffSize.SetAccessPath(path + "->WithDiffSize()", validateHasBeenSet);
         }
     
     }

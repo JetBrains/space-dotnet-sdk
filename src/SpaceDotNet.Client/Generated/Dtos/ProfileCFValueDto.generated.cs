@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ProfileCFValueDto
-         : CFValueDto, IClassNameConvertible
+         : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMemberProfileDto?> _profile = new PropertyValue<TDMemberProfileDto?>(nameof(ProfileCFValueDto), nameof(Profile));
         
@@ -31,6 +31,11 @@ namespace SpaceDotNet.Client
         {
             get { return _profile.GetValue(); }
             set { _profile.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ProfileAbsencesRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileAbsencesRecordDto), nameof(Id));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _absences.GetValue(); }
             set { _absences.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _absences.SetAccessPath(path + "->WithAbsences()", validateHasBeenSet);
         }
     
     }

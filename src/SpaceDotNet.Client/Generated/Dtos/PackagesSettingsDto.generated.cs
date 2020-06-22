@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PackagesSettingsDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<long> _organizationId = new PropertyValue<long>(nameof(PackagesSettingsDto), nameof(OrganizationId));
         
@@ -98,6 +99,18 @@ namespace SpaceDotNet.Client
         {
             get { return _uploadLimit.GetValue(); }
             set { _uploadLimit.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _organizationId.SetAccessPath(path + "->WithOrganizationId()", validateHasBeenSet);
+            _principalId.SetAccessPath(path + "->WithPrincipalId()", validateHasBeenSet);
+            _principalName.SetAccessPath(path + "->WithPrincipalName()", validateHasBeenSet);
+            _principalInfo.SetAccessPath(path + "->WithPrincipalInfo()", validateHasBeenSet);
+            _repositories.SetAccessPath(path + "->WithRepositories()", validateHasBeenSet);
+            _storageLimit.SetAccessPath(path + "->WithStorageLimit()", validateHasBeenSet);
+            _downloadLimit.SetAccessPath(path + "->WithDownloadLimit()", validateHasBeenSet);
+            _uploadLimit.SetAccessPath(path + "->WithUploadLimit()", validateHasBeenSet);
         }
     
     }

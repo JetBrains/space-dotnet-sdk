@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ExtendedTypeDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ExtendedTypeDto), nameof(Key));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _displayName.GetValue(); }
             set { _displayName.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _displayName.SetAccessPath(path + "->WithDisplayName()", validateHasBeenSet);
         }
     
     }

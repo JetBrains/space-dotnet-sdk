@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ApproveAbsenceRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(ApproveAbsenceRequest), nameof(Approve));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _approve.GetValue(); }
             set { _approve.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _approve.SetAccessPath(path + "->WithApprove()", validateHasBeenSet);
         }
     
     }

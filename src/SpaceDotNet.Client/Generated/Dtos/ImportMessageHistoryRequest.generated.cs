@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class ImportMessageHistoryRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<MessageForImportDto>> _messages = new PropertyValue<List<MessageForImportDto>>(nameof(ImportMessageHistoryRequest), nameof(Messages));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _messages.GetValue(); }
             set { _messages.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _messages.SetAccessPath(path + "->WithMessages()", validateHasBeenSet);
         }
     
     }

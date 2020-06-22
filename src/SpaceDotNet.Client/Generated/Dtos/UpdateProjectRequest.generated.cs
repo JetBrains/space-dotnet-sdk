@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateProjectRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ProjectKeyDto?> _key = new PropertyValue<ProjectKeyDto?>(nameof(UpdateProjectRequest), nameof(Key));
         
@@ -75,6 +76,16 @@ namespace SpaceDotNet.Client
         {
             get { return _icon.GetValue(); }
             set { _icon.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
+            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
+            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESBuiltinProfileLoginDetailsDto
-         : ESProfileLoginDetailsDto, IClassNameConvertible
+         : ESProfileLoginDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetailsDto), nameof(PasswordChangeRequest));
         
@@ -31,6 +31,11 @@ namespace SpaceDotNet.Client
         {
             get { return _passwordChangeRequest.GetValue(); }
             set { _passwordChangeRequest.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _passwordChangeRequest.SetAccessPath(path + "->WithPasswordChangeRequest()", validateHasBeenSet);
         }
     
     }

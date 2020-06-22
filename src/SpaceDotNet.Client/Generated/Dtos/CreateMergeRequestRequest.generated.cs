@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateMergeRequestRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(CreateMergeRequestRequest), nameof(SourceBranch));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _title.GetValue(); }
             set { _title.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _sourceBranch.SetAccessPath(path + "->WithSourceBranch()", validateHasBeenSet);
+            _targetBranch.SetAccessPath(path + "->WithTargetBranch()", validateHasBeenSet);
+            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
         }
     
     }

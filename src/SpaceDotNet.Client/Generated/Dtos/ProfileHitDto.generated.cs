@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ProfileHitDto
-         : EntityHitDto, IClassNameConvertible
+         : EntityHitDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileHitDto), nameof(Id));
         
@@ -142,6 +142,22 @@ namespace SpaceDotNet.Client
         {
             get { return _customFields.GetValue(); }
             set { _customFields.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _score.SetAccessPath(path + "->WithScore()", validateHasBeenSet);
+            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
+            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
+            _userName.SetAccessPath(path + "->WithUserName()", validateHasBeenSet);
+            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
+            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
+            _links.SetAccessPath(path + "->WithLinks()", validateHasBeenSet);
+            _messengers.SetAccessPath(path + "->WithMessengers()", validateHasBeenSet);
+            _notAMember.SetAccessPath(path + "->WithNotAMember()", validateHasBeenSet);
+            _ref.SetAccessPath(path + "->WithRef()", validateHasBeenSet);
+            _customFields.SetAccessPath(path + "->WithCustomFields()", validateHasBeenSet);
         }
     
     }

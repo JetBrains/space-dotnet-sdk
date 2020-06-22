@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CodeLineDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeLineDto), nameof(Text));
         
@@ -59,6 +60,14 @@ namespace SpaceDotNet.Client
         {
             get { return _syntax.GetValue(); }
             set { _syntax.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
+            _index.SetAccessPath(path + "->WithIndex()", validateHasBeenSet);
+            _offset.SetAccessPath(path + "->WithOffset()", validateHasBeenSet);
+            _syntax.SetAccessPath(path + "->WithSyntax()", validateHasBeenSet);
         }
     
     }

@@ -22,7 +22,12 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CustomColumnValuesWithSchemaDataDto
+         : IPropagatePropertyAccessPath
     {
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

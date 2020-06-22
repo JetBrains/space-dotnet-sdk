@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class AddWorkingDaysRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<SpaceDate?> _dateStart = new PropertyValue<SpaceDate?>(nameof(AddWorkingDaysRequest), nameof(DateStart));
         
@@ -49,6 +50,13 @@ namespace SpaceDotNet.Client
         {
             get { return _workingDaysSpec.GetValue(); }
             set { _workingDaysSpec.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _dateStart.SetAccessPath(path + "->WithDateStart()", validateHasBeenSet);
+            _dateEnd.SetAccessPath(path + "->WithDateEnd()", validateHasBeenSet);
+            _workingDaysSpec.SetAccessPath(path + "->WithWorkingDaysSpec()", validateHasBeenSet);
         }
     
     }

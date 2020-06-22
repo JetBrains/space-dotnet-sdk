@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class AbsenceEventDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<TDMemberWithTeamDto> _profile = new PropertyValue<TDMemberWithTeamDto>(nameof(AbsenceEventDto), nameof(Profile));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _events.GetValue(); }
             set { _events.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
+            _events.SetAccessPath(path + "->WithEvents()", validateHasBeenSet);
         }
     
     }

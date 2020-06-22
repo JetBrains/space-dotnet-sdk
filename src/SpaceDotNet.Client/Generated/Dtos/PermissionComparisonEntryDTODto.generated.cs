@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PermissionComparisonEntryDTODto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _principalIndex = new PropertyValue<int>(nameof(PermissionComparisonEntryDTODto), nameof(PrincipalIndex));
         
@@ -81,6 +82,16 @@ namespace SpaceDotNet.Client
         {
             get { return _targetIndices2.GetValue(); }
             set { _targetIndices2.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _principalIndex.SetAccessPath(path + "->WithPrincipalIndex()", validateHasBeenSet);
+            _rightIndex.SetAccessPath(path + "->WithRightIndex()", validateHasBeenSet);
+            _allTargets1.SetAccessPath(path + "->WithAllTargets1()", validateHasBeenSet);
+            _targetIndices1.SetAccessPath(path + "->WithTargetIndices1()", validateHasBeenSet);
+            _allTargets2.SetAccessPath(path + "->WithAllTargets2()", validateHasBeenSet);
+            _targetIndices2.SetAccessPath(path + "->WithTargetIndices2()", validateHasBeenSet);
         }
     
     }

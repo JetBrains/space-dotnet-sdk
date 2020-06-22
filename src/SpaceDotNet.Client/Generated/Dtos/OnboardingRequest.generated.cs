@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class OnboardingRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(OnboardingRequest), nameof(Required));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _required.GetValue(); }
             set { _required.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _required.SetAccessPath(path + "->WithRequired()", validateHasBeenSet);
         }
     
     }

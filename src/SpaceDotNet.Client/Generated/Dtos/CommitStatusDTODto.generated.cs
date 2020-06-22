@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class CommitStatusDTODto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CommitStatusDTODto), nameof(Repository));
         
@@ -110,6 +111,19 @@ namespace SpaceDotNet.Client
         {
             get { return _description.GetValue(); }
             set { _description.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
+            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
+            _executionStatus.SetAccessPath(path + "->WithExecutionStatus()", validateHasBeenSet);
+            _url.SetAccessPath(path + "->WithUrl()", validateHasBeenSet);
+            _externalServiceName.SetAccessPath(path + "->WithExternalServiceName()", validateHasBeenSet);
+            _taskName.SetAccessPath(path + "->WithTaskName()", validateHasBeenSet);
+            _taskId.SetAccessPath(path + "->WithTaskId()", validateHasBeenSet);
+            _timestamp.SetAccessPath(path + "->WithTimestamp()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
         }
     
     }

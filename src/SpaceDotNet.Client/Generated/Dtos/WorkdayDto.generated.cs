@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class WorkdayDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _weekday = new PropertyValue<string>(nameof(WorkdayDto), nameof(Weekday));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _minutes.GetValue(); }
             set { _minutes.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _weekday.SetAccessPath(path + "->WithWeekday()", validateHasBeenSet);
+            _working.SetAccessPath(path + "->WithWorking()", validateHasBeenSet);
+            _hours.SetAccessPath(path + "->WithHours()", validateHasBeenSet);
+            _minutes.SetAccessPath(path + "->WithMinutes()", validateHasBeenSet);
         }
     
     }

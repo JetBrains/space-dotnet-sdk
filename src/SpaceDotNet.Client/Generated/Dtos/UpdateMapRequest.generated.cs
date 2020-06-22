@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateMapRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _mapPictureId = new PropertyValue<string>(nameof(UpdateMapRequest), nameof(MapPictureId));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _mapPictureId.GetValue(); }
             set { _mapPictureId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _mapPictureId.SetAccessPath(path + "->WithMapPictureId()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TwoFactorAuthenticationSecretDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _secretKey = new PropertyValue<string>(nameof(TwoFactorAuthenticationSecretDto), nameof(SecretKey));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _scratchCodes.GetValue(); }
             set { _scratchCodes.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _secretKey.SetAccessPath(path + "->WithSecretKey()", validateHasBeenSet);
+            _qrCode.SetAccessPath(path + "->WithQrCode()", validateHasBeenSet);
+            _scratchCodes.SetAccessPath(path + "->WithScratchCodes()", validateHasBeenSet);
         }
     
     }

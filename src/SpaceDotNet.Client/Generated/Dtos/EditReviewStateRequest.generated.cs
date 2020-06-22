@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class EditReviewStateRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(EditReviewStateRequest), nameof(State));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _state.GetValue(); }
             set { _state.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _state.SetAccessPath(path + "->WithState()", validateHasBeenSet);
         }
     
     }

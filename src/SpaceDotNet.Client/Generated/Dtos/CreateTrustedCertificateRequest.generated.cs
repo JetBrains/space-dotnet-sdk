@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreateTrustedCertificateRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(CreateTrustedCertificateRequest), nameof(Alias));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _archived.GetValue(); }
             set { _archived.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _alias.SetAccessPath(path + "->WithAlias()", validateHasBeenSet);
+            _data.SetAccessPath(path + "->WithData()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
         }
     
     }

@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ArticleMarkdownImageDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _alt = new PropertyValue<string>(nameof(ArticleMarkdownImageDto), nameof(Alt));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _src.GetValue(); }
             set { _src.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _alt.SetAccessPath(path + "->WithAlt()", validateHasBeenSet);
+            _src.SetAccessPath(path + "->WithSrc()", validateHasBeenSet);
         }
     
     }

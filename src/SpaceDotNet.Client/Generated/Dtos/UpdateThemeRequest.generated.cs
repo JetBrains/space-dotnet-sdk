@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateThemeRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(UpdateThemeRequest), nameof(ThemeName));
         
@@ -30,6 +31,11 @@ namespace SpaceDotNet.Client
         {
             get { return _themeName.GetValue(); }
             set { _themeName.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _themeName.SetAccessPath(path + "->WithThemeName()", validateHasBeenSet);
         }
     
     }

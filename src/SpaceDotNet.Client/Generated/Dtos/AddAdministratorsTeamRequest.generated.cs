@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class AddAdministratorsTeamRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(AddAdministratorsTeamRequest), nameof(TeamId));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _teamId.GetValue(); }
             set { _teamId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _teamId.SetAccessPath(path + "->WithTeamId()", validateHasBeenSet);
         }
     
     }

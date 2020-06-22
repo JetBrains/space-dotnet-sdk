@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class FingerprintDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _md5 = new PropertyValue<string>(nameof(FingerprintDto), nameof(Md5));
         
@@ -71,6 +72,15 @@ namespace SpaceDotNet.Client
         {
             get { return _sha512.GetValue(); }
             set { _sha512.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _md5.SetAccessPath(path + "->WithMd5()", validateHasBeenSet);
+            _sha1.SetAccessPath(path + "->WithSha1()", validateHasBeenSet);
+            _sha256.SetAccessPath(path + "->WithSha256()", validateHasBeenSet);
+            _sha384.SetAccessPath(path + "->WithSha384()", validateHasBeenSet);
+            _sha512.SetAccessPath(path + "->WithSha512()", validateHasBeenSet);
         }
     
     }

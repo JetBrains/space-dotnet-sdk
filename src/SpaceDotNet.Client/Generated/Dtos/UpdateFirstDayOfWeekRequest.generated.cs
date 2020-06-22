@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateFirstDayOfWeekRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<Weekday> _firstDayOfWeek = new PropertyValue<Weekday>(nameof(UpdateFirstDayOfWeekRequest), nameof(FirstDayOfWeek));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _firstDayOfWeek.GetValue(); }
             set { _firstDayOfWeek.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _firstDayOfWeek.SetAccessPath(path + "->WithFirstDayOfWeek()", validateHasBeenSet);
         }
     
     }

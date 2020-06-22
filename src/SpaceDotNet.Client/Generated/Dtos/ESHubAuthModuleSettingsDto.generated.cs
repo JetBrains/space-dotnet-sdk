@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ESHubAuthModuleSettingsDto
-         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible
+         : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _hubUrl = new PropertyValue<string>(nameof(ESHubAuthModuleSettingsDto), nameof(HubUrl));
         
@@ -79,6 +79,16 @@ namespace SpaceDotNet.Client
         {
             get { return _groups.GetValue(); }
             set { _groups.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _hubUrl.SetAccessPath(path + "->WithHubUrl()", validateHasBeenSet);
+            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
+            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
+            _orgAuthProviderName.SetAccessPath(path + "->WithOrgAuthProviderName()", validateHasBeenSet);
+            _groups.SetAccessPath(path + "->WithGroups()", validateHasBeenSet);
         }
     
     }

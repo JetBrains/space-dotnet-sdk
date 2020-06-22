@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class CreatePointRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _x = new PropertyValue<int>(nameof(CreatePointRequest), nameof(X));
         
@@ -51,6 +52,13 @@ namespace SpaceDotNet.Client
         {
             get { return _mapId.GetValue(); }
             set { _mapId.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _x.SetAccessPath(path + "->WithX()", validateHasBeenSet);
+            _y.SetAccessPath(path + "->WithY()", validateHasBeenSet);
+            _mapId.SetAccessPath(path + "->WithMapId()", validateHasBeenSet);
         }
     
     }

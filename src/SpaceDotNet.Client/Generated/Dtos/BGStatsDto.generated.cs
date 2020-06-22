@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class BGStatsDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<int> _totalBlogs = new PropertyValue<int>(nameof(BGStatsDto), nameof(TotalBlogs));
         
@@ -61,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _locations.GetValue(); }
             set { _locations.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _totalBlogs.SetAccessPath(path + "->WithTotalBlogs()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _projects.SetAccessPath(path + "->WithProjects()", validateHasBeenSet);
+            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
         }
     
     }

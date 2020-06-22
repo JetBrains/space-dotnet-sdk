@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class SamlMetadataResponseErrorDto
-         : SamlMetadataResponseDto, IClassNameConvertible
+         : SamlMetadataResponseDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseErrorDto), nameof(Messages));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _messages.GetValue(); }
             set { _messages.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _messages.SetAccessPath(path + "->WithMessages()", validateHasBeenSet);
         }
     
     }

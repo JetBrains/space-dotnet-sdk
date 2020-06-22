@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ChatMessageTextDto
-         : ChatMessageDto, IClassNameConvertible
+         : ChatMessageDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatMessageTextDto), nameof(Text));
         
@@ -32,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _text.GetValue(); }
             set { _text.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
         }
     
     }

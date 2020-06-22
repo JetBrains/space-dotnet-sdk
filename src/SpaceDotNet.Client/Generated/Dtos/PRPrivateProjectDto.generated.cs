@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class PRPrivateProjectDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<ProjectKeyDto> _key = new PropertyValue<ProjectKeyDto>(nameof(PRPrivateProjectDto), nameof(Key));
         
@@ -61,6 +62,14 @@ namespace SpaceDotNet.Client
         {
             get { return _admins.GetValue(); }
             set { _admins.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _accessAllowed.SetAccessPath(path + "->WithAccessAllowed()", validateHasBeenSet);
+            _admins.SetAccessPath(path + "->WithAdmins()", validateHasBeenSet);
         }
     
     }

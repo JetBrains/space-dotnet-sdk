@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class UpdateTodoFilterRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<bool> _todoFilters = new PropertyValue<bool>(nameof(UpdateTodoFilterRequest), nameof(TodoFilters));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _todoFilters.GetValue(); }
             set { _todoFilters.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _todoFilters.SetAccessPath(path + "->WithTodoFilters()", validateHasBeenSet);
         }
     
     }

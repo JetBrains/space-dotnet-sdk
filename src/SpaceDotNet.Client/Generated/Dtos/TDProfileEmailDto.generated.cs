@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class TDProfileEmailDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDProfileEmailDto), nameof(Id));
         
@@ -41,6 +42,12 @@ namespace SpaceDotNet.Client
         {
             get { return _email.GetValue(); }
             set { _email.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
         }
     
     }

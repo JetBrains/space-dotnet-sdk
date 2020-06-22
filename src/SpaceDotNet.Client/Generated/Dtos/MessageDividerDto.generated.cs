@@ -22,11 +22,15 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MessageDividerDto
-         : MessageElementDto, MessageSectionElementDto, IClassNameConvertible
+         : MessageElementDto, MessageSectionElementDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
         
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

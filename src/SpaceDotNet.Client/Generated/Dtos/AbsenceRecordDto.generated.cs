@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class AbsenceRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceRecordDto), nameof(Id));
         
@@ -136,6 +137,22 @@ namespace SpaceDotNet.Client
         {
             get { return _customFields.GetValue(); }
             set { _customFields.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _member.SetAccessPath(path + "->WithMember()", validateHasBeenSet);
+            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
+            _reason.SetAccessPath(path + "->WithReason()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
+            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
+            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
+            _available.SetAccessPath(path + "->WithAvailable()", validateHasBeenSet);
+            _approval.SetAccessPath(path + "->WithApproval()", validateHasBeenSet);
+            _customFields.SetAccessPath(path + "->WithCustomFields()", validateHasBeenSet);
         }
     
     }

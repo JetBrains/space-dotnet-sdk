@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class FTSTeamDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(FTSTeamDto), nameof(Id));
         
@@ -60,6 +61,14 @@ namespace SpaceDotNet.Client
         {
             get { return _snippets.GetValue(); }
             set { _snippets.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _snippets.SetAccessPath(path + "->WithSnippets()", validateHasBeenSet);
         }
     
     }

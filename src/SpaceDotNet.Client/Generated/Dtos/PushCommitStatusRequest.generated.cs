@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public class PushCommitStatusRequest
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _branch = new PropertyValue<string?>(nameof(PushCommitStatusRequest), nameof(Branch));
         
@@ -107,6 +108,19 @@ namespace SpaceDotNet.Client
         {
             get { return _description.GetValue(); }
             set { _description.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _branch.SetAccessPath(path + "->WithBranch()", validateHasBeenSet);
+            _changes.SetAccessPath(path + "->WithChanges()", validateHasBeenSet);
+            _executionStatus.SetAccessPath(path + "->WithExecutionStatus()", validateHasBeenSet);
+            _url.SetAccessPath(path + "->WithUrl()", validateHasBeenSet);
+            _externalServiceName.SetAccessPath(path + "->WithExternalServiceName()", validateHasBeenSet);
+            _taskName.SetAccessPath(path + "->WithTaskName()", validateHasBeenSet);
+            _taskId.SetAccessPath(path + "->WithTaskId()", validateHasBeenSet);
+            _timestamp.SetAccessPath(path + "->WithTimestamp()", validateHasBeenSet);
+            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
         }
     
     }

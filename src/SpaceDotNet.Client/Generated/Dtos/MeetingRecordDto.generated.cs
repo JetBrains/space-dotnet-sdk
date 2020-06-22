@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MeetingRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeetingRecordDto), nameof(Id));
         
@@ -109,6 +110,19 @@ namespace SpaceDotNet.Client
         {
             get { return _article.GetValue(); }
             set { _article.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _starts.SetAccessPath(path + "->WithStarts()", validateHasBeenSet);
+            _finishes.SetAccessPath(path + "->WithFinishes()", validateHasBeenSet);
+            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
+            _allDay.SetAccessPath(path + "->WithAllDay()", validateHasBeenSet);
+            _rooms.SetAccessPath(path + "->WithRooms()", validateHasBeenSet);
+            _participants.SetAccessPath(path + "->WithParticipants()", validateHasBeenSet);
+            _article.SetAccessPath(path + "->WithArticle()", validateHasBeenSet);
         }
     
     }

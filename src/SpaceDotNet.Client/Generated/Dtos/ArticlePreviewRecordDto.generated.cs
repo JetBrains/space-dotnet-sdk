@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ArticlePreviewRecordDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticlePreviewRecordDto), nameof(Id));
         
@@ -70,6 +71,15 @@ namespace SpaceDotNet.Client
         {
             get { return _wordsNumber.GetValue(); }
             set { _wordsNumber.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _previewImages.SetAccessPath(path + "->WithPreviewImages()", validateHasBeenSet);
+            _preview.SetAccessPath(path + "->WithPreview()", validateHasBeenSet);
+            _wordsNumber.SetAccessPath(path + "->WithWordsNumber()", validateHasBeenSet);
         }
     
     }

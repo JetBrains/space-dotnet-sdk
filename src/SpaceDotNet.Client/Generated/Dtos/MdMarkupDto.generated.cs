@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MdMarkupDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<List<UnfurlDto>> _unfurl = new PropertyValue<List<UnfurlDto>>(nameof(MdMarkupDto), nameof(Unfurl));
         
@@ -31,6 +32,11 @@ namespace SpaceDotNet.Client
         {
             get { return _unfurl.GetValue(); }
             set { _unfurl.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _unfurl.SetAccessPath(path + "->WithUnfurl()", validateHasBeenSet);
         }
     
     }

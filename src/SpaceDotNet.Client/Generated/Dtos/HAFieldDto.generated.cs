@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class HAFieldDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAFieldDto), nameof(Name));
         
@@ -50,6 +51,13 @@ namespace SpaceDotNet.Client
         {
             get { return _deprecation.GetValue(); }
             set { _deprecation.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
+            _deprecation.SetAccessPath(path + "->WithDeprecation()", validateHasBeenSet);
         }
     
     }

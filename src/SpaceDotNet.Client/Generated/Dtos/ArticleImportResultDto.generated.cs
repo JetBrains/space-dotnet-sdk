@@ -22,6 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ArticleImportResultDto
+         : IPropagatePropertyAccessPath
     {
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ArticleImportResultDto), nameof(ExternalId));
         
@@ -48,6 +49,13 @@ namespace SpaceDotNet.Client
         {
             get { return _error.GetValue(); }
             set { _error.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _externalId.SetAccessPath(path + "->WithExternalId()", validateHasBeenSet);
+            _article.SetAccessPath(path + "->WithArticle()", validateHasBeenSet);
+            _error.SetAccessPath(path + "->WithError()", validateHasBeenSet);
         }
     
     }

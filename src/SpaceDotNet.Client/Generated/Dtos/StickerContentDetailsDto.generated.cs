@@ -22,7 +22,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class StickerContentDetailsDto
-         : M2ItemContentDetailsDto, IClassNameConvertible
+         : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public string? ClassName { get; set; }
@@ -44,6 +44,12 @@ namespace SpaceDotNet.Client
         {
             get { return _pack.GetValue(); }
             set { _pack.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _sticker.SetAccessPath(path + "->WithSticker()", validateHasBeenSet);
+            _pack.SetAccessPath(path + "->WithPack()", validateHasBeenSet);
         }
     
     }
