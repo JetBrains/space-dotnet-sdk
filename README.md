@@ -20,6 +20,19 @@ Other (optional) packages are available. These can be installed to satisfy addit
 
 Let's have a look at how we can start working with `SpaceDotNet.Client`.
 
+## Registering SpaceDotNet NuGet feed
+
+Currently, SpaceDotNet is not yet available on [NuGet.org](https://www.nuget.org/). To access SpaceDotNet packages, add a file named `NuGet.config` in the same folder as your solution / `.sln` file, with the following contents:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="SpaceDotNet" value="https://www.myget.org/F/spacedotnet/api/v3/index.json" protocolVersion="3" />
+  </packageSources>
+</configuration>
+```
+
 ## Getting Started
 
 We will need to [register an application](https://www.jetbrains.com/help/space/applications.html) to work with the Space API. There are various application types, all supporting different authentication flows. For this example, we will use a *Service Account*.
