@@ -21,22 +21,14 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class EditReviewParticipantRequest
-         : IPropagatePropertyAccessPath
+    public sealed class KbGlobalContextDto
+         : KBBookContextDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(EditReviewParticipantRequest), nameof(Role));
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
-        [Required]
-        [JsonPropertyName("role")]
-        public CodeReviewParticipantRole Role
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
         }
     
     }

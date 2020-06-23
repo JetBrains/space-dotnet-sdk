@@ -19,15 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client.AddReviewParticipantRequestExtensions
 {
-    public static class CreateNavBarProjectRequestPartialExtensions
+    public static class AddReviewParticipantRequestPartialExtensions
     {
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it)
-            => it.AddFieldName("project");
+        public static Partial<AddReviewParticipantRequest> WithRole(this Partial<AddReviewParticipantRequest> it)
+            => it.AddFieldName("role");
         
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
+        public static Partial<AddReviewParticipantRequest> WithRole(this Partial<AddReviewParticipantRequest> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
         
     }
     

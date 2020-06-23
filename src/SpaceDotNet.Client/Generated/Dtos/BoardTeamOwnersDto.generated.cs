@@ -21,14 +21,24 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitCommitChangeType : Enumeration
+    public sealed class BoardTeamOwnersDto
+         : IPropagatePropertyAccessPath
     {
-        private GitCommitChangeType(string value) : base(value) { }
+        private PropertyValue<List<TDTeamDto>> _teams = new PropertyValue<List<TDTeamDto>>(nameof(BoardTeamOwnersDto), nameof(Teams));
         
-        public static readonly GitCommitChangeType ADDED = new GitCommitChangeType("ADDED");
-        public static readonly GitCommitChangeType DELETED = new GitCommitChangeType("DELETED");
-        public static readonly GitCommitChangeType MODIFIED = new GitCommitChangeType("MODIFIED");
+        [Required]
+        [JsonPropertyName("teams")]
+        public List<TDTeamDto> Teams
+        {
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+        }
+    
     }
     
 }

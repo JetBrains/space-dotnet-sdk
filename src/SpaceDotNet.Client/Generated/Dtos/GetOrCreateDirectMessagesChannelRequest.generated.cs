@@ -19,16 +19,26 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client
 {
-    public static class CreateNavBarProjectRequestPartialExtensions
+    public class GetOrCreateDirectMessagesChannelRequest
+         : IPropagatePropertyAccessPath
     {
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it)
-            => it.AddFieldName("project");
+        private PropertyValue<string> _profile = new PropertyValue<string>(nameof(GetOrCreateDirectMessagesChannelRequest), nameof(Profile));
         
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
-        
+        [Required]
+        [JsonPropertyName("profile")]
+        public string Profile
+        {
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
+        }
+    
     }
     
 }

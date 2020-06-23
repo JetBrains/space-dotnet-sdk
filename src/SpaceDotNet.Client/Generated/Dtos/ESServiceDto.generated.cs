@@ -111,6 +111,24 @@ namespace SpaceDotNet.Client
             set { _endpointURI.SetValue(value); }
         }
     
+        private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ESServiceDto), nameof(HasSigningKey));
+        
+        [JsonPropertyName("hasSigningKey")]
+        public bool? HasSigningKey
+        {
+            get { return _hasSigningKey.GetValue(); }
+            set { _hasSigningKey.SetValue(value); }
+        }
+    
+        private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ESServiceDto), nameof(HasVerificationToken));
+        
+        [JsonPropertyName("hasVerificationToken")]
+        public bool? HasVerificationToken
+        {
+            get { return _hasVerificationToken.GetValue(); }
+            set { _hasVerificationToken.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
@@ -122,6 +140,8 @@ namespace SpaceDotNet.Client
             _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
             _lastClientCredentialsAccess.SetAccessPath(path + "->WithLastClientCredentialsAccess()", validateHasBeenSet);
             _endpointURI.SetAccessPath(path + "->WithEndpointURI()", validateHasBeenSet);
+            _hasSigningKey.SetAccessPath(path + "->WithHasSigningKey()", validateHasBeenSet);
+            _hasVerificationToken.SetAccessPath(path + "->WithHasVerificationToken()", validateHasBeenSet);
         }
     
     }

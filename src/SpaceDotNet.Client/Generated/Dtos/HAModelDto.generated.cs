@@ -44,6 +44,16 @@ namespace SpaceDotNet.Client
             set { _enums.SetValue(value); }
         }
     
+        private PropertyValue<List<HAUrlParameterDto>> _urlParams = new PropertyValue<List<HAUrlParameterDto>>(nameof(HAModelDto), nameof(UrlParams));
+        
+        [Required]
+        [JsonPropertyName("urlParams")]
+        public List<HAUrlParameterDto> UrlParams
+        {
+            get { return _urlParams.GetValue(); }
+            set { _urlParams.SetValue(value); }
+        }
+    
         private PropertyValue<List<HAResourceDto>> _resources = new PropertyValue<List<HAResourceDto>>(nameof(HAModelDto), nameof(Resources));
         
         [Required]
@@ -68,6 +78,7 @@ namespace SpaceDotNet.Client
         {
             _dto.SetAccessPath(path + "->WithDto()", validateHasBeenSet);
             _enums.SetAccessPath(path + "->WithEnums()", validateHasBeenSet);
+            _urlParams.SetAccessPath(path + "->WithUrlParams()", validateHasBeenSet);
             _resources.SetAccessPath(path + "->WithResources()", validateHasBeenSet);
             _allResources.SetAccessPath(path + "->WithAllResources()", validateHasBeenSet);
         }

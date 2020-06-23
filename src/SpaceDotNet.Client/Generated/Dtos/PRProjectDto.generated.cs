@@ -161,6 +161,16 @@ namespace SpaceDotNet.Client
             set { _tags.SetValue(value); }
         }
     
+        private PropertyValue<List<BoardRecordDto>> _boards = new PropertyValue<List<BoardRecordDto>>(nameof(PRProjectDto), nameof(Boards));
+        
+        [Required]
+        [JsonPropertyName("boards")]
+        public List<BoardRecordDto> Boards
+        {
+            get { return _boards.GetValue(); }
+            set { _boards.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
@@ -177,6 +187,7 @@ namespace SpaceDotNet.Client
             _memberTeams.SetAccessPath(path + "->WithMemberTeams()", validateHasBeenSet);
             _repos.SetAccessPath(path + "->WithRepos()", validateHasBeenSet);
             _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
+            _boards.SetAccessPath(path + "->WithBoards()", validateHasBeenSet);
         }
     
     }

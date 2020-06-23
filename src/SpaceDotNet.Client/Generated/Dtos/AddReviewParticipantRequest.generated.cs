@@ -19,16 +19,26 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client
 {
-    public static class CreateNavBarProjectRequestPartialExtensions
+    public class AddReviewParticipantRequest
+         : IPropagatePropertyAccessPath
     {
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it)
-            => it.AddFieldName("project");
+        private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(AddReviewParticipantRequest), nameof(Role));
         
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
-        
+        [Required]
+        [JsonPropertyName("role")]
+        public CodeReviewParticipantRole Role
+        {
+            get { return _role.GetValue(); }
+            set { _role.SetValue(value); }
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
+        }
+    
     }
     
 }

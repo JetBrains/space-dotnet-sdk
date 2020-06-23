@@ -41,6 +41,12 @@ namespace SpaceDotNet.Client.KBBookDtoExtensions
         public static Partial<KBBookDto> WithAlias(this Partial<KBBookDto> it)
             => it.AddFieldName("alias");
         
+        public static Partial<KBBookDto> WithContexts(this Partial<KBBookDto> it)
+            => it.AddFieldName("contexts");
+        
+        public static Partial<KBBookDto> WithContexts(this Partial<KBBookDto> it, Func<Partial<KBBookContextDto>, Partial<KBBookContextDto>> partialBuilder)
+            => it.AddFieldName("contexts", partialBuilder(new Partial<KBBookContextDto>(it)));
+        
         public static Partial<KBBookDto> WithLocations(this Partial<KBBookDto> it)
             => it.AddFieldName("locations");
         

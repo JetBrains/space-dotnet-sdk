@@ -59,6 +59,12 @@ namespace SpaceDotNet.Client.ESServiceDtoExtensions
         public static Partial<ESServiceDto> WithEndpointURI(this Partial<ESServiceDto> it)
             => it.AddFieldName("endpointURI");
         
+        public static Partial<ESServiceDto> WithHasSigningKey(this Partial<ESServiceDto> it)
+            => it.AddFieldName("hasSigningKey");
+        
+        public static Partial<ESServiceDto> WithHasVerificationToken(this Partial<ESServiceDto> it)
+            => it.AddFieldName("hasVerificationToken");
+        
     }
     
 }

@@ -19,15 +19,12 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.EditReviewParticipantRequestExtensions
+namespace SpaceDotNet.Client.GetOrCreateDirectMessagesChannelRequestExtensions
 {
-    public static class EditReviewParticipantRequestPartialExtensions
+    public static class GetOrCreateDirectMessagesChannelRequestPartialExtensions
     {
-        public static Partial<EditReviewParticipantRequest> WithRole(this Partial<EditReviewParticipantRequest> it)
-            => it.AddFieldName("role");
-        
-        public static Partial<EditReviewParticipantRequest> WithRole(this Partial<EditReviewParticipantRequest> it, Func<Partial<CodeReviewParticipantRole>, Partial<CodeReviewParticipantRole>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<CodeReviewParticipantRole>(it)));
+        public static Partial<GetOrCreateDirectMessagesChannelRequest> WithProfile(this Partial<GetOrCreateDirectMessagesChannelRequest> it)
+            => it.AddFieldName("profile");
         
     }
     

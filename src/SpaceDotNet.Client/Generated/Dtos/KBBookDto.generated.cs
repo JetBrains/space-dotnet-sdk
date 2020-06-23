@@ -84,6 +84,15 @@ namespace SpaceDotNet.Client
             set { _alias.SetValue(value); }
         }
     
+        private PropertyValue<List<KBBookContextDto>?> _contexts = new PropertyValue<List<KBBookContextDto>?>(nameof(KBBookDto), nameof(Contexts));
+        
+        [JsonPropertyName("contexts")]
+        public List<KBBookContextDto>? Contexts
+        {
+            get { return _contexts.GetValue(); }
+            set { _contexts.SetValue(value); }
+        }
+    
         private PropertyValue<List<TDLocationDto>> _locations = new PropertyValue<List<TDLocationDto>>(nameof(KBBookDto), nameof(Locations));
         
         [Required]
@@ -122,6 +131,7 @@ namespace SpaceDotNet.Client
             _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
             _updated.SetAccessPath(path + "->WithUpdated()", validateHasBeenSet);
             _alias.SetAccessPath(path + "->WithAlias()", validateHasBeenSet);
+            _contexts.SetAccessPath(path + "->WithContexts()", validateHasBeenSet);
             _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
             _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
             _rootFolder.SetAccessPath(path + "->WithRootFolder()", validateHasBeenSet);

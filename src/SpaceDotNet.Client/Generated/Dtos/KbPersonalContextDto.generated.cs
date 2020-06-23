@@ -21,22 +21,25 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CreateNavBarProjectRequest
-         : IPropagatePropertyAccessPath
+    public sealed class KbPersonalContextDto
+         : KBBookContextDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(CreateNavBarProjectRequest), nameof(Project));
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        private PropertyValue<TDMemberProfileDto> _owner = new PropertyValue<TDMemberProfileDto>(nameof(KbPersonalContextDto), nameof(Owner));
         
         [Required]
-        [JsonPropertyName("project")]
-        public ProjectIdentifier Project
+        [JsonPropertyName("owner")]
+        public TDMemberProfileDto Owner
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get { return _owner.GetValue(); }
+            set { _owner.SetValue(value); }
         }
     
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
+            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
         }
     
     }

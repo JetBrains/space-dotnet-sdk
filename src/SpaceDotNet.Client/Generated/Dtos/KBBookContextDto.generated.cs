@@ -19,16 +19,11 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client
 {
-    public static class CreateNavBarProjectRequestPartialExtensions
+    public interface KBBookContextDto
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it)
-            => it.AddFieldName("project");
-        
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
-        
     }
     
 }

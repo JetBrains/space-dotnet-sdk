@@ -35,6 +35,12 @@ namespace SpaceDotNet.Client.HAModelDtoExtensions
         public static Partial<HAModelDto> WithEnums(this Partial<HAModelDto> it, Func<Partial<HAEnumDto>, Partial<HAEnumDto>> partialBuilder)
             => it.AddFieldName("enums", partialBuilder(new Partial<HAEnumDto>(it)));
         
+        public static Partial<HAModelDto> WithUrlParams(this Partial<HAModelDto> it)
+            => it.AddFieldName("urlParams");
+        
+        public static Partial<HAModelDto> WithUrlParams(this Partial<HAModelDto> it, Func<Partial<HAUrlParameterDto>, Partial<HAUrlParameterDto>> partialBuilder)
+            => it.AddFieldName("urlParams", partialBuilder(new Partial<HAUrlParameterDto>(it)));
+        
         public static Partial<HAModelDto> WithResources(this Partial<HAModelDto> it)
             => it.AddFieldName("resources");
         

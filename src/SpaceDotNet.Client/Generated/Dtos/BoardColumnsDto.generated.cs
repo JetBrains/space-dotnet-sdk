@@ -19,16 +19,26 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client
 {
-    public static class CreateNavBarProjectRequestPartialExtensions
+    public sealed class BoardColumnsDto
+         : IPropagatePropertyAccessPath
     {
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it)
-            => it.AddFieldName("project");
+        private PropertyValue<List<BoardColumnDto>> _columns = new PropertyValue<List<BoardColumnDto>>(nameof(BoardColumnsDto), nameof(Columns));
         
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
-        
+        [Required]
+        [JsonPropertyName("columns")]
+        public List<BoardColumnDto> Columns
+        {
+            get { return _columns.GetValue(); }
+            set { _columns.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _columns.SetAccessPath(path + "->WithColumns()", validateHasBeenSet);
+        }
+    
     }
     
 }

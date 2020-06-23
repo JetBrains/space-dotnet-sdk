@@ -44,11 +44,10 @@ namespace SpaceDotNet.Client
             set { _teams.SetValue(value); }
         }
     
-        private PropertyValue<List<Pair<PRProjectDto, int>>> _projects = new PropertyValue<List<Pair<PRProjectDto, int>>>(nameof(BGStatsDto), nameof(Projects));
+        private PropertyValue<List<Pair<PRProjectDto, int>>?> _projects = new PropertyValue<List<Pair<PRProjectDto, int>>?>(nameof(BGStatsDto), nameof(Projects));
         
-        [Required]
         [JsonPropertyName("projects")]
-        public List<Pair<PRProjectDto, int>> Projects
+        public List<Pair<PRProjectDto, int>>? Projects
         {
             get { return _projects.GetValue(); }
             set { _projects.SetValue(value); }

@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<M2ChannelRecordDto> GerOrCreateDirectMessagesChannelAsync(GerOrCreateDirectMessagesChannelRequest data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<GerOrCreateDirectMessagesChannelRequest, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields={(partial != null ? partial(new Partial<M2ChannelRecordDto>()) : Partial<M2ChannelRecordDto>.Default())}", data);
+            public async Task<M2ChannelRecordDto> GetOrCreateDirectMessagesChannelAsync(GetOrCreateDirectMessagesChannelRequest data, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>>? partial = null)
+                => await _connection.RequestResourceAsync<GetOrCreateDirectMessagesChannelRequest, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields={(partial != null ? partial(new Partial<M2ChannelRecordDto>()) : Partial<M2ChannelRecordDto>.Default())}", data);
         
             public async Task<bool> IsNameFreeAsync(IsNameFreeRequest data)
                 => await _connection.RequestResourceAsync<IsNameFreeRequest, bool>("POST", $"api/http/chats/channels/is-name-free", data);

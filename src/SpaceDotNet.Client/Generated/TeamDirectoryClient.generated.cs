@@ -881,8 +881,8 @@ namespace SpaceDotNet.Client
                         /// <summary>
                         /// Remove a project from the navigation bar.
                         /// </summary>
-                        public async Task DeleteNavBarProjectAsync(string projectId)
-                            => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/info/nav-bar-projects?projectId={projectId.ToString()}");
+                        public async Task DeleteNavBarProjectAsync(ProjectIdentifier project)
+                            => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/me/info/nav-bar-projects?project={project.ToString()}");
                     
                     }
                 

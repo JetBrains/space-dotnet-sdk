@@ -19,15 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client.BoardColumnsDtoExtensions
 {
-    public static class CreateNavBarProjectRequestPartialExtensions
+    public static class BoardColumnsDtoPartialExtensions
     {
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it)
-            => it.AddFieldName("project");
+        public static Partial<BoardColumnsDto> WithColumns(this Partial<BoardColumnsDto> it)
+            => it.AddFieldName("columns");
         
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
+        public static Partial<BoardColumnsDto> WithColumns(this Partial<BoardColumnsDto> it, Func<Partial<BoardColumnDto>, Partial<BoardColumnDto>> partialBuilder)
+            => it.AddFieldName("columns", partialBuilder(new Partial<BoardColumnDto>(it)));
         
     }
     

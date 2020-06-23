@@ -19,16 +19,26 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.GitDiffSizeDtoExtensions
+namespace SpaceDotNet.Client
 {
-    public static class GitDiffSizeDtoPartialExtensions
+    public sealed class BoardMemberOwnersDto
+         : IPropagatePropertyAccessPath
     {
-        public static Partial<GitDiffSizeDto> WithAdded(this Partial<GitDiffSizeDto> it)
-            => it.AddFieldName("added");
+        private PropertyValue<List<TDMemberProfileDto>> _members = new PropertyValue<List<TDMemberProfileDto>>(nameof(BoardMemberOwnersDto), nameof(Members));
         
-        public static Partial<GitDiffSizeDto> WithDeleted(this Partial<GitDiffSizeDto> it)
-            => it.AddFieldName("deleted");
-        
+        [Required]
+        [JsonPropertyName("members")]
+        public List<TDMemberProfileDto> Members
+        {
+            get { return _members.GetValue(); }
+            set { _members.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _members.SetAccessPath(path + "->WithMembers()", validateHasBeenSet);
+        }
+    
     }
     
 }

@@ -21,33 +21,33 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class GitDiffSizeDto
+    public sealed class BoardOwnersDto
          : IPropagatePropertyAccessPath
     {
-        private PropertyValue<int> _added = new PropertyValue<int>(nameof(GitDiffSizeDto), nameof(Added));
+        private PropertyValue<BoardMemberOwnersDto> _members = new PropertyValue<BoardMemberOwnersDto>(nameof(BoardOwnersDto), nameof(Members));
         
         [Required]
-        [JsonPropertyName("added")]
-        public int Added
+        [JsonPropertyName("members")]
+        public BoardMemberOwnersDto Members
         {
-            get { return _added.GetValue(); }
-            set { _added.SetValue(value); }
+            get { return _members.GetValue(); }
+            set { _members.SetValue(value); }
         }
     
-        private PropertyValue<int> _deleted = new PropertyValue<int>(nameof(GitDiffSizeDto), nameof(Deleted));
+        private PropertyValue<BoardTeamOwnersDto> _teams = new PropertyValue<BoardTeamOwnersDto>(nameof(BoardOwnersDto), nameof(Teams));
         
         [Required]
-        [JsonPropertyName("deleted")]
-        public int Deleted
+        [JsonPropertyName("teams")]
+        public BoardTeamOwnersDto Teams
         {
-            get { return _deleted.GetValue(); }
-            set { _deleted.SetValue(value); }
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _added.SetAccessPath(path + "->WithAdded()", validateHasBeenSet);
-            _deleted.SetAccessPath(path + "->WithDeleted()", validateHasBeenSet);
+            _members.SetAccessPath(path + "->WithMembers()", validateHasBeenSet);
+            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
         }
     
     }

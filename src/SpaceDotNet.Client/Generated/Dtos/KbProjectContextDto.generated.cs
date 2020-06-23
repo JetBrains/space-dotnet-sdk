@@ -21,20 +21,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class CreateNavBarProjectRequest
-         : IPropagatePropertyAccessPath
+    public sealed class KbProjectContextDto
+         : KBBookContextDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(CreateNavBarProjectRequest), nameof(Project));
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
+        
+        private PropertyValue<PRProjectDto> _project = new PropertyValue<PRProjectDto>(nameof(KbProjectContextDto), nameof(Project));
         
         [Required]
         [JsonPropertyName("project")]
-        public ProjectIdentifier Project
+        public PRProjectDto Project
         {
             get { return _project.GetValue(); }
             set { _project.SetValue(value); }
         }
     
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
         }

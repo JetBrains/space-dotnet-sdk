@@ -19,15 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CreateNavBarProjectRequestExtensions
+namespace SpaceDotNet.Client.KbPersonalContextDtoExtensions
 {
-    public static class CreateNavBarProjectRequestPartialExtensions
+    public static class KbPersonalContextDtoPartialExtensions
     {
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it)
-            => it.AddFieldName("project");
+        public static Partial<KbPersonalContextDto> WithOwner(this Partial<KbPersonalContextDto> it)
+            => it.AddFieldName("owner");
         
-        public static Partial<CreateNavBarProjectRequest> WithProject(this Partial<CreateNavBarProjectRequest> it, Func<Partial<ProjectIdentifier>, Partial<ProjectIdentifier>> partialBuilder)
-            => it.AddFieldName("project", partialBuilder(new Partial<ProjectIdentifier>(it)));
+        public static Partial<KbPersonalContextDto> WithOwner(this Partial<KbPersonalContextDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("owner", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
     }
     

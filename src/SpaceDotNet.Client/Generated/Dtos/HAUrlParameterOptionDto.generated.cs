@@ -21,15 +21,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class GitEntryType : Enumeration
+    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
+    public class HAUrlParameterOptionDto
+         : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        private GitEntryType(string value) : base(value) { }
+        [JsonPropertyName("className")]
+        public string? ClassName { get; set; }
         
-        public static readonly GitEntryType FILE = new GitEntryType("FILE");
-        public static readonly GitEntryType DIR = new GitEntryType("DIR");
-        public static readonly GitEntryType GITLINK = new GitEntryType("GIT_LINK");
-        public static readonly GitEntryType SYMLINK = new GitEntryType("SYM_LINK");
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }
