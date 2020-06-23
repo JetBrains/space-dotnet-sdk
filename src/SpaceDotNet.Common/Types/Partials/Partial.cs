@@ -94,7 +94,7 @@ namespace SpaceDotNet.Common
         /// </summary>
         /// <returns>The current <see cref="Partial{T}"/>.</returns>
         public Partial<T> WithAllFieldsWildcard() =>
-            WithAllFieldNamesExplicitly(); // AddFieldName("*"); TODO when wildcard support lands
+            AddFieldName("*");
 
         /// <summary>
         /// Add partial for an inheritor.
