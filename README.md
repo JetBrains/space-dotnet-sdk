@@ -22,7 +22,7 @@ Let's have a look at how we can start working with `SpaceDotNet.Client`.
 
 ## Registering SpaceDotNet NuGet feed
 
-Currently, SpaceDotNet is not yet available on [NuGet.org](https://www.nuget.org/). To access SpaceDotNet packages, add a file named `NuGet.config` in the same folder as your solution / `.sln` file, with the following contents:
+SpaceDotNet is not yet available on [NuGet.org](https://www.nuget.org/). To access SpaceDotNet packages, add a file named `NuGet.config` in the same folder as your solution / `.sln` file, with the following contents:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
