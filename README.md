@@ -184,7 +184,7 @@ catch (PropertyNotRequestedException e)
     // ...and we'll get a pointer about why it fails:
     // "The property Name was not requested in the partial builder
     //  for TDMemberProfileDto. Use .WithName() to include it.
-    //  Full path: Batch`1->WithData()->WithName()"
+    //  Expected full path: Batch`1->WithData()->WithName()"
     Console.WriteLine(e.Message);
 }
 ```

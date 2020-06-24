@@ -41,7 +41,7 @@ namespace SpaceDotNet.Common.Types
         {
             if (!_hasBeenSet && _validateHasBeenSet)
             {
-                throw new PropertyNotRequestedException($"The property {_propertyName} was not requested in the partial builder for {_className}. Use .With{_propertyName}() to include it. Full path: {_accessPath}", _className, _propertyName);
+                throw new PropertyNotRequestedException($"The property {_propertyName} was not requested in the partial builder for {_className}. Use .With{_propertyName}() to include it. Expected full path: {_accessPath}.With{_propertyName}()", _className, _propertyName);
             }
             return _value;
         }

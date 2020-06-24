@@ -197,10 +197,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 
             foreach (var apiDtoField in apiDtoFields)
             {
-                var propertyName = apiDtoField.Field.ToCSharpPropertyName();
                 var backingFieldNameForField = apiDtoField.Field.ToCSharpBackingFieldName();
 
-                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path + \"->With{propertyName}()\", validateHasBeenSet);");
+                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
             }
 
             indent.Decrement();
