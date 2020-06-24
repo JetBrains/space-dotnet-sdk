@@ -3,7 +3,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Client;
-using SpaceDotNet.Client.TDMemberProfileDtoExtensions;
+using SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder;
 using SpaceDotNet.Common;
 
 namespace SpaceDotNet.Samples.CommandLine

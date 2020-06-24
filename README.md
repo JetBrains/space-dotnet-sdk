@@ -158,8 +158,8 @@ var memberProfile = await teamDirectoryClient.Profiles
 All of the builder methods (`With...()`) are extension methods, and should be automatically included by the IDE we are using. For example, the extension methods used in the previous example were automatically included by [Rider](https://www.jetbrains.com/rider/):
 
 ```csharp
-using SpaceDotNet.Client.TDMemberProfileDtoExtensions;
-using SpaceDotNet.Client.TDProfileNameDtoExtensions;
+using SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder;
+using SpaceDotNet.Client.TDProfileNameDtoPartialBuilder;
 ```
 
 SpaceDotNet will help with defining properties to include. Let's say we want to retrieve only the `Id` and `Username` properties for a profile:

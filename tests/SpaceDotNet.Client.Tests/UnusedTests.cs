@@ -1,7 +1,7 @@
 using System.Net.Http;
 using System.Threading.Tasks;
-using SpaceDotNet.Client.TDMemberProfileDtoExtensions;
-using SpaceDotNet.Client.TDProfileNameDtoExtensions;
+using SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder;
+using SpaceDotNet.Client.TDProfileNameDtoPartialBuilder;
 using SpaceDotNet.Common;
 using Xunit;
 

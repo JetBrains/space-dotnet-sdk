@@ -54,9 +54,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             foreach (var apiDto in _codeGenerationContext.GetDtos())
             {
                 WriteToDocument(documentWriter, 
-                    "Partials/" + apiDto.ToCSharpClassName() + ".generated.cs",
+                    "Partials/" + apiDto.ToCSharpClassName() + "PartialBuilder.generated.cs",
                     partialExtensionsGenerator.GeneratePartialClassFor(apiDto),
-                    apiDto.ToCSharpClassName() + "Extensions");
+                    apiDto.ToCSharpClassName() + "PartialBuilder");
             }
         }
 
