@@ -69,7 +69,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             // Option method
             switch (apiUrlParameterOption)
             {
-                case ApiUrlParameterOption.Const constParameter:
+                case ApiUrlParameterOption.Const _:
                     builder.AppendLine($"{indent}public static {typeNameForUrlParameter} {shortTypeNameForUrlParameterOption}");
                     indent.Increment();
                     builder.AppendLine($"{indent}=> new {typeNameForUrlParameterOption}();");

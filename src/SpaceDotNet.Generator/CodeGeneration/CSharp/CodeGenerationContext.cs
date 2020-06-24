@@ -29,7 +29,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 
         public static CodeGenerationContext CreateFrom(ApiModel apiModel)
         {
-            var dtoAndUrlParams = new List<ApiDto>();
 #pragma warning disable 8619
             var context = new CodeGenerationContext(
                 apiModel: apiModel, 

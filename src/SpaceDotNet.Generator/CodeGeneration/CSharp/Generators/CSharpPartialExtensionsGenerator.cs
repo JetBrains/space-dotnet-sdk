@@ -1,4 +1,3 @@
-using System;
 using System.Text;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;

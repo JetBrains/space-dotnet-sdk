@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using SpaceDotNet.Common.Types;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
-using SpaceDotNet.Generator.Model.HttpApi;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 {
