@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
-            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+            _dueDate.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

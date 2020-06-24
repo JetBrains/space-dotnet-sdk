@@ -65,10 +65,10 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _weekday.SetAccessPath(path + "->WithWeekday()", validateHasBeenSet);
-            _working.SetAccessPath(path + "->WithWorking()", validateHasBeenSet);
-            _hours.SetAccessPath(path + "->WithHours()", validateHasBeenSet);
-            _minutes.SetAccessPath(path + "->WithMinutes()", validateHasBeenSet);
+            _weekday.SetAccessPath(path, validateHasBeenSet);
+            _working.SetAccessPath(path, validateHasBeenSet);
+            _hours.SetAccessPath(path, validateHasBeenSet);
+            _minutes.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

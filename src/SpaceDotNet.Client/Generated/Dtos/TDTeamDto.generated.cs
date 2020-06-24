@@ -121,16 +121,16 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _parent.SetAccessPath(path + "->WithParent()", validateHasBeenSet);
-            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
-            _channelId.SetAccessPath(path + "->WithChannelId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _disbanded.SetAccessPath(path + "->WithDisbanded()", validateHasBeenSet);
-            _disbandedAt.SetAccessPath(path + "->WithDisbandedAt()", validateHasBeenSet);
-            _memberships.SetAccessPath(path + "->WithMemberships()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _parent.SetAccessPath(path, validateHasBeenSet);
+            _emails.SetAccessPath(path, validateHasBeenSet);
+            _channelId.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _disbanded.SetAccessPath(path, validateHasBeenSet);
+            _disbandedAt.SetAccessPath(path, validateHasBeenSet);
+            _memberships.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

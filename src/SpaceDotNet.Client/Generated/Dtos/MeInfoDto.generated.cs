@@ -121,16 +121,16 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
-            _profilePic.SetAccessPath(path + "->WithProfilePic()", validateHasBeenSet);
-            _preferredLanguage.SetAccessPath(path + "->WithPreferredLanguage()", validateHasBeenSet);
-            _englishLanguage.SetAccessPath(path + "->WithEnglishLanguage()", validateHasBeenSet);
-            _navBarMenuItems.SetAccessPath(path + "->WithNavBarMenuItems()", validateHasBeenSet);
-            _navBarProjects.SetAccessPath(path + "->WithNavBarProjects()", validateHasBeenSet);
-            _firstDayOfWeek.SetAccessPath(path + "->WithFirstDayOfWeek()", validateHasBeenSet);
-            _themeName.SetAccessPath(path + "->WithThemeName()", validateHasBeenSet);
-            _draftType.SetAccessPath(path + "->WithDraftType()", validateHasBeenSet);
-            _todoFilters.SetAccessPath(path + "->WithTodoFilters()", validateHasBeenSet);
+            _profile.SetAccessPath(path, validateHasBeenSet);
+            _profilePic.SetAccessPath(path, validateHasBeenSet);
+            _preferredLanguage.SetAccessPath(path, validateHasBeenSet);
+            _englishLanguage.SetAccessPath(path, validateHasBeenSet);
+            _navBarMenuItems.SetAccessPath(path, validateHasBeenSet);
+            _navBarProjects.SetAccessPath(path, validateHasBeenSet);
+            _firstDayOfWeek.SetAccessPath(path, validateHasBeenSet);
+            _themeName.SetAccessPath(path, validateHasBeenSet);
+            _draftType.SetAccessPath(path, validateHasBeenSet);
+            _todoFilters.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

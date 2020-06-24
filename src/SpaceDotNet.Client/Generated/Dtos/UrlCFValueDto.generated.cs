@@ -35,7 +35,7 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _href.SetAccessPath(path + "->WithHref()", validateHasBeenSet);
+            _href.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

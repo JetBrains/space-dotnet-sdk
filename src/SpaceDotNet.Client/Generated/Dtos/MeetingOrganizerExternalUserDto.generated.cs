@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
+            _email.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

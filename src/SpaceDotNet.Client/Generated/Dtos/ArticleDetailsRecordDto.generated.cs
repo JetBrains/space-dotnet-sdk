@@ -109,15 +109,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _event.SetAccessPath(path + "->WithEvent()", validateHasBeenSet);
-            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
-            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
-            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
-            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
-            _externalEntityInfo.SetAccessPath(path + "->WithExternalEntityInfo()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _event.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
+            _location.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
+            _locations.SetAccessPath(path, validateHasBeenSet);
+            _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

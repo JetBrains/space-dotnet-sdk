@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _storagePrefix.SetAccessPath(path + "->WithStoragePrefix()", validateHasBeenSet);
-            _mediaType.SetAccessPath(path + "->WithMediaType()", validateHasBeenSet);
+            _storagePrefix.SetAccessPath(path, validateHasBeenSet);
+            _mediaType.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

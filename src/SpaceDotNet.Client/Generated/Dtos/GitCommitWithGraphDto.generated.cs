@@ -75,11 +75,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _repositoryName.SetAccessPath(path + "->WithRepositoryName()", validateHasBeenSet);
-            _commit.SetAccessPath(path + "->WithCommit()", validateHasBeenSet);
-            _reviews.SetAccessPath(path + "->WithReviews()", validateHasBeenSet);
-            _layout.SetAccessPath(path + "->WithLayout()", validateHasBeenSet);
-            _unreachable.SetAccessPath(path + "->WithUnreachable()", validateHasBeenSet);
+            _repositoryName.SetAccessPath(path, validateHasBeenSet);
+            _commit.SetAccessPath(path, validateHasBeenSet);
+            _reviews.SetAccessPath(path, validateHasBeenSet);
+            _layout.SetAccessPath(path, validateHasBeenSet);
+            _unreachable.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

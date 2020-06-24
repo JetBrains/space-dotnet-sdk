@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path + "->WithNotificationDefaults()", validateHasBeenSet);
+            _location.SetAccessPath(path, validateHasBeenSet);
+            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -35,7 +35,7 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _themeName.SetAccessPath(path + "->WithThemeName()", validateHasBeenSet);
+            _themeName.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
+            _profile.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _teamId.SetAccessPath(path + "->WithTeamId()", validateHasBeenSet);
-            _externalGroupName.SetAccessPath(path + "->WithExternalGroupName()", validateHasBeenSet);
+            _teamId.SetAccessPath(path, validateHasBeenSet);
+            _externalGroupName.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

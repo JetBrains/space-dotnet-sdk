@@ -114,15 +114,15 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _member.SetAccessPath(path + "->WithMember()", validateHasBeenSet);
-            _reason.SetAccessPath(path + "->WithReason()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
-            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
-            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
-            _available.SetAccessPath(path + "->WithAvailable()", validateHasBeenSet);
-            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
-            _customFieldValues.SetAccessPath(path + "->WithCustomFieldValues()", validateHasBeenSet);
+            _member.SetAccessPath(path, validateHasBeenSet);
+            _reason.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _location.SetAccessPath(path, validateHasBeenSet);
+            _since.SetAccessPath(path, validateHasBeenSet);
+            _till.SetAccessPath(path, validateHasBeenSet);
+            _available.SetAccessPath(path, validateHasBeenSet);
+            _icon.SetAccessPath(path, validateHasBeenSet);
+            _customFieldValues.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

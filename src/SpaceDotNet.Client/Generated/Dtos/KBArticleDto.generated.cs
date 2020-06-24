@@ -106,14 +106,14 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _book.SetAccessPath(path + "->WithBook()", validateHasBeenSet);
-            _folder.SetAccessPath(path + "->WithFolder()", validateHasBeenSet);
-            _item.SetAccessPath(path + "->WithItem()", validateHasBeenSet);
-            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
-            _alias.SetAccessPath(path + "->WithAlias()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _book.SetAccessPath(path, validateHasBeenSet);
+            _folder.SetAccessPath(path, validateHasBeenSet);
+            _item.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _alias.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -59,9 +59,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _action.SetAccessPath(path + "->WithAction()", validateHasBeenSet);
-            _success.SetAccessPath(path + "->WithSuccess()", validateHasBeenSet);
-            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
+            _action.SetAccessPath(path, validateHasBeenSet);
+            _success.SetAccessPath(path, validateHasBeenSet);
+            _details.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

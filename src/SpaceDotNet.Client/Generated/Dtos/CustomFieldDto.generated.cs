@@ -144,18 +144,18 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _extendedType.SetAccessPath(path + "->WithExtendedType()", validateHasBeenSet);
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _constraint.SetAccessPath(path + "->WithConstraint()", validateHasBeenSet);
-            _required.SetAccessPath(path + "->WithRequired()", validateHasBeenSet);
-            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
-            _access.SetAccessPath(path + "->WithAccess()", validateHasBeenSet);
-            _defaultValue.SetAccessPath(path + "->WithDefaultValue()", validateHasBeenSet);
-            _order.SetAccessPath(path + "->WithOrder()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _extendedType.SetAccessPath(path, validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _key.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _constraint.SetAccessPath(path, validateHasBeenSet);
+            _required.SetAccessPath(path, validateHasBeenSet);
+            _private.SetAccessPath(path, validateHasBeenSet);
+            _access.SetAccessPath(path, validateHasBeenSet);
+            _defaultValue.SetAccessPath(path, validateHasBeenSet);
+            _order.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

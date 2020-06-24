@@ -58,9 +58,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _codeDiscussionId.SetAccessPath(path + "->WithCodeDiscussionId()", validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path + "->WithNotificationDefaults()", validateHasBeenSet);
-            _codeDiscussion.SetAccessPath(path + "->WithCodeDiscussion()", validateHasBeenSet);
+            _codeDiscussionId.SetAccessPath(path, validateHasBeenSet);
+            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+            _codeDiscussion.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

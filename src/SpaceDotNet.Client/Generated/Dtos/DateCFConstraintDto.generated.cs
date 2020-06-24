@@ -53,9 +53,9 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _min.SetAccessPath(path + "->WithMin()", validateHasBeenSet);
-            _max.SetAccessPath(path + "->WithMax()", validateHasBeenSet);
-            _message.SetAccessPath(path + "->WithMessage()", validateHasBeenSet);
+            _min.SetAccessPath(path, validateHasBeenSet);
+            _max.SetAccessPath(path, validateHasBeenSet);
+            _message.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

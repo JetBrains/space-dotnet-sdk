@@ -95,13 +95,13 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _path.SetAccessPath(path + "->WithPath()", validateHasBeenSet);
-            _displaySingular.SetAccessPath(path + "->WithDisplaySingular()", validateHasBeenSet);
-            _displayPlural.SetAccessPath(path + "->WithDisplayPlural()", validateHasBeenSet);
-            _parentResource.SetAccessPath(path + "->WithParentResource()", validateHasBeenSet);
-            _endpoints.SetAccessPath(path + "->WithEndpoints()", validateHasBeenSet);
-            _nestedResources.SetAccessPath(path + "->WithNestedResources()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _path.SetAccessPath(path, validateHasBeenSet);
+            _displaySingular.SetAccessPath(path, validateHasBeenSet);
+            _displayPlural.SetAccessPath(path, validateHasBeenSet);
+            _parentResource.SetAccessPath(path, validateHasBeenSet);
+            _endpoints.SetAccessPath(path, validateHasBeenSet);
+            _nestedResources.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

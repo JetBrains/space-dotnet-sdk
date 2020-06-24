@@ -86,12 +86,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _opened.SetAccessPath(path + "->WithOpened()", validateHasBeenSet);
-            _closed.SetAccessPath(path + "->WithClosed()", validateHasBeenSet);
-            _authoredByMe.SetAccessPath(path + "->WithAuthoredByMe()", validateHasBeenSet);
-            _reviewedByMe.SetAccessPath(path + "->WithReviewedByMe()", validateHasBeenSet);
-            _needsMyAttention.SetAccessPath(path + "->WithNeedsMyAttention()", validateHasBeenSet);
-            _needsMyReview.SetAccessPath(path + "->WithNeedsMyReview()", validateHasBeenSet);
+            _opened.SetAccessPath(path, validateHasBeenSet);
+            _closed.SetAccessPath(path, validateHasBeenSet);
+            _authoredByMe.SetAccessPath(path, validateHasBeenSet);
+            _reviewedByMe.SetAccessPath(path, validateHasBeenSet);
+            _needsMyAttention.SetAccessPath(path, validateHasBeenSet);
+            _needsMyReview.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

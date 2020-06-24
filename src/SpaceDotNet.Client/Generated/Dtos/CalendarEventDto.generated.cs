@@ -80,12 +80,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _calendarEvent.SetAccessPath(path + "->WithCalendarEvent()", validateHasBeenSet);
-            _starts.SetAccessPath(path + "->WithStarts()", validateHasBeenSet);
-            _ends.SetAccessPath(path + "->WithEnds()", validateHasBeenSet);
-            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
-            _rooms.SetAccessPath(path + "->WithRooms()", validateHasBeenSet);
-            _allDay.SetAccessPath(path + "->WithAllDay()", validateHasBeenSet);
+            _calendarEvent.SetAccessPath(path, validateHasBeenSet);
+            _starts.SetAccessPath(path, validateHasBeenSet);
+            _ends.SetAccessPath(path, validateHasBeenSet);
+            _timezone.SetAccessPath(path, validateHasBeenSet);
+            _rooms.SetAccessPath(path, validateHasBeenSet);
+            _allDay.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _calendar.SetAccessPath(path + "->WithCalendar()", validateHasBeenSet);
-            _attachmentId.SetAccessPath(path + "->WithAttachmentId()", validateHasBeenSet);
+            _calendar.SetAccessPath(path, validateHasBeenSet);
+            _attachmentId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

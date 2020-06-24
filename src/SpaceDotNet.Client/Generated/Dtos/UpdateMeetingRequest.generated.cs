@@ -158,20 +158,20 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _occurrenceRule.SetAccessPath(path + "->WithOccurrenceRule()", validateHasBeenSet);
-            _locationsDiff.SetAccessPath(path + "->WithLocationsDiff()", validateHasBeenSet);
-            _profilesDiff.SetAccessPath(path + "->WithProfilesDiff()", validateHasBeenSet);
-            _externalParticipantsDiff.SetAccessPath(path + "->WithExternalParticipantsDiff()", validateHasBeenSet);
-            _teamsDiff.SetAccessPath(path + "->WithTeamsDiff()", validateHasBeenSet);
-            _visibility.SetAccessPath(path + "->WithVisibility()", validateHasBeenSet);
-            _modificationPreference.SetAccessPath(path + "->WithModificationPreference()", validateHasBeenSet);
-            _joiningPreference.SetAccessPath(path + "->WithJoiningPreference()", validateHasBeenSet);
-            _notifyOnExport.SetAccessPath(path + "->WithNotifyOnExport()", validateHasBeenSet);
-            _organizer.SetAccessPath(path + "->WithOrganizer()", validateHasBeenSet);
-            _targetDate.SetAccessPath(path + "->WithTargetDate()", validateHasBeenSet);
-            _modificationKind.SetAccessPath(path + "->WithModificationKind()", validateHasBeenSet);
+            _summary.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _occurrenceRule.SetAccessPath(path, validateHasBeenSet);
+            _locationsDiff.SetAccessPath(path, validateHasBeenSet);
+            _profilesDiff.SetAccessPath(path, validateHasBeenSet);
+            _externalParticipantsDiff.SetAccessPath(path, validateHasBeenSet);
+            _teamsDiff.SetAccessPath(path, validateHasBeenSet);
+            _visibility.SetAccessPath(path, validateHasBeenSet);
+            _modificationPreference.SetAccessPath(path, validateHasBeenSet);
+            _joiningPreference.SetAccessPath(path, validateHasBeenSet);
+            _notifyOnExport.SetAccessPath(path, validateHasBeenSet);
+            _organizer.SetAccessPath(path, validateHasBeenSet);
+            _targetDate.SetAccessPath(path, validateHasBeenSet);
+            _modificationKind.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _email.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

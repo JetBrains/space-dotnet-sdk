@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _immutableTags.SetAccessPath(path + "->WithImmutableTags()", validateHasBeenSet);
+            _immutableTags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

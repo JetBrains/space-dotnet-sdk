@@ -167,21 +167,21 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
-            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
-            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
-            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
-            _time.SetAccessPath(path + "->WithTime()", validateHasBeenSet);
-            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
-            _thread.SetAccessPath(path + "->WithThread()", validateHasBeenSet);
-            _projectedItem.SetAccessPath(path + "->WithProjectedItem()", validateHasBeenSet);
-            _attachments.SetAccessPath(path + "->WithAttachments()", validateHasBeenSet);
-            _attachmentsInfos.SetAccessPath(path + "->WithAttachmentsInfos()", validateHasBeenSet);
-            _pending.SetAccessPath(path + "->WithPending()", validateHasBeenSet);
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _edited.SetAccessPath(path + "->WithEdited()", validateHasBeenSet);
-            _pinned.SetAccessPath(path + "->WithPinned()", validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+            _details.SetAccessPath(path, validateHasBeenSet);
+            _author.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _time.SetAccessPath(path, validateHasBeenSet);
+            _reactions.SetAccessPath(path, validateHasBeenSet);
+            _thread.SetAccessPath(path, validateHasBeenSet);
+            _projectedItem.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
+            _attachmentsInfos.SetAccessPath(path, validateHasBeenSet);
+            _pending.SetAccessPath(path, validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _edited.SetAccessPath(path, validateHasBeenSet);
+            _pinned.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

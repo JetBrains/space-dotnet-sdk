@@ -93,13 +93,13 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _mapId.SetAccessPath(path + "->WithMapId()", validateHasBeenSet);
-            _x.SetAccessPath(path + "->WithX()", validateHasBeenSet);
-            _y.SetAccessPath(path + "->WithY()", validateHasBeenSet);
-            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
-            _memberLocation.SetAccessPath(path + "->WithMemberLocation()", validateHasBeenSet);
-            _deleted.SetAccessPath(path + "->WithDeleted()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _mapId.SetAccessPath(path, validateHasBeenSet);
+            _x.SetAccessPath(path, validateHasBeenSet);
+            _y.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _memberLocation.SetAccessPath(path, validateHasBeenSet);
+            _deleted.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -67,10 +67,10 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _commits.SetAccessPath(path + "->WithCommits()", validateHasBeenSet);
-            _changeType.SetAccessPath(path + "->WithChangeType()", validateHasBeenSet);
-            _projectKey.SetAccessPath(path + "->WithProjectKey()", validateHasBeenSet);
-            _review.SetAccessPath(path + "->WithReview()", validateHasBeenSet);
+            _commits.SetAccessPath(path, validateHasBeenSet);
+            _changeType.SetAccessPath(path, validateHasBeenSet);
+            _projectKey.SetAccessPath(path, validateHasBeenSet);
+            _review.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

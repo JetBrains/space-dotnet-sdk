@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
-            _mdMarkup.SetAccessPath(path + "->WithMdMarkup()", validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+            _mdMarkup.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

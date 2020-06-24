@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _importSource.SetAccessPath(path + "->WithImportSource()", validateHasBeenSet);
+            _importSource.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

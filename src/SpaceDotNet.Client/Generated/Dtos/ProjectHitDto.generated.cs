@@ -85,12 +85,12 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _score.SetAccessPath(path + "->WithScore()", validateHasBeenSet);
-            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _ref.SetAccessPath(path + "->WithRef()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _score.SetAccessPath(path, validateHasBeenSet);
+            _key.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _ref.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

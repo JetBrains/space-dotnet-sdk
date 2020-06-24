@@ -59,9 +59,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _sizeBytes.SetAccessPath(path + "->WithSizeBytes()", validateHasBeenSet);
-            _filename.SetAccessPath(path + "->WithFilename()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _sizeBytes.SetAccessPath(path, validateHasBeenSet);
+            _filename.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

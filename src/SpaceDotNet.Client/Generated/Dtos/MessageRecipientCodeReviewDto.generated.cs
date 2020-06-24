@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _codeReview.SetAccessPath(path + "->WithCodeReview()", validateHasBeenSet);
+            _codeReview.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

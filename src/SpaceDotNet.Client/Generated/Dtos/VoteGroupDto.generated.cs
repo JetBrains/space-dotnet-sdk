@@ -75,11 +75,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _variantName.SetAccessPath(path + "->WithVariantName()", validateHasBeenSet);
-            _count.SetAccessPath(path + "->WithCount()", validateHasBeenSet);
-            _meVote.SetAccessPath(path + "->WithMeVote()", validateHasBeenSet);
-            _lastUsers.SetAccessPath(path + "->WithLastUsers()", validateHasBeenSet);
-            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
+            _variantName.SetAccessPath(path, validateHasBeenSet);
+            _count.SetAccessPath(path, validateHasBeenSet);
+            _meVote.SetAccessPath(path, validateHasBeenSet);
+            _lastUsers.SetAccessPath(path, validateHasBeenSet);
+            _owner.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -191,23 +191,23 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
-            _projectRef.SetAccessPath(path + "->WithProjectRef()", validateHasBeenSet);
-            _number.SetAccessPath(path + "->WithNumber()", validateHasBeenSet);
-            _createdBy.SetAccessPath(path + "->WithCreatedBy()", validateHasBeenSet);
-            _creationTime.SetAccessPath(path + "->WithCreationTime()", validateHasBeenSet);
-            _assignee.SetAccessPath(path + "->WithAssignee()", validateHasBeenSet);
-            _status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
-            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
-            _importInfo.SetAccessPath(path + "->WithImportInfo()", validateHasBeenSet);
-            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _checklists.SetAccessPath(path + "->WithChecklists()", validateHasBeenSet);
-            _attachments.SetAccessPath(path + "->WithAttachments()", validateHasBeenSet);
-            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
+            _projectRef.SetAccessPath(path, validateHasBeenSet);
+            _number.SetAccessPath(path, validateHasBeenSet);
+            _createdBy.SetAccessPath(path, validateHasBeenSet);
+            _creationTime.SetAccessPath(path, validateHasBeenSet);
+            _assignee.SetAccessPath(path, validateHasBeenSet);
+            _status.SetAccessPath(path, validateHasBeenSet);
+            _dueDate.SetAccessPath(path, validateHasBeenSet);
+            _importInfo.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _checklists.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

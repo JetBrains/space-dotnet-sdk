@@ -114,15 +114,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _fields.SetAccessPath(path + "->WithFields()", validateHasBeenSet);
-            _hierarchyRole.SetAccessPath(path + "->WithHierarchyRole()", validateHasBeenSet);
-            _extends.SetAccessPath(path + "->WithExtends()", validateHasBeenSet);
-            _implements.SetAccessPath(path + "->WithImplements()", validateHasBeenSet);
-            _inheritors.SetAccessPath(path + "->WithInheritors()", validateHasBeenSet);
-            _deprecation.SetAccessPath(path + "->WithDeprecation()", validateHasBeenSet);
-            _record.SetAccessPath(path + "->WithRecord()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _fields.SetAccessPath(path, validateHasBeenSet);
+            _hierarchyRole.SetAccessPath(path, validateHasBeenSet);
+            _extends.SetAccessPath(path, validateHasBeenSet);
+            _implements.SetAccessPath(path, validateHasBeenSet);
+            _inheritors.SetAccessPath(path, validateHasBeenSet);
+            _deprecation.SetAccessPath(path, validateHasBeenSet);
+            _record.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

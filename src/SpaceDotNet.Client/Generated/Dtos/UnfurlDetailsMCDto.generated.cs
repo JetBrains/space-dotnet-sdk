@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _message.SetAccessPath(path + "->WithMessage()", validateHasBeenSet);
-            _inlineUnfurls.SetAccessPath(path + "->WithInlineUnfurls()", validateHasBeenSet);
+            _message.SetAccessPath(path, validateHasBeenSet);
+            _inlineUnfurls.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

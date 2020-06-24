@@ -66,10 +66,10 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
-            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
-            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
-            _domains.SetAccessPath(path + "->WithDomains()", validateHasBeenSet);
+            _clientId.SetAccessPath(path, validateHasBeenSet);
+            _clientSecret.SetAccessPath(path, validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
+            _domains.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

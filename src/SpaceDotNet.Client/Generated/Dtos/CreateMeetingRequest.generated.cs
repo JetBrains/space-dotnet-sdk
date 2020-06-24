@@ -144,18 +144,18 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _occurrenceRule.SetAccessPath(path + "->WithOccurrenceRule()", validateHasBeenSet);
-            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
-            _profiles.SetAccessPath(path + "->WithProfiles()", validateHasBeenSet);
-            _externalParticipants.SetAccessPath(path + "->WithExternalParticipants()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
-            _visibility.SetAccessPath(path + "->WithVisibility()", validateHasBeenSet);
-            _modificationPreference.SetAccessPath(path + "->WithModificationPreference()", validateHasBeenSet);
-            _joiningPreference.SetAccessPath(path + "->WithJoiningPreference()", validateHasBeenSet);
-            _notifyOnExport.SetAccessPath(path + "->WithNotifyOnExport()", validateHasBeenSet);
-            _organizer.SetAccessPath(path + "->WithOrganizer()", validateHasBeenSet);
+            _summary.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _occurrenceRule.SetAccessPath(path, validateHasBeenSet);
+            _locations.SetAccessPath(path, validateHasBeenSet);
+            _profiles.SetAccessPath(path, validateHasBeenSet);
+            _externalParticipants.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
+            _visibility.SetAccessPath(path, validateHasBeenSet);
+            _modificationPreference.SetAccessPath(path, validateHasBeenSet);
+            _joiningPreference.SetAccessPath(path, validateHasBeenSet);
+            _notifyOnExport.SetAccessPath(path, validateHasBeenSet);
+            _organizer.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

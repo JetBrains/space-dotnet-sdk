@@ -55,9 +55,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _profile.SetAccessPath(path + "->WithProfile()", validateHasBeenSet);
-            _memberLocation.SetAccessPath(path + "->WithMemberLocation()", validateHasBeenSet);
-            _locationMapPoint.SetAccessPath(path + "->WithLocationMapPoint()", validateHasBeenSet);
+            _profile.SetAccessPath(path, validateHasBeenSet);
+            _memberLocation.SetAccessPath(path, validateHasBeenSet);
+            _locationMapPoint.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

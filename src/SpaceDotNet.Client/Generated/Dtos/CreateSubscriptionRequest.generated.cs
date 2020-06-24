@@ -53,9 +53,9 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _locationId.SetAccessPath(path + "->WithLocationId()", validateHasBeenSet);
-            _teamId.SetAccessPath(path + "->WithTeamId()", validateHasBeenSet);
-            _reasonId.SetAccessPath(path + "->WithReasonId()", validateHasBeenSet);
+            _locationId.SetAccessPath(path, validateHasBeenSet);
+            _teamId.SetAccessPath(path, validateHasBeenSet);
+            _reasonId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

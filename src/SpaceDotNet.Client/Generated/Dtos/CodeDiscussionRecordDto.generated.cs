@@ -132,17 +132,17 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
-            _anchor.SetAccessPath(path + "->WithAnchor()", validateHasBeenSet);
-            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
-            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
-            _resolved.SetAccessPath(path + "->WithResolved()", validateHasBeenSet);
-            _snippet.SetAccessPath(path + "->WithSnippet()", validateHasBeenSet);
-            _pending.SetAccessPath(path + "->WithPending()", validateHasBeenSet);
-            _review.SetAccessPath(path + "->WithReview()", validateHasBeenSet);
-            _reviews.SetAccessPath(path + "->WithReviews()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
+            _anchor.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
+            _resolved.SetAccessPath(path, validateHasBeenSet);
+            _snippet.SetAccessPath(path, validateHasBeenSet);
+            _pending.SetAccessPath(path, validateHasBeenSet);
+            _review.SetAccessPath(path, validateHasBeenSet);
+            _reviews.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

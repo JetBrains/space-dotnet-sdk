@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _mapPictureId.SetAccessPath(path + "->WithMapPictureId()", validateHasBeenSet);
+            _mapPictureId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

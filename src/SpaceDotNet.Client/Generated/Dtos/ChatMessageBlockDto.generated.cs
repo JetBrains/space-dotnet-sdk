@@ -63,10 +63,10 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _style.SetAccessPath(path + "->WithStyle()", validateHasBeenSet);
-            _outline.SetAccessPath(path + "->WithOutline()", validateHasBeenSet);
-            _sections.SetAccessPath(path + "->WithSections()", validateHasBeenSet);
-            _messageData.SetAccessPath(path + "->WithMessageData()", validateHasBeenSet);
+            _style.SetAccessPath(path, validateHasBeenSet);
+            _outline.SetAccessPath(path, validateHasBeenSet);
+            _sections.SetAccessPath(path, validateHasBeenSet);
+            _messageData.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

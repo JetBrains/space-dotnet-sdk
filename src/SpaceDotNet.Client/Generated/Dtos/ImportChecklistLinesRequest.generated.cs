@@ -55,9 +55,9 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _targetParentId.SetAccessPath(path + "->WithTargetParentId()", validateHasBeenSet);
-            _afterItemId.SetAccessPath(path + "->WithAfterItemId()", validateHasBeenSet);
-            _tabIndentedLines.SetAccessPath(path + "->WithTabIndentedLines()", validateHasBeenSet);
+            _targetParentId.SetAccessPath(path, validateHasBeenSet);
+            _afterItemId.SetAccessPath(path, validateHasBeenSet);
+            _tabIndentedLines.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

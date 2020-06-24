@@ -84,12 +84,12 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _idpUrl.SetAccessPath(path + "->WithIdpUrl()", validateHasBeenSet);
-            _idpEntityId.SetAccessPath(path + "->WithIdpEntityId()", validateHasBeenSet);
-            _idpCertificateSHA256.SetAccessPath(path + "->WithIdpCertificateSHA256()", validateHasBeenSet);
-            _spEntityId.SetAccessPath(path + "->WithSpEntityId()", validateHasBeenSet);
-            _sslKeystore.SetAccessPath(path + "->WithSslKeystore()", validateHasBeenSet);
-            _contactProfileId.SetAccessPath(path + "->WithContactProfileId()", validateHasBeenSet);
+            _idpUrl.SetAccessPath(path, validateHasBeenSet);
+            _idpEntityId.SetAccessPath(path, validateHasBeenSet);
+            _idpCertificateSHA256.SetAccessPath(path, validateHasBeenSet);
+            _spEntityId.SetAccessPath(path, validateHasBeenSet);
+            _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+            _contactProfileId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

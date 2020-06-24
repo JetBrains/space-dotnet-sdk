@@ -55,9 +55,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
-            _emojiReactions.SetAccessPath(path + "->WithEmojiReactions()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _reactions.SetAccessPath(path, validateHasBeenSet);
+            _emojiReactions.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

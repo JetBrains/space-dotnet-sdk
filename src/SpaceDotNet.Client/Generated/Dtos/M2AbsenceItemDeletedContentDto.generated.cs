@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _absence.SetAccessPath(path + "->WithAbsence()", validateHasBeenSet);
-            _by.SetAccessPath(path + "->WithBy()", validateHasBeenSet);
+            _absence.SetAccessPath(path, validateHasBeenSet);
+            _by.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

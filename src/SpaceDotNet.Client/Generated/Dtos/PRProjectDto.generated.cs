@@ -173,21 +173,21 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
-            _latestRepositoryActivity.SetAccessPath(path + "->WithLatestRepositoryActivity()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _adminProfiles.SetAccessPath(path + "->WithAdminProfiles()", validateHasBeenSet);
-            _adminTeams.SetAccessPath(path + "->WithAdminTeams()", validateHasBeenSet);
-            _memberProfiles.SetAccessPath(path + "->WithMemberProfiles()", validateHasBeenSet);
-            _memberTeams.SetAccessPath(path + "->WithMemberTeams()", validateHasBeenSet);
-            _repos.SetAccessPath(path + "->WithRepos()", validateHasBeenSet);
-            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
-            _boards.SetAccessPath(path + "->WithBoards()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _key.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _private.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _icon.SetAccessPath(path, validateHasBeenSet);
+            _latestRepositoryActivity.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _adminProfiles.SetAccessPath(path, validateHasBeenSet);
+            _adminTeams.SetAccessPath(path, validateHasBeenSet);
+            _memberProfiles.SetAccessPath(path, validateHasBeenSet);
+            _memberTeams.SetAccessPath(path, validateHasBeenSet);
+            _repos.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
+            _boards.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

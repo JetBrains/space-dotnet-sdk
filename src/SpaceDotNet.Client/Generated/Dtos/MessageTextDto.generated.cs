@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _accessory.SetAccessPath(path + "->WithAccessory()", validateHasBeenSet);
-            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
+            _accessory.SetAccessPath(path, validateHasBeenSet);
+            _content.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

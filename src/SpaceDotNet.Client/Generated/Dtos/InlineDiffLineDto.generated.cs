@@ -110,15 +110,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _oldLineNum.SetAccessPath(path + "->WithOldLineNum()", validateHasBeenSet);
-            _newLineNum.SetAccessPath(path + "->WithNewLineNum()", validateHasBeenSet);
-            _oldFileOffset.SetAccessPath(path + "->WithOldFileOffset()", validateHasBeenSet);
-            _newFileOffset.SetAccessPath(path + "->WithNewFileOffset()", validateHasBeenSet);
-            _syntax.SetAccessPath(path + "->WithSyntax()", validateHasBeenSet);
-            _deletes.SetAccessPath(path + "->WithDeletes()", validateHasBeenSet);
-            _inserts.SetAccessPath(path + "->WithInserts()", validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _oldLineNum.SetAccessPath(path, validateHasBeenSet);
+            _newLineNum.SetAccessPath(path, validateHasBeenSet);
+            _oldFileOffset.SetAccessPath(path, validateHasBeenSet);
+            _newFileOffset.SetAccessPath(path, validateHasBeenSet);
+            _syntax.SetAccessPath(path, validateHasBeenSet);
+            _deletes.SetAccessPath(path, validateHasBeenSet);
+            _inserts.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

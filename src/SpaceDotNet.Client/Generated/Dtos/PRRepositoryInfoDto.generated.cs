@@ -101,14 +101,14 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _latestActivity.SetAccessPath(path + "->WithLatestActivity()", validateHasBeenSet);
-            _proxyPushNotification.SetAccessPath(path + "->WithProxyPushNotification()", validateHasBeenSet);
-            _state.SetAccessPath(path + "->WithState()", validateHasBeenSet);
-            _initProgress.SetAccessPath(path + "->WithInitProgress()", validateHasBeenSet);
-            _readmeName.SetAccessPath(path + "->WithReadmeName()", validateHasBeenSet);
-            _monthlyActivity.SetAccessPath(path + "->WithMonthlyActivity()", validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _latestActivity.SetAccessPath(path, validateHasBeenSet);
+            _proxyPushNotification.SetAccessPath(path, validateHasBeenSet);
+            _state.SetAccessPath(path, validateHasBeenSet);
+            _initProgress.SetAccessPath(path, validateHasBeenSet);
+            _readmeName.SetAccessPath(path, validateHasBeenSet);
+            _monthlyActivity.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

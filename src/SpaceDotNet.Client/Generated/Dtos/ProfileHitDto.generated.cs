@@ -146,18 +146,18 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _score.SetAccessPath(path + "->WithScore()", validateHasBeenSet);
-            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
-            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
-            _userName.SetAccessPath(path + "->WithUserName()", validateHasBeenSet);
-            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
-            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
-            _links.SetAccessPath(path + "->WithLinks()", validateHasBeenSet);
-            _messengers.SetAccessPath(path + "->WithMessengers()", validateHasBeenSet);
-            _notAMember.SetAccessPath(path + "->WithNotAMember()", validateHasBeenSet);
-            _ref.SetAccessPath(path + "->WithRef()", validateHasBeenSet);
-            _customFields.SetAccessPath(path + "->WithCustomFields()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _score.SetAccessPath(path, validateHasBeenSet);
+            _firstName.SetAccessPath(path, validateHasBeenSet);
+            _lastName.SetAccessPath(path, validateHasBeenSet);
+            _userName.SetAccessPath(path, validateHasBeenSet);
+            _phones.SetAccessPath(path, validateHasBeenSet);
+            _emails.SetAccessPath(path, validateHasBeenSet);
+            _links.SetAccessPath(path, validateHasBeenSet);
+            _messengers.SetAccessPath(path, validateHasBeenSet);
+            _notAMember.SetAccessPath(path, validateHasBeenSet);
+            _ref.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

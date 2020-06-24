@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _authModule.SetAccessPath(path + "->WithAuthModule()", validateHasBeenSet);
-            _profiles.SetAccessPath(path + "->WithProfiles()", validateHasBeenSet);
+            _authModule.SetAccessPath(path, validateHasBeenSet);
+            _profiles.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

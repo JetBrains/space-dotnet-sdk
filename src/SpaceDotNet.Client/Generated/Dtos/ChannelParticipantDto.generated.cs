@@ -55,9 +55,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _principal.SetAccessPath(path + "->WithPrincipal()", validateHasBeenSet);
-            _messageCount.SetAccessPath(path + "->WithMessageCount()", validateHasBeenSet);
-            _pendingMessageCount.SetAccessPath(path + "->WithPendingMessageCount()", validateHasBeenSet);
+            _principal.SetAccessPath(path, validateHasBeenSet);
+            _messageCount.SetAccessPath(path, validateHasBeenSet);
+            _pendingMessageCount.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

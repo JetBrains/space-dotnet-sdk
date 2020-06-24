@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _lines.SetAccessPath(path + "->WithLines()", validateHasBeenSet);
+            _lines.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

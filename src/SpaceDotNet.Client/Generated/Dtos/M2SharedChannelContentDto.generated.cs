@@ -115,15 +115,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _group.SetAccessPath(path + "->WithGroup()", validateHasBeenSet);
-            _access.SetAccessPath(path + "->WithAccess()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _membersCounter.SetAccessPath(path + "->WithMembersCounter()", validateHasBeenSet);
-            _iconId.SetAccessPath(path + "->WithIconId()", validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path + "->WithNotificationDefaults()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
-            _canEdit.SetAccessPath(path + "->WithCanEdit()", validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _group.SetAccessPath(path, validateHasBeenSet);
+            _access.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _membersCounter.SetAccessPath(path, validateHasBeenSet);
+            _iconId.SetAccessPath(path, validateHasBeenSet);
+            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
+            _canEdit.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

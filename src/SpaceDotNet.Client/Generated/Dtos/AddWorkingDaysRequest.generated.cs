@@ -54,9 +54,9 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _dateStart.SetAccessPath(path + "->WithDateStart()", validateHasBeenSet);
-            _dateEnd.SetAccessPath(path + "->WithDateEnd()", validateHasBeenSet);
-            _workingDaysSpec.SetAccessPath(path + "->WithWorkingDaysSpec()", validateHasBeenSet);
+            _dateStart.SetAccessPath(path, validateHasBeenSet);
+            _dateEnd.SetAccessPath(path, validateHasBeenSet);
+            _workingDaysSpec.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

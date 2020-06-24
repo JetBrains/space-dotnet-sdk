@@ -81,12 +81,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _loginAttributeName.SetAccessPath(path + "->WithLoginAttributeName()", validateHasBeenSet);
-            _firstNameAttributeName.SetAccessPath(path + "->WithFirstNameAttributeName()", validateHasBeenSet);
-            _lastNameAttributeName.SetAccessPath(path + "->WithLastNameAttributeName()", validateHasBeenSet);
-            _fullNameAttributeName.SetAccessPath(path + "->WithFullNameAttributeName()", validateHasBeenSet);
-            _emailAttributeName.SetAccessPath(path + "->WithEmailAttributeName()", validateHasBeenSet);
-            _emailVerified.SetAccessPath(path + "->WithEmailVerified()", validateHasBeenSet);
+            _loginAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _firstNameAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _lastNameAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _fullNameAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _emailAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _emailVerified.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -65,10 +65,10 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
-            _parent.SetAccessPath(path + "->WithParent()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
+            _parent.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -112,15 +112,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _resource.SetAccessPath(path + "->WithResource()", validateHasBeenSet);
-            _method.SetAccessPath(path + "->WithMethod()", validateHasBeenSet);
-            _parameters.SetAccessPath(path + "->WithParameters()", validateHasBeenSet);
-            _requestBody.SetAccessPath(path + "->WithRequestBody()", validateHasBeenSet);
-            _responseBody.SetAccessPath(path + "->WithResponseBody()", validateHasBeenSet);
-            _path.SetAccessPath(path + "->WithPath()", validateHasBeenSet);
-            _displayName.SetAccessPath(path + "->WithDisplayName()", validateHasBeenSet);
-            _doc.SetAccessPath(path + "->WithDoc()", validateHasBeenSet);
-            _deprecation.SetAccessPath(path + "->WithDeprecation()", validateHasBeenSet);
+            _resource.SetAccessPath(path, validateHasBeenSet);
+            _method.SetAccessPath(path, validateHasBeenSet);
+            _parameters.SetAccessPath(path, validateHasBeenSet);
+            _requestBody.SetAccessPath(path, validateHasBeenSet);
+            _responseBody.SetAccessPath(path, validateHasBeenSet);
+            _path.SetAccessPath(path, validateHasBeenSet);
+            _displayName.SetAccessPath(path, validateHasBeenSet);
+            _doc.SetAccessPath(path, validateHasBeenSet);
+            _deprecation.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

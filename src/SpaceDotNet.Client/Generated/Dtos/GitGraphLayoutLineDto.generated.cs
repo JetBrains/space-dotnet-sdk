@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _nodes.SetAccessPath(path + "->WithNodes()", validateHasBeenSet);
-            _edges.SetAccessPath(path + "->WithEdges()", validateHasBeenSet);
+            _nodes.SetAccessPath(path, validateHasBeenSet);
+            _edges.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

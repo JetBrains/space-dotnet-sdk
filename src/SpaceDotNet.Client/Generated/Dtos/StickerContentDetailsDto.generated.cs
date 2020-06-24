@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _sticker.SetAccessPath(path + "->WithSticker()", validateHasBeenSet);
-            _pack.SetAccessPath(path + "->WithPack()", validateHasBeenSet);
+            _sticker.SetAccessPath(path, validateHasBeenSet);
+            _pack.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

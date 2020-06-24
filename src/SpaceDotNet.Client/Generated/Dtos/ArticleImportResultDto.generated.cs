@@ -53,9 +53,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _externalId.SetAccessPath(path + "->WithExternalId()", validateHasBeenSet);
-            _article.SetAccessPath(path + "->WithArticle()", validateHasBeenSet);
-            _error.SetAccessPath(path + "->WithError()", validateHasBeenSet);
+            _externalId.SetAccessPath(path, validateHasBeenSet);
+            _article.SetAccessPath(path, validateHasBeenSet);
+            _error.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

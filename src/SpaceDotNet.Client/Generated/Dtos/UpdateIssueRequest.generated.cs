@@ -80,12 +80,12 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _assignee.SetAccessPath(path + "->WithAssignee()", validateHasBeenSet);
-            _status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
-            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
-            _importInfo.SetAccessPath(path + "->WithImportInfo()", validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _assignee.SetAccessPath(path, validateHasBeenSet);
+            _status.SetAccessPath(path, validateHasBeenSet);
+            _dueDate.SetAccessPath(path, validateHasBeenSet);
+            _importInfo.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

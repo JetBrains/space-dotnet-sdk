@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _addedTags.SetAccessPath(path + "->WithAddedTags()", validateHasBeenSet);
-            _removedTags.SetAccessPath(path + "->WithRemovedTags()", validateHasBeenSet);
+            _addedTags.SetAccessPath(path, validateHasBeenSet);
+            _removedTags.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

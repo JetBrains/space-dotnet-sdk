@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
-            _temporaryId.SetAccessPath(path + "->WithTemporaryId()", validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+            _temporaryId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

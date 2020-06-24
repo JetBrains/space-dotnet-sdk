@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _firstDayOfWeek.SetAccessPath(path + "->WithFirstDayOfWeek()", validateHasBeenSet);
+            _firstDayOfWeek.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

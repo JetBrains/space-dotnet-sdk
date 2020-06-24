@@ -56,9 +56,9 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _alias.SetAccessPath(path + "->WithAlias()", validateHasBeenSet);
-            _data.SetAccessPath(path + "->WithData()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _alias.SetAccessPath(path, validateHasBeenSet);
+            _data.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

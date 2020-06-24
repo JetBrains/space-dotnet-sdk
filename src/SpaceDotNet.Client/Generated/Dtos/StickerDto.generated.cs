@@ -100,14 +100,14 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _symbol.SetAccessPath(path + "->WithSymbol()", validateHasBeenSet);
-            _attachmentId.SetAccessPath(path + "->WithAttachmentId()", validateHasBeenSet);
-            _width.SetAccessPath(path + "->WithWidth()", validateHasBeenSet);
-            _height.SetAccessPath(path + "->WithHeight()", validateHasBeenSet);
-            _variants.SetAccessPath(path + "->WithVariants()", validateHasBeenSet);
-            _animated.SetAccessPath(path + "->WithAnimated()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _symbol.SetAccessPath(path, validateHasBeenSet);
+            _attachmentId.SetAccessPath(path, validateHasBeenSet);
+            _width.SetAccessPath(path, validateHasBeenSet);
+            _height.SetAccessPath(path, validateHasBeenSet);
+            _variants.SetAccessPath(path, validateHasBeenSet);
+            _animated.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

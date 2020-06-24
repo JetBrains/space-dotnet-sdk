@@ -64,10 +64,10 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _user.SetAccessPath(path + "->WithUser()", validateHasBeenSet);
-            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
-            _state.SetAccessPath(path + "->WithState()", validateHasBeenSet);
-            _theirTurn.SetAccessPath(path + "->WithTheirTurn()", validateHasBeenSet);
+            _user.SetAccessPath(path, validateHasBeenSet);
+            _role.SetAccessPath(path, validateHasBeenSet);
+            _state.SetAccessPath(path, validateHasBeenSet);
+            _theirTurn.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

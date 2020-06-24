@@ -139,18 +139,18 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
-            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
-            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _root.SetAccessPath(path + "->WithRoot()", validateHasBeenSet);
-            _rootTag.SetAccessPath(path + "->WithRootTag()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _totalItemsCount.SetAccessPath(path + "->WithTotalItemsCount()", validateHasBeenSet);
-            _doneItemsCount.SetAccessPath(path + "->WithDoneItemsCount()", validateHasBeenSet);
-            _updatedTime.SetAccessPath(path + "->WithUpdatedTime()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
+            _owner.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _root.SetAccessPath(path, validateHasBeenSet);
+            _rootTag.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _totalItemsCount.SetAccessPath(path, validateHasBeenSet);
+            _doneItemsCount.SetAccessPath(path, validateHasBeenSet);
+            _updatedTime.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

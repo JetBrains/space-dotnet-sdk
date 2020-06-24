@@ -84,12 +84,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _username.SetAccessPath(path + "->WithUsername()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _avatar.SetAccessPath(path + "->WithAvatar()", validateHasBeenSet);
-            _languages.SetAccessPath(path + "->WithLanguages()", validateHasBeenSet);
-            _notAMember.SetAccessPath(path + "->WithNotAMember()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _username.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _avatar.SetAccessPath(path, validateHasBeenSet);
+            _languages.SetAccessPath(path, validateHasBeenSet);
+            _notAMember.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

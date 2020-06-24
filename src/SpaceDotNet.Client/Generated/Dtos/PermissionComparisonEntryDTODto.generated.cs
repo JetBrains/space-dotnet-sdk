@@ -86,12 +86,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _principalIndex.SetAccessPath(path + "->WithPrincipalIndex()", validateHasBeenSet);
-            _rightIndex.SetAccessPath(path + "->WithRightIndex()", validateHasBeenSet);
-            _allTargets1.SetAccessPath(path + "->WithAllTargets1()", validateHasBeenSet);
-            _targetIndices1.SetAccessPath(path + "->WithTargetIndices1()", validateHasBeenSet);
-            _allTargets2.SetAccessPath(path + "->WithAllTargets2()", validateHasBeenSet);
-            _targetIndices2.SetAccessPath(path + "->WithTargetIndices2()", validateHasBeenSet);
+            _principalIndex.SetAccessPath(path, validateHasBeenSet);
+            _rightIndex.SetAccessPath(path, validateHasBeenSet);
+            _allTargets1.SetAccessPath(path, validateHasBeenSet);
+            _targetIndices1.SetAccessPath(path, validateHasBeenSet);
+            _allTargets2.SetAccessPath(path, validateHasBeenSet);
+            _targetIndices2.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

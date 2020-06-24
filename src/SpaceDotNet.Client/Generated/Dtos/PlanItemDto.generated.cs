@@ -120,16 +120,16 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _checklistId.SetAccessPath(path + "->WithChecklistId()", validateHasBeenSet);
-            _tag.SetAccessPath(path + "->WithTag()", validateHasBeenSet);
-            _simpleText.SetAccessPath(path + "->WithSimpleText()", validateHasBeenSet);
-            _simpleDone.SetAccessPath(path + "->WithSimpleDone()", validateHasBeenSet);
-            _issue.SetAccessPath(path + "->WithIssue()", validateHasBeenSet);
-            _issueProblem.SetAccessPath(path + "->WithIssueProblem()", validateHasBeenSet);
-            _canEditIssue.SetAccessPath(path + "->WithCanEditIssue()", validateHasBeenSet);
-            _hasChildren.SetAccessPath(path + "->WithHasChildren()", validateHasBeenSet);
-            _children.SetAccessPath(path + "->WithChildren()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _checklistId.SetAccessPath(path, validateHasBeenSet);
+            _tag.SetAccessPath(path, validateHasBeenSet);
+            _simpleText.SetAccessPath(path, validateHasBeenSet);
+            _simpleDone.SetAccessPath(path, validateHasBeenSet);
+            _issue.SetAccessPath(path, validateHasBeenSet);
+            _issueProblem.SetAccessPath(path, validateHasBeenSet);
+            _canEditIssue.SetAccessPath(path, validateHasBeenSet);
+            _hasChildren.SetAccessPath(path, validateHasBeenSet);
+            _children.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

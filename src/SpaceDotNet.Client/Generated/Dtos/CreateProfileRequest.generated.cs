@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _editorId.SetAccessPath(path + "->WithEditorId()", validateHasBeenSet);
+            _editorId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -71,11 +71,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _fileUrl.SetAccessPath(path + "->WithFileUrl()", validateHasBeenSet);
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _mimeType.SetAccessPath(path + "->WithMimeType()", validateHasBeenSet);
-            _fileId.SetAccessPath(path + "->WithFileId()", validateHasBeenSet);
-            _source.SetAccessPath(path + "->WithSource()", validateHasBeenSet);
+            _fileUrl.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _mimeType.SetAccessPath(path, validateHasBeenSet);
+            _fileId.SetAccessPath(path, validateHasBeenSet);
+            _source.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

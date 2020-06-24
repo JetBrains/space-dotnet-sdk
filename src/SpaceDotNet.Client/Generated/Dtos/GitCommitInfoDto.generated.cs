@@ -135,17 +135,17 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _message.SetAccessPath(path + "->WithMessage()", validateHasBeenSet);
-            _authorDate.SetAccessPath(path + "->WithAuthorDate()", validateHasBeenSet);
-            _commitDate.SetAccessPath(path + "->WithCommitDate()", validateHasBeenSet);
-            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
-            _committer.SetAccessPath(path + "->WithCommitter()", validateHasBeenSet);
-            _authorProfile.SetAccessPath(path + "->WithAuthorProfile()", validateHasBeenSet);
-            _parents.SetAccessPath(path + "->WithParents()", validateHasBeenSet);
-            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
-            _branches.SetAccessPath(path + "->WithBranches()", validateHasBeenSet);
-            _heads.SetAccessPath(path + "->WithHeads()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _message.SetAccessPath(path, validateHasBeenSet);
+            _authorDate.SetAccessPath(path, validateHasBeenSet);
+            _commitDate.SetAccessPath(path, validateHasBeenSet);
+            _author.SetAccessPath(path, validateHasBeenSet);
+            _committer.SetAccessPath(path, validateHasBeenSet);
+            _authorProfile.SetAccessPath(path, validateHasBeenSet);
+            _parents.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
+            _branches.SetAccessPath(path, validateHasBeenSet);
+            _heads.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

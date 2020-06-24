@@ -58,9 +58,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
-            _markdown.SetAccessPath(path + "->WithMarkdown()", validateHasBeenSet);
-            _accessory.SetAccessPath(path + "->WithAccessory()", validateHasBeenSet);
+            _content.SetAccessPath(path, validateHasBeenSet);
+            _markdown.SetAccessPath(path, validateHasBeenSet);
+            _accessory.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -116,15 +116,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _certificateType.SetAccessPath(path + "->WithCertificateType()", validateHasBeenSet);
-            _version.SetAccessPath(path + "->WithVersion()", validateHasBeenSet);
-            _serialNumber.SetAccessPath(path + "->WithSerialNumber()", validateHasBeenSet);
-            _issuedBy.SetAccessPath(path + "->WithIssuedBy()", validateHasBeenSet);
-            _issuedTo.SetAccessPath(path + "->WithIssuedTo()", validateHasBeenSet);
-            _validFrom.SetAccessPath(path + "->WithValidFrom()", validateHasBeenSet);
-            _validTo.SetAccessPath(path + "->WithValidTo()", validateHasBeenSet);
-            _algorithm.SetAccessPath(path + "->WithAlgorithm()", validateHasBeenSet);
-            _fingerprint.SetAccessPath(path + "->WithFingerprint()", validateHasBeenSet);
+            _certificateType.SetAccessPath(path, validateHasBeenSet);
+            _version.SetAccessPath(path, validateHasBeenSet);
+            _serialNumber.SetAccessPath(path, validateHasBeenSet);
+            _issuedBy.SetAccessPath(path, validateHasBeenSet);
+            _issuedTo.SetAccessPath(path, validateHasBeenSet);
+            _validFrom.SetAccessPath(path, validateHasBeenSet);
+            _validTo.SetAccessPath(path, validateHasBeenSet);
+            _algorithm.SetAccessPath(path, validateHasBeenSet);
+            _fingerprint.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

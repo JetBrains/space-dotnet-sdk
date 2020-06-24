@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _fingerprint.SetAccessPath(path + "->WithFingerprint()", validateHasBeenSet);
-            _lastUsed.SetAccessPath(path + "->WithLastUsed()", validateHasBeenSet);
+            _fingerprint.SetAccessPath(path, validateHasBeenSet);
+            _lastUsed.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -125,16 +125,16 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
-            _updated.SetAccessPath(path + "->WithUpdated()", validateHasBeenSet);
-            _alias.SetAccessPath(path + "->WithAlias()", validateHasBeenSet);
-            _contexts.SetAccessPath(path + "->WithContexts()", validateHasBeenSet);
-            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
-            _rootFolder.SetAccessPath(path + "->WithRootFolder()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _summary.SetAccessPath(path, validateHasBeenSet);
+            _updated.SetAccessPath(path, validateHasBeenSet);
+            _alias.SetAccessPath(path, validateHasBeenSet);
+            _contexts.SetAccessPath(path, validateHasBeenSet);
+            _locations.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
+            _rootFolder.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

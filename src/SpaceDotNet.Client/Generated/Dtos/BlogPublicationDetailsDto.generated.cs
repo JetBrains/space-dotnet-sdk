@@ -83,12 +83,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _teamId.SetAccessPath(path + "->WithTeamId()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
-            _locationId.SetAccessPath(path + "->WithLocationId()", validateHasBeenSet);
-            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
-            _event.SetAccessPath(path + "->WithEvent()", validateHasBeenSet);
-            _article.SetAccessPath(path + "->WithArticle()", validateHasBeenSet);
+            _teamId.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
+            _locationId.SetAccessPath(path, validateHasBeenSet);
+            _locations.SetAccessPath(path, validateHasBeenSet);
+            _event.SetAccessPath(path, validateHasBeenSet);
+            _article.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

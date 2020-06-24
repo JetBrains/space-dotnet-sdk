@@ -90,13 +90,13 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _login.SetAccessPath(path + "->WithLogin()", validateHasBeenSet);
-            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
-            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
-            _email.SetAccessPath(path + "->WithEmail()", validateHasBeenSet);
-            _emailVerified.SetAccessPath(path + "->WithEmailVerified()", validateHasBeenSet);
-            _avatarUrl.SetAccessPath(path + "->WithAvatarUrl()", validateHasBeenSet);
-            _organizations.SetAccessPath(path + "->WithOrganizations()", validateHasBeenSet);
+            _login.SetAccessPath(path, validateHasBeenSet);
+            _firstName.SetAccessPath(path, validateHasBeenSet);
+            _lastName.SetAccessPath(path, validateHasBeenSet);
+            _email.SetAccessPath(path, validateHasBeenSet);
+            _emailVerified.SetAccessPath(path, validateHasBeenSet);
+            _avatarUrl.SetAccessPath(path, validateHasBeenSet);
+            _organizations.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

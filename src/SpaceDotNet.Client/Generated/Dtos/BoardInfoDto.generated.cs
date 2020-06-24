@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _owners.SetAccessPath(path + "->WithOwners()", validateHasBeenSet);
-            _columns.SetAccessPath(path + "->WithColumns()", validateHasBeenSet);
+            _owners.SetAccessPath(path, validateHasBeenSet);
+            _columns.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

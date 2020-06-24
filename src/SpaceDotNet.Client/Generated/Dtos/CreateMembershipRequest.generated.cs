@@ -139,18 +139,18 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _memberId.SetAccessPath(path + "->WithMemberId()", validateHasBeenSet);
-            _teamId.SetAccessPath(path + "->WithTeamId()", validateHasBeenSet);
-            _roleId.SetAccessPath(path + "->WithRoleId()", validateHasBeenSet);
-            _lead.SetAccessPath(path + "->WithLead()", validateHasBeenSet);
-            _managerId.SetAccessPath(path + "->WithManagerId()", validateHasBeenSet);
-            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
-            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
-            _activeSince.SetAccessPath(path + "->WithActiveSince()", validateHasBeenSet);
-            _activeTill.SetAccessPath(path + "->WithActiveTill()", validateHasBeenSet);
-            _previousMembershipId.SetAccessPath(path + "->WithPreviousMembershipId()", validateHasBeenSet);
-            _requiresApproval.SetAccessPath(path + "->WithRequiresApproval()", validateHasBeenSet);
-            _customFieldValues.SetAccessPath(path + "->WithCustomFieldValues()", validateHasBeenSet);
+            _memberId.SetAccessPath(path, validateHasBeenSet);
+            _teamId.SetAccessPath(path, validateHasBeenSet);
+            _roleId.SetAccessPath(path, validateHasBeenSet);
+            _lead.SetAccessPath(path, validateHasBeenSet);
+            _managerId.SetAccessPath(path, validateHasBeenSet);
+            _since.SetAccessPath(path, validateHasBeenSet);
+            _till.SetAccessPath(path, validateHasBeenSet);
+            _activeSince.SetAccessPath(path, validateHasBeenSet);
+            _activeTill.SetAccessPath(path, validateHasBeenSet);
+            _previousMembershipId.SetAccessPath(path, validateHasBeenSet);
+            _requiresApproval.SetAccessPath(path, validateHasBeenSet);
+            _customFieldValues.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

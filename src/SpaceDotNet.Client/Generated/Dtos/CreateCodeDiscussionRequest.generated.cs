@@ -82,12 +82,12 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
-            _diffContext.SetAccessPath(path + "->WithDiffContext()", validateHasBeenSet);
-            _filename.SetAccessPath(path + "->WithFilename()", validateHasBeenSet);
-            _line.SetAccessPath(path + "->WithLine()", validateHasBeenSet);
-            _oldLine.SetAccessPath(path + "->WithOldLine()", validateHasBeenSet);
-            _pending.SetAccessPath(path + "->WithPending()", validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+            _diffContext.SetAccessPath(path, validateHasBeenSet);
+            _filename.SetAccessPath(path, validateHasBeenSet);
+            _line.SetAccessPath(path, validateHasBeenSet);
+            _oldLine.SetAccessPath(path, validateHasBeenSet);
+            _pending.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

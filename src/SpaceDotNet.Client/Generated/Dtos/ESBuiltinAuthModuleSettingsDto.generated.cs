@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _passwordStrengthPolicy.SetAccessPath(path + "->WithPasswordStrengthPolicy()", validateHasBeenSet);
-            _domains.SetAccessPath(path + "->WithDomains()", validateHasBeenSet);
+            _passwordStrengthPolicy.SetAccessPath(path, validateHasBeenSet);
+            _domains.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

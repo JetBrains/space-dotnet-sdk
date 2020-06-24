@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _numerator.SetAccessPath(path + "->WithNumerator()", validateHasBeenSet);
-            _denominator.SetAccessPath(path + "->WithDenominator()", validateHasBeenSet);
+            _numerator.SetAccessPath(path, validateHasBeenSet);
+            _denominator.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

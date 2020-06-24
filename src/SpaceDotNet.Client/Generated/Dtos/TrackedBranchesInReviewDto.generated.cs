@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
-            _branches.SetAccessPath(path + "->WithBranches()", validateHasBeenSet);
+            _repository.SetAccessPath(path, validateHasBeenSet);
+            _branches.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

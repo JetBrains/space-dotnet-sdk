@@ -74,11 +74,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _code.SetAccessPath(path + "->WithCode()", validateHasBeenSet);
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _grantedForUsers.SetAccessPath(path + "->WithGrantedForUsers()", validateHasBeenSet);
-            _featureFlag.SetAccessPath(path + "->WithFeatureFlag()", validateHasBeenSet);
+            _code.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _grantedForUsers.SetAccessPath(path, validateHasBeenSet);
+            _featureFlag.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

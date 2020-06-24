@@ -64,10 +64,10 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _time.SetAccessPath(path + "->WithTime()", validateHasBeenSet);
-            _props.SetAccessPath(path + "->WithProps()", validateHasBeenSet);
-            _points.SetAccessPath(path + "->WithPoints()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _time.SetAccessPath(path, validateHasBeenSet);
+            _props.SetAccessPath(path, validateHasBeenSet);
+            _points.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

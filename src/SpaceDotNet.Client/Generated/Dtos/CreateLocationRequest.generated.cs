@@ -117,16 +117,16 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
-            _workdays.SetAccessPath(path + "->WithWorkdays()", validateHasBeenSet);
-            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
-            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
-            _equipment.SetAccessPath(path + "->WithEquipment()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _address.SetAccessPath(path + "->WithAddress()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _parentId.SetAccessPath(path + "->WithParentId()", validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _timezone.SetAccessPath(path, validateHasBeenSet);
+            _workdays.SetAccessPath(path, validateHasBeenSet);
+            _phones.SetAccessPath(path, validateHasBeenSet);
+            _emails.SetAccessPath(path, validateHasBeenSet);
+            _equipment.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _address.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _parentId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

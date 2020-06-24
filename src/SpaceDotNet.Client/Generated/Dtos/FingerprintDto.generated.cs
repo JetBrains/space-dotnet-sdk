@@ -76,11 +76,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _md5.SetAccessPath(path + "->WithMd5()", validateHasBeenSet);
-            _sha1.SetAccessPath(path + "->WithSha1()", validateHasBeenSet);
-            _sha256.SetAccessPath(path + "->WithSha256()", validateHasBeenSet);
-            _sha384.SetAccessPath(path + "->WithSha384()", validateHasBeenSet);
-            _sha512.SetAccessPath(path + "->WithSha512()", validateHasBeenSet);
+            _md5.SetAccessPath(path, validateHasBeenSet);
+            _sha1.SetAccessPath(path, validateHasBeenSet);
+            _sha256.SetAccessPath(path, validateHasBeenSet);
+            _sha384.SetAccessPath(path, validateHasBeenSet);
+            _sha512.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _passwordModule.SetAccessPath(path + "->WithPasswordModule()", validateHasBeenSet);
-            _federatedModule.SetAccessPath(path + "->WithFederatedModule()", validateHasBeenSet);
+            _passwordModule.SetAccessPath(path, validateHasBeenSet);
+            _federatedModule.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

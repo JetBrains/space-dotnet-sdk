@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _segments.SetAccessPath(path + "->WithSegments()", validateHasBeenSet);
+            _segments.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

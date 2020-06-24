@@ -131,17 +131,17 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _redirectURIs.SetAccessPath(path + "->WithRedirectURIs()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _lastClientCredentialsAccess.SetAccessPath(path + "->WithLastClientCredentialsAccess()", validateHasBeenSet);
-            _endpointURI.SetAccessPath(path + "->WithEndpointURI()", validateHasBeenSet);
-            _hasSigningKey.SetAccessPath(path + "->WithHasSigningKey()", validateHasBeenSet);
-            _hasVerificationToken.SetAccessPath(path + "->WithHasVerificationToken()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _owner.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _clientId.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _redirectURIs.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _lastClientCredentialsAccess.SetAccessPath(path, validateHasBeenSet);
+            _endpointURI.SetAccessPath(path, validateHasBeenSet);
+            _hasSigningKey.SetAccessPath(path, validateHasBeenSet);
+            _hasVerificationToken.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -129,16 +129,16 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _taskExecutionId.SetAccessPath(path + "->WithTaskExecutionId()", validateHasBeenSet);
-            _taskExecutionName.SetAccessPath(path + "->WithTaskExecutionName()", validateHasBeenSet);
-            _repoName.SetAccessPath(path + "->WithRepoName()", validateHasBeenSet);
-            _branchName.SetAccessPath(path + "->WithBranchName()", validateHasBeenSet);
-            _commit.SetAccessPath(path + "->WithCommit()", validateHasBeenSet);
-            _shortCommitMessage.SetAccessPath(path + "->WithShortCommitMessage()", validateHasBeenSet);
-            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
-            _finishDateTime.SetAccessPath(path + "->WithFinishDateTime()", validateHasBeenSet);
-            _triggerInfo.SetAccessPath(path + "->WithTriggerInfo()", validateHasBeenSet);
-            _details.SetAccessPath(path + "->WithDetails()", validateHasBeenSet);
+            _taskExecutionId.SetAccessPath(path, validateHasBeenSet);
+            _taskExecutionName.SetAccessPath(path, validateHasBeenSet);
+            _repoName.SetAccessPath(path, validateHasBeenSet);
+            _branchName.SetAccessPath(path, validateHasBeenSet);
+            _commit.SetAccessPath(path, validateHasBeenSet);
+            _shortCommitMessage.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
+            _finishDateTime.SetAccessPath(path, validateHasBeenSet);
+            _triggerInfo.SetAccessPath(path, validateHasBeenSet);
+            _details.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

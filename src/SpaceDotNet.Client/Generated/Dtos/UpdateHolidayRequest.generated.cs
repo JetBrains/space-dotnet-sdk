@@ -62,10 +62,10 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _calendar.SetAccessPath(path + "->WithCalendar()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _date.SetAccessPath(path + "->WithDate()", validateHasBeenSet);
-            _workingDay.SetAccessPath(path + "->WithWorkingDay()", validateHasBeenSet);
+            _calendar.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _date.SetAccessPath(path, validateHasBeenSet);
+            _workingDay.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

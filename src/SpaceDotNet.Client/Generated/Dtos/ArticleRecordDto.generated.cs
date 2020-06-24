@@ -228,27 +228,27 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
-            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
-            _aliases.SetAccessPath(path + "->WithAliases()", validateHasBeenSet);
-            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
-            _channelContent.SetAccessPath(path + "->WithChannelContent()", validateHasBeenSet);
-            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
-            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
-            _event.SetAccessPath(path + "->WithEvent()", validateHasBeenSet);
-            _externalEntityInfo.SetAccessPath(path + "->WithExternalEntityInfo()", validateHasBeenSet);
-            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
-            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
-            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
-            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
-            _editable.SetAccessPath(path + "->WithEditable()", validateHasBeenSet);
-            _preview.SetAccessPath(path + "->WithPreview()", validateHasBeenSet);
-            _previewImages.SetAccessPath(path + "->WithPreviewImages()", validateHasBeenSet);
-            _wordsNumber.SetAccessPath(path + "->WithWordsNumber()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _author.SetAccessPath(path, validateHasBeenSet);
+            _aliases.SetAccessPath(path, validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
+            _channelContent.SetAccessPath(path, validateHasBeenSet);
+            _reactions.SetAccessPath(path, validateHasBeenSet);
+            _content.SetAccessPath(path, validateHasBeenSet);
+            _event.SetAccessPath(path, validateHasBeenSet);
+            _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
+            _location.SetAccessPath(path, validateHasBeenSet);
+            _locations.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
+            _editable.SetAccessPath(path, validateHasBeenSet);
+            _preview.SetAccessPath(path, validateHasBeenSet);
+            _previewImages.SetAccessPath(path, validateHasBeenSet);
+            _wordsNumber.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

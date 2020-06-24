@@ -103,14 +103,14 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _organizationId.SetAccessPath(path + "->WithOrganizationId()", validateHasBeenSet);
-            _principalId.SetAccessPath(path + "->WithPrincipalId()", validateHasBeenSet);
-            _principalName.SetAccessPath(path + "->WithPrincipalName()", validateHasBeenSet);
-            _principalInfo.SetAccessPath(path + "->WithPrincipalInfo()", validateHasBeenSet);
-            _repositories.SetAccessPath(path + "->WithRepositories()", validateHasBeenSet);
-            _storageLimit.SetAccessPath(path + "->WithStorageLimit()", validateHasBeenSet);
-            _downloadLimit.SetAccessPath(path + "->WithDownloadLimit()", validateHasBeenSet);
-            _uploadLimit.SetAccessPath(path + "->WithUploadLimit()", validateHasBeenSet);
+            _organizationId.SetAccessPath(path, validateHasBeenSet);
+            _principalId.SetAccessPath(path, validateHasBeenSet);
+            _principalName.SetAccessPath(path, validateHasBeenSet);
+            _principalInfo.SetAccessPath(path, validateHasBeenSet);
+            _repositories.SetAccessPath(path, validateHasBeenSet);
+            _storageLimit.SetAccessPath(path, validateHasBeenSet);
+            _downloadLimit.SetAccessPath(path, validateHasBeenSet);
+            _uploadLimit.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _addedNames.SetAccessPath(path + "->WithAddedNames()", validateHasBeenSet);
-            _removedNames.SetAccessPath(path + "->WithRemovedNames()", validateHasBeenSet);
+            _addedNames.SetAccessPath(path, validateHasBeenSet);
+            _removedNames.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

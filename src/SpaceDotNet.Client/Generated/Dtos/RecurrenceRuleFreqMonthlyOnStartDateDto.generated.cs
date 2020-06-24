@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _interval.SetAccessPath(path + "->WithInterval()", validateHasBeenSet);
+            _interval.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

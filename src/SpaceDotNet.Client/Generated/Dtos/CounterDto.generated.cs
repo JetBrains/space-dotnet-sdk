@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _resolved.SetAccessPath(path + "->WithResolved()", validateHasBeenSet);
-            _unresolved.SetAccessPath(path + "->WithUnresolved()", validateHasBeenSet);
+            _resolved.SetAccessPath(path, validateHasBeenSet);
+            _unresolved.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

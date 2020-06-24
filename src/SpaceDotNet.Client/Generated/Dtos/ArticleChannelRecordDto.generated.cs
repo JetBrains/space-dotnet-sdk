@@ -76,11 +76,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
-            _channelContent.SetAccessPath(path + "->WithChannelContent()", validateHasBeenSet);
-            _reactions.SetAccessPath(path + "->WithReactions()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
+            _channelContent.SetAccessPath(path, validateHasBeenSet);
+            _reactions.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

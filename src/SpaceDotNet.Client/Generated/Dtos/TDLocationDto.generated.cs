@@ -167,21 +167,21 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
-            _tz.SetAccessPath(path + "->WithTz()", validateHasBeenSet);
-            _workdays.SetAccessPath(path + "->WithWorkdays()", validateHasBeenSet);
-            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
-            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
-            _equipment.SetAccessPath(path + "->WithEquipment()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _address.SetAccessPath(path + "->WithAddress()", validateHasBeenSet);
-            _parent.SetAccessPath(path + "->WithParent()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _mapId.SetAccessPath(path + "->WithMapId()", validateHasBeenSet);
-            _channelId.SetAccessPath(path + "->WithChannelId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _timezone.SetAccessPath(path, validateHasBeenSet);
+            _tz.SetAccessPath(path, validateHasBeenSet);
+            _workdays.SetAccessPath(path, validateHasBeenSet);
+            _phones.SetAccessPath(path, validateHasBeenSet);
+            _emails.SetAccessPath(path, validateHasBeenSet);
+            _equipment.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _address.SetAccessPath(path, validateHasBeenSet);
+            _parent.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _mapId.SetAccessPath(path, validateHasBeenSet);
+            _channelId.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

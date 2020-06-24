@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _weekday.SetAccessPath(path + "->WithWeekday()", validateHasBeenSet);
-            _interval.SetAccessPath(path + "->WithInterval()", validateHasBeenSet);
+            _weekday.SetAccessPath(path, validateHasBeenSet);
+            _interval.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

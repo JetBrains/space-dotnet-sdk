@@ -56,9 +56,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _secretKey.SetAccessPath(path + "->WithSecretKey()", validateHasBeenSet);
-            _qrCode.SetAccessPath(path + "->WithQrCode()", validateHasBeenSet);
-            _scratchCodes.SetAccessPath(path + "->WithScratchCodes()", validateHasBeenSet);
+            _secretKey.SetAccessPath(path, validateHasBeenSet);
+            _qrCode.SetAccessPath(path, validateHasBeenSet);
+            _scratchCodes.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

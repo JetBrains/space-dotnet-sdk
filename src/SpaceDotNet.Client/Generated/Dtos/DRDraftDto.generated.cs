@@ -160,20 +160,20 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _text.SetAccessPath(path + "->WithText()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _modified.SetAccessPath(path + "->WithModified()", validateHasBeenSet);
-            _publishedFlag.SetAccessPath(path + "->WithPublishedFlag()", validateHasBeenSet);
-            _shared.SetAccessPath(path + "->WithShared()", validateHasBeenSet);
-            _accessOrdinal.SetAccessPath(path + "->WithAccessOrdinal()", validateHasBeenSet);
-            _publicationDetails.SetAccessPath(path + "->WithPublicationDetails()", validateHasBeenSet);
-            _author.SetAccessPath(path + "->WithAuthor()", validateHasBeenSet);
-            _editors.SetAccessPath(path + "->WithEditors()", validateHasBeenSet);
-            _editorsTeams.SetAccessPath(path + "->WithEditorsTeams()", validateHasBeenSet);
-            _version.SetAccessPath(path + "->WithVersion()", validateHasBeenSet);
-            _document.SetAccessPath(path + "->WithDocument()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _modified.SetAccessPath(path, validateHasBeenSet);
+            _publishedFlag.SetAccessPath(path, validateHasBeenSet);
+            _shared.SetAccessPath(path, validateHasBeenSet);
+            _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
+            _publicationDetails.SetAccessPath(path, validateHasBeenSet);
+            _author.SetAccessPath(path, validateHasBeenSet);
+            _editors.SetAccessPath(path, validateHasBeenSet);
+            _editorsTeams.SetAccessPath(path, validateHasBeenSet);
+            _version.SetAccessPath(path, validateHasBeenSet);
+            _document.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

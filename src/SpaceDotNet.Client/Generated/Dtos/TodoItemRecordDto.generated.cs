@@ -95,13 +95,13 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _created.SetAccessPath(path + "->WithCreated()", validateHasBeenSet);
-            _updated.SetAccessPath(path + "->WithUpdated()", validateHasBeenSet);
-            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
-            __status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
-            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _updated.SetAccessPath(path, validateHasBeenSet);
+            _content.SetAccessPath(path, validateHasBeenSet);
+            __status.SetAccessPath(path, validateHasBeenSet);
+            _dueDate.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

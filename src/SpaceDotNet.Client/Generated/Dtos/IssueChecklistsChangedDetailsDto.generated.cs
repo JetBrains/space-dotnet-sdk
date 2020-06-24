@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _addedChecklists.SetAccessPath(path + "->WithAddedChecklists()", validateHasBeenSet);
-            _removedChecklists.SetAccessPath(path + "->WithRemovedChecklists()", validateHasBeenSet);
+            _addedChecklists.SetAccessPath(path, validateHasBeenSet);
+            _removedChecklists.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -76,11 +76,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _dto.SetAccessPath(path + "->WithDto()", validateHasBeenSet);
-            _enums.SetAccessPath(path + "->WithEnums()", validateHasBeenSet);
-            _urlParams.SetAccessPath(path + "->WithUrlParams()", validateHasBeenSet);
-            _resources.SetAccessPath(path + "->WithResources()", validateHasBeenSet);
-            _allResources.SetAccessPath(path + "->WithAllResources()", validateHasBeenSet);
+            _dto.SetAccessPath(path, validateHasBeenSet);
+            _enums.SetAccessPath(path, validateHasBeenSet);
+            _urlParams.SetAccessPath(path, validateHasBeenSet);
+            _resources.SetAccessPath(path, validateHasBeenSet);
+            _allResources.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

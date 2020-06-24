@@ -104,14 +104,14 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _constraint.SetAccessPath(path + "->WithConstraint()", validateHasBeenSet);
-            _required.SetAccessPath(path + "->WithRequired()", validateHasBeenSet);
-            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
-            _access.SetAccessPath(path + "->WithAccess()", validateHasBeenSet);
-            _defaultValue.SetAccessPath(path + "->WithDefaultValue()", validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _key.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _constraint.SetAccessPath(path, validateHasBeenSet);
+            _required.SetAccessPath(path, validateHasBeenSet);
+            _private.SetAccessPath(path, validateHasBeenSet);
+            _access.SetAccessPath(path, validateHasBeenSet);
+            _defaultValue.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

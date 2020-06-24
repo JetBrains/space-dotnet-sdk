@@ -139,18 +139,18 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _expiresAt.SetAccessPath(path + "->WithExpiresAt()", validateHasBeenSet);
-            _inviteeEmail.SetAccessPath(path + "->WithInviteeEmail()", validateHasBeenSet);
-            _inviteeEmailBlocked.SetAccessPath(path + "->WithInviteeEmailBlocked()", validateHasBeenSet);
-            _inviteeEmailBlockedReason.SetAccessPath(path + "->WithInviteeEmailBlockedReason()", validateHasBeenSet);
-            _inviteeFirstName.SetAccessPath(path + "->WithInviteeFirstName()", validateHasBeenSet);
-            _inviteeLastName.SetAccessPath(path + "->WithInviteeLastName()", validateHasBeenSet);
-            _invitee.SetAccessPath(path + "->WithInvitee()", validateHasBeenSet);
-            _inviter.SetAccessPath(path + "->WithInviter()", validateHasBeenSet);
-            _team.SetAccessPath(path + "->WithTeam()", validateHasBeenSet);
-            _role.SetAccessPath(path + "->WithRole()", validateHasBeenSet);
-            _revoked.SetAccessPath(path + "->WithRevoked()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _expiresAt.SetAccessPath(path, validateHasBeenSet);
+            _inviteeEmail.SetAccessPath(path, validateHasBeenSet);
+            _inviteeEmailBlocked.SetAccessPath(path, validateHasBeenSet);
+            _inviteeEmailBlockedReason.SetAccessPath(path, validateHasBeenSet);
+            _inviteeFirstName.SetAccessPath(path, validateHasBeenSet);
+            _inviteeLastName.SetAccessPath(path, validateHasBeenSet);
+            _invitee.SetAccessPath(path, validateHasBeenSet);
+            _inviter.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _role.SetAccessPath(path, validateHasBeenSet);
+            _revoked.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

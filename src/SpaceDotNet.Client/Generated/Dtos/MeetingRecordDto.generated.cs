@@ -114,15 +114,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _starts.SetAccessPath(path + "->WithStarts()", validateHasBeenSet);
-            _finishes.SetAccessPath(path + "->WithFinishes()", validateHasBeenSet);
-            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
-            _allDay.SetAccessPath(path + "->WithAllDay()", validateHasBeenSet);
-            _rooms.SetAccessPath(path + "->WithRooms()", validateHasBeenSet);
-            _participants.SetAccessPath(path + "->WithParticipants()", validateHasBeenSet);
-            _article.SetAccessPath(path + "->WithArticle()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _starts.SetAccessPath(path, validateHasBeenSet);
+            _finishes.SetAccessPath(path, validateHasBeenSet);
+            _timezone.SetAccessPath(path, validateHasBeenSet);
+            _allDay.SetAccessPath(path, validateHasBeenSet);
+            _rooms.SetAccessPath(path, validateHasBeenSet);
+            _participants.SetAccessPath(path, validateHasBeenSet);
+            _article.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

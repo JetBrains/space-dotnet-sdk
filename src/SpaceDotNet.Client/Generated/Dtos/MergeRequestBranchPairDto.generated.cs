@@ -84,12 +84,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
-            _sourceBranch.SetAccessPath(path + "->WithSourceBranch()", validateHasBeenSet);
-            _targetBranch.SetAccessPath(path + "->WithTargetBranch()", validateHasBeenSet);
-            _sourceBranchRef.SetAccessPath(path + "->WithSourceBranchRef()", validateHasBeenSet);
-            _sourceBranchInfo.SetAccessPath(path + "->WithSourceBranchInfo()", validateHasBeenSet);
-            _targetBranchInfo.SetAccessPath(path + "->WithTargetBranchInfo()", validateHasBeenSet);
+            _repository.SetAccessPath(path, validateHasBeenSet);
+            _sourceBranch.SetAccessPath(path, validateHasBeenSet);
+            _targetBranch.SetAccessPath(path, validateHasBeenSet);
+            _sourceBranchRef.SetAccessPath(path, validateHasBeenSet);
+            _sourceBranchInfo.SetAccessPath(path, validateHasBeenSet);
+            _targetBranchInfo.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

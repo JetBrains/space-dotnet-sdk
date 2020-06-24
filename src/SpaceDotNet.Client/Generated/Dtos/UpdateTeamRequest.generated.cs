@@ -71,11 +71,11 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _teamNameRaw.SetAccessPath(path + "->WithTeamNameRaw()", validateHasBeenSet);
-            _teamDescription.SetAccessPath(path + "->WithTeamDescription()", validateHasBeenSet);
-            _teamEmails.SetAccessPath(path + "->WithTeamEmails()", validateHasBeenSet);
-            _parentId.SetAccessPath(path + "->WithParentId()", validateHasBeenSet);
-            _customFieldValues.SetAccessPath(path + "->WithCustomFieldValues()", validateHasBeenSet);
+            _teamNameRaw.SetAccessPath(path, validateHasBeenSet);
+            _teamDescription.SetAccessPath(path, validateHasBeenSet);
+            _teamEmails.SetAccessPath(path, validateHasBeenSet);
+            _parentId.SetAccessPath(path, validateHasBeenSet);
+            _customFieldValues.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

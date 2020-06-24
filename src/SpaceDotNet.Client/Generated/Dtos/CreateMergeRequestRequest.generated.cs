@@ -56,9 +56,9 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _sourceBranch.SetAccessPath(path + "->WithSourceBranch()", validateHasBeenSet);
-            _targetBranch.SetAccessPath(path + "->WithTargetBranch()", validateHasBeenSet);
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
+            _sourceBranch.SetAccessPath(path, validateHasBeenSet);
+            _targetBranch.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

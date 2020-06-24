@@ -86,12 +86,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _from.SetAccessPath(path + "->WithFrom()", validateHasBeenSet);
-            _to.SetAccessPath(path + "->WithTo()", validateHasBeenSet);
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _style.SetAccessPath(path + "->WithStyle()", validateHasBeenSet);
-            _hasArrow.SetAccessPath(path + "->WithHasArrow()", validateHasBeenSet);
-            _color.SetAccessPath(path + "->WithColor()", validateHasBeenSet);
+            _from.SetAccessPath(path, validateHasBeenSet);
+            _to.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _style.SetAccessPath(path, validateHasBeenSet);
+            _hasArrow.SetAccessPath(path, validateHasBeenSet);
+            _color.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

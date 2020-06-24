@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _width.SetAccessPath(path + "->WithWidth()", validateHasBeenSet);
-            _base64Bitmap.SetAccessPath(path + "->WithBase64Bitmap()", validateHasBeenSet);
+            _width.SetAccessPath(path, validateHasBeenSet);
+            _base64Bitmap.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

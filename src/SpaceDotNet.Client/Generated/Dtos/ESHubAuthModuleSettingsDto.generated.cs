@@ -83,12 +83,12 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _hubUrl.SetAccessPath(path + "->WithHubUrl()", validateHasBeenSet);
-            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
-            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
-            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
-            _orgAuthProviderName.SetAccessPath(path + "->WithOrgAuthProviderName()", validateHasBeenSet);
-            _groups.SetAccessPath(path + "->WithGroups()", validateHasBeenSet);
+            _hubUrl.SetAccessPath(path, validateHasBeenSet);
+            _clientId.SetAccessPath(path, validateHasBeenSet);
+            _clientSecret.SetAccessPath(path, validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
+            _orgAuthProviderName.SetAccessPath(path, validateHasBeenSet);
+            _groups.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

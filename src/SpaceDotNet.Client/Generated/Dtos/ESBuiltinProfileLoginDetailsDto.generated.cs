@@ -35,7 +35,7 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _passwordChangeRequest.SetAccessPath(path + "->WithPasswordChangeRequest()", validateHasBeenSet);
+            _passwordChangeRequest.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

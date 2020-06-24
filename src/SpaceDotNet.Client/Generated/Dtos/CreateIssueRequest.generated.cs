@@ -111,15 +111,15 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _title.SetAccessPath(path + "->WithTitle()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _assignee.SetAccessPath(path + "->WithAssignee()", validateHasBeenSet);
-            _status.SetAccessPath(path + "->WithStatus()", validateHasBeenSet);
-            _dueDate.SetAccessPath(path + "->WithDueDate()", validateHasBeenSet);
-            _tags.SetAccessPath(path + "->WithTags()", validateHasBeenSet);
-            _checklists.SetAccessPath(path + "->WithChecklists()", validateHasBeenSet);
-            _attachments.SetAccessPath(path + "->WithAttachments()", validateHasBeenSet);
-            _importInfo.SetAccessPath(path + "->WithImportInfo()", validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _assignee.SetAccessPath(path, validateHasBeenSet);
+            _status.SetAccessPath(path, validateHasBeenSet);
+            _dueDate.SetAccessPath(path, validateHasBeenSet);
+            _tags.SetAccessPath(path, validateHasBeenSet);
+            _checklists.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
+            _importInfo.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

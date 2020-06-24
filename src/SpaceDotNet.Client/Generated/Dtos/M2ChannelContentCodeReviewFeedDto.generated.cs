@@ -85,12 +85,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _codeReviewId.SetAccessPath(path + "->WithCodeReviewId()", validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path + "->WithNotificationDefaults()", validateHasBeenSet);
-            _codeReview.SetAccessPath(path + "->WithCodeReview()", validateHasBeenSet);
-            _participants.SetAccessPath(path + "->WithParticipants()", validateHasBeenSet);
-            _pendingMessageCounter.SetAccessPath(path + "->WithPendingMessageCounter()", validateHasBeenSet);
-            _project.SetAccessPath(path + "->WithProject()", validateHasBeenSet);
+            _codeReviewId.SetAccessPath(path, validateHasBeenSet);
+            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+            _codeReview.SetAccessPath(path, validateHasBeenSet);
+            _participants.SetAccessPath(path, validateHasBeenSet);
+            _pendingMessageCounter.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

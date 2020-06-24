@@ -39,7 +39,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _pkg.SetAccessPath(path + "->WithPkg()", validateHasBeenSet);
+            _pkg.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

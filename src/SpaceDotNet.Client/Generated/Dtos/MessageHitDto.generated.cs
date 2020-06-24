@@ -76,11 +76,11 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _score.SetAccessPath(path + "->WithScore()", validateHasBeenSet);
-            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
-            _ref.SetAccessPath(path + "->WithRef()", validateHasBeenSet);
-            _message.SetAccessPath(path + "->WithMessage()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _score.SetAccessPath(path, validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
+            _ref.SetAccessPath(path, validateHasBeenSet);
+            _message.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

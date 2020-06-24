@@ -105,14 +105,14 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _favoriteByDefault.SetAccessPath(path + "->WithFavoriteByDefault()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _private.SetAccessPath(path + "->WithPrivate()", validateHasBeenSet);
-            _addedAt.SetAccessPath(path + "->WithAddedAt()", validateHasBeenSet);
-            _pack.SetAccessPath(path + "->WithPack()", validateHasBeenSet);
-            _stickers.SetAccessPath(path + "->WithStickers()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _favoriteByDefault.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _private.SetAccessPath(path, validateHasBeenSet);
+            _addedAt.SetAccessPath(path, validateHasBeenSet);
+            _pack.SetAccessPath(path, validateHasBeenSet);
+            _stickers.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

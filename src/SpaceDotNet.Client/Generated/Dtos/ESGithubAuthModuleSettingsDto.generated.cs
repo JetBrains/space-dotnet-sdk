@@ -76,11 +76,11 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _githubUrl.SetAccessPath(path + "->WithGithubUrl()", validateHasBeenSet);
-            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
-            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
-            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
-            _organizations.SetAccessPath(path + "->WithOrganizations()", validateHasBeenSet);
+            _githubUrl.SetAccessPath(path, validateHasBeenSet);
+            _clientId.SetAccessPath(path, validateHasBeenSet);
+            _clientSecret.SetAccessPath(path, validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
+            _organizations.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

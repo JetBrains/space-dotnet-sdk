@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _oldDescription.SetAccessPath(path + "->WithOldDescription()", validateHasBeenSet);
-            _newDescription.SetAccessPath(path + "->WithNewDescription()", validateHasBeenSet);
+            _oldDescription.SetAccessPath(path, validateHasBeenSet);
+            _newDescription.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

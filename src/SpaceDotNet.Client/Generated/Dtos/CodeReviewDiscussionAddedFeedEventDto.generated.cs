@@ -39,7 +39,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _discussion.SetAccessPath(path + "->WithDiscussion()", validateHasBeenSet);
+            _discussion.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

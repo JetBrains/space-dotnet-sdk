@@ -139,18 +139,18 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _contact.SetAccessPath(path + "->WithContact()", validateHasBeenSet);
-            _totalMessages.SetAccessPath(path + "->WithTotalMessages()", validateHasBeenSet);
-            _lastMessage.SetAccessPath(path + "->WithLastMessage()", validateHasBeenSet);
-            _authors.SetAccessPath(path + "->WithAuthors()", validateHasBeenSet);
-            _commentAuthors.SetAccessPath(path + "->WithCommentAuthors()", validateHasBeenSet);
-            _participants.SetAccessPath(path + "->WithParticipants()", validateHasBeenSet);
-            _channelArchived.SetAccessPath(path + "->WithChannelArchived()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
-            _messages.SetAccessPath(path + "->WithMessages()", validateHasBeenSet);
-            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _contact.SetAccessPath(path, validateHasBeenSet);
+            _totalMessages.SetAccessPath(path, validateHasBeenSet);
+            _lastMessage.SetAccessPath(path, validateHasBeenSet);
+            _authors.SetAccessPath(path, validateHasBeenSet);
+            _commentAuthors.SetAccessPath(path, validateHasBeenSet);
+            _participants.SetAccessPath(path, validateHasBeenSet);
+            _channelArchived.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
+            _messages.SetAccessPath(path, validateHasBeenSet);
+            _content.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

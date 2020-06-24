@@ -141,18 +141,18 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _member.SetAccessPath(path + "->WithMember()", validateHasBeenSet);
-            _icon.SetAccessPath(path + "->WithIcon()", validateHasBeenSet);
-            _reason.SetAccessPath(path + "->WithReason()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _since.SetAccessPath(path + "->WithSince()", validateHasBeenSet);
-            _till.SetAccessPath(path + "->WithTill()", validateHasBeenSet);
-            _location.SetAccessPath(path + "->WithLocation()", validateHasBeenSet);
-            _available.SetAccessPath(path + "->WithAvailable()", validateHasBeenSet);
-            _approval.SetAccessPath(path + "->WithApproval()", validateHasBeenSet);
-            _customFields.SetAccessPath(path + "->WithCustomFields()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _member.SetAccessPath(path, validateHasBeenSet);
+            _icon.SetAccessPath(path, validateHasBeenSet);
+            _reason.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _since.SetAccessPath(path, validateHasBeenSet);
+            _till.SetAccessPath(path, validateHasBeenSet);
+            _location.SetAccessPath(path, validateHasBeenSet);
+            _available.SetAccessPath(path, validateHasBeenSet);
+            _approval.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

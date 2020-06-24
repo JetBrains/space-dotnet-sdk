@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _lastChanges.SetAccessPath(path + "->WithLastChanges()", validateHasBeenSet);
-            _totalChanges.SetAccessPath(path + "->WithTotalChanges()", validateHasBeenSet);
+            _lastChanges.SetAccessPath(path, validateHasBeenSet);
+            _totalChanges.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

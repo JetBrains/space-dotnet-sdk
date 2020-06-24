@@ -109,14 +109,14 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _counter.SetAccessPath(path + "->WithCounter()", validateHasBeenSet);
-            _projectId.SetAccessPath(path + "->WithProjectId()", validateHasBeenSet);
-            _authors.SetAccessPath(path + "->WithAuthors()", validateHasBeenSet);
-            _participants.SetAccessPath(path + "->WithParticipants()", validateHasBeenSet);
-            _reviewers.SetAccessPath(path + "->WithReviewers()", validateHasBeenSet);
-            _watchers.SetAccessPath(path + "->WithWatchers()", validateHasBeenSet);
-            _count.SetAccessPath(path + "->WithCount()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _counter.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
+            _authors.SetAccessPath(path, validateHasBeenSet);
+            _participants.SetAccessPath(path, validateHasBeenSet);
+            _reviewers.SetAccessPath(path, validateHasBeenSet);
+            _watchers.SetAccessPath(path, validateHasBeenSet);
+            _count.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

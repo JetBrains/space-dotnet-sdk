@@ -145,18 +145,18 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _owner.SetAccessPath(path + "->WithOwner()", validateHasBeenSet);
-            _question.SetAccessPath(path + "->WithQuestion()", validateHasBeenSet);
-            _meVote.SetAccessPath(path + "->WithMeVote()", validateHasBeenSet);
-            _countPeople.SetAccessPath(path + "->WithCountPeople()", validateHasBeenSet);
-            _anonymous.SetAccessPath(path + "->WithAnonymous()", validateHasBeenSet);
-            _closed.SetAccessPath(path + "->WithClosed()", validateHasBeenSet);
-            _extendable.SetAccessPath(path + "->WithExtendable()", validateHasBeenSet);
-            _multiChoice.SetAccessPath(path + "->WithMultiChoice()", validateHasBeenSet);
-            _ended.SetAccessPath(path + "->WithEnded()", validateHasBeenSet);
-            _expirationTime.SetAccessPath(path + "->WithExpirationTime()", validateHasBeenSet);
-            _votes.SetAccessPath(path + "->WithVotes()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _owner.SetAccessPath(path, validateHasBeenSet);
+            _question.SetAccessPath(path, validateHasBeenSet);
+            _meVote.SetAccessPath(path, validateHasBeenSet);
+            _countPeople.SetAccessPath(path, validateHasBeenSet);
+            _anonymous.SetAccessPath(path, validateHasBeenSet);
+            _closed.SetAccessPath(path, validateHasBeenSet);
+            _extendable.SetAccessPath(path, validateHasBeenSet);
+            _multiChoice.SetAccessPath(path, validateHasBeenSet);
+            _ended.SetAccessPath(path, validateHasBeenSet);
+            _expirationTime.SetAccessPath(path, validateHasBeenSet);
+            _votes.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

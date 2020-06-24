@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _channel.SetAccessPath(path + "->WithChannel()", validateHasBeenSet);
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

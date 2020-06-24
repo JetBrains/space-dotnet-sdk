@@ -93,13 +93,13 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _projectKey.SetAccessPath(path + "->WithProjectKey()", validateHasBeenSet);
-            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
-            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
-            _filename.SetAccessPath(path + "->WithFilename()", validateHasBeenSet);
-            _lineIndex.SetAccessPath(path + "->WithLineIndex()", validateHasBeenSet);
-            _lineStart.SetAccessPath(path + "->WithLineStart()", validateHasBeenSet);
-            _lineEnd.SetAccessPath(path + "->WithLineEnd()", validateHasBeenSet);
+            _projectKey.SetAccessPath(path, validateHasBeenSet);
+            _repository.SetAccessPath(path, validateHasBeenSet);
+            _revision.SetAccessPath(path, validateHasBeenSet);
+            _filename.SetAccessPath(path, validateHasBeenSet);
+            _lineIndex.SetAccessPath(path, validateHasBeenSet);
+            _lineStart.SetAccessPath(path, validateHasBeenSet);
+            _lineEnd.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

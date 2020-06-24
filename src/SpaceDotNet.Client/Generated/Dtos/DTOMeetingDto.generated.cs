@@ -240,28 +240,28 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _archived.SetAccessPath(path + "->WithArchived()", validateHasBeenSet);
-            _summary.SetAccessPath(path + "->WithSummary()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
-            _locations.SetAccessPath(path + "->WithLocations()", validateHasBeenSet);
-            _profiles.SetAccessPath(path + "->WithProfiles()", validateHasBeenSet);
-            _teams.SetAccessPath(path + "->WithTeams()", validateHasBeenSet);
-            _occurrenceRule.SetAccessPath(path + "->WithOccurrenceRule()", validateHasBeenSet);
-            _origin.SetAccessPath(path + "->WithOrigin()", validateHasBeenSet);
-            _conferenceLink.SetAccessPath(path + "->WithConferenceLink()", validateHasBeenSet);
-            _visibility.SetAccessPath(path + "->WithVisibility()", validateHasBeenSet);
-            _modificationPreference.SetAccessPath(path + "->WithModificationPreference()", validateHasBeenSet);
-            _joiningPreference.SetAccessPath(path + "->WithJoiningPreference()", validateHasBeenSet);
-            _organizer.SetAccessPath(path + "->WithOrganizer()", validateHasBeenSet);
-            _etag.SetAccessPath(path + "->WithEtag()", validateHasBeenSet);
-            _privateDataSubstituted.SetAccessPath(path + "->WithPrivateDataSubstituted()", validateHasBeenSet);
-            _canModify.SetAccessPath(path + "->WithCanModify()", validateHasBeenSet);
-            _canDelete.SetAccessPath(path + "->WithCanDelete()", validateHasBeenSet);
-            _canJoin.SetAccessPath(path + "->WithCanJoin()", validateHasBeenSet);
-            _externalParticipants.SetAccessPath(path + "->WithExternalParticipants()", validateHasBeenSet);
-            _linkToExternalSource.SetAccessPath(path + "->WithLinkToExternalSource()", validateHasBeenSet);
-            _eventAttachments.SetAccessPath(path + "->WithEventAttachments()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _archived.SetAccessPath(path, validateHasBeenSet);
+            _summary.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _locations.SetAccessPath(path, validateHasBeenSet);
+            _profiles.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
+            _occurrenceRule.SetAccessPath(path, validateHasBeenSet);
+            _origin.SetAccessPath(path, validateHasBeenSet);
+            _conferenceLink.SetAccessPath(path, validateHasBeenSet);
+            _visibility.SetAccessPath(path, validateHasBeenSet);
+            _modificationPreference.SetAccessPath(path, validateHasBeenSet);
+            _joiningPreference.SetAccessPath(path, validateHasBeenSet);
+            _organizer.SetAccessPath(path, validateHasBeenSet);
+            _etag.SetAccessPath(path, validateHasBeenSet);
+            _privateDataSubstituted.SetAccessPath(path, validateHasBeenSet);
+            _canModify.SetAccessPath(path, validateHasBeenSet);
+            _canDelete.SetAccessPath(path, validateHasBeenSet);
+            _canJoin.SetAccessPath(path, validateHasBeenSet);
+            _externalParticipants.SetAccessPath(path, validateHasBeenSet);
+            _linkToExternalSource.SetAccessPath(path, validateHasBeenSet);
+            _eventAttachments.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

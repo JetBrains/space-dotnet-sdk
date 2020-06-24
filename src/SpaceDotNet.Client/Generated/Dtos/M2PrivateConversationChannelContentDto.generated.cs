@@ -67,10 +67,10 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _channelId.SetAccessPath(path + "->WithChannelId()", validateHasBeenSet);
-            _subject.SetAccessPath(path + "->WithSubject()", validateHasBeenSet);
-            _members.SetAccessPath(path + "->WithMembers()", validateHasBeenSet);
-            _notificationDefaults.SetAccessPath(path + "->WithNotificationDefaults()", validateHasBeenSet);
+            _channelId.SetAccessPath(path, validateHasBeenSet);
+            _subject.SetAccessPath(path, validateHasBeenSet);
+            _members.SetAccessPath(path, validateHasBeenSet);
+            _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -62,10 +62,10 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _fullNameAttributeName.SetAccessPath(path + "->WithFullNameAttributeName()", validateHasBeenSet);
-            _usernameAttributeName.SetAccessPath(path + "->WithUsernameAttributeName()", validateHasBeenSet);
-            _emailAttributeName.SetAccessPath(path + "->WithEmailAttributeName()", validateHasBeenSet);
-            _groupsAttributeName.SetAccessPath(path + "->WithGroupsAttributeName()", validateHasBeenSet);
+            _fullNameAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _usernameAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _emailAttributeName.SetAccessPath(path, validateHasBeenSet);
+            _groupsAttributeName.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -115,15 +115,15 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _repository.SetAccessPath(path + "->WithRepository()", validateHasBeenSet);
-            _revision.SetAccessPath(path + "->WithRevision()", validateHasBeenSet);
-            _executionStatus.SetAccessPath(path + "->WithExecutionStatus()", validateHasBeenSet);
-            _url.SetAccessPath(path + "->WithUrl()", validateHasBeenSet);
-            _externalServiceName.SetAccessPath(path + "->WithExternalServiceName()", validateHasBeenSet);
-            _taskName.SetAccessPath(path + "->WithTaskName()", validateHasBeenSet);
-            _taskId.SetAccessPath(path + "->WithTaskId()", validateHasBeenSet);
-            _timestamp.SetAccessPath(path + "->WithTimestamp()", validateHasBeenSet);
-            _description.SetAccessPath(path + "->WithDescription()", validateHasBeenSet);
+            _repository.SetAccessPath(path, validateHasBeenSet);
+            _revision.SetAccessPath(path, validateHasBeenSet);
+            _executionStatus.SetAccessPath(path, validateHasBeenSet);
+            _url.SetAccessPath(path, validateHasBeenSet);
+            _externalServiceName.SetAccessPath(path, validateHasBeenSet);
+            _taskName.SetAccessPath(path, validateHasBeenSet);
+            _taskId.SetAccessPath(path, validateHasBeenSet);
+            _timestamp.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

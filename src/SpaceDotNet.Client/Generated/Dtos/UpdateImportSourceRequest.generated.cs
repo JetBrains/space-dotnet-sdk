@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _importerPrincipal.SetAccessPath(path + "->WithImporterPrincipal()", validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _importerPrincipal.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

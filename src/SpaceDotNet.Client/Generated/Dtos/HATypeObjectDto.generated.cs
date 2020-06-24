@@ -66,10 +66,10 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _fields.SetAccessPath(path + "->WithFields()", validateHasBeenSet);
-            _kind.SetAccessPath(path + "->WithKind()", validateHasBeenSet);
-            _nullable.SetAccessPath(path + "->WithNullable()", validateHasBeenSet);
-            _optional.SetAccessPath(path + "->WithOptional()", validateHasBeenSet);
+            _fields.SetAccessPath(path, validateHasBeenSet);
+            _kind.SetAccessPath(path, validateHasBeenSet);
+            _nullable.SetAccessPath(path, validateHasBeenSet);
+            _optional.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

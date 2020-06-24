@@ -83,12 +83,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _unit.SetAccessPath(path + "->WithUnit()", validateHasBeenSet);
-            _estimate.SetAccessPath(path + "->WithEstimate()", validateHasBeenSet);
-            _specificEstimate.SetAccessPath(path + "->WithSpecificEstimate()", validateHasBeenSet);
-            _softCap.SetAccessPath(path + "->WithSoftCap()", validateHasBeenSet);
-            _hardCap.SetAccessPath(path + "->WithHardCap()", validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _unit.SetAccessPath(path, validateHasBeenSet);
+            _estimate.SetAccessPath(path, validateHasBeenSet);
+            _specificEstimate.SetAccessPath(path, validateHasBeenSet);
+            _softCap.SetAccessPath(path, validateHasBeenSet);
+            _hardCap.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

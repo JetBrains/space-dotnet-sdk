@@ -95,13 +95,13 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path + "->WithId()", validateHasBeenSet);
-            _key.SetAccessPath(path + "->WithKey()", validateHasBeenSet);
-            _name.SetAccessPath(path + "->WithName()", validateHasBeenSet);
-            _ordinal.SetAccessPath(path + "->WithOrdinal()", validateHasBeenSet);
-            _enabled.SetAccessPath(path + "->WithEnabled()", validateHasBeenSet);
-            _iconDataURI.SetAccessPath(path + "->WithIconDataURI()", validateHasBeenSet);
-            _settings.SetAccessPath(path + "->WithSettings()", validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _key.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _ordinal.SetAccessPath(path, validateHasBeenSet);
+            _enabled.SetAccessPath(path, validateHasBeenSet);
+            _iconDataURI.SetAccessPath(path, validateHasBeenSet);
+            _settings.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

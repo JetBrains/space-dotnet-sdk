@@ -76,11 +76,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _shortInfo.SetAccessPath(path + "->WithShortInfo()", validateHasBeenSet);
-            _commits.SetAccessPath(path + "->WithCommits()", validateHasBeenSet);
-            _lostCommits.SetAccessPath(path + "->WithLostCommits()", validateHasBeenSet);
-            _discussionCounter.SetAccessPath(path + "->WithDiscussionCounter()", validateHasBeenSet);
-            _branches.SetAccessPath(path + "->WithBranches()", validateHasBeenSet);
+            _shortInfo.SetAccessPath(path, validateHasBeenSet);
+            _commits.SetAccessPath(path, validateHasBeenSet);
+            _lostCommits.SetAccessPath(path, validateHasBeenSet);
+            _discussionCounter.SetAccessPath(path, validateHasBeenSet);
+            _branches.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

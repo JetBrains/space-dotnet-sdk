@@ -55,9 +55,9 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _recipient.SetAccessPath(path + "->WithRecipient()", validateHasBeenSet);
-            _content.SetAccessPath(path + "->WithContent()", validateHasBeenSet);
-            _unfurlLinks.SetAccessPath(path + "->WithUnfurlLinks()", validateHasBeenSet);
+            _recipient.SetAccessPath(path, validateHasBeenSet);
+            _content.SetAccessPath(path, validateHasBeenSet);
+            _unfurlLinks.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

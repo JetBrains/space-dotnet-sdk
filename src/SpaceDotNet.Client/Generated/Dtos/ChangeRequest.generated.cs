@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _oldPassword.SetAccessPath(path + "->WithOldPassword()", validateHasBeenSet);
-            _newPassword.SetAccessPath(path + "->WithNewPassword()", validateHasBeenSet);
+            _oldPassword.SetAccessPath(path, validateHasBeenSet);
+            _newPassword.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

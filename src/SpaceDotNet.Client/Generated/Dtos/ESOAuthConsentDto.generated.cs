@@ -56,9 +56,9 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _clientService.SetAccessPath(path + "->WithClientService()", validateHasBeenSet);
-            _approvedScopes.SetAccessPath(path + "->WithApprovedScopes()", validateHasBeenSet);
-            _refreshTokens.SetAccessPath(path + "->WithRefreshTokens()", validateHasBeenSet);
+            _clientService.SetAccessPath(path, validateHasBeenSet);
+            _approvedScopes.SetAccessPath(path, validateHasBeenSet);
+            _refreshTokens.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

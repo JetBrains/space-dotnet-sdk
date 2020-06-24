@@ -84,12 +84,12 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _start.SetAccessPath(path + "->WithStart()", validateHasBeenSet);
-            _end.SetAccessPath(path + "->WithEnd()", validateHasBeenSet);
-            _recurrenceRule.SetAccessPath(path + "->WithRecurrenceRule()", validateHasBeenSet);
-            _allDay.SetAccessPath(path + "->WithAllDay()", validateHasBeenSet);
-            _timezone.SetAccessPath(path + "->WithTimezone()", validateHasBeenSet);
-            _parentId.SetAccessPath(path + "->WithParentId()", validateHasBeenSet);
+            _start.SetAccessPath(path, validateHasBeenSet);
+            _end.SetAccessPath(path, validateHasBeenSet);
+            _recurrenceRule.SetAccessPath(path, validateHasBeenSet);
+            _allDay.SetAccessPath(path, validateHasBeenSet);
+            _timezone.SetAccessPath(path, validateHasBeenSet);
+            _parentId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _alt.SetAccessPath(path + "->WithAlt()", validateHasBeenSet);
-            _src.SetAccessPath(path + "->WithSrc()", validateHasBeenSet);
+            _alt.SetAccessPath(path, validateHasBeenSet);
+            _src.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

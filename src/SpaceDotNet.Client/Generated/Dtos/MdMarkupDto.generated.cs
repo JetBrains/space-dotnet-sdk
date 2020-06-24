@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _unfurl.SetAccessPath(path + "->WithUnfurl()", validateHasBeenSet);
+            _unfurl.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

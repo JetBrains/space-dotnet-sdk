@@ -179,23 +179,23 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _username.SetAccessPath(path + "->WithUsername()", validateHasBeenSet);
-            _firstName.SetAccessPath(path + "->WithFirstName()", validateHasBeenSet);
-            _lastName.SetAccessPath(path + "->WithLastName()", validateHasBeenSet);
-            _emails.SetAccessPath(path + "->WithEmails()", validateHasBeenSet);
-            _phones.SetAccessPath(path + "->WithPhones()", validateHasBeenSet);
-            _birthday.SetAccessPath(path + "->WithBirthday()", validateHasBeenSet);
-            _about.SetAccessPath(path + "->WithAbout()", validateHasBeenSet);
-            _gender.SetAccessPath(path + "->WithGender()", validateHasBeenSet);
-            _messengers.SetAccessPath(path + "->WithMessengers()", validateHasBeenSet);
-            _links.SetAccessPath(path + "->WithLinks()", validateHasBeenSet);
-            _notAMember.SetAccessPath(path + "->WithNotAMember()", validateHasBeenSet);
-            _joined.SetAccessPath(path + "->WithJoined()", validateHasBeenSet);
-            _left.SetAccessPath(path + "->WithLeft()", validateHasBeenSet);
-            _speaksEnglish.SetAccessPath(path + "->WithSpeaksEnglish()", validateHasBeenSet);
-            _pictureAttachmentId.SetAccessPath(path + "->WithPictureAttachmentId()", validateHasBeenSet);
-            _avatarCropSquare.SetAccessPath(path + "->WithAvatarCropSquare()", validateHasBeenSet);
-            _customFieldValues.SetAccessPath(path + "->WithCustomFieldValues()", validateHasBeenSet);
+            _username.SetAccessPath(path, validateHasBeenSet);
+            _firstName.SetAccessPath(path, validateHasBeenSet);
+            _lastName.SetAccessPath(path, validateHasBeenSet);
+            _emails.SetAccessPath(path, validateHasBeenSet);
+            _phones.SetAccessPath(path, validateHasBeenSet);
+            _birthday.SetAccessPath(path, validateHasBeenSet);
+            _about.SetAccessPath(path, validateHasBeenSet);
+            _gender.SetAccessPath(path, validateHasBeenSet);
+            _messengers.SetAccessPath(path, validateHasBeenSet);
+            _links.SetAccessPath(path, validateHasBeenSet);
+            _notAMember.SetAccessPath(path, validateHasBeenSet);
+            _joined.SetAccessPath(path, validateHasBeenSet);
+            _left.SetAccessPath(path, validateHasBeenSet);
+            _speaksEnglish.SetAccessPath(path, validateHasBeenSet);
+            _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
+            _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
+            _customFieldValues.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

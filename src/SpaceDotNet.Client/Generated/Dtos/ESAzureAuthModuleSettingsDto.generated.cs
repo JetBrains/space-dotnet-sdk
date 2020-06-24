@@ -76,11 +76,11 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _tenantId.SetAccessPath(path + "->WithTenantId()", validateHasBeenSet);
-            _clientId.SetAccessPath(path + "->WithClientId()", validateHasBeenSet);
-            _clientSecret.SetAccessPath(path + "->WithClientSecret()", validateHasBeenSet);
-            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
-            _emailVerified.SetAccessPath(path + "->WithEmailVerified()", validateHasBeenSet);
+            _tenantId.SetAccessPath(path, validateHasBeenSet);
+            _clientId.SetAccessPath(path, validateHasBeenSet);
+            _clientSecret.SetAccessPath(path, validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
+            _emailVerified.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

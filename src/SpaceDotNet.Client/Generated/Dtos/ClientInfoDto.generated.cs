@@ -71,11 +71,11 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _os.SetAccessPath(path + "->WithOs()", validateHasBeenSet);
-            _osVersion.SetAccessPath(path + "->WithOsVersion()", validateHasBeenSet);
-            _browser.SetAccessPath(path + "->WithBrowser()", validateHasBeenSet);
-            _browserVersion.SetAccessPath(path + "->WithBrowserVersion()", validateHasBeenSet);
-            _device.SetAccessPath(path + "->WithDevice()", validateHasBeenSet);
+            _os.SetAccessPath(path, validateHasBeenSet);
+            _osVersion.SetAccessPath(path, validateHasBeenSet);
+            _browser.SetAccessPath(path, validateHasBeenSet);
+            _browserVersion.SetAccessPath(path, validateHasBeenSet);
+            _device.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

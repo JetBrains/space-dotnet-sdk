@@ -145,18 +145,18 @@ namespace SpaceDotNet.Client
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _type.SetAccessPath(path + "->WithType()", validateHasBeenSet);
-            _registerNewUsers.SetAccessPath(path + "->WithRegisterNewUsers()", validateHasBeenSet);
-            _serverUrl.SetAccessPath(path + "->WithServerUrl()", validateHasBeenSet);
-            _connectionTimeout.SetAccessPath(path + "->WithConnectionTimeout()", validateHasBeenSet);
-            _readTimeout.SetAccessPath(path + "->WithReadTimeout()", validateHasBeenSet);
-            _sslKeystore.SetAccessPath(path + "->WithSslKeystore()", validateHasBeenSet);
-            _teamMappings.SetAccessPath(path + "->WithTeamMappings()", validateHasBeenSet);
-            _referralIgnored.SetAccessPath(path + "->WithReferralIgnored()", validateHasBeenSet);
-            _filter.SetAccessPath(path + "->WithFilter()", validateHasBeenSet);
-            _bindUserDN.SetAccessPath(path + "->WithBindUserDN()", validateHasBeenSet);
-            _bindUserPassword.SetAccessPath(path + "->WithBindUserPassword()", validateHasBeenSet);
-            _attributeNames.SetAccessPath(path + "->WithAttributeNames()", validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _registerNewUsers.SetAccessPath(path, validateHasBeenSet);
+            _serverUrl.SetAccessPath(path, validateHasBeenSet);
+            _connectionTimeout.SetAccessPath(path, validateHasBeenSet);
+            _readTimeout.SetAccessPath(path, validateHasBeenSet);
+            _sslKeystore.SetAccessPath(path, validateHasBeenSet);
+            _teamMappings.SetAccessPath(path, validateHasBeenSet);
+            _referralIgnored.SetAccessPath(path, validateHasBeenSet);
+            _filter.SetAccessPath(path, validateHasBeenSet);
+            _bindUserDN.SetAccessPath(path, validateHasBeenSet);
+            _bindUserPassword.SetAccessPath(path, validateHasBeenSet);
+            _attributeNames.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
