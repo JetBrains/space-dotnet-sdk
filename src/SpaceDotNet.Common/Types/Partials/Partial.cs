@@ -121,7 +121,7 @@ namespace SpaceDotNet.Common
         /// Creates a default partial definition, fetching the default set of fields the Space API returns for <typeparamref name="T"/>.
         /// </summary>
         /// <returns>A <see cref="Partial{T}"/> that can be extended.</returns>
-        public static Partial<T> Default() => new Partial<T>().WithAllFieldsWildcard();
+        public static Partial<T> Default() => new Partial<T>();
 
         /// <summary>
         /// Creates a recursive partial definition, fetching all fields and sub-fields recursively.
