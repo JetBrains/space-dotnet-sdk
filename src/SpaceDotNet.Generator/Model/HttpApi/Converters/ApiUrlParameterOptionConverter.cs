@@ -39,10 +39,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 
         public override void Write(Utf8JsonWriter writer, ApiUrlParameterOption value, JsonSerializerOptions options)
         {
-            if (string.IsNullOrEmpty(value.ClassName))
-            {
-                value.ClassName = TypeMap.First(it => it.Value == value.GetType()).Key;
-            }
+            value.ClassName = TypeMap.First(it => it.Value == value.GetType()).Key;
             JsonSerializer.Serialize(writer, value, value.GetType(), options);
         }
     }

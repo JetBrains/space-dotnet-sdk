@@ -75,10 +75,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             indent.Increment();
             
             // When in a hierarchy with IClassNameConvertible, make sure we can capture the class name.
-            if (dtoHierarchy.Contains(nameof(IClassNameConvertible)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.Extends == null)
+            if (dtoHierarchy.Contains(nameof(IClassNameConvertible)) && apiDto.HierarchyRole != HierarchyRole.INTERFACE)
             {
+                var modifierForClassNameProperty = apiDto.Extends == null
+                    ? apiDto.HierarchyRole != HierarchyRole.SEALED && apiDto.HierarchyRole != HierarchyRole.FINAL
+                        ? "virtual" // Parent
+                        : ""
+                    : "override";   // Inheritor
+                
                 builder.AppendLine($"{indent}[JsonPropertyName(\"className\")]");
-                builder.AppendLine($"{indent}public string? ClassName {{ get; set; }}"); // TODO C# 9 make this init only
+                builder.AppendLine($"{indent}public {modifierForClassNameProperty} string? ClassName => \"{apiDto.Name}\";"); // TODO C# 9 make this init only
                 builder.AppendLine($"{indent}");
             }
                 
