@@ -30,8 +30,8 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> ConvertMarkdownToHTMLAsync(ConvertMarkdownToHTMLRequest data)
-            => await _connection.RequestResourceAsync<ConvertMarkdownToHTMLRequest, string>("POST", $"api/http/blogs/markdown2html", data);
+        public async Task<string> ConvertMarkdownToHTMLAsync(string markdown)
+            => await _connection.RequestResourceAsync<BlogsMarkdown2htmlRequest, string>("POST", $"api/http/blogs/markdown2html", new BlogsMarkdown2htmlRequest{ Markdown = markdown });
     
         public ArticleClient Articles => new ArticleClient(_connection);
         
@@ -44,14 +44,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<ArticleImportResultDto>> ImportArticlesAsync(ImportArticlesRequest data, Func<Partial<ArticleImportResultDto>, Partial<ArticleImportResultDto>>? partial = null)
-                => await _connection.RequestResourceAsync<ImportArticlesRequest, List<ArticleImportResultDto>>("POST", $"api/http/blogs/articles/import?$fields={(partial != null ? partial(new Partial<ArticleImportResultDto>()) : Partial<ArticleImportResultDto>.Default())}", data);
+            public async Task<List<ArticleImportResultDto>> ImportArticlesAsync(ImportMetadataDto metadata, List<ExternalArticleDto> articles, Func<Partial<ArticleImportResultDto>, Partial<ArticleImportResultDto>>? partial = null)
+                => await _connection.RequestResourceAsync<BlogsArticlesImportRequest, List<ArticleImportResultDto>>("POST", $"api/http/blogs/articles/import?$fields={(partial != null ? partial(new Partial<ArticleImportResultDto>()) : Partial<ArticleImportResultDto>.Default())}", new BlogsArticlesImportRequest{ Metadata = metadata, Articles = articles });
         
             public async Task<Batch<ArticleRecordDto>> GetAllArticlesAsync(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecordDto>>, Partial<Batch<ArticleRecordDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<ArticleRecordDto>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ArticleRecordDto>>()) : Partial<Batch<ArticleRecordDto>>.Default())}");
             
             public IAsyncEnumerable<ArticleRecordDto> GetAllArticlesAsyncEnumerable(string? skip = null, int? top = null, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllArticlesAsync(skip: batchSkip, top, term, dateFrom, dateTo, authorId, teamId, locationId, forProfile, partial: builder => Partial<Batch<ArticleRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecordDto>.Default())), skip);
+                => BatchEnumerator.AllItems(batchSkip => GetAllArticlesAsync(top: top, term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, skip: batchSkip, partial: builder => Partial<Batch<ArticleRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecordDto>.Default())), skip);
         
             public async Task<ArticleRecordDto> GetArticleByAliasAsync(string alias, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/alias:{alias}?$fields={(partial != null ? partial(new Partial<ArticleRecordDto>()) : Partial<ArticleRecordDto>.Default())}");

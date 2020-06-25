@@ -45,7 +45,7 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<Batch<MarketApplicationRecordDto>>("GET", $"api/http/applications/market-applications?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&sortBy={sortBy?.ToString() ?? "null"}&order={order?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<MarketApplicationRecordDto>>()) : Partial<Batch<MarketApplicationRecordDto>>.Default())}");
             
             public IAsyncEnumerable<MarketApplicationRecordDto> GetAllMarketApplicationsAsyncEnumerable(string? skip = null, int? top = null, string? term = null, MarketAppSortColumn? sortBy = null, ColumnSortOrder? order = null, Func<Partial<MarketApplicationRecordDto>, Partial<MarketApplicationRecordDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllMarketApplicationsAsync(skip: batchSkip, top, term, sortBy, order, partial: builder => Partial<Batch<MarketApplicationRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<MarketApplicationRecordDto>.Default())), skip);
+                => BatchEnumerator.AllItems(batchSkip => GetAllMarketApplicationsAsync(top: top, term: term, sortBy: sortBy, order: order, skip: batchSkip, partial: builder => Partial<Batch<MarketApplicationRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<MarketApplicationRecordDto>.Default())), skip);
         
         }
     

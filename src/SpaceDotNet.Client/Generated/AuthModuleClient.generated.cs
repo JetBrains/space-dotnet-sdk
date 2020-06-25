@@ -33,17 +33,17 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Create a new authentication module. Settings are specific to the type of authentication module being created.
         /// </summary>
-        public async Task<ESAuthModuleDto> CreateAuthModuleAsync(CreateAuthModuleRequest data, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
-            => await _connection.RequestResourceAsync<CreateAuthModuleRequest, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}", data);
+        public async Task<ESAuthModuleDto> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettingsDto settings, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
+            => await _connection.RequestResourceAsync<AuthModulesRequest, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}", new AuthModulesRequest{ Key = key, Name = name, Enabled = enabled, Settings = settings });
     
         /// <summary>
         /// Define the order of authentication modules. This affects the order of the federated authentication module buttons on the sign-in page.
         /// </summary>
-        public async Task ReorderAsync(ReorderRequest data)
-            => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", data);
+        public async Task ReorderAsync(List<string> order)
+            => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", new AuthModulesReorderRequest{ Order = order });
     
-        public async Task<SamlMetadataResponseDto> SamlMetadataAsync(string id, SamlMetadataRequest data, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>>? partial = null)
-            => await _connection.RequestResourceAsync<SamlMetadataRequest, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields={(partial != null ? partial(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default())}", data);
+        public async Task<SamlMetadataResponseDto> SamlMetadataAsync(string id, string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystoreDto? sslKeystore = null, string? contactProfileId = null, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>>? partial = null)
+            => await _connection.RequestResourceAsync<AuthModulesForIdSamlMetadataRequest, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields={(partial != null ? partial(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default())}", new AuthModulesForIdSamlMetadataRequest{ IdpUrl = idpUrl, IdpEntityId = idpEntityId, IdpCertificateSHA256 = idpCertificateSHA256, SpEntityId = spEntityId, SslKeystore = sslKeystore, ContactProfileId = contactProfileId });
     
         /// <summary>
         /// Get all authentication modules.
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Update an existing authentication module. Optional parameters will be ignored when null, and updated otherwise.
         /// </summary>
-        public async Task UpdateAuthModuleAsync(string id, UpdateAuthModuleRequest data)
-            => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", data);
+        public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettingsDto? settings = null)
+            => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", new AuthModulesForIdRequest{ Key = key, Name = name, Enabled = enabled, Settings = settings });
     
         /// <summary>
         /// Delete an existing authentication module.
@@ -80,11 +80,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<TDMemberProfileDto> TestBuiltInSettingsAsync(TestBuiltInSettingsRequest data, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
-                => await _connection.RequestResourceAsync<TestBuiltInSettingsRequest, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", data);
+            public async Task<TDMemberProfileDto> TestBuiltInSettingsAsync(ESBuiltinAuthModuleSettingsDto settings, string username, string password, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+                => await _connection.RequestResourceAsync<AuthModulesTestBuiltInRequest, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", new AuthModulesTestBuiltInRequest{ Settings = settings, Username = username, Password = password });
         
-            public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettingsAsync(TestLDAPSettingsRequest data, Func<Partial<ESDefaultProfileLoginDetailsDto>, Partial<ESDefaultProfileLoginDetailsDto>>? partial = null)
-                => await _connection.RequestResourceAsync<TestLDAPSettingsRequest, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetailsDto>()) : Partial<ESDefaultProfileLoginDetailsDto>.Default())}", data);
+            public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettingsAsync(ESLdapAuthModuleSettingsDto settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetailsDto>, Partial<ESDefaultProfileLoginDetailsDto>>? partial = null)
+                => await _connection.RequestResourceAsync<AuthModulesTestLdapRequest, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetailsDto>()) : Partial<ESDefaultProfileLoginDetailsDto>.Default())}", new AuthModulesTestLdapRequest{ Settings = settings, Username = username, Password = password });
         
         }
     
@@ -121,8 +121,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Change password for a given authentication module (id) and profile (identifier).
             /// </summary>
-            public async Task ChangeAsync(string id, string identifier, ChangeRequest data)
-                => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", data);
+            public async Task ChangeAsync(string id, string identifier, string oldPassword, string newPassword)
+                => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", new AuthModulesForIdLoginsForIdentifierChangeRequest{ OldPassword = oldPassword, NewPassword = newPassword });
         
             /// <summary>
             /// Request a password reset for a given authentication module (id) and profile (identifier).

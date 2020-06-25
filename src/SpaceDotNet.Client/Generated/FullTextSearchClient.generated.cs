@@ -51,7 +51,7 @@ namespace SpaceDotNet.Client
             /// Perform full-text search in all blogs.
             /// </summary>
             public IAsyncEnumerable<FTSBlogDto> GetAllBlogsAsyncEnumerable(string query, string? skip = null, int? top = null, Func<Partial<FTSBlogDto>, Partial<FTSBlogDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllBlogsAsync(query, skip: batchSkip, top, partial: builder => Partial<Batch<FTSBlogDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSBlogDto>.Default())), skip);
+                => BatchEnumerator.AllItems(batchSkip => GetAllBlogsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSBlogDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSBlogDto>.Default())), skip);
         
         }
     
@@ -76,7 +76,7 @@ namespace SpaceDotNet.Client
             /// Perform full-text search in all drafts.
             /// </summary>
             public IAsyncEnumerable<FTSDraftDto> GetAllDraftsAsyncEnumerable(string query, string? skip = null, int? top = null, Func<Partial<FTSDraftDto>, Partial<FTSDraftDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllDraftsAsync(query, skip: batchSkip, top, partial: builder => Partial<Batch<FTSDraftDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSDraftDto>.Default())), skip);
+                => BatchEnumerator.AllItems(batchSkip => GetAllDraftsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSDraftDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSDraftDto>.Default())), skip);
         
         }
     
@@ -101,7 +101,7 @@ namespace SpaceDotNet.Client
             /// Perform full-text search in all user profiles.
             /// </summary>
             public IAsyncEnumerable<FTSProfileDto> GetAllProfilesAsyncEnumerable(string query, string? skip = null, int? top = null, Func<Partial<FTSProfileDto>, Partial<FTSProfileDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesAsync(query, skip: batchSkip, top, partial: builder => Partial<Batch<FTSProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSProfileDto>.Default())), skip);
+                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSProfileDto>.Default())), skip);
         
         }
     
@@ -126,7 +126,7 @@ namespace SpaceDotNet.Client
             /// Perform full-text search in all supported entities.
             /// </summary>
             public IAsyncEnumerable<EntityHitDto> GetAllSearchAsyncEnumerable(string query, string? skip = null, int? top = null, Func<Partial<EntityHitDto>, Partial<EntityHitDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllSearchAsync(query, skip: batchSkip, top, partial: builder => Partial<Batch<EntityHitDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHitDto>.Default())), skip);
+                => BatchEnumerator.AllItems(batchSkip => GetAllSearchAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<EntityHitDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHitDto>.Default())), skip);
         
         }
     
@@ -151,7 +151,7 @@ namespace SpaceDotNet.Client
             /// Perform full-text search in all teams.
             /// </summary>
             public IAsyncEnumerable<FTSTeamDto> GetAllTeamsAsyncEnumerable(string query, string? skip = null, int? top = null, Func<Partial<FTSTeamDto>, Partial<FTSTeamDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllTeamsAsync(query, skip: batchSkip, top, partial: builder => Partial<Batch<FTSTeamDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSTeamDto>.Default())), skip);
+                => BatchEnumerator.AllItems(batchSkip => GetAllTeamsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSTeamDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSTeamDto>.Default())), skip);
         
         }
     

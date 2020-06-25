@@ -30,14 +30,14 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ImportSourceDto> CreateImportSourceAsync(CreateImportSourceRequest data, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>>? partial = null)
-            => await _connection.RequestResourceAsync<CreateImportSourceRequest, ImportSourceDto>("POST", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default())}", data);
+        public async Task<ImportSourceDto> CreateImportSourceAsync(string name, string? importerPrincipal = null, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>>? partial = null)
+            => await _connection.RequestResourceAsync<ImportSourcesRequest, ImportSourceDto>("POST", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default())}", new ImportSourcesRequest{ Name = name, ImporterPrincipal = importerPrincipal });
     
         public async Task<List<ImportSourceDto>> GetAllImportSourcesAsync(Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>>? partial = null)
             => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default())}");
     
-        public async Task UpdateImportSourceAsync(string sourceId, UpdateImportSourceRequest data)
-            => await _connection.RequestResourceAsync("PATCH", $"api/http/import-sources/{sourceId}", data);
+        public async Task UpdateImportSourceAsync(string sourceId, string name, string importerPrincipal)
+            => await _connection.RequestResourceAsync("PATCH", $"api/http/import-sources/{sourceId}", new ImportSourcesForSourceIdRequest{ Name = name, ImporterPrincipal = importerPrincipal });
     
         public async Task DeleteImportSourceAsync(string sourceId)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");

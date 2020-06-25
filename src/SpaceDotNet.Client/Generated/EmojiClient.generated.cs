@@ -33,8 +33,8 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Delete an emoji by its name.
         /// </summary>
-        public async Task DeleteAsync(DeleteRequest data)
-            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/delete", data);
+        public async Task DeleteAsync(string emoji)
+            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/delete", new EmojisDeleteRequest{ Emoji = emoji });
     
         /// <summary>
         /// Check whether a given emoji name exists.

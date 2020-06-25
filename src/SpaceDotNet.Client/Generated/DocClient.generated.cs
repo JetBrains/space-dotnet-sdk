@@ -41,14 +41,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DRDraftDto> CreateDraftAsync(CreateDraftRequest data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CreateDraftRequest, DRDraftDto>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", data);
+            public async Task<DRDraftDto> CreateDraftAsync(DraftDocumentType type, string? title = null, string? text = null, long? textVersion = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
+                => await _connection.RequestResourceAsync<DocsDraftsRequest, DRDraftDto>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", new DocsDraftsRequest{ Title = title, Text = text, TextVersion = textVersion, Type = type, PublicationDetails = publicationDetails });
         
             public async Task<DRDraftDto> GetDraftAsync(string id, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
                 => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}");
         
-            public async Task<DRDraftDto> UpdateDraftAsync(string id, UpdateDraftRequest data, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
-                => await _connection.RequestResourceAsync<UpdateDraftRequest, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", data);
+            public async Task<DRDraftDto> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
+                => await _connection.RequestResourceAsync<DocsDraftsForIdRequest, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", new DocsDraftsForIdRequest{ Title = title, Text = text, TextVersion = textVersion, Type = type, PublicationDetails = publicationDetails });
         
             public async Task DeleteDraftAsync(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task CreateProfileAsync(string id, CreateProfileRequest data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/profiles", data);
+                    public async Task CreateProfileAsync(string id, string editorId)
+                        => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/profiles", new DocsDraftsForIdEditorsProfilesRequest{ EditorId = editorId });
                 
                     public async Task<List<TDMemberProfileDto>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                         => await _connection.RequestResourceAsync<List<TDMemberProfileDto>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task CreateTeamAsync(string id, CreateTeamRequest data)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/teams", data);
+                    public async Task CreateTeamAsync(string id, string teamId)
+                        => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/teams", new DocsDraftsForIdEditorsTeamsRequest{ TeamId = teamId });
                 
                     public async Task<List<TDTeamDto>> GetAllTeamsAsync(string id, Func<Partial<TDTeamDto>, Partial<TDTeamDto>>? partial = null)
                         => await _connection.RequestResourceAsync<List<TDTeamDto>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields={(partial != null ? partial(new Partial<TDTeamDto>()) : Partial<TDTeamDto>.Default())}");
