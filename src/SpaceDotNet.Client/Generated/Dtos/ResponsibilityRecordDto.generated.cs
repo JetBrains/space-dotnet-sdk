@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class ResponsibilityRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ResponsibilityRecordDto() { }
+        
+        public ResponsibilityRecordDto(string responsibilityId, string summary, List<AssignedPersonDto> assignedPeople, string? notes = null)
+        {
+            ResponsibilityId = responsibilityId;
+            Summary = summary;
+            Notes = notes;
+            AssignedPeople = assignedPeople;
+        }
+        
         private PropertyValue<string> _responsibilityId = new PropertyValue<string>(nameof(ResponsibilityRecordDto), nameof(ResponsibilityId));
         
         [Required]

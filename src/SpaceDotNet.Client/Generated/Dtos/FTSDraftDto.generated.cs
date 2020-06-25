@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class FTSDraftDto
          : IPropagatePropertyAccessPath
     {
+        public FTSDraftDto() { }
+        
+        public FTSDraftDto(string id, string title, TDMemberProfileDto author, SpaceTime date, List<FTSSnippetDto> snippets)
+        {
+            Id = id;
+            Title = title;
+            Author = author;
+            Date = date;
+            Snippets = snippets;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(FTSDraftDto), nameof(Id));
         
         [Required]

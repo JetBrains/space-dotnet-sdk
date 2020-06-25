@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class CustomFieldsForTypeKeyForEntityIdValuesRequest
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldsForTypeKeyForEntityIdValuesRequest() { }
+        
+        public CustomFieldsForTypeKeyForEntityIdValuesRequest(List<CustomFieldValueDto> values)
+        {
+            Values = values;
+        }
+        
         private PropertyValue<List<CustomFieldValueDto>> _values = new PropertyValue<List<CustomFieldValueDto>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesRequest), nameof(Values));
         
         [Required]

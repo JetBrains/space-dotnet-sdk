@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class RevisionInfoDto
          : IPropagatePropertyAccessPath
     {
+        public RevisionInfoDto() { }
+        
+        public RevisionInfoDto(string revision, long date, string message)
+        {
+            Revision = revision;
+            Date = date;
+            Message = message;
+        }
+        
         private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RevisionInfoDto), nameof(Revision));
         
         [Required]

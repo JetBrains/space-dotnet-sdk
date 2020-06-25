@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class ImportSourceDto
          : IPropagatePropertyAccessPath
     {
+        public ImportSourceDto() { }
+        
+        public ImportSourceDto(string id, bool archived, CPrincipalDto importer, string name)
+        {
+            Id = id;
+            Archived = archived;
+            Importer = importer;
+            Name = name;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportSourceDto), nameof(Id));
         
         [Required]

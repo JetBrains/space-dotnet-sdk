@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeInfoTodoFiltersRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeInfoTodoFiltersRequest() { }
+        
+        public TeamDirectoryProfilesMeInfoTodoFiltersRequest(bool todoFilters)
+        {
+            TodoFilters = todoFilters;
+        }
+        
         private PropertyValue<bool> _todoFilters = new PropertyValue<bool>(nameof(TeamDirectoryProfilesMeInfoTodoFiltersRequest), nameof(TodoFilters));
         
         [Required]

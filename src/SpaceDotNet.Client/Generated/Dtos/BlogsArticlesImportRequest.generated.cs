@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class BlogsArticlesImportRequest
          : IPropagatePropertyAccessPath
     {
+        public BlogsArticlesImportRequest() { }
+        
+        public BlogsArticlesImportRequest(ImportMetadataDto metadata, List<ExternalArticleDto> articles)
+        {
+            Metadata = metadata;
+            Articles = articles;
+        }
+        
         private PropertyValue<ImportMetadataDto> _metadata = new PropertyValue<ImportMetadataDto>(nameof(BlogsArticlesImportRequest), nameof(Metadata));
         
         [Required]

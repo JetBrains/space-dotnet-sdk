@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ESApprovedScopeDto
          : IPropagatePropertyAccessPath
     {
+        public ESApprovedScopeDto() { }
+        
+        public ESApprovedScopeDto(string id, string scope, bool offlineAllowed)
+        {
+            Id = id;
+            Scope = scope;
+            OfflineAllowed = offlineAllowed;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApprovedScopeDto), nameof(Id));
         
         [Required]

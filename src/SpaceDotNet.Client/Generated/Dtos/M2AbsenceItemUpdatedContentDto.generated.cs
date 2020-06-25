@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2AbsenceItemUpdatedContent";
         
+        public M2AbsenceItemUpdatedContentDto() { }
+        
+        public M2AbsenceItemUpdatedContentDto(AbsenceRecordDto absence, Modification<AbsenceReasonRecordDto>? reason = null, Modification<string>? description = null, Modification<SpaceDate>? since = null, Modification<SpaceDate>? till = null, TDMemberProfileDto? by = null)
+        {
+            Absence = absence;
+            Reason = reason;
+            Description = description;
+            Since = since;
+            Till = till;
+            By = by;
+        }
+        
         private PropertyValue<AbsenceRecordDto> _absence = new PropertyValue<AbsenceRecordDto>(nameof(M2AbsenceItemUpdatedContentDto), nameof(Absence));
         
         [Required]

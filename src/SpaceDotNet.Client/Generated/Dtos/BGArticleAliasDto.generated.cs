@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class BGArticleAliasDto
          : IPropagatePropertyAccessPath
     {
+        public BGArticleAliasDto() { }
+        
+        public BGArticleAliasDto(string alias, SpaceTime created)
+        {
+            Alias = alias;
+            Created = created;
+        }
+        
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(BGArticleAliasDto), nameof(Alias));
         
         [Required]

@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class FeatureFlagDto
          : IPropagatePropertyAccessPath
     {
+        public FeatureFlagDto() { }
+        
+        public FeatureFlagDto(string name, string description, FeatureFlagStatus status, string owner, SpaceDate? introduced = null)
+        {
+            Name = name;
+            Description = description;
+            Status = status;
+            Owner = owner;
+            Introduced = introduced;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(FeatureFlagDto), nameof(Name));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class MCElementDto
          : IPropagatePropertyAccessPath
     {
+        public MCElementDto() { }
+        
+        public MCElementDto(string defaultText, MCElementDetailsDto? details = null)
+        {
+            DefaultText = defaultText;
+            Details = details;
+        }
+        
         private PropertyValue<string> _defaultText = new PropertyValue<string>(nameof(MCElementDto), nameof(DefaultText));
         
         [Required]

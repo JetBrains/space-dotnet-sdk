@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class ImageAttachmentVariantDto
          : IPropagatePropertyAccessPath
     {
+        public ImageAttachmentVariantDto() { }
+        
+        public ImageAttachmentVariantDto(string id, int width, int height, string? name = null)
+        {
+            Id = id;
+            Name = name;
+            Width = width;
+            Height = height;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImageAttachmentVariantDto), nameof(Id));
         
         [Required]

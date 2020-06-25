@@ -24,6 +24,22 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryLocationsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryLocationsRequest() { }
+        
+        public TeamDirectoryLocationsRequest(string name, string? timezone = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null)
+        {
+            Name = name;
+            Timezone = timezone;
+            Workdays = workdays;
+            Phones = phones;
+            Emails = emails;
+            Equipment = equipment;
+            Description = description;
+            Address = address;
+            Type = type;
+            ParentId = parentId;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryLocationsRequest), nameof(Name));
         
         [Required]

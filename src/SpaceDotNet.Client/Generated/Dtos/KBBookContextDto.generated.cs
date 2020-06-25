@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public interface KBBookContextDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static KbGlobalContextDto KbGlobalContext()
+            => new KbGlobalContextDto();
+        
+        public static KbPersonalContextDto KbPersonalContext(TDMemberProfileDto owner)
+            => new KbPersonalContextDto(owner: owner);
+        
+        public static KbProjectContextDto KbProjectContext(PRProjectDto project)
+            => new KbProjectContextDto(project: project);
+        
     }
     
 }

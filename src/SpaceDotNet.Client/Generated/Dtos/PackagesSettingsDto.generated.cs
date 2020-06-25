@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public sealed class PackagesSettingsDto
          : IPropagatePropertyAccessPath
     {
+        public PackagesSettingsDto() { }
+        
+        public PackagesSettingsDto(long organizationId, long principalId, string principalName, string principalInfo, List<MapEntry<string, PackageRepositorySettingsDto>> repositories, DTOLimitDto? storageLimit = null, DTOLimitDto? downloadLimit = null, DTOLimitDto? uploadLimit = null)
+        {
+            OrganizationId = organizationId;
+            PrincipalId = principalId;
+            PrincipalName = principalName;
+            PrincipalInfo = principalInfo;
+            Repositories = repositories;
+            StorageLimit = storageLimit;
+            DownloadLimit = downloadLimit;
+            UploadLimit = uploadLimit;
+        }
+        
         private PropertyValue<long> _organizationId = new PropertyValue<long>(nameof(PackagesSettingsDto), nameof(OrganizationId));
         
         [Required]

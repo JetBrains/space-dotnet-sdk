@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContactQuickInfoDefault";
         
+        public M2ChannelContactQuickInfoDefaultDto() { }
+        
+        public M2ChannelContactQuickInfoDefaultDto(string name, string key)
+        {
+            Name = name;
+            Key = key;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefaultDto), nameof(Name));
         
         [Required]

@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningIssuesRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningIssuesRequest() { }
+        
+        public ProjectsForProjectPlanningIssuesRequest(string title, string status, List<string> tags, List<string> checklists, string? description = null, string? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
+        {
+            Title = title;
+            Description = description;
+            Assignee = assignee;
+            Status = status;
+            DueDate = dueDate;
+            Tags = tags;
+            Checklists = checklists;
+            Attachments = attachments;
+            ImportInfo = importInfo;
+        }
+        
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesRequest), nameof(Title));
         
         [Required]

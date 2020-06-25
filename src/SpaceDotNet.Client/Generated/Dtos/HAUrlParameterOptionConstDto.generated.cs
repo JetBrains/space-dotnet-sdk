@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "HA_UrlParameterOption.Const";
         
+        public HAUrlParameterOptionConstDto() { }
+        
+        public HAUrlParameterOptionConstDto(string value, string optionName, HADeprecationDto? deprecation = null)
+        {
+            Value = value;
+            OptionName = optionName;
+            Deprecation = deprecation;
+        }
+        
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAUrlParameterOptionConstDto), nameof(Value));
         
         [Required]

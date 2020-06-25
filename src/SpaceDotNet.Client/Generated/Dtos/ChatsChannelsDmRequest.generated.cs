@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ChatsChannelsDmRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsChannelsDmRequest() { }
+        
+        public ChatsChannelsDmRequest(string profile)
+        {
+            Profile = profile;
+        }
+        
         private PropertyValue<string> _profile = new PropertyValue<string>(nameof(ChatsChannelsDmRequest), nameof(Profile));
         
         [Required]

@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_GoogleAuthModuleSettings";
         
+        public ESGoogleAuthModuleSettingsDto() { }
+        
+        public ESGoogleAuthModuleSettingsDto(string clientId, string clientSecret, bool registerNewUsers, List<string> domains)
+        {
+            ClientId = clientId;
+            ClientSecret = clientSecret;
+            RegisterNewUsers = registerNewUsers;
+            Domains = domains;
+        }
+        
         private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettingsDto), nameof(ClientId));
         
         [Required]

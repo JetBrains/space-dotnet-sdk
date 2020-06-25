@@ -27,6 +27,20 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_SamlAuthModuleSettings";
         
+        public ESSamlAuthModuleSettingsDto() { }
+        
+        public ESSamlAuthModuleSettingsDto(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, bool registerNewUsers, ESSamlAttributeNamesDto attributeNames, SSLKeystoreDto? sslKeystore = null, string? contactProfileId = null)
+        {
+            IdpUrl = idpUrl;
+            IdpEntityId = idpEntityId;
+            IdpCertificateSHA256 = idpCertificateSHA256;
+            SpEntityId = spEntityId;
+            SslKeystore = sslKeystore;
+            RegisterNewUsers = registerNewUsers;
+            ContactProfileId = contactProfileId;
+            AttributeNames = attributeNames;
+        }
+        
         private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(ESSamlAuthModuleSettingsDto), nameof(IdpUrl));
         
         [Required]

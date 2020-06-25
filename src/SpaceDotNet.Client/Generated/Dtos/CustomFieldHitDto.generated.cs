@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class CustomFieldHitDto
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldHitDto() { }
+        
+        public CustomFieldHitDto(string name, string value)
+        {
+            Name = name;
+            Value = value;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomFieldHitDto), nameof(Name));
         
         [Required]

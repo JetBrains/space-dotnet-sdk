@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "DocumentPublicationItem";
         
+        public DocumentPublicationItemDto() { }
+        
+        public DocumentPublicationItemDto(string documentId, DraftDocumentType documentType)
+        {
+            DocumentId = documentId;
+            DocumentType = documentType;
+        }
+        
         private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(DocumentPublicationItemDto), nameof(DocumentId));
         
         [Required]

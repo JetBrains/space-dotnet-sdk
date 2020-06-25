@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class DTOLimitDto
          : IPropagatePropertyAccessPath
     {
+        public DTOLimitDto() { }
+        
+        public DTOLimitDto(string name, LimitUnit unit, long estimate, long? specificEstimate = null, long? softCap = null, long? hardCap = null)
+        {
+            Name = name;
+            Unit = unit;
+            Estimate = estimate;
+            SpecificEstimate = specificEstimate;
+            SoftCap = softCap;
+            HardCap = hardCap;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(DTOLimitDto), nameof(Name));
         
         [Required]

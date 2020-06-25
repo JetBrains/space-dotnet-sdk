@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public class AuthModulesForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public AuthModulesForIdRequest() { }
+        
+        public AuthModulesForIdRequest(string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettingsDto? settings = null)
+        {
+            Key = key;
+            Name = name;
+            Enabled = enabled;
+            Settings = settings;
+        }
+        
         private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(AuthModulesForIdRequest), nameof(Key));
         
         [JsonPropertyName("key")]

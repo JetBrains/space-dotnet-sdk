@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "UnfurlDetailsCodeSnippet";
         
+        public UnfurlDetailsCodeSnippetDto() { }
+        
+        public UnfurlDetailsCodeSnippetDto(CodeSnippetAnchorDto anchor, List<CodeLineDto> lines)
+        {
+            Anchor = anchor;
+            Lines = lines;
+        }
+        
         private PropertyValue<CodeSnippetAnchorDto> _anchor = new PropertyValue<CodeSnippetAnchorDto>(nameof(UnfurlDetailsCodeSnippetDto), nameof(Anchor));
         
         [Required]

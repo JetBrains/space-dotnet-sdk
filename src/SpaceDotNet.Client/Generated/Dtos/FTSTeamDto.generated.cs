@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class FTSTeamDto
          : IPropagatePropertyAccessPath
     {
+        public FTSTeamDto() { }
+        
+        public FTSTeamDto(string id, string name, List<FTSSnippetDto> snippets, string? description = null)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Snippets = snippets;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(FTSTeamDto), nameof(Id));
         
         [Required]

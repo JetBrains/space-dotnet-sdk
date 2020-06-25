@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class PermissionSnapshotEntryDTODto
          : IPropagatePropertyAccessPath
     {
+        public PermissionSnapshotEntryDTODto() { }
+        
+        public PermissionSnapshotEntryDTODto(int principalIndex, int rightIndex, bool allTargets, List<int> targetIndices)
+        {
+            PrincipalIndex = principalIndex;
+            RightIndex = rightIndex;
+            AllTargets = allTargets;
+            TargetIndices = targetIndices;
+        }
+        
         private PropertyValue<int> _principalIndex = new PropertyValue<int>(nameof(PermissionSnapshotEntryDTODto), nameof(PrincipalIndex));
         
         [Required]

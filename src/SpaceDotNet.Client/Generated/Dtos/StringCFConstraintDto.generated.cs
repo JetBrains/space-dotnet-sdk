@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "StringCFConstraint";
         
+        public StringCFConstraintDto() { }
+        
+        public StringCFConstraintDto(int? min = null, int? max = null, string? pattern = null, string? message = null)
+        {
+            Min = min;
+            Max = max;
+            Pattern = pattern;
+            Message = message;
+        }
+        
         private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(StringCFConstraintDto), nameof(Min));
         
         [JsonPropertyName("min")]

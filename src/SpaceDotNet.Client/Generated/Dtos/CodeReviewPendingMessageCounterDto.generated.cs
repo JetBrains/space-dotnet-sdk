@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class CodeReviewPendingMessageCounterDto
          : IPropagatePropertyAccessPath
     {
+        public CodeReviewPendingMessageCounterDto() { }
+        
+        public CodeReviewPendingMessageCounterDto(string id, int count, bool archived)
+        {
+            Id = id;
+            Count = count;
+            Archived = archived;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewPendingMessageCounterDto), nameof(Id));
         
         [Required]

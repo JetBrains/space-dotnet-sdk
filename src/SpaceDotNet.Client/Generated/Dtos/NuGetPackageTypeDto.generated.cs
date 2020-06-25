@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "NuGetPackageType";
         
+        public NuGetPackageTypeDto() { }
+        
+        public NuGetPackageTypeDto(string id)
+        {
+            Id = id;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(NuGetPackageTypeDto), nameof(Id));
         
         [Required]

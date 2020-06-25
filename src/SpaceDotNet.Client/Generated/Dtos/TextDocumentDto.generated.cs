@@ -24,6 +24,12 @@ namespace SpaceDotNet.Client
     public interface TextDocumentDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static CollabDocumentDto CollabDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null)
+            => new CollabDocumentDto(id: id, resetCounter: resetCounter, type: type, text: text, version: null);
+        
+        public static UneditableDocumentDto UneditableDocument(DraftDocumentType type)
+            => new UneditableDocumentDto(type: type);
+        
     }
     
 }

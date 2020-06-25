@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class CodeReviewDetailedInfoDto
          : IPropagatePropertyAccessPath
     {
+        public CodeReviewDetailedInfoDto() { }
+        
+        public CodeReviewDetailedInfoDto(CodeReviewRecordDto shortInfo, List<RevisionsInReviewDto> commits, List<RevisionsInReviewDto> lostCommits, CodeReviewDiscussionCounterDto discussionCounter, List<TrackedBranchesInReviewDto> branches)
+        {
+            ShortInfo = shortInfo;
+            Commits = commits;
+            LostCommits = lostCommits;
+            DiscussionCounter = discussionCounter;
+            Branches = branches;
+        }
+        
         private PropertyValue<CodeReviewRecordDto> _shortInfo = new PropertyValue<CodeReviewRecordDto>(nameof(CodeReviewDetailedInfoDto), nameof(ShortInfo));
         
         [Required]

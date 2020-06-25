@@ -27,6 +27,22 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ExternalStatusSucceedItemContent";
         
+        public M2ExternalStatusSucceedItemContentDto() { }
+        
+        public M2ExternalStatusSucceedItemContentDto(string repository, string branch, string url, string externalServiceName, string taskName, string? projectId = null, RevisionAuthorInfoDto? revisionInfo = null, LastChangesDto? changesInfo = null, long? timestamp = null, string? description = null)
+        {
+            ProjectId = projectId;
+            Repository = repository;
+            Branch = branch;
+            RevisionInfo = revisionInfo;
+            ChangesInfo = changesInfo;
+            Url = url;
+            ExternalServiceName = externalServiceName;
+            TaskName = taskName;
+            Timestamp = timestamp;
+            Description = description;
+        }
+        
         private PropertyValue<string?> _projectId = new PropertyValue<string?>(nameof(M2ExternalStatusSucceedItemContentDto), nameof(ProjectId));
         
         [JsonPropertyName("projectId")]

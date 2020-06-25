@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class MessageInfoDto
          : IPropagatePropertyAccessPath
     {
+        public MessageInfoDto() { }
+        
+        public MessageInfoDto(string id, string text, long time, CPrincipalDto author, string? attachments = null)
+        {
+            Id = id;
+            Text = text;
+            Time = time;
+            Author = author;
+            Attachments = attachments;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageInfoDto), nameof(Id));
         
         [Required]

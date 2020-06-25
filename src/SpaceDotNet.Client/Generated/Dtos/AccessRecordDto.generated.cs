@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class AccessRecordDto
          : IPropagatePropertyAccessPath
     {
+        public AccessRecordDto() { }
+        
+        public AccessRecordDto(SpaceTime time, string address, string? userAgent = null)
+        {
+            Time = time;
+            Address = address;
+            UserAgent = userAgent;
+        }
+        
         private PropertyValue<SpaceTime> _time = new PropertyValue<SpaceTime>(nameof(AccessRecordDto), nameof(Time));
         
         [Required]

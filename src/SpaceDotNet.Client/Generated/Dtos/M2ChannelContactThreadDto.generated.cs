@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContactThread";
         
+        public M2ChannelContactThreadDto() { }
+        
+        public M2ChannelContactThreadDto(M2ChannelRecordDto parent, string? text = null, string? messageId = null, TDMemberProfileDto? author = null, CPrincipalDto? messageAuthor = null, string? attachments = null)
+        {
+            Parent = parent;
+            Text = text;
+            MessageId = messageId;
+            Author = author;
+            MessageAuthor = messageAuthor;
+            Attachments = attachments;
+        }
+        
         private PropertyValue<M2ChannelRecordDto> _parent = new PropertyValue<M2ChannelRecordDto>(nameof(M2ChannelContactThreadDto), nameof(Parent));
         
         [Required]

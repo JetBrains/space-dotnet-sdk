@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentMention";
         
+        public M2ChannelContentMentionDto() { }
+        
+        public M2ChannelContentMentionDto(ChannelItemRecordDto record, M2ChannelRecordDto parent)
+        {
+            Record = record;
+            Parent = parent;
+        }
+        
         private PropertyValue<ChannelItemRecordDto> _record = new PropertyValue<ChannelItemRecordDto>(nameof(M2ChannelContentMentionDto), nameof(Record));
         
         [Required]

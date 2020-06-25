@@ -28,6 +28,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "DiffSide";
         
+        public static DiffSideEmptyDto Empty(string revision)
+            => new DiffSideEmptyDto(revision: revision);
+        
+        public static DiffSideNonEmptyDto NonEmpty(string revision, string path)
+            => new DiffSideNonEmptyDto(revision: revision, path: path);
+        
+        public DiffSideDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

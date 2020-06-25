@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class AuthModulesForIdLoginsForIdentifierChangeRequest
          : IPropagatePropertyAccessPath
     {
+        public AuthModulesForIdLoginsForIdentifierChangeRequest() { }
+        
+        public AuthModulesForIdLoginsForIdentifierChangeRequest(string oldPassword, string newPassword)
+        {
+            OldPassword = oldPassword;
+            NewPassword = newPassword;
+        }
+        
         private PropertyValue<string> _oldPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangeRequest), nameof(OldPassword));
         
         [Required]

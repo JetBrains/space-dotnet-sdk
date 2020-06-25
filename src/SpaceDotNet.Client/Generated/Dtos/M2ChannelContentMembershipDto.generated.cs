@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentMembership";
         
+        public M2ChannelContentMembershipDto() { }
+        
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

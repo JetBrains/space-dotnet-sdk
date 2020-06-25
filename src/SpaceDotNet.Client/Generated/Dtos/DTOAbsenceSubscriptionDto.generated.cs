@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class DTOAbsenceSubscriptionDto
          : IPropagatePropertyAccessPath
     {
+        public DTOAbsenceSubscriptionDto() { }
+        
+        public DTOAbsenceSubscriptionDto(string id, TDLocationDto? location = null, TDTeamDto? team = null, AbsenceReasonRecordDto? reason = null)
+        {
+            Id = id;
+            Location = location;
+            Team = team;
+            Reason = reason;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DTOAbsenceSubscriptionDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningTagsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningTagsRequest() { }
+        
+        public ProjectsForProjectPlanningTagsRequest(List<string> path, string? parentTagId = null)
+        {
+            ParentTagId = parentTagId;
+            Path = path;
+        }
+        
         private PropertyValue<string?> _parentTagId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningTagsRequest), nameof(ParentTagId));
         
         [JsonPropertyName("parentTagId")]

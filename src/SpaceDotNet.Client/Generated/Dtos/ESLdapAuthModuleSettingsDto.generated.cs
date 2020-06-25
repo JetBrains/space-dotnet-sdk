@@ -27,6 +27,24 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_LdapAuthModuleSettings";
         
+        public ESLdapAuthModuleSettingsDto() { }
+        
+        public ESLdapAuthModuleSettingsDto(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMappingDto> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNamesDto attributeNames, SSLKeystoreDto? sslKeystore = null)
+        {
+            Type = type;
+            RegisterNewUsers = registerNewUsers;
+            ServerUrl = serverUrl;
+            ConnectionTimeout = connectionTimeout;
+            ReadTimeout = readTimeout;
+            SslKeystore = sslKeystore;
+            TeamMappings = teamMappings;
+            ReferralIgnored = referralIgnored;
+            Filter = filter;
+            BindUserDN = bindUserDN;
+            BindUserPassword = bindUserPassword;
+            AttributeNames = attributeNames;
+        }
+        
         private PropertyValue<LdapModuleType> _type = new PropertyValue<LdapModuleType>(nameof(ESLdapAuthModuleSettingsDto), nameof(Type));
         
         [Required]

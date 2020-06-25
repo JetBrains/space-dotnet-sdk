@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class MembershipEventDto
          : IPropagatePropertyAccessPath
     {
+        public MembershipEventDto() { }
+        
+        public MembershipEventDto(TDMemberProfileDto profile, List<TDMembershipDto> membership)
+        {
+            Profile = profile;
+            Membership = membership;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(MembershipEventDto), nameof(Profile));
         
         [Required]

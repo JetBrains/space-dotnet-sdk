@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class PackageRepositorySettingsDto
          : IPropagatePropertyAccessPath
     {
+        public PackageRepositorySettingsDto() { }
+        
+        public PackageRepositorySettingsDto(long id, string name, List<PackagesPermission> permissions, ESPackageRepositorySettingsDto? settings = null)
+        {
+            Id = id;
+            Name = name;
+            Settings = settings;
+            Permissions = permissions;
+        }
+        
         private PropertyValue<long> _id = new PropertyValue<long>(nameof(PackageRepositorySettingsDto), nameof(Id));
         
         [Required]

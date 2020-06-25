@@ -28,6 +28,29 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "RecurrenceRuleFreq";
         
+        public static RecurrenceRuleFreqDailyDto Daily(int interval)
+            => new RecurrenceRuleFreqDailyDto(interval: interval);
+        
+        public static RecurrenceRuleFreqMonthlyOnDateDto MonthlyOnDate(int day, int interval)
+            => new RecurrenceRuleFreqMonthlyOnDateDto(day: day, interval: interval);
+        
+        public static RecurrenceRuleFreqMonthlyOnFirstWeekdayDto MonthlyOnFirstWeekday(Weekday weekday, int shift, int interval)
+            => new RecurrenceRuleFreqMonthlyOnFirstWeekdayDto(weekday: weekday, shift: shift, interval: interval);
+        
+        public static RecurrenceRuleFreqMonthlyOnLastWeekdayDto MonthlyOnLastWeekday(Weekday weekday, int interval)
+            => new RecurrenceRuleFreqMonthlyOnLastWeekdayDto(weekday: weekday, interval: interval);
+        
+        public static RecurrenceRuleFreqMonthlyOnStartDateDto MonthlyOnStartDate(int interval)
+            => new RecurrenceRuleFreqMonthlyOnStartDateDto(interval: interval);
+        
+        public static RecurrenceRuleFreqWeeklyDto Weekly(List<Weekday> weekdays, int interval)
+            => new RecurrenceRuleFreqWeeklyDto(weekdays: weekdays, interval: interval);
+        
+        public static RecurrenceRuleFreqYearlyDto Yearly(int interval)
+            => new RecurrenceRuleFreqYearlyDto(interval: interval);
+        
+        public RecurrenceRuleFreqDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

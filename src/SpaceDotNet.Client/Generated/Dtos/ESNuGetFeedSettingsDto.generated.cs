@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_NuGetFeedSettings";
         
+        public ESNuGetFeedSettingsDto() { }
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

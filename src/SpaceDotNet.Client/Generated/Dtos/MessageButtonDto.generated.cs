@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageButton";
         
+        public MessageButtonDto() { }
+        
+        public MessageButtonDto(string text, MessageButtonStyle style, MessageActionDto action, bool? disabled = null)
+        {
+            Text = text;
+            Style = style;
+            Action = action;
+            Disabled = disabled;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageButtonDto), nameof(Text));
         
         [Required]

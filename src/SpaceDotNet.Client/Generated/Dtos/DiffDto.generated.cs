@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class DiffDto
          : IPropagatePropertyAccessPath
     {
+        public DiffDto() { }
+        
+        public DiffDto(List<string> added, List<string> removed, bool removeAll)
+        {
+            Added = added;
+            Removed = removed;
+            RemoveAll = removeAll;
+        }
+        
         private PropertyValue<List<string>> _added = new PropertyValue<List<string>>(nameof(DiffDto), nameof(Added));
         
         [Required]

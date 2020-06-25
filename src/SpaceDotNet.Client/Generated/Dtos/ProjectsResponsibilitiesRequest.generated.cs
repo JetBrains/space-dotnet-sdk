@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class ProjectsResponsibilitiesRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsResponsibilitiesRequest() { }
+        
+        public ProjectsResponsibilitiesRequest(string subjectId, string summary, string? notes = null)
+        {
+            SubjectId = subjectId;
+            Summary = summary;
+            Notes = notes;
+        }
+        
         private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(ProjectsResponsibilitiesRequest), nameof(SubjectId));
         
         [Required]

@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class TrustedCertificateDto
          : IPropagatePropertyAccessPath
     {
+        public TrustedCertificateDto() { }
+        
+        public TrustedCertificateDto(string id, string alias, string data, CertificateInfoDto info, bool archived)
+        {
+            Id = id;
+            Alias = alias;
+            Data = data;
+            Info = info;
+            Archived = archived;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TrustedCertificateDto), nameof(Id));
         
         [Required]

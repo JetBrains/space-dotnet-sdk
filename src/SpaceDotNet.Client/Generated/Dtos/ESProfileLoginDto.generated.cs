@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class ESProfileLoginDto
          : IPropagatePropertyAccessPath
     {
+        public ESProfileLoginDto() { }
+        
+        public ESProfileLoginDto(string identifier, ESAuthModuleDto authModule, ESProfileLoginDetailsDto details, AccessRecordDto? access = null)
+        {
+            Identifier = identifier;
+            AuthModule = authModule;
+            Details = details;
+            Access = access;
+        }
+        
         private PropertyValue<string> _identifier = new PropertyValue<string>(nameof(ESProfileLoginDto), nameof(Identifier));
         
         [Required]

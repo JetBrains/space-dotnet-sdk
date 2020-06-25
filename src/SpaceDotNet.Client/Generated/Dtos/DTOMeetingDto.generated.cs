@@ -24,6 +24,34 @@ namespace SpaceDotNet.Client
     public sealed class DTOMeetingDto
          : IPropagatePropertyAccessPath
     {
+        public DTOMeetingDto() { }
+        
+        public DTOMeetingDto(string id, bool archived, string summary, List<TDLocationDto> locations, List<TDMemberProfileDto> profiles, List<TDTeamDto> teams, CalendarEventSpecDto occurrenceRule, MeetingOrigin origin, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, long etag, bool privateDataSubstituted, bool canModify, bool canDelete, bool canJoin, List<string> externalParticipants, string? description = null, string? conferenceLink = null, MeetingJoiningPreference? joiningPreference = null, MeetingOrganizerDto? organizer = null, string? linkToExternalSource = null, List<MeetingAttachmentDto>? eventAttachments = null)
+        {
+            Id = id;
+            Archived = archived;
+            Summary = summary;
+            Description = description;
+            Locations = locations;
+            Profiles = profiles;
+            Teams = teams;
+            OccurrenceRule = occurrenceRule;
+            Origin = origin;
+            ConferenceLink = conferenceLink;
+            Visibility = visibility;
+            ModificationPreference = modificationPreference;
+            JoiningPreference = joiningPreference;
+            Organizer = organizer;
+            Etag = etag;
+            PrivateDataSubstituted = privateDataSubstituted;
+            CanModify = canModify;
+            CanDelete = canDelete;
+            CanJoin = canJoin;
+            ExternalParticipants = externalParticipants;
+            LinkToExternalSource = linkToExternalSource;
+            EventAttachments = eventAttachments;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DTOMeetingDto), nameof(Id));
         
         [Required]

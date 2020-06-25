@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryMemberLocationsForIdPointsForLocationPointIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryMemberLocationsForIdPointsForLocationPointIdRequest() { }
+        
+        public TeamDirectoryMemberLocationsForIdPointsForLocationPointIdRequest(int? x = null, int? y = null, string? mapId = null)
+        {
+            X = x;
+            Y = y;
+            MapId = mapId;
+        }
+        
         private PropertyValue<int?> _x = new PropertyValue<int?>(nameof(TeamDirectoryMemberLocationsForIdPointsForLocationPointIdRequest), nameof(X));
         
         [JsonPropertyName("x")]

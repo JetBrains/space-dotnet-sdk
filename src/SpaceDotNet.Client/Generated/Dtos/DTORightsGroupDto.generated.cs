@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class DTORightsGroupDto
          : IPropagatePropertyAccessPath
     {
+        public DTORightsGroupDto() { }
+        
+        public DTORightsGroupDto(string title, int priority, List<DTORightDto> rights)
+        {
+            Title = title;
+            Priority = priority;
+            Rights = rights;
+        }
+        
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(DTORightsGroupDto), nameof(Title));
         
         [Required]

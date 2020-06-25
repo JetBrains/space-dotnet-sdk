@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "SamlMetadataResponse.Success";
         
+        public SamlMetadataResponseSuccessDto() { }
+        
+        public SamlMetadataResponseSuccessDto(string metadata)
+        {
+            Metadata = metadata;
+        }
+        
         private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccessDto), nameof(Metadata));
         
         [Required]

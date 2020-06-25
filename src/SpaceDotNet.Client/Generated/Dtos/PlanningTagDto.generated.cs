@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class PlanningTagDto
          : IPropagatePropertyAccessPath
     {
+        public PlanningTagDto() { }
+        
+        public PlanningTagDto(string id, string projectId, string name, PlanningTagDto? parent = null)
+        {
+            Id = id;
+            ProjectId = projectId;
+            Parent = parent;
+            Name = name;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanningTagDto), nameof(Id));
         
         [Required]

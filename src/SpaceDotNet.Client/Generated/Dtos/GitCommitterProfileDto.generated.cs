@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class GitCommitterProfileDto
          : IPropagatePropertyAccessPath
     {
+        public GitCommitterProfileDto() { }
+        
+        public GitCommitterProfileDto(string author, string email, TDMemberProfileDto? profile = null)
+        {
+            Author = author;
+            Email = email;
+            Profile = profile;
+        }
+        
         private PropertyValue<string> _author = new PropertyValue<string>(nameof(GitCommitterProfileDto), nameof(Author));
         
         [Required]

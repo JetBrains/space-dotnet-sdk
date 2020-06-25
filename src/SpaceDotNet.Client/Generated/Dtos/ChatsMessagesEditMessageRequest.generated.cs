@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public class ChatsMessagesEditMessageRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsMessagesEditMessageRequest() { }
+        
+        public ChatsMessagesEditMessageRequest(string channel, string message, ChatMessageDto content, bool? unfurlLinks = null)
+        {
+            Channel = channel;
+            Message = message;
+            Content = content;
+            UnfurlLinks = unfurlLinks;
+        }
+        
         private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesEditMessageRequest), nameof(Channel));
         
         [Required]

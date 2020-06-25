@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public sealed class HADtoDto
          : IPropagatePropertyAccessPath
     {
+        public HADtoDto() { }
+        
+        public HADtoDto(string id, string name, List<HADtoFieldDto> fields, HierarchyRole hierarchyRole, List<HADtoDto> implements, List<HADtoDto> inheritors, bool record, HADtoDto? extends = null, HADeprecationDto? deprecation = null)
+        {
+            Id = id;
+            Name = name;
+            Fields = fields;
+            HierarchyRole = hierarchyRole;
+            Extends = extends;
+            Implements = implements;
+            Inheritors = inheritors;
+            Deprecation = deprecation;
+            Record = record;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(HADtoDto), nameof(Id));
         
         [Required]

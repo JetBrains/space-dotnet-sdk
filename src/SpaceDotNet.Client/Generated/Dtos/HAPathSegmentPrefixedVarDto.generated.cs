@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "HA_PathSegment.PrefixedVar";
         
+        public HAPathSegmentPrefixedVarDto() { }
+        
+        public HAPathSegmentPrefixedVarDto(string prefix, string name)
+        {
+            Prefix = prefix;
+            Name = name;
+        }
+        
         private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVarDto), nameof(Prefix));
         
         [Required]

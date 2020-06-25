@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class PublicHolidaysCalendarsRequest
          : IPropagatePropertyAccessPath
     {
+        public PublicHolidaysCalendarsRequest() { }
+        
+        public PublicHolidaysCalendarsRequest(string name, string location)
+        {
+            Name = name;
+            Location = location;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidaysCalendarsRequest), nameof(Name));
         
         [Required]

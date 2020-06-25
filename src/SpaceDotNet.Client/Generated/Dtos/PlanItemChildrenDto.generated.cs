@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class PlanItemChildrenDto
          : IPropagatePropertyAccessPath
     {
+        public PlanItemChildrenDto() { }
+        
+        public PlanItemChildrenDto(string id, List<PlanItemDto> children)
+        {
+            Id = id;
+            Children = children;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItemChildrenDto), nameof(Id));
         
         [Required]

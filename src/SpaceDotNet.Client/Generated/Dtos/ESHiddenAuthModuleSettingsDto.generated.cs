@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_HiddenAuthModuleSettings";
         
+        public ESHiddenAuthModuleSettingsDto() { }
+        
+        public ESHiddenAuthModuleSettingsDto(bool? passwordModule = null, bool? federatedModule = null)
+        {
+            PasswordModule = passwordModule;
+            FederatedModule = federatedModule;
+        }
+        
         private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettingsDto), nameof(PasswordModule));
         
         [JsonPropertyName("passwordModule")]

@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdRequest() { }
+        
+        public ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdRequest(string? role = null)
+        {
+            Role = role;
+        }
+        
         private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesForResponsibilityIdAssigneesForProfileIdRequest), nameof(Role));
         
         [JsonPropertyName("role")]

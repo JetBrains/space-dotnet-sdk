@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class ESTeamMappingDto
          : IPropagatePropertyAccessPath
     {
+        public ESTeamMappingDto() { }
+        
+        public ESTeamMappingDto(string teamId, string externalGroupName)
+        {
+            TeamId = teamId;
+            ExternalGroupName = externalGroupName;
+        }
+        
         private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ESTeamMappingDto), nameof(TeamId));
         
         [Required]

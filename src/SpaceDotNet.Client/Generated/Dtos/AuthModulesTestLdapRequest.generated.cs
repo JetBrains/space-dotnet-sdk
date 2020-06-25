@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class AuthModulesTestLdapRequest
          : IPropagatePropertyAccessPath
     {
+        public AuthModulesTestLdapRequest() { }
+        
+        public AuthModulesTestLdapRequest(ESLdapAuthModuleSettingsDto settings, string username, string password)
+        {
+            Settings = settings;
+            Username = username;
+            Password = password;
+        }
+        
         private PropertyValue<ESLdapAuthModuleSettingsDto> _settings = new PropertyValue<ESLdapAuthModuleSettingsDto>(nameof(AuthModulesTestLdapRequest), nameof(Settings));
         
         [Required]

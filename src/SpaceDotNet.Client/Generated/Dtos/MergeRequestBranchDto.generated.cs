@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class MergeRequestBranchDto
          : IPropagatePropertyAccessPath
     {
+        public MergeRequestBranchDto() { }
+        
+        public MergeRequestBranchDto(string displayName, string @ref, bool deleted)
+        {
+            DisplayName = displayName;
+            Ref = @ref;
+            Deleted = deleted;
+        }
+        
         private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(MergeRequestBranchDto), nameof(DisplayName));
         
         [Required]

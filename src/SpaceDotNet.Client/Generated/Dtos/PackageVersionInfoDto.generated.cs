@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class PackageVersionInfoDto
          : IPropagatePropertyAccessPath
     {
+        public PackageVersionInfoDto() { }
+        
+        public PackageVersionInfoDto(PackageTypeDto type, string repository, string name, string version, List<string>? tags = null)
+        {
+            Type = type;
+            Repository = repository;
+            Name = name;
+            Version = version;
+            Tags = tags;
+        }
+        
         private PropertyValue<PackageTypeDto> _type = new PropertyValue<PackageTypeDto>(nameof(PackageVersionInfoDto), nameof(Type));
         
         [Required]

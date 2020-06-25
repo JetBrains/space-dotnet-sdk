@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public interface MessageFieldElementDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static MessageFieldDto MessageField(string first, string second)
+            => new MessageFieldDto(first: first, second: second);
+        
     }
     
 }

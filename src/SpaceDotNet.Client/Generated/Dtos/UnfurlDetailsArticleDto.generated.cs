@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "UnfurlDetailsArticle";
         
+        public UnfurlDetailsArticleDto() { }
+        
+        public UnfurlDetailsArticleDto(ArticleRecordDto article, ArticleContentRecordDto content, ArticleChannelRecordDto channel, ArticleDetailsRecordDto? details = null)
+        {
+            Article = article;
+            Content = content;
+            Channel = channel;
+            Details = details;
+        }
+        
         private PropertyValue<ArticleRecordDto> _article = new PropertyValue<ArticleRecordDto>(nameof(UnfurlDetailsArticleDto), nameof(Article));
         
         [Required]

@@ -27,6 +27,20 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ChannelItemSnapshot";
         
+        public ChannelItemSnapshotDto() { }
+        
+        public ChannelItemSnapshotDto(string id, string text, CPrincipalDto author, SpaceTime created, long time, string? channelId = null, M2ItemContentDetailsDto? details = null, List<AttachmentInfoDto>? attachments = null)
+        {
+            Id = id;
+            ChannelId = channelId;
+            Text = text;
+            Details = details;
+            Author = author;
+            Created = created;
+            Time = time;
+            Attachments = attachments;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemSnapshotDto), nameof(Id));
         
         [Required]

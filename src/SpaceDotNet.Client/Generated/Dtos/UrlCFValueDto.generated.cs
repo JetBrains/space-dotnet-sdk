@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "UrlCFValue";
         
+        public UrlCFValueDto() { }
+        
+        public UrlCFValueDto(string? href = null)
+        {
+            Href = href;
+        }
+        
         private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValueDto), nameof(Href));
         
         [JsonPropertyName("href")]

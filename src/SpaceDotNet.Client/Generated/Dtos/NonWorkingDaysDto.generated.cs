@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class NonWorkingDaysDto
          : IPropagatePropertyAccessPath
     {
+        public NonWorkingDaysDto() { }
+        
+        public NonWorkingDaysDto(SpaceDate since, SpaceDate till, bool startsEarlier, bool endsLater)
+        {
+            Since = since;
+            Till = till;
+            StartsEarlier = startsEarlier;
+            EndsLater = endsLater;
+        }
+        
         private PropertyValue<SpaceDate> _since = new PropertyValue<SpaceDate>(nameof(NonWorkingDaysDto), nameof(Since));
         
         [Required]

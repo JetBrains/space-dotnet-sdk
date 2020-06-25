@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2PackageCreatedDetails";
         
+        public M2PackageCreatedDetailsDto() { }
+        
+        public M2PackageCreatedDetailsDto(PackageVersionInfoDto pkg)
+        {
+            Pkg = pkg;
+        }
+        
         private PropertyValue<PackageVersionInfoDto> _pkg = new PropertyValue<PackageVersionInfoDto>(nameof(M2PackageCreatedDetailsDto), nameof(Pkg));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryRolesForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryRolesForIdRequest() { }
+        
+        public TeamDirectoryRolesForIdRequest(string? name = null, string? parentId = null)
+        {
+            Name = name;
+            ParentId = parentId;
+        }
+        
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryRolesForIdRequest), nameof(Name));
         
         [JsonPropertyName("name")]

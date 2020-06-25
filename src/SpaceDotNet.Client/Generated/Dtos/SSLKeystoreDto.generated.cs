@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class SSLKeystoreDto
          : IPropagatePropertyAccessPath
     {
+        public SSLKeystoreDto() { }
+        
+        public SSLKeystoreDto(string name, SpaceDate created)
+        {
+            Name = name;
+            Created = created;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(SSLKeystoreDto), nameof(Name));
         
         [Required]

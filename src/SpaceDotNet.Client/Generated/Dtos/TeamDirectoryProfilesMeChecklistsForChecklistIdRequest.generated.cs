@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeChecklistsForChecklistIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeChecklistsForChecklistIdRequest() { }
+        
+        public TeamDirectoryProfilesMeChecklistsForChecklistIdRequest(string name, string? description = null)
+        {
+            Name = name;
+            Description = description;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesMeChecklistsForChecklistIdRequest), nameof(Name));
         
         [JsonPropertyName("name")]

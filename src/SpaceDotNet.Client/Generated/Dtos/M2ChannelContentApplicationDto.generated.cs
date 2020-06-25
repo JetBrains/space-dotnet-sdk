@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentApplication";
         
+        public M2ChannelContentApplicationDto() { }
+        
+        public M2ChannelContentApplicationDto(ESServiceDto service, ChannelSpecificDefaultsDto notificationDefaults)
+        {
+            Service = service;
+            NotificationDefaults = notificationDefaults;
+        }
+        
         private PropertyValue<ESServiceDto> _service = new PropertyValue<ESServiceDto>(nameof(M2ChannelContentApplicationDto), nameof(Service));
         
         [Required]

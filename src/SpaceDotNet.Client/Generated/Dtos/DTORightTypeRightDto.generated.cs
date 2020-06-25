@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class DTORightTypeRightDto
          : IPropagatePropertyAccessPath
     {
+        public DTORightTypeRightDto() { }
+        
+        public DTORightTypeRightDto(DTORightTypeDto rightType, List<DTOFullRightWithoutTypeDto> rights)
+        {
+            RightType = rightType;
+            Rights = rights;
+        }
+        
         private PropertyValue<DTORightTypeDto> _rightType = new PropertyValue<DTORightTypeDto>(nameof(DTORightTypeRightDto), nameof(RightType));
         
         [Required]

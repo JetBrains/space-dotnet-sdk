@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2AbsenceItemApproveDeletedContent";
         
+        public M2AbsenceItemApproveDeletedContentDto() { }
+        
+        public M2AbsenceItemApproveDeletedContentDto(AbsenceRecordDto absence, TDMemberProfileDto by, bool approve)
+        {
+            Absence = absence;
+            By = by;
+            Approve = approve;
+        }
+        
         private PropertyValue<AbsenceRecordDto> _absence = new PropertyValue<AbsenceRecordDto>(nameof(M2AbsenceItemApproveDeletedContentDto), nameof(Absence));
         
         [Required]

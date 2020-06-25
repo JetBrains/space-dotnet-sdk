@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryCalendarEventsMeetingParticipationsForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryCalendarEventsMeetingParticipationsForIdRequest() { }
+        
+        public TeamDirectoryCalendarEventsMeetingParticipationsForIdRequest(EventParticipationStatus newStatus)
+        {
+            NewStatus = newStatus;
+        }
+        
         private PropertyValue<EventParticipationStatus> _newStatus = new PropertyValue<EventParticipationStatus>(nameof(TeamDirectoryCalendarEventsMeetingParticipationsForIdRequest), nameof(NewStatus));
         
         [Required]

@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningIssuesForIssueIdCommentsImportRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportRequest() { }
+        
+        public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportRequest(List<MessageForImportDto> comments)
+        {
+            Comments = comments;
+        }
+        
         private PropertyValue<List<MessageForImportDto>> _comments = new PropertyValue<List<MessageForImportDto>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportRequest), nameof(Comments));
         
         [Required]

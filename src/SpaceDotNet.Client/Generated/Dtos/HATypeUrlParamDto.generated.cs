@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "HA_Type.UrlParam";
         
+        public HATypeUrlParamDto() { }
+        
+        public HATypeUrlParamDto(HAUrlParameterDto urlParam, bool nullable, bool optional)
+        {
+            UrlParam = urlParam;
+            Nullable = nullable;
+            Optional = optional;
+        }
+        
         private PropertyValue<HAUrlParameterDto> _urlParam = new PropertyValue<HAUrlParameterDto>(nameof(HATypeUrlParamDto), nameof(UrlParam));
         
         [Required]

@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class HAModelDto
          : IPropagatePropertyAccessPath
     {
+        public HAModelDto() { }
+        
+        public HAModelDto(List<HADtoDto> dto, List<HAEnumDto> enums, List<HAUrlParameterDto> urlParams, List<HAResourceDto> resources, List<HAResourceDto> allResources)
+        {
+            Dto = dto;
+            Enums = enums;
+            UrlParams = urlParams;
+            Resources = resources;
+            AllResources = allResources;
+        }
+        
         private PropertyValue<List<HADtoDto>> _dto = new PropertyValue<List<HADtoDto>>(nameof(HAModelDto), nameof(Dto));
         
         [Required]

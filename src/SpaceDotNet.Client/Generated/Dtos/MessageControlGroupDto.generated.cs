@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageControlGroup";
         
+        public MessageControlGroupDto() { }
+        
+        public MessageControlGroupDto(List<MessageControlElementDto> elements)
+        {
+            Elements = elements;
+        }
+        
         private PropertyValue<List<MessageControlElementDto>> _elements = new PropertyValue<List<MessageControlElementDto>>(nameof(MessageControlGroupDto), nameof(Elements));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class HAParameterDto
          : IPropagatePropertyAccessPath
     {
+        public HAParameterDto() { }
+        
+        public HAParameterDto(HAFieldDto field, bool path)
+        {
+            Field = field;
+            Path = path;
+        }
+        
         private PropertyValue<HAFieldDto> _field = new PropertyValue<HAFieldDto>(nameof(HAParameterDto), nameof(Field));
         
         [Required]

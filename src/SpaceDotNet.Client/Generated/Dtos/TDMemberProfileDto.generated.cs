@@ -24,6 +24,40 @@ namespace SpaceDotNet.Client
     public sealed class TDMemberProfileDto
          : IPropagatePropertyAccessPath
     {
+        public TDMemberProfileDto() { }
+        
+        public TDMemberProfileDto(string id, string username, TDProfileNameDto name, bool speaksEnglish, List<TDProfileLanguageDto> languages, bool archived, bool notAMember, List<AbsenceRecordDto> absences, List<TDProfileEmailDto> emails, List<string> links, List<string> messengers, List<string> phones, List<PublicHolidayDto> holidays, List<TDMemberLocationDto> locations, List<TDMemberProfileDto> managers, List<TDMembershipDto> membershipHistory, List<TDMembershipDto> memberships, bool onboardingRequired, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, string? about = null, AvatarCropSquareDto? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null)
+        {
+            Id = id;
+            Username = username;
+            Name = name;
+            SpeaksEnglish = speaksEnglish;
+            SmallAvatar = smallAvatar;
+            Avatar = avatar;
+            ProfilePicture = profilePicture;
+            Languages = languages;
+            Archived = archived;
+            NotAMember = notAMember;
+            Joined = joined;
+            Left = left;
+            LeftAt = leftAt;
+            Absences = absences;
+            Emails = emails;
+            Links = links;
+            Messengers = messengers;
+            Phones = phones;
+            Holidays = holidays;
+            Locations = locations;
+            Managers = managers;
+            MembershipHistory = membershipHistory;
+            Memberships = memberships;
+            OnboardingRequired = onboardingRequired;
+            About = about;
+            AvatarCropSquare = avatarCropSquare;
+            Birthday = birthday;
+            Gender = gender;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberProfileDto), nameof(Id));
         
         [Required]

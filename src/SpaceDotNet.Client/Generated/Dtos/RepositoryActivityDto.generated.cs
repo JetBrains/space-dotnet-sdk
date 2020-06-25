@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class RepositoryActivityDto
          : IPropagatePropertyAccessPath
     {
+        public RepositoryActivityDto() { }
+        
+        public RepositoryActivityDto(List<Pair<SpaceDate, int>> lastActivity)
+        {
+            LastActivity = lastActivity;
+        }
+        
         private PropertyValue<List<Pair<SpaceDate, int>>> _lastActivity = new PropertyValue<List<Pair<SpaceDate, int>>>(nameof(RepositoryActivityDto), nameof(LastActivity));
         
         [Required]

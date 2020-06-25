@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class RevisionAuthorInfoDto
          : IPropagatePropertyAccessPath
     {
+        public RevisionAuthorInfoDto() { }
+        
+        public RevisionAuthorInfoDto(RevisionInfoDto revisionInfo, RevisionAuthorDto author)
+        {
+            RevisionInfo = revisionInfo;
+            Author = author;
+        }
+        
         private PropertyValue<RevisionInfoDto> _revisionInfo = new PropertyValue<RevisionInfoDto>(nameof(RevisionAuthorInfoDto), nameof(RevisionInfo));
         
         [Required]

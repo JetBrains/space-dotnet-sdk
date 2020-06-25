@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ProjectHit";
         
+        public ProjectHitDto() { }
+        
+        public ProjectHitDto(string id, double score, string key, string name, PRProjectDto @ref, string? description = null)
+        {
+            Id = id;
+            Score = score;
+            Key = key;
+            Name = name;
+            Description = description;
+            Ref = @ref;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectHitDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class BGStatsDto
          : IPropagatePropertyAccessPath
     {
+        public BGStatsDto() { }
+        
+        public BGStatsDto(int totalBlogs, List<Pair<TDTeamDto, int>> teams, List<Pair<TDLocationDto, int>> locations, List<Pair<PRProjectDto, int>>? projects = null)
+        {
+            TotalBlogs = totalBlogs;
+            Teams = teams;
+            Projects = projects;
+            Locations = locations;
+        }
+        
         private PropertyValue<int> _totalBlogs = new PropertyValue<int>(nameof(BGStatsDto), nameof(TotalBlogs));
         
         [Required]

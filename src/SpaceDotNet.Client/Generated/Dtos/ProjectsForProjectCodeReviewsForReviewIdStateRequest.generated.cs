@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectCodeReviewsForReviewIdStateRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectCodeReviewsForReviewIdStateRequest() { }
+        
+        public ProjectsForProjectCodeReviewsForReviewIdStateRequest(CodeReviewState state)
+        {
+            State = state;
+        }
+        
         private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ProjectsForProjectCodeReviewsForReviewIdStateRequest), nameof(State));
         
         [Required]

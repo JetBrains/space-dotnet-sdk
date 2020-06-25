@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class EmojisDeleteRequest
          : IPropagatePropertyAccessPath
     {
+        public EmojisDeleteRequest() { }
+        
+        public EmojisDeleteRequest(string emoji)
+        {
+            Emoji = emoji;
+        }
+        
         private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(EmojisDeleteRequest), nameof(Emoji));
         
         [Required]

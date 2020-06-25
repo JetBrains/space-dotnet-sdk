@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public sealed class StickerPackInfoDto
          : IPropagatePropertyAccessPath
     {
+        public StickerPackInfoDto() { }
+        
+        public StickerPackInfoDto(string id, string name, bool favoriteByDefault, bool archived, bool @private, StickerPackInfoDto pack, List<StickerDto> stickers, SpaceTime? addedAt = null)
+        {
+            Id = id;
+            Name = name;
+            FavoriteByDefault = favoriteByDefault;
+            Archived = archived;
+            Private = @private;
+            AddedAt = addedAt;
+            Pack = pack;
+            Stickers = stickers;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(StickerPackInfoDto), nameof(Id));
         
         [Required]

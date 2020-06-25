@@ -24,6 +24,8 @@ namespace SpaceDotNet.Client
     public sealed class CustomColumnValuesWithSchemaDataDto
          : IPropagatePropertyAccessPath
     {
+        public CustomColumnValuesWithSchemaDataDto() { }
+        
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

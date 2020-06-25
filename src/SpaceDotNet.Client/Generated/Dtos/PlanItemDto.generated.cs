@@ -24,6 +24,22 @@ namespace SpaceDotNet.Client
     public sealed class PlanItemDto
          : IPropagatePropertyAccessPath
     {
+        public PlanItemDto() { }
+        
+        public PlanItemDto(string id, string checklistId, bool hasChildren, List<PlanItemDto> children, PlanningTagDto? tag = null, string? simpleText = null, bool? simpleDone = null, IssueDto? issue = null, string? issueProblem = null, bool? canEditIssue = null)
+        {
+            Id = id;
+            ChecklistId = checklistId;
+            Tag = tag;
+            SimpleText = simpleText;
+            SimpleDone = simpleDone;
+            Issue = issue;
+            IssueProblem = issueProblem;
+            CanEditIssue = canEditIssue;
+            HasChildren = hasChildren;
+            Children = children;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PlanItemDto), nameof(Id));
         
         [Required]

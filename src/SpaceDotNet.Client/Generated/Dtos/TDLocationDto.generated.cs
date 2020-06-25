@@ -24,6 +24,27 @@ namespace SpaceDotNet.Client
     public sealed class TDLocationDto
          : IPropagatePropertyAccessPath
     {
+        public TDLocationDto() { }
+        
+        public TDLocationDto(string id, string name, List<string> phones, List<string> emails, string type, bool archived, ATimeZoneWithOffsetDto? timezone = null, string? tz = null, List<int>? workdays = null, List<string>? equipment = null, string? description = null, string? address = null, TDLocationDto? parent = null, string? mapId = null, string? channelId = null)
+        {
+            Id = id;
+            Name = name;
+            Timezone = timezone;
+            Tz = tz;
+            Workdays = workdays;
+            Phones = phones;
+            Emails = emails;
+            Equipment = equipment;
+            Description = description;
+            Address = address;
+            Parent = parent;
+            Type = type;
+            MapId = mapId;
+            ChannelId = channelId;
+            Archived = archived;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationDto), nameof(Id));
         
         [Required]

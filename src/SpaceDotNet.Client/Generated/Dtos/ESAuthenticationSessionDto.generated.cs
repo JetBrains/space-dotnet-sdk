@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class ESAuthenticationSessionDto
          : IPropagatePropertyAccessPath
     {
+        public ESAuthenticationSessionDto() { }
+        
+        public ESAuthenticationSessionDto(string id, TDMemberProfileDto profile, SpaceTime created, SpaceTime expires, bool current, AccessRecordDto? lastAccess = null)
+        {
+            Id = id;
+            Profile = profile;
+            Created = created;
+            Expires = expires;
+            LastAccess = lastAccess;
+            Current = current;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthenticationSessionDto), nameof(Id));
         
         [Required]

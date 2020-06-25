@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public class ChatsMessagesSendRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsMessagesSendRequest() { }
+        
+        public ChatsMessagesSendRequest(string channel, string text, bool pending, string? temporaryId = null)
+        {
+            Channel = channel;
+            Text = text;
+            Pending = pending;
+            TemporaryId = temporaryId;
+        }
+        
         private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesSendRequest), nameof(Channel));
         
         [Required]

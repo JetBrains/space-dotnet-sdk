@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentLocation";
         
+        public M2ChannelContentLocationDto() { }
+        
+        public M2ChannelContentLocationDto(TDLocationDto location, ChannelSpecificDefaultsDto notificationDefaults)
+        {
+            Location = location;
+            NotificationDefaults = notificationDefaults;
+        }
+        
         private PropertyValue<TDLocationDto> _location = new PropertyValue<TDLocationDto>(nameof(M2ChannelContentLocationDto), nameof(Location));
         
         [Required]

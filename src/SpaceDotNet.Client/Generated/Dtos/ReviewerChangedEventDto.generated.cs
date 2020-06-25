@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ReviewerChangedEvent";
         
+        public ReviewerChangedEventDto() { }
+        
+        public ReviewerChangedEventDto(TDMemberProfileDto uid, ReviewerChangedType changeType)
+        {
+            Uid = uid;
+            ChangeType = changeType;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _uid = new PropertyValue<TDMemberProfileDto>(nameof(ReviewerChangedEventDto), nameof(Uid));
         
         [Required]

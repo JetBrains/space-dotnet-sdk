@@ -24,6 +24,19 @@ namespace SpaceDotNet.Client
     public sealed class AbsenceReasonRecordDto
          : IPropagatePropertyAccessPath
     {
+        public AbsenceReasonRecordDto() { }
+        
+        public AbsenceReasonRecordDto(string id, bool archived, string name, string description, bool defaultAvailability, bool approvalRequired, string icon)
+        {
+            Id = id;
+            Archived = archived;
+            Name = name;
+            Description = description;
+            DefaultAvailability = defaultAvailability;
+            ApprovalRequired = approvalRequired;
+            Icon = icon;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceReasonRecordDto), nameof(Id));
         
         [Required]

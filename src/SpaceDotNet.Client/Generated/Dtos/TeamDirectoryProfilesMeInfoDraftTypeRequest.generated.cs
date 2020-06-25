@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeInfoDraftTypeRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeInfoDraftTypeRequest() { }
+        
+        public TeamDirectoryProfilesMeInfoDraftTypeRequest(DraftDocumentType draftType)
+        {
+            DraftType = draftType;
+        }
+        
         private PropertyValue<DraftDocumentType> _draftType = new PropertyValue<DraftDocumentType>(nameof(TeamDirectoryProfilesMeInfoDraftTypeRequest), nameof(DraftType));
         
         [Required]

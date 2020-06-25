@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class ESLdapAttributeNamesDto
          : IPropagatePropertyAccessPath
     {
+        public ESLdapAttributeNamesDto() { }
+        
+        public ESLdapAttributeNamesDto(string? fullNameAttributeName = null, string? usernameAttributeName = null, string? emailAttributeName = null, string? groupsAttributeName = null)
+        {
+            FullNameAttributeName = fullNameAttributeName;
+            UsernameAttributeName = usernameAttributeName;
+            EmailAttributeName = emailAttributeName;
+            GroupsAttributeName = groupsAttributeName;
+        }
+        
         private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNamesDto), nameof(FullNameAttributeName));
         
         [JsonPropertyName("fullNameAttributeName")]

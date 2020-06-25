@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public class AbsencesRequest
          : IPropagatePropertyAccessPath
     {
+        public AbsencesRequest() { }
+        
+        public AbsencesRequest(string member, string reason, string description, SpaceDate since, SpaceDate till, bool available, string icon, string? location = null, List<CustomFieldValueDto>? customFieldValues = null)
+        {
+            Member = member;
+            Reason = reason;
+            Description = description;
+            Location = location;
+            Since = since;
+            Till = till;
+            Available = available;
+            Icon = icon;
+            CustomFieldValues = customFieldValues;
+        }
+        
         private PropertyValue<string> _member = new PropertyValue<string>(nameof(AbsencesRequest), nameof(Member));
         
         [Required]

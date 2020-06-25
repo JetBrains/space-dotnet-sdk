@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageText";
         
+        public MessageTextDto() { }
+        
+        public MessageTextDto(string content, MessageAccessoryElementDto? accessory = null)
+        {
+            Accessory = accessory;
+            Content = content;
+        }
+        
         private PropertyValue<MessageAccessoryElementDto?> _accessory = new PropertyValue<MessageAccessoryElementDto?>(nameof(MessageTextDto), nameof(Accessory));
         
         [JsonPropertyName("accessory")]

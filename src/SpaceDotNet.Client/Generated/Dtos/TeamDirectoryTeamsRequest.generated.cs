@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryTeamsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryTeamsRequest() { }
+        
+        public TeamDirectoryTeamsRequest(string teamNameRaw, string? teamDescription = null, List<string>? teamEmails = null, string? parentId = null, List<CustomFieldValueDto>? customFieldValues = null)
+        {
+            TeamNameRaw = teamNameRaw;
+            TeamDescription = teamDescription;
+            TeamEmails = teamEmails;
+            ParentId = parentId;
+            CustomFieldValues = customFieldValues;
+        }
+        
         private PropertyValue<string> _teamNameRaw = new PropertyValue<string>(nameof(TeamDirectoryTeamsRequest), nameof(TeamNameRaw));
         
         [Required]

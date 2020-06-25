@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ImportedEntityInfoDto
          : IPropagatePropertyAccessPath
     {
+        public ImportedEntityInfoDto() { }
+        
+        public ImportedEntityInfoDto(ImportSourceDto source, string? externalName = null, string? externalUrl = null)
+        {
+            Source = source;
+            ExternalName = externalName;
+            ExternalUrl = externalUrl;
+        }
+        
         private PropertyValue<ImportSourceDto> _source = new PropertyValue<ImportSourceDto>(nameof(ImportedEntityInfoDto), nameof(Source));
         
         [Required]

@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class PublicHolidayDto
          : IPropagatePropertyAccessPath
     {
+        public PublicHolidayDto() { }
+        
+        public PublicHolidayDto(string id, PublicHolidayCalendarRecordDto calendar, string name, SpaceDate date, bool workingDay)
+        {
+            Id = id;
+            Calendar = calendar;
+            Name = name;
+            Date = date;
+            WorkingDay = workingDay;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHolidayDto), nameof(Id));
         
         [Required]

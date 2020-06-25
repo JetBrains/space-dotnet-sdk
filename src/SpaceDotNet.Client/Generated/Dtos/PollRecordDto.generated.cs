@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public sealed class PollRecordDto
          : IPropagatePropertyAccessPath
     {
+        public PollRecordDto() { }
+        
+        public PollRecordDto(string id, TDMemberProfileDto owner, string question, bool meVote, int countPeople, bool anonymous, bool closed, bool extendable, bool multiChoice, bool ended, List<VoteGroupDto> votes, SpaceTime? expirationTime = null)
+        {
+            Id = id;
+            Owner = owner;
+            Question = question;
+            MeVote = meVote;
+            CountPeople = countPeople;
+            Anonymous = anonymous;
+            Closed = closed;
+            Extendable = extendable;
+            MultiChoice = multiChoice;
+            Ended = ended;
+            ExpirationTime = expirationTime;
+            Votes = votes;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PollRecordDto), nameof(Id));
         
         [Required]

@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "VideoAttachment";
         
+        public VideoAttachmentDto() { }
+        
+        public VideoAttachmentDto(string id, long sizeBytes, string? name = null, int? width = null, int? height = null, string? previewBytes = null)
+        {
+            Id = id;
+            Name = name;
+            Width = width;
+            Height = height;
+            SizeBytes = sizeBytes;
+            PreviewBytes = previewBytes;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(VideoAttachmentDto), nameof(Id));
         
         [Required]

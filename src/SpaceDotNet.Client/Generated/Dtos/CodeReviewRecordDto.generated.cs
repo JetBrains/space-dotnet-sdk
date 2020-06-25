@@ -28,6 +28,12 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CodeReviewRecord";
         
+        public static CommitSetReviewRecordDto CommitSetReviewRecord(ProjectKeyDto project, int number, string title, CodeReviewState state, long createdAt, TDMemberProfileDto createdBy, bool? canBeReopened = null, bool? turnBased = null, M2ChannelRecordDto? feedChannel = null)
+            => new CommitSetReviewRecordDto(project: project, number: number, title: title, state: state, createdAt: createdAt, createdBy: createdBy, canBeReopened: null, turnBased: null, feedChannel: null);
+        
+        public static MergeRequestRecordDto MergeRequestRecord(ProjectKeyDto project, int number, string title, CodeReviewState state, long createdAt, TDMemberProfileDto createdBy, List<MergeRequestBranchPairDto> branchPairs, bool? canBeReopened = null, bool? turnBased = null, M2ChannelRecordDto? feedChannel = null)
+            => new MergeRequestRecordDto(project: project, number: number, title: title, state: state, createdAt: createdAt, createdBy: createdBy, branchPairs: branchPairs, canBeReopened: null, turnBased: null, feedChannel: null);
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecordDto), nameof(Id));
         
         [Required]

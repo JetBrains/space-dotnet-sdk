@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TodoForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TodoForIdRequest() { }
+        
+        public TodoForIdRequest(string? text = null, SpaceDate? dueDate = null, bool? open = null)
+        {
+            Text = text;
+            DueDate = dueDate;
+            Open = open;
+        }
+        
         private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(TodoForIdRequest), nameof(Text));
         
         [JsonPropertyName("text")]

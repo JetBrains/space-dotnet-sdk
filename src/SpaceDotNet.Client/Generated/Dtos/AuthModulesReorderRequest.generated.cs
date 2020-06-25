@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class AuthModulesReorderRequest
          : IPropagatePropertyAccessPath
     {
+        public AuthModulesReorderRequest() { }
+        
+        public AuthModulesReorderRequest(List<string> order)
+        {
+            Order = order;
+        }
+        
         private PropertyValue<List<string>> _order = new PropertyValue<List<string>>(nameof(AuthModulesReorderRequest), nameof(Order));
         
         [Required]

@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageField";
         
+        public MessageFieldDto() { }
+        
+        public MessageFieldDto(string first, string second)
+        {
+            First = first;
+            Second = second;
+        }
+        
         private PropertyValue<string> _first = new PropertyValue<string>(nameof(MessageFieldDto), nameof(First));
         
         [Required]

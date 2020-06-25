@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "CodeReviewDiscussionAddedFeedEvent";
         
+        public CodeReviewDiscussionAddedFeedEventDto() { }
+        
+        public CodeReviewDiscussionAddedFeedEventDto(CodeReviewDiscussionRecordDto discussion)
+        {
+            Discussion = discussion;
+        }
+        
         private PropertyValue<CodeReviewDiscussionRecordDto> _discussion = new PropertyValue<CodeReviewDiscussionRecordDto>(nameof(CodeReviewDiscussionAddedFeedEventDto), nameof(Discussion));
         
         [Required]

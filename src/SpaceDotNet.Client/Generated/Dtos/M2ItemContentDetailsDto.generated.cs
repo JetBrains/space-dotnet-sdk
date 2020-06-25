@@ -24,6 +24,87 @@ namespace SpaceDotNet.Client
     public interface M2ItemContentDetailsDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static M2AbsenceItemApproveDeletedContentDto M2AbsenceItemApproveDeletedContent(AbsenceRecordDto absence, TDMemberProfileDto by, bool approve)
+            => new M2AbsenceItemApproveDeletedContentDto(absence: absence, by: by, approve: approve);
+        
+        public static M2AbsenceItemApprovedContentDto M2AbsenceItemApprovedContent(AbsenceRecordDto absence, TDMemberProfileDto by, bool approve)
+            => new M2AbsenceItemApprovedContentDto(absence: absence, by: by, approve: approve);
+        
+        public static M2AbsenceItemContentDto M2AbsenceItemContent(AbsenceRecordDto absence, TDMemberProfileDto? by = null)
+            => new M2AbsenceItemContentDto(absence: absence, by: null);
+        
+        public static M2AbsenceItemDeletedContentDto M2AbsenceItemDeletedContent(AbsenceRecordDto absence, TDMemberProfileDto? by = null)
+            => new M2AbsenceItemDeletedContentDto(absence: absence, by: null);
+        
+        public static M2AbsenceItemUpdatedContentDto M2AbsenceItemUpdatedContent(AbsenceRecordDto absence, Modification<AbsenceReasonRecordDto>? reason = null, Modification<string>? description = null, Modification<SpaceDate>? since = null, Modification<SpaceDate>? till = null, TDMemberProfileDto? by = null)
+            => new M2AbsenceItemUpdatedContentDto(absence: absence, reason: null, description: null, since: null, till: null, by: null);
+        
+        public static M2BlogItemContentDto M2BlogItemContent(ArticleRecordDto article, ArticleContentRecordDto articleContent, ArticleDetailsRecordDto articleDetails, ArticleChannelRecordDto articleChannel)
+            => new M2BlogItemContentDto(article: article, articleContent: articleContent, articleDetails: articleDetails, articleChannel: articleChannel);
+        
+        public static M2BlogItemPreviewDto M2BlogItemPreview(ArticleRecordDto article, ArticlePreviewRecordDto articlePreview, ArticleDetailsRecordDto articleDetails, ArticleChannelRecordDto articleChannel)
+            => new M2BlogItemPreviewDto(article: article, articlePreview: articlePreview, articleDetails: articleDetails, articleChannel: articleChannel);
+        
+        public static M2ChannelArchivedItemDetailsDto M2ChannelArchivedItemDetails()
+            => new M2ChannelArchivedItemDetailsDto();
+        
+        public static M2ChannelCreatedItemDetailsDto M2ChannelCreatedItemDetails()
+            => new M2ChannelCreatedItemDetailsDto();
+        
+        public static M2ChannelFeedIntroItemDetailsDto M2ChannelFeedIntroItemDetails()
+            => new M2ChannelFeedIntroItemDetailsDto();
+        
+        public static M2ChannelRestoredItemDetailsDto M2ChannelRestoredItemDetails()
+            => new M2ChannelRestoredItemDetailsDto();
+        
+        public static M2DraftEditorAddedItemContentDto M2DraftEditorAddedItemContent(string id, string title)
+            => new M2DraftEditorAddedItemContentDto(id: id, title: title);
+        
+        public static M2DraftEditorTeamAddedItemContentDto M2DraftEditorTeamAddedItemContent(string id, TDTeamDto team, string title)
+            => new M2DraftEditorTeamAddedItemContentDto(id: id, team: team, title: title);
+        
+        public static M2ExternalStatusFailureItemContentDto M2ExternalStatusFailureItemContent(string repository, string branch, string url, string externalServiceName, string taskName, string? projectId = null, RevisionAuthorInfoDto? revisionInfo = null, LastChangesDto? changesInfo = null, long? timestamp = null, string? description = null)
+            => new M2ExternalStatusFailureItemContentDto(repository: repository, branch: branch, url: url, externalServiceName: externalServiceName, taskName: taskName, projectId: null, revisionInfo: null, changesInfo: null, timestamp: null, description: null);
+        
+        public static M2ExternalStatusSucceedItemContentDto M2ExternalStatusSucceedItemContent(string repository, string branch, string url, string externalServiceName, string taskName, string? projectId = null, RevisionAuthorInfoDto? revisionInfo = null, LastChangesDto? changesInfo = null, long? timestamp = null, string? description = null)
+            => new M2ExternalStatusSucceedItemContentDto(repository: repository, branch: branch, url: url, externalServiceName: externalServiceName, taskName: taskName, projectId: null, revisionInfo: null, changesInfo: null, timestamp: null, description: null);
+        
+        public static M2MaintenanceActionContentDto M2MaintenanceActionContent(string action, bool success, string details)
+            => new M2MaintenanceActionContentDto(action: action, success: success, details: details);
+        
+        public static M2MemberContentDto M2MemberContent()
+            => new M2MemberContentDto();
+        
+        public static M2MembershipContentDto M2MembershipContent()
+            => new M2MembershipContentDto();
+        
+        public static M2PollContentDto M2PollContent(PollRecordDto poll)
+            => new M2PollContentDto(poll: poll);
+        
+        public static M2TaskExecutionFailureItemContentDto M2TaskExecutionFailureItemContent(string taskExecutionId, string taskExecutionName, string repoName, string branchName, string commit, string shortCommitMessage, ProjectKeyDto project, long finishDateTime, string triggerInfo, string details)
+            => new M2TaskExecutionFailureItemContentDto(taskExecutionId: taskExecutionId, taskExecutionName: taskExecutionName, repoName: repoName, branchName: branchName, commit: commit, shortCommitMessage: shortCommitMessage, project: project, finishDateTime: finishDateTime, triggerInfo: triggerInfo, details: details);
+        
+        public static M2TaskExecutionSucceedItemContentDto M2TaskExecutionSucceedItemContent(string taskExecutionId, string taskExecutionName, string repoName, string branchName, string commit, string shortCommitMessage, ProjectKeyDto project, long finishDateTime, string triggerInfo, string details)
+            => new M2TaskExecutionSucceedItemContentDto(taskExecutionId: taskExecutionId, taskExecutionName: taskExecutionName, repoName: repoName, branchName: branchName, commit: commit, shortCommitMessage: shortCommitMessage, project: project, finishDateTime: finishDateTime, triggerInfo: triggerInfo, details: details);
+        
+        public static M2TextItemContentDto M2TextItemContent(bool? markdown = null)
+            => new M2TextItemContentDto(markdown: null);
+        
+        public static M2UserLeftChannelDto M2UserLeftChannel()
+            => new M2UserLeftChannelDto();
+        
+        public static MCMessageDto MCMessage(string style, List<MCElementDto> content, MCOutlineDto? outline = null, string? serviceId = null, string? supplementaryData = null)
+            => new MCMessageDto(style: style, content: content, outline: null, serviceId: null, supplementaryData: null);
+        
+        public static MembersAddedItemDetailsDto MembersAddedItemDetails(List<CPrincipalDto> principals, List<string> othersDisplayNames)
+            => new MembersAddedItemDetailsDto(principals: principals, othersDisplayNames: othersDisplayNames);
+        
+        public static StickerContentDetailsDto StickerContentDetails(StickerDto sticker, StickerPackInfoDto? pack = null)
+            => new StickerContentDetailsDto(sticker: sticker, pack: null);
+        
+        public static TeamAddedItemDetailsDto TeamAddedItemDetails(TDTeamDto team)
+            => new TeamAddedItemDetailsDto(team: team);
+        
     }
     
 }

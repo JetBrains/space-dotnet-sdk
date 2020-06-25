@@ -28,6 +28,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "ES_ProfileLoginDetails";
         
+        public static ESBuiltinProfileLoginDetailsDto ESBuiltinProfileLoginDetails(string? passwordChangeRequest = null)
+            => new ESBuiltinProfileLoginDetailsDto(passwordChangeRequest: null);
+        
+        public static ESDefaultProfileLoginDetailsDto ESDefaultProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null)
+            => new ESDefaultProfileLoginDetailsDto(emailVerified: emailVerified, login: null, firstName: null, lastName: null, email: null, avatarUrl: null);
+        
+        public static ESGithubProfileLoginDetailsDto ESGithubProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null, List<string>? organizations = null)
+            => new ESGithubProfileLoginDetailsDto(emailVerified: emailVerified, login: null, firstName: null, lastName: null, email: null, avatarUrl: null, organizations: null);
+        
+        public static ESHubProfileLoginDetailsDto ESHubProfileLoginDetails(bool emailVerified, string? login = null, string? hubAuthModuleLogin = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null)
+            => new ESHubProfileLoginDetailsDto(emailVerified: emailVerified, login: null, hubAuthModuleLogin: null, firstName: null, lastName: null, email: null, avatarUrl: null);
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

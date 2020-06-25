@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public interface PackageTypeDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static ContainerPackageTypeDto Container(string id)
+            => new ContainerPackageTypeDto(id: id);
+        
+        public static MavenPackageTypeDto Maven(string id)
+            => new MavenPackageTypeDto(id: id);
+        
+        public static NpmPackageTypeDto Npm(string id)
+            => new NpmPackageTypeDto(id: id);
+        
+        public static NuGetPackageTypeDto NuGet(string id)
+            => new NuGetPackageTypeDto(id: id);
+        
     }
     
 }

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class GitGraphLayoutLineDto
          : IPropagatePropertyAccessPath
     {
+        public GitGraphLayoutLineDto() { }
+        
+        public GitGraphLayoutLineDto(List<GitGraphLayoutNodeDto> nodes, List<GitGraphLayoutEdgeDto> edges)
+        {
+            Nodes = nodes;
+            Edges = edges;
+        }
+        
         private PropertyValue<List<GitGraphLayoutNodeDto>> _nodes = new PropertyValue<List<GitGraphLayoutNodeDto>>(nameof(GitGraphLayoutLineDto), nameof(Nodes));
         
         [Required]

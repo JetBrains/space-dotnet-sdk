@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public sealed class StickerDto
          : IPropagatePropertyAccessPath
     {
+        public StickerDto() { }
+        
+        public StickerDto(string id, bool archived, string? symbol = null, string? attachmentId = null, int? width = null, int? height = null, List<StickerVariantDto>? variants = null, bool? animated = null)
+        {
+            Id = id;
+            Symbol = symbol;
+            AttachmentId = attachmentId;
+            Width = width;
+            Height = height;
+            Variants = variants;
+            Animated = animated;
+            Archived = archived;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(StickerDto), nameof(Id));
         
         [Required]

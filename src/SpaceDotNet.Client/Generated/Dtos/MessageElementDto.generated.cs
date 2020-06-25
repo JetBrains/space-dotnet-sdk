@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public interface MessageElementDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static MessageControlGroupDto MessageControlGroup(List<MessageControlElementDto> elements)
+            => new MessageControlGroupDto(elements: elements);
+        
+        public static MessageDividerDto MessageDivider()
+            => new MessageDividerDto();
+        
+        public static MessageFieldsDto MessageFields(List<MessageFieldElementDto> fields)
+            => new MessageFieldsDto(fields: fields);
+        
+        public static MessageTextDto MessageText(string content, MessageAccessoryElementDto? accessory = null)
+            => new MessageTextDto(content: content, accessory: null);
+        
     }
     
 }

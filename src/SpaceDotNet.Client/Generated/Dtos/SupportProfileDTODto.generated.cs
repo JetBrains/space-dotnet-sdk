@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class SupportProfileDTODto
          : IPropagatePropertyAccessPath
     {
+        public SupportProfileDTODto() { }
+        
+        public SupportProfileDTODto(TDMemberProfileDto profile, bool adminPermissionsGranted)
+        {
+            Profile = profile;
+            AdminPermissionsGranted = adminPermissionsGranted;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(SupportProfileDTODto), nameof(Profile));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class TDLocationWithTimeZoneDto
          : IPropagatePropertyAccessPath
     {
+        public TDLocationWithTimeZoneDto() { }
+        
+        public TDLocationWithTimeZoneDto(string id, string name, ATimeZoneWithOffsetDto timezone)
+        {
+            Id = id;
+            Name = name;
+            Timezone = timezone;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationWithTimeZoneDto), nameof(Id));
         
         [Required]

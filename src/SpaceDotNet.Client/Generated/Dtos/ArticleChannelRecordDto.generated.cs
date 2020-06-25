@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class ArticleChannelRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ArticleChannelRecordDto() { }
+        
+        public ArticleChannelRecordDto(string id, bool archived, M2ChannelRecordDto channel, M2ChannelContentRecordDto channelContent, AllReactionsToItemRecordDto reactions)
+        {
+            Id = id;
+            Archived = archived;
+            Channel = channel;
+            ChannelContent = channelContent;
+            Reactions = reactions;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleChannelRecordDto), nameof(Id));
         
         [Required]

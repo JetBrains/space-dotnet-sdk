@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningChecklistsImportRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningChecklistsImportRequest() { }
+        
+        public ProjectsForProjectPlanningChecklistsImportRequest(string name, string tabIndentedLines)
+        {
+            Name = name;
+            TabIndentedLines = tabIndentedLines;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsImportRequest), nameof(Name));
         
         [Required]

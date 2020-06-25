@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class AutomationGraphExecutionsForIdParametersRequest
          : IPropagatePropertyAccessPath
     {
+        public AutomationGraphExecutionsForIdParametersRequest() { }
+        
+        public AutomationGraphExecutionsForIdParametersRequest(string key, string value)
+        {
+            Key = key;
+            Value = value;
+        }
+        
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(AutomationGraphExecutionsForIdParametersRequest), nameof(Key));
         
         [Required]

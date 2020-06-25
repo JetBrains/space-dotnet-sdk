@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "HA_Type.Primitive";
         
+        public HATypePrimitiveDto() { }
+        
+        public HATypePrimitiveDto(HAPrimitive primitive, bool nullable, bool optional)
+        {
+            Primitive = primitive;
+            Nullable = nullable;
+            Optional = optional;
+        }
+        
         private PropertyValue<HAPrimitive> _primitive = new PropertyValue<HAPrimitive>(nameof(HATypePrimitiveDto), nameof(Primitive));
         
         [Required]

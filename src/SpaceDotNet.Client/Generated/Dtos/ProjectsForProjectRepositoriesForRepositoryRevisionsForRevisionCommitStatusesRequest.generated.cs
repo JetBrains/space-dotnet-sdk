@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest() { }
+        
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest(ExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null)
+        {
+            Branch = branch;
+            Changes = changes;
+            ExecutionStatus = executionStatus;
+            Url = url;
+            ExternalServiceName = externalServiceName;
+            TaskName = taskName;
+            TaskId = taskId;
+            Timestamp = timestamp;
+            Description = description;
+        }
+        
         private PropertyValue<string?> _branch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest), nameof(Branch));
         
         [JsonPropertyName("branch")]

@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MavenPackageType";
         
+        public MavenPackageTypeDto() { }
+        
+        public MavenPackageTypeDto(string id)
+        {
+            Id = id;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MavenPackageTypeDto), nameof(Id));
         
         [Required]

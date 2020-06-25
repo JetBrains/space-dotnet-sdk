@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public class AbsencesAbsenceReasonsRequest
          : IPropagatePropertyAccessPath
     {
+        public AbsencesAbsenceReasonsRequest() { }
+        
+        public AbsencesAbsenceReasonsRequest(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null)
+        {
+            Name = name;
+            Description = description;
+            DefaultAvailability = defaultAvailability;
+            ApprovalRequired = approvalRequired;
+            Icon = icon;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(AbsencesAbsenceReasonsRequest), nameof(Name));
         
         [Required]

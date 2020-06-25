@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ChatsMessagesDeleteMessageRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsMessagesDeleteMessageRequest() { }
+        
+        public ChatsMessagesDeleteMessageRequest(string channel, string id)
+        {
+            Channel = channel;
+            Id = id;
+        }
+        
         private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesDeleteMessageRequest), nameof(Channel));
         
         [Required]

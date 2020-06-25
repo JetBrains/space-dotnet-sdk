@@ -24,6 +24,27 @@ namespace SpaceDotNet.Client
     public sealed class PRProjectDto
          : IPropagatePropertyAccessPath
     {
+        public PRProjectDto() { }
+        
+        public PRProjectDto(string id, ProjectKeyDto key, string name, bool @private, bool archived, List<TDMemberProfileDto> adminProfiles, List<TDTeamDto> adminTeams, List<TDMemberProfileDto> memberProfiles, List<TDTeamDto> memberTeams, List<PRRepositoryInfoDto> repos, List<string> tags, List<BoardRecordDto> boards, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
+        {
+            Id = id;
+            Key = key;
+            Name = name;
+            Private = @private;
+            Description = description;
+            Icon = icon;
+            LatestRepositoryActivity = latestRepositoryActivity;
+            Archived = archived;
+            AdminProfiles = adminProfiles;
+            AdminTeams = adminTeams;
+            MemberProfiles = memberProfiles;
+            MemberTeams = memberTeams;
+            Repos = repos;
+            Tags = tags;
+            Boards = boards;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PRProjectDto), nameof(Id));
         
         [Required]

@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "RecurrenceRuleEnds.Never";
         
+        public RecurrenceRuleEndsNeverDto() { }
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

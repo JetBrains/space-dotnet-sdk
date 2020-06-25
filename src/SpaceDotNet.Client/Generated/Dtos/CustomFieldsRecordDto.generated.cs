@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class CustomFieldsRecordDto
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldsRecordDto() { }
+        
+        public CustomFieldsRecordDto(string id, List<CustomFieldValueDto> values)
+        {
+            Id = id;
+            Values = values;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CustomFieldsRecordDto), nameof(Id));
         
         [Required]

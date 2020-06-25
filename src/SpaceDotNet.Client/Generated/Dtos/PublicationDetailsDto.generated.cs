@@ -24,6 +24,12 @@ namespace SpaceDotNet.Client
     public interface PublicationDetailsDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static BlogPublicationDetailsDto Blog(TDTeamDto? teamId = null, List<TDTeamDto>? teams = null, TDLocationDto? locationId = null, List<TDLocationDto>? locations = null, CalendarEventDto? @event = null, ArticleRecordDto? article = null)
+            => new BlogPublicationDetailsDto(teamId: null, teams: null, locationId: null, locations: null, @event: null, article: null);
+        
+        public static KbPublicationDetailsDto Kb(KBBookDto? book = null, KBFolderDto? folder = null, KBArticleDto? articleId = null)
+            => new KbPublicationDetailsDto(book: null, folder: null, articleId: null);
+        
     }
     
 }

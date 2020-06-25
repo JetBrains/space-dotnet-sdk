@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public class CustomFieldsForTypeKeyFieldsRequest
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldsForTypeKeyFieldsRequest() { }
+        
+        public CustomFieldsForTypeKeyFieldsRequest(string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, CFConstraintDto? constraint = null, AccessType? access = null)
+        {
+            Name = name;
+            Key = key;
+            Type = type;
+            Constraint = constraint;
+            Required = required;
+            Private = @private;
+            Access = access;
+            DefaultValue = defaultValue;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomFieldsForTypeKeyFieldsRequest), nameof(Name));
         
         [Required]

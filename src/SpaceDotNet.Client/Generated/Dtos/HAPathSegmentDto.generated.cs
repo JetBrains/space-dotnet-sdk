@@ -28,6 +28,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "HA_PathSegment";
         
+        public static HAPathSegmentConstDto Const(string value)
+            => new HAPathSegmentConstDto(value: value);
+        
+        public static HAPathSegmentPrefixedVarDto PrefixedVar(string prefix, string name)
+            => new HAPathSegmentPrefixedVarDto(prefix: prefix, name: name);
+        
+        public static HAPathSegmentVarDto Var(string name)
+            => new HAPathSegmentVarDto(name: name);
+        
+        public HAPathSegmentDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

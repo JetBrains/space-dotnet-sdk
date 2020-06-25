@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class FTSSnippetDto
          : IPropagatePropertyAccessPath
     {
+        public FTSSnippetDto() { }
+        
+        public FTSSnippetDto(string field, List<string> snippet)
+        {
+            Field = field;
+            Snippet = snippet;
+        }
+        
         private PropertyValue<string> _field = new PropertyValue<string>(nameof(FTSSnippetDto), nameof(Field));
         
         [Required]

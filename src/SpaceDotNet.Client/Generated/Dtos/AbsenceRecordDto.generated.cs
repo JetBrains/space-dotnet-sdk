@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public sealed class AbsenceRecordDto
          : IPropagatePropertyAccessPath
     {
+        public AbsenceRecordDto() { }
+        
+        public AbsenceRecordDto(string id, bool archived, TDMemberProfileDto member, string icon, SpaceDate since, SpaceDate till, bool available, AbsenceReasonRecordDto? reason = null, string? description = null, TDLocationDto? location = null, AbsenceApprovalDto? approval = null, List<CustomColumnValuesWithSchemaDataDto>? customFields = null)
+        {
+            Id = id;
+            Archived = archived;
+            Member = member;
+            Icon = icon;
+            Reason = reason;
+            Description = description;
+            Since = since;
+            Till = till;
+            Location = location;
+            Available = available;
+            Approval = approval;
+            CustomFields = customFields;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(AbsenceRecordDto), nameof(Id));
         
         [Required]

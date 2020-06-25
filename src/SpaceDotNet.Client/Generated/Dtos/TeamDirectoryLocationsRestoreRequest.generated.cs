@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryLocationsRestoreRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryLocationsRestoreRequest() { }
+        
+        public TeamDirectoryLocationsRestoreRequest(List<string> ids)
+        {
+            Ids = ids;
+        }
+        
         private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(TeamDirectoryLocationsRestoreRequest), nameof(Ids));
         
         [Required]

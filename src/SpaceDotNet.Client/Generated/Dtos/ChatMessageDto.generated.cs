@@ -28,6 +28,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "ChatMessage";
         
+        public static ChatMessageBlockDto Block(List<MessageSectionElementDto> sections, MessageStyle? style = null, MessageOutlineDto? outline = null, string? messageData = null)
+            => new ChatMessageBlockDto(sections: sections, style: null, outline: null, messageData: null);
+        
+        public static ChatMessageTextDto Text(string text)
+            => new ChatMessageTextDto(text: text);
+        
+        public ChatMessageDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

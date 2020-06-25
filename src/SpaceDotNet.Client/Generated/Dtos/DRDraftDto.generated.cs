@@ -24,6 +24,26 @@ namespace SpaceDotNet.Client
     public sealed class DRDraftDto
          : IPropagatePropertyAccessPath
     {
+        public DRDraftDto() { }
+        
+        public DRDraftDto(string id, string title, SpaceTime modified, bool publishedFlag, bool shared, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, string? text = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null, TDMemberProfileDto? author = null, long? version = null, TextDocumentDto? document = null)
+        {
+            Id = id;
+            Title = title;
+            Text = text;
+            Type = type;
+            Modified = modified;
+            PublishedFlag = publishedFlag;
+            Shared = shared;
+            AccessOrdinal = accessOrdinal;
+            PublicationDetails = publicationDetails;
+            Author = author;
+            Editors = editors;
+            EditorsTeams = editorsTeams;
+            Version = version;
+            Document = document;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftDto), nameof(Id));
         
         [Required]

@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "DateCFConstraint";
         
+        public DateCFConstraintDto() { }
+        
+        public DateCFConstraintDto(SpaceDate? min = null, SpaceDate? max = null, string? message = null)
+        {
+            Min = min;
+            Max = max;
+            Message = message;
+        }
+        
         private PropertyValue<SpaceDate?> _min = new PropertyValue<SpaceDate?>(nameof(DateCFConstraintDto), nameof(Min));
         
         [JsonPropertyName("min")]

@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class MessageForImportDto
          : IPropagatePropertyAccessPath
     {
+        public MessageForImportDto() { }
+        
+        public MessageForImportDto(string authorPrincipalId, string text, long createdAtUtc, List<AttachmentDto>? attachments = null)
+        {
+            AuthorPrincipalId = authorPrincipalId;
+            Text = text;
+            CreatedAtUtc = createdAtUtc;
+            Attachments = attachments;
+        }
+        
         private PropertyValue<string> _authorPrincipalId = new PropertyValue<string>(nameof(MessageForImportDto), nameof(AuthorPrincipalId));
         
         [Required]

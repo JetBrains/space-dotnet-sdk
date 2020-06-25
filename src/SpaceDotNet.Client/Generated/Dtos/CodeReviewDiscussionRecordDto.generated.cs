@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class CodeReviewDiscussionRecordDto
          : IPropagatePropertyAccessPath
     {
+        public CodeReviewDiscussionRecordDto() { }
+        
+        public CodeReviewDiscussionRecordDto(string id, CodeReviewRecordDto review, SpaceTime created, M2ChannelRecordDto channel, bool resolved)
+        {
+            Id = id;
+            Review = review;
+            Created = created;
+            Channel = channel;
+            Resolved = resolved;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionRecordDto), nameof(Id));
         
         [Required]

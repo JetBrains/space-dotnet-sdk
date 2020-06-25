@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class AvatarCropSquareDto
          : IPropagatePropertyAccessPath
     {
+        public AvatarCropSquareDto() { }
+        
+        public AvatarCropSquareDto(int x, int y, int length)
+        {
+            X = x;
+            Y = y;
+            Length = length;
+        }
+        
         private PropertyValue<int> _x = new PropertyValue<int>(nameof(AvatarCropSquareDto), nameof(X));
         
         [Required]

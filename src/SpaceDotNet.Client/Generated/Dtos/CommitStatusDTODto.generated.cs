@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public sealed class CommitStatusDTODto
          : IPropagatePropertyAccessPath
     {
+        public CommitStatusDTODto() { }
+        
+        public CommitStatusDTODto(string repository, string revision, ExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, long timestamp, string? description = null)
+        {
+            Repository = repository;
+            Revision = revision;
+            ExecutionStatus = executionStatus;
+            Url = url;
+            ExternalServiceName = externalServiceName;
+            TaskName = taskName;
+            TaskId = taskId;
+            Timestamp = timestamp;
+            Description = description;
+        }
+        
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CommitStatusDTODto), nameof(Repository));
         
         [Required]

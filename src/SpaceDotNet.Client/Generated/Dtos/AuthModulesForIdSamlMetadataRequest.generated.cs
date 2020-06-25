@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public class AuthModulesForIdSamlMetadataRequest
          : IPropagatePropertyAccessPath
     {
+        public AuthModulesForIdSamlMetadataRequest() { }
+        
+        public AuthModulesForIdSamlMetadataRequest(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystoreDto? sslKeystore = null, string? contactProfileId = null)
+        {
+            IdpUrl = idpUrl;
+            IdpEntityId = idpEntityId;
+            IdpCertificateSHA256 = idpCertificateSHA256;
+            SpEntityId = spEntityId;
+            SslKeystore = sslKeystore;
+            ContactProfileId = contactProfileId;
+        }
+        
         private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(AuthModulesForIdSamlMetadataRequest), nameof(IdpUrl));
         
         [Required]

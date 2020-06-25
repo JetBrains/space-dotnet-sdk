@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "CodeDiscussionSnippet.InlineDiffSnippet";
         
+        public CodeDiscussionSnippetInlineDiffSnippetDto() { }
+        
+        public CodeDiscussionSnippetInlineDiffSnippetDto(List<InlineDiffLineDto> lines)
+        {
+            Lines = lines;
+        }
+        
         private PropertyValue<List<InlineDiffLineDto>> _lines = new PropertyValue<List<InlineDiffLineDto>>(nameof(CodeDiscussionSnippetInlineDiffSnippetDto), nameof(Lines));
         
         [Required]

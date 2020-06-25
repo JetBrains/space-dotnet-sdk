@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class BoardOwnersDto
          : IPropagatePropertyAccessPath
     {
+        public BoardOwnersDto() { }
+        
+        public BoardOwnersDto(BoardMemberOwnersDto members, BoardTeamOwnersDto teams)
+        {
+            Members = members;
+            Teams = teams;
+        }
+        
         private PropertyValue<BoardMemberOwnersDto> _members = new PropertyValue<BoardMemberOwnersDto>(nameof(BoardOwnersDto), nameof(Members));
         
         [Required]

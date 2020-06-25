@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public sealed class InlineDiffLineDto
          : IPropagatePropertyAccessPath
     {
+        public InlineDiffLineDto() { }
+        
+        public InlineDiffLineDto(string text, int oldFileOffset, int newFileOffset, DiffLineType? type = null, int? oldLineNum = null, int? newLineNum = null, List<SyntaxMarkupDto>? syntax = null, List<TextRangeDto>? deletes = null, List<TextRangeDto>? inserts = null)
+        {
+            Text = text;
+            Type = type;
+            OldLineNum = oldLineNum;
+            NewLineNum = newLineNum;
+            OldFileOffset = oldFileOffset;
+            NewFileOffset = newFileOffset;
+            Syntax = syntax;
+            Deletes = deletes;
+            Inserts = inserts;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(InlineDiffLineDto), nameof(Text));
         
         [Required]

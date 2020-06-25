@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class LastChangesDto
          : IPropagatePropertyAccessPath
     {
+        public LastChangesDto() { }
+        
+        public LastChangesDto(List<RevisionInfoDto> lastChanges, int totalChanges)
+        {
+            LastChanges = lastChanges;
+            TotalChanges = totalChanges;
+        }
+        
         private PropertyValue<List<RevisionInfoDto>> _lastChanges = new PropertyValue<List<RevisionInfoDto>>(nameof(LastChangesDto), nameof(LastChanges));
         
         [Required]

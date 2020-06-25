@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectAccessMembersProfilesRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectAccessMembersProfilesRequest() { }
+        
+        public ProjectsForProjectAccessMembersProfilesRequest(string profileId)
+        {
+            ProfileId = profileId;
+        }
+        
         private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(ProjectsForProjectAccessMembersProfilesRequest), nameof(ProfileId));
         
         [Required]

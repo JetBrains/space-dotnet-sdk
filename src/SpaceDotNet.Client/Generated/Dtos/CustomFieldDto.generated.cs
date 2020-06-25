@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public sealed class CustomFieldDto
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldDto() { }
+        
+        public CustomFieldDto(ExtendedTypeDto extendedType, string id, string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, int order, bool archived, CFConstraintDto? constraint = null, AccessType? access = null)
+        {
+            ExtendedType = extendedType;
+            Id = id;
+            Name = name;
+            Key = key;
+            Type = type;
+            Constraint = constraint;
+            Required = required;
+            Private = @private;
+            Access = access;
+            DefaultValue = defaultValue;
+            Order = order;
+            Archived = archived;
+        }
+        
         private PropertyValue<ExtendedTypeDto> _extendedType = new PropertyValue<ExtendedTypeDto>(nameof(CustomFieldDto), nameof(ExtendedType));
         
         [Required]

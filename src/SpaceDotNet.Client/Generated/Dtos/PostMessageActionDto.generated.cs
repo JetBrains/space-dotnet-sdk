@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "PostMessageAction";
         
+        public PostMessageActionDto() { }
+        
+        public PostMessageActionDto(string actionId, string payload)
+        {
+            ActionId = actionId;
+            Payload = payload;
+        }
+        
         private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(PostMessageActionDto), nameof(ActionId));
         
         [Required]

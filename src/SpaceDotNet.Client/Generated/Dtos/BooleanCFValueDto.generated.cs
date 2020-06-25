@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "BooleanCFValue";
         
+        public BooleanCFValueDto() { }
+        
+        public BooleanCFValueDto(bool? value = null)
+        {
+            Value = value;
+        }
+        
         private PropertyValue<bool?> _value = new PropertyValue<bool?>(nameof(BooleanCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]

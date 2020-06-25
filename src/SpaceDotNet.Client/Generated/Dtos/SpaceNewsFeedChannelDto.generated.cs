@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "SpaceNewsFeedChannel";
         
+        public SpaceNewsFeedChannelDto() { }
+        
+        public SpaceNewsFeedChannelDto(ChannelSpecificDefaultsDto? notificationDefaults = null)
+        {
+            NotificationDefaults = notificationDefaults;
+        }
+        
         private PropertyValue<ChannelSpecificDefaultsDto?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaultsDto?>(nameof(SpaceNewsFeedChannelDto), nameof(NotificationDefaults));
         
         [JsonPropertyName("notificationDefaults")]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ChatsChannelsForChannelIdMessagesRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsChannelsForChannelIdMessagesRequest() { }
+        
+        public ChatsChannelsForChannelIdMessagesRequest(string text, string? temporaryId = null)
+        {
+            Text = text;
+            TemporaryId = temporaryId;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsChannelsForChannelIdMessagesRequest), nameof(Text));
         
         [Required]

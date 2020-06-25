@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MCIcon";
         
+        public MCIconDto() { }
+        
+        public MCIconDto(string name, string style)
+        {
+            Name = name;
+            Style = style;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(MCIconDto), nameof(Name));
         
         [Required]

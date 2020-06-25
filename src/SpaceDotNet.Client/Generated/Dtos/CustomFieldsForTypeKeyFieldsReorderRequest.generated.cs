@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class CustomFieldsForTypeKeyFieldsReorderRequest
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldsForTypeKeyFieldsReorderRequest() { }
+        
+        public CustomFieldsForTypeKeyFieldsReorderRequest(List<string> customFieldOrder)
+        {
+            CustomFieldOrder = customFieldOrder;
+        }
+        
         private PropertyValue<List<string>> _customFieldOrder = new PropertyValue<List<string>>(nameof(CustomFieldsForTypeKeyFieldsReorderRequest), nameof(CustomFieldOrder));
         
         [Required]

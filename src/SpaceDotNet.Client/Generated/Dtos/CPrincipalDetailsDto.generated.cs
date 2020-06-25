@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public interface CPrincipalDetailsDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static CAutomationTaskPrincipalDetailsDto CAutomationTaskPrincipalDetails(PRProjectDto project, string name, string id)
+            => new CAutomationTaskPrincipalDetailsDto(project: project, name: name, id: id);
+        
+        public static CBuiltInServicePrincipalDetailsDto CBuiltInServicePrincipalDetails(string name)
+            => new CBuiltInServicePrincipalDetailsDto(name: name);
+        
+        public static CExternalServicePrincipalDetailsDto CExternalServicePrincipalDetails(ESServiceDto service)
+            => new CExternalServicePrincipalDetailsDto(service: service);
+        
+        public static CUserPrincipalDetailsDto CUserPrincipalDetails(TDMemberProfileDto user)
+            => new CUserPrincipalDetailsDto(user: user);
+        
+        public static CUserWithEmailPrincipalDetailsDto CUserWithEmailPrincipalDetails(string name, string email)
+            => new CUserWithEmailPrincipalDetailsDto(name: name, email: email);
+        
     }
     
 }

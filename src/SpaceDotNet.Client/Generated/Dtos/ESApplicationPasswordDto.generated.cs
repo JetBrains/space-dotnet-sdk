@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class ESApplicationPasswordDto
          : IPropagatePropertyAccessPath
     {
+        public ESApplicationPasswordDto() { }
+        
+        public ESApplicationPasswordDto(string id, TDMemberProfileDto profile, string name, string scope, SpaceTime created, AccessRecordDto? lastAccess = null)
+        {
+            Id = id;
+            Profile = profile;
+            Name = name;
+            Scope = scope;
+            Created = created;
+            LastAccess = lastAccess;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESApplicationPasswordDto), nameof(Id));
         
         [Required]

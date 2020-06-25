@@ -24,6 +24,22 @@ namespace SpaceDotNet.Client
     public sealed class TDTeamDto
          : IPropagatePropertyAccessPath
     {
+        public TDTeamDto() { }
+        
+        public TDTeamDto(string id, string name, string description, bool archived, List<TDMembershipDto> memberships, TDTeamDto? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, SpaceDate? disbandedAt = null)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Parent = parent;
+            Emails = emails;
+            ChannelId = channelId;
+            Archived = archived;
+            Disbanded = disbanded;
+            DisbandedAt = disbandedAt;
+            Memberships = memberships;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDTeamDto), nameof(Id));
         
         [Required]

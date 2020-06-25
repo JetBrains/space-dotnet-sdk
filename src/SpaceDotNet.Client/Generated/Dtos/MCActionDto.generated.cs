@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class MCActionDto
          : IPropagatePropertyAccessPath
     {
+        public MCActionDto() { }
+        
+        public MCActionDto(string id, string value)
+        {
+            Id = id;
+            Value = value;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MCActionDto), nameof(Id));
         
         [Required]

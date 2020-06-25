@@ -24,6 +24,27 @@ namespace SpaceDotNet.Client
     public sealed class ChannelItemRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ChannelItemRecordDto() { }
+        
+        public ChannelItemRecordDto(string text, CPrincipalDto author, SpaceTime created, long time, string id, bool archived, M2ItemContentDetailsDto? details = null, AllReactionsToItemRecordDto? reactions = null, M2ChannelRecordDto? thread = null, ChannelItemRecordDto? projectedItem = null, List<AttachmentInfoDto>? attachments = null, List<AttachmentInfoDto>? attachmentsInfos = null, bool? pending = null, SpaceTime? edited = null, bool? pinned = null)
+        {
+            Text = text;
+            Details = details;
+            Author = author;
+            Created = created;
+            Time = time;
+            Reactions = reactions;
+            Thread = thread;
+            ProjectedItem = projectedItem;
+            Attachments = attachments;
+            AttachmentsInfos = attachmentsInfos;
+            Pending = pending;
+            Id = id;
+            Archived = archived;
+            Edited = edited;
+            Pinned = pinned;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemRecordDto), nameof(Text));
         
         [Required]

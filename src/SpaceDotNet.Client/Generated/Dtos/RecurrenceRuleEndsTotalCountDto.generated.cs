@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "RecurrenceRuleEnds.TotalCount";
         
+        public RecurrenceRuleEndsTotalCountDto() { }
+        
+        public RecurrenceRuleEndsTotalCountDto(int count)
+        {
+            Count = count;
+        }
+        
         private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCountDto), nameof(Count));
         
         [Required]

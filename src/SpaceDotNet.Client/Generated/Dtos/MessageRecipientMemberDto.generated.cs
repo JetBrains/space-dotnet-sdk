@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "MessageRecipient.Member";
         
+        public MessageRecipientMemberDto() { }
+        
+        public MessageRecipientMemberDto(string member)
+        {
+            Member = member;
+        }
+        
         private PropertyValue<string> _member = new PropertyValue<string>(nameof(MessageRecipientMemberDto), nameof(Member));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ArticleImportResultDto
          : IPropagatePropertyAccessPath
     {
+        public ArticleImportResultDto() { }
+        
+        public ArticleImportResultDto(string? externalId = null, ArticleRecordDto? article = null, string? error = null)
+        {
+            ExternalId = externalId;
+            Article = article;
+            Error = error;
+        }
+        
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ArticleImportResultDto), nameof(ExternalId));
         
         [JsonPropertyName("externalId")]

@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentTeam";
         
+        public M2ChannelContentTeamDto() { }
+        
+        public M2ChannelContentTeamDto(TDTeamDto team, ChannelSpecificDefaultsDto notificationDefaults)
+        {
+            Team = team;
+            NotificationDefaults = notificationDefaults;
+        }
+        
         private PropertyValue<TDTeamDto> _team = new PropertyValue<TDTeamDto>(nameof(M2ChannelContentTeamDto), nameof(Team));
         
         [Required]

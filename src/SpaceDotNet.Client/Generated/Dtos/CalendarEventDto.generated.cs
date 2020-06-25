@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class CalendarEventDto
          : IPropagatePropertyAccessPath
     {
+        public CalendarEventDto() { }
+        
+        public CalendarEventDto(bool? calendarEvent = null, SpaceTime? starts = null, SpaceTime? ends = null, ATimeZoneDto? timezone = null, List<TDLocationDto>? rooms = null, bool? allDay = null)
+        {
+            CalendarEvent = calendarEvent;
+            Starts = starts;
+            Ends = ends;
+            Timezone = timezone;
+            Rooms = rooms;
+            AllDay = allDay;
+        }
+        
         private PropertyValue<bool?> _calendarEvent = new PropertyValue<bool?>(nameof(CalendarEventDto), nameof(CalendarEvent));
         
         [JsonPropertyName("calendarEvent")]

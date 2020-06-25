@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class ProfileAbsencesRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ProfileAbsencesRecordDto() { }
+        
+        public ProfileAbsencesRecordDto(string id, List<AbsenceRecordDto> absences)
+        {
+            Id = id;
+            Absences = absences;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileAbsencesRecordDto), nameof(Id));
         
         [Required]

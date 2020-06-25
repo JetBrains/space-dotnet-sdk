@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class ImportTransactionRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ImportTransactionRecordDto() { }
+        
+        public ImportTransactionRecordDto(string id, bool archived, CPrincipalDto importer, string externalSource)
+        {
+            Id = id;
+            Archived = archived;
+            Importer = importer;
+            ExternalSource = externalSource;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportTransactionRecordDto), nameof(Id));
         
         [Required]

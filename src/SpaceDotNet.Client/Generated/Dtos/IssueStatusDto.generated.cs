@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class IssueStatusDto
          : IPropagatePropertyAccessPath
     {
+        public IssueStatusDto() { }
+        
+        public IssueStatusDto(string id, bool archived, string name, bool resolved, string color)
+        {
+            Id = id;
+            Archived = archived;
+            Name = name;
+            Resolved = resolved;
+            Color = color;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueStatusDto), nameof(Id));
         
         [Required]

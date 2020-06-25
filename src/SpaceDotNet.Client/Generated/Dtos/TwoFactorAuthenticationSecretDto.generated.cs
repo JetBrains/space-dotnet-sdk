@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class TwoFactorAuthenticationSecretDto
          : IPropagatePropertyAccessPath
     {
+        public TwoFactorAuthenticationSecretDto() { }
+        
+        public TwoFactorAuthenticationSecretDto(string secretKey, QRCodeDto qrCode, List<int> scratchCodes)
+        {
+            SecretKey = secretKey;
+            QrCode = qrCode;
+            ScratchCodes = scratchCodes;
+        }
+        
         private PropertyValue<string> _secretKey = new PropertyValue<string>(nameof(TwoFactorAuthenticationSecretDto), nameof(SecretKey));
         
         [Required]

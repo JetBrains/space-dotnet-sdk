@@ -24,6 +24,19 @@ namespace SpaceDotNet.Client
     public sealed class HAResourceDto
          : IPropagatePropertyAccessPath
     {
+        public HAResourceDto() { }
+        
+        public HAResourceDto(string id, HAPathDto path, string displaySingular, string displayPlural, List<HAEndpointDto> endpoints, List<HAResourceDto> nestedResources, HAResourceDto? parentResource = null)
+        {
+            Id = id;
+            Path = path;
+            DisplaySingular = displaySingular;
+            DisplayPlural = displayPlural;
+            ParentResource = parentResource;
+            Endpoints = endpoints;
+            NestedResources = nestedResources;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAResourceDto), nameof(Id));
         
         [Required]

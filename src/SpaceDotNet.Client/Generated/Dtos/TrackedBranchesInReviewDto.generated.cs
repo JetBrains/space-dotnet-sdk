@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class TrackedBranchesInReviewDto
          : IPropagatePropertyAccessPath
     {
+        public TrackedBranchesInReviewDto() { }
+        
+        public TrackedBranchesInReviewDto(string repository, List<BranchInfoDto> branches)
+        {
+            Repository = repository;
+            Branches = branches;
+        }
+        
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(TrackedBranchesInReviewDto), nameof(Repository));
         
         [Required]

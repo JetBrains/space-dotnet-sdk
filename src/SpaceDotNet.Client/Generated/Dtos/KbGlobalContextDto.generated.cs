@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "KbGlobalContext";
         
+        public KbGlobalContextDto() { }
+        
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

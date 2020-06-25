@@ -24,6 +24,23 @@ namespace SpaceDotNet.Client
     public sealed class RepositoryCommitRecordDto
          : IPropagatePropertyAccessPath
     {
+        public RepositoryCommitRecordDto() { }
+        
+        public RepositoryCommitRecordDto(string id, string repositoryId, string repositoryName, string revision, SpaceTime date, string? message = null, string? authorName = null, string? authorEmail = null, string? committerName = null, string? committerEmail = null, TDMemberProfileDto? authorProfile = null)
+        {
+            Id = id;
+            RepositoryId = repositoryId;
+            RepositoryName = repositoryName;
+            Revision = revision;
+            Message = message;
+            Date = date;
+            AuthorName = authorName;
+            AuthorEmail = authorEmail;
+            CommitterName = committerName;
+            CommitterEmail = committerEmail;
+            AuthorProfile = authorProfile;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(RepositoryCommitRecordDto), nameof(Id));
         
         [Required]

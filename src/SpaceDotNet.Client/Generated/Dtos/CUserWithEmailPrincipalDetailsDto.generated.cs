@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "CUserWithEmailPrincipalDetails";
         
+        public CUserWithEmailPrincipalDetailsDto() { }
+        
+        public CUserWithEmailPrincipalDetailsDto(string name, string email)
+        {
+            Name = name;
+            Email = email;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CUserWithEmailPrincipalDetailsDto), nameof(Name));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class M2ChannelContentRecordDto
          : IPropagatePropertyAccessPath
     {
+        public M2ChannelContentRecordDto() { }
+        
+        public M2ChannelContentRecordDto(string id, M2ChannelContentInfoDto? content = null)
+        {
+            Id = id;
+            Content = content;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelContentRecordDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ChannelParticipantDto
          : IPropagatePropertyAccessPath
     {
+        public ChannelParticipantDto() { }
+        
+        public ChannelParticipantDto(CPrincipalDto principal, int messageCount, int? pendingMessageCount = null)
+        {
+            Principal = principal;
+            MessageCount = messageCount;
+            PendingMessageCount = pendingMessageCount;
+        }
+        
         private PropertyValue<CPrincipalDto> _principal = new PropertyValue<CPrincipalDto>(nameof(ChannelParticipantDto), nameof(Principal));
         
         [Required]

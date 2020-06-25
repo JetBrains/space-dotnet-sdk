@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public class CalendarsMeetingsRequest
          : IPropagatePropertyAccessPath
     {
+        public CalendarsMeetingsRequest() { }
+        
+        public CalendarsMeetingsRequest(string summary, CalendarEventSpecDto occurrenceRule, List<string> locations, List<string> profiles, List<string> externalParticipants, List<string> teams, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, MeetingJoiningPreference joiningPreference, bool notifyOnExport, string? description = null, string? organizer = null)
+        {
+            Summary = summary;
+            Description = description;
+            OccurrenceRule = occurrenceRule;
+            Locations = locations;
+            Profiles = profiles;
+            ExternalParticipants = externalParticipants;
+            Teams = teams;
+            Visibility = visibility;
+            ModificationPreference = modificationPreference;
+            JoiningPreference = joiningPreference;
+            NotifyOnExport = notifyOnExport;
+            Organizer = organizer;
+        }
+        
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(CalendarsMeetingsRequest), nameof(Summary));
         
         [Required]

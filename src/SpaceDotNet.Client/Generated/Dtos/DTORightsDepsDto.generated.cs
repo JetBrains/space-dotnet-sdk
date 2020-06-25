@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class DTORightsDepsDto
          : IPropagatePropertyAccessPath
     {
+        public DTORightsDepsDto() { }
+        
+        public DTORightsDepsDto(string code, List<string> deps)
+        {
+            Code = code;
+            Deps = deps;
+        }
+        
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(DTORightsDepsDto), nameof(Code));
         
         [Required]

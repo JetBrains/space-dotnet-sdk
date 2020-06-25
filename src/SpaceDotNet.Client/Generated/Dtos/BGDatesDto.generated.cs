@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class BGDatesDto
          : IPropagatePropertyAccessPath
     {
+        public BGDatesDto() { }
+        
+        public BGDatesDto(SpaceTime first, SpaceTime last)
+        {
+            First = first;
+            Last = last;
+        }
+        
         private PropertyValue<SpaceTime> _first = new PropertyValue<SpaceTime>(nameof(BGDatesDto), nameof(First));
         
         [Required]

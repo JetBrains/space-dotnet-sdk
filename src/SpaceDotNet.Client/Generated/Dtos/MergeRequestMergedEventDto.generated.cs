@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MergeRequestMergedEvent";
         
+        public MergeRequestMergedEventDto() { }
+        
+        public MergeRequestMergedEventDto(string repository, string sourceBranch, string targetBranch)
+        {
+            Repository = repository;
+            SourceBranch = sourceBranch;
+            TargetBranch = targetBranch;
+        }
+        
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestMergedEventDto), nameof(Repository));
         
         [Required]

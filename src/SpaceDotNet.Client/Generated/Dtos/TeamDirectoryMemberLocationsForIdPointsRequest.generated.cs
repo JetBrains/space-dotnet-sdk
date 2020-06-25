@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryMemberLocationsForIdPointsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryMemberLocationsForIdPointsRequest() { }
+        
+        public TeamDirectoryMemberLocationsForIdPointsRequest(int x, int y, string mapId)
+        {
+            X = x;
+            Y = y;
+            MapId = mapId;
+        }
+        
         private PropertyValue<int> _x = new PropertyValue<int>(nameof(TeamDirectoryMemberLocationsForIdPointsRequest), nameof(X));
         
         [Required]

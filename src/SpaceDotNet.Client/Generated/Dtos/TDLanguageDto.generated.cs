@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class TDLanguageDto
          : IPropagatePropertyAccessPath
     {
+        public TDLanguageDto() { }
+        
+        public TDLanguageDto(string id, string code, string name, string nativeName, string firstNameTitle, string lastNameTitle)
+        {
+            Id = id;
+            Code = code;
+            Name = name;
+            NativeName = nativeName;
+            FirstNameTitle = firstNameTitle;
+            LastNameTitle = lastNameTitle;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLanguageDto), nameof(Id));
         
         [Required]

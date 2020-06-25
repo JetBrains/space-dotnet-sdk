@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class MergeRequestBranchPairDto
          : IPropagatePropertyAccessPath
     {
+        public MergeRequestBranchPairDto() { }
+        
+        public MergeRequestBranchPairDto(string repository, string sourceBranch, string targetBranch, string sourceBranchRef, MergeRequestBranchDto? sourceBranchInfo = null, MergeRequestBranchDto? targetBranchInfo = null)
+        {
+            Repository = repository;
+            SourceBranch = sourceBranch;
+            TargetBranch = targetBranch;
+            SourceBranchRef = sourceBranchRef;
+            SourceBranchInfo = sourceBranchInfo;
+            TargetBranchInfo = targetBranchInfo;
+        }
+        
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchPairDto), nameof(Repository));
         
         [Required]

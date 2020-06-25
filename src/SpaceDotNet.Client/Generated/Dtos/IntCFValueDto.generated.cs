@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "IntCFValue";
         
+        public IntCFValueDto() { }
+        
+        public IntCFValueDto(int? value = null)
+        {
+            Value = value;
+        }
+        
         private PropertyValue<int?> _value = new PropertyValue<int?>(nameof(IntCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]

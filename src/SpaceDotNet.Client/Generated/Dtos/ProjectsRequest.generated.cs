@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public class ProjectsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsRequest() { }
+        
+        public ProjectsRequest(ProjectKeyDto key, string name, bool @private, List<string> tags, string? description = null)
+        {
+            Key = key;
+            Name = name;
+            Description = description;
+            Private = @private;
+            Tags = tags;
+        }
+        
         private PropertyValue<ProjectKeyDto> _key = new PropertyValue<ProjectKeyDto>(nameof(ProjectsRequest), nameof(Key));
         
         [Required]

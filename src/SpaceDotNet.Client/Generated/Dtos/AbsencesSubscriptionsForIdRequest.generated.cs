@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class AbsencesSubscriptionsForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public AbsencesSubscriptionsForIdRequest() { }
+        
+        public AbsencesSubscriptionsForIdRequest(string? locationId = null, string? teamId = null, string? reasonId = null)
+        {
+            LocationId = locationId;
+            TeamId = teamId;
+            ReasonId = reasonId;
+        }
+        
         private PropertyValue<string?> _locationId = new PropertyValue<string?>(nameof(AbsencesSubscriptionsForIdRequest), nameof(LocationId));
         
         [JsonPropertyName("locationId")]

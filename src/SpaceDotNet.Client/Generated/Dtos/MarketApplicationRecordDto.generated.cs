@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class MarketApplicationRecordDto
          : IPropagatePropertyAccessPath
     {
+        public MarketApplicationRecordDto() { }
+        
+        public MarketApplicationRecordDto(string id, bool archived, string name, string description, SpaceTime lastUpdated)
+        {
+            Id = id;
+            Archived = archived;
+            Name = name;
+            Description = description;
+            LastUpdated = lastUpdated;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MarketApplicationRecordDto), nameof(Id));
         
         [Required]

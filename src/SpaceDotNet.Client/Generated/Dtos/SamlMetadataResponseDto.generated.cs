@@ -28,6 +28,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "SamlMetadataResponse";
         
+        public static SamlMetadataResponseErrorDto Error(List<string> messages)
+            => new SamlMetadataResponseErrorDto(messages: messages);
+        
+        public static SamlMetadataResponseSuccessDto Success(string metadata)
+            => new SamlMetadataResponseSuccessDto(metadata: metadata);
+        
+        public SamlMetadataResponseDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

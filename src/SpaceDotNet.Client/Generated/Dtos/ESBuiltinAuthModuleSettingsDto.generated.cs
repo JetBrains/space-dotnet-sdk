@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_BuiltinAuthModuleSettings";
         
+        public ESBuiltinAuthModuleSettingsDto() { }
+        
+        public ESBuiltinAuthModuleSettingsDto(PasswordStrength passwordStrengthPolicy, List<string>? domains = null)
+        {
+            PasswordStrengthPolicy = passwordStrengthPolicy;
+            Domains = domains;
+        }
+        
         private PropertyValue<PasswordStrength> _passwordStrengthPolicy = new PropertyValue<PasswordStrength>(nameof(ESBuiltinAuthModuleSettingsDto), nameof(PasswordStrengthPolicy));
         
         [Required]

@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MembersAddedItemDetails";
         
+        public MembersAddedItemDetailsDto() { }
+        
+        public MembersAddedItemDetailsDto(List<CPrincipalDto> principals, List<string> othersDisplayNames)
+        {
+            Principals = principals;
+            OthersDisplayNames = othersDisplayNames;
+        }
+        
         private PropertyValue<List<CPrincipalDto>> _principals = new PropertyValue<List<CPrincipalDto>>(nameof(MembersAddedItemDetailsDto), nameof(Principals));
         
         [Required]

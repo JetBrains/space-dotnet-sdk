@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ProjectsResponsibilitiesForResponsibilityIdRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsResponsibilitiesForResponsibilityIdRequest() { }
+        
+        public ProjectsResponsibilitiesForResponsibilityIdRequest(string summary, string? notes = null)
+        {
+            Summary = summary;
+            Notes = notes;
+        }
+        
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ProjectsResponsibilitiesForResponsibilityIdRequest), nameof(Summary));
         
         [Required]

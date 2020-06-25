@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ChatsChannelsForChannelIdImportRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsChannelsForChannelIdImportRequest() { }
+        
+        public ChatsChannelsForChannelIdImportRequest(List<MessageForImportDto> messages)
+        {
+            Messages = messages;
+        }
+        
         private PropertyValue<List<MessageForImportDto>> _messages = new PropertyValue<List<MessageForImportDto>>(nameof(ChatsChannelsForChannelIdImportRequest), nameof(Messages));
         
         [Required]

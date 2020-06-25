@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class PermissionComparisonContentDTODto
          : IPropagatePropertyAccessPath
     {
+        public PermissionComparisonContentDTODto() { }
+        
+        public PermissionComparisonContentDTODto(List<PermissionComparisonEntryDTODto> entries, List<PermissionSnapshotPrincipalDTODto> principals, List<PermissionSnapshotRightDTODto> rights, List<PermissionSnapshotTargetDTODto> targets)
+        {
+            Entries = entries;
+            Principals = principals;
+            Rights = rights;
+            Targets = targets;
+        }
+        
         private PropertyValue<List<PermissionComparisonEntryDTODto>> _entries = new PropertyValue<List<PermissionComparisonEntryDTODto>>(nameof(PermissionComparisonContentDTODto), nameof(Entries));
         
         [Required]

@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class WorkingDaysSpecDto
          : IPropagatePropertyAccessPath
     {
+        public WorkingDaysSpecDto() { }
+        
+        public WorkingDaysSpecDto(List<WorkdayDto> days)
+        {
+            Days = days;
+        }
+        
         private PropertyValue<List<WorkdayDto>> _days = new PropertyValue<List<WorkdayDto>>(nameof(WorkingDaysSpecDto), nameof(Days));
         
         [Required]

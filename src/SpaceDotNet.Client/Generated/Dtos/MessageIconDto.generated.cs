@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageIcon";
         
+        public MessageIconDto() { }
+        
+        public MessageIconDto(string icon, MessageStyle style)
+        {
+            Icon = icon;
+            Style = style;
+        }
+        
         private PropertyValue<string> _icon = new PropertyValue<string>(nameof(MessageIconDto), nameof(Icon));
         
         [Required]

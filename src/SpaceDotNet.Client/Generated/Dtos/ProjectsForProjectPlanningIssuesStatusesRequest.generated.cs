@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningIssuesStatusesRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningIssuesStatusesRequest() { }
+        
+        public ProjectsForProjectPlanningIssuesStatusesRequest(List<IssueStatusDataDto> statuses)
+        {
+            Statuses = statuses;
+        }
+        
         private PropertyValue<List<IssueStatusDataDto>> _statuses = new PropertyValue<List<IssueStatusDataDto>>(nameof(ProjectsForProjectPlanningIssuesStatusesRequest), nameof(Statuses));
         
         [Required]

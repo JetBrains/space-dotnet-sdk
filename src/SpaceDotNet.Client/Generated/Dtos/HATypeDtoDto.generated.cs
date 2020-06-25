@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "HA_Type.Dto";
         
+        public HATypeDtoDto() { }
+        
+        public HATypeDtoDto(HADtoDto dto, bool nullable, bool optional)
+        {
+            Dto = dto;
+            Nullable = nullable;
+            Optional = optional;
+        }
+        
         private PropertyValue<HADtoDto> _dto = new PropertyValue<HADtoDto>(nameof(HATypeDtoDto), nameof(Dto));
         
         [Required]

@@ -28,6 +28,23 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "EntityHit";
         
+        public static ArticleHitDto ArticleHit(string id, double score, string title, string body, ArticleRecordDto @ref)
+            => new ArticleHitDto(id: id, score: score, title: title, body: body, @ref: @ref);
+        
+        public static DefaultValueHitDto DefaultValueHit()
+            => new DefaultValueHitDto();
+        
+        public static MessageHitDto MessageHit(string id, double score, M2ChannelRecordDto channel, ChannelItemRecordDto @ref, string message)
+            => new MessageHitDto(id: id, score: score, channel: channel, @ref: @ref, message: message);
+        
+        public static ProfileHitDto ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, bool notAMember, TDMemberProfileDto @ref, List<CustomFieldHitDto> customFields)
+            => new ProfileHitDto(id: id, score: score, firstName: firstName, lastName: lastName, userName: userName, phones: phones, emails: emails, links: links, messengers: messengers, notAMember: notAMember, @ref: @ref, customFields: customFields);
+        
+        public static ProjectHitDto ProjectHit(string id, double score, string key, string name, PRProjectDto @ref, string? description = null)
+            => new ProjectHitDto(id: id, score: score, key: key, name: name, @ref: @ref, description: null);
+        
+        public EntityHitDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

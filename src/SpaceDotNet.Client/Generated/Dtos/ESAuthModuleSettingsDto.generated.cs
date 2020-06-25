@@ -28,6 +28,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "ES_AuthModuleSettings";
         
+        public static ESHiddenAuthModuleSettingsDto ESHiddenAuthModuleSettings(bool? passwordModule = null, bool? federatedModule = null)
+            => new ESHiddenAuthModuleSettingsDto(passwordModule: null, federatedModule: null);
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

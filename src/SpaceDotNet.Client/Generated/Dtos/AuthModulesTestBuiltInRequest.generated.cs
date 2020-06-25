@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class AuthModulesTestBuiltInRequest
          : IPropagatePropertyAccessPath
     {
+        public AuthModulesTestBuiltInRequest() { }
+        
+        public AuthModulesTestBuiltInRequest(ESBuiltinAuthModuleSettingsDto settings, string username, string password)
+        {
+            Settings = settings;
+            Username = username;
+            Password = password;
+        }
+        
         private PropertyValue<ESBuiltinAuthModuleSettingsDto> _settings = new PropertyValue<ESBuiltinAuthModuleSettingsDto>(nameof(AuthModulesTestBuiltInRequest), nameof(Settings));
         
         [Required]

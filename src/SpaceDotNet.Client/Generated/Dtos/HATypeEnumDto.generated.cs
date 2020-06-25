@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "HA_Type.Enum";
         
+        public HATypeEnumDto() { }
+        
+        public HATypeEnumDto(HAEnumDto @enum, bool nullable, bool optional)
+        {
+            Enum = @enum;
+            Nullable = nullable;
+            Optional = optional;
+        }
+        
         private PropertyValue<HAEnumDto> _enum = new PropertyValue<HAEnumDto>(nameof(HATypeEnumDto), nameof(Enum));
         
         [Required]

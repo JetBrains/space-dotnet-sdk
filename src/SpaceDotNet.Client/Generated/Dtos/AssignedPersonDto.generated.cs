@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class AssignedPersonDto
          : IPropagatePropertyAccessPath
     {
+        public AssignedPersonDto() { }
+        
+        public AssignedPersonDto(TDMemberProfileDto? profile = null, string? role = null)
+        {
+            Profile = profile;
+            Role = role;
+        }
+        
         private PropertyValue<TDMemberProfileDto?> _profile = new PropertyValue<TDMemberProfileDto?>(nameof(AssignedPersonDto), nameof(Profile));
         
         [JsonPropertyName("profile")]

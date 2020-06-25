@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "SamlMetadataResponse.Error";
         
+        public SamlMetadataResponseErrorDto() { }
+        
+        public SamlMetadataResponseErrorDto(List<string> messages)
+        {
+            Messages = messages;
+        }
+        
         private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseErrorDto), nameof(Messages));
         
         [Required]

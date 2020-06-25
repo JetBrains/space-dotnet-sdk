@@ -24,6 +24,12 @@ namespace SpaceDotNet.Client
     public interface TodoItemContentDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static TodoItemContentMdTextDto MdText(string text, MdMarkupDto mdMarkup)
+            => new TodoItemContentMdTextDto(text: text, mdMarkup: mdMarkup);
+        
+        public static TodoItemContentTextDto Text(string text)
+            => new TodoItemContentTextDto(text: text);
+        
     }
     
 }

@@ -24,6 +24,22 @@ namespace SpaceDotNet.Client
     public sealed class MeInfoDto
          : IPropagatePropertyAccessPath
     {
+        public MeInfoDto() { }
+        
+        public MeInfoDto(TDMemberProfileDto profile, TDLanguageDto preferredLanguage, TDLanguageDto englishLanguage, List<string> navBarProjects, int firstDayOfWeek, string? profilePic = null, List<NavBarMenuItemDto>? navBarMenuItems = null, string? themeName = null, DraftDocumentType? draftType = null, bool? todoFilters = null)
+        {
+            Profile = profile;
+            ProfilePic = profilePic;
+            PreferredLanguage = preferredLanguage;
+            EnglishLanguage = englishLanguage;
+            NavBarMenuItems = navBarMenuItems;
+            NavBarProjects = navBarProjects;
+            FirstDayOfWeek = firstDayOfWeek;
+            ThemeName = themeName;
+            DraftType = draftType;
+            TodoFilters = todoFilters;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(MeInfoDto), nameof(Profile));
         
         [Required]

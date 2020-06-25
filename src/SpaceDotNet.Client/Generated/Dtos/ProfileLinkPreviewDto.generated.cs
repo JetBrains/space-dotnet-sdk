@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ProfileLinkPreview";
         
+        public ProfileLinkPreviewDto() { }
+        
+        public ProfileLinkPreviewDto(TDMemberProfileDto profile)
+        {
+            Profile = profile;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(ProfileLinkPreviewDto), nameof(Profile));
         
         [Required]

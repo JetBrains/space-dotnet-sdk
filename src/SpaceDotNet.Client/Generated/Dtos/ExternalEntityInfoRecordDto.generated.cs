@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class ExternalEntityInfoRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ExternalEntityInfoRecordDto() { }
+        
+        public ExternalEntityInfoRecordDto(string id, bool archived, ImportTransactionRecordDto transaction, string? externalId = null, string? externalUrl = null)
+        {
+            Id = id;
+            Archived = archived;
+            ExternalId = externalId;
+            ExternalUrl = externalUrl;
+            Transaction = transaction;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ExternalEntityInfoRecordDto), nameof(Id));
         
         [Required]

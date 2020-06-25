@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "FractionCFValue";
         
+        public FractionCFValueDto() { }
+        
+        public FractionCFValueDto(FractionDto? value = null)
+        {
+            Value = value;
+        }
+        
         private PropertyValue<FractionDto?> _value = new PropertyValue<FractionDto?>(nameof(FractionCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]

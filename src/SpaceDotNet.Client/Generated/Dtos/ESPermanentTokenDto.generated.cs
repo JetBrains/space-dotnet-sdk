@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class ESPermanentTokenDto
          : IPropagatePropertyAccessPath
     {
+        public ESPermanentTokenDto() { }
+        
+        public ESPermanentTokenDto(string id, string name, TDMemberProfileDto profile, string scope, SpaceTime created, AccessRecordDto? lastAccess = null)
+        {
+            Id = id;
+            Name = name;
+            Profile = profile;
+            Scope = scope;
+            Created = created;
+            LastAccess = lastAccess;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESPermanentTokenDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class HADeprecationDto
          : IPropagatePropertyAccessPath
     {
+        public HADeprecationDto() { }
+        
+        public HADeprecationDto(string message, string since, bool forRemoval)
+        {
+            Message = message;
+            Since = since;
+            ForRemoval = forRemoval;
+        }
+        
         private PropertyValue<string> _message = new PropertyValue<string>(nameof(HADeprecationDto), nameof(Message));
         
         [Required]

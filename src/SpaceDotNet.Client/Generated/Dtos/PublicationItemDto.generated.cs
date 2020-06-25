@@ -24,6 +24,12 @@ namespace SpaceDotNet.Client
     public interface PublicationItemDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static DocumentPublicationItemDto Document(string documentId, DraftDocumentType documentType)
+            => new DocumentPublicationItemDto(documentId: documentId, documentType: documentType);
+        
+        public static PublicationItemStubDto Stub()
+            => new PublicationItemStubDto();
+        
     }
     
 }

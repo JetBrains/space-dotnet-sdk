@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public sealed class PRRepositoryInfoDto
          : IPropagatePropertyAccessPath
     {
+        public PRRepositoryInfoDto() { }
+        
+        public PRRepositoryInfoDto(string name, string description, RepositoryState state, SpaceTime? latestActivity = null, SpaceTime? proxyPushNotification = null, string? initProgress = null, string? readmeName = null, RepositoryActivityDto? monthlyActivity = null)
+        {
+            Name = name;
+            Description = description;
+            LatestActivity = latestActivity;
+            ProxyPushNotification = proxyPushNotification;
+            State = state;
+            InitProgress = initProgress;
+            ReadmeName = readmeName;
+            MonthlyActivity = monthlyActivity;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRRepositoryInfoDto), nameof(Name));
         
         [Required]

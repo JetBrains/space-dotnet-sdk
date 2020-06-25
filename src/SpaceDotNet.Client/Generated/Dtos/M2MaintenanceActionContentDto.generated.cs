@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2MaintenanceActionContent";
         
+        public M2MaintenanceActionContentDto() { }
+        
+        public M2MaintenanceActionContentDto(string action, bool success, string details)
+        {
+            Action = action;
+            Success = success;
+            Details = details;
+        }
+        
         private PropertyValue<string> _action = new PropertyValue<string>(nameof(M2MaintenanceActionContentDto), nameof(Action));
         
         [Required]

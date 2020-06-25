@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeChecklistsForChecklistIdImportRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeChecklistsForChecklistIdImportRequest() { }
+        
+        public TeamDirectoryProfilesMeChecklistsForChecklistIdImportRequest(string targetParentId, string tabIndentedLines, string? afterItemId = null)
+        {
+            TargetParentId = targetParentId;
+            AfterItemId = afterItemId;
+            TabIndentedLines = tabIndentedLines;
+        }
+        
         private PropertyValue<string> _targetParentId = new PropertyValue<string>(nameof(TeamDirectoryProfilesMeChecklistsForChecklistIdImportRequest), nameof(TargetParentId));
         
         [Required]

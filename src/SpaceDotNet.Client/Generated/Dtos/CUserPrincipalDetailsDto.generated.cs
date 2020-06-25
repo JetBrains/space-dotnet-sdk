@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "CUserPrincipalDetails";
         
+        public CUserPrincipalDetailsDto() { }
+        
+        public CUserPrincipalDetailsDto(TDMemberProfileDto user)
+        {
+            User = user;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _user = new PropertyValue<TDMemberProfileDto>(nameof(CUserPrincipalDetailsDto), nameof(User));
         
         [Required]

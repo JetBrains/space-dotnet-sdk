@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class GitGraphLayoutEdgeDto
          : IPropagatePropertyAccessPath
     {
+        public GitGraphLayoutEdgeDto() { }
+        
+        public GitGraphLayoutEdgeDto(int from, int to, GitGraphEdgeType type, GitGraphEdgeLineStyle style, bool hasArrow, int color)
+        {
+            From = from;
+            To = to;
+            Type = type;
+            Style = style;
+            HasArrow = hasArrow;
+            Color = color;
+        }
+        
         private PropertyValue<int> _from = new PropertyValue<int>(nameof(GitGraphLayoutEdgeDto), nameof(From));
         
         [Required]

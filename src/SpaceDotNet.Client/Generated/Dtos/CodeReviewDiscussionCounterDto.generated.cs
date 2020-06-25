@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class CodeReviewDiscussionCounterDto
          : IPropagatePropertyAccessPath
     {
+        public CodeReviewDiscussionCounterDto() { }
+        
+        public CodeReviewDiscussionCounterDto(string id, string projectId, CounterDto counter)
+        {
+            Id = id;
+            ProjectId = projectId;
+            Counter = counter;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionCounterDto), nameof(Id));
         
         [Required]

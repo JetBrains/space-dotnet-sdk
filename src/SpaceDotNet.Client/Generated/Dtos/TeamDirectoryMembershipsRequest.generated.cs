@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryMembershipsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryMembershipsRequest() { }
+        
+        public TeamDirectoryMembershipsRequest(string memberId, string teamId, string roleId, bool lead, bool requiresApproval, string? managerId = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null)
+        {
+            MemberId = memberId;
+            TeamId = teamId;
+            RoleId = roleId;
+            Lead = lead;
+            ManagerId = managerId;
+            Since = since;
+            Till = till;
+            ActiveSince = activeSince;
+            ActiveTill = activeTill;
+            PreviousMembershipId = previousMembershipId;
+            RequiresApproval = requiresApproval;
+            CustomFieldValues = customFieldValues;
+        }
+        
         private PropertyValue<string> _memberId = new PropertyValue<string>(nameof(TeamDirectoryMembershipsRequest), nameof(MemberId));
         
         [Required]

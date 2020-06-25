@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class HolidaysEventDto
          : IPropagatePropertyAccessPath
     {
+        public HolidaysEventDto() { }
+        
+        public HolidaysEventDto(TDMemberProfileDto profile, List<PublicHolidayDto> holidays)
+        {
+            Profile = profile;
+            Holidays = holidays;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(HolidaysEventDto), nameof(Profile));
         
         [Required]

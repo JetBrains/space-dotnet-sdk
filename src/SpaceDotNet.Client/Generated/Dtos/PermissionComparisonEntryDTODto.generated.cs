@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class PermissionComparisonEntryDTODto
          : IPropagatePropertyAccessPath
     {
+        public PermissionComparisonEntryDTODto() { }
+        
+        public PermissionComparisonEntryDTODto(int principalIndex, int rightIndex, bool allTargets1, List<int> targetIndices1, bool allTargets2, List<int> targetIndices2)
+        {
+            PrincipalIndex = principalIndex;
+            RightIndex = rightIndex;
+            AllTargets1 = allTargets1;
+            TargetIndices1 = targetIndices1;
+            AllTargets2 = allTargets2;
+            TargetIndices2 = targetIndices2;
+        }
+        
         private PropertyValue<int> _principalIndex = new PropertyValue<int>(nameof(PermissionComparisonEntryDTODto), nameof(PrincipalIndex));
         
         [Required]

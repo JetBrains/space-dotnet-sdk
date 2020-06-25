@@ -28,6 +28,42 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CFType";
         
+        public static BooleanCFTypeDto Boolean()
+            => new BooleanCFTypeDto();
+        
+        public static DateCFTypeDto Date()
+            => new DateCFTypeDto();
+        
+        public static EnumCFTypeDto Enum(List<EnumValueDataDto> values)
+            => new EnumCFTypeDto(values: values);
+        
+        public static EnumListCFTypeDto EnumList(List<EnumValueDataDto> values)
+            => new EnumListCFTypeDto(values: values);
+        
+        public static FractionCFTypeDto Fraction()
+            => new FractionCFTypeDto();
+        
+        public static IntCFTypeDto Int()
+            => new IntCFTypeDto();
+        
+        public static IntListCFTypeDto IntList()
+            => new IntListCFTypeDto();
+        
+        public static ProfileCFTypeDto Profile()
+            => new ProfileCFTypeDto();
+        
+        public static ProfileListCFTypeDto ProfileList()
+            => new ProfileListCFTypeDto();
+        
+        public static StringCFTypeDto String()
+            => new StringCFTypeDto();
+        
+        public static StringListCFTypeDto StringList()
+            => new StringListCFTypeDto();
+        
+        public static UrlCFTypeDto Url()
+            => new UrlCFTypeDto();
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

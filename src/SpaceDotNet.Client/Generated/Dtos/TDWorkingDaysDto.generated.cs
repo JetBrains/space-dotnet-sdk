@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class TDWorkingDaysDto
          : IPropagatePropertyAccessPath
     {
+        public TDWorkingDaysDto() { }
+        
+        public TDWorkingDaysDto(string id, WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null)
+        {
+            Id = id;
+            DateStart = dateStart;
+            DateEnd = dateEnd;
+            WorkingDaysSpec = workingDaysSpec;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDWorkingDaysDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public interface MessageControlElementDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static MessageButtonDto MessageButton(string text, MessageButtonStyle style, MessageActionDto action, bool? disabled = null)
+            => new MessageButtonDto(text: text, style: style, action: action, disabled: null);
+        
     }
     
 }

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class UploadsRequest
          : IPropagatePropertyAccessPath
     {
+        public UploadsRequest() { }
+        
+        public UploadsRequest(string storagePrefix, string? mediaType = null)
+        {
+            StoragePrefix = storagePrefix;
+            MediaType = mediaType;
+        }
+        
         private PropertyValue<string> _storagePrefix = new PropertyValue<string>(nameof(UploadsRequest), nameof(StoragePrefix));
         
         [Required]

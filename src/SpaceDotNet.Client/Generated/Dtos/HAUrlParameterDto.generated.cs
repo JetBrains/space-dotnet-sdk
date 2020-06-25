@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class HAUrlParameterDto
          : IPropagatePropertyAccessPath
     {
+        public HAUrlParameterDto() { }
+        
+        public HAUrlParameterDto(string id, string name, List<HAUrlParameterOptionDto> options, HADeprecationDto? deprecation = null)
+        {
+            Id = id;
+            Name = name;
+            Options = options;
+            Deprecation = deprecation;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAUrlParameterDto), nameof(Id));
         
         [Required]

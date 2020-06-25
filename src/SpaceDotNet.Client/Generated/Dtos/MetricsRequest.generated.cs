@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class MetricsRequest
          : IPropagatePropertyAccessPath
     {
+        public MetricsRequest() { }
+        
+        public MetricsRequest(ClientInfoDto client, List<MetricsEventDto> events)
+        {
+            Client = client;
+            Events = events;
+        }
+        
         private PropertyValue<ClientInfoDto> _client = new PropertyValue<ClientInfoDto>(nameof(MetricsRequest), nameof(Client));
         
         [Required]

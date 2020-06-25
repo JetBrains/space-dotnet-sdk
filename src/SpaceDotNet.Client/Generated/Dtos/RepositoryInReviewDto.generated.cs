@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class RepositoryInReviewDto
          : IPropagatePropertyAccessPath
     {
+        public RepositoryInReviewDto() { }
+        
+        public RepositoryInReviewDto(string name, bool deleted)
+        {
+            Name = name;
+            Deleted = deleted;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(RepositoryInReviewDto), nameof(Name));
         
         [Required]

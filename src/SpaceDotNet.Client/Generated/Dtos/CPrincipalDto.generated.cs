@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class CPrincipalDto
          : IPropagatePropertyAccessPath
     {
+        public CPrincipalDto() { }
+        
+        public CPrincipalDto(string name, CPrincipalDetailsDto? details = null)
+        {
+            Name = name;
+            Details = details;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CPrincipalDto), nameof(Name));
         
         [Required]

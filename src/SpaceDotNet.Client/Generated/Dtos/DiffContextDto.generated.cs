@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class DiffContextDto
          : IPropagatePropertyAccessPath
     {
+        public DiffContextDto() { }
+        
+        public DiffContextDto(DiffSideDto right, DiffSideDto? left = null)
+        {
+            Left = left;
+            Right = right;
+        }
+        
         private PropertyValue<DiffSideDto?> _left = new PropertyValue<DiffSideDto?>(nameof(DiffContextDto), nameof(Left));
         
         [JsonPropertyName("left")]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForIdWorkingDaysRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForIdWorkingDaysRequest() { }
+        
+        public TeamDirectoryProfilesForIdWorkingDaysRequest(WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null)
+        {
+            DateStart = dateStart;
+            DateEnd = dateEnd;
+            WorkingDaysSpec = workingDaysSpec;
+        }
+        
         private PropertyValue<SpaceDate?> _dateStart = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryProfilesForIdWorkingDaysRequest), nameof(DateStart));
         
         [JsonPropertyName("dateStart")]

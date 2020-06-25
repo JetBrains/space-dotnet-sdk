@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public sealed class M2ChannelRecordDto
          : IPropagatePropertyAccessPath
     {
+        public M2ChannelRecordDto() { }
+        
+        public M2ChannelRecordDto(string id, M2ChannelContactDto contact, int totalMessages, bool archived, M2ChannelRecordDto channel, MessageInfoDto? lastMessage = null, List<TDMemberProfileDto>? authors = null, List<CPrincipalDto>? commentAuthors = null, List<ChannelParticipantDto>? participants = null, bool? channelArchived = null, List<ChannelItemRecordDto>? messages = null, M2ChannelContentInfoDto? content = null)
+        {
+            Id = id;
+            Contact = contact;
+            TotalMessages = totalMessages;
+            LastMessage = lastMessage;
+            Authors = authors;
+            CommentAuthors = commentAuthors;
+            Participants = participants;
+            ChannelArchived = channelArchived;
+            Archived = archived;
+            Channel = channel;
+            Messages = messages;
+            Content = content;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2ChannelRecordDto), nameof(Id));
         
         [Required]

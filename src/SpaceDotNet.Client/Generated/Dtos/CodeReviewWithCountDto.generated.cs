@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class CodeReviewWithCountDto
          : IPropagatePropertyAccessPath
     {
+        public CodeReviewWithCountDto() { }
+        
+        public CodeReviewWithCountDto(CodeReviewRecordDto review, int messagesCount, List<GitCommitterProfileDto> authors, CodeReviewParticipantsDto participants)
+        {
+            Review = review;
+            MessagesCount = messagesCount;
+            Authors = authors;
+            Participants = participants;
+        }
+        
         private PropertyValue<CodeReviewRecordDto> _review = new PropertyValue<CodeReviewRecordDto>(nameof(CodeReviewWithCountDto), nameof(Review));
         
         [Required]

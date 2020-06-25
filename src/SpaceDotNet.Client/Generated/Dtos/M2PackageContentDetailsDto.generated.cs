@@ -24,6 +24,12 @@ namespace SpaceDotNet.Client
     public interface M2PackageContentDetailsDto
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static M2PackageCreatedDetailsDto M2PackageCreatedDetails(PackageVersionInfoDto pkg)
+            => new M2PackageCreatedDetailsDto(pkg: pkg);
+        
+        public static M2PackageDeletedDetailsDto M2PackageDeletedDetails(PackageVersionInfoDto pkg)
+            => new M2PackageDeletedDetailsDto(pkg: pkg);
+        
     }
     
 }

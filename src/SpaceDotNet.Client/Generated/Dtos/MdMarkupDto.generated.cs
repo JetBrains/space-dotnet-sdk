@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class MdMarkupDto
          : IPropagatePropertyAccessPath
     {
+        public MdMarkupDto() { }
+        
+        public MdMarkupDto(List<UnfurlDto> unfurl)
+        {
+            Unfurl = unfurl;
+        }
+        
         private PropertyValue<List<UnfurlDto>> _unfurl = new PropertyValue<List<UnfurlDto>>(nameof(MdMarkupDto), nameof(Unfurl));
         
         [Required]

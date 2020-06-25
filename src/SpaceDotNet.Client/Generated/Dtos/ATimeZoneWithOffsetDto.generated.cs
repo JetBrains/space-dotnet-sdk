@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class ATimeZoneWithOffsetDto
          : IPropagatePropertyAccessPath
     {
+        public ATimeZoneWithOffsetDto() { }
+        
+        public ATimeZoneWithOffsetDto(string id, int offset)
+        {
+            Id = id;
+            Offset = offset;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ATimeZoneWithOffsetDto), nameof(Id));
         
         [Required]

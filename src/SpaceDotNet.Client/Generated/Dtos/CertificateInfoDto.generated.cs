@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public sealed class CertificateInfoDto
          : IPropagatePropertyAccessPath
     {
+        public CertificateInfoDto() { }
+        
+        public CertificateInfoDto(string certificateType, int version, string serialNumber, string issuedBy, string issuedTo, SpaceTime validFrom, SpaceTime validTo, string algorithm, FingerprintDto fingerprint)
+        {
+            CertificateType = certificateType;
+            Version = version;
+            SerialNumber = serialNumber;
+            IssuedBy = issuedBy;
+            IssuedTo = issuedTo;
+            ValidFrom = validFrom;
+            ValidTo = validTo;
+            Algorithm = algorithm;
+            Fingerprint = fingerprint;
+        }
+        
         private PropertyValue<string> _certificateType = new PropertyValue<string>(nameof(CertificateInfoDto), nameof(CertificateType));
         
         [Required]

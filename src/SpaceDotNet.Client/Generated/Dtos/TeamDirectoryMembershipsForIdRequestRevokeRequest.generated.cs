@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryMembershipsForIdRequestRevokeRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryMembershipsForIdRequestRevokeRequest() { }
+        
+        public TeamDirectoryMembershipsForIdRequestRevokeRequest(SpaceTime till)
+        {
+            Till = till;
+        }
+        
         private PropertyValue<SpaceTime> _till = new PropertyValue<SpaceTime>(nameof(TeamDirectoryMembershipsForIdRequestRevokeRequest), nameof(Till));
         
         [Required]

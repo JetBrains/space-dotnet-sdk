@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class DTORightTypeDto
          : IPropagatePropertyAccessPath
     {
+        public DTORightTypeDto() { }
+        
+        public DTORightTypeDto(string typeCode, string title)
+        {
+            TypeCode = typeCode;
+            Title = title;
+        }
+        
         private PropertyValue<string> _typeCode = new PropertyValue<string>(nameof(DTORightTypeDto), nameof(TypeCode));
         
         [Required]

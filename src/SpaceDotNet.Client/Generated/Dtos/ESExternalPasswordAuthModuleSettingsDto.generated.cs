@@ -27,6 +27,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_ExternalPasswordAuthModuleSettings";
         
+        public static ESLdapAuthModuleSettingsDto ESLdapAuthModuleSettings(LdapModuleType type, bool registerNewUsers, string serverUrl, int connectionTimeout, int readTimeout, List<ESTeamMappingDto> teamMappings, bool referralIgnored, string filter, string bindUserDN, string bindUserPassword, ESLdapAttributeNamesDto attributeNames, SSLKeystoreDto? sslKeystore = null)
+            => new ESLdapAuthModuleSettingsDto(type: type, registerNewUsers: registerNewUsers, serverUrl: serverUrl, connectionTimeout: connectionTimeout, readTimeout: readTimeout, teamMappings: teamMappings, referralIgnored: referralIgnored, filter: filter, bindUserDN: bindUserDN, bindUserPassword: bindUserPassword, attributeNames: attributeNames, sslKeystore: null);
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

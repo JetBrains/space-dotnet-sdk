@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2TextItemContent";
         
+        public M2TextItemContentDto() { }
+        
+        public M2TextItemContentDto(bool? markdown = null)
+        {
+            Markdown = markdown;
+        }
+        
         private PropertyValue<bool?> _markdown = new PropertyValue<bool?>(nameof(M2TextItemContentDto), nameof(Markdown));
         
         [JsonPropertyName("markdown")]

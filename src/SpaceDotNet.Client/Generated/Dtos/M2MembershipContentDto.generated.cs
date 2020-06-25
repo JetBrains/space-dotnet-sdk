@@ -28,6 +28,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "M2MembershipContent";
         
+        public static M2MembershipCreatedContentDto M2MembershipCreatedContent(TDMembershipDto membership)
+            => new M2MembershipCreatedContentDto(membership: membership);
+        
+        public static M2MembershipRequestedContentDto M2MembershipRequestedContent(TDMembershipDto membership, bool leave)
+            => new M2MembershipRequestedContentDto(membership: membership, leave: leave);
+        
+        public static M2MembershipTerminatedContentDto M2MembershipTerminatedContent(TDMembershipDto membership)
+            => new M2MembershipTerminatedContentDto(membership: membership);
+        
+        public M2MembershipContentDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

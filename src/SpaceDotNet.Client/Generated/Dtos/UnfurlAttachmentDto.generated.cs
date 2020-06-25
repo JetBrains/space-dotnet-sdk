@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "UnfurlAttachment";
         
+        public UnfurlAttachmentDto() { }
+        
+        public UnfurlAttachmentDto(UnfurlDto unfurl, string? id = null)
+        {
+            Unfurl = unfurl;
+            Id = id;
+        }
+        
         private PropertyValue<UnfurlDto> _unfurl = new PropertyValue<UnfurlDto>(nameof(UnfurlAttachmentDto), nameof(Unfurl));
         
         [Required]

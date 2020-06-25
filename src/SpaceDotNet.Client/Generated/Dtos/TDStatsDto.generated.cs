@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class TDStatsDto
          : IPropagatePropertyAccessPath
     {
+        public TDStatsDto() { }
+        
+        public TDStatsDto(int totalMembers, List<Pair<TDTeamDto, int>> teams, List<Pair<TDRoleDto, int>> roles, List<Pair<TDLocationDto, int>> locations)
+        {
+            TotalMembers = totalMembers;
+            Teams = teams;
+            Roles = roles;
+            Locations = locations;
+        }
+        
         private PropertyValue<int> _totalMembers = new PropertyValue<int>(nameof(TDStatsDto), nameof(TotalMembers));
         
         [Required]

@@ -27,6 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MCMessage";
         
+        public MCMessageDto() { }
+        
+        public MCMessageDto(string style, List<MCElementDto> content, MCOutlineDto? outline = null, string? serviceId = null, string? supplementaryData = null)
+        {
+            Style = style;
+            Outline = outline;
+            Content = content;
+            ServiceId = serviceId;
+            SupplementaryData = supplementaryData;
+        }
+        
         private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessageDto), nameof(Style));
         
         [Required]

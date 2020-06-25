@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class TDRoleDto
          : IPropagatePropertyAccessPath
     {
+        public TDRoleDto() { }
+        
+        public TDRoleDto(string id, string name, bool archived, TDRoleDto? parent = null)
+        {
+            Id = id;
+            Name = name;
+            Parent = parent;
+            Archived = archived;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDRoleDto), nameof(Id));
         
         [Required]

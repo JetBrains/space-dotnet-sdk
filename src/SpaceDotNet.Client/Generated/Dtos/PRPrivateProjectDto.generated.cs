@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class PRPrivateProjectDto
          : IPropagatePropertyAccessPath
     {
+        public PRPrivateProjectDto() { }
+        
+        public PRPrivateProjectDto(ProjectKeyDto key, string name, bool accessAllowed, List<TDMemberProfileDto> admins)
+        {
+            Key = key;
+            Name = name;
+            AccessAllowed = accessAllowed;
+            Admins = admins;
+        }
+        
         private PropertyValue<ProjectKeyDto> _key = new PropertyValue<ProjectKeyDto>(nameof(PRPrivateProjectDto), nameof(Key));
         
         [Required]

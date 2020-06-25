@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ReviewBranchTrackEvent";
         
+        public ReviewBranchTrackEventDto() { }
+        
+        public ReviewBranchTrackEventDto(string repository, string branch, bool track)
+        {
+            Repository = repository;
+            Branch = branch;
+            Track = track;
+        }
+        
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(ReviewBranchTrackEventDto), nameof(Repository));
         
         [Required]

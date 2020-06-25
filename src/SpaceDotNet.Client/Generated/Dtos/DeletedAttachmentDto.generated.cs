@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "DeletedAttachment";
         
+        public DeletedAttachmentDto() { }
+        
+        public DeletedAttachmentDto(string deletedIdentity)
+        {
+            DeletedIdentity = deletedIdentity;
+        }
+        
         private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachmentDto), nameof(DeletedIdentity));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ChannelSpecificDefaultsDto
          : IPropagatePropertyAccessPath
     {
+        public ChannelSpecificDefaultsDto() { }
+        
+        public ChannelSpecificDefaultsDto(NotificationFilter filter, bool push, M2EmailNotificationType email)
+        {
+            Filter = filter;
+            Push = push;
+            Email = email;
+        }
+        
         private PropertyValue<NotificationFilter> _filter = new PropertyValue<NotificationFilter>(nameof(ChannelSpecificDefaultsDto), nameof(Filter));
         
         [Required]

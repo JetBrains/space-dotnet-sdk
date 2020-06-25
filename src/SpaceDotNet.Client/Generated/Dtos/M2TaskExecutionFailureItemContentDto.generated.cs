@@ -27,6 +27,22 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2TaskExecutionFailureItemContent";
         
+        public M2TaskExecutionFailureItemContentDto() { }
+        
+        public M2TaskExecutionFailureItemContentDto(string taskExecutionId, string taskExecutionName, string repoName, string branchName, string commit, string shortCommitMessage, ProjectKeyDto project, long finishDateTime, string triggerInfo, string details)
+        {
+            TaskExecutionId = taskExecutionId;
+            TaskExecutionName = taskExecutionName;
+            RepoName = repoName;
+            BranchName = branchName;
+            Commit = commit;
+            ShortCommitMessage = shortCommitMessage;
+            Project = project;
+            FinishDateTime = finishDateTime;
+            TriggerInfo = triggerInfo;
+            Details = details;
+        }
+        
         private PropertyValue<string> _taskExecutionId = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(TaskExecutionId));
         
         [Required]

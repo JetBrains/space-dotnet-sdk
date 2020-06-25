@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectAccessMembersTeamsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectAccessMembersTeamsRequest() { }
+        
+        public ProjectsForProjectAccessMembersTeamsRequest(string teamId)
+        {
+            TeamId = teamId;
+        }
+        
         private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(ProjectsForProjectAccessMembersTeamsRequest), nameof(TeamId));
         
         [Required]

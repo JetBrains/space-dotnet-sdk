@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForIdPermanentTokensRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForIdPermanentTokensRequest() { }
+        
+        public TeamDirectoryProfilesForIdPermanentTokensRequest(string name, string scope)
+        {
+            Name = name;
+            Scope = scope;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForIdPermanentTokensRequest), nameof(Name));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class RecurrenceRuleDto
          : IPropagatePropertyAccessPath
     {
+        public RecurrenceRuleDto() { }
+        
+        public RecurrenceRuleDto(RecurrenceRuleFreqDto freq, RecurrenceRuleEndsDto ends)
+        {
+            Freq = freq;
+            Ends = ends;
+        }
+        
         private PropertyValue<RecurrenceRuleFreqDto> _freq = new PropertyValue<RecurrenceRuleFreqDto>(nameof(RecurrenceRuleDto), nameof(Freq));
         
         [Required]

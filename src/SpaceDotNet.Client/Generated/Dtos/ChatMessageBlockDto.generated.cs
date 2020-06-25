@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ChatMessage.Block";
         
+        public ChatMessageBlockDto() { }
+        
+        public ChatMessageBlockDto(List<MessageSectionElementDto> sections, MessageStyle? style = null, MessageOutlineDto? outline = null, string? messageData = null)
+        {
+            Style = style;
+            Outline = outline;
+            Sections = sections;
+            MessageData = messageData;
+        }
+        
         private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(ChatMessageBlockDto), nameof(Style));
         
         [JsonPropertyName("style")]

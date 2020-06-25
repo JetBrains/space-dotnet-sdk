@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "RecurrenceRuleFreq.Yearly";
         
+        public RecurrenceRuleFreqYearlyDto() { }
+        
+        public RecurrenceRuleFreqYearlyDto(int interval)
+        {
+            Interval = interval;
+        }
+        
         private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqYearlyDto), nameof(Interval));
         
         [Required]

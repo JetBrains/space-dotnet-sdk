@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ESOAuthConsentDto
          : IPropagatePropertyAccessPath
     {
+        public ESOAuthConsentDto() { }
+        
+        public ESOAuthConsentDto(ESServiceDto clientService, List<ESApprovedScopeDto> approvedScopes, List<ESRefreshTokenDto> refreshTokens)
+        {
+            ClientService = clientService;
+            ApprovedScopes = approvedScopes;
+            RefreshTokens = refreshTokens;
+        }
+        
         private PropertyValue<ESServiceDto> _clientService = new PropertyValue<ESServiceDto>(nameof(ESOAuthConsentDto), nameof(ClientService));
         
         [Required]

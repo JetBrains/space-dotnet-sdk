@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "MeetingOrganizer.ExternalUser";
         
+        public MeetingOrganizerExternalUserDto() { }
+        
+        public MeetingOrganizerExternalUserDto(string email)
+        {
+            Email = email;
+        }
+        
         private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUserDto), nameof(Email));
         
         [Required]

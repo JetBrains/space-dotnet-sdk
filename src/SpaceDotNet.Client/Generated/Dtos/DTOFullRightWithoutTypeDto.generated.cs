@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class DTOFullRightWithoutTypeDto
          : IPropagatePropertyAccessPath
     {
+        public DTOFullRightWithoutTypeDto() { }
+        
+        public DTOFullRightWithoutTypeDto(string code, string title, bool grantedForUsers, string? description = null, FeatureFlagDto? featureFlag = null)
+        {
+            Code = code;
+            Title = title;
+            Description = description;
+            GrantedForUsers = grantedForUsers;
+            FeatureFlag = featureFlag;
+        }
+        
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(DTOFullRightWithoutTypeDto), nameof(Code));
         
         [Required]

@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_ContainerRegistrySettings";
         
+        public ESContainerRegistrySettingsDto() { }
+        
+        public ESContainerRegistrySettingsDto(bool immutableTags)
+        {
+            ImmutableTags = immutableTags;
+        }
+        
         private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettingsDto), nameof(ImmutableTags));
         
         [Required]

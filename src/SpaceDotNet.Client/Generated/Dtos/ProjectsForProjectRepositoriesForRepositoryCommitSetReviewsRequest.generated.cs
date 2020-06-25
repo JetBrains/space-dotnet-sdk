@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsRequest() { }
+        
+        public ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsRequest(List<string> revisions, string? title = null)
+        {
+            Revisions = revisions;
+            Title = title;
+        }
+        
         private PropertyValue<List<string>> _revisions = new PropertyValue<List<string>>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsRequest), nameof(Revisions));
         
         [Required]

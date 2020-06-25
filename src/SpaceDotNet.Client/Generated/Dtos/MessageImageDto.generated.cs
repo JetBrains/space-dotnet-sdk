@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageImage";
         
+        public MessageImageDto() { }
+        
+        public MessageImageDto(string src)
+        {
+            Src = src;
+        }
+        
         private PropertyValue<string> _src = new PropertyValue<string>(nameof(MessageImageDto), nameof(Src));
         
         [Required]

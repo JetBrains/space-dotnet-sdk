@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class GitCommitWithGraphDto
          : IPropagatePropertyAccessPath
     {
+        public GitCommitWithGraphDto() { }
+        
+        public GitCommitWithGraphDto(string repositoryName, GitCommitInfoDto commit, List<CodeReviewRecordDto> reviews, bool unreachable, GitGraphLayoutLineDto? layout = null)
+        {
+            RepositoryName = repositoryName;
+            Commit = commit;
+            Reviews = reviews;
+            Layout = layout;
+            Unreachable = unreachable;
+        }
+        
         private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(GitCommitWithGraphDto), nameof(RepositoryName));
         
         [Required]

@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class VoteGroupDto
          : IPropagatePropertyAccessPath
     {
+        public VoteGroupDto() { }
+        
+        public VoteGroupDto(string variantName, int count, bool meVote, List<TDMemberProfileDto> lastUsers, TDMemberProfileDto? owner = null)
+        {
+            VariantName = variantName;
+            Count = count;
+            MeVote = meVote;
+            LastUsers = lastUsers;
+            Owner = owner;
+        }
+        
         private PropertyValue<string> _variantName = new PropertyValue<string>(nameof(VoteGroupDto), nameof(VariantName));
         
         [Required]

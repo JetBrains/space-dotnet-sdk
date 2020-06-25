@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class VcsHostingPasswordDto
          : IPropagatePropertyAccessPath
     {
+        public VcsHostingPasswordDto() { }
+        
+        public VcsHostingPasswordDto(string fingerprint, SpaceTime? lastUsed = null)
+        {
+            Fingerprint = fingerprint;
+            LastUsed = lastUsed;
+        }
+        
         private PropertyValue<string> _fingerprint = new PropertyValue<string>(nameof(VcsHostingPasswordDto), nameof(Fingerprint));
         
         [Required]

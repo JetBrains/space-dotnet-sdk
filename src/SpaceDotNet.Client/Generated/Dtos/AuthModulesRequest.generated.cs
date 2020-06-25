@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public class AuthModulesRequest
          : IPropagatePropertyAccessPath
     {
+        public AuthModulesRequest() { }
+        
+        public AuthModulesRequest(string key, string name, bool enabled, ESAuthModuleSettingsDto settings)
+        {
+            Key = key;
+            Name = name;
+            Enabled = enabled;
+            Settings = settings;
+        }
+        
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(AuthModulesRequest), nameof(Key));
         
         [Required]

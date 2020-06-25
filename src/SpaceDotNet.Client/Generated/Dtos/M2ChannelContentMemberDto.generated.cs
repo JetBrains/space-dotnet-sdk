@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentMember";
         
+        public M2ChannelContentMemberDto() { }
+        
+        public M2ChannelContentMemberDto(TDMemberProfileDto member, ChannelSpecificDefaultsDto notificationDefaults, ProfileAbsencesRecordDto? memberAbsences = null, ProfileMembershipRecordDto? memberTeams = null)
+        {
+            Member = member;
+            NotificationDefaults = notificationDefaults;
+            MemberAbsences = memberAbsences;
+            MemberTeams = memberTeams;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _member = new PropertyValue<TDMemberProfileDto>(nameof(M2ChannelContentMemberDto), nameof(Member));
         
         [Required]

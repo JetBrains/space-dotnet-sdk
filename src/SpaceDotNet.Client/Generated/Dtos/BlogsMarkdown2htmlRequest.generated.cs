@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class BlogsMarkdown2htmlRequest
          : IPropagatePropertyAccessPath
     {
+        public BlogsMarkdown2htmlRequest() { }
+        
+        public BlogsMarkdown2htmlRequest(string markdown)
+        {
+            Markdown = markdown;
+        }
+        
         private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(BlogsMarkdown2htmlRequest), nameof(Markdown));
         
         [Required]

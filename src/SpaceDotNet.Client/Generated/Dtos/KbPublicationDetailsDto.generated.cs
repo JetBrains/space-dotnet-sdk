@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "KbPublicationDetails";
         
+        public KbPublicationDetailsDto() { }
+        
+        public KbPublicationDetailsDto(KBBookDto? book = null, KBFolderDto? folder = null, KBArticleDto? articleId = null)
+        {
+            Book = book;
+            Folder = folder;
+            ArticleId = articleId;
+        }
+        
         private PropertyValue<KBBookDto?> _book = new PropertyValue<KBBookDto?>(nameof(KbPublicationDetailsDto), nameof(Book));
         
         [JsonPropertyName("book")]

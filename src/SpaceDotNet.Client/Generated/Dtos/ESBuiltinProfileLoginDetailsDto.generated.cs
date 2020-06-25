@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_BuiltinProfileLoginDetails";
         
+        public ESBuiltinProfileLoginDetailsDto() { }
+        
+        public ESBuiltinProfileLoginDetailsDto(string? passwordChangeRequest = null)
+        {
+            PasswordChangeRequest = passwordChangeRequest;
+        }
+        
         private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetailsDto), nameof(PasswordChangeRequest));
         
         [JsonPropertyName("passwordChangeRequest")]

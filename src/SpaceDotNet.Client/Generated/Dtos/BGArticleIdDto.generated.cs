@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class BGArticleIdDto
          : IPropagatePropertyAccessPath
     {
+        public BGArticleIdDto() { }
+        
+        public BGArticleIdDto(string id)
+        {
+            Id = id;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(BGArticleIdDto), nameof(Id));
         
         [Required]

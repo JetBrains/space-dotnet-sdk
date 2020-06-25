@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public sealed class ArticleDetailsRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ArticleDetailsRecordDto() { }
+        
+        public ArticleDetailsRecordDto(string id, bool archived, MeetingRecordDto? @event = null, TDTeamDto? team = null, PRProjectDto? project = null, TDLocationDto? location = null, List<TDTeamDto>? teams = null, List<TDLocationDto>? locations = null, ExternalEntityInfoRecordDto? externalEntityInfo = null)
+        {
+            Id = id;
+            Archived = archived;
+            Event = @event;
+            Team = team;
+            Project = project;
+            Location = location;
+            Teams = teams;
+            Locations = locations;
+            ExternalEntityInfo = externalEntityInfo;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleDetailsRecordDto), nameof(Id));
         
         [Required]

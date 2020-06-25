@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "CAutomationTaskPrincipalDetails";
         
+        public CAutomationTaskPrincipalDetailsDto() { }
+        
+        public CAutomationTaskPrincipalDetailsDto(PRProjectDto project, string name, string id)
+        {
+            Project = project;
+            Name = name;
+            Id = id;
+        }
+        
         private PropertyValue<PRProjectDto> _project = new PropertyValue<PRProjectDto>(nameof(CAutomationTaskPrincipalDetailsDto), nameof(Project));
         
         [Required]

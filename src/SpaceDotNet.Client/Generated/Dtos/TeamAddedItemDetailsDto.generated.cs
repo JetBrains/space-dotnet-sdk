@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "TeamAddedItemDetails";
         
+        public TeamAddedItemDetailsDto() { }
+        
+        public TeamAddedItemDetailsDto(TDTeamDto team)
+        {
+            Team = team;
+        }
+        
         private PropertyValue<TDTeamDto> _team = new PropertyValue<TDTeamDto>(nameof(TeamAddedItemDetailsDto), nameof(Team));
         
         [Required]

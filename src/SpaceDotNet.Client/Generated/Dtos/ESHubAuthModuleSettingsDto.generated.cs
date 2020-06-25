@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_HubAuthModuleSettings";
         
+        public ESHubAuthModuleSettingsDto() { }
+        
+        public ESHubAuthModuleSettingsDto(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null)
+        {
+            HubUrl = hubUrl;
+            ClientId = clientId;
+            ClientSecret = clientSecret;
+            RegisterNewUsers = registerNewUsers;
+            OrgAuthProviderName = orgAuthProviderName;
+            Groups = groups;
+        }
+        
         private PropertyValue<string> _hubUrl = new PropertyValue<string>(nameof(ESHubAuthModuleSettingsDto), nameof(HubUrl));
         
         [Required]

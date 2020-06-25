@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentCodeReviewFeed";
         
+        public M2ChannelContentCodeReviewFeedDto() { }
+        
+        public M2ChannelContentCodeReviewFeedDto(string codeReviewId, ChannelSpecificDefaultsDto notificationDefaults, CodeReviewRecordDto? codeReview = null, CodeReviewParticipantsDto? participants = null, CodeReviewPendingMessageCounterDto? pendingMessageCounter = null, PRProjectDto? project = null)
+        {
+            CodeReviewId = codeReviewId;
+            NotificationDefaults = notificationDefaults;
+            CodeReview = codeReview;
+            Participants = participants;
+            PendingMessageCounter = pendingMessageCounter;
+            Project = project;
+        }
+        
         private PropertyValue<string> _codeReviewId = new PropertyValue<string>(nameof(M2ChannelContentCodeReviewFeedDto), nameof(CodeReviewId));
         
         [Required]

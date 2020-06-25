@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MCSection";
         
+        public MCSectionDto() { }
+        
+        public MCSectionDto(List<MCElementDto> elements, MCTextDto? header = null, MCTextDto? footer = null)
+        {
+            Header = header;
+            Elements = elements;
+            Footer = footer;
+        }
+        
         private PropertyValue<MCTextDto?> _header = new PropertyValue<MCTextDto?>(nameof(MCSectionDto), nameof(Header));
         
         [JsonPropertyName("header")]

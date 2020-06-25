@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryInvitationsForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryInvitationsForIdRequest() { }
+        
+        public TeamDirectoryInvitationsForIdRequest(string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeamDto? team = null, TDRoleDto? role = null)
+        {
+            InviteeEmail = inviteeEmail;
+            InviteeFirstName = inviteeFirstName;
+            InviteeLastName = inviteeLastName;
+            Team = team;
+            Role = role;
+        }
+        
         private PropertyValue<string?> _inviteeEmail = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdRequest), nameof(InviteeEmail));
         
         [JsonPropertyName("inviteeEmail")]

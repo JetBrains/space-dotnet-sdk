@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class AbsencesForIdApproveRequest
          : IPropagatePropertyAccessPath
     {
+        public AbsencesForIdApproveRequest() { }
+        
+        public AbsencesForIdApproveRequest(bool approve)
+        {
+            Approve = approve;
+        }
+        
         private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(AbsencesForIdApproveRequest), nameof(Approve));
         
         [Required]

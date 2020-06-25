@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class FTSBlogCommentDto
          : IPropagatePropertyAccessPath
     {
+        public FTSBlogCommentDto() { }
+        
+        public FTSBlogCommentDto(TDMemberProfileDto author, SpaceTime date, List<string> snippets)
+        {
+            Author = author;
+            Date = date;
+            Snippets = snippets;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _author = new PropertyValue<TDMemberProfileDto>(nameof(FTSBlogCommentDto), nameof(Author));
         
         [Required]

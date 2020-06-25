@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class ESSamlAttributeNamesDto
          : IPropagatePropertyAccessPath
     {
+        public ESSamlAttributeNamesDto() { }
+        
+        public ESSamlAttributeNamesDto(bool emailVerified, string? loginAttributeName = null, string? firstNameAttributeName = null, string? lastNameAttributeName = null, string? fullNameAttributeName = null, string? emailAttributeName = null)
+        {
+            LoginAttributeName = loginAttributeName;
+            FirstNameAttributeName = firstNameAttributeName;
+            LastNameAttributeName = lastNameAttributeName;
+            FullNameAttributeName = fullNameAttributeName;
+            EmailAttributeName = emailAttributeName;
+            EmailVerified = emailVerified;
+        }
+        
         private PropertyValue<string?> _loginAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNamesDto), nameof(LoginAttributeName));
         
         [JsonPropertyName("loginAttributeName")]

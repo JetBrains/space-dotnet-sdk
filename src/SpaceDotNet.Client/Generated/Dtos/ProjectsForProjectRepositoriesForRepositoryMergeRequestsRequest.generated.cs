@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectRepositoriesForRepositoryMergeRequestsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsRequest() { }
+        
+        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsRequest(string sourceBranch, string targetBranch, string title)
+        {
+            SourceBranch = sourceBranch;
+            TargetBranch = targetBranch;
+            Title = title;
+        }
+        
         private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsRequest), nameof(SourceBranch));
         
         [Required]

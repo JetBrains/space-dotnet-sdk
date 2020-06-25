@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TrustedCertificatesRequest
          : IPropagatePropertyAccessPath
     {
+        public TrustedCertificatesRequest() { }
+        
+        public TrustedCertificatesRequest(string alias, string data, bool archived)
+        {
+            Alias = alias;
+            Data = data;
+            Archived = archived;
+        }
+        
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(TrustedCertificatesRequest), nameof(Alias));
         
         [Required]

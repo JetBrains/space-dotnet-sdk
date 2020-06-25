@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeInfoOnboardingRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeInfoOnboardingRequest() { }
+        
+        public TeamDirectoryProfilesMeInfoOnboardingRequest(bool required)
+        {
+            Required = required;
+        }
+        
         private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(TeamDirectoryProfilesMeInfoOnboardingRequest), nameof(Required));
         
         [Required]

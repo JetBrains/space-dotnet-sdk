@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "FileAttachment";
         
+        public FileAttachmentDto() { }
+        
+        public FileAttachmentDto(string id, long sizeBytes, string filename)
+        {
+            Id = id;
+            SizeBytes = sizeBytes;
+            Filename = filename;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileAttachmentDto), nameof(Id));
         
         [Required]

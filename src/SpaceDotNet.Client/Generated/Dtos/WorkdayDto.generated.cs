@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class WorkdayDto
          : IPropagatePropertyAccessPath
     {
+        public WorkdayDto() { }
+        
+        public WorkdayDto(string weekday, bool working, int hours, int? minutes = null)
+        {
+            Weekday = weekday;
+            Working = working;
+            Hours = hours;
+            Minutes = minutes;
+        }
+        
         private PropertyValue<string> _weekday = new PropertyValue<string>(nameof(WorkdayDto), nameof(Weekday));
         
         [Required]

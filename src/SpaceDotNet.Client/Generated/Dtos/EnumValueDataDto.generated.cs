@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class EnumValueDataDto
          : IPropagatePropertyAccessPath
     {
+        public EnumValueDataDto() { }
+        
+        public EnumValueDataDto(string value, string? id = null)
+        {
+            Id = id;
+            Value = value;
+        }
+        
         private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(EnumValueDataDto), nameof(Id));
         
         [JsonPropertyName("id")]

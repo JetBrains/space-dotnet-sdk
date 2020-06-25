@@ -27,6 +27,24 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ProfileHit";
         
+        public ProfileHitDto() { }
+        
+        public ProfileHitDto(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, bool notAMember, TDMemberProfileDto @ref, List<CustomFieldHitDto> customFields)
+        {
+            Id = id;
+            Score = score;
+            FirstName = firstName;
+            LastName = lastName;
+            UserName = userName;
+            Phones = phones;
+            Emails = emails;
+            Links = links;
+            Messengers = messengers;
+            NotAMember = notAMember;
+            Ref = @ref;
+            CustomFields = customFields;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProfileHitDto), nameof(Id));
         
         [Required]

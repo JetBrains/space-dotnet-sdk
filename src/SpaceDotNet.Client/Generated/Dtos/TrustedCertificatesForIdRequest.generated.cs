@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TrustedCertificatesForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TrustedCertificatesForIdRequest() { }
+        
+        public TrustedCertificatesForIdRequest(string? alias = null, string? data = null, bool? archived = null)
+        {
+            Alias = alias;
+            Data = data;
+            Archived = archived;
+        }
+        
         private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(TrustedCertificatesForIdRequest), nameof(Alias));
         
         [JsonPropertyName("alias")]

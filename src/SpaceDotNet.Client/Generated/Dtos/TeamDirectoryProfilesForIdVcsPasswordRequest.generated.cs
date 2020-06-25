@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForIdVcsPasswordRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForIdVcsPasswordRequest() { }
+        
+        public TeamDirectoryProfilesForIdVcsPasswordRequest(string password)
+        {
+            Password = password;
+        }
+        
         private PropertyValue<string> _password = new PropertyValue<string>(nameof(TeamDirectoryProfilesForIdVcsPasswordRequest), nameof(Password));
         
         [Required]

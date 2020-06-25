@@ -28,6 +28,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "HA_UrlParameterOption";
         
+        public static HAUrlParameterOptionConstDto Const(string value, string optionName, HADeprecationDto? deprecation = null)
+            => new HAUrlParameterOptionConstDto(value: value, optionName: optionName, deprecation: null);
+        
+        public static HAUrlParameterOptionVarDto Var(HAFieldDto parameter, bool prefixRequired, string optionName, HADeprecationDto? deprecation = null)
+            => new HAUrlParameterOptionVarDto(parameter: parameter, prefixRequired: prefixRequired, optionName: optionName, deprecation: null);
+        
+        public HAUrlParameterOptionDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

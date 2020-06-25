@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeInfoNavBarMenuItemsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeInfoNavBarMenuItemsRequest() { }
+        
+        public TeamDirectoryProfilesMeInfoNavBarMenuItemsRequest(string item, bool enabled)
+        {
+            Item = item;
+            Enabled = enabled;
+        }
+        
         private PropertyValue<string> _item = new PropertyValue<string>(nameof(TeamDirectoryProfilesMeInfoNavBarMenuItemsRequest), nameof(Item));
         
         [Required]

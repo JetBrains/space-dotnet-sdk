@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "RecurrenceRuleEnds.OnDate";
         
+        public RecurrenceRuleEndsOnDateDto() { }
+        
+        public RecurrenceRuleEndsOnDateDto(SpaceDate date)
+        {
+            Date = date;
+        }
+        
         private PropertyValue<SpaceDate> _date = new PropertyValue<SpaceDate>(nameof(RecurrenceRuleEndsOnDateDto), nameof(Date));
         
         [Required]

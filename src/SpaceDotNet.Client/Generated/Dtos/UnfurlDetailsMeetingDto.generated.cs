@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "UnfurlDetailsMeeting";
         
+        public UnfurlDetailsMeetingDto() { }
+        
+        public UnfurlDetailsMeetingDto(DTOMeetingDto meeting)
+        {
+            Meeting = meeting;
+        }
+        
         private PropertyValue<DTOMeetingDto> _meeting = new PropertyValue<DTOMeetingDto>(nameof(UnfurlDetailsMeetingDto), nameof(Meeting));
         
         [Required]

@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningChecklistsForChecklistIdRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningChecklistsForChecklistIdRequest() { }
+        
+        public ProjectsForProjectPlanningChecklistsForChecklistIdRequest(string name, string? description = null, string? owner = null, string? tag = null)
+        {
+            Name = name;
+            Description = description;
+            Owner = owner;
+            Tag = tag;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdRequest), nameof(Name));
         
         [JsonPropertyName("name")]

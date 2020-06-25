@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageDivider";
         
+        public MessageDividerDto() { }
+        
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

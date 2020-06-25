@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "UnfurlDetailsProfile";
         
+        public UnfurlDetailsProfileDto() { }
+        
+        public UnfurlDetailsProfileDto(TDMemberProfileDto profile)
+        {
+            Profile = profile;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(UnfurlDetailsProfileDto), nameof(Profile));
         
         [Required]

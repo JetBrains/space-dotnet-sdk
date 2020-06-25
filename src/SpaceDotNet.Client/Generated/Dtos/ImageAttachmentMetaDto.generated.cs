@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class ImageAttachmentMetaDto
          : IPropagatePropertyAccessPath
     {
+        public ImageAttachmentMetaDto() { }
+        
+        public ImageAttachmentMetaDto(List<ImageAttachmentVariantsMetaDto> variants)
+        {
+            Variants = variants;
+        }
+        
         private PropertyValue<List<ImageAttachmentVariantsMetaDto>> _variants = new PropertyValue<List<ImageAttachmentVariantsMetaDto>>(nameof(ImageAttachmentMetaDto), nameof(Variants));
         
         [Required]

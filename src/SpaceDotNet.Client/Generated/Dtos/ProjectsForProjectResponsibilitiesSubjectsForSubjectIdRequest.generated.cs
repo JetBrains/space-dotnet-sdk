@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectResponsibilitiesSubjectsForSubjectIdRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectResponsibilitiesSubjectsForSubjectIdRequest() { }
+        
+        public ProjectsForProjectResponsibilitiesSubjectsForSubjectIdRequest(string? name = null)
+        {
+            Name = name;
+        }
+        
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectResponsibilitiesSubjectsForSubjectIdRequest), nameof(Name));
         
         [JsonPropertyName("name")]

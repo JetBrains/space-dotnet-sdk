@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class NonWorkingDaysEventDto
          : IPropagatePropertyAccessPath
     {
+        public NonWorkingDaysEventDto() { }
+        
+        public NonWorkingDaysEventDto(TDMemberProfileDto profile, List<NonWorkingDaysDto> days)
+        {
+            Profile = profile;
+            Days = days;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(NonWorkingDaysEventDto), nameof(Profile));
         
         [Required]

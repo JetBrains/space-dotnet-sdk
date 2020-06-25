@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class HAEnumDto
          : IPropagatePropertyAccessPath
     {
+        public HAEnumDto() { }
+        
+        public HAEnumDto(string id, string name, List<string> values, HADeprecationDto? deprecation = null)
+        {
+            Id = id;
+            Name = name;
+            Values = values;
+            Deprecation = deprecation;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(HAEnumDto), nameof(Id));
         
         [Required]

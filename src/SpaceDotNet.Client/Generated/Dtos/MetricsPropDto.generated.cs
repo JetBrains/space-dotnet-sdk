@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class MetricsPropDto
          : IPropagatePropertyAccessPath
     {
+        public MetricsPropDto() { }
+        
+        public MetricsPropDto(string key, string value)
+        {
+            Key = key;
+            Value = value;
+        }
+        
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(MetricsPropDto), nameof(Key));
         
         [Required]

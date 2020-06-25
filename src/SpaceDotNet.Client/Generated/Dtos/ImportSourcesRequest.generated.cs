@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ImportSourcesRequest
          : IPropagatePropertyAccessPath
     {
+        public ImportSourcesRequest() { }
+        
+        public ImportSourcesRequest(string name, string? importerPrincipal = null)
+        {
+            Name = name;
+            ImporterPrincipal = importerPrincipal;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ImportSourcesRequest), nameof(Name));
         
         [Required]

@@ -28,6 +28,20 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "MessageRecipient";
         
+        public static MessageRecipientChannelDto Channel(ChatChannelDto channel)
+            => new MessageRecipientChannelDto(channel: channel);
+        
+        public static MessageRecipientCodeReviewDto CodeReview(string codeReview)
+            => new MessageRecipientCodeReviewDto(codeReview: codeReview);
+        
+        public static MessageRecipientIssueDto Issue(string issue)
+            => new MessageRecipientIssueDto(issue: issue);
+        
+        public static MessageRecipientMemberDto Member(string member)
+            => new MessageRecipientMemberDto(member: member);
+        
+        public MessageRecipientDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

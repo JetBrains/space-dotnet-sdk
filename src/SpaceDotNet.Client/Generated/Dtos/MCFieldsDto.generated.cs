@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MCFields";
         
+        public MCFieldsDto() { }
+        
+        public MCFieldsDto(List<Pair<MCElementDto, MCElementDto>> fields)
+        {
+            Fields = fields;
+        }
+        
         private PropertyValue<List<Pair<MCElementDto, MCElementDto>>> _fields = new PropertyValue<List<Pair<MCElementDto, MCElementDto>>>(nameof(MCFieldsDto), nameof(Fields));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class MessageOutlineDto
          : IPropagatePropertyAccessPath
     {
+        public MessageOutlineDto() { }
+        
+        public MessageOutlineDto(string text, string? icon = null)
+        {
+            Icon = icon;
+            Text = text;
+        }
+        
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(MessageOutlineDto), nameof(Icon));
         
         [JsonPropertyName("icon")]

@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public sealed class HAEndpointDto
          : IPropagatePropertyAccessPath
     {
+        public HAEndpointDto() { }
+        
+        public HAEndpointDto(HAResourceDto resource, HAMethod method, List<HAParameterDto> parameters, HAPathDto path, string displayName, HATypeObjectDto? requestBody = null, HATypeDto? responseBody = null, string? doc = null, HADeprecationDto? deprecation = null)
+        {
+            Resource = resource;
+            Method = method;
+            Parameters = parameters;
+            RequestBody = requestBody;
+            ResponseBody = responseBody;
+            Path = path;
+            DisplayName = displayName;
+            Doc = doc;
+            Deprecation = deprecation;
+        }
+        
         private PropertyValue<HAResourceDto> _resource = new PropertyValue<HAResourceDto>(nameof(HAEndpointDto), nameof(Resource));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class ExtendedTypeDto
          : IPropagatePropertyAccessPath
     {
+        public ExtendedTypeDto() { }
+        
+        public ExtendedTypeDto(string key, string displayName)
+        {
+            Key = key;
+            DisplayName = displayName;
+        }
+        
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ExtendedTypeDto), nameof(Key));
         
         [Required]

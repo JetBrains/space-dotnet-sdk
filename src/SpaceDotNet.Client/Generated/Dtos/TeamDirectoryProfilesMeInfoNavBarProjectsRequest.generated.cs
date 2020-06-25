@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeInfoNavBarProjectsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeInfoNavBarProjectsRequest() { }
+        
+        public TeamDirectoryProfilesMeInfoNavBarProjectsRequest(ProjectIdentifier project)
+        {
+            Project = project;
+        }
+        
         private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(TeamDirectoryProfilesMeInfoNavBarProjectsRequest), nameof(Project));
         
         [Required]

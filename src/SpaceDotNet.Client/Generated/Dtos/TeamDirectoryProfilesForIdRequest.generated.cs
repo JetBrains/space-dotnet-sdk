@@ -24,6 +24,29 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForIdRequest() { }
+        
+        public TeamDirectoryProfilesForIdRequest(string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, Gender? gender = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null, List<CustomFieldValueDto>? customFieldValues = null)
+        {
+            Username = username;
+            FirstName = firstName;
+            LastName = lastName;
+            Emails = emails;
+            Phones = phones;
+            Birthday = birthday;
+            About = about;
+            Gender = gender;
+            Messengers = messengers;
+            Links = links;
+            NotAMember = notAMember;
+            Joined = joined;
+            Left = left;
+            SpeaksEnglish = speaksEnglish;
+            PictureAttachmentId = pictureAttachmentId;
+            AvatarCropSquare = avatarCropSquare;
+            CustomFieldValues = customFieldValues;
+        }
+        
         private PropertyValue<string?> _username = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForIdRequest), nameof(Username));
         
         [JsonPropertyName("username")]

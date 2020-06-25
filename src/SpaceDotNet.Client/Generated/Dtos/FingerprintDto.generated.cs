@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class FingerprintDto
          : IPropagatePropertyAccessPath
     {
+        public FingerprintDto() { }
+        
+        public FingerprintDto(string md5, string sha1, string sha256, string sha384, string sha512)
+        {
+            Md5 = md5;
+            Sha1 = sha1;
+            Sha256 = sha256;
+            Sha384 = sha384;
+            Sha512 = sha512;
+        }
+        
         private PropertyValue<string> _md5 = new PropertyValue<string>(nameof(FingerprintDto), nameof(Md5));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ESRefreshTokenDto
          : IPropagatePropertyAccessPath
     {
+        public ESRefreshTokenDto() { }
+        
+        public ESRefreshTokenDto(string id, string scope, AccessRecordDto? lastAccess = null)
+        {
+            Id = id;
+            Scope = scope;
+            LastAccess = lastAccess;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESRefreshTokenDto), nameof(Id));
         
         [Required]

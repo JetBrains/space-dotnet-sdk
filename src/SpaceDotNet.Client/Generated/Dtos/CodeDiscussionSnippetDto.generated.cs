@@ -28,6 +28,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CodeDiscussionSnippet";
         
+        public static CodeDiscussionSnippetInlineDiffSnippetDto InlineDiffSnippet(List<InlineDiffLineDto> lines)
+            => new CodeDiscussionSnippetInlineDiffSnippetDto(lines: lines);
+        
+        public static CodeDiscussionSnippetPlainSnippetDto PlainSnippet(List<CodeLineDto> lines)
+            => new CodeDiscussionSnippetPlainSnippetDto(lines: lines);
+        
+        public CodeDiscussionSnippetDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class FTSUserDto
          : IPropagatePropertyAccessPath
     {
+        public FTSUserDto() { }
+        
+        public FTSUserDto(string id, string username, TDProfileNameDto name, List<TDProfileNameDto> languages, string? avatar = null, bool? notAMember = null)
+        {
+            Id = id;
+            Username = username;
+            Name = name;
+            Avatar = avatar;
+            Languages = languages;
+            NotAMember = notAMember;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(FTSUserDto), nameof(Id));
         
         [Required]

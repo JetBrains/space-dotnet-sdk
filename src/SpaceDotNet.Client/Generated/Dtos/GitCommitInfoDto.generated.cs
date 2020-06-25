@@ -24,6 +24,23 @@ namespace SpaceDotNet.Client
     public sealed class GitCommitInfoDto
          : IPropagatePropertyAccessPath
     {
+        public GitCommitInfoDto() { }
+        
+        public GitCommitInfoDto(string id, string message, long authorDate, long commitDate, GitAuthorInfoDto author, GitAuthorInfoDto committer, List<string> parents, List<string> tags, List<BranchInfoDto> branches, List<string> heads, TDMemberProfileDto? authorProfile = null)
+        {
+            Id = id;
+            Message = message;
+            AuthorDate = authorDate;
+            CommitDate = commitDate;
+            Author = author;
+            Committer = committer;
+            AuthorProfile = authorProfile;
+            Parents = parents;
+            Tags = tags;
+            Branches = branches;
+            Heads = heads;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(GitCommitInfoDto), nameof(Id));
         
         [Required]

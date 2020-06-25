@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest() { }
+        
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest(string text, bool pending, DiffContextDto? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
+        {
+            Text = text;
+            DiffContext = diffContext;
+            Filename = filename;
+            Line = line;
+            OldLine = oldLine;
+            Pending = pending;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest), nameof(Text));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class ChatsMessagesSendMessageRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsMessagesSendMessageRequest() { }
+        
+        public ChatsMessagesSendMessageRequest(MessageRecipientDto recipient, ChatMessageDto content, bool? unfurlLinks = null)
+        {
+            Recipient = recipient;
+            Content = content;
+            UnfurlLinks = unfurlLinks;
+        }
+        
         private PropertyValue<MessageRecipientDto> _recipient = new PropertyValue<MessageRecipientDto>(nameof(ChatsMessagesSendMessageRequest), nameof(Recipient));
         
         [Required]

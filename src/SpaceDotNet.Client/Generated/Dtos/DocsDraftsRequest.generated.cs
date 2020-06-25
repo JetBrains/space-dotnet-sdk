@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public class DocsDraftsRequest
          : IPropagatePropertyAccessPath
     {
+        public DocsDraftsRequest() { }
+        
+        public DocsDraftsRequest(DraftDocumentType type, string? title = null, string? text = null, long? textVersion = null, DraftPublicationDetailsDto? publicationDetails = null)
+        {
+            Title = title;
+            Text = text;
+            TextVersion = textVersion;
+            Type = type;
+            PublicationDetails = publicationDetails;
+        }
+        
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(DocsDraftsRequest), nameof(Title));
         
         [JsonPropertyName("title")]

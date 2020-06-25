@@ -24,6 +24,23 @@ namespace SpaceDotNet.Client
     public sealed class ESServiceDto
          : IPropagatePropertyAccessPath
     {
+        public ESServiceDto() { }
+        
+        public ESServiceDto(string id, OAuthServiceType type, string clientId, string name, string redirectURIs, bool archived, TDMemberProfileDto? owner = null, AccessRecordDto? lastClientCredentialsAccess = null, string? endpointURI = null, bool? hasSigningKey = null, bool? hasVerificationToken = null)
+        {
+            Id = id;
+            Owner = owner;
+            Type = type;
+            ClientId = clientId;
+            Name = name;
+            RedirectURIs = redirectURIs;
+            Archived = archived;
+            LastClientCredentialsAccess = lastClientCredentialsAccess;
+            EndpointURI = endpointURI;
+            HasSigningKey = hasSigningKey;
+            HasVerificationToken = hasVerificationToken;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESServiceDto), nameof(Id));
         
         [Required]

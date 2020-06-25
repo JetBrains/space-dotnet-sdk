@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class RevisionsInReviewDto
          : IPropagatePropertyAccessPath
     {
+        public RevisionsInReviewDto() { }
+        
+        public RevisionsInReviewDto(RepositoryInReviewDto repository, List<GitCommitWithGraphDto> commits)
+        {
+            Repository = repository;
+            Commits = commits;
+        }
+        
         private PropertyValue<RepositoryInReviewDto> _repository = new PropertyValue<RepositoryInReviewDto>(nameof(RevisionsInReviewDto), nameof(Repository));
         
         [Required]

@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "UnfurlDetailsMC";
         
+        public UnfurlDetailsMCDto() { }
+        
+        public UnfurlDetailsMCDto(MCMessageDto message, List<AttachmentInfoDto>? inlineUnfurls = null)
+        {
+            Message = message;
+            InlineUnfurls = inlineUnfurls;
+        }
+        
         private PropertyValue<MCMessageDto> _message = new PropertyValue<MCMessageDto>(nameof(UnfurlDetailsMCDto), nameof(Message));
         
         [Required]

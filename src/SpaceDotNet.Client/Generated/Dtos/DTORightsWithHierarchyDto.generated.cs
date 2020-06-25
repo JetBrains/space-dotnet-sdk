@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class DTORightsWithHierarchyDto
          : IPropagatePropertyAccessPath
     {
+        public DTORightsWithHierarchyDto() { }
+        
+        public DTORightsWithHierarchyDto(List<DTORightTypeRightDto> rights, List<DTORightsGroupDto> rightsGroups, List<DTORightsDepsDto> deps)
+        {
+            Rights = rights;
+            RightsGroups = rightsGroups;
+            Deps = deps;
+        }
+        
         private PropertyValue<List<DTORightTypeRightDto>> _rights = new PropertyValue<List<DTORightTypeRightDto>>(nameof(DTORightsWithHierarchyDto), nameof(Rights));
         
         [Required]

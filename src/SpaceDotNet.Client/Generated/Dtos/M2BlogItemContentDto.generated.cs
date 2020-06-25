@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2BlogItemContent";
         
+        public M2BlogItemContentDto() { }
+        
+        public M2BlogItemContentDto(ArticleRecordDto article, ArticleContentRecordDto articleContent, ArticleDetailsRecordDto articleDetails, ArticleChannelRecordDto articleChannel)
+        {
+            Article = article;
+            ArticleContent = articleContent;
+            ArticleDetails = articleDetails;
+            ArticleChannel = articleChannel;
+        }
+        
         private PropertyValue<ArticleRecordDto> _article = new PropertyValue<ArticleRecordDto>(nameof(M2BlogItemContentDto), nameof(Article));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class RevisionInReviewDto
          : IPropagatePropertyAccessPath
     {
+        public RevisionInReviewDto() { }
+        
+        public RevisionInReviewDto(string repository, string commit)
+        {
+            Repository = repository;
+            Commit = commit;
+        }
+        
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(RevisionInReviewDto), nameof(Repository));
         
         [Required]

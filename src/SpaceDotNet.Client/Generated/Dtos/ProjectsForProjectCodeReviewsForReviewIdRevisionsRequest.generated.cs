@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectCodeReviewsForReviewIdRevisionsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectCodeReviewsForReviewIdRevisionsRequest() { }
+        
+        public ProjectsForProjectCodeReviewsForReviewIdRevisionsRequest(List<RevisionInReviewDto> revisions)
+        {
+            Revisions = revisions;
+        }
+        
         private PropertyValue<List<RevisionInReviewDto>> _revisions = new PropertyValue<List<RevisionInReviewDto>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsRequest), nameof(Revisions));
         
         [Required]

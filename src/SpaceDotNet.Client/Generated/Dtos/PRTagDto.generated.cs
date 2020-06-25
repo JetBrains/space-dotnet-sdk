@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class PRTagDto
          : IPropagatePropertyAccessPath
     {
+        public PRTagDto() { }
+        
+        public PRTagDto(string name, int projectCount)
+        {
+            Name = name;
+            ProjectCount = projectCount;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRTagDto), nameof(Name));
         
         [Required]

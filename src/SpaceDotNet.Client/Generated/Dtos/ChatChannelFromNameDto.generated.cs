@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ChatChannel.FromName";
         
+        public ChatChannelFromNameDto() { }
+        
+        public ChatChannelFromNameDto(string name)
+        {
+            Name = name;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ChatChannelFromNameDto), nameof(Name));
         
         [Required]

@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class TDProfileLanguageDto
          : IPropagatePropertyAccessPath
     {
+        public TDProfileLanguageDto() { }
+        
+        public TDProfileLanguageDto(TDLanguageDto language, TDProfileNameDto? name = null, string? languageCode = null)
+        {
+            Name = name;
+            Language = language;
+            LanguageCode = languageCode;
+        }
+        
         private PropertyValue<TDProfileNameDto?> _name = new PropertyValue<TDProfileNameDto?>(nameof(TDProfileLanguageDto), nameof(Name));
         
         [JsonPropertyName("name")]

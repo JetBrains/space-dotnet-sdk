@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public class CustomFieldsForTypeKeyFieldsForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldsForTypeKeyFieldsForIdRequest() { }
+        
+        public CustomFieldsForTypeKeyFieldsForIdRequest(string? name = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
+        {
+            Name = name;
+            Key = key;
+            Constraint = constraint;
+            Required = required;
+            Private = @private;
+            Access = access;
+            DefaultValue = defaultValue;
+            EnumValues = enumValues;
+        }
+        
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsForIdRequest), nameof(Name));
         
         [JsonPropertyName("name")]

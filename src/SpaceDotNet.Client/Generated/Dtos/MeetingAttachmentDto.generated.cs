@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class MeetingAttachmentDto
          : IPropagatePropertyAccessPath
     {
+        public MeetingAttachmentDto() { }
+        
+        public MeetingAttachmentDto(string? fileUrl = null, string? title = null, string? mimeType = null, string? fileId = null, string? source = null)
+        {
+            FileUrl = fileUrl;
+            Title = title;
+            MimeType = mimeType;
+            FileId = fileId;
+            Source = source;
+        }
+        
         private PropertyValue<string?> _fileUrl = new PropertyValue<string?>(nameof(MeetingAttachmentDto), nameof(FileUrl));
         
         [JsonPropertyName("fileUrl")]

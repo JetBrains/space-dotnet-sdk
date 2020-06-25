@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "CBuiltInServicePrincipalDetails";
         
+        public CBuiltInServicePrincipalDetailsDto() { }
+        
+        public CBuiltInServicePrincipalDetailsDto(string name)
+        {
+            Name = name;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CBuiltInServicePrincipalDetailsDto), nameof(Name));
         
         [Required]

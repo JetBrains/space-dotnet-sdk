@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "KbProjectContext";
         
+        public KbProjectContextDto() { }
+        
+        public KbProjectContextDto(PRProjectDto project)
+        {
+            Project = project;
+        }
+        
         private PropertyValue<PRProjectDto> _project = new PropertyValue<PRProjectDto>(nameof(KbProjectContextDto), nameof(Project));
         
         [Required]

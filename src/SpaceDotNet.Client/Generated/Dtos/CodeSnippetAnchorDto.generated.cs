@@ -24,6 +24,19 @@ namespace SpaceDotNet.Client
     public sealed class CodeSnippetAnchorDto
          : IPropagatePropertyAccessPath
     {
+        public CodeSnippetAnchorDto() { }
+        
+        public CodeSnippetAnchorDto(ProjectKeyDto projectKey, string repository, string revision, string filename, int? lineIndex = null, int? lineStart = null, int? lineEnd = null)
+        {
+            ProjectKey = projectKey;
+            Repository = repository;
+            Revision = revision;
+            Filename = filename;
+            LineIndex = lineIndex;
+            LineStart = lineStart;
+            LineEnd = lineEnd;
+        }
+        
         private PropertyValue<ProjectKeyDto> _projectKey = new PropertyValue<ProjectKeyDto>(nameof(CodeSnippetAnchorDto), nameof(ProjectKey));
         
         [Required]

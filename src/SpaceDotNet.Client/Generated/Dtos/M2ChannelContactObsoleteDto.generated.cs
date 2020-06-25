@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContactObsolete";
         
+        public M2ChannelContactObsoleteDto() { }
+        
+        public M2ChannelContactObsoleteDto(M2ObsoleteCause? cause = null)
+        {
+            Cause = cause;
+        }
+        
         private PropertyValue<M2ObsoleteCause?> _cause = new PropertyValue<M2ObsoleteCause?>(nameof(M2ChannelContactObsoleteDto), nameof(Cause));
         
         [JsonPropertyName("cause")]

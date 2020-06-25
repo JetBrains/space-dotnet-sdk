@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class AbsenceEventDto
          : IPropagatePropertyAccessPath
     {
+        public AbsenceEventDto() { }
+        
+        public AbsenceEventDto(TDMemberWithTeamDto profile, List<AbsenceRecordDto> events)
+        {
+            Profile = profile;
+            Events = events;
+        }
+        
         private PropertyValue<TDMemberWithTeamDto> _profile = new PropertyValue<TDMemberWithTeamDto>(nameof(AbsenceEventDto), nameof(Profile));
         
         [Required]

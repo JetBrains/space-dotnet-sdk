@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public sealed class InvitationDto
          : IPropagatePropertyAccessPath
     {
+        public InvitationDto() { }
+        
+        public InvitationDto(string id, SpaceTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipalDto inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfileDto? invitee = null, TDTeamDto? team = null, TDRoleDto? role = null, bool? revoked = null)
+        {
+            Id = id;
+            ExpiresAt = expiresAt;
+            InviteeEmail = inviteeEmail;
+            InviteeEmailBlocked = inviteeEmailBlocked;
+            InviteeEmailBlockedReason = inviteeEmailBlockedReason;
+            InviteeFirstName = inviteeFirstName;
+            InviteeLastName = inviteeLastName;
+            Invitee = invitee;
+            Inviter = inviter;
+            Team = team;
+            Role = role;
+            Revoked = revoked;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(InvitationDto), nameof(Id));
         
         [Required]

@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "MeetingOrganizer.User";
         
+        public MeetingOrganizerUserDto() { }
+        
+        public MeetingOrganizerUserDto(TDMemberProfileDto profileRef)
+        {
+            ProfileRef = profileRef;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profileRef = new PropertyValue<TDMemberProfileDto>(nameof(MeetingOrganizerUserDto), nameof(ProfileRef));
         
         [Required]

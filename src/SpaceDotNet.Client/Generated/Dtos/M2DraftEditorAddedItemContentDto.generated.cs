@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2DraftEditorAddedItemContent";
         
+        public M2DraftEditorAddedItemContentDto() { }
+        
+        public M2DraftEditorAddedItemContentDto(string id, string title)
+        {
+            Id = id;
+            Title = title;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(M2DraftEditorAddedItemContentDto), nameof(Id));
         
         [Required]

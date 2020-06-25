@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryMemberLocationsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryMemberLocationsRequest() { }
+        
+        public TeamDirectoryMemberLocationsRequest(string member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null)
+        {
+            Member = member;
+            Location = location;
+            Since = since;
+            Till = till;
+            PreviousLocation = previousLocation;
+        }
+        
         private PropertyValue<string> _member = new PropertyValue<string>(nameof(TeamDirectoryMemberLocationsRequest), nameof(Member));
         
         [Required]

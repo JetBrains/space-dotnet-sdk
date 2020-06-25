@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class TDMergedEventDto
          : IPropagatePropertyAccessPath
     {
+        public TDMergedEventDto() { }
+        
+        public TDMergedEventDto(List<Pair<TDMembershipDto, int>> events, TDMemberProfileDto profile)
+        {
+            Events = events;
+            Profile = profile;
+        }
+        
         private PropertyValue<List<Pair<TDMembershipDto, int>>> _events = new PropertyValue<List<Pair<TDMembershipDto, int>>>(nameof(TDMergedEventDto), nameof(Events));
         
         [Required]

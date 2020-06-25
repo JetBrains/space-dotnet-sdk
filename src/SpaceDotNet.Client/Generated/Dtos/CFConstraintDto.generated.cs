@@ -28,6 +28,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CFConstraint";
         
+        public static DateCFConstraintDto Date(SpaceDate? min = null, SpaceDate? max = null, string? message = null)
+            => new DateCFConstraintDto(min: null, max: null, message: null);
+        
+        public static IntCFConstraintDto Int(int? min = null, int? max = null, string? message = null)
+            => new IntCFConstraintDto(min: null, max: null, message: null);
+        
+        public static StringCFConstraintDto String(int? min = null, int? max = null, string? pattern = null, string? message = null)
+            => new StringCFConstraintDto(min: null, max: null, pattern: null, message: null);
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

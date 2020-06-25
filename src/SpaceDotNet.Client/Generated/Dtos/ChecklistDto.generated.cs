@@ -24,6 +24,24 @@ namespace SpaceDotNet.Client
     public sealed class ChecklistDto
          : IPropagatePropertyAccessPath
     {
+        public ChecklistDto() { }
+        
+        public ChecklistDto(string id, bool archived, string name, int totalItemsCount, int doneItemsCount, string? projectId = null, PRProjectDto? project = null, TDMemberProfileDto? owner = null, PlanItemDto? root = null, PlanningTagDto? rootTag = null, string? description = null, SpaceTime? updatedTime = null)
+        {
+            Id = id;
+            Archived = archived;
+            ProjectId = projectId;
+            Project = project;
+            Owner = owner;
+            Name = name;
+            Root = root;
+            RootTag = rootTag;
+            Description = description;
+            TotalItemsCount = totalItemsCount;
+            DoneItemsCount = doneItemsCount;
+            UpdatedTime = updatedTime;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChecklistDto), nameof(Id));
         
         [Required]

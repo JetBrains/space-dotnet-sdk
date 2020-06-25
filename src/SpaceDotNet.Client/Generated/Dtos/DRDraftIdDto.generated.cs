@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class DRDraftIdDto
          : IPropagatePropertyAccessPath
     {
+        public DRDraftIdDto() { }
+        
+        public DRDraftIdDto(string id)
+        {
+            Id = id;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DRDraftIdDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,19 @@ namespace SpaceDotNet.Client
     public sealed class TDLocationMapPointDto
          : IPropagatePropertyAccessPath
     {
+        public TDLocationMapPointDto() { }
+        
+        public TDLocationMapPointDto(string id, int x, int y, SpaceTime created, string? mapId = null, string? memberLocation = null, bool? deleted = null)
+        {
+            Id = id;
+            MapId = mapId;
+            X = x;
+            Y = y;
+            Created = created;
+            MemberLocation = memberLocation;
+            Deleted = deleted;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMapPointDto), nameof(Id));
         
         [Required]

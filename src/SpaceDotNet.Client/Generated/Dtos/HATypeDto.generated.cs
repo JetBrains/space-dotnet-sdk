@@ -28,6 +28,29 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "HA_Type";
         
+        public static HATypeArrayDto Array(HATypeDto elementType, bool nullable, bool optional)
+            => new HATypeArrayDto(elementType: elementType, nullable: nullable, optional: optional);
+        
+        public static HATypeDtoDto Dto(HADtoDto dto, bool nullable, bool optional)
+            => new HATypeDtoDto(dto: dto, nullable: nullable, optional: optional);
+        
+        public static HATypeEnumDto Enum(HAEnumDto @enum, bool nullable, bool optional)
+            => new HATypeEnumDto(@enum: @enum, nullable: nullable, optional: optional);
+        
+        public static HATypeObjectDto Object(List<HAFieldDto> fields, HATypeObjectKind kind, bool nullable, bool optional)
+            => new HATypeObjectDto(fields: fields, kind: kind, nullable: nullable, optional: optional);
+        
+        public static HATypePrimitiveDto Primitive(HAPrimitive primitive, bool nullable, bool optional)
+            => new HATypePrimitiveDto(primitive: primitive, nullable: nullable, optional: optional);
+        
+        public static HATypeRefDto Ref(HADtoDto dto, bool nullable, bool optional)
+            => new HATypeRefDto(dto: dto, nullable: nullable, optional: optional);
+        
+        public static HATypeUrlParamDto UrlParam(HAUrlParameterDto urlParam, bool nullable, bool optional)
+            => new HATypeUrlParamDto(urlParam: urlParam, nullable: nullable, optional: optional);
+        
+        public HATypeDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

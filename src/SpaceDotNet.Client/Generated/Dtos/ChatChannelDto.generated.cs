@@ -28,6 +28,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "ChatChannel";
         
+        public static ChatChannelFromIdDto FromId(string id)
+            => new ChatChannelFromIdDto(id: id);
+        
+        public static ChatChannelFromNameDto FromName(string name)
+            => new ChatChannelFromNameDto(name: name);
+        
+        public ChatChannelDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

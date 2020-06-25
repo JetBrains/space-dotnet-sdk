@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class HAFieldDto
          : IPropagatePropertyAccessPath
     {
+        public HAFieldDto() { }
+        
+        public HAFieldDto(string name, HATypeDto type, HADeprecationDto? deprecation = null)
+        {
+            Name = name;
+            Type = type;
+            Deprecation = deprecation;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAFieldDto), nameof(Name));
         
         [Required]

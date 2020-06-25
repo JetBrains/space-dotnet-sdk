@@ -24,6 +24,39 @@ namespace SpaceDotNet.Client
     public interface FeedEventDto
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static CodeDiscussionAddedFeedEventDto CodeDiscussionAdded(CodeDiscussionRecordDto codeDiscussion, CodeReviewRecordDto codeReview)
+            => new CodeDiscussionAddedFeedEventDto(codeDiscussion: codeDiscussion, codeReview: codeReview);
+        
+        public static CodeReviewDiscussionAddedFeedEventDto CodeReviewDiscussionAdded(CodeReviewDiscussionRecordDto discussion)
+            => new CodeReviewDiscussionAddedFeedEventDto(discussion: discussion);
+        
+        public static MergeRequestBranchDeletedEventDto MergeRequestBranchDeletedEvent(string repository, string branch, MergeRequestBranchType branchType)
+            => new MergeRequestBranchDeletedEventDto(repository: repository, branch: branch, branchType: branchType);
+        
+        public static MergeRequestBranchRestoredEventDto MergeRequestBranchRestoredEvent(string repository, string branch, MergeRequestBranchType branchType)
+            => new MergeRequestBranchRestoredEventDto(repository: repository, branch: branch, branchType: branchType);
+        
+        public static MergeRequestMergedEventDto MergeRequestMergedEvent(string repository, string sourceBranch, string targetBranch)
+            => new MergeRequestMergedEventDto(repository: repository, sourceBranch: sourceBranch, targetBranch: targetBranch);
+        
+        public static ReviewBranchTrackEventDto ReviewBranchTrackEvent(string repository, string branch, bool track)
+            => new ReviewBranchTrackEventDto(repository: repository, branch: branch, track: track);
+        
+        public static ReviewCompletionStateChangedEventDto ReviewCompletionStateChangedEvent(ReviewerState state)
+            => new ReviewCompletionStateChangedEventDto(state: state);
+        
+        public static ReviewRevisionsChangedEventDto ReviewRevisionsChangedEvent(List<RepositoryCommitRecordDto> commits, ReviewRevisionsChangedType changeType, string? projectKey = null, CodeReviewRecordDto? review = null)
+            => new ReviewRevisionsChangedEventDto(commits: commits, changeType: changeType, projectKey: null, review: null);
+        
+        public static ReviewStateChangedEventDto ReviewStateChangedEvent(CodeReviewState state, CodeReviewRecordDto? review = null)
+            => new ReviewStateChangedEventDto(state: state, review: null);
+        
+        public static ReviewTitleChangedEventDto ReviewTitleChangedEvent(string oldTitle, string newTitle)
+            => new ReviewTitleChangedEventDto(oldTitle: oldTitle, newTitle: newTitle);
+        
+        public static ReviewerChangedEventDto ReviewerChangedEvent(TDMemberProfileDto uid, ReviewerChangedType changeType)
+            => new ReviewerChangedEventDto(uid: uid, changeType: changeType);
+        
     }
     
 }

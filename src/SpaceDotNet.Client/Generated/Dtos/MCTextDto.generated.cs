@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MCText";
         
+        public MCTextDto() { }
+        
+        public MCTextDto(string content, bool markdown, MCElementDto? accessory = null)
+        {
+            Content = content;
+            Markdown = markdown;
+            Accessory = accessory;
+        }
+        
         private PropertyValue<string> _content = new PropertyValue<string>(nameof(MCTextDto), nameof(Content));
         
         [Required]

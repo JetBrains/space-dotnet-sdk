@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class ReviewCountsDto
          : IPropagatePropertyAccessPath
     {
+        public ReviewCountsDto() { }
+        
+        public ReviewCountsDto(int opened, int closed, int authoredByMe, int reviewedByMe, int needsMyAttention, int needsMyReview)
+        {
+            Opened = opened;
+            Closed = closed;
+            AuthoredByMe = authoredByMe;
+            ReviewedByMe = reviewedByMe;
+            NeedsMyAttention = needsMyAttention;
+            NeedsMyReview = needsMyReview;
+        }
+        
         private PropertyValue<int> _opened = new PropertyValue<int>(nameof(ReviewCountsDto), nameof(Opened));
         
         [Required]

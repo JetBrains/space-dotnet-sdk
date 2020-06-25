@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class TDMemberInLocationMapListDto
          : IPropagatePropertyAccessPath
     {
+        public TDMemberInLocationMapListDto() { }
+        
+        public TDMemberInLocationMapListDto(TDMemberProfileDto profile, TDMemberLocationDto memberLocation, TDLocationMapPointDto? locationMapPoint = null)
+        {
+            Profile = profile;
+            MemberLocation = memberLocation;
+            LocationMapPoint = locationMapPoint;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(TDMemberInLocationMapListDto), nameof(Profile));
         
         [Required]

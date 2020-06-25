@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class QRCodeDto
          : IPropagatePropertyAccessPath
     {
+        public QRCodeDto() { }
+        
+        public QRCodeDto(int width, string base64Bitmap)
+        {
+            Width = width;
+            Base64Bitmap = base64Bitmap;
+        }
+        
         private PropertyValue<int> _width = new PropertyValue<int>(nameof(QRCodeDto), nameof(Width));
         
         [Required]

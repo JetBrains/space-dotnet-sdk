@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class AbsenceApprovalDto
          : IPropagatePropertyAccessPath
     {
+        public AbsenceApprovalDto() { }
+        
+        public AbsenceApprovalDto(bool approved, TDMemberProfileDto approvedBy, SpaceTime approvedAt)
+        {
+            Approved = approved;
+            ApprovedBy = approvedBy;
+            ApprovedAt = approvedAt;
+        }
+        
         private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(AbsenceApprovalDto), nameof(Approved));
         
         [Required]

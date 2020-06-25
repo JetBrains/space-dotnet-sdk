@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class MetricsEventDto
          : IPropagatePropertyAccessPath
     {
+        public MetricsEventDto() { }
+        
+        public MetricsEventDto(string id, long time, List<MetricsPropDto>? props = null, List<MetricsPointDto>? points = null)
+        {
+            Id = id;
+            Time = time;
+            Props = props;
+            Points = points;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MetricsEventDto), nameof(Id));
         
         [Required]

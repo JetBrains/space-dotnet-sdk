@@ -24,6 +24,29 @@ namespace SpaceDotNet.Client
     public sealed class IssueDto
          : IPropagatePropertyAccessPath
     {
+        public IssueDto() { }
+        
+        public IssueDto(string id, bool archived, string projectId, int number, CPrincipalDto createdBy, SpaceTime creationTime, IssueStatusDto status, List<PlanningTagDto> tags, string title, List<ChecklistDto> checklists, List<AttachmentInfoDto> attachments, M2ChannelRecordDto channel, PRProjectDto? projectRef = null, TDMemberProfileDto? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfoDto? importInfo = null, string? description = null)
+        {
+            Id = id;
+            Archived = archived;
+            ProjectId = projectId;
+            ProjectRef = projectRef;
+            Number = number;
+            CreatedBy = createdBy;
+            CreationTime = creationTime;
+            Assignee = assignee;
+            Status = status;
+            DueDate = dueDate;
+            ImportInfo = importInfo;
+            Tags = tags;
+            Title = title;
+            Checklists = checklists;
+            Attachments = attachments;
+            Channel = channel;
+            Description = description;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueDto), nameof(Id));
         
         [Required]

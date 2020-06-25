@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public sealed class MeetingRecordDto
          : IPropagatePropertyAccessPath
     {
+        public MeetingRecordDto() { }
+        
+        public MeetingRecordDto(string id, bool archived, SpaceTime starts, SpaceTime finishes, bool allDay, List<TDLocationDto> rooms, List<ParticipantDto> participants, ATimeZoneDto? timezone = null, ArticleRecordDto? article = null)
+        {
+            Id = id;
+            Archived = archived;
+            Starts = starts;
+            Finishes = finishes;
+            Timezone = timezone;
+            AllDay = allDay;
+            Rooms = rooms;
+            Participants = participants;
+            Article = article;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MeetingRecordDto), nameof(Id));
         
         [Required]

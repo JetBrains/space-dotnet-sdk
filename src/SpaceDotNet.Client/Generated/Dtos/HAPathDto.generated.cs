@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class HAPathDto
          : IPropagatePropertyAccessPath
     {
+        public HAPathDto() { }
+        
+        public HAPathDto(List<HAPathSegmentDto> segments)
+        {
+            Segments = segments;
+        }
+        
         private PropertyValue<List<HAPathSegmentDto>> _segments = new PropertyValue<List<HAPathSegmentDto>>(nameof(HAPathDto), nameof(Segments));
         
         [Required]

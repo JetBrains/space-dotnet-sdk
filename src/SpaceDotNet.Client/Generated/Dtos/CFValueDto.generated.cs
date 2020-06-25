@@ -28,6 +28,42 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CFValue";
         
+        public static BooleanCFValueDto Boolean(bool? value = null)
+            => new BooleanCFValueDto(value: null);
+        
+        public static DateCFValueDto Date(SpaceDate? value = null)
+            => new DateCFValueDto(value: null);
+        
+        public static EnumCFValueDto Enum(EnumValueDataDto? value = null)
+            => new EnumCFValueDto(value: null);
+        
+        public static EnumListCFValueDto EnumList(List<EnumValueDataDto> values)
+            => new EnumListCFValueDto(values: values);
+        
+        public static FractionCFValueDto Fraction(FractionDto? value = null)
+            => new FractionCFValueDto(value: null);
+        
+        public static IntCFValueDto Int(int? value = null)
+            => new IntCFValueDto(value: null);
+        
+        public static IntListCFValueDto IntList(List<int> values)
+            => new IntListCFValueDto(values: values);
+        
+        public static ProfileCFValueDto Profile(TDMemberProfileDto? profile = null)
+            => new ProfileCFValueDto(profile: null);
+        
+        public static ProfileListCFValueDto ProfileList(List<TDMemberProfileDto> profiles)
+            => new ProfileListCFValueDto(profiles: profiles);
+        
+        public static StringCFValueDto String(string? value = null)
+            => new StringCFValueDto(value: null);
+        
+        public static StringListCFValueDto StringList(List<string> values)
+            => new StringListCFValueDto(values: values);
+        
+        public static UrlCFValueDto Url(string? href = null)
+            => new UrlCFValueDto(href: null);
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

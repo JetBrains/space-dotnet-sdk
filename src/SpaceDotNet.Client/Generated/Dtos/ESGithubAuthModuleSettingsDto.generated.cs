@@ -27,6 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_GithubAuthModuleSettings";
         
+        public ESGithubAuthModuleSettingsDto() { }
+        
+        public ESGithubAuthModuleSettingsDto(string githubUrl, string clientId, string clientSecret, bool registerNewUsers, List<string> organizations)
+        {
+            GithubUrl = githubUrl;
+            ClientId = clientId;
+            ClientSecret = clientSecret;
+            RegisterNewUsers = registerNewUsers;
+            Organizations = organizations;
+        }
+        
         private PropertyValue<string> _githubUrl = new PropertyValue<string>(nameof(ESGithubAuthModuleSettingsDto), nameof(GithubUrl));
         
         [Required]

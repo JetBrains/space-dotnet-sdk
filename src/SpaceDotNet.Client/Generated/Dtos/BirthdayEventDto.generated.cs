@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class BirthdayEventDto
          : IPropagatePropertyAccessPath
     {
+        public BirthdayEventDto() { }
+        
+        public BirthdayEventDto(TDMemberWithTeamDto profile, SpaceDate birthday)
+        {
+            Profile = profile;
+            Birthday = birthday;
+        }
+        
         private PropertyValue<TDMemberWithTeamDto> _profile = new PropertyValue<TDMemberWithTeamDto>(nameof(BirthdayEventDto), nameof(Profile));
         
         [Required]

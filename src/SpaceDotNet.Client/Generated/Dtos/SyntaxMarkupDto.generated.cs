@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class SyntaxMarkupDto
          : IPropagatePropertyAccessPath
     {
+        public SyntaxMarkupDto() { }
+        
+        public SyntaxMarkupDto(SyntaxMarkupType type, TextRangeDto range)
+        {
+            Type = type;
+            Range = range;
+        }
+        
         private PropertyValue<SyntaxMarkupType> _type = new PropertyValue<SyntaxMarkupType>(nameof(SyntaxMarkupDto), nameof(Type));
         
         [Required]

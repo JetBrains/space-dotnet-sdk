@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ImageAttachment";
         
+        public ImageAttachmentDto() { }
+        
+        public ImageAttachmentDto(string id, int width, int height, string? name = null, string? previewBytes = null, List<ImageAttachmentVariantDto>? variants = null)
+        {
+            Id = id;
+            Name = name;
+            Width = width;
+            Height = height;
+            PreviewBytes = previewBytes;
+            Variants = variants;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImageAttachmentDto), nameof(Id));
         
         [Required]

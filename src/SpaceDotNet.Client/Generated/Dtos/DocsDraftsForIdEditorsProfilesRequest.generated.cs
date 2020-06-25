@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class DocsDraftsForIdEditorsProfilesRequest
          : IPropagatePropertyAccessPath
     {
+        public DocsDraftsForIdEditorsProfilesRequest() { }
+        
+        public DocsDraftsForIdEditorsProfilesRequest(string editorId)
+        {
+            EditorId = editorId;
+        }
+        
         private PropertyValue<string> _editorId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsProfilesRequest), nameof(EditorId));
         
         [Required]

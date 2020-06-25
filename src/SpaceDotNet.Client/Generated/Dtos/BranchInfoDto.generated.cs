@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class BranchInfoDto
          : IPropagatePropertyAccessPath
     {
+        public BranchInfoDto() { }
+        
+        public BranchInfoDto(string head, string @ref)
+        {
+            Head = head;
+            Ref = @ref;
+        }
+        
         private PropertyValue<string> _head = new PropertyValue<string>(nameof(BranchInfoDto), nameof(Head));
         
         [Required]

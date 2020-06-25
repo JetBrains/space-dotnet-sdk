@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public sealed class ExternalArticleDto
          : IPropagatePropertyAccessPath
     {
+        public ExternalArticleDto() { }
+        
+        public ExternalArticleDto(string title, string content, string authorId, SpaceTime created, List<string>? teams = null, List<string>? locations = null, string? externalId = null, string? externalUrl = null)
+        {
+            Title = title;
+            Content = content;
+            AuthorId = authorId;
+            Created = created;
+            Teams = teams;
+            Locations = locations;
+            ExternalId = externalId;
+            ExternalUrl = externalUrl;
+        }
+        
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ExternalArticleDto), nameof(Title));
         
         [Required]

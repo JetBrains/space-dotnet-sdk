@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "IssueDeletedDetails";
         
+        public IssueDeletedDetailsDto() { }
+        
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

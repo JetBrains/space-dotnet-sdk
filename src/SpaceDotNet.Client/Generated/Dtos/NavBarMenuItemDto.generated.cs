@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class NavBarMenuItemDto
          : IPropagatePropertyAccessPath
     {
+        public NavBarMenuItemDto() { }
+        
+        public NavBarMenuItemDto(string item, bool enabled)
+        {
+            Item = item;
+            Enabled = enabled;
+        }
+        
         private PropertyValue<string> _item = new PropertyValue<string>(nameof(NavBarMenuItemDto), nameof(Item));
         
         [Required]

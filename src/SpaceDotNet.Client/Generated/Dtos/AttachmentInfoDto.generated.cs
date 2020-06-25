@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class AttachmentInfoDto
          : IPropagatePropertyAccessPath
     {
+        public AttachmentInfoDto() { }
+        
+        public AttachmentInfoDto(AttachmentDto? details = null)
+        {
+            Details = details;
+        }
+        
         private PropertyValue<AttachmentDto?> _details = new PropertyValue<AttachmentDto?>(nameof(AttachmentInfoDto), nameof(Details));
         
         [JsonPropertyName("details")]

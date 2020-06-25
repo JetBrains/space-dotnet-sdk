@@ -24,6 +24,12 @@ namespace SpaceDotNet.Client
     public interface MessageSectionElementDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static MessageDividerDto MessageDivider()
+            => new MessageDividerDto();
+        
+        public static MessageSectionDto MessageSection(List<MessageElementDto> elements, string? header = null, string? footer = null)
+            => new MessageSectionDto(elements: elements, header: null, footer: null);
+        
     }
     
 }

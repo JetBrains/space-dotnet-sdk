@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class M2ChannelContactDto
          : IPropagatePropertyAccessPath
     {
+        public M2ChannelContactDto() { }
+        
+        public M2ChannelContactDto(string defaultName, string key, M2ChannelContactInfoDto? ext = null)
+        {
+            DefaultName = defaultName;
+            Key = key;
+            Ext = ext;
+        }
+        
         private PropertyValue<string> _defaultName = new PropertyValue<string>(nameof(M2ChannelContactDto), nameof(DefaultName));
         
         [Required]

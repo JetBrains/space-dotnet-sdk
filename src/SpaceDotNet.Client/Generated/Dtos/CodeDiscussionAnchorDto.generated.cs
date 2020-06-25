@@ -24,6 +24,19 @@ namespace SpaceDotNet.Client
     public sealed class CodeDiscussionAnchorDto
          : IPropagatePropertyAccessPath
     {
+        public CodeDiscussionAnchorDto() { }
+        
+        public CodeDiscussionAnchorDto(ProjectKeyDto project, string repository, string revision, string? filename = null, int? line = null, int? oldLine = null, InterpolatedLineState? interpolatedLineState = null)
+        {
+            Project = project;
+            Repository = repository;
+            Revision = revision;
+            Filename = filename;
+            Line = line;
+            OldLine = oldLine;
+            InterpolatedLineState = interpolatedLineState;
+        }
+        
         private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(CodeDiscussionAnchorDto), nameof(Project));
         
         [Required]

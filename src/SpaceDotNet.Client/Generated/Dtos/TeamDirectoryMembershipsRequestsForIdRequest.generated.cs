@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryMembershipsRequestsForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryMembershipsRequestsForIdRequest() { }
+        
+        public TeamDirectoryMembershipsRequestsForIdRequest(bool approved)
+        {
+            Approved = approved;
+        }
+        
         private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForIdRequest), nameof(Approved));
         
         [Required]

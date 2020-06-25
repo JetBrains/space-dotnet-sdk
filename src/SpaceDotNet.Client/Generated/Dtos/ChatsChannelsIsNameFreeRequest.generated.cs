@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ChatsChannelsIsNameFreeRequest
          : IPropagatePropertyAccessPath
     {
+        public ChatsChannelsIsNameFreeRequest() { }
+        
+        public ChatsChannelsIsNameFreeRequest(string name)
+        {
+            Name = name;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ChatsChannelsIsNameFreeRequest), nameof(Name));
         
         [Required]

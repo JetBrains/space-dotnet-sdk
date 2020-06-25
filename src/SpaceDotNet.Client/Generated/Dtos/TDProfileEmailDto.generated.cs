@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class TDProfileEmailDto
          : IPropagatePropertyAccessPath
     {
+        public TDProfileEmailDto() { }
+        
+        public TDProfileEmailDto(string id, string email)
+        {
+            Id = id;
+            Email = email;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDProfileEmailDto), nameof(Id));
         
         [Required]

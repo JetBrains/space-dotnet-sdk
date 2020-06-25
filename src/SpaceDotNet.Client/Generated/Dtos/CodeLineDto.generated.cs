@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class CodeLineDto
          : IPropagatePropertyAccessPath
     {
+        public CodeLineDto() { }
+        
+        public CodeLineDto(string text, int offset, int? index = null, List<SyntaxMarkupDto>? syntax = null)
+        {
+            Text = text;
+            Index = index;
+            Offset = offset;
+            Syntax = syntax;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(CodeLineDto), nameof(Text));
         
         [Required]

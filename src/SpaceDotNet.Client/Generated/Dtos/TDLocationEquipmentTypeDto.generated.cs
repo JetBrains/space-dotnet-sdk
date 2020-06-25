@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class TDLocationEquipmentTypeDto
          : IPropagatePropertyAccessPath
     {
+        public TDLocationEquipmentTypeDto() { }
+        
+        public TDLocationEquipmentTypeDto(string name, bool archived)
+        {
+            Name = name;
+            Archived = archived;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocationEquipmentTypeDto), nameof(Name));
         
         [Required]

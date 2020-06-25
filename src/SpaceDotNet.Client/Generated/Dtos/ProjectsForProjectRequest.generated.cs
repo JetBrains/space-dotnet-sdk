@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectRequest() { }
+        
+        public ProjectsForProjectRequest(ProjectKeyDto? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null)
+        {
+            Key = key;
+            Name = name;
+            Description = description;
+            Private = @private;
+            Tags = tags;
+            Icon = icon;
+        }
+        
         private PropertyValue<ProjectKeyDto?> _key = new PropertyValue<ProjectKeyDto?>(nameof(ProjectsForProjectRequest), nameof(Key));
         
         [JsonPropertyName("key")]

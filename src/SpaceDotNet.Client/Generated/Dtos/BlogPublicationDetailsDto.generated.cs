@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "BlogPublicationDetails";
         
+        public BlogPublicationDetailsDto() { }
+        
+        public BlogPublicationDetailsDto(TDTeamDto? teamId = null, List<TDTeamDto>? teams = null, TDLocationDto? locationId = null, List<TDLocationDto>? locations = null, CalendarEventDto? @event = null, ArticleRecordDto? article = null)
+        {
+            TeamId = teamId;
+            Teams = teams;
+            LocationId = locationId;
+            Locations = locations;
+            Event = @event;
+            Article = article;
+        }
+        
         private PropertyValue<TDTeamDto?> _teamId = new PropertyValue<TDTeamDto?>(nameof(BlogPublicationDetailsDto), nameof(TeamId));
         
         [JsonPropertyName("teamId")]

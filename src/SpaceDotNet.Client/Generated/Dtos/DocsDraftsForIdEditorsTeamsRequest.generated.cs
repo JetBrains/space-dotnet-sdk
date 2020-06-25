@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class DocsDraftsForIdEditorsTeamsRequest
          : IPropagatePropertyAccessPath
     {
+        public DocsDraftsForIdEditorsTeamsRequest() { }
+        
+        public DocsDraftsForIdEditorsTeamsRequest(string teamId)
+        {
+            TeamId = teamId;
+        }
+        
         private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(DocsDraftsForIdEditorsTeamsRequest), nameof(TeamId));
         
         [Required]

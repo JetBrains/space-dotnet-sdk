@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "IntListCFType";
         
+        public IntListCFTypeDto() { }
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

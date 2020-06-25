@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "CExternalServicePrincipalDetails";
         
+        public CExternalServicePrincipalDetailsDto() { }
+        
+        public CExternalServicePrincipalDetailsDto(ESServiceDto service)
+        {
+            Service = service;
+        }
+        
         private PropertyValue<ESServiceDto> _service = new PropertyValue<ESServiceDto>(nameof(CExternalServicePrincipalDetailsDto), nameof(Service));
         
         [Required]

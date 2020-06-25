@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ReviewStateChangedEvent";
         
+        public ReviewStateChangedEventDto() { }
+        
+        public ReviewStateChangedEventDto(CodeReviewState state, CodeReviewRecordDto? review = null)
+        {
+            State = state;
+            Review = review;
+        }
+        
         private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(ReviewStateChangedEventDto), nameof(State));
         
         [Required]

@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ContainerPackageType";
         
+        public ContainerPackageTypeDto() { }
+        
+        public ContainerPackageTypeDto(string id)
+        {
+            Id = id;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ContainerPackageTypeDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class SubjectResponsibilitiesTableDto
          : IPropagatePropertyAccessPath
     {
+        public SubjectResponsibilitiesTableDto() { }
+        
+        public SubjectResponsibilitiesTableDto(string subjectId, List<string> reusedInProjects, List<ResponsibilityRecordDto> responsibilityRecords, string? name = null)
+        {
+            SubjectId = subjectId;
+            Name = name;
+            ReusedInProjects = reusedInProjects;
+            ResponsibilityRecords = responsibilityRecords;
+        }
+        
         private PropertyValue<string> _subjectId = new PropertyValue<string>(nameof(SubjectResponsibilitiesTableDto), nameof(SubjectId));
         
         [Required]

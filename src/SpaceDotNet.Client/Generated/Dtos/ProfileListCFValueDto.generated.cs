@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ProfileListCFValue";
         
+        public ProfileListCFValueDto() { }
+        
+        public ProfileListCFValueDto(List<TDMemberProfileDto> profiles)
+        {
+            Profiles = profiles;
+        }
+        
         private PropertyValue<List<TDMemberProfileDto>> _profiles = new PropertyValue<List<TDMemberProfileDto>>(nameof(ProfileListCFValueDto), nameof(Profiles));
         
         [Required]

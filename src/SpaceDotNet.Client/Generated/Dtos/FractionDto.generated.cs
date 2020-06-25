@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class FractionDto
          : IPropagatePropertyAccessPath
     {
+        public FractionDto() { }
+        
+        public FractionDto(int numerator, int denominator)
+        {
+            Numerator = numerator;
+            Denominator = denominator;
+        }
+        
         private PropertyValue<int> _numerator = new PropertyValue<int>(nameof(FractionDto), nameof(Numerator));
         
         [Required]

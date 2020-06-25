@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class TDProfileNameDto
          : IPropagatePropertyAccessPath
     {
+        public TDProfileNameDto() { }
+        
+        public TDProfileNameDto(string firstName, string lastName)
+        {
+            FirstName = firstName;
+            LastName = lastName;
+        }
+        
         private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TDProfileNameDto), nameof(FirstName));
         
         [Required]

@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "M2MemberJoinsContent";
         
+        public M2MemberJoinsContentDto() { }
+        
+        public M2MemberJoinsContentDto(TDMemberProfileDto member)
+        {
+            Member = member;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _member = new PropertyValue<TDMemberProfileDto>(nameof(M2MemberJoinsContentDto), nameof(Member));
         
         [Required]

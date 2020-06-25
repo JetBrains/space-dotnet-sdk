@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class HADtoFieldDto
          : IPropagatePropertyAccessPath
     {
+        public HADtoFieldDto() { }
+        
+        public HADtoFieldDto(HAFieldDto field, bool extension)
+        {
+            Field = field;
+            Extension = extension;
+        }
+        
         private PropertyValue<HAFieldDto> _field = new PropertyValue<HAFieldDto>(nameof(HADtoFieldDto), nameof(Field));
         
         [Required]

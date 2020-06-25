@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class GitAuthorInfoDto
          : IPropagatePropertyAccessPath
     {
+        public GitAuthorInfoDto() { }
+        
+        public GitAuthorInfoDto(string name, string email)
+        {
+            Name = name;
+            Email = email;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(GitAuthorInfoDto), nameof(Name));
         
         [Required]

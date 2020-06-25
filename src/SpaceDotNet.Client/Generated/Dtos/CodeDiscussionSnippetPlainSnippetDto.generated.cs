@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "CodeDiscussionSnippet.PlainSnippet";
         
+        public CodeDiscussionSnippetPlainSnippetDto() { }
+        
+        public CodeDiscussionSnippetPlainSnippetDto(List<CodeLineDto> lines)
+        {
+            Lines = lines;
+        }
+        
         private PropertyValue<List<CodeLineDto>> _lines = new PropertyValue<List<CodeLineDto>>(nameof(CodeDiscussionSnippetPlainSnippetDto), nameof(Lines));
         
         [Required]

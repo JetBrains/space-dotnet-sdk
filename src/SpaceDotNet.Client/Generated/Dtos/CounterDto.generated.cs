@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class CounterDto
          : IPropagatePropertyAccessPath
     {
+        public CounterDto() { }
+        
+        public CounterDto(int resolved, int unresolved)
+        {
+            Resolved = resolved;
+            Unresolved = unresolved;
+        }
+        
         private PropertyValue<int> _resolved = new PropertyValue<int>(nameof(CounterDto), nameof(Resolved));
         
         [Required]

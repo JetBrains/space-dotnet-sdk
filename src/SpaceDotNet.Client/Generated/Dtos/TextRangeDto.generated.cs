@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class TextRangeDto
          : IPropagatePropertyAccessPath
     {
+        public TextRangeDto() { }
+        
+        public TextRangeDto(int start, int length)
+        {
+            Start = start;
+            Length = length;
+        }
+        
         private PropertyValue<int> _start = new PropertyValue<int>(nameof(TextRangeDto), nameof(Start));
         
         [Required]

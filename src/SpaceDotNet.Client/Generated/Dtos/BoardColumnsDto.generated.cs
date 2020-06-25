@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class BoardColumnsDto
          : IPropagatePropertyAccessPath
     {
+        public BoardColumnsDto() { }
+        
+        public BoardColumnsDto(List<BoardColumnDto> columns)
+        {
+            Columns = columns;
+        }
+        
         private PropertyValue<List<BoardColumnDto>> _columns = new PropertyValue<List<BoardColumnDto>>(nameof(BoardColumnsDto), nameof(Columns));
         
         [Required]

@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MessageTag";
         
+        public MessageTagDto() { }
+        
+        public MessageTagDto(string text, MessageStyle style)
+        {
+            Text = text;
+            Style = style;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageTagDto), nameof(Text));
         
         [Required]

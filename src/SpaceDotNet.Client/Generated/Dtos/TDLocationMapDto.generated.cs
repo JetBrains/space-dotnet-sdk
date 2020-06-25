@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class TDLocationMapDto
          : IPropagatePropertyAccessPath
     {
+        public TDLocationMapDto() { }
+        
+        public TDLocationMapDto(string id, string picture, SpaceTime created, int? width = null, int? height = null)
+        {
+            Id = id;
+            Picture = picture;
+            Created = created;
+            Width = width;
+            Height = height;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDLocationMapDto), nameof(Id));
         
         [Required]

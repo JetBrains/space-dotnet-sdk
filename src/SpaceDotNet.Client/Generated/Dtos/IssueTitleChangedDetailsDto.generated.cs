@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "IssueTitleChangedDetails";
         
+        public IssueTitleChangedDetailsDto() { }
+        
+        public IssueTitleChangedDetailsDto(string oldTitle, string newTitle)
+        {
+            OldTitle = oldTitle;
+            NewTitle = newTitle;
+        }
+        
         private PropertyValue<string> _oldTitle = new PropertyValue<string>(nameof(IssueTitleChangedDetailsDto), nameof(OldTitle));
         
         [Required]

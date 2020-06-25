@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "TodoItemContentText";
         
+        public TodoItemContentTextDto() { }
+        
+        public TodoItemContentTextDto(string text)
+        {
+            Text = text;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentTextDto), nameof(Text));
         
         [Required]

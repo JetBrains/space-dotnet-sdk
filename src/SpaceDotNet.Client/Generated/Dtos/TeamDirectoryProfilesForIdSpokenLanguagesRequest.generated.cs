@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForIdSpokenLanguagesRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForIdSpokenLanguagesRequest() { }
+        
+        public TeamDirectoryProfilesForIdSpokenLanguagesRequest(string language, string? firstName = null, string? lastName = null)
+        {
+            Language = language;
+            FirstName = firstName;
+            LastName = lastName;
+        }
+        
         private PropertyValue<string> _language = new PropertyValue<string>(nameof(TeamDirectoryProfilesForIdSpokenLanguagesRequest), nameof(Language));
         
         [Required]

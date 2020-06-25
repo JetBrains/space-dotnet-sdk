@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedRequest() { }
+        
+        public ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedRequest(bool resolved)
+        {
+            Resolved = resolved;
+        }
+        
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedRequest), nameof(Resolved));
         
         [Required]

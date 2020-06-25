@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForId2FaTotpRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForId2FaTotpRequest() { }
+        
+        public TeamDirectoryProfilesForId2FaTotpRequest(bool enabled)
+        {
+            Enabled = enabled;
+        }
+        
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForId2FaTotpRequest), nameof(Enabled));
         
         [Required]

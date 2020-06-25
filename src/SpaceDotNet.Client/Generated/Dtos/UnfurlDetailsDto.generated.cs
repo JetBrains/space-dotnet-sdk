@@ -24,6 +24,36 @@ namespace SpaceDotNet.Client
     public interface UnfurlDetailsDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static ChannelItemSnapshotDto ChannelItemSnapshot(string id, string text, CPrincipalDto author, SpaceTime created, long time, string? channelId = null, M2ItemContentDetailsDto? details = null, List<AttachmentInfoDto>? attachments = null)
+            => new ChannelItemSnapshotDto(id: id, text: text, author: author, created: created, time: time, channelId: null, details: null, attachments: null);
+        
+        public static UnfurlDetailsArticleDto Article(ArticleRecordDto article, ArticleContentRecordDto content, ArticleChannelRecordDto channel, ArticleDetailsRecordDto? details = null)
+            => new UnfurlDetailsArticleDto(article: article, content: content, channel: channel, details: null);
+        
+        public static UnfurlDetailsCodeSnippetDto CodeSnippet(CodeSnippetAnchorDto anchor, List<CodeLineDto> lines)
+            => new UnfurlDetailsCodeSnippetDto(anchor: anchor, lines: lines);
+        
+        public static UnfurlDetailsDateTimeDto DateTime(long utcMilliseconds)
+            => new UnfurlDetailsDateTimeDto(utcMilliseconds: utcMilliseconds);
+        
+        public static UnfurlDetailsDraftDto Draft(string draft, string title)
+            => new UnfurlDetailsDraftDto(draft: draft, title: title);
+        
+        public static UnfurlDetailsIssueDto Issue(IssueDto issue)
+            => new UnfurlDetailsIssueDto(issue: issue);
+        
+        public static UnfurlDetailsMCDto MC(MCMessageDto message, List<AttachmentInfoDto>? inlineUnfurls = null)
+            => new UnfurlDetailsMCDto(message: message, inlineUnfurls: null);
+        
+        public static UnfurlDetailsMeetingDto Meeting(DTOMeetingDto meeting)
+            => new UnfurlDetailsMeetingDto(meeting: meeting);
+        
+        public static UnfurlDetailsProfileDto Profile(TDMemberProfileDto profile)
+            => new UnfurlDetailsProfileDto(profile: profile);
+        
+        public static UnfurlDetailsTeamDto Team(TDTeamDto team)
+            => new UnfurlDetailsTeamDto(team: team);
+        
     }
     
 }

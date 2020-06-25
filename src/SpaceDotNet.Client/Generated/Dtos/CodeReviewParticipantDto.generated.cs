@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class CodeReviewParticipantDto
          : IPropagatePropertyAccessPath
     {
+        public CodeReviewParticipantDto() { }
+        
+        public CodeReviewParticipantDto(TDMemberProfileDto user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null)
+        {
+            User = user;
+            Role = role;
+            State = state;
+            TheirTurn = theirTurn;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _user = new PropertyValue<TDMemberProfileDto>(nameof(CodeReviewParticipantDto), nameof(User));
         
         [Required]

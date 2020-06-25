@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class CalendarEventSpecDto
          : IPropagatePropertyAccessPath
     {
+        public CalendarEventSpecDto() { }
+        
+        public CalendarEventSpecDto(SpaceTime start, SpaceTime end, bool allDay, ATimeZoneDto timezone, RecurrenceRuleDto? recurrenceRule = null, string? parentId = null)
+        {
+            Start = start;
+            End = end;
+            RecurrenceRule = recurrenceRule;
+            AllDay = allDay;
+            Timezone = timezone;
+            ParentId = parentId;
+        }
+        
         private PropertyValue<SpaceTime> _start = new PropertyValue<SpaceTime>(nameof(CalendarEventSpecDto), nameof(Start));
         
         [Required]

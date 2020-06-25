@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class PermissionSnapshotContentDTODto
          : IPropagatePropertyAccessPath
     {
+        public PermissionSnapshotContentDTODto() { }
+        
+        public PermissionSnapshotContentDTODto(List<PermissionSnapshotEntryDTODto> entries, List<PermissionSnapshotPrincipalDTODto> principals, List<PermissionSnapshotRightDTODto> rights, List<PermissionSnapshotTargetDTODto> targets)
+        {
+            Entries = entries;
+            Principals = principals;
+            Rights = rights;
+            Targets = targets;
+        }
+        
         private PropertyValue<List<PermissionSnapshotEntryDTODto>> _entries = new PropertyValue<List<PermissionSnapshotEntryDTODto>>(nameof(PermissionSnapshotContentDTODto), nameof(Entries));
         
         [Required]

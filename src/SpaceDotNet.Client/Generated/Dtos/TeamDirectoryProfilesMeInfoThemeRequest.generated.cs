@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeInfoThemeRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeInfoThemeRequest() { }
+        
+        public TeamDirectoryProfilesMeInfoThemeRequest(string? themeName = null)
+        {
+            ThemeName = themeName;
+        }
+        
         private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesMeInfoThemeRequest), nameof(ThemeName));
         
         [JsonPropertyName("themeName")]

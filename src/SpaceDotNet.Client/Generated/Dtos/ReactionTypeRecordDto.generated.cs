@@ -24,6 +24,18 @@ namespace SpaceDotNet.Client
     public sealed class ReactionTypeRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ReactionTypeRecordDto() { }
+        
+        public ReactionTypeRecordDto(string id, bool archived, ReactionDataDto data, CPrincipalDto provider, SpaceDate addedAt, int? order = null)
+        {
+            Id = id;
+            Archived = archived;
+            Data = data;
+            Provider = provider;
+            AddedAt = addedAt;
+            Order = order;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ReactionTypeRecordDto), nameof(Id));
         
         [Required]

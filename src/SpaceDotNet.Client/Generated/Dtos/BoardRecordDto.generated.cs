@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class BoardRecordDto
          : IPropagatePropertyAccessPath
     {
+        public BoardRecordDto() { }
+        
+        public BoardRecordDto(string id, bool archived, string name, BoardInfoDto info)
+        {
+            Id = id;
+            Archived = archived;
+            Name = name;
+            Info = info;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(BoardRecordDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsForProjectPlanningChecklistsRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsForProjectPlanningChecklistsRequest() { }
+        
+        public ProjectsForProjectPlanningChecklistsRequest(string name)
+        {
+            Name = name;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsRequest), nameof(Name));
         
         [Required]

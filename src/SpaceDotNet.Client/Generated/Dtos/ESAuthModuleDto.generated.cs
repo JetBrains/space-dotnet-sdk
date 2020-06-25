@@ -24,6 +24,19 @@ namespace SpaceDotNet.Client
     public sealed class ESAuthModuleDto
          : IPropagatePropertyAccessPath
     {
+        public ESAuthModuleDto() { }
+        
+        public ESAuthModuleDto(string id, string key, string name, int ordinal, bool enabled, ESAuthModuleSettingsDto settings, string? iconDataURI = null)
+        {
+            Id = id;
+            Key = key;
+            Name = name;
+            Ordinal = ordinal;
+            Enabled = enabled;
+            IconDataURI = iconDataURI;
+            Settings = settings;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ESAuthModuleDto), nameof(Id));
         
         [Required]

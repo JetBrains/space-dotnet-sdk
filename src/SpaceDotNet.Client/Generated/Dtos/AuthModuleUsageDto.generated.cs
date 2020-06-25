@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class AuthModuleUsageDto
          : IPropagatePropertyAccessPath
     {
+        public AuthModuleUsageDto() { }
+        
+        public AuthModuleUsageDto(ESAuthModuleDto authModule, int profiles)
+        {
+            AuthModule = authModule;
+            Profiles = profiles;
+        }
+        
         private PropertyValue<ESAuthModuleDto> _authModule = new PropertyValue<ESAuthModuleDto>(nameof(AuthModuleUsageDto), nameof(AuthModule));
         
         [Required]

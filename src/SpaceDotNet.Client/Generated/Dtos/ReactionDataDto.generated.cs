@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ReactionDataDto
          : IPropagatePropertyAccessPath
     {
+        public ReactionDataDto() { }
+        
+        public ReactionDataDto(string name, string symbol, string emoji)
+        {
+            Name = name;
+            Symbol = symbol;
+            Emoji = emoji;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ReactionDataDto), nameof(Name));
         
         [Required]

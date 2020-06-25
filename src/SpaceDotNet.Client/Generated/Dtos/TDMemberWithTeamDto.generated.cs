@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class TDMemberWithTeamDto
          : IPropagatePropertyAccessPath
     {
+        public TDMemberWithTeamDto() { }
+        
+        public TDMemberWithTeamDto(TDMemberProfileDto profile, List<TDTeamDto> teams)
+        {
+            Profile = profile;
+            Teams = teams;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(TDMemberWithTeamDto), nameof(Profile));
         
         [Required]

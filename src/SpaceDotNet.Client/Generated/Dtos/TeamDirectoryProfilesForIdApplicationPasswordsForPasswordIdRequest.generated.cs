@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForIdApplicationPasswordsForPasswordIdRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForIdApplicationPasswordsForPasswordIdRequest() { }
+        
+        public TeamDirectoryProfilesForIdApplicationPasswordsForPasswordIdRequest(string? name = null, string? scope = null)
+        {
+            Name = name;
+            Scope = scope;
+        }
+        
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForIdApplicationPasswordsForPasswordIdRequest), nameof(Name));
         
         [JsonPropertyName("name")]

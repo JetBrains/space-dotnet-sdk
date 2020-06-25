@@ -27,6 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "MessageHit";
         
+        public MessageHitDto() { }
+        
+        public MessageHitDto(string id, double score, M2ChannelRecordDto channel, ChannelItemRecordDto @ref, string message)
+        {
+            Id = id;
+            Score = score;
+            Channel = channel;
+            Ref = @ref;
+            Message = message;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageHitDto), nameof(Id));
         
         [Required]

@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class CustomFieldValueDto
          : IPropagatePropertyAccessPath
     {
+        public CustomFieldValueDto() { }
+        
+        public CustomFieldValueDto(CustomFieldDto field, CFValueDto value)
+        {
+            Field = field;
+            Value = value;
+        }
+        
         private PropertyValue<CustomFieldDto> _field = new PropertyValue<CustomFieldDto>(nameof(CustomFieldValueDto), nameof(Field));
         
         [Required]

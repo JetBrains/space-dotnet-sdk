@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "IssueDueDateChangedDetails";
         
+        public IssueDueDateChangedDetailsDto() { }
+        
+        public IssueDueDateChangedDetailsDto(SpaceDate? oldDueDate = null, SpaceDate? newDueDate = null)
+        {
+            OldDueDate = oldDueDate;
+            NewDueDate = newDueDate;
+        }
+        
         private PropertyValue<SpaceDate?> _oldDueDate = new PropertyValue<SpaceDate?>(nameof(IssueDueDateChangedDetailsDto), nameof(OldDueDate));
         
         [JsonPropertyName("oldDueDate")]

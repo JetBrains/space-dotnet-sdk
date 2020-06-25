@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class ClientInfoDto
          : IPropagatePropertyAccessPath
     {
+        public ClientInfoDto() { }
+        
+        public ClientInfoDto(ClientOS? os = null, string? osVersion = null, ClientBrowser? browser = null, string? browserVersion = null, string? device = null)
+        {
+            Os = os;
+            OsVersion = osVersion;
+            Browser = browser;
+            BrowserVersion = browserVersion;
+            Device = device;
+        }
+        
         private PropertyValue<ClientOS?> _os = new PropertyValue<ClientOS?>(nameof(ClientInfoDto), nameof(Os));
         
         [JsonPropertyName("os")]

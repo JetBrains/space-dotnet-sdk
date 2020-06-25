@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public interface MessageActionDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static PostMessageActionDto Post(string actionId, string payload)
+            => new PostMessageActionDto(actionId: actionId, payload: payload);
+        
     }
     
 }

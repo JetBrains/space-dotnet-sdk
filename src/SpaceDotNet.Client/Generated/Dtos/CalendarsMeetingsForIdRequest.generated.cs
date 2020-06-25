@@ -24,6 +24,26 @@ namespace SpaceDotNet.Client
     public class CalendarsMeetingsForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public CalendarsMeetingsForIdRequest() { }
+        
+        public CalendarsMeetingsForIdRequest(DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport, RecurrentModification modificationKind, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
+        {
+            Summary = summary;
+            Description = description;
+            OccurrenceRule = occurrenceRule;
+            LocationsDiff = locationsDiff;
+            ProfilesDiff = profilesDiff;
+            ExternalParticipantsDiff = externalParticipantsDiff;
+            TeamsDiff = teamsDiff;
+            Visibility = visibility;
+            ModificationPreference = modificationPreference;
+            JoiningPreference = joiningPreference;
+            NotifyOnExport = notifyOnExport;
+            Organizer = organizer;
+            TargetDate = targetDate;
+            ModificationKind = modificationKind;
+        }
+        
         private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdRequest), nameof(Summary));
         
         [JsonPropertyName("summary")]

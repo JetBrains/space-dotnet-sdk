@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class BoardColumnDto
          : IPropagatePropertyAccessPath
     {
+        public BoardColumnDto() { }
+        
+        public BoardColumnDto(string name, List<IssueStatusDto> statuses, bool? @default = null)
+        {
+            Name = name;
+            Statuses = statuses;
+            Default = @default;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardColumnDto), nameof(Name));
         
         [Required]

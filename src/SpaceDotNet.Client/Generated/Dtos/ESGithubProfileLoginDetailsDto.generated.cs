@@ -27,6 +27,19 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_GithubProfileLoginDetails";
         
+        public ESGithubProfileLoginDetailsDto() { }
+        
+        public ESGithubProfileLoginDetailsDto(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null, List<string>? organizations = null)
+        {
+            Login = login;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            EmailVerified = emailVerified;
+            AvatarUrl = avatarUrl;
+            Organizations = organizations;
+        }
+        
         private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetailsDto), nameof(Login));
         
         [JsonPropertyName("login")]

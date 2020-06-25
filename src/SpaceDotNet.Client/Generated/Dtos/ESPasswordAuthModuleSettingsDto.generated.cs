@@ -27,6 +27,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_PasswordAuthModuleSettings";
         
+        public static ESBuiltinAuthModuleSettingsDto ESBuiltinAuthModuleSettings(PasswordStrength passwordStrengthPolicy, List<string>? domains = null)
+            => new ESBuiltinAuthModuleSettingsDto(passwordStrengthPolicy: passwordStrengthPolicy, domains: null);
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

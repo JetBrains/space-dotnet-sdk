@@ -27,6 +27,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelFeedIntroItemDetails";
         
+        public M2ChannelFeedIntroItemDetailsDto() { }
+        
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

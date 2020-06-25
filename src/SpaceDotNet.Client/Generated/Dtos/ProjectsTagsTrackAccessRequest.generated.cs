@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class ProjectsTagsTrackAccessRequest
          : IPropagatePropertyAccessPath
     {
+        public ProjectsTagsTrackAccessRequest() { }
+        
+        public ProjectsTagsTrackAccessRequest(string tag)
+        {
+            Tag = tag;
+        }
+        
         private PropertyValue<string> _tag = new PropertyValue<string>(nameof(ProjectsTagsTrackAccessRequest), nameof(Tag));
         
         [Required]

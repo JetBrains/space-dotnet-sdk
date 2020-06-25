@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class TodoRequest
          : IPropagatePropertyAccessPath
     {
+        public TodoRequest() { }
+        
+        public TodoRequest(string text, SpaceDate? dueDate = null)
+        {
+            Text = text;
+            DueDate = dueDate;
+        }
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoRequest), nameof(Text));
         
         [Required]

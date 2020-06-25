@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MCImage";
         
+        public MCImageDto() { }
+        
+        public MCImageDto(string src)
+        {
+            Src = src;
+        }
+        
         private PropertyValue<string> _src = new PropertyValue<string>(nameof(MCImageDto), nameof(Src));
         
         [Required]

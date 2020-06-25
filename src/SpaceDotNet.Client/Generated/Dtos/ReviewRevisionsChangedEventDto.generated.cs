@@ -27,6 +27,16 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "ReviewRevisionsChangedEvent";
         
+        public ReviewRevisionsChangedEventDto() { }
+        
+        public ReviewRevisionsChangedEventDto(List<RepositoryCommitRecordDto> commits, ReviewRevisionsChangedType changeType, string? projectKey = null, CodeReviewRecordDto? review = null)
+        {
+            Commits = commits;
+            ChangeType = changeType;
+            ProjectKey = projectKey;
+            Review = review;
+        }
+        
         private PropertyValue<List<RepositoryCommitRecordDto>> _commits = new PropertyValue<List<RepositoryCommitRecordDto>>(nameof(ReviewRevisionsChangedEventDto), nameof(Commits));
         
         [Required]

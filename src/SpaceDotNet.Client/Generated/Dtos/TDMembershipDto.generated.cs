@@ -24,6 +24,27 @@ namespace SpaceDotNet.Client
     public sealed class TDMembershipDto
          : IPropagatePropertyAccessPath
     {
+        public TDMembershipDto() { }
+        
+        public TDMembershipDto(string id, TDTeamDto team, TDRoleDto role, bool lead, bool requiresApproval, bool archived, TDMemberProfileDto? member = null, TDMemberProfileDto? manager = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, TDMembershipDto? editFor = null, TDMembershipDto? pendingEdit = null, TDMemberProfileDto? approver = null)
+        {
+            Id = id;
+            Member = member;
+            Team = team;
+            Role = role;
+            Lead = lead;
+            Manager = manager;
+            Since = since;
+            Till = till;
+            ActiveSince = activeSince;
+            ActiveTill = activeTill;
+            RequiresApproval = requiresApproval;
+            Archived = archived;
+            EditFor = editFor;
+            PendingEdit = pendingEdit;
+            Approver = approver;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMembershipDto), nameof(Id));
         
         [Required]

@@ -28,6 +28,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "ES_PackageRepositorySettings";
         
+        public static ESContainerRegistrySettingsDto ESContainerRegistrySettings(bool immutableTags)
+            => new ESContainerRegistrySettingsDto(immutableTags: immutableTags);
+        
+        public static ESMavenRepositorySettingsDto ESMavenRepositorySettings()
+            => new ESMavenRepositorySettingsDto();
+        
+        public static ESNpmRegistrySettingsDto ESNpmRegistrySettings()
+            => new ESNpmRegistrySettingsDto();
+        
+        public static ESNuGetFeedSettingsDto ESNuGetFeedSettings()
+            => new ESNuGetFeedSettingsDto();
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

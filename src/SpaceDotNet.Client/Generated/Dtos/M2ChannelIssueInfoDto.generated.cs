@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelIssueInfo";
         
+        public M2ChannelIssueInfoDto() { }
+        
+        public M2ChannelIssueInfoDto(IssueDto issue, ChannelSpecificDefaultsDto notificationDefaults, ProjectKeyDto? projectKey = null)
+        {
+            ProjectKey = projectKey;
+            Issue = issue;
+            NotificationDefaults = notificationDefaults;
+        }
+        
         private PropertyValue<ProjectKeyDto?> _projectKey = new PropertyValue<ProjectKeyDto?>(nameof(M2ChannelIssueInfoDto), nameof(ProjectKey));
         
         [JsonPropertyName("projectKey")]

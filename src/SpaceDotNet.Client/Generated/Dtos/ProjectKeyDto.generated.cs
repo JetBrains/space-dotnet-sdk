@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class ProjectKeyDto
          : IPropagatePropertyAccessPath
     {
+        public ProjectKeyDto() { }
+        
+        public ProjectKeyDto(string key)
+        {
+            Key = key;
+        }
+        
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectKeyDto), nameof(Key));
         
         [Required]

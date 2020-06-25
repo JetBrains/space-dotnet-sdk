@@ -27,6 +27,21 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "CommitSetReviewRecord";
         
+        public CommitSetReviewRecordDto() { }
+        
+        public CommitSetReviewRecordDto(ProjectKeyDto project, int number, string title, CodeReviewState state, long createdAt, TDMemberProfileDto createdBy, bool? canBeReopened = null, bool? turnBased = null, M2ChannelRecordDto? feedChannel = null)
+        {
+            Project = project;
+            Number = number;
+            Title = title;
+            State = state;
+            CanBeReopened = canBeReopened;
+            CreatedAt = createdAt;
+            CreatedBy = createdBy;
+            TurnBased = turnBased;
+            FeedChannel = feedChannel;
+        }
+        
         private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(CommitSetReviewRecordDto), nameof(Project));
         
         [Required]

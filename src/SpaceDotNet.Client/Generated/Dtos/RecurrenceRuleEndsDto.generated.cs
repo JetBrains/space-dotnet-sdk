@@ -28,6 +28,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "RecurrenceRuleEnds";
         
+        public static RecurrenceRuleEndsNeverDto Never()
+            => new RecurrenceRuleEndsNeverDto();
+        
+        public static RecurrenceRuleEndsOnDateDto OnDate(SpaceDate date)
+            => new RecurrenceRuleEndsOnDateDto(date: date);
+        
+        public static RecurrenceRuleEndsTotalCountDto TotalCount(int count)
+            => new RecurrenceRuleEndsTotalCountDto(count: count);
+        
+        public RecurrenceRuleEndsDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

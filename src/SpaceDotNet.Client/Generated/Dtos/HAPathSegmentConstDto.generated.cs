@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "HA_PathSegment.Const";
         
+        public HAPathSegmentConstDto() { }
+        
+        public HAPathSegmentConstDto(string value)
+        {
+            Value = value;
+        }
+        
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAPathSegmentConstDto), nameof(Value));
         
         [Required]

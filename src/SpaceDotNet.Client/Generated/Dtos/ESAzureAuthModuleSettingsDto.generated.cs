@@ -27,6 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_AzureAuthModuleSettings";
         
+        public ESAzureAuthModuleSettingsDto() { }
+        
+        public ESAzureAuthModuleSettingsDto(string tenantId, string clientId, string clientSecret, bool registerNewUsers, bool emailVerified)
+        {
+            TenantId = tenantId;
+            ClientId = clientId;
+            ClientSecret = clientSecret;
+            RegisterNewUsers = registerNewUsers;
+            EmailVerified = emailVerified;
+        }
+        
         private PropertyValue<string> _tenantId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettingsDto), nameof(TenantId));
         
         [Required]

@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "MCOutline";
         
+        public MCOutlineDto() { }
+        
+        public MCOutlineDto(MCElementDto? icon = null, MCTextDto? text = null)
+        {
+            Icon = icon;
+            Text = text;
+        }
+        
         private PropertyValue<MCElementDto?> _icon = new PropertyValue<MCElementDto?>(nameof(MCOutlineDto), nameof(Icon));
         
         [JsonPropertyName("icon")]

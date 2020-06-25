@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class AllReactionsToItemRecordDto
          : IPropagatePropertyAccessPath
     {
+        public AllReactionsToItemRecordDto() { }
+        
+        public AllReactionsToItemRecordDto(string id, List<CertainReactionToItemRecordDto> reactions, List<EmojiReactionRecordDto>? emojiReactions = null)
+        {
+            Id = id;
+            Reactions = reactions;
+            EmojiReactions = emojiReactions;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(AllReactionsToItemRecordDto), nameof(Id));
         
         [Required]

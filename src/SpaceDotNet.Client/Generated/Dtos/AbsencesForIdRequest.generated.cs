@@ -24,6 +24,21 @@ namespace SpaceDotNet.Client
     public class AbsencesForIdRequest
          : IPropagatePropertyAccessPath
     {
+        public AbsencesForIdRequest() { }
+        
+        public AbsencesForIdRequest(bool available, string? member = null, string? reason = null, string? description = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? icon = null, List<CustomFieldValueDto>? customFieldValues = null)
+        {
+            Member = member;
+            Reason = reason;
+            Description = description;
+            Location = location;
+            Since = since;
+            Till = till;
+            Available = available;
+            Icon = icon;
+            CustomFieldValues = customFieldValues;
+        }
+        
         private PropertyValue<string?> _member = new PropertyValue<string?>(nameof(AbsencesForIdRequest), nameof(Member));
         
         [JsonPropertyName("member")]

@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForId2FaTotpConfirmRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForId2FaTotpConfirmRequest() { }
+        
+        public TeamDirectoryProfilesForId2FaTotpConfirmRequest(int code)
+        {
+            Code = code;
+        }
+        
         private PropertyValue<int> _code = new PropertyValue<int>(nameof(TeamDirectoryProfilesForId2FaTotpConfirmRequest), nameof(Code));
         
         [Required]

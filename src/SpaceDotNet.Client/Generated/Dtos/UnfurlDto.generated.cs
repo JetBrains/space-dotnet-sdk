@@ -24,6 +24,27 @@ namespace SpaceDotNet.Client
     public sealed class UnfurlDto
          : IPropagatePropertyAccessPath
     {
+        public UnfurlDto() { }
+        
+        public UnfurlDto(string title, string link, string text, UnfurlDetailsDto? details = null, string? sitename = null, string? image = null, string? imageMime = null, int? imageWidth = null, int? imageHeight = null, string? video = null, string? videoIFrame = null, string? videoMime = null, int? videoHeight = null, int? videoWidth = null, string? favicon = null)
+        {
+            Title = title;
+            Link = link;
+            Text = text;
+            Details = details;
+            Sitename = sitename;
+            Image = image;
+            ImageMime = imageMime;
+            ImageWidth = imageWidth;
+            ImageHeight = imageHeight;
+            Video = video;
+            VideoIFrame = videoIFrame;
+            VideoMime = videoMime;
+            VideoHeight = videoHeight;
+            VideoWidth = videoWidth;
+            Favicon = favicon;
+        }
+        
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDto), nameof(Title));
         
         [Required]

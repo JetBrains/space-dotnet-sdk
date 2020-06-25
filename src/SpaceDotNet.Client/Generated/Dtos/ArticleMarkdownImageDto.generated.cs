@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class ArticleMarkdownImageDto
          : IPropagatePropertyAccessPath
     {
+        public ArticleMarkdownImageDto() { }
+        
+        public ArticleMarkdownImageDto(string alt, string src)
+        {
+            Alt = alt;
+            Src = src;
+        }
+        
         private PropertyValue<string> _alt = new PropertyValue<string>(nameof(ArticleMarkdownImageDto), nameof(Alt));
         
         [Required]

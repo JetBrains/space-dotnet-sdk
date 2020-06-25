@@ -27,6 +27,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "CollabDocument";
         
+        public CollabDocumentDto() { }
+        
+        public CollabDocumentDto(string id, long resetCounter, DraftDocumentType type, string text, long? version = null)
+        {
+            Id = id;
+            ResetCounter = resetCounter;
+            Version = version;
+            Type = type;
+            Text = text;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CollabDocumentDto), nameof(Id));
         
         [Required]

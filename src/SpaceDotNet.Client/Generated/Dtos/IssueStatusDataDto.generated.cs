@@ -24,6 +24,16 @@ namespace SpaceDotNet.Client
     public sealed class IssueStatusDataDto
          : IPropagatePropertyAccessPath
     {
+        public IssueStatusDataDto() { }
+        
+        public IssueStatusDataDto(string name, bool resolved, string color, string? existingId = null)
+        {
+            ExistingId = existingId;
+            Name = name;
+            Resolved = resolved;
+            Color = color;
+        }
+        
         private PropertyValue<string?> _existingId = new PropertyValue<string?>(nameof(IssueStatusDataDto), nameof(ExistingId));
         
         [JsonPropertyName("existingId")]

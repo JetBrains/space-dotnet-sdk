@@ -27,6 +27,19 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_HubProfileLoginDetails";
         
+        public ESHubProfileLoginDetailsDto() { }
+        
+        public ESHubProfileLoginDetailsDto(bool emailVerified, string? login = null, string? hubAuthModuleLogin = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null)
+        {
+            Login = login;
+            HubAuthModuleLogin = hubAuthModuleLogin;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            EmailVerified = emailVerified;
+            AvatarUrl = avatarUrl;
+        }
+        
         private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESHubProfileLoginDetailsDto), nameof(Login));
         
         [JsonPropertyName("login")]

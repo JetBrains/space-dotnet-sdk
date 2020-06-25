@@ -24,6 +24,20 @@ namespace SpaceDotNet.Client
     public sealed class KBFolderDto
          : IPropagatePropertyAccessPath
     {
+        public KBFolderDto() { }
+        
+        public KBFolderDto(string id, bool archived, string name, List<KBFolderDto> subfolders, List<KBArticleDto> articles, KBBookDto book, string alias, KBFolderDto? parent = null)
+        {
+            Id = id;
+            Archived = archived;
+            Name = name;
+            Parent = parent;
+            Subfolders = subfolders;
+            Articles = articles;
+            Book = book;
+            Alias = alias;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBFolderDto), nameof(Id));
         
         [Required]

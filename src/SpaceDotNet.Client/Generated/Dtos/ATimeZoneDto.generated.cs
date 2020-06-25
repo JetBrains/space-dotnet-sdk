@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public sealed class ATimeZoneDto
          : IPropagatePropertyAccessPath
     {
+        public ATimeZoneDto() { }
+        
+        public ATimeZoneDto(string id)
+        {
+            Id = id;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ATimeZoneDto), nameof(Id));
         
         [Required]

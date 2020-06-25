@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "StickerContentDetails";
         
+        public StickerContentDetailsDto() { }
+        
+        public StickerContentDetailsDto(StickerDto sticker, StickerPackInfoDto? pack = null)
+        {
+            Sticker = sticker;
+            Pack = pack;
+        }
+        
         private PropertyValue<StickerDto> _sticker = new PropertyValue<StickerDto>(nameof(StickerContentDetailsDto), nameof(Sticker));
         
         [Required]

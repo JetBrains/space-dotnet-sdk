@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class ImportSourcesForSourceIdRequest
          : IPropagatePropertyAccessPath
     {
+        public ImportSourcesForSourceIdRequest() { }
+        
+        public ImportSourcesForSourceIdRequest(string name, string importerPrincipal)
+        {
+            Name = name;
+            ImporterPrincipal = importerPrincipal;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ImportSourcesForSourceIdRequest), nameof(Name));
         
         [JsonPropertyName("name")]

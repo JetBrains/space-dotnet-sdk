@@ -24,6 +24,19 @@ namespace SpaceDotNet.Client
     public sealed class TodoItemRecordDto
          : IPropagatePropertyAccessPath
     {
+        public TodoItemRecordDto() { }
+        
+        public TodoItemRecordDto(string id, bool archived, SpaceTime created, SpaceTime updated, TodoItemContentDto content, string _status, SpaceDate? dueDate = null)
+        {
+            Id = id;
+            Archived = archived;
+            Created = created;
+            Updated = updated;
+            Content = content;
+            Status = _status;
+            DueDate = dueDate;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TodoItemRecordDto), nameof(Id));
         
         [Required]

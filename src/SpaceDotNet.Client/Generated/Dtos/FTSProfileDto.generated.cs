@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class FTSProfileDto
          : IPropagatePropertyAccessPath
     {
+        public FTSProfileDto() { }
+        
+        public FTSProfileDto(FTSUserDto profile, List<FTSSnippetDto> snippets, TDMemberProfileDto member)
+        {
+            Profile = profile;
+            Snippets = snippets;
+            Member = member;
+        }
+        
         private PropertyValue<FTSUserDto> _profile = new PropertyValue<FTSUserDto>(nameof(FTSProfileDto), nameof(Profile));
         
         [Required]

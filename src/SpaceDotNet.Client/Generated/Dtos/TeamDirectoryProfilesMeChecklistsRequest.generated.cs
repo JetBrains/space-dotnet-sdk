@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeChecklistsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeChecklistsRequest() { }
+        
+        public TeamDirectoryProfilesMeChecklistsRequest(string name)
+        {
+            Name = name;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesMeChecklistsRequest), nameof(Name));
         
         [Required]

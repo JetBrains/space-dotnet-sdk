@@ -24,6 +24,17 @@ namespace SpaceDotNet.Client
     public sealed class ArticlePreviewRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ArticlePreviewRecordDto() { }
+        
+        public ArticlePreviewRecordDto(string id, bool archived, List<ArticleMarkdownImageDto> previewImages, string preview, int? wordsNumber = null)
+        {
+            Id = id;
+            Archived = archived;
+            PreviewImages = previewImages;
+            Preview = preview;
+            WordsNumber = wordsNumber;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticlePreviewRecordDto), nameof(Id));
         
         [Required]

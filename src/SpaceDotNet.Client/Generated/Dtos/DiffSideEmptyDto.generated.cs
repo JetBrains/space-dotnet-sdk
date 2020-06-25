@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "DiffSide.Empty";
         
+        public DiffSideEmptyDto() { }
+        
+        public DiffSideEmptyDto(string revision)
+        {
+            Revision = revision;
+        }
+        
         private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideEmptyDto), nameof(Revision));
         
         [Required]

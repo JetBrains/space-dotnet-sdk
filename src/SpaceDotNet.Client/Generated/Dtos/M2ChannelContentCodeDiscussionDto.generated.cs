@@ -27,6 +27,15 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "M2ChannelContentCodeDiscussion";
         
+        public M2ChannelContentCodeDiscussionDto() { }
+        
+        public M2ChannelContentCodeDiscussionDto(string codeDiscussionId, ChannelSpecificDefaultsDto notificationDefaults, CodeDiscussionRecordDto? codeDiscussion = null)
+        {
+            CodeDiscussionId = codeDiscussionId;
+            NotificationDefaults = notificationDefaults;
+            CodeDiscussion = codeDiscussion;
+        }
+        
         private PropertyValue<string> _codeDiscussionId = new PropertyValue<string>(nameof(M2ChannelContentCodeDiscussionDto), nameof(CodeDiscussionId));
         
         [Required]

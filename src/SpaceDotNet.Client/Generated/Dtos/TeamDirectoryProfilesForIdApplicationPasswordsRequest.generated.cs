@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesForIdApplicationPasswordsRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesForIdApplicationPasswordsRequest() { }
+        
+        public TeamDirectoryProfilesForIdApplicationPasswordsRequest(string name, string scope)
+        {
+            Name = name;
+            Scope = scope;
+        }
+        
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForIdApplicationPasswordsRequest), nameof(Name));
         
         [Required]

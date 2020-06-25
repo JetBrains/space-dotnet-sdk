@@ -24,6 +24,22 @@ namespace SpaceDotNet.Client
     public sealed class KBBookDto
          : IPropagatePropertyAccessPath
     {
+        public KBBookDto() { }
+        
+        public KBBookDto(string id, bool archived, string name, string summary, long updated, string alias, List<TDLocationDto> locations, List<TDTeamDto> teams, KBFolderDto rootFolder, List<KBBookContextDto>? contexts = null)
+        {
+            Id = id;
+            Archived = archived;
+            Name = name;
+            Summary = summary;
+            Updated = updated;
+            Alias = alias;
+            Contexts = contexts;
+            Locations = locations;
+            Teams = teams;
+            RootFolder = rootFolder;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBBookDto), nameof(Id));
         
         [Required]

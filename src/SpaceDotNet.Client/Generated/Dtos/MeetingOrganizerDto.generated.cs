@@ -28,6 +28,17 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "MeetingOrganizer";
         
+        public static MeetingOrganizerExternalUserDto ExternalUser(string email)
+            => new MeetingOrganizerExternalUserDto(email: email);
+        
+        public static MeetingOrganizerHiddenUserDto HiddenUser()
+            => new MeetingOrganizerHiddenUserDto();
+        
+        public static MeetingOrganizerUserDto User(TDMemberProfileDto profileRef)
+            => new MeetingOrganizerUserDto(profileRef: profileRef);
+        
+        public MeetingOrganizerDto() { }
+        
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

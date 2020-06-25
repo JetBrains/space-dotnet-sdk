@@ -24,6 +24,15 @@ namespace SpaceDotNet.Client
     public sealed class ArticleContentRecordDto
          : IPropagatePropertyAccessPath
     {
+        public ArticleContentRecordDto() { }
+        
+        public ArticleContentRecordDto(string id, bool archived, string content)
+        {
+            Id = id;
+            Archived = archived;
+            Content = content;
+        }
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticleContentRecordDto), nameof(Id));
         
         [Required]

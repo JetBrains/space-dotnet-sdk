@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public  string? ClassName => "KbPersonalContext";
         
+        public KbPersonalContextDto() { }
+        
+        public KbPersonalContextDto(TDMemberProfileDto owner)
+        {
+            Owner = owner;
+        }
+        
         private PropertyValue<TDMemberProfileDto> _owner = new PropertyValue<TDMemberProfileDto>(nameof(KbPersonalContextDto), nameof(Owner));
         
         [Required]

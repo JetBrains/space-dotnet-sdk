@@ -27,6 +27,13 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "EnumCFValue";
         
+        public EnumCFValueDto() { }
+        
+        public EnumCFValueDto(EnumValueDataDto? value = null)
+        {
+            Value = value;
+        }
+        
         private PropertyValue<EnumValueDataDto?> _value = new PropertyValue<EnumValueDataDto?>(nameof(EnumCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]

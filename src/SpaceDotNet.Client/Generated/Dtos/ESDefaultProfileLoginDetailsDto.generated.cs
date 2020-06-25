@@ -27,6 +27,18 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "ES_DefaultProfileLoginDetails";
         
+        public ESDefaultProfileLoginDetailsDto() { }
+        
+        public ESDefaultProfileLoginDetailsDto(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null)
+        {
+            Login = login;
+            FirstName = firstName;
+            LastName = lastName;
+            Email = email;
+            EmailVerified = emailVerified;
+            AvatarUrl = avatarUrl;
+        }
+        
         private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESDefaultProfileLoginDetailsDto), nameof(Login));
         
         [JsonPropertyName("login")]

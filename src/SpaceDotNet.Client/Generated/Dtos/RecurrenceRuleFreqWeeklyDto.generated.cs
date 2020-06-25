@@ -27,6 +27,14 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public override string? ClassName => "RecurrenceRuleFreq.Weekly";
         
+        public RecurrenceRuleFreqWeeklyDto() { }
+        
+        public RecurrenceRuleFreqWeeklyDto(List<Weekday> weekdays, int interval)
+        {
+            Weekdays = weekdays;
+            Interval = interval;
+        }
+        
         private PropertyValue<List<Weekday>> _weekdays = new PropertyValue<List<Weekday>>(nameof(RecurrenceRuleFreqWeeklyDto), nameof(Weekdays));
         
         [Required]

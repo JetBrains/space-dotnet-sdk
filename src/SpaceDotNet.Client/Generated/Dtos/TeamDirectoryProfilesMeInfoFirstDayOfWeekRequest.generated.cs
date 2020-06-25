@@ -24,6 +24,13 @@ namespace SpaceDotNet.Client
     public class TeamDirectoryProfilesMeInfoFirstDayOfWeekRequest
          : IPropagatePropertyAccessPath
     {
+        public TeamDirectoryProfilesMeInfoFirstDayOfWeekRequest() { }
+        
+        public TeamDirectoryProfilesMeInfoFirstDayOfWeekRequest(Weekday firstDayOfWeek)
+        {
+            FirstDayOfWeek = firstDayOfWeek;
+        }
+        
         private PropertyValue<Weekday> _firstDayOfWeek = new PropertyValue<Weekday>(nameof(TeamDirectoryProfilesMeInfoFirstDayOfWeekRequest), nameof(FirstDayOfWeek));
         
         [Required]

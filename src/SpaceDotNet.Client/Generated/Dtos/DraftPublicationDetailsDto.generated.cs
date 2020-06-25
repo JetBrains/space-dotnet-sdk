@@ -24,6 +24,14 @@ namespace SpaceDotNet.Client
     public sealed class DraftPublicationDetailsDto
          : IPropagatePropertyAccessPath
     {
+        public DraftPublicationDetailsDto() { }
+        
+        public DraftPublicationDetailsDto(string? usedType = null, List<PublicationDetailsDto>? allPublicationDetails = null)
+        {
+            UsedType = usedType;
+            AllPublicationDetails = allPublicationDetails;
+        }
+        
         private PropertyValue<string?> _usedType = new PropertyValue<string?>(nameof(DraftPublicationDetailsDto), nameof(UsedType));
         
         [JsonPropertyName("usedType")]
