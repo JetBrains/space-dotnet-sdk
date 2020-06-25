@@ -279,7 +279,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             MeetingsThisWeek = meetingsThisWeek;
         }
 
-        public static DateTime StartOfWeek(DateTime dt, DayOfWeek startOfWeek)
+        private static DateTime StartOfWeek(DateTime dt, DayOfWeek startOfWeek)
         {
             var diff = (7 + (dt.Date.DayOfWeek - startOfWeek)) % 7;
             return dt.AddDays(-1 * diff).Date;

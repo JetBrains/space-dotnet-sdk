@@ -62,28 +62,26 @@ namespace SpaceDotNet.Samples.CommandLine
             else
             {
                 await chatClient.Messages.SendMessageAsync(
-                    recipient: new MessageRecipientChannelDto { Channel = new ChatChannelFromNameDto { Name = chatChannelName } },
-                    content: new ChatMessageBlockDto
-                    {
-                        Outline = new MessageOutlineDto { Text = "Have you tried JetBrains Space?" },
-                        MessageData = "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
-                        Sections = new List<MessageSectionElementDto>
+                    recipient: MessageRecipientDto.Channel(ChatChannelDto.FromName(chatChannelName)),
+                    content: ChatMessageDto.Block(
+                        outline: new MessageOutlineDto("Have you tried JetBrains Space?"),
+                        messageData: "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
+                        sections: new List<MessageSectionElementDto>
                         {
                             new MessageSectionDto
                             {
                                 Header = "JetBrains Space",
                                 Elements = new List<MessageElementDto>
                                 {
-                                    new MessageTextDto { Content = "JetBrains Space is an Integrated Team Environment." },
-                                    new MessageTextDto { Content = "Have you tried JetBrains Space?" },
-                                    new MessageDividerDto(),
-                                    new MessageTextDto { Content = "Get access at https://www.jetbrains.com/space/" }
+                                    MessageElementDto.MessageText("JetBrains Space is an Integrated Team Environment."),
+                                    MessageElementDto.MessageText("Have you tried JetBrains Space?"),
+                                    MessageElementDto.MessageDivider(),
+                                    MessageElementDto.MessageText("Get access at https://www.jetbrains.com/space/")
                                 },
                                 Footer = "Check it out at https://www.jetbrains.com/space/"
                             }
                         },
-                        Style = MessageStyle.WARNING
-                    },
+                        style: MessageStyle.WARNING),
                     unfurlLinks: false);
                 
                 Console.WriteLine($"A chat message has been sent to the channel named \"{chatChannelName}\" in your Space organization.");

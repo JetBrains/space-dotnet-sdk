@@ -13,5 +13,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
             }
             return $"{classNameForDto}Dto";
         }
+        
+        public static string ToCSharpFactoryMethodName(this ApiDto subject, ApiDto parent)
+        {
+            var classNameForParent = CSharpIdentifier.ForClassOrNamespace(parent.Name);
+            var classNameForSubject = CSharpIdentifier.ForClassOrNamespace(subject.Name);
+            return classNameForSubject.Replace(classNameForParent, string.Empty);
+        }
     }
 }

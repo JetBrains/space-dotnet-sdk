@@ -35,6 +35,33 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             _parameters = parameters;
         }
 
+        public MethodParametersBuilder WithParametersForDtoFields(List<ApiDtoField> apiDtoFields)
+        {
+            var methodParametersBuilder = new MethodParametersBuilder(_context);
+            var orderedDtoFieldsAsParameters = apiDtoFields.OrderBy(it => !it.Field.Type.Nullable ? 0 : 1).ToList();
+            foreach (var apiDtoParameter in orderedDtoFieldsAsParameters)
+            {
+                var parameterType = apiDtoParameter.Field.Type.ToCSharpType(_context);
+                if (apiDtoParameter.Field.Type.Nullable)
+                {
+                    parameterType += "?";
+                }
+                
+                var parameterName = apiDtoParameter.Field.ToCSharpVariableName();
+
+                string? parameterDefaultValue = null;
+                if (apiDtoParameter.Field.Type.Nullable)
+                {
+                    parameterDefaultValue = "null";
+                }
+
+                methodParametersBuilder = methodParametersBuilder
+                    .WithParameter(parameterType, parameterName, parameterDefaultValue);
+            }
+
+            return methodParametersBuilder;
+        }
+
         public MethodParametersBuilder WithParametersForEndpoint(ApiEndpoint apiEndpoint)
         {
             var methodParametersBuilder = new MethodParametersBuilder(_context);
