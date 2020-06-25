@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -20,6 +21,9 @@ namespace SpaceDotNet.Samples.CommandLine
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_ID")!,
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_SECRET")!,
                 new HttpClient());
+            
+            // User to add to chat later on
+            var chatChannelName = "SpaceDotNet";
             
             // Get all profiles with their names
             var teamDirectoryClient = new TeamDirectoryClient(connection);
@@ -44,6 +48,47 @@ namespace SpaceDotNet.Samples.CommandLine
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(e.Message);
                 Console.ResetColor();
+            }
+            
+            // Send chat message?
+            var chatClient = new ChatClient(connection);
+            var chatChannelExists = !await chatClient.Channels.IsNameFreeAsync(new IsNameFreeRequest { Name = chatChannelName });
+            if (!chatChannelExists)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($"Skipped sending chat message example. Create a channel named \"{chatChannelName}\" in your Space organization and try again.");
+                Console.ResetColor();
+            } 
+            else
+            {
+                await chatClient.Messages.SendMessageAsync(new SendMessageRequest
+                {
+                    Recipient = new MessageRecipientChannelDto { Channel = new ChatChannelFromNameDto { Name = chatChannelName } },
+                    Content = new ChatMessageBlockDto
+                    {
+                        Outline = new MessageOutlineDto { Text = "Have you tried JetBrains Space?" },
+                        MessageData = "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
+                        Sections = new List<MessageSectionElementDto>
+                        {
+                            new MessageSectionDto
+                            {
+                                Header = "JetBrains Space",
+                                Elements = new List<MessageElementDto>
+                                {
+                                    new MessageTextDto { Content = "JetBrains Space is an Integrated Team Environment." },
+                                    new MessageTextDto { Content = "Have you tried JetBrains Space?" },
+                                    new MessageDividerDto(),
+                                    new MessageTextDto { Content = "Get access at https://www.jetbrains.com/space/" }
+                                },
+                                Footer = "Check it out at https://www.jetbrains.com/space/"
+                            }
+                        },
+                        Style = MessageStyle.WARNING
+                    },
+                    UnfurlLinks = false
+                });
+                
+                Console.WriteLine($"A chat message has been sent to the channel named \"{chatChannelName}\" in your Space organization.");
             }
         }
     }
