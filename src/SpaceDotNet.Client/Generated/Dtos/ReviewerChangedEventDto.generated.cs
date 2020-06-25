@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : FeedEventDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "ReviewerChangedEvent";
         
         private PropertyValue<TDMemberProfileDto> _uid = new PropertyValue<TDMemberProfileDto>(nameof(ReviewerChangedEventDto), nameof(Uid));
         

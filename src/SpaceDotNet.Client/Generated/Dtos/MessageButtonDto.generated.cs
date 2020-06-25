@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MessageControlElementDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MessageButton";
         
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageButtonDto), nameof(Text));
         

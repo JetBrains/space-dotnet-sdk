@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class HAPathSegmentPrefixedVarDto
          : HAPathSegmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "HA_PathSegment.PrefixedVar";
+        
         private PropertyValue<string> _prefix = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVarDto), nameof(Prefix));
         
         [Required]

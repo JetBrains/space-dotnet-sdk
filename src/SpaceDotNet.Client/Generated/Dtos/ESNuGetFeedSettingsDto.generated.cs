@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESNuGetFeedSettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_NuGetFeedSettings";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

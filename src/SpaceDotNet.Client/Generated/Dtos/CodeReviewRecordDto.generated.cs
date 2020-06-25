@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public virtual string? ClassName => "CodeReviewRecord";
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecordDto), nameof(Id));
         

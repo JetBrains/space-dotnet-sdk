@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class StringCFValueDto
          : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "StringCFValue";
+        
         private PropertyValue<string?> _value = new PropertyValue<string?>(nameof(StringCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]

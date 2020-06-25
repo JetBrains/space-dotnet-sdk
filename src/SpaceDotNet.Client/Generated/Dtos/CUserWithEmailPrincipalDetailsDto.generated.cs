@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : CPrincipalDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "CUserWithEmailPrincipalDetails";
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CUserWithEmailPrincipalDetailsDto), nameof(Name));
         

@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESLdapAuthModuleSettingsDto
          : ESExternalPasswordAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_LdapAuthModuleSettings";
+        
         private PropertyValue<LdapModuleType> _type = new PropertyValue<LdapModuleType>(nameof(ESLdapAuthModuleSettingsDto), nameof(Type));
         
         [Required]

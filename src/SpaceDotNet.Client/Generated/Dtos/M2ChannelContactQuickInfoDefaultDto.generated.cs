@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2ChannelContactInfoDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "M2ChannelContactQuickInfoDefault";
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContactQuickInfoDefaultDto), nameof(Name));
         

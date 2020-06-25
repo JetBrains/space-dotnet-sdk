@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class HATypeObjectDto
          : HATypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "HA_Type.Object";
+        
         private PropertyValue<List<HAFieldDto>> _fields = new PropertyValue<List<HAFieldDto>>(nameof(HATypeObjectDto), nameof(Fields));
         
         [Required]

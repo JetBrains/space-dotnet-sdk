@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : KBBookContextDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "KbPersonalContext";
         
         private PropertyValue<TDMemberProfileDto> _owner = new PropertyValue<TDMemberProfileDto>(nameof(KbPersonalContextDto), nameof(Owner));
         

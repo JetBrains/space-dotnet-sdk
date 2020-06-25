@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : PublicationItemDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "DocumentPublicationItem";
         
         private PropertyValue<string> _documentId = new PropertyValue<string>(nameof(DocumentPublicationItemDto), nameof(DocumentId));
         

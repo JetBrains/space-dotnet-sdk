@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : IssueChangedM2DetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "IssueStatusChangedDetails";
         
         private PropertyValue<IssueStatusDto> _oldStatus = new PropertyValue<IssueStatusDto>(nameof(IssueStatusChangedDetailsDto), nameof(OldStatus));
         

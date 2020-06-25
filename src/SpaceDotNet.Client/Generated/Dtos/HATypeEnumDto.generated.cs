@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class HATypeEnumDto
          : HATypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "HA_Type.Enum";
+        
         private PropertyValue<HAEnumDto> _enum = new PropertyValue<HAEnumDto>(nameof(HATypeEnumDto), nameof(Enum));
         
         [Required]

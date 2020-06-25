@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : UnfurlDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "UnfurlDetailsProfile";
         
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(UnfurlDetailsProfileDto), nameof(Profile));
         

@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESHiddenAuthModuleSettingsDto
          : ESAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_HiddenAuthModuleSettings";
+        
         private PropertyValue<bool?> _passwordModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettingsDto), nameof(PasswordModule));
         
         [JsonPropertyName("passwordModule")]

@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MeetingOrganizerHiddenUserDto
          : MeetingOrganizerDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MeetingOrganizer.HiddenUser";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

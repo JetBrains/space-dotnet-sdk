@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESMavenRepositorySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_MavenRepositorySettings";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

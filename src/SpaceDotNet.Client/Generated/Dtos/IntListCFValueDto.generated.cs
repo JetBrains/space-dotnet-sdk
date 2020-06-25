@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class IntListCFValueDto
          : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "IntListCFValue";
+        
         private PropertyValue<List<int>> _values = new PropertyValue<List<int>>(nameof(IntListCFValueDto), nameof(Values));
         
         [Required]

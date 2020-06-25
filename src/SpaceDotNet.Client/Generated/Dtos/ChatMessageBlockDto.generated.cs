@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ChatMessageBlockDto
          : ChatMessageDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ChatMessage.Block";
+        
         private PropertyValue<MessageStyle?> _style = new PropertyValue<MessageStyle?>(nameof(ChatMessageBlockDto), nameof(Style));
         
         [JsonPropertyName("style")]

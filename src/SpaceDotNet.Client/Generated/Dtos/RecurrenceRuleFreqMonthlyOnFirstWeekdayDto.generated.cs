@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class RecurrenceRuleFreqMonthlyOnFirstWeekdayDto
          : RecurrenceRuleFreqDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "RecurrenceRuleFreq.MonthlyOnFirstWeekday";
+        
         private PropertyValue<Weekday> _weekday = new PropertyValue<Weekday>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekdayDto), nameof(Weekday));
         
         [Required]

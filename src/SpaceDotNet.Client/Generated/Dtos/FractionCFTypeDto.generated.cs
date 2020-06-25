@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class FractionCFTypeDto
          : CFTypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "FractionCFType";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

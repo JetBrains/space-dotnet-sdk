@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : FeedEventDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MergeRequestBranchRestoredEvent";
         
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MergeRequestBranchRestoredEventDto), nameof(Repository));
         

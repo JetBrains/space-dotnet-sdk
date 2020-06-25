@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESContainerRegistrySettingsDto
          : ESPackageRepositorySettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_ContainerRegistrySettings";
+        
         private PropertyValue<bool> _immutableTags = new PropertyValue<bool>(nameof(ESContainerRegistrySettingsDto), nameof(ImmutableTags));
         
         [Required]

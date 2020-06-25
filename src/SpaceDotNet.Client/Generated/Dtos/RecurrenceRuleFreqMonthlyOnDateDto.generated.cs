@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class RecurrenceRuleFreqMonthlyOnDateDto
          : RecurrenceRuleFreqDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "RecurrenceRuleFreq.MonthlyOnDate";
+        
         private PropertyValue<int> _day = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnDateDto), nameof(Day));
         
         [Required]

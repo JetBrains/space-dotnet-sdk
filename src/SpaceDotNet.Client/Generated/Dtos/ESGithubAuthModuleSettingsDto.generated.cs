@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESGithubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_GithubAuthModuleSettings";
+        
         private PropertyValue<string> _githubUrl = new PropertyValue<string>(nameof(ESGithubAuthModuleSettingsDto), nameof(GithubUrl));
         
         [Required]

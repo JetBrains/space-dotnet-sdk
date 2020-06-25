@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MessageRecipientCodeReviewDto
          : MessageRecipientDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MessageRecipient.CodeReview";
+        
         private PropertyValue<string> _codeReview = new PropertyValue<string>(nameof(MessageRecipientCodeReviewDto), nameof(CodeReview));
         
         [Required]

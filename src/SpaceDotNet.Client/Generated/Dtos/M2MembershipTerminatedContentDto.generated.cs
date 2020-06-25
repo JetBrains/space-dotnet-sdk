@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class M2MembershipTerminatedContentDto
          : M2MembershipContentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "M2MembershipTerminatedContent";
+        
         private PropertyValue<TDMembershipDto> _membership = new PropertyValue<TDMembershipDto>(nameof(M2MembershipTerminatedContentDto), nameof(Membership));
         
         [Required]

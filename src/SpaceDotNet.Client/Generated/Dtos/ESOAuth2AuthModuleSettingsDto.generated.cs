@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public abstract class ESOAuth2AuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_OAuth2AuthModuleSettings";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

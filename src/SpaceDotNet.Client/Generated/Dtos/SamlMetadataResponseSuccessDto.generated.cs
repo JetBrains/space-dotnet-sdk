@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class SamlMetadataResponseSuccessDto
          : SamlMetadataResponseDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "SamlMetadataResponse.Success";
+        
         private PropertyValue<string> _metadata = new PropertyValue<string>(nameof(SamlMetadataResponseSuccessDto), nameof(Metadata));
         
         [Required]

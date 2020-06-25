@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public abstract class ESExternalPasswordAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_ExternalPasswordAuthModuleSettings";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

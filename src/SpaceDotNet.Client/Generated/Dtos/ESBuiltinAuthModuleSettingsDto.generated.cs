@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESBuiltinAuthModuleSettingsDto
          : ESPasswordAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_BuiltinAuthModuleSettings";
+        
         private PropertyValue<PasswordStrength> _passwordStrengthPolicy = new PropertyValue<PasswordStrength>(nameof(ESBuiltinAuthModuleSettingsDto), nameof(PasswordStrengthPolicy));
         
         [Required]

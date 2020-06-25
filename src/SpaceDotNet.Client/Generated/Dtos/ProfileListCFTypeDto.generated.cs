@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ProfileListCFTypeDto
          : CFTypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ProfileListCFType";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

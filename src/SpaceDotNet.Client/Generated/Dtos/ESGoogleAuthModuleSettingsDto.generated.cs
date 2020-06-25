@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESGoogleAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_GoogleAuthModuleSettings";
+        
         private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettingsDto), nameof(ClientId));
         
         [Required]

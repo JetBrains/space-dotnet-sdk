@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MessageRecipientMemberDto
          : MessageRecipientDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MessageRecipient.Member";
+        
         private PropertyValue<string> _member = new PropertyValue<string>(nameof(MessageRecipientMemberDto), nameof(Member));
         
         [Required]

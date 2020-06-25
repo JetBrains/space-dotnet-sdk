@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class EnumCFValueDto
          : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "EnumCFValue";
+        
         private PropertyValue<EnumValueDataDto?> _value = new PropertyValue<EnumValueDataDto?>(nameof(EnumCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]

@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : UnfurlDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "UnfurlDetailsIssue";
         
         private PropertyValue<IssueDto> _issue = new PropertyValue<IssueDto>(nameof(UnfurlDetailsIssueDto), nameof(Issue));
         

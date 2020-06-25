@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MeetingOrganizerExternalUserDto
          : MeetingOrganizerDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MeetingOrganizer.ExternalUser";
+        
         private PropertyValue<string> _email = new PropertyValue<string>(nameof(MeetingOrganizerExternalUserDto), nameof(Email));
         
         [Required]

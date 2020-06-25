@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class IntCFConstraintDto
          : CFConstraintDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "IntCFConstraint";
+        
         private PropertyValue<int?> _min = new PropertyValue<int?>(nameof(IntCFConstraintDto), nameof(Min));
         
         [JsonPropertyName("min")]

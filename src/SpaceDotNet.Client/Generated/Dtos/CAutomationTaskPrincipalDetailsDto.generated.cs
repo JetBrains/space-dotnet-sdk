@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : CPrincipalDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "CAutomationTaskPrincipalDetails";
         
         private PropertyValue<PRProjectDto> _project = new PropertyValue<PRProjectDto>(nameof(CAutomationTaskPrincipalDetailsDto), nameof(Project));
         

@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MCElementDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MCGroup";
         
         private PropertyValue<List<MCElementDto>> _elements = new PropertyValue<List<MCElementDto>>(nameof(MCGroupDto), nameof(Elements));
         

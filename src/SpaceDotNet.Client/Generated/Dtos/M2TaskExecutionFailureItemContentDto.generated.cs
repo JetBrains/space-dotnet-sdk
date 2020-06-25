@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "M2TaskExecutionFailureItemContent";
         
         private PropertyValue<string> _taskExecutionId = new PropertyValue<string>(nameof(M2TaskExecutionFailureItemContentDto), nameof(TaskExecutionId));
         

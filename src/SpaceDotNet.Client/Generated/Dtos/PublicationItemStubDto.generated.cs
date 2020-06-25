@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : PublicationItemDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "PublicationItemStub";
         
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {

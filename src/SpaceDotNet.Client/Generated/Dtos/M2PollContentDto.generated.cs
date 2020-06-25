@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "M2PollContent";
         
         private PropertyValue<PollRecordDto> _poll = new PropertyValue<PollRecordDto>(nameof(M2PollContentDto), nameof(Poll));
         

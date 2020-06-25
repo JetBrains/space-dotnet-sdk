@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MergeRequestRecordDto
          : CodeReviewRecordDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MergeRequestRecord";
+        
         private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(MergeRequestRecordDto), nameof(Project));
         
         [Required]

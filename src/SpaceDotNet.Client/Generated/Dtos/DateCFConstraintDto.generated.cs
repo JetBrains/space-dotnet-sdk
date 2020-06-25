@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class DateCFConstraintDto
          : CFConstraintDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "DateCFConstraint";
+        
         private PropertyValue<SpaceDate?> _min = new PropertyValue<SpaceDate?>(nameof(DateCFConstraintDto), nameof(Min));
         
         [JsonPropertyName("min")]

@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : TextDocumentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "UneditableDocument";
         
         private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(UneditableDocumentDto), nameof(Type));
         

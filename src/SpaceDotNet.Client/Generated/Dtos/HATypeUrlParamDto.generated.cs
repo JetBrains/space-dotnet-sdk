@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class HATypeUrlParamDto
          : HATypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "HA_Type.UrlParam";
+        
         private PropertyValue<HAUrlParameterDto> _urlParam = new PropertyValue<HAUrlParameterDto>(nameof(HATypeUrlParamDto), nameof(UrlParam));
         
         [Required]

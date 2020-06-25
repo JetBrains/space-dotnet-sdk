@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : KBBookContextDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "KbGlobalContext";
         
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {

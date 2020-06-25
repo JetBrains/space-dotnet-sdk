@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : TextDocumentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "CollabDocument";
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CollabDocumentDto), nameof(Id));
         

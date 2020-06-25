@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "FileAttachment";
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(FileAttachmentDto), nameof(Id));
         

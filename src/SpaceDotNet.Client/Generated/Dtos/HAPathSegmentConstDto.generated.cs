@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class HAPathSegmentConstDto
          : HAPathSegmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "HA_PathSegment.Const";
+        
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(HAPathSegmentConstDto), nameof(Value));
         
         [Required]

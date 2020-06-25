@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2PackageContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "M2PackageCreatedDetails";
         
         private PropertyValue<PackageVersionInfoDto> _pkg = new PropertyValue<PackageVersionInfoDto>(nameof(M2PackageCreatedDetailsDto), nameof(Pkg));
         

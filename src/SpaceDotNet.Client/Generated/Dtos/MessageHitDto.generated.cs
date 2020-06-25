@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MessageHitDto
          : EntityHitDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MessageHit";
+        
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageHitDto), nameof(Id));
         
         [Required]

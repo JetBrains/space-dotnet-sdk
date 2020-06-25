@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "M2TextItemContent";
         
         private PropertyValue<bool?> _markdown = new PropertyValue<bool?>(nameof(M2TextItemContentDto), nameof(Markdown));
         

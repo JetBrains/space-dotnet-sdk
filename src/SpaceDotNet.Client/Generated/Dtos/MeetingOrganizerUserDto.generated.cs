@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MeetingOrganizerUserDto
          : MeetingOrganizerDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MeetingOrganizer.User";
+        
         private PropertyValue<TDMemberProfileDto> _profileRef = new PropertyValue<TDMemberProfileDto>(nameof(MeetingOrganizerUserDto), nameof(ProfileRef));
         
         [Required]

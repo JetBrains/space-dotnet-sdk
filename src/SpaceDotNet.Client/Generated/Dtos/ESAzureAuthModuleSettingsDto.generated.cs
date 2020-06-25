@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESAzureAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_AzureAuthModuleSettings";
+        
         private PropertyValue<string> _tenantId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettingsDto), nameof(TenantId));
         
         [Required]

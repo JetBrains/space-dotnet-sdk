@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MessageActionDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "PostMessageAction";
         
         private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(PostMessageActionDto), nameof(ActionId));
         

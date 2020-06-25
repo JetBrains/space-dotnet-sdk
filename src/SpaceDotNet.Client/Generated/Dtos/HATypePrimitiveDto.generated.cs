@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class HATypePrimitiveDto
          : HATypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "HA_Type.Primitive";
+        
         private PropertyValue<HAPrimitive> _primitive = new PropertyValue<HAPrimitive>(nameof(HATypePrimitiveDto), nameof(Primitive));
         
         [Required]

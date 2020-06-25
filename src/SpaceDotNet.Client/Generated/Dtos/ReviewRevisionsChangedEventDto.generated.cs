@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : FeedEventDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "ReviewRevisionsChangedEvent";
         
         private PropertyValue<List<RepositoryCommitRecordDto>> _commits = new PropertyValue<List<RepositoryCommitRecordDto>>(nameof(ReviewRevisionsChangedEventDto), nameof(Commits));
         

@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public class DefaultValueHitDto
          : EntityHitDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "DefaultValueHit";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

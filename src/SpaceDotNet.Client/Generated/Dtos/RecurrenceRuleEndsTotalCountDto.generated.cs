@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class RecurrenceRuleEndsTotalCountDto
          : RecurrenceRuleEndsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "RecurrenceRuleEnds.TotalCount";
+        
         private PropertyValue<int> _count = new PropertyValue<int>(nameof(RecurrenceRuleEndsTotalCountDto), nameof(Count));
         
         [Required]

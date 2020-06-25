@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESBuiltinProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_BuiltinProfileLoginDetails";
+        
         private PropertyValue<string?> _passwordChangeRequest = new PropertyValue<string?>(nameof(ESBuiltinProfileLoginDetailsDto), nameof(PasswordChangeRequest));
         
         [JsonPropertyName("passwordChangeRequest")]

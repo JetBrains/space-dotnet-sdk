@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class CodeDiscussionSnippetInlineDiffSnippetDto
          : CodeDiscussionSnippetDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "CodeDiscussionSnippet.InlineDiffSnippet";
+        
         private PropertyValue<List<InlineDiffLineDto>> _lines = new PropertyValue<List<InlineDiffLineDto>>(nameof(CodeDiscussionSnippetInlineDiffSnippetDto), nameof(Lines));
         
         [Required]

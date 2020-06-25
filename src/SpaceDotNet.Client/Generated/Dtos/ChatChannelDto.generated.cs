@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public virtual string? ClassName => "ChatChannel";
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

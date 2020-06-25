@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "ProfileLinkPreview";
         
         private PropertyValue<TDMemberProfileDto> _profile = new PropertyValue<TDMemberProfileDto>(nameof(ProfileLinkPreviewDto), nameof(Profile));
         

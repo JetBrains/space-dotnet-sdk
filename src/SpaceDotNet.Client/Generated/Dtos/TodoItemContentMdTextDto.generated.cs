@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : TodoItemContentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "TodoItemContentMdText";
         
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoItemContentMdTextDto), nameof(Text));
         

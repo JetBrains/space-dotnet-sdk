@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class SamlMetadataResponseErrorDto
          : SamlMetadataResponseDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "SamlMetadataResponse.Error";
+        
         private PropertyValue<List<string>> _messages = new PropertyValue<List<string>>(nameof(SamlMetadataResponseErrorDto), nameof(Messages));
         
         [Required]

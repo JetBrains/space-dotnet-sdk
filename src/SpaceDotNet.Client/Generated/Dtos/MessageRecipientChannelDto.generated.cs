@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class MessageRecipientChannelDto
          : MessageRecipientDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "MessageRecipient.Channel";
+        
         private PropertyValue<ChatChannelDto> _channel = new PropertyValue<ChatChannelDto>(nameof(MessageRecipientChannelDto), nameof(Channel));
         
         [Required]

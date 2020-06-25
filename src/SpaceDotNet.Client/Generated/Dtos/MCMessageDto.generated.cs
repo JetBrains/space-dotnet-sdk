@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MCMessage";
         
         private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessageDto), nameof(Style));
         

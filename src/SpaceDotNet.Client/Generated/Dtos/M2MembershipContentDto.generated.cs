@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public virtual string? ClassName => "M2MembershipContent";
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

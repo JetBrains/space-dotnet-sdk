@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class IntListCFTypeDto
          : CFTypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "IntListCFType";
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class UrlCFValueDto
          : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "UrlCFValue";
+        
         private PropertyValue<string?> _href = new PropertyValue<string?>(nameof(UrlCFValueDto), nameof(Href));
         
         [JsonPropertyName("href")]

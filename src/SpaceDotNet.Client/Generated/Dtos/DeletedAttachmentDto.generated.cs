@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : AttachmentDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "DeletedAttachment";
         
         private PropertyValue<string> _deletedIdentity = new PropertyValue<string>(nameof(DeletedAttachmentDto), nameof(DeletedIdentity));
         

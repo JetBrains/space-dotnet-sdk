@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2ChannelContentInfoDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "M2ChannelContentArticle";
         
         private PropertyValue<ArticleRecordDto> _article = new PropertyValue<ArticleRecordDto>(nameof(M2ChannelContentArticleDto), nameof(Article));
         

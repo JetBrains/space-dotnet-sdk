@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESHubAuthModuleSettingsDto
          : ESOAuth2AuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_HubAuthModuleSettings";
+        
         private PropertyValue<string> _hubUrl = new PropertyValue<string>(nameof(ESHubAuthModuleSettingsDto), nameof(HubUrl));
         
         [Required]

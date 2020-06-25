@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ProfileCFValueDto
          : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ProfileCFValue";
+        
         private PropertyValue<TDMemberProfileDto?> _profile = new PropertyValue<TDMemberProfileDto?>(nameof(ProfileCFValueDto), nameof(Profile));
         
         [JsonPropertyName("profile")]

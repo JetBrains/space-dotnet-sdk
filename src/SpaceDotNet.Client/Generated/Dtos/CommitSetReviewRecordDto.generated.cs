@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class CommitSetReviewRecordDto
          : CodeReviewRecordDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "CommitSetReviewRecord";
+        
         private PropertyValue<ProjectKeyDto> _project = new PropertyValue<ProjectKeyDto>(nameof(CommitSetReviewRecordDto), nameof(Project));
         
         [Required]

@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : M2ItemContentDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "StickerContentDetails";
         
         private PropertyValue<StickerDto> _sticker = new PropertyValue<StickerDto>(nameof(StickerContentDetailsDto), nameof(Sticker));
         

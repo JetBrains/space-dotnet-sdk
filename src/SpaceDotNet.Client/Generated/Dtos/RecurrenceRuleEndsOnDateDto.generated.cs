@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class RecurrenceRuleEndsOnDateDto
          : RecurrenceRuleEndsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "RecurrenceRuleEnds.OnDate";
+        
         private PropertyValue<SpaceDate> _date = new PropertyValue<SpaceDate>(nameof(RecurrenceRuleEndsOnDateDto), nameof(Date));
         
         [Required]

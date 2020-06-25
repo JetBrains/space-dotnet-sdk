@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : FeedEventDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "CodeReviewDiscussionAddedFeedEvent";
         
         private PropertyValue<CodeReviewDiscussionRecordDto> _discussion = new PropertyValue<CodeReviewDiscussionRecordDto>(nameof(CodeReviewDiscussionAddedFeedEventDto), nameof(Discussion));
         

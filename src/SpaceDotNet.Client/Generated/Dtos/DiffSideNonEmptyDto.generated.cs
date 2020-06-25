@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class DiffSideNonEmptyDto
          : DiffSideDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "DiffSide.NonEmpty";
+        
         private PropertyValue<string> _revision = new PropertyValue<string>(nameof(DiffSideNonEmptyDto), nameof(Revision));
         
         [Required]

@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MessageElementDto, MessageSectionElementDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MessageDivider";
         
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {

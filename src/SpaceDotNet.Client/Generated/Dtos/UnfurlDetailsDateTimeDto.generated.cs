@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : UnfurlDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "UnfurlDetailsDateTime";
         
         private PropertyValue<long> _utcMilliseconds = new PropertyValue<long>(nameof(UnfurlDetailsDateTimeDto), nameof(UtcMilliseconds));
         

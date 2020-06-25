@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MessageFieldElementDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MessageField";
         
         private PropertyValue<string> _first = new PropertyValue<string>(nameof(MessageFieldDto), nameof(First));
         

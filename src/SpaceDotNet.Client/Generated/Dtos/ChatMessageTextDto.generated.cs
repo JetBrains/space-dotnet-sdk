@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ChatMessageTextDto
          : ChatMessageDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ChatMessage.Text";
+        
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatMessageTextDto), nameof(Text));
         
         [Required]

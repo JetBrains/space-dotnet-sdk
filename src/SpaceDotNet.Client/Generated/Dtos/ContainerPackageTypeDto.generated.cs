@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : PackageTypeDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "ContainerPackageType";
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ContainerPackageTypeDto), nameof(Id));
         

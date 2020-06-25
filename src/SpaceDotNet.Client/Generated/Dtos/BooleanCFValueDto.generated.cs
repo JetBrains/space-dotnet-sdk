@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class BooleanCFValueDto
          : CFValueDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "BooleanCFValue";
+        
         private PropertyValue<bool?> _value = new PropertyValue<bool?>(nameof(BooleanCFValueDto), nameof(Value));
         
         [JsonPropertyName("value")]

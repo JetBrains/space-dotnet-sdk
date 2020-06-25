@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MCElementDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MCOutline";
         
         private PropertyValue<MCElementDto?> _icon = new PropertyValue<MCElementDto?>(nameof(MCOutlineDto), nameof(Icon));
         

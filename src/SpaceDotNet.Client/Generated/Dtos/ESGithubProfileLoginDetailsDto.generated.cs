@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESGithubProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_GithubProfileLoginDetails";
+        
         private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESGithubProfileLoginDetailsDto), nameof(Login));
         
         [JsonPropertyName("login")]

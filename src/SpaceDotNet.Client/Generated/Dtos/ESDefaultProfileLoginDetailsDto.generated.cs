@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESDefaultProfileLoginDetailsDto
          : ESProfileLoginDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_DefaultProfileLoginDetails";
+        
         private PropertyValue<string?> _login = new PropertyValue<string?>(nameof(ESDefaultProfileLoginDetailsDto), nameof(Login));
         
         [JsonPropertyName("login")]

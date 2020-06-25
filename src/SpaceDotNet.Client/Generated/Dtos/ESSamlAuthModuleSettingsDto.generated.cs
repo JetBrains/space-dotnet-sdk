@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public sealed class ESSamlAuthModuleSettingsDto
          : ESFederatedAuthModuleSettingsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        [JsonPropertyName("className")]
+        public override string? ClassName => "ES_SamlAuthModuleSettings";
+        
         private PropertyValue<string> _idpUrl = new PropertyValue<string>(nameof(ESSamlAuthModuleSettingsDto), nameof(IdpUrl));
         
         [Required]

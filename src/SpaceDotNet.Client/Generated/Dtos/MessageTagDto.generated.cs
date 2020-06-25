@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MessageAccessoryElementDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MessageTag";
         
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageTagDto), nameof(Text));
         

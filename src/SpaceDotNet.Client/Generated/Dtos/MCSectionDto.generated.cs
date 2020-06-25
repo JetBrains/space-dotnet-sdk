@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client
          : MCElementDetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public string? ClassName { get; set; }
+        public  string? ClassName => "MCSection";
         
         private PropertyValue<MCTextDto?> _header = new PropertyValue<MCTextDto?>(nameof(MCSectionDto), nameof(Header));
         
