@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
@@ -152,10 +153,25 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 
                 if (apiEndpoint.RequestBody != null)
                 {
-                    methodParametersBuilder = methodParametersBuilder
-                        .WithParameter(
-                            apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext),
-                            "data");
+                    if (FeatureFlags.DoNotExposeRequestObjects)
+                    {
+                        foreach (var field in apiEndpoint.RequestBody.Fields)
+                        {
+                            methodParametersBuilder = methodParametersBuilder
+                                .WithParameter(
+                                    field.Type.ToCSharpType(_codeGenerationContext) +
+                                    (field.Type.Nullable ? "?" : string.Empty),
+                                    field.ToCSharpVariableName(),
+                                    field.Type.Nullable ? "null" : string.Empty);
+                        }
+                    }
+                    else
+                    {
+                        methodParametersBuilder = methodParametersBuilder
+                            .WithParameter(
+                                apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!,
+                                "data");
+                    }
                 }
 
                 builder.Append(methodParametersBuilder.BuildMethodParametersDefinition());
@@ -182,7 +198,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 
                 if (apiEndpoint.RequestBody != null)
                 {
-                    builder.Append(", data");
+                    if (FeatureFlags.DoNotExposeRequestObjects)
+                    {
+                        builder.Append(", " + ConstructNewRequestObject(apiEndpoint, endpointPath));
+                    }
+                    else
+                    {
+                        builder.Append(", data");
+                    }
                 }
                 builder.Append(");");
                 indent.Decrement();
@@ -199,10 +222,25 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 
                 if (apiEndpoint.RequestBody != null)
                 {
-                    methodParametersBuilder = methodParametersBuilder
-                        .WithParameter(
-                            apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext),
-                            "data");
+                    if (FeatureFlags.DoNotExposeRequestObjects)
+                    {
+                        foreach (var field in apiEndpoint.RequestBody.Fields)
+                        {
+                            methodParametersBuilder = methodParametersBuilder
+                                .WithParameter(
+                                    field.Type.ToCSharpType(_codeGenerationContext) +
+                                    (field.Type.Nullable ? "?" : string.Empty),
+                                    field.ToCSharpVariableName(),
+                                    field.Type.Nullable ? "null" : string.Empty);
+                        }
+                    }
+                    else
+                    {
+                        methodParametersBuilder = methodParametersBuilder
+                            .WithParameter(
+                                apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!,
+                                "data");
+                    }
                 }
         
                 if (apiEndpoint.ResponseBody != null && !isResponsePrimitiveOrArrayOfPrimitive)
@@ -223,7 +261,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append($"{indent}=> await _connection.RequestResourceAsync<");
                 if (apiEndpoint.RequestBody != null)
                 {
-                    builder.Append(apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext));
+                    builder.Append(apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!);
                     builder.Append(", ");
                 }
                 builder.Append(apiEndpoint.ResponseBody!.ToCSharpType(_codeGenerationContext));
@@ -247,7 +285,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 
                 if (apiEndpoint.RequestBody != null)
                 {
-                    builder.Append(", data");
+                    if (FeatureFlags.DoNotExposeRequestObjects)
+                    {
+                        builder.Append(", " + ConstructNewRequestObject(apiEndpoint, endpointPath));
+                    }
+                    else
+                    {
+                        builder.Append(", data");
+                    }
                 }
                 builder.Append(");");
                 indent.Decrement();
@@ -259,7 +304,20 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             
             return builder.ToString();
         }
-        
+
+        private string ConstructNewRequestObject(ApiEndpoint apiEndpoint, string endpointPath)
+        {
+            var builder = new StringBuilder();
+            
+            builder.Append("new " + apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)! + "{ ");
+            builder.Append(string.Join(", ",
+                apiEndpoint.RequestBody!.Fields.Select(it =>
+                    it.ToCSharpPropertyName() + " = " + it.ToCSharpVariableName())));
+            builder.Append(" }");
+            
+            return builder.ToString();
+        }
+
         private string GenerateMethodForBatchApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
         {
             var indent = new Indent();
@@ -295,10 +353,24 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 
                 if (apiEndpoint.RequestBody != null)
                 {
-                    methodParametersBuilder = methodParametersBuilder
-                        .WithParameter(
-                            apiEndpoint.ToCSharpRequestBodyClassName() ?? apiEndpoint.RequestBody.ToCSharpType(_codeGenerationContext),
-                            "data");
+                    if (FeatureFlags.DoNotExposeRequestObjects)
+                    {
+                        foreach (var field in apiEndpoint.RequestBody.Fields)
+                        {
+                            methodParametersBuilder = methodParametersBuilder
+                                .WithParameter(
+                                    field.Type.ToCSharpType(_codeGenerationContext) + (field.Type.Nullable ? "?" : string.Empty),
+                                    field.ToCSharpVariableName(),
+                                    field.Type.Nullable ? "null" : string.Empty);
+                        }
+                    }
+                    else
+                    {
+                        methodParametersBuilder = methodParametersBuilder
+                            .WithParameter(
+                                apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!,
+                                "data");
+                    }
                 }
         
                 var partialType = "Partial<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">";

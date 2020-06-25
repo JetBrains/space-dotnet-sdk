@@ -52,7 +52,7 @@ namespace SpaceDotNet.Samples.CommandLine
             
             // Send chat message?
             var chatClient = new ChatClient(connection);
-            var chatChannelExists = !await chatClient.Channels.IsNameFreeAsync(new IsNameFreeRequest { Name = chatChannelName });
+            var chatChannelExists = !await chatClient.Channels.IsNameFreeAsync(chatChannelName);
             if (!chatChannelExists)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -61,10 +61,9 @@ namespace SpaceDotNet.Samples.CommandLine
             } 
             else
             {
-                await chatClient.Messages.SendMessageAsync(new SendMessageRequest
-                {
-                    Recipient = new MessageRecipientChannelDto { Channel = new ChatChannelFromNameDto { Name = chatChannelName } },
-                    Content = new ChatMessageBlockDto
+                await chatClient.Messages.SendMessageAsync(
+                    recipient: new MessageRecipientChannelDto { Channel = new ChatChannelFromNameDto { Name = chatChannelName } },
+                    content: new ChatMessageBlockDto
                     {
                         Outline = new MessageOutlineDto { Text = "Have you tried JetBrains Space?" },
                         MessageData = "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
@@ -85,8 +84,7 @@ namespace SpaceDotNet.Samples.CommandLine
                         },
                         Style = MessageStyle.WARNING
                     },
-                    UnfurlLinks = false
-                });
+                    unfurlLinks: false);
                 
                 Console.WriteLine($"A chat message has been sent to the channel named \"{chatChannelName}\" in your Space organization.");
             }

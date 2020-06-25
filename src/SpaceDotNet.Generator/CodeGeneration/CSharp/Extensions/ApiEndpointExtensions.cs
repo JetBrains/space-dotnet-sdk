@@ -7,12 +7,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
         public static string ToCSharpMethodName(this ApiEndpoint subject)
             => CSharpIdentifier.ForClassOrNamespace(subject.DisplayName);
         
-        public static string? ToCSharpRequestBodyClassName(this ApiEndpoint subject)
+        public static string? ToCSharpRequestBodyClassName(this ApiEndpoint subject, string endpointPath)
         {
             if (subject.RequestBody == null || 
                 subject.RequestBody.Kind != ApiFieldType.Object.ObjectKind.REQUEST_BODY) return null;
             
-            return CSharpIdentifier.ForClassOrNamespace(subject.DisplayName) + "Request";
+            return CSharpIdentifier.ForClassOrNamespace(endpointPath) + "Request";
         }
     }
 }

@@ -98,6 +98,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 
         public string BuildMethodParametersDefinition() =>
             string.Join(", ", _parameters
+                .OrderBy(RequiredParametersFirstOrder)
                 .Select(it =>
                 {
                     var parameterDefinition = it.Type + " " + it.Name;
@@ -110,6 +111,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 
         public string BuildMethodCallParametersDefinition() =>
             string.Join(", ", _parameters
+                .OrderBy(RequiredParametersFirstOrder)
                 .Select(it =>
                 {
                     var parameterDefinition = it.Name;
@@ -117,7 +119,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     {
                         parameterDefinition += ": " + it.DefaultValue;
                     }
+                    else
+                    {
+                        parameterDefinition += ": " + parameterDefinition;
+                    }
                     return parameterDefinition;
                 }));
+
+        private int RequiredParametersFirstOrder(MethodParameter it) => string.IsNullOrEmpty(it.DefaultValue) ? 0 : 1;
     }
 }

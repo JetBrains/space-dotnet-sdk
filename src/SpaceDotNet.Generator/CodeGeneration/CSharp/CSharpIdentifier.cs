@@ -5,7 +5,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
     public static class CSharpIdentifier
     {
-        private static readonly char[] IdentifierSeparators = {' ', '-', '_', '.' };
+        private static readonly char[] IdentifierSeparators = { ' ', '-', '_', '.', '/' };
         
         private static readonly string[] ReservedKeywords =
         {
@@ -39,6 +39,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             string.Join("", 
                 subject
                     .WithStartingDigitReplaced()
+                    .Replace("{", "For-")
+                    .Replace("}", string.Empty)
                     .Split(IdentifierSeparators)
                     .Select(it => it.ToUppercaseFirst()));
 
