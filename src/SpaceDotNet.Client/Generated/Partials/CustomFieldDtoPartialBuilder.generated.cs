@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.CustomFieldDtoPartialBuilder
         public static Partial<CustomFieldDto> WithName(this Partial<CustomFieldDto> it)
             => it.AddFieldName("name");
         
+        public static Partial<CustomFieldDto> WithDescription(this Partial<CustomFieldDto> it)
+            => it.AddFieldName("description");
+        
         public static Partial<CustomFieldDto> WithKey(this Partial<CustomFieldDto> it)
             => it.AddFieldName("key");
         

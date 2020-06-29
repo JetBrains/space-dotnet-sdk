@@ -32,6 +32,9 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesRequestPartialBuild
         public static Partial<ProjectsForProjectPlanningIssuesRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesRequest> it)
             => it.AddFieldName("assignee");
         
+        public static Partial<ProjectsForProjectPlanningIssuesRequest> WithAssignee(this Partial<ProjectsForProjectPlanningIssuesRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("assignee", partialBuilder(new Partial<ProfileIdentifier>(it)));
+        
         public static Partial<ProjectsForProjectPlanningIssuesRequest> WithStatus(this Partial<ProjectsForProjectPlanningIssuesRequest> it)
             => it.AddFieldName("status");
         

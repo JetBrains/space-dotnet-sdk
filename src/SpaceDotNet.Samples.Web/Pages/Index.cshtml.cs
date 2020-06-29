@@ -66,13 +66,13 @@ namespace SpaceDotNet.Samples.Web.Pages
         {
             #region Example with default fields (1 level)
             
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync();
+            MemberProfile = await _teamDirectoryClient.Profiles.GetProfileAsync(ProfileIdentifier.Me);
             
             #endregion
             
             #region Example with full field definitions
             
-            MemberProfile = await _teamDirectoryClient.Profiles.Me.GetMeAsync(partial => partial
+            MemberProfile = await _teamDirectoryClient.Profiles.GetProfileAsync(ProfileIdentifier.Me, partial => partial
                 .WithAllFieldsWildcard() // adds all fields for the current partial request (one level)
                 .WithId()
                 .WithName(name => name

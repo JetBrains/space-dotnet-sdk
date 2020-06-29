@@ -35,12 +35,6 @@ namespace SpaceDotNet.Client.CodeReviewDetailedInfoDtoPartialBuilder
         public static Partial<CodeReviewDetailedInfoDto> WithCommits(this Partial<CodeReviewDetailedInfoDto> it, Func<Partial<RevisionsInReviewDto>, Partial<RevisionsInReviewDto>> partialBuilder)
             => it.AddFieldName("commits", partialBuilder(new Partial<RevisionsInReviewDto>(it)));
         
-        public static Partial<CodeReviewDetailedInfoDto> WithLostCommits(this Partial<CodeReviewDetailedInfoDto> it)
-            => it.AddFieldName("lostCommits");
-        
-        public static Partial<CodeReviewDetailedInfoDto> WithLostCommits(this Partial<CodeReviewDetailedInfoDto> it, Func<Partial<RevisionsInReviewDto>, Partial<RevisionsInReviewDto>> partialBuilder)
-            => it.AddFieldName("lostCommits", partialBuilder(new Partial<RevisionsInReviewDto>(it)));
-        
         public static Partial<CodeReviewDetailedInfoDto> WithDiscussionCounter(this Partial<CodeReviewDetailedInfoDto> it)
             => it.AddFieldName("discussionCounter");
         

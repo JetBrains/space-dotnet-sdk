@@ -44,12 +44,6 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesRequestPartialBuilder
         public static Partial<TeamDirectoryProfilesRequest> WithAbout(this Partial<TeamDirectoryProfilesRequest> it)
             => it.AddFieldName("about");
         
-        public static Partial<TeamDirectoryProfilesRequest> WithGender(this Partial<TeamDirectoryProfilesRequest> it)
-            => it.AddFieldName("gender");
-        
-        public static Partial<TeamDirectoryProfilesRequest> WithGender(this Partial<TeamDirectoryProfilesRequest> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
-            => it.AddFieldName("gender", partialBuilder(new Partial<Gender>(it)));
-        
         public static Partial<TeamDirectoryProfilesRequest> WithMessengers(this Partial<TeamDirectoryProfilesRequest> it)
             => it.AddFieldName("messengers");
         

@@ -29,13 +29,16 @@ namespace SpaceDotNet.Client
         
         public MessageHitDto() { }
         
-        public MessageHitDto(string id, double score, M2ChannelRecordDto channel, ChannelItemRecordDto @ref, string message)
+        public MessageHitDto(string id, string parentItemId, double score, M2ChannelRecordDto channel, ChannelItemRecordDto @ref, string message, bool threadStarter, string? thread = null)
         {
             Id = id;
+            ParentItemId = parentItemId;
             Score = score;
             Channel = channel;
             Ref = @ref;
             Message = message;
+            ThreadStarter = threadStarter;
+            Thread = thread;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageHitDto), nameof(Id));
@@ -46,6 +49,16 @@ namespace SpaceDotNet.Client
         {
             get { return _id.GetValue(); }
             set { _id.SetValue(value); }
+        }
+    
+        private PropertyValue<string> _parentItemId = new PropertyValue<string>(nameof(MessageHitDto), nameof(ParentItemId));
+        
+        [Required]
+        [JsonPropertyName("parentItemId")]
+        public string ParentItemId
+        {
+            get { return _parentItemId.GetValue(); }
+            set { _parentItemId.SetValue(value); }
         }
     
         private PropertyValue<double> _score = new PropertyValue<double>(nameof(MessageHitDto), nameof(Score));
@@ -88,13 +101,35 @@ namespace SpaceDotNet.Client
             set { _message.SetValue(value); }
         }
     
+        private PropertyValue<bool> _threadStarter = new PropertyValue<bool>(nameof(MessageHitDto), nameof(ThreadStarter));
+        
+        [Required]
+        [JsonPropertyName("threadStarter")]
+        public bool ThreadStarter
+        {
+            get { return _threadStarter.GetValue(); }
+            set { _threadStarter.SetValue(value); }
+        }
+    
+        private PropertyValue<string?> _thread = new PropertyValue<string?>(nameof(MessageHitDto), nameof(Thread));
+        
+        [JsonPropertyName("thread")]
+        public string? Thread
+        {
+            get { return _thread.GetValue(); }
+            set { _thread.SetValue(value); }
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
+            _parentItemId.SetAccessPath(path, validateHasBeenSet);
             _score.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _ref.SetAccessPath(path, validateHasBeenSet);
             _message.SetAccessPath(path, validateHasBeenSet);
+            _threadStarter.SetAccessPath(path, validateHasBeenSet);
+            _thread.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

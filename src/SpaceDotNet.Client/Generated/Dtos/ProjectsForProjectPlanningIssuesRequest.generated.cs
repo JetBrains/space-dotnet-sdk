@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesRequest() { }
         
-        public ProjectsForProjectPlanningIssuesRequest(string title, string status, List<string> tags, List<string> checklists, string? description = null, string? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
+        public ProjectsForProjectPlanningIssuesRequest(string title, string status, List<string> tags, List<string> checklists, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
         {
             Title = title;
             Description = description;
@@ -58,10 +58,10 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesRequest), nameof(Assignee));
+        private PropertyValue<ProfileIdentifier?> _assignee = new PropertyValue<ProfileIdentifier?>(nameof(ProjectsForProjectPlanningIssuesRequest), nameof(Assignee));
         
         [JsonPropertyName("assignee")]
-        public string? Assignee
+        public ProfileIdentifier? Assignee
         {
             get { return _assignee.GetValue(); }
             set { _assignee.SetValue(value); }

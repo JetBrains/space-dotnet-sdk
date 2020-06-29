@@ -41,21 +41,36 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Create or get a direct messages channel with a profile.
+            /// </summary>
             public async Task<M2ChannelRecordDto> GetOrCreateDirectMessagesChannelAsync(string profile, Func<Partial<M2ChannelRecordDto>, Partial<M2ChannelRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<ChatsChannelsDmRequest, M2ChannelRecordDto>("POST", $"api/http/chats/channels/dm?$fields={(partial != null ? partial(new Partial<M2ChannelRecordDto>()) : Partial<M2ChannelRecordDto>.Default())}", new ChatsChannelsDmRequest{ Profile = profile });
         
+            /// <summary>
+            /// Check whether a channel name is available. Returns true when the channel name can be used to create a new channel, false otherwise.
+            /// </summary>
             public async Task<bool> IsNameFreeAsync(string name)
                 => await _connection.RequestResourceAsync<ChatsChannelsIsNameFreeRequest, bool>("POST", $"api/http/chats/channels/is-name-free", new ChatsChannelsIsNameFreeRequest{ Name = name });
         
             public async Task<List<string>> ImportMessageHistoryAsync(string channelId, List<MessageForImportDto> messages)
                 => await _connection.RequestResourceAsync<ChatsChannelsForChannelIdImportRequest, List<string>>("POST", $"api/http/chats/channels/{channelId}/import", new ChatsChannelsForChannelIdImportRequest{ Messages = messages });
         
+            /// <summary>
+            /// Restore an archived channel, and allow new messages to be added.
+            /// </summary>
             public async Task RestoreArchivedChannelAsync(string channelId)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");
         
+            /// <summary>
+            /// Delete a channel. No one will be able to view this channel or its threads. This action cannot be undone.
+            /// </summary>
             public async Task DeleteChannelAsync(string channelId)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");
         
+            /// <summary>
+            /// Archive a channel, and reject new messages being added. It is still possible to view messages from an archived channel. It is possible to restore the channel later.
+            /// </summary>
             public async Task ArchiveChannelAsync(string channelId)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");
         
@@ -70,6 +85,9 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// Send a message to a channel. Message text is a string.
+                /// </summary>
                 public async Task<ChannelItemRecordDto> SendTextMessageAsync(string channelId, string text, string? temporaryId = null, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
                     => await _connection.RequestResourceAsync<ChatsChannelsForChannelIdMessagesRequest, ChannelItemRecordDto>("POST", $"api/http/chats/channels/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", new ChatsChannelsForChannelIdMessagesRequest{ Text = text, TemporaryId = temporaryId });
             
@@ -88,9 +106,15 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// Delete a message from a channel.
+            /// </summary>
             public async Task DeleteMessageAsync(string channel, string id)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/delete-message", new ChatsMessagesDeleteMessageRequest{ Channel = channel, Id = id });
         
+            /// <summary>
+            /// Edit an existing message. Message content can be a string, or a block with one or several sections of information.
+            /// </summary>
             public async Task EditMessageAsync(string channel, string message, ChatMessageDto content, bool? unfurlLinks = null)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/edit-message", new ChatsMessagesEditMessageRequest{ Channel = channel, Message = message, Content = content, UnfurlLinks = unfurlLinks });
         
@@ -102,6 +126,9 @@ namespace SpaceDotNet.Client
             public async Task<ChannelItemRecordDto> SendTextMessageAsync(string channel, string text, bool pending, string? temporaryId = null, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<ChatsMessagesSendRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", new ChatsMessagesSendRequest{ Channel = channel, Text = text, Pending = pending, TemporaryId = temporaryId });
         
+            /// <summary>
+            /// Send a message to a recipient, such as a channel, member, issue, code review, ... Message content can be a string, or a block with one or several sections of information.
+            /// </summary>
             public async Task<ChannelItemRecordDto> SendMessageAsync(MessageRecipientDto recipient, ChatMessageDto content, bool? unfurlLinks = null, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<ChatsMessagesSendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send-message?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", new ChatsMessagesSendMessageRequest{ Recipient = recipient, Content = content, UnfurlLinks = unfurlLinks });
         

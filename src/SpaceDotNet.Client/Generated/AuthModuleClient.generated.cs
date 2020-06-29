@@ -58,7 +58,7 @@ namespace SpaceDotNet.Client
             => await _connection.RequestResourceAsync<ESAuthModuleDto>("GET", $"api/http/auth-modules/key:{key}?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}");
     
         /// <summary>
-        /// Update an existing authentication module. Optional parameters will be ignored when null, and updated otherwise.
+        /// Update an existing authentication module. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
         public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettingsDto? settings = null)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", new AuthModulesForIdRequest{ Key = key, Name = name, Enabled = enabled, Settings = settings });
@@ -80,9 +80,15 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// For a username/password combination, test built-in authentication with updated settings.
+            /// </summary>
             public async Task<TDMemberProfileDto> TestBuiltInSettingsAsync(ESBuiltinAuthModuleSettingsDto settings, string username, string password, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => await _connection.RequestResourceAsync<AuthModulesTestBuiltInRequest, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", new AuthModulesTestBuiltInRequest{ Settings = settings, Username = username, Password = password });
         
+            /// <summary>
+            /// For a username/password combination, test LDAP authentication with updated settings.
+            /// </summary>
             public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettingsAsync(ESLdapAuthModuleSettingsDto settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetailsDto>, Partial<ESDefaultProfileLoginDetailsDto>>? partial = null)
                 => await _connection.RequestResourceAsync<AuthModulesTestLdapRequest, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetailsDto>()) : Partial<ESDefaultProfileLoginDetailsDto>.Default())}", new AuthModulesTestLdapRequest{ Settings = settings, Username = username, Password = password });
         

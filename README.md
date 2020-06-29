@@ -20,19 +20,6 @@ Other (optional) packages are available. These can be installed to satisfy addit
 
 Let's have a look at how we can start working with `SpaceDotNet.Client`.
 
-## Registering SpaceDotNet NuGet feed
-
-SpaceDotNet is not yet available on [NuGet.org](https://www.nuget.org/). To access SpaceDotNet packages, add a file named `NuGet.config` in the same folder as your solution / `.sln` file, with the following contents:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<configuration>
-  <packageSources>
-    <add key="SpaceDotNet" value="https://www.myget.org/F/spacedotnet/api/v3/index.json" protocolVersion="3" />
-  </packageSources>
-</configuration>
-```
-
 ## Getting Started
 
 We will need to [register an application](https://www.jetbrains.com/help/space/applications.html) to work with the Space API. There are various application types, all supporting different authentication flows. For this example, we will use a *Service Account*.
@@ -73,7 +60,7 @@ Let's fetch a user profile from the Team Directory:
 
 ```csharp
 var memberProfile = await teamDirectoryClient.Profiles
-    .GetProfileByUsernameAsync("Heather.Stewart");
+    .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"));
 ```
 
 The `memberProfile` will expose top level properties, such as `Id`, `Username`, `About`, and more.
@@ -134,7 +121,7 @@ By default, SpaceDotNet will retrieve all top level properties from the Space AP
 
 ```csharp
 var memberProfile = await teamDirectoryClient.Profiles
-    .GetProfileByUsernameAsync("Heather.Stewart");
+    .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"));
 ```
 
 A `TDMemberProfileDto`, which is the type returned by `GetProfileByUsernameAsync`, also has a `Managers` property. This property is a collection of nested `TDMemberProfileDto`, and is not retrieved by default.
@@ -145,7 +132,7 @@ Nested properties have to be retrieved explicitly. For example, if we want to re
 
 ```csharp
 var memberProfile = await teamDirectoryClient.Profiles
-    .GetProfileByUsernameAsync("Heather.Stewart", _ => _
+    .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"), _ => _
         .WithAllFieldsWildcard()            // with all top level fields
         .WithManagers(managers => managers  // include managers
             .WithId()                       //   with their Id
@@ -166,7 +153,7 @@ SpaceDotNet will help with defining properties to include. Let's say we want to 
 
 ```csharp
 var memberProfile = await teamDirectoryClient.Profiles
-    .GetProfileByUsernameAsync("Heather.Stewart", _ => _
+    .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"), _ => _
         .WithId()
         .WithUsername());
 ```
@@ -204,7 +191,7 @@ These methods can be used to including all fields for the entire current level. 
 
 ```csharp
 var memberProfile = await teamDirectoryClient.Profiles
-    .GetProfileByUsernameAsync("Heather.Stewart", _ => _
+    .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"), _ => _
         .WithAllFieldsWildcard()            // with all top level fields
         .WithManagers(managers => managers  // include managers
             .WithAllFieldsWildcard()));     //   with all their top level fields

@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public PRProjectDto() { }
         
-        public PRProjectDto(string id, ProjectKeyDto key, string name, bool @private, bool archived, List<TDMemberProfileDto> adminProfiles, List<TDTeamDto> adminTeams, List<TDMemberProfileDto> memberProfiles, List<TDTeamDto> memberTeams, List<PRRepositoryInfoDto> repos, List<string> tags, List<BoardRecordDto> boards, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
+        public PRProjectDto(string id, ProjectKeyDto key, string name, bool @private, bool archived, List<TDMemberProfileDto> adminProfiles, List<TDTeamDto> adminTeams, List<TDMemberProfileDto> memberProfiles, List<TDTeamDto> memberTeams, List<PRRepositoryInfoDto> repos, List<string> tags, List<ProjectPackageRepositoryDto> packages, List<BoardRecordDto> boards, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
         {
             Id = id;
             Key = key;
@@ -42,6 +42,7 @@ namespace SpaceDotNet.Client
             MemberTeams = memberTeams;
             Repos = repos;
             Tags = tags;
+            Packages = packages;
             Boards = boards;
         }
         
@@ -182,6 +183,16 @@ namespace SpaceDotNet.Client
             set { _tags.SetValue(value); }
         }
     
+        private PropertyValue<List<ProjectPackageRepositoryDto>> _packages = new PropertyValue<List<ProjectPackageRepositoryDto>>(nameof(PRProjectDto), nameof(Packages));
+        
+        [Required]
+        [JsonPropertyName("packages")]
+        public List<ProjectPackageRepositoryDto> Packages
+        {
+            get { return _packages.GetValue(); }
+            set { _packages.SetValue(value); }
+        }
+    
         private PropertyValue<List<BoardRecordDto>> _boards = new PropertyValue<List<BoardRecordDto>>(nameof(PRProjectDto), nameof(Boards));
         
         [Required]
@@ -208,6 +219,7 @@ namespace SpaceDotNet.Client
             _memberTeams.SetAccessPath(path, validateHasBeenSet);
             _repos.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
+            _packages.SetAccessPath(path, validateHasBeenSet);
             _boards.SetAccessPath(path, validateHasBeenSet);
         }
     

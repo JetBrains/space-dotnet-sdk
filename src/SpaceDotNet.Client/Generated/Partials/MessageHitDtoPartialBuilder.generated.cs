@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.MessageHitDtoPartialBuilder
         public static Partial<MessageHitDto> WithId(this Partial<MessageHitDto> it)
             => it.AddFieldName("id");
         
+        public static Partial<MessageHitDto> WithParentItemId(this Partial<MessageHitDto> it)
+            => it.AddFieldName("parentItemId");
+        
         public static Partial<MessageHitDto> WithScore(this Partial<MessageHitDto> it)
             => it.AddFieldName("score");
         
@@ -43,6 +46,12 @@ namespace SpaceDotNet.Client.MessageHitDtoPartialBuilder
         
         public static Partial<MessageHitDto> WithMessage(this Partial<MessageHitDto> it)
             => it.AddFieldName("message");
+        
+        public static Partial<MessageHitDto> WithThreadStarter(this Partial<MessageHitDto> it)
+            => it.AddFieldName("threadStarter");
+        
+        public static Partial<MessageHitDto> WithThread(this Partial<MessageHitDto> it)
+            => it.AddFieldName("thread");
         
     }
     

@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsRequestPartialBuilder
         public static Partial<CustomFieldsForTypeKeyFieldsRequest> WithName(this Partial<CustomFieldsForTypeKeyFieldsRequest> it)
             => it.AddFieldName("name");
         
+        public static Partial<CustomFieldsForTypeKeyFieldsRequest> WithDescription(this Partial<CustomFieldsForTypeKeyFieldsRequest> it)
+            => it.AddFieldName("description");
+        
         public static Partial<CustomFieldsForTypeKeyFieldsRequest> WithKey(this Partial<CustomFieldsForTypeKeyFieldsRequest> it)
             => it.AddFieldName("key");
         

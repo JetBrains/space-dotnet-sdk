@@ -83,6 +83,12 @@ namespace SpaceDotNet.Client.PRProjectDtoPartialBuilder
         public static Partial<PRProjectDto> WithTags(this Partial<PRProjectDto> it)
             => it.AddFieldName("tags");
         
+        public static Partial<PRProjectDto> WithPackages(this Partial<PRProjectDto> it)
+            => it.AddFieldName("packages");
+        
+        public static Partial<PRProjectDto> WithPackages(this Partial<PRProjectDto> it, Func<Partial<ProjectPackageRepositoryDto>, Partial<ProjectPackageRepositoryDto>> partialBuilder)
+            => it.AddFieldName("packages", partialBuilder(new Partial<ProjectPackageRepositoryDto>(it)));
+        
         public static Partial<PRProjectDto> WithBoards(this Partial<PRProjectDto> it)
             => it.AddFieldName("boards");
         

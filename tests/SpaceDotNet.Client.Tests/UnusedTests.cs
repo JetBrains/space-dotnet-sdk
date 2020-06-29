@@ -21,14 +21,15 @@ namespace SpaceDotNet.Client.Tests
             var teamDirectoryClient = new TeamDirectoryClient(connection);
 
             // ReSharper disable once UnusedVariable
-            var memberProfile = await teamDirectoryClient.Profiles.GetProfileByUsernameAsync("Heather.Stewart", partial => partial
-                .WithAllFieldsWildcard() // Include all first-level fields
-                .WithManagers(manager => manager
-                    .WithId()
-                    .WithUsername()
-                    .WithName(name => name
-                        .WithFirstName()
-                        .WithLastName())));
+            var memberProfile = await teamDirectoryClient.Profiles
+                .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"), partial => partial
+                    .WithAllFieldsWildcard() // Include all first-level fields
+                    .WithManagers(manager => manager
+                        .WithId()
+                        .WithUsername()
+                        .WithName(name => name
+                            .WithFirstName()
+                            .WithLastName())));
         }
     }
 }

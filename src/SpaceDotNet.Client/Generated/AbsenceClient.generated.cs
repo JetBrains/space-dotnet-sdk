@@ -67,7 +67,7 @@ namespace SpaceDotNet.Client
             => await _connection.RequestResourceAsync<AbsenceRecordDto>("GET", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}");
     
         /// <summary>
-        /// Create an existing absence. Optional parameters will be ignored when null, and updated otherwise.
+        /// Create an existing absence. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
         public async Task<AbsenceRecordDto> UpdateAbsenceAsync(string id, bool available, string? member = null, string? reason = null, string? description = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? icon = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>>? partial = null)
             => await _connection.RequestResourceAsync<AbsencesForIdRequest, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", new AbsencesForIdRequest{ Member = member, Reason = reason, Description = description, Location = location, Since = since, Till = till, Available = available, Icon = icon, CustomFieldValues = customFieldValues });
@@ -138,15 +138,27 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
+            /// <summary>
+            /// For the current user, create a subscription to receive absence notifications for a location, team, or absence reason. Parameters are applied as 'AND' filters.
+            /// </summary>
             public async Task<DTOAbsenceSubscriptionDto> CreateSubscriptionAsync(string? locationId = null, string? teamId = null, string? reasonId = null, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>>? partial = null)
                 => await _connection.RequestResourceAsync<AbsencesSubscriptionsRequest, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", new AbsencesSubscriptionsRequest{ LocationId = locationId, TeamId = teamId, ReasonId = reasonId });
         
+            /// <summary>
+            /// List all absence notification subscriptions for the current user.
+            /// </summary>
             public async Task<List<DTOAbsenceSubscriptionDto>> GetAllSubscriptionsAsync(Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<DTOAbsenceSubscriptionDto>>("GET", $"api/http/absences/subscriptions?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}");
         
+            /// <summary>
+            /// Update an existing subscription for absence notifications. Optional parameters will be ignored when not specified, and updated otherwise.
+            /// </summary>
             public async Task<DTOAbsenceSubscriptionDto> UpdateSubscriptionAsync(string id, string? locationId = null, string? teamId = null, string? reasonId = null, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>>? partial = null)
                 => await _connection.RequestResourceAsync<AbsencesSubscriptionsForIdRequest, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", new AbsencesSubscriptionsForIdRequest{ LocationId = locationId, TeamId = teamId, ReasonId = reasonId });
         
+            /// <summary>
+            /// Delete an existing subscription for absence notifications.
+            /// </summary>
             public async Task DeleteSubscriptionAsync(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/subscriptions/{id}");
         

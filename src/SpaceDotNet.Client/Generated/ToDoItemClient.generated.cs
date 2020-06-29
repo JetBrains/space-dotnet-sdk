@@ -49,7 +49,7 @@ namespace SpaceDotNet.Client
             => BatchEnumerator.AllItems(batchSkip => GetAllToDoItemsAsync(top: top, open: open, from: from, till: till, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecordDto>.Default())), skip);
     
         /// <summary>
-        /// Update an existing To-Do item. Optional parameters will be ignored when null, and updated otherwise.
+        /// Update an existing To-Do item. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
         public async Task UpdateToDoItemAsync(string id, string? text = null, SpaceDate? dueDate = null, bool? open = null)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/todo/{id}", new TodoForIdRequest{ Text = text, DueDate = dueDate, Open = open });

@@ -30,19 +30,19 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public SettingClient Settings => new SettingClient(_connection);
+        public TypeClient Types => new TypeClient(_connection);
         
-        public partial class SettingClient
+        public partial class TypeClient
         {
             private readonly Connection _connection;
             
-            public SettingClient(Connection connection)
+            public TypeClient(Connection connection)
             {
                 _connection = connection;
             }
             
-            public async Task<PackagesSettingsDto> GetAllSettingsAsync(string type, string method, string? repository = null, Func<Partial<PackagesSettingsDto>, Partial<PackagesSettingsDto>>? partial = null)
-                => await _connection.RequestResourceAsync<PackagesSettingsDto>("GET", $"api/http/packages/settings?type={type.ToString()}&method={method.ToString()}&repository={repository?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<PackagesSettingsDto>()) : Partial<PackagesSettingsDto>.Default())}");
+            public async Task<List<PackageTypeDto>> GetAllTypesAsync(Func<Partial<PackageTypeDto>, Partial<PackageTypeDto>>? partial = null)
+                => await _connection.RequestResourceAsync<List<PackageTypeDto>>("GET", $"api/http/packages/types?$fields={(partial != null ? partial(new Partial<PackageTypeDto>()) : Partial<PackageTypeDto>.Default())}");
         
         }
     

@@ -26,9 +26,10 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdRequest(string? name = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
+        public CustomFieldsForTypeKeyFieldsForIdRequest(string? name = null, string? description = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
         {
             Name = name;
+            Description = description;
             Key = key;
             Constraint = constraint;
             Required = required;
@@ -45,6 +46,15 @@ namespace SpaceDotNet.Client
         {
             get { return _name.GetValue(); }
             set { _name.SetValue(value); }
+        }
+    
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsForIdRequest), nameof(Description));
+        
+        [JsonPropertyName("description")]
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
         }
     
         private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsForIdRequest), nameof(Key));
@@ -113,6 +123,7 @@ namespace SpaceDotNet.Client
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
             _key.SetAccessPath(path, validateHasBeenSet);
             _constraint.SetAccessPath(path, validateHasBeenSet);
             _required.SetAccessPath(path, validateHasBeenSet);

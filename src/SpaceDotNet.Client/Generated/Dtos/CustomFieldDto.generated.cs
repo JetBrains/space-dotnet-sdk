@@ -26,11 +26,12 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldDto() { }
         
-        public CustomFieldDto(ExtendedTypeDto extendedType, string id, string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, int order, bool archived, CFConstraintDto? constraint = null, AccessType? access = null)
+        public CustomFieldDto(ExtendedTypeDto extendedType, string id, string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, int order, bool archived, string? description = null, CFConstraintDto? constraint = null, AccessType? access = null)
         {
             ExtendedType = extendedType;
             Id = id;
             Name = name;
+            Description = description;
             Key = key;
             Type = type;
             Constraint = constraint;
@@ -70,6 +71,15 @@ namespace SpaceDotNet.Client
         {
             get { return _name.GetValue(); }
             set { _name.SetValue(value); }
+        }
+    
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldDto), nameof(Description));
+        
+        [JsonPropertyName("description")]
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
         }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(CustomFieldDto), nameof(Key));
@@ -165,6 +175,7 @@ namespace SpaceDotNet.Client
             _extendedType.SetAccessPath(path, validateHasBeenSet);
             _id.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
             _key.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _constraint.SetAccessPath(path, validateHasBeenSet);

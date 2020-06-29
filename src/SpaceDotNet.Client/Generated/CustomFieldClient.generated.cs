@@ -88,8 +88,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create custom field for a type.
             /// </summary>
-            public async Task<CustomFieldDto> CreateFieldAsync(string typeKey, string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, CFConstraintDto? constraint = null, AccessType? access = null, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsRequest, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}", new CustomFieldsForTypeKeyFieldsRequest{ Name = name, Key = key, Type = type, Constraint = constraint, Required = required, Private = @private, Access = access, DefaultValue = defaultValue });
+            public async Task<CustomFieldDto> CreateFieldAsync(string typeKey, string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, string? description = null, CFConstraintDto? constraint = null, AccessType? access = null, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
+                => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsRequest, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}", new CustomFieldsForTypeKeyFieldsRequest{ Name = name, Description = description, Key = key, Type = type, Constraint = constraint, Required = required, Private = @private, Access = access, DefaultValue = defaultValue });
         
             /// <summary>
             /// Re-order custom fields.
@@ -116,10 +116,10 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}");
         
             /// <summary>
-            /// Update custom field for a type. Optional parameters will be ignored when null, and updated otherwise.
+            /// Update custom field for a type. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task UpdateFieldAsync(string typeKey, string id, string? name = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
-                => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", new CustomFieldsForTypeKeyFieldsForIdRequest{ Name = name, Key = key, Constraint = constraint, Required = required, Private = @private, Access = access, DefaultValue = defaultValue, EnumValues = enumValues });
+            public async Task UpdateFieldAsync(string typeKey, string id, string? name = null, string? description = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", new CustomFieldsForTypeKeyFieldsForIdRequest{ Name = name, Description = description, Key = key, Constraint = constraint, Required = required, Private = @private, Access = access, DefaultValue = defaultValue, EnumValues = enumValues });
         
             /// <summary>
             /// Remove custom field for a type.

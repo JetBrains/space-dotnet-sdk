@@ -26,11 +26,10 @@ namespace SpaceDotNet.Client
     {
         public CodeReviewDetailedInfoDto() { }
         
-        public CodeReviewDetailedInfoDto(CodeReviewRecordDto shortInfo, List<RevisionsInReviewDto> commits, List<RevisionsInReviewDto> lostCommits, CodeReviewDiscussionCounterDto discussionCounter, List<TrackedBranchesInReviewDto> branches)
+        public CodeReviewDetailedInfoDto(CodeReviewRecordDto shortInfo, List<RevisionsInReviewDto> commits, CodeReviewDiscussionCounterDto discussionCounter, List<TrackedBranchesInReviewDto> branches)
         {
             ShortInfo = shortInfo;
             Commits = commits;
-            LostCommits = lostCommits;
             DiscussionCounter = discussionCounter;
             Branches = branches;
         }
@@ -53,16 +52,6 @@ namespace SpaceDotNet.Client
         {
             get { return _commits.GetValue(); }
             set { _commits.SetValue(value); }
-        }
-    
-        private PropertyValue<List<RevisionsInReviewDto>> _lostCommits = new PropertyValue<List<RevisionsInReviewDto>>(nameof(CodeReviewDetailedInfoDto), nameof(LostCommits));
-        
-        [Required]
-        [JsonPropertyName("lostCommits")]
-        public List<RevisionsInReviewDto> LostCommits
-        {
-            get { return _lostCommits.GetValue(); }
-            set { _lostCommits.SetValue(value); }
         }
     
         private PropertyValue<CodeReviewDiscussionCounterDto> _discussionCounter = new PropertyValue<CodeReviewDiscussionCounterDto>(nameof(CodeReviewDetailedInfoDto), nameof(DiscussionCounter));
@@ -89,7 +78,6 @@ namespace SpaceDotNet.Client
         {
             _shortInfo.SetAccessPath(path, validateHasBeenSet);
             _commits.SetAccessPath(path, validateHasBeenSet);
-            _lostCommits.SetAccessPath(path, validateHasBeenSet);
             _discussionCounter.SetAccessPath(path, validateHasBeenSet);
             _branches.SetAccessPath(path, validateHasBeenSet);
         }

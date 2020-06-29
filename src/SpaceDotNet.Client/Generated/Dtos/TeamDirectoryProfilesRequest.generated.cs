@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesRequest() { }
         
-        public TeamDirectoryProfilesRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, Gender? gender = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public TeamDirectoryProfilesRequest(string username, string firstName, string lastName, List<string> emails, List<string> phones, List<string> messengers, List<string> links, bool notAMember, List<CustomFieldValueDto> customFieldValues, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null)
         {
             Username = username;
             FirstName = firstName;
@@ -35,7 +35,6 @@ namespace SpaceDotNet.Client
             Phones = phones;
             Birthday = birthday;
             About = about;
-            Gender = gender;
             Messengers = messengers;
             Links = links;
             NotAMember = notAMember;
@@ -77,19 +76,21 @@ namespace SpaceDotNet.Client
             set { _lastName.SetValue(value); }
         }
     
-        private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesRequest), nameof(Emails));
+        private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Emails));
         
+        [Required]
         [JsonPropertyName("emails")]
-        public List<string>? Emails
+        public List<string> Emails
         {
             get { return _emails.GetValue(); }
             set { _emails.SetValue(value); }
         }
     
-        private PropertyValue<List<string>?> _phones = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesRequest), nameof(Phones));
+        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Phones));
         
+        [Required]
         [JsonPropertyName("phones")]
-        public List<string>? Phones
+        public List<string> Phones
         {
             get { return _phones.GetValue(); }
             set { _phones.SetValue(value); }
@@ -113,37 +114,31 @@ namespace SpaceDotNet.Client
             set { _about.SetValue(value); }
         }
     
-        private PropertyValue<Gender?> _gender = new PropertyValue<Gender?>(nameof(TeamDirectoryProfilesRequest), nameof(Gender));
+        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Messengers));
         
-        [JsonPropertyName("gender")]
-        public Gender? Gender
-        {
-            get { return _gender.GetValue(); }
-            set { _gender.SetValue(value); }
-        }
-    
-        private PropertyValue<List<string>?> _messengers = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesRequest), nameof(Messengers));
-        
+        [Required]
         [JsonPropertyName("messengers")]
-        public List<string>? Messengers
+        public List<string> Messengers
         {
             get { return _messengers.GetValue(); }
             set { _messengers.SetValue(value); }
         }
     
-        private PropertyValue<List<string>?> _links = new PropertyValue<List<string>?>(nameof(TeamDirectoryProfilesRequest), nameof(Links));
+        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Links));
         
+        [Required]
         [JsonPropertyName("links")]
-        public List<string>? Links
+        public List<string> Links
         {
             get { return _links.GetValue(); }
             set { _links.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _notAMember = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesRequest), nameof(NotAMember));
+        private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TeamDirectoryProfilesRequest), nameof(NotAMember));
         
+        [Required]
         [JsonPropertyName("notAMember")]
-        public bool? NotAMember
+        public bool NotAMember
         {
             get { return _notAMember.GetValue(); }
             set { _notAMember.SetValue(value); }
@@ -194,10 +189,11 @@ namespace SpaceDotNet.Client
             set { _avatarCropSquare.SetValue(value); }
         }
     
-        private PropertyValue<List<CustomFieldValueDto>?> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>?>(nameof(TeamDirectoryProfilesRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldValueDto>> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>>(nameof(TeamDirectoryProfilesRequest), nameof(CustomFieldValues));
         
+        [Required]
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues
+        public List<CustomFieldValueDto> CustomFieldValues
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }
@@ -212,7 +208,6 @@ namespace SpaceDotNet.Client
             _phones.SetAccessPath(path, validateHasBeenSet);
             _birthday.SetAccessPath(path, validateHasBeenSet);
             _about.SetAccessPath(path, validateHasBeenSet);
-            _gender.SetAccessPath(path, validateHasBeenSet);
             _messengers.SetAccessPath(path, validateHasBeenSet);
             _links.SetAccessPath(path, validateHasBeenSet);
             _notAMember.SetAccessPath(path, validateHasBeenSet);
