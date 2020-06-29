@@ -180,7 +180,7 @@ Let's look at some other extension methods for retrieving partial responses.
 
 #### Partial Extension Methods
 
-As demonstrated in the previous section, all builder methods (`With...()`) are extension methods to help building the partial response based on a property name of an object. There are some other instance methods that can be used when building partial responses.
+As demonstrated in the previous section, all builder methods (`With...()`) are extension methods to help build the partial response based on a property name of an object. There are some other instance methods that can be used when building partial responses.
 
 The `WithAllFieldNames...()` methods can help with building partials:
 
