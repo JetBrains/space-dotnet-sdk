@@ -30,9 +30,9 @@ After installing `SpaceDotNet.Client` in our project, we can use the *Client ID*
 
 ```csharp
 var connection = new ClientCredentialsConnection(
-    "https://<organization>.jetbrains.space/",
-    "client-id-value",
-    "client-secret-value",
+    organizationUrl,    // i.e. "https://<organization>.jetbrains.space/"
+    clientId",          // from settings/secrets
+    clientSecret,       // from settings/secrets
     new HttpClient());
 ```
 
@@ -269,7 +269,7 @@ public class Batch<T>
 }
 ```
 
-We have to specify the properties of the `Batch` type to retrieve, and all the fields of the data type we need
+We have to specify the properties of the `Batch` type to retrieve, and all the fields of the data type we need.
 
 As an example, let's retrieve the current user's To-Do items for this week, skipping the first 10 items, with their `Id`, `Content` and `Status`:
 
