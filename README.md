@@ -124,7 +124,7 @@ var memberProfile = await teamDirectoryClient.Profiles
     .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"));
 ```
 
-A `TDMemberProfileDto`, which is the type returned by `GetProfileByUsernameAsync`, also has a `Managers` property. This property is a collection of nested `TDMemberProfileDto`, and is not retrieved by default.
+A `TDMemberProfileDto`, which is the type returned by `GetProfileAsync`, also has a `Managers` property. This property is a collection of nested `TDMemberProfileDto`, and is not retrieved by default.
 
 #### Nested Properties
 
