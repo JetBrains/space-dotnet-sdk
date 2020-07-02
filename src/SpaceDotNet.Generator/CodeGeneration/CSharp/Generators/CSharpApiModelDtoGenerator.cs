@@ -204,49 +204,70 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             var propertyNameForField = apiField.ToCSharpPropertyName();
             var backingFieldNameForField = apiField.ToCSharpBackingFieldName();
 
-            // Backing field
-            builder.Append($"{indent}private PropertyValue<");
-            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
-            if (apiField.Type.Nullable)
+            if (FeatureFlags.GenerateBackingFieldsForDtoProperties)
             {
-                builder.Append("?");
-            }
+                // Backing field
+                builder.Append($"{indent}private PropertyValue<");
+                builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+                if (apiField.Type.Nullable)
+                {
+                    builder.Append("?");
+                }
 
-            builder.Append("> ");
-            builder.Append($"{backingFieldNameForField} = new PropertyValue<");
-            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
-            if (apiField.Type.Nullable)
+                builder.Append("> ");
+                builder.Append($"{backingFieldNameForField} = new PropertyValue<");
+                builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+                if (apiField.Type.Nullable)
+                {
+                    builder.Append("?");
+                }
+
+                builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
+                builder.AppendLine($"{indent}");
+
+                // Property
+                if (!apiField.Type.Optional && !apiField.Type.Nullable)
+                {
+                    builder.AppendLine($"{indent}[Required]");
+                }
+                builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
+                
+                builder.Append($"{indent}public ");
+                builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+                if (apiField.Type.Nullable)
+                {
+                    builder.Append("?");
+                }
+                builder.Append(" ");
+                builder.AppendLine($"{indent}{propertyNameForField}");
+                
+                builder.AppendLine($"{indent}{{");
+                indent.Increment();
+                
+                builder.AppendLine($"{indent}get {{ return {backingFieldNameForField}.GetValue(); }}");
+                builder.AppendLine($"{indent}set {{ {backingFieldNameForField}.SetValue(value); }}");
+
+                indent.Decrement();
+                builder.AppendLine($"{indent}}}");
+            }
+            else 
             {
-                builder.Append("?");
+                // Property
+                if (!apiField.Type.Optional && !apiField.Type.Nullable)
+                {
+                    builder.AppendLine($"{indent}[Required]");
+                }
+                builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
+                
+                builder.Append($"{indent}public ");
+                builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
+                if (apiField.Type.Nullable)
+                {
+                    builder.Append("?");
+                }
+                builder.Append(" ");
+                builder.AppendLine($"{indent}{propertyNameForField} {{ get; set; }}");
             }
-
-            builder.AppendLine($">(nameof({typeNameForDto}), nameof({propertyNameForField}));");
-            builder.AppendLine($"{indent}");
-
-            // Property
-            if (!apiField.Type.Optional && !apiField.Type.Nullable)
-            {
-                builder.AppendLine($"{indent}[Required]");
-            }
-            builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
-            
-            builder.Append($"{indent}public ");
-            builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));
-            if (apiField.Type.Nullable)
-            {
-                builder.Append("?");
-            }
-            builder.Append(" ");
-            builder.AppendLine($"{indent}{propertyNameForField}");
-            
-            builder.AppendLine($"{indent}{{");
-            indent.Increment();
-            
-            builder.AppendLine($"{indent}get {{ return {backingFieldNameForField}.GetValue(); }}");
-            builder.AppendLine($"{indent}set {{ {backingFieldNameForField}.SetValue(value); }}");
-
-            indent.Decrement();
-            builder.AppendLine($"{indent}}}");
 
             return builder.ToString();
         }
