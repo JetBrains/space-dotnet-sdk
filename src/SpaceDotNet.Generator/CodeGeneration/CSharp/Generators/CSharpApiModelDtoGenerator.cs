@@ -287,11 +287,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             builder.AppendLine($"{indent}{{");
             indent.Increment();
 
-            foreach (var apiDtoField in apiDtoFields)
+            if (FeatureFlags.GenerateBackingFieldsForDtoProperties) 
             {
-                var backingFieldNameForField = apiDtoField.Field.ToCSharpBackingFieldName();
+                foreach (var apiDtoField in apiDtoFields)
+                {
+                    var backingFieldNameForField = apiDtoField.Field.ToCSharpBackingFieldName();
 
-                builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
+                    builder.AppendLine($"{indent}{backingFieldNameForField}.{nameof(IPropagatePropertyAccessPath.SetAccessPath)}(path, validateHasBeenSet);");
+                }
             }
 
             indent.Decrement();
