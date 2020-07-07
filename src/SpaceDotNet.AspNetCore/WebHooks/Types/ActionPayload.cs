@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 using SpaceDotNet.AspNetCore.WebHooks.Json.Serialization;
 
-namespace SpaceDotNet.AspNetCore.WebHooks
+namespace SpaceDotNet.AspNetCore.WebHooks.Types
 {
     [PublicAPI]
     public class ActionPayload

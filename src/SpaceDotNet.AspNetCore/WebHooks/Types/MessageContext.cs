@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.AspNetCore.WebHooks
+namespace SpaceDotNet.AspNetCore.WebHooks.Types
 {
     [PublicAPI]
     public class MessageContext

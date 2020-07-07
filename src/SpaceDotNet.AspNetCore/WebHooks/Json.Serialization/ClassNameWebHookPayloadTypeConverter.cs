@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
+using SpaceDotNet.AspNetCore.WebHooks.Types;
 using SpaceDotNet.Common.Json.Serialization;
 
 namespace SpaceDotNet.AspNetCore.WebHooks.Json.Serialization
 {
     public class ClassNameWebHookPayloadTypeConverter : JsonConverter<IWebHookPayload>
     {
-        protected readonly string SpaceDotNetWebHooksNamespace = "SpaceDotNet.AspNetCore.WebHooks";
+        protected readonly string SpaceDotNetWebHooksNamespace = "SpaceDotNet.AspNetCore.WebHooks.Types";
         protected readonly string SpaceDotNetWebHooksAssemblyName = "SpaceDotNet.AspNetCore";
         
         private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using SpaceDotNet.AspNetCore.WebHooks;
+using SpaceDotNet.AspNetCore.WebHooks.Types;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
 
@@ -75,7 +76,12 @@ namespace SpaceDotNet.Samples.Web.Controllers
         [Route("receive")]
         public IActionResult Receive([FromBody]ActionPayload payload)
         {
-            
+            // TODO WEBHOOK
+            //X-Space-Signature	23a3f560ad8095545388b40755c3746f3904b8f04c655d29731674060cd96dbc
+            //X-Space-Timestamp	1594131269767
+            // val checkedSigning = HmacUtils(HmacAlgorithms.HMAC_SHA_256,
+            // client.oAuthServices.signingKey(setup.service.id)).hmacHex("$timestamp:$body")
+
             return Content(payload.ActionId + "? " + payload.ActionValue);
         }
     }

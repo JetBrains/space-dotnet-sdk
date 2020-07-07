@@ -2,12 +2,15 @@ using System.Linq;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpaceDotNet.AspNetCore.Authentication.Space;
 using SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement;
+using SpaceDotNet.AspNetCore.WebHooks;
+using SpaceDotNet.AspNetCore.WebHooks.Formatters;
 
 namespace SpaceDotNet.Samples.Web
 {
@@ -26,16 +29,7 @@ namespace SpaceDotNet.Samples.Web
             // MVC and Razor
             services.AddRouting(options => options.LowercaseUrls = true);
             services.AddControllers();
-            services.AddMvc(options =>
-                {
-                    // TODO WEBHOOK THIS SHOULD NOT BE NEEDED
-                    var jsonInputFormatter = options.InputFormatters
-                        .OfType<SystemTextJsonInputFormatter>()
-                        .Single();
-
-                    jsonInputFormatter.SupportedMediaTypes.Add("text/plain");
-                    jsonInputFormatter.SupportedMediaTypes.Add("text/plain; charset=UTF-8");
-                })
+            services.AddMvc()
                 .AddCookieTempDataProvider()
                 .AddRazorPagesOptions(options =>
                 {
@@ -65,7 +59,11 @@ namespace SpaceDotNet.Samples.Web
                 //     options.SaveTokens = true;
                 // });
             
+            // Space client API
             services.AddSpaceClientApi();
+            
+            // Space webhook receiver
+            services.AddSpaceWebHookReceiver();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
