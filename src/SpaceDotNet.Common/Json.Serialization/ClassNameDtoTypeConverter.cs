@@ -18,6 +18,7 @@ namespace SpaceDotNet.Common.Json.Serialization
     public class ClassNameDtoTypeConverter : JsonConverter<IClassNameConvertible>
     {
         protected readonly string SpaceDotNetClientNamespace = "SpaceDotNet.Client";
+        protected readonly string SpaceDotNetClientAssemblyName = "SpaceDotNet.Client";
         
         private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
         
@@ -39,7 +40,7 @@ namespace SpaceDotNet.Common.Json.Serialization
             {
                 if (!TypeMap.TryGetValue(className, out var targetType))
                 {
-                    targetType = Type.GetType(SpaceDotNetClientNamespace + "." + className + "Dto, " + SpaceDotNetClientNamespace);
+                    targetType = Type.GetType(SpaceDotNetClientNamespace + "." + className + "Dto, " + SpaceDotNetClientAssemblyName);
                     if (targetType != null)
                     {
                         TypeMap[className] = targetType;

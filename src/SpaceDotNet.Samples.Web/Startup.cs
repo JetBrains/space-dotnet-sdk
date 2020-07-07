@@ -1,6 +1,8 @@
+using System.Linq;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -21,6 +23,26 @@ namespace SpaceDotNet.Samples.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // MVC and Razor
+            services.AddRouting(options => options.LowercaseUrls = true);
+            services.AddControllers();
+            services.AddMvc(options =>
+                {
+                    // TODO WEBHOOK THIS SHOULD NOT BE NEEDED
+                    var jsonInputFormatter = options.InputFormatters
+                        .OfType<SystemTextJsonInputFormatter>()
+                        .Single();
+
+                    jsonInputFormatter.SupportedMediaTypes.Add("text/plain");
+                    jsonInputFormatter.SupportedMediaTypes.Add("text/plain; charset=UTF-8");
+                })
+                .AddCookieTempDataProvider()
+                .AddRazorPagesOptions(options =>
+                {
+                    options.RootDirectory = "/Pages";
+                });
+            
+            // Space authentication
             services.AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -44,8 +66,6 @@ namespace SpaceDotNet.Samples.Web
                 // });
             
             services.AddSpaceClientApi();
-                
-            services.AddRazorPages();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -70,7 +90,11 @@ namespace SpaceDotNet.Samples.Web
             app.UseAuthentication();
             app.UseAuthorization();
 
-            app.UseEndpoints(endpoints => { endpoints.MapRazorPages(); });
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+                endpoints.MapRazorPages();
+            });
         }
     }
 }
