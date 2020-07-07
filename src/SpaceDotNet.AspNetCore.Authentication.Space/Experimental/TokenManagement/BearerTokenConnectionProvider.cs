@@ -1,6 +1,8 @@
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SpaceDotNet.Common;
@@ -13,6 +15,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
         private readonly IOptionsSnapshot<SpaceOptions> _spaceOptions;
         private readonly IAuthenticationSchemeProvider _schemeProvider;
         private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpClientFactory _httpClientFactory;
         private readonly ILogger<BearerTokenConnectionProvider> _logger;
 
         public BearerTokenConnectionProvider(
@@ -20,12 +23,14 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
             IOptionsSnapshot<SpaceOptions> spaceOptions,
             IAuthenticationSchemeProvider schemeProvider,
             IHttpContextAccessor httpContextAccessor,
+            IHttpClientFactory httpClientFactory,
             ILogger<BearerTokenConnectionProvider> logger)
         {
             _options = options.Value;
             _spaceOptions = spaceOptions;
             _schemeProvider = schemeProvider;
             _httpContextAccessor = httpContextAccessor;
+            _httpClientFactory = httpClientFactory;
             _logger = logger;
         }
         
@@ -52,7 +57,10 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
                 return null;
             }
             
-            return new BearerTokenConnection(spaceOptions.ServerUrl.ToString(), new AuthenticationTokens(accessToken));
+            return new BearerTokenConnection(
+                spaceOptions.ServerUrl.ToString(), 
+                new AuthenticationTokens(accessToken),
+                _httpClientFactory.CreateClient());
         }
         
         private async Task<SpaceOptions> GetSpaceOptionsAsync()
