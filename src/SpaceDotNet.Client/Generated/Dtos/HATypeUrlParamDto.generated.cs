@@ -29,11 +29,10 @@ namespace SpaceDotNet.Client
         
         public HATypeUrlParamDto() { }
         
-        public HATypeUrlParamDto(HAUrlParameterDto urlParam, bool nullable, bool optional)
+        public HATypeUrlParamDto(HAUrlParameterDto urlParam, bool nullable)
         {
             UrlParam = urlParam;
             Nullable = nullable;
-            Optional = optional;
         }
         
         private PropertyValue<HAUrlParameterDto> _urlParam = new PropertyValue<HAUrlParameterDto>(nameof(HATypeUrlParamDto), nameof(UrlParam));
@@ -56,21 +55,10 @@ namespace SpaceDotNet.Client
             set { _nullable.SetValue(value); }
         }
     
-        private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypeUrlParamDto), nameof(Optional));
-        
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional
-        {
-            get { return _optional.GetValue(); }
-            set { _optional.SetValue(value); }
-        }
-    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _urlParam.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
-            _optional.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

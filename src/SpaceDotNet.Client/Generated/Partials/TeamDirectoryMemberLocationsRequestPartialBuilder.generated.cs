@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.TeamDirectoryMemberLocationsRequestPartialBuilder
         public static Partial<TeamDirectoryMemberLocationsRequest> WithMember(this Partial<TeamDirectoryMemberLocationsRequest> it)
             => it.AddFieldName("member");
         
+        public static Partial<TeamDirectoryMemberLocationsRequest> WithMember(this Partial<TeamDirectoryMemberLocationsRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("member", partialBuilder(new Partial<ProfileIdentifier>(it)));
+        
         public static Partial<TeamDirectoryMemberLocationsRequest> WithLocation(this Partial<TeamDirectoryMemberLocationsRequest> it)
             => it.AddFieldName("location");
         

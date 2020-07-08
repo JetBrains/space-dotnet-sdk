@@ -38,12 +38,6 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsRequestPartialBuilder
         public static Partial<TeamDirectoryMembershipsRequest> WithManagerId(this Partial<TeamDirectoryMembershipsRequest> it)
             => it.AddFieldName("managerId");
         
-        public static Partial<TeamDirectoryMembershipsRequest> WithSince(this Partial<TeamDirectoryMembershipsRequest> it)
-            => it.AddFieldName("since");
-        
-        public static Partial<TeamDirectoryMembershipsRequest> WithTill(this Partial<TeamDirectoryMembershipsRequest> it)
-            => it.AddFieldName("till");
-        
         public static Partial<TeamDirectoryMembershipsRequest> WithActiveSince(this Partial<TeamDirectoryMembershipsRequest> it)
             => it.AddFieldName("activeSince");
         

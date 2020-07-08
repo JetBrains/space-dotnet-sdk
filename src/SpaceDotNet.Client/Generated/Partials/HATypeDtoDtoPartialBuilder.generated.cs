@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.HATypeDtoDtoPartialBuilder
         public static Partial<HATypeDtoDto> WithNullable(this Partial<HATypeDtoDto> it)
             => it.AddFieldName("nullable");
         
-        public static Partial<HATypeDtoDto> WithOptional(this Partial<HATypeDtoDto> it)
-            => it.AddFieldName("optional");
-        
     }
     
 }

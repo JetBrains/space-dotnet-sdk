@@ -26,13 +26,14 @@ namespace SpaceDotNet.Client
     {
         public DRDraftDto() { }
         
-        public DRDraftDto(string id, string title, SpaceTime modified, bool publishedFlag, bool shared, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, string? text = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null, TDMemberProfileDto? author = null, long? version = null, TextDocumentDto? document = null)
+        public DRDraftDto(string id, string title, SpaceTime modified, bool publishedFlag, bool shared, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, string? text = null, DraftDocumentType? type = null, SpaceTime? created = null, DraftPublicationDetailsDto? publicationDetails = null, TDMemberProfileDto? author = null, long? version = null, TextDocumentDto? document = null)
         {
             Id = id;
             Title = title;
             Text = text;
             Type = type;
             Modified = modified;
+            Created = created;
             PublishedFlag = publishedFlag;
             Shared = shared;
             AccessOrdinal = accessOrdinal;
@@ -90,6 +91,15 @@ namespace SpaceDotNet.Client
         {
             get { return _modified.GetValue(); }
             set { _modified.SetValue(value); }
+        }
+    
+        private PropertyValue<SpaceTime?> _created = new PropertyValue<SpaceTime?>(nameof(DRDraftDto), nameof(Created));
+        
+        [JsonPropertyName("created")]
+        public SpaceTime? Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
         }
     
         private PropertyValue<bool> _publishedFlag = new PropertyValue<bool>(nameof(DRDraftDto), nameof(PublishedFlag));
@@ -185,6 +195,7 @@ namespace SpaceDotNet.Client
             _text.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _modified.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
             _publishedFlag.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
             _accessOrdinal.SetAccessPath(path, validateHasBeenSet);

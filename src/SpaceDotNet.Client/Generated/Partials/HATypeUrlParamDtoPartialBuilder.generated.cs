@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.HATypeUrlParamDtoPartialBuilder
         public static Partial<HATypeUrlParamDto> WithNullable(this Partial<HATypeUrlParamDto> it)
             => it.AddFieldName("nullable");
         
-        public static Partial<HATypeUrlParamDto> WithOptional(this Partial<HATypeUrlParamDto> it)
-            => it.AddFieldName("optional");
-        
     }
     
 }

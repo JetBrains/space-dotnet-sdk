@@ -62,6 +62,18 @@ namespace SpaceDotNet.Client
             public async Task<ArticleRecordDto> GetArticleAsync(string id, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/{id}?$fields={(partial != null ? partial(new Partial<ArticleRecordDto>()) : Partial<ArticleRecordDto>.Default())}");
         
+            /// <summary>
+            /// Unpublish the article and delete its draft (if any)
+            /// </summary>
+            public async Task DeleteArticleAsync(string articleId)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/article-id:{articleId}/delete");
+        
+            /// <summary>
+            /// Unpublish the article, but keeps its draft
+            /// </summary>
+            public async Task UnpublishArticleAsync(string articleId)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/article-id:{articleId}/unpublish");
+        
             public DraftClient Drafts => new DraftClient(_connection);
             
             public partial class DraftClient
@@ -79,6 +91,12 @@ namespace SpaceDotNet.Client
                 public async Task<DRDraftIdDto> GetDraftByArticleIdAsync(string articleId, Func<Partial<DRDraftIdDto>, Partial<DRDraftIdDto>>? partial = null)
                     => await _connection.RequestResourceAsync<DRDraftIdDto>("GET", $"api/http/blogs/articles/drafts/article-id:{articleId}?$fields={(partial != null ? partial(new Partial<DRDraftIdDto>()) : Partial<DRDraftIdDto>.Default())}");
             
+                public async Task<ArticleRecordDto> GetDraftByDraftIdAsync(string draftId, Func<Partial<ArticleRecordDto>, Partial<ArticleRecordDto>>? partial = null)
+                    => await _connection.RequestResourceAsync<ArticleRecordDto>("GET", $"api/http/blogs/articles/drafts/draft-id:{draftId}?$fields={(partial != null ? partial(new Partial<ArticleRecordDto>()) : Partial<ArticleRecordDto>.Default())}");
+            
+                /// <summary>
+                /// Unpublish the article, but keeps its draft
+                /// </summary>
                 public async Task UnpublishArticleAsync(string draftId)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish");
             

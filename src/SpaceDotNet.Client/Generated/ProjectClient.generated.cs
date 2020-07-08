@@ -96,6 +96,117 @@ namespace SpaceDotNet.Client
         public async Task ArchiveProjectAsync(ProjectIdentifier project)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}");
     
+        public AutomationClient Automation => new AutomationClient(_connection);
+        
+        public partial class AutomationClient
+        {
+            private readonly Connection _connection;
+            
+            public AutomationClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public GraphExecutionClient GraphExecutions => new GraphExecutionClient(_connection);
+            
+            public partial class GraphExecutionClient
+            {
+                private readonly Connection _connection;
+                
+                public GraphExecutionClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Stop execution by ExecutionId.
+                /// </summary>
+                public async Task StopAsync(string id)
+                    => await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop");
+            
+                public async Task<JobExecutionDTODto> GetGraphExecutionAsync(string id, Func<Partial<JobExecutionDTODto>, Partial<JobExecutionDTODto>>? partial = null)
+                    => await _connection.RequestResourceAsync<JobExecutionDTODto>("GET", $"api/http/projects/automation/graph-executions/{id}?$fields={(partial != null ? partial(new Partial<JobExecutionDTODto>()) : Partial<JobExecutionDTODto>.Default())}");
+            
+                public ParameterClient Parameters => new ParameterClient(_connection);
+                
+                public partial class ParameterClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ParameterClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task<string> GetParameterAsync(long id, string key)
+                        => await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/automation/graph-executions/{id}/parameters?key={key.ToString()}");
+                
+                    public async Task UpdateParameterAsync(long id, string key, string value)
+                        => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/automation/graph-executions/{id}/parameters", new ProjectsAutomationGraphExecutionsForIdParametersRequest{ Key = key, Value = value });
+                
+                    public async Task DeleteParameterAsync(long id, string key)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/automation/graph-executions/{id}/parameters?key={key.ToString()}");
+                
+                }
+            
+            }
+        
+        }
+    
+        public partial class AutomationClient
+        {
+            public partial class GraphExecutionClient
+            {
+                /// <summary>
+                /// Search executions. Parameters are applied as 'AND' filters.
+                /// </summary>
+                public async Task<Batch<JobExecutionDTODto>> GetAllGraphExecutionsAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = null, Func<Partial<Batch<JobExecutionDTODto>>, Partial<Batch<JobExecutionDTODto>>>? partial = null)
+                    => await _connection.RequestResourceAsync<Batch<JobExecutionDTODto>>("GET", $"api/http/projects/{project}/automation/graph-executions?jobId={jobId.ToString()}&branchFilter={branchFilter?.ToString() ?? "null"}&statusFilter={statusFilter?.ToString() ?? "null"}&jobTriggerFilter={jobTriggerFilter?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<JobExecutionDTODto>>()) : Partial<Batch<JobExecutionDTODto>>.Default())}");
+                
+                /// <summary>
+                /// Search executions. Parameters are applied as 'AND' filters.
+                /// </summary>
+                public IAsyncEnumerable<JobExecutionDTODto> GetAllGraphExecutionsAsyncEnumerable(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = null, Func<Partial<JobExecutionDTODto>, Partial<JobExecutionDTODto>>? partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, top: top, skip: batchSkip, partial: builder => Partial<Batch<JobExecutionDTODto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobExecutionDTODto>.Default())), skip);
+            
+            }
+        
+            public JobClient Jobs => new JobClient(_connection);
+            
+            public partial class JobClient
+            {
+                private readonly Connection _connection;
+                
+                public JobClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Start Job. Returns Execution id, see projects/automation/graph-executions/{id}
+                /// </summary>
+                public async Task<string> StartAsync(ProjectIdentifier project, string jobId, string branch)
+                    => await _connection.RequestResourceAsync<ProjectsForProjectAutomationJobsForJobIdStartRequest, string>("POST", $"api/http/projects/{project}/automation/jobs/{jobId}/start", new ProjectsForProjectAutomationJobsForJobIdStartRequest{ Branch = branch });
+            
+                /// <summary>
+                /// Search jobs. Parameters are applied as 'AND' filters.
+                /// </summary>
+                public async Task<Batch<JobDTODto>> GetAllJobsAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = null, Func<Partial<Batch<JobDTODto>>, Partial<Batch<JobDTODto>>>? partial = null)
+                    => await _connection.RequestResourceAsync<Batch<JobDTODto>>("GET", $"api/http/projects/{project}/automation/jobs?repoFilter={repoFilter.ToString()}&branchFilter={branchFilter.ToString()}&trigger={trigger?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<JobDTODto>>()) : Partial<Batch<JobDTODto>>.Default())}");
+                
+                /// <summary>
+                /// Search jobs. Parameters are applied as 'AND' filters.
+                /// </summary>
+                public IAsyncEnumerable<JobDTODto> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = null, Func<Partial<JobDTODto>, Partial<JobDTODto>>? partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, skip: batchSkip, partial: builder => Partial<Batch<JobDTODto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobDTODto>.Default())), skip);
+            
+                public async Task<JobDTODto> GetJobAsync(ProjectIdentifier project, string jobId, Func<Partial<JobDTODto>, Partial<JobDTODto>>? partial = null)
+                    => await _connection.RequestResourceAsync<JobDTODto>("GET", $"api/http/projects/{project}/automation/jobs/{jobId}?$fields={(partial != null ? partial(new Partial<JobDTODto>()) : Partial<JobDTODto>.Default())}");
+            
+            }
+        
+        }
+    
         public PrivateProjectClient PrivateProjects => new PrivateProjectClient(_connection);
         
         public partial class PrivateProjectClient

@@ -47,6 +47,15 @@ namespace SpaceDotNet.Client.ArticleRecordDtoPartialBuilder
         public static Partial<ArticleRecordDto> WithAliases(this Partial<ArticleRecordDto> it, Func<Partial<BGArticleAliasDto>, Partial<BGArticleAliasDto>> partialBuilder)
             => it.AddFieldName("aliases", partialBuilder(new Partial<BGArticleAliasDto>(it)));
         
+        public static Partial<ArticleRecordDto> WithArchivedBy(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("archivedBy");
+        
+        public static Partial<ArticleRecordDto> WithArchivedBy(this Partial<ArticleRecordDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
+            => it.AddFieldName("archivedBy", partialBuilder(new Partial<TDMemberProfileDto>(it)));
+        
+        public static Partial<ArticleRecordDto> WithArchivedAt(this Partial<ArticleRecordDto> it)
+            => it.AddFieldName("archivedAt");
+        
         public static Partial<ArticleRecordDto> WithChannel(this Partial<ArticleRecordDto> it)
             => it.AddFieldName("channel");
         

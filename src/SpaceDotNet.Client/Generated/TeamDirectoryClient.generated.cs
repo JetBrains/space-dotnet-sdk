@@ -275,6 +275,49 @@ namespace SpaceDotNet.Client
         
         }
     
+        public LocationMapMemberPointClient LocationMapMemberPoints => new LocationMapMemberPointClient(_connection);
+        
+        public partial class LocationMapMemberPointClient
+        {
+            private readonly Connection _connection;
+            
+            public LocationMapMemberPointClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Mark member location's id position on a map.
+            /// </summary>
+            public async Task<TDLocationMapPointDto> CreateLocationMapMemberPointAsync(string memberLocationId, int x, int y, string mapId, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>>? partial = null)
+                => await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsRequest, TDLocationMapPointDto>("POST", $"api/http/team-directory/location-map-member-points?$fields={(partial != null ? partial(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default())}", new TeamDirectoryLocationMapMemberPointsRequest{ MemberLocationId = memberLocationId, X = x, Y = y, MapId = mapId });
+        
+            /// <summary>
+            /// Get members on map for a location id.
+            /// </summary>
+            public async Task<Batch<TDMemberInLocationMapDto>> GetAllLocationMapMemberPointsAsync(string locationId, bool includeUnmarked, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberInLocationMapDto>>, Partial<Batch<TDMemberInLocationMapDto>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<TDMemberInLocationMapDto>>("GET", $"api/http/team-directory/location-map-member-points?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&locationId={locationId.ToString()}&includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberInLocationMapDto>>()) : Partial<Batch<TDMemberInLocationMapDto>>.Default())}");
+            
+            /// <summary>
+            /// Get members on map for a location id.
+            /// </summary>
+            public IAsyncEnumerable<TDMemberInLocationMapDto> GetAllLocationMapMemberPointsAsyncEnumerable(string locationId, bool includeUnmarked, string? skip = null, int? top = null, Func<Partial<TDMemberInLocationMapDto>, Partial<TDMemberInLocationMapDto>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllLocationMapMemberPointsAsync(locationId: locationId, includeUnmarked: includeUnmarked, top: top, skip: batchSkip, partial: builder => Partial<Batch<TDMemberInLocationMapDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberInLocationMapDto>.Default())), skip);
+        
+            /// <summary>
+            /// Update member location's position on a map.
+            /// </summary>
+            public async Task<TDLocationMapPointDto> UpdateLocationMapMemberPointAsync(string locationPointId, int? x = null, int? y = null, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>>? partial = null)
+                => await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsForLocationPointIdRequest, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/location-map-member-points/{locationPointId}?$fields={(partial != null ? partial(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default())}", new TeamDirectoryLocationMapMemberPointsForLocationPointIdRequest{ X = x, Y = y });
+        
+            /// <summary>
+            /// Delete member location from a map.
+            /// </summary>
+            public async Task DeleteLocationMapMemberPointAsync(string locationPointId, bool delete)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-map-member-points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");
+        
+        }
+    
         public LocationClient Locations => new LocationClient(_connection);
         
         public partial class LocationClient
@@ -351,25 +394,6 @@ namespace SpaceDotNet.Client
                 public async Task<TDLocationMapDto> UpdateMapAsync(string id, string mapPictureId, Func<Partial<TDLocationMapDto>, Partial<TDLocationMapDto>>? partial = null)
                     => await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdMapRequest, TDLocationMapDto>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields={(partial != null ? partial(new Partial<TDLocationMapDto>()) : Partial<TDLocationMapDto>.Default())}", new TeamDirectoryLocationsForIdMapRequest{ MapPictureId = mapPictureId });
             
-                public MemberClient Members => new MemberClient(_connection);
-                
-                public partial class MemberClient
-                {
-                    private readonly Connection _connection;
-                    
-                    public MemberClient(Connection connection)
-                    {
-                        _connection = connection;
-                    }
-                    
-                    /// <summary>
-                    /// Get members on map for a location id.
-                    /// </summary>
-                    public async Task<List<TDMemberInLocationMapListDto>> GetAllMembersAsync(string id, bool includeUnmarked, Func<Partial<TDMemberInLocationMapListDto>, Partial<TDMemberInLocationMapListDto>>? partial = null)
-                        => await _connection.RequestResourceAsync<List<TDMemberInLocationMapListDto>>("GET", $"api/http/team-directory/locations/{id}/map/members?includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDMemberInLocationMapListDto>()) : Partial<TDMemberInLocationMapListDto>.Default())}");
-                
-                }
-            
             }
         
         }
@@ -426,63 +450,32 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Add a member location, optionally from/until a given date.
             /// </summary>
-            public async Task<TDMemberLocationDto> CreateMemberLocationAsync(string member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
+            public async Task<TDMemberLocationDto> CreateMemberLocationAsync(ProfileIdentifier member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsRequest, TDMemberLocationDto>("POST", $"api/http/team-directory/member-locations?$fields={(partial != null ? partial(new Partial<TDMemberLocationDto>()) : Partial<TDMemberLocationDto>.Default())}", new TeamDirectoryMemberLocationsRequest{ Member = member, Location = location, Since = since, Till = till, PreviousLocation = previousLocation });
         
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocationsAsync(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocationDto>>, Partial<Batch<TDMemberLocationDto>>>? partial = null)
+            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocationsAsync(bool withArchived, string? skip = null, int? top = null, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocationDto>>, Partial<Batch<TDMemberLocationDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocationDto>>()) : Partial<Batch<TDMemberLocationDto>>.Default())}");
             
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDMemberLocationDto> GetAllMemberLocationsAsyncEnumerable(bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
+            public IAsyncEnumerable<TDMemberLocationDto> GetAllMemberLocationsAsyncEnumerable(bool withArchived, string? skip = null, int? top = null, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllMemberLocationsAsync(withArchived: withArchived, top: top, profiles: profiles, locations: locations, since: since, till: till, skip: batchSkip, partial: builder => Partial<Batch<TDMemberLocationDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberLocationDto>.Default())), skip);
         
             /// <summary>
             /// Update member location. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
-            public async Task<TDMemberLocationDto> UpdateMemberLocationAsync(string id, string? member = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
-                => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForIdRequest, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{id}?$fields={(partial != null ? partial(new Partial<TDMemberLocationDto>()) : Partial<TDMemberLocationDto>.Default())}", new TeamDirectoryMemberLocationsForIdRequest{ Member = member, Location = location, Since = since, Till = till, PreviousLocation = previousLocation });
+            public async Task<TDMemberLocationDto> UpdateMemberLocationAsync(string memberLocationId, string? location = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
+                => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForMemberLocationIdRequest, TDMemberLocationDto>("PATCH", $"api/http/team-directory/member-locations/{memberLocationId}?$fields={(partial != null ? partial(new Partial<TDMemberLocationDto>()) : Partial<TDMemberLocationDto>.Default())}", new TeamDirectoryMemberLocationsForMemberLocationIdRequest{ Location = location, Since = since, Till = till });
         
             /// <summary>
             /// Archive/unarchive a member location. Setting delete to true will archive the member location, false will restore it.
             /// </summary>
-            public async Task DeleteMemberLocationAsync(string id, bool delete)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}?delete={delete.ToString().ToLowerInvariant()}");
-        
-            public PointClient Points => new PointClient(_connection);
-            
-            public partial class PointClient
-            {
-                private readonly Connection _connection;
-                
-                public PointClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                /// <summary>
-                /// Mark profile id position on a map.
-                /// </summary>
-                public async Task<TDLocationMapPointDto> CreatePointAsync(string id, int x, int y, string mapId, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>>? partial = null)
-                    => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForIdPointsRequest, TDLocationMapPointDto>("POST", $"api/http/team-directory/member-locations/{id}/points?$fields={(partial != null ? partial(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default())}", new TeamDirectoryMemberLocationsForIdPointsRequest{ X = x, Y = y, MapId = mapId });
-            
-                /// <summary>
-                /// Update profile id position on a map.
-                /// </summary>
-                public async Task<TDLocationMapPointDto> UpdatePointAsync(string locationPointId, string id, int? x = null, int? y = null, string? mapId = null, Func<Partial<TDLocationMapPointDto>, Partial<TDLocationMapPointDto>>? partial = null)
-                    => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForIdPointsForLocationPointIdRequest, TDLocationMapPointDto>("PATCH", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?$fields={(partial != null ? partial(new Partial<TDLocationMapPointDto>()) : Partial<TDLocationMapPointDto>.Default())}", new TeamDirectoryMemberLocationsForIdPointsForLocationPointIdRequest{ X = x, Y = y, MapId = mapId });
-            
-                /// <summary>
-                /// Delete member location from a map.
-                /// </summary>
-                public async Task DeletePointAsync(string id, string locationPointId, bool delete)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{id}/points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}");
-            
-            }
+            public async Task DeleteMemberLocationAsync(string memberLocationId, bool delete)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{memberLocationId}?delete={delete.ToString().ToLowerInvariant()}");
         
         }
     
@@ -525,8 +518,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a team membership.
             /// </summary>
-            public async Task<TDMembershipDto> CreateMembershipAsync(string memberId, string teamId, string roleId, bool lead, bool requiresApproval, string? managerId = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
-                => await _connection.RequestResourceAsync<TeamDirectoryMembershipsRequest, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields={(partial != null ? partial(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default())}", new TeamDirectoryMembershipsRequest{ MemberId = memberId, TeamId = teamId, RoleId = roleId, Lead = lead, ManagerId = managerId, Since = since, Till = till, ActiveSince = activeSince, ActiveTill = activeTill, PreviousMembershipId = previousMembershipId, RequiresApproval = requiresApproval, CustomFieldValues = customFieldValues });
+            public async Task<TDMembershipDto> CreateMembershipAsync(string memberId, string teamId, string roleId, bool lead, bool requiresApproval, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
+                => await _connection.RequestResourceAsync<TeamDirectoryMembershipsRequest, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields={(partial != null ? partial(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default())}", new TeamDirectoryMembershipsRequest{ MemberId = memberId, TeamId = teamId, RoleId = roleId, Lead = lead, ManagerId = managerId, ActiveSince = activeSince, ActiveTill = activeTill, PreviousMembershipId = previousMembershipId, RequiresApproval = requiresApproval, CustomFieldValues = customFieldValues });
         
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
@@ -543,8 +536,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Update a team membership. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
-            public async Task<TDMembershipDto> UpdateMembershipAsync(string id, bool requiresApproval, string? memberId = null, string? teamId = null, string? roleId = null, bool? lead = null, string? managerId = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
-                => await _connection.RequestResourceAsync<TeamDirectoryMembershipsForIdRequest, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields={(partial != null ? partial(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default())}", new TeamDirectoryMembershipsForIdRequest{ MemberId = memberId, TeamId = teamId, RoleId = roleId, Lead = lead, ManagerId = managerId, Since = since, Till = till, ActiveSince = activeSince, ActiveTill = activeTill, PreviousMembershipId = previousMembershipId, RequiresApproval = requiresApproval, CustomFieldValues = customFieldValues });
+            public async Task<TDMembershipDto> UpdateMembershipAsync(string id, bool requiresApproval, string? memberId = null, string? teamId = null, string? roleId = null, bool? lead = null, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
+                => await _connection.RequestResourceAsync<TeamDirectoryMembershipsForIdRequest, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields={(partial != null ? partial(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default())}", new TeamDirectoryMembershipsForIdRequest{ MemberId = memberId, TeamId = teamId, RoleId = roleId, Lead = lead, ManagerId = managerId, ActiveSince = activeSince, ActiveTill = activeTill, PreviousMembershipId = previousMembershipId, RequiresApproval = requiresApproval, CustomFieldValues = customFieldValues });
         
             /// <summary>
             /// Archive/unarchive a team membership. Setting delete to true will archive the membership, false will restore it.
@@ -646,12 +639,6 @@ namespace SpaceDotNet.Client
                 => BatchEnumerator.AllItems(batchSkip => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, top: top, teamId: teamId, locationId: locationId, roleId: roleId, order: order, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
         
             /// <summary>
-            /// Check whether one or more usernames exist. The response contains boolean values in the same order as the request, where true means the username exists.
-            /// </summary>
-            public async Task<List<string>> CheckProfileUsernamesExistenceAsync(List<string> usernames)
-                => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/team-directory/profiles/usernames-exist?usernames={usernames.JoinToString("usernames", it => it.ToString())}");
-        
-            /// <summary>
             /// Get profile information by email address.
             /// </summary>
             public async Task<TDMemberProfileDto> GetProfileByEmailAsync(string email, bool verified, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
@@ -678,17 +665,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Delete a profile.
             /// </summary>
-            public async Task<TDMemberProfileDto> DeleteProfileAsync(string profile, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+            public async Task<TDMemberProfileDto> DeleteProfileAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
-        
-            /// <summary>
-            /// Deactivate a user profile. Optionally, the since date for deactivation can be specified, and the time when deactivation goes into effect.
-            /// </summary>
-            public async Task<TDMemberProfileDto> DeactivateAsync(string profile, SpaceDate? since = null, SpaceTime? at = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
-                => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{profile}/deactivate?since={since?.ToString() ?? "null"}&at={at?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
-        
-            public async Task<TDMemberProfileDto> FireAsync(string profile, SpaceDate since, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
-                => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/{profile}/fire?since={since.ToString()}&$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
         
             public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
             
@@ -769,6 +747,25 @@ namespace SpaceDotNet.Client
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/oauth-consents/{owner}/refresh-tokens/{id}");
                 
                 }
+            
+            }
+        
+            public ProfileProfileClient Profiles => new ProfileProfileClient(_connection);
+            
+            public partial class ProfileProfileClient
+            {
+                private readonly Connection _connection;
+                
+                public ProfileProfileClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Deactivate a user profile. Optionally, the since date for deactivation can be specified, and the time when deactivation goes into effect.
+                /// </summary>
+                public async Task<TDMemberProfileDto> DeactivateAsync(ProfileIdentifier profile, SpaceTime at, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+                    => await _connection.RequestResourceAsync<TDMemberProfileDto>("DELETE", $"api/http/team-directory/profiles/profiles/{profile}/deactivate?at={at.ToString()}&$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
             
             }
         
@@ -1096,25 +1093,6 @@ namespace SpaceDotNet.Client
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}");
             
             }
-        
-        }
-    
-        public ReportingClient Reportings => new ReportingClient(_connection);
-        
-        public partial class ReportingClient
-        {
-            private readonly Connection _connection;
-            
-            public ReportingClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<Batch<TDMemberProfileDto>> GetAllReportingsAsync(string query, string? skip = null, int? top = null, bool? withManager = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/reportings?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withManager={withManager?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
-            
-            public IAsyncEnumerable<TDMemberProfileDto> GetAllReportingsAsyncEnumerable(string query, string? skip = null, int? top = null, bool? withManager = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllReportingsAsync(query: query, top: top, withManager: withManager, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
         
         }
     

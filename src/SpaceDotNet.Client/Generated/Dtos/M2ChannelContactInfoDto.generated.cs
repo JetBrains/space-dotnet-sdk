@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client
     public interface M2ChannelContactInfoDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static BillingFeedChannelDto BillingFeedChannel(ChannelSpecificDefaultsDto? notificationDefaults = null)
+            => new BillingFeedChannelDto(notificationDefaults: null);
+        
         public static M2ChannelContactArticleDto M2ChannelContactArticle(ArticleRecordDto article, ChannelSpecificDefaultsDto notificationDefaults)
             => new M2ChannelContactArticleDto(article: article, notificationDefaults: notificationDefaults);
         

@@ -29,13 +29,10 @@ namespace SpaceDotNet.Client
         public static readonly ExecutionStatus SCHEDULED = new ExecutionStatus("SCHEDULED");
         public static readonly ExecutionStatus PENDING = new ExecutionStatus("PENDING");
         public static readonly ExecutionStatus READYTOSTART = new ExecutionStatus("READY_TO_START");
-        public static readonly ExecutionStatus FAILEDTOSTART = new ExecutionStatus("FAILED_TO_START");
         public static readonly ExecutionStatus RUNNING = new ExecutionStatus("RUNNING");
-        public static readonly ExecutionStatus FAILING = new ExecutionStatus("FAILING");
-        public static readonly ExecutionStatus SUCCEEDED = new ExecutionStatus("SUCCEEDED");
+        public static readonly ExecutionStatus FINISHED = new ExecutionStatus("FINISHED");
         public static readonly ExecutionStatus TERMINATED = new ExecutionStatus("TERMINATED");
         public static readonly ExecutionStatus FAILED = new ExecutionStatus("FAILED");
-        public static readonly ExecutionStatus HANGING = new ExecutionStatus("HANGING");
     }
     
 }

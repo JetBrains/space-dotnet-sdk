@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMemberLocationsRequest() { }
         
-        public TeamDirectoryMemberLocationsRequest(string member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null)
+        public TeamDirectoryMemberLocationsRequest(ProfileIdentifier member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null)
         {
             Member = member;
             Location = location;
@@ -35,11 +35,11 @@ namespace SpaceDotNet.Client
             PreviousLocation = previousLocation;
         }
         
-        private PropertyValue<string> _member = new PropertyValue<string>(nameof(TeamDirectoryMemberLocationsRequest), nameof(Member));
+        private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(TeamDirectoryMemberLocationsRequest), nameof(Member));
         
         [Required]
         [JsonPropertyName("member")]
-        public string Member
+        public ProfileIdentifier Member
         {
             get { return _member.GetValue(); }
             set { _member.SetValue(value); }

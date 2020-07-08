@@ -32,6 +32,15 @@ namespace SpaceDotNet.Client.HAFieldDtoPartialBuilder
         public static Partial<HAFieldDto> WithType(this Partial<HAFieldDto> it, Func<Partial<HATypeDto>, Partial<HATypeDto>> partialBuilder)
             => it.AddFieldName("type", partialBuilder(new Partial<HATypeDto>(it)));
         
+        public static Partial<HAFieldDto> WithDefaultValue(this Partial<HAFieldDto> it)
+            => it.AddFieldName("defaultValue");
+        
+        public static Partial<HAFieldDto> WithDefaultValue(this Partial<HAFieldDto> it, Func<Partial<HADefaultValueDto>, Partial<HADefaultValueDto>> partialBuilder)
+            => it.AddFieldName("defaultValue", partialBuilder(new Partial<HADefaultValueDto>(it)));
+        
+        public static Partial<HAFieldDto> WithOptional(this Partial<HAFieldDto> it)
+            => it.AddFieldName("optional");
+        
         public static Partial<HAFieldDto> WithDeprecation(this Partial<HAFieldDto> it)
             => it.AddFieldName("deprecation");
         

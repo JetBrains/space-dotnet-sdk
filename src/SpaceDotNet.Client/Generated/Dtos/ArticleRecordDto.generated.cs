@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ArticleRecordDto() { }
         
-        public ArticleRecordDto(string id, bool archived, string title, SpaceTime created, TDMemberProfileDto author, List<BGArticleAliasDto> aliases, M2ChannelRecordDto channel, M2ChannelContentRecordDto channelContent, AllReactionsToItemRecordDto reactions, string content, bool editable, string preview, List<ArticleMarkdownImageDto> previewImages, MeetingRecordDto? @event = null, ExternalEntityInfoRecordDto? externalEntityInfo = null, TDLocationDto? location = null, List<TDLocationDto>? locations = null, PRProjectDto? project = null, TDTeamDto? team = null, List<TDTeamDto>? teams = null, int? wordsNumber = null)
+        public ArticleRecordDto(string id, bool archived, string title, SpaceTime created, TDMemberProfileDto author, List<BGArticleAliasDto> aliases, M2ChannelRecordDto channel, M2ChannelContentRecordDto channelContent, AllReactionsToItemRecordDto reactions, string content, bool editable, string preview, List<ArticleMarkdownImageDto> previewImages, TDMemberProfileDto? archivedBy = null, SpaceTime? archivedAt = null, MeetingRecordDto? @event = null, ExternalEntityInfoRecordDto? externalEntityInfo = null, TDLocationDto? location = null, List<TDLocationDto>? locations = null, PRProjectDto? project = null, TDTeamDto? team = null, List<TDTeamDto>? teams = null, int? wordsNumber = null)
         {
             Id = id;
             Archived = archived;
@@ -34,6 +34,8 @@ namespace SpaceDotNet.Client
             Created = created;
             Author = author;
             Aliases = aliases;
+            ArchivedBy = archivedBy;
+            ArchivedAt = archivedAt;
             Channel = channel;
             ChannelContent = channelContent;
             Reactions = reactions;
@@ -109,6 +111,24 @@ namespace SpaceDotNet.Client
         {
             get { return _aliases.GetValue(); }
             set { _aliases.SetValue(value); }
+        }
+    
+        private PropertyValue<TDMemberProfileDto?> _archivedBy = new PropertyValue<TDMemberProfileDto?>(nameof(ArticleRecordDto), nameof(ArchivedBy));
+        
+        [JsonPropertyName("archivedBy")]
+        public TDMemberProfileDto? ArchivedBy
+        {
+            get { return _archivedBy.GetValue(); }
+            set { _archivedBy.SetValue(value); }
+        }
+    
+        private PropertyValue<SpaceTime?> _archivedAt = new PropertyValue<SpaceTime?>(nameof(ArticleRecordDto), nameof(ArchivedAt));
+        
+        [JsonPropertyName("archivedAt")]
+        public SpaceTime? ArchivedAt
+        {
+            get { return _archivedAt.GetValue(); }
+            set { _archivedAt.SetValue(value); }
         }
     
         private PropertyValue<M2ChannelRecordDto> _channel = new PropertyValue<M2ChannelRecordDto>(nameof(ArticleRecordDto), nameof(Channel));
@@ -261,6 +281,8 @@ namespace SpaceDotNet.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _aliases.SetAccessPath(path, validateHasBeenSet);
+            _archivedBy.SetAccessPath(path, validateHasBeenSet);
+            _archivedAt.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _channelContent.SetAccessPath(path, validateHasBeenSet);
             _reactions.SetAccessPath(path, validateHasBeenSet);

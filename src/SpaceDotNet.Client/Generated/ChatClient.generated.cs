@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Send a message to a recipient, such as a channel, member, issue, code review, ... Message content can be a string, or a block with one or several sections of information.
             /// </summary>
-            public async Task<ChannelItemRecordDto> SendMessageAsync(MessageRecipientDto recipient, ChatMessageDto content, bool? unfurlLinks = null, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<ChatsMessagesSendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send-message?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", new ChatsMessagesSendMessageRequest{ Recipient = recipient, Content = content, UnfurlLinks = unfurlLinks });
+            public async Task<ChannelItemRecordDto> SendMessageAsync(MessageRecipientDto recipient, ChatMessageDto content, bool? unfurlLinks = null, List<AttachmentDto>? attachments = null, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
+                => await _connection.RequestResourceAsync<ChatsMessagesSendMessageRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send-message?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", new ChatsMessagesSendMessageRequest{ Recipient = recipient, Content = content, UnfurlLinks = unfurlLinks, Attachments = attachments });
         
         }
     

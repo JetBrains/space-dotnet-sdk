@@ -38,6 +38,12 @@ namespace SpaceDotNet.Client.ChatsMessagesSendMessageRequestPartialBuilder
         public static Partial<ChatsMessagesSendMessageRequest> WithUnfurlLinks(this Partial<ChatsMessagesSendMessageRequest> it)
             => it.AddFieldName("unfurlLinks");
         
+        public static Partial<ChatsMessagesSendMessageRequest> WithAttachments(this Partial<ChatsMessagesSendMessageRequest> it)
+            => it.AddFieldName("attachments");
+        
+        public static Partial<ChatsMessagesSendMessageRequest> WithAttachments(this Partial<ChatsMessagesSendMessageRequest> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>(it)));
+        
     }
     
 }

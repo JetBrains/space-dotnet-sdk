@@ -30,6 +30,9 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
+        public async Task<bool> CheckPermissionAsync(PrincipalInDto principal, string uniqueRightCode, PermissionTargetDto target)
+            => await _connection.RequestResourceAsync<PermissionsCheckPermissionRequest, bool>("POST", $"api/http/permissions/check-permission", new PermissionsCheckPermissionRequest{ Principal = principal, UniqueRightCode = uniqueRightCode, Target = target });
+    
         public async Task<DTORightsWithHierarchyDto> GetAllPermissionsAsync(Func<Partial<DTORightsWithHierarchyDto>, Partial<DTORightsWithHierarchyDto>>? partial = null)
             => await _connection.RequestResourceAsync<DTORightsWithHierarchyDto>("GET", $"api/http/permissions?$fields={(partial != null ? partial(new Partial<DTORightsWithHierarchyDto>()) : Partial<DTORightsWithHierarchyDto>.Default())}");
     

@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public KBBookDto() { }
         
-        public KBBookDto(string id, bool archived, string name, string summary, long updated, string alias, List<TDLocationDto> locations, List<TDTeamDto> teams, KBFolderDto rootFolder, List<KBBookContextDto>? contexts = null)
+        public KBBookDto(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContextDto> contexts, List<TDLocationDto> locations, List<TDTeamDto> teams, KBFolderDto rootFolder)
         {
             Id = id;
             Archived = archived;
@@ -100,10 +100,11 @@ namespace SpaceDotNet.Client
             set { _alias.SetValue(value); }
         }
     
-        private PropertyValue<List<KBBookContextDto>?> _contexts = new PropertyValue<List<KBBookContextDto>?>(nameof(KBBookDto), nameof(Contexts));
+        private PropertyValue<List<KBBookContextDto>> _contexts = new PropertyValue<List<KBBookContextDto>>(nameof(KBBookDto), nameof(Contexts));
         
+        [Required]
         [JsonPropertyName("contexts")]
-        public List<KBBookContextDto>? Contexts
+        public List<KBBookContextDto> Contexts
         {
             get { return _contexts.GetValue(); }
             set { _contexts.SetValue(value); }

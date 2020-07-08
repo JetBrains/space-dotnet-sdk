@@ -29,11 +29,10 @@ namespace SpaceDotNet.Client
         
         public HATypeEnumDto() { }
         
-        public HATypeEnumDto(HAEnumDto @enum, bool nullable, bool optional)
+        public HATypeEnumDto(HAEnumDto @enum, bool nullable)
         {
             Enum = @enum;
             Nullable = nullable;
-            Optional = optional;
         }
         
         private PropertyValue<HAEnumDto> _enum = new PropertyValue<HAEnumDto>(nameof(HATypeEnumDto), nameof(Enum));
@@ -56,21 +55,10 @@ namespace SpaceDotNet.Client
             set { _nullable.SetValue(value); }
         }
     
-        private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypeEnumDto), nameof(Optional));
-        
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional
-        {
-            get { return _optional.GetValue(); }
-            set { _optional.SetValue(value); }
-        }
-    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _enum.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
-            _optional.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

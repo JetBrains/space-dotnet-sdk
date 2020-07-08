@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.HATypeEnumDtoPartialBuilder
         public static Partial<HATypeEnumDto> WithNullable(this Partial<HATypeEnumDto> it)
             => it.AddFieldName("nullable");
         
-        public static Partial<HATypeEnumDto> WithOptional(this Partial<HATypeEnumDto> it)
-            => it.AddFieldName("optional");
-        
     }
     
 }

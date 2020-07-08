@@ -26,15 +26,13 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMembershipsRequest() { }
         
-        public TeamDirectoryMembershipsRequest(string memberId, string teamId, string roleId, bool lead, bool requiresApproval, string? managerId = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public TeamDirectoryMembershipsRequest(string memberId, string teamId, string roleId, bool lead, bool requiresApproval, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null)
         {
             MemberId = memberId;
             TeamId = teamId;
             RoleId = roleId;
             Lead = lead;
             ManagerId = managerId;
-            Since = since;
-            Till = till;
             ActiveSince = activeSince;
             ActiveTill = activeTill;
             PreviousMembershipId = previousMembershipId;
@@ -91,24 +89,6 @@ namespace SpaceDotNet.Client
             set { _managerId.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _since = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryMembershipsRequest), nameof(Since));
-        
-        [JsonPropertyName("since")]
-        public SpaceDate? Since
-        {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
-        }
-    
-        private PropertyValue<SpaceDate?> _till = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryMembershipsRequest), nameof(Till));
-        
-        [JsonPropertyName("till")]
-        public SpaceDate? Till
-        {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
-        }
-    
         private PropertyValue<SpaceTime?> _activeSince = new PropertyValue<SpaceTime?>(nameof(TeamDirectoryMembershipsRequest), nameof(ActiveSince));
         
         [JsonPropertyName("activeSince")]
@@ -162,8 +142,6 @@ namespace SpaceDotNet.Client
             _roleId.SetAccessPath(path, validateHasBeenSet);
             _lead.SetAccessPath(path, validateHasBeenSet);
             _managerId.SetAccessPath(path, validateHasBeenSet);
-            _since.SetAccessPath(path, validateHasBeenSet);
-            _till.SetAccessPath(path, validateHasBeenSet);
             _activeSince.SetAccessPath(path, validateHasBeenSet);
             _activeTill.SetAccessPath(path, validateHasBeenSet);
             _previousMembershipId.SetAccessPath(path, validateHasBeenSet);

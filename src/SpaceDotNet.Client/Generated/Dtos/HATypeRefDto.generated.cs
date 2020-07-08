@@ -29,11 +29,10 @@ namespace SpaceDotNet.Client
         
         public HATypeRefDto() { }
         
-        public HATypeRefDto(HADtoDto dto, bool nullable, bool optional)
+        public HATypeRefDto(HADtoDto dto, bool nullable)
         {
             Dto = dto;
             Nullable = nullable;
-            Optional = optional;
         }
         
         private PropertyValue<HADtoDto> _dto = new PropertyValue<HADtoDto>(nameof(HATypeRefDto), nameof(Dto));
@@ -56,21 +55,10 @@ namespace SpaceDotNet.Client
             set { _nullable.SetValue(value); }
         }
     
-        private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HATypeRefDto), nameof(Optional));
-        
-        [Required]
-        [JsonPropertyName("optional")]
-        public bool Optional
-        {
-            get { return _optional.GetValue(); }
-            set { _optional.SetValue(value); }
-        }
-    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _dto.SetAccessPath(path, validateHasBeenSet);
             _nullable.SetAccessPath(path, validateHasBeenSet);
-            _optional.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

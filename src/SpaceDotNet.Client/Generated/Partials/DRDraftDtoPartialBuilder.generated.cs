@@ -41,6 +41,9 @@ namespace SpaceDotNet.Client.DRDraftDtoPartialBuilder
         public static Partial<DRDraftDto> WithModified(this Partial<DRDraftDto> it)
             => it.AddFieldName("modified");
         
+        public static Partial<DRDraftDto> WithCreated(this Partial<DRDraftDto> it)
+            => it.AddFieldName("created");
+        
         public static Partial<DRDraftDto> WithPublishedFlag(this Partial<DRDraftDto> it)
             => it.AddFieldName("publishedFlag");
         

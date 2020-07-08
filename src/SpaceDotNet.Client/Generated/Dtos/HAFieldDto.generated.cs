@@ -26,10 +26,12 @@ namespace SpaceDotNet.Client
     {
         public HAFieldDto() { }
         
-        public HAFieldDto(string name, HATypeDto type, HADeprecationDto? deprecation = null)
+        public HAFieldDto(string name, HATypeDto type, bool optional, HADefaultValueDto? defaultValue = null, HADeprecationDto? deprecation = null)
         {
             Name = name;
             Type = type;
+            DefaultValue = defaultValue;
+            Optional = optional;
             Deprecation = deprecation;
         }
         
@@ -53,6 +55,25 @@ namespace SpaceDotNet.Client
             set { _type.SetValue(value); }
         }
     
+        private PropertyValue<HADefaultValueDto?> _defaultValue = new PropertyValue<HADefaultValueDto?>(nameof(HAFieldDto), nameof(DefaultValue));
+        
+        [JsonPropertyName("defaultValue")]
+        public HADefaultValueDto? DefaultValue
+        {
+            get { return _defaultValue.GetValue(); }
+            set { _defaultValue.SetValue(value); }
+        }
+    
+        private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HAFieldDto), nameof(Optional));
+        
+        [Required]
+        [JsonPropertyName("optional")]
+        public bool Optional
+        {
+            get { return _optional.GetValue(); }
+            set { _optional.SetValue(value); }
+        }
+    
         private PropertyValue<HADeprecationDto?> _deprecation = new PropertyValue<HADeprecationDto?>(nameof(HAFieldDto), nameof(Deprecation));
         
         [JsonPropertyName("deprecation")]
@@ -66,6 +87,8 @@ namespace SpaceDotNet.Client
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
+            _defaultValue.SetAccessPath(path, validateHasBeenSet);
+            _optional.SetAccessPath(path, validateHasBeenSet);
             _deprecation.SetAccessPath(path, validateHasBeenSet);
         }
     

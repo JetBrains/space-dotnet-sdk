@@ -26,11 +26,12 @@ namespace SpaceDotNet.Client
     {
         public ChatsMessagesSendMessageRequest() { }
         
-        public ChatsMessagesSendMessageRequest(MessageRecipientDto recipient, ChatMessageDto content, bool? unfurlLinks = null)
+        public ChatsMessagesSendMessageRequest(MessageRecipientDto recipient, ChatMessageDto content, bool? unfurlLinks = null, List<AttachmentDto>? attachments = null)
         {
             Recipient = recipient;
             Content = content;
             UnfurlLinks = unfurlLinks;
+            Attachments = attachments;
         }
         
         private PropertyValue<MessageRecipientDto> _recipient = new PropertyValue<MessageRecipientDto>(nameof(ChatsMessagesSendMessageRequest), nameof(Recipient));
@@ -62,11 +63,21 @@ namespace SpaceDotNet.Client
             set { _unfurlLinks.SetValue(value); }
         }
     
+        private PropertyValue<List<AttachmentDto>?> _attachments = new PropertyValue<List<AttachmentDto>?>(nameof(ChatsMessagesSendMessageRequest), nameof(Attachments));
+        
+        [JsonPropertyName("attachments")]
+        public List<AttachmentDto>? Attachments
+        {
+            get { return _attachments.GetValue(); }
+            set { _attachments.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _recipient.SetAccessPath(path, validateHasBeenSet);
             _content.SetAccessPath(path, validateHasBeenSet);
             _unfurlLinks.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
