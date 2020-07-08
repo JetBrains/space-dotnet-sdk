@@ -18,7 +18,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 
         public string GenerateResourceDefinition(ApiResource apiResource) =>
             GenerateResourceDefinition(
-                apiResource, 
+                apiResource,
+                apiResource.ToCSharpIdentifierSingular() + "Client",
                 apiResource.Path.Segments.ToPath(),
                 apiResource.ToCSharpIdentifierSingular(),
                 new HashSet<string>(),
@@ -26,6 +27,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 
         private string GenerateResourceDefinition(
             ApiResource apiResource,
+            string typeNameForClient,
             string baseEndpointPath,
             string resourceBreadcrumbPath,
             HashSet<string> resourceBreadcrumbPaths,
@@ -33,8 +35,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
         {
             var indent = new Indent();
             var builder = new StringBuilder();
-
-            var typeNameForClient = apiResource.ToCSharpIdentifierSingular() + "Client";
             
             // Client class
             builder.AppendLine($"{indent}public partial class {typeNameForClient}");
@@ -75,10 +75,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 {
                     var nestedResourceBreadcrumbPath = (resourceBreadcrumbPath.Length > 0 ? resourceBreadcrumbPath + "." : resourceBreadcrumbPath) + apiNestedResource.ToCSharpIdentifierSingular();
 
+                    var typeNameForNestedClient = apiNestedResource.ToCSharpIdentifierSingular() + "Client";
+                    if (typeNameForNestedClient == typeNameForClient)
+                    {
+                        // Example: Team Directory > Profiles > Profiles > Deactivate -> ProfileProfileClient
+                        typeNameForNestedClient = apiNestedResource.ToCSharpIdentifierSingular() + apiNestedResource.ToCSharpIdentifierSingular() + "Client";
+                    }
+                    
                     var isFirstWrite = resourceBreadcrumbPaths.Add(nestedResourceBreadcrumbPath);
                     if (isFirstResource && isFirstWrite)
                     {
-                        var typeNameForNestedClient = apiNestedResource.ToCSharpIdentifierSingular() + "Client";
                         var propertyNameForNestedClient = apiNestedResource.ToCSharpIdentifierPlural();
                         builder.AppendLine($"{indent}public {typeNameForNestedClient} {propertyNameForNestedClient} => new {typeNameForNestedClient}(_connection);");
                         builder.AppendLine($"{indent}");
@@ -87,7 +93,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     builder.AppendLine(
                         indent.Wrap(
                             GenerateResourceDefinition(
-                                apiNestedResource, 
+                                apiNestedResource,
+                                typeNameForNestedClient,
                                 (baseEndpointPath.Length > 0 ? baseEndpointPath + "/" : baseEndpointPath) + apiNestedResource.Path.Segments.ToPath(),
                                 nestedResourceBreadcrumbPath,
                                 resourceBreadcrumbPaths,
