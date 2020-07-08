@@ -6,7 +6,10 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Formatters;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using SpaceDotNet.AspNetCore.WebHooks.Types;
 
 namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
 {
@@ -20,7 +23,8 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
     {
         private const string HeaderSpaceSignature = "X-Space-Signature";
         private const string HeaderSpaceTimestamp = "X-Space-Timestamp";
-        
+
+        private readonly IOptionsMonitor<SpaceWebHookOptions> _options;
         private readonly ILogger<SpaceActionPayloadInputFormatter> _logger;
         private readonly JsonSerializerOptions _jsonSerializerOptions = new JsonSerializerOptions
         {
@@ -32,9 +36,11 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
         /// <summary>
         /// Initializes a new instance of <see cref="SpaceActionPayloadInputFormatter"/>.
         /// </summary>
+        /// <param name="options">The <see cref="SpaceWebHookOptions"/>.</param>
         /// <param name="logger">The <see cref="ILogger"/>.</param>
-        public SpaceActionPayloadInputFormatter(ILogger<SpaceActionPayloadInputFormatter> logger)
+        public SpaceActionPayloadInputFormatter(IOptionsMonitor<SpaceWebHookOptions> options, ILogger<SpaceActionPayloadInputFormatter> logger)
         {
+            _options = options;
             _logger = logger;
             
             SupportedEncodings.Add(UTF8EncodingWithoutBOM);
@@ -50,11 +56,13 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
         /// <inheritdoc />
         InputFormatterExceptionPolicy IInputFormatterExceptionPolicy.ExceptionPolicy => InputFormatterExceptionPolicy.MalformedInputExceptions;
 
-        public override bool CanRead(InputFormatterContext context)
-        {
-            return context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceSignature) && 
-                   context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceTimestamp);
-        }
+        /// <inheritdoc />
+        public override bool CanRead(InputFormatterContext context) =>
+            context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceSignature) && 
+            context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceTimestamp);
+
+        protected override bool CanReadType(Type type) =>
+            typeof(IWebHookPayload).IsAssignableFrom(type);
 
         /// <inheritdoc />
         public sealed override async Task<InputFormatterResult> ReadRequestBodyAsync(
@@ -80,8 +88,9 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
                 using var inputStreamReader = new StreamReader(inputStream);
                 
                 var inputJsonString = await inputStreamReader.ReadToEndAsync();
-                    
-                var secret = Encoding.ASCII.GetBytes("b3570907db12e831e231c440691fb01022fae94cf72429519ca474cef5241c54"); // TODO WEBHOOK PARAMETER
+
+                var options = _options.CurrentValue;
+                var secret = Encoding.ASCII.GetBytes(options.EndpointSigningKey);
                     
                 var signatureBytes = Encoding.UTF8.GetBytes(context.HttpContext.Request.Headers[HeaderSpaceTimestamp] + ":" + inputJsonString);
                 using (var hmSha1 = new HMACSHA256(secret))
@@ -90,11 +99,19 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
                     var signatureString = ToHexString(signatureHash);
                     if (!signatureString.Equals(context.HttpContext.Request.Headers[HeaderSpaceSignature]))
                     {
-                        throw new Exception("BROKEN SIG"); // TODO WEBHOOK
+                        throw new InvalidOperationException("The webhook signature does not match the webhook payload. Make sure the endpoint signing key is configured correctly in your Space organization, and the current application.");
                     }
                 }
                     
                 model = JsonSerializer.Deserialize(inputJsonString, context.ModelType, _jsonSerializerOptions);
+
+                if (model is ActionPayload actionPayload)
+                {
+                    if (actionPayload.VerificationToken != options.EndpointVerificationToken)
+                    {
+                        throw new InvalidOperationException("The webhook verification token does not your configured verification token. Make sure the endpoint verification token is configured correctly in your Space organization, and the current application.");
+                    }
+                }
             }
             catch (JsonException jsonException)
             {

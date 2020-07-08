@@ -72,6 +72,5 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
 
             return _spaceOptions.Get(_options.Scheme);
         }
-
     }
 }

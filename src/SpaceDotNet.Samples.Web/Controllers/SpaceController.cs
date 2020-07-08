@@ -3,10 +3,10 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using SpaceDotNet.AspNetCore.WebHooks;
 using SpaceDotNet.AspNetCore.WebHooks.Types;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
+using SpaceDotNet.Samples.Web.Controllers.Handlers;
 
 namespace SpaceDotNet.Samples.Web.Controllers
 {
@@ -14,7 +14,11 @@ namespace SpaceDotNet.Samples.Web.Controllers
     public class SpaceController : Controller
     {
         private readonly Connection _connection;
-        private readonly string _chatChannelName = "SpaceDotNet";
+        
+        // TODO WEBHOOKS document
+        // NOTE: For this sample to work, create a channel,
+        // and configure https://your-app.public.example.org/space/receive as an endpoint.
+        private readonly string _chatChannelName = "Temporary-Test-Chat";
 
         public SpaceController(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
@@ -42,30 +46,24 @@ namespace SpaceDotNet.Samples.Web.Controllers
                 await chatClient.Messages.SendMessageAsync(
                     recipient: MessageRecipientDto.Channel(ChatChannelDto.FromName(_chatChannelName)),
                     content: ChatMessageDto.Block(
-                        outline: new MessageOutlineDto("Have you tried JetBrains Space?"),
-                        messageData: "Have you tried JetBrains Space?",
+                        outline: new MessageOutlineDto("Anything to eat or drink while we are on our way to Space?"),
+                        messageData: "Anything to eat or drink while we are on our way to Space?",
                         sections: new List<MessageSectionElementDto>
                         {
                             new MessageSectionDto
                             {
-                                Header = "JetBrains Space",
+                                Header = "JetBrains Space - Catering",
                                 Elements = new List<MessageElementDto>
                                 {
-                                    MessageElementDto.MessageText("JetBrains Space is an Integrated Team Environment."),
-                                    MessageElementDto.MessageText("Have you tried JetBrains Space?"),
-                                    MessageElementDto.MessageDivider(),
+                                    MessageElementDto.MessageText("Anything to eat or drink while we are on our way to Space?"),
                                     MessageElementDto.MessageControlGroup(new List<MessageControlElementDto>
                                     {
-                                        MessageControlElementDto.MessageButton("Yes", MessageButtonStyle.PRIMARY, MessageActionDto.Post("tried-space", "yes")),
-                                        MessageControlElementDto.MessageButton("No", MessageButtonStyle.SECONDARY, MessageActionDto.Post("tried-space", "no"))
-                                    }),
-                                    MessageElementDto.MessageDivider(),
-                                    MessageElementDto.MessageText("Get access at https://www.jetbrains.com/space/")
-                                },
-                                Footer = "Check it out at https://www.jetbrains.com/space/"
+                                        MessageControlElementDto.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, MessageActionDto.Post("catering-start", ""))
+                                    })
+                                }
                             }
                         },
-                        style: MessageStyle.WARNING),
+                        style: MessageStyle.PRIMARY),
                     unfurlLinks: false);
                 
                 return Content($"A chat message has been sent to the channel named \"{_chatChannelName}\" in your Space organization.");
@@ -74,15 +72,16 @@ namespace SpaceDotNet.Samples.Web.Controllers
         
         [HttpPost]
         [Route("receive")]
-        public IActionResult Receive([FromBody]ActionPayload payload)
+        public async Task<IActionResult> Receive([FromBody]ActionPayload payload)
         {
-            // TODO WEBHOOK
-            //X-Space-Signature	23a3f560ad8095545388b40755c3746f3904b8f04c655d29731674060cd96dbc
-            //X-Space-Timestamp	1594131269767
-            // val checkedSigning = HmacUtils(HmacAlgorithms.HMAC_SHA_256,
-            // client.oAuthServices.signingKey(setup.service.id)).hmacHex("$timestamp:$body")
+            if (payload.ActionId.StartsWith(CateringChatHandler.ActionIdPrefix))
+            {
+                var handler = new CateringChatHandler(_connection);
+                await handler.HandleAsync(payload);
+                return Ok();
+            }
 
-            return Content(payload.ActionId + "? " + payload.ActionValue);
+            return BadRequest($"Action with id '{payload.ActionId}' is not supported.");
         }
     }
 }

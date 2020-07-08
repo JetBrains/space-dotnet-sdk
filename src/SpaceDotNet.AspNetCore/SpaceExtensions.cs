@@ -60,7 +60,7 @@ namespace Microsoft.Extensions.DependencyInjection
             var connectionType = typeof(Connection);
             if (!services.Any(it => connectionType.IsAssignableFrom(it.ServiceType)))
             {
-                throw new Exception("The current IServiceCollection does not yet contain a registration for Connection. " +
+                throw new InvalidOperationException("The current IServiceCollection does not yet contain a registration for Connection. " +
                                     "To register the Space API client types, call AddSpaceConnection() before AddSpaceClientApi(), or manually register a Connection.");
             }
             

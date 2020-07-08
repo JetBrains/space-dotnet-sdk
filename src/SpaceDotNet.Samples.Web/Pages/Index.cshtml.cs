@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using SpaceDotNet.Client;
 using SpaceDotNet.Client.CPrincipalDtoPartialBuilder;
@@ -30,7 +29,6 @@ namespace SpaceDotNet.Samples.Web.Pages
     [Authorize]
     public class IndexModel : PageModel
     {
-        private readonly IConfiguration _configuration;
         private readonly ILogger<IndexModel> _logger;
         private readonly ProjectClient _projectClient;
         private readonly ToDoItemClient _todoClient;
@@ -47,14 +45,12 @@ namespace SpaceDotNet.Samples.Web.Pages
         public int MeetingsThisWeek { get; set; }
         
         public IndexModel(
-            IConfiguration configuration, 
             ILogger<IndexModel> logger,
             ProjectClient projectClient,
             ToDoItemClient todoClient,
             TeamDirectoryClient teamDirectoryClient,
             CalendarClient calendarClient)
         {
-            _configuration = configuration;
             _logger = logger;
             _projectClient = projectClient;
             _todoClient = todoClient;

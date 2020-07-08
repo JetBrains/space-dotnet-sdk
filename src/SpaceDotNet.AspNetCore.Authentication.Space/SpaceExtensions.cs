@@ -22,12 +22,12 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static AuthenticationBuilder AddSpace(this AuthenticationBuilder builder, string authenticationScheme, string displayName, Action<SpaceOptions> configureOptions)
         {
-            builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<SpaceOptions>, SpacePostConfigureOptions>());
-            
             builder.Services.AddOptions<SpaceOptions>(authenticationScheme)
                 .Validate(o => o.ServerUrl != null, "Space.ServerUrl is required.")
                 .Validate(o => !string.IsNullOrEmpty(o.ClientId), "Space.ClientId is required.")
                 .Validate(o => !string.IsNullOrEmpty(o.ClientSecret), "Space.ClientSecret is required.");
+
+            builder.Services.TryAddEnumerable(ServiceDescriptor.Singleton<IPostConfigureOptions<SpaceOptions>, SpacePostConfigureOptions>());
 
             return builder.AddOAuth<SpaceOptions, SpaceHandler>(authenticationScheme, displayName, configureOptions);
         }

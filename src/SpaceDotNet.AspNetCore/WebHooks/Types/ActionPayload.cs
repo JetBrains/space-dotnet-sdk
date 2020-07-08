@@ -35,7 +35,6 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Types
         [JsonPropertyName("accessToken")]
         public string AccessToken { get; set; } = default!;
 
-        // TODO WEBHOOKS add mechanism to auto-verify this
         /// <summary>
         /// Verification token. This should be identical to the verification token for the configured application. If not, the payload should be rejected.
         /// </summary>

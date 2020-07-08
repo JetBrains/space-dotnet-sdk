@@ -12,6 +12,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
     /// <summary>
     /// Configuration options for <see cref="SpaceHandler"/>.
     /// </summary>
+    [PublicAPI]
     public class SpaceOptions : OAuthOptions
     {
         private Uri? _serverUrl;
@@ -19,7 +20,6 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
         /// <summary>
         /// Initializes a new <see cref="SpaceOptions"/>.
         /// </summary>
-        [PublicAPI]
         public SpaceOptions()
         {
             CallbackPath = new PathString("/signin-space");

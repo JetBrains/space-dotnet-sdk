@@ -1,16 +1,11 @@
-using System.Linq;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpaceDotNet.AspNetCore.Authentication.Space;
 using SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement;
-using SpaceDotNet.AspNetCore.WebHooks;
-using SpaceDotNet.AspNetCore.WebHooks.Formatters;
 
 namespace SpaceDotNet.Samples.Web
 {
@@ -63,7 +58,14 @@ namespace SpaceDotNet.Samples.Web
             services.AddSpaceClientApi();
             
             // Space webhook receiver
-            services.AddSpaceWebHookReceiver();
+            services.AddSpaceWebHookReceiver(options => Configuration.Bind("Space", options));
+            
+            // - or: -
+            // services.AddSpaceWebHookReceiver(options =>
+            // {
+            //     options.EndpointSigningKey = Configuration["Space:EndpointSigningKey"];
+            //     options.EndpointVerificationToken = Configuration["Space:EndpointVerificationToken"];
+            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
