@@ -97,7 +97,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
                 {
                     var signatureHash = hmSha1.ComputeHash(signatureBytes);
                     var signatureString = ToHexString(signatureHash);
-                    if (!signatureString.Equals(context.HttpContext.Request.Headers[HeaderSpaceSignature]))
+                    if (options.ValidatePayloadSignature && !signatureString.Equals(context.HttpContext.Request.Headers[HeaderSpaceSignature]))
                     {
                         throw new InvalidOperationException("The webhook signature does not match the webhook payload. Make sure the endpoint signing key is configured correctly in your Space organization, and the current application.");
                     }
@@ -107,7 +107,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
 
                 if (model is ActionPayload actionPayload)
                 {
-                    if (actionPayload.VerificationToken != options.EndpointVerificationToken)
+                    if (options.ValidatePayloadVerificationToken && actionPayload.VerificationToken != options.EndpointVerificationToken)
                     {
                         throw new InvalidOperationException("The webhook verification token does not your configured verification token. Make sure the endpoint verification token is configured correctly in your Space organization, and the current application.");
                     }
