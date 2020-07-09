@@ -43,5 +43,23 @@ namespace SpaceDotNet.Generator
         /// Recommended value: true
         /// </summary>
         public const bool GenerateInheritorFactoryMethods = true;
+        
+        /// <summary>
+        /// Generate optional parameter defaults with reference types?
+        ///
+        /// When true, will generate optional parameter defaults with reference types, resulting in code that does not compile.
+        /// When false, will generate code that compiles.
+        /// </summary>
+        public const bool GenerateOptionalParameterDefaultReferenceTypes = false;
+
+        /// <summary>
+        /// Generate null value and default enum value for default enum?
+        /// </summary>
+        public const bool GenerateNullParametersAndDefaultEnumValueForDefaultEnum = true;
+        
+        /// <summary>
+        /// Generate null value and empty list for default collection?
+        /// </summary>
+        public const bool GenerateNullParametersAndEmptyListForDefaultCollection = true;
     }
 }

@@ -156,21 +156,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
 
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                    .WithParametersForEndpoint(apiEndpoint);
+                    .WithParametersForApiParameters(apiEndpoint.Parameters);
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     if (FeatureFlags.DoNotExposeRequestObjects)
                     {
-                        foreach (var field in apiEndpoint.RequestBody.Fields)
-                        {
-                            methodParametersBuilder = methodParametersBuilder
-                                .WithParameter(
-                                    field.Type.ToCSharpType(_codeGenerationContext) +
-                                    (field.Type.Nullable ? "?" : string.Empty),
-                                    field.ToCSharpVariableName(),
-                                    field.Type.Nullable ? "null" : string.Empty);
-                        }
+                        methodParametersBuilder = methodParametersBuilder
+                            .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
                     }
                     else
                     {
@@ -225,21 +218,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append($" {methodNameForEndpoint}Async(");
                 
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                    .WithParametersForEndpoint(apiEndpoint);
+                    .WithParametersForApiParameters(apiEndpoint.Parameters);
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     if (FeatureFlags.DoNotExposeRequestObjects)
                     {
-                        foreach (var field in apiEndpoint.RequestBody.Fields)
-                        {
-                            methodParametersBuilder = methodParametersBuilder
-                                .WithParameter(
-                                    field.Type.ToCSharpType(_codeGenerationContext) +
-                                    (field.Type.Nullable ? "?" : string.Empty),
-                                    field.ToCSharpVariableName(),
-                                    field.Type.Nullable ? "null" : string.Empty);
-                        }
+                        methodParametersBuilder = methodParametersBuilder
+                            .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
                     }
                     else
                     {
@@ -356,20 +342,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append($" {methodNameForEndpoint}AsyncEnumerable(");
             
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                    .WithParametersForEndpoint(apiEndpoint);
+                    .WithParametersForApiParameters(apiEndpoint.Parameters);
                 
                 if (apiEndpoint.RequestBody != null)
                 {
                     if (FeatureFlags.DoNotExposeRequestObjects)
                     {
-                        foreach (var field in apiEndpoint.RequestBody.Fields)
-                        {
-                            methodParametersBuilder = methodParametersBuilder
-                                .WithParameter(
-                                    field.Type.ToCSharpType(_codeGenerationContext) + (field.Type.Nullable ? "?" : string.Empty),
-                                    field.ToCSharpVariableName(),
-                                    field.Type.Nullable ? "null" : string.Empty);
-                        }
+                        methodParametersBuilder = methodParametersBuilder
+                            .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
                     }
                     else
                     {

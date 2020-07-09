@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
+using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
@@ -45,8 +46,43 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 var parameterValueBuilder = new StringBuilder();
                 parameterValueBuilder .Append("{");
-                parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
-        
+                
+                if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Collection collection && FeatureFlags.GenerateNullParametersAndEmptyListForDefaultCollection)
+                {
+                    var typeNameForArrayElement = apiEndpointParameter.Field.Type.GetArrayElementTypeOrType().ToCSharpType(_context);
+
+                    parameterValueBuilder.Append("(");
+                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
+                    parameterValueBuilder.Append($" ?? new List<{typeNameForArrayElement}>()");
+ 
+                    if (collection.Elements.Count > 0)
+                    {
+                        throw new NotSupportedException("Default values with populated collections are not supported yet.");
+                    }
+                    
+                    parameterValueBuilder.Append(")");
+                }
+                else if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Const.EnumEntry enumEntry && FeatureFlags.GenerateNullParametersAndDefaultEnumValueForDefaultEnum)
+                {
+                    var apiEnumRef = apiEndpointParameter.Field.Type as ApiFieldType.Enum;
+                    if (apiEnumRef == null || !_context.TryGetEnum(apiEnumRef.EnumRef!.Id, out var apiEnum))
+                    {
+                        throw new NotSupportedException("For " + nameof(ApiDefaultValue.Const.EnumEntry) + ", the field type should be of type" + nameof(ApiFieldType.Enum) + ".");
+                    }
+
+                    var typeNameForEnum = apiEnum.ToCSharpClassName();
+                    var identifierForValue = CSharpIdentifier.ForClassOrNamespace(enumEntry.EntryName);
+
+                    parameterValueBuilder.Append("(");
+                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
+                    parameterValueBuilder.Append($" ?? {typeNameForEnum}.{identifierForValue}");
+                    parameterValueBuilder.Append(")");
+                }
+                else
+                {
+                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
+                }
+                
                 if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
                 {
                     // For lists, we will need to repeat the parameter for each element

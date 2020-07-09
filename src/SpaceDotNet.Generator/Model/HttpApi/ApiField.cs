@@ -11,5 +11,11 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         [JsonPropertyName("type")]
         [JsonConverter(typeof(ApiFieldTypeConverter))]
         public ApiFieldType Type { get; set; } = default!;
+        
+        [JsonPropertyName("optional")]
+        public bool Optional { get; set; }
+        
+        [JsonPropertyName("defaultValue")]
+        public ApiDefaultValue? DefaultValue { get; set; }
     }
 }

@@ -14,9 +14,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         
         [JsonPropertyName("nullable")]
         public bool Nullable { get; set; }
-        
-        [JsonPropertyName("optional")]
-        public bool Optional { get; set; }
 
         public class Primitive : ApiFieldType
         {

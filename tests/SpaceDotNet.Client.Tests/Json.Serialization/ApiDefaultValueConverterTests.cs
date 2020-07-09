@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using System.Text.Json;
@@ -9,22 +10,19 @@ using Xunit;
 
 namespace SpaceDotNet.Client.Tests.Json.Serialization
 {
-    public class ApiFieldTypeConverterTests
+    public class ApiDefaultValueConverterTests
     {
         [Theory]
-        [InlineData(typeof(ApiFieldType.Array), true)]
-        [InlineData(typeof(ApiFieldType.Dto), true)]
-        [InlineData(typeof(ApiFieldType.Enum), true)]
-        [InlineData(typeof(ApiFieldType.UrlParam), true)]
-        [InlineData(typeof(ApiFieldType.Object), true)]
-        [InlineData(typeof(ApiFieldType.Primitive), true)]
-        [InlineData(typeof(ApiFieldType.Ref), true)]
+        [InlineData(typeof(ApiDefaultValue.Const.Primitive), true)]
+        [InlineData(typeof(ApiDefaultValue.Const.EnumEntry), true)]
+        [InlineData(typeof(ApiDefaultValue.Collection), true)]
+        [InlineData(typeof(ApiDefaultValue.Reference), true)]
         [InlineData(typeof(Enumeration), false)]
         [InlineData(typeof(object), false)]
         public void CanConvertTests(Type requestedType, bool expectedResult)
         {
             // Arrange
-            var target = new ApiFieldTypeConverter();
+            var target = new ApiDefaultValueConverter();
             
             // Act
             var result = target.CanConvert(requestedType);
@@ -37,36 +35,40 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
         public void ReadKnownValuesTests()
         {
             // Arrange
-            var json = "{\"className\":\"HA_Type.Primitive\",\"primitive\":\"String\",\"nullable\":true}";
-            var target = new ApiFieldTypeConverter();
+            var json = "{\"elements\":[{\"expression\":\"Test\",\"className\":\"HA_DefaultValue.Const.Primitive\"}],\"className\":\"HA_DefaultValue.Collection\"}";
+            var target = new ApiDefaultValueConverter();
             
             // Act
-            ApiFieldType? result = null;
+            ApiDefaultValue? result = null;
             var utf8JsonBytes = Encoding.UTF8.GetBytes(json);
             var reader = new Utf8JsonReader(utf8JsonBytes, true, new JsonReaderState());
             while (reader.Read())
             {
-                result = target.Read(ref reader, typeof(ApiFieldType), new JsonSerializerOptions());
+                result = target.Read(ref reader, typeof(ApiDefaultValue), new JsonSerializerOptions());
             }
                 
             // Assert
-            Assert.IsType<ApiFieldType.Primitive>(result);
+            Assert.IsType<ApiDefaultValue.Collection>(result);
             
-            var primitiveResult = result as ApiFieldType.Primitive;
-            Assert.Equal("String", primitiveResult?.Type);
-            Assert.True(primitiveResult?.Nullable);
+            var collectionResult = result as ApiDefaultValue.Collection;
+            Assert.NotEmpty(collectionResult!.Elements);
+            
+            var primitiveElement = collectionResult.Elements[0] as ApiDefaultValue.Const.Primitive;
+            Assert.Equal("Test", primitiveElement!.Expression);
         }
         
         [Fact]
         public void WriteTests()
         {
             // Arrange
-            var input = new ApiFieldType.Primitive
+            var input = new ApiDefaultValue.Collection
             {
-                Type = "String",
-                Nullable = true
+                Elements = new List<ApiDefaultValue>
+                {
+                    new ApiDefaultValue.Reference { ParameterName = "Test" }
+                }
             };
-            var target = new ApiFieldTypeConverter();
+            var target = new ApiDefaultValueConverter();
             
             // Act
             using var memoryStream = new MemoryStream();
@@ -79,7 +81,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             var result = reader.ReadToEnd();
             
             // Assert
-            Assert.Equal("{\"primitive\":\"String\",\"className\":\"HA_Type.Primitive\",\"nullable\":true}", result);
+            Assert.Equal("{\"elements\":[{\"paramName\":\"Test\",\"className\":\"HA_DefaultValue.Reference\"}],\"className\":\"HA_DefaultValue.Collection\"}", result);
         }
     }
 }

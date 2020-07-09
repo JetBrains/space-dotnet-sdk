@@ -103,7 +103,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         var inheritorFactoryMethodName = apiDtoInheritor.ToCSharpFactoryMethodName(apiDto);
                         
                         var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                            .WithParametersForDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor!));
+                            .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor!));
                         
                         builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersDefinition()})");
                         indent.Increment();
@@ -118,7 +118,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             if (FeatureFlags.GenerateDtoConstructor && apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.HierarchyRole != HierarchyRole.ABSTRACT)
             {
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                    .WithParametersForDtoFields(apiDtoFields);
+                    .WithParametersForApiDtoFields(apiDtoFields);
                         
                 // Empty constructor
                 builder.AppendLine($"{indent}public {typeNameForDto}() {{ }}");
@@ -226,7 +226,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.AppendLine($"{indent}");
 
                 // Property
-                if (!apiField.Type.Optional && !apiField.Type.Nullable)
+                if (!apiField.Optional && !apiField.Type.Nullable)
                 {
                     builder.AppendLine($"{indent}[Required]");
                 }
@@ -253,7 +253,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             else 
             {
                 // Property
-                if (!apiField.Type.Optional && !apiField.Type.Nullable)
+                if (!apiField.Optional && !apiField.Type.Nullable)
                 {
                     builder.AppendLine($"{indent}[Required]");
                 }
