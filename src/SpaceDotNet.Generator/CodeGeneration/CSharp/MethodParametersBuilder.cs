@@ -174,7 +174,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 
                             return $"{typeNameForEnum}.{identifierForValue}";
                         }
-                        else if (FeatureFlags.GenerateNullParametersAndDefaultEnumValueForDefaultEnum)
+                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
                         {
                             return "null";
                         }
@@ -198,7 +198,31 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                         
                             return builder.ToString();
                         }
-                        else if (FeatureFlags.GenerateNullParametersAndEmptyListForDefaultCollection)
+                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                        {
+                            return "null";
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
+                    case ApiDefaultValue.Map map:
+                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
+                        {
+                            var typeNameForMapValue = field.Type.GetMapValueTypeOrType().ToCSharpType(_context);
+
+                            var builder = new StringBuilder();
+                            builder.Append($"new Dictionary<string, {typeNameForMapValue}>()");
+ 
+                            if (map.Elements.Count > 0)
+                            {
+                                throw new NotSupportedException("Default values with populated maps are not supported yet.");
+                            }
+
+                            return builder.ToString();
+                        }
+                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
                         {
                             return "null";
                         }

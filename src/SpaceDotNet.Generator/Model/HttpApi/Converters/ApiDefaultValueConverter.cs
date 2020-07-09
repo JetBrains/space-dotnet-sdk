@@ -15,6 +15,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
             { "HA_DefaultValue.Const.Primitive", typeof(ApiDefaultValue.Const.Primitive) },
             { "HA_DefaultValue.Const.EnumEntry", typeof(ApiDefaultValue.Const.EnumEntry) },
             { "HA_DefaultValue.Collection", typeof(ApiDefaultValue.Collection) },
+            { "HA_DefaultValue.Map", typeof(ApiDefaultValue.Map) },
             { "HA_DefaultValue.Reference", typeof(ApiDefaultValue.Reference) }
         };
         

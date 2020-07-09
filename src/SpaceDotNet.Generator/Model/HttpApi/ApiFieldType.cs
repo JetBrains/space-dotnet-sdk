@@ -28,6 +28,13 @@ namespace SpaceDotNet.Generator.Model.HttpApi
             public ApiFieldType ElementType { get; set; } = default!;
         }
         
+        public class Map : ApiFieldType
+        {
+            [JsonPropertyName("valueType")]
+            [JsonConverter(typeof(ApiFieldTypeConverter))]
+            public ApiFieldType ValueType { get; set; } = default!;
+        }
+        
         public class Object : ApiFieldType
         {
             [JsonPropertyName("fields")]
@@ -43,7 +50,6 @@ namespace SpaceDotNet.Generator.Model.HttpApi
                 
                 public static readonly ObjectKind PAIR = new ObjectKind("PAIR");
                 public static readonly ObjectKind TRIPLE = new ObjectKind("TRIPLE");
-                public static readonly ObjectKind MAP_ENTRY = new ObjectKind("MAP_ENTRY");
                 public static readonly ObjectKind BATCH = new ObjectKind("BATCH");
                 public static readonly ObjectKind MOD = new ObjectKind("MOD");
                 public static readonly ObjectKind REQUEST_BODY = new ObjectKind("REQUEST_BODY");

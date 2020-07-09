@@ -18,6 +18,7 @@ namespace SpaceDotNet.Generator.Model.HttpApi.Converters
             { "HA_Type.Dto", typeof(ApiFieldType.Dto) },
             { "HA_Type.Enum", typeof(ApiFieldType.Enum) },
             { "HA_Type.UrlParam", typeof(ApiFieldType.UrlParam) },
+            { "HA_Type.Map", typeof(ApiFieldType.Map) },
             { "HA_Type.Object", typeof(ApiFieldType.Object) },
             { "HA_Type.Primitive", typeof(ApiFieldType.Primitive) },
             { "HA_Type.Ref", typeof(ApiFieldType.Ref) }

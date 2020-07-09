@@ -53,13 +53,11 @@ namespace SpaceDotNet.Generator
         public const bool GenerateOptionalParameterDefaultReferenceTypes = false;
 
         /// <summary>
-        /// Generate null value and default enum value for default enum?
+        /// Generate alternative for optional parameter defaults with reference types?
+        ///
+        /// When true, will generate null value and default value fallback for optional parameter defaults with reference types.
+        /// When false, will ignore optional parameter defaults with reference types.
         /// </summary>
-        public const bool GenerateNullParametersAndDefaultEnumValueForDefaultEnum = true;
-        
-        /// <summary>
-        /// Generate null value and empty list for default collection?
-        /// </summary>
-        public const bool GenerateNullParametersAndEmptyListForDefaultCollection = true;
+        public const bool GenerateAlternativeForOptionalParameterDefaultReferenceTypes = true;
     }
 }

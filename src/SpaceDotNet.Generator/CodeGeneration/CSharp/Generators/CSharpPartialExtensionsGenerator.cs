@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
@@ -107,6 +108,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     }
                     break;
                 
+                case ApiFieldType.Map apiFieldTypeMap:
+                    return GenerateCSharpTypeFrom(apiFieldTypeMap.ValueType);
+                
                 case ApiFieldType.UrlParam apiFieldTypeUrlParam:
                     if (apiFieldTypeUrlParam.UrlParamRef?.Id != null && _context.TryGetUrlParameter(apiFieldTypeUrlParam.UrlParamRef.Id, out var apiUrlParam))
                     {
@@ -139,17 +143,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[1].Type));
                         sb.Append(", ");
                         sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[2].Type));
-                        sb.Append(">");
-                        return sb.ToString();
-                    }
-                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MAP_ENTRY)
-                    {
-                        // Known anonymous type
-                        var sb = new StringBuilder();
-                        sb.Append("MapEntry<");
-                        sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[0].Type));
-                        sb.Append(", ");
-                        sb.Append(GenerateCSharpTypeFrom(apiFieldTypeObject.Fields[1].Type));
                         sb.Append(">");
                         return sb.ToString();
                     }

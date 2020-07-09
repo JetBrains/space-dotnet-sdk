@@ -16,6 +16,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.Extensions
             return subject;
         }
         
+        public static ApiFieldType GetMapValueTypeOrType(this ApiFieldType subject)
+        {
+            if (subject is ApiFieldType.Map mapFieldType)
+            {
+                return mapFieldType.ValueType;
+            }
+
+            return subject;
+        }
+        
         public static ApiFieldType GetBatchElementTypeOrType(this ApiFieldType subject)
         {
             if (subject is ApiFieldType.Object objectFieldType)

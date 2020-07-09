@@ -47,22 +47,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 var parameterValueBuilder = new StringBuilder();
                 parameterValueBuilder .Append("{");
                 
-                if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Collection collection && FeatureFlags.GenerateNullParametersAndEmptyListForDefaultCollection)
-                {
-                    var typeNameForArrayElement = apiEndpointParameter.Field.Type.GetArrayElementTypeOrType().ToCSharpType(_context);
-
-                    parameterValueBuilder.Append("(");
-                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
-                    parameterValueBuilder.Append($" ?? new List<{typeNameForArrayElement}>()");
- 
-                    if (collection.Elements.Count > 0)
-                    {
-                        throw new NotSupportedException("Default values with populated collections are not supported yet.");
-                    }
-                    
-                    parameterValueBuilder.Append(")");
-                }
-                else if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Const.EnumEntry enumEntry && FeatureFlags.GenerateNullParametersAndDefaultEnumValueForDefaultEnum)
+                if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Const.EnumEntry enumEntry && FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
                 {
                     var apiEnumRef = apiEndpointParameter.Field.Type as ApiFieldType.Enum;
                     if (apiEnumRef == null || !_context.TryGetEnum(apiEnumRef.EnumRef!.Id, out var apiEnum))
@@ -77,6 +62,40 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
                     parameterValueBuilder.Append($" ?? {typeNameForEnum}.{identifierForValue}");
                     parameterValueBuilder.Append(")");
+                }
+                else if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Collection collection && FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                {
+                    var typeNameForArrayElement = apiEndpointParameter.Field.Type.GetArrayElementTypeOrType().ToCSharpType(_context);
+
+                    parameterValueBuilder.Append("(");
+                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
+                    parameterValueBuilder.Append($" ?? new List<{typeNameForArrayElement}>()");
+ 
+                    if (collection.Elements.Count > 0)
+                    {
+                        throw new NotSupportedException("Default values with populated collections are not supported yet.");
+                    }
+                    
+                    parameterValueBuilder.Append(")");
+                }
+                else if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Map map && FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                {
+                    var typeNameForMapValue = apiEndpointParameter.Field.Type.GetMapValueTypeOrType().ToCSharpType(_context);
+
+                    parameterValueBuilder.Append("(");
+                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
+                    parameterValueBuilder.Append($" ?? new Dictionary<string, {typeNameForMapValue}>()");
+ 
+                    if (map.Elements.Count > 0)
+                    {
+                        throw new NotSupportedException("Default values with populated maps are not supported yet.");
+                    }
+                    
+                    parameterValueBuilder.Append(")");
+                }
+                else if (apiEndpointParameter.Field.DefaultValue is ApiDefaultValue.Reference reference && FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                {
+                    throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");
                 }
                 else
                 {

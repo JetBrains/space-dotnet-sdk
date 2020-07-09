@@ -1,3 +1,4 @@
+using System;
 using System.Text;
 using SpaceDotNet.Common;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
@@ -66,6 +67,15 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                         throw new ResourceException("Could not generate type name for URL parameter with ref id: " + apiFieldTypeUrlParam.UrlParamRef?.Id);
                     }
                 
+                case ApiFieldType.Map apiFieldTypeMap:
+                {
+                    var sb = new StringBuilder();
+                    sb.Append("Dictionary<string, ");
+                    sb.Append(ToCSharpType(apiFieldTypeMap.ValueType, context));
+                    sb.Append(">");
+                    return sb.ToString();
+                }
+
                 case ApiFieldType.Object apiFieldTypeObject:
                     if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.PAIR)
                     {
@@ -91,17 +101,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                         sb.Append(">");
                         return sb.ToString();
                     }
-                    else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.MAP_ENTRY)
-                    {
-                        // Known anonymous type
-                        var sb = new StringBuilder();
-                        sb.Append("MapEntry<");
-                        sb.Append(ToCSharpType(apiFieldTypeObject.Fields[0].Type, context));
-                        sb.Append(", ");
-                        sb.Append(ToCSharpType(apiFieldTypeObject.Fields[1].Type, context));
-                        sb.Append(">");
-                        return sb.ToString();
-                    }
                     else if (apiFieldTypeObject.Kind == ApiFieldType.Object.ObjectKind.BATCH)
                     {
                         // Known anonymous type
@@ -124,12 +123,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                     {
                         // Request body/anonymous type?
                         throw new ResourceException($"The method {nameof(ToCSharpType)}() should not be called with object kind: " + apiFieldTypeObject.Kind 
-                                                                                                                                   + $". Ensure {nameof(CodeGenerationContextEnricher)} has run, and then invoke apiEndpoint.{nameof(ApiEndpointExtensions.ToCSharpRequestBodyClassName)}() to retrieve the proper type name.");
+                            + $". Ensure {nameof(CodeGenerationContextEnricher)} has run, and then invoke apiEndpoint.{nameof(ApiEndpointExtensions.ToCSharpRequestBodyClassName)}() to retrieve the proper type name.");
                     }
                     else
                     {
                         // Unknown object kind
-                        throw new ResourceException("Could not generate type for object kind: " + apiFieldTypeObject.Kind);
+                        throw new ResourceException("Could not generate type for object kind: " + apiFieldTypeObject.ClassName);
                     }
                 
                 case ApiFieldType.Primitive apiFieldTypePrimitive:

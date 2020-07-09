@@ -16,6 +16,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
         [InlineData(typeof(ApiDefaultValue.Const.Primitive), true)]
         [InlineData(typeof(ApiDefaultValue.Const.EnumEntry), true)]
         [InlineData(typeof(ApiDefaultValue.Collection), true)]
+        [InlineData(typeof(ApiDefaultValue.Map), true)]
         [InlineData(typeof(ApiDefaultValue.Reference), true)]
         [InlineData(typeof(Enumeration), false)]
         [InlineData(typeof(object), false)]

@@ -31,6 +31,12 @@ namespace SpaceDotNet.Generator.Model.HttpApi
             public List<ApiDefaultValue> Elements { get; set; } = new List<ApiDefaultValue>();
         }
         
+        public class Map : ApiDefaultValue
+        {
+            [JsonPropertyName("elements")]
+            public Dictionary<string, ApiDefaultValue> Elements { get; set; } = new Dictionary<string, ApiDefaultValue>();
+        }
+        
         public class Reference : ApiDefaultValue
         {
             [JsonPropertyName("paramName")]
