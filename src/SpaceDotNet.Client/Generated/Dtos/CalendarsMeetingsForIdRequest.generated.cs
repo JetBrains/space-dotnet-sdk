@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarsMeetingsForIdRequest() { }
         
-        public CalendarsMeetingsForIdRequest(DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport, RecurrentModification modificationKind, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
+        public CalendarsMeetingsForIdRequest(DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = null, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
         {
             Summary = summary;
             Description = description;
@@ -73,7 +73,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<DiffDto> _locationsDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdRequest), nameof(LocationsDiff));
         
-        [Required]
         [JsonPropertyName("locationsDiff")]
         public DiffDto LocationsDiff
         {
@@ -83,7 +82,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<DiffDto> _profilesDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdRequest), nameof(ProfilesDiff));
         
-        [Required]
         [JsonPropertyName("profilesDiff")]
         public DiffDto ProfilesDiff
         {
@@ -93,7 +91,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<DiffDto> _externalParticipantsDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdRequest), nameof(ExternalParticipantsDiff));
         
-        [Required]
         [JsonPropertyName("externalParticipantsDiff")]
         public DiffDto ExternalParticipantsDiff
         {
@@ -103,7 +100,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<DiffDto> _teamsDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdRequest), nameof(TeamsDiff));
         
-        [Required]
         [JsonPropertyName("teamsDiff")]
         public DiffDto TeamsDiff
         {
@@ -140,7 +136,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsForIdRequest), nameof(NotifyOnExport));
         
-        [Required]
         [JsonPropertyName("notifyOnExport")]
         public bool NotifyOnExport
         {
@@ -168,7 +163,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<RecurrentModification> _modificationKind = new PropertyValue<RecurrentModification>(nameof(CalendarsMeetingsForIdRequest), nameof(ModificationKind));
         
-        [Required]
         [JsonPropertyName("modificationKind")]
         public RecurrentModification ModificationKind
         {

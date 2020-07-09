@@ -63,13 +63,13 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Search for emoji.
         /// </summary>
-        public async Task<Batch<EmojiSearchMatchDataDto>> SearchAsync(string query, string? skip = null, int? top = null, Func<Partial<Batch<EmojiSearchMatchDataDto>>, Partial<Batch<EmojiSearchMatchDataDto>>>? partial = null)
+        public async Task<Batch<EmojiSearchMatchDataDto>> SearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<EmojiSearchMatchDataDto>>, Partial<Batch<EmojiSearchMatchDataDto>>>? partial = null)
             => await _connection.RequestResourceAsync<Batch<EmojiSearchMatchDataDto>>("GET", $"api/http/emojis/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<EmojiSearchMatchDataDto>>()) : Partial<Batch<EmojiSearchMatchDataDto>>.Default())}");
         
         /// <summary>
         /// Search for emoji.
         /// </summary>
-        public IAsyncEnumerable<EmojiSearchMatchDataDto> SearchAsyncEnumerable(string query, string? skip = null, int? top = null, Func<Partial<EmojiSearchMatchDataDto>, Partial<EmojiSearchMatchDataDto>>? partial = null)
+        public IAsyncEnumerable<EmojiSearchMatchDataDto> SearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EmojiSearchMatchDataDto>, Partial<EmojiSearchMatchDataDto>>? partial = null)
             => BatchEnumerator.AllItems(batchSkip => SearchAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchDataDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchDataDto>.Default())), skip);
     
     }

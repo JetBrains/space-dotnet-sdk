@@ -39,13 +39,13 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>
-        public async Task<Batch<TodoItemRecordDto>> GetAllToDoItemsAsync(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<Batch<TodoItemRecordDto>>, Partial<Batch<TodoItemRecordDto>>>? partial = null)
+        public async Task<Batch<TodoItemRecordDto>> GetAllToDoItemsAsync(string? skip = null, int? top = 100, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<Batch<TodoItemRecordDto>>, Partial<Batch<TodoItemRecordDto>>>? partial = null)
             => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TodoItemRecordDto>>()) : Partial<Batch<TodoItemRecordDto>>.Default())}");
         
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>
-        public IAsyncEnumerable<TodoItemRecordDto> GetAllToDoItemsAsyncEnumerable(string? skip = null, int? top = null, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
+        public IAsyncEnumerable<TodoItemRecordDto> GetAllToDoItemsAsyncEnumerable(string? skip = null, int? top = 100, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
             => BatchEnumerator.AllItems(batchSkip => GetAllToDoItemsAsync(top: top, open: open, from: from, till: till, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecordDto>.Default())), skip);
     
         /// <summary>

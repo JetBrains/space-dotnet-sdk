@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public AbsencesRequest() { }
         
-        public AbsencesRequest(string member, string reason, string description, SpaceDate since, SpaceDate till, bool available, string icon, string? location = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public AbsencesRequest(string member, string reason, string description, SpaceDate since, SpaceDate till, string icon, bool available = false, string? location = null, List<CustomFieldValueDto>? customFieldValues = null)
         {
             Member = member;
             Reason = reason;
@@ -100,7 +100,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesRequest), nameof(Available));
         
-        [Required]
         [JsonPropertyName("available")]
         public bool Available
         {

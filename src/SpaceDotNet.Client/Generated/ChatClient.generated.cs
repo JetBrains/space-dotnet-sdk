@@ -123,7 +123,7 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/edit-text-message", new ChatsMessagesEditTextMessageRequest{ ChannelId = channelId, Text = text, MessageId = messageId });
         
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]
-            public async Task<ChannelItemRecordDto> SendTextMessageAsync(string channel, string text, bool pending, string? temporaryId = null, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
+            public async Task<ChannelItemRecordDto> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecordDto>, Partial<ChannelItemRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<ChatsMessagesSendRequest, ChannelItemRecordDto>("POST", $"api/http/chats/messages/send?$fields={(partial != null ? partial(new Partial<ChannelItemRecordDto>()) : Partial<ChannelItemRecordDto>.Default())}", new ChatsMessagesSendRequest{ Channel = channel, Text = text, Pending = pending, TemporaryId = temporaryId });
         
             /// <summary>

@@ -57,10 +57,10 @@ namespace SpaceDotNet.Client
         public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost)
             => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl-global", new UnfurlsUnblockUnfurlGlobalRequest{ Link = link, WholeHost = wholeHost });
     
-        public async Task<Batch<UnfurlsBlockListEntryDto>> ListBlockedAsync(string? skip = null, int? top = null, Func<Partial<Batch<UnfurlsBlockListEntryDto>>, Partial<Batch<UnfurlsBlockListEntryDto>>>? partial = null)
+        public async Task<Batch<UnfurlsBlockListEntryDto>> ListBlockedAsync(string? skip = null, int? top = 100, Func<Partial<Batch<UnfurlsBlockListEntryDto>>, Partial<Batch<UnfurlsBlockListEntryDto>>>? partial = null)
             => await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntryDto>>("GET", $"api/http/unfurls/list-blocked?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<UnfurlsBlockListEntryDto>>()) : Partial<Batch<UnfurlsBlockListEntryDto>>.Default())}");
         
-        public IAsyncEnumerable<UnfurlsBlockListEntryDto> ListBlockedAsyncEnumerable(string? skip = null, int? top = null, Func<Partial<UnfurlsBlockListEntryDto>, Partial<UnfurlsBlockListEntryDto>>? partial = null)
+        public IAsyncEnumerable<UnfurlsBlockListEntryDto> ListBlockedAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<UnfurlsBlockListEntryDto>, Partial<UnfurlsBlockListEntryDto>>? partial = null)
             => BatchEnumerator.AllItems(batchSkip => ListBlockedAsync(top: top, skip: batchSkip, partial: builder => Partial<Batch<UnfurlsBlockListEntryDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UnfurlsBlockListEntryDto>.Default())), skip);
     
     }

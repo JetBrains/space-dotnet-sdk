@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest(string text, bool pending, DiffContextDto? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest(string text, bool pending = false, DiffContextDto? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
         {
             Text = text;
             DiffContext = diffContext;
@@ -84,7 +84,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsRequest), nameof(Pending));
         
-        [Required]
         [JsonPropertyName("pending")]
         public bool Pending
         {

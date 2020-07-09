@@ -38,7 +38,6 @@ namespace SpaceDotNet.Client
         
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdRequest), nameof(Title));
         
-        [Required]
         [JsonPropertyName("title")]
         public string Title
         {
@@ -66,7 +65,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdRequest), nameof(Status));
         
-        [Required]
         [JsonPropertyName("status")]
         public string Status
         {

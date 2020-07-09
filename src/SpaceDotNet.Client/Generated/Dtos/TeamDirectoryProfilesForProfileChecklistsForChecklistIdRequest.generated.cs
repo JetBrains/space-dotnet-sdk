@@ -34,7 +34,6 @@ namespace SpaceDotNet.Client
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdRequest), nameof(Name));
         
-        [Required]
         [JsonPropertyName("name")]
         public string Name
         {

@@ -63,13 +63,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
             /// </summary>
-            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValuesAsync(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>>? partial = null)
+            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValuesAsync(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CustomFieldsRecordDto>>()) : Partial<Batch<CustomFieldsRecordDto>>.Default())}");
             
             /// <summary>
             /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
             /// </summary>
-            public IAsyncEnumerable<CustomFieldsRecordDto> GetAllAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = null, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
+            public IAsyncEnumerable<CustomFieldsRecordDto> GetAllAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllAllValuesAsync(typeKey: typeKey, top: top, extendedEntityIds: extendedEntityIds, skip: batchSkip, partial: builder => Partial<Batch<CustomFieldsRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecordDto>.Default())), skip);
         
         }
@@ -112,7 +112,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get custom fields for a type.
             /// </summary>
-            public async Task<List<CustomFieldDto>> GetAllFieldsAsync(string typeKey, bool withArchived, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
+            public async Task<List<CustomFieldDto>> GetAllFieldsAsync(string typeKey, bool withArchived = false, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}");
         
             /// <summary>

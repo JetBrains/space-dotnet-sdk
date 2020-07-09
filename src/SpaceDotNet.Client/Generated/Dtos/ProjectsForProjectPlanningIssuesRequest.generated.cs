@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesRequest() { }
         
-        public ProjectsForProjectPlanningIssuesRequest(string title, string status, List<string> tags, List<string> checklists, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
+        public ProjectsForProjectPlanningIssuesRequest(string title, string status, List<string> tags = null, List<string> checklists = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
         {
             Title = title;
             Description = description;
@@ -88,7 +88,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesRequest), nameof(Tags));
         
-        [Required]
         [JsonPropertyName("tags")]
         public List<string> Tags
         {
@@ -98,7 +97,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _checklists = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesRequest), nameof(Checklists));
         
-        [Required]
         [JsonPropertyName("checklists")]
         public List<string> Checklists
         {

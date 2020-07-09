@@ -33,7 +33,7 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Create an absence for a given profile (member).
         /// </summary>
-        public async Task<AbsenceRecordDto> CreateAbsenceAsync(string member, string reason, string description, SpaceDate since, SpaceDate till, bool available, string icon, string? location = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>>? partial = null)
+        public async Task<AbsenceRecordDto> CreateAbsenceAsync(string member, string reason, string description, SpaceDate since, SpaceDate till, string icon, bool available = false, string? location = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>>? partial = null)
             => await _connection.RequestResourceAsync<AbsencesRequest, AbsenceRecordDto>("POST", $"api/http/absences?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", new AbsencesRequest{ Member = member, Reason = reason, Description = description, Location = location, Since = since, Till = till, Available = available, Icon = icon, CustomFieldValues = customFieldValues });
     
         /// <summary>
@@ -45,13 +45,13 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Search absences. Parameters are applied as 'AND' filters.
         /// </summary>
-        public async Task<Batch<AbsenceRecordDto>> GetAllAbsencesAsync(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecordDto>>, Partial<Batch<AbsenceRecordDto>>>? partial = null)
+        public async Task<Batch<AbsenceRecordDto>> GetAllAbsencesAsync(AbsenceListMode viewMode, string? skip = null, int? top = 100, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecordDto>>, Partial<Batch<AbsenceRecordDto>>>? partial = null)
             => await _connection.RequestResourceAsync<Batch<AbsenceRecordDto>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={viewMode.ToString()}&reason={reason?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<AbsenceRecordDto>>()) : Partial<Batch<AbsenceRecordDto>>.Default())}");
         
         /// <summary>
         /// Search absences. Parameters are applied as 'AND' filters.
         /// </summary>
-        public IAsyncEnumerable<AbsenceRecordDto> GetAllAbsencesAsyncEnumerable(AbsenceListMode viewMode, string? skip = null, int? top = null, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>>? partial = null)
+        public IAsyncEnumerable<AbsenceRecordDto> GetAllAbsencesAsyncEnumerable(AbsenceListMode viewMode, string? skip = null, int? top = 100, string? member = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>>? partial = null)
             => BatchEnumerator.AllItems(batchSkip => GetAllAbsencesAsync(viewMode: viewMode, top: top, member: member, location: location, team: team, since: since, till: till, reason: reason, skip: batchSkip, partial: builder => Partial<Batch<AbsenceRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AbsenceRecordDto>.Default())), skip);
     
         /// <summary>
@@ -75,7 +75,7 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Archive/restore an existing absence. Setting delete to true will archive the absence, false will restore it.
         /// </summary>
-        public async Task DeleteAbsenceAsync(string id, bool delete)
+        public async Task DeleteAbsenceAsync(string id, bool delete = true)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}");
     
         /// <summary>
@@ -110,7 +110,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get available absence reasons.
             /// </summary>
-            public async Task<List<AbsenceReasonRecordDto>> GetAllAbsenceReasonsAsync(bool withArchived, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>>? partial = null)
+            public async Task<List<AbsenceReasonRecordDto>> GetAllAbsenceReasonsAsync(bool withArchived = false, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<AbsenceReasonRecordDto>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}");
         
             /// <summary>
@@ -122,7 +122,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Archive/restore an existing absence reason. Setting delete to true will archive the absence reason, false will restore it.
             /// </summary>
-            public async Task DeleteAbsenceReasonAsync(string id, bool delete)
+            public async Task DeleteAbsenceReasonAsync(string id, bool delete = true)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}");
         
         }

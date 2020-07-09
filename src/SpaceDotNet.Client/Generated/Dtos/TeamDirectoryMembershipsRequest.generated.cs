@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMembershipsRequest() { }
         
-        public TeamDirectoryMembershipsRequest(string memberId, string teamId, string roleId, bool lead, bool requiresApproval, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public TeamDirectoryMembershipsRequest(string memberId, string teamId, string roleId, bool lead = false, bool requiresApproval = false, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null)
         {
             MemberId = memberId;
             TeamId = teamId;
@@ -72,7 +72,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _lead = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequest), nameof(Lead));
         
-        [Required]
         [JsonPropertyName("lead")]
         public bool Lead
         {
@@ -118,7 +117,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequest), nameof(RequiresApproval));
         
-        [Required]
         [JsonPropertyName("requiresApproval")]
         public bool RequiresApproval
         {

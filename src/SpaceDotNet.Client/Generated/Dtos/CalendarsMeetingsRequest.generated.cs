@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarsMeetingsRequest() { }
         
-        public CalendarsMeetingsRequest(string summary, CalendarEventSpecDto occurrenceRule, List<string> locations, List<string> profiles, List<string> externalParticipants, List<string> teams, MeetingVisibility visibility, MeetingModificationPreference modificationPreference, MeetingJoiningPreference joiningPreference, bool notifyOnExport, string? description = null, string? organizer = null)
+        public CalendarsMeetingsRequest(string summary, CalendarEventSpecDto occurrenceRule, List<string> locations = null, List<string> profiles = null, List<string> externalParticipants = null, List<string> teams = null, MeetingVisibility visibility = null, MeetingModificationPreference modificationPreference = null, MeetingJoiningPreference joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null)
         {
             Summary = summary;
             Description = description;
@@ -73,7 +73,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(CalendarsMeetingsRequest), nameof(Locations));
         
-        [Required]
         [JsonPropertyName("locations")]
         public List<string> Locations
         {
@@ -83,7 +82,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _profiles = new PropertyValue<List<string>>(nameof(CalendarsMeetingsRequest), nameof(Profiles));
         
-        [Required]
         [JsonPropertyName("profiles")]
         public List<string> Profiles
         {
@@ -93,7 +91,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(CalendarsMeetingsRequest), nameof(ExternalParticipants));
         
-        [Required]
         [JsonPropertyName("externalParticipants")]
         public List<string> ExternalParticipants
         {
@@ -103,7 +100,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(CalendarsMeetingsRequest), nameof(Teams));
         
-        [Required]
         [JsonPropertyName("teams")]
         public List<string> Teams
         {
@@ -113,7 +109,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(CalendarsMeetingsRequest), nameof(Visibility));
         
-        [Required]
         [JsonPropertyName("visibility")]
         public MeetingVisibility Visibility
         {
@@ -123,7 +118,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(CalendarsMeetingsRequest), nameof(ModificationPreference));
         
-        [Required]
         [JsonPropertyName("modificationPreference")]
         public MeetingModificationPreference ModificationPreference
         {
@@ -133,7 +127,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<MeetingJoiningPreference> _joiningPreference = new PropertyValue<MeetingJoiningPreference>(nameof(CalendarsMeetingsRequest), nameof(JoiningPreference));
         
-        [Required]
         [JsonPropertyName("joiningPreference")]
         public MeetingJoiningPreference JoiningPreference
         {
@@ -143,7 +136,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsRequest), nameof(NotifyOnExport));
         
-        [Required]
         [JsonPropertyName("notifyOnExport")]
         public bool NotifyOnExport
         {

@@ -39,7 +39,7 @@ namespace SpaceDotNet.Client
         public async Task<CertificateInfoDto> InfoAsync(string data, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>>? partial = null)
             => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields={(partial != null ? partial(new Partial<CertificateInfoDto>()) : Partial<CertificateInfoDto>.Default())}");
     
-        public async Task UpdateTrustedCertificateAsync(string id, string? alias = null, string? data = null, bool? archived = null)
+        public async Task UpdateTrustedCertificateAsync(string id, string? alias = null, string? data = null, bool? archived = false)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/trusted-certificates/{id}", new TrustedCertificatesForIdRequest{ Alias = alias, Data = data, Archived = archived });
     
         public async Task DeleteTrustedCertificateAsync(string id)

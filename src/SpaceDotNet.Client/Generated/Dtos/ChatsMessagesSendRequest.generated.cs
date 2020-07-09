@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ChatsMessagesSendRequest() { }
         
-        public ChatsMessagesSendRequest(string channel, string text, bool pending, string? temporaryId = null)
+        public ChatsMessagesSendRequest(string channel, string text, bool pending = false, string? temporaryId = null)
         {
             Channel = channel;
             Text = text;
@@ -56,7 +56,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ChatsMessagesSendRequest), nameof(Pending));
         
-        [Required]
         [JsonPropertyName("pending")]
         public bool Pending
         {

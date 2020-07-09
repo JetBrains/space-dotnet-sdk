@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TrustedCertificatesForIdRequest() { }
         
-        public TrustedCertificatesForIdRequest(string? alias = null, string? data = null, bool? archived = null)
+        public TrustedCertificatesForIdRequest(string? alias = null, string? data = null, bool? archived = false)
         {
             Alias = alias;
             Data = data;

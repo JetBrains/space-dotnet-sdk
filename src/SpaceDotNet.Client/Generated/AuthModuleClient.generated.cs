@@ -48,7 +48,7 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Get all authentication modules.
         /// </summary>
-        public async Task<List<ESAuthModuleDto>> GetAllAuthModulesAsync(bool withDisabled, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
+        public async Task<List<ESAuthModuleDto>> GetAllAuthModulesAsync(bool withDisabled = false, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
             => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}");
     
         /// <summary>

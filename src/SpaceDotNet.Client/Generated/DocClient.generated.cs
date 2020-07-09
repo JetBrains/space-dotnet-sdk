@@ -41,7 +41,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DRDraftDto> CreateDraftAsync(DraftDocumentType type, string? title = null, string? text = null, long? textVersion = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
+            public async Task<DRDraftDto> CreateDraftAsync(DraftDocumentType type = null, string? title = null, string? text = null, long? textVersion = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
                 => await _connection.RequestResourceAsync<DocsDraftsRequest, DRDraftDto>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", new DocsDraftsRequest{ Title = title, Text = text, TextVersion = textVersion, Type = type, PublicationDetails = publicationDetails });
         
             public async Task<DRDraftDto> GetDraftAsync(string id, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)

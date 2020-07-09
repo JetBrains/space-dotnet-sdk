@@ -34,7 +34,6 @@ namespace SpaceDotNet.Client
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ImportSourcesForSourceIdRequest), nameof(Name));
         
-        [Required]
         [JsonPropertyName("name")]
         public string Name
         {
@@ -44,7 +43,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<string> _importerPrincipal = new PropertyValue<string>(nameof(ImportSourcesForSourceIdRequest), nameof(ImporterPrincipal));
         
-        [Required]
         [JsonPropertyName("importerPrincipal")]
         public string ImporterPrincipal
         {

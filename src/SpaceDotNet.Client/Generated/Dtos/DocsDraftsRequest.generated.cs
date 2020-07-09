@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public DocsDraftsRequest() { }
         
-        public DocsDraftsRequest(DraftDocumentType type, string? title = null, string? text = null, long? textVersion = null, DraftPublicationDetailsDto? publicationDetails = null)
+        public DocsDraftsRequest(DraftDocumentType type = null, string? title = null, string? text = null, long? textVersion = null, DraftPublicationDetailsDto? publicationDetails = null)
         {
             Title = title;
             Text = text;
@@ -64,7 +64,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsRequest), nameof(Type));
         
-        [Required]
         [JsonPropertyName("type")]
         public DraftDocumentType Type
         {

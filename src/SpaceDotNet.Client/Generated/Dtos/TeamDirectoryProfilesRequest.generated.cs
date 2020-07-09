@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesRequest() { }
         
-        public TeamDirectoryProfilesRequest(string username, string firstName, string lastName, List<string> emails, List<string> phones, List<string> messengers, List<string> links, bool notAMember, List<CustomFieldValueDto> customFieldValues, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null)
+        public TeamDirectoryProfilesRequest(string username, string firstName, string lastName, List<string> emails = null, List<string> phones = null, List<string> messengers = null, List<string> links = null, bool notAMember = false, List<CustomFieldValueDto> customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null)
         {
             Username = username;
             FirstName = firstName;
@@ -78,7 +78,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Emails));
         
-        [Required]
         [JsonPropertyName("emails")]
         public List<string> Emails
         {
@@ -88,7 +87,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Phones));
         
-        [Required]
         [JsonPropertyName("phones")]
         public List<string> Phones
         {
@@ -116,7 +114,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Messengers));
         
-        [Required]
         [JsonPropertyName("messengers")]
         public List<string> Messengers
         {
@@ -126,7 +123,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesRequest), nameof(Links));
         
-        [Required]
         [JsonPropertyName("links")]
         public List<string> Links
         {
@@ -136,7 +132,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TeamDirectoryProfilesRequest), nameof(NotAMember));
         
-        [Required]
         [JsonPropertyName("notAMember")]
         public bool NotAMember
         {
@@ -191,7 +186,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<CustomFieldValueDto>> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>>(nameof(TeamDirectoryProfilesRequest), nameof(CustomFieldValues));
         
-        [Required]
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldValueDto> CustomFieldValues
         {

@@ -208,13 +208,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get a list of invitations.
             /// </summary>
-            public async Task<Batch<InvitationDto>> GetAllInvitationsAsync(string? skip = null, int? top = null, Func<Partial<Batch<InvitationDto>>, Partial<Batch<InvitationDto>>>? partial = null)
+            public async Task<Batch<InvitationDto>> GetAllInvitationsAsync(string? skip = null, int? top = 100, Func<Partial<Batch<InvitationDto>>, Partial<Batch<InvitationDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<InvitationDto>>()) : Partial<Batch<InvitationDto>>.Default())}");
             
             /// <summary>
             /// Get a list of invitations.
             /// </summary>
-            public IAsyncEnumerable<InvitationDto> GetAllInvitationsAsyncEnumerable(string? skip = null, int? top = null, Func<Partial<InvitationDto>, Partial<InvitationDto>>? partial = null)
+            public IAsyncEnumerable<InvitationDto> GetAllInvitationsAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<InvitationDto>, Partial<InvitationDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllInvitationsAsync(top: top, skip: batchSkip, partial: builder => Partial<Batch<InvitationDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<InvitationDto>.Default())), skip);
         
             /// <summary>
@@ -264,7 +264,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get all equipment types.
             /// </summary>
-            public async Task<List<TDLocationEquipmentTypeDto>> GetAllLocationEquipmentTypesAsync(bool withArchived, Func<Partial<TDLocationEquipmentTypeDto>, Partial<TDLocationEquipmentTypeDto>>? partial = null)
+            public async Task<List<TDLocationEquipmentTypeDto>> GetAllLocationEquipmentTypesAsync(bool withArchived = false, Func<Partial<TDLocationEquipmentTypeDto>, Partial<TDLocationEquipmentTypeDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<TDLocationEquipmentTypeDto>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDLocationEquipmentTypeDto>()) : Partial<TDLocationEquipmentTypeDto>.Default())}");
         
             /// <summary>
@@ -295,13 +295,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get members on map for a location id.
             /// </summary>
-            public async Task<Batch<TDMemberInLocationMapDto>> GetAllLocationMapMemberPointsAsync(string locationId, bool includeUnmarked, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberInLocationMapDto>>, Partial<Batch<TDMemberInLocationMapDto>>>? partial = null)
+            public async Task<Batch<TDMemberInLocationMapDto>> GetAllLocationMapMemberPointsAsync(string locationId, bool includeUnmarked = true, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberInLocationMapDto>>, Partial<Batch<TDMemberInLocationMapDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberInLocationMapDto>>("GET", $"api/http/team-directory/location-map-member-points?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&locationId={locationId.ToString()}&includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberInLocationMapDto>>()) : Partial<Batch<TDMemberInLocationMapDto>>.Default())}");
             
             /// <summary>
             /// Get members on map for a location id.
             /// </summary>
-            public IAsyncEnumerable<TDMemberInLocationMapDto> GetAllLocationMapMemberPointsAsyncEnumerable(string locationId, bool includeUnmarked, string? skip = null, int? top = null, Func<Partial<TDMemberInLocationMapDto>, Partial<TDMemberInLocationMapDto>>? partial = null)
+            public IAsyncEnumerable<TDMemberInLocationMapDto> GetAllLocationMapMemberPointsAsyncEnumerable(string locationId, bool includeUnmarked = true, string? skip = null, int? top = 100, Func<Partial<TDMemberInLocationMapDto>, Partial<TDMemberInLocationMapDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllLocationMapMemberPointsAsync(locationId: locationId, includeUnmarked: includeUnmarked, top: top, skip: batchSkip, partial: builder => Partial<Batch<TDMemberInLocationMapDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberInLocationMapDto>.Default())), skip);
         
             /// <summary>
@@ -350,7 +350,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search all locations. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<List<TDLocationDto>> GetAllLocationsAsync(string query, bool withArchived, string? type = null, Func<Partial<TDLocationDto>, Partial<TDLocationDto>>? partial = null)
+            public async Task<List<TDLocationDto>> GetAllLocationsAsync(string query = "", bool withArchived = false, string? type = null, Func<Partial<TDLocationDto>, Partial<TDLocationDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<TDLocationDto>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDLocationDto>()) : Partial<TDLocationDto>.Default())}");
         
             /// <summary>
@@ -428,10 +428,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidatesAsync(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>>? partial = null)
+            public async Task<Batch<TDMemberProfileDto>> GetAllManagerCandidatesAsync(string term, string? skip = null, int? top = 100, string? teamId = null, string? excludedMemberId = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/manager-candidates?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term.ToString()}&teamId={teamId?.ToString() ?? "null"}&excludedMemberId={excludedMemberId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
             
-            public IAsyncEnumerable<TDMemberProfileDto> GetAllManagerCandidatesAsyncEnumerable(string term, string? skip = null, int? top = null, string? teamId = null, string? excludedMemberId = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllManagerCandidatesAsyncEnumerable(string term, string? skip = null, int? top = 100, string? teamId = null, string? excludedMemberId = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllManagerCandidatesAsync(term: term, top: top, teamId: teamId, excludedMemberId: excludedMemberId, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
         
         }
@@ -456,13 +456,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocationsAsync(bool withArchived, string? skip = null, int? top = null, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocationDto>>, Partial<Batch<TDMemberLocationDto>>>? partial = null)
+            public async Task<Batch<TDMemberLocationDto>> GetAllMemberLocationsAsync(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocationDto>>, Partial<Batch<TDMemberLocationDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberLocationDto>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocationDto>>()) : Partial<Batch<TDMemberLocationDto>>.Default())}");
             
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDMemberLocationDto> GetAllMemberLocationsAsyncEnumerable(bool withArchived, string? skip = null, int? top = null, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
+            public IAsyncEnumerable<TDMemberLocationDto> GetAllMemberLocationsAsyncEnumerable(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllMemberLocationsAsync(withArchived: withArchived, top: top, profiles: profiles, locations: locations, since: since, till: till, skip: batchSkip, partial: builder => Partial<Batch<TDMemberLocationDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberLocationDto>.Default())), skip);
         
             /// <summary>
@@ -474,7 +474,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Archive/unarchive a member location. Setting delete to true will archive the member location, false will restore it.
             /// </summary>
-            public async Task DeleteMemberLocationAsync(string memberLocationId, bool delete)
+            public async Task DeleteMemberLocationAsync(string memberLocationId, bool delete = true)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{memberLocationId}?delete={delete.ToString().ToLowerInvariant()}");
         
         }
@@ -493,13 +493,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search membership events. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDMergedEventDto>> GetAllMembershipEventsAsync(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<Batch<TDMergedEventDto>>, Partial<Batch<TDMergedEventDto>>>? partial = null)
+            public async Task<Batch<TDMergedEventDto>> GetAllMembershipEventsAsync(string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<Batch<TDMergedEventDto>>, Partial<Batch<TDMergedEventDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDMergedEventDto>>("GET", $"api/http/team-directory/membership-events?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMergedEventDto>>()) : Partial<Batch<TDMergedEventDto>>.Default())}");
             
             /// <summary>
             /// Get/search membership events. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDMergedEventDto> GetAllMembershipEventsAsyncEnumerable(string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDMergedEventDto>, Partial<TDMergedEventDto>>? partial = null)
+            public IAsyncEnumerable<TDMergedEventDto> GetAllMembershipEventsAsyncEnumerable(string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDMergedEventDto>, Partial<TDMergedEventDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllMembershipEventsAsync(top: top, teamId: teamId, locationId: locationId, roleId: roleId, skip: batchSkip, partial: builder => Partial<Batch<TDMergedEventDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMergedEventDto>.Default())), skip);
         
         }
@@ -518,31 +518,31 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a team membership.
             /// </summary>
-            public async Task<TDMembershipDto> CreateMembershipAsync(string memberId, string teamId, string roleId, bool lead, bool requiresApproval, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
+            public async Task<TDMembershipDto> CreateMembershipAsync(string memberId, string teamId, string roleId, bool lead = false, bool requiresApproval = false, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TeamDirectoryMembershipsRequest, TDMembershipDto>("POST", $"api/http/team-directory/memberships?$fields={(partial != null ? partial(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default())}", new TeamDirectoryMembershipsRequest{ MemberId = memberId, TeamId = teamId, RoleId = roleId, Lead = lead, ManagerId = managerId, ActiveSince = activeSince, ActiveTill = activeTill, PreviousMembershipId = previousMembershipId, RequiresApproval = requiresApproval, CustomFieldValues = customFieldValues });
         
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDMembershipDto>> GetAllMembershipsAsync(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembershipDto>>, Partial<Batch<TDMembershipDto>>>? partial = null)
+            public async Task<Batch<TDMembershipDto>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembershipDto>>, Partial<Batch<TDMembershipDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDMembershipDto>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMembershipDto>>()) : Partial<Batch<TDMembershipDto>>.Default())}");
             
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDMembershipDto> GetAllMembershipsAsyncEnumerable(bool directTeams, bool directRoles, bool withArchived, string? skip = null, int? top = null, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
+            public IAsyncEnumerable<TDMembershipDto> GetAllMembershipsAsyncEnumerable(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<string>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceDate? since = null, SpaceDate? till = null, bool? requiresApproval = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, skip: batchSkip, partial: builder => Partial<Batch<TDMembershipDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembershipDto>.Default())), skip);
         
             /// <summary>
             /// Update a team membership. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
-            public async Task<TDMembershipDto> UpdateMembershipAsync(string id, bool requiresApproval, string? memberId = null, string? teamId = null, string? roleId = null, bool? lead = null, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
+            public async Task<TDMembershipDto> UpdateMembershipAsync(string id, bool requiresApproval = false, string? memberId = null, string? teamId = null, string? roleId = null, bool? lead = null, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TeamDirectoryMembershipsForIdRequest, TDMembershipDto>("PATCH", $"api/http/team-directory/memberships/{id}?$fields={(partial != null ? partial(new Partial<TDMembershipDto>()) : Partial<TDMembershipDto>.Default())}", new TeamDirectoryMembershipsForIdRequest{ MemberId = memberId, TeamId = teamId, RoleId = roleId, Lead = lead, ManagerId = managerId, ActiveSince = activeSince, ActiveTill = activeTill, PreviousMembershipId = previousMembershipId, RequiresApproval = requiresApproval, CustomFieldValues = customFieldValues });
         
             /// <summary>
             /// Archive/unarchive a team membership. Setting delete to true will archive the membership, false will restore it.
             /// </summary>
-            public async Task DeleteMembershipAsync(string id, bool delete)
+            public async Task DeleteMembershipAsync(string id, bool delete = true)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{id}?delete={delete.ToString().ToLowerInvariant()}");
         
             /// <summary>
@@ -565,13 +565,13 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search all membership requests. Parameters are applied as 'AND' filters.
                 /// </summary>
-                public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequestsAsync(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>, Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>>? partial = null)
+                public async Task<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>> GetAllRequestsAsync(string? skip = null, int? top = 100, string? teamId = null, bool? direct = true, Func<Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>, Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>>? partial = null)
                     => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>()) : Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default())}");
                 
                 /// <summary>
                 /// Get/search all membership requests. Parameters are applied as 'AND' filters.
                 /// </summary>
-                public IAsyncEnumerable<Pair<TDMemberProfileDto, TDMembershipDto>> GetAllRequestsAsyncEnumerable(string? skip = null, int? top = null, string? teamId = null, bool? direct = null, Func<Partial<Pair<TDMemberProfileDto, TDMembershipDto>>, Partial<Pair<TDMemberProfileDto, TDMembershipDto>>>? partial = null)
+                public IAsyncEnumerable<Pair<TDMemberProfileDto, TDMembershipDto>> GetAllRequestsAsyncEnumerable(string? skip = null, int? top = 100, string? teamId = null, bool? direct = true, Func<Partial<Pair<TDMemberProfileDto, TDMembershipDto>>, Partial<Pair<TDMemberProfileDto, TDMembershipDto>>>? partial = null)
                     => BatchEnumerator.AllItems(batchSkip => GetAllRequestsAsync(top: top, teamId: teamId, direct: direct, skip: batchSkip, partial: builder => Partial<Batch<Pair<TDMemberProfileDto, TDMembershipDto>>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Pair<TDMemberProfileDto, TDMembershipDto>>.Default())), skip);
             
                 /// <summary>
@@ -623,25 +623,25 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a profile.
             /// </summary>
-            public async Task<TDMemberProfileDto> CreateProfileAsync(string username, string firstName, string lastName, List<string> emails, List<string> phones, List<string> messengers, List<string> links, bool notAMember, List<CustomFieldValueDto> customFieldValues, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+            public async Task<TDMemberProfileDto> CreateProfileAsync(string username, string firstName, string lastName, List<string> emails = null, List<string> phones = null, List<string> messengers = null, List<string> links = null, bool notAMember = false, List<CustomFieldValueDto> customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesRequest, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", new TeamDirectoryProfilesRequest{ Username = username, FirstName = firstName, LastName = lastName, Emails = emails, Phones = phones, Birthday = birthday, About = about, Messengers = messengers, Links = links, NotAMember = notAMember, Joined = joined, Left = left, SpeaksEnglish = speaksEnglish, PictureAttachmentId = pictureAttachmentId, AvatarCropSquare = avatarCropSquare, CustomFieldValues = customFieldValues });
         
             /// <summary>
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDMemberProfileDto>> GetAllProfilesAsync(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>>? partial = null)
+            public async Task<Batch<TDMemberProfileDto>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
             
             /// <summary>
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDMemberProfileDto> GetAllProfilesAsyncEnumerable(string query, bool reportPastMembers, bool meOnTop, string? skip = null, int? top = null, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+            public IAsyncEnumerable<TDMemberProfileDto> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, top: top, teamId: teamId, locationId: locationId, roleId: roleId, order: order, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
         
             /// <summary>
             /// Get profile information by email address.
             /// </summary>
-            public async Task<TDMemberProfileDto> GetProfileByEmailAsync(string email, bool verified, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+            public async Task<TDMemberProfileDto> GetProfileByEmailAsync(string email, bool verified = true, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TDMemberProfileDto>("GET", $"api/http/team-directory/profiles/email:{email}?verified={verified.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}");
         
             /// <summary>
@@ -852,10 +852,10 @@ namespace SpaceDotNet.Client
                 public async Task<Pair<ESApplicationPasswordDto, string>> CreateApplicationPasswordAsync(ProfileIdentifier profile, string name, string scope, Func<Partial<Pair<ESApplicationPasswordDto, string>>, Partial<Pair<ESApplicationPasswordDto, string>>>? partial = null)
                     => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileApplicationPasswordsRequest, Pair<ESApplicationPasswordDto, string>>("POST", $"api/http/team-directory/profiles/{profile}/application-passwords?$fields={(partial != null ? partial(new Partial<Pair<ESApplicationPasswordDto, string>>()) : Partial<Pair<ESApplicationPasswordDto, string>>.Default())}", new TeamDirectoryProfilesForProfileApplicationPasswordsRequest{ Name = name, Scope = scope });
             
-                public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswordsAsync(ProfileIdentifier profile, string? skip = null, int? top = null, Func<Partial<Batch<ESApplicationPasswordDto>>, Partial<Batch<ESApplicationPasswordDto>>>? partial = null)
+                public async Task<Batch<ESApplicationPasswordDto>> GetAllApplicationPasswordsAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<ESApplicationPasswordDto>>, Partial<Batch<ESApplicationPasswordDto>>>? partial = null)
                     => await _connection.RequestResourceAsync<Batch<ESApplicationPasswordDto>>("GET", $"api/http/team-directory/profiles/{profile}/application-passwords?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ESApplicationPasswordDto>>()) : Partial<Batch<ESApplicationPasswordDto>>.Default())}");
                 
-                public IAsyncEnumerable<ESApplicationPasswordDto> GetAllApplicationPasswordsAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = null, Func<Partial<ESApplicationPasswordDto>, Partial<ESApplicationPasswordDto>>? partial = null)
+                public IAsyncEnumerable<ESApplicationPasswordDto> GetAllApplicationPasswordsAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESApplicationPasswordDto>, Partial<ESApplicationPasswordDto>>? partial = null)
                     => BatchEnumerator.AllItems(batchSkip => GetAllApplicationPasswordsAsync(profile: profile, top: top, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPasswordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPasswordDto>.Default())), skip);
             
                 public async Task UpdateApplicationPasswordAsync(ProfileIdentifier profile, string passwordId, string? name = null, string? scope = null)
@@ -968,13 +968,13 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get personal tokens used to access the current organisation for a given profile id.
                 /// </summary>
-                public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokensAsync(ProfileIdentifier profile, string? skip = null, int? top = null, Func<Partial<Batch<ESPermanentTokenDto>>, Partial<Batch<ESPermanentTokenDto>>>? partial = null)
+                public async Task<Batch<ESPermanentTokenDto>> GetAllPermanentTokensAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<ESPermanentTokenDto>>, Partial<Batch<ESPermanentTokenDto>>>? partial = null)
                     => await _connection.RequestResourceAsync<Batch<ESPermanentTokenDto>>("GET", $"api/http/team-directory/profiles/{profile}/permanent-tokens?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ESPermanentTokenDto>>()) : Partial<Batch<ESPermanentTokenDto>>.Default())}");
                 
                 /// <summary>
                 /// Get personal tokens used to access the current organisation for a given profile id.
                 /// </summary>
-                public IAsyncEnumerable<ESPermanentTokenDto> GetAllPermanentTokensAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = null, Func<Partial<ESPermanentTokenDto>, Partial<ESPermanentTokenDto>>? partial = null)
+                public IAsyncEnumerable<ESPermanentTokenDto> GetAllPermanentTokensAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESPermanentTokenDto>, Partial<ESPermanentTokenDto>>? partial = null)
                     => BatchEnumerator.AllItems(batchSkip => GetAllPermanentTokensAsync(profile: profile, top: top, skip: batchSkip, partial: builder => Partial<Batch<ESPermanentTokenDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESPermanentTokenDto>.Default())), skip);
             
                 /// <summary>
@@ -1080,10 +1080,10 @@ namespace SpaceDotNet.Client
                 public async Task<TDWorkingDaysDto> AddWorkingDaysAsync(ProfileIdentifier profile, WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
                     => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysRequest, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{profile}/working-days?$fields={(partial != null ? partial(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default())}", new TeamDirectoryProfilesForProfileWorkingDaysRequest{ DateStart = dateStart, DateEnd = dateEnd, WorkingDaysSpec = workingDaysSpec });
             
-                public async Task<Batch<TDWorkingDaysDto>> GetAllWorkingDaysAsync(ProfileIdentifier profile, string? skip = null, int? top = null, Func<Partial<Batch<TDWorkingDaysDto>>, Partial<Batch<TDWorkingDaysDto>>>? partial = null)
+                public async Task<Batch<TDWorkingDaysDto>> GetAllWorkingDaysAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<TDWorkingDaysDto>>, Partial<Batch<TDWorkingDaysDto>>>? partial = null)
                     => await _connection.RequestResourceAsync<Batch<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{profile}/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDWorkingDaysDto>>()) : Partial<Batch<TDWorkingDaysDto>>.Default())}");
                 
-                public IAsyncEnumerable<TDWorkingDaysDto> GetAllWorkingDaysAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = null, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
+                public IAsyncEnumerable<TDWorkingDaysDto> GetAllWorkingDaysAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
                     => BatchEnumerator.AllItems(batchSkip => GetAllWorkingDaysAsync(profile: profile, top: top, skip: batchSkip, partial: builder => Partial<Batch<TDWorkingDaysDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDWorkingDaysDto>.Default())), skip);
             
                 public async Task<TDWorkingDaysDto> UpdateWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
@@ -1122,7 +1122,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search all roles. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<List<TDRoleDto>> GetAllRolesAsync(string query, bool withArchived, Func<Partial<TDRoleDto>, Partial<TDRoleDto>>? partial = null)
+            public async Task<List<TDRoleDto>> GetAllRolesAsync(string query = "", bool withArchived = false, Func<Partial<TDRoleDto>, Partial<TDRoleDto>>? partial = null)
                 => await _connection.RequestResourceAsync<List<TDRoleDto>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDRoleDto>()) : Partial<TDRoleDto>.Default())}");
         
             /// <summary>
@@ -1202,13 +1202,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search all teams. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDTeamDto>> GetAllTeamsAsync(string query, bool withArchived, string? skip = null, int? top = null, Func<Partial<Batch<TDTeamDto>>, Partial<Batch<TDTeamDto>>>? partial = null)
+            public async Task<Batch<TDTeamDto>> GetAllTeamsAsync(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeamDto>>, Partial<Batch<TDTeamDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<TDTeamDto>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDTeamDto>>()) : Partial<Batch<TDTeamDto>>.Default())}");
             
             /// <summary>
             /// Get/search all teams. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDTeamDto> GetAllTeamsAsyncEnumerable(string query, bool withArchived, string? skip = null, int? top = null, Func<Partial<TDTeamDto>, Partial<TDTeamDto>>? partial = null)
+            public IAsyncEnumerable<TDTeamDto> GetAllTeamsAsyncEnumerable(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<TDTeamDto>, Partial<TDTeamDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllTeamsAsync(query: query, withArchived: withArchived, top: top, skip: batchSkip, partial: builder => Partial<Batch<TDTeamDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeamDto>.Default())), skip);
         
             [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]
@@ -1253,13 +1253,13 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search direct members of a given team.
                 /// </summary>
-                public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembersAsync(string id, string query, string? skip = null, int? top = null, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>>? partial = null)
+                public async Task<Batch<TDMemberProfileDto>> GetAllDirectMembersAsync(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfileDto>>, Partial<Batch<TDMemberProfileDto>>>? partial = null)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfileDto>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfileDto>>()) : Partial<Batch<TDMemberProfileDto>>.Default())}");
                 
                 /// <summary>
                 /// Get/search direct members of a given team.
                 /// </summary>
-                public IAsyncEnumerable<TDMemberProfileDto> GetAllDirectMembersAsyncEnumerable(string id, string query, string? skip = null, int? top = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+                public IAsyncEnumerable<TDMemberProfileDto> GetAllDirectMembersAsyncEnumerable(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                     => BatchEnumerator.AllItems(batchSkip => GetAllDirectMembersAsync(id: id, query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfileDto>.Default())), skip);
             
             }

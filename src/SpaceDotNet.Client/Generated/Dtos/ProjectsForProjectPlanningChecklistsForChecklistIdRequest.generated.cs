@@ -36,7 +36,6 @@ namespace SpaceDotNet.Client
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdRequest), nameof(Name));
         
-        [Required]
         [JsonPropertyName("name")]
         public string Name
         {

@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsRequest() { }
         
-        public ProjectsRequest(ProjectKeyDto key, string name, bool @private, List<string> tags, string? description = null)
+        public ProjectsRequest(ProjectKeyDto key, string name, bool @private = false, List<string> tags = null, string? description = null)
         {
             Key = key;
             Name = name;
@@ -66,7 +66,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(ProjectsRequest), nameof(Private));
         
-        [Required]
         [JsonPropertyName("private")]
         public bool Private
         {
@@ -76,7 +75,6 @@ namespace SpaceDotNet.Client
     
         private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsRequest), nameof(Tags));
         
-        [Required]
         [JsonPropertyName("tags")]
         public List<string> Tags
         {
