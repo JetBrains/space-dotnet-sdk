@@ -18,7 +18,7 @@ namespace SpaceDotNet.Samples.Web.Controllers
         // TODO WEBHOOKS document
         // NOTE: For this sample to work, create a channel,
         // and configure https://your-app.public.example.org/space/receive as an endpoint.
-        private readonly string _chatChannelName = "Temporary-Test-Chat";
+        private readonly string _chatChannelName = "SpaceDotNet";
 
         public SpaceController(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
