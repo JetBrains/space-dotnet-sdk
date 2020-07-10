@@ -1,3 +1,6 @@
+using System;
+using System.Text;
+using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
@@ -12,5 +15,70 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
         
         public static string ToCSharpPropertyName(this ApiField subject)
             => CSharpIdentifier.ForClassOrNamespace(subject.Name);
+        
+        public static string ToCSharpVariableNameWithDefaultValue(this ApiField subject, CodeGenerationContext context)
+        {
+            if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+            {
+                if (subject.DefaultValue is ApiDefaultValue.Const.EnumEntry enumEntry)
+                {
+                    var apiEnumRef = subject.Type as ApiFieldType.Enum;
+                    if (apiEnumRef == null || !context.TryGetEnum(apiEnumRef.EnumRef!.Id, out var apiEnum) || apiEnum == null)
+                    {
+                        throw new NotSupportedException("For " + nameof(ApiDefaultValue.Const.EnumEntry) + ", the field type should be of type" + nameof(ApiFieldType.Enum) + ".");
+                    }
+
+                    var typeNameForEnum = apiEnum.ToCSharpClassName();
+                    var identifierForValue = CSharpIdentifier.ForClassOrNamespace(enumEntry.EntryName);
+
+                    var builder = new StringBuilder();
+                    builder.Append("(");
+                    builder.Append(subject.ToCSharpVariableName());
+                    builder.Append($" ?? {typeNameForEnum}.{identifierForValue}");
+                    builder.Append(")");
+                    return builder.ToString();
+                }
+                else if (subject.DefaultValue is ApiDefaultValue.Collection collection)
+                {
+                    var typeNameForArrayElement = subject.Type.GetArrayElementTypeOrType().ToCSharpType(context);
+
+                    var builder = new StringBuilder();
+                    builder.Append("(");
+                    builder.Append(subject.ToCSharpVariableName());
+                    builder.Append($" ?? new List<{typeNameForArrayElement}>()");
+ 
+                    if (collection.Elements.Count > 0)
+                    {
+                        throw new NotSupportedException("Default values with populated collections are not supported yet.");
+                    }
+                    
+                    builder.Append(")");
+                    return builder.ToString();
+                }
+                else if (subject.DefaultValue is ApiDefaultValue.Map map)
+                {
+                    var typeNameForMapValue = subject.Type.GetMapValueTypeOrType().ToCSharpType(context);
+
+                    var builder = new StringBuilder();
+                    builder.Append("(");
+                    builder.Append(subject.ToCSharpVariableName());
+                    builder.Append($" ?? new Dictionary<string, {typeNameForMapValue}>()");
+ 
+                    if (map.Elements.Count > 0)
+                    {
+                        throw new NotSupportedException("Default values with populated maps are not supported yet.");
+                    }
+                    
+                    builder.Append(")");
+                    return builder.ToString();
+                }
+                else if (subject.DefaultValue is ApiDefaultValue.Reference reference)
+                {
+                    throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");
+                }
+            }
+            
+            return subject.ToCSharpVariableName();
+        }
     }
 }

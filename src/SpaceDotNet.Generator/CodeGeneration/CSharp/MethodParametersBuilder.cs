@@ -164,7 +164,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                         if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
                         {
                             var apiEnumRef = field.Type as ApiFieldType.Enum;
-                            if (apiEnumRef == null || !_context.TryGetEnum(apiEnumRef.EnumRef!.Id, out var apiEnum))
+                            if (apiEnumRef == null || !_context.TryGetEnum(apiEnumRef.EnumRef!.Id, out var apiEnum) || apiEnum == null)
                             {
                                 throw new NotSupportedException("For " + nameof(ApiDefaultValue.Const.EnumEntry) + ", the field type should be of type" + nameof(ApiFieldType.Enum) + ".");
                             }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -200,7 +201,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 {
                     if (FeatureFlags.DoNotExposeRequestObjects)
                     {
-                        builder.Append(", " + ConstructNewRequestObject(apiEndpoint, endpointPath));
+                        builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, endpointPath));
                     }
                     else
                     {
@@ -280,7 +281,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 {
                     if (FeatureFlags.DoNotExposeRequestObjects)
                     {
-                        builder.Append(", " + ConstructNewRequestObject(apiEndpoint, endpointPath));
+                        builder.Append(", " + ConstructNewRequestObject(indent, apiEndpoint, endpointPath));
                     }
                     else
                     {
@@ -298,16 +299,25 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             return builder.ToString();
         }
 
-        private string ConstructNewRequestObject(ApiEndpoint apiEndpoint, string endpointPath)
+        private string ConstructNewRequestObject(Indent indent, ApiEndpoint apiEndpoint, string endpointPath)
         {
             var builder = new StringBuilder();
+
+            builder.AppendLine();
+            indent.Increment();
             
-            builder.Append("new " + apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)! + "{ ");
-            builder.Append(string.Join(", ",
-                apiEndpoint.RequestBody!.Fields.Select(it =>
-                    it.ToCSharpPropertyName() + " = " + it.ToCSharpVariableName())));
-            builder.Append(" }");
+            builder.AppendLine($"{indent}new {apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!} {{ ");
+            indent.Increment();
             
+            foreach (var field in apiEndpoint.RequestBody!.Fields)
+            {
+                builder.AppendLine($"{indent}{field.ToCSharpPropertyName()} = {field.ToCSharpVariableNameWithDefaultValue(_codeGenerationContext)},");
+            }
+            
+            indent.Decrement();   
+            builder.AppendLine($"{indent}}}");
+            
+            indent.Decrement();   
             return builder.ToString();
         }
 
