@@ -108,7 +108,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             var todoClosedThisWeek = 0;
             var meetingsThisWeek = 0;
             
-            await foreach (var projectDto in _projectClient.GetAllProjectsByMemberAsyncEnumerable(MemberProfile.Id))
+            await foreach (var projectDto in _projectClient.GetAllProjectsByMemberAsyncEnumerable(ProfileIdentifier.Id(MemberProfile.Id)))
             {
                 try
                 {
