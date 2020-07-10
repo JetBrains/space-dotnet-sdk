@@ -32,8 +32,8 @@ namespace SpaceDotNet.Client.CommitStatusDTODtoPartialBuilder
         public static Partial<CommitStatusDTODto> WithExecutionStatus(this Partial<CommitStatusDTODto> it)
             => it.AddFieldName("executionStatus");
         
-        public static Partial<CommitStatusDTODto> WithExecutionStatus(this Partial<CommitStatusDTODto> it, Func<Partial<ExecutionStatus>, Partial<ExecutionStatus>> partialBuilder)
-            => it.AddFieldName("executionStatus", partialBuilder(new Partial<ExecutionStatus>(it)));
+        public static Partial<CommitStatusDTODto> WithExecutionStatus(this Partial<CommitStatusDTODto> it, Func<Partial<CommitExecutionStatus>, Partial<CommitExecutionStatus>> partialBuilder)
+            => it.AddFieldName("executionStatus", partialBuilder(new Partial<CommitExecutionStatus>(it)));
         
         public static Partial<CommitStatusDTODto> WithUrl(this Partial<CommitStatusDTODto> it)
             => it.AddFieldName("url");

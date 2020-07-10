@@ -92,6 +92,12 @@ namespace SpaceDotNet.Client.ChannelItemRecordDtoPartialBuilder
         public static Partial<ChannelItemRecordDto> WithPinned(this Partial<ChannelItemRecordDto> it)
             => it.AddFieldName("pinned");
         
+        public static Partial<ChannelItemRecordDto> WithSuggestedParticipants(this Partial<ChannelItemRecordDto> it)
+            => it.AddFieldName("suggestedParticipants");
+        
+        public static Partial<ChannelItemRecordDto> WithSuggestedParticipants(this Partial<ChannelItemRecordDto> it, Func<Partial<CPrincipalDto>, Partial<CPrincipalDto>> partialBuilder)
+            => it.AddFieldName("suggestedParticipants", partialBuilder(new Partial<CPrincipalDto>(it)));
+        
     }
     
 }

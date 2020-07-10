@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TeamDirectoryMembershipsRequestsForIdRequest
+    public class TeamDirectoryProfilesForProfileNavBarProjectsRequest
          : IPropagatePropertyAccessPath
     {
-        public TeamDirectoryMembershipsRequestsForIdRequest() { }
+        public TeamDirectoryProfilesForProfileNavBarProjectsRequest() { }
         
-        public TeamDirectoryMembershipsRequestsForIdRequest(bool approved)
+        public TeamDirectoryProfilesForProfileNavBarProjectsRequest(ProjectIdentifier project)
         {
-            Approved = approved;
+            Project = project;
         }
         
-        private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForIdRequest), nameof(Approved));
+        private PropertyValue<ProjectIdentifier> _project = new PropertyValue<ProjectIdentifier>(nameof(TeamDirectoryProfilesForProfileNavBarProjectsRequest), nameof(Project));
         
         [Required]
-        [JsonPropertyName("approved")]
-        public bool Approved
+        [JsonPropertyName("project")]
+        public ProjectIdentifier Project
         {
-            get { return _approved.GetValue(); }
-            set { _approved.SetValue(value); }
+            get { return _project.GetValue(); }
+            set { _project.SetValue(value); }
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _approved.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

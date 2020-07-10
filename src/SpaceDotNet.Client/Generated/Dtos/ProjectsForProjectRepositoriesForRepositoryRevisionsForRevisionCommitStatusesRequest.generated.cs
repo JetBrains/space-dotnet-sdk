@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest(ExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null)
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest(CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null)
         {
             Branch = branch;
             Changes = changes;
@@ -57,11 +57,11 @@ namespace SpaceDotNet.Client
             set { _changes.SetValue(value); }
         }
     
-        private PropertyValue<ExecutionStatus> _executionStatus = new PropertyValue<ExecutionStatus>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest), nameof(ExecutionStatus));
+        private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest), nameof(ExecutionStatus));
         
         [Required]
         [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus
+        public CommitExecutionStatus ExecutionStatus
         {
             get { return _executionStatus.GetValue(); }
             set { _executionStatus.SetValue(value); }

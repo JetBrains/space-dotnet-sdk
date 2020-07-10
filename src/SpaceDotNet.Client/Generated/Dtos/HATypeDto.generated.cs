@@ -37,6 +37,9 @@ namespace SpaceDotNet.Client
         public static HATypeEnumDto Enum(HAEnumDto @enum, bool nullable)
             => new HATypeEnumDto(@enum: @enum, nullable: nullable);
         
+        public static HATypeMapDto Map(HATypeDto valueType, bool nullable)
+            => new HATypeMapDto(valueType: valueType, nullable: nullable);
+        
         public static HATypeObjectDto Object(List<HAFieldDto> fields, HATypeObjectKind kind, bool nullable)
             => new HATypeObjectDto(fields: fields, kind: kind, nullable: nullable);
         

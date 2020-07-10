@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public CommitStatusDTODto() { }
         
-        public CommitStatusDTODto(string repository, string revision, ExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, long timestamp, string? description = null)
+        public CommitStatusDTODto(string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, long timestamp, string? description = null)
         {
             Repository = repository;
             Revision = revision;
@@ -59,11 +59,11 @@ namespace SpaceDotNet.Client
             set { _revision.SetValue(value); }
         }
     
-        private PropertyValue<ExecutionStatus> _executionStatus = new PropertyValue<ExecutionStatus>(nameof(CommitStatusDTODto), nameof(ExecutionStatus));
+        private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(CommitStatusDTODto), nameof(ExecutionStatus));
         
         [Required]
         [JsonPropertyName("executionStatus")]
-        public ExecutionStatus ExecutionStatus
+        public CommitExecutionStatus ExecutionStatus
         {
             get { return _executionStatus.GetValue(); }
             set { _executionStatus.SetValue(value); }

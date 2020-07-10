@@ -28,7 +28,6 @@ namespace SpaceDotNet.Client
         
         public static readonly HATypeObjectKind PAIR = new HATypeObjectKind("PAIR");
         public static readonly HATypeObjectKind TRIPLE = new HATypeObjectKind("TRIPLE");
-        public static readonly HATypeObjectKind MAPENTRY = new HATypeObjectKind("MAP_ENTRY");
         public static readonly HATypeObjectKind BATCH = new HATypeObjectKind("BATCH");
         public static readonly HATypeObjectKind MOD = new HATypeObjectKind("MOD");
         public static readonly HATypeObjectKind REQUESTBODY = new HATypeObjectKind("REQUEST_BODY");

@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TeamDirectoryMembershipsForIdRequestRevokeRequest
+    public class TeamDirectoryMembershipsRequestsForMembershipRequestIdRequest
          : IPropagatePropertyAccessPath
     {
-        public TeamDirectoryMembershipsForIdRequestRevokeRequest() { }
+        public TeamDirectoryMembershipsRequestsForMembershipRequestIdRequest() { }
         
-        public TeamDirectoryMembershipsForIdRequestRevokeRequest(SpaceTime till)
+        public TeamDirectoryMembershipsRequestsForMembershipRequestIdRequest(bool approved)
         {
-            Till = till;
+            Approved = approved;
         }
         
-        private PropertyValue<SpaceTime> _till = new PropertyValue<SpaceTime>(nameof(TeamDirectoryMembershipsForIdRequestRevokeRequest), nameof(Till));
+        private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForMembershipRequestIdRequest), nameof(Approved));
         
         [Required]
-        [JsonPropertyName("till")]
-        public SpaceTime Till
+        [JsonPropertyName("approved")]
+        public bool Approved
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get { return _approved.GetValue(); }
+            set { _approved.SetValue(value); }
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _till.SetAccessPath(path, validateHasBeenSet);
+            _approved.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

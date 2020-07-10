@@ -19,15 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProjectsForProjectAccessAdminsProfilesRequestPartialBuilder
+namespace SpaceDotNet.Client.NavBarMenuItemDtoPartialBuilder
 {
-    public static class ProjectsForProjectAccessAdminsProfilesRequestPartialExtensions
+    public static class NavBarMenuItemDtoPartialExtensions
     {
-        public static Partial<ProjectsForProjectAccessAdminsProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessAdminsProfilesRequest> it)
-            => it.AddFieldName("profile");
+        public static Partial<NavBarMenuItemDto> WithItem(this Partial<NavBarMenuItemDto> it)
+            => it.AddFieldName("item");
         
-        public static Partial<ProjectsForProjectAccessAdminsProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessAdminsProfilesRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
+        public static Partial<NavBarMenuItemDto> WithEnabled(this Partial<NavBarMenuItemDto> it)
+            => it.AddFieldName("enabled");
         
     }
     

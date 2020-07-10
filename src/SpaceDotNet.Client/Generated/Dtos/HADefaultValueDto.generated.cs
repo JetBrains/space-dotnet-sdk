@@ -34,6 +34,9 @@ namespace SpaceDotNet.Client
         public static HADefaultValueConstDto Const()
             => new HADefaultValueConstDto();
         
+        public static HADefaultValueMapDto Map(Dictionary<string, HADefaultValueDto> elements)
+            => new HADefaultValueMapDto(elements: elements);
+        
         public static HADefaultValueReferenceDto Reference(string paramName)
             => new HADefaultValueReferenceDto(paramName: paramName);
         

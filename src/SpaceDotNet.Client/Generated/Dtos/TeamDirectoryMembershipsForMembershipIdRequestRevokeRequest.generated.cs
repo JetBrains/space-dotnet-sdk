@@ -21,29 +21,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ProjectsForProjectAccessAdminsProfilesRequest
+    public class TeamDirectoryMembershipsForMembershipIdRequestRevokeRequest
          : IPropagatePropertyAccessPath
     {
-        public ProjectsForProjectAccessAdminsProfilesRequest() { }
+        public TeamDirectoryMembershipsForMembershipIdRequestRevokeRequest() { }
         
-        public ProjectsForProjectAccessAdminsProfilesRequest(ProfileIdentifier profile)
+        public TeamDirectoryMembershipsForMembershipIdRequestRevokeRequest(SpaceTime till)
         {
-            Profile = profile;
+            Till = till;
         }
         
-        private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(ProjectsForProjectAccessAdminsProfilesRequest), nameof(Profile));
+        private PropertyValue<SpaceTime> _till = new PropertyValue<SpaceTime>(nameof(TeamDirectoryMembershipsForMembershipIdRequestRevokeRequest), nameof(Till));
         
         [Required]
-        [JsonPropertyName("profile")]
-        public ProfileIdentifier Profile
+        [JsonPropertyName("till")]
+        public SpaceTime Till
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get { return _till.GetValue(); }
+            set { _till.SetValue(value); }
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _profile.SetAccessPath(path, validateHasBeenSet);
+            _till.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

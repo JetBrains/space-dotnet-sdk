@@ -32,8 +32,8 @@ namespace SpaceDotNet.Client.ProjectsForProjectRepositoriesForRepositoryRevision
         public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> WithExecutionStatus(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> it)
             => it.AddFieldName("executionStatus");
         
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> WithExecutionStatus(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> it, Func<Partial<ExecutionStatus>, Partial<ExecutionStatus>> partialBuilder)
-            => it.AddFieldName("executionStatus", partialBuilder(new Partial<ExecutionStatus>(it)));
+        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> WithExecutionStatus(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> it, Func<Partial<CommitExecutionStatus>, Partial<CommitExecutionStatus>> partialBuilder)
+            => it.AddFieldName("executionStatus", partialBuilder(new Partial<CommitExecutionStatus>(it)));
         
         public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> WithUrl(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesRequest> it)
             => it.AddFieldName("url");

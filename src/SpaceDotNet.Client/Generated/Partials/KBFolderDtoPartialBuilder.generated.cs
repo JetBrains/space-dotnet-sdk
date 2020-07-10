@@ -62,6 +62,12 @@ namespace SpaceDotNet.Client.KBFolderDtoPartialBuilder
         public static Partial<KBFolderDto> WithBook(this Partial<KBFolderDto> it, Func<Partial<KBBookDto>, Partial<KBBookDto>> partialBuilder)
             => it.AddFieldName("book", partialBuilder(new Partial<KBBookDto>(it)));
         
+        public static Partial<KBFolderDto> WithCover(this Partial<KBFolderDto> it)
+            => it.AddFieldName("cover");
+        
+        public static Partial<KBFolderDto> WithCover(this Partial<KBFolderDto> it, Func<Partial<KBArticleDto>, Partial<KBArticleDto>> partialBuilder)
+            => it.AddFieldName("cover", partialBuilder(new Partial<KBArticleDto>(it)));
+        
         public static Partial<KBFolderDto> WithAlias(this Partial<KBFolderDto> it)
             => it.AddFieldName("alias");
         

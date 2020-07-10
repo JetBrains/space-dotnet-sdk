@@ -23,8 +23,11 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsRequestPartialBuilder
 {
     public static class TeamDirectoryMembershipsRequestPartialExtensions
     {
-        public static Partial<TeamDirectoryMembershipsRequest> WithMemberId(this Partial<TeamDirectoryMembershipsRequest> it)
-            => it.AddFieldName("memberId");
+        public static Partial<TeamDirectoryMembershipsRequest> WithMember(this Partial<TeamDirectoryMembershipsRequest> it)
+            => it.AddFieldName("member");
+        
+        public static Partial<TeamDirectoryMembershipsRequest> WithMember(this Partial<TeamDirectoryMembershipsRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("member", partialBuilder(new Partial<ProfileIdentifier>(it)));
         
         public static Partial<TeamDirectoryMembershipsRequest> WithTeamId(this Partial<TeamDirectoryMembershipsRequest> it)
             => it.AddFieldName("teamId");
@@ -35,8 +38,11 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsRequestPartialBuilder
         public static Partial<TeamDirectoryMembershipsRequest> WithLead(this Partial<TeamDirectoryMembershipsRequest> it)
             => it.AddFieldName("lead");
         
-        public static Partial<TeamDirectoryMembershipsRequest> WithManagerId(this Partial<TeamDirectoryMembershipsRequest> it)
-            => it.AddFieldName("managerId");
+        public static Partial<TeamDirectoryMembershipsRequest> WithManager(this Partial<TeamDirectoryMembershipsRequest> it)
+            => it.AddFieldName("manager");
+        
+        public static Partial<TeamDirectoryMembershipsRequest> WithManager(this Partial<TeamDirectoryMembershipsRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("manager", partialBuilder(new Partial<ProfileIdentifier>(it)));
         
         public static Partial<TeamDirectoryMembershipsRequest> WithActiveSince(this Partial<TeamDirectoryMembershipsRequest> it)
             => it.AddFieldName("activeSince");

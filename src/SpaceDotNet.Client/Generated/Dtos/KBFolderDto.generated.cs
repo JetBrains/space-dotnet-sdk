@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public KBFolderDto() { }
         
-        public KBFolderDto(string id, bool archived, string name, List<KBFolderDto> subfolders, List<KBArticleDto> articles, KBBookDto book, string alias, KBFolderDto? parent = null)
+        public KBFolderDto(string id, bool archived, string name, List<KBFolderDto> subfolders, List<KBArticleDto> articles, KBBookDto book, string alias, KBFolderDto? parent = null, KBArticleDto? cover = null)
         {
             Id = id;
             Archived = archived;
@@ -35,6 +35,7 @@ namespace SpaceDotNet.Client
             Subfolders = subfolders;
             Articles = articles;
             Book = book;
+            Cover = cover;
             Alias = alias;
         }
         
@@ -107,6 +108,15 @@ namespace SpaceDotNet.Client
             set { _book.SetValue(value); }
         }
     
+        private PropertyValue<KBArticleDto?> _cover = new PropertyValue<KBArticleDto?>(nameof(KBFolderDto), nameof(Cover));
+        
+        [JsonPropertyName("cover")]
+        public KBArticleDto? Cover
+        {
+            get { return _cover.GetValue(); }
+            set { _cover.SetValue(value); }
+        }
+    
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBFolderDto), nameof(Alias));
         
         [Required]
@@ -126,6 +136,7 @@ namespace SpaceDotNet.Client
             _subfolders.SetAccessPath(path, validateHasBeenSet);
             _articles.SetAccessPath(path, validateHasBeenSet);
             _book.SetAccessPath(path, validateHasBeenSet);
+            _cover.SetAccessPath(path, validateHasBeenSet);
             _alias.SetAccessPath(path, validateHasBeenSet);
         }
     

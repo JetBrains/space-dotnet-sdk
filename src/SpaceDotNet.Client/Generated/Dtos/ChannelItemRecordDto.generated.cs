@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ChannelItemRecordDto() { }
         
-        public ChannelItemRecordDto(string text, CPrincipalDto author, SpaceTime created, long time, string id, bool archived, M2ItemContentDetailsDto? details = null, AllReactionsToItemRecordDto? reactions = null, M2ChannelRecordDto? thread = null, ChannelItemRecordDto? projectedItem = null, List<AttachmentInfoDto>? attachments = null, List<AttachmentInfoDto>? attachmentsInfos = null, bool? pending = null, SpaceTime? edited = null, bool? pinned = null)
+        public ChannelItemRecordDto(string text, CPrincipalDto author, SpaceTime created, long time, string id, bool archived, M2ItemContentDetailsDto? details = null, AllReactionsToItemRecordDto? reactions = null, M2ChannelRecordDto? thread = null, ChannelItemRecordDto? projectedItem = null, List<AttachmentInfoDto>? attachments = null, List<AttachmentInfoDto>? attachmentsInfos = null, bool? pending = null, SpaceTime? edited = null, bool? pinned = null, List<CPrincipalDto>? suggestedParticipants = null)
         {
             Text = text;
             Details = details;
@@ -43,6 +43,7 @@ namespace SpaceDotNet.Client
             Archived = archived;
             Edited = edited;
             Pinned = pinned;
+            SuggestedParticipants = suggestedParticipants;
         }
         
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemRecordDto), nameof(Text));
@@ -186,6 +187,15 @@ namespace SpaceDotNet.Client
             set { _pinned.SetValue(value); }
         }
     
+        private PropertyValue<List<CPrincipalDto>?> _suggestedParticipants = new PropertyValue<List<CPrincipalDto>?>(nameof(ChannelItemRecordDto), nameof(SuggestedParticipants));
+        
+        [JsonPropertyName("suggestedParticipants")]
+        public List<CPrincipalDto>? SuggestedParticipants
+        {
+            get { return _suggestedParticipants.GetValue(); }
+            set { _suggestedParticipants.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _text.SetAccessPath(path, validateHasBeenSet);
@@ -203,6 +213,7 @@ namespace SpaceDotNet.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _edited.SetAccessPath(path, validateHasBeenSet);
             _pinned.SetAccessPath(path, validateHasBeenSet);
+            _suggestedParticipants.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

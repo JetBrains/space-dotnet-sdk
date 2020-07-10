@@ -19,12 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TeamDirectoryMembershipsRequestsForIdRequestPartialBuilder
+namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfileNavBarMenuItemsRequestPartialBuilder
 {
-    public static class TeamDirectoryMembershipsRequestsForIdRequestPartialExtensions
+    public static class TeamDirectoryProfilesForProfileNavBarMenuItemsRequestPartialExtensions
     {
-        public static Partial<TeamDirectoryMembershipsRequestsForIdRequest> WithApproved(this Partial<TeamDirectoryMembershipsRequestsForIdRequest> it)
-            => it.AddFieldName("approved");
+        public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsRequest> it)
+            => it.AddFieldName("item");
+        
+        public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsRequest> WithEnabled(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsRequest> it)
+            => it.AddFieldName("enabled");
         
     }
     

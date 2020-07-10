@@ -26,13 +26,13 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMembershipsRequest() { }
         
-        public TeamDirectoryMembershipsRequest(string memberId, string teamId, string roleId, bool lead = false, bool requiresApproval = false, string? managerId = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public TeamDirectoryMembershipsRequest(ProfileIdentifier member, string teamId, string roleId, bool lead = false, bool requiresApproval = false, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValueDto>? customFieldValues = null)
         {
-            MemberId = memberId;
+            Member = member;
             TeamId = teamId;
             RoleId = roleId;
             Lead = lead;
-            ManagerId = managerId;
+            Manager = manager;
             ActiveSince = activeSince;
             ActiveTill = activeTill;
             PreviousMembershipId = previousMembershipId;
@@ -40,14 +40,14 @@ namespace SpaceDotNet.Client
             CustomFieldValues = customFieldValues;
         }
         
-        private PropertyValue<string> _memberId = new PropertyValue<string>(nameof(TeamDirectoryMembershipsRequest), nameof(MemberId));
+        private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(TeamDirectoryMembershipsRequest), nameof(Member));
         
         [Required]
-        [JsonPropertyName("memberId")]
-        public string MemberId
+        [JsonPropertyName("member")]
+        public ProfileIdentifier Member
         {
-            get { return _memberId.GetValue(); }
-            set { _memberId.SetValue(value); }
+            get { return _member.GetValue(); }
+            set { _member.SetValue(value); }
         }
     
         private PropertyValue<string> _teamId = new PropertyValue<string>(nameof(TeamDirectoryMembershipsRequest), nameof(TeamId));
@@ -79,13 +79,13 @@ namespace SpaceDotNet.Client
             set { _lead.SetValue(value); }
         }
     
-        private PropertyValue<string?> _managerId = new PropertyValue<string?>(nameof(TeamDirectoryMembershipsRequest), nameof(ManagerId));
+        private PropertyValue<ProfileIdentifier?> _manager = new PropertyValue<ProfileIdentifier?>(nameof(TeamDirectoryMembershipsRequest), nameof(Manager));
         
-        [JsonPropertyName("managerId")]
-        public string? ManagerId
+        [JsonPropertyName("manager")]
+        public ProfileIdentifier? Manager
         {
-            get { return _managerId.GetValue(); }
-            set { _managerId.SetValue(value); }
+            get { return _manager.GetValue(); }
+            set { _manager.SetValue(value); }
         }
     
         private PropertyValue<SpaceTime?> _activeSince = new PropertyValue<SpaceTime?>(nameof(TeamDirectoryMembershipsRequest), nameof(ActiveSince));
@@ -135,11 +135,11 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _memberId.SetAccessPath(path, validateHasBeenSet);
+            _member.SetAccessPath(path, validateHasBeenSet);
             _teamId.SetAccessPath(path, validateHasBeenSet);
             _roleId.SetAccessPath(path, validateHasBeenSet);
             _lead.SetAccessPath(path, validateHasBeenSet);
-            _managerId.SetAccessPath(path, validateHasBeenSet);
+            _manager.SetAccessPath(path, validateHasBeenSet);
             _activeSince.SetAccessPath(path, validateHasBeenSet);
             _activeTill.SetAccessPath(path, validateHasBeenSet);
             _previousMembershipId.SetAccessPath(path, validateHasBeenSet);

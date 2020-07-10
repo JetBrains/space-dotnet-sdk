@@ -19,15 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProjectsForProjectAccessAdminsProfilesRequestPartialBuilder
+namespace SpaceDotNet.Client.HADefaultValueMapDtoPartialBuilder
 {
-    public static class ProjectsForProjectAccessAdminsProfilesRequestPartialExtensions
+    public static class HADefaultValueMapDtoPartialExtensions
     {
-        public static Partial<ProjectsForProjectAccessAdminsProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessAdminsProfilesRequest> it)
-            => it.AddFieldName("profile");
+        public static Partial<HADefaultValueMapDto> WithElements(this Partial<HADefaultValueMapDto> it)
+            => it.AddFieldName("elements");
         
-        public static Partial<ProjectsForProjectAccessAdminsProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessAdminsProfilesRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
+        public static Partial<HADefaultValueMapDto> WithElements(this Partial<HADefaultValueMapDto> it, Func<Partial<HADefaultValueDto>, Partial<HADefaultValueDto>> partialBuilder)
+            => it.AddFieldName("elements", partialBuilder(new Partial<HADefaultValueDto>(it)));
         
     }
     

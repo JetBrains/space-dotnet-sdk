@@ -19,12 +19,18 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TeamDirectoryMembershipsForIdRequestRevokeRequestPartialBuilder
+namespace SpaceDotNet.Client.HATypeMapDtoPartialBuilder
 {
-    public static class TeamDirectoryMembershipsForIdRequestRevokeRequestPartialExtensions
+    public static class HATypeMapDtoPartialExtensions
     {
-        public static Partial<TeamDirectoryMembershipsForIdRequestRevokeRequest> WithTill(this Partial<TeamDirectoryMembershipsForIdRequestRevokeRequest> it)
-            => it.AddFieldName("till");
+        public static Partial<HATypeMapDto> WithValueType(this Partial<HATypeMapDto> it)
+            => it.AddFieldName("valueType");
+        
+        public static Partial<HATypeMapDto> WithValueType(this Partial<HATypeMapDto> it, Func<Partial<HATypeDto>, Partial<HATypeDto>> partialBuilder)
+            => it.AddFieldName("valueType", partialBuilder(new Partial<HATypeDto>(it)));
+        
+        public static Partial<HATypeMapDto> WithNullable(this Partial<HATypeMapDto> it)
+            => it.AddFieldName("nullable");
         
     }
     

@@ -23,8 +23,11 @@ namespace SpaceDotNet.Client.ProjectsForProjectAccessMembersProfilesRequestParti
 {
     public static class ProjectsForProjectAccessMembersProfilesRequestPartialExtensions
     {
-        public static Partial<ProjectsForProjectAccessMembersProfilesRequest> WithProfileId(this Partial<ProjectsForProjectAccessMembersProfilesRequest> it)
-            => it.AddFieldName("profileId");
+        public static Partial<ProjectsForProjectAccessMembersProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessMembersProfilesRequest> it)
+            => it.AddFieldName("profile");
+        
+        public static Partial<ProjectsForProjectAccessMembersProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessMembersProfilesRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
         
     }
     

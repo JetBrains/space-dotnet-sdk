@@ -26,24 +26,24 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectAccessMembersProfilesRequest() { }
         
-        public ProjectsForProjectAccessMembersProfilesRequest(string profileId)
+        public ProjectsForProjectAccessMembersProfilesRequest(ProfileIdentifier profile)
         {
-            ProfileId = profileId;
+            Profile = profile;
         }
         
-        private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(ProjectsForProjectAccessMembersProfilesRequest), nameof(ProfileId));
+        private PropertyValue<ProfileIdentifier> _profile = new PropertyValue<ProfileIdentifier>(nameof(ProjectsForProjectAccessMembersProfilesRequest), nameof(Profile));
         
         [Required]
-        [JsonPropertyName("profileId")]
-        public string ProfileId
+        [JsonPropertyName("profile")]
+        public ProfileIdentifier Profile
         {
-            get { return _profileId.GetValue(); }
-            set { _profileId.SetValue(value); }
+            get { return _profile.GetValue(); }
+            set { _profile.SetValue(value); }
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _profileId.SetAccessPath(path, validateHasBeenSet);
+            _profile.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

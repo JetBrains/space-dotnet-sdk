@@ -19,15 +19,12 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProjectsForProjectAccessAdminsProfilesRequestPartialBuilder
+namespace SpaceDotNet.Client.TeamDirectoryMembershipsForMembershipIdRequestRevokeRequestPartialBuilder
 {
-    public static class ProjectsForProjectAccessAdminsProfilesRequestPartialExtensions
+    public static class TeamDirectoryMembershipsForMembershipIdRequestRevokeRequestPartialExtensions
     {
-        public static Partial<ProjectsForProjectAccessAdminsProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessAdminsProfilesRequest> it)
-            => it.AddFieldName("profile");
-        
-        public static Partial<ProjectsForProjectAccessAdminsProfilesRequest> WithProfile(this Partial<ProjectsForProjectAccessAdminsProfilesRequest> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
-            => it.AddFieldName("profile", partialBuilder(new Partial<ProfileIdentifier>(it)));
+        public static Partial<TeamDirectoryMembershipsForMembershipIdRequestRevokeRequest> WithTill(this Partial<TeamDirectoryMembershipsForMembershipIdRequestRevokeRequest> it)
+            => it.AddFieldName("till");
         
     }
     
