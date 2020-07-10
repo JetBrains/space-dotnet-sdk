@@ -34,19 +34,32 @@ namespace SpaceDotNet.Client
         /// Add custom emoji.
         /// </summary>
         public async Task AddAsync(string emoji, string attachmentId)
-            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/add", new EmojisAddRequest{ Emoji = emoji, AttachmentId = attachmentId });
+            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/add", 
+                new EmojisAddRequest { 
+                    Emoji = emoji,
+                    AttachmentId = attachmentId,
+                }
+        );
     
         /// <summary>
         /// Delete an emoji by its name.
         /// </summary>
         public async Task DeleteAsync(string emoji)
-            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/delete", new EmojisDeleteRequest{ Emoji = emoji });
+            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/delete", 
+                new EmojisDeleteRequest { 
+                    Emoji = emoji,
+                }
+        );
     
         /// <summary>
         /// Record emojis usage and update frequently used list.
         /// </summary>
         public async Task RecordUsageAsync(List<string> emojis)
-            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/record-usage", new EmojisRecordUsageRequest{ Emojis = emojis });
+            => await _connection.RequestResourceAsync("POST", $"api/http/emojis/record-usage", 
+                new EmojisRecordUsageRequest { 
+                    Emojis = emojis,
+                }
+        );
     
         /// <summary>
         /// Check whether a given emoji name exists.

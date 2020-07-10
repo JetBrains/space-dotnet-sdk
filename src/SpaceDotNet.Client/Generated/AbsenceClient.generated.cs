@@ -34,13 +34,29 @@ namespace SpaceDotNet.Client
         /// Create an absence for a given profile (member).
         /// </summary>
         public async Task<AbsenceRecordDto> CreateAbsenceAsync(string member, string reason, string description, SpaceDate since, SpaceDate till, string icon, bool available = false, string? location = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>>? partial = null)
-            => await _connection.RequestResourceAsync<AbsencesRequest, AbsenceRecordDto>("POST", $"api/http/absences?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", new AbsencesRequest{ Member = member, Reason = reason, Description = description, Location = location, Since = since, Till = till, Available = available, Icon = icon, CustomFieldValues = customFieldValues });
+            => await _connection.RequestResourceAsync<AbsencesRequest, AbsenceRecordDto>("POST", $"api/http/absences?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", 
+                new AbsencesRequest { 
+                    Member = member,
+                    Reason = reason,
+                    Description = description,
+                    Location = location,
+                    Since = since,
+                    Till = till,
+                    Available = available,
+                    Icon = icon,
+                    CustomFieldValues = customFieldValues,
+                }
+        );
     
         /// <summary>
         /// Approve/unapprove an existing absence. Setting approve to true will approve the absence, false will remove the approval.
         /// </summary>
         public async Task ApproveAbsenceAsync(string id, bool approve)
-            => await _connection.RequestResourceAsync("POST", $"api/http/absences/{id}/approve", new AbsencesForIdApproveRequest{ Approve = approve });
+            => await _connection.RequestResourceAsync("POST", $"api/http/absences/{id}/approve", 
+                new AbsencesForIdApproveRequest { 
+                    Approve = approve,
+                }
+        );
     
         /// <summary>
         /// Search absences. Parameters are applied as 'AND' filters.
@@ -70,7 +86,19 @@ namespace SpaceDotNet.Client
         /// Create an existing absence. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
         public async Task<AbsenceRecordDto> UpdateAbsenceAsync(string id, bool available, string? member = null, string? reason = null, string? description = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? icon = null, List<CustomFieldValueDto>? customFieldValues = null, Func<Partial<AbsenceRecordDto>, Partial<AbsenceRecordDto>>? partial = null)
-            => await _connection.RequestResourceAsync<AbsencesForIdRequest, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", new AbsencesForIdRequest{ Member = member, Reason = reason, Description = description, Location = location, Since = since, Till = till, Available = available, Icon = icon, CustomFieldValues = customFieldValues });
+            => await _connection.RequestResourceAsync<AbsencesForIdRequest, AbsenceRecordDto>("PATCH", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecordDto>()) : Partial<AbsenceRecordDto>.Default())}", 
+                new AbsencesForIdRequest { 
+                    Member = member,
+                    Reason = reason,
+                    Description = description,
+                    Location = location,
+                    Since = since,
+                    Till = till,
+                    Available = available,
+                    Icon = icon,
+                    CustomFieldValues = customFieldValues,
+                }
+        );
     
         /// <summary>
         /// Archive/restore an existing absence. Setting delete to true will archive the absence, false will restore it.
@@ -99,13 +127,29 @@ namespace SpaceDotNet.Client
             /// Create a new absence reason.
             /// </summary>
             public async Task<AbsenceReasonRecordDto> CreateAbsenceReasonAsync(string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<AbsencesAbsenceReasonsRequest, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}", new AbsencesAbsenceReasonsRequest{ Name = name, Description = description, DefaultAvailability = defaultAvailability, ApprovalRequired = approvalRequired, Icon = icon });
+                => await _connection.RequestResourceAsync<AbsencesAbsenceReasonsRequest, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}", 
+                    new AbsencesAbsenceReasonsRequest { 
+                        Name = name,
+                        Description = description,
+                        DefaultAvailability = defaultAvailability,
+                        ApprovalRequired = approvalRequired,
+                        Icon = icon,
+                    }
+            );
         
             /// <summary>
             /// Update an existing absence reason.
             /// </summary>
             public async Task<AbsenceReasonRecordDto> CreateAbsenceReasonAsync(string id, string name, string description, bool defaultAvailability, bool approvalRequired, string? icon = null, Func<Partial<AbsenceReasonRecordDto>, Partial<AbsenceReasonRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<AbsencesAbsenceReasonsForIdRequest, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}", new AbsencesAbsenceReasonsForIdRequest{ Name = name, Description = description, DefaultAvailability = defaultAvailability, ApprovalRequired = approvalRequired, Icon = icon });
+                => await _connection.RequestResourceAsync<AbsencesAbsenceReasonsForIdRequest, AbsenceReasonRecordDto>("POST", $"api/http/absences/absence-reasons/{id}?$fields={(partial != null ? partial(new Partial<AbsenceReasonRecordDto>()) : Partial<AbsenceReasonRecordDto>.Default())}", 
+                    new AbsencesAbsenceReasonsForIdRequest { 
+                        Name = name,
+                        Description = description,
+                        DefaultAvailability = defaultAvailability,
+                        ApprovalRequired = approvalRequired,
+                        Icon = icon,
+                    }
+            );
         
             /// <summary>
             /// Get available absence reasons.
@@ -142,7 +186,13 @@ namespace SpaceDotNet.Client
             /// For the current user, create a subscription to receive absence notifications for a location, team, or absence reason. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<DTOAbsenceSubscriptionDto> CreateSubscriptionAsync(string? locationId = null, string? teamId = null, string? reasonId = null, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>>? partial = null)
-                => await _connection.RequestResourceAsync<AbsencesSubscriptionsRequest, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", new AbsencesSubscriptionsRequest{ LocationId = locationId, TeamId = teamId, ReasonId = reasonId });
+                => await _connection.RequestResourceAsync<AbsencesSubscriptionsRequest, DTOAbsenceSubscriptionDto>("POST", $"api/http/absences/subscriptions?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", 
+                    new AbsencesSubscriptionsRequest { 
+                        LocationId = locationId,
+                        TeamId = teamId,
+                        ReasonId = reasonId,
+                    }
+            );
         
             /// <summary>
             /// List all absence notification subscriptions for the current user.
@@ -154,7 +204,13 @@ namespace SpaceDotNet.Client
             /// Update an existing subscription for absence notifications. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
             public async Task<DTOAbsenceSubscriptionDto> UpdateSubscriptionAsync(string id, string? locationId = null, string? teamId = null, string? reasonId = null, Func<Partial<DTOAbsenceSubscriptionDto>, Partial<DTOAbsenceSubscriptionDto>>? partial = null)
-                => await _connection.RequestResourceAsync<AbsencesSubscriptionsForIdRequest, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", new AbsencesSubscriptionsForIdRequest{ LocationId = locationId, TeamId = teamId, ReasonId = reasonId });
+                => await _connection.RequestResourceAsync<AbsencesSubscriptionsForIdRequest, DTOAbsenceSubscriptionDto>("PATCH", $"api/http/absences/subscriptions/{id}?$fields={(partial != null ? partial(new Partial<DTOAbsenceSubscriptionDto>()) : Partial<DTOAbsenceSubscriptionDto>.Default())}", 
+                    new AbsencesSubscriptionsForIdRequest { 
+                        LocationId = locationId,
+                        TeamId = teamId,
+                        ReasonId = reasonId,
+                    }
+            );
         
             /// <summary>
             /// Delete an existing subscription for absence notifications.

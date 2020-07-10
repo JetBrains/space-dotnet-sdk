@@ -34,7 +34,12 @@ namespace SpaceDotNet.Client
         /// Create a new To-Do item, with an optional due date.
         /// </summary>
         public async Task<TodoItemRecordDto> CreateToDoItemAsync(string text, SpaceDate? dueDate = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
-            => await _connection.RequestResourceAsync<TodoRequest, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", new TodoRequest{ Text = text, DueDate = dueDate });
+            => await _connection.RequestResourceAsync<TodoRequest, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", 
+                new TodoRequest { 
+                    Text = text,
+                    DueDate = dueDate,
+                }
+        );
     
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
@@ -52,7 +57,13 @@ namespace SpaceDotNet.Client
         /// Update an existing To-Do item. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
         public async Task UpdateToDoItemAsync(string id, string? text = null, SpaceDate? dueDate = null, bool? open = null)
-            => await _connection.RequestResourceAsync("PATCH", $"api/http/todo/{id}", new TodoForIdRequest{ Text = text, DueDate = dueDate, Open = open });
+            => await _connection.RequestResourceAsync("PATCH", $"api/http/todo/{id}", 
+                new TodoForIdRequest { 
+                    Text = text,
+                    DueDate = dueDate,
+                    Open = open,
+                }
+        );
     
         /// <summary>
         /// Delete an existing To-Do item.

@@ -34,28 +34,52 @@ namespace SpaceDotNet.Client
         /// Block link unfurling.
         /// </summary>
         public async Task BlockUnfurlAsync(string link, bool wholeHost)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl", new UnfurlsBlockUnfurlRequest{ Link = link, WholeHost = wholeHost });
+            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl", 
+                new UnfurlsBlockUnfurlRequest { 
+                    Link = link,
+                    WholeHost = wholeHost,
+                }
+        );
     
         /// <summary>
         /// Block link unfurling for organization.
         /// </summary>
         public async Task BlockUnfurlGlobalAsync(string link, bool wholeHost)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl-global", new UnfurlsBlockUnfurlGlobalRequest{ Link = link, WholeHost = wholeHost });
+            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl-global", 
+                new UnfurlsBlockUnfurlGlobalRequest { 
+                    Link = link,
+                    WholeHost = wholeHost,
+                }
+        );
     
         public async Task<bool> CheckBlockedAsync(string link)
-            => await _connection.RequestResourceAsync<UnfurlsCheckBlockedRequest, bool>("POST", $"api/http/unfurls/check-blocked", new UnfurlsCheckBlockedRequest{ Link = link });
+            => await _connection.RequestResourceAsync<UnfurlsCheckBlockedRequest, bool>("POST", $"api/http/unfurls/check-blocked", 
+                new UnfurlsCheckBlockedRequest { 
+                    Link = link,
+                }
+        );
     
         /// <summary>
         /// Disable link unfurling.
         /// </summary>
         public async Task UnblockUnfurlAsync(string link, bool wholeHost)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl", new UnfurlsUnblockUnfurlRequest{ Link = link, WholeHost = wholeHost });
+            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl", 
+                new UnfurlsUnblockUnfurlRequest { 
+                    Link = link,
+                    WholeHost = wholeHost,
+                }
+        );
     
         /// <summary>
         /// Disable blocking link unfurling for organization.
         /// </summary>
         public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost)
-            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl-global", new UnfurlsUnblockUnfurlGlobalRequest{ Link = link, WholeHost = wholeHost });
+            => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl-global", 
+                new UnfurlsUnblockUnfurlGlobalRequest { 
+                    Link = link,
+                    WholeHost = wholeHost,
+                }
+        );
     
         public async Task<Batch<UnfurlsBlockListEntryDto>> ListBlockedAsync(string? skip = null, int? top = 100, Func<Partial<Batch<UnfurlsBlockListEntryDto>>, Partial<Batch<UnfurlsBlockListEntryDto>>>? partial = null)
             => await _connection.RequestResourceAsync<Batch<UnfurlsBlockListEntryDto>>("GET", $"api/http/unfurls/list-blocked?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<UnfurlsBlockListEntryDto>>()) : Partial<Batch<UnfurlsBlockListEntryDto>>.Default())}");

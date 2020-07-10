@@ -45,13 +45,23 @@ namespace SpaceDotNet.Client
             /// Create a public holiday calendar for a location.
             /// </summary>
             public async Task<PublicHolidayCalendarRecordDto> CreateCalendarAsync(string name, string location, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<PublicHolidaysCalendarsRequest, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", new PublicHolidaysCalendarsRequest{ Name = name, Location = location });
+                => await _connection.RequestResourceAsync<PublicHolidaysCalendarsRequest, PublicHolidayCalendarRecordDto>("POST", $"api/http/public-holidays/calendars?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", 
+                    new PublicHolidaysCalendarsRequest { 
+                        Name = name,
+                        Location = location,
+                    }
+            );
         
             /// <summary>
             /// Import holidays in a public holiday calendar, using an attachment (.ics format) as the source.
             /// </summary>
             public async Task<string> ImportAsync(string calendar, string attachmentId)
-                => await _connection.RequestResourceAsync<PublicHolidaysCalendarsImportRequest, string>("POST", $"api/http/public-holidays/calendars/import", new PublicHolidaysCalendarsImportRequest{ Calendar = calendar, AttachmentId = attachmentId });
+                => await _connection.RequestResourceAsync<PublicHolidaysCalendarsImportRequest, string>("POST", $"api/http/public-holidays/calendars/import", 
+                    new PublicHolidaysCalendarsImportRequest { 
+                        Calendar = calendar,
+                        AttachmentId = attachmentId,
+                    }
+            );
         
             /// <summary>
             /// Get all public holiday calendars.
@@ -69,7 +79,12 @@ namespace SpaceDotNet.Client
             /// Update an existing public holiday calendar.
             /// </summary>
             public async Task<PublicHolidayCalendarRecordDto> UpdateCalendarAsync(string id, string name, string location, Func<Partial<PublicHolidayCalendarRecordDto>, Partial<PublicHolidayCalendarRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<PublicHolidaysCalendarsForIdRequest, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", new PublicHolidaysCalendarsForIdRequest{ Name = name, Location = location });
+                => await _connection.RequestResourceAsync<PublicHolidaysCalendarsForIdRequest, PublicHolidayCalendarRecordDto>("PATCH", $"api/http/public-holidays/calendars/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayCalendarRecordDto>()) : Partial<PublicHolidayCalendarRecordDto>.Default())}", 
+                    new PublicHolidaysCalendarsForIdRequest { 
+                        Name = name,
+                        Location = location,
+                    }
+            );
         
             /// <summary>
             /// Delete 
@@ -94,7 +109,14 @@ namespace SpaceDotNet.Client
             /// Add a holiday to a public holiday calendar, and specify if it is a working day or not.
             /// </summary>
             public async Task<PublicHolidayDto> CreateHolidayAsync(string calendar, string name, SpaceDate date, bool workingDay, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
-                => await _connection.RequestResourceAsync<PublicHolidaysHolidaysRequest, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}", new PublicHolidaysHolidaysRequest{ Calendar = calendar, Name = name, Date = date, WorkingDay = workingDay });
+                => await _connection.RequestResourceAsync<PublicHolidaysHolidaysRequest, PublicHolidayDto>("POST", $"api/http/public-holidays/holidays?$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}", 
+                    new PublicHolidaysHolidaysRequest { 
+                        Calendar = calendar,
+                        Name = name,
+                        Date = date,
+                        WorkingDay = workingDay,
+                    }
+            );
         
             /// <summary>
             /// Get/search all holidays in a public holiday calendar. Parameters are applied as 'AND' filters.
@@ -112,7 +134,14 @@ namespace SpaceDotNet.Client
             /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
             public async Task<PublicHolidayDto> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, SpaceDate? date = null, bool? workingDay = null, Func<Partial<PublicHolidayDto>, Partial<PublicHolidayDto>>? partial = null)
-                => await _connection.RequestResourceAsync<PublicHolidaysHolidaysForIdRequest, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}", new PublicHolidaysHolidaysForIdRequest{ Calendar = calendar, Name = name, Date = date, WorkingDay = workingDay });
+                => await _connection.RequestResourceAsync<PublicHolidaysHolidaysForIdRequest, PublicHolidayDto>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields={(partial != null ? partial(new Partial<PublicHolidayDto>()) : Partial<PublicHolidayDto>.Default())}", 
+                    new PublicHolidaysHolidaysForIdRequest { 
+                        Calendar = calendar,
+                        Name = name,
+                        Date = date,
+                        WorkingDay = workingDay,
+                    }
+            );
         
             /// <summary>
             /// Delete a holiday from a public holiday calendar.

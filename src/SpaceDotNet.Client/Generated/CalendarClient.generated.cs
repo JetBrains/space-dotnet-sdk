@@ -45,7 +45,22 @@ namespace SpaceDotNet.Client
             /// Create a meeting. Note: all-day events are not supported yet.
             /// </summary>
             public async Task<DTOMeetingDto> CreateMeetingAsync(string summary, CalendarEventSpecDto occurrenceRule, List<string> locations = null, List<string> profiles = null, List<string> externalParticipants = null, List<string> teams = null, MeetingVisibility visibility = null, MeetingModificationPreference modificationPreference = null, MeetingJoiningPreference joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CalendarsMeetingsRequest, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", new CalendarsMeetingsRequest{ Summary = summary, Description = description, OccurrenceRule = occurrenceRule, Locations = locations, Profiles = profiles, ExternalParticipants = externalParticipants, Teams = teams, Visibility = visibility, ModificationPreference = modificationPreference, JoiningPreference = joiningPreference, NotifyOnExport = notifyOnExport, Organizer = organizer });
+                => await _connection.RequestResourceAsync<CalendarsMeetingsRequest, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", 
+                    new CalendarsMeetingsRequest { 
+                        Summary = summary,
+                        Description = description,
+                        OccurrenceRule = occurrenceRule,
+                        Locations = (locations ?? new List<string>()),
+                        Profiles = (profiles ?? new List<string>()),
+                        ExternalParticipants = (externalParticipants ?? new List<string>()),
+                        Teams = (teams ?? new List<string>()),
+                        Visibility = (visibility ?? MeetingVisibility.EVERYONE),
+                        ModificationPreference = (modificationPreference ?? MeetingModificationPreference.PARTICIPANTS),
+                        JoiningPreference = (joiningPreference ?? MeetingJoiningPreference.NOBODY),
+                        NotifyOnExport = notifyOnExport,
+                        Organizer = organizer,
+                    }
+            );
         
             /// <summary>
             /// Search meetings by name, location, time period and other parameters. Parameters are applied as 'AND' filters while values in lists of locations, profiles and teams have 'OR' semantics.
@@ -66,7 +81,24 @@ namespace SpaceDotNet.Client
             /// Patch a meeting. Only not-null parameters and not empty diffs will be applied.
             /// </summary>
             public async Task<DTOMeetingDto> UpdateMeetingAsync(string id, DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = null, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CalendarsMeetingsForIdRequest, DTOMeetingDto>("PATCH", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", new CalendarsMeetingsForIdRequest{ Summary = summary, Description = description, OccurrenceRule = occurrenceRule, LocationsDiff = locationsDiff, ProfilesDiff = profilesDiff, ExternalParticipantsDiff = externalParticipantsDiff, TeamsDiff = teamsDiff, Visibility = visibility, ModificationPreference = modificationPreference, JoiningPreference = joiningPreference, NotifyOnExport = notifyOnExport, Organizer = organizer, TargetDate = targetDate, ModificationKind = modificationKind });
+                => await _connection.RequestResourceAsync<CalendarsMeetingsForIdRequest, DTOMeetingDto>("PATCH", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", 
+                    new CalendarsMeetingsForIdRequest { 
+                        Summary = summary,
+                        Description = description,
+                        OccurrenceRule = occurrenceRule,
+                        LocationsDiff = locationsDiff,
+                        ProfilesDiff = profilesDiff,
+                        ExternalParticipantsDiff = externalParticipantsDiff,
+                        TeamsDiff = teamsDiff,
+                        Visibility = visibility,
+                        ModificationPreference = modificationPreference,
+                        JoiningPreference = joiningPreference,
+                        NotifyOnExport = notifyOnExport,
+                        Organizer = organizer,
+                        TargetDate = targetDate,
+                        ModificationKind = (modificationKind ?? RecurrentModification.All),
+                    }
+            );
         
             public async Task<DTOMeetingDto> DeleteMeetingAsync(string id, RecurrentModification modificationKind = null, SpaceTime? targetDate = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>>? partial = null)
                 => await _connection.RequestResourceAsync<DTOMeetingDto>("DELETE", $"api/http/calendars/meetings/{id}?targetDate={targetDate?.ToString() ?? "null"}&modificationKind={(modificationKind ?? RecurrentModification.All).ToString()}&$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}");
