@@ -1,4 +1,5 @@
 using SpaceDotNet.Common.Types;
+// ReSharper disable RedundantLogicalConditionalExpressionOperand
 
 namespace SpaceDotNet.Generator
 {
@@ -49,6 +50,8 @@ namespace SpaceDotNet.Generator
         ///
         /// When true, will generate optional parameter defaults with reference types, resulting in code that does not compile.
         /// When false, will generate code that compiles.
+        /// 
+        /// Recommended value: false
         /// </summary>
         public const bool GenerateOptionalParameterDefaultReferenceTypes = false;
 
@@ -57,7 +60,9 @@ namespace SpaceDotNet.Generator
         ///
         /// When true, will generate null value and default value fallback for optional parameter defaults with reference types.
         /// When false, will ignore optional parameter defaults with reference types.
+        /// 
+        /// Recommended value: true
         /// </summary>
-        public const bool GenerateAlternativeForOptionalParameterDefaultReferenceTypes = true;
+        public const bool GenerateAlternativeForOptionalParameterDefaultReferenceTypes = !GenerateOptionalParameterDefaultReferenceTypes && true;
     }
 }

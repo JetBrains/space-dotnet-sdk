@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
@@ -245,7 +243,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         .WithParameter(
                             funcType,
                             "partial",
-                            "null");
+                            CSharpExpression.NullLiteral);
                 }
         
                 builder.Append(methodParametersBuilder.BuildMethodParametersDefinition());
@@ -311,7 +309,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             
             foreach (var field in apiEndpoint.RequestBody!.Fields)
             {
-                builder.AppendLine($"{indent}{field.ToCSharpPropertyName()} = {field.ToCSharpVariableNameWithDefaultValue(_codeGenerationContext)},");
+                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                {
+                    builder.AppendLine($"{indent}{field.ToCSharpPropertyName()} = {field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)},");
+                }
+                else
+                {
+                    builder.AppendLine($"{indent}{field.ToCSharpPropertyName()} = {field.ToCSharpVariableName()},");
+                }
             }
             
             indent.Decrement();   
@@ -376,7 +381,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     .WithParameter(
                         funcType,
                         "partial",
-                        "null");
+                        CSharpExpression.NullLiteral);
                 
                 builder.Append(methodParametersBuilder.BuildMethodParametersDefinition());
                 builder.AppendLine(")");

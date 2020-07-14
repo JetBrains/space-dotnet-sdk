@@ -45,8 +45,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 
                 var parameterValueBuilder = new StringBuilder();
                 parameterValueBuilder.Append("{");
-                parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableNameWithDefaultValue(_context));
-                
+
+                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                {
+                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableInstanceOrDefaultValue(_context));
+                }
+                else
+                {
+                    parameterValueBuilder.Append(apiEndpointParameter.Field.ToCSharpVariableName());
+                }
+
                 if (apiEndpointParameter.Field.Type is ApiFieldType.Array arrayType)
                 {
                     // For lists, we will need to repeat the parameter for each element

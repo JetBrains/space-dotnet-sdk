@@ -1,9 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
-using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
@@ -54,7 +51,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 }
                 
                 var parameterName = field.ToCSharpVariableName();
-                var parameterDefaultValue = DetermineDefaultValueForField(field);
+                var parameterDefaultValue = field.ToCSharpDefaultValueForParameterList(_context);
 
                 methodParametersBuilder = methodParametersBuilder
                     .WithParameter(parameterType, parameterName, parameterDefaultValue);
@@ -76,7 +73,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 }
                 
                 var parameterName = parameter.Field.ToCSharpVariableName();
-                var parameterDefaultValue = DetermineDefaultValueForField(parameter.Field);
+                var parameterDefaultValue = parameter.Field.ToCSharpDefaultValueForParameterList(_context);
                 
                 methodParametersBuilder = methodParametersBuilder
                     .WithParameter(parameterType, parameterName, parameterDefaultValue);
@@ -150,98 +147,5 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 }));
 
         private int RequiredParametersFirstOrder(MethodParameter it) => string.IsNullOrEmpty(it.DefaultValue) ? 0 : 1;
-        
-        private string? DetermineDefaultValueForField(ApiField field)
-        {
-            if (field.DefaultValue != null)
-            {
-                switch (field.DefaultValue)
-                {
-                    case ApiDefaultValue.Const.Primitive primitive:
-                        return primitive.Expression;
-                    
-                    case ApiDefaultValue.Const.EnumEntry enumEntry:
-                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
-                        {
-                            var apiEnumRef = field.Type as ApiFieldType.Enum;
-                            if (apiEnumRef == null || !_context.TryGetEnum(apiEnumRef.EnumRef!.Id, out var apiEnum) || apiEnum == null)
-                            {
-                                throw new NotSupportedException("For " + nameof(ApiDefaultValue.Const.EnumEntry) + ", the field type should be of type" + nameof(ApiFieldType.Enum) + ".");
-                            }
-
-                            var typeNameForEnum = apiEnum.ToCSharpClassName();
-                            var identifierForValue = CSharpIdentifier.ForClassOrNamespace(enumEntry.EntryName);
-
-                            return $"{typeNameForEnum}.{identifierForValue}";
-                        }
-                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
-                        {
-                            return "null";
-                        }
-                        else
-                        {
-                            return null;
-                        }
-
-                    case ApiDefaultValue.Collection collection:
-                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
-                        {
-                            var typeNameForArrayElement = field.Type.GetArrayElementTypeOrType().ToCSharpType(_context);
-
-                            var builder = new StringBuilder();
-                            builder.Append($"new List<{typeNameForArrayElement}>()");
-
-                            if (collection.Elements.Count > 0)
-                            {
-                                throw new NotSupportedException("Default values with populated collections are not supported yet.");
-                            }
-                        
-                            return builder.ToString();
-                        }
-                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
-                        {
-                            return "null";
-                        }
-                        else
-                        {
-                            return null;
-                        }
-
-                    case ApiDefaultValue.Map map:
-                        if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
-                        {
-                            var typeNameForMapValue = field.Type.GetMapValueTypeOrType().ToCSharpType(_context);
-
-                            var builder = new StringBuilder();
-                            builder.Append($"new Dictionary<string, {typeNameForMapValue}>()");
- 
-                            if (map.Elements.Count > 0)
-                            {
-                                throw new NotSupportedException("Default values with populated maps are not supported yet.");
-                            }
-
-                            return builder.ToString();
-                        }
-                        else if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
-                        {
-                            return "null";
-                        }
-                        else
-                        {
-                            return null;
-                        }
-
-                    case ApiDefaultValue.Reference reference:
-                        throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");
-                }
-            } 
-            
-            if (field.Type.Nullable)
-            {
-                return "null";
-            }
-
-            return null;
-        }
     }
 }
