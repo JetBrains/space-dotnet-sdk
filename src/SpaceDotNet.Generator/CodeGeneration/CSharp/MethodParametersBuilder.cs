@@ -116,7 +116,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             return new MethodParametersBuilder(_context, futureParameters);
         }
 
-        public string BuildMethodParametersDefinition() =>
+        public string BuildMethodParametersList() =>
             string.Join(", ", _parameters
                 .OrderBy(RequiredParametersFirstOrder)
                 .Select(it =>
@@ -129,7 +129,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     return parameterDefinition;
                 }));
 
-        public string BuildMethodCallParametersDefinition() =>
+        public string BuildMethodCallParameters() =>
             string.Join(", ", _parameters
                 .OrderBy(RequiredParametersFirstOrder)
                 .Select(it =>

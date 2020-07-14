@@ -173,7 +173,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     }
                 }
 
-                builder.Append(methodParametersBuilder.BuildMethodParametersDefinition());
+                builder.Append(methodParametersBuilder.BuildMethodParametersList());
         
                 builder.AppendLine(")");
                 indent.Increment();
@@ -246,7 +246,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                             CSharpExpression.NullLiteral);
                 }
         
-                builder.Append(methodParametersBuilder.BuildMethodParametersDefinition());
+                builder.Append(methodParametersBuilder.BuildMethodParametersList());
                 builder.AppendLine(")");
                 
                 indent.Increment();
@@ -383,7 +383,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         "partial",
                         CSharpExpression.NullLiteral);
                 
-                builder.Append(methodParametersBuilder.BuildMethodParametersDefinition());
+                builder.Append(methodParametersBuilder.BuildMethodParametersList());
                 builder.AppendLine(")");
                 
                 indent.Increment();
@@ -397,7 +397,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         .WithDefaultValueForAllParameters(null)
                         .WithDefaultValueForParameter("skip", "batchSkip")
                         .WithDefaultValueForParameter("partial", $"builder => {partialTypeForBatch}.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => {partialType}.Default())")
-                        .BuildMethodCallParametersDefinition());
+                        .BuildMethodCallParameters());
                 
                 builder.Append("), skip);");
                 indent.Decrement();

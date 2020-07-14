@@ -105,9 +105,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                             .WithParametersForApiDtoFields(DetermineFieldsToGenerateFor(apiDtoInheritor!));
                         
-                        builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersDefinition()})");
+                        builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersList()})");
                         indent.Increment();
-                        builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.BuildMethodCallParametersDefinition()});");
+                        builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.BuildMethodCallParameters()});");
                         indent.Decrement();
                         builder.AppendLine($"{indent}");
                     }
@@ -127,7 +127,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 // Parameterized constructor
                 if (apiDtoFields.Count > 0)
                 {
-                    builder.AppendLine($"{indent}public {typeNameForDto}({methodParametersBuilder.BuildMethodParametersDefinition()})");
+                    builder.AppendLine($"{indent}public {typeNameForDto}({methodParametersBuilder.BuildMethodParametersList()})");
                     builder.AppendLine($"{indent}{{");
                     indent.Increment();
                     foreach (var apiDtoField in apiDtoFields)
