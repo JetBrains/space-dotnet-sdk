@@ -57,7 +57,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Context?.ChannelId,
-                    recipient: MessageRecipientDto.Member(payload.UserId),
+                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("Would you prefer chicken or pasta?"),
                         messageData: "Would you prefer chicken or pasta?",
@@ -88,7 +88,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Context?.ChannelId,
-                    recipient: MessageRecipientDto.Member(payload.UserId),
+                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("Any drinks? Coffee or tea?"),
                         messageData: "Any drinks? Coffee or tea?",
@@ -123,7 +123,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Context?.ChannelId,
-                    recipient: MessageRecipientDto.Member(payload.UserId),
+                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("How would you like your coffee?"),
                         messageData: "How would you like your coffee?",
@@ -154,7 +154,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Context?.ChannelId,
-                    recipient: MessageRecipientDto.Member(payload.UserId),
+                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("Thank you, we'll be right there!"),
                         messageData: "Thank you, we'll be right there!",
@@ -200,18 +200,9 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             else
             {
                 // Edit
-                
-                // TODO WEBHOOK workaround: clear message first
                 await _chatClient.Messages.EditMessageAsync(
                     channel: channelId,
-                    message: cateringSession.ExistingMessageId,
-                    content: ChatMessageDto.Text(""),
-                    unfurlLinks: false);
-                await Task.Delay(150);
-                
-                await _chatClient.Messages.EditMessageAsync(
-                    channel: channelId,
-                    message: cateringSession.ExistingMessageId,
+                    message: ChatMessageIdentifier.InternalId(cateringSession.ExistingMessageId),
                     content: content,
                     unfurlLinks: false);
             }
