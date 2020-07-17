@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
             /// Create custom field for a type.
             /// </summary>
             public async Task<CustomFieldDto> CreateFieldAsync(string typeKey, string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, string? description = null, CFConstraintDto? constraint = null, AccessType? access = null, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsRequest, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}", 
-                    new CustomFieldsForTypeKeyFieldsRequest { 
+                => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsPostRequest, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}", 
+                    new CustomFieldsForTypeKeyFieldsPostRequest { 
                         Name = name,
                         Description = description,
                         Key = key,
@@ -108,7 +108,7 @@ namespace SpaceDotNet.Client
             /// </summary>
             public async Task ReorderAsync(string typeKey, List<string> customFieldOrder)
                 => await _connection.RequestResourceAsync("POST", $"api/http/custom-fields/{typeKey}/fields/reorder", 
-                    new CustomFieldsForTypeKeyFieldsReorderRequest { 
+                    new CustomFieldsForTypeKeyFieldsReorderPostRequest { 
                         CustomFieldOrder = customFieldOrder,
                     }
             );
@@ -136,7 +136,7 @@ namespace SpaceDotNet.Client
             /// </summary>
             public async Task UpdateFieldAsync(string typeKey, string id, string? name = null, string? description = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", 
-                    new CustomFieldsForTypeKeyFieldsForIdRequest { 
+                    new CustomFieldsForTypeKeyFieldsForIdPatchRequest { 
                         Name = name,
                         Description = description,
                         Key = key,
@@ -179,7 +179,7 @@ namespace SpaceDotNet.Client
             /// </summary>
             public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldValueDto> values)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", 
-                    new CustomFieldsForTypeKeyForEntityIdValuesRequest { 
+                    new CustomFieldsForTypeKeyForEntityIdValuesPatchRequest { 
                         Values = values,
                     }
             );

@@ -24,7 +24,7 @@ namespace SpaceDotNet.Client
     public interface MessageAccessoryElementDto
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static MessageIconDto MessageIcon(string icon, MessageStyle style)
+        public static MessageIconDto MessageIcon(ApiIconDto icon, MessageStyle style)
             => new MessageIconDto(icon: icon, style: style);
         
         public static MessageImageDto MessageImage(string src)

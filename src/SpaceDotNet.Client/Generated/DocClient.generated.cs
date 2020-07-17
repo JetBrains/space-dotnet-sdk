@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<DRDraftDto> CreateDraftAsync(DraftDocumentType type = null, string? title = null, string? text = null, long? textVersion = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
-                => await _connection.RequestResourceAsync<DocsDraftsRequest, DRDraftDto>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", 
-                    new DocsDraftsRequest { 
+                => await _connection.RequestResourceAsync<DocsDraftsPostRequest, DRDraftDto>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", 
+                    new DocsDraftsPostRequest { 
                         Title = title,
                         Text = text,
                         TextVersion = textVersion,
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}");
         
             public async Task<DRDraftDto> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
-                => await _connection.RequestResourceAsync<DocsDraftsForIdRequest, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", 
-                    new DocsDraftsForIdRequest { 
+                => await _connection.RequestResourceAsync<DocsDraftsForIdPatchRequest, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", 
+                    new DocsDraftsForIdPatchRequest { 
                         Title = title,
                         Text = text,
                         TextVersion = textVersion,
@@ -93,7 +93,7 @@ namespace SpaceDotNet.Client
                     
                     public async Task CreateProfileAsync(string id, string editorId)
                         => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/profiles", 
-                            new DocsDraftsForIdEditorsProfilesRequest { 
+                            new DocsDraftsForIdEditorsProfilesPostRequest { 
                                 EditorId = editorId,
                             }
                     );
@@ -119,7 +119,7 @@ namespace SpaceDotNet.Client
                     
                     public async Task CreateTeamAsync(string id, string teamId)
                         => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/teams", 
-                            new DocsDraftsForIdEditorsTeamsRequest { 
+                            new DocsDraftsForIdEditorsTeamsPostRequest { 
                                 TeamId = teamId,
                             }
                     );

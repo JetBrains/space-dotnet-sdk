@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.MessageIconDtoPartialBuilder
         public static Partial<MessageIconDto> WithIcon(this Partial<MessageIconDto> it)
             => it.AddFieldName("icon");
         
+        public static Partial<MessageIconDto> WithIcon(this Partial<MessageIconDto> it, Func<Partial<ApiIconDto>, Partial<ApiIconDto>> partialBuilder)
+            => it.AddFieldName("icon", partialBuilder(new Partial<ApiIconDto>(it)));
+        
         public static Partial<MessageIconDto> WithStyle(this Partial<MessageIconDto> it)
             => it.AddFieldName("style");
         

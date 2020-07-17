@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.MessageOutlineDtoPartialBuilder
         public static Partial<MessageOutlineDto> WithIcon(this Partial<MessageOutlineDto> it)
             => it.AddFieldName("icon");
         
+        public static Partial<MessageOutlineDto> WithIcon(this Partial<MessageOutlineDto> it, Func<Partial<ApiIconDto>, Partial<ApiIconDto>> partialBuilder)
+            => it.AddFieldName("icon", partialBuilder(new Partial<ApiIconDto>(it)));
+        
         public static Partial<MessageOutlineDto> WithText(this Partial<MessageOutlineDto> it)
             => it.AddFieldName("text");
         

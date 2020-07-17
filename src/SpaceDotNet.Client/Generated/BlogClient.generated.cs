@@ -31,8 +31,8 @@ namespace SpaceDotNet.Client
         }
         
         public async Task<string> ConvertMarkdownToHTMLAsync(string markdown)
-            => await _connection.RequestResourceAsync<BlogsMarkdown2htmlRequest, string>("POST", $"api/http/blogs/markdown2html", 
-                new BlogsMarkdown2htmlRequest { 
+            => await _connection.RequestResourceAsync<BlogsMarkdown2htmlPostRequest, string>("POST", $"api/http/blogs/markdown2html", 
+                new BlogsMarkdown2htmlPostRequest { 
                     Markdown = markdown,
                 }
         );
@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
             }
             
             public async Task<List<ArticleImportResultDto>> ImportArticlesAsync(ImportMetadataDto metadata, List<ExternalArticleDto> articles, Func<Partial<ArticleImportResultDto>, Partial<ArticleImportResultDto>>? partial = null)
-                => await _connection.RequestResourceAsync<BlogsArticlesImportRequest, List<ArticleImportResultDto>>("POST", $"api/http/blogs/articles/import?$fields={(partial != null ? partial(new Partial<ArticleImportResultDto>()) : Partial<ArticleImportResultDto>.Default())}", 
-                    new BlogsArticlesImportRequest { 
+                => await _connection.RequestResourceAsync<BlogsArticlesImportPostRequest, List<ArticleImportResultDto>>("POST", $"api/http/blogs/articles/import?$fields={(partial != null ? partial(new Partial<ArticleImportResultDto>()) : Partial<ArticleImportResultDto>.Default())}", 
+                    new BlogsArticlesImportPostRequest { 
                         Metadata = metadata,
                         Articles = articles,
                     }

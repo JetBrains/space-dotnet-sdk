@@ -119,14 +119,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all supported entities.
             /// </summary>
-            public async Task<Batch<EntityHitDto>> GetAllSearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<EntityHitDto>>, Partial<Batch<EntityHitDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<EntityHitDto>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<EntityHitDto>>()) : Partial<Batch<EntityHitDto>>.Default())}");
+            public async Task<Batch<EntityHitDto>> GetAllSearchAsync(string query, bool quick = false, string? skip = null, int? top = 100, Func<Partial<Batch<EntityHitDto>>, Partial<Batch<EntityHitDto>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<EntityHitDto>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&quick={quick.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<EntityHitDto>>()) : Partial<Batch<EntityHitDto>>.Default())}");
             
             /// <summary>
             /// Perform full-text search in all supported entities.
             /// </summary>
-            public IAsyncEnumerable<EntityHitDto> GetAllSearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EntityHitDto>, Partial<EntityHitDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllSearchAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<EntityHitDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHitDto>.Default())), skip);
+            public IAsyncEnumerable<EntityHitDto> GetAllSearchAsyncEnumerable(string query, bool quick = false, string? skip = null, int? top = 100, Func<Partial<EntityHitDto>, Partial<EntityHitDto>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllSearchAsync(query: query, quick: quick, top: top, skip: batchSkip, partial: builder => Partial<Batch<EntityHitDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHitDto>.Default())), skip);
         
         }
     

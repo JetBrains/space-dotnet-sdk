@@ -27,7 +27,7 @@ namespace SpaceDotNet.Client
         private LimitUnit(string value) : base(value) { }
         
         public static readonly LimitUnit BYTES = new LimitUnit("BYTES");
-        public static readonly LimitUnit UNITS = new LimitUnit("UNITS");
+        public static readonly LimitUnit CICREDITS = new LimitUnit("CI_CREDITS");
         public static readonly LimitUnit ENTITIES = new LimitUnit("ENTITIES");
     }
     

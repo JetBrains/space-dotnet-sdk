@@ -37,8 +37,8 @@ namespace SpaceDotNet.Client
         /// The 'mediaType' parameter can be omitted for all uploads. For image uploads that need to be resized automatically for specific use, such as chat stickers or emoji, use one of `chat-image-attachment`, `chat-sticker`, `chat-animated-sticker`, `emoji`.
         /// </summary>
         public async Task<string> CreateUploadAsync(string storagePrefix, string? mediaType = null)
-            => await _connection.RequestResourceAsync<UploadsRequest, string>("POST", $"api/http/uploads", 
-                new UploadsRequest { 
+            => await _connection.RequestResourceAsync<UploadsPostRequest, string>("POST", $"api/http/uploads", 
+                new UploadsPostRequest { 
                     StoragePrefix = storagePrefix,
                     MediaType = mediaType,
                 }

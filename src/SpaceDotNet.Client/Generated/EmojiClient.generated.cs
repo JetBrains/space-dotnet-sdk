@@ -35,7 +35,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task AddAsync(string emoji, string attachmentId)
             => await _connection.RequestResourceAsync("POST", $"api/http/emojis/add", 
-                new EmojisAddRequest { 
+                new EmojisAddPostRequest { 
                     Emoji = emoji,
                     AttachmentId = attachmentId,
                 }
@@ -46,7 +46,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task DeleteAsync(string emoji)
             => await _connection.RequestResourceAsync("POST", $"api/http/emojis/delete", 
-                new EmojisDeleteRequest { 
+                new EmojisDeletePostRequest { 
                     Emoji = emoji,
                 }
         );
@@ -56,7 +56,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task RecordUsageAsync(List<string> emojis)
             => await _connection.RequestResourceAsync("POST", $"api/http/emojis/record-usage", 
-                new EmojisRecordUsageRequest { 
+                new EmojisRecordUsagePostRequest { 
                     Emojis = emojis,
                 }
         );

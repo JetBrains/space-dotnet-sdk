@@ -34,8 +34,8 @@ namespace SpaceDotNet.Client
         /// Create a new authentication module. Settings are specific to the type of authentication module being created.
         /// </summary>
         public async Task<ESAuthModuleDto> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettingsDto settings, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)
-            => await _connection.RequestResourceAsync<AuthModulesRequest, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}", 
-                new AuthModulesRequest { 
+            => await _connection.RequestResourceAsync<AuthModulesPostRequest, ESAuthModuleDto>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}", 
+                new AuthModulesPostRequest { 
                     Key = key,
                     Name = name,
                     Enabled = enabled,
@@ -48,14 +48,14 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task ReorderAsync(List<string> order)
             => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", 
-                new AuthModulesReorderRequest { 
+                new AuthModulesReorderPostRequest { 
                     Order = order,
                 }
         );
     
         public async Task<SamlMetadataResponseDto> SamlMetadataAsync(string id, string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystoreDto? sslKeystore = null, string? contactProfileId = null, Func<Partial<SamlMetadataResponseDto>, Partial<SamlMetadataResponseDto>>? partial = null)
-            => await _connection.RequestResourceAsync<AuthModulesForIdSamlMetadataRequest, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields={(partial != null ? partial(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default())}", 
-                new AuthModulesForIdSamlMetadataRequest { 
+            => await _connection.RequestResourceAsync<AuthModulesForIdSamlMetadataPostRequest, SamlMetadataResponseDto>("POST", $"api/http/auth-modules/{id}/saml-metadata?$fields={(partial != null ? partial(new Partial<SamlMetadataResponseDto>()) : Partial<SamlMetadataResponseDto>.Default())}", 
+                new AuthModulesForIdSamlMetadataPostRequest { 
                     IdpUrl = idpUrl,
                     IdpEntityId = idpEntityId,
                     IdpCertificateSHA256 = idpCertificateSHA256,
@@ -82,7 +82,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettingsDto? settings = null)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", 
-                new AuthModulesForIdRequest { 
+                new AuthModulesForIdPatchRequest { 
                     Key = key,
                     Name = name,
                     Enabled = enabled,
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
             /// For a username/password combination, test built-in authentication with updated settings.
             /// </summary>
             public async Task<TDMemberProfileDto> TestBuiltInSettingsAsync(ESBuiltinAuthModuleSettingsDto settings, string username, string password, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
-                => await _connection.RequestResourceAsync<AuthModulesTestBuiltInRequest, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", 
-                    new AuthModulesTestBuiltInRequest { 
+                => await _connection.RequestResourceAsync<AuthModulesTestBuiltInPostRequest, TDMemberProfileDto>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", 
+                    new AuthModulesTestBuiltInPostRequest { 
                         Settings = settings,
                         Username = username,
                         Password = password,
@@ -123,8 +123,8 @@ namespace SpaceDotNet.Client
             /// For a username/password combination, test LDAP authentication with updated settings.
             /// </summary>
             public async Task<ESDefaultProfileLoginDetailsDto> TestLDAPSettingsAsync(ESLdapAuthModuleSettingsDto settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetailsDto>, Partial<ESDefaultProfileLoginDetailsDto>>? partial = null)
-                => await _connection.RequestResourceAsync<AuthModulesTestLdapRequest, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetailsDto>()) : Partial<ESDefaultProfileLoginDetailsDto>.Default())}", 
-                    new AuthModulesTestLdapRequest { 
+                => await _connection.RequestResourceAsync<AuthModulesTestLdapPostRequest, ESDefaultProfileLoginDetailsDto>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetailsDto>()) : Partial<ESDefaultProfileLoginDetailsDto>.Default())}", 
+                    new AuthModulesTestLdapPostRequest { 
                         Settings = settings,
                         Username = username,
                         Password = password,
@@ -168,7 +168,7 @@ namespace SpaceDotNet.Client
             /// </summary>
             public async Task ChangeAsync(string id, string identifier, string oldPassword, string newPassword)
                 => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/{id}/logins/{identifier}/change", 
-                    new AuthModulesForIdLoginsForIdentifierChangeRequest { 
+                    new AuthModulesForIdLoginsForIdentifierChangePostRequest { 
                         OldPassword = oldPassword,
                         NewPassword = newPassword,
                     }

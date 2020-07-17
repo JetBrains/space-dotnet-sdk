@@ -35,7 +35,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task BlockUnfurlAsync(string link, bool wholeHost)
             => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl", 
-                new UnfurlsBlockUnfurlRequest { 
+                new UnfurlsBlockUnfurlPostRequest { 
                     Link = link,
                     WholeHost = wholeHost,
                 }
@@ -46,15 +46,15 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task BlockUnfurlGlobalAsync(string link, bool wholeHost)
             => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/block-unfurl-global", 
-                new UnfurlsBlockUnfurlGlobalRequest { 
+                new UnfurlsBlockUnfurlGlobalPostRequest { 
                     Link = link,
                     WholeHost = wholeHost,
                 }
         );
     
         public async Task<bool> CheckBlockedAsync(string link)
-            => await _connection.RequestResourceAsync<UnfurlsCheckBlockedRequest, bool>("POST", $"api/http/unfurls/check-blocked", 
-                new UnfurlsCheckBlockedRequest { 
+            => await _connection.RequestResourceAsync<UnfurlsCheckBlockedPostRequest, bool>("POST", $"api/http/unfurls/check-blocked", 
+                new UnfurlsCheckBlockedPostRequest { 
                     Link = link,
                 }
         );
@@ -64,7 +64,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task UnblockUnfurlAsync(string link, bool wholeHost)
             => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl", 
-                new UnfurlsUnblockUnfurlRequest { 
+                new UnfurlsUnblockUnfurlPostRequest { 
                     Link = link,
                     WholeHost = wholeHost,
                 }
@@ -75,7 +75,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task UnblockUnfurlGlobalAsync(string link, bool wholeHost)
             => await _connection.RequestResourceAsync("POST", $"api/http/unfurls/unblock-unfurl-global", 
-                new UnfurlsUnblockUnfurlGlobalRequest { 
+                new UnfurlsUnblockUnfurlGlobalPostRequest { 
                     Link = link,
                     WholeHost = wholeHost,
                 }

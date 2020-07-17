@@ -38,6 +38,9 @@ namespace SpaceDotNet.Client.PackageRepositoryDtoPartialBuilder
         public static Partial<PackageRepositoryDto> WithDescription(this Partial<PackageRepositoryDto> it)
             => it.AddFieldName("description");
         
+        public static Partial<PackageRepositoryDto> WithPublic(this Partial<PackageRepositoryDto> it)
+            => it.AddFieldName("public");
+        
         public static Partial<PackageRepositoryDto> WithSettings(this Partial<PackageRepositoryDto> it)
             => it.AddFieldName("settings");
         

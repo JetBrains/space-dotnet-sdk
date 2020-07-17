@@ -31,8 +31,8 @@ namespace SpaceDotNet.Client
         }
         
         public async Task<TrustedCertificateDto> CreateTrustedCertificateAsync(string alias, string data, bool archived, Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>>? partial = null)
-            => await _connection.RequestResourceAsync<TrustedCertificatesRequest, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default())}", 
-                new TrustedCertificatesRequest { 
+            => await _connection.RequestResourceAsync<TrustedCertificatesPostRequest, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default())}", 
+                new TrustedCertificatesPostRequest { 
                     Alias = alias,
                     Data = data,
                     Archived = archived,
@@ -47,7 +47,7 @@ namespace SpaceDotNet.Client
     
         public async Task UpdateTrustedCertificateAsync(string id, string? alias = null, string? data = null, bool? archived = false)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/trusted-certificates/{id}", 
-                new TrustedCertificatesForIdRequest { 
+                new TrustedCertificatesForIdPatchRequest { 
                     Alias = alias,
                     Data = data,
                     Archived = archived,

@@ -27,6 +27,9 @@ namespace SpaceDotNet.Client
         public static BillingFeedChannelDto BillingFeedChannel(ChannelSpecificDefaultsDto? notificationDefaults = null)
             => new BillingFeedChannelDto(notificationDefaults: null);
         
+        public static M2ChannelAutomationJobFeedInfoDto M2ChannelAutomationJobFeedInfo(JobSubscriptionDto jobSubscription, string jobName, ChannelSpecificDefaultsDto notificationDefaults, string? repoName = null)
+            => new M2ChannelAutomationJobFeedInfoDto(jobSubscription: jobSubscription, jobName: jobName, notificationDefaults: notificationDefaults, repoName: null);
+        
         public static M2ChannelContactObsoleteDto M2ChannelContactObsolete(M2ObsoleteCause? cause = null)
             => new M2ChannelContactObsoleteDto(cause: null);
         

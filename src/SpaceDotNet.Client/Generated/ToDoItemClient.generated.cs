@@ -34,8 +34,8 @@ namespace SpaceDotNet.Client
         /// Create a new To-Do item, with an optional due date.
         /// </summary>
         public async Task<TodoItemRecordDto> CreateToDoItemAsync(string text, SpaceDate? dueDate = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
-            => await _connection.RequestResourceAsync<TodoRequest, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", 
-                new TodoRequest { 
+            => await _connection.RequestResourceAsync<TodoPostRequest, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", 
+                new TodoPostRequest { 
                     Text = text,
                     DueDate = dueDate,
                 }
@@ -58,7 +58,7 @@ namespace SpaceDotNet.Client
         /// </summary>
         public async Task UpdateToDoItemAsync(string id, string? text = null, SpaceDate? dueDate = null, bool? open = null)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/todo/{id}", 
-                new TodoForIdRequest { 
+                new TodoForIdPatchRequest { 
                     Text = text,
                     DueDate = dueDate,
                     Open = open,

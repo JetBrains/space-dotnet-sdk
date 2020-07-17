@@ -29,17 +29,17 @@ namespace SpaceDotNet.Client
         
         public MessageIconDto() { }
         
-        public MessageIconDto(string icon, MessageStyle style)
+        public MessageIconDto(ApiIconDto icon, MessageStyle style)
         {
             Icon = icon;
             Style = style;
         }
         
-        private PropertyValue<string> _icon = new PropertyValue<string>(nameof(MessageIconDto), nameof(Icon));
+        private PropertyValue<ApiIconDto> _icon = new PropertyValue<ApiIconDto>(nameof(MessageIconDto), nameof(Icon));
         
         [Required]
         [JsonPropertyName("icon")]
-        public string Icon
+        public ApiIconDto Icon
         {
             get { return _icon.GetValue(); }
             set { _icon.SetValue(value); }

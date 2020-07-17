@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
             /// Create a meeting. Note: all-day events are not supported yet.
             /// </summary>
             public async Task<DTOMeetingDto> CreateMeetingAsync(string summary, CalendarEventSpecDto occurrenceRule, List<string> locations = null, List<string> profiles = null, List<string> externalParticipants = null, List<string> teams = null, MeetingVisibility visibility = null, MeetingModificationPreference modificationPreference = null, MeetingJoiningPreference joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CalendarsMeetingsRequest, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", 
-                    new CalendarsMeetingsRequest { 
+                => await _connection.RequestResourceAsync<CalendarsMeetingsPostRequest, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", 
+                    new CalendarsMeetingsPostRequest { 
                         Summary = summary,
                         Description = description,
                         OccurrenceRule = occurrenceRule,
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
             /// Patch a meeting. Only not-null parameters and not empty diffs will be applied.
             /// </summary>
             public async Task<DTOMeetingDto> UpdateMeetingAsync(string id, DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = null, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CalendarsMeetingsForIdRequest, DTOMeetingDto>("PATCH", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", 
-                    new CalendarsMeetingsForIdRequest { 
+                => await _connection.RequestResourceAsync<CalendarsMeetingsForIdPatchRequest, DTOMeetingDto>("PATCH", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", 
+                    new CalendarsMeetingsForIdPatchRequest { 
                         Summary = summary,
                         Description = description,
                         OccurrenceRule = occurrenceRule,

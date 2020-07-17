@@ -21,7 +21,8 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public abstract class ProjectIdentifier
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class ProjectIdentifier : IUrlParameter
     {
         public static ProjectIdentifier Id(string id)
             => new ProjectIdentifierId(id);

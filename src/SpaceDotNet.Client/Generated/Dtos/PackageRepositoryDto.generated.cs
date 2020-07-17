@@ -26,12 +26,13 @@ namespace SpaceDotNet.Client
     {
         public PackageRepositoryDto() { }
         
-        public PackageRepositoryDto(string id, PackageTypeDto type, bool archived, string? name = null, string? description = null, ESPackageRepositorySettingsDto? settings = null)
+        public PackageRepositoryDto(string id, PackageTypeDto type, bool @public, bool archived, string? name = null, string? description = null, ESPackageRepositorySettingsDto? settings = null)
         {
             Id = id;
             Type = type;
             Name = name;
             Description = description;
+            Public = @public;
             Settings = settings;
             Archived = archived;
         }
@@ -74,6 +75,16 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
+        private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(PackageRepositoryDto), nameof(Public));
+        
+        [Required]
+        [JsonPropertyName("public")]
+        public bool Public
+        {
+            get { return _public.GetValue(); }
+            set { _public.SetValue(value); }
+        }
+    
         private PropertyValue<ESPackageRepositorySettingsDto?> _settings = new PropertyValue<ESPackageRepositorySettingsDto?>(nameof(PackageRepositoryDto), nameof(Settings));
         
         [JsonPropertyName("settings")]
@@ -99,6 +110,7 @@ namespace SpaceDotNet.Client
             _type.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
+            _public.SetAccessPath(path, validateHasBeenSet);
             _settings.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }

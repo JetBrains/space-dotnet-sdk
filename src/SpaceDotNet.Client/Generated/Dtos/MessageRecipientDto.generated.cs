@@ -37,7 +37,7 @@ namespace SpaceDotNet.Client
         public static MessageRecipientIssueDto Issue(string issue)
             => new MessageRecipientIssueDto(issue: issue);
         
-        public static MessageRecipientMemberDto Member(string member)
+        public static MessageRecipientMemberDto Member(ProfileIdentifier member)
             => new MessageRecipientMemberDto(member: member);
         
         public MessageRecipientDto() { }

@@ -31,8 +31,8 @@ namespace SpaceDotNet.Client
         }
         
         public async Task<bool> CheckPermissionAsync(PrincipalInDto principal, string uniqueRightCode, PermissionTargetDto target)
-            => await _connection.RequestResourceAsync<PermissionsCheckPermissionRequest, bool>("POST", $"api/http/permissions/check-permission", 
-                new PermissionsCheckPermissionRequest { 
+            => await _connection.RequestResourceAsync<PermissionsCheckPermissionPostRequest, bool>("POST", $"api/http/permissions/check-permission", 
+                new PermissionsCheckPermissionPostRequest { 
                     Principal = principal,
                     UniqueRightCode = uniqueRightCode,
                     Target = target,

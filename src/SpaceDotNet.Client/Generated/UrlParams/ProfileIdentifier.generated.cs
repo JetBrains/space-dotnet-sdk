@@ -21,7 +21,8 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public abstract class ProfileIdentifier
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class ProfileIdentifier : IUrlParameter
     {
         public static ProfileIdentifier Me
             => new ProfileIdentifierMe();

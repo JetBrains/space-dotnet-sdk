@@ -29,16 +29,16 @@ namespace SpaceDotNet.Client
         
         public MessageRecipientMemberDto() { }
         
-        public MessageRecipientMemberDto(string member)
+        public MessageRecipientMemberDto(ProfileIdentifier member)
         {
             Member = member;
         }
         
-        private PropertyValue<string> _member = new PropertyValue<string>(nameof(MessageRecipientMemberDto), nameof(Member));
+        private PropertyValue<ProfileIdentifier> _member = new PropertyValue<ProfileIdentifier>(nameof(MessageRecipientMemberDto), nameof(Member));
         
         [Required]
         [JsonPropertyName("member")]
-        public string Member
+        public ProfileIdentifier Member
         {
             get { return _member.GetValue(); }
             set { _member.SetValue(value); }

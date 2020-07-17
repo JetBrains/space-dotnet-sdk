@@ -37,6 +37,9 @@ namespace SpaceDotNet.Client
         public static MessageHitDto MessageHit(string id, string parentItemId, double score, M2ChannelRecordDto channel, ChannelItemRecordDto @ref, string message, bool threadStarter, string? thread = null)
             => new MessageHitDto(id: id, parentItemId: parentItemId, score: score, channel: channel, @ref: @ref, message: message, threadStarter: threadStarter, thread: null);
         
+        public static ProfileCustomFieldHitDto ProfileCustomFieldHit(string id, double score, List<string> value, TDMemberProfileDto @ref)
+            => new ProfileCustomFieldHitDto(id: id, score: score, value: value, @ref: @ref);
+        
         public static ProfileHitDto ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, bool notAMember, TDMemberProfileDto @ref, List<CustomFieldHitDto> customFields)
             => new ProfileHitDto(id: id, score: score, firstName: firstName, lastName: lastName, userName: userName, phones: phones, emails: emails, links: links, messengers: messengers, notAMember: notAMember, @ref: @ref, customFields: customFields);
         

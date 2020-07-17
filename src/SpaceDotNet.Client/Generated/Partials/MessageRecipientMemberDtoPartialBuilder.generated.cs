@@ -26,6 +26,9 @@ namespace SpaceDotNet.Client.MessageRecipientMemberDtoPartialBuilder
         public static Partial<MessageRecipientMemberDto> WithMember(this Partial<MessageRecipientMemberDto> it)
             => it.AddFieldName("member");
         
+        public static Partial<MessageRecipientMemberDto> WithMember(this Partial<MessageRecipientMemberDto> it, Func<Partial<ProfileIdentifier>, Partial<ProfileIdentifier>> partialBuilder)
+            => it.AddFieldName("member", partialBuilder(new Partial<ProfileIdentifier>(it)));
+        
     }
     
 }
