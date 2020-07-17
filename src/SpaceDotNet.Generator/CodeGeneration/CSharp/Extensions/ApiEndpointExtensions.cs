@@ -1,4 +1,6 @@
+using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
+using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 {
@@ -12,7 +14,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
             if (subject.RequestBody == null || 
                 subject.RequestBody.Kind != ApiFieldType.Object.ObjectKind.REQUEST_BODY) return null;
             
-            return CSharpIdentifier.ForClassOrNamespace(endpointPath) + "Request";
+            return CSharpIdentifier.ForClassOrNamespace(endpointPath)
+                   + subject.Method.ToHttpMethod().ToLowerInvariant().ToUppercaseFirst()
+                   + "Request";
         }
     }
 }

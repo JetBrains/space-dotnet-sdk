@@ -27,7 +27,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             }
 
             // Parameter type
-            builder.AppendLine($"{indent}public abstract class {typeNameForUrlParameter}");
+            builder.AppendLine($"{indent}[JsonConverter(typeof(UrlParameterConverter))]");
+            builder.AppendLine($"{indent}public abstract class {typeNameForUrlParameter} : IUrlParameter");
             builder.AppendLine($"{indent}{{");
             indent.Increment();
             
