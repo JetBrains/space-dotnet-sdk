@@ -20,20 +20,11 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("NuGet Source for Packages", Name = "JB_SPACE_NUGET_URL")]
-    readonly string? NuGetSourceUrl;
-    
-    [Parameter("Space API URL", Name = "JB_SPACE_API_URL")]
-    readonly string? SpaceApiUrl;
+    [Parameter("NuGet target", Name = "JB_SPACE_NUGET_URL")]
+    readonly string? NuGetTargetUrl;
 
-    [Parameter("Space API Client Id", Name = "JB_SPACE_CLIENT_ID")]
-    readonly string? SpaceClientId;
-
-    [Parameter("Space API Client Secret", Name = "JB_SPACE_CLIENT_SECRET")]
-    readonly string? SpaceClientSecret;
-
-    [Parameter("Space API access token", Name = "JB_SPACE_CLIENT_TOKEN")]
-    readonly string? SpaceAccessToken;
+    [Parameter("NuGet target access token", Name = "JB_SPACE_CLIENT_TOKEN")]
+    readonly string? NuGetTargetToken;
     
     [Solution] readonly Solution? Solution;
     [GitRepository] readonly GitRepository? GitRepository;
@@ -105,19 +96,16 @@ class Build : NukeBuild
     Target PushPackages => _ => _
         .TriggeredBy(Package)
         .OnlyWhenStatic(() =>
-            !string.IsNullOrEmpty(NuGetSourceUrl) && 
-            !string.IsNullOrEmpty(SpaceApiUrl) &&
-            !string.IsNullOrEmpty(SpaceClientId) && 
-            !string.IsNullOrEmpty(SpaceClientSecret) && 
-            !string.IsNullOrEmpty(SpaceAccessToken))
+            !string.IsNullOrEmpty(NuGetTargetUrl) &&
+            !string.IsNullOrEmpty(NuGetTargetToken))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
             
             DotNetNuGetPush(_ => _
-                    .SetSource(NuGetSourceUrl)
-                    .SetApiKey(SpaceAccessToken)
+                    .SetSource(NuGetTargetUrl)
+                    .SetApiKey(NuGetTargetToken)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
