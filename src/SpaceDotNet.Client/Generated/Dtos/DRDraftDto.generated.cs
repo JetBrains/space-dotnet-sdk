@@ -26,22 +26,21 @@ namespace SpaceDotNet.Client
     {
         public DRDraftDto() { }
         
-        public DRDraftDto(string id, string title, SpaceTime modified, bool publishedFlag, bool shared, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, string? text = null, DraftDocumentType? type = null, SpaceTime? created = null, DraftPublicationDetailsDto? publicationDetails = null, TDMemberProfileDto? author = null, long? version = null, TextDocumentDto? document = null)
+        public DRDraftDto(string id, string title, SpaceTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, TextDocumentDto document, SpaceTime? created = null, bool? deleted = null, DraftPublicationDetailsDto? publicationDetails = null, TDMemberProfileDto? author = null, DocumentFolderRecordDto? folder = null)
         {
             Id = id;
             Title = title;
-            Text = text;
-            Type = type;
             Modified = modified;
             Created = created;
-            PublishedFlag = publishedFlag;
             Shared = shared;
-            AccessOrdinal = accessOrdinal;
+            Deleted = deleted;
             PublicationDetails = publicationDetails;
             Author = author;
+            PublishedFlag = publishedFlag;
+            Folder = folder;
+            AccessOrdinal = accessOrdinal;
             Editors = editors;
             EditorsTeams = editorsTeams;
-            Version = version;
             Document = document;
         }
         
@@ -65,24 +64,6 @@ namespace SpaceDotNet.Client
             set { _title.SetValue(value); }
         }
     
-        private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(DRDraftDto), nameof(Text));
-        
-        [JsonPropertyName("text")]
-        public string? Text
-        {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
-        }
-    
-        private PropertyValue<DraftDocumentType?> _type = new PropertyValue<DraftDocumentType?>(nameof(DRDraftDto), nameof(Type));
-        
-        [JsonPropertyName("type")]
-        public DraftDocumentType? Type
-        {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
-        }
-    
         private PropertyValue<SpaceTime> _modified = new PropertyValue<SpaceTime>(nameof(DRDraftDto), nameof(Modified));
         
         [Required]
@@ -102,16 +83,6 @@ namespace SpaceDotNet.Client
             set { _created.SetValue(value); }
         }
     
-        private PropertyValue<bool> _publishedFlag = new PropertyValue<bool>(nameof(DRDraftDto), nameof(PublishedFlag));
-        
-        [Required]
-        [JsonPropertyName("publishedFlag")]
-        public bool PublishedFlag
-        {
-            get { return _publishedFlag.GetValue(); }
-            set { _publishedFlag.SetValue(value); }
-        }
-    
         private PropertyValue<bool> _shared = new PropertyValue<bool>(nameof(DRDraftDto), nameof(Shared));
         
         [Required]
@@ -122,14 +93,13 @@ namespace SpaceDotNet.Client
             set { _shared.SetValue(value); }
         }
     
-        private PropertyValue<int> _accessOrdinal = new PropertyValue<int>(nameof(DRDraftDto), nameof(AccessOrdinal));
+        private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(DRDraftDto), nameof(Deleted));
         
-        [Required]
-        [JsonPropertyName("accessOrdinal")]
-        public int AccessOrdinal
+        [JsonPropertyName("deleted")]
+        public bool? Deleted
         {
-            get { return _accessOrdinal.GetValue(); }
-            set { _accessOrdinal.SetValue(value); }
+            get { return _deleted.GetValue(); }
+            set { _deleted.SetValue(value); }
         }
     
         private PropertyValue<DraftPublicationDetailsDto?> _publicationDetails = new PropertyValue<DraftPublicationDetailsDto?>(nameof(DRDraftDto), nameof(PublicationDetails));
@@ -148,6 +118,35 @@ namespace SpaceDotNet.Client
         {
             get { return _author.GetValue(); }
             set { _author.SetValue(value); }
+        }
+    
+        private PropertyValue<bool> _publishedFlag = new PropertyValue<bool>(nameof(DRDraftDto), nameof(PublishedFlag));
+        
+        [Required]
+        [JsonPropertyName("publishedFlag")]
+        public bool PublishedFlag
+        {
+            get { return _publishedFlag.GetValue(); }
+            set { _publishedFlag.SetValue(value); }
+        }
+    
+        private PropertyValue<DocumentFolderRecordDto?> _folder = new PropertyValue<DocumentFolderRecordDto?>(nameof(DRDraftDto), nameof(Folder));
+        
+        [JsonPropertyName("folder")]
+        public DocumentFolderRecordDto? Folder
+        {
+            get { return _folder.GetValue(); }
+            set { _folder.SetValue(value); }
+        }
+    
+        private PropertyValue<int> _accessOrdinal = new PropertyValue<int>(nameof(DRDraftDto), nameof(AccessOrdinal));
+        
+        [Required]
+        [JsonPropertyName("accessOrdinal")]
+        public int AccessOrdinal
+        {
+            get { return _accessOrdinal.GetValue(); }
+            set { _accessOrdinal.SetValue(value); }
         }
     
         private PropertyValue<List<TDMemberProfileDto>> _editors = new PropertyValue<List<TDMemberProfileDto>>(nameof(DRDraftDto), nameof(Editors));
@@ -170,19 +169,11 @@ namespace SpaceDotNet.Client
             set { _editorsTeams.SetValue(value); }
         }
     
-        private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(DRDraftDto), nameof(Version));
+        private PropertyValue<TextDocumentDto> _document = new PropertyValue<TextDocumentDto>(nameof(DRDraftDto), nameof(Document));
         
-        [JsonPropertyName("version")]
-        public long? Version
-        {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
-        }
-    
-        private PropertyValue<TextDocumentDto?> _document = new PropertyValue<TextDocumentDto?>(nameof(DRDraftDto), nameof(Document));
-        
+        [Required]
         [JsonPropertyName("document")]
-        public TextDocumentDto? Document
+        public TextDocumentDto Document
         {
             get { return _document.GetValue(); }
             set { _document.SetValue(value); }
@@ -192,18 +183,17 @@ namespace SpaceDotNet.Client
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
-            _text.SetAccessPath(path, validateHasBeenSet);
-            _type.SetAccessPath(path, validateHasBeenSet);
             _modified.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
-            _publishedFlag.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
-            _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
+            _deleted.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
+            _publishedFlag.SetAccessPath(path, validateHasBeenSet);
+            _folder.SetAccessPath(path, validateHasBeenSet);
+            _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
             _editors.SetAccessPath(path, validateHasBeenSet);
             _editorsTeams.SetAccessPath(path, validateHasBeenSet);
-            _version.SetAccessPath(path, validateHasBeenSet);
             _document.SetAccessPath(path, validateHasBeenSet);
         }
     

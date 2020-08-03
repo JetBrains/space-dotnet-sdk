@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarEventSpecDto() { }
         
-        public CalendarEventSpecDto(SpaceTime start, SpaceTime end, bool allDay, ATimeZoneDto timezone, RecurrenceRuleDto? recurrenceRule = null, string? parentId = null, BusyStatus? busyStatus = null)
+        public CalendarEventSpecDto(SpaceTime start, SpaceTime end, bool allDay, ATimeZoneDto timezone, RecurrenceRuleDto? recurrenceRule = null, string? parentId = null, SpaceTime? initialMeetingStart = null, BusyStatus? busyStatus = null)
         {
             Start = start;
             End = end;
@@ -34,6 +34,7 @@ namespace SpaceDotNet.Client
             AllDay = allDay;
             Timezone = timezone;
             ParentId = parentId;
+            InitialMeetingStart = initialMeetingStart;
             BusyStatus = busyStatus;
         }
         
@@ -95,6 +96,15 @@ namespace SpaceDotNet.Client
             set { _parentId.SetValue(value); }
         }
     
+        private PropertyValue<SpaceTime?> _initialMeetingStart = new PropertyValue<SpaceTime?>(nameof(CalendarEventSpecDto), nameof(InitialMeetingStart));
+        
+        [JsonPropertyName("initialMeetingStart")]
+        public SpaceTime? InitialMeetingStart
+        {
+            get { return _initialMeetingStart.GetValue(); }
+            set { _initialMeetingStart.SetValue(value); }
+        }
+    
         private PropertyValue<BusyStatus?> _busyStatus = new PropertyValue<BusyStatus?>(nameof(CalendarEventSpecDto), nameof(BusyStatus));
         
         [JsonPropertyName("busyStatus")]
@@ -112,6 +122,7 @@ namespace SpaceDotNet.Client
             _allDay.SetAccessPath(path, validateHasBeenSet);
             _timezone.SetAccessPath(path, validateHasBeenSet);
             _parentId.SetAccessPath(path, validateHasBeenSet);
+            _initialMeetingStart.SetAccessPath(path, validateHasBeenSet);
             _busyStatus.SetAccessPath(path, validateHasBeenSet);
         }
     

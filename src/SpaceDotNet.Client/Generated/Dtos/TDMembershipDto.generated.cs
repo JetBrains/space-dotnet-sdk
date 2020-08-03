@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TDMembershipDto() { }
         
-        public TDMembershipDto(string id, TDTeamDto team, TDRoleDto role, bool lead, bool requiresApproval, bool archived, TDMemberProfileDto? member = null, TDMemberProfileDto? manager = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, TDMembershipDto? editFor = null, TDMembershipDto? pendingEdit = null, TDMemberProfileDto? approver = null)
+        public TDMembershipDto(string id, TDTeamDto team, TDRoleDto role, bool lead, bool requiresApproval, bool archived, Dictionary<string, CFValueDto> customFields, TDMemberProfileDto? member = null, TDMemberProfileDto? manager = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, TDMembershipDto? editFor = null, TDMembershipDto? pendingEdit = null, TDMemberProfileDto? approver = null)
         {
             Id = id;
             Member = member;
@@ -43,6 +43,7 @@ namespace SpaceDotNet.Client
             EditFor = editFor;
             PendingEdit = pendingEdit;
             Approver = approver;
+            CustomFields = customFields;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMembershipDto), nameof(Id));
@@ -186,6 +187,16 @@ namespace SpaceDotNet.Client
             set { _approver.SetValue(value); }
         }
     
+        private PropertyValue<Dictionary<string, CFValueDto>> _customFields = new PropertyValue<Dictionary<string, CFValueDto>>(nameof(TDMembershipDto), nameof(CustomFields));
+        
+        [Required]
+        [JsonPropertyName("customFields")]
+        public Dictionary<string, CFValueDto> CustomFields
+        {
+            get { return _customFields.GetValue(); }
+            set { _customFields.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -203,6 +214,7 @@ namespace SpaceDotNet.Client
             _editFor.SetAccessPath(path, validateHasBeenSet);
             _pendingEdit.SetAccessPath(path, validateHasBeenSet);
             _approver.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

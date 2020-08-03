@@ -26,11 +26,12 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest(string sourceBranch, string targetBranch, string title)
+        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest(string sourceBranch, string targetBranch, string title, List<MergeRequestReviewerDto>? reviewers = null)
         {
             SourceBranch = sourceBranch;
             TargetBranch = targetBranch;
             Title = title;
+            Reviewers = reviewers;
         }
         
         private PropertyValue<string> _sourceBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(SourceBranch));
@@ -63,11 +64,21 @@ namespace SpaceDotNet.Client
             set { _title.SetValue(value); }
         }
     
+        private PropertyValue<List<MergeRequestReviewerDto>?> _reviewers = new PropertyValue<List<MergeRequestReviewerDto>?>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Reviewers));
+        
+        [JsonPropertyName("reviewers")]
+        public List<MergeRequestReviewerDto>? Reviewers
+        {
+            get { return _reviewers.GetValue(); }
+            set { _reviewers.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _sourceBranch.SetAccessPath(path, validateHasBeenSet);
             _targetBranch.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
+            _reviewers.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

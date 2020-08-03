@@ -89,6 +89,12 @@ namespace SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder
         public static Partial<TDMemberProfileDto> WithPhones(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("phones");
         
+        public static Partial<TDMemberProfileDto> WithFolder(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("folder");
+        
+        public static Partial<TDMemberProfileDto> WithFolder(this Partial<TDMemberProfileDto> it, Func<Partial<DocumentFolderRecordDto>, Partial<DocumentFolderRecordDto>> partialBuilder)
+            => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecordDto>(it)));
+        
         public static Partial<TDMemberProfileDto> WithHolidays(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("holidays");
         
@@ -125,6 +131,15 @@ namespace SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder
         public static Partial<TDMemberProfileDto> WithOnboardingRequired(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("onboardingRequired");
         
+        public static Partial<TDMemberProfileDto> WithShowBannerOnLandingPage(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("showBannerOnLandingPage");
+        
+        public static Partial<TDMemberProfileDto> WithShowBannerOnProjectPage(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("showBannerOnProjectPage");
+        
+        public static Partial<TDMemberProfileDto> WithShowBannerOnTeamDirectoryHomePage(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("showBannerOnTeamDirectoryHomePage");
+        
         public static Partial<TDMemberProfileDto> WithAbout(this Partial<TDMemberProfileDto> it)
             => it.AddFieldName("about");
         
@@ -142,6 +157,12 @@ namespace SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder
         
         public static Partial<TDMemberProfileDto> WithGender(this Partial<TDMemberProfileDto> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
             => it.AddFieldName("gender", partialBuilder(new Partial<Gender>(it)));
+        
+        public static Partial<TDMemberProfileDto> WithCustomFields(this Partial<TDMemberProfileDto> it)
+            => it.AddFieldName("customFields");
+        
+        public static Partial<TDMemberProfileDto> WithCustomFields(this Partial<TDMemberProfileDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CFValueDto>(it)));
         
     }
     

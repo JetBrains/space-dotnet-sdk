@@ -32,6 +32,12 @@ namespace SpaceDotNet.Client.ProjectsForProjectRepositoriesForRepositoryMergeReq
         public static Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> WithTitle(this Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> it)
             => it.AddFieldName("title");
         
+        public static Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> it)
+            => it.AddFieldName("reviewers");
+        
+        public static Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> WithReviewers(this Partial<ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest> it, Func<Partial<MergeRequestReviewerDto>, Partial<MergeRequestReviewerDto>> partialBuilder)
+            => it.AddFieldName("reviewers", partialBuilder(new Partial<MergeRequestReviewerDto>(it)));
+        
     }
     
 }

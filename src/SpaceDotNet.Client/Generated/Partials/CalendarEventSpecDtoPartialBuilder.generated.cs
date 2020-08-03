@@ -47,6 +47,9 @@ namespace SpaceDotNet.Client.CalendarEventSpecDtoPartialBuilder
         public static Partial<CalendarEventSpecDto> WithParentId(this Partial<CalendarEventSpecDto> it)
             => it.AddFieldName("parentId");
         
+        public static Partial<CalendarEventSpecDto> WithInitialMeetingStart(this Partial<CalendarEventSpecDto> it)
+            => it.AddFieldName("initialMeetingStart");
+        
         public static Partial<CalendarEventSpecDto> WithBusyStatus(this Partial<CalendarEventSpecDto> it)
             => it.AddFieldName("busyStatus");
         

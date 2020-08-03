@@ -39,6 +39,9 @@ namespace SpaceDotNet.Client
         public static ESHubAuthModuleSettingsDto ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null)
             => new ESHubAuthModuleSettingsDto(hubUrl: hubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: null, orgAuthProviderName: null, groups: null);
         
+        public static ESOIDCAuthModuleSettingsDto ESOIDCAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, string issuer, string authorizationEndpoint, string tokenEndpoint, string tokenKeysEndpoint, string userInfoEndpoint, List<string> domains, string? discoveryUrl = null)
+            => new ESOIDCAuthModuleSettingsDto(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, issuer: issuer, authorizationEndpoint: authorizationEndpoint, tokenEndpoint: tokenEndpoint, tokenKeysEndpoint: tokenKeysEndpoint, userInfoEndpoint: userInfoEndpoint, domains: domains, discoveryUrl: null);
+        
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
         }

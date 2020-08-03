@@ -19,10 +19,16 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CustomColumnValuesWithSchemaDataDtoPartialBuilder
+namespace SpaceDotNet.Client.MergeRequestReviewerDtoPartialBuilder
 {
-    public static class CustomColumnValuesWithSchemaDataDtoPartialExtensions
+    public static class MergeRequestReviewerDtoPartialExtensions
     {
+        public static Partial<MergeRequestReviewerDto> WithProfileId(this Partial<MergeRequestReviewerDto> it)
+            => it.AddFieldName("profileId");
+        
+        public static Partial<MergeRequestReviewerDto> WithQualityGateSlots(this Partial<MergeRequestReviewerDto> it)
+            => it.AddFieldName("qualityGateSlots");
+        
     }
     
 }

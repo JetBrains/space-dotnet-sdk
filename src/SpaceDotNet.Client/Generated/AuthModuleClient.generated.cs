@@ -72,6 +72,12 @@ namespace SpaceDotNet.Client
             => await _connection.RequestResourceAsync<List<ESAuthModuleDto>>("GET", $"api/http/auth-modules?withDisabled={withDisabled.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<ESAuthModuleDto>()) : Partial<ESAuthModuleDto>.Default())}");
     
         /// <summary>
+        /// Automatically discovers the endpoints for the OpenID Connect provider via discovery document
+        /// </summary>
+        public async Task<OIDCDiscoveryDto> DiscoverOidcAsync(string discoveryEndpoint, Func<Partial<OIDCDiscoveryDto>, Partial<OIDCDiscoveryDto>>? partial = null)
+            => await _connection.RequestResourceAsync<OIDCDiscoveryDto>("GET", $"api/http/auth-modules/discover-oidc?discoveryEndpoint={discoveryEndpoint.ToString()}&$fields={(partial != null ? partial(new Partial<OIDCDiscoveryDto>()) : Partial<OIDCDiscoveryDto>.Default())}");
+    
+        /// <summary>
         /// Get an existing authentication module.
         /// </summary>
         public async Task<ESAuthModuleDto> GetAuthModuleByKeyAsync(string key, Func<Partial<ESAuthModuleDto>, Partial<ESAuthModuleDto>>? partial = null)

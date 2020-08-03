@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public AbsenceRecordDto() { }
         
-        public AbsenceRecordDto(string id, bool archived, TDMemberProfileDto member, string icon, SpaceDate since, SpaceDate till, bool available, AbsenceReasonRecordDto? reason = null, string? description = null, TDLocationDto? location = null, AbsenceApprovalDto? approval = null, List<CustomColumnValuesWithSchemaDataDto>? customFields = null)
+        public AbsenceRecordDto(string id, bool archived, TDMemberProfileDto member, string icon, SpaceDate since, SpaceDate till, bool available, Dictionary<string, CFValueDto> customFields, AbsenceReasonRecordDto? reason = null, string? description = null, TDLocationDto? location = null, AbsenceApprovalDto? approval = null)
         {
             Id = id;
             Archived = archived;
@@ -148,10 +148,11 @@ namespace SpaceDotNet.Client
             set { _approval.SetValue(value); }
         }
     
-        private PropertyValue<List<CustomColumnValuesWithSchemaDataDto>?> _customFields = new PropertyValue<List<CustomColumnValuesWithSchemaDataDto>?>(nameof(AbsenceRecordDto), nameof(CustomFields));
+        private PropertyValue<Dictionary<string, CFValueDto>> _customFields = new PropertyValue<Dictionary<string, CFValueDto>>(nameof(AbsenceRecordDto), nameof(CustomFields));
         
+        [Required]
         [JsonPropertyName("customFields")]
-        public List<CustomColumnValuesWithSchemaDataDto>? CustomFields
+        public Dictionary<string, CFValueDto> CustomFields
         {
             get { return _customFields.GetValue(); }
             set { _customFields.SetValue(value); }

@@ -26,10 +26,11 @@ namespace SpaceDotNet.Client
     {
         public ExtendedTypeDto() { }
         
-        public ExtendedTypeDto(string key, string displayName)
+        public ExtendedTypeDto(string key, string displayName, string? apiClassName = null)
         {
             Key = key;
             DisplayName = displayName;
+            ApiClassName = apiClassName;
         }
         
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ExtendedTypeDto), nameof(Key));
@@ -52,10 +53,20 @@ namespace SpaceDotNet.Client
             set { _displayName.SetValue(value); }
         }
     
+        private PropertyValue<string?> _apiClassName = new PropertyValue<string?>(nameof(ExtendedTypeDto), nameof(ApiClassName));
+        
+        [JsonPropertyName("apiClassName")]
+        public string? ApiClassName
+        {
+            get { return _apiClassName.GetValue(); }
+            set { _apiClassName.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _key.SetAccessPath(path, validateHasBeenSet);
             _displayName.SetAccessPath(path, validateHasBeenSet);
+            _apiClassName.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

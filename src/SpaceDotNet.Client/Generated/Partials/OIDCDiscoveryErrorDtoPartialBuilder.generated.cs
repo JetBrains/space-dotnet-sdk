@@ -19,17 +19,16 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.OIDCDiscoveryErrorDtoPartialBuilder
 {
-    public sealed class CustomColumnValuesWithSchemaDataDto
-         : IPropagatePropertyAccessPath
+    public static class OIDCDiscoveryErrorDtoPartialExtensions
     {
-        public CustomColumnValuesWithSchemaDataDto() { }
+        public static Partial<OIDCDiscoveryErrorDto> WithCode(this Partial<OIDCDiscoveryErrorDto> it)
+            => it.AddFieldName("code");
         
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
+        public static Partial<OIDCDiscoveryErrorDto> WithDescription(this Partial<OIDCDiscoveryErrorDto> it)
+            => it.AddFieldName("description");
+        
     }
     
 }

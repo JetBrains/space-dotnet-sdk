@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TDTeamDto() { }
         
-        public TDTeamDto(string id, string name, string description, bool archived, List<TDMembershipDto> memberships, TDTeamDto? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, SpaceDate? disbandedAt = null)
+        public TDTeamDto(string id, string name, string description, bool archived, List<TDMembershipDto> memberships, Dictionary<string, CFValueDto> customFields, TDTeamDto? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, SpaceDate? disbandedAt = null)
         {
             Id = id;
             Name = name;
@@ -38,6 +38,7 @@ namespace SpaceDotNet.Client
             Disbanded = disbanded;
             DisbandedAt = disbandedAt;
             Memberships = memberships;
+            CustomFields = customFields;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDTeamDto), nameof(Id));
@@ -135,6 +136,16 @@ namespace SpaceDotNet.Client
             set { _memberships.SetValue(value); }
         }
     
+        private PropertyValue<Dictionary<string, CFValueDto>> _customFields = new PropertyValue<Dictionary<string, CFValueDto>>(nameof(TDTeamDto), nameof(CustomFields));
+        
+        [Required]
+        [JsonPropertyName("customFields")]
+        public Dictionary<string, CFValueDto> CustomFields
+        {
+            get { return _customFields.GetValue(); }
+            set { _customFields.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -147,6 +158,7 @@ namespace SpaceDotNet.Client
             _disbanded.SetAccessPath(path, validateHasBeenSet);
             _disbandedAt.SetAccessPath(path, validateHasBeenSet);
             _memberships.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

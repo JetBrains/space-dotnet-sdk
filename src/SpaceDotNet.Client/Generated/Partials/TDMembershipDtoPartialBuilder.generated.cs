@@ -95,6 +95,12 @@ namespace SpaceDotNet.Client.TDMembershipDtoPartialBuilder
         public static Partial<TDMembershipDto> WithApprover(this Partial<TDMembershipDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
             => it.AddFieldName("approver", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
+        public static Partial<TDMembershipDto> WithCustomFields(this Partial<TDMembershipDto> it)
+            => it.AddFieldName("customFields");
+        
+        public static Partial<TDMembershipDto> WithCustomFields(this Partial<TDMembershipDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CFValueDto>(it)));
+        
     }
     
 }

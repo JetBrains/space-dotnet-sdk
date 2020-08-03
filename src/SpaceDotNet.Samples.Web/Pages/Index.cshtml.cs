@@ -111,7 +111,7 @@ namespace SpaceDotNet.Samples.Web.Pages
                     // Check # of issues resolved this week
                     var issueStatuses = await _projectClient.Planning.Issues.Statuses.GetAllIssueStatusesAsync(ProjectIdentifier.Id(projectDto.Id));
                 
-                    await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), issueStatuses.Select(it => it.Id).ToList(), IssuesSorting.UPDATED, descending: true, partial: _ => _
+                    await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), assigneeId: null,  statuses: issueStatuses.Select(it => it.Id).ToList(), sorting: IssuesSorting.UPDATED, descending: true, partial: _ => _
                         .WithAllFieldsWildcard()
                         .WithCreationTime()
                         .WithCreatedBy(createdBy => createdBy

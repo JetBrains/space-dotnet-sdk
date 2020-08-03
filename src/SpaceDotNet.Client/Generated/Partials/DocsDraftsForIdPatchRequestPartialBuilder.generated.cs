@@ -38,6 +38,9 @@ namespace SpaceDotNet.Client.DocsDraftsForIdPatchRequestPartialBuilder
         public static Partial<DocsDraftsForIdPatchRequest> WithType(this Partial<DocsDraftsForIdPatchRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
             => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
         
+        public static Partial<DocsDraftsForIdPatchRequest> WithFolder(this Partial<DocsDraftsForIdPatchRequest> it)
+            => it.AddFieldName("folder");
+        
         public static Partial<DocsDraftsForIdPatchRequest> WithPublicationDetails(this Partial<DocsDraftsForIdPatchRequest> it)
             => it.AddFieldName("publicationDetails");
         

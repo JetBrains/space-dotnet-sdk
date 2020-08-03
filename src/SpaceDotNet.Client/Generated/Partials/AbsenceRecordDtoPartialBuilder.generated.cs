@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client.AbsenceRecordDtoPartialBuilder
         public static Partial<AbsenceRecordDto> WithCustomFields(this Partial<AbsenceRecordDto> it)
             => it.AddFieldName("customFields");
         
-        public static Partial<AbsenceRecordDto> WithCustomFields(this Partial<AbsenceRecordDto> it, Func<Partial<CustomColumnValuesWithSchemaDataDto>, Partial<CustomColumnValuesWithSchemaDataDto>> partialBuilder)
-            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomColumnValuesWithSchemaDataDto>(it)));
+        public static Partial<AbsenceRecordDto> WithCustomFields(this Partial<AbsenceRecordDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CFValueDto>(it)));
         
     }
     

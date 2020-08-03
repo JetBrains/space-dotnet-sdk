@@ -523,6 +523,12 @@ namespace SpaceDotNet.Client
                 => BatchEnumerator.AllItems(batchSkip => GetAllMemberLocationsAsync(withArchived: withArchived, top: top, profiles: profiles, locations: locations, since: since, till: till, skip: batchSkip, partial: builder => Partial<Batch<TDMemberLocationDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberLocationDto>.Default())), skip);
         
             /// <summary>
+            /// Get a member location by its id.
+            /// </summary>
+            public async Task<TDMemberLocationDto> GetMemberLocationAsync(string memberLocationId, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)
+                => await _connection.RequestResourceAsync<TDMemberLocationDto>("GET", $"api/http/team-directory/member-locations/{memberLocationId}?$fields={(partial != null ? partial(new Partial<TDMemberLocationDto>()) : Partial<TDMemberLocationDto>.Default())}");
+        
+            /// <summary>
             /// Update member location. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
             public async Task<TDMemberLocationDto> UpdateMemberLocationAsync(string memberLocationId, string? location = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocationDto>, Partial<TDMemberLocationDto>>? partial = null)

@@ -21,15 +21,78 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public interface TextDocumentDto
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class TextDocumentDto
+         : IPropagatePropertyAccessPath
     {
-        public static CollabDocumentDto CollabDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null)
-            => new CollabDocumentDto(id: id, resetCounter: resetCounter, type: type, text: text, version: null);
+        public TextDocumentDto() { }
         
-        public static UneditableDocumentDto UneditableDocument(DraftDocumentType type)
-            => new UneditableDocumentDto(type: type);
+        public TextDocumentDto(string id, long resetCounter, DraftDocumentType type, string text, long? version = null)
+        {
+            Id = id;
+            ResetCounter = resetCounter;
+            Version = version;
+            Type = type;
+            Text = text;
+        }
         
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocumentDto), nameof(Id));
+        
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
+    
+        private PropertyValue<long> _resetCounter = new PropertyValue<long>(nameof(TextDocumentDto), nameof(ResetCounter));
+        
+        [Required]
+        [JsonPropertyName("resetCounter")]
+        public long ResetCounter
+        {
+            get { return _resetCounter.GetValue(); }
+            set { _resetCounter.SetValue(value); }
+        }
+    
+        private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(TextDocumentDto), nameof(Version));
+        
+        [JsonPropertyName("version")]
+        public long? Version
+        {
+            get { return _version.GetValue(); }
+            set { _version.SetValue(value); }
+        }
+    
+        private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(TextDocumentDto), nameof(Type));
+        
+        [Required]
+        [JsonPropertyName("type")]
+        public DraftDocumentType Type
+        {
+            get { return _type.GetValue(); }
+            set { _type.SetValue(value); }
+        }
+    
+        private PropertyValue<string> _text = new PropertyValue<string>(nameof(TextDocumentDto), nameof(Text));
+        
+        [Required]
+        [JsonPropertyName("text")]
+        public string Text
+        {
+            get { return _text.GetValue(); }
+            set { _text.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path, validateHasBeenSet);
+            _resetCounter.SetAccessPath(path, validateHasBeenSet);
+            _version.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
+            _text.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

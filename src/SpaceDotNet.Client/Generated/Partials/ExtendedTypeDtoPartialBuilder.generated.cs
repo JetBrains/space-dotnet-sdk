@@ -29,6 +29,9 @@ namespace SpaceDotNet.Client.ExtendedTypeDtoPartialBuilder
         public static Partial<ExtendedTypeDto> WithDisplayName(this Partial<ExtendedTypeDto> it)
             => it.AddFieldName("displayName");
         
+        public static Partial<ExtendedTypeDto> WithApiClassName(this Partial<ExtendedTypeDto> it)
+            => it.AddFieldName("apiClassName");
+        
     }
     
 }

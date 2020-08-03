@@ -62,6 +62,12 @@ namespace SpaceDotNet.Client.TDTeamDtoPartialBuilder
         public static Partial<TDTeamDto> WithMemberships(this Partial<TDTeamDto> it, Func<Partial<TDMembershipDto>, Partial<TDMembershipDto>> partialBuilder)
             => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembershipDto>(it)));
         
+        public static Partial<TDTeamDto> WithCustomFields(this Partial<TDTeamDto> it)
+            => it.AddFieldName("customFields");
+        
+        public static Partial<TDTeamDto> WithCustomFields(this Partial<TDTeamDto> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CFValueDto>(it)));
+        
     }
     
 }

@@ -29,29 +29,17 @@ namespace SpaceDotNet.Client.DRDraftDtoPartialBuilder
         public static Partial<DRDraftDto> WithTitle(this Partial<DRDraftDto> it)
             => it.AddFieldName("title");
         
-        public static Partial<DRDraftDto> WithText(this Partial<DRDraftDto> it)
-            => it.AddFieldName("text");
-        
-        public static Partial<DRDraftDto> WithType(this Partial<DRDraftDto> it)
-            => it.AddFieldName("type");
-        
-        public static Partial<DRDraftDto> WithType(this Partial<DRDraftDto> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
-        
         public static Partial<DRDraftDto> WithModified(this Partial<DRDraftDto> it)
             => it.AddFieldName("modified");
         
         public static Partial<DRDraftDto> WithCreated(this Partial<DRDraftDto> it)
             => it.AddFieldName("created");
         
-        public static Partial<DRDraftDto> WithPublishedFlag(this Partial<DRDraftDto> it)
-            => it.AddFieldName("publishedFlag");
-        
         public static Partial<DRDraftDto> WithShared(this Partial<DRDraftDto> it)
             => it.AddFieldName("shared");
         
-        public static Partial<DRDraftDto> WithAccessOrdinal(this Partial<DRDraftDto> it)
-            => it.AddFieldName("accessOrdinal");
+        public static Partial<DRDraftDto> WithDeleted(this Partial<DRDraftDto> it)
+            => it.AddFieldName("deleted");
         
         public static Partial<DRDraftDto> WithPublicationDetails(this Partial<DRDraftDto> it)
             => it.AddFieldName("publicationDetails");
@@ -65,6 +53,18 @@ namespace SpaceDotNet.Client.DRDraftDtoPartialBuilder
         public static Partial<DRDraftDto> WithAuthor(this Partial<DRDraftDto> it, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>> partialBuilder)
             => it.AddFieldName("author", partialBuilder(new Partial<TDMemberProfileDto>(it)));
         
+        public static Partial<DRDraftDto> WithPublishedFlag(this Partial<DRDraftDto> it)
+            => it.AddFieldName("publishedFlag");
+        
+        public static Partial<DRDraftDto> WithFolder(this Partial<DRDraftDto> it)
+            => it.AddFieldName("folder");
+        
+        public static Partial<DRDraftDto> WithFolder(this Partial<DRDraftDto> it, Func<Partial<DocumentFolderRecordDto>, Partial<DocumentFolderRecordDto>> partialBuilder)
+            => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecordDto>(it)));
+        
+        public static Partial<DRDraftDto> WithAccessOrdinal(this Partial<DRDraftDto> it)
+            => it.AddFieldName("accessOrdinal");
+        
         public static Partial<DRDraftDto> WithEditors(this Partial<DRDraftDto> it)
             => it.AddFieldName("editors");
         
@@ -76,9 +76,6 @@ namespace SpaceDotNet.Client.DRDraftDtoPartialBuilder
         
         public static Partial<DRDraftDto> WithEditorsTeams(this Partial<DRDraftDto> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
             => it.AddFieldName("editorsTeams", partialBuilder(new Partial<TDTeamDto>(it)));
-        
-        public static Partial<DRDraftDto> WithVersion(this Partial<DRDraftDto> it)
-            => it.AddFieldName("version");
         
         public static Partial<DRDraftDto> WithDocument(this Partial<DRDraftDto> it)
             => it.AddFieldName("document");

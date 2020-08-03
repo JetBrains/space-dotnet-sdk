@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TDMemberProfileDto() { }
         
-        public TDMemberProfileDto(string id, string username, TDProfileNameDto name, bool speaksEnglish, List<TDProfileLanguageDto> languages, bool archived, bool notAMember, List<AbsenceRecordDto> absences, List<TDProfileEmailDto> emails, List<string> links, List<string> messengers, List<string> phones, List<PublicHolidayDto> holidays, List<TDMemberLocationDto> locations, List<TDMemberProfileDto> managers, List<TDMembershipDto> membershipHistory, List<TDMembershipDto> memberships, bool onboardingRequired, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, string? about = null, AvatarCropSquareDto? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null)
+        public TDMemberProfileDto(string id, string username, TDProfileNameDto name, bool speaksEnglish, List<TDProfileLanguageDto> languages, bool archived, bool notAMember, List<AbsenceRecordDto> absences, List<TDProfileEmailDto> emails, List<string> links, List<string> messengers, List<string> phones, DocumentFolderRecordDto folder, List<PublicHolidayDto> holidays, List<TDMemberLocationDto> locations, List<TDMemberProfileDto> managers, List<TDMembershipDto> membershipHistory, List<TDMembershipDto> memberships, bool onboardingRequired, bool showBannerOnLandingPage, bool showBannerOnProjectPage, bool showBannerOnTeamDirectoryHomePage, Dictionary<string, CFValueDto> customFields, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, string? about = null, AvatarCropSquareDto? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null)
         {
             Id = id;
             Username = username;
@@ -46,16 +46,21 @@ namespace SpaceDotNet.Client
             Links = links;
             Messengers = messengers;
             Phones = phones;
+            Folder = folder;
             Holidays = holidays;
             Locations = locations;
             Managers = managers;
             MembershipHistory = membershipHistory;
             Memberships = memberships;
             OnboardingRequired = onboardingRequired;
+            ShowBannerOnLandingPage = showBannerOnLandingPage;
+            ShowBannerOnProjectPage = showBannerOnProjectPage;
+            ShowBannerOnTeamDirectoryHomePage = showBannerOnTeamDirectoryHomePage;
             About = about;
             AvatarCropSquare = avatarCropSquare;
             Birthday = birthday;
             Gender = gender;
+            CustomFields = customFields;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberProfileDto), nameof(Id));
@@ -232,6 +237,16 @@ namespace SpaceDotNet.Client
             set { _phones.SetValue(value); }
         }
     
+        private PropertyValue<DocumentFolderRecordDto> _folder = new PropertyValue<DocumentFolderRecordDto>(nameof(TDMemberProfileDto), nameof(Folder));
+        
+        [Required]
+        [JsonPropertyName("folder")]
+        public DocumentFolderRecordDto Folder
+        {
+            get { return _folder.GetValue(); }
+            set { _folder.SetValue(value); }
+        }
+    
         private PropertyValue<List<PublicHolidayDto>> _holidays = new PropertyValue<List<PublicHolidayDto>>(nameof(TDMemberProfileDto), nameof(Holidays));
         
         [Required]
@@ -292,6 +307,36 @@ namespace SpaceDotNet.Client
             set { _onboardingRequired.SetValue(value); }
         }
     
+        private PropertyValue<bool> _showBannerOnLandingPage = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(ShowBannerOnLandingPage));
+        
+        [Required]
+        [JsonPropertyName("showBannerOnLandingPage")]
+        public bool ShowBannerOnLandingPage
+        {
+            get { return _showBannerOnLandingPage.GetValue(); }
+            set { _showBannerOnLandingPage.SetValue(value); }
+        }
+    
+        private PropertyValue<bool> _showBannerOnProjectPage = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(ShowBannerOnProjectPage));
+        
+        [Required]
+        [JsonPropertyName("showBannerOnProjectPage")]
+        public bool ShowBannerOnProjectPage
+        {
+            get { return _showBannerOnProjectPage.GetValue(); }
+            set { _showBannerOnProjectPage.SetValue(value); }
+        }
+    
+        private PropertyValue<bool> _showBannerOnTeamDirectoryHomePage = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(ShowBannerOnTeamDirectoryHomePage));
+        
+        [Required]
+        [JsonPropertyName("showBannerOnTeamDirectoryHomePage")]
+        public bool ShowBannerOnTeamDirectoryHomePage
+        {
+            get { return _showBannerOnTeamDirectoryHomePage.GetValue(); }
+            set { _showBannerOnTeamDirectoryHomePage.SetValue(value); }
+        }
+    
         private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfileDto), nameof(About));
         
         [JsonPropertyName("about")]
@@ -328,6 +373,16 @@ namespace SpaceDotNet.Client
             set { _gender.SetValue(value); }
         }
     
+        private PropertyValue<Dictionary<string, CFValueDto>> _customFields = new PropertyValue<Dictionary<string, CFValueDto>>(nameof(TDMemberProfileDto), nameof(CustomFields));
+        
+        [Required]
+        [JsonPropertyName("customFields")]
+        public Dictionary<string, CFValueDto> CustomFields
+        {
+            get { return _customFields.GetValue(); }
+            set { _customFields.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -348,16 +403,21 @@ namespace SpaceDotNet.Client
             _links.SetAccessPath(path, validateHasBeenSet);
             _messengers.SetAccessPath(path, validateHasBeenSet);
             _phones.SetAccessPath(path, validateHasBeenSet);
+            _folder.SetAccessPath(path, validateHasBeenSet);
             _holidays.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
             _managers.SetAccessPath(path, validateHasBeenSet);
             _membershipHistory.SetAccessPath(path, validateHasBeenSet);
             _memberships.SetAccessPath(path, validateHasBeenSet);
             _onboardingRequired.SetAccessPath(path, validateHasBeenSet);
+            _showBannerOnLandingPage.SetAccessPath(path, validateHasBeenSet);
+            _showBannerOnProjectPage.SetAccessPath(path, validateHasBeenSet);
+            _showBannerOnTeamDirectoryHomePage.SetAccessPath(path, validateHasBeenSet);
             _about.SetAccessPath(path, validateHasBeenSet);
             _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
             _birthday.SetAccessPath(path, validateHasBeenSet);
             _gender.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
