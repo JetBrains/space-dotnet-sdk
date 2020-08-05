@@ -134,26 +134,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
         
             var apiCallMethod = apiEndpoint.Method.ToHttpMethod();
             var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
-
-            if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
-            {
-                builder.Append(
-                    indent.Wrap(
-                        apiEndpoint.Documentation.ToCSharpDocumentationComment()));
-            }
-            
-            if (apiEndpoint.Deprecation != null)
-            {
-                builder.AppendLine(apiEndpoint.Deprecation.ToCSharpDeprecation());
-            }
             
             var isResponsePrimitiveOrArrayOfPrimitive = apiEndpoint.ResponseBody is ApiFieldType.Primitive 
                                                         || (apiEndpoint.ResponseBody is ApiFieldType.Array arrayField && arrayField.ElementType is ApiFieldType.Primitive);
             
             if (apiEndpoint.ResponseBody == null)
             {
-                builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
-
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                     .WithParametersForApiParameters(apiEndpoint.Parameters);
                 
@@ -172,9 +158,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                                 "data");
                     }
                 }
-
+                
+                builder.Append(
+                    indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
+                builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
                 builder.Append(methodParametersBuilder.BuildMethodParametersList());
-        
                 builder.AppendLine(")");
                 indent.Increment();
                 builder.Append($"{indent}=> await _connection.RequestResourceAsync");
@@ -211,11 +199,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             }
             else if (apiEndpoint.ResponseBody != null)
             {
-                builder.Append($"{indent}public async Task<");
-                builder.Append(apiEndpoint.ResponseBody.ToCSharpType(_codeGenerationContext));
-                builder.Append(">");
-                builder.Append($" {methodNameForEndpoint}Async(");
-                
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                     .WithParametersForApiParameters(apiEndpoint.Parameters);
                 
@@ -246,6 +229,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                             CSharpExpression.NullLiteral);
                 }
         
+                builder.Append(
+                    indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
+                builder.Append($"{indent}public async Task<");
+                builder.Append(apiEndpoint.ResponseBody.ToCSharpType(_codeGenerationContext));
+                builder.Append(">");
+                builder.Append($" {methodNameForEndpoint}Async(");
                 builder.Append(methodParametersBuilder.BuildMethodParametersList());
                 builder.AppendLine(")");
                 
@@ -334,28 +323,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
 
             var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
-        
-            if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
-            {
-                builder.Append(
-                    indent.Wrap(
-                        apiEndpoint.Documentation.ToCSharpDocumentationComment()));
-            }
-            
-            if (apiEndpoint.Deprecation != null)
-            {
-                builder.AppendLine(apiEndpoint.Deprecation.ToCSharpDeprecation());
-            }
             
             var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody!).GetBatchDataType()!;
             
             if (apiEndpoint.ResponseBody != null)
             {
-                builder.Append($"{indent}public IAsyncEnumerable<");
-                builder.Append(batchDataType.ElementType.ToCSharpType(_codeGenerationContext));
-                builder.Append(">");
-                builder.Append($" {methodNameForEndpoint}AsyncEnumerable(");
-            
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
                     .WithParametersForApiParameters(apiEndpoint.Parameters);
                 
@@ -383,6 +355,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         "partial",
                         CSharpExpression.NullLiteral);
                 
+                builder.Append(
+                    indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
+                builder.Append($"{indent}public IAsyncEnumerable<");
+                builder.Append(batchDataType.ElementType.ToCSharpType(_codeGenerationContext));
+                builder.Append(">");
+                builder.Append($" {methodNameForEndpoint}AsyncEnumerable(");
                 builder.Append(methodParametersBuilder.BuildMethodParametersList());
                 builder.AppendLine(")");
                 
@@ -405,6 +383,28 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             else
             {
                 builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - " + apiEndpoint.ToCSharpMethodName() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
+            }
+
+            return builder.ToString();
+        }
+
+        private string GenerateMethodDocumentationForEndpoint(ApiEndpoint apiEndpoint)
+        {
+            var indent = new Indent();
+            var builder = new StringBuilder();
+            
+            // Documentation for method
+            if (!string.IsNullOrEmpty(apiEndpoint.Documentation))
+            {
+                builder.Append(
+                    indent.Wrap(
+                        apiEndpoint.Documentation.ToCSharpDocumentationComment()));
+            }
+            
+            // Attributes
+            if (apiEndpoint.Deprecation != null)
+            {
+                builder.AppendLine(apiEndpoint.Deprecation.ToCSharpDeprecation());
             }
 
             return builder.ToString();

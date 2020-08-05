@@ -6,6 +6,8 @@ using JetBrains.Annotations;
 using SpaceDotNet.AspNetCore.WebHooks.Types;
 using SpaceDotNet.Common.Json.Serialization;
 
+#nullable disable
+
 namespace SpaceDotNet.AspNetCore.WebHooks.Json.Serialization
 {
     public class ClassNameWebHookPayloadTypeConverter : JsonConverter<IWebHookPayload>

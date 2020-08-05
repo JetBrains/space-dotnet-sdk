@@ -7,7 +7,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 {
     public static class ApiFieldTypeExtensions
     {
-        public static string? ToCSharpPrimitiveType(this ApiFieldType.Primitive subject) =>
+        public static string ToCSharpPrimitiveType(this ApiFieldType.Primitive subject) =>
             subject.Type switch
             {
                 "Byte" => "byte",

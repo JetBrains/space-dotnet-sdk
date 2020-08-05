@@ -6,6 +6,8 @@ using System.Text.Json.Serialization;
 using JetBrains.Annotations;
 using SpaceDotNet.Common.Json.Serialization;
 
+#nullable disable
+
 namespace SpaceDotNet.Generator.Model.HttpApi.Converters
 {
     public class ApiUrlParameterOptionConverter : JsonConverter<ApiUrlParameterOption>

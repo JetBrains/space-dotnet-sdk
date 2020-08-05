@@ -92,6 +92,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             var apiDtoFields = DetermineFieldsToGenerateFor(apiDto);
             
             // Generate factories for inheritors
+            // ReSharper disable once RedundantLogicalConditionalExpressionOperand
             if (FeatureFlags.GenerateInheritorFactoryMethods && FeatureFlags.GenerateDtoConstructor)
             {
                 foreach (var apiDtoInheritorReference in apiDto.Inheritors)
@@ -115,6 +116,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             }
             
             // Generate constructor
+            // ReSharper disable once RedundantLogicalConditionalExpressionOperand
             if (FeatureFlags.GenerateDtoConstructor && apiDto.HierarchyRole != HierarchyRole.INTERFACE && apiDto.HierarchyRole != HierarchyRole.ABSTRACT)
             {
                 var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
@@ -132,7 +134,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     indent.Increment();
                     foreach (var apiDtoField in apiDtoFields)
                     {
-                        builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName()} = {apiDtoField.Field.ToCSharpVariableName()};");
+                        if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
+                        {
+                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName()} = {apiDtoField.Field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)};");
+                        }
+                        else
+                        {
+                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName()} = {apiDtoField.Field.ToCSharpVariableName()};");
+                        }
                     }
                     indent.Decrement();
                     builder.AppendLine($"{indent}}}");
