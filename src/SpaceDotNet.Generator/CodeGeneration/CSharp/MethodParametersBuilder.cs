@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
@@ -49,6 +50,17 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 {
                     parameterType += "?";
                 }
+
+                // ReSharper disable once RedundantLogicalConditionalExpressionOperand
+                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && !field.Type.Nullable)
+                {
+                    if (field.DefaultValue is ApiDefaultValue.Const.EnumEntry ||
+                        field.DefaultValue is ApiDefaultValue.Collection ||
+                        field.DefaultValue is ApiDefaultValue.Map)
+                    {
+                        parameterType += "?";
+                    }
+                }
                 
                 var parameterName = field.ToCSharpVariableName();
                 var parameterDefaultValue = field.ToCSharpDefaultValueForParameterList(_context);
@@ -71,10 +83,21 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                 {
                     parameterType += "?";
                 }
+
+                // ReSharper disable once RedundantLogicalConditionalExpressionOperand
+                if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes && !parameter.Field.Type.Nullable)
+                {
+                    if (parameter.Field.DefaultValue is ApiDefaultValue.Const.EnumEntry ||
+                        parameter.Field.DefaultValue is ApiDefaultValue.Collection ||
+                        parameter.Field.DefaultValue is ApiDefaultValue.Map)
+                    {
+                        parameterType += "?";
+                    }
+                }
                 
                 var parameterName = parameter.Field.ToCSharpVariableName();
                 var parameterDefaultValue = parameter.Field.ToCSharpDefaultValueForParameterList(_context);
-                
+
                 methodParametersBuilder = methodParametersBuilder
                     .WithParameter(parameterType, parameterName, parameterDefaultValue);
             }
