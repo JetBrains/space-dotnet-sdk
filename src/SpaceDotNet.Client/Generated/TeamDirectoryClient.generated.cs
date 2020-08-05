@@ -804,7 +804,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a profile.
             /// </summary>
-            public async Task<TDMemberProfileDto> CreateProfileAsync(string username, string firstName, string lastName, List<string> emails = null, List<string> phones = null, List<string> messengers = null, List<string> links = null, bool notAMember = false, List<CustomFieldValueDto> customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
+            public async Task<TDMemberProfileDto> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValueDto>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null, Func<Partial<TDMemberProfileDto>, Partial<TDMemberProfileDto>>? partial = null)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesPostRequest, TDMemberProfileDto>("POST", $"api/http/team-directory/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfileDto>()) : Partial<TDMemberProfileDto>.Default())}", 
                     new TeamDirectoryProfilesPostRequest { 
                         Username = username,
@@ -989,13 +989,13 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
                 /// </summary>
-                public async Task<Batch<TDProfileWorkingDaysDto>> QueryAllWorkingDaysAsync(List<ProfileIdentifier> profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDProfileWorkingDaysDto>>, Partial<Batch<TDProfileWorkingDaysDto>>>? partial = null)
+                public async Task<Batch<TDProfileWorkingDaysDto>> QueryAllWorkingDaysAsync(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDProfileWorkingDaysDto>>, Partial<Batch<TDProfileWorkingDaysDto>>>? partial = null)
                     => await _connection.RequestResourceAsync<Batch<TDProfileWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={(profiles ?? new List<ProfileIdentifier>()).JoinToString("profiles", it => it.ToString())}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDProfileWorkingDaysDto>>()) : Partial<Batch<TDProfileWorkingDaysDto>>.Default())}");
                 
                 /// <summary>
                 /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
                 /// </summary>
-                public IAsyncEnumerable<TDProfileWorkingDaysDto> QueryAllWorkingDaysAsyncEnumerable(List<ProfileIdentifier> profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDProfileWorkingDaysDto>, Partial<TDProfileWorkingDaysDto>>? partial = null)
+                public IAsyncEnumerable<TDProfileWorkingDaysDto> QueryAllWorkingDaysAsyncEnumerable(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDProfileWorkingDaysDto>, Partial<TDProfileWorkingDaysDto>>? partial = null)
                     => BatchEnumerator.AllItems(batchSkip => QueryAllWorkingDaysAsync(profiles: profiles, top: top, since: since, till: till, skip: batchSkip, partial: builder => Partial<Batch<TDProfileWorkingDaysDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDProfileWorkingDaysDto>.Default())), skip);
             
             }

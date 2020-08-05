@@ -33,7 +33,7 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Create a new project.
         /// </summary>
-        public async Task<PRProjectDto> CreateProjectAsync(ProjectKeyDto key, string name, bool @private = false, List<string> tags = null, string? description = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>>? partial = null)
+        public async Task<PRProjectDto> CreateProjectAsync(ProjectKeyDto key, string name, bool @private = false, List<string>? tags = null, string? description = null, Func<Partial<PRProjectDto>, Partial<PRProjectDto>>? partial = null)
             => await _connection.RequestResourceAsync<ProjectsPostRequest, PRProjectDto>("POST", $"api/http/projects?$fields={(partial != null ? partial(new Partial<PRProjectDto>()) : Partial<PRProjectDto>.Default())}", 
                 new ProjectsPostRequest { 
                     Key = key,
@@ -811,10 +811,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, SpaceDate? from = null, SpaceDate? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCountDto>>, Partial<Batch<CodeReviewWithCountDto>>>? partial = null)
+            public async Task<Batch<CodeReviewWithCountDto>> GetAllCodeReviewsAsync(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, SpaceDate? from = null, SpaceDate? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<Batch<CodeReviewWithCountDto>>, Partial<Batch<CodeReviewWithCountDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<CodeReviewWithCountDto>>("GET", $"api/http/projects/{project}/code-reviews?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&state={(state ?? CodeReviewStateFilter.Opened)?.ToString() ?? "null"}&text={text?.ToString() ?? "null"}&author={author?.ToString() ?? "null"}&from={from?.ToString() ?? "null"}&to={to?.ToString() ?? "null"}&sort={(sort ?? ReviewSorting.CreatedAtAsc).ToString()}&reviewer={reviewer?.ToString() ?? "null"}&type={type?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CodeReviewWithCountDto>>()) : Partial<Batch<CodeReviewWithCountDto>>.Default())}");
             
-            public IAsyncEnumerable<CodeReviewWithCountDto> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, SpaceDate? from = null, SpaceDate? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCountDto>, Partial<CodeReviewWithCountDto>>? partial = null)
+            public IAsyncEnumerable<CodeReviewWithCountDto> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, SpaceDate? from = null, SpaceDate? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCountDto>, Partial<CodeReviewWithCountDto>>? partial = null)
                 => BatchEnumerator.AllItems(batchSkip => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCountDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCountDto>.Default())), skip);
         
             public async Task<ReviewCountsDto> GetReviewCountsAsync(ProjectIdentifier project, Func<Partial<ReviewCountsDto>, Partial<ReviewCountsDto>>? partial = null)
@@ -1247,7 +1247,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<IssueDto> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string> tags = null, List<string> checklists = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null, Func<Partial<IssueDto>, Partial<IssueDto>>? partial = null)
+                public async Task<IssueDto> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null, Func<Partial<IssueDto>, Partial<IssueDto>>? partial = null)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, IssueDto>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<IssueDto>()) : Partial<IssueDto>.Default())}", 
                         new ProjectsForProjectPlanningIssuesPostRequest { 
                             Title = title,

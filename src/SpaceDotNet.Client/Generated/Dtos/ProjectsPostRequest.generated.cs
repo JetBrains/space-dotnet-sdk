@@ -26,13 +26,13 @@ namespace SpaceDotNet.Client
     {
         public ProjectsPostRequest() { }
         
-        public ProjectsPostRequest(ProjectKeyDto key, string name, bool @private = false, List<string> tags = null, string? description = null)
+        public ProjectsPostRequest(ProjectKeyDto key, string name, bool @private = false, List<string>? tags = null, string? description = null)
         {
             Key = key;
             Name = name;
             Description = description;
             Private = @private;
-            Tags = tags;
+            Tags = (tags ?? new List<string>());
         }
         
         private PropertyValue<ProjectKeyDto> _key = new PropertyValue<ProjectKeyDto>(nameof(ProjectsPostRequest), nameof(Key));

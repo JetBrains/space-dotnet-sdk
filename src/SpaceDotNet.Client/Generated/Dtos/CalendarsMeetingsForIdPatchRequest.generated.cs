@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarsMeetingsForIdPatchRequest() { }
         
-        public CalendarsMeetingsForIdPatchRequest(DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport = true, RecurrentModification modificationKind = null, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
+        public CalendarsMeetingsForIdPatchRequest(DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
         {
             Summary = summary;
             Description = description;
@@ -41,7 +41,7 @@ namespace SpaceDotNet.Client
             NotifyOnExport = notifyOnExport;
             Organizer = organizer;
             TargetDate = targetDate;
-            ModificationKind = modificationKind;
+            ModificationKind = (modificationKind ?? RecurrentModification.All);
         }
         
         private PropertyValue<string?> _summary = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Summary));

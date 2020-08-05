@@ -26,16 +26,16 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string> tags = null, List<string> checklists = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
         {
             Title = title;
             Description = description;
             Assignee = assignee;
             Status = status;
             DueDate = dueDate;
-            Tags = tags;
-            Checklists = checklists;
-            Attachments = attachments;
+            Tags = (tags ?? new List<string>());
+            Checklists = (checklists ?? new List<string>());
+            Attachments = (attachments ?? new List<AttachmentDto>());
             ImportInfo = importInfo;
         }
         

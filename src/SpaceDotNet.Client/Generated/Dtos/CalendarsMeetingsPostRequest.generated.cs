@@ -26,18 +26,18 @@ namespace SpaceDotNet.Client
     {
         public CalendarsMeetingsPostRequest() { }
         
-        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpecDto occurrenceRule, List<string> locations = null, List<string> profiles = null, List<string> externalParticipants = null, List<string> teams = null, MeetingVisibility visibility = null, MeetingModificationPreference modificationPreference = null, MeetingJoiningPreference joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null)
+        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpecDto occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null)
         {
             Summary = summary;
             Description = description;
             OccurrenceRule = occurrenceRule;
-            Locations = locations;
-            Profiles = profiles;
-            ExternalParticipants = externalParticipants;
-            Teams = teams;
-            Visibility = visibility;
-            ModificationPreference = modificationPreference;
-            JoiningPreference = joiningPreference;
+            Locations = (locations ?? new List<string>());
+            Profiles = (profiles ?? new List<string>());
+            ExternalParticipants = (externalParticipants ?? new List<string>());
+            Teams = (teams ?? new List<string>());
+            Visibility = (visibility ?? MeetingVisibility.EVERYONE);
+            ModificationPreference = (modificationPreference ?? MeetingModificationPreference.PARTICIPANTS);
+            JoiningPreference = (joiningPreference ?? MeetingJoiningPreference.NOBODY);
             NotifyOnExport = notifyOnExport;
             Organizer = organizer;
         }

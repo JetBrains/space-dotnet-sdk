@@ -26,12 +26,12 @@ namespace SpaceDotNet.Client
     {
         public DocsDraftsPostRequest() { }
         
-        public DocsDraftsPostRequest(DraftDocumentType type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, DraftPublicationDetailsDto? publicationDetails = null)
+        public DocsDraftsPostRequest(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, DraftPublicationDetailsDto? publicationDetails = null)
         {
             Title = title;
             Text = text;
             TextVersion = textVersion;
-            Type = type;
+            Type = (type ?? DraftDocumentType.WYSIWYG);
             Folder = folder;
             PublicationDetails = publicationDetails;
         }

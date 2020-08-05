@@ -26,24 +26,24 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesPostRequest() { }
         
-        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string> emails = null, List<string> phones = null, List<string> messengers = null, List<string> links = null, bool notAMember = false, List<CustomFieldValueDto> customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null)
+        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValueDto>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null)
         {
             Username = username;
             FirstName = firstName;
             LastName = lastName;
-            Emails = emails;
-            Phones = phones;
+            Emails = (emails ?? new List<string>());
+            Phones = (phones ?? new List<string>());
             Birthday = birthday;
             About = about;
-            Messengers = messengers;
-            Links = links;
+            Messengers = (messengers ?? new List<string>());
+            Links = (links ?? new List<string>());
             NotAMember = notAMember;
             Joined = joined;
             Left = left;
             SpeaksEnglish = speaksEnglish;
             PictureAttachmentId = pictureAttachmentId;
             AvatarCropSquare = avatarCropSquare;
-            CustomFieldValues = customFieldValues;
+            CustomFieldValues = (customFieldValues ?? new List<CustomFieldValueDto>());
         }
         
         private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username));
