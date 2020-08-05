@@ -19,19 +19,20 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HrmBusinessEntitiesPostRequestPartialBuilder
+namespace SpaceDotNet.Client
 {
-    public static class HrmBusinessEntitiesPostRequestPartialExtensions
+    public sealed class IssueMCExtensionDto
+         : IssueChangedM2DetailsDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<HrmBusinessEntitiesPostRequest> WithName(this Partial<HrmBusinessEntitiesPostRequest> it)
-            => it.AddFieldName("name");
+        [JsonPropertyName("className")]
+        public  string? ClassName => "IssueMCExtension";
         
-        public static Partial<HrmBusinessEntitiesPostRequest> WithLocationId(this Partial<HrmBusinessEntitiesPostRequest> it)
-            => it.AddFieldName("locationId");
+        public IssueMCExtensionDto() { }
         
-        public static Partial<HrmBusinessEntitiesPostRequest> WithVacationAllowance(this Partial<HrmBusinessEntitiesPostRequest> it)
-            => it.AddFieldName("vacationAllowance");
-        
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

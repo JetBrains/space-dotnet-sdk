@@ -44,6 +44,12 @@ namespace SpaceDotNet.Client.MCMessageDtoPartialBuilder
         public static Partial<MCMessageDto> WithSupplementaryData(this Partial<MCMessageDto> it)
             => it.AddFieldName("supplementaryData");
         
+        public static Partial<MCMessageDto> WithExtension(this Partial<MCMessageDto> it)
+            => it.AddFieldName("extension");
+        
+        public static Partial<MCMessageDto> WithExtension(this Partial<MCMessageDto> it, Func<Partial<M2ItemContentDetailsDto>, Partial<M2ItemContentDetailsDto>> partialBuilder)
+            => it.AddFieldName("extension", partialBuilder(new Partial<M2ItemContentDetailsDto>(it)));
+        
     }
     
 }

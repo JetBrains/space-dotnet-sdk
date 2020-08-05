@@ -26,12 +26,14 @@ namespace SpaceDotNet.Client
     {
         public CodeReviewParticipantDto() { }
         
-        public CodeReviewParticipantDto(TDMemberProfileDto user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null)
+        public CodeReviewParticipantDto(TDMemberProfileDto user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlotDto>? qualityGateSlots = null, SpaceTime? addedAt = null)
         {
             User = user;
             Role = role;
             State = state;
             TheirTurn = theirTurn;
+            QualityGateSlots = qualityGateSlots;
+            AddedAt = addedAt;
         }
         
         private PropertyValue<TDMemberProfileDto> _user = new PropertyValue<TDMemberProfileDto>(nameof(CodeReviewParticipantDto), nameof(User));
@@ -72,12 +74,32 @@ namespace SpaceDotNet.Client
             set { _theirTurn.SetValue(value); }
         }
     
+        private PropertyValue<List<CodeReviewParticipantQualityGateSlotDto>?> _qualityGateSlots = new PropertyValue<List<CodeReviewParticipantQualityGateSlotDto>?>(nameof(CodeReviewParticipantDto), nameof(QualityGateSlots));
+        
+        [JsonPropertyName("qualityGateSlots")]
+        public List<CodeReviewParticipantQualityGateSlotDto>? QualityGateSlots
+        {
+            get { return _qualityGateSlots.GetValue(); }
+            set { _qualityGateSlots.SetValue(value); }
+        }
+    
+        private PropertyValue<SpaceTime?> _addedAt = new PropertyValue<SpaceTime?>(nameof(CodeReviewParticipantDto), nameof(AddedAt));
+        
+        [JsonPropertyName("addedAt")]
+        public SpaceTime? AddedAt
+        {
+            get { return _addedAt.GetValue(); }
+            set { _addedAt.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _user.SetAccessPath(path, validateHasBeenSet);
             _role.SetAccessPath(path, validateHasBeenSet);
             _state.SetAccessPath(path, validateHasBeenSet);
             _theirTurn.SetAccessPath(path, validateHasBeenSet);
+            _qualityGateSlots.SetAccessPath(path, validateHasBeenSet);
+            _addedAt.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

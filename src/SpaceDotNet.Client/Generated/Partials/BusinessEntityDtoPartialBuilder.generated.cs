@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.BusinessEntityDtoPartialBuilder
         public static Partial<BusinessEntityDto> WithLocation(this Partial<BusinessEntityDto> it, Func<Partial<TDLocationDto>, Partial<TDLocationDto>> partialBuilder)
             => it.AddFieldName("location", partialBuilder(new Partial<TDLocationDto>(it)));
         
+        public static Partial<BusinessEntityDto> WithVacationAllowance(this Partial<BusinessEntityDto> it)
+            => it.AddFieldName("vacationAllowance");
+        
         public static Partial<BusinessEntityDto> WithArchived(this Partial<BusinessEntityDto> it)
             => it.AddFieldName("archived");
         

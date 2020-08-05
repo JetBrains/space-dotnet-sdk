@@ -30,6 +30,9 @@ namespace SpaceDotNet.Client
         public static UnfurlDetailsArticleDto Article(ArticleRecordDto article, ArticleContentRecordDto content, ArticleChannelRecordDto channel, ArticleDetailsRecordDto? details = null)
             => new UnfurlDetailsArticleDto(article: article, content: content, channel: channel, details: null);
         
+        public static UnfurlDetailsChecklistDto Checklist(ChecklistDto checklist)
+            => new UnfurlDetailsChecklistDto(checklist: checklist);
+        
         public static UnfurlDetailsCodeSnippetDto CodeSnippet(CodeSnippetAnchorDto anchor, List<CodeLineDto> lines)
             => new UnfurlDetailsCodeSnippetDto(anchor: anchor, lines: lines);
         
@@ -41,6 +44,12 @@ namespace SpaceDotNet.Client
         
         public static UnfurlDetailsIssueDto Issue(IssueDto issue)
             => new UnfurlDetailsIssueDto(issue: issue);
+        
+        public static UnfurlDetailsIssueStatusDto IssueStatus(IssueStatusDto status)
+            => new UnfurlDetailsIssueStatusDto(status: status);
+        
+        public static UnfurlDetailsIssueTagDto IssueTag(PlanningTagDto tag, bool strikeThrough)
+            => new UnfurlDetailsIssueTagDto(tag: tag, strikeThrough: strikeThrough);
         
         public static UnfurlDetailsMCDto MC(MCMessageDto message, List<AttachmentInfoDto>? inlineUnfurls = null)
             => new UnfurlDetailsMCDto(message: message, inlineUnfurls: null);

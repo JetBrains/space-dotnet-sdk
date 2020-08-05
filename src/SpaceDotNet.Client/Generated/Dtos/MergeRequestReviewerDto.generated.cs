@@ -26,10 +26,10 @@ namespace SpaceDotNet.Client
     {
         public MergeRequestReviewerDto() { }
         
-        public MergeRequestReviewerDto(string profileId, List<int> qualityGateSlots)
+        public MergeRequestReviewerDto(string profileId, CodeReviewParticipantQualityGateSlotDto? qualityGateSlot = null)
         {
             ProfileId = profileId;
-            QualityGateSlots = qualityGateSlots;
+            QualityGateSlot = qualityGateSlot;
         }
         
         private PropertyValue<string> _profileId = new PropertyValue<string>(nameof(MergeRequestReviewerDto), nameof(ProfileId));
@@ -42,20 +42,19 @@ namespace SpaceDotNet.Client
             set { _profileId.SetValue(value); }
         }
     
-        private PropertyValue<List<int>> _qualityGateSlots = new PropertyValue<List<int>>(nameof(MergeRequestReviewerDto), nameof(QualityGateSlots));
+        private PropertyValue<CodeReviewParticipantQualityGateSlotDto?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantQualityGateSlotDto?>(nameof(MergeRequestReviewerDto), nameof(QualityGateSlot));
         
-        [Required]
-        [JsonPropertyName("qualityGateSlots")]
-        public List<int> QualityGateSlots
+        [JsonPropertyName("qualityGateSlot")]
+        public CodeReviewParticipantQualityGateSlotDto? QualityGateSlot
         {
-            get { return _qualityGateSlots.GetValue(); }
-            set { _qualityGateSlots.SetValue(value); }
+            get { return _qualityGateSlot.GetValue(); }
+            set { _qualityGateSlot.SetValue(value); }
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _profileId.SetAccessPath(path, validateHasBeenSet);
-            _qualityGateSlots.SetAccessPath(path, validateHasBeenSet);
+            _qualityGateSlot.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

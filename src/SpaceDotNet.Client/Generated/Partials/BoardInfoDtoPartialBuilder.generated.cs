@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.BoardInfoDtoPartialBuilder
         public static Partial<BoardInfoDto> WithColumns(this Partial<BoardInfoDto> it, Func<Partial<BoardColumnsDto>, Partial<BoardColumnsDto>> partialBuilder)
             => it.AddFieldName("columns", partialBuilder(new Partial<BoardColumnsDto>(it)));
         
+        public static Partial<BoardInfoDto> WithDescription(this Partial<BoardInfoDto> it)
+            => it.AddFieldName("description");
+        
     }
     
 }

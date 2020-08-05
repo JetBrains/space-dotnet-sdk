@@ -44,6 +44,15 @@ namespace SpaceDotNet.Client.CodeReviewParticipantDtoPartialBuilder
         public static Partial<CodeReviewParticipantDto> WithTheirTurn(this Partial<CodeReviewParticipantDto> it)
             => it.AddFieldName("theirTurn");
         
+        public static Partial<CodeReviewParticipantDto> WithQualityGateSlots(this Partial<CodeReviewParticipantDto> it)
+            => it.AddFieldName("qualityGateSlots");
+        
+        public static Partial<CodeReviewParticipantDto> WithQualityGateSlots(this Partial<CodeReviewParticipantDto> it, Func<Partial<CodeReviewParticipantQualityGateSlotDto>, Partial<CodeReviewParticipantQualityGateSlotDto>> partialBuilder)
+            => it.AddFieldName("qualityGateSlots", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlotDto>(it)));
+        
+        public static Partial<CodeReviewParticipantDto> WithAddedAt(this Partial<CodeReviewParticipantDto> it)
+            => it.AddFieldName("addedAt");
+        
     }
     
 }

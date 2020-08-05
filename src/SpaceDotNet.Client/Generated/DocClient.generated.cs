@@ -56,20 +56,83 @@ namespace SpaceDotNet.Client
             public async Task<DRDraftDto> GetDraftAsync(string id, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
                 => await _connection.RequestResourceAsync<DRDraftDto>("GET", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}");
         
-            public async Task<DRDraftDto> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
+            public async Task<DRDraftDto> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null, Func<Partial<DRDraftDto>, Partial<DRDraftDto>>? partial = null)
                 => await _connection.RequestResourceAsync<DocsDraftsForIdPatchRequest, DRDraftDto>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraftDto>()) : Partial<DRDraftDto>.Default())}", 
                     new DocsDraftsForIdPatchRequest { 
                         Title = title,
                         Text = text,
                         TextVersion = textVersion,
                         Type = type,
-                        Folder = folder,
                         PublicationDetails = publicationDetails,
                     }
             );
         
             public async Task DeleteDraftAsync(string id)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");
+        
+            public FolderClient Folder => new FolderClient(_connection);
+            
+            public partial class FolderClient
+            {
+                private readonly Connection _connection;
+                
+                public FolderClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<DocumentFolderRecordDto> CreateFolderAsync(string name, string parentId, Func<Partial<DocumentFolderRecordDto>, Partial<DocumentFolderRecordDto>>? partial = null)
+                    => await _connection.RequestResourceAsync<DocsDraftsFolderPostRequest, DocumentFolderRecordDto>("POST", $"api/http/docs/drafts/folder?$fields={(partial != null ? partial(new Partial<DocumentFolderRecordDto>()) : Partial<DocumentFolderRecordDto>.Default())}", 
+                        new DocsDraftsFolderPostRequest { 
+                            Name = name,
+                            ParentId = parentId,
+                        }
+                );
+            
+                public async Task DeleteFolderAsync(string id)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/folder/{id}");
+            
+                public NameClient Name => new NameClient(_connection);
+                
+                public partial class NameClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public NameClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateNameAsync(string id, string name)
+                        => await _connection.RequestResourceAsync("PATCH", $"api/http/docs/drafts/folder/{id}/name", 
+                            new DocsDraftsFolderForIdNamePatchRequest { 
+                                Name = name,
+                            }
+                    );
+                
+                }
+            
+                public ParentClient Parent => new ParentClient(_connection);
+                
+                public partial class ParentClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ParentClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task UpdateParentAsync(string id, string parentFolderId)
+                        => await _connection.RequestResourceAsync("PATCH", $"api/http/docs/drafts/folder/{id}/parent", 
+                            new DocsDraftsFolderForIdParentPatchRequest { 
+                                ParentFolderId = parentFolderId,
+                            }
+                    );
+                
+                }
+            
+            }
         
             public EditorClient Editors => new EditorClient(_connection);
             

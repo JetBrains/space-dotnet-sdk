@@ -26,10 +26,11 @@ namespace SpaceDotNet.Client
     {
         public BoardInfoDto() { }
         
-        public BoardInfoDto(BoardOwnersDto owners, BoardColumnsDto columns)
+        public BoardInfoDto(BoardOwnersDto owners, BoardColumnsDto columns, string? description = null)
         {
             Owners = owners;
             Columns = columns;
+            Description = description;
         }
         
         private PropertyValue<BoardOwnersDto> _owners = new PropertyValue<BoardOwnersDto>(nameof(BoardInfoDto), nameof(Owners));
@@ -52,10 +53,20 @@ namespace SpaceDotNet.Client
             set { _columns.SetValue(value); }
         }
     
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(BoardInfoDto), nameof(Description));
+        
+        [JsonPropertyName("description")]
+        public string? Description
+        {
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _owners.SetAccessPath(path, validateHasBeenSet);
             _columns.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

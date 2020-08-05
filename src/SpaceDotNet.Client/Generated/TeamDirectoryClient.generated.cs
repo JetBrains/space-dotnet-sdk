@@ -192,6 +192,61 @@ namespace SpaceDotNet.Client
         
         }
     
+        public InvitationLinkClient InvitationLinks => new InvitationLinkClient(_connection);
+        
+        public partial class InvitationLinkClient
+        {
+            private readonly Connection _connection;
+            
+            public InvitationLinkClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Create an organization-wide invitation link
+            /// </summary>
+            public async Task<Pair<string, InvitationLinkDto>> CreateInvitationLinkAsync(string name, SpaceTime expiresAt, int inviteeLimit, Func<Partial<Pair<string, InvitationLinkDto>>, Partial<Pair<string, InvitationLinkDto>>>? partial = null)
+                => await _connection.RequestResourceAsync<TeamDirectoryInvitationLinksPostRequest, Pair<string, InvitationLinkDto>>("POST", $"api/http/team-directory/invitation-links?$fields={(partial != null ? partial(new Partial<Pair<string, InvitationLinkDto>>()) : Partial<Pair<string, InvitationLinkDto>>.Default())}", 
+                    new TeamDirectoryInvitationLinksPostRequest { 
+                        Name = name,
+                        ExpiresAt = expiresAt,
+                        InviteeLimit = inviteeLimit,
+                    }
+            );
+        
+            /// <summary>
+            /// Get organization-wide invitation links
+            /// </summary>
+            public async Task<Batch<InvitationLinkDto>> GetAllInvitationLinksAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<InvitationLinkDto>>, Partial<Batch<InvitationLinkDto>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<InvitationLinkDto>>("GET", $"api/http/team-directory/invitation-links?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<InvitationLinkDto>>()) : Partial<Batch<InvitationLinkDto>>.Default())}");
+            
+            /// <summary>
+            /// Get organization-wide invitation links
+            /// </summary>
+            public IAsyncEnumerable<InvitationLinkDto> GetAllInvitationLinksAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<InvitationLinkDto>, Partial<InvitationLinkDto>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllInvitationLinksAsync(withDeleted: withDeleted, top: top, skip: batchSkip, partial: builder => Partial<Batch<InvitationLinkDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<InvitationLinkDto>.Default())), skip);
+        
+            /// <summary>
+            /// Update an organization-wide invitation link
+            /// </summary>
+            public async Task UpdateInvitationLinkAsync(string invitationLinkId, string? name = null, SpaceTime? expiresAt = null, int? inviteeLimit = null)
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/invitation-links/{invitationLinkId}", 
+                    new TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest { 
+                        Name = name,
+                        ExpiresAt = expiresAt,
+                        InviteeLimit = inviteeLimit,
+                    }
+            );
+        
+            /// <summary>
+            /// Delete currently active organization-wide invitation link
+            /// </summary>
+            public async Task DeleteInvitationLinkAsync(string invitationLinkId)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/invitation-links/{invitationLinkId}");
+        
+        }
+    
         public InvitationClient Invitations => new InvitationClient(_connection);
         
         public partial class InvitationClient
@@ -920,6 +975,62 @@ namespace SpaceDotNet.Client
             
             }
         
+            public WorkingDayClient WorkingDays => new WorkingDayClient(_connection);
+            
+            public partial class WorkingDayClient
+            {
+                private readonly Connection _connection;
+                
+                public WorkingDayClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
+                /// </summary>
+                public async Task<Batch<TDProfileWorkingDaysDto>> QueryAllWorkingDaysAsync(List<ProfileIdentifier> profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDProfileWorkingDaysDto>>, Partial<Batch<TDProfileWorkingDaysDto>>>? partial = null)
+                    => await _connection.RequestResourceAsync<Batch<TDProfileWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={(profiles ?? new List<ProfileIdentifier>()).JoinToString("profiles", it => it.ToString())}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDProfileWorkingDaysDto>>()) : Partial<Batch<TDProfileWorkingDaysDto>>.Default())}");
+                
+                /// <summary>
+                /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
+                /// </summary>
+                public IAsyncEnumerable<TDProfileWorkingDaysDto> QueryAllWorkingDaysAsyncEnumerable(List<ProfileIdentifier> profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDProfileWorkingDaysDto>, Partial<TDProfileWorkingDaysDto>>? partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => QueryAllWorkingDaysAsync(profiles: profiles, top: top, since: since, till: till, skip: batchSkip, partial: builder => Partial<Batch<TDProfileWorkingDaysDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDProfileWorkingDaysDto>.Default())), skip);
+            
+            }
+        
+            public partial class WorkingDayClient
+            {
+                public async Task<TDWorkingDaysDto> AddWorkingDaysAsync(ProfileIdentifier profile, WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
+                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysPostRequest, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{profile}/working-days?$fields={(partial != null ? partial(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default())}", 
+                        new TeamDirectoryProfilesForProfileWorkingDaysPostRequest { 
+                            DateStart = dateStart,
+                            DateEnd = dateEnd,
+                            WorkingDaysSpec = workingDaysSpec,
+                        }
+                );
+            
+                public async Task<Batch<TDWorkingDaysDto>> QueryWorkingDaysForAProfileAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<TDWorkingDaysDto>>, Partial<Batch<TDWorkingDaysDto>>>? partial = null)
+                    => await _connection.RequestResourceAsync<Batch<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{profile}/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDWorkingDaysDto>>()) : Partial<Batch<TDWorkingDaysDto>>.Default())}");
+                
+                public IAsyncEnumerable<TDWorkingDaysDto> QueryWorkingDaysForAProfileAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => QueryWorkingDaysForAProfileAsync(profile: profile, top: top, skip: batchSkip, partial: builder => Partial<Batch<TDWorkingDaysDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDWorkingDaysDto>.Default())), skip);
+            
+                public async Task<TDWorkingDaysDto> UpdateWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
+                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}?$fields={(partial != null ? partial(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default())}", 
+                        new TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest { 
+                            DateStart = dateStart,
+                            DateEnd = dateEnd,
+                            WorkingDaysSpec = workingDaysSpec,
+                        }
+                );
+            
+                public async Task DeleteWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}");
+            
+            }
+        
             public TwoFaClient TwoFa => new TwoFaClient(_connection);
             
             public partial class TwoFaClient
@@ -1366,46 +1477,6 @@ namespace SpaceDotNet.Client
                 /// </summary>
                 public async Task DeleteVcsPasswordAsync(ProfileIdentifier profile)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/vcs-password");
-            
-            }
-        
-            public WorkingDayClient WorkingDays => new WorkingDayClient(_connection);
-            
-            public partial class WorkingDayClient
-            {
-                private readonly Connection _connection;
-                
-                public WorkingDayClient(Connection connection)
-                {
-                    _connection = connection;
-                }
-                
-                public async Task<TDWorkingDaysDto> AddWorkingDaysAsync(ProfileIdentifier profile, WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysPostRequest, TDWorkingDaysDto>("POST", $"api/http/team-directory/profiles/{profile}/working-days?$fields={(partial != null ? partial(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default())}", 
-                        new TeamDirectoryProfilesForProfileWorkingDaysPostRequest { 
-                            DateStart = dateStart,
-                            DateEnd = dateEnd,
-                            WorkingDaysSpec = workingDaysSpec,
-                        }
-                );
-            
-                public async Task<Batch<TDWorkingDaysDto>> GetAllWorkingDaysAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<TDWorkingDaysDto>>, Partial<Batch<TDWorkingDaysDto>>>? partial = null)
-                    => await _connection.RequestResourceAsync<Batch<TDWorkingDaysDto>>("GET", $"api/http/team-directory/profiles/{profile}/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDWorkingDaysDto>>()) : Partial<Batch<TDWorkingDaysDto>>.Default())}");
-                
-                public IAsyncEnumerable<TDWorkingDaysDto> GetAllWorkingDaysAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
-                    => BatchEnumerator.AllItems(batchSkip => GetAllWorkingDaysAsync(profile: profile, top: top, skip: batchSkip, partial: builder => Partial<Batch<TDWorkingDaysDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDWorkingDaysDto>.Default())), skip);
-            
-                public async Task<TDWorkingDaysDto> UpdateWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDaysDto>, Partial<TDWorkingDaysDto>>? partial = null)
-                    => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest, TDWorkingDaysDto>("PATCH", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}?$fields={(partial != null ? partial(new Partial<TDWorkingDaysDto>()) : Partial<TDWorkingDaysDto>.Default())}", 
-                        new TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest { 
-                            DateStart = dateStart,
-                            DateEnd = dateEnd,
-                            WorkingDaysSpec = workingDaysSpec,
-                        }
-                );
-            
-                public async Task DeleteWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}");
             
             }
         

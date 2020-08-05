@@ -19,18 +19,18 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HrmBusinessEntitiesForIdPatchRequestPartialBuilder
+namespace SpaceDotNet.Client.TeamDirectoryInvitationLinksPostRequestPartialBuilder
 {
-    public static class HrmBusinessEntitiesForIdPatchRequestPartialExtensions
+    public static class TeamDirectoryInvitationLinksPostRequestPartialExtensions
     {
-        public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithName(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
+        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithName(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
             => it.AddFieldName("name");
         
-        public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithLocationId(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
-            => it.AddFieldName("locationId");
+        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithExpiresAt(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+            => it.AddFieldName("expiresAt");
         
-        public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithVacationAllowance(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
-            => it.AddFieldName("vacationAllowance");
+        public static Partial<TeamDirectoryInvitationLinksPostRequest> WithInviteeLimit(this Partial<TeamDirectoryInvitationLinksPostRequest> it)
+            => it.AddFieldName("inviteeLimit");
         
     }
     

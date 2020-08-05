@@ -29,13 +29,14 @@ namespace SpaceDotNet.Client
         
         public MCMessageDto() { }
         
-        public MCMessageDto(string style, List<MCElementDto> content, MCOutlineDto? outline = null, string? serviceId = null, string? supplementaryData = null)
+        public MCMessageDto(string style, List<MCElementDto> content, MCOutlineDto? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetailsDto? extension = null)
         {
             Style = style;
             Outline = outline;
             Content = content;
             ServiceId = serviceId;
             SupplementaryData = supplementaryData;
+            Extension = extension;
         }
         
         private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCMessageDto), nameof(Style));
@@ -85,6 +86,15 @@ namespace SpaceDotNet.Client
             set { _supplementaryData.SetValue(value); }
         }
     
+        private PropertyValue<M2ItemContentDetailsDto?> _extension = new PropertyValue<M2ItemContentDetailsDto?>(nameof(MCMessageDto), nameof(Extension));
+        
+        [JsonPropertyName("extension")]
+        public M2ItemContentDetailsDto? Extension
+        {
+            get { return _extension.GetValue(); }
+            set { _extension.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _style.SetAccessPath(path, validateHasBeenSet);
@@ -92,6 +102,7 @@ namespace SpaceDotNet.Client
             _content.SetAccessPath(path, validateHasBeenSet);
             _serviceId.SetAccessPath(path, validateHasBeenSet);
             _supplementaryData.SetAccessPath(path, validateHasBeenSet);
+            _extension.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -29,6 +29,7 @@ namespace SpaceDotNet.Client
         public static readonly SyntaxMarkupType KEYWORD = new SyntaxMarkupType("KEYWORD");
         public static readonly SyntaxMarkupType COMMENT = new SyntaxMarkupType("COMMENT");
         public static readonly SyntaxMarkupType BOLDIDENTIFIER = new SyntaxMarkupType("BOLD_IDENTIFIER");
+        public static readonly SyntaxMarkupType ITALICIDENTIFIER = new SyntaxMarkupType("ITALIC_IDENTIFIER");
         public static readonly SyntaxMarkupType IDENTIFIER = new SyntaxMarkupType("IDENTIFIER");
         public static readonly SyntaxMarkupType DECLARATION = new SyntaxMarkupType("DECLARATION");
         public static readonly SyntaxMarkupType PARAMETERASSIGNMENT = new SyntaxMarkupType("PARAMETER_ASSIGNMENT");

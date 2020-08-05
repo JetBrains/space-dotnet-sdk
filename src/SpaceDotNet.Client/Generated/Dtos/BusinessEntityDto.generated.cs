@@ -26,11 +26,12 @@ namespace SpaceDotNet.Client
     {
         public BusinessEntityDto() { }
         
-        public BusinessEntityDto(string id, string name, TDLocationDto location, bool archived)
+        public BusinessEntityDto(string id, string name, TDLocationDto location, int vacationAllowance, bool archived)
         {
             Id = id;
             Name = name;
             Location = location;
+            VacationAllowance = vacationAllowance;
             Archived = archived;
         }
         
@@ -64,6 +65,16 @@ namespace SpaceDotNet.Client
             set { _location.SetValue(value); }
         }
     
+        private PropertyValue<int> _vacationAllowance = new PropertyValue<int>(nameof(BusinessEntityDto), nameof(VacationAllowance));
+        
+        [Required]
+        [JsonPropertyName("vacationAllowance")]
+        public int VacationAllowance
+        {
+            get { return _vacationAllowance.GetValue(); }
+            set { _vacationAllowance.SetValue(value); }
+        }
+    
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BusinessEntityDto), nameof(Archived));
         
         [Required]
@@ -79,6 +90,7 @@ namespace SpaceDotNet.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _location.SetAccessPath(path, validateHasBeenSet);
+            _vacationAllowance.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }
     

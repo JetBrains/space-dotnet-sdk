@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         public static M2UserLeftChannelDto M2UserLeftChannel()
             => new M2UserLeftChannelDto();
         
-        public static MCMessageDto MCMessage(string style, List<MCElementDto> content, MCOutlineDto? outline = null, string? serviceId = null, string? supplementaryData = null)
-            => new MCMessageDto(style: style, content: content, outline: null, serviceId: null, supplementaryData: null);
+        public static MCMessageDto MCMessage(string style, List<MCElementDto> content, MCOutlineDto? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetailsDto? extension = null)
+            => new MCMessageDto(style: style, content: content, outline: null, serviceId: null, supplementaryData: null, extension: null);
         
         public static MembersAddedItemDetailsDto MembersAddedItemDetails(List<CPrincipalDto> principals, List<string> othersDisplayNames)
             => new MembersAddedItemDetailsDto(principals: principals, othersDisplayNames: othersDisplayNames);

@@ -21,19 +21,19 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HrmBusinessEntitiesForIdPatchRequest
+    public class TeamDirectoryInvitationLinksPostRequest
          : IPropagatePropertyAccessPath
     {
-        public HrmBusinessEntitiesForIdPatchRequest() { }
+        public TeamDirectoryInvitationLinksPostRequest() { }
         
-        public HrmBusinessEntitiesForIdPatchRequest(string name, string locationId, int? vacationAllowance = null)
+        public TeamDirectoryInvitationLinksPostRequest(string name, SpaceTime expiresAt, int inviteeLimit)
         {
             Name = name;
-            LocationId = locationId;
-            VacationAllowance = vacationAllowance;
+            ExpiresAt = expiresAt;
+            InviteeLimit = inviteeLimit;
         }
         
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(HrmBusinessEntitiesForIdPatchRequest), nameof(Name));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
@@ -43,30 +43,31 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<string> _locationId = new PropertyValue<string>(nameof(HrmBusinessEntitiesForIdPatchRequest), nameof(LocationId));
+        private PropertyValue<SpaceTime> _expiresAt = new PropertyValue<SpaceTime>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(ExpiresAt));
         
         [Required]
-        [JsonPropertyName("locationId")]
-        public string LocationId
+        [JsonPropertyName("expiresAt")]
+        public SpaceTime ExpiresAt
         {
-            get { return _locationId.GetValue(); }
-            set { _locationId.SetValue(value); }
+            get { return _expiresAt.GetValue(); }
+            set { _expiresAt.SetValue(value); }
         }
     
-        private PropertyValue<int?> _vacationAllowance = new PropertyValue<int?>(nameof(HrmBusinessEntitiesForIdPatchRequest), nameof(VacationAllowance));
+        private PropertyValue<int> _inviteeLimit = new PropertyValue<int>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(InviteeLimit));
         
-        [JsonPropertyName("vacationAllowance")]
-        public int? VacationAllowance
+        [Required]
+        [JsonPropertyName("inviteeLimit")]
+        public int InviteeLimit
         {
-            get { return _vacationAllowance.GetValue(); }
-            set { _vacationAllowance.SetValue(value); }
+            get { return _inviteeLimit.GetValue(); }
+            set { _inviteeLimit.SetValue(value); }
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
-            _locationId.SetAccessPath(path, validateHasBeenSet);
-            _vacationAllowance.SetAccessPath(path, validateHasBeenSet);
+            _expiresAt.SetAccessPath(path, validateHasBeenSet);
+            _inviteeLimit.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

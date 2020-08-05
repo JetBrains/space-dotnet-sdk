@@ -45,6 +45,9 @@ namespace SpaceDotNet.Client
         public static IssueDueDateChangedDetailsDto IssueDueDateChangedDetails(SpaceDate? oldDueDate = null, SpaceDate? newDueDate = null)
             => new IssueDueDateChangedDetailsDto(oldDueDate: null, newDueDate: null);
         
+        public static IssueMCExtensionDto IssueMCExtension()
+            => new IssueMCExtensionDto();
+        
         public static IssueStatusChangedDetailsDto IssueStatusChangedDetails(IssueStatusDto oldStatus, IssueStatusDto newStatus)
             => new IssueStatusChangedDetailsDto(oldStatus: oldStatus, newStatus: newStatus);
         

@@ -26,10 +26,11 @@ namespace SpaceDotNet.Client
     {
         public HrmBusinessEntitiesPostRequest() { }
         
-        public HrmBusinessEntitiesPostRequest(string name, string locationId)
+        public HrmBusinessEntitiesPostRequest(string name, string locationId, int? vacationAllowance = null)
         {
             Name = name;
             LocationId = locationId;
+            VacationAllowance = vacationAllowance;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HrmBusinessEntitiesPostRequest), nameof(Name));
@@ -52,10 +53,20 @@ namespace SpaceDotNet.Client
             set { _locationId.SetValue(value); }
         }
     
+        private PropertyValue<int?> _vacationAllowance = new PropertyValue<int?>(nameof(HrmBusinessEntitiesPostRequest), nameof(VacationAllowance));
+        
+        [JsonPropertyName("vacationAllowance")]
+        public int? VacationAllowance
+        {
+            get { return _vacationAllowance.GetValue(); }
+            set { _vacationAllowance.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _locationId.SetAccessPath(path, validateHasBeenSet);
+            _vacationAllowance.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

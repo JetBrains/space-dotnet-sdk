@@ -26,8 +26,11 @@ namespace SpaceDotNet.Client.MergeRequestReviewerDtoPartialBuilder
         public static Partial<MergeRequestReviewerDto> WithProfileId(this Partial<MergeRequestReviewerDto> it)
             => it.AddFieldName("profileId");
         
-        public static Partial<MergeRequestReviewerDto> WithQualityGateSlots(this Partial<MergeRequestReviewerDto> it)
-            => it.AddFieldName("qualityGateSlots");
+        public static Partial<MergeRequestReviewerDto> WithQualityGateSlot(this Partial<MergeRequestReviewerDto> it)
+            => it.AddFieldName("qualityGateSlot");
+        
+        public static Partial<MergeRequestReviewerDto> WithQualityGateSlot(this Partial<MergeRequestReviewerDto> it, Func<Partial<CodeReviewParticipantQualityGateSlotDto>, Partial<CodeReviewParticipantQualityGateSlotDto>> partialBuilder)
+            => it.AddFieldName("qualityGateSlot", partialBuilder(new Partial<CodeReviewParticipantQualityGateSlotDto>(it)));
         
     }
     

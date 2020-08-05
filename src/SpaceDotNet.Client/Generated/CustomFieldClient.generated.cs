@@ -63,14 +63,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
             /// </summary>
-            public async Task<Batch<CustomFieldsRecordDto>> GetAllAllValuesAsync(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>>? partial = null)
+            public async Task<Batch<CustomFieldsRecordDto>> GetAllValuesAsync(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>>? partial = null)
                 => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CustomFieldsRecordDto>>()) : Partial<Batch<CustomFieldsRecordDto>>.Default())}");
             
             /// <summary>
             /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
             /// </summary>
-            public IAsyncEnumerable<CustomFieldsRecordDto> GetAllAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllAllValuesAsync(typeKey: typeKey, top: top, extendedEntityIds: extendedEntityIds, skip: batchSkip, partial: builder => Partial<Batch<CustomFieldsRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecordDto>.Default())), skip);
+            public IAsyncEnumerable<CustomFieldsRecordDto> GetAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllValuesAsync(typeKey: typeKey, top: top, extendedEntityIds: extendedEntityIds, skip: batchSkip, partial: builder => Partial<Batch<CustomFieldsRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecordDto>.Default())), skip);
         
         }
     

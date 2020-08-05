@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HrmBusinessEntitiesForIdPatchRequestPartialBuilder
+namespace SpaceDotNet.Client.DocsDraftsFolderPostRequestPartialBuilder
 {
-    public static class HrmBusinessEntitiesForIdPatchRequestPartialExtensions
+    public static class DocsDraftsFolderPostRequestPartialExtensions
     {
-        public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithName(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
+        public static Partial<DocsDraftsFolderPostRequest> WithName(this Partial<DocsDraftsFolderPostRequest> it)
             => it.AddFieldName("name");
         
-        public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithLocationId(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
-            => it.AddFieldName("locationId");
-        
-        public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithVacationAllowance(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
-            => it.AddFieldName("vacationAllowance");
+        public static Partial<DocsDraftsFolderPostRequest> WithParentId(this Partial<DocsDraftsFolderPostRequest> it)
+            => it.AddFieldName("parentId");
         
     }
     

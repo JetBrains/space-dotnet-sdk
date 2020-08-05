@@ -19,18 +19,15 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HrmBusinessEntitiesPostRequestPartialBuilder
+namespace SpaceDotNet.Client.UnfurlDetailsChecklistDtoPartialBuilder
 {
-    public static class HrmBusinessEntitiesPostRequestPartialExtensions
+    public static class UnfurlDetailsChecklistDtoPartialExtensions
     {
-        public static Partial<HrmBusinessEntitiesPostRequest> WithName(this Partial<HrmBusinessEntitiesPostRequest> it)
-            => it.AddFieldName("name");
+        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it)
+            => it.AddFieldName("checklist");
         
-        public static Partial<HrmBusinessEntitiesPostRequest> WithLocationId(this Partial<HrmBusinessEntitiesPostRequest> it)
-            => it.AddFieldName("locationId");
-        
-        public static Partial<HrmBusinessEntitiesPostRequest> WithVacationAllowance(this Partial<HrmBusinessEntitiesPostRequest> it)
-            => it.AddFieldName("vacationAllowance");
+        public static Partial<UnfurlDetailsChecklistDto> WithChecklist(this Partial<UnfurlDetailsChecklistDto> it, Func<Partial<ChecklistDto>, Partial<ChecklistDto>> partialBuilder)
+            => it.AddFieldName("checklist", partialBuilder(new Partial<ChecklistDto>(it)));
         
     }
     
