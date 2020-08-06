@@ -18,7 +18,7 @@ public class VersionInfoAttribute : InjectionAttributeBase
     VersionInfo? GetFromSpace()
     {
         var executionNumber = Environment.GetEnvironmentVariable("JB_SPACE_EXECUTION_NUMBER");
-        var branch = Environment.GetEnvironmentVariable("JB_SPACE_GIT_BRANCH")?.Replace("refs/heads/", "");
+        var branch = Environment.GetEnvironmentVariable("JB_SPACE_GIT_BRANCH")?.Replace("refs/heads/", "").Replace("/", "-");
         var revision = Environment.GetEnvironmentVariable("JB_SPACE_GIT_REVISION");
 
         if (!string.IsNullOrEmpty(executionNumber) && !string.IsNullOrEmpty(branch) && !string.IsNullOrEmpty(revision))
@@ -40,7 +40,7 @@ public class VersionInfoAttribute : InjectionAttributeBase
         if (!GitTasks.GitIsDetached())
         {
             var commitCount = GitTasks.Git("rev-list HEAD --count", logOutput: false).Select(x => x.Text).Single();
-            var branch = GitTasks.GitCurrentBranch()?.Replace("refs/heads/", "");
+            var branch = GitTasks.GitCurrentBranch()?.Replace("refs/heads/", "").Replace("/", "-");
             var revision = GitTasks.Git("rev-parse HEAD", logOutput: false).Select(x => x.Text).Single();
             
             if (!string.IsNullOrEmpty(commitCount) && !string.IsNullOrEmpty(branch) && !string.IsNullOrEmpty(revision))
