@@ -18,11 +18,17 @@ class Build : NukeBuild
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
 
-    [Parameter("NuGet target", Name = "JB_SPACE_NUGET_URL")]
-    readonly string? NuGetTargetUrl;
+    [Parameter("NuGet target (Space)", Name = "JB_SPACE_NUGET_URL")]
+    readonly string? NuGetTargetUrlSpace;
 
-    [Parameter("NuGet target API key / access token", Name = "JB_SPACE_CLIENT_TOKEN")]
-    readonly string? NuGetTargetApiKey;
+    [Parameter("NuGet target API key / access token (Space)", Name = "JB_SPACE_CLIENT_TOKEN")]
+    readonly string? NuGetTargetApiKeySpace;
+
+    [Parameter("NuGet target (MyGet)", Name = "MYGET_NUGET_URL")]
+    readonly string? NuGetTargetUrlMyGet;
+
+    [Parameter("NuGet target API key / access token (MyGet)", Name = "MYGET_CLIENT_TOKEN")]
+    readonly string? NuGetTargetApiKeyMyGet;
     
     [Solution] readonly Solution? Solution;
     [VersionInfo(VersionMajor = 0, VersionMinor = 1)] readonly VersionInfo? VersionInfo;
@@ -91,19 +97,38 @@ class Build : NukeBuild
             }
         });
 
-    Target PushPackages => _ => _
+    Target PushPackagesToSpace => _ => _
         .TriggeredBy(Package)
         .OnlyWhenStatic(() =>
-            !string.IsNullOrEmpty(NuGetTargetUrl) &&
-            !string.IsNullOrEmpty(NuGetTargetApiKey))
+            !string.IsNullOrEmpty(NuGetTargetUrlSpace) &&
+            !string.IsNullOrEmpty(NuGetTargetApiKeySpace))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
             var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
             
             DotNetNuGetPush(_ => _
-                    .SetSource(NuGetTargetUrl)
-                    .SetApiKey(NuGetTargetApiKey)
+                    .SetSource(NuGetTargetUrlSpace)
+                    .SetApiKey(NuGetTargetApiKeySpace)
+                    .CombineWith(packages, (_, v) => _
+                        .SetTargetPath(v)),
+                degreeOfParallelism: 5,
+                completeOnFailure: true);
+        });
+
+    Target PushPackagesToMyGet => _ => _
+        .TriggeredBy(Package)
+        .OnlyWhenStatic(() =>
+            !string.IsNullOrEmpty(NuGetTargetUrlMyGet) &&
+            !string.IsNullOrEmpty(NuGetTargetApiKeyMyGet))
+        .WhenSkipped(DependencyBehavior.Execute)
+        .Executes(() =>
+        {
+            var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
+            
+            DotNetNuGetPush(_ => _
+                    .SetSource(NuGetTargetUrlMyGet)
+                    .SetApiKey(NuGetTargetApiKeyMyGet)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
