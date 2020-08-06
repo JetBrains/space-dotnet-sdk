@@ -1,12 +1,10 @@
 using System.Linq;
 using Nuke.Common;
 using Nuke.Common.Execution;
-using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tooling;
 using Nuke.Common.Tools.DotNet;
-using Nuke.Common.Tools.GitVersion;
 using Nuke.Common.Utilities.Collections;
 using static Nuke.Common.IO.FileSystemTasks;
 using static Nuke.Common.Tools.DotNet.DotNetTasks;
@@ -23,12 +21,12 @@ class Build : NukeBuild
     [Parameter("NuGet target", Name = "JB_SPACE_NUGET_URL")]
     readonly string? NuGetTargetUrl;
 
-    [Parameter("NuGet target access token", Name = "JB_SPACE_CLIENT_TOKEN")]
-    readonly string? NuGetTargetToken;
+    [Parameter("NuGet target API key / access token", Name = "JB_SPACE_CLIENT_TOKEN")]
+    readonly string? NuGetTargetApiKey;
     
     [Solution] readonly Solution? Solution;
-    [GitRepository] readonly GitRepository? GitRepository;
-    [GitVersion(NoFetch = true)] readonly GitVersion? GitVersion;
+    [VersionInfo(VersionMajor = 0, VersionMinor = 1)] readonly VersionInfo? VersionInfo;
+    // [GitVersion] readonly GitVersion? GitVersion; // NOTE: Does not work in Space due to sparse checkout
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath TestsDirectory => RootDirectory / "tests";
@@ -57,10 +55,10 @@ class Build : NukeBuild
             DotNetBuild(_ => _
                 .SetProjectFile(Solution)
                 .SetConfiguration(Configuration)
-                .SetAssemblyVersion(GitVersion.AssemblySemVer)
-                .SetFileVersion(GitVersion.AssemblySemFileVer)
-                .SetInformationalVersion(GitVersion.InformationalVersion)
-                .SetVersion(GitVersion.NuGetVersion)
+                .SetAssemblyVersion(VersionInfo.AssemblySemVer)
+                .SetFileVersion(VersionInfo.AssemblySemFileVer)
+                .SetInformationalVersion(VersionInfo.InformationalVersion)
+                .SetVersion(VersionInfo.NuGetVersion)
                 .SetProperty("GeneratePackageOnBuild", "False")
                 .EnableNoRestore());
         });
@@ -88,7 +86,7 @@ class Build : NukeBuild
                     .EnableIncludeSymbols()
                     .EnableNoRestore()
                     .EnableNoBuild()
-                    .SetVersion(GitVersion.NuGetVersion)
+                    .SetVersion(VersionInfo.NuGetVersion)
                     .SetOutputDirectory(ArtifactsDirectory));
             }
         });
@@ -97,7 +95,7 @@ class Build : NukeBuild
         .TriggeredBy(Package)
         .OnlyWhenStatic(() =>
             !string.IsNullOrEmpty(NuGetTargetUrl) &&
-            !string.IsNullOrEmpty(NuGetTargetToken))
+            !string.IsNullOrEmpty(NuGetTargetApiKey))
         .WhenSkipped(DependencyBehavior.Execute)
         .Executes(() =>
         {
@@ -105,7 +103,7 @@ class Build : NukeBuild
             
             DotNetNuGetPush(_ => _
                     .SetSource(NuGetTargetUrl)
-                    .SetApiKey(NuGetTargetToken)
+                    .SetApiKey(NuGetTargetApiKey)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,
