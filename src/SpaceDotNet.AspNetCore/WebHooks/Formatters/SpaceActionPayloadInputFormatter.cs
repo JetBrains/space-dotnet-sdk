@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using SpaceDotNet.AspNetCore.WebHooks.Types;
+using SpaceDotNet.Client;
 
 namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
 {
@@ -62,7 +62,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
             context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceTimestamp);
 
         protected override bool CanReadType(Type type) =>
-            typeof(IWebHookPayload).IsAssignableFrom(type);
+            typeof(ApplicationPayloadDto).IsAssignableFrom(type);
 
         /// <inheritdoc />
         public sealed override async Task<InputFormatterResult> ReadRequestBodyAsync(
@@ -82,7 +82,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
             var httpContext = context.HttpContext;
             var inputStream = httpContext.Request.Body;
 
-            object model;
+            ApplicationPayloadDto? model;
             try
             {
                 using var inputStreamReader = new StreamReader(inputStream);
@@ -103,11 +103,12 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
                     }
                 }
                     
-                model = JsonSerializer.Deserialize(inputJsonString, context.ModelType, _jsonSerializerOptions);
+                model = JsonSerializer.Deserialize(inputJsonString, context.ModelType, _jsonSerializerOptions) as ApplicationPayloadDto;
 
-                if (model is ActionPayload actionPayload)
+                var payloadVerificationTokenValue = GetPayloadVerificationTokenValue(model);
+                if (!string.IsNullOrEmpty(payloadVerificationTokenValue))
                 {
-                    if (options.ValidatePayloadVerificationToken && actionPayload.VerificationToken != options.EndpointVerificationToken)
+                    if (options.ValidatePayloadVerificationToken && payloadVerificationTokenValue != options.EndpointVerificationToken)
                     {
                         throw new InvalidOperationException("The webhook verification token does not your configured verification token. Make sure the endpoint verification token is configured correctly in your Space organization, and the current application.");
                     }
@@ -144,7 +145,13 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
                 return await InputFormatterResult.SuccessAsync(model);
             }
         }
-        
+
+        private static string? GetPayloadVerificationTokenValue(ApplicationPayloadDto? payload)
+        {
+            return payload?.GetType()
+                .GetProperty(nameof(MessagePayloadDto.VerificationToken))?.GetValue(payload) as string;
+        }
+
         private static string ToHexString(IReadOnlyCollection<byte> bytes)
         {
             var builder = new StringBuilder(bytes.Count * 2);

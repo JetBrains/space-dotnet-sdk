@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using SpaceDotNet.AspNetCore.WebHooks.Types;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Types;
@@ -21,7 +20,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             _chatClient = new ChatClient(connection);
         }
 
-        public async Task HandleAsync(ActionPayload payload)
+        public async Task HandleAsync(MessageActionPayloadDto payload)
         {
             var actionId = Enumeration.FromValue<ActionId>(payload.ActionId);
 
@@ -56,7 +55,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             if (string.IsNullOrEmpty(cateringSession.SelectedFood))
             {
                 await SendOrEditMessageAsync(
-                    channelId: payload.Context?.ChannelId,
+                    channelId: payload.Message.ChannelId,
                     recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("Would you prefer chicken or pasta?"),
@@ -87,7 +86,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             else if (string.IsNullOrEmpty(cateringSession.SelectedDrinks))
             {
                 await SendOrEditMessageAsync(
-                    channelId: payload.Context?.ChannelId,
+                    channelId: payload.Message.ChannelId,
                     recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("Any drinks? Coffee or tea?"),
@@ -122,7 +121,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
                      && string.IsNullOrEmpty(cateringSession.SelectedDrinkAdditions))
             {
                 await SendOrEditMessageAsync(
-                    channelId: payload.Context?.ChannelId,
+                    channelId: payload.Message.ChannelId,
                     recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("How would you like your coffee?"),
@@ -153,7 +152,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             else
             {
                 await SendOrEditMessageAsync(
-                    channelId: payload.Context?.ChannelId,
+                    channelId: payload.Message.ChannelId,
                     recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
                     content: ChatMessageDto.Block(
                         outline: new MessageOutlineDto("Thank you, we'll be right there!"),

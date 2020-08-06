@@ -3,7 +3,6 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
-using SpaceDotNet.AspNetCore.WebHooks.Types;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
 using SpaceDotNet.Samples.Web.Controllers.Handlers;
@@ -15,7 +14,7 @@ namespace SpaceDotNet.Samples.Web.Controllers
     {
         private readonly Connection _connection;
         
-        // TODO WEBHOOKS document
+        // TODO WEBHOOKS document how it all works
         // NOTE: For this sample to work, create a channel,
         // and configure https://your-app.public.example.org/space/receive as an endpoint.
         private readonly string _chatChannelName = "SpaceDotNet";
@@ -72,7 +71,7 @@ namespace SpaceDotNet.Samples.Web.Controllers
         
         [HttpPost]
         [Route("receive")]
-        public async Task<IActionResult> Receive([FromBody]ActionPayload payload)
+        public async Task<IActionResult> Receive([FromBody]MessageActionPayloadDto payload)
         {
             if (payload.ActionId.StartsWith(CateringChatHandler.ActionIdPrefix))
             {
