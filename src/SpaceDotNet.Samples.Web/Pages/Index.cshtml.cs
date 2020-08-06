@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using SpaceDotNet.Client;
+using SpaceDotNet.Client.CodeReviewWithCountDtoPartialBuilder;
 using SpaceDotNet.Client.CPrincipalDtoPartialBuilder;
 using SpaceDotNet.Client.CUserPrincipalDetailsDtoPartialBuilder;
 using SpaceDotNet.Client.CUserWithEmailPrincipalDetailsDtoPartialBuilder;
@@ -22,6 +23,7 @@ using SpaceDotNet.Client.TDProfileNameDtoPartialBuilder;
 using SpaceDotNet.Client.TDRoleDtoPartialBuilder;
 using SpaceDotNet.Client.TDTeamDtoPartialBuilder;
 using SpaceDotNet.Client.TodoItemRecordDtoPartialBuilder;
+using SpaceDotNet.Common;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Samples.Web.Pages
@@ -168,44 +170,37 @@ namespace SpaceDotNet.Samples.Web.Pages
                 try
                 {
                     // Check # of reviews created and participated in
-                    var reviews1 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, @from: weekStart.AsSpaceDate()).ToListAsync();
-                    var reviews2 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate()).ToListAsync();
-                    var reviews3 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate()).ToListAsync();
-                    var reviews4 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate()).ToListAsync();
+                    Partial<CodeReviewWithCountDto> codeReviewPartial(Partial<CodeReviewWithCountDto> _) => _
+                        .WithAllFieldsWildcard()
+                        .WithReview()
+                        .WithAuthors()
+                        .WithParticipants();
+
+                    var reviews1 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, @from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
+                    var reviews2 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
+                    var reviews3 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
+                    var reviews4 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(projectDto.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
                     
                     foreach (var reviewDto in reviews1.Union(reviews2).Union(reviews3).Union(reviews4))
                     {
-                        if (reviewDto.Review is CommitSetReviewRecordDto commitSetReview)
+                        var createdAt = reviewDto.Review switch
                         {
-                            var createdAt = commitSetReview.CreatedAt.AsDateTime();
-                            if (createdAt >= weekStart && createdAt <= weekEnd)
-                            {
-                                if (reviewDto.Authors.Any(it => it.Profile != null && it.Profile.Id == MemberProfile.Id))
-                                {
-                                    reviewsCreatedThisWeek++;
-                                }
-                            }
+                            CommitSetReviewRecordDto commitSetReview => commitSetReview.CreatedAt.AsDateTime(),
+                            MergeRequestRecordDto mergeRequest => mergeRequest.CreatedAt.AsDateTime(),
+                            _ => DateTime.MinValue
+                        };
                         
-                            if (reviewDto.Participants.Participants.Any(it => it.User.Id == MemberProfile.Id))
-                            {
-                                reviewsParticipatedThisWeek++;
-                            }
-                        } 
-                        else  if (reviewDto.Review is MergeRequestRecordDto mergeRequest)
+                        if (createdAt >= weekStart && createdAt <= weekEnd)
                         {
-                            var createdAt = mergeRequest.CreatedAt.AsDateTime();
-                            if (createdAt >= weekStart && createdAt <= weekEnd)
+                            if (reviewDto.Participants.Participants.Any(it => it.User.Id == MemberProfile.Id && it.Role == CodeReviewParticipantRole.Author))
                             {
-                                if (reviewDto.Authors.Any(it => it.Profile != null && it.Profile.Id == MemberProfile.Id))
-                                {
-                                    reviewsCreatedThisWeek++;
-                                }
+                                reviewsCreatedThisWeek++;
                             }
+                        }
                         
-                            if (reviewDto.Participants.Participants.Any(it => it.User.Id == MemberProfile.Id))
-                            {
-                                reviewsParticipatedThisWeek++;
-                            }
+                        if (reviewDto.Participants.Participants.Any(it => it.User.Id == MemberProfile.Id && it.Role == CodeReviewParticipantRole.Reviewer))
+                        {
+                            reviewsParticipatedThisWeek++;
                         }
                     }
                 }

@@ -66,25 +66,32 @@
                 
                 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
                 <script>
-                    document.addEventListener('DOMContentLoaded', function() {                        
-                        var activityCanvas = document.getElementById("activityChart");
-    
-                        var activityData = {
-                          labels: ["Issues created", "Issues resolved", "Reviews created", "Reviews participated", "TODO items completed", "Meetings"],
-                          datasets: [{
-                            label: "Activity",
-                            backgroundColor: "rgba(22,155,207,0.2)",
-                            data: [
-                                @Model.IssuesCreatedThisWeek, @Model.IssuesResolvedThisWeek, @Model.ReviewsCreatedThisWeek, 
-                                @Model.ReviewsParticipatedThisWeek, @Model.TodoClosedThisWeek, @Model.MeetingsThisWeek
-                            ]
-                          }]
-                        };
-                        
-                        var activityChart = new Chart(activityCanvas, {
-                          type: 'radar',
-                          data: activityData
-                        });
+                    document.addEventListener('DOMContentLoaded', function() {    
+                        new Chart(
+                            document.getElementById("activityChart"),
+                            {
+                                "type": "radar",
+                                "data": { 
+                                    "labels": ["Issues created", "Issues resolved", "Reviews created", "Reviews participated", "TODO items completed", "Meetings"],
+                                    "datasets": [{
+                                        "label": "Activity",
+                                        "data": [ 
+                                            @Model.IssuesCreatedThisWeek, @Model.IssuesResolvedThisWeek,
+                                            @Model.ReviewsCreatedThisWeek, @Model.ReviewsParticipatedThisWeek, 
+                                            @Model.TodoClosedThisWeek, @Model.MeetingsThisWeek
+                                        ],
+                                        "backgroundColor":"rgba(22,155,207,0.2)"
+                                    }]
+                                },
+                                "options": {
+                                    "elements": {
+                                        "line": {
+                                            "tension": 0,
+                                            "borderWidth": 3
+                                        }
+                                    }
+                                }
+                            });
                     }, false);
                 </script>
             </div>
