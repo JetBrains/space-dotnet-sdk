@@ -26,12 +26,13 @@ namespace SpaceDotNet.Client
     {
         public IssueStatusDataDto() { }
         
-        public IssueStatusDataDto(string name, bool resolved, string color, string? existingId = null)
+        public IssueStatusDataDto(string name, bool resolved, string color, string? existingId = null, IssueStatusDto? originalStatus = null)
         {
             ExistingId = existingId;
             Name = name;
             Resolved = resolved;
             Color = color;
+            OriginalStatus = originalStatus;
         }
         
         private PropertyValue<string?> _existingId = new PropertyValue<string?>(nameof(IssueStatusDataDto), nameof(ExistingId));
@@ -73,12 +74,22 @@ namespace SpaceDotNet.Client
             set { _color.SetValue(value); }
         }
     
+        private PropertyValue<IssueStatusDto?> _originalStatus = new PropertyValue<IssueStatusDto?>(nameof(IssueStatusDataDto), nameof(OriginalStatus));
+        
+        [JsonPropertyName("originalStatus")]
+        public IssueStatusDto? OriginalStatus
+        {
+            get { return _originalStatus.GetValue(); }
+            set { _originalStatus.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _existingId.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _resolved.SetAccessPath(path, validateHasBeenSet);
             _color.SetAccessPath(path, validateHasBeenSet);
+            _originalStatus.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

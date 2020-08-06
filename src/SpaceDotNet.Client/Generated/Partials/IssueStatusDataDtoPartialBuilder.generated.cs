@@ -35,6 +35,12 @@ namespace SpaceDotNet.Client.IssueStatusDataDtoPartialBuilder
         public static Partial<IssueStatusDataDto> WithColor(this Partial<IssueStatusDataDto> it)
             => it.AddFieldName("color");
         
+        public static Partial<IssueStatusDataDto> WithOriginalStatus(this Partial<IssueStatusDataDto> it)
+            => it.AddFieldName("originalStatus");
+        
+        public static Partial<IssueStatusDataDto> WithOriginalStatus(this Partial<IssueStatusDataDto> it, Func<Partial<IssueStatusDto>, Partial<IssueStatusDto>> partialBuilder)
+            => it.AddFieldName("originalStatus", partialBuilder(new Partial<IssueStatusDto>(it)));
+        
     }
     
 }
