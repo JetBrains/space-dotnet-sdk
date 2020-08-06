@@ -47,6 +47,12 @@ namespace SpaceDotNet.Client.DRDraftDtoPartialBuilder
         public static Partial<DRDraftDto> WithPublicationDetails(this Partial<DRDraftDto> it, Func<Partial<DraftPublicationDetailsDto>, Partial<DraftPublicationDetailsDto>> partialBuilder)
             => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetailsDto>(it)));
         
+        public static Partial<DRDraftDto> WithPublicationDetails2(this Partial<DRDraftDto> it)
+            => it.AddFieldName("publicationDetails2");
+        
+        public static Partial<DRDraftDto> WithPublicationDetails2(this Partial<DRDraftDto> it, Func<Partial<PublicationDetailsDto>, Partial<PublicationDetailsDto>> partialBuilder)
+            => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetailsDto>(it)));
+        
         public static Partial<DRDraftDto> WithAuthor(this Partial<DRDraftDto> it)
             => it.AddFieldName("author");
         

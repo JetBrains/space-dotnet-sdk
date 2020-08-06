@@ -21,32 +21,25 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class ActionPayloadDto
-         : IPropagatePropertyAccessPath
+    public sealed class MessageActionPayloadDto
+         : ApplicationPayloadDto, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public ActionPayloadDto() { }
+        [JsonPropertyName("className")]
+        public  string? ClassName => "MessageActionPayload";
         
-        public ActionPayloadDto(string userId, string actionId, string actionValue, string accessToken, ActionDataContextDto context, string? verificationToken = null)
+        public MessageActionPayloadDto() { }
+        
+        public MessageActionPayloadDto(string actionId, string actionValue, MessageContextDto message, string accessToken, string userId, string? verificationToken = null)
         {
-            UserId = userId;
             ActionId = actionId;
             ActionValue = actionValue;
+            Message = message;
             AccessToken = accessToken;
             VerificationToken = verificationToken;
-            Context = context;
+            UserId = userId;
         }
         
-        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(ActionPayloadDto), nameof(UserId));
-        
-        [Required]
-        [JsonPropertyName("userId")]
-        public string UserId
-        {
-            get { return _userId.GetValue(); }
-            set { _userId.SetValue(value); }
-        }
-    
-        private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(ActionPayloadDto), nameof(ActionId));
+        private PropertyValue<string> _actionId = new PropertyValue<string>(nameof(MessageActionPayloadDto), nameof(ActionId));
         
         [Required]
         [JsonPropertyName("actionId")]
@@ -56,7 +49,7 @@ namespace SpaceDotNet.Client
             set { _actionId.SetValue(value); }
         }
     
-        private PropertyValue<string> _actionValue = new PropertyValue<string>(nameof(ActionPayloadDto), nameof(ActionValue));
+        private PropertyValue<string> _actionValue = new PropertyValue<string>(nameof(MessageActionPayloadDto), nameof(ActionValue));
         
         [Required]
         [JsonPropertyName("actionValue")]
@@ -66,7 +59,17 @@ namespace SpaceDotNet.Client
             set { _actionValue.SetValue(value); }
         }
     
-        private PropertyValue<string> _accessToken = new PropertyValue<string>(nameof(ActionPayloadDto), nameof(AccessToken));
+        private PropertyValue<MessageContextDto> _message = new PropertyValue<MessageContextDto>(nameof(MessageActionPayloadDto), nameof(Message));
+        
+        [Required]
+        [JsonPropertyName("message")]
+        public MessageContextDto Message
+        {
+            get { return _message.GetValue(); }
+            set { _message.SetValue(value); }
+        }
+    
+        private PropertyValue<string> _accessToken = new PropertyValue<string>(nameof(MessageActionPayloadDto), nameof(AccessToken));
         
         [Required]
         [JsonPropertyName("accessToken")]
@@ -76,7 +79,7 @@ namespace SpaceDotNet.Client
             set { _accessToken.SetValue(value); }
         }
     
-        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ActionPayloadDto), nameof(VerificationToken));
+        private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessageActionPayloadDto), nameof(VerificationToken));
         
         [JsonPropertyName("verificationToken")]
         public string? VerificationToken
@@ -85,24 +88,24 @@ namespace SpaceDotNet.Client
             set { _verificationToken.SetValue(value); }
         }
     
-        private PropertyValue<ActionDataContextDto> _context = new PropertyValue<ActionDataContextDto>(nameof(ActionPayloadDto), nameof(Context));
+        private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessageActionPayloadDto), nameof(UserId));
         
         [Required]
-        [JsonPropertyName("context")]
-        public ActionDataContextDto Context
+        [JsonPropertyName("userId")]
+        public string UserId
         {
-            get { return _context.GetValue(); }
-            set { _context.SetValue(value); }
+            get { return _userId.GetValue(); }
+            set { _userId.SetValue(value); }
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _userId.SetAccessPath(path, validateHasBeenSet);
             _actionId.SetAccessPath(path, validateHasBeenSet);
             _actionValue.SetAccessPath(path, validateHasBeenSet);
+            _message.SetAccessPath(path, validateHasBeenSet);
             _accessToken.SetAccessPath(path, validateHasBeenSet);
             _verificationToken.SetAccessPath(path, validateHasBeenSet);
-            _context.SetAccessPath(path, validateHasBeenSet);
+            _userId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

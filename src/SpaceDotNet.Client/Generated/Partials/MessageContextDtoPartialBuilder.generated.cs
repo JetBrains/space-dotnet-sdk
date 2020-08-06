@@ -38,14 +38,17 @@ namespace SpaceDotNet.Client.MessageContextDtoPartialBuilder
         public static Partial<MessageContextDto> WithBody(this Partial<MessageContextDto> it, Func<Partial<ChatMessageDto>, Partial<ChatMessageDto>> partialBuilder)
             => it.AddFieldName("body", partialBuilder(new Partial<ChatMessageDto>(it)));
         
-        public static Partial<MessageContextDto> WithAttachment(this Partial<MessageContextDto> it)
-            => it.AddFieldName("attachment");
+        public static Partial<MessageContextDto> WithAttachments(this Partial<MessageContextDto> it)
+            => it.AddFieldName("attachments");
         
-        public static Partial<MessageContextDto> WithAttachment(this Partial<MessageContextDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
-            => it.AddFieldName("attachment", partialBuilder(new Partial<AttachmentDto>(it)));
+        public static Partial<MessageContextDto> WithAttachments(this Partial<MessageContextDto> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>(it)));
         
         public static Partial<MessageContextDto> WithExternalId(this Partial<MessageContextDto> it)
             => it.AddFieldName("externalId");
+        
+        public static Partial<MessageContextDto> WithCreatedTime(this Partial<MessageContextDto> it)
+            => it.AddFieldName("createdTime");
         
     }
     

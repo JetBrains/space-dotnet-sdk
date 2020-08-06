@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public DRDraftHeaderDto() { }
         
-        public DRDraftHeaderDto(string id, string title, TDMemberProfileDto author, SpaceTime modified, bool shared, SpaceTime? created = null, DraftPublicationDetailsDto? publicationDetails = null, bool? deleted = null, DocumentFolderRecordDto? folder = null)
+        public DRDraftHeaderDto(string id, string title, TDMemberProfileDto author, SpaceTime modified, bool shared, SpaceTime? created = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecordDto? folder = null)
         {
             Id = id;
             Title = title;
@@ -35,6 +35,7 @@ namespace SpaceDotNet.Client
             Created = created;
             Shared = shared;
             PublicationDetails = publicationDetails;
+            PublicationDetails2 = publicationDetails2;
             Deleted = deleted;
             Folder = folder;
         }
@@ -107,6 +108,15 @@ namespace SpaceDotNet.Client
             set { _publicationDetails.SetValue(value); }
         }
     
+        private PropertyValue<PublicationDetailsDto?> _publicationDetails2 = new PropertyValue<PublicationDetailsDto?>(nameof(DRDraftHeaderDto), nameof(PublicationDetails2));
+        
+        [JsonPropertyName("publicationDetails2")]
+        public PublicationDetailsDto? PublicationDetails2
+        {
+            get { return _publicationDetails2.GetValue(); }
+            set { _publicationDetails2.SetValue(value); }
+        }
+    
         private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(DRDraftHeaderDto), nameof(Deleted));
         
         [JsonPropertyName("deleted")]
@@ -134,6 +144,7 @@ namespace SpaceDotNet.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails.SetAccessPath(path, validateHasBeenSet);
+            _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
         }

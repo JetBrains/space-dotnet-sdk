@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public TDMemberProfileDto() { }
         
-        public TDMemberProfileDto(string id, string username, TDProfileNameDto name, bool speaksEnglish, List<TDProfileLanguageDto> languages, bool archived, bool notAMember, List<AbsenceRecordDto> absences, List<TDProfileEmailDto> emails, List<string> links, List<string> messengers, List<string> phones, DocumentFolderRecordDto folder, List<PublicHolidayDto> holidays, List<TDMemberLocationDto> locations, List<TDMemberProfileDto> managers, List<TDMembershipDto> membershipHistory, List<TDMembershipDto> memberships, bool onboardingRequired, bool showBannerOnLandingPage, bool showBannerOnProjectPage, bool showBannerOnTeamDirectoryHomePage, Dictionary<string, CFValueDto> customFields, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, string? about = null, AvatarCropSquareDto? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null)
+        public TDMemberProfileDto(string id, string username, TDProfileNameDto name, bool speaksEnglish, List<TDProfileLanguageDto> languages, bool archived, bool notAMember, List<AbsenceRecordDto> absences, List<TDProfileEmailDto> emails, List<string> links, List<string> messengers, List<string> phones, DocumentFolderRecordDto folder, List<PublicHolidayDto> holidays, List<TDMemberLocationDto> locations, List<TDMemberProfileDto> managers, List<TDMembershipDto> membershipHistory, List<TDMembershipDto> memberships, bool onboardingRequired, Dictionary<string, CFValueDto> customFields, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, string? about = null, AvatarCropSquareDto? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null)
         {
             Id = id;
             Username = username;
@@ -307,31 +307,28 @@ namespace SpaceDotNet.Client
             set { _onboardingRequired.SetValue(value); }
         }
     
-        private PropertyValue<bool> _showBannerOnLandingPage = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(ShowBannerOnLandingPage));
+        private PropertyValue<bool?> _showBannerOnLandingPage = new PropertyValue<bool?>(nameof(TDMemberProfileDto), nameof(ShowBannerOnLandingPage));
         
-        [Required]
         [JsonPropertyName("showBannerOnLandingPage")]
-        public bool ShowBannerOnLandingPage
+        public bool? ShowBannerOnLandingPage
         {
             get { return _showBannerOnLandingPage.GetValue(); }
             set { _showBannerOnLandingPage.SetValue(value); }
         }
     
-        private PropertyValue<bool> _showBannerOnProjectPage = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(ShowBannerOnProjectPage));
+        private PropertyValue<bool?> _showBannerOnProjectPage = new PropertyValue<bool?>(nameof(TDMemberProfileDto), nameof(ShowBannerOnProjectPage));
         
-        [Required]
         [JsonPropertyName("showBannerOnProjectPage")]
-        public bool ShowBannerOnProjectPage
+        public bool? ShowBannerOnProjectPage
         {
             get { return _showBannerOnProjectPage.GetValue(); }
             set { _showBannerOnProjectPage.SetValue(value); }
         }
     
-        private PropertyValue<bool> _showBannerOnTeamDirectoryHomePage = new PropertyValue<bool>(nameof(TDMemberProfileDto), nameof(ShowBannerOnTeamDirectoryHomePage));
+        private PropertyValue<bool?> _showBannerOnTeamDirectoryHomePage = new PropertyValue<bool?>(nameof(TDMemberProfileDto), nameof(ShowBannerOnTeamDirectoryHomePage));
         
-        [Required]
         [JsonPropertyName("showBannerOnTeamDirectoryHomePage")]
-        public bool ShowBannerOnTeamDirectoryHomePage
+        public bool? ShowBannerOnTeamDirectoryHomePage
         {
             get { return _showBannerOnTeamDirectoryHomePage.GetValue(); }
             set { _showBannerOnTeamDirectoryHomePage.SetValue(value); }

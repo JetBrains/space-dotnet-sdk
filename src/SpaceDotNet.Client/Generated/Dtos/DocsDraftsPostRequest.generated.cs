@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public DocsDraftsPostRequest() { }
         
-        public DocsDraftsPostRequest(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, DraftPublicationDetailsDto? publicationDetails = null)
+        public DocsDraftsPostRequest(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null)
         {
             Title = title;
             Text = text;
@@ -34,6 +34,7 @@ namespace SpaceDotNet.Client
             Type = (type ?? DraftDocumentType.WYSIWYG);
             Folder = folder;
             PublicationDetails = publicationDetails;
+            PublicationDetails2 = publicationDetails2;
         }
         
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Title));
@@ -90,6 +91,15 @@ namespace SpaceDotNet.Client
             set { _publicationDetails.SetValue(value); }
         }
     
+        private PropertyValue<PublicationDetailsDto?> _publicationDetails2 = new PropertyValue<PublicationDetailsDto?>(nameof(DocsDraftsPostRequest), nameof(PublicationDetails2));
+        
+        [JsonPropertyName("publicationDetails2")]
+        public PublicationDetailsDto? PublicationDetails2
+        {
+            get { return _publicationDetails2.GetValue(); }
+            set { _publicationDetails2.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -98,6 +108,7 @@ namespace SpaceDotNet.Client
             _type.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails.SetAccessPath(path, validateHasBeenSet);
+            _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

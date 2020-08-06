@@ -19,14 +19,10 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.ApplicationPayloadDtoPartialBuilder
 {
-    public interface ActionDataContextDto
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class ApplicationPayloadDtoPartialExtensions
     {
-        public static MessageContextDto MessageContext(string messageId, string channelId, string? messageData = null, ChatMessageDto? body = null, List<AttachmentDto>? attachment = null, string? externalId = null)
-            => new MessageContextDto(messageId: messageId, channelId: channelId, messageData: null, body: null, attachment: null, externalId: null);
-        
     }
     
 }

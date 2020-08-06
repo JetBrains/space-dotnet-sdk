@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public DRDraftDto() { }
         
-        public DRDraftDto(string id, string title, SpaceTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, TextDocumentDto document, SpaceTime? created = null, bool? deleted = null, DraftPublicationDetailsDto? publicationDetails = null, TDMemberProfileDto? author = null, DocumentFolderRecordDto? folder = null)
+        public DRDraftDto(string id, string title, SpaceTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, TextDocumentDto document, SpaceTime? created = null, bool? deleted = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null, TDMemberProfileDto? author = null, DocumentFolderRecordDto? folder = null)
         {
             Id = id;
             Title = title;
@@ -35,6 +35,7 @@ namespace SpaceDotNet.Client
             Shared = shared;
             Deleted = deleted;
             PublicationDetails = publicationDetails;
+            PublicationDetails2 = publicationDetails2;
             Author = author;
             PublishedFlag = publishedFlag;
             Folder = folder;
@@ -109,6 +110,15 @@ namespace SpaceDotNet.Client
         {
             get { return _publicationDetails.GetValue(); }
             set { _publicationDetails.SetValue(value); }
+        }
+    
+        private PropertyValue<PublicationDetailsDto?> _publicationDetails2 = new PropertyValue<PublicationDetailsDto?>(nameof(DRDraftDto), nameof(PublicationDetails2));
+        
+        [JsonPropertyName("publicationDetails2")]
+        public PublicationDetailsDto? PublicationDetails2
+        {
+            get { return _publicationDetails2.GetValue(); }
+            set { _publicationDetails2.SetValue(value); }
         }
     
         private PropertyValue<TDMemberProfileDto?> _author = new PropertyValue<TDMemberProfileDto?>(nameof(DRDraftDto), nameof(Author));
@@ -188,6 +198,7 @@ namespace SpaceDotNet.Client
             _shared.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails.SetAccessPath(path, validateHasBeenSet);
+            _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _publishedFlag.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);

@@ -22,21 +22,19 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class MessageContextDto
-         : ActionDataContextDto, IClassNameConvertible, IPropagatePropertyAccessPath
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public  string? ClassName => "MessageContext";
-        
         public MessageContextDto() { }
         
-        public MessageContextDto(string messageId, string channelId, string? messageData = null, ChatMessageDto? body = null, List<AttachmentDto>? attachment = null, string? externalId = null)
+        public MessageContextDto(string messageId, string channelId, string createdTime, string? messageData = null, ChatMessageDto? body = null, List<AttachmentDto>? attachments = null, string? externalId = null)
         {
             MessageId = messageId;
             ChannelId = channelId;
             MessageData = messageData;
             Body = body;
-            Attachment = attachment;
+            Attachments = attachments;
             ExternalId = externalId;
+            CreatedTime = createdTime;
         }
         
         private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(MessageContextDto), nameof(MessageId));
@@ -77,13 +75,13 @@ namespace SpaceDotNet.Client
             set { _body.SetValue(value); }
         }
     
-        private PropertyValue<List<AttachmentDto>?> _attachment = new PropertyValue<List<AttachmentDto>?>(nameof(MessageContextDto), nameof(Attachment));
+        private PropertyValue<List<AttachmentDto>?> _attachments = new PropertyValue<List<AttachmentDto>?>(nameof(MessageContextDto), nameof(Attachments));
         
-        [JsonPropertyName("attachment")]
-        public List<AttachmentDto>? Attachment
+        [JsonPropertyName("attachments")]
+        public List<AttachmentDto>? Attachments
         {
-            get { return _attachment.GetValue(); }
-            set { _attachment.SetValue(value); }
+            get { return _attachments.GetValue(); }
+            set { _attachments.SetValue(value); }
         }
     
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(MessageContextDto), nameof(ExternalId));
@@ -95,14 +93,25 @@ namespace SpaceDotNet.Client
             set { _externalId.SetValue(value); }
         }
     
+        private PropertyValue<string> _createdTime = new PropertyValue<string>(nameof(MessageContextDto), nameof(CreatedTime));
+        
+        [Required]
+        [JsonPropertyName("createdTime")]
+        public string CreatedTime
+        {
+            get { return _createdTime.GetValue(); }
+            set { _createdTime.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _messageId.SetAccessPath(path, validateHasBeenSet);
             _channelId.SetAccessPath(path, validateHasBeenSet);
             _messageData.SetAccessPath(path, validateHasBeenSet);
             _body.SetAccessPath(path, validateHasBeenSet);
-            _attachment.SetAccessPath(path, validateHasBeenSet);
+            _attachments.SetAccessPath(path, validateHasBeenSet);
             _externalId.SetAccessPath(path, validateHasBeenSet);
+            _createdTime.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

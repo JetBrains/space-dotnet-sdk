@@ -21,18 +21,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class DocsDraftsFolderPostRequest
+    public sealed class CommandDetailDto
          : IPropagatePropertyAccessPath
     {
-        public DocsDraftsFolderPostRequest() { }
+        public CommandDetailDto() { }
         
-        public DocsDraftsFolderPostRequest(string name, string? parentId = null)
+        public CommandDetailDto(string name, string description)
         {
             Name = name;
-            ParentId = parentId;
+            Description = description;
         }
         
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocsDraftsFolderPostRequest), nameof(Name));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CommandDetailDto), nameof(Name));
         
         [Required]
         [JsonPropertyName("name")]
@@ -42,19 +42,20 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(DocsDraftsFolderPostRequest), nameof(ParentId));
+        private PropertyValue<string> _description = new PropertyValue<string>(nameof(CommandDetailDto), nameof(Description));
         
-        [JsonPropertyName("parentId")]
-        public string? ParentId
+        [Required]
+        [JsonPropertyName("description")]
+        public string Description
         {
-            get { return _parentId.GetValue(); }
-            set { _parentId.SetValue(value); }
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
         }
     
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
-            _parentId.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

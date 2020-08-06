@@ -19,10 +19,16 @@ using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ActionDataContextDtoPartialBuilder
+namespace SpaceDotNet.Client.CommandsDtoPartialBuilder
 {
-    public static class ActionDataContextDtoPartialExtensions
+    public static class CommandsDtoPartialExtensions
     {
+        public static Partial<CommandsDto> WithCommands(this Partial<CommandsDto> it)
+            => it.AddFieldName("commands");
+        
+        public static Partial<CommandsDto> WithCommands(this Partial<CommandsDto> it, Func<Partial<CommandDetailDto>, Partial<CommandDetailDto>> partialBuilder)
+            => it.AddFieldName("commands", partialBuilder(new Partial<CommandDetailDto>(it)));
+        
     }
     
 }

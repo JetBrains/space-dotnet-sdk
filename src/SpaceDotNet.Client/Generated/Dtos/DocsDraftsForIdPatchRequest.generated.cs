@@ -26,13 +26,14 @@ namespace SpaceDotNet.Client
     {
         public DocsDraftsForIdPatchRequest() { }
         
-        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null)
+        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null)
         {
             Title = title;
             Text = text;
             TextVersion = textVersion;
             Type = type;
             PublicationDetails = publicationDetails;
+            PublicationDetails2 = publicationDetails2;
         }
         
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(DocsDraftsForIdPatchRequest), nameof(Title));
@@ -80,6 +81,15 @@ namespace SpaceDotNet.Client
             set { _publicationDetails.SetValue(value); }
         }
     
+        private PropertyValue<PublicationDetailsDto?> _publicationDetails2 = new PropertyValue<PublicationDetailsDto?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails2));
+        
+        [JsonPropertyName("publicationDetails2")]
+        public PublicationDetailsDto? PublicationDetails2
+        {
+            get { return _publicationDetails2.GetValue(); }
+            set { _publicationDetails2.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -87,6 +97,7 @@ namespace SpaceDotNet.Client
             _textVersion.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails.SetAccessPath(path, validateHasBeenSet);
+            _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
