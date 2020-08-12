@@ -101,6 +101,12 @@ namespace SpaceDotNet.Client.IssueDtoPartialBuilder
         public static Partial<IssueDto> WithDescription(this Partial<IssueDto> it)
             => it.AddFieldName("description");
         
+        public static Partial<IssueDto> WithSprints(this Partial<IssueDto> it)
+            => it.AddFieldName("sprints");
+        
+        public static Partial<IssueDto> WithSprints(this Partial<IssueDto> it, Func<Partial<SprintRecordDto>, Partial<SprintRecordDto>> partialBuilder)
+            => it.AddFieldName("sprints", partialBuilder(new Partial<SprintRecordDto>(it)));
+        
     }
     
 }

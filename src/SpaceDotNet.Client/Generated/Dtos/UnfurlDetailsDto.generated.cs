@@ -60,6 +60,9 @@ namespace SpaceDotNet.Client
         public static UnfurlDetailsProfileDto Profile(TDMemberProfileDto profile)
             => new UnfurlDetailsProfileDto(profile: profile);
         
+        public static UnfurlDetailsSprintDto Sprint(PRProjectDto project, SprintRecordDto sprint)
+            => new UnfurlDetailsSprintDto(project: project, sprint: sprint);
+        
         public static UnfurlDetailsTeamDto Team(TDTeamDto team)
             => new UnfurlDetailsTeamDto(team: team);
         

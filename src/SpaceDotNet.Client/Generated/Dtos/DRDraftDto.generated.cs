@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public DRDraftDto() { }
         
-        public DRDraftDto(string id, string title, SpaceTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, TextDocumentDto document, SpaceTime? created = null, bool? deleted = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null, TDMemberProfileDto? author = null, DocumentFolderRecordDto? folder = null)
+        public DRDraftDto(string id, string title, SpaceTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfileDto> editors, List<TDTeamDto> editorsTeams, TextDocumentDto document, SpaceTime? created = null, bool? deleted = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null, TDMemberProfileDto? author = null, bool? published = null, DocumentFolderRecordDto? folder = null)
         {
             Id = id;
             Title = title;
@@ -38,6 +38,7 @@ namespace SpaceDotNet.Client
             PublicationDetails2 = publicationDetails2;
             Author = author;
             PublishedFlag = publishedFlag;
+            Published = published;
             Folder = folder;
             AccessOrdinal = accessOrdinal;
             Editors = editors;
@@ -140,6 +141,15 @@ namespace SpaceDotNet.Client
             set { _publishedFlag.SetValue(value); }
         }
     
+        private PropertyValue<bool?> _published = new PropertyValue<bool?>(nameof(DRDraftDto), nameof(Published));
+        
+        [JsonPropertyName("published")]
+        public bool? Published
+        {
+            get { return _published.GetValue(); }
+            set { _published.SetValue(value); }
+        }
+    
         private PropertyValue<DocumentFolderRecordDto?> _folder = new PropertyValue<DocumentFolderRecordDto?>(nameof(DRDraftDto), nameof(Folder));
         
         [JsonPropertyName("folder")]
@@ -201,6 +211,7 @@ namespace SpaceDotNet.Client
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _publishedFlag.SetAccessPath(path, validateHasBeenSet);
+            _published.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
             _accessOrdinal.SetAccessPath(path, validateHasBeenSet);
             _editors.SetAccessPath(path, validateHasBeenSet);

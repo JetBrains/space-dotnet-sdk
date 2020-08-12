@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
         {
             Title = title;
             Description = description;
@@ -35,6 +35,7 @@ namespace SpaceDotNet.Client
             DueDate = dueDate;
             Tags = (tags ?? new List<string>());
             Checklists = (checklists ?? new List<string>());
+            Sprints = (sprints ?? new List<string>());
             Attachments = (attachments ?? new List<AttachmentDto>());
             ImportInfo = importInfo;
         }
@@ -104,6 +105,15 @@ namespace SpaceDotNet.Client
             set { _checklists.SetValue(value); }
         }
     
+        private PropertyValue<List<string>> _sprints = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Sprints));
+        
+        [JsonPropertyName("sprints")]
+        public List<string> Sprints
+        {
+            get { return _sprints.GetValue(); }
+            set { _sprints.SetValue(value); }
+        }
+    
         private PropertyValue<List<AttachmentDto>?> _attachments = new PropertyValue<List<AttachmentDto>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
@@ -131,6 +141,7 @@ namespace SpaceDotNet.Client
             _dueDate.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
             _checklists.SetAccessPath(path, validateHasBeenSet);
+            _sprints.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _importInfo.SetAccessPath(path, validateHasBeenSet);
         }

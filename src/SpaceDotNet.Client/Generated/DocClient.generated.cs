@@ -91,6 +91,9 @@ namespace SpaceDotNet.Client
                         }
                 );
             
+                public async Task<DocumentFolderRecordDto> GetFolderByAliasAsync(string alias, Func<Partial<DocumentFolderRecordDto>, Partial<DocumentFolderRecordDto>>? partial = null)
+                    => await _connection.RequestResourceAsync<DocumentFolderRecordDto>("GET", $"api/http/docs/drafts/folder/alias:{alias}?$fields={(partial != null ? partial(new Partial<DocumentFolderRecordDto>()) : Partial<DocumentFolderRecordDto>.Default())}");
+            
                 public async Task DeleteFolderAsync(string id)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/folder/{id}");
             

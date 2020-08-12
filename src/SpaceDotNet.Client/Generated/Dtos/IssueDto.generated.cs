@@ -26,7 +26,7 @@ namespace SpaceDotNet.Client
     {
         public IssueDto() { }
         
-        public IssueDto(string id, bool archived, string projectId, int number, CPrincipalDto createdBy, SpaceTime creationTime, IssueStatusDto status, List<PlanningTagDto> tags, string title, List<ChecklistDto> checklists, List<AttachmentInfoDto> attachments, M2ChannelRecordDto channel, PRProjectDto? projectRef = null, TDMemberProfileDto? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfoDto? importInfo = null, string? description = null)
+        public IssueDto(string id, bool archived, string projectId, int number, CPrincipalDto createdBy, SpaceTime creationTime, IssueStatusDto status, List<PlanningTagDto> tags, string title, List<ChecklistDto> checklists, List<AttachmentInfoDto> attachments, M2ChannelRecordDto channel, List<SprintRecordDto> sprints, PRProjectDto? projectRef = null, TDMemberProfileDto? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfoDto? importInfo = null, string? description = null)
         {
             Id = id;
             Archived = archived;
@@ -45,6 +45,7 @@ namespace SpaceDotNet.Client
             Attachments = attachments;
             Channel = channel;
             Description = description;
+            Sprints = sprints;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(IssueDto), nameof(Id));
@@ -212,6 +213,16 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
+        private PropertyValue<List<SprintRecordDto>> _sprints = new PropertyValue<List<SprintRecordDto>>(nameof(IssueDto), nameof(Sprints));
+        
+        [Required]
+        [JsonPropertyName("sprints")]
+        public List<SprintRecordDto> Sprints
+        {
+            get { return _sprints.GetValue(); }
+            set { _sprints.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -231,6 +242,7 @@ namespace SpaceDotNet.Client
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
+            _sprints.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

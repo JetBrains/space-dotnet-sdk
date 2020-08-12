@@ -1247,7 +1247,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<IssueDto> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null, Func<Partial<IssueDto>, Partial<IssueDto>>? partial = null)
+                public async Task<IssueDto> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null, Func<Partial<IssueDto>, Partial<IssueDto>>? partial = null)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, IssueDto>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<IssueDto>()) : Partial<IssueDto>.Default())}", 
                         new ProjectsForProjectPlanningIssuesPostRequest { 
                             Title = title,
@@ -1257,6 +1257,7 @@ namespace SpaceDotNet.Client
                             DueDate = dueDate,
                             Tags = (tags ?? new List<string>()),
                             Checklists = (checklists ?? new List<string>()),
+                            Sprints = (sprints ?? new List<string>()),
                             Attachments = (attachments ?? new List<AttachmentDto>()),
                             ImportInfo = importInfo,
                         }

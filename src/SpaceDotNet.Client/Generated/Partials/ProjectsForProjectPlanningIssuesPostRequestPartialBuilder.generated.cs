@@ -47,6 +47,9 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesPostRequestPartialB
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithChecklists(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
             => it.AddFieldName("checklists");
         
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithSprints(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+            => it.AddFieldName("sprints");
+        
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
             => it.AddFieldName("attachments");
         
