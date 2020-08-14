@@ -256,7 +256,6 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
         {
             private ActionId(string value) : base(value) { }
         
-            public static readonly ActionId Start = new ActionId("catering-start");
             public static readonly ActionId Food = new ActionId("catering-food");
             public static readonly ActionId Drinks = new ActionId("catering-drinks");
             public static readonly ActionId DrinkAdditions = new ActionId("catering-drinkadditions");
