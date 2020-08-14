@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
@@ -26,12 +27,13 @@ namespace SpaceDotNet.Client
     {
         public DocsDraftsForIdPatchRequest() { }
         
-        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null)
+        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null)
         {
             Title = title;
             Text = text;
             TextVersion = textVersion;
             Type = type;
+            Folder = folder;
             PublicationDetails = publicationDetails;
             PublicationDetails2 = publicationDetails2;
         }
@@ -72,6 +74,15 @@ namespace SpaceDotNet.Client
             set { _type.SetValue(value); }
         }
     
+        private PropertyValue<string?> _folder = new PropertyValue<string?>(nameof(DocsDraftsForIdPatchRequest), nameof(Folder));
+        
+        [JsonPropertyName("folder")]
+        public string? Folder
+        {
+            get { return _folder.GetValue(); }
+            set { _folder.SetValue(value); }
+        }
+    
         private PropertyValue<DraftPublicationDetailsDto?> _publicationDetails = new PropertyValue<DraftPublicationDetailsDto?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails));
         
         [JsonPropertyName("publicationDetails")]
@@ -96,6 +107,7 @@ namespace SpaceDotNet.Client
             _text.SetAccessPath(path, validateHasBeenSet);
             _textVersion.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
+            _folder.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         }

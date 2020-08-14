@@ -12,6 +12,7 @@ namespace SpaceDotNet.Common.Json.Serialization.Internal
                 subject
                     .Replace("{", "For-")
                     .Replace("}", string.Empty)
+                    .Replace("?", string.Empty)
                     .Replace("'s", string.Empty)
                     .Split(IdentifierSeparators)
                     .Select(it => StringExtensions.ToUppercaseFirst(it)));

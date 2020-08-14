@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
         
         public MergeRequestRecordDto() { }
         
-        public MergeRequestRecordDto(ProjectKeyDto project, int number, string title, CodeReviewState state, long createdAt, TDMemberProfileDto createdBy, List<MergeRequestBranchPairDto> branchPairs, bool? canBeReopened = null, bool? turnBased = null, M2ChannelRecordDto? feedChannel = null)
+        public MergeRequestRecordDto(ProjectKeyDto project, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPairDto> branchPairs, bool? canBeReopened = null, TDMemberProfileDto? createdBy = null, bool? turnBased = null, M2ChannelRecordDto? feedChannel = null)
         {
             Project = project;
             Number = number;
@@ -102,11 +103,10 @@ namespace SpaceDotNet.Client
             set { _createdAt.SetValue(value); }
         }
     
-        private PropertyValue<TDMemberProfileDto> _createdBy = new PropertyValue<TDMemberProfileDto>(nameof(MergeRequestRecordDto), nameof(CreatedBy));
+        private PropertyValue<TDMemberProfileDto?> _createdBy = new PropertyValue<TDMemberProfileDto?>(nameof(MergeRequestRecordDto), nameof(CreatedBy));
         
-        [Required]
         [JsonPropertyName("createdBy")]
-        public TDMemberProfileDto CreatedBy
+        public TDMemberProfileDto? CreatedBy
         {
             get { return _createdBy.GetValue(); }
             set { _createdBy.SetValue(value); }

@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
@@ -31,8 +32,17 @@ namespace SpaceDotNet.Client
         public static ArticleHitDto ArticleHit(string id, double score, string title, string body, ArticleRecordDto @ref)
             => new ArticleHitDto(id: id, score: score, title: title, body: body, @ref: @ref);
         
+        public static BookHitDto BookHit(string id, double score, KBBookDto @ref, string title, string summary)
+            => new BookHitDto(id: id, score: score, @ref: @ref, title: title, summary: summary);
+        
         public static DefaultValueHitDto DefaultValueHit()
             => new DefaultValueHitDto();
+        
+        public static FolderHitDto FolderHit(string id, double score, string bookId, string name)
+            => new FolderHitDto(id: id, score: score, bookId: bookId, name: name);
+        
+        public static KbArticleHitDto KbArticleHit(string id, double score, string bookId, string title, string body)
+            => new KbArticleHitDto(id: id, score: score, bookId: bookId, title: title, body: body);
         
         public static MessageHitDto MessageHit(string id, string parentItemId, double score, M2ChannelRecordDto channel, ChannelItemRecordDto @ref, string message, bool threadStarter, string? thread = null)
             => new MessageHitDto(id: id, parentItemId: parentItemId, score: score, channel: channel, @ref: @ref, message: message, threadStarter: threadStarter, thread: null);

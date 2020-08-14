@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client.DocsDraftsForIdPatchRequestPartialBuilder
@@ -37,6 +38,9 @@ namespace SpaceDotNet.Client.DocsDraftsForIdPatchRequestPartialBuilder
         
         public static Partial<DocsDraftsForIdPatchRequest> WithType(this Partial<DocsDraftsForIdPatchRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
             => it.AddFieldName("type", partialBuilder(new Partial<DraftDocumentType>(it)));
+        
+        public static Partial<DocsDraftsForIdPatchRequest> WithFolder(this Partial<DocsDraftsForIdPatchRequest> it)
+            => it.AddFieldName("folder");
         
         public static Partial<DocsDraftsForIdPatchRequest> WithPublicationDetails(this Partial<DocsDraftsForIdPatchRequest> it)
             => it.AddFieldName("publicationDetails");

@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
         
         public CommitSetReviewRecordDto() { }
         
-        public CommitSetReviewRecordDto(ProjectKeyDto project, int number, string title, CodeReviewState state, long createdAt, TDMemberProfileDto createdBy, bool? canBeReopened = null, bool? turnBased = null, M2ChannelRecordDto? feedChannel = null)
+        public CommitSetReviewRecordDto(ProjectKeyDto project, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfileDto? createdBy = null, bool? turnBased = null, M2ChannelRecordDto? feedChannel = null)
         {
             Project = project;
             Number = number;
@@ -101,11 +102,10 @@ namespace SpaceDotNet.Client
             set { _createdAt.SetValue(value); }
         }
     
-        private PropertyValue<TDMemberProfileDto> _createdBy = new PropertyValue<TDMemberProfileDto>(nameof(CommitSetReviewRecordDto), nameof(CreatedBy));
+        private PropertyValue<TDMemberProfileDto?> _createdBy = new PropertyValue<TDMemberProfileDto?>(nameof(CommitSetReviewRecordDto), nameof(CreatedBy));
         
-        [Required]
         [JsonPropertyName("createdBy")]
-        public TDMemberProfileDto CreatedBy
+        public TDMemberProfileDto? CreatedBy
         {
             get { return _createdBy.GetValue(); }
             set { _createdBy.SetValue(value); }
