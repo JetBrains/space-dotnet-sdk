@@ -30,7 +30,10 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
                     unfurlLinks: false);
             }
 
-            await _chatClient.Messages.SendMessageAsync(
+            Sessions.TryGetValue(payload.UserId, out var cateringSession);
+            
+            await SendOrEditMessageAsync(
+                channelId: payload.Message.ChannelId,
                 recipient: MessageRecipientDto.Channel(ChatChannelDto.FromId(payload.Message.ChannelId)),
                 content: ChatMessageDto.Block(
                     outline: new MessageOutlineDto("Anything to eat or drink while we are on our way to Space?"),
@@ -51,7 +54,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
                         }
                     },
                     style: MessageStyle.PRIMARY),
-                unfurlLinks: false);
+                cateringSession: cateringSession);
         }
 
         public async Task HandleAsync(MessageActionPayloadDto payload)
@@ -218,7 +221,10 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
         }
 
         private async Task SendOrEditMessageAsync(
-            string? channelId, MessageRecipientDto recipient, ChatMessageDto content, CateringSession cateringSession)
+            string? channelId, 
+            MessageRecipientDto recipient, 
+            ChatMessageDto content,
+            CateringSession cateringSession)
         {
             if (string.IsNullOrEmpty(cateringSession.ExistingMessageId) || string.IsNullOrEmpty(channelId))
             {
