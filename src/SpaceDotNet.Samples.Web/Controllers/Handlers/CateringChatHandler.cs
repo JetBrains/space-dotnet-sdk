@@ -31,6 +31,11 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             }
 
             Sessions.TryGetValue(payload.UserId, out var cateringSession);
+            if (cateringSession == null)
+            {
+                cateringSession = new CateringSession();
+                Sessions[payload.UserId] = cateringSession;
+            }
             
             await SendOrEditMessageAsync(
                 channelId: payload.Message.ChannelId,
