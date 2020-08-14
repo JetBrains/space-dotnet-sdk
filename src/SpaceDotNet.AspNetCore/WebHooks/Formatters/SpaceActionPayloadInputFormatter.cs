@@ -10,6 +10,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SpaceDotNet.Client;
+using SpaceDotNet.Common.Json.Serialization;
+using SpaceDotNet.Common.Json.Serialization.Polymorphism;
+using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
 {
@@ -42,6 +45,8 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
         {
             _options = options;
             _logger = logger;
+
+            _jsonSerializerOptions.AddSpacePolymorphismConverters();
             
             SupportedEncodings.Add(UTF8EncodingWithoutBOM);
             SupportedEncodings.Add(UTF16EncodingLittleEndian);
@@ -104,7 +109,11 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
                 }
                     
                 model = JsonSerializer.Deserialize(inputJsonString, context.ModelType, _jsonSerializerOptions) as ApplicationPayloadDto;
-
+                if (model != null)
+                {
+                    PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, model);
+                }
+                
                 var payloadVerificationTokenValue = GetPayloadVerificationTokenValue(model);
                 if (!string.IsNullOrEmpty(payloadVerificationTokenValue))
                 {

@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
+using SpaceDotNet.Common.Json.Serialization.Internal;
 using SpaceDotNet.Common.Types;
 
 #nullable disable
 
-namespace SpaceDotNet.Common.Json.Serialization
+namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
 {
-    public class ClassNameInterfaceDtoTypeConverter : ClassNameDtoTypeConverter
-    {
-        public override bool CanConvert(Type objectType) 
-            => objectType.IsInterface && objectType.Namespace == SpaceDotNetClientNamespace && objectType.FullName != null && objectType.FullName.EndsWith("Dto");
-    }
-    
     public class ClassNameDtoTypeConverter : JsonConverter<IClassNameConvertible>
     {
         protected readonly string SpaceDotNetClientNamespace = "SpaceDotNet.Client";
@@ -40,7 +35,7 @@ namespace SpaceDotNet.Common.Json.Serialization
             {
                 if (!TypeMap.TryGetValue(className, out var targetType))
                 {
-                    targetType = Type.GetType(SpaceDotNetClientNamespace + "." + className + "Dto, " + SpaceDotNetClientAssemblyName);
+                    targetType = Type.GetType(SpaceDotNetClientNamespace + "." + CSharpIdentifier.ForClassOrNamespace(className) + "Dto, " + SpaceDotNetClientAssemblyName);
                     if (targetType != null)
                     {
                         TypeMap[className] = targetType;

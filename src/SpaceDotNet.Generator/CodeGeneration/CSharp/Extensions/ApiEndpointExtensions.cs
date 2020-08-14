@@ -1,6 +1,6 @@
+using SpaceDotNet.Common.Utilities;
 using SpaceDotNet.Generator.CodeGeneration.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
-using SpaceDotNet.Generator.Utilities;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 {

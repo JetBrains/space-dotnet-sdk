@@ -1,5 +1,5 @@
 using System.Linq;
-using SpaceDotNet.Generator.Utilities;
+using SpaceDotNet.Common.Utilities;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {

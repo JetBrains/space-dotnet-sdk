@@ -71,16 +71,31 @@ namespace SpaceDotNet.Samples.Web.Controllers
         
         [HttpPost]
         [Route("receive")]
-        public async Task<IActionResult> Receive([FromBody]MessageActionPayloadDto payload)
+        public async Task<IActionResult> Receive([FromBody]ApplicationPayloadDto payload)
         {
-            if (payload.ActionId.StartsWith(CateringChatHandler.ActionIdPrefix))
+            if (payload is ListCommandsPayloadDto listCommandsPayload)
             {
-                var handler = new CateringChatHandler(_connection);
-                await handler.HandleAsync(payload);
+                // noop
                 return Ok();
             }
+            if (payload is MessagePayloadDto messagePayload)
+            {
+                // noop
+                return Ok();
+            }
+            if (payload is MessageActionPayloadDto actionPayload)
+            {
+                if (actionPayload.ActionId.StartsWith(CateringChatHandler.ActionIdPrefix))
+                {
+                    var handler = new CateringChatHandler(_connection);
+                    await handler.HandleAsync(actionPayload);
+                    return Ok();
+                }
+                
+                return BadRequest($"Action with id '{actionPayload.ActionId}' is not supported.");
+            }
 
-            return BadRequest($"Action with id '{payload.ActionId}' is not supported.");
+            return BadRequest($"Payload is not supported.");
         }
     }
 }

@@ -16,6 +16,6 @@ namespace SpaceDotNet.AspNetCore.WebHooks
         }
         
         public void PostConfigure(string name, MvcOptions options) =>
-            options.InputFormatters.Add(_inputFormatter);
+            options.InputFormatters.Insert(0, _inputFormatter);
     }
 }

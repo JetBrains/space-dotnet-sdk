@@ -38,6 +38,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}using SpaceDotNet.Client.Internal;");
             builder.AppendLine($"{indent}using SpaceDotNet.Common;");
             builder.AppendLine($"{indent}using SpaceDotNet.Common.Json.Serialization;");
+            builder.AppendLine($"{indent}using SpaceDotNet.Common.Json.Serialization.Polymorphism;");
             builder.AppendLine($"{indent}using SpaceDotNet.Common.Types;");
             builder.AppendLine($"{indent}");
             builder.AppendLine($"{indent}namespace SpaceDotNet.Client{(!string.IsNullOrEmpty(_namespaceSuffix) ? "." + _namespaceSuffix : "")}");

@@ -1,4 +1,4 @@
-namespace SpaceDotNet.Generator.Utilities
+namespace SpaceDotNet.Common.Utilities
 {
     public static class StringExtensions
     {
