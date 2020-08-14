@@ -73,7 +73,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 return;
             } 
-            else if (actionId == ActionId.Start || cateringSession == null)
+            else if (cateringSession == null)
             {
                 cateringSession = new CateringSession();
                 Sessions[payload.UserId] = cateringSession;
