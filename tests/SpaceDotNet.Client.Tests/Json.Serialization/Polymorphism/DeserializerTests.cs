@@ -12,8 +12,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization.Polymorphism
                 MaxDepth = 32,
                 PropertyNameCaseInsensitive = true,
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase
-            }.AddSpacePolymorphismConverters();
-
+            }.AddSpaceJsonTypeConverters();
 
         [Fact]
         public void CanDeserializeObjectWithPolymorphClasses()

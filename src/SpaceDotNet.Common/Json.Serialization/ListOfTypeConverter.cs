@@ -4,16 +4,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using SpaceDotNet.Common.Types;
 
 #nullable disable
 
-namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
+namespace SpaceDotNet.Common.Json.Serialization
 {
     // Concept: https://www.mrlacey.com/2019/10/deserializing-generic-interfaces-with.html
-    public class ListOfClassNameInterfaceDtoTypeConverter : JsonConverter<object>
+    public abstract class ListOfTypeConverter<TElement> : JsonConverter<object>
     {
-        private readonly ClassNameInterfaceDtoTypeConverter _elementReader = new ClassNameInterfaceDtoTypeConverter();
+        private readonly JsonConverter<TElement> _elementConverter;
+
+        protected ListOfTypeConverter(JsonConverter<TElement> elementConverter)
+        {
+            _elementConverter = elementConverter;
+        }
         
         public override bool CanConvert(Type objectType)
         {
@@ -22,7 +26,7 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
                 var genericArgument = objectType.GetGenericArguments().FirstOrDefault();
                 if (genericArgument != null)
                 {
-                    return _elementReader.CanConvert(genericArgument);
+                    return _elementConverter.CanConvert(genericArgument);
                 }
             }
 
@@ -43,7 +47,7 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
             
             while (reader.Read() && reader.TokenType != JsonTokenType.EndArray)
             {
-                var element = _elementReader.Read(ref reader, typeof(IClassNameConvertible), options);
+                var element = _elementConverter.Read(ref reader, typeof(TElement), options);
                 collection.Add(element);
             }
 
@@ -52,7 +56,23 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
 
         public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
         {
-            JsonSerializer.Serialize(writer, value, value.GetType(), options);
+            if (value == null)
+            {
+                writer.WriteNullValue();
+                return;
+            }
+            
+            var enumerable = value as IEnumerable<TElement>;
+            if (enumerable == null) return;
+            
+            writer.WriteStartArray();
+            
+            foreach (var item in enumerable)
+            {
+                _elementConverter.Write(writer, item, options);
+            }
+            
+            writer.WriteEndArray();
         }
     }
 }

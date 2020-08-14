@@ -29,7 +29,7 @@ namespace SpaceDotNet.Common
         /// </summary>
         static Connection()
         {
-            JsonSerializerOptions.AddSpacePolymorphismConverters();
+            JsonSerializerOptions.AddSpaceJsonTypeConverters();
         }
         
         /// <summary>

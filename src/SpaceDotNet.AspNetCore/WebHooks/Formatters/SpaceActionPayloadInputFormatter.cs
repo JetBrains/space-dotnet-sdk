@@ -10,7 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SpaceDotNet.Client;
-using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
@@ -46,7 +45,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
             _options = options;
             _logger = logger;
 
-            _jsonSerializerOptions.AddSpacePolymorphismConverters();
+            _jsonSerializerOptions.AddSpaceJsonTypeConverters();
             
             SupportedEncodings.Add(UTF8EncodingWithoutBOM);
             SupportedEncodings.Add(UTF16EncodingLittleEndian);

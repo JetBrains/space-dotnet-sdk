@@ -7,6 +7,13 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Common.Json.Serialization
 {
+    public class ListOfEnumerationConverter : ListOfTypeConverter<Enumeration>
+    {
+        public ListOfEnumerationConverter() : base(new EnumerationConverter())
+        {
+        }
+    }
+    
     public class EnumerationConverter : JsonConverter<Enumeration>
     {
         private static readonly Type EnumerationType = typeof(Enumeration);

@@ -20,6 +20,40 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             _chatClient = new ChatClient(connection);
         }
 
+        public async Task HandleAsync(MessagePayloadDto payload)
+        {
+            if (payload.Message.Body is ChatMessageTextDto messageTextDto && !string.IsNullOrEmpty(messageTextDto.Text))
+            {
+                await _chatClient.Messages.SendMessageAsync(
+                    recipient: MessageRecipientDto.Channel(ChatChannelDto.FromId(payload.Message.ChannelId)),
+                    content: ChatMessageDto.Text("You said: " + messageTextDto.Text),
+                    unfurlLinks: false);
+            }
+
+            await _chatClient.Messages.SendMessageAsync(
+                recipient: MessageRecipientDto.Channel(ChatChannelDto.FromId(payload.Message.ChannelId)),
+                content: ChatMessageDto.Block(
+                    outline: new MessageOutlineDto("Anything to eat or drink while we are on our way to Space?"),
+                    messageData: "Anything to eat or drink while we are on our way to Space?",
+                    sections: new List<MessageSectionElementDto>
+                    {
+                        new MessageSectionDto
+                        {
+                            Header = "JetBrains Space - Catering",
+                            Elements = new List<MessageElementDto>
+                            {
+                                MessageElementDto.MessageText("Anything to eat or drink while we are on our way to Space?"),
+                                MessageElementDto.MessageControlGroup(new List<MessageControlElementDto>
+                                {
+                                    MessageControlElementDto.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, MessageActionDto.Post("catering-start", ""))
+                                })
+                            }
+                        }
+                    },
+                    style: MessageStyle.PRIMARY),
+                unfurlLinks: false);
+        }
+
         public async Task HandleAsync(MessageActionPayloadDto payload)
         {
             var actionId = Enumeration.FromValue<ActionId>(payload.ActionId);

@@ -4,10 +4,11 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
 {
     public static class JsonSerializerOptionsExtensions
     {
-        public static JsonSerializerOptions AddSpacePolymorphismConverters(this JsonSerializerOptions options)
+        public static JsonSerializerOptions AddSpaceJsonTypeConverters(this JsonSerializerOptions options)
         {
             options.Converters.Add(new ClassNameInterfaceDtoTypeConverter());
-            options.Converters.Add(new ListOfClassNameInterfaceDtoTypeConverter());
+            options.Converters.Add(new ListOfClassNameDtoTypeConverter());
+            options.Converters.Add(new ListOfEnumerationConverter());
             return options;
         }
     }
