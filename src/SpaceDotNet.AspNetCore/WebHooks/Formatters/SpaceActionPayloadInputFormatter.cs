@@ -18,7 +18,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
     /// <summary>
     /// Space payload input formatter.
     /// 
-    /// Inspired on <see cref="SystemTextJsonInputFormatter"/>, plus validates Space signature.
+    /// Inspired on <see cref="SystemTextJsonInputFormatter"/>, validates Space signature headers.
     /// </summary>
     public class SpaceActionPayloadInputFormatter 
         : TextInputFormatter, IInputFormatterExceptionPolicy
