@@ -24,6 +24,9 @@ namespace SpaceDotNet.Client.PRRepositoryInfoDtoPartialBuilder
 {
     public static class PRRepositoryInfoDtoPartialExtensions
     {
+        public static Partial<PRRepositoryInfoDto> WithId(this Partial<PRRepositoryInfoDto> it)
+            => it.AddFieldName("id");
+        
         public static Partial<PRRepositoryInfoDto> WithName(this Partial<PRRepositoryInfoDto> it)
             => it.AddFieldName("name");
         

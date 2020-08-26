@@ -106,6 +106,31 @@ namespace SpaceDotNet.Client
         
         }
     
+        public ProfilesSearchClient ProfilesSearch => new ProfilesSearchClient(_connection);
+        
+        public partial class ProfilesSearchClient
+        {
+            private readonly Connection _connection;
+            
+            public ProfilesSearchClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Perform full-text search in all user profiles.
+            /// </summary>
+            public async Task<Batch<ProfileHitDto>> GetAllProfilesSearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<ProfileHitDto>>, Partial<Batch<ProfileHitDto>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<ProfileHitDto>>("GET", $"api/http/full-text-search/profiles-search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<ProfileHitDto>>()) : Partial<Batch<ProfileHitDto>>.Default())}");
+            
+            /// <summary>
+            /// Perform full-text search in all user profiles.
+            /// </summary>
+            public IAsyncEnumerable<ProfileHitDto> GetAllProfilesSearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<ProfileHitDto>, Partial<ProfileHitDto>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesSearchAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<ProfileHitDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ProfileHitDto>.Default())), skip);
+        
+        }
+    
         public SearchClient Search => new SearchClient(_connection);
         
         public partial class SearchClient

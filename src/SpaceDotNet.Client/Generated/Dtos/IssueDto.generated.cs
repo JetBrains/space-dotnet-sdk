@@ -27,12 +27,13 @@ namespace SpaceDotNet.Client
     {
         public IssueDto() { }
         
-        public IssueDto(string id, bool archived, string projectId, int number, CPrincipalDto createdBy, SpaceTime creationTime, IssueStatusDto status, List<PlanningTagDto> tags, string title, List<ChecklistDto> checklists, List<AttachmentInfoDto> attachments, M2ChannelRecordDto channel, List<SprintRecordDto> sprints, PRProjectDto? projectRef = null, TDMemberProfileDto? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfoDto? importInfo = null, string? description = null)
+        public IssueDto(string id, bool archived, string projectId, int number, CPrincipalDto createdBy, SpaceTime creationTime, IssueStatusDto status, List<PlanningTagDto> tags, string title, List<ChecklistDto> checklists, List<AttachmentInfoDto> attachments, M2ChannelRecordDto channel, List<SprintRecordDto> sprints, PRProjectDto? projectRef = null, IssueTrackerDto? trackerRef = null, TDMemberProfileDto? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfoDto? importInfo = null, string? description = null)
         {
             Id = id;
             Archived = archived;
             ProjectId = projectId;
             ProjectRef = projectRef;
+            TrackerRef = trackerRef;
             Number = number;
             CreatedBy = createdBy;
             CreationTime = creationTime;
@@ -86,6 +87,15 @@ namespace SpaceDotNet.Client
         {
             get { return _projectRef.GetValue(); }
             set { _projectRef.SetValue(value); }
+        }
+    
+        private PropertyValue<IssueTrackerDto?> _trackerRef = new PropertyValue<IssueTrackerDto?>(nameof(IssueDto), nameof(TrackerRef));
+        
+        [JsonPropertyName("trackerRef")]
+        public IssueTrackerDto? TrackerRef
+        {
+            get { return _trackerRef.GetValue(); }
+            set { _trackerRef.SetValue(value); }
         }
     
         private PropertyValue<int> _number = new PropertyValue<int>(nameof(IssueDto), nameof(Number));
@@ -230,6 +240,7 @@ namespace SpaceDotNet.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _projectId.SetAccessPath(path, validateHasBeenSet);
             _projectRef.SetAccessPath(path, validateHasBeenSet);
+            _trackerRef.SetAccessPath(path, validateHasBeenSet);
             _number.SetAccessPath(path, validateHasBeenSet);
             _createdBy.SetAccessPath(path, validateHasBeenSet);
             _creationTime.SetAccessPath(path, validateHasBeenSet);

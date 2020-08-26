@@ -27,7 +27,7 @@ namespace SpaceDotNet.Client
     {
         public PRProjectDto() { }
         
-        public PRProjectDto(string id, ProjectKeyDto key, string name, bool @private, bool archived, List<TDMemberProfileDto> adminProfiles, List<TDTeamDto> adminTeams, List<TDMemberProfileDto> memberProfiles, List<TDTeamDto> memberTeams, List<PRRepositoryInfoDto> repos, List<string> tags, List<ProjectPackageRepositoryDto> packages, List<BoardRecordDto> boards, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
+        public PRProjectDto(string id, ProjectKeyDto key, string name, bool @private, bool archived, List<TDMemberProfileDto> adminProfiles, List<TDTeamDto> adminTeams, List<TDMemberProfileDto> memberProfiles, List<TDTeamDto> memberTeams, List<PRRepositoryInfoDto> repos, List<string> tags, List<ProjectPackageRepositoryDto> packages, List<BoardRecordDto> boards, Dictionary<string, IssueTrackerDto> trackers, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
         {
             Id = id;
             Key = key;
@@ -45,6 +45,7 @@ namespace SpaceDotNet.Client
             Tags = tags;
             Packages = packages;
             Boards = boards;
+            Trackers = trackers;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PRProjectDto), nameof(Id));
@@ -204,6 +205,16 @@ namespace SpaceDotNet.Client
             set { _boards.SetValue(value); }
         }
     
+        private PropertyValue<Dictionary<string, IssueTrackerDto>> _trackers = new PropertyValue<Dictionary<string, IssueTrackerDto>>(nameof(PRProjectDto), nameof(Trackers));
+        
+        [Required]
+        [JsonPropertyName("trackers")]
+        public Dictionary<string, IssueTrackerDto> Trackers
+        {
+            get { return _trackers.GetValue(); }
+            set { _trackers.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -222,6 +233,7 @@ namespace SpaceDotNet.Client
             _tags.SetAccessPath(path, validateHasBeenSet);
             _packages.SetAccessPath(path, validateHasBeenSet);
             _boards.SetAccessPath(path, validateHasBeenSet);
+            _trackers.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

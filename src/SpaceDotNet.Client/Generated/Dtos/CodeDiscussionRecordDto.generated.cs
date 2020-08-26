@@ -27,7 +27,7 @@ namespace SpaceDotNet.Client
     {
         public CodeDiscussionRecordDto() { }
         
-        public CodeDiscussionRecordDto(string id, string projectId, CodeDiscussionAnchorDto anchor, SpaceTime created, M2ChannelRecordDto channel, bool resolved, bool archived, CodeDiscussionSnippetDto? snippet = null, bool? pending = null, CodeReviewRecordDto? review = null, List<CodeReviewRecordDto>? reviews = null)
+        public CodeDiscussionRecordDto(string id, string projectId, CodeDiscussionAnchorDto anchor, SpaceTime created, M2ChannelRecordDto channel, bool resolved, bool archived, CodeDiscussionSnippetDto? snippet = null, bool? pending = null, CodeReviewRecordDto? review = null, string? feedItemId = null, List<CodeReviewRecordDto>? reviews = null)
         {
             Id = id;
             ProjectId = projectId;
@@ -38,6 +38,7 @@ namespace SpaceDotNet.Client
             Snippet = snippet;
             Pending = pending;
             Review = review;
+            FeedItemId = feedItemId;
             Reviews = reviews;
             Archived = archived;
         }
@@ -129,6 +130,15 @@ namespace SpaceDotNet.Client
             set { _review.SetValue(value); }
         }
     
+        private PropertyValue<string?> _feedItemId = new PropertyValue<string?>(nameof(CodeDiscussionRecordDto), nameof(FeedItemId));
+        
+        [JsonPropertyName("feedItemId")]
+        public string? FeedItemId
+        {
+            get { return _feedItemId.GetValue(); }
+            set { _feedItemId.SetValue(value); }
+        }
+    
         private PropertyValue<List<CodeReviewRecordDto>?> _reviews = new PropertyValue<List<CodeReviewRecordDto>?>(nameof(CodeDiscussionRecordDto), nameof(Reviews));
         
         [JsonPropertyName("reviews")]
@@ -159,6 +169,7 @@ namespace SpaceDotNet.Client
             _snippet.SetAccessPath(path, validateHasBeenSet);
             _pending.SetAccessPath(path, validateHasBeenSet);
             _review.SetAccessPath(path, validateHasBeenSet);
+            _feedItemId.SetAccessPath(path, validateHasBeenSet);
             _reviews.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }

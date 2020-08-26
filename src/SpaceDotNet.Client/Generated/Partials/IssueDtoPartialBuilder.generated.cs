@@ -39,6 +39,12 @@ namespace SpaceDotNet.Client.IssueDtoPartialBuilder
         public static Partial<IssueDto> WithProjectRef(this Partial<IssueDto> it, Func<Partial<PRProjectDto>, Partial<PRProjectDto>> partialBuilder)
             => it.AddFieldName("projectRef", partialBuilder(new Partial<PRProjectDto>(it)));
         
+        public static Partial<IssueDto> WithTrackerRef(this Partial<IssueDto> it)
+            => it.AddFieldName("trackerRef");
+        
+        public static Partial<IssueDto> WithTrackerRef(this Partial<IssueDto> it, Func<Partial<IssueTrackerDto>, Partial<IssueTrackerDto>> partialBuilder)
+            => it.AddFieldName("trackerRef", partialBuilder(new Partial<IssueTrackerDto>(it)));
+        
         public static Partial<IssueDto> WithNumber(this Partial<IssueDto> it)
             => it.AddFieldName("number");
         
