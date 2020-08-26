@@ -232,7 +232,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.Append(
                     indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
                 builder.Append($"{indent}public async Task<");
-                builder.Append(apiEndpoint.ResponseBody.ToCSharpType(_codeGenerationContext));
+                builder.Append(apiEndpoint.ResponseBody!.ToCSharpType(_codeGenerationContext));
                 builder.Append(">");
                 builder.Append($" {methodNameForEndpoint}Async(");
                 builder.Append(methodParametersBuilder.BuildMethodParametersList());
