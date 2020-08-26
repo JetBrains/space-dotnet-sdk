@@ -18,7 +18,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
         {
             var classNameForParent = CSharpIdentifier.ForClassOrNamespace(parent.Name);
             var classNameForSubject = CSharpIdentifier.ForClassOrNamespace(subject.Name);
-            return classNameForSubject.Replace(classNameForParent, string.Empty);
+            var factoryMethodName = classNameForSubject.Replace(classNameForParent, string.Empty);
+
+            return factoryMethodName;
         }
     }
 }
