@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS0108
 
 using System;
 using System.Collections.Generic;
@@ -95,12 +96,6 @@ namespace SpaceDotNet.Client.PRProjectDtoPartialBuilder
         
         public static Partial<PRProjectDto> WithBoards(this Partial<PRProjectDto> it, Func<Partial<BoardRecordDto>, Partial<BoardRecordDto>> partialBuilder)
             => it.AddFieldName("boards", partialBuilder(new Partial<BoardRecordDto>(it)));
-        
-        public static Partial<PRProjectDto> WithTrackers(this Partial<PRProjectDto> it)
-            => it.AddFieldName("trackers");
-        
-        public static Partial<PRProjectDto> WithTrackers(this Partial<PRProjectDto> it, Func<Partial<IssueTrackerDto>, Partial<IssueTrackerDto>> partialBuilder)
-            => it.AddFieldName("trackers", partialBuilder(new Partial<IssueTrackerDto>(it)));
         
     }
     

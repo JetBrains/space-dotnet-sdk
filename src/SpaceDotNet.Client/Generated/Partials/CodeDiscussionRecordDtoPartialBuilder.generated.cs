@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS0108
 
 using System;
 using System.Collections.Generic;
@@ -62,9 +63,6 @@ namespace SpaceDotNet.Client.CodeDiscussionRecordDtoPartialBuilder
         
         public static Partial<CodeDiscussionRecordDto> WithReview(this Partial<CodeDiscussionRecordDto> it, Func<Partial<CodeReviewRecordDto>, Partial<CodeReviewRecordDto>> partialBuilder)
             => it.AddFieldName("review", partialBuilder(new Partial<CodeReviewRecordDto>(it)));
-        
-        public static Partial<CodeDiscussionRecordDto> WithFeedItemId(this Partial<CodeDiscussionRecordDto> it)
-            => it.AddFieldName("feedItemId");
         
         public static Partial<CodeDiscussionRecordDto> WithReviews(this Partial<CodeDiscussionRecordDto> it)
             => it.AddFieldName("reviews");

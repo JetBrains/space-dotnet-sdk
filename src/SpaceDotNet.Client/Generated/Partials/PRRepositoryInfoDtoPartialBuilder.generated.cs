@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS0108
 
 using System;
 using System.Collections.Generic;
@@ -24,9 +25,6 @@ namespace SpaceDotNet.Client.PRRepositoryInfoDtoPartialBuilder
 {
     public static class PRRepositoryInfoDtoPartialExtensions
     {
-        public static Partial<PRRepositoryInfoDto> WithId(this Partial<PRRepositoryInfoDto> it)
-            => it.AddFieldName("id");
-        
         public static Partial<PRRepositoryInfoDto> WithName(this Partial<PRRepositoryInfoDto> it)
             => it.AddFieldName("name");
         

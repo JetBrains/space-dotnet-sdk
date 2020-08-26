@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS0108
 
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public InvitationLinkDto() { }
         
-        public InvitationLinkDto(string id, string name, CPrincipalDto createdBy, SpaceTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, SpaceTime? expiresAt = null)
+        public InvitationLinkDto(string id, CPrincipalDto createdBy, SpaceTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, string? name = null, SpaceTime? expiresAt = null)
         {
             Id = id;
             Name = name;
@@ -49,11 +50,10 @@ namespace SpaceDotNet.Client
             set { _id.SetValue(value); }
         }
     
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(InvitationLinkDto), nameof(Name));
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(InvitationLinkDto), nameof(Name));
         
-        [Required]
         [JsonPropertyName("name")]
-        public string Name
+        public string? Name
         {
             get { return _name.GetValue(); }
             set { _name.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS0108
 
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace SpaceDotNet.Client
             }
             
             /// <summary>
-            /// Create a meeting.
+            /// Create a meeting. Note: all-day events are not supported yet.
             /// </summary>
             public async Task<DTOMeetingDto> CreateMeetingAsync(string summary, CalendarEventSpecDto occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null, Func<Partial<DTOMeetingDto>, Partial<DTOMeetingDto>>? partial = null)
                 => await _connection.RequestResourceAsync<CalendarsMeetingsPostRequest, DTOMeetingDto>("POST", $"api/http/calendars/meetings?$fields={(partial != null ? partial(new Partial<DTOMeetingDto>()) : Partial<DTOMeetingDto>.Default())}", 
