@@ -28,8 +28,9 @@ namespace SpaceDotNet.Client
     {
         public PRRepositoryInfoDto() { }
         
-        public PRRepositoryInfoDto(string name, string description, RepositoryState state, SpaceTime? latestActivity = null, SpaceTime? proxyPushNotification = null, string? initProgress = null, string? readmeName = null, RepositoryActivityDto? monthlyActivity = null)
+        public PRRepositoryInfoDto(string name, string description, RepositoryState state, string? id = null, SpaceTime? latestActivity = null, SpaceTime? proxyPushNotification = null, string? initProgress = null, string? readmeName = null, RepositoryActivityDto? monthlyActivity = null)
         {
+            Id = id;
             Name = name;
             Description = description;
             LatestActivity = latestActivity;
@@ -40,6 +41,15 @@ namespace SpaceDotNet.Client
             MonthlyActivity = monthlyActivity;
         }
         
+        private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(PRRepositoryInfoDto), nameof(Id));
+        
+        [JsonPropertyName("id")]
+        public string? Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
+    
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRRepositoryInfoDto), nameof(Name));
         
         [Required]
@@ -117,6 +127,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _id.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _latestActivity.SetAccessPath(path, validateHasBeenSet);

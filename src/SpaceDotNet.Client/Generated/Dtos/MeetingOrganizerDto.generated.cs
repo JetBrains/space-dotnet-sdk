@@ -30,6 +30,9 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "MeetingOrganizer";
         
+        public static MeetingOrganizerApplicationDto Application(ESServiceDto appRef)
+            => new MeetingOrganizerApplicationDto(appRef: appRef);
+        
         public static MeetingOrganizerExternalUserDto ExternalUser(string email)
             => new MeetingOrganizerExternalUserDto(email: email);
         

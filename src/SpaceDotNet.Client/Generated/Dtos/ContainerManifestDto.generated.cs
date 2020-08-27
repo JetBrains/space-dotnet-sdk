@@ -28,18 +28,16 @@ namespace SpaceDotNet.Client
     {
         public ContainerManifestDto() { }
         
-        public ContainerManifestDto(string name, string digest, List<string> tags, long created, int schemaVersion, string mediaType, string manifestType, long totalSize, long downloads, long? accessed = null, ContainerImageDto? image = null, ContainerHelmChartDto? chart = null)
+        public ContainerManifestDto(string name, string digest, List<string> tags, long created, int schemaVersion, string mediaType, string manifestType, long totalSize, ContainerImageDto? image = null, ContainerHelmChartDto? chart = null)
         {
             Name = name;
             Digest = digest;
             Tags = tags;
             Created = created;
-            Accessed = accessed;
             SchemaVersion = schemaVersion;
             MediaType = mediaType;
             ManifestType = manifestType;
             TotalSize = totalSize;
-            Downloads = downloads;
             Image = image;
             Chart = chart;
         }
@@ -84,15 +82,6 @@ namespace SpaceDotNet.Client
             set { _created.SetValue(value); }
         }
     
-        private PropertyValue<long?> _accessed = new PropertyValue<long?>(nameof(ContainerManifestDto), nameof(Accessed));
-        
-        [JsonPropertyName("accessed")]
-        public long? Accessed
-        {
-            get { return _accessed.GetValue(); }
-            set { _accessed.SetValue(value); }
-        }
-    
         private PropertyValue<int> _schemaVersion = new PropertyValue<int>(nameof(ContainerManifestDto), nameof(SchemaVersion));
         
         [Required]
@@ -133,16 +122,6 @@ namespace SpaceDotNet.Client
             set { _totalSize.SetValue(value); }
         }
     
-        private PropertyValue<long> _downloads = new PropertyValue<long>(nameof(ContainerManifestDto), nameof(Downloads));
-        
-        [Required]
-        [JsonPropertyName("downloads")]
-        public long Downloads
-        {
-            get { return _downloads.GetValue(); }
-            set { _downloads.SetValue(value); }
-        }
-    
         private PropertyValue<ContainerImageDto?> _image = new PropertyValue<ContainerImageDto?>(nameof(ContainerManifestDto), nameof(Image));
         
         [JsonPropertyName("image")]
@@ -167,12 +146,10 @@ namespace SpaceDotNet.Client
             _digest.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
-            _accessed.SetAccessPath(path, validateHasBeenSet);
             _schemaVersion.SetAccessPath(path, validateHasBeenSet);
             _mediaType.SetAccessPath(path, validateHasBeenSet);
             _manifestType.SetAccessPath(path, validateHasBeenSet);
             _totalSize.SetAccessPath(path, validateHasBeenSet);
-            _downloads.SetAccessPath(path, validateHasBeenSet);
             _image.SetAccessPath(path, validateHasBeenSet);
             _chart.SetAccessPath(path, validateHasBeenSet);
         }

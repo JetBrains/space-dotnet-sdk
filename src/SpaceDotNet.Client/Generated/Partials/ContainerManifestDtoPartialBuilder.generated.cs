@@ -37,9 +37,6 @@ namespace SpaceDotNet.Client.ContainerManifestDtoPartialBuilder
         public static Partial<ContainerManifestDto> WithCreated(this Partial<ContainerManifestDto> it)
             => it.AddFieldName("created");
         
-        public static Partial<ContainerManifestDto> WithAccessed(this Partial<ContainerManifestDto> it)
-            => it.AddFieldName("accessed");
-        
         public static Partial<ContainerManifestDto> WithSchemaVersion(this Partial<ContainerManifestDto> it)
             => it.AddFieldName("schemaVersion");
         
@@ -51,9 +48,6 @@ namespace SpaceDotNet.Client.ContainerManifestDtoPartialBuilder
         
         public static Partial<ContainerManifestDto> WithTotalSize(this Partial<ContainerManifestDto> it)
             => it.AddFieldName("totalSize");
-        
-        public static Partial<ContainerManifestDto> WithDownloads(this Partial<ContainerManifestDto> it)
-            => it.AddFieldName("downloads");
         
         public static Partial<ContainerManifestDto> WithImage(this Partial<ContainerManifestDto> it)
             => it.AddFieldName("image");

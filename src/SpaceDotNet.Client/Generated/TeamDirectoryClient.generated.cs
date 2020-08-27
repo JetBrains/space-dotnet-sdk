@@ -277,14 +277,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get a list of invitations.
             /// </summary>
-            public async Task<Batch<InvitationDto>> GetAllInvitationsAsync(string? skip = null, int? top = 100, Func<Partial<Batch<InvitationDto>>, Partial<Batch<InvitationDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<InvitationDto>>()) : Partial<Batch<InvitationDto>>.Default())}");
+            public async Task<Batch<InvitationDto>> GetAllInvitationsAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<InvitationDto>>, Partial<Batch<InvitationDto>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<InvitationDto>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<InvitationDto>>()) : Partial<Batch<InvitationDto>>.Default())}");
             
             /// <summary>
             /// Get a list of invitations.
             /// </summary>
-            public IAsyncEnumerable<InvitationDto> GetAllInvitationsAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<InvitationDto>, Partial<InvitationDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllInvitationsAsync(top: top, skip: batchSkip, partial: builder => Partial<Batch<InvitationDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<InvitationDto>.Default())), skip);
+            public IAsyncEnumerable<InvitationDto> GetAllInvitationsAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<InvitationDto>, Partial<InvitationDto>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllInvitationsAsync(withDeleted: withDeleted, top: top, skip: batchSkip, partial: builder => Partial<Batch<InvitationDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<InvitationDto>.Default())), skip);
         
             /// <summary>
             /// Update an invitation. Optional parameters will be ignored when not specified, and updated otherwise.
