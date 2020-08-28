@@ -28,27 +28,27 @@ namespace SpaceDotNet.Client
     {
         public BlogsArticlesImportPostRequest() { }
         
-        public BlogsArticlesImportPostRequest(ImportMetadataDto metadata, List<ExternalArticleDto> articles)
+        public BlogsArticlesImportPostRequest(ImportMetadata metadata, List<ExternalArticle> articles)
         {
             Metadata = metadata;
             Articles = articles;
         }
         
-        private PropertyValue<ImportMetadataDto> _metadata = new PropertyValue<ImportMetadataDto>(nameof(BlogsArticlesImportPostRequest), nameof(Metadata));
+        private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogsArticlesImportPostRequest), nameof(Metadata));
         
         [Required]
         [JsonPropertyName("metadata")]
-        public ImportMetadataDto Metadata
+        public ImportMetadata Metadata
         {
             get { return _metadata.GetValue(); }
             set { _metadata.SetValue(value); }
         }
     
-        private PropertyValue<List<ExternalArticleDto>> _articles = new PropertyValue<List<ExternalArticleDto>>(nameof(BlogsArticlesImportPostRequest), nameof(Articles));
+        private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogsArticlesImportPostRequest), nameof(Articles));
         
         [Required]
         [JsonPropertyName("articles")]
-        public List<ExternalArticleDto> Articles
+        public List<ExternalArticle> Articles
         {
             get { return _articles.GetValue(); }
             set { _articles.SetValue(value); }

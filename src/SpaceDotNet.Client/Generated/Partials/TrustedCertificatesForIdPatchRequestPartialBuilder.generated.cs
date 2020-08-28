@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client.TrustedCertificatesForIdPatchRequestPartialBuilder
         public static Partial<TrustedCertificatesForIdPatchRequest> WithData(this Partial<TrustedCertificatesForIdPatchRequest> it)
             => it.AddFieldName("data");
         
-        public static Partial<TrustedCertificatesForIdPatchRequest> WithArchived(this Partial<TrustedCertificatesForIdPatchRequest> it)
+        public static Partial<TrustedCertificatesForIdPatchRequest> WithIsArchived(this Partial<TrustedCertificatesForIdPatchRequest> it)
             => it.AddFieldName("archived");
         
     }

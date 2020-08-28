@@ -30,14 +30,14 @@ namespace SpaceDotNet.Client
         
         public TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest(bool approved)
         {
-            Approved = approved;
+            IsApproved = approved;
         }
         
-        private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest), nameof(Approved));
+        private PropertyValue<bool> _approved = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest), nameof(IsApproved));
         
         [Required]
         [JsonPropertyName("approved")]
-        public bool Approved
+        public bool IsApproved
         {
             get { return _approved.GetValue(); }
             set { _approved.SetValue(value); }

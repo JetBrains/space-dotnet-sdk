@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.ProjectsForProjectCodeReviewsForReviewIdRevisionsPo
         public static Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> WithRevisions(this Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> it)
             => it.AddFieldName("revisions");
         
-        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> WithRevisions(this Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> it, Func<Partial<RevisionInReviewDto>, Partial<RevisionInReviewDto>> partialBuilder)
-            => it.AddFieldName("revisions", partialBuilder(new Partial<RevisionInReviewDto>(it)));
+        public static Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> WithRevisions(this Partial<ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest> it, Func<Partial<RevisionInReview>, Partial<RevisionInReview>> partialBuilder)
+            => it.AddFieldName("revisions", partialBuilder(new Partial<RevisionInReview>(it)));
         
     }
     

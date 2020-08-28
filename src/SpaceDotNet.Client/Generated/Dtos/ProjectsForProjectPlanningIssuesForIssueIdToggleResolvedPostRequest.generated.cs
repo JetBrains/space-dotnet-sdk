@@ -30,14 +30,14 @@ namespace SpaceDotNet.Client
         
         public ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest(bool resolved)
         {
-            Resolved = resolved;
+            IsResolved = resolved;
         }
         
-        private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest), nameof(Resolved));
+        private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest), nameof(IsResolved));
         
         [Required]
         [JsonPropertyName("resolved")]
-        public bool Resolved
+        public bool IsResolved
         {
             get { return _resolved.GetValue(); }
             set { _resolved.SetValue(value); }

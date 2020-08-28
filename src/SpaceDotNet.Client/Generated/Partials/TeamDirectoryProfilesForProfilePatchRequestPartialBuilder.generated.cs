@@ -52,7 +52,7 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfilePatchRequestPartialB
         public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithLinks(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
             => it.AddFieldName("links");
         
-        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithNotAMember(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
+        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithIsNotAMember(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
             => it.AddFieldName("notAMember");
         
         public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithJoined(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
@@ -61,7 +61,7 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfilePatchRequestPartialB
         public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithLeft(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
             => it.AddFieldName("left");
         
-        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithSpeaksEnglish(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
+        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithIsSpeaksEnglish(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
             => it.AddFieldName("speaksEnglish");
         
         public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithPictureAttachmentId(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
@@ -70,14 +70,14 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfilePatchRequestPartialB
         public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithAvatarCropSquare(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
             => it.AddFieldName("avatarCropSquare");
         
-        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithAvatarCropSquare(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it, Func<Partial<AvatarCropSquareDto>, Partial<AvatarCropSquareDto>> partialBuilder)
-            => it.AddFieldName("avatarCropSquare", partialBuilder(new Partial<AvatarCropSquareDto>(it)));
+        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithAvatarCropSquare(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it, Func<Partial<AvatarCropSquare>, Partial<AvatarCropSquare>> partialBuilder)
+            => it.AddFieldName("avatarCropSquare", partialBuilder(new Partial<AvatarCropSquare>(it)));
         
         public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>(it)));
+        public static Partial<TeamDirectoryProfilesForProfilePatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryProfilesForProfilePatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
         
     }
     

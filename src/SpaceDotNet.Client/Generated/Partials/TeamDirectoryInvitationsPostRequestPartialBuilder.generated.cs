@@ -37,14 +37,14 @@ namespace SpaceDotNet.Client.TeamDirectoryInvitationsPostRequestPartialBuilder
         public static Partial<TeamDirectoryInvitationsPostRequest> WithTeam(this Partial<TeamDirectoryInvitationsPostRequest> it)
             => it.AddFieldName("team");
         
-        public static Partial<TeamDirectoryInvitationsPostRequest> WithTeam(this Partial<TeamDirectoryInvitationsPostRequest> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>(it)));
+        public static Partial<TeamDirectoryInvitationsPostRequest> WithTeam(this Partial<TeamDirectoryInvitationsPostRequest> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
         
         public static Partial<TeamDirectoryInvitationsPostRequest> WithRole(this Partial<TeamDirectoryInvitationsPostRequest> it)
             => it.AddFieldName("role");
         
-        public static Partial<TeamDirectoryInvitationsPostRequest> WithRole(this Partial<TeamDirectoryInvitationsPostRequest> it, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<TDRoleDto>(it)));
+        public static Partial<TeamDirectoryInvitationsPostRequest> WithRole(this Partial<TeamDirectoryInvitationsPostRequest> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<TDRole>(it)));
         
     }
     

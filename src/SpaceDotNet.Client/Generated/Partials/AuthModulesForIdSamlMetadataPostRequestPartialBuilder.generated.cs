@@ -40,8 +40,8 @@ namespace SpaceDotNet.Client.AuthModulesForIdSamlMetadataPostRequestPartialBuild
         public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSslKeystore(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
             => it.AddFieldName("sslKeystore");
         
-        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSslKeystore(this Partial<AuthModulesForIdSamlMetadataPostRequest> it, Func<Partial<SSLKeystoreDto>, Partial<SSLKeystoreDto>> partialBuilder)
-            => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystoreDto>(it)));
+        public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithSslKeystore(this Partial<AuthModulesForIdSamlMetadataPostRequest> it, Func<Partial<SSLKeystore>, Partial<SSLKeystore>> partialBuilder)
+            => it.AddFieldName("sslKeystore", partialBuilder(new Partial<SSLKeystore>(it)));
         
         public static Partial<AuthModulesForIdSamlMetadataPostRequest> WithContactProfileId(this Partial<AuthModulesForIdSamlMetadataPostRequest> it)
             => it.AddFieldName("contactProfileId");

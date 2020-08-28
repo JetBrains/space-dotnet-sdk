@@ -37,13 +37,13 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsForIdPatchRequestPartia
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("constraint");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)
-            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFConstraint>, Partial<CFConstraint>> partialBuilder)
+            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraint>(it)));
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithRequired(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithIsRequired(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("required");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithPrivate(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithIsPrivate(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("private");
         
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithAccess(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
@@ -55,14 +55,14 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsForIdPatchRequestPartia
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("defaultValue");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
-            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
+            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValue>(it)));
         
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("enumValues");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<EnumValueDataDto>, Partial<EnumValueDataDto>> partialBuilder)
-            => it.AddFieldName("enumValues", partialBuilder(new Partial<EnumValueDataDto>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
+            => it.AddFieldName("enumValues", partialBuilder(new Partial<EnumValueData>(it)));
         
     }
     

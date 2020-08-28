@@ -32,17 +32,17 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<BillingInfoDto> GetBillingInfoAsync(string? billingPeriod = null, Func<Partial<BillingInfoDto>, Partial<BillingInfoDto>>? partial = null)
-            => await _connection.RequestResourceAsync<BillingInfoDto>("GET", $"api/http/billing-admin/monthly?billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BillingInfoDto>()) : Partial<BillingInfoDto>.Default())}");
+        public async Task<BillingInfo> GetBillingInfoAsync(string? billingPeriod = null, Func<Partial<BillingInfo>, Partial<BillingInfo>>? partial = null)
+            => await _connection.RequestResourceAsync<BillingInfo>("GET", $"api/http/billing-admin/monthly?billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BillingInfo>()) : Partial<BillingInfo>.Default())}");
     
-        public async Task<DailyReportDto> GetBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReportDto>, Partial<DailyReportDto>>? partial = null)
-            => await _connection.RequestResourceAsync<DailyReportDto>("GET", $"api/http/billing-admin/report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReportDto>()) : Partial<DailyReportDto>.Default())}");
+        public async Task<DailyReport> GetBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReport>, Partial<DailyReport>>? partial = null)
+            => await _connection.RequestResourceAsync<DailyReport>("GET", $"api/http/billing-admin/report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReport>()) : Partial<DailyReport>.Default())}");
     
-        public async Task<DailyReportDto> GetStorageBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReportDto>, Partial<DailyReportDto>>? partial = null)
-            => await _connection.RequestResourceAsync<DailyReportDto>("GET", $"api/http/billing-admin/storage-report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReportDto>()) : Partial<DailyReportDto>.Default())}");
+        public async Task<DailyReport> GetStorageBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReport>, Partial<DailyReport>>? partial = null)
+            => await _connection.RequestResourceAsync<DailyReport>("GET", $"api/http/billing-admin/storage-report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReport>()) : Partial<DailyReport>.Default())}");
     
-        public async Task<DailyReportDto> GetTrafficBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReportDto>, Partial<DailyReportDto>>? partial = null)
-            => await _connection.RequestResourceAsync<DailyReportDto>("GET", $"api/http/billing-admin/traffic-report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReportDto>()) : Partial<DailyReportDto>.Default())}");
+        public async Task<DailyReport> GetTrafficBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReport>, Partial<DailyReport>>? partial = null)
+            => await _connection.RequestResourceAsync<DailyReport>("GET", $"api/http/billing-admin/traffic-report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReport>()) : Partial<DailyReport>.Default())}");
     
     }
     

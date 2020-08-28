@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest(string sourceBranch, string targetBranch, string title, List<MergeRequestReviewerDto>? reviewers = null)
+        public ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest(string sourceBranch, string targetBranch, string title, List<MergeRequestReviewer>? reviewers = null)
         {
             SourceBranch = sourceBranch;
             TargetBranch = targetBranch;
@@ -66,10 +66,10 @@ namespace SpaceDotNet.Client
             set { _title.SetValue(value); }
         }
     
-        private PropertyValue<List<MergeRequestReviewerDto>?> _reviewers = new PropertyValue<List<MergeRequestReviewerDto>?>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Reviewers));
+        private PropertyValue<List<MergeRequestReviewer>?> _reviewers = new PropertyValue<List<MergeRequestReviewer>?>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Reviewers));
         
         [JsonPropertyName("reviewers")]
-        public List<MergeRequestReviewerDto>? Reviewers
+        public List<MergeRequestReviewer>? Reviewers
         {
             get { return _reviewers.GetValue(); }
             set { _reviewers.SetValue(value); }

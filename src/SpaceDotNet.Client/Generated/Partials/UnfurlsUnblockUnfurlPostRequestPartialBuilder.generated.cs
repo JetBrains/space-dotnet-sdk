@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client.UnfurlsUnblockUnfurlPostRequestPartialBuilder
         public static Partial<UnfurlsUnblockUnfurlPostRequest> WithLink(this Partial<UnfurlsUnblockUnfurlPostRequest> it)
             => it.AddFieldName("link");
         
-        public static Partial<UnfurlsUnblockUnfurlPostRequest> WithWholeHost(this Partial<UnfurlsUnblockUnfurlPostRequest> it)
+        public static Partial<UnfurlsUnblockUnfurlPostRequest> WithIsWholeHost(this Partial<UnfurlsUnblockUnfurlPostRequest> it)
             => it.AddFieldName("wholeHost");
         
     }

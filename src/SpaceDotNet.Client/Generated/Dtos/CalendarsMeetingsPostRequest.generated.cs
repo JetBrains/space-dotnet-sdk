@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarsMeetingsPostRequest() { }
         
-        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpecDto occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null)
+        public CalendarsMeetingsPostRequest(string summary, CalendarEventSpec occurrenceRule, List<string>? locations = null, List<string>? profiles = null, List<string>? externalParticipants = null, List<string>? teams = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, bool notifyOnExport = true, string? description = null, string? organizer = null)
         {
             Summary = summary;
             Description = description;
@@ -40,7 +40,7 @@ namespace SpaceDotNet.Client
             Visibility = (visibility ?? MeetingVisibility.EVERYONE);
             ModificationPreference = (modificationPreference ?? MeetingModificationPreference.PARTICIPANTS);
             JoiningPreference = (joiningPreference ?? MeetingJoiningPreference.NOBODY);
-            NotifyOnExport = notifyOnExport;
+            IsNotifyOnExport = notifyOnExport;
             Organizer = organizer;
         }
         
@@ -63,11 +63,11 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<CalendarEventSpecDto> _occurrenceRule = new PropertyValue<CalendarEventSpecDto>(nameof(CalendarsMeetingsPostRequest), nameof(OccurrenceRule));
+        private PropertyValue<CalendarEventSpec> _occurrenceRule = new PropertyValue<CalendarEventSpec>(nameof(CalendarsMeetingsPostRequest), nameof(OccurrenceRule));
         
         [Required]
         [JsonPropertyName("occurrenceRule")]
-        public CalendarEventSpecDto OccurrenceRule
+        public CalendarEventSpec OccurrenceRule
         {
             get { return _occurrenceRule.GetValue(); }
             set { _occurrenceRule.SetValue(value); }
@@ -136,10 +136,10 @@ namespace SpaceDotNet.Client
             set { _joiningPreference.SetValue(value); }
         }
     
-        private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsPostRequest), nameof(NotifyOnExport));
+        private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsPostRequest), nameof(IsNotifyOnExport));
         
         [JsonPropertyName("notifyOnExport")]
-        public bool NotifyOnExport
+        public bool IsNotifyOnExport
         {
             get { return _notifyOnExport.GetValue(); }
             set { _notifyOnExport.SetValue(value); }

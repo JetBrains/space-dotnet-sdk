@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesForIssueIdCommentsI
         public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> WithComments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> it)
             => it.AddFieldName("comments");
         
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> WithComments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)
-            => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImportDto>(it)));
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> WithComments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest> it, Func<Partial<MessageForImport>, Partial<MessageForImport>> partialBuilder)
+            => it.AddFieldName("comments", partialBuilder(new Partial<MessageForImport>(it)));
         
     }
     

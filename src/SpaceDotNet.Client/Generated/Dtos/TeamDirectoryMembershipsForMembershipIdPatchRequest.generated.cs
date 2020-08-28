@@ -28,15 +28,15 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMembershipsForMembershipIdPatchRequest() { }
         
-        public TeamDirectoryMembershipsForMembershipIdPatchRequest(bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public TeamDirectoryMembershipsForMembershipIdPatchRequest(bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, List<CustomFieldValue>? customFieldValues = null)
         {
             TeamId = teamId;
             RoleId = roleId;
-            Lead = lead;
+            IsLead = lead;
             Manager = manager;
             ActiveSince = activeSince;
             ActiveTill = activeTill;
-            RequiresApproval = requiresApproval;
+            IsRequiresApproval = requiresApproval;
             CustomFieldValues = customFieldValues;
         }
         
@@ -58,10 +58,10 @@ namespace SpaceDotNet.Client
             set { _roleId.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _lead = new PropertyValue<bool?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(Lead));
+        private PropertyValue<bool?> _lead = new PropertyValue<bool?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(IsLead));
         
         [JsonPropertyName("lead")]
-        public bool? Lead
+        public bool? IsLead
         {
             get { return _lead.GetValue(); }
             set { _lead.SetValue(value); }
@@ -94,19 +94,19 @@ namespace SpaceDotNet.Client
             set { _activeTill.SetValue(value); }
         }
     
-        private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(RequiresApproval));
+        private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(IsRequiresApproval));
         
         [JsonPropertyName("requiresApproval")]
-        public bool RequiresApproval
+        public bool IsRequiresApproval
         {
             get { return _requiresApproval.GetValue(); }
             set { _requiresApproval.SetValue(value); }
         }
     
-        private PropertyValue<List<CustomFieldValueDto>?> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues
+        public List<CustomFieldValue>? CustomFieldValues
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }

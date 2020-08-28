@@ -28,18 +28,18 @@ namespace SpaceDotNet.Client
     {
         public PermissionsCheckPermissionPostRequest() { }
         
-        public PermissionsCheckPermissionPostRequest(PrincipalInDto principal, string uniqueRightCode, PermissionTargetDto target)
+        public PermissionsCheckPermissionPostRequest(PrincipalIn principal, string uniqueRightCode, PermissionTarget target)
         {
             Principal = principal;
             UniqueRightCode = uniqueRightCode;
             Target = target;
         }
         
-        private PropertyValue<PrincipalInDto> _principal = new PropertyValue<PrincipalInDto>(nameof(PermissionsCheckPermissionPostRequest), nameof(Principal));
+        private PropertyValue<PrincipalIn> _principal = new PropertyValue<PrincipalIn>(nameof(PermissionsCheckPermissionPostRequest), nameof(Principal));
         
         [Required]
         [JsonPropertyName("principal")]
-        public PrincipalInDto Principal
+        public PrincipalIn Principal
         {
             get { return _principal.GetValue(); }
             set { _principal.SetValue(value); }
@@ -55,11 +55,11 @@ namespace SpaceDotNet.Client
             set { _uniqueRightCode.SetValue(value); }
         }
     
-        private PropertyValue<PermissionTargetDto> _target = new PropertyValue<PermissionTargetDto>(nameof(PermissionsCheckPermissionPostRequest), nameof(Target));
+        private PropertyValue<PermissionTarget> _target = new PropertyValue<PermissionTarget>(nameof(PermissionsCheckPermissionPostRequest), nameof(Target));
         
         [Required]
         [JsonPropertyName("target")]
-        public PermissionTargetDto Target
+        public PermissionTarget Target
         {
             get { return _target.GetValue(); }
             set { _target.SetValue(value); }

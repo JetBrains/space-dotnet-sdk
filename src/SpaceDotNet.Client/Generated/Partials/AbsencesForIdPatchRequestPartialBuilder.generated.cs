@@ -43,7 +43,7 @@ namespace SpaceDotNet.Client.AbsencesForIdPatchRequestPartialBuilder
         public static Partial<AbsencesForIdPatchRequest> WithTill(this Partial<AbsencesForIdPatchRequest> it)
             => it.AddFieldName("till");
         
-        public static Partial<AbsencesForIdPatchRequest> WithAvailable(this Partial<AbsencesForIdPatchRequest> it)
+        public static Partial<AbsencesForIdPatchRequest> WithIsAvailable(this Partial<AbsencesForIdPatchRequest> it)
             => it.AddFieldName("available");
         
         public static Partial<AbsencesForIdPatchRequest> WithIcon(this Partial<AbsencesForIdPatchRequest> it)
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client.AbsencesForIdPatchRequestPartialBuilder
         public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>(it)));
+        public static Partial<AbsencesForIdPatchRequest> WithCustomFieldValues(this Partial<AbsencesForIdPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
         
     }
     

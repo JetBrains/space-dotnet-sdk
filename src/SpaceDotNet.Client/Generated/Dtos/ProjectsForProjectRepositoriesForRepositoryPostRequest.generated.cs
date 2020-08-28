@@ -31,8 +31,8 @@ namespace SpaceDotNet.Client
         public ProjectsForProjectRepositoriesForRepositoryPostRequest(string description, bool initialize = true, bool defaultSetup = false)
         {
             Description = description;
-            Initialize = initialize;
-            DefaultSetup = defaultSetup;
+            IsInitialize = initialize;
+            IsDefaultSetup = defaultSetup;
         }
         
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description));
@@ -45,19 +45,19 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Initialize));
+        private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsInitialize));
         
         [JsonPropertyName("initialize")]
-        public bool Initialize
+        public bool IsInitialize
         {
             get { return _initialize.GetValue(); }
             set { _initialize.SetValue(value); }
         }
     
-        private PropertyValue<bool> _defaultSetup = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultSetup));
+        private PropertyValue<bool> _defaultSetup = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsDefaultSetup));
         
         [JsonPropertyName("defaultSetup")]
-        public bool DefaultSetup
+        public bool IsDefaultSetup
         {
             get { return _defaultSetup.GetValue(); }
             set { _defaultSetup.SetValue(value); }

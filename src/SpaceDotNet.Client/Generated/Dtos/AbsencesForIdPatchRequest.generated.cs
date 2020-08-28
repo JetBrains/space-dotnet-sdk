@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public AbsencesForIdPatchRequest() { }
         
-        public AbsencesForIdPatchRequest(bool available, string? member = null, string? reason = null, string? description = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? icon = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public AbsencesForIdPatchRequest(bool available, string? member = null, string? reason = null, string? description = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? icon = null, List<CustomFieldValue>? customFieldValues = null)
         {
             Member = member;
             Reason = reason;
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
             Location = location;
             Since = since;
             Till = till;
-            Available = available;
+            IsAvailable = available;
             Icon = icon;
             CustomFieldValues = customFieldValues;
         }
@@ -95,11 +95,11 @@ namespace SpaceDotNet.Client
             set { _till.SetValue(value); }
         }
     
-        private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesForIdPatchRequest), nameof(Available));
+        private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesForIdPatchRequest), nameof(IsAvailable));
         
         [Required]
         [JsonPropertyName("available")]
-        public bool Available
+        public bool IsAvailable
         {
             get { return _available.GetValue(); }
             set { _available.SetValue(value); }
@@ -114,10 +114,10 @@ namespace SpaceDotNet.Client
             set { _icon.SetValue(value); }
         }
     
-        private PropertyValue<List<CustomFieldValueDto>?> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>?>(nameof(AbsencesForIdPatchRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(AbsencesForIdPatchRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues
+        public List<CustomFieldValue>? CustomFieldValues
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }

@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesForIssueIdAttachmen
         public static Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> it)
             => it.AddFieldName("attachments");
         
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> it, Func<Partial<AttachmentDto>, Partial<AttachmentDto>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentDto>(it)));
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesForIssueIdAttachmentsPostRequest> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
         
     }
     

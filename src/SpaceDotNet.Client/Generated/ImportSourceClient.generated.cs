@@ -32,16 +32,16 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ImportSourceDto> CreateImportSourceAsync(string name, string? importerPrincipal = null, Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>>? partial = null)
-            => await _connection.RequestResourceAsync<ImportSourcesPostRequest, ImportSourceDto>("POST", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default())}", 
+        public async Task<ImportSource> CreateImportSourceAsync(string name, string? importerPrincipal = null, Func<Partial<ImportSource>, Partial<ImportSource>>? partial = null)
+            => await _connection.RequestResourceAsync<ImportSourcesPostRequest, ImportSource>("POST", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSource>()) : Partial<ImportSource>.Default())}", 
                 new ImportSourcesPostRequest { 
                     Name = name,
                     ImporterPrincipal = importerPrincipal,
                 }
         );
     
-        public async Task<List<ImportSourceDto>> GetAllImportSourcesAsync(Func<Partial<ImportSourceDto>, Partial<ImportSourceDto>>? partial = null)
-            => await _connection.RequestResourceAsync<List<ImportSourceDto>>("GET", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSourceDto>()) : Partial<ImportSourceDto>.Default())}");
+        public async Task<List<ImportSource>> GetAllImportSourcesAsync(Func<Partial<ImportSource>, Partial<ImportSource>>? partial = null)
+            => await _connection.RequestResourceAsync<List<ImportSource>>("GET", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSource>()) : Partial<ImportSource>.Default())}");
     
         public async Task UpdateImportSourceAsync(string sourceId, string name, string importerPrincipal)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/import-sources/{sourceId}", 

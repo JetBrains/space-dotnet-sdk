@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfile2FaTotpPatchRequestP
 {
     public static class TeamDirectoryProfilesForProfile2FaTotpPatchRequestPartialExtensions
     {
-        public static Partial<TeamDirectoryProfilesForProfile2FaTotpPatchRequest> WithEnabled(this Partial<TeamDirectoryProfilesForProfile2FaTotpPatchRequest> it)
+        public static Partial<TeamDirectoryProfilesForProfile2FaTotpPatchRequest> WithIsEnabled(this Partial<TeamDirectoryProfilesForProfile2FaTotpPatchRequest> it)
             => it.AddFieldName("enabled");
         
     }

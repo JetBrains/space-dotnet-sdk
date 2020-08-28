@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsRequestsForMembershipReques
 {
     public static class TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequestPartialExtensions
     {
-        public static Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> WithApproved(this Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> it)
+        public static Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> WithIsApproved(this Partial<TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest> it)
             => it.AddFieldName("approved");
         
     }

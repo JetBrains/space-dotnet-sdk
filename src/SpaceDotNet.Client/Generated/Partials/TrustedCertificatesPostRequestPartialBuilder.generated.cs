@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client.TrustedCertificatesPostRequestPartialBuilder
         public static Partial<TrustedCertificatesPostRequest> WithData(this Partial<TrustedCertificatesPostRequest> it)
             => it.AddFieldName("data");
         
-        public static Partial<TrustedCertificatesPostRequest> WithArchived(this Partial<TrustedCertificatesPostRequest> it)
+        public static Partial<TrustedCertificatesPostRequest> WithIsArchived(this Partial<TrustedCertificatesPostRequest> it)
             => it.AddFieldName("archived");
         
     }

@@ -31,8 +31,8 @@ namespace SpaceDotNet.Client.ProjectsForProjectRepositoriesForRepositoryRevision
         public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> WithDiffContext(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> it)
             => it.AddFieldName("diffContext");
         
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> WithDiffContext(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> it, Func<Partial<DiffContextDto>, Partial<DiffContextDto>> partialBuilder)
-            => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContextDto>(it)));
+        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> WithDiffContext(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> it, Func<Partial<DiffContext>, Partial<DiffContext>> partialBuilder)
+            => it.AddFieldName("diffContext", partialBuilder(new Partial<DiffContext>(it)));
         
         public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> WithFilename(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> it)
             => it.AddFieldName("filename");
@@ -43,7 +43,7 @@ namespace SpaceDotNet.Client.ProjectsForProjectRepositoriesForRepositoryRevision
         public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> WithOldLine(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> it)
             => it.AddFieldName("oldLine");
         
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> WithPending(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> it)
+        public static Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> WithIsPending(this Partial<ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest> it)
             => it.AddFieldName("pending");
         
     }

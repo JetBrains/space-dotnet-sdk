@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest() { }
         
-        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, string? description = null, string? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfoDto? importInfo = null)
+        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, string? description = null, string? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfo? importInfo = null)
         {
             Title = title;
             Description = description;
@@ -83,10 +83,10 @@ namespace SpaceDotNet.Client
             set { _dueDate.SetValue(value); }
         }
     
-        private PropertyValue<ImportedEntityInfoDto?> _importInfo = new PropertyValue<ImportedEntityInfoDto?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(ImportInfo));
+        private PropertyValue<ImportedEntityInfo?> _importInfo = new PropertyValue<ImportedEntityInfo?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(ImportInfo));
         
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo
+        public ImportedEntityInfo? ImportInfo
         {
             get { return _importInfo.GetValue(); }
             set { _importInfo.SetValue(value); }

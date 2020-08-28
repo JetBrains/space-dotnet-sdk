@@ -28,16 +28,16 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesStatusesPatchRequest() { }
         
-        public ProjectsForProjectPlanningIssuesStatusesPatchRequest(List<IssueStatusDataDto> statuses)
+        public ProjectsForProjectPlanningIssuesStatusesPatchRequest(List<IssueStatusData> statuses)
         {
             Statuses = statuses;
         }
         
-        private PropertyValue<List<IssueStatusDataDto>> _statuses = new PropertyValue<List<IssueStatusDataDto>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses));
+        private PropertyValue<List<IssueStatusData>> _statuses = new PropertyValue<List<IssueStatusData>>(nameof(ProjectsForProjectPlanningIssuesStatusesPatchRequest), nameof(Statuses));
         
         [Required]
         [JsonPropertyName("statuses")]
-        public List<IssueStatusDataDto> Statuses
+        public List<IssueStatusData> Statuses
         {
             get { return _statuses.GetValue(); }
             set { _statuses.SetValue(value); }

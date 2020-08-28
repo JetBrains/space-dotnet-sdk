@@ -34,8 +34,8 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfileWorkingDaysPostReque
         public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithWorkingDaysSpec(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it)
             => it.AddFieldName("workingDaysSpec");
         
-        public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithWorkingDaysSpec(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it, Func<Partial<WorkingDaysSpecDto>, Partial<WorkingDaysSpecDto>> partialBuilder)
-            => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpecDto>(it)));
+        public static Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> WithWorkingDaysSpec(this Partial<TeamDirectoryProfilesForProfileWorkingDaysPostRequest> it, Func<Partial<WorkingDaysSpec>, Partial<WorkingDaysSpec>> partialBuilder)
+            => it.AddFieldName("workingDaysSpec", partialBuilder(new Partial<WorkingDaysSpec>(it)));
         
     }
     

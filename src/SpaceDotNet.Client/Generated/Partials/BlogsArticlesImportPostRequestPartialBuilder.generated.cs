@@ -28,14 +28,14 @@ namespace SpaceDotNet.Client.BlogsArticlesImportPostRequestPartialBuilder
         public static Partial<BlogsArticlesImportPostRequest> WithMetadata(this Partial<BlogsArticlesImportPostRequest> it)
             => it.AddFieldName("metadata");
         
-        public static Partial<BlogsArticlesImportPostRequest> WithMetadata(this Partial<BlogsArticlesImportPostRequest> it, Func<Partial<ImportMetadataDto>, Partial<ImportMetadataDto>> partialBuilder)
-            => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadataDto>(it)));
+        public static Partial<BlogsArticlesImportPostRequest> WithMetadata(this Partial<BlogsArticlesImportPostRequest> it, Func<Partial<ImportMetadata>, Partial<ImportMetadata>> partialBuilder)
+            => it.AddFieldName("metadata", partialBuilder(new Partial<ImportMetadata>(it)));
         
         public static Partial<BlogsArticlesImportPostRequest> WithArticles(this Partial<BlogsArticlesImportPostRequest> it)
             => it.AddFieldName("articles");
         
-        public static Partial<BlogsArticlesImportPostRequest> WithArticles(this Partial<BlogsArticlesImportPostRequest> it, Func<Partial<ExternalArticleDto>, Partial<ExternalArticleDto>> partialBuilder)
-            => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticleDto>(it)));
+        public static Partial<BlogsArticlesImportPostRequest> WithArticles(this Partial<BlogsArticlesImportPostRequest> it, Func<Partial<ExternalArticle>, Partial<ExternalArticle>> partialBuilder)
+            => it.AddFieldName("articles", partialBuilder(new Partial<ExternalArticle>(it)));
         
     }
     

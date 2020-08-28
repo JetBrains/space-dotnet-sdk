@@ -28,12 +28,12 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPackagesRepositoriesPatchRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesPatchRequest(string id, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettingsDto? settings = null)
+        public ProjectsForProjectPackagesRepositoriesPatchRequest(string id, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null)
         {
             Id = id;
             Name = name;
             Description = description;
-            Public = @public;
+            IsPublic = @public;
             Settings = settings;
         }
         
@@ -65,19 +65,19 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(Public));
+        private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(IsPublic));
         
         [JsonPropertyName("public")]
-        public bool? Public
+        public bool? IsPublic
         {
             get { return _public.GetValue(); }
             set { _public.SetValue(value); }
         }
     
-        private PropertyValue<ESPackageRepositorySettingsDto?> _settings = new PropertyValue<ESPackageRepositorySettingsDto?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(Settings));
+        private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(Settings));
         
         [JsonPropertyName("settings")]
-        public ESPackageRepositorySettingsDto? Settings
+        public ESPackageRepositorySettings? Settings
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }

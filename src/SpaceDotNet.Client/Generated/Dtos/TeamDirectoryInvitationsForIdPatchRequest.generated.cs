@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryInvitationsForIdPatchRequest() { }
         
-        public TeamDirectoryInvitationsForIdPatchRequest(string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeamDto? team = null, TDRoleDto? role = null)
+        public TeamDirectoryInvitationsForIdPatchRequest(string? inviteeEmail = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDTeam? team = null, TDRole? role = null)
         {
             InviteeEmail = inviteeEmail;
             InviteeFirstName = inviteeFirstName;
@@ -64,19 +64,19 @@ namespace SpaceDotNet.Client
             set { _inviteeLastName.SetValue(value); }
         }
     
-        private PropertyValue<TDTeamDto?> _team = new PropertyValue<TDTeamDto?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Team));
+        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Team));
         
         [JsonPropertyName("team")]
-        public TDTeamDto? Team
+        public TDTeam? Team
         {
             get { return _team.GetValue(); }
             set { _team.SetValue(value); }
         }
     
-        private PropertyValue<TDRoleDto?> _role = new PropertyValue<TDRoleDto?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Role));
+        private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Role));
         
         [JsonPropertyName("role")]
-        public TDRoleDto? Role
+        public TDRole? Role
         {
             get { return _role.GetValue(); }
             set { _role.SetValue(value); }

@@ -28,16 +28,16 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest(List<MessageForImportDto> comments)
+        public ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest(List<MessageForImport> comments)
         {
             Comments = comments;
         }
         
-        private PropertyValue<List<MessageForImportDto>> _comments = new PropertyValue<List<MessageForImportDto>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments));
+        private PropertyValue<List<MessageForImport>> _comments = new PropertyValue<List<MessageForImport>>(nameof(ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest), nameof(Comments));
         
         [Required]
         [JsonPropertyName("comments")]
-        public List<MessageForImportDto> Comments
+        public List<MessageForImport> Comments
         {
             get { return _comments.GetValue(); }
             set { _comments.SetValue(value); }

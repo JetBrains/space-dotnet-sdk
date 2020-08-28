@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client
         public TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest(string item, bool enabled)
         {
             Item = item;
-            Enabled = enabled;
+            IsEnabled = enabled;
         }
         
         private PropertyValue<string> _item = new PropertyValue<string>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(Item));
@@ -44,11 +44,11 @@ namespace SpaceDotNet.Client
             set { _item.SetValue(value); }
         }
     
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(Enabled));
+        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(IsEnabled));
         
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled
+        public bool IsEnabled
         {
             get { return _enabled.GetValue(); }
             set { _enabled.SetValue(value); }

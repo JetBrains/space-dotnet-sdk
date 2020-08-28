@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client.TodoForIdPatchRequestPartialBuilder
         public static Partial<TodoForIdPatchRequest> WithDueDate(this Partial<TodoForIdPatchRequest> it)
             => it.AddFieldName("dueDate");
         
-        public static Partial<TodoForIdPatchRequest> WithOpen(this Partial<TodoForIdPatchRequest> it)
+        public static Partial<TodoForIdPatchRequest> WithIsOpen(this Partial<TodoForIdPatchRequest> it)
             => it.AddFieldName("open");
         
     }

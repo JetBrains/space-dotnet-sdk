@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client.TeamDirectoryLocationsForIdPatchRequestPartialBuild
         public static Partial<TeamDirectoryLocationsForIdPatchRequest> WithTimezone(this Partial<TeamDirectoryLocationsForIdPatchRequest> it)
             => it.AddFieldName("timezone");
         
-        public static Partial<TeamDirectoryLocationsForIdPatchRequest> WithCustomWorkdays(this Partial<TeamDirectoryLocationsForIdPatchRequest> it)
+        public static Partial<TeamDirectoryLocationsForIdPatchRequest> WithIsCustomWorkdays(this Partial<TeamDirectoryLocationsForIdPatchRequest> it)
             => it.AddFieldName("customWorkdays");
         
         public static Partial<TeamDirectoryLocationsForIdPatchRequest> WithWorkdays(this Partial<TeamDirectoryLocationsForIdPatchRequest> it)

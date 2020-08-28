@@ -34,7 +34,7 @@ namespace SpaceDotNet.Client.PublicHolidaysHolidaysForIdPatchRequestPartialBuild
         public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithDate(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
             => it.AddFieldName("date");
         
-        public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithWorkingDay(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
+        public static Partial<PublicHolidaysHolidaysForIdPatchRequest> WithIsWorkingDay(this Partial<PublicHolidaysHolidaysForIdPatchRequest> it)
             => it.AddFieldName("workingDay");
         
     }

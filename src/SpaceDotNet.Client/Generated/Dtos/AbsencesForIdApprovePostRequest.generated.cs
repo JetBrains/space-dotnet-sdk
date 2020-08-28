@@ -30,14 +30,14 @@ namespace SpaceDotNet.Client
         
         public AbsencesForIdApprovePostRequest(bool approve)
         {
-            Approve = approve;
+            IsApprove = approve;
         }
         
-        private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(AbsencesForIdApprovePostRequest), nameof(Approve));
+        private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(AbsencesForIdApprovePostRequest), nameof(IsApprove));
         
         [Required]
         [JsonPropertyName("approve")]
-        public bool Approve
+        public bool IsApprove
         {
             get { return _approve.GetValue(); }
             set { _approve.SetValue(value); }

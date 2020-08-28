@@ -28,20 +28,20 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPatchRequest() { }
         
-        public ProjectsForProjectPatchRequest(ProjectKeyDto? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null)
+        public ProjectsForProjectPatchRequest(ProjectKey? key = null, string? name = null, string? description = null, bool? @private = null, List<string>? tags = null, string? icon = null)
         {
             Key = key;
             Name = name;
             Description = description;
-            Private = @private;
+            IsPrivate = @private;
             Tags = tags;
             Icon = icon;
         }
         
-        private PropertyValue<ProjectKeyDto?> _key = new PropertyValue<ProjectKeyDto?>(nameof(ProjectsForProjectPatchRequest), nameof(Key));
+        private PropertyValue<ProjectKey?> _key = new PropertyValue<ProjectKey?>(nameof(ProjectsForProjectPatchRequest), nameof(Key));
         
         [JsonPropertyName("key")]
-        public ProjectKeyDto? Key
+        public ProjectKey? Key
         {
             get { return _key.GetValue(); }
             set { _key.SetValue(value); }
@@ -65,10 +65,10 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(ProjectsForProjectPatchRequest), nameof(Private));
+        private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(ProjectsForProjectPatchRequest), nameof(IsPrivate));
         
         [JsonPropertyName("private")]
-        public bool? Private
+        public bool? IsPrivate
         {
             get { return _private.GetValue(); }
             set { _private.SetValue(value); }

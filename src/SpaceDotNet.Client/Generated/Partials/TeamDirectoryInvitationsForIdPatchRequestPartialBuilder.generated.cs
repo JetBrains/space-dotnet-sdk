@@ -37,14 +37,14 @@ namespace SpaceDotNet.Client.TeamDirectoryInvitationsForIdPatchRequestPartialBui
         public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
             => it.AddFieldName("team");
         
-        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it, Func<Partial<TDTeamDto>, Partial<TDTeamDto>> partialBuilder)
-            => it.AddFieldName("team", partialBuilder(new Partial<TDTeamDto>(it)));
+        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithTeam(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
         
         public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithRole(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it)
             => it.AddFieldName("role");
         
-        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithRole(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it, Func<Partial<TDRoleDto>, Partial<TDRoleDto>> partialBuilder)
-            => it.AddFieldName("role", partialBuilder(new Partial<TDRoleDto>(it)));
+        public static Partial<TeamDirectoryInvitationsForIdPatchRequest> WithRole(this Partial<TeamDirectoryInvitationsForIdPatchRequest> it, Func<Partial<TDRole>, Partial<TDRole>> partialBuilder)
+            => it.AddFieldName("role", partialBuilder(new Partial<TDRole>(it)));
         
     }
     

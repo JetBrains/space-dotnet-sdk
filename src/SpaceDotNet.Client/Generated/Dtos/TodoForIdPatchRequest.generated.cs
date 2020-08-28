@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         {
             Text = text;
             DueDate = dueDate;
-            Open = open;
+            IsOpen = open;
         }
         
         private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(TodoForIdPatchRequest), nameof(Text));
@@ -53,10 +53,10 @@ namespace SpaceDotNet.Client
             set { _dueDate.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(Open));
+        private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(IsOpen));
         
         [JsonPropertyName("open")]
-        public bool? Open
+        public bool? IsOpen
         {
             get { return _open.GetValue(); }
             set { _open.SetValue(value); }

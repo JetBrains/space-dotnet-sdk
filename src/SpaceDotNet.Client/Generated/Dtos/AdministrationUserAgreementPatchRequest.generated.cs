@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client
         public AdministrationUserAgreementPatchRequest(string newContent, bool invalidate)
         {
             NewContent = newContent;
-            Invalidate = invalidate;
+            IsInvalidate = invalidate;
         }
         
         private PropertyValue<string> _newContent = new PropertyValue<string>(nameof(AdministrationUserAgreementPatchRequest), nameof(NewContent));
@@ -44,11 +44,11 @@ namespace SpaceDotNet.Client
             set { _newContent.SetValue(value); }
         }
     
-        private PropertyValue<bool> _invalidate = new PropertyValue<bool>(nameof(AdministrationUserAgreementPatchRequest), nameof(Invalidate));
+        private PropertyValue<bool> _invalidate = new PropertyValue<bool>(nameof(AdministrationUserAgreementPatchRequest), nameof(IsInvalidate));
         
         [Required]
         [JsonPropertyName("invalidate")]
-        public bool Invalidate
+        public bool IsInvalidate
         {
             get { return _invalidate.GetValue(); }
             set { _invalidate.SetValue(value); }

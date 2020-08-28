@@ -23,41 +23,44 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class HATypeDto
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class HATypeDto
+         : HAType, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "HA_Type";
-        
-        public static HATypeArrayDto Array(HATypeDto elementType, bool nullable)
-            => new HATypeArrayDto(elementType: elementType, nullable: nullable);
-        
-        public static HATypeDtoDto Dto(HADtoDto dto, bool nullable)
-            => new HATypeDtoDto(dto: dto, nullable: nullable);
-        
-        public static HATypeEnumDto Enum(HAEnumDto @enum, bool nullable)
-            => new HATypeEnumDto(@enum: @enum, nullable: nullable);
-        
-        public static HATypeMapDto Map(HATypeDto valueType, bool nullable)
-            => new HATypeMapDto(valueType: valueType, nullable: nullable);
-        
-        public static HATypeObjectDto Object(List<HAFieldDto> fields, HATypeObjectKind kind, bool nullable)
-            => new HATypeObjectDto(fields: fields, kind: kind, nullable: nullable);
-        
-        public static HATypePrimitiveDto Primitive(HAPrimitive primitive, bool nullable)
-            => new HATypePrimitiveDto(primitive: primitive, nullable: nullable);
-        
-        public static HATypeRefDto Ref(HADtoDto dto, bool nullable)
-            => new HATypeRefDto(dto: dto, nullable: nullable);
-        
-        public static HATypeUrlParamDto UrlParam(HAUrlParameterDto urlParam, bool nullable)
-            => new HATypeUrlParamDto(urlParam: urlParam, nullable: nullable);
+        public override string? ClassName => "HA_Type.Dto";
         
         public HATypeDto() { }
         
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public HATypeDto(HADto dto, bool nullable)
         {
+            Dto = dto;
+            IsNullable = nullable;
+        }
+        
+        private PropertyValue<HADto> _dto = new PropertyValue<HADto>(nameof(HATypeDto), nameof(Dto));
+        
+        [Required]
+        [JsonPropertyName("dto")]
+        public HADto Dto
+        {
+            get { return _dto.GetValue(); }
+            set { _dto.SetValue(value); }
+        }
+    
+        private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeDto), nameof(IsNullable));
+        
+        [Required]
+        [JsonPropertyName("nullable")]
+        public bool IsNullable
+        {
+            get { return _nullable.GetValue(); }
+            set { _nullable.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _dto.SetAccessPath(path, validateHasBeenSet);
+            _nullable.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

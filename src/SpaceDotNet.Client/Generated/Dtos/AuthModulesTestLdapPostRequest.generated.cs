@@ -28,18 +28,18 @@ namespace SpaceDotNet.Client
     {
         public AuthModulesTestLdapPostRequest() { }
         
-        public AuthModulesTestLdapPostRequest(ESLdapAuthModuleSettingsDto settings, string username, string password)
+        public AuthModulesTestLdapPostRequest(ESLdapAuthModuleSettings settings, string username, string password)
         {
             Settings = settings;
             Username = username;
             Password = password;
         }
         
-        private PropertyValue<ESLdapAuthModuleSettingsDto> _settings = new PropertyValue<ESLdapAuthModuleSettingsDto>(nameof(AuthModulesTestLdapPostRequest), nameof(Settings));
+        private PropertyValue<ESLdapAuthModuleSettings> _settings = new PropertyValue<ESLdapAuthModuleSettings>(nameof(AuthModulesTestLdapPostRequest), nameof(Settings));
         
         [Required]
         [JsonPropertyName("settings")]
-        public ESLdapAuthModuleSettingsDto Settings
+        public ESLdapAuthModuleSettings Settings
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }

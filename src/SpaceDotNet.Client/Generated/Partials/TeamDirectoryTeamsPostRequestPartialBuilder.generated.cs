@@ -40,8 +40,8 @@ namespace SpaceDotNet.Client.TeamDirectoryTeamsPostRequestPartialBuilder
         public static Partial<TeamDirectoryTeamsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsPostRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<TeamDirectoryTeamsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsPostRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>(it)));
+        public static Partial<TeamDirectoryTeamsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsPostRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
         
     }
     

@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         {
             Channel = channel;
             Text = text;
-            Pending = pending;
+            IsPending = pending;
             TemporaryId = temporaryId;
         }
         
@@ -56,10 +56,10 @@ namespace SpaceDotNet.Client
             set { _text.SetValue(value); }
         }
     
-        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ChatsMessagesSendPostRequest), nameof(Pending));
+        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ChatsMessagesSendPostRequest), nameof(IsPending));
         
         [JsonPropertyName("pending")]
-        public bool Pending
+        public bool IsPending
         {
             get { return _pending.GetValue(); }
             set { _pending.SetValue(value); }

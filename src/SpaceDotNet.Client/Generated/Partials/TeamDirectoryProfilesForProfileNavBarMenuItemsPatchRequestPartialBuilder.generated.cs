@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfileNavBarMenuItemsPatch
         public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> WithItem(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> it)
             => it.AddFieldName("item");
         
-        public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> WithEnabled(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> it)
+        public static Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> WithIsEnabled(this Partial<TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest> it)
             => it.AddFieldName("enabled");
         
     }

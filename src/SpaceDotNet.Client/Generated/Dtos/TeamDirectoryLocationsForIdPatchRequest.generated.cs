@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         {
             Name = name;
             Timezone = timezone;
-            CustomWorkdays = customWorkdays;
+            IsCustomWorkdays = customWorkdays;
             Workdays = workdays;
             Phones = phones;
             Emails = emails;
@@ -62,10 +62,10 @@ namespace SpaceDotNet.Client
             set { _timezone.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _customWorkdays = new PropertyValue<bool?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(CustomWorkdays));
+        private PropertyValue<bool?> _customWorkdays = new PropertyValue<bool?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(IsCustomWorkdays));
         
         [JsonPropertyName("customWorkdays")]
-        public bool? CustomWorkdays
+        public bool? IsCustomWorkdays
         {
             get { return _customWorkdays.GetValue(); }
             set { _customWorkdays.SetValue(value); }

@@ -33,7 +33,7 @@ namespace SpaceDotNet.Client
             Calendar = calendar;
             Name = name;
             Date = date;
-            WorkingDay = workingDay;
+            IsWorkingDay = workingDay;
         }
         
         private PropertyValue<string> _calendar = new PropertyValue<string>(nameof(PublicHolidaysHolidaysPostRequest), nameof(Calendar));
@@ -66,11 +66,11 @@ namespace SpaceDotNet.Client
             set { _date.SetValue(value); }
         }
     
-        private PropertyValue<bool> _workingDay = new PropertyValue<bool>(nameof(PublicHolidaysHolidaysPostRequest), nameof(WorkingDay));
+        private PropertyValue<bool> _workingDay = new PropertyValue<bool>(nameof(PublicHolidaysHolidaysPostRequest), nameof(IsWorkingDay));
         
         [Required]
         [JsonPropertyName("workingDay")]
-        public bool WorkingDay
+        public bool IsWorkingDay
         {
             get { return _workingDay.GetValue(); }
             set { _workingDay.SetValue(value); }

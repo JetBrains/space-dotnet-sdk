@@ -28,48 +28,48 @@ namespace SpaceDotNet.Client
     {
         public ChatsMessagesSendMessagePostRequest() { }
         
-        public ChatsMessagesSendMessagePostRequest(MessageRecipientDto recipient, ChatMessageDto content, bool? unfurlLinks = null, List<AttachmentDto>? attachments = null, string? externalId = null)
+        public ChatsMessagesSendMessagePostRequest(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<Attachment>? attachments = null, string? externalId = null)
         {
             Recipient = recipient;
             Content = content;
-            UnfurlLinks = unfurlLinks;
+            IsUnfurlLinks = unfurlLinks;
             Attachments = attachments;
             ExternalId = externalId;
         }
         
-        private PropertyValue<MessageRecipientDto> _recipient = new PropertyValue<MessageRecipientDto>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient));
+        private PropertyValue<MessageRecipient> _recipient = new PropertyValue<MessageRecipient>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Recipient));
         
         [Required]
         [JsonPropertyName("recipient")]
-        public MessageRecipientDto Recipient
+        public MessageRecipient Recipient
         {
             get { return _recipient.GetValue(); }
             set { _recipient.SetValue(value); }
         }
     
-        private PropertyValue<ChatMessageDto> _content = new PropertyValue<ChatMessageDto>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Content));
+        private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Content));
         
         [Required]
         [JsonPropertyName("content")]
-        public ChatMessageDto Content
+        public ChatMessage Content
         {
             get { return _content.GetValue(); }
             set { _content.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(UnfurlLinks));
+        private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsUnfurlLinks));
         
         [JsonPropertyName("unfurlLinks")]
-        public bool? UnfurlLinks
+        public bool? IsUnfurlLinks
         {
             get { return _unfurlLinks.GetValue(); }
             set { _unfurlLinks.SetValue(value); }
         }
     
-        private PropertyValue<List<AttachmentDto>?> _attachments = new PropertyValue<List<AttachmentDto>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments));
+        private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto>? Attachments
+        public List<Attachment>? Attachments
         {
             get { return _attachments.GetValue(); }
             set { _attachments.SetValue(value); }

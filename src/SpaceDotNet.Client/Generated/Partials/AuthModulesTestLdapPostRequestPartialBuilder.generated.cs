@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.AuthModulesTestLdapPostRequestPartialBuilder
         public static Partial<AuthModulesTestLdapPostRequest> WithSettings(this Partial<AuthModulesTestLdapPostRequest> it)
             => it.AddFieldName("settings");
         
-        public static Partial<AuthModulesTestLdapPostRequest> WithSettings(this Partial<AuthModulesTestLdapPostRequest> it, Func<Partial<ESLdapAuthModuleSettingsDto>, Partial<ESLdapAuthModuleSettingsDto>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESLdapAuthModuleSettingsDto>(it)));
+        public static Partial<AuthModulesTestLdapPostRequest> WithSettings(this Partial<AuthModulesTestLdapPostRequest> it, Func<Partial<ESLdapAuthModuleSettings>, Partial<ESLdapAuthModuleSettings>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<ESLdapAuthModuleSettings>(it)));
         
         public static Partial<AuthModulesTestLdapPostRequest> WithUsername(this Partial<AuthModulesTestLdapPostRequest> it)
             => it.AddFieldName("username");

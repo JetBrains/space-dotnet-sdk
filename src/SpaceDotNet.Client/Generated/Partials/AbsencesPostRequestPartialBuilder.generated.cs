@@ -43,7 +43,7 @@ namespace SpaceDotNet.Client.AbsencesPostRequestPartialBuilder
         public static Partial<AbsencesPostRequest> WithTill(this Partial<AbsencesPostRequest> it)
             => it.AddFieldName("till");
         
-        public static Partial<AbsencesPostRequest> WithAvailable(this Partial<AbsencesPostRequest> it)
+        public static Partial<AbsencesPostRequest> WithIsAvailable(this Partial<AbsencesPostRequest> it)
             => it.AddFieldName("available");
         
         public static Partial<AbsencesPostRequest> WithIcon(this Partial<AbsencesPostRequest> it)
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client.AbsencesPostRequestPartialBuilder
         public static Partial<AbsencesPostRequest> WithCustomFieldValues(this Partial<AbsencesPostRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<AbsencesPostRequest> WithCustomFieldValues(this Partial<AbsencesPostRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>(it)));
+        public static Partial<AbsencesPostRequest> WithCustomFieldValues(this Partial<AbsencesPostRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
         
     }
     

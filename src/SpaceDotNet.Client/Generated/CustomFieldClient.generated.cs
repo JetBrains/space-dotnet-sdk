@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get all types that support custom fields.
             /// </summary>
-            public async Task<List<ExtendedTypeDto>> GetAllExtendedTypesAsync(Func<Partial<ExtendedTypeDto>, Partial<ExtendedTypeDto>>? partial = null)
-                => await _connection.RequestResourceAsync<List<ExtendedTypeDto>>("GET", $"api/http/custom-fields/extended-types?$fields={(partial != null ? partial(new Partial<ExtendedTypeDto>()) : Partial<ExtendedTypeDto>.Default())}");
+            public async Task<List<ExtendedType>> GetAllExtendedTypesAsync(Func<Partial<ExtendedType>, Partial<ExtendedType>>? partial = null)
+                => await _connection.RequestResourceAsync<List<ExtendedType>>("GET", $"api/http/custom-fields/extended-types?$fields={(partial != null ? partial(new Partial<ExtendedType>()) : Partial<ExtendedType>.Default())}");
         
         }
     
@@ -65,14 +65,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
             /// </summary>
-            public async Task<Batch<CustomFieldsRecordDto>> GetAllValuesAsync(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecordDto>>, Partial<Batch<CustomFieldsRecordDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<CustomFieldsRecordDto>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CustomFieldsRecordDto>>()) : Partial<Batch<CustomFieldsRecordDto>>.Default())}");
+            public async Task<Batch<CustomFieldsRecord>> GetAllValuesAsync(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<Batch<CustomFieldsRecord>>, Partial<Batch<CustomFieldsRecord>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<CustomFieldsRecord>>("GET", $"api/http/custom-fields/{typeKey}/all-values?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&extendedEntityIds={extendedEntityIds?.JoinToString("extendedEntityIds", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<CustomFieldsRecord>>()) : Partial<Batch<CustomFieldsRecord>>.Default())}");
             
             /// <summary>
             /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
             /// </summary>
-            public IAsyncEnumerable<CustomFieldsRecordDto> GetAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllValuesAsync(typeKey: typeKey, top: top, extendedEntityIds: extendedEntityIds, skip: batchSkip, partial: builder => Partial<Batch<CustomFieldsRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecordDto>.Default())), skip);
+            public IAsyncEnumerable<CustomFieldsRecord> GetAllValuesAsyncEnumerable(string typeKey, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecord>, Partial<CustomFieldsRecord>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllValuesAsync(typeKey: typeKey, top: top, extendedEntityIds: extendedEntityIds, skip: batchSkip, partial: builder => Partial<Batch<CustomFieldsRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecord>.Default())), skip);
         
         }
     
@@ -90,16 +90,16 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create custom field for a type.
             /// </summary>
-            public async Task<CustomFieldDto> CreateFieldAsync(string typeKey, string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, string? description = null, CFConstraintDto? constraint = null, AccessType? access = null, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsPostRequest, CustomFieldDto>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}", 
+            public async Task<CustomField> CreateFieldAsync(string typeKey, string name, string key, CFType type, bool required, bool @private, CFValue defaultValue, string? description = null, CFConstraint? constraint = null, AccessType? access = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null)
+                => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsPostRequest, CustomField>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default())}", 
                     new CustomFieldsForTypeKeyFieldsPostRequest { 
                         Name = name,
                         Description = description,
                         Key = key,
                         Type = type,
                         Constraint = constraint,
-                        Required = required,
-                        Private = @private,
+                        IsRequired = required,
+                        IsPrivate = @private,
                         Access = access,
                         DefaultValue = defaultValue,
                     }
@@ -130,21 +130,21 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get custom fields for a type.
             /// </summary>
-            public async Task<List<CustomFieldDto>> GetAllFieldsAsync(string typeKey, bool withArchived = false, Func<Partial<CustomFieldDto>, Partial<CustomFieldDto>>? partial = null)
-                => await _connection.RequestResourceAsync<List<CustomFieldDto>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<CustomFieldDto>()) : Partial<CustomFieldDto>.Default())}");
+            public async Task<List<CustomField>> GetAllFieldsAsync(string typeKey, bool withArchived = false, Func<Partial<CustomField>, Partial<CustomField>>? partial = null)
+                => await _connection.RequestResourceAsync<List<CustomField>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default())}");
         
             /// <summary>
             /// Update custom field for a type. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task UpdateFieldAsync(string typeKey, string id, string? name = null, string? description = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
+            public async Task UpdateFieldAsync(string typeKey, string id, string? name = null, string? description = null, string? key = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", 
                     new CustomFieldsForTypeKeyFieldsForIdPatchRequest { 
                         Name = name,
                         Description = description,
                         Key = key,
                         Constraint = constraint,
-                        Required = required,
-                        Private = @private,
+                        IsRequired = required,
+                        IsPrivate = @private,
                         Access = access,
                         DefaultValue = defaultValue,
                         EnumValues = enumValues,
@@ -173,13 +173,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get custom field value for a type and entity id.
             /// </summary>
-            public async Task<CustomFieldsRecordDto> GetValueAsync(string typeKey, string entityId, Func<Partial<CustomFieldsRecordDto>, Partial<CustomFieldsRecordDto>>? partial = null)
-                => await _connection.RequestResourceAsync<CustomFieldsRecordDto>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields={(partial != null ? partial(new Partial<CustomFieldsRecordDto>()) : Partial<CustomFieldsRecordDto>.Default())}");
+            public async Task<CustomFieldsRecord> GetValueAsync(string typeKey, string entityId, Func<Partial<CustomFieldsRecord>, Partial<CustomFieldsRecord>>? partial = null)
+                => await _connection.RequestResourceAsync<CustomFieldsRecord>("GET", $"api/http/custom-fields/{typeKey}/{entityId}/values?$fields={(partial != null ? partial(new Partial<CustomFieldsRecord>()) : Partial<CustomFieldsRecord>.Default())}");
         
             /// <summary>
             /// Update custom field value(s) for a type and entity id.
             /// </summary>
-            public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldValueDto> values)
+            public async Task UpdateValueAsync(string entityId, string typeKey, List<CustomFieldValue> values)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/{entityId}/values", 
                     new CustomFieldsForTypeKeyForEntityIdValuesPatchRequest { 
                         Values = values,

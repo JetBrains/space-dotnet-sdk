@@ -35,8 +35,8 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Create a new To-Do item, with an optional due date.
         /// </summary>
-        public async Task<TodoItemRecordDto> CreateToDoItemAsync(string text, SpaceDate? dueDate = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
-            => await _connection.RequestResourceAsync<TodoPostRequest, TodoItemRecordDto>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecordDto>()) : Partial<TodoItemRecordDto>.Default())}", 
+        public async Task<TodoItemRecord> CreateToDoItemAsync(string text, SpaceDate? dueDate = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null)
+            => await _connection.RequestResourceAsync<TodoPostRequest, TodoItemRecord>("POST", $"api/http/todo?$fields={(partial != null ? partial(new Partial<TodoItemRecord>()) : Partial<TodoItemRecord>.Default())}", 
                 new TodoPostRequest { 
                     Text = text,
                     DueDate = dueDate,
@@ -46,14 +46,14 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>
-        public async Task<Batch<TodoItemRecordDto>> GetAllToDoItemsAsync(string? skip = null, int? top = 100, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<Batch<TodoItemRecordDto>>, Partial<Batch<TodoItemRecordDto>>>? partial = null)
-            => await _connection.RequestResourceAsync<Batch<TodoItemRecordDto>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TodoItemRecordDto>>()) : Partial<Batch<TodoItemRecordDto>>.Default())}");
+        public async Task<Batch<TodoItemRecord>> GetAllToDoItemsAsync(string? skip = null, int? top = 100, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<Batch<TodoItemRecord>>, Partial<Batch<TodoItemRecord>>>? partial = null)
+            => await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TodoItemRecord>>()) : Partial<Batch<TodoItemRecord>>.Default())}");
         
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>
-        public IAsyncEnumerable<TodoItemRecordDto> GetAllToDoItemsAsyncEnumerable(string? skip = null, int? top = 100, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<TodoItemRecordDto>, Partial<TodoItemRecordDto>>? partial = null)
-            => BatchEnumerator.AllItems(batchSkip => GetAllToDoItemsAsync(top: top, open: open, from: from, till: till, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecordDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecordDto>.Default())), skip);
+        public IAsyncEnumerable<TodoItemRecord> GetAllToDoItemsAsyncEnumerable(string? skip = null, int? top = 100, bool? open = null, SpaceDate? from = null, SpaceDate? till = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null)
+            => BatchEnumerator.AllItems(batchSkip => GetAllToDoItemsAsync(top: top, open: open, from: from, till: till, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecord>.Default())), skip);
     
         /// <summary>
         /// Update an existing To-Do item. Optional parameters will be ignored when not specified, and updated otherwise.
@@ -63,7 +63,7 @@ namespace SpaceDotNet.Client
                 new TodoForIdPatchRequest { 
                     Text = text,
                     DueDate = dueDate,
-                    Open = open,
+                    IsOpen = open,
                 }
         );
     

@@ -28,11 +28,11 @@ namespace SpaceDotNet.Client
     {
         public AuthModulesPostRequest() { }
         
-        public AuthModulesPostRequest(string key, string name, bool enabled, ESAuthModuleSettingsDto settings)
+        public AuthModulesPostRequest(string key, string name, bool enabled, ESAuthModuleSettings settings)
         {
             Key = key;
             Name = name;
-            Enabled = enabled;
+            IsEnabled = enabled;
             Settings = settings;
         }
         
@@ -56,21 +56,21 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(AuthModulesPostRequest), nameof(Enabled));
+        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(AuthModulesPostRequest), nameof(IsEnabled));
         
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled
+        public bool IsEnabled
         {
             get { return _enabled.GetValue(); }
             set { _enabled.SetValue(value); }
         }
     
-        private PropertyValue<ESAuthModuleSettingsDto> _settings = new PropertyValue<ESAuthModuleSettingsDto>(nameof(AuthModulesPostRequest), nameof(Settings));
+        private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(AuthModulesPostRequest), nameof(Settings));
         
         [Required]
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto Settings
+        public ESAuthModuleSettings Settings
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }

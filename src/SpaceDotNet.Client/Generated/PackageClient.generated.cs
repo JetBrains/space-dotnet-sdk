@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<PackageTypeDto>> GetAllTypesAsync(Func<Partial<PackageTypeDto>, Partial<PackageTypeDto>>? partial = null)
-                => await _connection.RequestResourceAsync<List<PackageTypeDto>>("GET", $"api/http/packages/types?$fields={(partial != null ? partial(new Partial<PackageTypeDto>()) : Partial<PackageTypeDto>.Default())}");
+            public async Task<List<PackageType>> GetAllTypesAsync(Func<Partial<PackageType>, Partial<PackageType>>? partial = null)
+                => await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/packages/types?$fields={(partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default())}");
         
         }
     

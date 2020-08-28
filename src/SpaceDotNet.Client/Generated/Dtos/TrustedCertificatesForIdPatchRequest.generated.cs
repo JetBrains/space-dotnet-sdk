@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         {
             Alias = alias;
             Data = data;
-            Archived = archived;
+            IsArchived = archived;
         }
         
         private PropertyValue<string?> _alias = new PropertyValue<string?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Alias));
@@ -53,10 +53,10 @@ namespace SpaceDotNet.Client
             set { _data.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(Archived));
+        private PropertyValue<bool?> _archived = new PropertyValue<bool?>(nameof(TrustedCertificatesForIdPatchRequest), nameof(IsArchived));
         
         [JsonPropertyName("archived")]
-        public bool? Archived
+        public bool? IsArchived
         {
             get { return _archived.GetValue(); }
             set { _archived.SetValue(value); }

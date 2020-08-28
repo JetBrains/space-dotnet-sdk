@@ -25,6 +25,15 @@ namespace SpaceDotNet.Client.HATypeDtoPartialBuilder
 {
     public static class HATypeDtoPartialExtensions
     {
+        public static Partial<HATypeDto> WithDto(this Partial<HATypeDto> it)
+            => it.AddFieldName("dto");
+        
+        public static Partial<HATypeDto> WithDto(this Partial<HATypeDto> it, Func<Partial<HADto>, Partial<HADto>> partialBuilder)
+            => it.AddFieldName("dto", partialBuilder(new Partial<HADto>(it)));
+        
+        public static Partial<HATypeDto> WithIsNullable(this Partial<HATypeDto> it)
+            => it.AddFieldName("nullable");
+        
     }
     
 }

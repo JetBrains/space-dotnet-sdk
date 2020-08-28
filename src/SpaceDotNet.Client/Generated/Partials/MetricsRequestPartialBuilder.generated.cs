@@ -28,14 +28,14 @@ namespace SpaceDotNet.Client.MetricsRequestPartialBuilder
         public static Partial<MetricsRequest> WithClient(this Partial<MetricsRequest> it)
             => it.AddFieldName("client");
         
-        public static Partial<MetricsRequest> WithClient(this Partial<MetricsRequest> it, Func<Partial<ClientInfoDto>, Partial<ClientInfoDto>> partialBuilder)
-            => it.AddFieldName("client", partialBuilder(new Partial<ClientInfoDto>(it)));
+        public static Partial<MetricsRequest> WithClient(this Partial<MetricsRequest> it, Func<Partial<ClientInfo>, Partial<ClientInfo>> partialBuilder)
+            => it.AddFieldName("client", partialBuilder(new Partial<ClientInfo>(it)));
         
         public static Partial<MetricsRequest> WithEvents(this Partial<MetricsRequest> it)
             => it.AddFieldName("events");
         
-        public static Partial<MetricsRequest> WithEvents(this Partial<MetricsRequest> it, Func<Partial<MetricsEventDto>, Partial<MetricsEventDto>> partialBuilder)
-            => it.AddFieldName("events", partialBuilder(new Partial<MetricsEventDto>(it)));
+        public static Partial<MetricsRequest> WithEvents(this Partial<MetricsRequest> it, Func<Partial<MetricsEvent>, Partial<MetricsEvent>> partialBuilder)
+            => it.AddFieldName("events", partialBuilder(new Partial<MetricsEvent>(it)));
         
     }
     

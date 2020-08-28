@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a profile for support.
             /// </summary>
-            public async Task<SupportProfileDTODto> CreateSupportAsync(Func<Partial<SupportProfileDTODto>, Partial<SupportProfileDTODto>>? partial = null)
-                => await _connection.RequestResourceAsync<SupportProfileDTODto>("POST", $"api/http/administration/support?$fields={(partial != null ? partial(new Partial<SupportProfileDTODto>()) : Partial<SupportProfileDTODto>.Default())}");
+            public async Task<SupportProfile> CreateSupportAsync(Func<Partial<SupportProfile>, Partial<SupportProfile>>? partial = null)
+                => await _connection.RequestResourceAsync<SupportProfile>("POST", $"api/http/administration/support?$fields={(partial != null ? partial(new Partial<SupportProfile>()) : Partial<SupportProfile>.Default())}");
         
         }
     
@@ -62,14 +62,14 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<UAUserAgreementDto> GetUserAgreementAsync(Func<Partial<UAUserAgreementDto>, Partial<UAUserAgreementDto>>? partial = null)
-                => await _connection.RequestResourceAsync<UAUserAgreementDto>("GET", $"api/http/administration/user-agreement?$fields={(partial != null ? partial(new Partial<UAUserAgreementDto>()) : Partial<UAUserAgreementDto>.Default())}");
+            public async Task<UAUserAgreement> GetUserAgreementAsync(Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null)
+                => await _connection.RequestResourceAsync<UAUserAgreement>("GET", $"api/http/administration/user-agreement?$fields={(partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default())}");
         
-            public async Task<UAUserAgreementDto> UploadNewUserAgreementAsync(string newContent, bool invalidate, Func<Partial<UAUserAgreementDto>, Partial<UAUserAgreementDto>>? partial = null)
-                => await _connection.RequestResourceAsync<AdministrationUserAgreementPatchRequest, UAUserAgreementDto>("PATCH", $"api/http/administration/user-agreement?$fields={(partial != null ? partial(new Partial<UAUserAgreementDto>()) : Partial<UAUserAgreementDto>.Default())}", 
+            public async Task<UAUserAgreement> UploadNewUserAgreementAsync(string newContent, bool invalidate, Func<Partial<UAUserAgreement>, Partial<UAUserAgreement>>? partial = null)
+                => await _connection.RequestResourceAsync<AdministrationUserAgreementPatchRequest, UAUserAgreement>("PATCH", $"api/http/administration/user-agreement?$fields={(partial != null ? partial(new Partial<UAUserAgreement>()) : Partial<UAUserAgreement>.Default())}", 
                     new AdministrationUserAgreementPatchRequest { 
                         NewContent = newContent,
-                        Invalidate = invalidate,
+                        IsInvalidate = invalidate,
                     }
             );
         
@@ -87,7 +87,7 @@ namespace SpaceDotNet.Client
                 public async Task EnableDisableUserAgreementAsync(bool enabled)
                     => await _connection.RequestResourceAsync("POST", $"api/http/administration/user-agreement/enabled", 
                         new AdministrationUserAgreementEnabledPostRequest { 
-                            Enabled = enabled,
+                            IsEnabled = enabled,
                         }
                 );
             
@@ -107,14 +107,14 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Batch<UAUserAgreementStatusDto>> GetAllUserAgreementStatusesAsync(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatusDto>>, Partial<Batch<UAUserAgreementStatusDto>>>? partial = null)
-                    => await _connection.RequestResourceAsync<Batch<UAUserAgreementStatusDto>>("GET", $"api/http/administration/user-agreement/status?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&accepted={accepted?.ToString()?.ToLowerInvariant() ?? "null"}&activeProfilesOnly={activeProfilesOnly.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<UAUserAgreementStatusDto>>()) : Partial<Batch<UAUserAgreementStatusDto>>.Default())}");
+                public async Task<Batch<UAUserAgreementStatus>> GetAllUserAgreementStatusesAsync(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatus>>, Partial<Batch<UAUserAgreementStatus>>>? partial = null)
+                    => await _connection.RequestResourceAsync<Batch<UAUserAgreementStatus>>("GET", $"api/http/administration/user-agreement/status?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&accepted={accepted?.ToString()?.ToLowerInvariant() ?? "null"}&activeProfilesOnly={activeProfilesOnly.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<UAUserAgreementStatus>>()) : Partial<Batch<UAUserAgreementStatus>>.Default())}");
                 
-                public IAsyncEnumerable<UAUserAgreementStatusDto> GetAllUserAgreementStatusesAsyncEnumerable(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<UAUserAgreementStatusDto>, Partial<UAUserAgreementStatusDto>>? partial = null)
-                    => BatchEnumerator.AllItems(batchSkip => GetAllUserAgreementStatusesAsync(query: query, activeProfilesOnly: activeProfilesOnly, top: top, accepted: accepted, skip: batchSkip, partial: builder => Partial<Batch<UAUserAgreementStatusDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UAUserAgreementStatusDto>.Default())), skip);
+                public IAsyncEnumerable<UAUserAgreementStatus> GetAllUserAgreementStatusesAsyncEnumerable(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null)
+                    => BatchEnumerator.AllItems(batchSkip => GetAllUserAgreementStatusesAsync(query: query, activeProfilesOnly: activeProfilesOnly, top: top, accepted: accepted, skip: batchSkip, partial: builder => Partial<Batch<UAUserAgreementStatus>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UAUserAgreementStatus>.Default())), skip);
             
-                public async Task<UAUserAgreementStatusDto> GetUserAgreementStatusForProfileAsync(ProfileIdentifier profile, Func<Partial<UAUserAgreementStatusDto>, Partial<UAUserAgreementStatusDto>>? partial = null)
-                    => await _connection.RequestResourceAsync<UAUserAgreementStatusDto>("GET", $"api/http/administration/user-agreement/status/{profile}?$fields={(partial != null ? partial(new Partial<UAUserAgreementStatusDto>()) : Partial<UAUserAgreementStatusDto>.Default())}");
+                public async Task<UAUserAgreementStatus> GetUserAgreementStatusForProfileAsync(ProfileIdentifier profile, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null)
+                    => await _connection.RequestResourceAsync<UAUserAgreementStatus>("GET", $"api/http/administration/user-agreement/status/{profile}?$fields={(partial != null ? partial(new Partial<UAUserAgreementStatus>()) : Partial<UAUserAgreementStatus>.Default())}");
             
             }
         

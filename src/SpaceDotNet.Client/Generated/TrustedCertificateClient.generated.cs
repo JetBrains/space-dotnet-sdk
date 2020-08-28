@@ -32,27 +32,27 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<TrustedCertificateDto> CreateTrustedCertificateAsync(string alias, string data, bool archived, Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>>? partial = null)
-            => await _connection.RequestResourceAsync<TrustedCertificatesPostRequest, TrustedCertificateDto>("POST", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default())}", 
+        public async Task<TrustedCertificate> CreateTrustedCertificateAsync(string alias, string data, bool archived, Func<Partial<TrustedCertificate>, Partial<TrustedCertificate>>? partial = null)
+            => await _connection.RequestResourceAsync<TrustedCertificatesPostRequest, TrustedCertificate>("POST", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificate>()) : Partial<TrustedCertificate>.Default())}", 
                 new TrustedCertificatesPostRequest { 
                     Alias = alias,
                     Data = data,
-                    Archived = archived,
+                    IsArchived = archived,
                 }
         );
     
-        public async Task<List<TrustedCertificateDto>> GetAllTrustedCertificatesAsync(Func<Partial<TrustedCertificateDto>, Partial<TrustedCertificateDto>>? partial = null)
-            => await _connection.RequestResourceAsync<List<TrustedCertificateDto>>("GET", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificateDto>()) : Partial<TrustedCertificateDto>.Default())}");
+        public async Task<List<TrustedCertificate>> GetAllTrustedCertificatesAsync(Func<Partial<TrustedCertificate>, Partial<TrustedCertificate>>? partial = null)
+            => await _connection.RequestResourceAsync<List<TrustedCertificate>>("GET", $"api/http/trusted-certificates?$fields={(partial != null ? partial(new Partial<TrustedCertificate>()) : Partial<TrustedCertificate>.Default())}");
     
-        public async Task<CertificateInfoDto> InfoAsync(string data, Func<Partial<CertificateInfoDto>, Partial<CertificateInfoDto>>? partial = null)
-            => await _connection.RequestResourceAsync<CertificateInfoDto>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields={(partial != null ? partial(new Partial<CertificateInfoDto>()) : Partial<CertificateInfoDto>.Default())}");
+        public async Task<CertificateInfo> InfoAsync(string data, Func<Partial<CertificateInfo>, Partial<CertificateInfo>>? partial = null)
+            => await _connection.RequestResourceAsync<CertificateInfo>("GET", $"api/http/trusted-certificates/info?data={data.ToString()}&$fields={(partial != null ? partial(new Partial<CertificateInfo>()) : Partial<CertificateInfo>.Default())}");
     
         public async Task UpdateTrustedCertificateAsync(string id, string? alias = null, string? data = null, bool? archived = false)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/trusted-certificates/{id}", 
                 new TrustedCertificatesForIdPatchRequest { 
                     Alias = alias,
                     Data = data,
-                    Archived = archived,
+                    IsArchived = archived,
                 }
         );
     

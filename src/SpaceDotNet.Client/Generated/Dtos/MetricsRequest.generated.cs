@@ -28,27 +28,27 @@ namespace SpaceDotNet.Client
     {
         public MetricsRequest() { }
         
-        public MetricsRequest(ClientInfoDto client, List<MetricsEventDto> events)
+        public MetricsRequest(ClientInfo client, List<MetricsEvent> events)
         {
             Client = client;
             Events = events;
         }
         
-        private PropertyValue<ClientInfoDto> _client = new PropertyValue<ClientInfoDto>(nameof(MetricsRequest), nameof(Client));
+        private PropertyValue<ClientInfo> _client = new PropertyValue<ClientInfo>(nameof(MetricsRequest), nameof(Client));
         
         [Required]
         [JsonPropertyName("client")]
-        public ClientInfoDto Client
+        public ClientInfo Client
         {
             get { return _client.GetValue(); }
             set { _client.SetValue(value); }
         }
     
-        private PropertyValue<List<MetricsEventDto>> _events = new PropertyValue<List<MetricsEventDto>>(nameof(MetricsRequest), nameof(Events));
+        private PropertyValue<List<MetricsEvent>> _events = new PropertyValue<List<MetricsEvent>>(nameof(MetricsRequest), nameof(Events));
         
         [Required]
         [JsonPropertyName("events")]
-        public List<MetricsEventDto> Events
+        public List<MetricsEvent> Events
         {
             get { return _events.GetValue(); }
             set { _events.SetValue(value); }

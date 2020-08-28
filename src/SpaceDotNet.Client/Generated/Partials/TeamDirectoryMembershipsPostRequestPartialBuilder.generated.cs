@@ -37,7 +37,7 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsPostRequestPartialBuilder
         public static Partial<TeamDirectoryMembershipsPostRequest> WithRoleId(this Partial<TeamDirectoryMembershipsPostRequest> it)
             => it.AddFieldName("roleId");
         
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithLead(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        public static Partial<TeamDirectoryMembershipsPostRequest> WithIsLead(this Partial<TeamDirectoryMembershipsPostRequest> it)
             => it.AddFieldName("lead");
         
         public static Partial<TeamDirectoryMembershipsPostRequest> WithManager(this Partial<TeamDirectoryMembershipsPostRequest> it)
@@ -55,14 +55,14 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsPostRequestPartialBuilder
         public static Partial<TeamDirectoryMembershipsPostRequest> WithPreviousMembershipId(this Partial<TeamDirectoryMembershipsPostRequest> it)
             => it.AddFieldName("previousMembershipId");
         
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithRequiresApproval(this Partial<TeamDirectoryMembershipsPostRequest> it)
+        public static Partial<TeamDirectoryMembershipsPostRequest> WithIsRequiresApproval(this Partial<TeamDirectoryMembershipsPostRequest> it)
             => it.AddFieldName("requiresApproval");
         
         public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>(it)));
+        public static Partial<TeamDirectoryMembershipsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsPostRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
         
     }
     

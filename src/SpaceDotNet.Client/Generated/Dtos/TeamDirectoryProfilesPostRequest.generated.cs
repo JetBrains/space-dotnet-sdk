@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesPostRequest() { }
         
-        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValueDto>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquareDto? avatarCropSquare = null)
+        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null)
         {
             Username = username;
             FirstName = firstName;
@@ -39,13 +39,13 @@ namespace SpaceDotNet.Client
             About = about;
             Messengers = (messengers ?? new List<string>());
             Links = (links ?? new List<string>());
-            NotAMember = notAMember;
+            IsNotAMember = notAMember;
             Joined = joined;
             Left = left;
-            SpeaksEnglish = speaksEnglish;
+            IsSpeaksEnglish = speaksEnglish;
             PictureAttachmentId = pictureAttachmentId;
             AvatarCropSquare = avatarCropSquare;
-            CustomFieldValues = (customFieldValues ?? new List<CustomFieldValueDto>());
+            CustomFieldValues = (customFieldValues ?? new List<CustomFieldValue>());
         }
         
         private PropertyValue<string> _username = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(Username));
@@ -132,10 +132,10 @@ namespace SpaceDotNet.Client
             set { _links.SetValue(value); }
         }
     
-        private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TeamDirectoryProfilesPostRequest), nameof(NotAMember));
+        private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsNotAMember));
         
         [JsonPropertyName("notAMember")]
-        public bool NotAMember
+        public bool IsNotAMember
         {
             get { return _notAMember.GetValue(); }
             set { _notAMember.SetValue(value); }
@@ -159,10 +159,10 @@ namespace SpaceDotNet.Client
             set { _left.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(SpeaksEnglish));
+        private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsSpeaksEnglish));
         
         [JsonPropertyName("speaksEnglish")]
-        public bool? SpeaksEnglish
+        public bool? IsSpeaksEnglish
         {
             get { return _speaksEnglish.GetValue(); }
             set { _speaksEnglish.SetValue(value); }
@@ -177,19 +177,19 @@ namespace SpaceDotNet.Client
             set { _pictureAttachmentId.SetValue(value); }
         }
     
-        private PropertyValue<AvatarCropSquareDto?> _avatarCropSquare = new PropertyValue<AvatarCropSquareDto?>(nameof(TeamDirectoryProfilesPostRequest), nameof(AvatarCropSquare));
+        private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TeamDirectoryProfilesPostRequest), nameof(AvatarCropSquare));
         
         [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquareDto? AvatarCropSquare
+        public AvatarCropSquare? AvatarCropSquare
         {
             get { return _avatarCropSquare.GetValue(); }
             set { _avatarCropSquare.SetValue(value); }
         }
     
-        private PropertyValue<List<CustomFieldValueDto>> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldValue>> _customFieldValues = new PropertyValue<List<CustomFieldValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto> CustomFieldValues
+        public List<CustomFieldValue> CustomFieldValues
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }

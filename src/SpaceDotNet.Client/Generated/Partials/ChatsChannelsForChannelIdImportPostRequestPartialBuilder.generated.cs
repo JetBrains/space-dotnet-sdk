@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.ChatsChannelsForChannelIdImportPostRequestPartialBu
         public static Partial<ChatsChannelsForChannelIdImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelIdImportPostRequest> it)
             => it.AddFieldName("messages");
         
-        public static Partial<ChatsChannelsForChannelIdImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelIdImportPostRequest> it, Func<Partial<MessageForImportDto>, Partial<MessageForImportDto>> partialBuilder)
-            => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImportDto>(it)));
+        public static Partial<ChatsChannelsForChannelIdImportPostRequest> WithMessages(this Partial<ChatsChannelsForChannelIdImportPostRequest> it, Func<Partial<MessageForImport>, Partial<MessageForImport>> partialBuilder)
+            => it.AddFieldName("messages", partialBuilder(new Partial<MessageForImport>(it)));
         
     }
     

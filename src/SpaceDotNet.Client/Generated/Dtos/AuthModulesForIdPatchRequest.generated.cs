@@ -28,11 +28,11 @@ namespace SpaceDotNet.Client
     {
         public AuthModulesForIdPatchRequest() { }
         
-        public AuthModulesForIdPatchRequest(string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettingsDto? settings = null)
+        public AuthModulesForIdPatchRequest(string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettings? settings = null)
         {
             Key = key;
             Name = name;
-            Enabled = enabled;
+            IsEnabled = enabled;
             Settings = settings;
         }
         
@@ -54,19 +54,19 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(AuthModulesForIdPatchRequest), nameof(Enabled));
+        private PropertyValue<bool?> _enabled = new PropertyValue<bool?>(nameof(AuthModulesForIdPatchRequest), nameof(IsEnabled));
         
         [JsonPropertyName("enabled")]
-        public bool? Enabled
+        public bool? IsEnabled
         {
             get { return _enabled.GetValue(); }
             set { _enabled.SetValue(value); }
         }
     
-        private PropertyValue<ESAuthModuleSettingsDto?> _settings = new PropertyValue<ESAuthModuleSettingsDto?>(nameof(AuthModulesForIdPatchRequest), nameof(Settings));
+        private PropertyValue<ESAuthModuleSettings?> _settings = new PropertyValue<ESAuthModuleSettings?>(nameof(AuthModulesForIdPatchRequest), nameof(Settings));
         
         [JsonPropertyName("settings")]
-        public ESAuthModuleSettingsDto? Settings
+        public ESAuthModuleSettings? Settings
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }

@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesStatusesPatchReques
         public static Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> WithStatuses(this Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> it)
             => it.AddFieldName("statuses");
         
-        public static Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> WithStatuses(this Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> it, Func<Partial<IssueStatusDataDto>, Partial<IssueStatusDataDto>> partialBuilder)
-            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusDataDto>(it)));
+        public static Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> WithStatuses(this Partial<ProjectsForProjectPlanningIssuesStatusesPatchRequest> it, Func<Partial<IssueStatusData>, Partial<IssueStatusData>> partialBuilder)
+            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatusData>(it)));
         
     }
     

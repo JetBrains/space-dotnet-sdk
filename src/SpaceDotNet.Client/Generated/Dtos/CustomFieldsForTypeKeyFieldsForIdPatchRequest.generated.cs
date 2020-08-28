@@ -28,14 +28,14 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(string? name = null, string? description = null, string? key = null, CFConstraintDto? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValueDto? defaultValue = null, List<EnumValueDataDto>? enumValues = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(string? name = null, string? description = null, string? key = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null)
         {
             Name = name;
             Description = description;
             Key = key;
             Constraint = constraint;
-            Required = required;
-            Private = @private;
+            IsRequired = required;
+            IsPrivate = @private;
             Access = access;
             DefaultValue = defaultValue;
             EnumValues = enumValues;
@@ -68,28 +68,28 @@ namespace SpaceDotNet.Client
             set { _key.SetValue(value); }
         }
     
-        private PropertyValue<CFConstraintDto?> _constraint = new PropertyValue<CFConstraintDto?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Constraint));
+        private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Constraint));
         
         [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint
+        public CFConstraint? Constraint
         {
             get { return _constraint.GetValue(); }
             set { _constraint.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _required = new PropertyValue<bool?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Required));
+        private PropertyValue<bool?> _required = new PropertyValue<bool?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(IsRequired));
         
         [JsonPropertyName("required")]
-        public bool? Required
+        public bool? IsRequired
         {
             get { return _required.GetValue(); }
             set { _required.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Private));
+        private PropertyValue<bool?> _private = new PropertyValue<bool?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(IsPrivate));
         
         [JsonPropertyName("private")]
-        public bool? Private
+        public bool? IsPrivate
         {
             get { return _private.GetValue(); }
             set { _private.SetValue(value); }
@@ -104,19 +104,19 @@ namespace SpaceDotNet.Client
             set { _access.SetValue(value); }
         }
     
-        private PropertyValue<CFValueDto?> _defaultValue = new PropertyValue<CFValueDto?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(DefaultValue));
+        private PropertyValue<CFValue?> _defaultValue = new PropertyValue<CFValue?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(DefaultValue));
         
         [JsonPropertyName("defaultValue")]
-        public CFValueDto? DefaultValue
+        public CFValue? DefaultValue
         {
             get { return _defaultValue.GetValue(); }
             set { _defaultValue.SetValue(value); }
         }
     
-        private PropertyValue<List<EnumValueDataDto>?> _enumValues = new PropertyValue<List<EnumValueDataDto>?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(EnumValues));
+        private PropertyValue<List<EnumValueData>?> _enumValues = new PropertyValue<List<EnumValueData>?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(EnumValues));
         
         [JsonPropertyName("enumValues")]
-        public List<EnumValueDataDto>? EnumValues
+        public List<EnumValueData>? EnumValues
         {
             get { return _enumValues.GetValue(); }
             set { _enumValues.SetValue(value); }

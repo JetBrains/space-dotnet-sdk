@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryTeamsPostRequest() { }
         
-        public TeamDirectoryTeamsPostRequest(string teamNameRaw, string? teamDescription = null, List<string>? teamEmails = null, string? parentId = null, List<CustomFieldValueDto>? customFieldValues = null)
+        public TeamDirectoryTeamsPostRequest(string teamNameRaw, string? teamDescription = null, List<string>? teamEmails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null)
         {
             TeamNameRaw = teamNameRaw;
             TeamDescription = teamDescription;
@@ -74,10 +74,10 @@ namespace SpaceDotNet.Client
             set { _parentId.SetValue(value); }
         }
     
-        private PropertyValue<List<CustomFieldValueDto>?> _customFieldValues = new PropertyValue<List<CustomFieldValueDto>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(CustomFieldValues));
+        private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(CustomFieldValues));
         
         [JsonPropertyName("customFieldValues")]
-        public List<CustomFieldValueDto>? CustomFieldValues
+        public List<CustomFieldValue>? CustomFieldValues
         {
             get { return _customFieldValues.GetValue(); }
             set { _customFieldValues.SetValue(value); }

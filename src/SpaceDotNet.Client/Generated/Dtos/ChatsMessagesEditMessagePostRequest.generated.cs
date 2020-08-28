@@ -28,12 +28,12 @@ namespace SpaceDotNet.Client
     {
         public ChatsMessagesEditMessagePostRequest() { }
         
-        public ChatsMessagesEditMessagePostRequest(string channel, ChatMessageIdentifier message, ChatMessageDto content, bool? unfurlLinks = null)
+        public ChatsMessagesEditMessagePostRequest(string channel, ChatMessageIdentifier message, ChatMessage content, bool? unfurlLinks = null)
         {
             Channel = channel;
             Message = message;
             Content = content;
-            UnfurlLinks = unfurlLinks;
+            IsUnfurlLinks = unfurlLinks;
         }
         
         private PropertyValue<string> _channel = new PropertyValue<string>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Channel));
@@ -56,20 +56,20 @@ namespace SpaceDotNet.Client
             set { _message.SetValue(value); }
         }
     
-        private PropertyValue<ChatMessageDto> _content = new PropertyValue<ChatMessageDto>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Content));
+        private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Content));
         
         [Required]
         [JsonPropertyName("content")]
-        public ChatMessageDto Content
+        public ChatMessage Content
         {
             get { return _content.GetValue(); }
             set { _content.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(UnfurlLinks));
+        private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks));
         
         [JsonPropertyName("unfurlLinks")]
-        public bool? UnfurlLinks
+        public bool? IsUnfurlLinks
         {
             get { return _unfurlLinks.GetValue(); }
             set { _unfurlLinks.SetValue(value); }

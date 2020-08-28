@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client
         public UnfurlsUnblockUnfurlGlobalPostRequest(string link, bool wholeHost)
         {
             Link = link;
-            WholeHost = wholeHost;
+            IsWholeHost = wholeHost;
         }
         
         private PropertyValue<string> _link = new PropertyValue<string>(nameof(UnfurlsUnblockUnfurlGlobalPostRequest), nameof(Link));
@@ -44,11 +44,11 @@ namespace SpaceDotNet.Client
             set { _link.SetValue(value); }
         }
     
-        private PropertyValue<bool> _wholeHost = new PropertyValue<bool>(nameof(UnfurlsUnblockUnfurlGlobalPostRequest), nameof(WholeHost));
+        private PropertyValue<bool> _wholeHost = new PropertyValue<bool>(nameof(UnfurlsUnblockUnfurlGlobalPostRequest), nameof(IsWholeHost));
         
         [Required]
         [JsonPropertyName("wholeHost")]
-        public bool WholeHost
+        public bool IsWholeHost
         {
             get { return _wholeHost.GetValue(); }
             set { _wholeHost.SetValue(value); }

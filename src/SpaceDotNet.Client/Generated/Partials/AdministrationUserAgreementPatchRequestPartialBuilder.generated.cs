@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client.AdministrationUserAgreementPatchRequestPartialBuild
         public static Partial<AdministrationUserAgreementPatchRequest> WithNewContent(this Partial<AdministrationUserAgreementPatchRequest> it)
             => it.AddFieldName("newContent");
         
-        public static Partial<AdministrationUserAgreementPatchRequest> WithInvalidate(this Partial<AdministrationUserAgreementPatchRequest> it)
+        public static Partial<AdministrationUserAgreementPatchRequest> WithIsInvalidate(this Partial<AdministrationUserAgreementPatchRequest> it)
             => it.AddFieldName("invalidate");
         
     }

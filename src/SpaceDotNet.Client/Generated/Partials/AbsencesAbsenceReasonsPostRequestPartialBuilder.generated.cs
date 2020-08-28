@@ -31,10 +31,10 @@ namespace SpaceDotNet.Client.AbsencesAbsenceReasonsPostRequestPartialBuilder
         public static Partial<AbsencesAbsenceReasonsPostRequest> WithDescription(this Partial<AbsencesAbsenceReasonsPostRequest> it)
             => it.AddFieldName("description");
         
-        public static Partial<AbsencesAbsenceReasonsPostRequest> WithDefaultAvailability(this Partial<AbsencesAbsenceReasonsPostRequest> it)
+        public static Partial<AbsencesAbsenceReasonsPostRequest> WithIsDefaultAvailability(this Partial<AbsencesAbsenceReasonsPostRequest> it)
             => it.AddFieldName("defaultAvailability");
         
-        public static Partial<AbsencesAbsenceReasonsPostRequest> WithApprovalRequired(this Partial<AbsencesAbsenceReasonsPostRequest> it)
+        public static Partial<AbsencesAbsenceReasonsPostRequest> WithIsApprovalRequired(this Partial<AbsencesAbsenceReasonsPostRequest> it)
             => it.AddFieldName("approvalRequired");
         
         public static Partial<AbsencesAbsenceReasonsPostRequest> WithIcon(this Partial<AbsencesAbsenceReasonsPostRequest> it)

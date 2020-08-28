@@ -28,12 +28,12 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPackagesRepositoriesPostRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettingsDto settings, string? description = null)
+        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null)
         {
             Type = type;
             Name = name;
             Description = description;
-            Public = @public;
+            IsPublic = @public;
             Settings = settings;
         }
         
@@ -66,21 +66,21 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Public));
+        private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(IsPublic));
         
         [Required]
         [JsonPropertyName("public")]
-        public bool Public
+        public bool IsPublic
         {
             get { return _public.GetValue(); }
             set { _public.SetValue(value); }
         }
     
-        private PropertyValue<ESPackageRepositorySettingsDto> _settings = new PropertyValue<ESPackageRepositorySettingsDto>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Settings));
+        private PropertyValue<ESPackageRepositorySettings> _settings = new PropertyValue<ESPackageRepositorySettings>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Settings));
         
         [Required]
         [JsonPropertyName("settings")]
-        public ESPackageRepositorySettingsDto Settings
+        public ESPackageRepositorySettings Settings
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }

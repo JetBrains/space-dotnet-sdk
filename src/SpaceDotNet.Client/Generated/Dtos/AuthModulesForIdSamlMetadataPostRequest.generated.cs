@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public AuthModulesForIdSamlMetadataPostRequest() { }
         
-        public AuthModulesForIdSamlMetadataPostRequest(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystoreDto? sslKeystore = null, string? contactProfileId = null)
+        public AuthModulesForIdSamlMetadataPostRequest(string idpUrl, string idpEntityId, string idpCertificateSHA256, string spEntityId, SSLKeystore? sslKeystore = null, string? contactProfileId = null)
         {
             IdpUrl = idpUrl;
             IdpEntityId = idpEntityId;
@@ -78,10 +78,10 @@ namespace SpaceDotNet.Client
             set { _spEntityId.SetValue(value); }
         }
     
-        private PropertyValue<SSLKeystoreDto?> _sslKeystore = new PropertyValue<SSLKeystoreDto?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(SslKeystore));
+        private PropertyValue<SSLKeystore?> _sslKeystore = new PropertyValue<SSLKeystore?>(nameof(AuthModulesForIdSamlMetadataPostRequest), nameof(SslKeystore));
         
         [JsonPropertyName("sslKeystore")]
-        public SSLKeystoreDto? SslKeystore
+        public SSLKeystore? SslKeystore
         {
             get { return _sslKeystore.GetValue(); }
             set { _sslKeystore.SetValue(value); }

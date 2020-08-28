@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsForMembershipIdPatchRequest
         public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithRoleId(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
             => it.AddFieldName("roleId");
         
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithLead(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithIsLead(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
             => it.AddFieldName("lead");
         
         public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithManager(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
@@ -46,14 +46,14 @@ namespace SpaceDotNet.Client.TeamDirectoryMembershipsForMembershipIdPatchRequest
         public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithActiveTill(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
             => it.AddFieldName("activeTill");
         
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithRequiresApproval(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
+        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithIsRequiresApproval(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
             => it.AddFieldName("requiresApproval");
         
         public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it)
             => it.AddFieldName("customFieldValues");
         
-        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<CustomFieldValueDto>, Partial<CustomFieldValueDto>> partialBuilder)
-            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValueDto>(it)));
+        public static Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryMembershipsForMembershipIdPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
+            => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
         
     }
     

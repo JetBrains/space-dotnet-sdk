@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get meta information for a previously uploaded image.
             /// </summary>
-            public async Task<ImageAttachmentMetaDto> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMetaDto>, Partial<ImageAttachmentMetaDto>>? partial = null)
-                => await _connection.RequestResourceAsync<ImageAttachmentMetaDto>("GET", $"api/http/uploads/image/{id}?$fields={(partial != null ? partial(new Partial<ImageAttachmentMetaDto>()) : Partial<ImageAttachmentMetaDto>.Default())}");
+            public async Task<ImageAttachmentMeta> GetImageAttachmentMetadataAsync(string id, Func<Partial<ImageAttachmentMeta>, Partial<ImageAttachmentMeta>>? partial = null)
+                => await _connection.RequestResourceAsync<ImageAttachmentMeta>("GET", $"api/http/uploads/image/{id}?$fields={(partial != null ? partial(new Partial<ImageAttachmentMeta>()) : Partial<ImageAttachmentMeta>.Default())}");
         
         }
     

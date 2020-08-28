@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public DocsDraftsForIdPatchRequest() { }
         
-        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetailsDto? publicationDetails = null, PublicationDetailsDto? publicationDetails2 = null)
+        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null)
         {
             Title = title;
             Text = text;
@@ -84,19 +84,19 @@ namespace SpaceDotNet.Client
             set { _folder.SetValue(value); }
         }
     
-        private PropertyValue<DraftPublicationDetailsDto?> _publicationDetails = new PropertyValue<DraftPublicationDetailsDto?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails));
+        private PropertyValue<DraftPublicationDetails?> _publicationDetails = new PropertyValue<DraftPublicationDetails?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails));
         
         [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetailsDto? PublicationDetails
+        public DraftPublicationDetails? PublicationDetails
         {
             get { return _publicationDetails.GetValue(); }
             set { _publicationDetails.SetValue(value); }
         }
     
-        private PropertyValue<PublicationDetailsDto?> _publicationDetails2 = new PropertyValue<PublicationDetailsDto?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails2));
+        private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails2));
         
         [JsonPropertyName("publicationDetails2")]
-        public PublicationDetailsDto? PublicationDetails2
+        public PublicationDetails? PublicationDetails2
         {
             get { return _publicationDetails2.GetValue(); }
             set { _publicationDetails2.SetValue(value); }

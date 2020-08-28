@@ -33,9 +33,9 @@ namespace SpaceDotNet.Client
             ThemeName = themeName;
             FirstDayOfWeek = firstDayOfWeek;
             DraftType = draftType;
-            TodoFilters = todoFilters;
+            IsTodoFilters = todoFilters;
             CalendarView = calendarView;
-            EmailNotificationsEnabled = emailNotificationsEnabled;
+            IsEmailNotificationsEnabled = emailNotificationsEnabled;
             NotificationEmail = notificationEmail;
         }
         
@@ -66,10 +66,10 @@ namespace SpaceDotNet.Client
             set { _draftType.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(TodoFilters));
+        private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsTodoFilters));
         
         [JsonPropertyName("todoFilters")]
-        public bool? TodoFilters
+        public bool? IsTodoFilters
         {
             get { return _todoFilters.GetValue(); }
             set { _todoFilters.SetValue(value); }
@@ -84,10 +84,10 @@ namespace SpaceDotNet.Client
             set { _calendarView.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(EmailNotificationsEnabled));
+        private PropertyValue<bool?> _emailNotificationsEnabled = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfileSettingsPatchRequest), nameof(IsEmailNotificationsEnabled));
         
         [JsonPropertyName("emailNotificationsEnabled")]
-        public bool? EmailNotificationsEnabled
+        public bool? IsEmailNotificationsEnabled
         {
             get { return _emailNotificationsEnabled.GetValue(); }
             set { _emailNotificationsEnabled.SetValue(value); }

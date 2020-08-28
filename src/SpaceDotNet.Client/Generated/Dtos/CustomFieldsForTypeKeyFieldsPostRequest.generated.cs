@@ -28,15 +28,15 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyFieldsPostRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsPostRequest(string name, string key, CFTypeDto type, bool required, bool @private, CFValueDto defaultValue, string? description = null, CFConstraintDto? constraint = null, AccessType? access = null)
+        public CustomFieldsForTypeKeyFieldsPostRequest(string name, string key, CFType type, bool required, bool @private, CFValue defaultValue, string? description = null, CFConstraint? constraint = null, AccessType? access = null)
         {
             Name = name;
             Description = description;
             Key = key;
             Type = type;
             Constraint = constraint;
-            Required = required;
-            Private = @private;
+            IsRequired = required;
+            IsPrivate = @private;
             Access = access;
             DefaultValue = defaultValue;
         }
@@ -70,40 +70,40 @@ namespace SpaceDotNet.Client
             set { _key.SetValue(value); }
         }
     
-        private PropertyValue<CFTypeDto> _type = new PropertyValue<CFTypeDto>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Type));
+        private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Type));
         
         [Required]
         [JsonPropertyName("type")]
-        public CFTypeDto Type
+        public CFType Type
         {
             get { return _type.GetValue(); }
             set { _type.SetValue(value); }
         }
     
-        private PropertyValue<CFConstraintDto?> _constraint = new PropertyValue<CFConstraintDto?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Constraint));
+        private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Constraint));
         
         [JsonPropertyName("constraint")]
-        public CFConstraintDto? Constraint
+        public CFConstraint? Constraint
         {
             get { return _constraint.GetValue(); }
             set { _constraint.SetValue(value); }
         }
     
-        private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Required));
+        private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsRequired));
         
         [Required]
         [JsonPropertyName("required")]
-        public bool Required
+        public bool IsRequired
         {
             get { return _required.GetValue(); }
             set { _required.SetValue(value); }
         }
     
-        private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Private));
+        private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsPrivate));
         
         [Required]
         [JsonPropertyName("private")]
-        public bool Private
+        public bool IsPrivate
         {
             get { return _private.GetValue(); }
             set { _private.SetValue(value); }
@@ -118,11 +118,11 @@ namespace SpaceDotNet.Client
             set { _access.SetValue(value); }
         }
     
-        private PropertyValue<CFValueDto> _defaultValue = new PropertyValue<CFValueDto>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(DefaultValue));
+        private PropertyValue<CFValue> _defaultValue = new PropertyValue<CFValue>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(DefaultValue));
         
         [Required]
         [JsonPropertyName("defaultValue")]
-        public CFValueDto DefaultValue
+        public CFValue DefaultValue
         {
             get { return _defaultValue.GetValue(); }
             set { _defaultValue.SetValue(value); }

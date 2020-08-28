@@ -46,14 +46,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all blogs.
             /// </summary>
-            public async Task<Batch<FTSBlogDto>> GetAllBlogsAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSBlogDto>>, Partial<Batch<FTSBlogDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<FTSBlogDto>>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSBlogDto>>()) : Partial<Batch<FTSBlogDto>>.Default())}");
+            public async Task<Batch<FTSBlog>> GetAllBlogsAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSBlog>>, Partial<Batch<FTSBlog>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<FTSBlog>>("GET", $"api/http/full-text-search/blogs?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSBlog>>()) : Partial<Batch<FTSBlog>>.Default())}");
             
             /// <summary>
             /// Perform full-text search in all blogs.
             /// </summary>
-            public IAsyncEnumerable<FTSBlogDto> GetAllBlogsAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSBlogDto>, Partial<FTSBlogDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllBlogsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSBlogDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSBlogDto>.Default())), skip);
+            public IAsyncEnumerable<FTSBlog> GetAllBlogsAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSBlog>, Partial<FTSBlog>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllBlogsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSBlog>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSBlog>.Default())), skip);
         
         }
     
@@ -71,14 +71,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all drafts.
             /// </summary>
-            public async Task<Batch<FTSDraftDto>> GetAllDraftsAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSDraftDto>>, Partial<Batch<FTSDraftDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<FTSDraftDto>>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSDraftDto>>()) : Partial<Batch<FTSDraftDto>>.Default())}");
+            public async Task<Batch<FTSDraft>> GetAllDraftsAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSDraft>>, Partial<Batch<FTSDraft>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<FTSDraft>>("GET", $"api/http/full-text-search/drafts?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSDraft>>()) : Partial<Batch<FTSDraft>>.Default())}");
             
             /// <summary>
             /// Perform full-text search in all drafts.
             /// </summary>
-            public IAsyncEnumerable<FTSDraftDto> GetAllDraftsAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSDraftDto>, Partial<FTSDraftDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllDraftsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSDraftDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSDraftDto>.Default())), skip);
+            public IAsyncEnumerable<FTSDraft> GetAllDraftsAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSDraft>, Partial<FTSDraft>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllDraftsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSDraft>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSDraft>.Default())), skip);
         
         }
     
@@ -96,14 +96,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all user profiles.
             /// </summary>
-            public async Task<Batch<FTSProfileDto>> GetAllProfilesAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSProfileDto>>, Partial<Batch<FTSProfileDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<FTSProfileDto>>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSProfileDto>>()) : Partial<Batch<FTSProfileDto>>.Default())}");
+            public async Task<Batch<FTSProfile>> GetAllProfilesAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSProfile>>, Partial<Batch<FTSProfile>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<FTSProfile>>("GET", $"api/http/full-text-search/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSProfile>>()) : Partial<Batch<FTSProfile>>.Default())}");
             
             /// <summary>
             /// Perform full-text search in all user profiles.
             /// </summary>
-            public IAsyncEnumerable<FTSProfileDto> GetAllProfilesAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSProfileDto>, Partial<FTSProfileDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSProfileDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSProfileDto>.Default())), skip);
+            public IAsyncEnumerable<FTSProfile> GetAllProfilesAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSProfile>, Partial<FTSProfile>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSProfile>.Default())), skip);
         
         }
     
@@ -121,14 +121,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all user profiles.
             /// </summary>
-            public async Task<Batch<ProfileHitDto>> GetAllProfilesSearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<ProfileHitDto>>, Partial<Batch<ProfileHitDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<ProfileHitDto>>("GET", $"api/http/full-text-search/profiles-search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<ProfileHitDto>>()) : Partial<Batch<ProfileHitDto>>.Default())}");
+            public async Task<Batch<ProfileHit>> GetAllProfilesSearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<ProfileHit>>, Partial<Batch<ProfileHit>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<ProfileHit>>("GET", $"api/http/full-text-search/profiles-search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<ProfileHit>>()) : Partial<Batch<ProfileHit>>.Default())}");
             
             /// <summary>
             /// Perform full-text search in all user profiles.
             /// </summary>
-            public IAsyncEnumerable<ProfileHitDto> GetAllProfilesSearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<ProfileHitDto>, Partial<ProfileHitDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesSearchAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<ProfileHitDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ProfileHitDto>.Default())), skip);
+            public IAsyncEnumerable<ProfileHit> GetAllProfilesSearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<ProfileHit>, Partial<ProfileHit>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllProfilesSearchAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<ProfileHit>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ProfileHit>.Default())), skip);
         
         }
     
@@ -146,14 +146,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all supported entities.
             /// </summary>
-            public async Task<Batch<EntityHitDto>> GetAllSearchAsync(string query, bool quick = false, string? skip = null, int? top = 100, Func<Partial<Batch<EntityHitDto>>, Partial<Batch<EntityHitDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<EntityHitDto>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&quick={quick.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<EntityHitDto>>()) : Partial<Batch<EntityHitDto>>.Default())}");
+            public async Task<Batch<EntityHit>> GetAllSearchAsync(string query, bool quick = false, string? skip = null, int? top = 100, Func<Partial<Batch<EntityHit>>, Partial<Batch<EntityHit>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<EntityHit>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&quick={quick.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<EntityHit>>()) : Partial<Batch<EntityHit>>.Default())}");
             
             /// <summary>
             /// Perform full-text search in all supported entities.
             /// </summary>
-            public IAsyncEnumerable<EntityHitDto> GetAllSearchAsyncEnumerable(string query, bool quick = false, string? skip = null, int? top = 100, Func<Partial<EntityHitDto>, Partial<EntityHitDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllSearchAsync(query: query, quick: quick, top: top, skip: batchSkip, partial: builder => Partial<Batch<EntityHitDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHitDto>.Default())), skip);
+            public IAsyncEnumerable<EntityHit> GetAllSearchAsyncEnumerable(string query, bool quick = false, string? skip = null, int? top = 100, Func<Partial<EntityHit>, Partial<EntityHit>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllSearchAsync(query: query, quick: quick, top: top, skip: batchSkip, partial: builder => Partial<Batch<EntityHit>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHit>.Default())), skip);
         
         }
     
@@ -171,14 +171,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all teams.
             /// </summary>
-            public async Task<Batch<FTSTeamDto>> GetAllTeamsAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSTeamDto>>, Partial<Batch<FTSTeamDto>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<FTSTeamDto>>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSTeamDto>>()) : Partial<Batch<FTSTeamDto>>.Default())}");
+            public async Task<Batch<FTSTeam>> GetAllTeamsAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<FTSTeam>>, Partial<Batch<FTSTeam>>>? partial = null)
+                => await _connection.RequestResourceAsync<Batch<FTSTeam>>("GET", $"api/http/full-text-search/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<FTSTeam>>()) : Partial<Batch<FTSTeam>>.Default())}");
             
             /// <summary>
             /// Perform full-text search in all teams.
             /// </summary>
-            public IAsyncEnumerable<FTSTeamDto> GetAllTeamsAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSTeamDto>, Partial<FTSTeamDto>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllTeamsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSTeamDto>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSTeamDto>.Default())), skip);
+            public IAsyncEnumerable<FTSTeam> GetAllTeamsAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<FTSTeam>, Partial<FTSTeam>>? partial = null)
+                => BatchEnumerator.AllItems(batchSkip => GetAllTeamsAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<FTSTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<FTSTeam>.Default())), skip);
         
         }
     

@@ -46,14 +46,14 @@ namespace SpaceDotNet.Client.DocsDraftsPostRequestPartialBuilder
         public static Partial<DocsDraftsPostRequest> WithPublicationDetails(this Partial<DocsDraftsPostRequest> it)
             => it.AddFieldName("publicationDetails");
         
-        public static Partial<DocsDraftsPostRequest> WithPublicationDetails(this Partial<DocsDraftsPostRequest> it, Func<Partial<DraftPublicationDetailsDto>, Partial<DraftPublicationDetailsDto>> partialBuilder)
-            => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetailsDto>(it)));
+        public static Partial<DocsDraftsPostRequest> WithPublicationDetails(this Partial<DocsDraftsPostRequest> it, Func<Partial<DraftPublicationDetails>, Partial<DraftPublicationDetails>> partialBuilder)
+            => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetails>(it)));
         
         public static Partial<DocsDraftsPostRequest> WithPublicationDetails2(this Partial<DocsDraftsPostRequest> it)
             => it.AddFieldName("publicationDetails2");
         
-        public static Partial<DocsDraftsPostRequest> WithPublicationDetails2(this Partial<DocsDraftsPostRequest> it, Func<Partial<PublicationDetailsDto>, Partial<PublicationDetailsDto>> partialBuilder)
-            => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetailsDto>(it)));
+        public static Partial<DocsDraftsPostRequest> WithPublicationDetails2(this Partial<DocsDraftsPostRequest> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
+            => it.AddFieldName("publicationDetails2", partialBuilder(new Partial<PublicationDetails>(it)));
         
     }
     

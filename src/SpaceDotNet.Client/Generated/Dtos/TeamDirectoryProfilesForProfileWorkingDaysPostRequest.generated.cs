@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesForProfileWorkingDaysPostRequest() { }
         
-        public TeamDirectoryProfilesForProfileWorkingDaysPostRequest(WorkingDaysSpecDto workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null)
+        public TeamDirectoryProfilesForProfileWorkingDaysPostRequest(WorkingDaysSpec workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null)
         {
             DateStart = dateStart;
             DateEnd = dateEnd;
@@ -53,11 +53,11 @@ namespace SpaceDotNet.Client
             set { _dateEnd.SetValue(value); }
         }
     
-        private PropertyValue<WorkingDaysSpecDto> _workingDaysSpec = new PropertyValue<WorkingDaysSpecDto>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(WorkingDaysSpec));
+        private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(WorkingDaysSpec));
         
         [Required]
         [JsonPropertyName("workingDaysSpec")]
-        public WorkingDaysSpecDto WorkingDaysSpec
+        public WorkingDaysSpec WorkingDaysSpec
         {
             get { return _workingDaysSpec.GetValue(); }
             set { _workingDaysSpec.SetValue(value); }

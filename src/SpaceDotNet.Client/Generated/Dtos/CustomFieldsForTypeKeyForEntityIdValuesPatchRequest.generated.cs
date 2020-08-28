@@ -28,16 +28,16 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest() { }
         
-        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldValueDto> values)
+        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldValue> values)
         {
             Values = values;
         }
         
-        private PropertyValue<List<CustomFieldValueDto>> _values = new PropertyValue<List<CustomFieldValueDto>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values));
+        private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values));
         
         [Required]
         [JsonPropertyName("values")]
-        public List<CustomFieldValueDto> Values
+        public List<CustomFieldValue> Values
         {
             get { return _values.GetValue(); }
             set { _values.SetValue(value); }

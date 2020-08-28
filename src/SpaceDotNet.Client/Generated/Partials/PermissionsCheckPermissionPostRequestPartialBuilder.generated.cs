@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.PermissionsCheckPermissionPostRequestPartialBuilder
         public static Partial<PermissionsCheckPermissionPostRequest> WithPrincipal(this Partial<PermissionsCheckPermissionPostRequest> it)
             => it.AddFieldName("principal");
         
-        public static Partial<PermissionsCheckPermissionPostRequest> WithPrincipal(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PrincipalInDto>, Partial<PrincipalInDto>> partialBuilder)
-            => it.AddFieldName("principal", partialBuilder(new Partial<PrincipalInDto>(it)));
+        public static Partial<PermissionsCheckPermissionPostRequest> WithPrincipal(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PrincipalIn>, Partial<PrincipalIn>> partialBuilder)
+            => it.AddFieldName("principal", partialBuilder(new Partial<PrincipalIn>(it)));
         
         public static Partial<PermissionsCheckPermissionPostRequest> WithUniqueRightCode(this Partial<PermissionsCheckPermissionPostRequest> it)
             => it.AddFieldName("uniqueRightCode");
@@ -37,8 +37,8 @@ namespace SpaceDotNet.Client.PermissionsCheckPermissionPostRequestPartialBuilder
         public static Partial<PermissionsCheckPermissionPostRequest> WithTarget(this Partial<PermissionsCheckPermissionPostRequest> it)
             => it.AddFieldName("target");
         
-        public static Partial<PermissionsCheckPermissionPostRequest> WithTarget(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PermissionTargetDto>, Partial<PermissionTargetDto>> partialBuilder)
-            => it.AddFieldName("target", partialBuilder(new Partial<PermissionTargetDto>(it)));
+        public static Partial<PermissionsCheckPermissionPostRequest> WithTarget(this Partial<PermissionsCheckPermissionPostRequest> it, Func<Partial<PermissionTarget>, Partial<PermissionTarget>> partialBuilder)
+            => it.AddFieldName("target", partialBuilder(new Partial<PermissionTarget>(it)));
         
     }
     

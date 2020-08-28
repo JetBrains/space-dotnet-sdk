@@ -34,8 +34,8 @@ namespace SpaceDotNet.Client.CalendarsMeetingsPostRequestPartialBuilder
         public static Partial<CalendarsMeetingsPostRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsPostRequest> it)
             => it.AddFieldName("occurrenceRule");
         
-        public static Partial<CalendarsMeetingsPostRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<CalendarEventSpecDto>, Partial<CalendarEventSpecDto>> partialBuilder)
-            => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpecDto>(it)));
+        public static Partial<CalendarsMeetingsPostRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<CalendarEventSpec>, Partial<CalendarEventSpec>> partialBuilder)
+            => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpec>(it)));
         
         public static Partial<CalendarsMeetingsPostRequest> WithLocations(this Partial<CalendarsMeetingsPostRequest> it)
             => it.AddFieldName("locations");
@@ -67,7 +67,7 @@ namespace SpaceDotNet.Client.CalendarsMeetingsPostRequestPartialBuilder
         public static Partial<CalendarsMeetingsPostRequest> WithJoiningPreference(this Partial<CalendarsMeetingsPostRequest> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
             => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>(it)));
         
-        public static Partial<CalendarsMeetingsPostRequest> WithNotifyOnExport(this Partial<CalendarsMeetingsPostRequest> it)
+        public static Partial<CalendarsMeetingsPostRequest> WithIsNotifyOnExport(this Partial<CalendarsMeetingsPostRequest> it)
             => it.AddFieldName("notifyOnExport");
         
         public static Partial<CalendarsMeetingsPostRequest> WithOrganizer(this Partial<CalendarsMeetingsPostRequest> it)

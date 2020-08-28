@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarsMeetingsForIdPatchRequest() { }
         
-        public CalendarsMeetingsForIdPatchRequest(DiffDto locationsDiff, DiffDto profilesDiff, DiffDto externalParticipantsDiff, DiffDto teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpecDto? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
+        public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
         {
             Summary = summary;
             Description = description;
@@ -40,7 +40,7 @@ namespace SpaceDotNet.Client
             Visibility = visibility;
             ModificationPreference = modificationPreference;
             JoiningPreference = joiningPreference;
-            NotifyOnExport = notifyOnExport;
+            IsNotifyOnExport = notifyOnExport;
             Organizer = organizer;
             TargetDate = targetDate;
             ModificationKind = (modificationKind ?? RecurrentModification.All);
@@ -64,46 +64,46 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<CalendarEventSpecDto?> _occurrenceRule = new PropertyValue<CalendarEventSpecDto?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(OccurrenceRule));
+        private PropertyValue<CalendarEventSpec?> _occurrenceRule = new PropertyValue<CalendarEventSpec?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(OccurrenceRule));
         
         [JsonPropertyName("occurrenceRule")]
-        public CalendarEventSpecDto? OccurrenceRule
+        public CalendarEventSpec? OccurrenceRule
         {
             get { return _occurrenceRule.GetValue(); }
             set { _occurrenceRule.SetValue(value); }
         }
     
-        private PropertyValue<DiffDto> _locationsDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(LocationsDiff));
+        private PropertyValue<Diff> _locationsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(LocationsDiff));
         
         [JsonPropertyName("locationsDiff")]
-        public DiffDto LocationsDiff
+        public Diff LocationsDiff
         {
             get { return _locationsDiff.GetValue(); }
             set { _locationsDiff.SetValue(value); }
         }
     
-        private PropertyValue<DiffDto> _profilesDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ProfilesDiff));
+        private PropertyValue<Diff> _profilesDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ProfilesDiff));
         
         [JsonPropertyName("profilesDiff")]
-        public DiffDto ProfilesDiff
+        public Diff ProfilesDiff
         {
             get { return _profilesDiff.GetValue(); }
             set { _profilesDiff.SetValue(value); }
         }
     
-        private PropertyValue<DiffDto> _externalParticipantsDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ExternalParticipantsDiff));
+        private PropertyValue<Diff> _externalParticipantsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ExternalParticipantsDiff));
         
         [JsonPropertyName("externalParticipantsDiff")]
-        public DiffDto ExternalParticipantsDiff
+        public Diff ExternalParticipantsDiff
         {
             get { return _externalParticipantsDiff.GetValue(); }
             set { _externalParticipantsDiff.SetValue(value); }
         }
     
-        private PropertyValue<DiffDto> _teamsDiff = new PropertyValue<DiffDto>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TeamsDiff));
+        private PropertyValue<Diff> _teamsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TeamsDiff));
         
         [JsonPropertyName("teamsDiff")]
-        public DiffDto TeamsDiff
+        public Diff TeamsDiff
         {
             get { return _teamsDiff.GetValue(); }
             set { _teamsDiff.SetValue(value); }
@@ -136,10 +136,10 @@ namespace SpaceDotNet.Client
             set { _joiningPreference.SetValue(value); }
         }
     
-        private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(NotifyOnExport));
+        private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(IsNotifyOnExport));
         
         [JsonPropertyName("notifyOnExport")]
-        public bool NotifyOnExport
+        public bool IsNotifyOnExport
         {
             get { return _notifyOnExport.GetValue(); }
             set { _notifyOnExport.SetValue(value); }

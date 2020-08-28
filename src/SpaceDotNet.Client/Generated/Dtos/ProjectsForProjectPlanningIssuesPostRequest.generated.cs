@@ -28,7 +28,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<AttachmentDto>? attachments = null, ImportedEntityInfoDto? importInfo = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null)
         {
             Title = title;
             Description = description;
@@ -38,7 +38,7 @@ namespace SpaceDotNet.Client
             Tags = (tags ?? new List<string>());
             Checklists = (checklists ?? new List<string>());
             Sprints = (sprints ?? new List<string>());
-            Attachments = (attachments ?? new List<AttachmentDto>());
+            Attachments = (attachments ?? new List<Attachment>());
             ImportInfo = importInfo;
         }
         
@@ -116,19 +116,19 @@ namespace SpaceDotNet.Client
             set { _sprints.SetValue(value); }
         }
     
-        private PropertyValue<List<AttachmentDto>?> _attachments = new PropertyValue<List<AttachmentDto>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments));
+        private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public List<AttachmentDto>? Attachments
+        public List<Attachment>? Attachments
         {
             get { return _attachments.GetValue(); }
             set { _attachments.SetValue(value); }
         }
     
-        private PropertyValue<ImportedEntityInfoDto?> _importInfo = new PropertyValue<ImportedEntityInfoDto?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(ImportInfo));
+        private PropertyValue<ImportedEntityInfo?> _importInfo = new PropertyValue<ImportedEntityInfo?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(ImportInfo));
         
         [JsonPropertyName("importInfo")]
-        public ImportedEntityInfoDto? ImportInfo
+        public ImportedEntityInfo? ImportInfo
         {
             get { return _importInfo.GetValue(); }
             set { _importInfo.SetValue(value); }

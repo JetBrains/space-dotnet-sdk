@@ -31,7 +31,7 @@ namespace SpaceDotNet.Client.ChatsMessagesSendPostRequestPartialBuilder
         public static Partial<ChatsMessagesSendPostRequest> WithText(this Partial<ChatsMessagesSendPostRequest> it)
             => it.AddFieldName("text");
         
-        public static Partial<ChatsMessagesSendPostRequest> WithPending(this Partial<ChatsMessagesSendPostRequest> it)
+        public static Partial<ChatsMessagesSendPostRequest> WithIsPending(this Partial<ChatsMessagesSendPostRequest> it)
             => it.AddFieldName("pending");
         
         public static Partial<ChatsMessagesSendPostRequest> WithTemporaryId(this Partial<ChatsMessagesSendPostRequest> it)

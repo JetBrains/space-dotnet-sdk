@@ -37,10 +37,10 @@ namespace SpaceDotNet.Client.ChatsMessagesEditMessagePostRequestPartialBuilder
         public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it)
             => it.AddFieldName("content");
         
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChatMessageDto>, Partial<ChatMessageDto>> partialBuilder)
-            => it.AddFieldName("content", partialBuilder(new Partial<ChatMessageDto>(it)));
+        public static Partial<ChatsMessagesEditMessagePostRequest> WithContent(this Partial<ChatsMessagesEditMessagePostRequest> it, Func<Partial<ChatMessage>, Partial<ChatMessage>> partialBuilder)
+            => it.AddFieldName("content", partialBuilder(new Partial<ChatMessage>(it)));
         
-        public static Partial<ChatsMessagesEditMessagePostRequest> WithUnfurlLinks(this Partial<ChatsMessagesEditMessagePostRequest> it)
+        public static Partial<ChatsMessagesEditMessagePostRequest> WithIsUnfurlLinks(this Partial<ChatsMessagesEditMessagePostRequest> it)
             => it.AddFieldName("unfurlLinks");
         
     }

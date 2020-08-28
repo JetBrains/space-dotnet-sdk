@@ -28,16 +28,16 @@ namespace SpaceDotNet.Client
     {
         public ChatsChannelsForChannelIdImportPostRequest() { }
         
-        public ChatsChannelsForChannelIdImportPostRequest(List<MessageForImportDto> messages)
+        public ChatsChannelsForChannelIdImportPostRequest(List<MessageForImport> messages)
         {
             Messages = messages;
         }
         
-        private PropertyValue<List<MessageForImportDto>> _messages = new PropertyValue<List<MessageForImportDto>>(nameof(ChatsChannelsForChannelIdImportPostRequest), nameof(Messages));
+        private PropertyValue<List<MessageForImport>> _messages = new PropertyValue<List<MessageForImport>>(nameof(ChatsChannelsForChannelIdImportPostRequest), nameof(Messages));
         
         [Required]
         [JsonPropertyName("messages")]
-        public List<MessageForImportDto> Messages
+        public List<MessageForImport> Messages
         {
             get { return _messages.GetValue(); }
             set { _messages.SetValue(value); }

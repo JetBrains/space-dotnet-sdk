@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesForIssueIdToggleRes
 {
     public static class ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequestPartialExtensions
     {
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> WithResolved(this Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> it)
+        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> WithIsResolved(this Partial<ProjectsForProjectPlanningIssuesForIssueIdToggleResolvedPostRequest> it)
             => it.AddFieldName("resolved");
         
     }

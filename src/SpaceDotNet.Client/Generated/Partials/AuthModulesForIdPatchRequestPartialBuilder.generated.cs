@@ -31,14 +31,14 @@ namespace SpaceDotNet.Client.AuthModulesForIdPatchRequestPartialBuilder
         public static Partial<AuthModulesForIdPatchRequest> WithName(this Partial<AuthModulesForIdPatchRequest> it)
             => it.AddFieldName("name");
         
-        public static Partial<AuthModulesForIdPatchRequest> WithEnabled(this Partial<AuthModulesForIdPatchRequest> it)
+        public static Partial<AuthModulesForIdPatchRequest> WithIsEnabled(this Partial<AuthModulesForIdPatchRequest> it)
             => it.AddFieldName("enabled");
         
         public static Partial<AuthModulesForIdPatchRequest> WithSettings(this Partial<AuthModulesForIdPatchRequest> it)
             => it.AddFieldName("settings");
         
-        public static Partial<AuthModulesForIdPatchRequest> WithSettings(this Partial<AuthModulesForIdPatchRequest> it, Func<Partial<ESAuthModuleSettingsDto>, Partial<ESAuthModuleSettingsDto>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettingsDto>(it)));
+        public static Partial<AuthModulesForIdPatchRequest> WithSettings(this Partial<AuthModulesForIdPatchRequest> it, Func<Partial<ESAuthModuleSettings>, Partial<ESAuthModuleSettings>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<ESAuthModuleSettings>(it)));
         
     }
     

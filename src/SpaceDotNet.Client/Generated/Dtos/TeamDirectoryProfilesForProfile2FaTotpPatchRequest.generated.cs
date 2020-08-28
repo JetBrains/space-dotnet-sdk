@@ -30,14 +30,14 @@ namespace SpaceDotNet.Client
         
         public TeamDirectoryProfilesForProfile2FaTotpPatchRequest(bool enabled)
         {
-            Enabled = enabled;
+            IsEnabled = enabled;
         }
         
-        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfile2FaTotpPatchRequest), nameof(Enabled));
+        private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfile2FaTotpPatchRequest), nameof(IsEnabled));
         
         [Required]
         [JsonPropertyName("enabled")]
-        public bool Enabled
+        public bool IsEnabled
         {
             get { return _enabled.GetValue(); }
             set { _enabled.SetValue(value); }

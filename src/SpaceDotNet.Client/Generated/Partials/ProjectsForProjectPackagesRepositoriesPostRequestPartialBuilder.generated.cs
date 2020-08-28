@@ -34,14 +34,14 @@ namespace SpaceDotNet.Client.ProjectsForProjectPackagesRepositoriesPostRequestPa
         public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithDescription(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
             => it.AddFieldName("description");
         
-        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithPublic(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
+        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithIsPublic(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
             => it.AddFieldName("public");
         
         public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it)
             => it.AddFieldName("settings");
         
-        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it, Func<Partial<ESPackageRepositorySettingsDto>, Partial<ESPackageRepositorySettingsDto>> partialBuilder)
-            => it.AddFieldName("settings", partialBuilder(new Partial<ESPackageRepositorySettingsDto>(it)));
+        public static Partial<ProjectsForProjectPackagesRepositoriesPostRequest> WithSettings(this Partial<ProjectsForProjectPackagesRepositoriesPostRequest> it, Func<Partial<ESPackageRepositorySettings>, Partial<ESPackageRepositorySettings>> partialBuilder)
+            => it.AddFieldName("settings", partialBuilder(new Partial<ESPackageRepositorySettings>(it)));
         
     }
     

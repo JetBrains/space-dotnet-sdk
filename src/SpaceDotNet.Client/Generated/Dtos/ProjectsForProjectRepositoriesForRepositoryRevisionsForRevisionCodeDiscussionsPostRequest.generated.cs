@@ -28,14 +28,14 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest(string text, bool pending = false, DiffContextDto? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest(string text, bool pending = false, DiffContext? diffContext = null, string? filename = null, int? line = null, int? oldLine = null)
         {
             Text = text;
             DiffContext = diffContext;
             Filename = filename;
             Line = line;
             OldLine = oldLine;
-            Pending = pending;
+            IsPending = pending;
         }
         
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(Text));
@@ -48,10 +48,10 @@ namespace SpaceDotNet.Client
             set { _text.SetValue(value); }
         }
     
-        private PropertyValue<DiffContextDto?> _diffContext = new PropertyValue<DiffContextDto?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(DiffContext));
+        private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(DiffContext));
         
         [JsonPropertyName("diffContext")]
-        public DiffContextDto? DiffContext
+        public DiffContext? DiffContext
         {
             get { return _diffContext.GetValue(); }
             set { _diffContext.SetValue(value); }
@@ -84,10 +84,10 @@ namespace SpaceDotNet.Client
             set { _oldLine.SetValue(value); }
         }
     
-        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(Pending));
+        private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(IsPending));
         
         [JsonPropertyName("pending")]
-        public bool Pending
+        public bool IsPending
         {
             get { return _pending.GetValue(); }
             set { _pending.SetValue(value); }

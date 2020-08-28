@@ -28,8 +28,8 @@ namespace SpaceDotNet.Client.ProjectsForProjectPatchRequestPartialBuilder
         public static Partial<ProjectsForProjectPatchRequest> WithKey(this Partial<ProjectsForProjectPatchRequest> it)
             => it.AddFieldName("key");
         
-        public static Partial<ProjectsForProjectPatchRequest> WithKey(this Partial<ProjectsForProjectPatchRequest> it, Func<Partial<ProjectKeyDto>, Partial<ProjectKeyDto>> partialBuilder)
-            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKeyDto>(it)));
+        public static Partial<ProjectsForProjectPatchRequest> WithKey(this Partial<ProjectsForProjectPatchRequest> it, Func<Partial<ProjectKey>, Partial<ProjectKey>> partialBuilder)
+            => it.AddFieldName("key", partialBuilder(new Partial<ProjectKey>(it)));
         
         public static Partial<ProjectsForProjectPatchRequest> WithName(this Partial<ProjectsForProjectPatchRequest> it)
             => it.AddFieldName("name");
@@ -37,7 +37,7 @@ namespace SpaceDotNet.Client.ProjectsForProjectPatchRequestPartialBuilder
         public static Partial<ProjectsForProjectPatchRequest> WithDescription(this Partial<ProjectsForProjectPatchRequest> it)
             => it.AddFieldName("description");
         
-        public static Partial<ProjectsForProjectPatchRequest> WithPrivate(this Partial<ProjectsForProjectPatchRequest> it)
+        public static Partial<ProjectsForProjectPatchRequest> WithIsPrivate(this Partial<ProjectsForProjectPatchRequest> it)
             => it.AddFieldName("private");
         
         public static Partial<ProjectsForProjectPatchRequest> WithTags(this Partial<ProjectsForProjectPatchRequest> it)

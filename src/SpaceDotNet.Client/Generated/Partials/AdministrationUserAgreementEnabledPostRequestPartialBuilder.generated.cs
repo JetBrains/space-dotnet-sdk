@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client.AdministrationUserAgreementEnabledPostRequestPartia
 {
     public static class AdministrationUserAgreementEnabledPostRequestPartialExtensions
     {
-        public static Partial<AdministrationUserAgreementEnabledPostRequest> WithEnabled(this Partial<AdministrationUserAgreementEnabledPostRequest> it)
+        public static Partial<AdministrationUserAgreementEnabledPostRequest> WithIsEnabled(this Partial<AdministrationUserAgreementEnabledPostRequest> it)
             => it.AddFieldName("enabled");
         
     }

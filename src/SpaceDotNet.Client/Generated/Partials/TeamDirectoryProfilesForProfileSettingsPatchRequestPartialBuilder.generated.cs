@@ -40,13 +40,13 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesForProfileSettingsPatchRequest
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithDraftType(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
             => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>(it)));
         
-        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithTodoFilters(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithIsTodoFilters(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
             => it.AddFieldName("todoFilters");
         
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithCalendarView(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
             => it.AddFieldName("calendarView");
         
-        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithEmailNotificationsEnabled(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithIsEmailNotificationsEnabled(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
             => it.AddFieldName("emailNotificationsEnabled");
         
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithNotificationEmail(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)

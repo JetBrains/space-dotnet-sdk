@@ -32,8 +32,8 @@ namespace SpaceDotNet.Client
         {
             Name = name;
             Description = description;
-            DefaultAvailability = defaultAvailability;
-            ApprovalRequired = approvalRequired;
+            IsDefaultAvailability = defaultAvailability;
+            IsApprovalRequired = approvalRequired;
             Icon = icon;
         }
         
@@ -57,21 +57,21 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<bool> _defaultAvailability = new PropertyValue<bool>(nameof(AbsencesAbsenceReasonsForIdPostRequest), nameof(DefaultAvailability));
+        private PropertyValue<bool> _defaultAvailability = new PropertyValue<bool>(nameof(AbsencesAbsenceReasonsForIdPostRequest), nameof(IsDefaultAvailability));
         
         [Required]
         [JsonPropertyName("defaultAvailability")]
-        public bool DefaultAvailability
+        public bool IsDefaultAvailability
         {
             get { return _defaultAvailability.GetValue(); }
             set { _defaultAvailability.SetValue(value); }
         }
     
-        private PropertyValue<bool> _approvalRequired = new PropertyValue<bool>(nameof(AbsencesAbsenceReasonsForIdPostRequest), nameof(ApprovalRequired));
+        private PropertyValue<bool> _approvalRequired = new PropertyValue<bool>(nameof(AbsencesAbsenceReasonsForIdPostRequest), nameof(IsApprovalRequired));
         
         [Required]
         [JsonPropertyName("approvalRequired")]
-        public bool ApprovalRequired
+        public bool IsApprovalRequired
         {
             get { return _approvalRequired.GetValue(); }
             set { _approvalRequired.SetValue(value); }

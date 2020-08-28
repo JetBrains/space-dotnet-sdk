@@ -34,32 +34,32 @@ namespace SpaceDotNet.Client.CalendarsMeetingsForIdPatchRequestPartialBuilder
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsForIdPatchRequest> it)
             => it.AddFieldName("occurrenceRule");
         
-        public static Partial<CalendarsMeetingsForIdPatchRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<CalendarEventSpecDto>, Partial<CalendarEventSpecDto>> partialBuilder)
-            => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpecDto>(it)));
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithOccurrenceRule(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<CalendarEventSpec>, Partial<CalendarEventSpec>> partialBuilder)
+            => it.AddFieldName("occurrenceRule", partialBuilder(new Partial<CalendarEventSpec>(it)));
         
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithLocationsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it)
             => it.AddFieldName("locationsDiff");
         
-        public static Partial<CalendarsMeetingsForIdPatchRequest> WithLocationsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<DiffDto>, Partial<DiffDto>> partialBuilder)
-            => it.AddFieldName("locationsDiff", partialBuilder(new Partial<DiffDto>(it)));
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithLocationsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<Diff>, Partial<Diff>> partialBuilder)
+            => it.AddFieldName("locationsDiff", partialBuilder(new Partial<Diff>(it)));
         
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithProfilesDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it)
             => it.AddFieldName("profilesDiff");
         
-        public static Partial<CalendarsMeetingsForIdPatchRequest> WithProfilesDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<DiffDto>, Partial<DiffDto>> partialBuilder)
-            => it.AddFieldName("profilesDiff", partialBuilder(new Partial<DiffDto>(it)));
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithProfilesDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<Diff>, Partial<Diff>> partialBuilder)
+            => it.AddFieldName("profilesDiff", partialBuilder(new Partial<Diff>(it)));
         
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithExternalParticipantsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it)
             => it.AddFieldName("externalParticipantsDiff");
         
-        public static Partial<CalendarsMeetingsForIdPatchRequest> WithExternalParticipantsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<DiffDto>, Partial<DiffDto>> partialBuilder)
-            => it.AddFieldName("externalParticipantsDiff", partialBuilder(new Partial<DiffDto>(it)));
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithExternalParticipantsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<Diff>, Partial<Diff>> partialBuilder)
+            => it.AddFieldName("externalParticipantsDiff", partialBuilder(new Partial<Diff>(it)));
         
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithTeamsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it)
             => it.AddFieldName("teamsDiff");
         
-        public static Partial<CalendarsMeetingsForIdPatchRequest> WithTeamsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<DiffDto>, Partial<DiffDto>> partialBuilder)
-            => it.AddFieldName("teamsDiff", partialBuilder(new Partial<DiffDto>(it)));
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithTeamsDiff(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<Diff>, Partial<Diff>> partialBuilder)
+            => it.AddFieldName("teamsDiff", partialBuilder(new Partial<Diff>(it)));
         
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithVisibility(this Partial<CalendarsMeetingsForIdPatchRequest> it)
             => it.AddFieldName("visibility");
@@ -79,7 +79,7 @@ namespace SpaceDotNet.Client.CalendarsMeetingsForIdPatchRequestPartialBuilder
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithJoiningPreference(this Partial<CalendarsMeetingsForIdPatchRequest> it, Func<Partial<MeetingJoiningPreference>, Partial<MeetingJoiningPreference>> partialBuilder)
             => it.AddFieldName("joiningPreference", partialBuilder(new Partial<MeetingJoiningPreference>(it)));
         
-        public static Partial<CalendarsMeetingsForIdPatchRequest> WithNotifyOnExport(this Partial<CalendarsMeetingsForIdPatchRequest> it)
+        public static Partial<CalendarsMeetingsForIdPatchRequest> WithIsNotifyOnExport(this Partial<CalendarsMeetingsForIdPatchRequest> it)
             => it.AddFieldName("notifyOnExport");
         
         public static Partial<CalendarsMeetingsForIdPatchRequest> WithOrganizer(this Partial<CalendarsMeetingsForIdPatchRequest> it)

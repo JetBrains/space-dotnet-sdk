@@ -28,18 +28,18 @@ namespace SpaceDotNet.Client
     {
         public AuthModulesTestBuiltInPostRequest() { }
         
-        public AuthModulesTestBuiltInPostRequest(ESBuiltinAuthModuleSettingsDto settings, string username, string password)
+        public AuthModulesTestBuiltInPostRequest(ESBuiltinAuthModuleSettings settings, string username, string password)
         {
             Settings = settings;
             Username = username;
             Password = password;
         }
         
-        private PropertyValue<ESBuiltinAuthModuleSettingsDto> _settings = new PropertyValue<ESBuiltinAuthModuleSettingsDto>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Settings));
+        private PropertyValue<ESBuiltinAuthModuleSettings> _settings = new PropertyValue<ESBuiltinAuthModuleSettings>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Settings));
         
         [Required]
         [JsonPropertyName("settings")]
-        public ESBuiltinAuthModuleSettingsDto Settings
+        public ESBuiltinAuthModuleSettings Settings
         {
             get { return _settings.GetValue(); }
             set { _settings.SetValue(value); }

@@ -25,7 +25,7 @@ namespace SpaceDotNet.Client.AbsencesForIdApprovePostRequestPartialBuilder
 {
     public static class AbsencesForIdApprovePostRequestPartialExtensions
     {
-        public static Partial<AbsencesForIdApprovePostRequest> WithApprove(this Partial<AbsencesForIdApprovePostRequest> it)
+        public static Partial<AbsencesForIdApprovePostRequest> WithIsApprove(this Partial<AbsencesForIdApprovePostRequest> it)
             => it.AddFieldName("approve");
         
     }

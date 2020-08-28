@@ -37,19 +37,19 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsPostRequestPartialBuild
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithType(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("type");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithType(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFTypeDto>, Partial<CFTypeDto>> partialBuilder)
-            => it.AddFieldName("type", partialBuilder(new Partial<CFTypeDto>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithType(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFType>, Partial<CFType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<CFType>(it)));
         
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("constraint");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFConstraintDto>, Partial<CFConstraintDto>> partialBuilder)
-            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraintDto>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFConstraint>, Partial<CFConstraint>> partialBuilder)
+            => it.AddFieldName("constraint", partialBuilder(new Partial<CFConstraint>(it)));
         
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithRequired(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithIsRequired(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("required");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithPrivate(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithIsPrivate(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("private");
         
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithAccess(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsPostRequestPartialBuild
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("defaultValue");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFValueDto>, Partial<CFValueDto>> partialBuilder)
-            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValueDto>(it)));
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
+            => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValue>(it)));
         
     }
     

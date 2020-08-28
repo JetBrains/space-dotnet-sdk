@@ -28,16 +28,16 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest() { }
         
-        public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest(List<RevisionInReviewDto> revisions)
+        public ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest(List<RevisionInReview> revisions)
         {
             Revisions = revisions;
         }
         
-        private PropertyValue<List<RevisionInReviewDto>> _revisions = new PropertyValue<List<RevisionInReviewDto>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest), nameof(Revisions));
+        private PropertyValue<List<RevisionInReview>> _revisions = new PropertyValue<List<RevisionInReview>>(nameof(ProjectsForProjectCodeReviewsForReviewIdRevisionsPostRequest), nameof(Revisions));
         
         [Required]
         [JsonPropertyName("revisions")]
-        public List<RevisionInReviewDto> Revisions
+        public List<RevisionInReview> Revisions
         {
             get { return _revisions.GetValue(); }
             set { _revisions.SetValue(value); }
