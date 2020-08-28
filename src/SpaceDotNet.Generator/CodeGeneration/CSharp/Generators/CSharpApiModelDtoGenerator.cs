@@ -192,15 +192,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             // Add own fields
             apiDtoFields.AddRange(apiDto.Fields);
             
-            // Filter out:
-            //  * properties to skip
-            //  * properties that are already present in parent types
-            apiDtoFields = apiDtoFields.Where(it =>
-            {
-                var propertyName = it.Field.ToCSharpPropertyName();
-                return !_codeGenerationContext.PropertiesToSkip.Contains($"{typeNameForDto}.{propertyName}")
-                       && !dtoHierarchyFieldNames.Contains(it.Field.Name);
-            }).ToList();
+            // Filter out properties that are already present in parent types
+            apiDtoFields = apiDtoFields
+                .Where(it => !dtoHierarchyFieldNames.Contains(it.Field.Name))
+                .ToList();
 
             return apiDtoFields;
         }

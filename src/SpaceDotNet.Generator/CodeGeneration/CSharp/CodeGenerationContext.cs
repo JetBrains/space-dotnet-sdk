@@ -8,20 +8,17 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
     public class CodeGenerationContext
     {
         public ApiModel ApiModel { get; }
-        public HashSet<string> PropertiesToSkip { get; }
         private readonly SortedDictionary<string, ApiEnum> _idToEnumMap;
         private readonly SortedDictionary<string, ApiDto> _idToDtoMap;
         private readonly SortedDictionary<string, ApiUrlParameter> _idToUrlParameterMap;
 
         private CodeGenerationContext(
             ApiModel apiModel,
-            HashSet<string> propertiesToSkip,
             SortedDictionary<string, ApiEnum> idToEnumMap,
             SortedDictionary<string, ApiDto> idToDtoMap,
             SortedDictionary<string, ApiUrlParameter> idToUrlParameterMap)
         {
             ApiModel = apiModel;
-            PropertiesToSkip = propertiesToSkip;
             _idToEnumMap = idToEnumMap;
             _idToDtoMap = idToDtoMap;
             _idToUrlParameterMap = idToUrlParameterMap;
@@ -29,13 +26,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 
         public static CodeGenerationContext CreateFrom(ApiModel apiModel)
         {
+            // Build context
 #pragma warning disable 8619
             var context = new CodeGenerationContext(
-                apiModel: apiModel, 
-                propertiesToSkip: new HashSet<string>
-                {
-                    "TDMemberProfileDto.Logins"
-                },
+                apiModel: apiModel,
                 idToEnumMap: new SortedDictionary<string, ApiEnum>(
                     apiModel.Enums.ToImmutableSortedDictionary(
                         it => it.Id,
@@ -53,8 +47,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     StringComparer.OrdinalIgnoreCase));
 #pragma warning restore 8619
             
-            // Enrich Dtos with resource request body types
-            CodeGenerationContextEnricher.EnrichDtosWithRequestBodyTypes(context);
+            // Update API model
+            CodeGenerationContextEnricher.AddRequestBodyTypesToDtos(context);
+            CodeGenerationContextEnricher.RemoveDtoFieldsToIgnore(context);
+            CodeGenerationContextEnricher.RemoveDtoPrefixFromDtoNames(context);
 
             return context;
         }

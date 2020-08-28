@@ -29,11 +29,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             
             foreach (var apiDtoField in apiDto.Fields)
             {
-                var propertyName = apiDtoField.Field.ToCSharpPropertyName();
-                if (!_context.PropertiesToSkip.Contains($"{typeNameForDto}.{propertyName}"))
-                {
-                    builder.Append(indent.Wrap(GenerateExtensionMethodsFor(typeNameForDto, typeNameForPartialDto, apiDtoField.Field)));
-                }
+                builder.Append(indent.Wrap(GenerateExtensionMethodsFor(typeNameForDto, typeNameForPartialDto, apiDtoField.Field)));
             }
 
             indent.Decrement();

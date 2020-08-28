@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
@@ -7,10 +8,13 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
     public static class CodeGenerationContextEnricher
     {
-        public static void EnrichDtosWithRequestBodyTypes(CodeGenerationContext context) => 
-            EnrichDtosWithRequestBodyTypes(context, context.ApiModel.Resources, string.Empty);
+        /// <summary>
+        /// Add resource request body types to DTO collection, so they can be resolved as such.
+        /// </summary>
+        public static void AddRequestBodyTypesToDtos(CodeGenerationContext context) => 
+            AddRequestBodyTypesToDtos(context, context.ApiModel.Resources, string.Empty);
 
-        private static void EnrichDtosWithRequestBodyTypes(CodeGenerationContext context, IEnumerable<ApiResource> resources, string parentResourcePath)
+        private static void AddRequestBodyTypesToDtos(CodeGenerationContext context, IEnumerable<ApiResource> resources, string parentResourcePath)
         {
             foreach (var apiResource in resources)
             {
@@ -44,7 +48,42 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     }
                 }
 
-                EnrichDtosWithRequestBodyTypes(context, apiResource.NestedResources, resourcePath);
+                AddRequestBodyTypesToDtos(context, apiResource.NestedResources, resourcePath);
+            }
+        }
+        
+        /// <summary>
+        /// Remove DTO fields that should be ignored.
+        /// </summary>
+        public static void RemoveDtoFieldsToIgnore(CodeGenerationContext context)
+        {
+            var fieldsToIgnore = new Dictionary<string, HashSet<string>>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "TD_MemberProfile", 
+                    new HashSet<string>(StringComparer.OrdinalIgnoreCase) { "logins" } }
+            };
+            
+            // Remove fields to ignore
+            foreach (var apiDto in context.GetDtos())
+            {
+                if (fieldsToIgnore.TryGetValue(apiDto.Name, out var ignoreFields))
+                {
+                    apiDto.Fields.RemoveAll(it => ignoreFields.Contains(it.Field.Name));
+                }
+            }
+        }
+        
+        /// <summary>
+        /// Remove "DTO" from DTO names, e.g. DTO_Meeting, DTO_Right, ...
+        /// </summary>
+        public static void RemoveDtoPrefixFromDtoNames(CodeGenerationContext context)
+        {
+            foreach (var apiDto in context.GetDtos())
+            {
+                if (apiDto.Name.IndexOf("DTO", StringComparison.OrdinalIgnoreCase) == 0 && apiDto.Name.Length > 3)
+                {
+                    apiDto.Name = apiDto.Name.Substring(3);
+                }
             }
         }
     }

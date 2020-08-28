@@ -38,7 +38,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                     case ApiDefaultValue.Const.Primitive primitive:
                         return primitive.Expression;
                     
-                    case ApiDefaultValue.Const.EnumEntry enumEntry:
+                    case ApiDefaultValue.Const.EnumEntry _:
                         if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
                         {
                             return subject.ToCSharpDefaultValueForAssignment(context);
@@ -52,7 +52,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                             return null;
                         }
 
-                    case ApiDefaultValue.Collection collection:
+                    case ApiDefaultValue.Collection _:
                         if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
                         {
                             return subject.ToCSharpDefaultValueForAssignment(context);
@@ -66,7 +66,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                             return null;
                         }
 
-                    case ApiDefaultValue.Map map:
+                    case ApiDefaultValue.Map _:
                         if (FeatureFlags.GenerateOptionalParameterDefaultReferenceTypes)
                         {
                             return subject.ToCSharpDefaultValueForAssignment(context);
@@ -80,7 +80,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                             return null;
                         }
 
-                    case ApiDefaultValue.Reference reference:
+                    case ApiDefaultValue.Reference _:
                         throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");
                 }
             } 
@@ -138,7 +138,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                 
                 return builder.ToString();
             }
-            else if (subject.DefaultValue is ApiDefaultValue.Reference reference)
+            else if (subject.DefaultValue is ApiDefaultValue.Reference _)
             {
                 throw new NotSupportedException(nameof(ApiDefaultValue.Reference) + " is not supported yet.");
             }
