@@ -26,23 +26,23 @@ namespace SpaceDotNet.Samples.Web.Controllers
         
         [HttpPost]
         [Route("receive")]
-        public async Task<IActionResult> Receive([FromBody]ApplicationPayloadDto payload)
+        public async Task<IActionResult> Receive([FromBody]ApplicationPayload payload)
         {
             switch (payload)
             {
                 // List commands?
-                case ListCommandsPayloadDto _:
+                case ListCommandsPayload _:
                     // noop
                     return Ok();
                 
                 // Message?
-                case MessagePayloadDto messagePayload:
+                case MessagePayload messagePayload:
                     await new CateringChatHandler(_connection)
                         .HandleAsync(messagePayload);
                     return Ok();
                 
                 // Action?
-                case MessageActionPayloadDto actionPayload:
+                case MessageActionPayload actionPayload:
                     if (actionPayload.ActionId.StartsWith(CateringChatHandler.ActionIdPrefix))
                     {
                         await new CateringChatHandler(_connection)

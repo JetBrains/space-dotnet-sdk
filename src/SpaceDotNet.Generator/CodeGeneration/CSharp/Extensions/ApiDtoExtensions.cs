@@ -5,15 +5,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
     public static class ApiDtoExtensions
     {
         public static string ToCSharpClassName(this ApiDto subject)
-        {
-            var classNameForDto = CSharpIdentifier.ForClassOrNamespace(subject.Name);
-            if (classNameForDto.EndsWith("Request"))
-            {
-                return classNameForDto;
-            }
-            return $"{classNameForDto}Dto";
-        }
-        
+            => CSharpIdentifier.ForClassOrNamespace(subject.Name);
+
         public static string ToCSharpFactoryMethodName(this ApiDto subject, ApiDto parent)
         {
             var classNameForParent = CSharpIdentifier.ForClassOrNamespace(parent.Name);

@@ -13,8 +13,22 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
         public static string ToCSharpBackingFieldName(this ApiField subject)
             => CSharpIdentifier.ForBackingField(subject.Name);
         
-        public static string ToCSharpPropertyName(this ApiField subject)
-            => CSharpIdentifier.ForClassOrNamespace(subject.Name);
+        public static string ToCSharpPropertyName(this ApiField subject, string? containingType)
+        {
+            var propertyName = CSharpIdentifier.ForClassOrNamespace(subject.Name);
+
+            return subject.Type switch
+            {
+                ApiFieldType.Primitive primitive when primitive.ToCSharpPrimitiveType() == CSharpType.Bool.Value
+                    => $"Is{propertyName}",
+                
+                // Resolve CS0542 - Member names cannot be the same as their enclosing type by adding prefix/suffix
+                ApiFieldType.Array _ when string.Equals(propertyName, containingType, StringComparison.OrdinalIgnoreCase)
+                    => $"{propertyName}Items",
+                
+                _ => propertyName
+            };
+        }
 
         public static string ToCSharpVariableInstanceOrDefaultValue(this ApiField subject, CodeGenerationContext context)
         {

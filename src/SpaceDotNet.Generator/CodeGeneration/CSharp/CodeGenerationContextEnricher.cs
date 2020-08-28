@@ -74,15 +74,20 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         }
         
         /// <summary>
-        /// Remove "DTO" from DTO names, e.g. DTO_Meeting, DTO_Right, ...
+        /// Remove "DTO" from DTO names, e.g. DTO_Meeting, DTO_Right, CommitStatusDTO, ...
         /// </summary>
         public static void RemoveDtoPrefixFromDtoNames(CodeGenerationContext context)
         {
-            foreach (var apiDto in context.GetDtos())
+            foreach (var apiDto in context.GetDtos().Where(it => it.Name.Length > 3))
             {
-                if (apiDto.Name.IndexOf("DTO", StringComparison.OrdinalIgnoreCase) == 0 && apiDto.Name.Length > 3)
+                if (apiDto.Name.StartsWith("DTO", StringComparison.OrdinalIgnoreCase))
                 {
-                    apiDto.Name = apiDto.Name.Substring(3);
+                    apiDto.Name = apiDto.Name[3..];
+                } 
+                else if (apiDto.Name.EndsWith("DTO", StringComparison.OrdinalIgnoreCase) &&
+                         !apiDto.Name.StartsWith("HA", StringComparison.OrdinalIgnoreCase)) // Don't update "HA*" (HTTP API models)
+                {
+                    apiDto.Name = apiDto.Name[..^3];
                 }
             }
         }

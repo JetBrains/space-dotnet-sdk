@@ -19,22 +19,22 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization.Polymorphism
         {
             var inputJsonString = "{\"className\":\"MessagePayload\",\"message\":{\"className\":\"MessageContext\",\"messageId\":\"Awz170S411h\",\"channelId\":\"Bwz170S411h\",\"body\":{\"className\":\"ChatMessage.Text\",\"text\":\"\"},\"attachments\":[{\"className\":\"ImageAttachment\",\"id\":\"2kiQQS3p8rqs\",\"name\":\"image.png\",\"width\":62,\"height\":83,\"previewBytes\":\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAFElEQVQoU2P8////fwY8gHFkKAAANHof6XqBXl0AAAAASUVORK5CYII=\",\"variants\":[{\"className\":\"ImageAttachmentVariant\",\"id\":\"34KD5j2kEAXg\",\"name\":\"chat-image-preview\",\"width\":62,\"height\":83},{\"className\":\"ImageAttachmentVariant\",\"id\":\"398MlK4XsNuH\",\"name\":\"chat-image-preview-2x\",\"width\":62,\"height\":83}]}],\"createdTime\":\"2020-08-14T10:48:05.622Z\"},\"accessToken\":\"aaaaaaaa\",\"verificationToken\":\"aaaaaaaaaaa\",\"userId\":\"faaaaaaaO\"}";
 
-            var result = JsonSerializer.Deserialize(inputJsonString, typeof(ApplicationPayloadDto), CreateSerializerOptions());
+            var result = JsonSerializer.Deserialize(inputJsonString, typeof(ApplicationPayload), CreateSerializerOptions());
 
             Assert.NotNull(result);
-            Assert.IsType<MessagePayloadDto>(result);
-            if (result is MessagePayloadDto messagePayloadDto)
+            Assert.IsType<MessagePayload>(result);
+            if (result is MessagePayload messagePayload)
             {
-                Assert.NotNull(messagePayloadDto.Message.Body);
+                Assert.NotNull(messagePayload.Message.Body);
                 
-                Assert.IsType<ChatMessageTextDto>(messagePayloadDto.Message.Body);
-                if (messagePayloadDto.Message.Body is ChatMessageTextDto messageTextDto)
+                Assert.IsType<ChatMessageText>(messagePayload.Message.Body);
+                if (messagePayload.Message.Body is ChatMessageText messageText)
                 {
-                    Assert.NotNull(messageTextDto.Text);
+                    Assert.NotNull(messageText.Text);
                 }
                 
-                Assert.NotNull(messagePayloadDto.Message.Attachments);
-                Assert.NotEmpty(messagePayloadDto.Message.Attachments!);
+                Assert.NotNull(messagePayload.Message.Attachments);
+                Assert.NotEmpty(messagePayload.Message.Attachments!);
             }
         }
     }

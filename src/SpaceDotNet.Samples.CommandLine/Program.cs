@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Client;
-using SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder;
+using SpaceDotNet.Client.TDMemberProfilePartialBuilder;
 using SpaceDotNet.Common;
 
 namespace SpaceDotNet.Samples.CommandLine
@@ -62,21 +62,21 @@ namespace SpaceDotNet.Samples.CommandLine
             else
             {
                 await chatClient.Messages.SendMessageAsync(
-                    recipient: MessageRecipientDto.Channel(ChatChannelDto.FromName(chatChannelName)),
-                    content: ChatMessageDto.Block(
-                        outline: new MessageOutlineDto("Have you tried JetBrains Space?"),
+                    recipient: MessageRecipient.Channel(ChatChannel.FromName(chatChannelName)),
+                    content: ChatMessage.Block(
+                        outline: new MessageOutline("Have you tried JetBrains Space?"),
                         messageData: "Have you tried JetBrains Space? See https://www.jetbrains.com/space/ for more information.",
-                        sections: new List<MessageSectionElementDto>
+                        sections: new List<MessageSectionElement>
                         {
-                            new MessageSectionDto
+                            new MessageSection
                             {
                                 Header = "JetBrains Space",
-                                Elements = new List<MessageElementDto>
+                                Elements = new List<MessageElement>
                                 {
-                                    MessageElementDto.MessageText("JetBrains Space is an Integrated Team Environment."),
-                                    MessageElementDto.MessageText("Have you tried JetBrains Space?"),
-                                    MessageElementDto.MessageDivider(),
-                                    MessageElementDto.MessageText("Get access at https://www.jetbrains.com/space/")
+                                    MessageElement.MessageText("JetBrains Space is an Integrated Team Environment."),
+                                    MessageElement.MessageText("Have you tried JetBrains Space?"),
+                                    MessageElement.MessageDivider(),
+                                    MessageElement.MessageText("Get access at https://www.jetbrains.com/space/")
                                 },
                                 Footer = "Check it out at https://www.jetbrains.com/space/"
                             }

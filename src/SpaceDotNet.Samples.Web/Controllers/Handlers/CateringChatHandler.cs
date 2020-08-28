@@ -20,13 +20,13 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             _chatClient = new ChatClient(connection);
         }
 
-        public async Task HandleAsync(MessagePayloadDto payload)
+        public async Task HandleAsync(MessagePayload payload)
         {
-            if (payload.Message.Body is ChatMessageTextDto messageTextDto && !string.IsNullOrEmpty(messageTextDto.Text))
+            if (payload.Message.Body is ChatMessageText messageText && !string.IsNullOrEmpty(messageText.Text))
             {
                 await _chatClient.Messages.SendMessageAsync(
-                    recipient: MessageRecipientDto.Channel(ChatChannelDto.FromId(payload.Message.ChannelId)),
-                    content: ChatMessageDto.Text("You said: " + messageTextDto.Text),
+                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                    content: ChatMessage.Text("You said: " + messageText.Text),
                     unfurlLinks: false);
             }
 
@@ -39,21 +39,21 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             
             await SendOrEditMessageAsync(
                 channelId: payload.Message.ChannelId,
-                recipient: MessageRecipientDto.Channel(ChatChannelDto.FromId(payload.Message.ChannelId)),
-                content: ChatMessageDto.Block(
-                    outline: new MessageOutlineDto("Anything to eat or drink while we are on our way to Space?"),
+                recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                content: ChatMessage.Block(
+                    outline: new MessageOutline("Anything to eat or drink while we are on our way to Space?"),
                     messageData: "Anything to eat or drink while we are on our way to Space?",
-                    sections: new List<MessageSectionElementDto>
+                    sections: new List<MessageSectionElement>
                     {
-                        new MessageSectionDto
+                        new MessageSection
                         {
                             Header = "JetBrains Space - Catering",
-                            Elements = new List<MessageElementDto>
+                            Elements = new List<MessageElement>
                             {
-                                MessageElementDto.MessageText("Anything to eat or drink while we are on our way to Space?"),
-                                MessageElementDto.MessageControlGroup(new List<MessageControlElementDto>
+                                MessageElement.MessageText("Anything to eat or drink while we are on our way to Space?"),
+                                MessageElement.MessageControlGroup(new List<MessageControlElement>
                                 {
-                                    MessageControlElementDto.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, MessageActionDto.Post("catering-start", ""))
+                                    MessageControlElement.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, MessageAction.Post("catering-start", ""))
                                 })
                             }
                         }
@@ -62,7 +62,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
                 cateringSession: cateringSession);
         }
 
-        public async Task HandleAsync(MessageActionPayloadDto payload)
+        public async Task HandleAsync(MessageActionPayload payload)
         {
             var actionId = Enumeration.FromValue<ActionId>(payload.ActionId);
 
@@ -98,26 +98,26 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Message.ChannelId,
-                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
-                    content: ChatMessageDto.Block(
-                        outline: new MessageOutlineDto("Would you prefer chicken or pasta?"),
+                    recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
+                    content: ChatMessage.Block(
+                        outline: new MessageOutline("Would you prefer chicken or pasta?"),
                         messageData: "Would you prefer chicken or pasta?",
-                        sections: new List<MessageSectionElementDto>
+                        sections: new List<MessageSectionElement>
                         {
-                            new MessageSectionDto
+                            new MessageSection
                             {
                                 Header = "JetBrains Space - Catering",
-                                Elements = new List<MessageElementDto>
+                                Elements = new List<MessageElement>
                                 {
-                                    MessageElementDto.MessageText("Would you prefer chicken or pasta?"),
-                                    MessageElementDto.MessageControlGroup(new List<MessageControlElementDto>
+                                    MessageElement.MessageText("Would you prefer chicken or pasta?"),
+                                    MessageElement.MessageControlGroup(new List<MessageControlElement>
                                     {
-                                        MessageControlElementDto.MessageButton("Chicken", MessageButtonStyle.REGULAR,
-                                            MessageActionDto.Post(ActionId.Food.Value, "🍗 Chicken")),
-                                        MessageControlElementDto.MessageButton("Pasta", MessageButtonStyle.REGULAR,
-                                            MessageActionDto.Post(ActionId.Food.Value, "🍝 Pasta")),
-                                        MessageControlElementDto.MessageButton("No food", MessageButtonStyle.REGULAR,
-                                            MessageActionDto.Post(ActionId.Food.Value, "🤷 None"))
+                                        MessageControlElement.MessageButton("Chicken", MessageButtonStyle.REGULAR,
+                                            MessageAction.Post(ActionId.Food.Value, "🍗 Chicken")),
+                                        MessageControlElement.MessageButton("Pasta", MessageButtonStyle.REGULAR,
+                                            MessageAction.Post(ActionId.Food.Value, "🍝 Pasta")),
+                                        MessageControlElement.MessageButton("No food", MessageButtonStyle.REGULAR,
+                                            MessageAction.Post(ActionId.Food.Value, "🤷 None"))
                                     })
                                 }
                             }
@@ -129,28 +129,28 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Message.ChannelId,
-                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
-                    content: ChatMessageDto.Block(
-                        outline: new MessageOutlineDto("Any drinks? Coffee or tea?"),
+                    recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
+                    content: ChatMessage.Block(
+                        outline: new MessageOutline("Any drinks? Coffee or tea?"),
                         messageData: "Any drinks? Coffee or tea?",
-                        sections: new List<MessageSectionElementDto>
+                        sections: new List<MessageSectionElement>
                         {
-                            new MessageSectionDto
+                            new MessageSection
                             {
                                 Header = "JetBrains Space - Catering",
-                                Elements = new List<MessageElementDto>
+                                Elements = new List<MessageElement>
                                 {
-                                    MessageElementDto.MessageText("Any drinks? Coffee or tea?"),
-                                    MessageElementDto.MessageControlGroup(new List<MessageControlElementDto>
+                                    MessageElement.MessageText("Any drinks? Coffee or tea?"),
+                                    MessageElement.MessageControlGroup(new List<MessageControlElement>
                                     {
-                                        MessageControlElementDto.MessageButton("Water", MessageButtonStyle.REGULAR, 
-                                            MessageActionDto.Post(ActionId.Drinks.Value, "🥛 Water")),
-                                        MessageControlElementDto.MessageButton("Coffee", MessageButtonStyle.REGULAR,
-                                            MessageActionDto.Post(ActionId.Drinks.Value, "☕ Coffee")),
-                                        MessageControlElementDto.MessageButton("Tea", MessageButtonStyle.REGULAR, 
-                                            MessageActionDto.Post(ActionId.Drinks.Value, "☕ Tea")),
-                                        MessageControlElementDto.MessageButton("No drinks", MessageButtonStyle.REGULAR, 
-                                            MessageActionDto.Post(ActionId.Drinks.Value, "🤷 None"))
+                                        MessageControlElement.MessageButton("Water", MessageButtonStyle.REGULAR, 
+                                            MessageAction.Post(ActionId.Drinks.Value, "🥛 Water")),
+                                        MessageControlElement.MessageButton("Coffee", MessageButtonStyle.REGULAR,
+                                            MessageAction.Post(ActionId.Drinks.Value, "☕ Coffee")),
+                                        MessageControlElement.MessageButton("Tea", MessageButtonStyle.REGULAR, 
+                                            MessageAction.Post(ActionId.Drinks.Value, "☕ Tea")),
+                                        MessageControlElement.MessageButton("No drinks", MessageButtonStyle.REGULAR, 
+                                            MessageAction.Post(ActionId.Drinks.Value, "🤷 None"))
                                     })
                                 }
                             }
@@ -164,26 +164,26 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Message.ChannelId,
-                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
-                    content: ChatMessageDto.Block(
-                        outline: new MessageOutlineDto("How would you like your coffee?"),
+                    recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
+                    content: ChatMessage.Block(
+                        outline: new MessageOutline("How would you like your coffee?"),
                         messageData: "How would you like your coffee?",
-                        sections: new List<MessageSectionElementDto>
+                        sections: new List<MessageSectionElement>
                         {
-                            new MessageSectionDto
+                            new MessageSection
                             {
                                 Header = "JetBrains Space - Catering",
-                                Elements = new List<MessageElementDto>
+                                Elements = new List<MessageElement>
                                 {
-                                    MessageElementDto.MessageText("How would you like your coffee?"),
-                                    MessageElementDto.MessageControlGroup(new List<MessageControlElementDto>
+                                    MessageElement.MessageText("How would you like your coffee?"),
+                                    MessageElement.MessageControlGroup(new List<MessageControlElement>
                                     {
-                                        MessageControlElementDto.MessageButton("Milk", MessageButtonStyle.REGULAR, 
-                                            MessageActionDto.Post(ActionId.DrinkAdditions.Value, "with milk")),
-                                        MessageControlElementDto.MessageButton("Milk and Sugar", MessageButtonStyle.REGULAR,
-                                            MessageActionDto.Post(ActionId.DrinkAdditions.Value, "with milk and sugar")),
-                                        MessageControlElementDto.MessageButton("No additions", MessageButtonStyle.REGULAR, 
-                                            MessageActionDto.Post(ActionId.DrinkAdditions.Value, "no additions"))
+                                        MessageControlElement.MessageButton("Milk", MessageButtonStyle.REGULAR, 
+                                            MessageAction.Post(ActionId.DrinkAdditions.Value, "with milk")),
+                                        MessageControlElement.MessageButton("Milk and Sugar", MessageButtonStyle.REGULAR,
+                                            MessageAction.Post(ActionId.DrinkAdditions.Value, "with milk and sugar")),
+                                        MessageControlElement.MessageButton("No additions", MessageButtonStyle.REGULAR, 
+                                            MessageAction.Post(ActionId.DrinkAdditions.Value, "no additions"))
                                     })
                                 }
                             }
@@ -195,22 +195,22 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
             {
                 await SendOrEditMessageAsync(
                     channelId: payload.Message.ChannelId,
-                    recipient: MessageRecipientDto.Member(ProfileIdentifier.Id(payload.UserId)),
-                    content: ChatMessageDto.Block(
-                        outline: new MessageOutlineDto("Thank you, we'll be right there!"),
+                    recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
+                    content: ChatMessage.Block(
+                        outline: new MessageOutline("Thank you, we'll be right there!"),
                         messageData: "Thank you, we'll be right there!",
-                        sections: new List<MessageSectionElementDto>
+                        sections: new List<MessageSectionElement>
                         {
-                            new MessageSectionDto
+                            new MessageSection
                             {
                                 Header = "JetBrains Space - Catering",
-                                Elements = new List<MessageElementDto>
+                                Elements = new List<MessageElement>
                                 {
-                                    MessageElementDto.MessageText("Thank you, we'll be right there!"),
-                                    MessageElementDto.MessageFields(new List<MessageFieldElementDto>
+                                    MessageElement.MessageText("Thank you, we'll be right there!"),
+                                    MessageElement.MessageFields(new List<MessageFieldElement>
                                     {
-                                        MessageFieldElementDto.MessageField("Food choice:", cateringSession.SelectedFood),
-                                        MessageFieldElementDto.MessageField("Drinks choice:", cateringSession.SelectedDrinks
+                                        MessageFieldElement.MessageField("Food choice:", cateringSession.SelectedFood),
+                                        MessageFieldElement.MessageField("Drinks choice:", cateringSession.SelectedDrinks
                                             + (cateringSession.SelectedDrinkAdditions != null
                                                 ? " (" + cateringSession.SelectedDrinkAdditions + ")"
                                                 : ""))
@@ -227,8 +227,8 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
 
         private async Task SendOrEditMessageAsync(
             string? channelId, 
-            MessageRecipientDto recipient, 
-            ChatMessageDto content,
+            MessageRecipient recipient, 
+            ChatMessage content,
             CateringSession cateringSession)
         {
             if (string.IsNullOrEmpty(cateringSession.ExistingMessageId) || string.IsNullOrEmpty(channelId))

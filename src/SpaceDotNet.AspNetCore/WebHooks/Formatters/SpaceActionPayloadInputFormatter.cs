@@ -66,7 +66,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
             context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceTimestamp);
 
         protected override bool CanReadType(Type type) =>
-            typeof(ApplicationPayloadDto).IsAssignableFrom(type);
+            typeof(ApplicationPayload).IsAssignableFrom(type);
 
         /// <inheritdoc />
         public sealed override async Task<InputFormatterResult> ReadRequestBodyAsync(
@@ -86,7 +86,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
             var httpContext = context.HttpContext;
             var inputStream = httpContext.Request.Body;
 
-            ApplicationPayloadDto? model;
+            ApplicationPayload? model;
             try
             {
                 using var inputStreamReader = new StreamReader(inputStream);
@@ -107,7 +107,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
                     }
                 }
                     
-                model = JsonSerializer.Deserialize(inputJsonString, context.ModelType, _jsonSerializerOptions) as ApplicationPayloadDto;
+                model = JsonSerializer.Deserialize(inputJsonString, context.ModelType, _jsonSerializerOptions) as ApplicationPayload;
                 if (model != null)
                 {
                     PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, model);
@@ -154,10 +154,10 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
             }
         }
 
-        private static string? GetPayloadVerificationTokenValue(ApplicationPayloadDto? payload)
+        private static string? GetPayloadVerificationTokenValue(ApplicationPayload? payload)
         {
             return payload?.GetType()
-                .GetProperty(nameof(MessagePayloadDto.VerificationToken))?.GetValue(payload) as string;
+                .GetProperty(nameof(MessagePayload.VerificationToken))?.GetValue(payload) as string;
         }
 
         private static string ToHexString(IReadOnlyCollection<byte> bytes)

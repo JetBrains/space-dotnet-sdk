@@ -296,15 +296,16 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             builder.AppendLine($"{indent}new {apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!} {{ ");
             indent.Increment();
             
+            var typeNameForDto = apiEndpoint.ToCSharpRequestBodyClassName(endpointPath);
             foreach (var field in apiEndpoint.RequestBody!.Fields)
             {
                 if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
                 {
-                    builder.AppendLine($"{indent}{field.ToCSharpPropertyName()} = {field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)},");
+                    builder.AppendLine($"{indent}{field.ToCSharpPropertyName(typeNameForDto)} = {field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)},");
                 }
                 else
                 {
-                    builder.AppendLine($"{indent}{field.ToCSharpPropertyName()} = {field.ToCSharpVariableName()},");
+                    builder.AppendLine($"{indent}{field.ToCSharpPropertyName(typeNameForDto)} = {field.ToCSharpVariableName()},");
                 }
             }
             

@@ -45,7 +45,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             var indent = new Indent();
             var builder = new StringBuilder();
             
-            var propertyName = apiField.ToCSharpPropertyName();
+            var propertyName = apiField.ToCSharpPropertyName(currentDtoType);
             var apiFieldName = apiField.Name;
             
             // Field

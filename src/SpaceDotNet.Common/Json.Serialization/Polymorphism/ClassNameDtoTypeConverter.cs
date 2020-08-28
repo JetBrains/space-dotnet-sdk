@@ -35,7 +35,7 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
             {
                 if (!TypeMap.TryGetValue(className, out var targetType))
                 {
-                    targetType = Type.GetType(SpaceDotNetClientNamespace + "." + CSharpIdentifier.ForClassOrNamespace(className) + "Dto, " + SpaceDotNetClientAssemblyName);
+                    targetType = Type.GetType(SpaceDotNetClientNamespace + "." + CSharpIdentifier.ForClassOrNamespace(className) + ", " + SpaceDotNetClientAssemblyName);
                     if (targetType != null)
                     {
                         TypeMap[className] = targetType;

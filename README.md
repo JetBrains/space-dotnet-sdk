@@ -124,7 +124,7 @@ var memberProfile = await teamDirectoryClient.Profiles
     .GetProfileAsync(ProfileIdentifier.Username("Heather.Stewart"));
 ```
 
-A `TDMemberProfileDto`, which is the type returned by `GetProfileAsync`, also has a `Managers` property. This property is a collection of nested `TDMemberProfileDto`, and is not retrieved by default.
+A `TDMemberProfile`, which is the type returned by `GetProfileAsync`, also has a `Managers` property. This property is a collection of nested `TDMemberProfile`, and is not retrieved by default.
 
 #### Nested Properties
 
@@ -145,8 +145,8 @@ var memberProfile = await teamDirectoryClient.Profiles
 All of the builder methods (`With...()`) are extension methods, and should be automatically included by the IDE we are using. For example, the extension methods used in the previous example were automatically included by [Rider](https://www.jetbrains.com/rider/):
 
 ```csharp
-using SpaceDotNet.Client.TDMemberProfileDtoPartialBuilder;
-using SpaceDotNet.Client.TDProfileNameDtoPartialBuilder;
+using SpaceDotNet.Client.TDMemberProfilePartialBuilder;
+using SpaceDotNet.Client.TDProfileNamePartialBuilder;
 ```
 
 SpaceDotNet will help with defining properties to include. Let's say we want to retrieve only the `Id` and `Username` properties for a profile:
@@ -170,7 +170,7 @@ catch (PropertyNotRequestedException e)
 {
     // ...and we'll get a pointer about why it fails:
     // "The property Name was not requested in the partial builder
-    //  for TDMemberProfileDto. Use .WithName() to include it.
+    //  for TDMemberProfile. Use .WithName() to include it.
     //  Expected full path: Batch`1->WithData()->WithName()"
     Console.WriteLine(e.Message);
 }
@@ -208,44 +208,44 @@ We recommend not to use `AddFieldName()` and `AddFieldNames()` directly. The gen
 
 The Space API may return polymorphic responses. In other words, there are several API endpoints that return subclasses.
 
-One such example is `ProjectClient.Planing.Issues.GetAllIssuesAsync()`, where the `CreatedBy` property can be a subclass of `CPrincipalDetailsDto`:
+One such example is `ProjectClient.Planing.Issues.GetAllIssuesAsync()`, where the `CreatedBy` property can be a subclass of `CPrincipalDetails`:
 
-* `CAutomationTaskPrincipalDetailsDto`, when the issue was created by an automation task.
-* `CBuiltInServicePrincipalDetailsDto`, when the issue was created by Space itself.
-* `CExternalServicePrincipalDetailsDto`, when the issue was created by an external service.
-* `CUserWithEmailPrincipalDetailsDto`, when the issue was created by a user that has an e-mail address.
-* `CUserPrincipalDetailsDto`, when the issue was created by a user.
+* `CAutomationTaskPrincipalDetails`, when the issue was created by an automation task.
+* `CBuiltInServicePrincipalDetails`, when the issue was created by Space itself.
+* `CExternalServicePrincipalDetails`, when the issue was created by an external service.
+* `CUserWithEmailPrincipalDetails`, when the issue was created by a user that has an e-mail address.
+* `CUserPrincipalDetails`, when the issue was created by a user.
 
-By default, these instances will only contain properties from the `CPrincipalDetailsDto` base class. To retrieve specific properties of inherited types, we have to use the `.ForInherited<TInherited>()` extension method, and build the partial response for that specific inheritor.
+By default, these instances will only contain properties from the `CPrincipalDetails` base class. To retrieve specific properties of inherited types, we have to use the `.ForInherited<TInherited>()` extension method, and build the partial response for that specific inheritor.
 
 Here's an example retrieving issues from a project. For the `CreatedBy` property, we are defining that the response should contain:
 
-* `CUserPrincipalDetailsDto` with the `User.Id` property.
-* `CUserWithEmailPrincipalDetailsDto` with the `Name` and `Email` properties.
+* `CUserPrincipalDetails` with the `User.Id` property.
+* `CUserWithEmailPrincipalDetails` with the `Name` and `Email` properties.
 
 ```csharp
-await foreach (var issueDto in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(
+await foreach (var issue in _projectClient.Planning.Issues.GetAllIssuesAsyncEnumerable(
     ProjectIdentifier.Key("ABC"), IssuesSorting.UPDATED,
     partial: _ => _
         .WithAllFieldsWildcard()
         .WithCreationTime()
         .WithCreatedBy(createdBy => createdBy
             .WithDetails(details => details
-                .ForInherited<CUserPrincipalDetailsDto>(detailsDto => detailsDto
+                .ForInherited<CUserPrincipalDetails>(principalDetails => principalDetails
                     .WithUser(user => user
                         .WithId()))
-                .ForInherited<CUserWithEmailPrincipalDetailsDto>(detailsDto => detailsDto
+                .ForInherited<CUserWithEmailPrincipalDetails>(userDetails => userDetails
                     .WithName()
                     .WithEmail())))
         .WithStatus()))
 {
-    if (issueDto.CreatedBy.Details is CUserPrincipalDetailsDto userPrincipal)
+    if (issue.CreatedBy.Details is CUserPrincipalDetails userPrincipal)
     {
-        // ... work with CUserPrincipalDetailsDto ...
+        // ... work with CUserPrincipalDetails ...
     }
-    if (issueDto.CreatedBy.Details is CUserWithEmailPrincipalDetailsDto userWithEmailPrincipal)
+    if (issue.CreatedBy.Details is CUserWithEmailPrincipalDetails userWithEmailPrincipal)
     {
-        // ... work with CUserWithEmailPrincipalDetailsDto ...
+        // ... work with CUserWithEmailPrincipalDetails ...
     }
 }
 ```
@@ -280,15 +280,15 @@ var batch = await _todoClient.GetAllToDoItemsAsync(
         .WithData(data => data
             .WithId()
             .WithContent(content => content
-                .ForInherited<TodoItemContentMdTextDto>(md => md
+                .ForInherited<TodoItemContentMdText>(md => md
                 .WithAllFieldsWildcard()))
-            .WithStatus())
+            .WithStatus())  
         .WithTotalCount()
         .WithNext());
 
 do
 {
-    foreach (var todoDto in batch.Data)
+    foreach (var todo in batch.Data)
     {
         // ...
     }
@@ -306,12 +306,12 @@ The resulting `batch` will contain one page of results. To retrieve more To-Do i
 With the `IAsyncEnumerable` overload for these endpoints, we can iterate over items that are returned. The underlying SpaceDotNet implementation will handle pagination and additional API calls for us. The same example as before, using the `IAsyncEnumerable` overload:
 
 ```csharp
-await foreach (var todoDto in _todoClient.GetAllToDoItemsAsyncEnumerable(
+await foreach (var todo in _todoClient.GetAllToDoItemsAsyncEnumerable(
     from: weekStart.AsSpaceDate(),
     partial: _ => _
         .WithId()
         .WithContent(content => content
-            .ForInherited<TodoItemContentMdTextDto>(md => md
+            .ForInherited<TodoItemContentMdText>(md => md
                 .WithAllFieldsWildcard()))
         .WithStatus()))
 {

@@ -136,11 +136,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     {
                         if (FeatureFlags.GenerateAlternativeForOptionalParameterDefaultReferenceTypes)
                         {
-                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName()} = {apiDtoField.Field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)};");
+                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName(typeNameForDto)} = {apiDtoField.Field.ToCSharpVariableInstanceOrDefaultValue(_codeGenerationContext)};");
                         }
                         else
                         {
-                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName()} = {apiDtoField.Field.ToCSharpVariableName()};");
+                            builder.AppendLine($"{indent}{apiDtoField.Field.ToCSharpPropertyName(typeNameForDto)} = {apiDtoField.Field.ToCSharpVariableName()};");
                         }
                     }
                     indent.Decrement();
@@ -205,7 +205,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             var indent = new Indent();
             var builder = new StringBuilder();
 
-            var propertyNameForField = apiField.ToCSharpPropertyName();
+            var propertyNameForField = apiField.ToCSharpPropertyName(typeNameForDto);
             var backingFieldNameForField = apiField.ToCSharpBackingFieldName();
 
             if (FeatureFlags.GenerateBackingFieldsForDtoProperties)
