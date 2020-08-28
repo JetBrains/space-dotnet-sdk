@@ -10,17 +10,17 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
         public static string ToCSharpPrimitiveType(this ApiFieldType.Primitive subject) =>
             subject.Type switch
             {
-                "Byte" => "byte",
-                "Short" => "short",
-                "Int" => "int",
-                "Long" => "long",
-                "Float" => "float",
-                "Double" => "double",
-                "Boolean" => "bool",
-                "String" => "string",
-                "Date" => "SpaceDate",
-                "DateTime" => "SpaceTime",
-                _ => "object"
+                "Byte" => CSharpType.Byte.Value,
+                "Short" => CSharpType.Short.Value,
+                "Int" => CSharpType.Int.Value,
+                "Long" => CSharpType.Long.Value,
+                "Float" => CSharpType.Float.Value,
+                "Double" => CSharpType.Double.Value,
+                "Boolean" => CSharpType.Bool.Value,
+                "String" => CSharpType.String.Value,
+                "Date" => CSharpType.SpaceDate.Value,
+                "DateTime" => CSharpType.SpaceTime.Value,
+                _ => CSharpType.Object.Value
             };
 
         public static string ToCSharpType(this ApiFieldType apiFieldType, CodeGenerationContext context)
