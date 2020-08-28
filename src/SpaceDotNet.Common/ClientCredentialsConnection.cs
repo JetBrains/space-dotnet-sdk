@@ -62,6 +62,12 @@ namespace SpaceDotNet.Common
                 };
 
                 var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest);
+                if (!spaceTokenResponse.IsSuccessStatusCode)
+                {
+                    throw new ResourceException($"Unable to connect to Space organization. Attempted endpoint was: {ServerUrl + "oauth/token"}",
+                        spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
+                }
+                
                 using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync());
                 var spaceToken = spaceTokenDocument.RootElement;
                 
