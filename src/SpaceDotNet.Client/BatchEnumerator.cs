@@ -14,18 +14,12 @@ namespace SpaceDotNet.Client
         
         public static async IAsyncEnumerable<T> AllItems<T>(RetrieveBatch<T> batchResponse, string? initialSkip = null, [EnumeratorCancellation]CancellationToken cancellationToken = default)
         {
-            if (cancellationToken.IsCancellationRequested) yield break;
-            
             await foreach (var batch in AllPages(batchResponse, initialSkip, cancellationToken))
             {
-                if (cancellationToken.IsCancellationRequested) yield break;
-                
                 if (batch.Data != null)
                 {
                     foreach (var item in batch.Data)
                     {
-                        if (cancellationToken.IsCancellationRequested) yield break;
-                        
                         yield return item;
                     }
                 }

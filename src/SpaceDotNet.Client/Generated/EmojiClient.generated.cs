@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -35,57 +36,57 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Add custom emoji.
         /// </summary>
-        public async Task AddAsync(string emoji, string attachmentId)
+        public async Task AddAsync(string emoji, string attachmentId, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("POST", $"api/http/emojis/add", 
                 new EmojisAddPostRequest { 
                     Emoji = emoji,
                     AttachmentId = attachmentId,
                 }
-        );
+        , cancellationToken);
     
         /// <summary>
         /// Delete an emoji by its name.
         /// </summary>
-        public async Task DeleteAsync(string emoji)
+        public async Task DeleteAsync(string emoji, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("POST", $"api/http/emojis/delete", 
                 new EmojisDeletePostRequest { 
                     Emoji = emoji,
                 }
-        );
+        , cancellationToken);
     
         /// <summary>
         /// Record emojis usage and update frequently used list.
         /// </summary>
-        public async Task RecordUsageAsync(List<string> emojis)
+        public async Task RecordUsageAsync(List<string> emojis, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("POST", $"api/http/emojis/record-usage", 
                 new EmojisRecordUsagePostRequest { 
                     Emojis = emojis,
                 }
-        );
+        , cancellationToken);
     
         /// <summary>
         /// Check whether a given emoji name exists.
         /// </summary>
-        public async Task<bool> ExistsAsync(string emoji)
-            => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}");
+        public async Task<bool> ExistsAsync(string emoji, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync<bool>("GET", $"api/http/emojis/exists?emoji={emoji.ToString()}", cancellationToken);
     
         /// <summary>
         /// List frequently used emojis.
         /// </summary>
-        public async Task<List<string>> FrequentlyUsedAsync()
-            => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/emojis/frequently-used");
+        public async Task<List<string>> FrequentlyUsedAsync(CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync<List<string>>("GET", $"api/http/emojis/frequently-used", cancellationToken);
     
         /// <summary>
         /// Search for emoji.
         /// </summary>
-        public async Task<Batch<EmojiSearchMatchData>> SearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null)
-            => await _connection.RequestResourceAsync<Batch<EmojiSearchMatchData>>("GET", $"api/http/emojis/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<EmojiSearchMatchData>>()) : Partial<Batch<EmojiSearchMatchData>>.Default())}");
+        public async Task<Batch<EmojiSearchMatchData>> SearchAsync(string query, string? skip = null, int? top = 100, Func<Partial<Batch<EmojiSearchMatchData>>, Partial<Batch<EmojiSearchMatchData>>>? partial = null, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync<Batch<EmojiSearchMatchData>>("GET", $"api/http/emojis/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<EmojiSearchMatchData>>()) : Partial<Batch<EmojiSearchMatchData>>.Default())}", cancellationToken);
         
         /// <summary>
         /// Search for emoji.
         /// </summary>
-        public IAsyncEnumerable<EmojiSearchMatchData> SearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null)
-            => BatchEnumerator.AllItems(batchSkip => SearchAsync(query: query, top: top, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip);
+        public IAsyncEnumerable<EmojiSearchMatchData> SearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null, CancellationToken cancellationToken = default)
+            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchAsync(query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip, cancellationToken);
     
     }
     

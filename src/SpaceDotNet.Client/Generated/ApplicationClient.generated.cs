@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -43,11 +44,11 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<Batch<MarketApplicationRecord>> GetAllMarketApplicationsAsync(string? skip = null, int? top = 100, string? term = null, MarketAppSortColumn? sortBy = null, ColumnSortOrder? order = null, Func<Partial<Batch<MarketApplicationRecord>>, Partial<Batch<MarketApplicationRecord>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<MarketApplicationRecord>>("GET", $"api/http/applications/market-applications?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&sortBy={(sortBy ?? MarketAppSortColumn.NAME)?.ToString() ?? "null"}&order={(order ?? ColumnSortOrder.ASC)?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<MarketApplicationRecord>>()) : Partial<Batch<MarketApplicationRecord>>.Default())}");
+            public async Task<Batch<MarketApplicationRecord>> GetAllMarketApplicationsAsync(string? skip = null, int? top = 100, string? term = null, MarketAppSortColumn? sortBy = null, ColumnSortOrder? order = null, Func<Partial<Batch<MarketApplicationRecord>>, Partial<Batch<MarketApplicationRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<MarketApplicationRecord>>("GET", $"api/http/applications/market-applications?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&sortBy={(sortBy ?? MarketAppSortColumn.NAME)?.ToString() ?? "null"}&order={(order ?? ColumnSortOrder.ASC)?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<MarketApplicationRecord>>()) : Partial<Batch<MarketApplicationRecord>>.Default())}", cancellationToken);
             
-            public IAsyncEnumerable<MarketApplicationRecord> GetAllMarketApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, MarketAppSortColumn? sortBy = null, ColumnSortOrder? order = null, Func<Partial<MarketApplicationRecord>, Partial<MarketApplicationRecord>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllMarketApplicationsAsync(top: top, term: term, sortBy: sortBy, order: order, skip: batchSkip, partial: builder => Partial<Batch<MarketApplicationRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<MarketApplicationRecord>.Default())), skip);
+            public IAsyncEnumerable<MarketApplicationRecord> GetAllMarketApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, MarketAppSortColumn? sortBy = null, ColumnSortOrder? order = null, Func<Partial<MarketApplicationRecord>, Partial<MarketApplicationRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMarketApplicationsAsync(top: top, term: term, sortBy: sortBy, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<MarketApplicationRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<MarketApplicationRecord>.Default())), skip, cancellationToken);
         
         }
     

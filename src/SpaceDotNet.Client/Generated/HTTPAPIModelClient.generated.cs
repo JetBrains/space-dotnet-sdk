@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -35,8 +36,8 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Get the HTTP API model that describes the available HTTP API's
         /// </summary>
-        public async Task<HAModel> GetHTTPAPIModelAsync(Func<Partial<HAModel>, Partial<HAModel>>? partial = null)
-            => await _connection.RequestResourceAsync<HAModel>("GET", $"api/http/http-api-model?$fields={(partial != null ? partial(new Partial<HAModel>()) : Partial<HAModel>.Default())}");
+        public async Task<HAModel> GetHTTPAPIModelAsync(Func<Partial<HAModel>, Partial<HAModel>>? partial = null, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync<HAModel>("GET", $"api/http/http-api-model?$fields={(partial != null ? partial(new Partial<HAModel>()) : Partial<HAModel>.Default())}", cancellationToken);
     
     }
     

@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -46,47 +47,47 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create or get a direct messages channel with a profile.
             /// </summary>
-            public async Task<M2ChannelRecord> GetOrCreateDirectMessagesChannelAsync(string profile, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null)
+            public async Task<M2ChannelRecord> GetOrCreateDirectMessagesChannelAsync(string profile, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ChatsChannelsDmPostRequest, M2ChannelRecord>("POST", $"api/http/chats/channels/dm?$fields={(partial != null ? partial(new Partial<M2ChannelRecord>()) : Partial<M2ChannelRecord>.Default())}", 
                     new ChatsChannelsDmPostRequest { 
                         Profile = profile,
                     }
-            );
+            , cancellationToken);
         
             /// <summary>
             /// Check whether a channel name is available. Returns true when the channel name can be used to create a new channel, false otherwise.
             /// </summary>
-            public async Task<bool> IsNameFreeAsync(string name)
+            public async Task<bool> IsNameFreeAsync(string name, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ChatsChannelsIsNameFreePostRequest, bool>("POST", $"api/http/chats/channels/is-name-free", 
                     new ChatsChannelsIsNameFreePostRequest { 
                         Name = name,
                     }
-            );
+            , cancellationToken);
         
-            public async Task<List<string>> ImportMessageHistoryAsync(string channelId, List<MessageForImport> messages)
+            public async Task<List<string>> ImportMessageHistoryAsync(string channelId, List<MessageForImport> messages, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ChatsChannelsForChannelIdImportPostRequest, List<string>>("POST", $"api/http/chats/channels/{channelId}/import", 
                     new ChatsChannelsForChannelIdImportPostRequest { 
                         Messages = messages,
                     }
-            );
+            , cancellationToken);
         
             /// <summary>
             /// Restore an archived channel, and allow new messages to be added.
             /// </summary>
-            public async Task RestoreArchivedChannelAsync(string channelId)
-                => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived");
+            public async Task RestoreArchivedChannelAsync(string channelId, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived", cancellationToken);
         
             /// <summary>
             /// Delete a channel. No one will be able to view this channel or its threads. This action cannot be undone.
             /// </summary>
-            public async Task DeleteChannelAsync(string channelId)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}");
+            public async Task DeleteChannelAsync(string channelId, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}", cancellationToken);
         
             /// <summary>
             /// Archive a channel, and reject new messages being added. It is still possible to view messages from an archived channel. It is possible to restore the channel later.
             /// </summary>
-            public async Task ArchiveChannelAsync(string channelId)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive");
+            public async Task ArchiveChannelAsync(string channelId, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/chats/channels/{channelId}/archive", cancellationToken);
         
             public MessageClient Messages => new MessageClient(_connection);
             
@@ -102,13 +103,13 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Send a message to a channel. Message text is a string.
                 /// </summary>
-                public async Task<ChannelItemRecord> SendTextMessageAsync(string channelId, string text, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null)
+                public async Task<ChannelItemRecord> SendTextMessageAsync(string channelId, string text, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ChatsChannelsForChannelIdMessagesPostRequest, ChannelItemRecord>("POST", $"api/http/chats/channels/{channelId}/messages?$fields={(partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default())}", 
                         new ChatsChannelsForChannelIdMessagesPostRequest { 
                             Text = text,
                             TemporaryId = temporaryId,
                         }
-                );
+                , cancellationToken);
             
             }
         
@@ -128,18 +129,18 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Delete a message from a channel.
             /// </summary>
-            public async Task DeleteMessageAsync(string channel, ChatMessageIdentifier id)
+            public async Task DeleteMessageAsync(string channel, ChatMessageIdentifier id, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/delete-message", 
                     new ChatsMessagesDeleteMessagePostRequest { 
                         Channel = channel,
                         Id = id,
                     }
-            );
+            , cancellationToken);
         
             /// <summary>
             /// Edit an existing message. Message content can be a string, or a block with one or several sections of information.
             /// </summary>
-            public async Task EditMessageAsync(string channel, ChatMessageIdentifier message, ChatMessage content, bool? unfurlLinks = null)
+            public async Task EditMessageAsync(string channel, ChatMessageIdentifier message, ChatMessage content, bool? unfurlLinks = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/edit-message", 
                     new ChatsMessagesEditMessagePostRequest { 
                         Channel = channel,
@@ -147,20 +148,20 @@ namespace SpaceDotNet.Client
                         Content = content,
                         IsUnfurlLinks = unfurlLinks,
                     }
-            );
+            , cancellationToken);
         
             [Obsolete("Use POST chats/messages/edit-message (since 2020-06-06) (marked for removal)")]
-            public async Task EditTextMessageAsync(string channelId, string text, string messageId)
+            public async Task EditTextMessageAsync(string channelId, string text, string messageId, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/messages/edit-text-message", 
                     new ChatsMessagesEditTextMessagePostRequest { 
                         ChannelId = channelId,
                         Text = text,
                         MessageId = messageId,
                     }
-            );
+            , cancellationToken);
         
             [Obsolete("Use POST chats/channels/{channelId}/messages (since 2020-01-17) (marked for removal)")]
-            public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null)
+            public async Task<ChannelItemRecord> SendTextMessageAsync(string channel, string text, bool pending = false, string? temporaryId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ChatsMessagesSendPostRequest, ChannelItemRecord>("POST", $"api/http/chats/messages/send?$fields={(partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default())}", 
                     new ChatsMessagesSendPostRequest { 
                         Channel = channel,
@@ -168,12 +169,12 @@ namespace SpaceDotNet.Client
                         IsPending = pending,
                         TemporaryId = temporaryId,
                     }
-            );
+            , cancellationToken);
         
             /// <summary>
             /// Send a message to a recipient, such as a channel, member, issue, code review, ... Message content can be a string, or a block with one or several sections of information.
             /// </summary>
-            public async Task<ChannelItemRecord> SendMessageAsync(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<Attachment>? attachments = null, string? externalId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null)
+            public async Task<ChannelItemRecord> SendMessageAsync(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<Attachment>? attachments = null, string? externalId = null, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ChatsMessagesSendMessagePostRequest, ChannelItemRecord>("POST", $"api/http/chats/messages/send-message?$fields={(partial != null ? partial(new Partial<ChannelItemRecord>()) : Partial<ChannelItemRecord>.Default())}", 
                     new ChatsMessagesSendMessagePostRequest { 
                         Recipient = recipient,
@@ -182,7 +183,7 @@ namespace SpaceDotNet.Client
                         Attachments = attachments,
                         ExternalId = externalId,
                     }
-            );
+            , cancellationToken);
         
         }
     

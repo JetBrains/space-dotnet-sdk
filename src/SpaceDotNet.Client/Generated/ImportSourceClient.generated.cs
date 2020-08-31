@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -32,27 +33,27 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<ImportSource> CreateImportSourceAsync(string name, string? importerPrincipal = null, Func<Partial<ImportSource>, Partial<ImportSource>>? partial = null)
+        public async Task<ImportSource> CreateImportSourceAsync(string name, string? importerPrincipal = null, Func<Partial<ImportSource>, Partial<ImportSource>>? partial = null, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync<ImportSourcesPostRequest, ImportSource>("POST", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSource>()) : Partial<ImportSource>.Default())}", 
                 new ImportSourcesPostRequest { 
                     Name = name,
                     ImporterPrincipal = importerPrincipal,
                 }
-        );
+        , cancellationToken);
     
-        public async Task<List<ImportSource>> GetAllImportSourcesAsync(Func<Partial<ImportSource>, Partial<ImportSource>>? partial = null)
-            => await _connection.RequestResourceAsync<List<ImportSource>>("GET", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSource>()) : Partial<ImportSource>.Default())}");
+        public async Task<List<ImportSource>> GetAllImportSourcesAsync(Func<Partial<ImportSource>, Partial<ImportSource>>? partial = null, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync<List<ImportSource>>("GET", $"api/http/import-sources?$fields={(partial != null ? partial(new Partial<ImportSource>()) : Partial<ImportSource>.Default())}", cancellationToken);
     
-        public async Task UpdateImportSourceAsync(string sourceId, string name, string importerPrincipal)
+        public async Task UpdateImportSourceAsync(string sourceId, string name, string importerPrincipal, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/import-sources/{sourceId}", 
                 new ImportSourcesForSourceIdPatchRequest { 
                     Name = name,
                     ImporterPrincipal = importerPrincipal,
                 }
-        );
+        , cancellationToken);
     
-        public async Task DeleteImportSourceAsync(string sourceId)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}");
+        public async Task DeleteImportSourceAsync(string sourceId, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync("DELETE", $"api/http/import-sources/{sourceId}", cancellationToken);
     
     }
     

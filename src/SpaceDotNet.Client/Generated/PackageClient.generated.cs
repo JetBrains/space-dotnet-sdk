@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -43,8 +44,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<PackageType>> GetAllTypesAsync(Func<Partial<PackageType>, Partial<PackageType>>? partial = null)
-                => await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/packages/types?$fields={(partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default())}");
+            public async Task<List<PackageType>> GetAllTypesAsync(Func<Partial<PackageType>, Partial<PackageType>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/packages/types?$fields={(partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default())}", cancellationToken);
         
         }
     

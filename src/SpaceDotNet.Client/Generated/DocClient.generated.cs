@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -43,7 +44,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DRDraft> CreateDraftAsync(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null)
+            public async Task<DRDraft> CreateDraftAsync(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<DocsDraftsPostRequest, DRDraft>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default())}", 
                     new DocsDraftsPostRequest { 
                         Title = title,
@@ -54,12 +55,12 @@ namespace SpaceDotNet.Client
                         PublicationDetails = publicationDetails,
                         PublicationDetails2 = publicationDetails2,
                     }
-            );
+            , cancellationToken);
         
-            public async Task<DRDraft> GetDraftAsync(string id, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null)
-                => await _connection.RequestResourceAsync<DRDraft>("GET", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default())}");
+            public async Task<DRDraft> GetDraftAsync(string id, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<DRDraft>("GET", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default())}", cancellationToken);
         
-            public async Task<DRDraft> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null)
+            public async Task<DRDraft> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<DocsDraftsForIdPatchRequest, DRDraft>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default())}", 
                     new DocsDraftsForIdPatchRequest { 
                         Title = title,
@@ -70,10 +71,10 @@ namespace SpaceDotNet.Client
                         PublicationDetails = publicationDetails,
                         PublicationDetails2 = publicationDetails2,
                     }
-            );
+            , cancellationToken);
         
-            public async Task DeleteDraftAsync(string id)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}");
+            public async Task DeleteDraftAsync(string id, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}", cancellationToken);
         
             public FolderClient Folder => new FolderClient(_connection);
             
@@ -86,19 +87,19 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<DocumentFolderRecord> CreateFolderAsync(string name, string? parentId = null, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null)
+                public async Task<DocumentFolderRecord> CreateFolderAsync(string name, string? parentId = null, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<DocsDraftsFolderPostRequest, DocumentFolderRecord>("POST", $"api/http/docs/drafts/folder?$fields={(partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default())}", 
                         new DocsDraftsFolderPostRequest { 
                             Name = name,
                             ParentId = parentId,
                         }
-                );
+                , cancellationToken);
             
-                public async Task<DocumentFolderRecord> GetFolderByAliasAsync(string alias, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null)
-                    => await _connection.RequestResourceAsync<DocumentFolderRecord>("GET", $"api/http/docs/drafts/folder/alias:{alias}?$fields={(partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default())}");
+                public async Task<DocumentFolderRecord> GetFolderByAliasAsync(string alias, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<DocumentFolderRecord>("GET", $"api/http/docs/drafts/folder/alias:{alias}?$fields={(partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default())}", cancellationToken);
             
-                public async Task DeleteFolderAsync(string id)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/folder/{id}");
+                public async Task DeleteFolderAsync(string id, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/folder/{id}", cancellationToken);
             
                 public NameClient Name => new NameClient(_connection);
                 
@@ -111,12 +112,12 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task UpdateNameAsync(string id, string name)
+                    public async Task UpdateNameAsync(string id, string name, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("PATCH", $"api/http/docs/drafts/folder/{id}/name", 
                             new DocsDraftsFolderForIdNamePatchRequest { 
                                 Name = name,
                             }
-                    );
+                    , cancellationToken);
                 
                 }
             
@@ -131,12 +132,12 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task UpdateParentAsync(string id, string parentFolderId)
+                    public async Task UpdateParentAsync(string id, string parentFolderId, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("PATCH", $"api/http/docs/drafts/folder/{id}/parent", 
                             new DocsDraftsFolderForIdParentPatchRequest { 
                                 ParentFolderId = parentFolderId,
                             }
-                    );
+                    , cancellationToken);
                 
                 }
             
@@ -164,18 +165,18 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task CreateProfileAsync(string id, string editorId)
+                    public async Task CreateProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/profiles", 
                             new DocsDraftsForIdEditorsProfilesPostRequest { 
                                 EditorId = editorId,
                             }
-                    );
+                    , cancellationToken);
                 
-                    public async Task<List<TDMemberProfile>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null)
-                        => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}");
+                    public async Task<List<TDMemberProfile>> GetAllProfilesAsync(string id, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/docs/drafts/{id}/editors/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
                 
-                    public async Task DeleteProfileAsync(string id, string editorId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}");
+                    public async Task DeleteProfileAsync(string id, string editorId, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/profiles/{editorId}", cancellationToken);
                 
                 }
             
@@ -190,18 +191,18 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task CreateTeamAsync(string id, string teamId)
+                    public async Task CreateTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("POST", $"api/http/docs/drafts/{id}/editors/teams", 
                             new DocsDraftsForIdEditorsTeamsPostRequest { 
                                 TeamId = teamId,
                             }
-                    );
+                    , cancellationToken);
                 
-                    public async Task<List<TDTeam>> GetAllTeamsAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null)
-                        => await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}");
+                    public async Task<List<TDTeam>> GetAllTeamsAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/docs/drafts/{id}/editors/teams?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
                 
-                    public async Task DeleteTeamAsync(string id, string teamId)
-                        => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}");
+                    public async Task DeleteTeamAsync(string id, string teamId, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/docs/drafts/{id}/editors/teams/{teamId}", cancellationToken);
                 
                 }
             

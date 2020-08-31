@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text.Json.Serialization;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.Internal;
 using SpaceDotNet.Common;
@@ -32,12 +33,12 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> ConvertMarkdownToHTMLAsync(string markdown)
+        public async Task<string> ConvertMarkdownToHTMLAsync(string markdown, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync<BlogsMarkdown2htmlPostRequest, string>("POST", $"api/http/blogs/markdown2html", 
                 new BlogsMarkdown2htmlPostRequest { 
                     Markdown = markdown,
                 }
-        );
+        , cancellationToken);
     
         public ArticleClient Articles => new ArticleClient(_connection);
         
@@ -50,40 +51,40 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<List<ArticleImportResult>> ImportArticlesAsync(ImportMetadata metadata, List<ExternalArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null)
+            public async Task<List<ArticleImportResult>> ImportArticlesAsync(ImportMetadata metadata, List<ExternalArticle> articles, Func<Partial<ArticleImportResult>, Partial<ArticleImportResult>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<BlogsArticlesImportPostRequest, List<ArticleImportResult>>("POST", $"api/http/blogs/articles/import?$fields={(partial != null ? partial(new Partial<ArticleImportResult>()) : Partial<ArticleImportResult>.Default())}", 
                     new BlogsArticlesImportPostRequest { 
                         Metadata = metadata,
                         Articles = articles,
                     }
-            );
+            , cancellationToken);
         
-            public async Task<Batch<ArticleRecord>> GetAllArticlesAsync(string? skip = null, int? top = 100, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null)
-                => await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default())}");
+            public async Task<Batch<ArticleRecord>> GetAllArticlesAsync(string? skip = null, int? top = 100, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default())}", cancellationToken);
             
-            public IAsyncEnumerable<ArticleRecord> GetAllArticlesAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null)
-                => BatchEnumerator.AllItems(batchSkip => GetAllArticlesAsync(top: top, term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, skip: batchSkip, partial: builder => Partial<Batch<ArticleRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecord>.Default())), skip);
+            public IAsyncEnumerable<ArticleRecord> GetAllArticlesAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllArticlesAsync(top: top, term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ArticleRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecord>.Default())), skip, cancellationToken);
         
-            public async Task<ArticleRecord> GetArticleByAliasAsync(string alias, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null)
-                => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/alias:{alias}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}");
+            public async Task<ArticleRecord> GetArticleByAliasAsync(string alias, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/alias:{alias}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}", cancellationToken);
         
-            public async Task<ArticleRecord> GetArticleByExternalIdAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null)
-                => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/external-id:{id}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}");
+            public async Task<ArticleRecord> GetArticleByExternalIdAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/external-id:{id}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}", cancellationToken);
         
-            public async Task<ArticleRecord> GetArticleAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null)
-                => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/{id}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}");
+            public async Task<ArticleRecord> GetArticleAsync(string id, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/{id}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}", cancellationToken);
         
             /// <summary>
             /// Unpublish the article and delete its draft (if any)
             /// </summary>
-            public async Task DeleteArticleAsync(string articleId)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/article-id:{articleId}/delete");
+            public async Task DeleteArticleAsync(string articleId, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/article-id:{articleId}/delete", cancellationToken);
         
             /// <summary>
             /// Unpublish the article, but keeps its draft
             /// </summary>
-            public async Task UnpublishArticleAsync(string articleId)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/article-id:{articleId}/unpublish");
+            public async Task UnpublishArticleAsync(string articleId, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/article-id:{articleId}/unpublish", cancellationToken);
         
             public DraftClient Drafts => new DraftClient(_connection);
             
@@ -96,20 +97,20 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<BGArticleId> PublishArticleAsync(string draftId, Func<Partial<BGArticleId>, Partial<BGArticleId>>? partial = null)
-                    => await _connection.RequestResourceAsync<BGArticleId>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish?$fields={(partial != null ? partial(new Partial<BGArticleId>()) : Partial<BGArticleId>.Default())}");
+                public async Task<BGArticleId> PublishArticleAsync(string draftId, Func<Partial<BGArticleId>, Partial<BGArticleId>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<BGArticleId>("POST", $"api/http/blogs/articles/drafts/{draftId}/publish?$fields={(partial != null ? partial(new Partial<BGArticleId>()) : Partial<BGArticleId>.Default())}", cancellationToken);
             
-                public async Task<DRDraftId> GetDraftByArticleIdAsync(string articleId, Func<Partial<DRDraftId>, Partial<DRDraftId>>? partial = null)
-                    => await _connection.RequestResourceAsync<DRDraftId>("GET", $"api/http/blogs/articles/drafts/article-id:{articleId}?$fields={(partial != null ? partial(new Partial<DRDraftId>()) : Partial<DRDraftId>.Default())}");
+                public async Task<DRDraftId> GetDraftByArticleIdAsync(string articleId, Func<Partial<DRDraftId>, Partial<DRDraftId>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<DRDraftId>("GET", $"api/http/blogs/articles/drafts/article-id:{articleId}?$fields={(partial != null ? partial(new Partial<DRDraftId>()) : Partial<DRDraftId>.Default())}", cancellationToken);
             
-                public async Task<ArticleRecord> GetDraftByDraftIdAsync(string draftId, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null)
-                    => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/drafts/draft-id:{draftId}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}");
+                public async Task<ArticleRecord> GetDraftByDraftIdAsync(string draftId, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<ArticleRecord>("GET", $"api/http/blogs/articles/drafts/draft-id:{draftId}?$fields={(partial != null ? partial(new Partial<ArticleRecord>()) : Partial<ArticleRecord>.Default())}", cancellationToken);
             
                 /// <summary>
                 /// Unpublish the article, but keeps its draft
                 /// </summary>
-                public async Task UnpublishArticleAsync(string draftId)
-                    => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish");
+                public async Task UnpublishArticleAsync(string draftId, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync("DELETE", $"api/http/blogs/articles/drafts/{draftId}/unpublish", cancellationToken);
             
             }
         
@@ -126,8 +127,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<BGDates> GetDatesAsync(Func<Partial<BGDates>, Partial<BGDates>>? partial = null)
-                => await _connection.RequestResourceAsync<BGDates>("GET", $"api/http/blogs/dates?$fields={(partial != null ? partial(new Partial<BGDates>()) : Partial<BGDates>.Default())}");
+            public async Task<BGDates> GetDatesAsync(Func<Partial<BGDates>, Partial<BGDates>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<BGDates>("GET", $"api/http/blogs/dates?$fields={(partial != null ? partial(new Partial<BGDates>()) : Partial<BGDates>.Default())}", cancellationToken);
         
         }
     
@@ -142,8 +143,8 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<BGStats> GetStatsAsync(SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null)
-                => await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default())}");
+            public async Task<BGStats> GetStatsAsync(SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default())}", cancellationToken);
         
         }
     
