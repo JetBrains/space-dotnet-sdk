@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Common.Types;
 
@@ -48,7 +49,7 @@ namespace SpaceDotNet.Common
             HttpClient = httpClient ?? new HttpClient();
         }
 
-        protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath)
+        protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -58,9 +59,9 @@ namespace SpaceDotNet.Common
                 }
             };
             
-            await EnsureAuthenticatedAsync(request);
+            await EnsureAuthenticatedAsync(request, cancellationToken);
 
-            var response = await HttpClient.SendAsync(request);
+            var response = await HttpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
                 var exception = await BuildException(response);
@@ -68,7 +69,7 @@ namespace SpaceDotNet.Common
             }
         }
 
-        protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath)
+        protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -78,19 +79,19 @@ namespace SpaceDotNet.Common
                 }
             };
             
-            await EnsureAuthenticatedAsync(request);
+            await EnsureAuthenticatedAsync(request, cancellationToken);
 
-            var response = await HttpClient.SendAsync(request);
+            var response = await HttpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
                 var exception = await BuildException(response);
                 throw exception;
             }
             
-            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
+            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
         }
 
-        protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
+        protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -101,9 +102,9 @@ namespace SpaceDotNet.Common
                 Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             };
             
-            await EnsureAuthenticatedAsync(request);
+            await EnsureAuthenticatedAsync(request, cancellationToken);
 
-            var response = await HttpClient.SendAsync(request);
+            var response = await HttpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
                 var exception = await BuildException(response);
@@ -111,7 +112,7 @@ namespace SpaceDotNet.Common
             }
         }
         
-        protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
+        protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
             {
@@ -122,19 +123,19 @@ namespace SpaceDotNet.Common
                 Content = new StringContent(JsonSerializer.Serialize(payload, JsonSerializerOptions), Encoding.UTF8, "application/json")
             };
             
-            await EnsureAuthenticatedAsync(request);
+            await EnsureAuthenticatedAsync(request, cancellationToken);
 
-            var response = await HttpClient.SendAsync(request);
+            var response = await HttpClient.SendAsync(request, cancellationToken);
             if (!response.IsSuccessStatusCode)
             {
                 var exception = await BuildException(response);
                 throw exception;
             }
             
-            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions);
+            return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
         }
         
-        protected virtual Task EnsureAuthenticatedAsync(HttpRequestMessage request)
+        protected virtual Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (AuthenticationTokens != null && !AuthenticationTokens.HasExpired())
             {

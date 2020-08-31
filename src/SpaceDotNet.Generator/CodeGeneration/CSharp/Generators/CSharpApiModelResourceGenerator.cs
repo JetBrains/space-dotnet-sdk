@@ -159,6 +159,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     }
                 }
                 
+                methodParametersBuilder = methodParametersBuilder
+                    .WithParameter(CSharpType.CancellationToken.Value,
+                        "cancellationToken",
+                        CSharpExpression.DefaultLiteral);
+                
                 builder.Append(
                     indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
                 builder.Append($"{indent}public async Task {methodNameForEndpoint}Async(");
@@ -194,6 +199,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         builder.Append(", data");
                     }
                 }
+                
+                builder.Append(", cancellationToken");
                 builder.Append(");");
                 indent.Decrement();
             }
@@ -228,6 +235,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                             "partial",
                             CSharpExpression.NullLiteral);
                 }
+                
+                methodParametersBuilder = methodParametersBuilder
+                    .WithParameter(CSharpType.CancellationToken.Value,
+                        "cancellationToken",
+                        CSharpExpression.DefaultLiteral);
         
                 builder.Append(
                     indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
@@ -275,6 +287,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         builder.Append(", data");
                     }
                 }
+                
+                builder.Append(", cancellationToken");
                 builder.Append(");");
                 indent.Decrement();
             }
@@ -356,6 +370,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         "partial",
                         CSharpExpression.NullLiteral);
                 
+                methodParametersBuilder = methodParametersBuilder
+                    .WithParameter(CSharpType.CancellationToken.Value,
+                        "cancellationToken",
+                        CSharpExpression.DefaultLiteral);
+
                 builder.Append(
                     indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
                 builder.Append($"{indent}public IAsyncEnumerable<");
@@ -366,7 +385,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.AppendLine(")");
                 
                 indent.Increment();
-                builder.Append($"{indent}=> BatchEnumerator.AllItems(batchSkip => ");
+                builder.Append($"{indent}=> BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ");
                 
                 builder.Append($"{methodNameForEndpoint}Async(");
 
@@ -376,9 +395,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         .WithDefaultValueForAllParameters(null)
                         .WithDefaultValueForParameter("skip", "batchSkip")
                         .WithDefaultValueForParameter("partial", $"builder => {partialTypeForBatch}.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => {partialType}.Default())")
+                        .WithDefaultValueForParameter(CSharpType.CancellationToken.Value, "batchCancellationToken")
                         .BuildMethodCallParameters());
                 
-                builder.Append("), skip);");
+                builder.Append("), skip, cancellationToken);");
                 indent.Decrement();
             }
             else

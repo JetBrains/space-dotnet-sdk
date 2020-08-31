@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using SpaceDotNet.Common.Json.Serialization;
 
@@ -41,7 +42,7 @@ namespace SpaceDotNet.Common
         // ReSharper disable once MemberCanBePrivate.Global
         public string Scope { get; set; } = "**";
 
-        protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request)
+        protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             // Authenticate?
             if (AuthenticationTokens == null || AuthenticationTokens.HasExpired())
@@ -61,14 +62,14 @@ namespace SpaceDotNet.Common
                     })
                 };
 
-                var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest);
+                var spaceTokenResponse = await HttpClient.SendAsync(spaceTokenRequest, cancellationToken);
                 if (!spaceTokenResponse.IsSuccessStatusCode)
                 {
                     throw new ResourceException($"Unable to connect to Space organization. Attempted endpoint was: {ServerUrl + "oauth/token"}",
                         spaceTokenResponse.StatusCode, spaceTokenResponse.ReasonPhrase);
                 }
                 
-                using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync());
+                using var spaceTokenDocument = await JsonDocument.ParseAsync(await spaceTokenResponse.Content.ReadAsStreamAsync(), cancellationToken: cancellationToken);
                 var spaceToken = spaceTokenDocument.RootElement;
                 
                 AuthenticationTokens = new AuthenticationTokens(
@@ -78,7 +79,7 @@ namespace SpaceDotNet.Common
                 );
             }
 
-            await base.EnsureAuthenticatedAsync(request);
+            await base.EnsureAuthenticatedAsync(request, cancellationToken);
         }
     }
 }

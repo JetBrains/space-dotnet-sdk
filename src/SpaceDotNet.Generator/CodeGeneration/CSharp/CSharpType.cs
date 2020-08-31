@@ -17,5 +17,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         public static readonly CSharpType SpaceDate = new CSharpType("SpaceDate");
         public static readonly CSharpType SpaceTime = new CSharpType("SpaceTime");
         public static readonly CSharpType Object = new CSharpType("object");
+        
+        public static readonly CSharpType CancellationToken = new CSharpType("CancellationToken");
     }
 }

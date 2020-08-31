@@ -31,7 +31,7 @@ namespace SpaceDotNet.Common.Types
             return matchingItem;
         }
         
-        public static Enumeration FromValue(Type enumerationType, string value)
+        public static Enumeration? FromValue(Type enumerationType, string value)
         {
             var fields = enumerationType.GetFields(BindingFlags.Public | BindingFlags.Static | BindingFlags.DeclaredOnly);
             

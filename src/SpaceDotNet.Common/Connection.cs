@@ -1,5 +1,6 @@
 using System;
 using System.Text.Json;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
@@ -93,10 +94,11 @@ namespace SpaceDotNet.Common
         /// </summary>
         /// <param name="httpMethod">The HTTP method to use.</param>
         /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public async Task RequestResourceAsync(string httpMethod, string urlPath)
+        public async Task RequestResourceAsync(string httpMethod, string urlPath, CancellationToken cancellationToken = default)
         {
-            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath));
+            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath), cancellationToken);
         }
         
         /// <summary>
@@ -104,11 +106,12 @@ namespace SpaceDotNet.Common
         /// </summary>
         /// <param name="httpMethod">The HTTP method to use.</param>
         /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>The requested resource.</returns>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath)
+        public async Task<TResult> RequestResourceAsync<TResult>(string httpMethod, string urlPath, CancellationToken cancellationToken = default)
         {
-            var value = await RequestResourceInternalAsync<TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath));
+            var value = await RequestResourceInternalAsync<TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), cancellationToken);
            
             PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
             
@@ -121,10 +124,11 @@ namespace SpaceDotNet.Common
         /// <param name="httpMethod">The HTTP method to use.</param>
         /// <param name="urlPath">The path to access the resource.</param>
         /// <param name="payload">The payload to send to the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload)
+        public async Task RequestResourceAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken = default)
         {
-            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
+            await RequestResourceInternalAsync(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload, cancellationToken);
         }
         
         /// <summary>
@@ -133,20 +137,21 @@ namespace SpaceDotNet.Common
         /// <param name="httpMethod">The HTTP method to use.</param>
         /// <param name="urlPath">The path to access the resource.</param>
         /// <param name="payload">The payload to send to the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
         /// <returns>The requested resource.</returns>
         /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
-        public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload)
+        public async Task<TResult> RequestResourceAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken = default)
         {
-            var value = await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload);
+            var value = await RequestResourceInternalAsync<TPayload, TResult>(httpMethod, CleanNullableNullQueryStringParameters(urlPath), payload, cancellationToken);
             
             PropagatePropertyAccessPathHelper.SetAccessPathForValue(typeof(TResult).Name, true, value);
             
             return value;
         }
         
-        protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath);
-        protected abstract Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath);
-        protected abstract Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload);
-        protected abstract Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload);
+        protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken);
+        protected abstract Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, CancellationToken cancellationToken);
+        protected abstract Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken);
+        protected abstract Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken);
     }
 }

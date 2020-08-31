@@ -38,6 +38,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}using System.Collections.Generic;");
             builder.AppendLine($"{indent}using System.ComponentModel.DataAnnotations;");
             builder.AppendLine($"{indent}using System.Text.Json.Serialization;");
+            builder.AppendLine($"{indent}using System.Threading;");
             builder.AppendLine($"{indent}using System.Threading.Tasks;");
             builder.AppendLine($"{indent}using SpaceDotNet.Client.Internal;");
             builder.AppendLine($"{indent}using SpaceDotNet.Common;");
