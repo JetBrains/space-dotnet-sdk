@@ -168,8 +168,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 
         private List<ApiDtoField> DetermineFieldsToGenerateFor(ApiDto apiDto)
         {
-            var typeNameForDto = apiDto.ToCSharpClassName();
-            
             var dtoHierarchyFieldNames = new List<string>();
             if (apiDto.Extends != null && _codeGenerationContext.TryGetDto(apiDto.Extends.Id, out var apiDtoExtends))
             {
