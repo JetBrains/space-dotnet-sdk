@@ -93,6 +93,7 @@ namespace SpaceDotNet.Samples.Web
 
             app.UseEndpoints(endpoints =>
             {
+                // Space webhook receiver endpoint
                 endpoints.MapSpaceWebHookHandler<CateringWebHookHandler>("/space/receive");
 
                 endpoints.MapControllers();
