@@ -92,8 +92,13 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters
                 using var inputStreamReader = new StreamReader(inputStream);
                 
                 var inputJsonString = await inputStreamReader.ReadToEndAsync();
+                
+                // Determine options name to use (in case multiple are registered)
+                var options = httpContext.Request.RouteValues.TryGetValue(RouteKeyConstants.OptionsName, out object optionsName)
+                        ? _options.Get(optionsName.ToString())
+                        : _options.CurrentValue;
 
-                var options = _options.CurrentValue;
+                // Get secret
                 var secret = Encoding.ASCII.GetBytes(options.EndpointSigningKey);
                     
                 var signatureBytes = Encoding.UTF8.GetBytes(context.HttpContext.Request.Headers[HeaderSpaceTimestamp] + ":" + inputJsonString);

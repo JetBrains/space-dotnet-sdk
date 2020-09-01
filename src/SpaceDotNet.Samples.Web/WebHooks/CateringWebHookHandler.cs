@@ -1,26 +1,35 @@
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
+using SpaceDotNet.AspNetCore.WebHooks;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Samples.Web.Controllers.Handlers
+namespace SpaceDotNet.Samples.Web.WebHooks
 {
-    public class CateringChatHandler
+    public class CateringWebHookHandler : SpaceWebHookHandler
     {
-        public const string ActionIdPrefix = "catering-";
-        
-        private static Dictionary<string, CateringSession> Sessions = new Dictionary<string, CateringSession>();
+        private static readonly Dictionary<string, CateringSession> Sessions = new Dictionary<string, CateringSession>();
 
         private readonly ChatClient _chatClient;
-
-        public CateringChatHandler(Connection connection)
+        
+        public CateringWebHookHandler(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
+            // NOTE: In the current application, the auto-wired Space clients will always act on behalf of the current user.
+            // To work with chat callbacks, we need to act on behalf of he application itself.
+            var connection = new ClientCredentialsConnection(
+                configuration["Space:ServerUrl"],
+                configuration["Space:ClientId"],
+                configuration["Space:ClientSecret"],
+                httpClientFactory.CreateClient());
+
             _chatClient = new ChatClient(connection);
         }
 
-        public async Task HandleAsync(MessagePayload payload)
+        public override async Task HandleMessageAsync(MessagePayload payload)
         {
             if (payload.Message.Body is ChatMessageText messageText && !string.IsNullOrEmpty(messageText.Text))
             {
@@ -30,12 +39,8 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
                     unfurlLinks: false);
             }
 
-            Sessions.TryGetValue(payload.UserId, out var cateringSession);
-            if (cateringSession == null)
-            {
-                cateringSession = new CateringSession();
-                Sessions[payload.UserId] = cateringSession;
-            }
+            var cateringSession = new CateringSession();
+            Sessions[payload.UserId] = cateringSession;
             
             await SendOrEditMessageAsync(
                 channelId: payload.Message.ChannelId,
@@ -62,7 +67,7 @@ namespace SpaceDotNet.Samples.Web.Controllers.Handlers
                 cateringSession: cateringSession);
         }
 
-        public async Task HandleAsync(MessageActionPayload payload)
+        public override async Task HandleMessageActionAsync(MessageActionPayload payload)
         {
             var actionId = Enumeration.FromValue<ActionId>(payload.ActionId);
 

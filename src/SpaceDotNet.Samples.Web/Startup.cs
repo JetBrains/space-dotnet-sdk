@@ -6,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpaceDotNet.AspNetCore.Authentication.Space;
 using SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement;
+using SpaceDotNet.Samples.Web.WebHooks;
 
 namespace SpaceDotNet.Samples.Web
 {
@@ -58,10 +59,10 @@ namespace SpaceDotNet.Samples.Web
             services.AddSpaceClientApi();
             
             // Space webhook receiver
-            services.AddSpaceWebHookReceiver(options => Configuration.Bind("Space", options));
+            services.AddSpaceWebHookHandler<CateringWebHookHandler>(options => Configuration.Bind("Space", options));
             
             // - or: -
-            // services.AddSpaceWebHookReceiver(options =>
+            // services.AddSpaceWebHookReceiver<CateringWebHookHandler>(options =>
             // {
             //     options.EndpointSigningKey = Configuration["Space:EndpointSigningKey"];
             //     options.EndpointVerificationToken = Configuration["Space:EndpointVerificationToken"];
@@ -92,6 +93,8 @@ namespace SpaceDotNet.Samples.Web
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapSpaceWebHookHandler<CateringWebHookHandler>("/space/receive");
+
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
