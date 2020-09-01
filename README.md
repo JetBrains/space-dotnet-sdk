@@ -434,7 +434,7 @@ The `SpaceDotNet.AspNetCore.Authentication.Space` package contains an experiment
 >  * Space is the only authentication provider used;
 >  * ASP.NET Core Identity storage providers are not in use.
 
-Space Token Management has to be configured in application's `Startup` class, in the `ConfigureServices()` method:
+Space Token Management has to be configured in the application's `Startup` class, in the `ConfigureServices()` method:
 
 ```csharp
 public void ConfigureServices(IServiceCollection services)
