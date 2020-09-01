@@ -1,9 +1,9 @@
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using SpaceDotNet.AspNetCore.WebHooks.Formatters;
+using SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters;
 
-namespace SpaceDotNet.AspNetCore.WebHooks
+namespace SpaceDotNet.AspNetCore.WebHooks.Mvc
 {
     [UsedImplicitly]
     public class SpaceWebHookPostMvcConfigureOptions : IPostConfigureOptions<MvcOptions>

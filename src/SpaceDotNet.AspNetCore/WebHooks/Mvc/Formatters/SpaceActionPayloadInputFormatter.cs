@@ -6,14 +6,13 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.Formatters;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
+namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters
 {
     /// <summary>
     /// Space payload input formatter.
@@ -40,7 +39,9 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
         /// </summary>
         /// <param name="options">The <see cref="SpaceWebHookOptions"/>.</param>
         /// <param name="logger">The <see cref="ILogger"/>.</param>
-        public SpaceActionPayloadInputFormatter(IOptionsMonitor<SpaceWebHookOptions> options, ILogger<SpaceActionPayloadInputFormatter> logger)
+        public SpaceActionPayloadInputFormatter(
+            IOptionsMonitor<SpaceWebHookOptions> options,
+            ILogger<SpaceActionPayloadInputFormatter> logger)
         {
             _options = options;
             _logger = logger;
@@ -50,7 +51,6 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Formatters
             SupportedEncodings.Add(UTF8EncodingWithoutBOM);
             SupportedEncodings.Add(UTF16EncodingLittleEndian);
             
-            // TODO WEBHOOK
             SupportedMediaTypes.Add("application/json");
             SupportedMediaTypes.Add("text/json");
             SupportedMediaTypes.Add("text/plain");
