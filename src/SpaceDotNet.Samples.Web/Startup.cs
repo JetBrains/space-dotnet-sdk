@@ -22,15 +22,9 @@ namespace SpaceDotNet.Samples.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // MVC and Razor
+            // Razor
             services.AddRouting(options => options.LowercaseUrls = true);
-            services.AddControllers();
-            services.AddMvc()
-                .AddCookieTempDataProvider()
-                .AddRazorPagesOptions(options =>
-                {
-                    options.RootDirectory = "/Pages";
-                });
+            services.AddRazorPages();
             
             // Space authentication
             services.AddAuthentication(options =>
@@ -96,7 +90,6 @@ namespace SpaceDotNet.Samples.Web
                 // Space webhook receiver endpoint
                 endpoints.MapSpaceWebHookHandler<CateringWebHookHandler>("/space/receive");
 
-                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }
