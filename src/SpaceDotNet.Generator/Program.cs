@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Common;
@@ -48,12 +49,6 @@ namespace SpaceDotNet.Generator
             var apiModel = await connection.RequestResourceAsync<ApiModel>(
                 "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!)");
             
-            Console.WriteLine("API information:");
-            Console.WriteLine($"Number of DTO: {apiModel.Dto.Count}");
-            Console.WriteLine($"Number of Enums: {apiModel.Enums.Count}");
-            Console.WriteLine($"Number of Resources (top level): {apiModel.Resources.Count}");
-            Console.WriteLine();
-            
             // Remove old code
             var generatedCodePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated");
             if (Directory.Exists(generatedCodePath))
@@ -62,8 +57,8 @@ namespace SpaceDotNet.Generator
             }
 
             // Build code
-            var csharpApiModelVisitor = new CSharpApiModelGenerator(
-                CodeGenerationContext.CreateFrom(apiModel));
+            var codeGenerationContext = CodeGenerationContext.CreateFrom(apiModel);
+            var csharpApiModelVisitor = new CSharpApiModelGenerator(codeGenerationContext);
             csharpApiModelVisitor.GenerateFiles(
                 new CSharpDocumentWriter(
                     new DirectoryInfo(Path.GetFullPath("../../../../SpaceDotNet.Client/Generated/"))));
@@ -71,7 +66,9 @@ namespace SpaceDotNet.Generator
             // Report
             stopwatch.Stop();
             Console.WriteLine($"Code generation completed in: {stopwatch.Elapsed}");
-            Console.WriteLine();
+            Console.WriteLine($"  Number of DTO: {codeGenerationContext.GetDtos().Count()}");
+            Console.WriteLine($"  Number of Enums: {codeGenerationContext.GetEnums().Count()}");
+            Console.WriteLine($"  Number of Resources (top level): {codeGenerationContext.GetResources().Count()}");
         }
     }
 }
