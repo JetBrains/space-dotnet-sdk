@@ -14,8 +14,4 @@
       <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Generated" />
-    </ItemGroup>
-
 </Project>

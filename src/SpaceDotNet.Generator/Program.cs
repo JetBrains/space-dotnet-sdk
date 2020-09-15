@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -14,15 +15,44 @@ namespace SpaceDotNet.Generator
         // ReSharper disable once UnusedParameter.Local
         static async Task Main(string[] args)
         {
+            var stopwatch = new Stopwatch();
+            stopwatch.Start();
+
+            Console.WriteLine();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine(Constants.SpaceLogoAscii);
+            Console.WriteLine();
+            Console.WriteLine("JetBrains Space");
+            Console.ResetColor();
+            Console.WriteLine();
+            
+            using var httpClient = new HttpClient();
+            
+            // Deployment info
+            var deploymentInfoClient = new DeploymentInfoClient(
+                Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!, 
+                httpClient);
+
+            var deploymentInfo = await deploymentInfoClient.GetDeploymentInfoAsync();
+
+            Console.WriteLine("Server information:");
+            Console.WriteLine(deploymentInfo);
+            
             // Metadata
             var connection = new ClientCredentialsConnection(
                 Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!,
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_ID")!,
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_SECRET")!,
-                new HttpClient());
+                httpClient);
             
             var apiModel = await connection.RequestResourceAsync<ApiModel>(
                 "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!)");
+            
+            Console.WriteLine("API information:");
+            Console.WriteLine($"Number of DTO: {apiModel.Dto.Count}");
+            Console.WriteLine($"Number of Enums: {apiModel.Enums.Count}");
+            Console.WriteLine($"Number of Resources (top level): {apiModel.Resources.Count}");
+            Console.WriteLine();
             
             // Remove old code
             var generatedCodePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated");
@@ -37,6 +67,11 @@ namespace SpaceDotNet.Generator
             csharpApiModelVisitor.GenerateFiles(
                 new CSharpDocumentWriter(
                     new DirectoryInfo(Path.GetFullPath("../../../../SpaceDotNet.Client/Generated/"))));
+            
+            // Report
+            stopwatch.Stop();
+            Console.WriteLine($"Code generation completed in: {stopwatch.Elapsed}");
+            Console.WriteLine();
         }
     }
 }
