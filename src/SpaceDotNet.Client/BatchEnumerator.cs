@@ -14,7 +14,8 @@ namespace SpaceDotNet.Client
         
         public static async IAsyncEnumerable<T> AllItems<T>(RetrieveBatch<T> batchResponse, string? initialSkip = null, [EnumeratorCancellation]CancellationToken cancellationToken = default)
         {
-            await foreach (var batch in AllPages(batchResponse, initialSkip, cancellationToken))
+            // ReSharper disable once MethodSupportsCancellation
+            await foreach (var batch in AllPages(batchResponse, initialSkip).WithCancellation(cancellationToken))
             {
                 if (batch.Data != null)
                 {
