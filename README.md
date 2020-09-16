@@ -15,7 +15,9 @@ dotnet add package SpaceDotNet.Client
 Other (optional) packages are available. These can be installed to satisfy additional integration requirements.
 
 * `SpaceDotNet.Client` — The generated client code to work with the Space API.
-* `SpaceDotNet.AspNetCore` — Helpers for using SpaceDotNet with ASP.NET Core, e.g. an extension method for `IServiceCollection` to register all SpaceDotNet clients as ASP.NET Core services.
+* `SpaceDotNet.AspNetCore` — Helpers for using SpaceDotNet with ASP.NET Core, such as:
+  * An extension method for `IServiceCollection` to register all SpaceDotNet clients as ASP.NET Core services
+  * Helpers for Space Applications webhooks
 * `SpaceDotNet.AspNetCore.Authentication.Space` — Authentication provider that integrates with ASP.NET Core.
 
 Let's have a look at how we can start working with `SpaceDotNet.Client`.
@@ -335,10 +337,66 @@ The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGe
 
 The `SpaceDotNet.AspNetCore` package provides helpers for using SpaceDotNet with ASP.NET Core.
 
+### `IServiceCollection` extension methods
+
 There are extension methods for `IServiceCollection`:
 
 * `AddSpaceConnection()` — Registers a [`Connection`](#authentication-connection) as a service. The registration lifetime is transient by default.
 * `AddSpaceClientApi()` — Registers SpaceDotNet [clients](#create-service-client) as transient services. The registration lifetime is transient by default. Note that this method will throw an exception when no `Connection` has been registered.
+
+### Space Applications webhooks (Experimental)
+
+We can build interactive [Space Applications](https://www.jetbrains.com/help/space/applications.html#register-your-client-in-space), that let us extend Space with slash commands and interactive chat messages.
+
+An application webhook handler can be created by extending the `SpaceWebHookHandler` class, and then overriding one or all of its methods to react to certain events:
+
+* `HandleListCommandsAsync` is used to provide details about available slash commands to Space.
+* `HandleMessageAsync` is called when a user sends our application a chat message.
+* `HandleMessageAsync` is called when a user interacts with our application, for example by clicking a button.
+
+The `CateringWebHookHandler` class is an example application that implements the above, and provides an interactive means of ordering (virtual) food and beverages.
+
+![Example interactive Space application](docs/images/application-example.png)
+
+Once a `SpaceWebHookHandler` is built, it has to be registered in the ASP.NET Core server application. This is a two-step process, which is typically done in our application's `Startup` class. In the `ConfigureServices()` method, we can register our application using the `AddSpaceWebHookHandler<T>()` method:
+                                                                                                                                    
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddSpaceWebHookHandler<CateringWebHookHandler>(
+        options => Configuration.Bind("Space", options));
+}
+```
+
+The next step is to add configuration details. In `appsettings.json`, add the `"Space"` section, and make sure to include the `EndpointSigningKey` and `EndpointVerificationToken` settings - the values are available when registering our application in Space:
+
+```json             
+{
+ "ConnectionStrings": { },
+ "Logging": { },
+ "AllowedHosts": "*",
+
+ "Space": {
+   "EndpointSigningKey": "{endpoint-signing-key}",
+   "EndpointVerificationToken": "{endpoint-verification-token}"
+ }
+}
+```
+
+Almost there! We have now registered and configured our Space Application webhook handler, but we still need to expose it on a URL endpoint. In our application's `Startup` class, in the `Configure()` method, we can use the `MapSpaceWebHookHandler<T>()` method:
+
+```csharp
+public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+{
+    app.UseEndpoints(endpoints =>
+    {
+        // Space webhook receiver endpoint
+        endpoints.MapSpaceWebHookHandler<CateringWebHookHandler>("/space/receive");
+    });
+}
+```
+
+Our application can now be registered in Space using this URL endpoint, for example `https://apps.example.org/space/receive`.
 
 ## SpaceDotNet.AspNetCore.Authentication.Space
 
@@ -367,7 +425,7 @@ In the above code sample, we did two things:
 * `options.DefaultChallengeScheme = "Space";` — Default to using Space as the default provider to challenge when login is required.
 * `.AddSpace(options => Configuration.Bind("Space", options))` — Add Space authentication, and use settings from configuration.
 
-The next step is to add configuration. In `appsettings.json`, add the `"Space"` section:
+The next step is to add configuration details. In `appsettings.json`, add the `"Space"` section:
 
 ```json             
 {
@@ -422,7 +480,7 @@ The `SpaceDotNet.Samples.Web` project in the SpaceDotNet repository uses these c
 
 Using these identity properties helps personalize our application's experience.
 
-### Experimental - Space Token Management
+### Space Token Management (Experimental)
 
 Some web applications can be considered a "100% Space integration". For example, we may build an application that lets a user authenticate with Space, and then generates a personalized dashboard with data obtained using the Space API.
 

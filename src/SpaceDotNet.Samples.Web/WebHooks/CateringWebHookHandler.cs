@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
 using SpaceDotNet.AspNetCore.WebHooks;
 using SpaceDotNet.Client;
@@ -10,6 +11,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Samples.Web.WebHooks
 {
+    [UsedImplicitly]
     public class CateringWebHookHandler : SpaceWebHookHandler
     {
         private static readonly Dictionary<string, CateringSession> Sessions = new Dictionary<string, CateringSession>();
@@ -19,7 +21,7 @@ namespace SpaceDotNet.Samples.Web.WebHooks
         public CateringWebHookHandler(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
             // NOTE: In the current application, the auto-wired Space clients will always act on behalf of the current user.
-            // To work with chat callbacks, we need to act on behalf of he application itself.
+            // To work with chat callbacks, we need to act on behalf of the application itself.
             var connection = new ClientCredentialsConnection(
                 configuration["Space:ServerUrl"],
                 configuration["Space:ClientId"],
@@ -27,6 +29,14 @@ namespace SpaceDotNet.Samples.Web.WebHooks
                 httpClientFactory.CreateClient());
 
             _chatClient = new ChatClient(connection);
+        }
+
+        public override async Task<Commands> HandleListCommandsAsync(ListCommandsPayload payload)
+        {
+            return new Commands(new List<CommandDetail>
+            {
+                new CommandDetail("help", "Get more info about this application.")
+            });
         }
 
         public override async Task HandleMessageAsync(MessagePayload payload)
