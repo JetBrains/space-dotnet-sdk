@@ -19,7 +19,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 
             return subject.Type switch
             {
-                ApiFieldType.Primitive primitive when primitive.ToCSharpPrimitiveType() == CSharpType.Bool.Value
+                ApiFieldType.Primitive primitive when primitive.ToCSharpPrimitiveType() == CSharpType.Bool.Value 
+                                                      && !propertyName.StartsWith("Is") 
+                                                      && !propertyName.StartsWith("Can")
                     => $"Is{propertyName}",
                 
                 // Resolve CS0542 - Member names cannot be the same as their enclosing type by adding prefix/suffix
