@@ -50,7 +50,7 @@ namespace SpaceDotNet.Client.CommitSetReviewRecordPartialBuilder
         public static Partial<CommitSetReviewRecord> WithState(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
             => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
         
-        public static Partial<CommitSetReviewRecord> WithIsCanBeReopened(this Partial<CommitSetReviewRecord> it)
+        public static Partial<CommitSetReviewRecord> WithCanBeReopened(this Partial<CommitSetReviewRecord> it)
             => it.AddFieldName("canBeReopened");
         
         public static Partial<CommitSetReviewRecord> WithCreatedAt(this Partial<CommitSetReviewRecord> it)

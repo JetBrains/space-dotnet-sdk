@@ -56,7 +56,7 @@ namespace SpaceDotNet.Client.M2SharedChannelContentPartialBuilder
         public static Partial<M2SharedChannelContent> WithTeams(this Partial<M2SharedChannelContent> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
         
-        public static Partial<M2SharedChannelContent> WithIsCanEdit(this Partial<M2SharedChannelContent> it)
+        public static Partial<M2SharedChannelContent> WithCanEdit(this Partial<M2SharedChannelContent> it)
             => it.AddFieldName("canEdit");
         
     }

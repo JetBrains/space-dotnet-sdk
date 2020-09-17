@@ -38,7 +38,7 @@ namespace SpaceDotNet.Client
             Number = number;
             Title = title;
             State = state;
-            IsCanBeReopened = canBeReopened;
+            CanBeReopened = canBeReopened;
             CreatedAt = createdAt;
             CreatedBy = createdBy;
             IsTurnBased = turnBased;
@@ -85,10 +85,10 @@ namespace SpaceDotNet.Client
             set { _state.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _canBeReopened = new PropertyValue<bool?>(nameof(CommitSetReviewRecord), nameof(IsCanBeReopened));
+        private PropertyValue<bool?> _canBeReopened = new PropertyValue<bool?>(nameof(CommitSetReviewRecord), nameof(CanBeReopened));
         
         [JsonPropertyName("canBeReopened")]
-        public bool? IsCanBeReopened
+        public bool? CanBeReopened
         {
             get { return _canBeReopened.GetValue(); }
             set { _canBeReopened.SetValue(value); }

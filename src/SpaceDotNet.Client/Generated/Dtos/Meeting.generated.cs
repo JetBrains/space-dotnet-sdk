@@ -47,9 +47,9 @@ namespace SpaceDotNet.Client
             Organizer = organizer;
             Etag = etag;
             IsPrivateDataSubstituted = privateDataSubstituted;
-            IsCanModify = canModify;
-            IsCanDelete = canDelete;
-            IsCanJoin = canJoin;
+            CanModify = canModify;
+            CanDelete = canDelete;
+            CanJoin = canJoin;
             ExternalParticipants = externalParticipants;
             LinkToExternalSource = linkToExternalSource;
             EventAttachments = eventAttachments;
@@ -211,31 +211,31 @@ namespace SpaceDotNet.Client
             set { _privateDataSubstituted.SetValue(value); }
         }
     
-        private PropertyValue<bool> _canModify = new PropertyValue<bool>(nameof(Meeting), nameof(IsCanModify));
+        private PropertyValue<bool> _canModify = new PropertyValue<bool>(nameof(Meeting), nameof(CanModify));
         
         [Required]
         [JsonPropertyName("canModify")]
-        public bool IsCanModify
+        public bool CanModify
         {
             get { return _canModify.GetValue(); }
             set { _canModify.SetValue(value); }
         }
     
-        private PropertyValue<bool> _canDelete = new PropertyValue<bool>(nameof(Meeting), nameof(IsCanDelete));
+        private PropertyValue<bool> _canDelete = new PropertyValue<bool>(nameof(Meeting), nameof(CanDelete));
         
         [Required]
         [JsonPropertyName("canDelete")]
-        public bool IsCanDelete
+        public bool CanDelete
         {
             get { return _canDelete.GetValue(); }
             set { _canDelete.SetValue(value); }
         }
     
-        private PropertyValue<bool> _canJoin = new PropertyValue<bool>(nameof(Meeting), nameof(IsCanJoin));
+        private PropertyValue<bool> _canJoin = new PropertyValue<bool>(nameof(Meeting), nameof(CanJoin));
         
         [Required]
         [JsonPropertyName("canJoin")]
-        public bool IsCanJoin
+        public bool CanJoin
         {
             get { return _canJoin.GetValue(); }
             set { _canJoin.SetValue(value); }

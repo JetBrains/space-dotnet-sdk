@@ -41,7 +41,7 @@ namespace SpaceDotNet.Client
             IconId = iconId;
             NotificationDefaults = notificationDefaults;
             Teams = teams;
-            IsCanEdit = canEdit;
+            CanEdit = canEdit;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2SharedChannelContent), nameof(Name));
@@ -112,10 +112,10 @@ namespace SpaceDotNet.Client
             set { _teams.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _canEdit = new PropertyValue<bool?>(nameof(M2SharedChannelContent), nameof(IsCanEdit));
+        private PropertyValue<bool?> _canEdit = new PropertyValue<bool?>(nameof(M2SharedChannelContent), nameof(CanEdit));
         
         [JsonPropertyName("canEdit")]
-        public bool? IsCanEdit
+        public bool? CanEdit
         {
             get { return _canEdit.GetValue(); }
             set { _canEdit.SetValue(value); }

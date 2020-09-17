@@ -38,7 +38,7 @@ namespace SpaceDotNet.Client
             IsSimpleDone = simpleDone;
             Issue = issue;
             IssueProblem = issueProblem;
-            IsCanEditIssue = canEditIssue;
+            CanEditIssue = canEditIssue;
             IsHasChildren = hasChildren;
             Children = children;
         }
@@ -108,10 +108,10 @@ namespace SpaceDotNet.Client
             set { _issueProblem.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _canEditIssue = new PropertyValue<bool?>(nameof(PlanItem), nameof(IsCanEditIssue));
+        private PropertyValue<bool?> _canEditIssue = new PropertyValue<bool?>(nameof(PlanItem), nameof(CanEditIssue));
         
         [JsonPropertyName("canEditIssue")]
-        public bool? IsCanEditIssue
+        public bool? CanEditIssue
         {
             get { return _canEditIssue.GetValue(); }
             set { _canEditIssue.SetValue(value); }

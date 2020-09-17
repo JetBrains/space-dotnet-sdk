@@ -50,7 +50,7 @@ namespace SpaceDotNet.Client.MergeRequestRecordPartialBuilder
         public static Partial<MergeRequestRecord> WithState(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewState>, Partial<CodeReviewState>> partialBuilder)
             => it.AddFieldName("state", partialBuilder(new Partial<CodeReviewState>(it)));
         
-        public static Partial<MergeRequestRecord> WithIsCanBeReopened(this Partial<MergeRequestRecord> it)
+        public static Partial<MergeRequestRecord> WithCanBeReopened(this Partial<MergeRequestRecord> it)
             => it.AddFieldName("canBeReopened");
         
         public static Partial<MergeRequestRecord> WithCreatedAt(this Partial<MergeRequestRecord> it)

@@ -101,13 +101,13 @@ namespace SpaceDotNet.Client.MeetingPartialBuilder
         public static Partial<Meeting> WithIsPrivateDataSubstituted(this Partial<Meeting> it)
             => it.AddFieldName("privateDataSubstituted");
         
-        public static Partial<Meeting> WithIsCanModify(this Partial<Meeting> it)
+        public static Partial<Meeting> WithCanModify(this Partial<Meeting> it)
             => it.AddFieldName("canModify");
         
-        public static Partial<Meeting> WithIsCanDelete(this Partial<Meeting> it)
+        public static Partial<Meeting> WithCanDelete(this Partial<Meeting> it)
             => it.AddFieldName("canDelete");
         
-        public static Partial<Meeting> WithIsCanJoin(this Partial<Meeting> it)
+        public static Partial<Meeting> WithCanJoin(this Partial<Meeting> it)
             => it.AddFieldName("canJoin");
         
         public static Partial<Meeting> WithExternalParticipants(this Partial<Meeting> it)

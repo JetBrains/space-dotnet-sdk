@@ -53,7 +53,7 @@ namespace SpaceDotNet.Client.PlanItemPartialBuilder
         public static Partial<PlanItem> WithIssueProblem(this Partial<PlanItem> it)
             => it.AddFieldName("issueProblem");
         
-        public static Partial<PlanItem> WithIsCanEditIssue(this Partial<PlanItem> it)
+        public static Partial<PlanItem> WithCanEditIssue(this Partial<PlanItem> it)
             => it.AddFieldName("canEditIssue");
         
         public static Partial<PlanItem> WithIsHasChildren(this Partial<PlanItem> it)
