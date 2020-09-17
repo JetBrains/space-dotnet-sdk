@@ -41,6 +41,9 @@ namespace SpaceDotNet.Client.ChannelSpecificDefaultsPartialBuilder
         public static Partial<ChannelSpecificDefaults> WithEmail(this Partial<ChannelSpecificDefaults> it, Func<Partial<M2EmailNotificationType>, Partial<M2EmailNotificationType>> partialBuilder)
             => it.AddFieldName("email", partialBuilder(new Partial<M2EmailNotificationType>(it)));
         
+        public static Partial<ChannelSpecificDefaults> WithIsThreadsSubscribed(this Partial<ChannelSpecificDefaults> it)
+            => it.AddFieldName("threadsSubscribed");
+        
     }
     
 }

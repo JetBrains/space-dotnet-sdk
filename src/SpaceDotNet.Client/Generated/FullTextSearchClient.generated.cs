@@ -83,6 +83,31 @@ namespace SpaceDotNet.Client
         
         }
     
+        public MessagesSearchClient MessagesSearch => new MessagesSearchClient(_connection);
+        
+        public partial class MessagesSearchClient
+        {
+            private readonly Connection _connection;
+            
+            public MessagesSearchClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Perform full-text search for messages in chat.
+            /// </summary>
+            public async Task<Batch<MessageHit>> GetAllMessagesSearchAsync(string chatId, string query, string? skip = null, int? top = 100, Func<Partial<Batch<MessageHit>>, Partial<Batch<MessageHit>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<MessageHit>>("GET", $"api/http/full-text-search/messages-search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&chatId={chatId.ToString()}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<MessageHit>>()) : Partial<Batch<MessageHit>>.Default())}", cancellationToken);
+            
+            /// <summary>
+            /// Perform full-text search for messages in chat.
+            /// </summary>
+            public IAsyncEnumerable<MessageHit> GetAllMessagesSearchAsyncEnumerable(string chatId, string query, string? skip = null, int? top = 100, Func<Partial<MessageHit>, Partial<MessageHit>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMessagesSearchAsync(chatId: chatId, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<MessageHit>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<MessageHit>.Default())), skip, cancellationToken);
+        
+        }
+    
         public ProfileClient Profiles => new ProfileClient(_connection);
         
         public partial class ProfileClient

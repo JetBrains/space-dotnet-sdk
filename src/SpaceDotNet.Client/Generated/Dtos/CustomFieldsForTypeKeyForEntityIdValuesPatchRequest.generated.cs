@@ -29,9 +29,10 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest() { }
         
-        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldValue> values)
+        public CustomFieldsForTypeKeyForEntityIdValuesPatchRequest(List<CustomFieldValue> values, ExtendedTypeScope scope)
         {
             Values = values;
+            Scope = scope;
         }
         
         private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Values));
@@ -44,9 +45,20 @@ namespace SpaceDotNet.Client
             set { _values.SetValue(value); }
         }
     
+        private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Scope));
+        
+        [Required]
+        [JsonPropertyName("scope")]
+        public ExtendedTypeScope Scope
+        {
+            get { return _scope.GetValue(); }
+            set { _scope.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _values.SetAccessPath(path, validateHasBeenSet);
+            _scope.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

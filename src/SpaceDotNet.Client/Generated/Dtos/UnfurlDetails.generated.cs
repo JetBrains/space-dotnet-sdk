@@ -39,8 +39,11 @@ namespace SpaceDotNet.Client
         public static UnfurlDetailsCodeSnippet CodeSnippet(CodeSnippetAnchor anchor, List<CodeLine> lines)
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
         
-        public static UnfurlDetailsDateTime DateTime(long utcMilliseconds)
-            => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds);
+        public static UnfurlDetailsDateTime DateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
+            => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds, @params: null);
+        
+        public static UnfurlDetailsDateTimeRange DateTimeRange(long since, long till, DateTimeViewParams? @params = null)
+            => new UnfurlDetailsDateTimeRange(since: since, till: till, @params: null);
         
         public static UnfurlDetailsDraft Draft(string draft, string title)
             => new UnfurlDetailsDraft(draft: draft, title: title);
@@ -53,6 +56,9 @@ namespace SpaceDotNet.Client
         
         public static UnfurlDetailsIssueTag IssueTag(PlanningTag tag, bool strikeThrough)
             => new UnfurlDetailsIssueTag(tag: tag, strikeThrough: strikeThrough);
+        
+        public static UnfurlDetailsLocation Location(TDLocation location)
+            => new UnfurlDetailsLocation(location: location);
         
         public static UnfurlDetailsMC MC(MCMessage message, List<AttachmentInfo>? inlineUnfurls = null)
             => new UnfurlDetailsMC(message: message, inlineUnfurls: null);

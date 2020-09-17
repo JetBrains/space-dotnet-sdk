@@ -77,6 +77,12 @@ namespace SpaceDotNet.Client
             public async Task RestoreArchivedChannelAsync(string channelId, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/chats/channels/{channelId}/restore-archived", cancellationToken);
         
+            public async Task<Batch<AllChannelsListEntry>> ListAllChannelsAsync(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, string? sortOrder = null, Func<Partial<Batch<AllChannelsListEntry>>, Partial<Batch<AllChannelsListEntry>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<AllChannelsListEntry>>("GET", $"api/http/chats/channels/all-channels?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&quickFilter={quickFilter?.ToString() ?? "null"}&sortColumn={sortColumn?.ToString() ?? "null"}&sortOrder={sortOrder?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<AllChannelsListEntry>>()) : Partial<Batch<AllChannelsListEntry>>.Default())}", cancellationToken);
+            
+            public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, string? sortOrder = null, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
+        
             /// <summary>
             /// Delete a channel. No one will be able to view this channel or its threads. This action cannot be undone.
             /// </summary>

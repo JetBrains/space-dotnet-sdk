@@ -29,15 +29,16 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectAutomationJobsForJobIdStartPostRequest() { }
         
-        public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(string branch = "master")
+        public ProjectsForProjectAutomationJobsForJobIdStartPostRequest(Branch branch)
         {
             Branch = branch;
         }
         
-        private PropertyValue<string> _branch = new PropertyValue<string>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch));
+        private PropertyValue<Branch> _branch = new PropertyValue<Branch>(nameof(ProjectsForProjectAutomationJobsForJobIdStartPostRequest), nameof(Branch));
         
+        [Required]
         [JsonPropertyName("branch")]
-        public string Branch
+        public Branch Branch
         {
             get { return _branch.GetValue(); }
             set { _branch.SetValue(value); }

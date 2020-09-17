@@ -29,11 +29,12 @@ namespace SpaceDotNet.Client
     {
         public ChannelSpecificDefaults() { }
         
-        public ChannelSpecificDefaults(NotificationFilter filter, bool push, M2EmailNotificationType email)
+        public ChannelSpecificDefaults(NotificationFilter filter, bool push, M2EmailNotificationType email, bool? threadsSubscribed = null)
         {
             Filter = filter;
             IsPush = push;
             Email = email;
+            IsThreadsSubscribed = threadsSubscribed;
         }
         
         private PropertyValue<NotificationFilter> _filter = new PropertyValue<NotificationFilter>(nameof(ChannelSpecificDefaults), nameof(Filter));
@@ -66,11 +67,21 @@ namespace SpaceDotNet.Client
             set { _email.SetValue(value); }
         }
     
+        private PropertyValue<bool?> _threadsSubscribed = new PropertyValue<bool?>(nameof(ChannelSpecificDefaults), nameof(IsThreadsSubscribed));
+        
+        [JsonPropertyName("threadsSubscribed")]
+        public bool? IsThreadsSubscribed
+        {
+            get { return _threadsSubscribed.GetValue(); }
+            set { _threadsSubscribed.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _filter.SetAccessPath(path, validateHasBeenSet);
             _push.SetAccessPath(path, validateHasBeenSet);
             _email.SetAccessPath(path, validateHasBeenSet);
+            _threadsSubscribed.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

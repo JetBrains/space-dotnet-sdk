@@ -35,6 +35,12 @@ namespace SpaceDotNet.Client.ExtendedTypePartialBuilder
         public static Partial<ExtendedType> WithApiClassName(this Partial<ExtendedType> it)
             => it.AddFieldName("apiClassName");
         
+        public static Partial<ExtendedType> WithScopeType(this Partial<ExtendedType> it)
+            => it.AddFieldName("scopeType");
+        
+        public static Partial<ExtendedType> WithScopeType(this Partial<ExtendedType> it, Func<Partial<ExtendedTypeScopeType>, Partial<ExtendedTypeScopeType>> partialBuilder)
+            => it.AddFieldName("scopeType", partialBuilder(new Partial<ExtendedTypeScopeType>(it)));
+        
     }
     
 }

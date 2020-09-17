@@ -29,11 +29,12 @@ namespace SpaceDotNet.Client
     {
         public ExtendedType() { }
         
-        public ExtendedType(string key, string displayName, string? apiClassName = null)
+        public ExtendedType(string key, string displayName, ExtendedTypeScopeType scopeType, string? apiClassName = null)
         {
             Key = key;
             DisplayName = displayName;
             ApiClassName = apiClassName;
+            ScopeType = scopeType;
         }
         
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ExtendedType), nameof(Key));
@@ -65,11 +66,22 @@ namespace SpaceDotNet.Client
             set { _apiClassName.SetValue(value); }
         }
     
+        private PropertyValue<ExtendedTypeScopeType> _scopeType = new PropertyValue<ExtendedTypeScopeType>(nameof(ExtendedType), nameof(ScopeType));
+        
+        [Required]
+        [JsonPropertyName("scopeType")]
+        public ExtendedTypeScopeType ScopeType
+        {
+            get { return _scopeType.GetValue(); }
+            set { _scopeType.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _key.SetAccessPath(path, validateHasBeenSet);
             _displayName.SetAccessPath(path, validateHasBeenSet);
             _apiClassName.SetAccessPath(path, validateHasBeenSet);
+            _scopeType.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

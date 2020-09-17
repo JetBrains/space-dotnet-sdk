@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         public static ProfileCustomFieldHit ProfileCustomFieldHit(string id, double score, List<string> value, TDMemberProfile @ref)
             => new ProfileCustomFieldHit(id: id, score: score, value: value, @ref: @ref);
         
-        public static ProfileHit ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, bool notAMember, TDMemberProfile @ref, List<CustomFieldHit> customFields)
-            => new ProfileHit(id: id, score: score, firstName: firstName, lastName: lastName, userName: userName, phones: phones, emails: emails, links: links, messengers: messengers, notAMember: notAMember, @ref: @ref, customFields: customFields);
+        public static ProfileHit ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, List<string> internationalNames, bool notAMember, TDMemberProfile @ref, List<CustomFieldHit> customFields)
+            => new ProfileHit(id: id, score: score, firstName: firstName, lastName: lastName, userName: userName, phones: phones, emails: emails, links: links, messengers: messengers, internationalNames: internationalNames, notAMember: notAMember, @ref: @ref, customFields: customFields);
         
         public static ProjectHit ProjectHit(string id, double score, string key, string name, PRProject @ref, string? description = null)
             => new ProjectHit(id: id, score: score, key: key, name: name, @ref: @ref, description: null);

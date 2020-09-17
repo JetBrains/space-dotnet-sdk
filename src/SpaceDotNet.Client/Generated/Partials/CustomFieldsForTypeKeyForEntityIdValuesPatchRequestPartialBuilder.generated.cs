@@ -32,6 +32,12 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyForEntityIdValuesPatchRequest
         public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithValues(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
             => it.AddFieldName("values", partialBuilder(new Partial<CustomFieldValue>(it)));
         
+        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it)
+            => it.AddFieldName("scope");
+        
+        public static Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyForEntityIdValuesPatchRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
+        
     }
     
 }

@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         
         public ProfileHit() { }
         
-        public ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, bool notAMember, TDMemberProfile @ref, List<CustomFieldHit> customFields)
+        public ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, List<string> internationalNames, bool notAMember, TDMemberProfile @ref, List<CustomFieldHit> customFields)
         {
             Id = id;
             Score = score;
@@ -43,6 +43,7 @@ namespace SpaceDotNet.Client
             Emails = emails;
             Links = links;
             Messengers = messengers;
+            InternationalNames = internationalNames;
             IsNotAMember = notAMember;
             Ref = @ref;
             CustomFields = customFields;
@@ -138,6 +139,16 @@ namespace SpaceDotNet.Client
             set { _messengers.SetValue(value); }
         }
     
+        private PropertyValue<List<string>> _internationalNames = new PropertyValue<List<string>>(nameof(ProfileHit), nameof(InternationalNames));
+        
+        [Required]
+        [JsonPropertyName("internationalNames")]
+        public List<string> InternationalNames
+        {
+            get { return _internationalNames.GetValue(); }
+            set { _internationalNames.SetValue(value); }
+        }
+    
         private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(ProfileHit), nameof(IsNotAMember));
         
         [Required]
@@ -179,6 +190,7 @@ namespace SpaceDotNet.Client
             _emails.SetAccessPath(path, validateHasBeenSet);
             _links.SetAccessPath(path, validateHasBeenSet);
             _messengers.SetAccessPath(path, validateHasBeenSet);
+            _internationalNames.SetAccessPath(path, validateHasBeenSet);
             _notAMember.SetAccessPath(path, validateHasBeenSet);
             _ref.SetAccessPath(path, validateHasBeenSet);
             _customFields.SetAccessPath(path, validateHasBeenSet);

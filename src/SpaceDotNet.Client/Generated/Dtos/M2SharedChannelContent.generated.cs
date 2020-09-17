@@ -32,13 +32,12 @@ namespace SpaceDotNet.Client
         
         public M2SharedChannelContent() { }
         
-        public M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, int? membersCounter = null, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null)
+        public M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null)
         {
             Name = name;
             Group = group;
             Access = access;
             Description = description;
-            MembersCounter = membersCounter;
             IconId = iconId;
             NotificationDefaults = notificationDefaults;
             Teams = teams;
@@ -85,15 +84,6 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<int?> _membersCounter = new PropertyValue<int?>(nameof(M2SharedChannelContent), nameof(MembersCounter));
-        
-        [JsonPropertyName("membersCounter")]
-        public int? MembersCounter
-        {
-            get { return _membersCounter.GetValue(); }
-            set { _membersCounter.SetValue(value); }
-        }
-    
         private PropertyValue<string?> _iconId = new PropertyValue<string?>(nameof(M2SharedChannelContent), nameof(IconId));
         
         [JsonPropertyName("iconId")]
@@ -137,7 +127,6 @@ namespace SpaceDotNet.Client
             _group.SetAccessPath(path, validateHasBeenSet);
             _access.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
-            _membersCounter.SetAccessPath(path, validateHasBeenSet);
             _iconId.SetAccessPath(path, validateHasBeenSet);
             _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
             _teams.SetAccessPath(path, validateHasBeenSet);

@@ -77,6 +77,12 @@ namespace SpaceDotNet.Client.CustomFieldPartialBuilder
         public static Partial<CustomField> WithOrder(this Partial<CustomField> it)
             => it.AddFieldName("order");
         
+        public static Partial<CustomField> WithScope(this Partial<CustomField> it)
+            => it.AddFieldName("scope");
+        
+        public static Partial<CustomField> WithScope(this Partial<CustomField> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
+        
         public static Partial<CustomField> WithIsArchived(this Partial<CustomField> it)
             => it.AddFieldName("archived");
         

@@ -29,6 +29,12 @@ namespace SpaceDotNet.Client.UnfurlDetailsDateTimePartialBuilder
         public static Partial<UnfurlDetailsDateTime> WithUtcMilliseconds(this Partial<UnfurlDetailsDateTime> it)
             => it.AddFieldName("utcMilliseconds");
         
+        public static Partial<UnfurlDetailsDateTime> WithParams(this Partial<UnfurlDetailsDateTime> it)
+            => it.AddFieldName("params");
+        
+        public static Partial<UnfurlDetailsDateTime> WithParams(this Partial<UnfurlDetailsDateTime> it, Func<Partial<DateTimeViewParams>, Partial<DateTimeViewParams>> partialBuilder)
+            => it.AddFieldName("params", partialBuilder(new Partial<DateTimeViewParams>(it)));
+        
     }
     
 }

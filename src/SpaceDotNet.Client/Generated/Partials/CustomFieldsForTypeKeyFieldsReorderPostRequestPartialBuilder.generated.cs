@@ -29,6 +29,12 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsReorderPostRequestParti
         public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithCustomFieldOrder(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it)
             => it.AddFieldName("customFieldOrder");
         
+        public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it)
+            => it.AddFieldName("scope");
+        
+        public static Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsReorderPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
+        
     }
     
 }

@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client.PRProjectPartialBuilder
         public static Partial<PRProject> WithTrackers(this Partial<PRProject> it)
             => it.AddFieldName("trackers");
         
-        public static Partial<PRProject> WithTrackers(this Partial<PRProject> it, Func<Partial<IssueTracker>, Partial<IssueTracker>> partialBuilder)
-            => it.AddFieldName("trackers", partialBuilder(new Partial<IssueTracker>(it)));
+        public static Partial<PRProject> WithTrackers(this Partial<PRProject> it, Func<Partial<ProjectIssueTrackerItem>, Partial<ProjectIssueTrackerItem>> partialBuilder)
+            => it.AddFieldName("trackers", partialBuilder(new Partial<ProjectIssueTrackerItem>(it)));
         
     }
     

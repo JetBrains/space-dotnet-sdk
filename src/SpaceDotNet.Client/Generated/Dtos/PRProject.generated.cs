@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public PRProject() { }
         
-        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectPackageRepository> packages, List<BoardRecord> boards, Dictionary<string, IssueTracker> trackers, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
+        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectPackageRepository> packages, List<BoardRecord> boards, List<ProjectIssueTrackerItem> trackers, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
         {
             Id = id;
             Key = key;
@@ -207,11 +207,11 @@ namespace SpaceDotNet.Client
             set { _boards.SetValue(value); }
         }
     
-        private PropertyValue<Dictionary<string, IssueTracker>> _trackers = new PropertyValue<Dictionary<string, IssueTracker>>(nameof(PRProject), nameof(Trackers));
+        private PropertyValue<List<ProjectIssueTrackerItem>> _trackers = new PropertyValue<List<ProjectIssueTrackerItem>>(nameof(PRProject), nameof(Trackers));
         
         [Required]
         [JsonPropertyName("trackers")]
-        public Dictionary<string, IssueTracker> Trackers
+        public List<ProjectIssueTrackerItem> Trackers
         {
             get { return _trackers.GetValue(); }
             set { _trackers.SetValue(value); }

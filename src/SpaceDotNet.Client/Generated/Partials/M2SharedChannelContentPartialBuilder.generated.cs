@@ -41,9 +41,6 @@ namespace SpaceDotNet.Client.M2SharedChannelContentPartialBuilder
         public static Partial<M2SharedChannelContent> WithDescription(this Partial<M2SharedChannelContent> it)
             => it.AddFieldName("description");
         
-        public static Partial<M2SharedChannelContent> WithMembersCounter(this Partial<M2SharedChannelContent> it)
-            => it.AddFieldName("membersCounter");
-        
         public static Partial<M2SharedChannelContent> WithIconId(this Partial<M2SharedChannelContent> it)
             => it.AddFieldName("iconId");
         

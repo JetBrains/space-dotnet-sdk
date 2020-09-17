@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         public static M2PrivateConversationChannelContent M2PrivateConversationChannelContent(string channelId, List<TDMemberProfile> members, string? subject = null, ChannelSpecificDefaults? notificationDefaults = null)
             => new M2PrivateConversationChannelContent(channelId: channelId, members: members, subject: null, notificationDefaults: null);
         
-        public static M2SharedChannelContent M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, int? membersCounter = null, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null)
-            => new M2SharedChannelContent(name: name, group: group, access: access, description: description, notificationDefaults: notificationDefaults, membersCounter: null, iconId: null, teams: null, canEdit: null);
+        public static M2SharedChannelContent M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null)
+            => new M2SharedChannelContent(name: name, group: group, access: access, description: description, notificationDefaults: notificationDefaults, iconId: null, teams: null, canEdit: null);
         
         public static SpaceNewsFeedChannel SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
             => new SpaceNewsFeedChannel(notificationDefaults: null);

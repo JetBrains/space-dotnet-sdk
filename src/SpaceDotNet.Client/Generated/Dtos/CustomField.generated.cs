@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public CustomField() { }
         
-        public CustomField(ExtendedType extendedType, string id, string name, string key, CFType type, bool required, bool @private, CFValue defaultValue, int order, bool archived, string? description = null, CFConstraint? constraint = null, AccessType? access = null)
+        public CustomField(ExtendedType extendedType, string id, string name, string key, CFType type, bool required, bool @private, CFValue defaultValue, int order, bool archived, string? description = null, CFConstraint? constraint = null, AccessType? access = null, ExtendedTypeScope? scope = null)
         {
             ExtendedType = extendedType;
             Id = id;
@@ -43,6 +43,7 @@ namespace SpaceDotNet.Client
             Access = access;
             DefaultValue = defaultValue;
             Order = order;
+            Scope = scope;
             IsArchived = archived;
         }
         
@@ -163,6 +164,15 @@ namespace SpaceDotNet.Client
             set { _order.SetValue(value); }
         }
     
+        private PropertyValue<ExtendedTypeScope?> _scope = new PropertyValue<ExtendedTypeScope?>(nameof(CustomField), nameof(Scope));
+        
+        [JsonPropertyName("scope")]
+        public ExtendedTypeScope? Scope
+        {
+            get { return _scope.GetValue(); }
+            set { _scope.SetValue(value); }
+        }
+    
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CustomField), nameof(IsArchived));
         
         [Required]
@@ -187,6 +197,7 @@ namespace SpaceDotNet.Client
             _access.SetAccessPath(path, validateHasBeenSet);
             _defaultValue.SetAccessPath(path, validateHasBeenSet);
             _order.SetAccessPath(path, validateHasBeenSet);
+            _scope.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }
     

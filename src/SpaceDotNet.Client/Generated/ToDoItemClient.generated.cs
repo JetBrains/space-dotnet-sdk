@@ -44,6 +44,13 @@ namespace SpaceDotNet.Client
                 }
         , cancellationToken);
     
+        public async Task DeleteTasksAsync(string text, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync("POST", $"api/http/todo/deletetaskswithtext", 
+                new TodoDeletetaskswithtextPostRequest { 
+                    Text = text,
+                }
+        , cancellationToken);
+    
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>

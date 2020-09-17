@@ -142,6 +142,37 @@ namespace SpaceDotNet.Client
         
         }
     
+        public ThrottledLoginClient ThrottledLogins => new ThrottledLoginClient(_connection);
+        
+        public partial class ThrottledLoginClient
+        {
+            private readonly Connection _connection;
+            
+            public ThrottledLoginClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Returns logins that are currently subjected to rate limits when logging in to Space.
+            /// </summary>
+            public async Task<Batch<ThrottledLogin>> GetThrottledLoginsAsync(string? skip = null, int? top = 100, string? login = null, Func<Partial<Batch<ThrottledLogin>>, Partial<Batch<ThrottledLogin>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<ThrottledLogin>>("GET", $"api/http/auth-modules/throttled-logins?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&login={login?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ThrottledLogin>>()) : Partial<Batch<ThrottledLogin>>.Default())}", cancellationToken);
+            
+            /// <summary>
+            /// Returns logins that are currently subjected to rate limits when logging in to Space.
+            /// </summary>
+            public IAsyncEnumerable<ThrottledLogin> GetThrottledLoginsAsyncEnumerable(string? skip = null, int? top = 100, string? login = null, Func<Partial<ThrottledLogin>, Partial<ThrottledLogin>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetThrottledLoginsAsync(top: top, login: login, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ThrottledLogin>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ThrottledLogin>.Default())), skip, cancellationToken);
+        
+            /// <summary>
+            /// Resets the counter that tracks failed login attempts for the account with the specified ID. The member who uses this account is no longer blocked from attempting to log in to Space.
+            /// </summary>
+            public async Task ResetThrottlingStatusAsync(string id, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/throttled-logins/{id}", cancellationToken);
+        
+        }
+    
         public UsageClient Usages => new UsageClient(_connection);
         
         public partial class UsageClient

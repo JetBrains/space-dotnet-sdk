@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(string? name = null, string? description = null, string? key = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, string? key = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null)
         {
             Name = name;
             Description = description;
@@ -40,6 +40,7 @@ namespace SpaceDotNet.Client
             Access = access;
             DefaultValue = defaultValue;
             EnumValues = enumValues;
+            Scope = scope;
         }
         
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Name));
@@ -123,6 +124,16 @@ namespace SpaceDotNet.Client
             set { _enumValues.SetValue(value); }
         }
     
+        private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Scope));
+        
+        [Required]
+        [JsonPropertyName("scope")]
+        public ExtendedTypeScope Scope
+        {
+            get { return _scope.GetValue(); }
+            set { _scope.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
@@ -134,6 +145,7 @@ namespace SpaceDotNet.Client
             _access.SetAccessPath(path, validateHasBeenSet);
             _defaultValue.SetAccessPath(path, validateHasBeenSet);
             _enumValues.SetAccessPath(path, validateHasBeenSet);
+            _scope.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

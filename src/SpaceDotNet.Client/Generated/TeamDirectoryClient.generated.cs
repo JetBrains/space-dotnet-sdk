@@ -807,7 +807,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a profile.
             /// </summary>
-            public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesPostRequest, TDMemberProfile>("POST", $"api/http/team-directory/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
                     new TeamDirectoryProfilesPostRequest { 
                         Username = username,
@@ -822,6 +822,7 @@ namespace SpaceDotNet.Client
                         IsNotAMember = notAMember,
                         Joined = joined,
                         Left = left,
+                        LeftAt = leftAt,
                         IsSpeaksEnglish = speaksEnglish,
                         PictureAttachmentId = pictureAttachmentId,
                         AvatarCropSquare = avatarCropSquare,
@@ -862,7 +863,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Update a profile. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
-            public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
                     new TeamDirectoryProfilesForProfilePatchRequest { 
                         Username = username,
@@ -877,10 +878,21 @@ namespace SpaceDotNet.Client
                         IsNotAMember = notAMember,
                         Joined = joined,
                         Left = left,
+                        LeftAt = leftAt,
                         IsSpeaksEnglish = speaksEnglish,
                         PictureAttachmentId = pictureAttachmentId,
                         AvatarCropSquare = avatarCropSquare,
                         CustomFieldValues = customFieldValues,
+                    }
+            , cancellationToken);
+        
+            /// <summary>
+            /// Reactivate a user profile
+            /// </summary>
+            public async Task<TDMemberProfile> ReactivateAsync(ProfileIdentifier profile, SpaceDate? joined = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileReactivatePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/reactivate?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
+                    new TeamDirectoryProfilesForProfileReactivatePatchRequest { 
+                        Joined = joined,
                     }
             , cancellationToken);
         
@@ -891,7 +903,7 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
         
             /// <summary>
-            /// Deactivate a user profile. Optionally, the since date for deactivation can be specified, and the time when deactivation goes into effect.
+            /// Deactivate a user profile
             /// </summary>
             public async Task<TDMemberProfile> DeactivateAsync(ProfileIdentifier profile, SpaceTime at, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}/deactivate?at={at.ToString()}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);

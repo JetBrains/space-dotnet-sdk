@@ -59,6 +59,9 @@ namespace SpaceDotNet.Client.CalendarEventSpecPartialBuilder
         public static Partial<CalendarEventSpec> WithBusyStatus(this Partial<CalendarEventSpec> it, Func<Partial<BusyStatus>, Partial<BusyStatus>> partialBuilder)
             => it.AddFieldName("busyStatus", partialBuilder(new Partial<BusyStatus>(it)));
         
+        public static Partial<CalendarEventSpec> WithNextChainId(this Partial<CalendarEventSpec> it)
+            => it.AddFieldName("nextChainId");
+        
     }
     
 }

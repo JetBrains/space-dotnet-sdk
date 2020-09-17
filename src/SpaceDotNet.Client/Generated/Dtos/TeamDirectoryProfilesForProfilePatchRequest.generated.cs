@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesForProfilePatchRequest() { }
         
-        public TeamDirectoryProfilesForProfilePatchRequest(string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null)
+        public TeamDirectoryProfilesForProfilePatchRequest(string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null)
         {
             Username = username;
             FirstName = firstName;
@@ -43,6 +43,7 @@ namespace SpaceDotNet.Client
             IsNotAMember = notAMember;
             Joined = joined;
             Left = left;
+            LeftAt = leftAt;
             IsSpeaksEnglish = speaksEnglish;
             PictureAttachmentId = pictureAttachmentId;
             AvatarCropSquare = avatarCropSquare;
@@ -157,6 +158,15 @@ namespace SpaceDotNet.Client
             set { _left.SetValue(value); }
         }
     
+        private PropertyValue<SpaceTime?> _leftAt = new PropertyValue<SpaceTime?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(LeftAt));
+        
+        [JsonPropertyName("leftAt")]
+        public SpaceTime? LeftAt
+        {
+            get { return _leftAt.GetValue(); }
+            set { _leftAt.SetValue(value); }
+        }
+    
         private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesForProfilePatchRequest), nameof(IsSpeaksEnglish));
         
         [JsonPropertyName("speaksEnglish")]
@@ -207,6 +217,7 @@ namespace SpaceDotNet.Client
             _notAMember.SetAccessPath(path, validateHasBeenSet);
             _joined.SetAccessPath(path, validateHasBeenSet);
             _left.SetAccessPath(path, validateHasBeenSet);
+            _leftAt.SetAccessPath(path, validateHasBeenSet);
             _speaksEnglish.SetAccessPath(path, validateHasBeenSet);
             _pictureAttachmentId.SetAccessPath(path, validateHasBeenSet);
             _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);

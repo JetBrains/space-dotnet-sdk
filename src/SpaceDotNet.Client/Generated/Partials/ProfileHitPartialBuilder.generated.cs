@@ -53,6 +53,9 @@ namespace SpaceDotNet.Client.ProfileHitPartialBuilder
         public static Partial<ProfileHit> WithMessengers(this Partial<ProfileHit> it)
             => it.AddFieldName("messengers");
         
+        public static Partial<ProfileHit> WithInternationalNames(this Partial<ProfileHit> it)
+            => it.AddFieldName("internationalNames");
+        
         public static Partial<ProfileHit> WithIsNotAMember(this Partial<ProfileHit> it)
             => it.AddFieldName("notAMember");
         

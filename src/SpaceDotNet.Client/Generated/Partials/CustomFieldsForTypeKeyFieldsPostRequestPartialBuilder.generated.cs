@@ -65,6 +65,12 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsPostRequestPartialBuild
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
             => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValue>(it)));
         
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+            => it.AddFieldName("scope");
+        
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
+        
     }
     
 }

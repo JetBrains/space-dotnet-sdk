@@ -65,6 +65,12 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsForIdPatchRequestPartia
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
             => it.AddFieldName("enumValues", partialBuilder(new Partial<EnumValueData>(it)));
         
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
+            => it.AddFieldName("scope");
+        
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<ExtendedTypeScope>, Partial<ExtendedTypeScope>> partialBuilder)
+            => it.AddFieldName("scope", partialBuilder(new Partial<ExtendedTypeScope>(it)));
+        
     }
     
 }

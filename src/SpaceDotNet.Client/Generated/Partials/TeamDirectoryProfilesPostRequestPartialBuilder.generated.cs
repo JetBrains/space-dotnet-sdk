@@ -62,6 +62,9 @@ namespace SpaceDotNet.Client.TeamDirectoryProfilesPostRequestPartialBuilder
         public static Partial<TeamDirectoryProfilesPostRequest> WithLeft(this Partial<TeamDirectoryProfilesPostRequest> it)
             => it.AddFieldName("left");
         
+        public static Partial<TeamDirectoryProfilesPostRequest> WithLeftAt(this Partial<TeamDirectoryProfilesPostRequest> it)
+            => it.AddFieldName("leftAt");
+        
         public static Partial<TeamDirectoryProfilesPostRequest> WithIsSpeaksEnglish(this Partial<TeamDirectoryProfilesPostRequest> it)
             => it.AddFieldName("speaksEnglish");
         

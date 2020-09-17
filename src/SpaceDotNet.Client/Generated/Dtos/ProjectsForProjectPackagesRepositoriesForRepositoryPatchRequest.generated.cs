@@ -24,31 +24,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ProjectsForProjectPackagesRepositoriesPatchRequest
+    public class ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest
          : IPropagatePropertyAccessPath
     {
-        public ProjectsForProjectPackagesRepositoriesPatchRequest() { }
+        public ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesPatchRequest(string id, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null)
+        public ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest(string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null)
         {
-            Id = id;
             Name = name;
             Description = description;
             IsPublic = @public;
             Settings = settings;
         }
         
-        private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(Id));
-        
-        [Required]
-        [JsonPropertyName("id")]
-        public string Id
-        {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
-        }
-    
-        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(Name));
+        private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Name));
         
         [JsonPropertyName("name")]
         public string? Name
@@ -57,7 +46,7 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(Description));
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Description));
         
         [JsonPropertyName("description")]
         public string? Description
@@ -66,7 +55,7 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(IsPublic));
+        private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(IsPublic));
         
         [JsonPropertyName("public")]
         public bool? IsPublic
@@ -75,7 +64,7 @@ namespace SpaceDotNet.Client
             set { _public.SetValue(value); }
         }
     
-        private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesPatchRequest), nameof(Settings));
+        private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Settings));
         
         [JsonPropertyName("settings")]
         public ESPackageRepositorySettings? Settings
@@ -86,7 +75,6 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _id.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _public.SetAccessPath(path, validateHasBeenSet);

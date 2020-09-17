@@ -29,6 +29,9 @@ namespace SpaceDotNet.Client.ProjectsForProjectAutomationJobsForJobIdStartPostRe
         public static Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> WithBranch(this Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> it)
             => it.AddFieldName("branch");
         
+        public static Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> WithBranch(this Partial<ProjectsForProjectAutomationJobsForJobIdStartPostRequest> it, Func<Partial<Branch>, Partial<Branch>> partialBuilder)
+            => it.AddFieldName("branch", partialBuilder(new Partial<Branch>(it)));
+        
     }
     
 }
