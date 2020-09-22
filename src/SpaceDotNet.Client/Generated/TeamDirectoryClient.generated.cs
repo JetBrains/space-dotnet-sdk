@@ -1587,56 +1587,43 @@ namespace SpaceDotNet.Client
             }
             
             /// <summary>
-            /// Create a team.
+            /// Create a new team.
             /// </summary>
-            public async Task<TDTeam> CreateTeamAsync(string teamNameRaw, string? teamDescription = null, List<string>? teamEmails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDTeam> CreateTeamAsync(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryTeamsPostRequest, TDTeam>("POST", $"api/http/team-directory/teams?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", 
                     new TeamDirectoryTeamsPostRequest { 
-                        TeamNameRaw = teamNameRaw,
-                        TeamDescription = teamDescription,
-                        TeamEmails = teamEmails,
+                        Name = name,
+                        Description = description,
+                        Emails = emails,
                         ParentId = parentId,
                         CustomFieldValues = customFieldValues,
+                        ExternalId = externalId,
                     }
             , cancellationToken);
         
             /// <summary>
-            /// Restore one or more archived teams.
+            /// Cancel disbanding a team, and restore its members.
             /// </summary>
-            public async Task<List<TDTeam>> RestoreMultipleAsync(List<string> ids, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TeamDirectoryTeamsRestorePostRequest, List<TDTeam>>("POST", $"api/http/team-directory/teams/restore?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", 
-                    new TeamDirectoryTeamsRestorePostRequest { 
-                        Ids = ids,
-                    }
-            , cancellationToken);
-        
-            /// <summary>
-            /// Cancel disbanding a team, and restore members.
-            /// </summary>
-            public async Task CancelDisbandingAsync(string id, CancellationToken cancellationToken = default)
+            public async Task CancelTeamDisbandingAsync(string id, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding", cancellationToken);
         
             /// <summary>
             /// Restore an archived team.
             /// </summary>
-            public async Task<TDTeam> RestoreAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDTeam> RestoreTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDTeam>("POST", $"api/http/team-directory/teams/{id}/restore?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
         
             /// <summary>
-            /// Get/search all teams. Parameters are applied as 'AND' filters.
+            /// Get or search all teams. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<Batch<TDTeam>> GetAllTeamsAsync(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default())}", cancellationToken);
             
             /// <summary>
-            /// Get/search all teams. Parameters are applied as 'AND' filters.
+            /// Get or search all teams. Parameters are applied as 'AND' filters.
             /// </summary>
             public IAsyncEnumerable<TDTeam> GetAllTeamsAsyncEnumerable(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTeamsAsync(query: query, withArchived: withArchived, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeam>.Default())), skip, cancellationToken);
-        
-            [Obsolete("This endpoint returns null if there are multiple teams with the same name. Use GET team-directory/teams with parameter 'query' (since 2019-02-04)")]
-            public async Task<TDTeam> GetSingleTeamByNameAsync(string name, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDTeam>("GET", $"api/http/team-directory/teams/name:{name}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get a team by id.
@@ -1645,16 +1632,17 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<TDTeam>("GET", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
         
             /// <summary>
-            /// Update 
+            /// Update a team.
             /// </summary>
-            public async Task<TDTeam> UpdateTeamAsync(string id, string? teamNameRaw = null, string? teamDescription = null, List<string>? teamEmails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDTeam> UpdateTeamAsync(string id, string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryTeamsForIdPatchRequest, TDTeam>("PATCH", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", 
                     new TeamDirectoryTeamsForIdPatchRequest { 
-                        TeamNameRaw = teamNameRaw,
-                        TeamDescription = teamDescription,
-                        TeamEmails = teamEmails,
+                        Name = name,
+                        Description = description,
+                        Emails = emails,
                         ParentId = parentId,
                         CustomFieldValues = customFieldValues,
+                        ExternalId = externalId,
                     }
             , cancellationToken);
         
@@ -1667,7 +1655,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Disband a team.
             /// </summary>
-            public async Task<List<TDTeam>> DisbandAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<List<TDTeam>> DisbandTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<TDTeam>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
         
             public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
@@ -1682,13 +1670,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 /// <summary>
-                /// Get/search direct members of a given team.
+                /// Get or search direct members of a given team.
                 /// </summary>
                 public async Task<Batch<TDMemberProfile>> GetAllDirectMembersAsync(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/teams/{id}/direct-members?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
                 
                 /// <summary>
-                /// Get/search direct members of a given team.
+                /// Get or search direct members of a given team.
                 /// </summary>
                 public IAsyncEnumerable<TDMemberProfile> GetAllDirectMembersAsyncEnumerable(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDirectMembersAsync(id: id, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);

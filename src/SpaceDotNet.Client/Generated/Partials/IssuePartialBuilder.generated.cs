@@ -89,12 +89,6 @@ namespace SpaceDotNet.Client.IssuePartialBuilder
         public static Partial<Issue> WithTitle(this Partial<Issue> it)
             => it.AddFieldName("title");
         
-        public static Partial<Issue> WithChecklists(this Partial<Issue> it)
-            => it.AddFieldName("checklists");
-        
-        public static Partial<Issue> WithChecklists(this Partial<Issue> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
-            => it.AddFieldName("checklists", partialBuilder(new Partial<Checklist>(it)));
-        
         public static Partial<Issue> WithAttachments(this Partial<Issue> it)
             => it.AddFieldName("attachments");
         
@@ -106,6 +100,12 @@ namespace SpaceDotNet.Client.IssuePartialBuilder
         
         public static Partial<Issue> WithChannel(this Partial<Issue> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
             => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
+        
+        public static Partial<Issue> WithChecklists(this Partial<Issue> it)
+            => it.AddFieldName("checklists");
+        
+        public static Partial<Issue> WithChecklists(this Partial<Issue> it, Func<Partial<Checklist>, Partial<Checklist>> partialBuilder)
+            => it.AddFieldName("checklists", partialBuilder(new Partial<Checklist>(it)));
         
         public static Partial<Issue> WithDescription(this Partial<Issue> it)
             => it.AddFieldName("description");

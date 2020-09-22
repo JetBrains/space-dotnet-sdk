@@ -29,13 +29,14 @@ namespace SpaceDotNet.Client
     {
         public TextDocument() { }
         
-        public TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null)
+        public TextDocument(string id, long resetCounter, DraftDocumentType type, string text, long? version = null, string? model = null)
         {
             Id = id;
             ResetCounter = resetCounter;
             Version = version;
             Type = type;
             Text = text;
+            Model = model;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TextDocument), nameof(Id));
@@ -87,6 +88,15 @@ namespace SpaceDotNet.Client
             set { _text.SetValue(value); }
         }
     
+        private PropertyValue<string?> _model = new PropertyValue<string?>(nameof(TextDocument), nameof(Model));
+        
+        [JsonPropertyName("model")]
+        public string? Model
+        {
+            get { return _model.GetValue(); }
+            set { _model.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -94,6 +104,7 @@ namespace SpaceDotNet.Client
             _version.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _text.SetAccessPath(path, validateHasBeenSet);
+            _model.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

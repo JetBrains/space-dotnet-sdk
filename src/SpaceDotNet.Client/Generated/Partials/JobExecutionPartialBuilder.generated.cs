@@ -62,9 +62,6 @@ namespace SpaceDotNet.Client.JobExecutionPartialBuilder
         public static Partial<JobExecution> WithChangesCount(this Partial<JobExecution> it)
             => it.AddFieldName("changesCount");
         
-        public static Partial<JobExecution> WithNumber(this Partial<JobExecution> it)
-            => it.AddFieldName("number");
-        
         public static Partial<JobExecution> WithPredictedEndTime(this Partial<JobExecution> it)
             => it.AddFieldName("predictedEndTime");
         

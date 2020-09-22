@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public JobExecution() { }
         
-        public JobExecution(string executionId, long executionNumber, string jobId, string jobName, string branch, ExecutionStatus status, long triggeredTime, string changesFromExclude, int changesCount, string number, List<FailureCondition> failureConditions, long? startedTime = null, long? finishedTime = null, Estimation? predictedEndTime = null)
+        public JobExecution(string executionId, long executionNumber, string jobId, string jobName, string branch, ExecutionStatus status, long triggeredTime, string changesFromExclude, int changesCount, List<FailureCondition> failureConditions, long? startedTime = null, long? finishedTime = null, Estimation? predictedEndTime = null)
         {
             ExecutionId = executionId;
             ExecutionNumber = executionNumber;
@@ -42,7 +42,6 @@ namespace SpaceDotNet.Client
             FinishedTime = finishedTime;
             ChangesFromExclude = changesFromExclude;
             ChangesCount = changesCount;
-            Number = number;
             PredictedEndTime = predictedEndTime;
             FailureConditions = failureConditions;
         }
@@ -155,16 +154,6 @@ namespace SpaceDotNet.Client
             set { _changesCount.SetValue(value); }
         }
     
-        private PropertyValue<string> _number = new PropertyValue<string>(nameof(JobExecution), nameof(Number));
-        
-        [Required]
-        [JsonPropertyName("number")]
-        public string Number
-        {
-            get { return _number.GetValue(); }
-            set { _number.SetValue(value); }
-        }
-    
         private PropertyValue<Estimation?> _predictedEndTime = new PropertyValue<Estimation?>(nameof(JobExecution), nameof(PredictedEndTime));
         
         [JsonPropertyName("predictedEndTime")]
@@ -197,7 +186,6 @@ namespace SpaceDotNet.Client
             _finishedTime.SetAccessPath(path, validateHasBeenSet);
             _changesFromExclude.SetAccessPath(path, validateHasBeenSet);
             _changesCount.SetAccessPath(path, validateHasBeenSet);
-            _number.SetAccessPath(path, validateHasBeenSet);
             _predictedEndTime.SetAccessPath(path, validateHasBeenSet);
             _failureConditions.SetAccessPath(path, validateHasBeenSet);
         }

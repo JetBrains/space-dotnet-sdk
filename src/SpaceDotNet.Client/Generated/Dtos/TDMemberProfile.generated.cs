@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public TDMemberProfile() { }
         
-        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, List<TDProfileEmail> emails, List<string> links, List<string> messengers, List<string> phones, DocumentFolderRecord folder, List<PublicHoliday> holidays, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, bool onboardingRequired, Dictionary<string, CFValue> customFields, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null)
+        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderRecord folder, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null)
         {
             Id = id;
             Username = username;
@@ -44,26 +44,26 @@ namespace SpaceDotNet.Client
             Joined = joined;
             Left = left;
             LeftAt = leftAt;
+            About = about;
             Absences = absences;
+            AvatarCropSquare = avatarCropSquare;
+            Birthday = birthday;
+            CustomFields = customFields;
             Emails = emails;
-            Links = links;
-            Messengers = messengers;
-            Phones = phones;
             Folder = folder;
+            Gender = gender;
             Holidays = holidays;
+            Links = links;
             Locations = locations;
             Managers = managers;
             MembershipHistory = membershipHistory;
             Memberships = memberships;
+            Messengers = messengers;
             IsOnboardingRequired = onboardingRequired;
+            Phones = phones;
             IsShowBannerOnLandingPage = showBannerOnLandingPage;
             IsShowBannerOnProjectPage = showBannerOnProjectPage;
             IsShowBannerOnTeamDirectoryHomePage = showBannerOnTeamDirectoryHomePage;
-            About = about;
-            AvatarCropSquare = avatarCropSquare;
-            Birthday = birthday;
-            Gender = gender;
-            CustomFields = customFields;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDMemberProfile), nameof(Id));
@@ -190,6 +190,15 @@ namespace SpaceDotNet.Client
             set { _leftAt.SetValue(value); }
         }
     
+        private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(About));
+        
+        [JsonPropertyName("about")]
+        public string? About
+        {
+            get { return _about.GetValue(); }
+            set { _about.SetValue(value); }
+        }
+    
         private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(TDMemberProfile), nameof(Absences));
         
         [Required]
@@ -198,6 +207,34 @@ namespace SpaceDotNet.Client
         {
             get { return _absences.GetValue(); }
             set { _absences.SetValue(value); }
+        }
+    
+        private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TDMemberProfile), nameof(AvatarCropSquare));
+        
+        [JsonPropertyName("avatarCropSquare")]
+        public AvatarCropSquare? AvatarCropSquare
+        {
+            get { return _avatarCropSquare.GetValue(); }
+            set { _avatarCropSquare.SetValue(value); }
+        }
+    
+        private PropertyValue<SpaceDate?> _birthday = new PropertyValue<SpaceDate?>(nameof(TDMemberProfile), nameof(Birthday));
+        
+        [JsonPropertyName("birthday")]
+        public SpaceDate? Birthday
+        {
+            get { return _birthday.GetValue(); }
+            set { _birthday.SetValue(value); }
+        }
+    
+        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMemberProfile), nameof(CustomFields));
+        
+        [Required]
+        [JsonPropertyName("customFields")]
+        public Dictionary<string, CFValue> CustomFields
+        {
+            get { return _customFields.GetValue(); }
+            set { _customFields.SetValue(value); }
         }
     
         private PropertyValue<List<TDProfileEmail>> _emails = new PropertyValue<List<TDProfileEmail>>(nameof(TDMemberProfile), nameof(Emails));
@@ -210,36 +247,6 @@ namespace SpaceDotNet.Client
             set { _emails.SetValue(value); }
         }
     
-        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Links));
-        
-        [Required]
-        [JsonPropertyName("links")]
-        public List<string> Links
-        {
-            get { return _links.GetValue(); }
-            set { _links.SetValue(value); }
-        }
-    
-        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Messengers));
-        
-        [Required]
-        [JsonPropertyName("messengers")]
-        public List<string> Messengers
-        {
-            get { return _messengers.GetValue(); }
-            set { _messengers.SetValue(value); }
-        }
-    
-        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Phones));
-        
-        [Required]
-        [JsonPropertyName("phones")]
-        public List<string> Phones
-        {
-            get { return _phones.GetValue(); }
-            set { _phones.SetValue(value); }
-        }
-    
         private PropertyValue<DocumentFolderRecord> _folder = new PropertyValue<DocumentFolderRecord>(nameof(TDMemberProfile), nameof(Folder));
         
         [Required]
@@ -250,6 +257,15 @@ namespace SpaceDotNet.Client
             set { _folder.SetValue(value); }
         }
     
+        private PropertyValue<Gender?> _gender = new PropertyValue<Gender?>(nameof(TDMemberProfile), nameof(Gender));
+        
+        [JsonPropertyName("gender")]
+        public Gender? Gender
+        {
+            get { return _gender.GetValue(); }
+            set { _gender.SetValue(value); }
+        }
+    
         private PropertyValue<List<PublicHoliday>> _holidays = new PropertyValue<List<PublicHoliday>>(nameof(TDMemberProfile), nameof(Holidays));
         
         [Required]
@@ -258,6 +274,16 @@ namespace SpaceDotNet.Client
         {
             get { return _holidays.GetValue(); }
             set { _holidays.SetValue(value); }
+        }
+    
+        private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Links));
+        
+        [Required]
+        [JsonPropertyName("links")]
+        public List<string> Links
+        {
+            get { return _links.GetValue(); }
+            set { _links.SetValue(value); }
         }
     
         private PropertyValue<List<TDMemberLocation>> _locations = new PropertyValue<List<TDMemberLocation>>(nameof(TDMemberProfile), nameof(Locations));
@@ -300,6 +326,16 @@ namespace SpaceDotNet.Client
             set { _memberships.SetValue(value); }
         }
     
+        private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Messengers));
+        
+        [Required]
+        [JsonPropertyName("messengers")]
+        public List<string> Messengers
+        {
+            get { return _messengers.GetValue(); }
+            set { _messengers.SetValue(value); }
+        }
+    
         private PropertyValue<bool> _onboardingRequired = new PropertyValue<bool>(nameof(TDMemberProfile), nameof(IsOnboardingRequired));
         
         [Required]
@@ -308,6 +344,16 @@ namespace SpaceDotNet.Client
         {
             get { return _onboardingRequired.GetValue(); }
             set { _onboardingRequired.SetValue(value); }
+        }
+    
+        private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TDMemberProfile), nameof(Phones));
+        
+        [Required]
+        [JsonPropertyName("phones")]
+        public List<string> Phones
+        {
+            get { return _phones.GetValue(); }
+            set { _phones.SetValue(value); }
         }
     
         private PropertyValue<bool?> _showBannerOnLandingPage = new PropertyValue<bool?>(nameof(TDMemberProfile), nameof(IsShowBannerOnLandingPage));
@@ -337,52 +383,6 @@ namespace SpaceDotNet.Client
             set { _showBannerOnTeamDirectoryHomePage.SetValue(value); }
         }
     
-        private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TDMemberProfile), nameof(About));
-        
-        [JsonPropertyName("about")]
-        public string? About
-        {
-            get { return _about.GetValue(); }
-            set { _about.SetValue(value); }
-        }
-    
-        private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TDMemberProfile), nameof(AvatarCropSquare));
-        
-        [JsonPropertyName("avatarCropSquare")]
-        public AvatarCropSquare? AvatarCropSquare
-        {
-            get { return _avatarCropSquare.GetValue(); }
-            set { _avatarCropSquare.SetValue(value); }
-        }
-    
-        private PropertyValue<SpaceDate?> _birthday = new PropertyValue<SpaceDate?>(nameof(TDMemberProfile), nameof(Birthday));
-        
-        [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday
-        {
-            get { return _birthday.GetValue(); }
-            set { _birthday.SetValue(value); }
-        }
-    
-        private PropertyValue<Gender?> _gender = new PropertyValue<Gender?>(nameof(TDMemberProfile), nameof(Gender));
-        
-        [JsonPropertyName("gender")]
-        public Gender? Gender
-        {
-            get { return _gender.GetValue(); }
-            set { _gender.SetValue(value); }
-        }
-    
-        private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMemberProfile), nameof(CustomFields));
-        
-        [Required]
-        [JsonPropertyName("customFields")]
-        public Dictionary<string, CFValue> CustomFields
-        {
-            get { return _customFields.GetValue(); }
-            set { _customFields.SetValue(value); }
-        }
-    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -398,26 +398,26 @@ namespace SpaceDotNet.Client
             _joined.SetAccessPath(path, validateHasBeenSet);
             _left.SetAccessPath(path, validateHasBeenSet);
             _leftAt.SetAccessPath(path, validateHasBeenSet);
+            _about.SetAccessPath(path, validateHasBeenSet);
             _absences.SetAccessPath(path, validateHasBeenSet);
+            _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
+            _birthday.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
             _emails.SetAccessPath(path, validateHasBeenSet);
-            _links.SetAccessPath(path, validateHasBeenSet);
-            _messengers.SetAccessPath(path, validateHasBeenSet);
-            _phones.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
+            _gender.SetAccessPath(path, validateHasBeenSet);
             _holidays.SetAccessPath(path, validateHasBeenSet);
+            _links.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
             _managers.SetAccessPath(path, validateHasBeenSet);
             _membershipHistory.SetAccessPath(path, validateHasBeenSet);
             _memberships.SetAccessPath(path, validateHasBeenSet);
+            _messengers.SetAccessPath(path, validateHasBeenSet);
             _onboardingRequired.SetAccessPath(path, validateHasBeenSet);
+            _phones.SetAccessPath(path, validateHasBeenSet);
             _showBannerOnLandingPage.SetAccessPath(path, validateHasBeenSet);
             _showBannerOnProjectPage.SetAccessPath(path, validateHasBeenSet);
             _showBannerOnTeamDirectoryHomePage.SetAccessPath(path, validateHasBeenSet);
-            _about.SetAccessPath(path, validateHasBeenSet);
-            _avatarCropSquare.SetAccessPath(path, validateHasBeenSet);
-            _birthday.SetAccessPath(path, validateHasBeenSet);
-            _gender.SetAccessPath(path, validateHasBeenSet);
-            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

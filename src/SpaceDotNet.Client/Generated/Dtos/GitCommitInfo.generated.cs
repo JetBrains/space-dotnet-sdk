@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public GitCommitInfo() { }
         
-        public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> tags, List<BranchInfo> branches, List<string> heads, TDMemberProfile? authorProfile = null)
+        public GitCommitInfo(string id, string message, long authorDate, long commitDate, GitAuthorInfo author, GitAuthorInfo committer, List<string> parents, List<string> heads, TDMemberProfile? authorProfile = null)
         {
             Id = id;
             Message = message;
@@ -39,8 +39,6 @@ namespace SpaceDotNet.Client
             Committer = committer;
             AuthorProfile = authorProfile;
             Parents = parents;
-            Tags = tags;
-            Branches = branches;
             Heads = heads;
         }
         
@@ -123,26 +121,6 @@ namespace SpaceDotNet.Client
             set { _parents.SetValue(value); }
         }
     
-        private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Tags));
-        
-        [Required]
-        [JsonPropertyName("tags")]
-        public List<string> Tags
-        {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
-        }
-    
-        private PropertyValue<List<BranchInfo>> _branches = new PropertyValue<List<BranchInfo>>(nameof(GitCommitInfo), nameof(Branches));
-        
-        [Required]
-        [JsonPropertyName("branches")]
-        public List<BranchInfo> Branches
-        {
-            get { return _branches.GetValue(); }
-            set { _branches.SetValue(value); }
-        }
-    
         private PropertyValue<List<string>> _heads = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Heads));
         
         [Required]
@@ -163,8 +141,6 @@ namespace SpaceDotNet.Client
             _committer.SetAccessPath(path, validateHasBeenSet);
             _authorProfile.SetAccessPath(path, validateHasBeenSet);
             _parents.SetAccessPath(path, validateHasBeenSet);
-            _tags.SetAccessPath(path, validateHasBeenSet);
-            _branches.SetAccessPath(path, validateHasBeenSet);
             _heads.SetAccessPath(path, validateHasBeenSet);
         }
     

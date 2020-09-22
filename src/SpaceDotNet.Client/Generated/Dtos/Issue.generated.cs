@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public Issue() { }
         
-        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, SpaceTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<Checklist> checklists, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfo? importInfo = null, string? description = null)
+        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, SpaceTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfo? importInfo = null, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -45,9 +45,9 @@ namespace SpaceDotNet.Client
             ImportInfo = importInfo;
             Tags = tags;
             Title = title;
-            Checklists = checklists;
             Attachments = attachments;
             Channel = channel;
+            Checklists = checklists;
             Description = description;
             Sprints = sprints;
         }
@@ -187,16 +187,6 @@ namespace SpaceDotNet.Client
             set { _title.SetValue(value); }
         }
     
-        private PropertyValue<List<Checklist>> _checklists = new PropertyValue<List<Checklist>>(nameof(Issue), nameof(Checklists));
-        
-        [Required]
-        [JsonPropertyName("checklists")]
-        public List<Checklist> Checklists
-        {
-            get { return _checklists.GetValue(); }
-            set { _checklists.SetValue(value); }
-        }
-    
         private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments));
         
         [Required]
@@ -215,6 +205,16 @@ namespace SpaceDotNet.Client
         {
             get { return _channel.GetValue(); }
             set { _channel.SetValue(value); }
+        }
+    
+        private PropertyValue<List<Checklist>> _checklists = new PropertyValue<List<Checklist>>(nameof(Issue), nameof(Checklists));
+        
+        [Required]
+        [JsonPropertyName("checklists")]
+        public List<Checklist> Checklists
+        {
+            get { return _checklists.GetValue(); }
+            set { _checklists.SetValue(value); }
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Issue), nameof(Description));
@@ -252,9 +252,9 @@ namespace SpaceDotNet.Client
             _importInfo.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
-            _checklists.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
+            _checklists.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _sprints.SetAccessPath(path, validateHasBeenSet);
         }

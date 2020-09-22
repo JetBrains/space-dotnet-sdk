@@ -56,17 +56,17 @@ namespace SpaceDotNet.Client.KBBookPartialBuilder
         public static Partial<KBBook> WithLocations(this Partial<KBBook> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
             => it.AddFieldName("locations", partialBuilder(new Partial<TDLocation>(it)));
         
-        public static Partial<KBBook> WithTeams(this Partial<KBBook> it)
-            => it.AddFieldName("teams");
-        
-        public static Partial<KBBook> WithTeams(this Partial<KBBook> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
-            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
-        
         public static Partial<KBBook> WithRootFolder(this Partial<KBBook> it)
             => it.AddFieldName("rootFolder");
         
         public static Partial<KBBook> WithRootFolder(this Partial<KBBook> it, Func<Partial<KBFolder>, Partial<KBFolder>> partialBuilder)
             => it.AddFieldName("rootFolder", partialBuilder(new Partial<KBFolder>(it)));
+        
+        public static Partial<KBBook> WithTeams(this Partial<KBBook> it)
+            => it.AddFieldName("teams");
+        
+        public static Partial<KBBook> WithTeams(this Partial<KBBook> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
         
     }
     

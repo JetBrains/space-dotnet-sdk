@@ -71,11 +71,29 @@ namespace SpaceDotNet.Client.TDMemberProfilePartialBuilder
         public static Partial<TDMemberProfile> WithLeftAt(this Partial<TDMemberProfile> it)
             => it.AddFieldName("leftAt");
         
+        public static Partial<TDMemberProfile> WithAbout(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("about");
+        
         public static Partial<TDMemberProfile> WithAbsences(this Partial<TDMemberProfile> it)
             => it.AddFieldName("absences");
         
         public static Partial<TDMemberProfile> WithAbsences(this Partial<TDMemberProfile> it, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>> partialBuilder)
             => it.AddFieldName("absences", partialBuilder(new Partial<AbsenceRecord>(it)));
+        
+        public static Partial<TDMemberProfile> WithAvatarCropSquare(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("avatarCropSquare");
+        
+        public static Partial<TDMemberProfile> WithAvatarCropSquare(this Partial<TDMemberProfile> it, Func<Partial<AvatarCropSquare>, Partial<AvatarCropSquare>> partialBuilder)
+            => it.AddFieldName("avatarCropSquare", partialBuilder(new Partial<AvatarCropSquare>(it)));
+        
+        public static Partial<TDMemberProfile> WithBirthday(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("birthday");
+        
+        public static Partial<TDMemberProfile> WithCustomFields(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("customFields");
+        
+        public static Partial<TDMemberProfile> WithCustomFields(this Partial<TDMemberProfile> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CFValue>(it)));
         
         public static Partial<TDMemberProfile> WithEmails(this Partial<TDMemberProfile> it)
             => it.AddFieldName("emails");
@@ -83,26 +101,26 @@ namespace SpaceDotNet.Client.TDMemberProfilePartialBuilder
         public static Partial<TDMemberProfile> WithEmails(this Partial<TDMemberProfile> it, Func<Partial<TDProfileEmail>, Partial<TDProfileEmail>> partialBuilder)
             => it.AddFieldName("emails", partialBuilder(new Partial<TDProfileEmail>(it)));
         
-        public static Partial<TDMemberProfile> WithLinks(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("links");
-        
-        public static Partial<TDMemberProfile> WithMessengers(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("messengers");
-        
-        public static Partial<TDMemberProfile> WithPhones(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("phones");
-        
         public static Partial<TDMemberProfile> WithFolder(this Partial<TDMemberProfile> it)
             => it.AddFieldName("folder");
         
         public static Partial<TDMemberProfile> WithFolder(this Partial<TDMemberProfile> it, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>> partialBuilder)
             => it.AddFieldName("folder", partialBuilder(new Partial<DocumentFolderRecord>(it)));
         
+        public static Partial<TDMemberProfile> WithGender(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("gender");
+        
+        public static Partial<TDMemberProfile> WithGender(this Partial<TDMemberProfile> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
+            => it.AddFieldName("gender", partialBuilder(new Partial<Gender>(it)));
+        
         public static Partial<TDMemberProfile> WithHolidays(this Partial<TDMemberProfile> it)
             => it.AddFieldName("holidays");
         
         public static Partial<TDMemberProfile> WithHolidays(this Partial<TDMemberProfile> it, Func<Partial<PublicHoliday>, Partial<PublicHoliday>> partialBuilder)
             => it.AddFieldName("holidays", partialBuilder(new Partial<PublicHoliday>(it)));
+        
+        public static Partial<TDMemberProfile> WithLinks(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("links");
         
         public static Partial<TDMemberProfile> WithLocations(this Partial<TDMemberProfile> it)
             => it.AddFieldName("locations");
@@ -131,8 +149,14 @@ namespace SpaceDotNet.Client.TDMemberProfilePartialBuilder
         public static Partial<TDMemberProfile> WithMemberships(this Partial<TDMemberProfile> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
             => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembership>(it)));
         
+        public static Partial<TDMemberProfile> WithMessengers(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("messengers");
+        
         public static Partial<TDMemberProfile> WithIsOnboardingRequired(this Partial<TDMemberProfile> it)
             => it.AddFieldName("onboardingRequired");
+        
+        public static Partial<TDMemberProfile> WithPhones(this Partial<TDMemberProfile> it)
+            => it.AddFieldName("phones");
         
         public static Partial<TDMemberProfile> WithIsShowBannerOnLandingPage(this Partial<TDMemberProfile> it)
             => it.AddFieldName("showBannerOnLandingPage");
@@ -142,30 +166,6 @@ namespace SpaceDotNet.Client.TDMemberProfilePartialBuilder
         
         public static Partial<TDMemberProfile> WithIsShowBannerOnTeamDirectoryHomePage(this Partial<TDMemberProfile> it)
             => it.AddFieldName("showBannerOnTeamDirectoryHomePage");
-        
-        public static Partial<TDMemberProfile> WithAbout(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("about");
-        
-        public static Partial<TDMemberProfile> WithAvatarCropSquare(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("avatarCropSquare");
-        
-        public static Partial<TDMemberProfile> WithAvatarCropSquare(this Partial<TDMemberProfile> it, Func<Partial<AvatarCropSquare>, Partial<AvatarCropSquare>> partialBuilder)
-            => it.AddFieldName("avatarCropSquare", partialBuilder(new Partial<AvatarCropSquare>(it)));
-        
-        public static Partial<TDMemberProfile> WithBirthday(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("birthday");
-        
-        public static Partial<TDMemberProfile> WithGender(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("gender");
-        
-        public static Partial<TDMemberProfile> WithGender(this Partial<TDMemberProfile> it, Func<Partial<Gender>, Partial<Gender>> partialBuilder)
-            => it.AddFieldName("gender", partialBuilder(new Partial<Gender>(it)));
-        
-        public static Partial<TDMemberProfile> WithCustomFields(this Partial<TDMemberProfile> it)
-            => it.AddFieldName("customFields");
-        
-        public static Partial<TDMemberProfile> WithCustomFields(this Partial<TDMemberProfile> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
-            => it.AddFieldName("customFields", partialBuilder(new Partial<CFValue>(it)));
         
     }
     

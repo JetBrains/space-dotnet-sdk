@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         
         public ContainerPackageVersionDetails() { }
         
-        public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, Dictionary<string, string> metadata, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, ContainerImage? image = null, ContainerHelmChart? chart = null)
+        public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, Dictionary<string, string>? metadata = null, ContainerImage? image = null, ContainerHelmChart? chart = null)
         {
             Type = type;
             Repository = repository;
@@ -159,11 +159,10 @@ namespace SpaceDotNet.Client
             set { _authors.SetValue(value); }
         }
     
-        private PropertyValue<Dictionary<string, string>> _metadata = new PropertyValue<Dictionary<string, string>>(nameof(ContainerPackageVersionDetails), nameof(Metadata));
+        private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(ContainerPackageVersionDetails), nameof(Metadata));
         
-        [Required]
         [JsonPropertyName("metadata")]
-        public Dictionary<string, string> Metadata
+        public Dictionary<string, string>? Metadata
         {
             get { return _metadata.GetValue(); }
             set { _metadata.SetValue(value); }

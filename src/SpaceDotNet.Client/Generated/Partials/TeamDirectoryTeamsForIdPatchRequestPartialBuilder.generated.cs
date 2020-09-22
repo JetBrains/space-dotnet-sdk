@@ -26,14 +26,14 @@ namespace SpaceDotNet.Client.TeamDirectoryTeamsForIdPatchRequestPartialBuilder
 {
     public static class TeamDirectoryTeamsForIdPatchRequestPartialExtensions
     {
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithTeamNameRaw(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("teamNameRaw");
+        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithName(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithTeamDescription(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("teamDescription");
+        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithDescription(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithTeamEmails(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
-            => it.AddFieldName("teamEmails");
+        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithEmails(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+            => it.AddFieldName("emails");
         
         public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithParentId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
             => it.AddFieldName("parentId");
@@ -43,6 +43,9 @@ namespace SpaceDotNet.Client.TeamDirectoryTeamsForIdPatchRequestPartialBuilder
         
         public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsForIdPatchRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
             => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
+        
+        public static Partial<TeamDirectoryTeamsForIdPatchRequest> WithExternalId(this Partial<TeamDirectoryTeamsForIdPatchRequest> it)
+            => it.AddFieldName("externalId");
         
     }
     

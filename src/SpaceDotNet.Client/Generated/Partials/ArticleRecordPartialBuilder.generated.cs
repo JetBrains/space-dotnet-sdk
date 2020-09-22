@@ -71,14 +71,11 @@ namespace SpaceDotNet.Client.ArticleRecordPartialBuilder
         public static Partial<ArticleRecord> WithChannelContent(this Partial<ArticleRecord> it, Func<Partial<M2ChannelContentRecord>, Partial<M2ChannelContentRecord>> partialBuilder)
             => it.AddFieldName("channelContent", partialBuilder(new Partial<M2ChannelContentRecord>(it)));
         
-        public static Partial<ArticleRecord> WithReactions(this Partial<ArticleRecord> it)
-            => it.AddFieldName("reactions");
-        
-        public static Partial<ArticleRecord> WithReactions(this Partial<ArticleRecord> it, Func<Partial<AllReactionsToItemRecord>, Partial<AllReactionsToItemRecord>> partialBuilder)
-            => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecord>(it)));
-        
         public static Partial<ArticleRecord> WithContent(this Partial<ArticleRecord> it)
             => it.AddFieldName("content");
+        
+        public static Partial<ArticleRecord> WithIsEditable(this Partial<ArticleRecord> it)
+            => it.AddFieldName("editable");
         
         public static Partial<ArticleRecord> WithEvent(this Partial<ArticleRecord> it)
             => it.AddFieldName("event");
@@ -104,11 +101,26 @@ namespace SpaceDotNet.Client.ArticleRecordPartialBuilder
         public static Partial<ArticleRecord> WithLocations(this Partial<ArticleRecord> it, Func<Partial<TDLocation>, Partial<TDLocation>> partialBuilder)
             => it.AddFieldName("locations", partialBuilder(new Partial<TDLocation>(it)));
         
+        public static Partial<ArticleRecord> WithPreview(this Partial<ArticleRecord> it)
+            => it.AddFieldName("preview");
+        
+        public static Partial<ArticleRecord> WithPreviewImages(this Partial<ArticleRecord> it)
+            => it.AddFieldName("previewImages");
+        
+        public static Partial<ArticleRecord> WithPreviewImages(this Partial<ArticleRecord> it, Func<Partial<ArticleMarkdownImage>, Partial<ArticleMarkdownImage>> partialBuilder)
+            => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImage>(it)));
+        
         public static Partial<ArticleRecord> WithProject(this Partial<ArticleRecord> it)
             => it.AddFieldName("project");
         
         public static Partial<ArticleRecord> WithProject(this Partial<ArticleRecord> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
             => it.AddFieldName("project", partialBuilder(new Partial<PRProject>(it)));
+        
+        public static Partial<ArticleRecord> WithReactions(this Partial<ArticleRecord> it)
+            => it.AddFieldName("reactions");
+        
+        public static Partial<ArticleRecord> WithReactions(this Partial<ArticleRecord> it, Func<Partial<AllReactionsToItemRecord>, Partial<AllReactionsToItemRecord>> partialBuilder)
+            => it.AddFieldName("reactions", partialBuilder(new Partial<AllReactionsToItemRecord>(it)));
         
         public static Partial<ArticleRecord> WithTeam(this Partial<ArticleRecord> it)
             => it.AddFieldName("team");
@@ -121,18 +133,6 @@ namespace SpaceDotNet.Client.ArticleRecordPartialBuilder
         
         public static Partial<ArticleRecord> WithTeams(this Partial<ArticleRecord> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
-        
-        public static Partial<ArticleRecord> WithIsEditable(this Partial<ArticleRecord> it)
-            => it.AddFieldName("editable");
-        
-        public static Partial<ArticleRecord> WithPreview(this Partial<ArticleRecord> it)
-            => it.AddFieldName("preview");
-        
-        public static Partial<ArticleRecord> WithPreviewImages(this Partial<ArticleRecord> it)
-            => it.AddFieldName("previewImages");
-        
-        public static Partial<ArticleRecord> WithPreviewImages(this Partial<ArticleRecord> it, Func<Partial<ArticleMarkdownImage>, Partial<ArticleMarkdownImage>> partialBuilder)
-            => it.AddFieldName("previewImages", partialBuilder(new Partial<ArticleMarkdownImage>(it)));
         
         public static Partial<ArticleRecord> WithWordsNumber(this Partial<ArticleRecord> it)
             => it.AddFieldName("wordsNumber");

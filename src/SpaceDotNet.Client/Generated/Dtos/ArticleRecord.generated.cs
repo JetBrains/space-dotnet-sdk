@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public ArticleRecord() { }
         
-        public ArticleRecord(string id, bool archived, string title, SpaceTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, AllReactionsToItemRecord reactions, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, TDMemberProfile? archivedBy = null, SpaceTime? archivedAt = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, PRProject? project = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+        public ArticleRecord(string id, bool archived, string title, SpaceTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, SpaceTime? archivedAt = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, PRProject? project = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
         {
             Id = id;
             IsArchived = archived;
@@ -41,18 +41,18 @@ namespace SpaceDotNet.Client
             ArchivedAt = archivedAt;
             Channel = channel;
             ChannelContent = channelContent;
-            Reactions = reactions;
             Content = content;
+            IsEditable = editable;
             Event = @event;
             ExternalEntityInfo = externalEntityInfo;
             Location = location;
             Locations = locations;
-            Project = project;
-            Team = team;
-            Teams = teams;
-            IsEditable = editable;
             Preview = preview;
             PreviewImages = previewImages;
+            Project = project;
+            Reactions = reactions;
+            Team = team;
+            Teams = teams;
             WordsNumber = wordsNumber;
         }
         
@@ -154,16 +154,6 @@ namespace SpaceDotNet.Client
             set { _channelContent.SetValue(value); }
         }
     
-        private PropertyValue<AllReactionsToItemRecord> _reactions = new PropertyValue<AllReactionsToItemRecord>(nameof(ArticleRecord), nameof(Reactions));
-        
-        [Required]
-        [JsonPropertyName("reactions")]
-        public AllReactionsToItemRecord Reactions
-        {
-            get { return _reactions.GetValue(); }
-            set { _reactions.SetValue(value); }
-        }
-    
         private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleRecord), nameof(Content));
         
         [Required]
@@ -172,6 +162,16 @@ namespace SpaceDotNet.Client
         {
             get { return _content.GetValue(); }
             set { _content.SetValue(value); }
+        }
+    
+        private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(ArticleRecord), nameof(IsEditable));
+        
+        [Required]
+        [JsonPropertyName("editable")]
+        public bool IsEditable
+        {
+            get { return _editable.GetValue(); }
+            set { _editable.SetValue(value); }
         }
     
         private PropertyValue<MeetingRecord?> _event = new PropertyValue<MeetingRecord?>(nameof(ArticleRecord), nameof(Event));
@@ -210,43 +210,6 @@ namespace SpaceDotNet.Client
             set { _locations.SetValue(value); }
         }
     
-        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(ArticleRecord), nameof(Project));
-        
-        [JsonPropertyName("project")]
-        public PRProject? Project
-        {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
-        }
-    
-        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(ArticleRecord), nameof(Team));
-        
-        [JsonPropertyName("team")]
-        public TDTeam? Team
-        {
-            get { return _team.GetValue(); }
-            set { _team.SetValue(value); }
-        }
-    
-        private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(ArticleRecord), nameof(Teams));
-        
-        [JsonPropertyName("teams")]
-        public List<TDTeam>? Teams
-        {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
-        }
-    
-        private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(ArticleRecord), nameof(IsEditable));
-        
-        [Required]
-        [JsonPropertyName("editable")]
-        public bool IsEditable
-        {
-            get { return _editable.GetValue(); }
-            set { _editable.SetValue(value); }
-        }
-    
         private PropertyValue<string> _preview = new PropertyValue<string>(nameof(ArticleRecord), nameof(Preview));
         
         [Required]
@@ -265,6 +228,43 @@ namespace SpaceDotNet.Client
         {
             get { return _previewImages.GetValue(); }
             set { _previewImages.SetValue(value); }
+        }
+    
+        private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(ArticleRecord), nameof(Project));
+        
+        [JsonPropertyName("project")]
+        public PRProject? Project
+        {
+            get { return _project.GetValue(); }
+            set { _project.SetValue(value); }
+        }
+    
+        private PropertyValue<AllReactionsToItemRecord> _reactions = new PropertyValue<AllReactionsToItemRecord>(nameof(ArticleRecord), nameof(Reactions));
+        
+        [Required]
+        [JsonPropertyName("reactions")]
+        public AllReactionsToItemRecord Reactions
+        {
+            get { return _reactions.GetValue(); }
+            set { _reactions.SetValue(value); }
+        }
+    
+        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(ArticleRecord), nameof(Team));
+        
+        [JsonPropertyName("team")]
+        public TDTeam? Team
+        {
+            get { return _team.GetValue(); }
+            set { _team.SetValue(value); }
+        }
+    
+        private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(ArticleRecord), nameof(Teams));
+        
+        [JsonPropertyName("teams")]
+        public List<TDTeam>? Teams
+        {
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
         }
     
         private PropertyValue<int?> _wordsNumber = new PropertyValue<int?>(nameof(ArticleRecord), nameof(WordsNumber));
@@ -288,18 +288,18 @@ namespace SpaceDotNet.Client
             _archivedAt.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
             _channelContent.SetAccessPath(path, validateHasBeenSet);
-            _reactions.SetAccessPath(path, validateHasBeenSet);
             _content.SetAccessPath(path, validateHasBeenSet);
+            _editable.SetAccessPath(path, validateHasBeenSet);
             _event.SetAccessPath(path, validateHasBeenSet);
             _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
             _location.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
-            _project.SetAccessPath(path, validateHasBeenSet);
-            _team.SetAccessPath(path, validateHasBeenSet);
-            _teams.SetAccessPath(path, validateHasBeenSet);
-            _editable.SetAccessPath(path, validateHasBeenSet);
             _preview.SetAccessPath(path, validateHasBeenSet);
             _previewImages.SetAccessPath(path, validateHasBeenSet);
+            _project.SetAccessPath(path, validateHasBeenSet);
+            _reactions.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
             _wordsNumber.SetAccessPath(path, validateHasBeenSet);
         }
     

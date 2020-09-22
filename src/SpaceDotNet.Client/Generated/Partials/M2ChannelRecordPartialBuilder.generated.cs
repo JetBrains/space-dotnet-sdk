@@ -77,17 +77,17 @@ namespace SpaceDotNet.Client.M2ChannelRecordPartialBuilder
         public static Partial<M2ChannelRecord> WithChannel(this Partial<M2ChannelRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
             => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
         
-        public static Partial<M2ChannelRecord> WithMessages(this Partial<M2ChannelRecord> it)
-            => it.AddFieldName("messages");
-        
-        public static Partial<M2ChannelRecord> WithMessages(this Partial<M2ChannelRecord> it, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>> partialBuilder)
-            => it.AddFieldName("messages", partialBuilder(new Partial<ChannelItemRecord>(it)));
-        
         public static Partial<M2ChannelRecord> WithContent(this Partial<M2ChannelRecord> it)
             => it.AddFieldName("content");
         
         public static Partial<M2ChannelRecord> WithContent(this Partial<M2ChannelRecord> it, Func<Partial<M2ChannelContentInfo>, Partial<M2ChannelContentInfo>> partialBuilder)
             => it.AddFieldName("content", partialBuilder(new Partial<M2ChannelContentInfo>(it)));
+        
+        public static Partial<M2ChannelRecord> WithMessages(this Partial<M2ChannelRecord> it)
+            => it.AddFieldName("messages");
+        
+        public static Partial<M2ChannelRecord> WithMessages(this Partial<M2ChannelRecord> it, Func<Partial<ChannelItemRecord>, Partial<ChannelItemRecord>> partialBuilder)
+            => it.AddFieldName("messages", partialBuilder(new Partial<ChannelItemRecord>(it)));
         
     }
     

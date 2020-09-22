@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public PRProject() { }
         
-        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectPackageRepository> packages, List<BoardRecord> boards, List<ProjectIssueTrackerItem> trackers, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
+        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
         {
             Id = id;
             Key = key;
@@ -41,12 +41,12 @@ namespace SpaceDotNet.Client
             IsArchived = archived;
             AdminProfiles = adminProfiles;
             AdminTeams = adminTeams;
+            Boards = boards;
             MemberProfiles = memberProfiles;
             MemberTeams = memberTeams;
+            Packages = packages;
             Repos = repos;
             Tags = tags;
-            Packages = packages;
-            Boards = boards;
             Trackers = trackers;
         }
         
@@ -147,6 +147,16 @@ namespace SpaceDotNet.Client
             set { _adminTeams.SetValue(value); }
         }
     
+        private PropertyValue<List<BoardRecord>> _boards = new PropertyValue<List<BoardRecord>>(nameof(PRProject), nameof(Boards));
+        
+        [Required]
+        [JsonPropertyName("boards")]
+        public List<BoardRecord> Boards
+        {
+            get { return _boards.GetValue(); }
+            set { _boards.SetValue(value); }
+        }
+    
         private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles));
         
         [Required]
@@ -167,6 +177,16 @@ namespace SpaceDotNet.Client
             set { _memberTeams.SetValue(value); }
         }
     
+        private PropertyValue<List<ProjectPackageRepository>> _packages = new PropertyValue<List<ProjectPackageRepository>>(nameof(PRProject), nameof(Packages));
+        
+        [Required]
+        [JsonPropertyName("packages")]
+        public List<ProjectPackageRepository> Packages
+        {
+            get { return _packages.GetValue(); }
+            set { _packages.SetValue(value); }
+        }
+    
         private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(PRProject), nameof(Repos));
         
         [Required]
@@ -185,26 +205,6 @@ namespace SpaceDotNet.Client
         {
             get { return _tags.GetValue(); }
             set { _tags.SetValue(value); }
-        }
-    
-        private PropertyValue<List<ProjectPackageRepository>> _packages = new PropertyValue<List<ProjectPackageRepository>>(nameof(PRProject), nameof(Packages));
-        
-        [Required]
-        [JsonPropertyName("packages")]
-        public List<ProjectPackageRepository> Packages
-        {
-            get { return _packages.GetValue(); }
-            set { _packages.SetValue(value); }
-        }
-    
-        private PropertyValue<List<BoardRecord>> _boards = new PropertyValue<List<BoardRecord>>(nameof(PRProject), nameof(Boards));
-        
-        [Required]
-        [JsonPropertyName("boards")]
-        public List<BoardRecord> Boards
-        {
-            get { return _boards.GetValue(); }
-            set { _boards.SetValue(value); }
         }
     
         private PropertyValue<List<ProjectIssueTrackerItem>> _trackers = new PropertyValue<List<ProjectIssueTrackerItem>>(nameof(PRProject), nameof(Trackers));
@@ -229,12 +229,12 @@ namespace SpaceDotNet.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _adminProfiles.SetAccessPath(path, validateHasBeenSet);
             _adminTeams.SetAccessPath(path, validateHasBeenSet);
+            _boards.SetAccessPath(path, validateHasBeenSet);
             _memberProfiles.SetAccessPath(path, validateHasBeenSet);
             _memberTeams.SetAccessPath(path, validateHasBeenSet);
+            _packages.SetAccessPath(path, validateHasBeenSet);
             _repos.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
-            _packages.SetAccessPath(path, validateHasBeenSet);
-            _boards.SetAccessPath(path, validateHasBeenSet);
             _trackers.SetAccessPath(path, validateHasBeenSet);
         }
     

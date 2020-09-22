@@ -47,26 +47,6 @@ namespace SpaceDotNet.Client
             set { _id.SetValue(value); }
         }
     
-        private PropertyValue<Counter> _counter = new PropertyValue<Counter>(nameof(CodeReviewRecord), nameof(Counter));
-        
-        [Required]
-        [JsonPropertyName("counter")]
-        public Counter Counter
-        {
-            get { return _counter.GetValue(); }
-            set { _counter.SetValue(value); }
-        }
-    
-        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(ProjectId));
-        
-        [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId
-        {
-            get { return _projectId.GetValue(); }
-            set { _projectId.SetValue(value); }
-        }
-    
         private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Authors));
         
         [Required]
@@ -77,6 +57,26 @@ namespace SpaceDotNet.Client
             set { _authors.SetValue(value); }
         }
     
+        private PropertyValue<int> _count = new PropertyValue<int>(nameof(CodeReviewRecord), nameof(Count));
+        
+        [Required]
+        [JsonPropertyName("count")]
+        public int Count
+        {
+            get { return _count.GetValue(); }
+            set { _count.SetValue(value); }
+        }
+    
+        private PropertyValue<Counter> _counter = new PropertyValue<Counter>(nameof(CodeReviewRecord), nameof(Counter));
+        
+        [Required]
+        [JsonPropertyName("counter")]
+        public Counter Counter
+        {
+            get { return _counter.GetValue(); }
+            set { _counter.SetValue(value); }
+        }
+    
         private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewRecord), nameof(Participants));
         
         [JsonPropertyName("participants")]
@@ -84,6 +84,16 @@ namespace SpaceDotNet.Client
         {
             get { return _participants.GetValue(); }
             set { _participants.SetValue(value); }
+        }
+    
+        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(ProjectId));
+        
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId
+        {
+            get { return _projectId.GetValue(); }
+            set { _projectId.SetValue(value); }
         }
     
         private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Reviewers));
@@ -106,26 +116,16 @@ namespace SpaceDotNet.Client
             set { _watchers.SetValue(value); }
         }
     
-        private PropertyValue<int> _count = new PropertyValue<int>(nameof(CodeReviewRecord), nameof(Count));
-        
-        [Required]
-        [JsonPropertyName("count")]
-        public int Count
-        {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
-        }
-    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
-            _counter.SetAccessPath(path, validateHasBeenSet);
-            _projectId.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);
+            _count.SetAccessPath(path, validateHasBeenSet);
+            _counter.SetAccessPath(path, validateHasBeenSet);
             _participants.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
             _reviewers.SetAccessPath(path, validateHasBeenSet);
             _watchers.SetAccessPath(path, validateHasBeenSet);
-            _count.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

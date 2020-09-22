@@ -29,26 +29,29 @@ namespace SpaceDotNet.Client.CodeReviewRecordPartialBuilder
         public static Partial<CodeReviewRecord> WithId(this Partial<CodeReviewRecord> it)
             => it.AddFieldName("id");
         
-        public static Partial<CodeReviewRecord> WithCounter(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("counter");
-        
-        public static Partial<CodeReviewRecord> WithCounter(this Partial<CodeReviewRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
-            => it.AddFieldName("counter", partialBuilder(new Partial<Counter>(it)));
-        
-        public static Partial<CodeReviewRecord> WithProjectId(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("projectId");
-        
         public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it)
             => it.AddFieldName("authors");
         
         public static Partial<CodeReviewRecord> WithAuthors(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
             => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
         
+        public static Partial<CodeReviewRecord> WithCount(this Partial<CodeReviewRecord> it)
+            => it.AddFieldName("count");
+        
+        public static Partial<CodeReviewRecord> WithCounter(this Partial<CodeReviewRecord> it)
+            => it.AddFieldName("counter");
+        
+        public static Partial<CodeReviewRecord> WithCounter(this Partial<CodeReviewRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
+            => it.AddFieldName("counter", partialBuilder(new Partial<Counter>(it)));
+        
         public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it)
             => it.AddFieldName("participants");
         
         public static Partial<CodeReviewRecord> WithParticipants(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
             => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
+        
+        public static Partial<CodeReviewRecord> WithProjectId(this Partial<CodeReviewRecord> it)
+            => it.AddFieldName("projectId");
         
         public static Partial<CodeReviewRecord> WithReviewers(this Partial<CodeReviewRecord> it)
             => it.AddFieldName("reviewers");
@@ -61,9 +64,6 @@ namespace SpaceDotNet.Client.CodeReviewRecordPartialBuilder
         
         public static Partial<CodeReviewRecord> WithWatchers(this Partial<CodeReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
             => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-        public static Partial<CodeReviewRecord> WithCount(this Partial<CodeReviewRecord> it)
-            => it.AddFieldName("count");
         
     }
     

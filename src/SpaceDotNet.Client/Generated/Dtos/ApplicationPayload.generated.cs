@@ -30,6 +30,12 @@ namespace SpaceDotNet.Client
         public static ListCommandsPayload ListCommandsPayload(string accessToken, string? verificationToken = null, string? userId = null)
             => new ListCommandsPayload(accessToken: accessToken, verificationToken: null, userId: null);
         
+        public static ListMenuExtensionsPayload ListMenuExtensionsPayload(string accessToken, string? verificationToken = null, string? userId = null)
+            => new ListMenuExtensionsPayload(accessToken: accessToken, verificationToken: null, userId: null);
+        
+        public static MenuActionPayload MenuActionPayload(string extensionName, MenuActionContext context, string accessToken, string userId, string? verificationToken = null)
+            => new MenuActionPayload(extensionName: extensionName, context: context, accessToken: accessToken, userId: userId, verificationToken: null);
+        
         public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string accessToken, string userId, string? verificationToken = null)
             => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, accessToken: accessToken, userId: userId, verificationToken: null);
         

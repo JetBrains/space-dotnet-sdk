@@ -32,6 +32,12 @@ namespace SpaceDotNet.Client.IssueCreatedDetailsPartialBuilder
         public static Partial<IssueCreatedDetails> WithIssue(this Partial<IssueCreatedDetails> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
             => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
         
+        public static Partial<IssueCreatedDetails> WithOriginMessage(this Partial<IssueCreatedDetails> it)
+            => it.AddFieldName("originMessage");
+        
+        public static Partial<IssueCreatedDetails> WithOriginMessage(this Partial<IssueCreatedDetails> it, Func<Partial<MessageLink>, Partial<MessageLink>> partialBuilder)
+            => it.AddFieldName("originMessage", partialBuilder(new Partial<MessageLink>(it)));
+        
     }
     
 }

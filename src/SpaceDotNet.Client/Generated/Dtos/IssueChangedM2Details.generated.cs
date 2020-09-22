@@ -36,8 +36,8 @@ namespace SpaceDotNet.Client
         public static IssueChecklistsChangedDetails IssueChecklistsChangedDetails(List<Checklist>? addedChecklists = null, List<Checklist>? removedChecklists = null)
             => new IssueChecklistsChangedDetails(addedChecklists: null, removedChecklists: null);
         
-        public static IssueCreatedDetails IssueCreatedDetails(Issue? issue = null)
-            => new IssueCreatedDetails(issue: null);
+        public static IssueCreatedDetails IssueCreatedDetails(Issue? issue = null, MessageLink? originMessage = null)
+            => new IssueCreatedDetails(issue: null, originMessage: null);
         
         public static IssueDeletedDetails IssueDeletedDetails()
             => new IssueDeletedDetails();

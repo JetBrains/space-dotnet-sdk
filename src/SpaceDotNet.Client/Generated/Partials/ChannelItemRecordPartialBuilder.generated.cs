@@ -101,6 +101,12 @@ namespace SpaceDotNet.Client.ChannelItemRecordPartialBuilder
         public static Partial<ChannelItemRecord> WithSuggestedParticipants(this Partial<ChannelItemRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
             => it.AddFieldName("suggestedParticipants", partialBuilder(new Partial<CPrincipal>(it)));
         
+        public static Partial<ChannelItemRecord> WithIssues(this Partial<ChannelItemRecord> it)
+            => it.AddFieldName("issues");
+        
+        public static Partial<ChannelItemRecord> WithIssues(this Partial<ChannelItemRecord> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+            => it.AddFieldName("issues", partialBuilder(new Partial<Issue>(it)));
+        
     }
     
 }

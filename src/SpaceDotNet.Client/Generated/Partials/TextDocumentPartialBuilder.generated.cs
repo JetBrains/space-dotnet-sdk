@@ -44,6 +44,9 @@ namespace SpaceDotNet.Client.TextDocumentPartialBuilder
         public static Partial<TextDocument> WithText(this Partial<TextDocument> it)
             => it.AddFieldName("text");
         
+        public static Partial<TextDocument> WithModel(this Partial<TextDocument> it)
+            => it.AddFieldName("model");
+        
     }
     
 }

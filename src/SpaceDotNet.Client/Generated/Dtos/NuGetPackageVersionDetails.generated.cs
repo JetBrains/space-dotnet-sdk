@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         
         public NuGetPackageVersionDetails() { }
         
-        public NuGetPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, Dictionary<string, string> metadata, List<NuGetDependencyGroup> dependencies, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, string? description = null, string? projectUrl = null, string? license = null, string? licenseUrl = null, string? icon = null, string? title = null)
+        public NuGetPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, List<NuGetDependencyGroup> dependencies, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, Dictionary<string, string>? metadata = null, string? description = null, string? projectUrl = null, string? license = null, string? licenseUrl = null, string? icon = null, string? title = null)
         {
             Type = type;
             Repository = repository;
@@ -161,11 +161,10 @@ namespace SpaceDotNet.Client
             set { _authors.SetValue(value); }
         }
     
-        private PropertyValue<Dictionary<string, string>> _metadata = new PropertyValue<Dictionary<string, string>>(nameof(NuGetPackageVersionDetails), nameof(Metadata));
+        private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(NuGetPackageVersionDetails), nameof(Metadata));
         
-        [Required]
         [JsonPropertyName("metadata")]
-        public Dictionary<string, string> Metadata
+        public Dictionary<string, string>? Metadata
         {
             get { return _metadata.GetValue(); }
             set { _metadata.SetValue(value); }

@@ -1299,7 +1299,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", 
                         new ProjectsForProjectPlanningIssuesPostRequest { 
                             Title = title,
@@ -1312,6 +1312,7 @@ namespace SpaceDotNet.Client
                             Sprints = (sprints ?? new List<string>()),
                             Attachments = (attachments ?? new List<Attachment>()),
                             ImportInfo = importInfo,
+                            FromMessage = fromMessage,
                         }
                 , cancellationToken);
             
@@ -1322,11 +1323,11 @@ namespace SpaceDotNet.Client
                         }
                 , cancellationToken);
             
-                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId.JoinToString("assigneeId", it => it?.ToString())}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&tags={tags?.JoinToString("tags", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default())}", cancellationToken);
+                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId.JoinToString("assigneeId", it => it?.ToString())}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&tags={tags?.JoinToString("tags", it => it.ToString()) ?? "null"}&customFields={customFields?.JoinToString("customFields", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default())}", cancellationToken);
                 
-                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
             
                 public async Task<Issue> GetIssueByNumberAsync(ProjectIdentifier project, int number, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", cancellationToken);
@@ -1632,6 +1633,25 @@ namespace SpaceDotNet.Client
                 }
             
             }
+        
+        }
+    
+        public CommitClient Commits => new CommitClient(_connection);
+        
+        public partial class CommitClient
+        {
+            private readonly Connection _connection;
+            
+            public CommitClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            public async Task<Batch<GitCommitInfo>> ListCommitsMatchingQueryAsync(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<GitCommitInfo>>, Partial<Batch<GitCommitInfo>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<GitCommitInfo>>("GET", $"api/http/projects/{project}/{repository}/commits?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<GitCommitInfo>>()) : Partial<Batch<GitCommitInfo>>.Default())}", cancellationToken);
+            
+            public IAsyncEnumerable<GitCommitInfo> ListCommitsMatchingQueryAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListCommitsMatchingQueryAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
         
         }
     

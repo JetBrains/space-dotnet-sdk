@@ -65,6 +65,12 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesPostRequestPartialB
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithImportInfo(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<ImportedEntityInfo>, Partial<ImportedEntityInfo>> partialBuilder)
             => it.AddFieldName("importInfo", partialBuilder(new Partial<ImportedEntityInfo>(it)));
         
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+            => it.AddFieldName("fromMessage");
+        
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<MessageLink>, Partial<MessageLink>> partialBuilder)
+            => it.AddFieldName("fromMessage", partialBuilder(new Partial<MessageLink>(it)));
+        
     }
     
 }

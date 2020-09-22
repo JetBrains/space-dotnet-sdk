@@ -65,6 +65,12 @@ namespace SpaceDotNet.Client.PRProjectPartialBuilder
         public static Partial<PRProject> WithAdminTeams(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("adminTeams", partialBuilder(new Partial<TDTeam>(it)));
         
+        public static Partial<PRProject> WithBoards(this Partial<PRProject> it)
+            => it.AddFieldName("boards");
+        
+        public static Partial<PRProject> WithBoards(this Partial<PRProject> it, Func<Partial<BoardRecord>, Partial<BoardRecord>> partialBuilder)
+            => it.AddFieldName("boards", partialBuilder(new Partial<BoardRecord>(it)));
+        
         public static Partial<PRProject> WithMemberProfiles(this Partial<PRProject> it)
             => it.AddFieldName("memberProfiles");
         
@@ -77,6 +83,12 @@ namespace SpaceDotNet.Client.PRProjectPartialBuilder
         public static Partial<PRProject> WithMemberTeams(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("memberTeams", partialBuilder(new Partial<TDTeam>(it)));
         
+        public static Partial<PRProject> WithPackages(this Partial<PRProject> it)
+            => it.AddFieldName("packages");
+        
+        public static Partial<PRProject> WithPackages(this Partial<PRProject> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
+            => it.AddFieldName("packages", partialBuilder(new Partial<ProjectPackageRepository>(it)));
+        
         public static Partial<PRProject> WithRepos(this Partial<PRProject> it)
             => it.AddFieldName("repos");
         
@@ -85,18 +97,6 @@ namespace SpaceDotNet.Client.PRProjectPartialBuilder
         
         public static Partial<PRProject> WithTags(this Partial<PRProject> it)
             => it.AddFieldName("tags");
-        
-        public static Partial<PRProject> WithPackages(this Partial<PRProject> it)
-            => it.AddFieldName("packages");
-        
-        public static Partial<PRProject> WithPackages(this Partial<PRProject> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
-            => it.AddFieldName("packages", partialBuilder(new Partial<ProjectPackageRepository>(it)));
-        
-        public static Partial<PRProject> WithBoards(this Partial<PRProject> it)
-            => it.AddFieldName("boards");
-        
-        public static Partial<PRProject> WithBoards(this Partial<PRProject> it, Func<Partial<BoardRecord>, Partial<BoardRecord>> partialBuilder)
-            => it.AddFieldName("boards", partialBuilder(new Partial<BoardRecord>(it)));
         
         public static Partial<PRProject> WithTrackers(this Partial<PRProject> it)
             => it.AddFieldName("trackers");

@@ -27,6 +27,12 @@ namespace SpaceDotNet.Client
     public interface UnfurlDetails
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
+        public static AutomationJobExecutionUnfurlDetails AutomationJobExecution(string jobExecutionId, PRProject projectRef, string repoName)
+            => new AutomationJobExecutionUnfurlDetails(jobExecutionId: jobExecutionId, projectRef: projectRef, repoName: repoName);
+        
+        public static AutomationJobUnfurlDetails AutomationJob(string jobId, string jobName, PRProject projectRef, string repoName, ExecutionDisplayStatus? jobExecutionDisplayStatusFilter = null, JobTriggerType? jobTriggerFilter = null, Branch? branch = null)
+            => new AutomationJobUnfurlDetails(jobId: jobId, jobName: jobName, projectRef: projectRef, repoName: repoName, jobExecutionDisplayStatusFilter: null, jobTriggerFilter: null, branch: null);
+        
         public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, SpaceTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null)
             => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: null, details: null, attachments: null);
         

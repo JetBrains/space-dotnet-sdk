@@ -22,12 +22,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.TeamDirectoryTeamsRestorePostRequestPartialBuilder
+namespace SpaceDotNet.Client.MenuExtensionDetailPartialBuilder
 {
-    public static class TeamDirectoryTeamsRestorePostRequestPartialExtensions
+    public static class MenuExtensionDetailPartialExtensions
     {
-        public static Partial<TeamDirectoryTeamsRestorePostRequest> WithIds(this Partial<TeamDirectoryTeamsRestorePostRequest> it)
-            => it.AddFieldName("ids");
+        public static Partial<MenuExtensionDetail> WithMenuId(this Partial<MenuExtensionDetail> it)
+            => it.AddFieldName("menuId");
+        
+        public static Partial<MenuExtensionDetail> WithName(this Partial<MenuExtensionDetail> it)
+            => it.AddFieldName("name");
+        
+        public static Partial<MenuExtensionDetail> WithDescription(this Partial<MenuExtensionDetail> it)
+            => it.AddFieldName("description");
         
     }
     

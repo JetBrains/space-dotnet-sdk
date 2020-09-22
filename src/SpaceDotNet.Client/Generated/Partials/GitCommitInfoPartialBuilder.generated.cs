@@ -59,15 +59,6 @@ namespace SpaceDotNet.Client.GitCommitInfoPartialBuilder
         public static Partial<GitCommitInfo> WithParents(this Partial<GitCommitInfo> it)
             => it.AddFieldName("parents");
         
-        public static Partial<GitCommitInfo> WithTags(this Partial<GitCommitInfo> it)
-            => it.AddFieldName("tags");
-        
-        public static Partial<GitCommitInfo> WithBranches(this Partial<GitCommitInfo> it)
-            => it.AddFieldName("branches");
-        
-        public static Partial<GitCommitInfo> WithBranches(this Partial<GitCommitInfo> it, Func<Partial<BranchInfo>, Partial<BranchInfo>> partialBuilder)
-            => it.AddFieldName("branches", partialBuilder(new Partial<BranchInfo>(it)));
-        
         public static Partial<GitCommitInfo> WithHeads(this Partial<GitCommitInfo> it)
             => it.AddFieldName("heads");
         

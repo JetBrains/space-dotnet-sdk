@@ -29,41 +29,42 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryTeamsPostRequest() { }
         
-        public TeamDirectoryTeamsPostRequest(string teamNameRaw, string? teamDescription = null, List<string>? teamEmails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null)
+        public TeamDirectoryTeamsPostRequest(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, string? externalId = null)
         {
-            TeamNameRaw = teamNameRaw;
-            TeamDescription = teamDescription;
-            TeamEmails = teamEmails;
+            Name = name;
+            Description = description;
+            Emails = emails;
             ParentId = parentId;
             CustomFieldValues = customFieldValues;
+            ExternalId = externalId;
         }
         
-        private PropertyValue<string> _teamNameRaw = new PropertyValue<string>(nameof(TeamDirectoryTeamsPostRequest), nameof(TeamNameRaw));
+        private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryTeamsPostRequest), nameof(Name));
         
         [Required]
-        [JsonPropertyName("teamNameRaw")]
-        public string TeamNameRaw
+        [JsonPropertyName("name")]
+        public string Name
         {
-            get { return _teamNameRaw.GetValue(); }
-            set { _teamNameRaw.SetValue(value); }
+            get { return _name.GetValue(); }
+            set { _name.SetValue(value); }
         }
     
-        private PropertyValue<string?> _teamDescription = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(TeamDescription));
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(Description));
         
-        [JsonPropertyName("teamDescription")]
-        public string? TeamDescription
+        [JsonPropertyName("description")]
+        public string? Description
         {
-            get { return _teamDescription.GetValue(); }
-            set { _teamDescription.SetValue(value); }
+            get { return _description.GetValue(); }
+            set { _description.SetValue(value); }
         }
     
-        private PropertyValue<List<string>?> _teamEmails = new PropertyValue<List<string>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(TeamEmails));
+        private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(Emails));
         
-        [JsonPropertyName("teamEmails")]
-        public List<string>? TeamEmails
+        [JsonPropertyName("emails")]
+        public List<string>? Emails
         {
-            get { return _teamEmails.GetValue(); }
-            set { _teamEmails.SetValue(value); }
+            get { return _emails.GetValue(); }
+            set { _emails.SetValue(value); }
         }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(ParentId));
@@ -84,13 +85,23 @@ namespace SpaceDotNet.Client
             set { _customFieldValues.SetValue(value); }
         }
     
+        private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(ExternalId));
+        
+        [JsonPropertyName("externalId")]
+        public string? ExternalId
+        {
+            get { return _externalId.GetValue(); }
+            set { _externalId.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _teamNameRaw.SetAccessPath(path, validateHasBeenSet);
-            _teamDescription.SetAccessPath(path, validateHasBeenSet);
-            _teamEmails.SetAccessPath(path, validateHasBeenSet);
+            _name.SetAccessPath(path, validateHasBeenSet);
+            _description.SetAccessPath(path, validateHasBeenSet);
+            _emails.SetAccessPath(path, validateHasBeenSet);
             _parentId.SetAccessPath(path, validateHasBeenSet);
             _customFieldValues.SetAccessPath(path, validateHasBeenSet);
+            _externalId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

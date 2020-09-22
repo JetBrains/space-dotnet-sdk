@@ -59,17 +59,20 @@ namespace SpaceDotNet.Client.TDTeamPartialBuilder
         public static Partial<TDTeam> WithDisbandedAt(this Partial<TDTeam> it)
             => it.AddFieldName("disbandedAt");
         
-        public static Partial<TDTeam> WithMemberships(this Partial<TDTeam> it)
-            => it.AddFieldName("memberships");
-        
-        public static Partial<TDTeam> WithMemberships(this Partial<TDTeam> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
-            => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembership>(it)));
+        public static Partial<TDTeam> WithExternalId(this Partial<TDTeam> it)
+            => it.AddFieldName("externalId");
         
         public static Partial<TDTeam> WithCustomFields(this Partial<TDTeam> it)
             => it.AddFieldName("customFields");
         
         public static Partial<TDTeam> WithCustomFields(this Partial<TDTeam> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
             => it.AddFieldName("customFields", partialBuilder(new Partial<CFValue>(it)));
+        
+        public static Partial<TDTeam> WithMemberships(this Partial<TDTeam> it)
+            => it.AddFieldName("memberships");
+        
+        public static Partial<TDTeam> WithMemberships(this Partial<TDTeam> it, Func<Partial<TDMembership>, Partial<TDMembership>> partialBuilder)
+            => it.AddFieldName("memberships", partialBuilder(new Partial<TDMembership>(it)));
         
     }
     

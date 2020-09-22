@@ -24,29 +24,28 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class TeamDirectoryTeamsRestorePostRequest
+    public class ServicesRefreshMenuPostRequest
          : IPropagatePropertyAccessPath
     {
-        public TeamDirectoryTeamsRestorePostRequest() { }
+        public ServicesRefreshMenuPostRequest() { }
         
-        public TeamDirectoryTeamsRestorePostRequest(List<string> ids)
+        public ServicesRefreshMenuPostRequest(string? id = null)
         {
-            Ids = ids;
+            Id = id;
         }
         
-        private PropertyValue<List<string>> _ids = new PropertyValue<List<string>>(nameof(TeamDirectoryTeamsRestorePostRequest), nameof(Ids));
+        private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(ServicesRefreshMenuPostRequest), nameof(Id));
         
-        [Required]
-        [JsonPropertyName("ids")]
-        public List<string> Ids
+        [JsonPropertyName("id")]
+        public string? Id
         {
-            get { return _ids.GetValue(); }
-            set { _ids.SetValue(value); }
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _ids.SetAccessPath(path, validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

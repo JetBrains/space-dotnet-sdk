@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public KBBook() { }
         
-        public KBBook(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContext> contexts, List<TDLocation> locations, List<TDTeam> teams, KBFolder rootFolder)
+        public KBBook(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContext> contexts, List<TDLocation> locations, KBFolder rootFolder, List<TDTeam> teams)
         {
             Id = id;
             IsArchived = archived;
@@ -39,8 +39,8 @@ namespace SpaceDotNet.Client
             Alias = alias;
             Contexts = contexts;
             Locations = locations;
-            Teams = teams;
             RootFolder = rootFolder;
+            Teams = teams;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(KBBook), nameof(Id));
@@ -123,16 +123,6 @@ namespace SpaceDotNet.Client
             set { _locations.SetValue(value); }
         }
     
-        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(KBBook), nameof(Teams));
-        
-        [Required]
-        [JsonPropertyName("teams")]
-        public List<TDTeam> Teams
-        {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
-        }
-    
         private PropertyValue<KBFolder> _rootFolder = new PropertyValue<KBFolder>(nameof(KBBook), nameof(RootFolder));
         
         [Required]
@@ -141,6 +131,16 @@ namespace SpaceDotNet.Client
         {
             get { return _rootFolder.GetValue(); }
             set { _rootFolder.SetValue(value); }
+        }
+    
+        private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(KBBook), nameof(Teams));
+        
+        [Required]
+        [JsonPropertyName("teams")]
+        public List<TDTeam> Teams
+        {
+            get { return _teams.GetValue(); }
+            set { _teams.SetValue(value); }
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -153,8 +153,8 @@ namespace SpaceDotNet.Client
             _alias.SetAccessPath(path, validateHasBeenSet);
             _contexts.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);
-            _teams.SetAccessPath(path, validateHasBeenSet);
             _rootFolder.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

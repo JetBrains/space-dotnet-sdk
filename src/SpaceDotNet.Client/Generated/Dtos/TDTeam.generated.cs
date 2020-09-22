@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public TDTeam() { }
         
-        public TDTeam(string id, string name, string description, bool archived, List<TDMembership> memberships, Dictionary<string, CFValue> customFields, TDTeam? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, SpaceDate? disbandedAt = null)
+        public TDTeam(string id, string name, string description, bool archived, Dictionary<string, CFValue> customFields, List<TDMembership> memberships, TDTeam? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, SpaceDate? disbandedAt = null, string? externalId = null)
         {
             Id = id;
             Name = name;
@@ -40,8 +40,9 @@ namespace SpaceDotNet.Client
             IsArchived = archived;
             IsDisbanded = disbanded;
             DisbandedAt = disbandedAt;
-            Memberships = memberships;
+            ExternalId = externalId;
             CustomFields = customFields;
+            Memberships = memberships;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(TDTeam), nameof(Id));
@@ -129,14 +130,13 @@ namespace SpaceDotNet.Client
             set { _disbandedAt.SetValue(value); }
         }
     
-        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDTeam), nameof(Memberships));
+        private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TDTeam), nameof(ExternalId));
         
-        [Required]
-        [JsonPropertyName("memberships")]
-        public List<TDMembership> Memberships
+        [JsonPropertyName("externalId")]
+        public string? ExternalId
         {
-            get { return _memberships.GetValue(); }
-            set { _memberships.SetValue(value); }
+            get { return _externalId.GetValue(); }
+            set { _externalId.SetValue(value); }
         }
     
         private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDTeam), nameof(CustomFields));
@@ -147,6 +147,16 @@ namespace SpaceDotNet.Client
         {
             get { return _customFields.GetValue(); }
             set { _customFields.SetValue(value); }
+        }
+    
+        private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDTeam), nameof(Memberships));
+        
+        [Required]
+        [JsonPropertyName("memberships")]
+        public List<TDMembership> Memberships
+        {
+            get { return _memberships.GetValue(); }
+            set { _memberships.SetValue(value); }
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -160,8 +170,9 @@ namespace SpaceDotNet.Client
             _archived.SetAccessPath(path, validateHasBeenSet);
             _disbanded.SetAccessPath(path, validateHasBeenSet);
             _disbandedAt.SetAccessPath(path, validateHasBeenSet);
-            _memberships.SetAccessPath(path, validateHasBeenSet);
+            _externalId.SetAccessPath(path, validateHasBeenSet);
             _customFields.SetAccessPath(path, validateHasBeenSet);
+            _memberships.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

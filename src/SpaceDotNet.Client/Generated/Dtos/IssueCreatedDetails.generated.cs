@@ -32,9 +32,10 @@ namespace SpaceDotNet.Client
         
         public IssueCreatedDetails() { }
         
-        public IssueCreatedDetails(Issue? issue = null)
+        public IssueCreatedDetails(Issue? issue = null, MessageLink? originMessage = null)
         {
             Issue = issue;
+            OriginMessage = originMessage;
         }
         
         private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueCreatedDetails), nameof(Issue));
@@ -46,9 +47,19 @@ namespace SpaceDotNet.Client
             set { _issue.SetValue(value); }
         }
     
+        private PropertyValue<MessageLink?> _originMessage = new PropertyValue<MessageLink?>(nameof(IssueCreatedDetails), nameof(OriginMessage));
+        
+        [JsonPropertyName("originMessage")]
+        public MessageLink? OriginMessage
+        {
+            get { return _originMessage.GetValue(); }
+            set { _originMessage.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _issue.SetAccessPath(path, validateHasBeenSet);
+            _originMessage.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

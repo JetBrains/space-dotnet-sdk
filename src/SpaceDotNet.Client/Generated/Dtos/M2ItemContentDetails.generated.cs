@@ -99,6 +99,9 @@ namespace SpaceDotNet.Client
         public static MCMessage MCMessage(string style, List<MCElement> content, MCOutline? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetails? extension = null)
             => new MCMessage(style: style, content: content, outline: null, serviceId: null, supplementaryData: null, extension: null);
         
+        public static MCMessageCommonDetails MCMessageCommonDetails()
+            => new MCMessageCommonDetails();
+        
         public static MembersAddedItemDetails MembersAddedItemDetails(List<CPrincipal> principals, List<string> othersDisplayNames)
             => new MembersAddedItemDetails(principals: principals, othersDisplayNames: othersDisplayNames);
         

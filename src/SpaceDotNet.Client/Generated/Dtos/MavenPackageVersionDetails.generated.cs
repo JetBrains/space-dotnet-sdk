@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         
         public MavenPackageVersionDetails() { }
         
-        public MavenPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, Dictionary<string, string> metadata, List<string> licenses, List<MavenPackageDependency> dependencies, List<MavenPackageFile> files, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, string? packaging = null, string? packageName = null, string? description = null, string? url = null, string? scmUrl = null, List<KotlinPlatform>? kotlinPlatforms = null, MavenPackageParent? parent = null, string? pathPrefix = null)
+        public MavenPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, List<string> licenses, List<MavenPackageDependency> dependencies, List<MavenPackageFile> files, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, Dictionary<string, string>? metadata = null, string? packaging = null, string? packageName = null, string? description = null, string? url = null, string? scmUrl = null, List<KotlinPlatform>? kotlinPlatforms = null, MavenPackageParent? parent = null, string? pathPrefix = null)
         {
             Type = type;
             Repository = repository;
@@ -165,11 +165,10 @@ namespace SpaceDotNet.Client
             set { _authors.SetValue(value); }
         }
     
-        private PropertyValue<Dictionary<string, string>> _metadata = new PropertyValue<Dictionary<string, string>>(nameof(MavenPackageVersionDetails), nameof(Metadata));
+        private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(MavenPackageVersionDetails), nameof(Metadata));
         
-        [Required]
         [JsonPropertyName("metadata")]
-        public Dictionary<string, string> Metadata
+        public Dictionary<string, string>? Metadata
         {
             get { return _metadata.GetValue(); }
             set { _metadata.SetValue(value); }

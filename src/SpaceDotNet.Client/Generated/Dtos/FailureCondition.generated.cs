@@ -40,6 +40,9 @@ namespace SpaceDotNet.Client
         public static TestFailed TestFailed()
             => new TestFailed();
         
+        public static TimeOut TimeOut()
+            => new TimeOut();
+        
         public FailureCondition() { }
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -26,14 +26,14 @@ namespace SpaceDotNet.Client.TeamDirectoryTeamsPostRequestPartialBuilder
 {
     public static class TeamDirectoryTeamsPostRequestPartialExtensions
     {
-        public static Partial<TeamDirectoryTeamsPostRequest> WithTeamNameRaw(this Partial<TeamDirectoryTeamsPostRequest> it)
-            => it.AddFieldName("teamNameRaw");
+        public static Partial<TeamDirectoryTeamsPostRequest> WithName(this Partial<TeamDirectoryTeamsPostRequest> it)
+            => it.AddFieldName("name");
         
-        public static Partial<TeamDirectoryTeamsPostRequest> WithTeamDescription(this Partial<TeamDirectoryTeamsPostRequest> it)
-            => it.AddFieldName("teamDescription");
+        public static Partial<TeamDirectoryTeamsPostRequest> WithDescription(this Partial<TeamDirectoryTeamsPostRequest> it)
+            => it.AddFieldName("description");
         
-        public static Partial<TeamDirectoryTeamsPostRequest> WithTeamEmails(this Partial<TeamDirectoryTeamsPostRequest> it)
-            => it.AddFieldName("teamEmails");
+        public static Partial<TeamDirectoryTeamsPostRequest> WithEmails(this Partial<TeamDirectoryTeamsPostRequest> it)
+            => it.AddFieldName("emails");
         
         public static Partial<TeamDirectoryTeamsPostRequest> WithParentId(this Partial<TeamDirectoryTeamsPostRequest> it)
             => it.AddFieldName("parentId");
@@ -43,6 +43,9 @@ namespace SpaceDotNet.Client.TeamDirectoryTeamsPostRequestPartialBuilder
         
         public static Partial<TeamDirectoryTeamsPostRequest> WithCustomFieldValues(this Partial<TeamDirectoryTeamsPostRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
             => it.AddFieldName("customFieldValues", partialBuilder(new Partial<CustomFieldValue>(it)));
+        
+        public static Partial<TeamDirectoryTeamsPostRequest> WithExternalId(this Partial<TeamDirectoryTeamsPostRequest> it)
+            => it.AddFieldName("externalId");
         
     }
     
