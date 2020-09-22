@@ -18,6 +18,13 @@ namespace SpaceDotNet.AspNetCore.WebHooks
         Task<Commands> HandleListCommandsAsync(ListCommandsPayload payload);
         
         /// <summary>
+        /// Handle "list menu extensions" request.
+        /// </summary>
+        /// <param name="payload">The <see cref="ListMenuExtensionsPayload"/>.</param>
+        /// <returns>List of available menu extensions.</returns>
+        Task<MenuExtensions> HandleListMenuExtensionsAsync(ListMenuExtensionsPayload payload);
+        
+        /// <summary>
         /// Handle message request.
         /// </summary>
         /// <param name="payload">The <see cref="MessagePayload"/>.</param>
@@ -28,5 +35,11 @@ namespace SpaceDotNet.AspNetCore.WebHooks
         /// </summary>
         /// <param name="payload">The <see cref="MessageActionPayload"/>.</param>
         Task HandleMessageActionAsync(MessageActionPayload payload);
+        
+        /// <summary>
+        /// Handle menu action request.
+        /// </summary>
+        /// <param name="payload">The <see cref="MenuActionPayload"/>.</param>
+        Task HandleMenuActionAsync(MenuActionPayload payload);
     }
 }

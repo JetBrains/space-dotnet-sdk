@@ -351,8 +351,10 @@ We can build interactive [Space Applications](https://www.jetbrains.com/help/spa
 An application webhook handler can be created by extending the `SpaceWebHookHandler` class, and then overriding one or all of its methods to react to certain events:
 
 * `HandleListCommandsAsync` is used to provide details about available slash commands to Space.
+* `HandleListMenuExtensionsAsync` is used to provide details about available menu extensions to Space.
 * `HandleMessageAsync` is called when a user sends our application a chat message.
-* `HandleMessageAsync` is called when a user interacts with our application, for example by clicking a button.
+* `HandleMessageActionAsync` is called when a user interacts with our application by clicking a button.
+* `HandleMenuActionAsync` is called when a user interacts with our application by clicking a menu item on a message.
 
 The `CateringWebHookHandler` class is an example application that implements the above, and provides an interactive means of ordering (virtual) food and beverages.
 

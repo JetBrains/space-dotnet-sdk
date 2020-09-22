@@ -52,6 +52,19 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
                     
                     return new JsonResult(commands, JsonSerializerOptions);
                 
+                // List menu extensions?
+                case ListMenuExtensionsPayload listMenuExtensionsPayload:
+                    var menuExtensions = await handler.HandleListMenuExtensionsAsync(listMenuExtensionsPayload);
+                    PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, menuExtensions);
+                    
+                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
+                    if (menuExtensions.Extensions == null)
+                    {
+                        menuExtensions.Extensions = new List<MenuExtensionDetail>();
+                    }
+                    
+                    return new JsonResult(menuExtensions, JsonSerializerOptions);
+                
                 // Message?
                 case MessagePayload messagePayload:
                     await handler.HandleMessageAsync(messagePayload);
@@ -60,6 +73,11 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
                 // Action?
                 case MessageActionPayload actionPayload:
                     await handler.HandleMessageActionAsync(actionPayload);
+                    return Ok();
+                
+                // Menu action?
+                case MenuActionPayload menuActionPayload:
+                    await handler.HandleMenuActionAsync(menuActionPayload);
                     return Ok();
             }
 
