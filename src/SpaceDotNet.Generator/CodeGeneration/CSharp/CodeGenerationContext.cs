@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
+using System.Linq;
 using SpaceDotNet.Generator.Model.HttpApi;
 
 namespace SpaceDotNet.Generator.CodeGeneration.CSharp
@@ -66,5 +67,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
         
         public IEnumerable<ApiUrlParameter> GetUrlParameters() => _idToUrlParameterMap.Values;
         public bool TryGetUrlParameter(string id, out ApiUrlParameter? apiUrlParameter) => _idToUrlParameterMap.TryGetValue(id, out apiUrlParameter);
+        
+        public IEnumerable<ApiMenuId> GetMenuIds() => ApiModel.MenuIds;
     }
 }

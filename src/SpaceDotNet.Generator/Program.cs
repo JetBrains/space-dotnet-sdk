@@ -47,7 +47,35 @@ namespace SpaceDotNet.Generator
                 httpClient);
             
             var apiModel = await connection.RequestResourceAsync<ApiModel>(
-                "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!)");
+                "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!),menuIds");
+            
+            // TODO MAARTEN: REMOVE
+            if (apiModel.MenuIds.Count == 0)
+            {
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Global.Sections"});
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Example" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "AnotherExample" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Channel.Attachment" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Global.Profile" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Global.Add" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Project.Tools" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Project.Settings" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Repository.Settings" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Administration.Integrations" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Administration.Extensions" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Administration.Organization" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Administration.Access" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Administration.Customization" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Administration.Debug" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Profile.Personal" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Profile.Personal.My" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Profile.Schedule" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Profile.Workspace" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Profile.Security" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Location" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Sidebar.Team" });
+                apiModel.MenuIds.Add(new ApiMenuId { MenuId = "Channel.Message", Context = new ApiFieldType.Ref { DtoRef = new ApiDto { Id = "ChannelMessageMenuActionContext" } } });
+            }
             
             // Remove old code
             var generatedCodePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated");
