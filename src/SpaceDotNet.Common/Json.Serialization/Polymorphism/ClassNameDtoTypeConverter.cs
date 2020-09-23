@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using JetBrains.Annotations;
@@ -15,7 +15,7 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
         protected readonly string SpaceDotNetClientNamespace = "SpaceDotNet.Client";
         protected readonly string SpaceDotNetClientAssemblyName = "SpaceDotNet.Client";
         
-        private static readonly Dictionary<string, Type> TypeMap = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
+        private static readonly ConcurrentDictionary<string, Type> TypeMap = new ConcurrentDictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
         
         public override bool CanConvert(Type objectType) 
             => typeof(IClassNameConvertible).IsAssignableFrom(objectType);
