@@ -15,6 +15,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         [JsonPropertyName("optional")]
         public bool Optional { get; set; }
         
+        [JsonPropertyName("deprecation")]
+        public ApiDeprecation? Deprecation { get; set; }
+        
         [JsonPropertyName("defaultValue")]
         public ApiDefaultValue? DefaultValue { get; set; }
     }

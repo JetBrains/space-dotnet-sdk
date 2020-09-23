@@ -232,6 +232,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 {
                     builder.AppendLine($"{indent}[Required]");
                 }
+                if (apiField.Deprecation != null)
+                {
+                    builder.AppendLine(apiField.Deprecation.ToCSharpDeprecation());
+                }
                 builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
                 
                 builder.Append($"{indent}public ");
@@ -258,6 +262,10 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 if (!apiField.Optional && !apiField.Type.Nullable)
                 {
                     builder.AppendLine($"{indent}[Required]");
+                }
+                if (apiField.Deprecation != null)
+                {
+                    builder.AppendLine(apiField.Deprecation.ToCSharpDeprecation());
                 }
                 builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
                 
