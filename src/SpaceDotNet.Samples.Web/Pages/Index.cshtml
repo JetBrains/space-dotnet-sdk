@@ -106,7 +106,7 @@
                         @foreach (var meeting in Model.MeetingsToday.OrderBy(it => it.OccurrenceRule.Start.AsDateTime()))
                         {
                             <li class="list-group-item">
-                                <small>@meeting.OccurrenceRule.Start.AsDateTime().ToString("hh:mm tt") - @meeting.OccurrenceRule.End.AsDateTime().ToString("hh:mm tt")</small><br/>
+                                <small>@meeting.OccurrenceRule.Start.AsDateTime().ToString("hh:mm tt") - @meeting.OccurrenceRule.End.AsDateTime().ToString("hh:mm tt") (@meeting.OccurrenceRule.Timezone.Id)</small><br/>
                                 @meeting.Summary
                                 
                                 @if (!string.IsNullOrEmpty(meeting.ConferenceLink))
