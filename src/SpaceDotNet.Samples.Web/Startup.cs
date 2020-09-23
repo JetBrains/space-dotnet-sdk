@@ -52,11 +52,12 @@ namespace SpaceDotNet.Samples.Web
             // Space client API
             services.AddSpaceClientApi();
             
-            // Space webhook receiver
+            // Space webhook handler
             services.AddSpaceWebHookHandler<CateringWebHookHandler>(options => Configuration.Bind("Space", options));
-            
+            services.AddHostedService<CateringWebHookHandlerStartupTask>();
+
             // - or: -
-            // services.AddSpaceWebHookReceiver<CateringWebHookHandler>(options =>
+            // services.AddSpaceWebHookHandler<CateringWebHookHandler>(options =>
             // {
             //     options.EndpointSigningKey = Configuration["Space:EndpointSigningKey"];
             //     options.EndpointVerificationToken = Configuration["Space:EndpointVerificationToken"];

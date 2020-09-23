@@ -1,9 +1,12 @@
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using SpaceDotNet.AspNetCore.WebHooks;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
@@ -11,24 +14,57 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Samples.Web.WebHooks
 {
-    [UsedImplicitly]
-    public class CateringWebHookHandler : SpaceWebHookHandler
+    public class CateringWebHookHandlerStartupTask : BackgroundService
     {
-        private static readonly Dictionary<string, CateringSession> Sessions = new Dictionary<string, CateringSession>();
+        private readonly ServiceClient _serviceClient;
 
-        private readonly ChatClient _chatClient;
-        
-        public CateringWebHookHandler(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        public CateringWebHookHandlerStartupTask(IConfiguration configuration, IHttpClientFactory httpClientFactory)
         {
-            // NOTE: In the current application, the auto-wired Space clients will always act on behalf of the current user.
-            // To work with chat callbacks, we need to act on behalf of the application itself.
             var connection = new ClientCredentialsConnection(
                 configuration["Space:ServerUrl"],
                 configuration["Space:ClientId"],
                 configuration["Space:ClientSecret"],
                 httpClientFactory.CreateClient());
+            
+            _serviceClient = new ServiceClient(connection);
+        }
+        
+        /// <summary>
+        /// To register menu items in Space, we have to make a call
+        /// to <see cref="ServiceClient.RefreshMenuAsync"/> once in the application's lifetime.
+        ///
+        /// Space will then reach out to your application and will
+        /// invoke <see cref="SpaceWebHookHandler.HandleListMenuExtensionsAsync"/>.
+        ///
+        /// Note that ideally this is done as a startup task of some kind, as <see cref="ServiceClient.RefreshMenuAsync"/>
+        /// is an expensive call that only has to happen when available menu items change.
+        /// </summary>
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
+            await _serviceClient.RefreshMenuAsync(cancellationToken: stoppingToken);
+        }
+    }
+    
+    [UsedImplicitly]
+    public class CateringWebHookHandler : SpaceWebHookHandler
+    {
+        private static readonly ConcurrentDictionary<string, CateringSession> Sessions = new ConcurrentDictionary<string, CateringSession>();
+        private static ClientCredentialsConnection? _connection;
+        
+        private readonly ChatClient _chatClient;
 
-            _chatClient = new ChatClient(connection);
+        public CateringWebHookHandler(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        {
+            // NOTE: In the current application, the auto-wired Space clients will always act on behalf of the current user.
+            // To work with chat callbacks, we need to act on behalf of the application itself.
+            _connection ??= new ClientCredentialsConnection(
+                configuration["Space:ServerUrl"],
+                configuration["Space:ClientId"],
+                configuration["Space:ClientSecret"],
+                httpClientFactory.CreateClient());
+
+            _chatClient = new ChatClient(_connection);
         }
 
         public override async Task<Commands> HandleListCommandsAsync(ListCommandsPayload payload)
@@ -39,22 +75,25 @@ namespace SpaceDotNet.Samples.Web.WebHooks
             });
         }
 
-        public override async Task HandleMessageAsync(MessagePayload payload)
+        public override async Task<MenuExtensions> HandleListMenuExtensionsAsync(ListMenuExtensionsPayload payload)
         {
-            if (payload.Message.Body is ChatMessageText messageText && !string.IsNullOrEmpty(messageText.Text))
+            return new MenuExtensions();
+            // TIP: Remove menu items/update menu items by returning a different shape of collection
+            // return new MenuExtensions();
+            return new MenuExtensions(new List<MenuExtensionDetail>
             {
-                await _chatClient.Messages.SendMessageAsync(
-                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
-                    content: ChatMessage.Text("You said: " + messageText.Text),
-                    unfurlLinks: false);
-            }
-
+                new MenuExtensionDetail(MenuId.GlobalAddMenu.Value, "Catering request", "Request catering (demo)")
+            });
+        }
+        
+        public override async Task HandleMenuActionAsync(MenuActionPayload payload)
+        {
             var cateringSession = new CateringSession();
             Sessions[payload.UserId] = cateringSession;
             
             await SendOrEditMessageAsync(
-                channelId: payload.Message.ChannelId,
-                recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                channelId: null,
+                recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
                 content: ChatMessage.Block(
                     outline: new MessageOutline("Anything to eat or drink while we are on our way to Space?"),
                     messageData: "Anything to eat or drink while we are on our way to Space?",
@@ -75,6 +114,24 @@ namespace SpaceDotNet.Samples.Web.WebHooks
                     },
                     style: MessageStyle.PRIMARY),
                 cateringSession: cateringSession);
+        }
+
+        public override async Task HandleMessageAsync(MessagePayload payload)
+        {
+            if (payload.Message.Body is ChatMessageText messageText && !string.IsNullOrEmpty(messageText.Text))
+            {
+                await _chatClient.Messages.SendMessageAsync(
+                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                    content: ChatMessage.Text("You said: " + messageText.Text),
+                    unfurlLinks: false);
+            }
+            else
+            {
+                await _chatClient.Messages.SendMessageAsync(
+                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                    content: ChatMessage.Text("You said many things!"),
+                    unfurlLinks: false);
+            }
         }
 
         public override async Task HandleMessageActionAsync(MessageActionPayload payload)
@@ -236,7 +293,7 @@ namespace SpaceDotNet.Samples.Web.WebHooks
                         style: MessageStyle.PRIMARY),
                     cateringSession: cateringSession);
 
-                Sessions.Remove(payload.UserId);
+                Sessions.TryRemove(payload.UserId, out _);
             }
         }
 
