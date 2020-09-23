@@ -77,12 +77,11 @@ namespace SpaceDotNet.Samples.Web.WebHooks
 
         public override async Task<MenuExtensions> HandleListMenuExtensionsAsync(ListMenuExtensionsPayload payload)
         {
-            return new MenuExtensions();
             // TIP: Remove menu items/update menu items by returning a different shape of collection
             // return new MenuExtensions();
             return new MenuExtensions(new List<MenuExtensionDetail>
             {
-                new MenuExtensionDetail(MenuId.GlobalAddMenu.Value, "Catering request", "Request catering (demo)")
+                new MenuExtensionDetail(MenuId.Global.Add.Value, "Catering request", "Request catering (demo)")
             });
         }
         
