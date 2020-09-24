@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SpaceDotNet.Common.Utilities;
 using SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions;
 using SpaceDotNet.Generator.Model.HttpApi;
 
@@ -60,7 +61,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 var expectedPayload = node.Context?.ToCSharpType(_context) ?? string.Empty;
                 
                 builder.AppendLine($"{indent}/// <summary>");
-                builder.AppendLine($"{indent}/// Adds a menu item in the \"{node.Prefix}\" menu.");
+                builder.AppendLine($"{indent}/// The \"{node.Prefix}\" menu.");
                 if (!string.IsNullOrEmpty(expectedPayload) && expectedPayload != CSharpType.Object.Value)
                 {
                     builder.AppendLine($"{indent}///");
@@ -104,8 +105,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             {
                 Prefix = prefix.TrimEnd('.'),
                 Children = children
-                    .Where(it => string.IsNullOrEmpty(prefix) || it.MenuId.StartsWith(prefix + ".") || it.MenuId == prefix)
-                    .GroupBy(it => new string(it.MenuId.Substring(string.IsNullOrEmpty(prefix) ? 0 : Math.Min(prefix.Length + 1, it.MenuId.Length)).TakeWhile(c => c != '.').ToArray()))
+                    .Where(it => string.IsNullOrEmpty(prefix) || it.MenuId.StartsWith($"{prefix}.") || it.MenuId == prefix)
+                    .GroupBy(it => it.MenuId.RemovePrefix($"{prefix}.").SubstringBefore("."))
                     .Select(it => BuildTree(string.IsNullOrEmpty(prefix) ? it.Key : $"{prefix}.{it.Key}", it))
                     .ToList(),
                 Context = children.FirstOrDefault(it => it.MenuId == prefix)?.Context
