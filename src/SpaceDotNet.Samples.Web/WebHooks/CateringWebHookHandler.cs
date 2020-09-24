@@ -5,8 +5,8 @@ using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Options;
 using SpaceDotNet.AspNetCore.WebHooks;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
@@ -18,12 +18,13 @@ namespace SpaceDotNet.Samples.Web.WebHooks
     {
         private readonly ServiceClient _serviceClient;
 
-        public CateringWebHookHandlerStartupTask(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        public CateringWebHookHandlerStartupTask(IOptionsFactory<SpaceWebHookOptions> optionsFactory, IHttpClientFactory httpClientFactory)
         {
+            var options = optionsFactory.Create(nameof(CateringWebHookHandler));
             var connection = new ClientCredentialsConnection(
-                configuration["Space:ServerUrl"],
-                configuration["Space:ClientId"],
-                configuration["Space:ClientSecret"],
+                options.ServerUrl ?? throw new ArgumentNullException(nameof(SpaceWebHookOptions.ServerUrl), "Server URL is not specified."),
+                options.ClientId ?? throw new ArgumentNullException(nameof(SpaceWebHookOptions.ServerUrl), "Client ID is not specified."),
+                options.ClientSecret ?? throw new ArgumentNullException(nameof(SpaceWebHookOptions.ServerUrl), "Client secret is not specified."),
                 httpClientFactory.CreateClient());
             
             _serviceClient = new ServiceClient(connection);
@@ -54,14 +55,16 @@ namespace SpaceDotNet.Samples.Web.WebHooks
         
         private readonly ChatClient _chatClient;
 
-        public CateringWebHookHandler(IConfiguration configuration, IHttpClientFactory httpClientFactory)
+        public CateringWebHookHandler(IOptionsFactory<SpaceWebHookOptions> optionsFactory, IHttpClientFactory httpClientFactory)
         {
+            var options = optionsFactory.Create(nameof(CateringWebHookHandler));
+            
             // NOTE: In the current application, the auto-wired Space clients will always act on behalf of the current user.
             // To work with chat callbacks, we need to act on behalf of the application itself.
             _connection ??= new ClientCredentialsConnection(
-                configuration["Space:ServerUrl"],
-                configuration["Space:ClientId"],
-                configuration["Space:ClientSecret"],
+                options.ServerUrl ?? throw new ArgumentNullException(nameof(SpaceWebHookOptions.ServerUrl), "Server URL is not specified."),
+                options.ClientId ?? throw new ArgumentNullException(nameof(SpaceWebHookOptions.ServerUrl), "Client ID is not specified."),
+                options.ClientSecret ?? throw new ArgumentNullException(nameof(SpaceWebHookOptions.ServerUrl), "Client secret is not specified."),
                 httpClientFactory.CreateClient());
 
             _chatClient = new ChatClient(_connection);
