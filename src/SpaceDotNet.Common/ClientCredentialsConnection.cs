@@ -26,10 +26,7 @@ namespace SpaceDotNet.Common
         /// <param name="clientId">The client id to use while authenticating.</param>
         /// <param name="clientSecret">The client secret to use while authenticating.</param>
         /// <param name="httpClient">HTTP client to use for communication.</param>
-        /// <exception cref="ArgumentException">
-        /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
-        /// </exception>
-        public ClientCredentialsConnection(string serverUrl, string clientId, string clientSecret, HttpClient? httpClient = null)
+        public ClientCredentialsConnection(Uri serverUrl, string clientId, string clientSecret, HttpClient? httpClient = null)
             : base(serverUrl, httpClient)
         {
             _clientId = clientId;

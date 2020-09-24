@@ -57,7 +57,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
             }
             
             return new BearerTokenConnection(
-                spaceOptions.ServerUrl.ToString(), 
+                spaceOptions.ServerUrl, 
                 new AuthenticationTokens(accessToken),
                 _httpClientFactory.CreateClient());
         }

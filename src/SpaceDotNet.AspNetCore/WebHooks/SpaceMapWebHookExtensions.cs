@@ -30,7 +30,7 @@ namespace Microsoft.AspNetCore.Builder
                     controller = nameof(SpaceWebHookController).Replace("Controller", string.Empty),
                     action = nameof(SpaceWebHookController.Receive),
                     handlerType = typeof(TWebHookHandler), // RouteKeyConstants.HandlerType
-                    optionsName = "Space_" + typeof(TWebHookHandler).Name // RouteKeyConstants.OptionsName
+                    optionsName = typeof(TWebHookHandler).Name // RouteKeyConstants.OptionsName
                 });
         }
     }

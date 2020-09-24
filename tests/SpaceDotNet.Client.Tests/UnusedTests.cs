@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Threading.Tasks;
 using SpaceDotNet.Client.TDMemberProfilePartialBuilder;
@@ -13,7 +14,7 @@ namespace SpaceDotNet.Client.Tests
         public async Task UnusedTestAsync()
         {
             var connection = new ClientCredentialsConnection(
-                "TODO",
+                new Uri("TODO"), 
                 "TODO",
                 "TODO",
                 new HttpClient());

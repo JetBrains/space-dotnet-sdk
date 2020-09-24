@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 
 namespace SpaceDotNet.AspNetCore.WebHooks
@@ -9,12 +10,27 @@ namespace SpaceDotNet.AspNetCore.WebHooks
     public class SpaceWebHookOptions
     {
         /// <summary>
-        /// Endpoint signing key. This can be found on your application's endpoint registration in Space.
+        /// Gets or sets the Space organization URL.
+        /// </summary>
+        public Uri? ServerUrl { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the provider-assigned client id.
+        /// </summary>
+        public string? ClientId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the provider-assigned client secret.
+        /// </summary>
+        public string? ClientSecret { get; set; }
+        
+        /// <summary>
+        /// Gets or sets the endpoint signing key. This can be found on your application's endpoint registration in Space.
         /// </summary>
         public string EndpointSigningKey { get; set; } = default!;
 
         /// <summary>
-        /// Endpoint verification token. This can be found on your application's endpoint registration in Space.
+        /// Gets or sets the endpoint verification token. This can be found on your application's endpoint registration in Space.
         /// </summary>
         public string EndpointVerificationToken { get; set; } = default!;
 

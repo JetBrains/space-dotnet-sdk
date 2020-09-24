@@ -41,7 +41,7 @@ namespace SpaceDotNet.Generator
             
             // Metadata
             var connection = new ClientCredentialsConnection(
-                Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!,
+                new Uri(Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!), 
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_ID")!,
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_SECRET")!,
                 httpClient);

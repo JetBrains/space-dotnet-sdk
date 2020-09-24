@@ -36,26 +36,10 @@ namespace SpaceDotNet.Common
         /// Creates an instance of the <see cref="Connection" /> class.
         /// </summary>
         /// <param name="serverUrl">Space organization URL that will be connected against.</param>
-        /// <exception cref="ArgumentException">
-        /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid and absolute <see cref="T:System.Uri" />.
-        /// </exception>
-        protected Connection(string serverUrl)
+        protected Connection(Uri serverUrl)
         {
-            if (string.IsNullOrEmpty(serverUrl)
-                || !Uri.TryCreate(EnsureTrailingSlash(serverUrl), UriKind.Absolute, out var serverUri))
-            {
-                throw new ArgumentException("The Space organization URL is invalid.", nameof(serverUrl));
-            }
-
-            ServerUrl = serverUri;
+            ServerUrl = serverUrl;
         }
-        
-        /// <summary>
-        /// Ensures a trailing slash is present for the given string.
-        /// </summary>
-        /// <param name="url">URL represented as a <see cref="T:System.String" /></param>
-        /// <returns>A <see cref="T:System.String" /> with trailing slash based on <paramref name="url" />.</returns>
-        private static string EnsureTrailingSlash(string url) => !url.EndsWith("/") ? url + "/" : url;
 
         /// <summary>
         /// Clean nullable null query string parameters - Space API requires nullable null values to not be present as part of the URL.

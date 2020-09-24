@@ -24,7 +24,7 @@ namespace Microsoft.Extensions.DependencyInjection
             where TWebHookHandler : class, ISpaceWebHookHandler
         {
             // Options
-            var optionsName = "Space_" + typeof(TWebHookHandler).Name;
+            var optionsName = typeof(TWebHookHandler).Name;
             services.Configure(optionsName, configureOptions);
             
             services.AddOptions<SpaceWebHookOptions>(optionsName)
