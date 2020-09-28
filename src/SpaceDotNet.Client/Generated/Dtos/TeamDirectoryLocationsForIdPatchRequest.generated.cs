@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryLocationsForIdPatchRequest() { }
         
-        public TeamDirectoryLocationsForIdPatchRequest(string? name = null, string? timezone = null, bool? customWorkdays = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null, string? mapId = null)
+        public TeamDirectoryLocationsForIdPatchRequest(string? name = null, string? timezone = null, bool? customWorkdays = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null, string? mapId = null, int? capacity = null)
         {
             Name = name;
             Timezone = timezone;
@@ -43,6 +43,7 @@ namespace SpaceDotNet.Client
             Type = type;
             ParentId = parentId;
             MapId = mapId;
+            Capacity = capacity;
         }
         
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Name));
@@ -153,6 +154,15 @@ namespace SpaceDotNet.Client
             set { _mapId.SetValue(value); }
         }
     
+        private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TeamDirectoryLocationsForIdPatchRequest), nameof(Capacity));
+        
+        [JsonPropertyName("capacity")]
+        public int? Capacity
+        {
+            get { return _capacity.GetValue(); }
+            set { _capacity.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
@@ -167,6 +177,7 @@ namespace SpaceDotNet.Client
             _type.SetAccessPath(path, validateHasBeenSet);
             _parentId.SetAccessPath(path, validateHasBeenSet);
             _mapId.SetAccessPath(path, validateHasBeenSet);
+            _capacity.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

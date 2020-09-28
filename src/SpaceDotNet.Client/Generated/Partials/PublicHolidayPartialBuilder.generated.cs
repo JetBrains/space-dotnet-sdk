@@ -44,6 +44,9 @@ namespace SpaceDotNet.Client.PublicHolidayPartialBuilder
         public static Partial<PublicHoliday> WithIsWorkingDay(this Partial<PublicHoliday> it)
             => it.AddFieldName("workingDay");
         
+        public static Partial<PublicHoliday> WithIsHalfDay(this Partial<PublicHoliday> it)
+            => it.AddFieldName("halfDay");
+        
     }
     
 }

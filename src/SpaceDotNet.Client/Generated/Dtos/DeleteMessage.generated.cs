@@ -24,27 +24,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class ESPackageRepositorySettings
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class DeleteMessage
+         : ChatModification, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "ES_PackageRepositorySettings";
+        public override string? ClassName => "DeleteMessage";
         
-        public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags)
-            => new ESContainerRegistrySettings(immutableTags: immutableTags);
+        public DeleteMessage() { }
         
-        public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots)
-            => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots);
-        
-        public static ESNpmRegistrySettings ESNpmRegistrySettings()
-            => new ESNpmRegistrySettings();
-        
-        public static ESNuGetFeedSettings ESNuGetFeedSettings()
-            => new ESNuGetFeedSettings();
-        
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public DeleteMessage(string id)
         {
+            Id = id;
+        }
+        
+        private PropertyValue<string> _id = new PropertyValue<string>(nameof(DeleteMessage), nameof(Id));
+        
+        [Required]
+        [JsonPropertyName("id")]
+        public string Id
+        {
+            get { return _id.GetValue(); }
+            set { _id.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _id.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

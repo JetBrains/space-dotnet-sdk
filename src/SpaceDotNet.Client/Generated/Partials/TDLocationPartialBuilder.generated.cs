@@ -74,6 +74,9 @@ namespace SpaceDotNet.Client.TDLocationPartialBuilder
         public static Partial<TDLocation> WithMapId(this Partial<TDLocation> it)
             => it.AddFieldName("mapId");
         
+        public static Partial<TDLocation> WithCapacity(this Partial<TDLocation> it)
+            => it.AddFieldName("capacity");
+        
         public static Partial<TDLocation> WithChannelId(this Partial<TDLocation> it)
             => it.AddFieldName("channelId");
         

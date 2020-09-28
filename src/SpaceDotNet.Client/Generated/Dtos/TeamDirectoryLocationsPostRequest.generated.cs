@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryLocationsPostRequest() { }
         
-        public TeamDirectoryLocationsPostRequest(string name, string? timezone = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null)
+        public TeamDirectoryLocationsPostRequest(string name, string? timezone = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null, int? capacity = null)
         {
             Name = name;
             Timezone = timezone;
@@ -41,6 +41,7 @@ namespace SpaceDotNet.Client
             Address = address;
             Type = type;
             ParentId = parentId;
+            Capacity = capacity;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TeamDirectoryLocationsPostRequest), nameof(Name));
@@ -134,6 +135,15 @@ namespace SpaceDotNet.Client
             set { _parentId.SetValue(value); }
         }
     
+        private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Capacity));
+        
+        [JsonPropertyName("capacity")]
+        public int? Capacity
+        {
+            get { return _capacity.GetValue(); }
+            set { _capacity.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
@@ -146,6 +156,7 @@ namespace SpaceDotNet.Client
             _address.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _parentId.SetAccessPath(path, validateHasBeenSet);
+            _capacity.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -22,12 +22,12 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESMavenRepositorySettingsPartialBuilder
+namespace SpaceDotNet.Client.DeleteMessagePartialBuilder
 {
-    public static class ESMavenRepositorySettingsPartialExtensions
+    public static class DeleteMessagePartialExtensions
     {
-        public static Partial<ESMavenRepositorySettings> WithIsEnableSnapshots(this Partial<ESMavenRepositorySettings> it)
-            => it.AddFieldName("enableSnapshots");
+        public static Partial<DeleteMessage> WithId(this Partial<DeleteMessage> it)
+            => it.AddFieldName("id");
         
     }
     

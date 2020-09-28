@@ -74,6 +74,12 @@ namespace SpaceDotNet.Client.HAEndpointPartialBuilder
         public static Partial<HAEndpoint> WithDeprecation(this Partial<HAEndpoint> it, Func<Partial<HADeprecation>, Partial<HADeprecation>> partialBuilder)
             => it.AddFieldName("deprecation", partialBuilder(new Partial<HADeprecation>(it)));
         
+        public static Partial<HAEndpoint> WithRights(this Partial<HAEndpoint> it)
+            => it.AddFieldName("rights");
+        
+        public static Partial<HAEndpoint> WithRights(this Partial<HAEndpoint> it, Func<Partial<HARight>, Partial<HARight>> partialBuilder)
+            => it.AddFieldName("rights", partialBuilder(new Partial<HARight>(it)));
+        
     }
     
 }

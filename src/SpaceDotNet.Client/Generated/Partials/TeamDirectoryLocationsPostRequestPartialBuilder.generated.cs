@@ -56,6 +56,9 @@ namespace SpaceDotNet.Client.TeamDirectoryLocationsPostRequestPartialBuilder
         public static Partial<TeamDirectoryLocationsPostRequest> WithParentId(this Partial<TeamDirectoryLocationsPostRequest> it)
             => it.AddFieldName("parentId");
         
+        public static Partial<TeamDirectoryLocationsPostRequest> WithCapacity(this Partial<TeamDirectoryLocationsPostRequest> it)
+            => it.AddFieldName("capacity");
+        
     }
     
 }

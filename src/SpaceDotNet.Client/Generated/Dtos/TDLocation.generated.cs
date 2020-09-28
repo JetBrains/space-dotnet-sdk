@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public TDLocation() { }
         
-        public TDLocation(string id, string name, List<string> phones, List<string> emails, string type, bool archived, ATimeZoneWithOffset? timezone = null, string? tz = null, List<int>? workdays = null, List<string>? equipment = null, string? description = null, string? address = null, TDLocation? parent = null, string? mapId = null, string? channelId = null)
+        public TDLocation(string id, string name, List<string> phones, List<string> emails, string type, bool archived, ATimeZoneWithOffset? timezone = null, string? tz = null, List<int>? workdays = null, List<string>? equipment = null, string? description = null, string? address = null, TDLocation? parent = null, string? mapId = null, int? capacity = null, string? channelId = null)
         {
             Id = id;
             Name = name;
@@ -44,6 +44,7 @@ namespace SpaceDotNet.Client
             Parent = parent;
             Type = type;
             MapId = mapId;
+            Capacity = capacity;
             ChannelId = channelId;
             IsArchived = archived;
         }
@@ -171,6 +172,15 @@ namespace SpaceDotNet.Client
             set { _mapId.SetValue(value); }
         }
     
+        private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TDLocation), nameof(Capacity));
+        
+        [JsonPropertyName("capacity")]
+        public int? Capacity
+        {
+            get { return _capacity.GetValue(); }
+            set { _capacity.SetValue(value); }
+        }
+    
         private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(TDLocation), nameof(ChannelId));
         
         [JsonPropertyName("channelId")]
@@ -205,6 +215,7 @@ namespace SpaceDotNet.Client
             _parent.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _mapId.SetAccessPath(path, validateHasBeenSet);
+            _capacity.SetAccessPath(path, validateHasBeenSet);
             _channelId.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }

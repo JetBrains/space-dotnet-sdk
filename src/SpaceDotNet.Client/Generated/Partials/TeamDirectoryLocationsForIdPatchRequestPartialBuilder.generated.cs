@@ -62,6 +62,9 @@ namespace SpaceDotNet.Client.TeamDirectoryLocationsForIdPatchRequestPartialBuild
         public static Partial<TeamDirectoryLocationsForIdPatchRequest> WithMapId(this Partial<TeamDirectoryLocationsForIdPatchRequest> it)
             => it.AddFieldName("mapId");
         
+        public static Partial<TeamDirectoryLocationsForIdPatchRequest> WithCapacity(this Partial<TeamDirectoryLocationsForIdPatchRequest> it)
+            => it.AddFieldName("capacity");
+        
     }
     
 }

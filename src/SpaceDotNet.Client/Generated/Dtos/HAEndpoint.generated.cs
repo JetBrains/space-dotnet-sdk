@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public HAEndpoint() { }
         
-        public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADeprecation? deprecation = null)
+        public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADeprecation? deprecation = null, List<HARight>? rights = null)
         {
             Resource = resource;
             Method = method;
@@ -40,6 +40,7 @@ namespace SpaceDotNet.Client
             DisplayName = displayName;
             Doc = doc;
             Deprecation = deprecation;
+            Rights = rights;
         }
         
         private PropertyValue<HAResource> _resource = new PropertyValue<HAResource>(nameof(HAEndpoint), nameof(Resource));
@@ -128,6 +129,15 @@ namespace SpaceDotNet.Client
             set { _deprecation.SetValue(value); }
         }
     
+        private PropertyValue<List<HARight>?> _rights = new PropertyValue<List<HARight>?>(nameof(HAEndpoint), nameof(Rights));
+        
+        [JsonPropertyName("rights")]
+        public List<HARight>? Rights
+        {
+            get { return _rights.GetValue(); }
+            set { _rights.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _resource.SetAccessPath(path, validateHasBeenSet);
@@ -139,6 +149,7 @@ namespace SpaceDotNet.Client
             _displayName.SetAccessPath(path, validateHasBeenSet);
             _doc.SetAccessPath(path, validateHasBeenSet);
             _deprecation.SetAccessPath(path, validateHasBeenSet);
+            _rights.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

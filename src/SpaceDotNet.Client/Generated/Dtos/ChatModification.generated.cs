@@ -25,23 +25,25 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public abstract class ESPackageRepositorySettings
+    public class ChatModification
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public virtual string? ClassName => "ES_PackageRepositorySettings";
+        public virtual string? ClassName => "ChatModification";
         
-        public static ESContainerRegistrySettings ESContainerRegistrySettings(bool immutableTags)
-            => new ESContainerRegistrySettings(immutableTags: immutableTags);
+        public static DeleteMessage DeleteMessage(string id)
+            => new DeleteMessage(id: id);
         
-        public static ESMavenRepositorySettings ESMavenRepositorySettings(bool enableSnapshots)
-            => new ESMavenRepositorySettings(enableSnapshots: enableSnapshots);
+        public static EditMessage EditMessage(string text, string id, List<Attachment>? attachments = null)
+            => new EditMessage(text: text, id: id, attachments: null);
         
-        public static ESNpmRegistrySettings ESNpmRegistrySettings()
-            => new ESNpmRegistrySettings();
+        public static NewMessage NewMessage(string text, string temporaryId, bool pending, List<Attachment>? attachments = null, string? draftTag = null)
+            => new NewMessage(text: text, temporaryId: temporaryId, pending: pending, attachments: null, draftTag: null);
         
-        public static ESNuGetFeedSettings ESNuGetFeedSettings()
-            => new ESNuGetFeedSettings();
+        public static PublishMessage PublishMessage(string id)
+            => new PublishMessage(id: id);
+        
+        public ChatModification() { }
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

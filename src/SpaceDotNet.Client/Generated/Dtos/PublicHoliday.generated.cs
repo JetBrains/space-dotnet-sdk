@@ -29,13 +29,14 @@ namespace SpaceDotNet.Client
     {
         public PublicHoliday() { }
         
-        public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, SpaceDate date, bool workingDay)
+        public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, SpaceDate date, bool workingDay, bool? halfDay = null)
         {
             Id = id;
             Calendar = calendar;
             Name = name;
             Date = date;
             IsWorkingDay = workingDay;
+            IsHalfDay = halfDay;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PublicHoliday), nameof(Id));
@@ -88,6 +89,15 @@ namespace SpaceDotNet.Client
             set { _workingDay.SetValue(value); }
         }
     
+        private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHoliday), nameof(IsHalfDay));
+        
+        [JsonPropertyName("halfDay")]
+        public bool? IsHalfDay
+        {
+            get { return _halfDay.GetValue(); }
+            set { _halfDay.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -95,6 +105,7 @@ namespace SpaceDotNet.Client
             _name.SetAccessPath(path, validateHasBeenSet);
             _date.SetAccessPath(path, validateHasBeenSet);
             _workingDay.SetAccessPath(path, validateHasBeenSet);
+            _halfDay.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

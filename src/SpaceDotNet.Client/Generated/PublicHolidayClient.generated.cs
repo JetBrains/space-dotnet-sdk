@@ -111,13 +111,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Add a holiday to a public holiday calendar, and specify if it is a working day or not.
             /// </summary>
-            public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, SpaceDate date, bool workingDay, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, SpaceDate date, bool workingDay, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<PublicHolidaysHolidaysPostRequest, PublicHoliday>("POST", $"api/http/public-holidays/holidays?$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", 
                     new PublicHolidaysHolidaysPostRequest { 
                         Calendar = calendar,
                         Name = name,
                         Date = date,
                         IsWorkingDay = workingDay,
+                        IsHalfDay = halfDay,
                     }
             , cancellationToken);
         
@@ -136,13 +137,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, SpaceDate? date = null, bool? workingDay = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, SpaceDate? date = null, bool? workingDay = null, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<PublicHolidaysHolidaysForIdPatchRequest, PublicHoliday>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", 
                     new PublicHolidaysHolidaysForIdPatchRequest { 
                         Calendar = calendar,
                         Name = name,
                         Date = date,
                         IsWorkingDay = workingDay,
+                        IsHalfDay = halfDay,
                     }
             , cancellationToken);
         

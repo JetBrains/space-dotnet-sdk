@@ -22,12 +22,15 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESMavenRepositorySettingsPartialBuilder
+namespace SpaceDotNet.Client.HARightPartialBuilder
 {
-    public static class ESMavenRepositorySettingsPartialExtensions
+    public static class HARightPartialExtensions
     {
-        public static Partial<ESMavenRepositorySettings> WithIsEnableSnapshots(this Partial<ESMavenRepositorySettings> it)
-            => it.AddFieldName("enableSnapshots");
+        public static Partial<HARight> WithTitle(this Partial<HARight> it)
+            => it.AddFieldName("title");
+        
+        public static Partial<HARight> WithDescription(this Partial<HARight> it)
+            => it.AddFieldName("description");
         
     }
     

@@ -32,8 +32,24 @@ namespace SpaceDotNet.Client
         
         public ESMavenRepositorySettings() { }
         
+        public ESMavenRepositorySettings(bool enableSnapshots)
+        {
+            IsEnableSnapshots = enableSnapshots;
+        }
+        
+        private PropertyValue<bool> _enableSnapshots = new PropertyValue<bool>(nameof(ESMavenRepositorySettings), nameof(IsEnableSnapshots));
+        
+        [Required]
+        [JsonPropertyName("enableSnapshots")]
+        public bool IsEnableSnapshots
+        {
+            get { return _enableSnapshots.GetValue(); }
+            set { _enableSnapshots.SetValue(value); }
+        }
+    
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _enableSnapshots.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

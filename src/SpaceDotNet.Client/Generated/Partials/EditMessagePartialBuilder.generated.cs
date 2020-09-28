@@ -22,12 +22,21 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ESMavenRepositorySettingsPartialBuilder
+namespace SpaceDotNet.Client.EditMessagePartialBuilder
 {
-    public static class ESMavenRepositorySettingsPartialExtensions
+    public static class EditMessagePartialExtensions
     {
-        public static Partial<ESMavenRepositorySettings> WithIsEnableSnapshots(this Partial<ESMavenRepositorySettings> it)
-            => it.AddFieldName("enableSnapshots");
+        public static Partial<EditMessage> WithText(this Partial<EditMessage> it)
+            => it.AddFieldName("text");
+        
+        public static Partial<EditMessage> WithId(this Partial<EditMessage> it)
+            => it.AddFieldName("id");
+        
+        public static Partial<EditMessage> WithAttachments(this Partial<EditMessage> it)
+            => it.AddFieldName("attachments");
+        
+        public static Partial<EditMessage> WithAttachments(this Partial<EditMessage> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
         
     }
     
