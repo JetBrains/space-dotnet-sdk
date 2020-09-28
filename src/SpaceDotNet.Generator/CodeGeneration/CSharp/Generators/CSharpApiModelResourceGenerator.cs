@@ -421,6 +421,17 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     indent.Wrap(
                         apiEndpoint.Documentation.ToCSharpDocumentationComment()));
             }
+
+            if (apiEndpoint.Rights != null && apiEndpoint.Rights.Count > 0)
+            {
+                builder.AppendLine($"{indent}/// <remarks>");
+                builder.AppendLine($"{indent}/// Required permissions:<br/>");
+                foreach (var apiRight in apiEndpoint.Rights)
+                {
+                    builder.AppendLine($"{indent}/// * {apiRight.Title} {(!string.IsNullOrEmpty(apiRight.Description) ? "(" + apiRight.Description + ")" : "")}<br/>");
+                }
+                builder.AppendLine($"{indent}/// </remarks>");
+            }
             
             // Attributes
             if (apiEndpoint.Deprecation != null)
