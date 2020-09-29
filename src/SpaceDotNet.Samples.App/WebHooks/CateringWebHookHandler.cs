@@ -27,12 +27,11 @@ namespace SpaceDotNet.Samples.App.WebHooks
         /// Space will then reach out to your application and will
         /// invoke <see cref="SpaceWebHookHandler.HandleListMenuExtensionsAsync"/>.
         ///
-        /// Note that ideally this is done as a startup task of some kind, as <see cref="ServiceClient.RefreshMenuAsync"/>
+        /// Note that ideally this is done just after startup, as <see cref="ServiceClient.RefreshMenuAsync"/>
         /// is an expensive call that only has to happen when available menu items change.
         /// </summary>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await Task.Delay(TimeSpan.FromSeconds(10), stoppingToken);
             await _serviceClient.RefreshMenuAsync(cancellationToken: stoppingToken);
         }
     }
@@ -88,7 +87,8 @@ namespace SpaceDotNet.Samples.App.WebHooks
                                 MessageElement.MessageText("Anything to eat or drink while we are on our way to Space?"),
                                 MessageElement.MessageControlGroup(new List<MessageControlElement>
                                 {
-                                    MessageControlElement.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, MessageAction.Post("catering-start", ""))
+                                    MessageControlElement.MessageButton("Yes, please", MessageButtonStyle.PRIMARY, 
+                                        MessageAction.Post("catering-start", ""))
                                 })
                             }
                         }
