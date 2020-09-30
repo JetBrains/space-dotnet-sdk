@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <!-- LAMBDA: Add package reference -->
+        <PackageReference Include="Amazon.Lambda.AspNetCoreServer" Version="5.1.5" />
+        
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SpaceDotNet.AspNetCore\SpaceDotNet.AspNetCore.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
+      <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
+    </ItemGroup>
+
+</Project>
