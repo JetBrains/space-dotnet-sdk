@@ -44,12 +44,13 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<BusinessEntity> CreateANewBusinessEntityAsync(string name, string locationId, int? vacationAllowance = null, Func<Partial<BusinessEntity>, Partial<BusinessEntity>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<BusinessEntity> CreateANewBusinessEntityAsync(string name, string locationId, int? vacationAllowance = null, int? vacationApplicationDeadline = null, Func<Partial<BusinessEntity>, Partial<BusinessEntity>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<HrmBusinessEntitiesPostRequest, BusinessEntity>("POST", $"api/http/hrm/business-entities?$fields={(partial != null ? partial(new Partial<BusinessEntity>()) : Partial<BusinessEntity>.Default())}", 
                     new HrmBusinessEntitiesPostRequest { 
                         Name = name,
                         LocationId = locationId,
                         VacationAllowance = vacationAllowance,
+                        VacationApplicationDeadline = vacationApplicationDeadline,
                     }
             , cancellationToken);
         
@@ -59,12 +60,13 @@ namespace SpaceDotNet.Client
             public async Task<BusinessEntity> GetExistingBusinessEntityByItsIdAsync(string id, Func<Partial<BusinessEntity>, Partial<BusinessEntity>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<BusinessEntity>("GET", $"api/http/hrm/business-entities/{id}?$fields={(partial != null ? partial(new Partial<BusinessEntity>()) : Partial<BusinessEntity>.Default())}", cancellationToken);
         
-            public async Task<BusinessEntity> UpdateExistingBusinessEntityAsync(string id, string name, string locationId, int? vacationAllowance = null, Func<Partial<BusinessEntity>, Partial<BusinessEntity>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<BusinessEntity> UpdateExistingBusinessEntityAsync(string id, string name, string locationId, int? vacationAllowance = null, int? vacationApplicationDeadline = null, Func<Partial<BusinessEntity>, Partial<BusinessEntity>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<HrmBusinessEntitiesForIdPatchRequest, BusinessEntity>("PATCH", $"api/http/hrm/business-entities/{id}?$fields={(partial != null ? partial(new Partial<BusinessEntity>()) : Partial<BusinessEntity>.Default())}", 
                     new HrmBusinessEntitiesForIdPatchRequest { 
                         Name = name,
                         LocationId = locationId,
                         VacationAllowance = vacationAllowance,
+                        VacationApplicationDeadline = vacationApplicationDeadline,
                     }
             , cancellationToken);
         

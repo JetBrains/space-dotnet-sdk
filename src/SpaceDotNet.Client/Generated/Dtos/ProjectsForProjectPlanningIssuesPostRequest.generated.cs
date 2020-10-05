@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
         {
             Title = title;
             Description = description;
@@ -42,6 +42,7 @@ namespace SpaceDotNet.Client
             Attachments = (attachments ?? new List<Attachment>());
             ImportInfo = importInfo;
             FromMessage = fromMessage;
+            CustomFields = customFields;
         }
         
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(Title));
@@ -145,6 +146,15 @@ namespace SpaceDotNet.Client
             set { _fromMessage.SetValue(value); }
         }
     
+        private PropertyValue<List<CustomFieldValue>?> _customFields = new PropertyValue<List<CustomFieldValue>?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(CustomFields));
+        
+        [JsonPropertyName("customFields")]
+        public List<CustomFieldValue>? CustomFields
+        {
+            get { return _customFields.GetValue(); }
+            set { _customFields.SetValue(value); }
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -158,6 +168,7 @@ namespace SpaceDotNet.Client
             _attachments.SetAccessPath(path, validateHasBeenSet);
             _importInfo.SetAccessPath(path, validateHasBeenSet);
             _fromMessage.SetAccessPath(path, validateHasBeenSet);
+            _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

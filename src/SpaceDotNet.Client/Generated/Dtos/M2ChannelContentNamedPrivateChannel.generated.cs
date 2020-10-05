@@ -32,10 +32,11 @@ namespace SpaceDotNet.Client
         
         public M2ChannelContentNamedPrivateChannel() { }
         
-        public M2ChannelContentNamedPrivateChannel(string name, ChannelSpecificDefaults? notificationDefaults = null)
+        public M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null)
         {
             Name = name;
             NotificationDefaults = notificationDefaults;
+            CanHaveThreads = canHaveThreads;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(M2ChannelContentNamedPrivateChannel), nameof(Name));
@@ -57,10 +58,21 @@ namespace SpaceDotNet.Client
             set { _notificationDefaults.SetValue(value); }
         }
     
+        private PropertyValue<bool> _canHaveThreads = new PropertyValue<bool>(nameof(M2ChannelContentNamedPrivateChannel), nameof(CanHaveThreads));
+        
+        [Required]
+        [JsonPropertyName("canHaveThreads")]
+        public bool CanHaveThreads
+        {
+            get { return _canHaveThreads.GetValue(); }
+            set { _canHaveThreads.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _notificationDefaults.SetAccessPath(path, validateHasBeenSet);
+            _canHaveThreads.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

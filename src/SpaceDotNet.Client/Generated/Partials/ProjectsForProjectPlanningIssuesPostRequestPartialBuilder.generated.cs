@@ -71,6 +71,12 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesPostRequestPartialB
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<MessageLink>, Partial<MessageLink>> partialBuilder)
             => it.AddFieldName("fromMessage", partialBuilder(new Partial<MessageLink>(it)));
         
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
+            => it.AddFieldName("customFields");
+        
+        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithCustomFields(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<CustomFieldValue>, Partial<CustomFieldValue>> partialBuilder)
+            => it.AddFieldName("customFields", partialBuilder(new Partial<CustomFieldValue>(it)));
+        
     }
     
 }

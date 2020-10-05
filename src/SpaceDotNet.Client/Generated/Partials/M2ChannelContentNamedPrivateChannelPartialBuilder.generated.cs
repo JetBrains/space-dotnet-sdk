@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.M2ChannelContentNamedPrivateChannelPartialBuilder
         public static Partial<M2ChannelContentNamedPrivateChannel> WithNotificationDefaults(this Partial<M2ChannelContentNamedPrivateChannel> it, Func<Partial<ChannelSpecificDefaults>, Partial<ChannelSpecificDefaults>> partialBuilder)
             => it.AddFieldName("notificationDefaults", partialBuilder(new Partial<ChannelSpecificDefaults>(it)));
         
+        public static Partial<M2ChannelContentNamedPrivateChannel> WithCanHaveThreads(this Partial<M2ChannelContentNamedPrivateChannel> it)
+            => it.AddFieldName("canHaveThreads");
+        
     }
     
 }

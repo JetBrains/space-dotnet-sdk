@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.HrmBusinessEntitiesPostRequestPartialBuilder
         public static Partial<HrmBusinessEntitiesPostRequest> WithVacationAllowance(this Partial<HrmBusinessEntitiesPostRequest> it)
             => it.AddFieldName("vacationAllowance");
         
+        public static Partial<HrmBusinessEntitiesPostRequest> WithVacationApplicationDeadline(this Partial<HrmBusinessEntitiesPostRequest> it)
+            => it.AddFieldName("vacationApplicationDeadline");
+        
     }
     
 }

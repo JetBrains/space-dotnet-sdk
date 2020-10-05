@@ -42,12 +42,6 @@ namespace SpaceDotNet.Client
         public static M2AbsenceItemUpdatedContent M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<SpaceDate>? since = null, Modification<SpaceDate>? till = null, TDMemberProfile? by = null)
             => new M2AbsenceItemUpdatedContent(absence: absence, reason: null, description: null, since: null, till: null, by: null);
         
-        public static M2BlogItemContent M2BlogItemContent(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord articleDetails, ArticleChannelRecord articleChannel)
-            => new M2BlogItemContent(article: article, articleContent: articleContent, articleDetails: articleDetails, articleChannel: articleChannel);
-        
-        public static M2BlogItemPreview M2BlogItemPreview(ArticleRecord article, ArticlePreviewRecord articlePreview, ArticleDetailsRecord articleDetails, ArticleChannelRecord articleChannel)
-            => new M2BlogItemPreview(article: article, articlePreview: articlePreview, articleDetails: articleDetails, articleChannel: articleChannel);
-        
         public static M2ChannelArchivedItemDetails M2ChannelArchivedItemDetails()
             => new M2ChannelArchivedItemDetails();
         

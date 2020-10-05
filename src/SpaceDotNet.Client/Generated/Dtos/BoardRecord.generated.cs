@@ -29,11 +29,13 @@ namespace SpaceDotNet.Client
     {
         public BoardRecord() { }
         
-        public BoardRecord(string id, bool archived, string name, BoardInfo info)
+        public BoardRecord(string id, bool archived, string name, BoardRecord board, BoardInfo info, BoardWidgetData? data = null)
         {
             Id = id;
             IsArchived = archived;
             Name = name;
+            Board = board;
+            Data = data;
             Info = info;
         }
         
@@ -67,6 +69,25 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
+        private PropertyValue<BoardRecord> _board = new PropertyValue<BoardRecord>(nameof(BoardRecord), nameof(Board));
+        
+        [Required]
+        [JsonPropertyName("board")]
+        public BoardRecord Board
+        {
+            get { return _board.GetValue(); }
+            set { _board.SetValue(value); }
+        }
+    
+        private PropertyValue<BoardWidgetData?> _data = new PropertyValue<BoardWidgetData?>(nameof(BoardRecord), nameof(Data));
+        
+        [JsonPropertyName("data")]
+        public BoardWidgetData? Data
+        {
+            get { return _data.GetValue(); }
+            set { _data.SetValue(value); }
+        }
+    
         private PropertyValue<BoardInfo> _info = new PropertyValue<BoardInfo>(nameof(BoardRecord), nameof(Info));
         
         [Required]
@@ -82,6 +103,8 @@ namespace SpaceDotNet.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
+            _board.SetAccessPath(path, validateHasBeenSet);
+            _data.SetAccessPath(path, validateHasBeenSet);
             _info.SetAccessPath(path, validateHasBeenSet);
         }
     

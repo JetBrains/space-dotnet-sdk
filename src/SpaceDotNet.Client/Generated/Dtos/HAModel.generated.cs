@@ -29,13 +29,14 @@ namespace SpaceDotNet.Client
     {
         public HAModel() { }
         
-        public HAModel(List<HADto> dto, List<HAEnum> enums, List<HAUrlParameter> urlParams, List<HAResource> resources, List<HAResource> allResources)
+        public HAModel(List<HADto> dto, List<HAEnum> enums, List<HAUrlParameter> urlParams, List<HAResource> resources, List<HAResource> allResources, List<HAMenuId> menuIds)
         {
             Dto = dto;
             Enums = enums;
             UrlParams = urlParams;
             Resources = resources;
             AllResources = allResources;
+            MenuIds = menuIds;
         }
         
         private PropertyValue<List<HADto>> _dto = new PropertyValue<List<HADto>>(nameof(HAModel), nameof(Dto));
@@ -88,6 +89,16 @@ namespace SpaceDotNet.Client
             set { _allResources.SetValue(value); }
         }
     
+        private PropertyValue<List<HAMenuId>> _menuIds = new PropertyValue<List<HAMenuId>>(nameof(HAModel), nameof(MenuIds));
+        
+        [Required]
+        [JsonPropertyName("menuIds")]
+        public List<HAMenuId> MenuIds
+        {
+            get { return _menuIds.GetValue(); }
+            set { _menuIds.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _dto.SetAccessPath(path, validateHasBeenSet);
@@ -95,6 +106,7 @@ namespace SpaceDotNet.Client
             _urlParams.SetAccessPath(path, validateHasBeenSet);
             _resources.SetAccessPath(path, validateHasBeenSet);
             _allResources.SetAccessPath(path, validateHasBeenSet);
+            _menuIds.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

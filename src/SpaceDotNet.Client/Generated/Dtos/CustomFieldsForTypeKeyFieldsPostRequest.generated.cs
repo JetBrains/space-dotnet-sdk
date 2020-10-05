@@ -29,11 +29,10 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyFieldsPostRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsPostRequest(string name, string key, CFType type, bool required, bool @private, CFValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null)
+        public CustomFieldsForTypeKeyFieldsPostRequest(string name, CFType type, bool required, bool @private, CFValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null)
         {
             Name = name;
             Description = description;
-            Key = key;
             Type = type;
             Constraint = constraint;
             IsRequired = required;
@@ -60,16 +59,6 @@ namespace SpaceDotNet.Client
         {
             get { return _description.GetValue(); }
             set { _description.SetValue(value); }
-        }
-    
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Key));
-        
-        [Required]
-        [JsonPropertyName("key")]
-        public string Key
-        {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
         }
     
         private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Type));
@@ -144,7 +133,6 @@ namespace SpaceDotNet.Client
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
-            _key.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _constraint.SetAccessPath(path, validateHasBeenSet);
             _required.SetAccessPath(path, validateHasBeenSet);

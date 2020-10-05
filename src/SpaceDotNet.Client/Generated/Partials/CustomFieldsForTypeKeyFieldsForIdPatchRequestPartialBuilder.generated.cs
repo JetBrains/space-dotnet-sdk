@@ -32,9 +32,6 @@ namespace SpaceDotNet.Client.CustomFieldsForTypeKeyFieldsForIdPatchRequestPartia
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithDescription(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("description");
         
-        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithKey(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
-            => it.AddFieldName("key");
-        
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithConstraint(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("constraint");
         

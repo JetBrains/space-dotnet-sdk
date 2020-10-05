@@ -41,6 +41,9 @@ namespace SpaceDotNet.Client.BusinessEntityPartialBuilder
         public static Partial<BusinessEntity> WithVacationAllowance(this Partial<BusinessEntity> it)
             => it.AddFieldName("vacationAllowance");
         
+        public static Partial<BusinessEntity> WithVacationApplicationDeadline(this Partial<BusinessEntity> it)
+            => it.AddFieldName("vacationApplicationDeadline");
+        
         public static Partial<BusinessEntity> WithIsArchived(this Partial<BusinessEntity> it)
             => it.AddFieldName("archived");
         

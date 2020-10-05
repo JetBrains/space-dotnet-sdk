@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public AllChannelsListEntry() { }
         
-        public AllChannelsListEntry(string channelId, string name, string description, M2Access access, SpaceTime created, int subscribers, bool subscribed, long? icon = null)
+        public AllChannelsListEntry(string channelId, string name, string description, M2Access access, SpaceTime created, int subscribers, bool subscribed, string? icon = null)
         {
             ChannelId = channelId;
             Name = name;
@@ -81,10 +81,10 @@ namespace SpaceDotNet.Client
             set { _access.SetValue(value); }
         }
     
-        private PropertyValue<long?> _icon = new PropertyValue<long?>(nameof(AllChannelsListEntry), nameof(Icon));
+        private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(AllChannelsListEntry), nameof(Icon));
         
         [JsonPropertyName("icon")]
-        public long? Icon
+        public string? Icon
         {
             get { return _icon.GetValue(); }
             set { _icon.SetValue(value); }

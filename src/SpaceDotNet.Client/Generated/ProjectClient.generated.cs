@@ -1104,7 +1104,7 @@ namespace SpaceDotNet.Client
                 , cancellationToken);
             
                 /// <summary>
-                /// Deletes package repository for a given project id.
+                /// Removes package repository for a given project id.
                 /// </summary>
                 public async Task DeleteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}", cancellationToken);
@@ -1383,7 +1383,7 @@ namespace SpaceDotNet.Client
                 /// Required permissions:<br/>
                 /// * Edit issues (Edit issues that were created by other users)<br/>
                 /// </remarks>
-                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", 
                         new ProjectsForProjectPlanningIssuesPostRequest { 
                             Title = title,
@@ -1397,6 +1397,7 @@ namespace SpaceDotNet.Client
                             Attachments = (attachments ?? new List<Attachment>()),
                             ImportInfo = importInfo,
                             FromMessage = fromMessage,
+                            CustomFields = customFields,
                         }
                 , cancellationToken);
             
@@ -1665,6 +1666,9 @@ namespace SpaceDotNet.Client
                         IsDefaultSetup = defaultSetup,
                     }
             , cancellationToken);
+        
+            public async Task InvokeGarbageCollectionOnRepository[NotAvailableInMultiOrgMode]Async(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc", cancellationToken);
         
             public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/repositories/{repository}", cancellationToken);

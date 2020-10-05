@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
     {
         public CustomField() { }
         
-        public CustomField(ExtendedType extendedType, string id, string name, string key, CFType type, bool required, bool @private, CFValue defaultValue, int order, bool archived, string? description = null, CFConstraint? constraint = null, AccessType? access = null, ExtendedTypeScope? scope = null)
+        public CustomField(ExtendedType extendedType, string id, string name, CFType type, bool required, bool @private, CFValue defaultValue, int order, bool archived, string? description = null, string? key = null, CFConstraint? constraint = null, AccessType? access = null, ExtendedTypeScope? scope = null)
         {
             ExtendedType = extendedType;
             Id = id;
@@ -86,11 +86,11 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<string> _key = new PropertyValue<string>(nameof(CustomField), nameof(Key));
+        private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CustomField), nameof(Key));
         
-        [Required]
+        [Obsolete("Use name instead (since 2020-09-28) (marked for removal)")]
         [JsonPropertyName("key")]
-        public string Key
+        public string? Key
         {
             get { return _key.GetValue(); }
             set { _key.SetValue(value); }

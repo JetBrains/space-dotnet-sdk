@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class M2BlogItemContent
-         : M2ItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
+         : M2BlogItemContentDetails, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public  string? ClassName => "M2BlogItemContent";

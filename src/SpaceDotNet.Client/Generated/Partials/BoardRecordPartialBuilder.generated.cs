@@ -35,6 +35,21 @@ namespace SpaceDotNet.Client.BoardRecordPartialBuilder
         public static Partial<BoardRecord> WithName(this Partial<BoardRecord> it)
             => it.AddFieldName("name");
         
+        public static Partial<BoardRecord> WithBoard(this Partial<BoardRecord> it)
+            => it.AddFieldName("board");
+        
+        public static Partial<BoardRecord> WithBoardRecursive(this Partial<BoardRecord> it)
+            => it.AddFieldName("board!");
+        
+        public static Partial<BoardRecord> WithBoard(this Partial<BoardRecord> it, Func<Partial<BoardRecord>, Partial<BoardRecord>> partialBuilder)
+            => it.AddFieldName("board", partialBuilder(new Partial<BoardRecord>(it)));
+        
+        public static Partial<BoardRecord> WithData(this Partial<BoardRecord> it)
+            => it.AddFieldName("data");
+        
+        public static Partial<BoardRecord> WithData(this Partial<BoardRecord> it, Func<Partial<BoardWidgetData>, Partial<BoardWidgetData>> partialBuilder)
+            => it.AddFieldName("data", partialBuilder(new Partial<BoardWidgetData>(it)));
+        
         public static Partial<BoardRecord> WithInfo(this Partial<BoardRecord> it)
             => it.AddFieldName("info");
         

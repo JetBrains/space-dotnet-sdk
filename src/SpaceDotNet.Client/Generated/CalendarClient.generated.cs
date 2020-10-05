@@ -77,6 +77,18 @@ namespace SpaceDotNet.Client
             public IAsyncEnumerable<Meeting> GetAllMeetingsAsyncEnumerable(string summaryQuery = "", List<string>? locationsQuery = null, List<string>? profiles = null, List<string>? teams = null, bool includePrivate = false, bool includeArchived = false, bool includeMeetingInstances = true, string? skip = null, int? top = 100, SpaceTime? startingAfter = null, SpaceTime? endingAfter = null, SpaceTime? endingBefore = null, SpaceTime? startingBefore = null, string? organizer = null, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMeetingsAsync(summaryQuery: summaryQuery, locationsQuery: locationsQuery, profiles: profiles, teams: teams, includePrivate: includePrivate, includeArchived: includeArchived, includeMeetingInstances: includeMeetingInstances, top: top, startingAfter: startingAfter, endingAfter: endingAfter, endingBefore: endingBefore, startingBefore: startingBefore, organizer: organizer, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Meeting>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Meeting>.Default())), skip, cancellationToken);
         
+            /// <summary>
+            /// Search for the next meeting occurrence that starts after the provided time point.
+            /// </summary>
+            public async Task<MeetingOccurrenceTime> GetNextMeetingOccurrenceAsync(string meetingId, SpaceTime since, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<MeetingOccurrenceTime>("GET", $"api/http/calendars/meetings/next-occurrence?meetingId={meetingId.ToString()}&since={since.ToString()}&$fields={(partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default())}", cancellationToken);
+        
+            /// <summary>
+            /// Search for occurrences of a meeting that start in the provided time interval. Interval limits are inclusive, response is limited by the first 10_000 results.
+            /// </summary>
+            public async Task<List<MeetingOccurrenceTime>> GetMeetingOccurrencesForPeriodAsync(string meetingId, SpaceTime since, SpaceTime until, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<List<MeetingOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences?meetingId={meetingId.ToString()}&since={since.ToString()}&until={until.ToString()}&$fields={(partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default())}", cancellationToken);
+        
             public async Task<Meeting> GetMeetingAsync(string id, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Meeting>("GET", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default())}", cancellationToken);
         

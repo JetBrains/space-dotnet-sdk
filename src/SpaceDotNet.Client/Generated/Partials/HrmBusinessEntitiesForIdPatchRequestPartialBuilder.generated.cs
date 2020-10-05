@@ -35,6 +35,9 @@ namespace SpaceDotNet.Client.HrmBusinessEntitiesForIdPatchRequestPartialBuilder
         public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithVacationAllowance(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
             => it.AddFieldName("vacationAllowance");
         
+        public static Partial<HrmBusinessEntitiesForIdPatchRequest> WithVacationApplicationDeadline(this Partial<HrmBusinessEntitiesForIdPatchRequest> it)
+            => it.AddFieldName("vacationApplicationDeadline");
+        
     }
     
 }

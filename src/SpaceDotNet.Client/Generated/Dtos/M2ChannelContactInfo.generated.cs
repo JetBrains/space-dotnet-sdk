@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         public static M2ChannelContentMention M2ChannelContentMention(ChannelItemRecord record, M2ChannelRecord parent)
             => new M2ChannelContentMention(record: record, parent: parent);
         
-        public static M2ChannelContentNamedPrivateChannel M2ChannelContentNamedPrivateChannel(string name, ChannelSpecificDefaults? notificationDefaults = null)
-            => new M2ChannelContentNamedPrivateChannel(name: name, notificationDefaults: null);
+        public static M2ChannelContentNamedPrivateChannel M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null)
+            => new M2ChannelContentNamedPrivateChannel(name: name, canHaveThreads: canHaveThreads, notificationDefaults: null);
         
         public static M2ChannelContentTeam M2ChannelContentTeam(TDTeam team, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentTeam(team: team, notificationDefaults: notificationDefaults);

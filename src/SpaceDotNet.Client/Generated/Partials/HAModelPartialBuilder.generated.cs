@@ -56,6 +56,12 @@ namespace SpaceDotNet.Client.HAModelPartialBuilder
         public static Partial<HAModel> WithAllResources(this Partial<HAModel> it, Func<Partial<HAResource>, Partial<HAResource>> partialBuilder)
             => it.AddFieldName("allResources", partialBuilder(new Partial<HAResource>(it)));
         
+        public static Partial<HAModel> WithMenuIds(this Partial<HAModel> it)
+            => it.AddFieldName("menuIds");
+        
+        public static Partial<HAModel> WithMenuIds(this Partial<HAModel> it, Func<Partial<HAMenuId>, Partial<HAMenuId>> partialBuilder)
+            => it.AddFieldName("menuIds", partialBuilder(new Partial<HAMenuId>(it)));
+        
     }
     
 }

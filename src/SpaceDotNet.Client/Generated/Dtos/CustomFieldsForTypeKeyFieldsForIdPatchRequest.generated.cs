@@ -29,11 +29,10 @@ namespace SpaceDotNet.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, string? key = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null)
         {
             Name = name;
             Description = description;
-            Key = key;
             Constraint = constraint;
             IsRequired = required;
             IsPrivate = @private;
@@ -59,15 +58,6 @@ namespace SpaceDotNet.Client
         {
             get { return _description.GetValue(); }
             set { _description.SetValue(value); }
-        }
-    
-        private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Key));
-        
-        [JsonPropertyName("key")]
-        public string? Key
-        {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
         }
     
         private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Constraint));
@@ -138,7 +128,6 @@ namespace SpaceDotNet.Client
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
-            _key.SetAccessPath(path, validateHasBeenSet);
             _constraint.SetAccessPath(path, validateHasBeenSet);
             _required.SetAccessPath(path, validateHasBeenSet);
             _private.SetAccessPath(path, validateHasBeenSet);
