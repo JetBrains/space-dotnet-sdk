@@ -1667,7 +1667,7 @@ namespace SpaceDotNet.Client
                     }
             , cancellationToken);
         
-            public async Task InvokeGarbageCollectionOnRepository[NotAvailableInMultiOrgMode]Async(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+            public async Task InvokeGarbageCollectionOnRepositoryNotAvailableInMultiOrgModeAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc", cancellationToken);
         
             public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)

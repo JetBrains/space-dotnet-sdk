@@ -43,6 +43,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     .WithStartingDigitReplaced()
                     .Replace("{", "For-")
                     .Replace("}", string.Empty)
+                    .Replace("[", string.Empty)
+                    .Replace("]", string.Empty)
                     .Replace("?", string.Empty)
                     .Replace("'s", string.Empty)
                     .Split(IdentifierSeparators)
