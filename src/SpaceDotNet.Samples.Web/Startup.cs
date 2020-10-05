@@ -6,7 +6,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using SpaceDotNet.AspNetCore.Authentication.Space;
 using SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement;
-using SpaceDotNet.Samples.Web.WebHooks;
 
 namespace SpaceDotNet.Samples.Web
 {
@@ -51,16 +50,6 @@ namespace SpaceDotNet.Samples.Web
             
             // Space client API
             services.AddSpaceClientApi();
-            
-            // Space webhook receiver
-            services.AddSpaceWebHookHandler<CateringWebHookHandler>(options => Configuration.Bind("Space", options));
-            
-            // - or: -
-            // services.AddSpaceWebHookReceiver<CateringWebHookHandler>(options =>
-            // {
-            //     options.EndpointSigningKey = Configuration["Space:EndpointSigningKey"];
-            //     options.EndpointVerificationToken = Configuration["Space:EndpointVerificationToken"];
-            // });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -87,9 +76,6 @@ namespace SpaceDotNet.Samples.Web
 
             app.UseEndpoints(endpoints =>
             {
-                // Space webhook receiver endpoint
-                endpoints.MapSpaceWebHookHandler<CateringWebHookHandler>("/space/receive");
-
                 endpoints.MapRazorPages();
             });
         }

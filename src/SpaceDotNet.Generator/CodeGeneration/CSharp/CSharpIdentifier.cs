@@ -19,6 +19,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 
         private static string WithStartingDigitReplaced(this string subject)
         {
+            if (string.IsNullOrEmpty(subject)) return subject;
+            
             return subject[0] switch
             {
                 '0' => $"Zero{subject.Substring(1)}",

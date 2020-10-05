@@ -41,13 +41,13 @@ namespace SpaceDotNet.Generator
             
             // Metadata
             var connection = new ClientCredentialsConnection(
-                Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!,
+                new Uri(Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!), 
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_ID")!,
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_SECRET")!,
                 httpClient);
             
             var apiModel = await connection.RequestResourceAsync<ApiModel>(
-                "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!)");
+                "GET", "api/http/http-api-model?$fields=dto,enums,urlParams,resources(*,nestedResources!),menuIds");
             
             // Remove old code
             var generatedCodePath = Path.GetFullPath("../../../../SpaceDotNet.Client/Generated");

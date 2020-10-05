@@ -17,7 +17,7 @@ namespace SpaceDotNet.Samples.CommandLine
             // Create a connection using a service account.
             // NOTE: Service accounts do not have access to all operations in Space!
             var connection = new ClientCredentialsConnection(
-                Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!,
+                new Uri(Environment.GetEnvironmentVariable("JB_SPACE_API_URL")!), 
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_ID")!,
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_SECRET")!,
                 new HttpClient());

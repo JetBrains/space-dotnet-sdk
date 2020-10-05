@@ -58,6 +58,12 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     partialExtensionsGenerator.GeneratePartialClassFor(apiDto),
                     apiDto.ToCSharpClassName() + "PartialBuilder");
             }
+            
+            // Menu ids
+            var menuIdsGenerator = new CSharpApiModelMenuIdGenerator(_codeGenerationContext);
+            WriteToDocument(documentWriter, 
+                "MenuIds.generated.cs",
+                menuIdsGenerator.GenerateMenuIds(_codeGenerationContext.GetMenuIds()));
         }
 
         private static void WriteToDocument(

@@ -16,5 +16,8 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         
         [JsonPropertyName("resources")]
         public List<ApiResource> Resources { get; set; } = new List<ApiResource>();
+        
+        [JsonPropertyName("menuIds")]
+        public List<ApiMenuId> MenuIds { get; set; } = new List<ApiMenuId>();
     }
 }

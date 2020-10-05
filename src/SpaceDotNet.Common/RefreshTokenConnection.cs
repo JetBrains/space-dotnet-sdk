@@ -29,10 +29,7 @@ namespace SpaceDotNet.Common
         /// <param name="clientSecret">The client secret to use when refreshing tokens.</param>
         /// <param name="authenticationTokens">Authentication tokens to use while authenticating.</param>
         /// <param name="httpClient">HTTP client to use for communication.</param>
-        /// <exception cref="ArgumentException">
-        /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
-        /// </exception>
-        public RefreshTokenConnection(string serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
+        public RefreshTokenConnection(Uri serverUrl, string clientId, string clientSecret, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
             : base(serverUrl, authenticationTokens, httpClient)
         {
             if (string.IsNullOrEmpty(authenticationTokens.RefreshToken))

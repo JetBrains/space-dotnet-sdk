@@ -24,10 +24,7 @@ namespace SpaceDotNet.Common
         /// </summary>
         /// <param name="serverUrl">Space organization URL that will be connected against.</param>
         /// <param name="httpClient">HTTP client to use for communication.</param>
-        /// <exception cref="ArgumentException">
-        /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
-        /// </exception>
-        protected BearerTokenConnection(string serverUrl, HttpClient? httpClient = null)
+        protected BearerTokenConnection(Uri serverUrl, HttpClient? httpClient = null)
             : base(serverUrl)
         {
             HttpClient = httpClient ?? new HttpClient();
@@ -39,10 +36,7 @@ namespace SpaceDotNet.Common
         /// <param name="serverUrl">Space organization URL that will be connected against.</param>
         /// <param name="authenticationTokens">Authentication tokens to use.</param>
         /// <param name="httpClient">HTTP client to use for communication.</param>
-        /// <exception cref="ArgumentException">
-        /// The <paramref name="serverUrl" /> was null, empty or did not represent a valid, absolute <see cref="T:System.Uri" />.
-        /// </exception>
-        public BearerTokenConnection(string serverUrl, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
+        public BearerTokenConnection(Uri serverUrl, AuthenticationTokens authenticationTokens, HttpClient? httpClient = null)
             : base(serverUrl)
         {
             AuthenticationTokens = authenticationTokens;

@@ -63,7 +63,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
         }
 
         /// <summary>
-        /// Space organization URL.
+        /// Gets or sets the Space organization URL.
         /// </summary>
         /// <remarks>
         /// When setting the organization URL, updates default values in the
@@ -105,7 +105,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
         public RequestCredentials RequestCredentials { get; set; } = RequestCredentials.Default;
         
         /// <summary>
-        /// Access type. Set to <see cref="SpaceDotNet.AspNetCore.Authentication.Space.AccessType.Offline"/> to request a refresh token.
+        /// Gets or sets the access type. Set to <see cref="SpaceDotNet.AspNetCore.Authentication.Space.AccessType.Offline"/> to request a refresh token.
         /// </summary>
         [PublicAPI]
         public AccessType AccessType { get; set; } = AccessType.Online;
