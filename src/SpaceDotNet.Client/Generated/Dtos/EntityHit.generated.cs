@@ -40,20 +40,20 @@ namespace SpaceDotNet.Client
         public static DefaultValueHit DefaultValueHit()
             => new DefaultValueHit();
         
-        public static FolderHit FolderHit(string id, double score, string bookId, string name)
-            => new FolderHit(id: id, score: score, bookId: bookId, name: name);
+        public static FolderHit FolderHit(string id, double score, KBBook bookRef, KBFolder @ref, string name)
+            => new FolderHit(id: id, score: score, bookRef: bookRef, @ref: @ref, name: name);
         
-        public static KbArticleHit KbArticleHit(string id, double score, string bookId, string title, string body)
-            => new KbArticleHit(id: id, score: score, bookId: bookId, title: title, body: body);
+        public static KbArticleHit KbArticleHit(string id, double score, KBBook bookRef, string title, string body)
+            => new KbArticleHit(id: id, score: score, bookRef: bookRef, title: title, body: body);
         
-        public static MessageHit MessageHit(string id, string parentItemId, double score, M2ChannelRecord channel, ChannelItemRecord @ref, string message, bool threadStarter, string? thread = null)
-            => new MessageHit(id: id, parentItemId: parentItemId, score: score, channel: channel, @ref: @ref, message: message, threadStarter: threadStarter, thread: null);
+        public static MessageHit MessageHit(string id, string parentItemId, double score, M2ChannelRecord channel, M2ChatReader readerRef, ChannelItemRecord @ref, string message, bool threadStarter, string? thread = null)
+            => new MessageHit(id: id, parentItemId: parentItemId, score: score, channel: channel, readerRef: readerRef, @ref: @ref, message: message, threadStarter: threadStarter, thread: null);
         
         public static ProfileCustomFieldHit ProfileCustomFieldHit(string id, double score, List<string> value, TDMemberProfile @ref)
             => new ProfileCustomFieldHit(id: id, score: score, value: value, @ref: @ref);
         
-        public static ProfileHit ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, List<string> internationalNames, bool notAMember, TDMemberProfile @ref, List<CustomFieldHit> customFields)
-            => new ProfileHit(id: id, score: score, firstName: firstName, lastName: lastName, userName: userName, phones: phones, emails: emails, links: links, messengers: messengers, internationalNames: internationalNames, notAMember: notAMember, @ref: @ref, customFields: customFields);
+        public static ProfileHit ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, List<string> internationalNames, bool notAMember, TDMemberProfile @ref, ProfileAbsencesRecord absencesRef, ProfileMembershipRecord membershipRef, ProfileLocationsRecord locationsRef, List<CustomFieldHit> customFields)
+            => new ProfileHit(id: id, score: score, firstName: firstName, lastName: lastName, userName: userName, phones: phones, emails: emails, links: links, messengers: messengers, internationalNames: internationalNames, notAMember: notAMember, @ref: @ref, absencesRef: absencesRef, membershipRef: membershipRef, locationsRef: locationsRef, customFields: customFields);
         
         public static ProjectHit ProjectHit(string id, double score, string key, string name, PRProject @ref, string? description = null)
             => new ProjectHit(id: id, score: score, key: key, name: name, @ref: @ref, description: null);

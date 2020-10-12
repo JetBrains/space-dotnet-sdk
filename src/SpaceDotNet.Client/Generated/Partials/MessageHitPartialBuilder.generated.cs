@@ -41,6 +41,12 @@ namespace SpaceDotNet.Client.MessageHitPartialBuilder
         public static Partial<MessageHit> WithChannel(this Partial<MessageHit> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
             => it.AddFieldName("channel", partialBuilder(new Partial<M2ChannelRecord>(it)));
         
+        public static Partial<MessageHit> WithReaderRef(this Partial<MessageHit> it)
+            => it.AddFieldName("readerRef");
+        
+        public static Partial<MessageHit> WithReaderRef(this Partial<MessageHit> it, Func<Partial<M2ChatReader>, Partial<M2ChatReader>> partialBuilder)
+            => it.AddFieldName("readerRef", partialBuilder(new Partial<M2ChatReader>(it)));
+        
         public static Partial<MessageHit> WithRef(this Partial<MessageHit> it)
             => it.AddFieldName("ref");
         

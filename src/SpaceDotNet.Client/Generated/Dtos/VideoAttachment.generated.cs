@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class VideoAttachment
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
+         : MediaAttachment, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public  string? ClassName => "VideoAttachment";

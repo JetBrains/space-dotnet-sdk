@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public sealed class ImageAttachment
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
+         : MediaAttachment, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
         public  string? ClassName => "ImageAttachment";

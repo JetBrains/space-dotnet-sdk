@@ -32,8 +32,17 @@ namespace SpaceDotNet.Client.FolderHitPartialBuilder
         public static Partial<FolderHit> WithScore(this Partial<FolderHit> it)
             => it.AddFieldName("score");
         
-        public static Partial<FolderHit> WithBookId(this Partial<FolderHit> it)
-            => it.AddFieldName("bookId");
+        public static Partial<FolderHit> WithBookRef(this Partial<FolderHit> it)
+            => it.AddFieldName("bookRef");
+        
+        public static Partial<FolderHit> WithBookRef(this Partial<FolderHit> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+            => it.AddFieldName("bookRef", partialBuilder(new Partial<KBBook>(it)));
+        
+        public static Partial<FolderHit> WithRef(this Partial<FolderHit> it)
+            => it.AddFieldName("ref");
+        
+        public static Partial<FolderHit> WithRef(this Partial<FolderHit> it, Func<Partial<KBFolder>, Partial<KBFolder>> partialBuilder)
+            => it.AddFieldName("ref", partialBuilder(new Partial<KBFolder>(it)));
         
         public static Partial<FolderHit> WithName(this Partial<FolderHit> it)
             => it.AddFieldName("name");

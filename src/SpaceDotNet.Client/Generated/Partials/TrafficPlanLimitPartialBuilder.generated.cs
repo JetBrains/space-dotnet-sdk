@@ -26,6 +26,12 @@ namespace SpaceDotNet.Client.TrafficPlanLimitPartialBuilder
 {
     public static class TrafficPlanLimitPartialExtensions
     {
+        public static Partial<TrafficPlanLimit> WithDataTransfer(this Partial<TrafficPlanLimit> it)
+            => it.AddFieldName("dataTransfer");
+        
+        public static Partial<TrafficPlanLimit> WithDataTransfer(this Partial<TrafficPlanLimit> it, Func<Partial<PlanLimit>, Partial<PlanLimit>> partialBuilder)
+            => it.AddFieldName("dataTransfer", partialBuilder(new Partial<PlanLimit>(it)));
+        
         public static Partial<TrafficPlanLimit> WithFiles(this Partial<TrafficPlanLimit> it)
             => it.AddFieldName("files");
         

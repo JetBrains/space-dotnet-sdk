@@ -22,22 +22,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.ProfileLocationsRecordPartialBuilder
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class ProfileLocationsRecordPartialExtensions
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        public static Partial<ProfileLocationsRecord> WithId(this Partial<ProfileLocationsRecord> it)
+            => it.AddFieldName("id");
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
+        public static Partial<ProfileLocationsRecord> WithLocations(this Partial<ProfileLocationsRecord> it)
+            => it.AddFieldName("locations");
         
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+        public static Partial<ProfileLocationsRecord> WithLocations(this Partial<ProfileLocationsRecord> it, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>> partialBuilder)
+            => it.AddFieldName("locations", partialBuilder(new Partial<TDMemberLocation>(it)));
         
     }
     

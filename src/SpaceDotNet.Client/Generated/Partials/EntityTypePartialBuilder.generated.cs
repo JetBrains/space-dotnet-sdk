@@ -22,22 +22,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.EntityTypePartialBuilder
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class EntityTypePartialExtensions
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        public static Partial<EntityType> WithKey(this Partial<EntityType> it)
+            => it.AddFieldName("key");
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
+        public static Partial<EntityType> WithDisplayName(this Partial<EntityType> it)
+            => it.AddFieldName("displayName");
         
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+        public static Partial<EntityType> WithGroup(this Partial<EntityType> it)
+            => it.AddFieldName("group");
         
     }
     

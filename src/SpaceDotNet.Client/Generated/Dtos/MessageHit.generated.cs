@@ -32,12 +32,13 @@ namespace SpaceDotNet.Client
         
         public MessageHit() { }
         
-        public MessageHit(string id, string parentItemId, double score, M2ChannelRecord channel, ChannelItemRecord @ref, string message, bool threadStarter, string? thread = null)
+        public MessageHit(string id, string parentItemId, double score, M2ChannelRecord channel, M2ChatReader readerRef, ChannelItemRecord @ref, string message, bool threadStarter, string? thread = null)
         {
             Id = id;
             ParentItemId = parentItemId;
             Score = score;
             Channel = channel;
+            ReaderRef = readerRef;
             Ref = @ref;
             Message = message;
             IsThreadStarter = threadStarter;
@@ -82,6 +83,16 @@ namespace SpaceDotNet.Client
         {
             get { return _channel.GetValue(); }
             set { _channel.SetValue(value); }
+        }
+    
+        private PropertyValue<M2ChatReader> _readerRef = new PropertyValue<M2ChatReader>(nameof(MessageHit), nameof(ReaderRef));
+        
+        [Required]
+        [JsonPropertyName("readerRef")]
+        public M2ChatReader ReaderRef
+        {
+            get { return _readerRef.GetValue(); }
+            set { _readerRef.SetValue(value); }
         }
     
         private PropertyValue<ChannelItemRecord> _ref = new PropertyValue<ChannelItemRecord>(nameof(MessageHit), nameof(Ref));
@@ -129,6 +140,7 @@ namespace SpaceDotNet.Client
             _parentItemId.SetAccessPath(path, validateHasBeenSet);
             _score.SetAccessPath(path, validateHasBeenSet);
             _channel.SetAccessPath(path, validateHasBeenSet);
+            _readerRef.SetAccessPath(path, validateHasBeenSet);
             _ref.SetAccessPath(path, validateHasBeenSet);
             _message.SetAccessPath(path, validateHasBeenSet);
             _threadStarter.SetAccessPath(path, validateHasBeenSet);

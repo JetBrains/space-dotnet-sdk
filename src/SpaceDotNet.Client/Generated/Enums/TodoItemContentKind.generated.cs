@@ -24,21 +24,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class TodoItemContentKind : Enumeration
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        private TodoItemContentKind(string value) : base(value) { }
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
-        
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
-        
+        public static readonly TodoItemContentKind NONE = new TodoItemContentKind("NONE");
+        public static readonly TodoItemContentKind REGULAR = new TodoItemContentKind("REGULAR");
+        public static readonly TodoItemContentKind MESSAGE = new TodoItemContentKind("MESSAGE");
+        public static readonly TodoItemContentKind ISSUE = new TodoItemContentKind("ISSUE");
+        public static readonly TodoItemContentKind BLOG = new TodoItemContentKind("BLOG");
     }
     
 }

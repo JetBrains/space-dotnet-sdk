@@ -24,20 +24,26 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class EntityFilter : IUrlParameter
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        public static EntityFilter Id(string serialized)
+            => new EntityFilterId(serialized);
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
-        
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+        private class EntityFilterId : EntityFilter
+        {
+            public readonly string _serialized;
+            
+            public EntityFilterId(string serialized)
+            {
+                _serialized = serialized;
+            }
+            
+            public override string ToString()
+            {
+                return $"serialized:{_serialized}";
+            }
+        }
         
     }
     

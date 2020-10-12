@@ -29,13 +29,24 @@ namespace SpaceDotNet.Client
     {
         public TrafficPlanLimit() { }
         
-        public TrafficPlanLimit(PlanLimit files, PlanLimit packages, PlanLimit git)
+        public TrafficPlanLimit(PlanLimit dataTransfer, PlanLimit files, PlanLimit packages, PlanLimit git)
         {
+            DataTransfer = dataTransfer;
             Files = files;
             Packages = packages;
             Git = git;
         }
         
+        private PropertyValue<PlanLimit> _dataTransfer = new PropertyValue<PlanLimit>(nameof(TrafficPlanLimit), nameof(DataTransfer));
+        
+        [Required]
+        [JsonPropertyName("dataTransfer")]
+        public PlanLimit DataTransfer
+        {
+            get { return _dataTransfer.GetValue(); }
+            set { _dataTransfer.SetValue(value); }
+        }
+    
         private PropertyValue<PlanLimit> _files = new PropertyValue<PlanLimit>(nameof(TrafficPlanLimit), nameof(Files));
         
         [Required]
@@ -68,6 +79,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
+            _dataTransfer.SetAccessPath(path, validateHasBeenSet);
             _files.SetAccessPath(path, validateHasBeenSet);
             _packages.SetAccessPath(path, validateHasBeenSet);
             _git.SetAccessPath(path, validateHasBeenSet);

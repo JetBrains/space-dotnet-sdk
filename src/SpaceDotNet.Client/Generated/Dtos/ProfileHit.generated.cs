@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         
         public ProfileHit() { }
         
-        public ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, List<string> internationalNames, bool notAMember, TDMemberProfile @ref, List<CustomFieldHit> customFields)
+        public ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, List<string> internationalNames, bool notAMember, TDMemberProfile @ref, ProfileAbsencesRecord absencesRef, ProfileMembershipRecord membershipRef, ProfileLocationsRecord locationsRef, List<CustomFieldHit> customFields)
         {
             Id = id;
             Score = score;
@@ -46,6 +46,9 @@ namespace SpaceDotNet.Client
             InternationalNames = internationalNames;
             IsNotAMember = notAMember;
             Ref = @ref;
+            AbsencesRef = absencesRef;
+            MembershipRef = membershipRef;
+            LocationsRef = locationsRef;
             CustomFields = customFields;
         }
         
@@ -169,6 +172,36 @@ namespace SpaceDotNet.Client
             set { _ref.SetValue(value); }
         }
     
+        private PropertyValue<ProfileAbsencesRecord> _absencesRef = new PropertyValue<ProfileAbsencesRecord>(nameof(ProfileHit), nameof(AbsencesRef));
+        
+        [Required]
+        [JsonPropertyName("absencesRef")]
+        public ProfileAbsencesRecord AbsencesRef
+        {
+            get { return _absencesRef.GetValue(); }
+            set { _absencesRef.SetValue(value); }
+        }
+    
+        private PropertyValue<ProfileMembershipRecord> _membershipRef = new PropertyValue<ProfileMembershipRecord>(nameof(ProfileHit), nameof(MembershipRef));
+        
+        [Required]
+        [JsonPropertyName("membershipRef")]
+        public ProfileMembershipRecord MembershipRef
+        {
+            get { return _membershipRef.GetValue(); }
+            set { _membershipRef.SetValue(value); }
+        }
+    
+        private PropertyValue<ProfileLocationsRecord> _locationsRef = new PropertyValue<ProfileLocationsRecord>(nameof(ProfileHit), nameof(LocationsRef));
+        
+        [Required]
+        [JsonPropertyName("locationsRef")]
+        public ProfileLocationsRecord LocationsRef
+        {
+            get { return _locationsRef.GetValue(); }
+            set { _locationsRef.SetValue(value); }
+        }
+    
         private PropertyValue<List<CustomFieldHit>> _customFields = new PropertyValue<List<CustomFieldHit>>(nameof(ProfileHit), nameof(CustomFields));
         
         [Required]
@@ -193,6 +226,9 @@ namespace SpaceDotNet.Client
             _internationalNames.SetAccessPath(path, validateHasBeenSet);
             _notAMember.SetAccessPath(path, validateHasBeenSet);
             _ref.SetAccessPath(path, validateHasBeenSet);
+            _absencesRef.SetAccessPath(path, validateHasBeenSet);
+            _membershipRef.SetAccessPath(path, validateHasBeenSet);
+            _locationsRef.SetAccessPath(path, validateHasBeenSet);
             _customFields.SetAccessPath(path, validateHasBeenSet);
         }
     

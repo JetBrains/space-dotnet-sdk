@@ -22,22 +22,12 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.HostingSiteSettingsPartialBuilder
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class HostingSiteSettingsPartialExtensions
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
-        
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
-        
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+        public static Partial<HostingSiteSettings> WithIsPublic(this Partial<HostingSiteSettings> it)
+            => it.AddFieldName("public");
         
     }
     

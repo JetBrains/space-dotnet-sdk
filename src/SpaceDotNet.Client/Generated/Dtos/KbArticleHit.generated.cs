@@ -32,11 +32,11 @@ namespace SpaceDotNet.Client
         
         public KbArticleHit() { }
         
-        public KbArticleHit(string id, double score, string bookId, string title, string body)
+        public KbArticleHit(string id, double score, KBBook bookRef, string title, string body)
         {
             Id = id;
             Score = score;
-            BookId = bookId;
+            BookRef = bookRef;
             Title = title;
             Body = body;
         }
@@ -61,14 +61,14 @@ namespace SpaceDotNet.Client
             set { _score.SetValue(value); }
         }
     
-        private PropertyValue<string> _bookId = new PropertyValue<string>(nameof(KbArticleHit), nameof(BookId));
+        private PropertyValue<KBBook> _bookRef = new PropertyValue<KBBook>(nameof(KbArticleHit), nameof(BookRef));
         
         [Required]
-        [JsonPropertyName("bookId")]
-        public string BookId
+        [JsonPropertyName("bookRef")]
+        public KBBook BookRef
         {
-            get { return _bookId.GetValue(); }
-            set { _bookId.SetValue(value); }
+            get { return _bookRef.GetValue(); }
+            set { _bookRef.SetValue(value); }
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(KbArticleHit), nameof(Title));
@@ -95,7 +95,7 @@ namespace SpaceDotNet.Client
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _score.SetAccessPath(path, validateHasBeenSet);
-            _bookId.SetAccessPath(path, validateHasBeenSet);
+            _bookRef.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
             _body.SetAccessPath(path, validateHasBeenSet);
         }

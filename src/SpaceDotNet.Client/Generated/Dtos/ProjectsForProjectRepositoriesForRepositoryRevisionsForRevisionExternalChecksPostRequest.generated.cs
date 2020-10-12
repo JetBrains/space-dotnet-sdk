@@ -24,15 +24,15 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class CommitStatus
+    public class ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest
          : IPropagatePropertyAccessPath
     {
-        public CommitStatus() { }
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest() { }
         
-        public CommitStatus(string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, long timestamp, string? description = null)
+        public ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest(CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null)
         {
-            Repository = repository;
-            Revision = revision;
+            Branch = branch;
+            Changes = changes;
             ExecutionStatus = executionStatus;
             Url = url;
             ExternalServiceName = externalServiceName;
@@ -42,27 +42,25 @@ namespace SpaceDotNet.Client
             Description = description;
         }
         
-        private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CommitStatus), nameof(Repository));
+        private PropertyValue<string?> _branch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Branch));
         
-        [Required]
-        [JsonPropertyName("repository")]
-        public string Repository
+        [JsonPropertyName("branch")]
+        public string? Branch
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get { return _branch.GetValue(); }
+            set { _branch.SetValue(value); }
         }
     
-        private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CommitStatus), nameof(Revision));
+        private PropertyValue<List<string>?> _changes = new PropertyValue<List<string>?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Changes));
         
-        [Required]
-        [JsonPropertyName("revision")]
-        public string Revision
+        [JsonPropertyName("changes")]
+        public List<string>? Changes
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get { return _changes.GetValue(); }
+            set { _changes.SetValue(value); }
         }
     
-        private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(CommitStatus), nameof(ExecutionStatus));
+        private PropertyValue<CommitExecutionStatus> _executionStatus = new PropertyValue<CommitExecutionStatus>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(ExecutionStatus));
         
         [Required]
         [JsonPropertyName("executionStatus")]
@@ -72,7 +70,7 @@ namespace SpaceDotNet.Client
             set { _executionStatus.SetValue(value); }
         }
     
-        private PropertyValue<string> _url = new PropertyValue<string>(nameof(CommitStatus), nameof(Url));
+        private PropertyValue<string> _url = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Url));
         
         [Required]
         [JsonPropertyName("url")]
@@ -82,7 +80,7 @@ namespace SpaceDotNet.Client
             set { _url.SetValue(value); }
         }
     
-        private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(CommitStatus), nameof(ExternalServiceName));
+        private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(ExternalServiceName));
         
         [Required]
         [JsonPropertyName("externalServiceName")]
@@ -92,7 +90,7 @@ namespace SpaceDotNet.Client
             set { _externalServiceName.SetValue(value); }
         }
     
-        private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(CommitStatus), nameof(TaskName));
+        private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(TaskName));
         
         [Required]
         [JsonPropertyName("taskName")]
@@ -102,7 +100,7 @@ namespace SpaceDotNet.Client
             set { _taskName.SetValue(value); }
         }
     
-        private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(CommitStatus), nameof(TaskId));
+        private PropertyValue<string> _taskId = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(TaskId));
         
         [Required]
         [JsonPropertyName("taskId")]
@@ -112,17 +110,16 @@ namespace SpaceDotNet.Client
             set { _taskId.SetValue(value); }
         }
     
-        private PropertyValue<long> _timestamp = new PropertyValue<long>(nameof(CommitStatus), nameof(Timestamp));
+        private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Timestamp));
         
-        [Required]
         [JsonPropertyName("timestamp")]
-        public long Timestamp
+        public long? Timestamp
         {
             get { return _timestamp.GetValue(); }
             set { _timestamp.SetValue(value); }
         }
     
-        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CommitStatus), nameof(Description));
+        private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest), nameof(Description));
         
         [JsonPropertyName("description")]
         public string? Description
@@ -131,10 +128,10 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _repository.SetAccessPath(path, validateHasBeenSet);
-            _revision.SetAccessPath(path, validateHasBeenSet);
+            _branch.SetAccessPath(path, validateHasBeenSet);
+            _changes.SetAccessPath(path, validateHasBeenSet);
             _executionStatus.SetAccessPath(path, validateHasBeenSet);
             _url.SetAccessPath(path, validateHasBeenSet);
             _externalServiceName.SetAccessPath(path, validateHasBeenSet);

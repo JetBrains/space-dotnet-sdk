@@ -22,22 +22,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.PublishSitePartialBuilder
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class PublishSitePartialExtensions
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        public static Partial<PublishSite> WithSiteUrl(this Partial<PublishSite> it)
+            => it.AddFieldName("siteUrl");
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
+        public static Partial<PublishSite> WithFileStats(this Partial<PublishSite> it)
+            => it.AddFieldName("fileStats");
         
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+        public static Partial<PublishSite> WithFileStats(this Partial<PublishSite> it, Func<Partial<SyncFileStats>, Partial<SyncFileStats>> partialBuilder)
+            => it.AddFieldName("fileStats", partialBuilder(new Partial<SyncFileStats>(it)));
         
     }
     

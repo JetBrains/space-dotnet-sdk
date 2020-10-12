@@ -29,11 +29,12 @@ namespace SpaceDotNet.Client
     {
         public MavenPackageFile() { }
         
-        public MavenPackageFile(string name, long created, long length)
+        public MavenPackageFile(string name, long created, long length, List<MavenChecksum> checksums)
         {
             Name = name;
             Created = created;
             Length = length;
+            Checksums = checksums;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(MavenPackageFile), nameof(Name));
@@ -66,11 +67,22 @@ namespace SpaceDotNet.Client
             set { _length.SetValue(value); }
         }
     
+        private PropertyValue<List<MavenChecksum>> _checksums = new PropertyValue<List<MavenChecksum>>(nameof(MavenPackageFile), nameof(Checksums));
+        
+        [Required]
+        [JsonPropertyName("checksums")]
+        public List<MavenChecksum> Checksums
+        {
+            get { return _checksums.GetValue(); }
+            set { _checksums.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _length.SetAccessPath(path, validateHasBeenSet);
+            _checksums.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

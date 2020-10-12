@@ -22,22 +22,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.SyncFileStatsPartialBuilder
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class SyncFileStatsPartialExtensions
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        public static Partial<SyncFileStats> WithNewFiles(this Partial<SyncFileStats> it)
+            => it.AddFieldName("newFiles");
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
+        public static Partial<SyncFileStats> WithChangedFiles(this Partial<SyncFileStats> it)
+            => it.AddFieldName("changedFiles");
         
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+        public static Partial<SyncFileStats> WithDeletedFiles(this Partial<SyncFileStats> it)
+            => it.AddFieldName("deletedFiles");
         
     }
     

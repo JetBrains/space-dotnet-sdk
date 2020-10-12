@@ -32,11 +32,12 @@ namespace SpaceDotNet.Client
         
         public FolderHit() { }
         
-        public FolderHit(string id, double score, string bookId, string name)
+        public FolderHit(string id, double score, KBBook bookRef, KBFolder @ref, string name)
         {
             Id = id;
             Score = score;
-            BookId = bookId;
+            BookRef = bookRef;
+            Ref = @ref;
             Name = name;
         }
         
@@ -60,14 +61,24 @@ namespace SpaceDotNet.Client
             set { _score.SetValue(value); }
         }
     
-        private PropertyValue<string> _bookId = new PropertyValue<string>(nameof(FolderHit), nameof(BookId));
+        private PropertyValue<KBBook> _bookRef = new PropertyValue<KBBook>(nameof(FolderHit), nameof(BookRef));
         
         [Required]
-        [JsonPropertyName("bookId")]
-        public string BookId
+        [JsonPropertyName("bookRef")]
+        public KBBook BookRef
         {
-            get { return _bookId.GetValue(); }
-            set { _bookId.SetValue(value); }
+            get { return _bookRef.GetValue(); }
+            set { _bookRef.SetValue(value); }
+        }
+    
+        private PropertyValue<KBFolder> _ref = new PropertyValue<KBFolder>(nameof(FolderHit), nameof(Ref));
+        
+        [Required]
+        [JsonPropertyName("ref")]
+        public KBFolder Ref
+        {
+            get { return _ref.GetValue(); }
+            set { _ref.SetValue(value); }
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(FolderHit), nameof(Name));
@@ -84,7 +95,8 @@ namespace SpaceDotNet.Client
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _score.SetAccessPath(path, validateHasBeenSet);
-            _bookId.SetAccessPath(path, validateHasBeenSet);
+            _bookRef.SetAccessPath(path, validateHasBeenSet);
+            _ref.SetAccessPath(path, validateHasBeenSet);
             _name.SetAccessPath(path, validateHasBeenSet);
         }
     

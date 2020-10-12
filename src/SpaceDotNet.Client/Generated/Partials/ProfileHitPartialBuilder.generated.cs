@@ -65,6 +65,24 @@ namespace SpaceDotNet.Client.ProfileHitPartialBuilder
         public static Partial<ProfileHit> WithRef(this Partial<ProfileHit> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
             => it.AddFieldName("ref", partialBuilder(new Partial<TDMemberProfile>(it)));
         
+        public static Partial<ProfileHit> WithAbsencesRef(this Partial<ProfileHit> it)
+            => it.AddFieldName("absencesRef");
+        
+        public static Partial<ProfileHit> WithAbsencesRef(this Partial<ProfileHit> it, Func<Partial<ProfileAbsencesRecord>, Partial<ProfileAbsencesRecord>> partialBuilder)
+            => it.AddFieldName("absencesRef", partialBuilder(new Partial<ProfileAbsencesRecord>(it)));
+        
+        public static Partial<ProfileHit> WithMembershipRef(this Partial<ProfileHit> it)
+            => it.AddFieldName("membershipRef");
+        
+        public static Partial<ProfileHit> WithMembershipRef(this Partial<ProfileHit> it, Func<Partial<ProfileMembershipRecord>, Partial<ProfileMembershipRecord>> partialBuilder)
+            => it.AddFieldName("membershipRef", partialBuilder(new Partial<ProfileMembershipRecord>(it)));
+        
+        public static Partial<ProfileHit> WithLocationsRef(this Partial<ProfileHit> it)
+            => it.AddFieldName("locationsRef");
+        
+        public static Partial<ProfileHit> WithLocationsRef(this Partial<ProfileHit> it, Func<Partial<ProfileLocationsRecord>, Partial<ProfileLocationsRecord>> partialBuilder)
+            => it.AddFieldName("locationsRef", partialBuilder(new Partial<ProfileLocationsRecord>(it)));
+        
         public static Partial<ProfileHit> WithCustomFields(this Partial<ProfileHit> it)
             => it.AddFieldName("customFields");
         

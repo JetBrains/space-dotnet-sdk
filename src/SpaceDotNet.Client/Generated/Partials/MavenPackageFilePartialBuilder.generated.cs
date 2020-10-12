@@ -35,6 +35,12 @@ namespace SpaceDotNet.Client.MavenPackageFilePartialBuilder
         public static Partial<MavenPackageFile> WithLength(this Partial<MavenPackageFile> it)
             => it.AddFieldName("length");
         
+        public static Partial<MavenPackageFile> WithChecksums(this Partial<MavenPackageFile> it)
+            => it.AddFieldName("checksums");
+        
+        public static Partial<MavenPackageFile> WithChecksums(this Partial<MavenPackageFile> it, Func<Partial<MavenChecksum>, Partial<MavenChecksum>> partialBuilder)
+            => it.AddFieldName("checksums", partialBuilder(new Partial<MavenChecksum>(it)));
+        
     }
     
 }

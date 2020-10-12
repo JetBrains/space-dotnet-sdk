@@ -1753,20 +1753,20 @@ namespace SpaceDotNet.Client
                 
                 }
             
-                public CommitStatusClient CommitStatuses => new CommitStatusClient(_connection);
+                public ExternalCheckClient ExternalChecks => new ExternalCheckClient(_connection);
                 
-                public partial class CommitStatusClient
+                public partial class ExternalCheckClient
                 {
                     private readonly Connection _connection;
                     
-                    public CommitStatusClient(Connection connection)
+                    public ExternalCheckClient(Connection connection)
                     {
                         _connection = connection;
                     }
                     
-                    public async Task PushCommitStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/commit-statuses", 
-                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCommitStatusesPostRequest { 
+                    public async Task ReportExternalCheckStatusAsync(ProjectIdentifier project, string repository, string revision, CommitExecutionStatus executionStatus, string url, string externalServiceName, string taskName, string taskId, string? branch = null, List<string>? changes = null, long? timestamp = null, string? description = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks", 
+                            new ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionExternalChecksPostRequest { 
                                 Branch = branch,
                                 Changes = changes,
                                 ExecutionStatus = executionStatus,
@@ -1779,8 +1779,8 @@ namespace SpaceDotNet.Client
                             }
                     , cancellationToken);
                 
-                    public async Task<List<CommitStatus>> GetCommitStatusesForCommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<CommitStatus>, Partial<CommitStatus>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<CommitStatus>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/commit-statuses?$fields={(partial != null ? partial(new Partial<CommitStatus>()) : Partial<CommitStatus>.Default())}", cancellationToken);
+                    public async Task<List<ExternalCheck>> GetExternalChecksForCommitAsync(ProjectIdentifier project, string repository, string revision, Func<Partial<ExternalCheck>, Partial<ExternalCheck>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<List<ExternalCheck>>("GET", $"api/http/projects/{project}/repositories/{repository}/revisions/{revision}/external-checks?$fields={(partial != null ? partial(new Partial<ExternalCheck>()) : Partial<ExternalCheck>.Default())}", cancellationToken);
                 
                 }
             

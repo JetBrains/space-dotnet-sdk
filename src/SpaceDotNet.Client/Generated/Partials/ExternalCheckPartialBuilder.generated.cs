@@ -22,38 +22,38 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CommitStatusPartialBuilder
+namespace SpaceDotNet.Client.ExternalCheckPartialBuilder
 {
-    public static class CommitStatusPartialExtensions
+    public static class ExternalCheckPartialExtensions
     {
-        public static Partial<CommitStatus> WithRepository(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithRepository(this Partial<ExternalCheck> it)
             => it.AddFieldName("repository");
         
-        public static Partial<CommitStatus> WithRevision(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithRevision(this Partial<ExternalCheck> it)
             => it.AddFieldName("revision");
         
-        public static Partial<CommitStatus> WithExecutionStatus(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithExecutionStatus(this Partial<ExternalCheck> it)
             => it.AddFieldName("executionStatus");
         
-        public static Partial<CommitStatus> WithExecutionStatus(this Partial<CommitStatus> it, Func<Partial<CommitExecutionStatus>, Partial<CommitExecutionStatus>> partialBuilder)
+        public static Partial<ExternalCheck> WithExecutionStatus(this Partial<ExternalCheck> it, Func<Partial<CommitExecutionStatus>, Partial<CommitExecutionStatus>> partialBuilder)
             => it.AddFieldName("executionStatus", partialBuilder(new Partial<CommitExecutionStatus>(it)));
         
-        public static Partial<CommitStatus> WithUrl(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithUrl(this Partial<ExternalCheck> it)
             => it.AddFieldName("url");
         
-        public static Partial<CommitStatus> WithExternalServiceName(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithExternalServiceName(this Partial<ExternalCheck> it)
             => it.AddFieldName("externalServiceName");
         
-        public static Partial<CommitStatus> WithTaskName(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithTaskName(this Partial<ExternalCheck> it)
             => it.AddFieldName("taskName");
         
-        public static Partial<CommitStatus> WithTaskId(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithTaskId(this Partial<ExternalCheck> it)
             => it.AddFieldName("taskId");
         
-        public static Partial<CommitStatus> WithTimestamp(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithTimestamp(this Partial<ExternalCheck> it)
             => it.AddFieldName("timestamp");
         
-        public static Partial<CommitStatus> WithDescription(this Partial<CommitStatus> it)
+        public static Partial<ExternalCheck> WithDescription(this Partial<ExternalCheck> it)
             => it.AddFieldName("description");
         
     }

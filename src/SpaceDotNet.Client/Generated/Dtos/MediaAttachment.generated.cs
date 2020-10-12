@@ -24,20 +24,14 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public interface MediaAttachment
+         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        public static ImageAttachment ImageAttachment(string id, int width, int height, string? name = null, string? previewBytes = null, List<ImageAttachmentVariant>? variants = null)
+            => new ImageAttachment(id: id, width: width, height: height, name: null, previewBytes: null, variants: null);
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
-        
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
-        
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+        public static VideoAttachment VideoAttachment(string id, long sizeBytes, string? name = null, int? width = null, int? height = null, string? previewBytes = null)
+            => new VideoAttachment(id: id, sizeBytes: sizeBytes, name: null, width: null, height: null, previewBytes: null);
         
     }
     

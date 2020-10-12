@@ -24,21 +24,31 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public interface Attachment
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class HostingSiteSettings
+         : IPropagatePropertyAccessPath
     {
-        public static DeletedAttachment Deleted(string deletedIdentity)
-            => new DeletedAttachment(deletedIdentity: deletedIdentity);
+        public HostingSiteSettings() { }
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
+        public HostingSiteSettings(bool @public)
+        {
+            IsPublic = @public;
+        }
         
-        public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
-            => new ProfileLinkPreview(profile: profile);
+        private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(HostingSiteSettings), nameof(IsPublic));
         
-        public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
-        
+        [Required]
+        [JsonPropertyName("public")]
+        public bool IsPublic
+        {
+            get { return _public.GetValue(); }
+            set { _public.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _public.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }
