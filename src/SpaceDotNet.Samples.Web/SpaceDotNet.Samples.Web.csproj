@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <UserSecretsId>aspnet-SpaceDotNet.Samples.Web-CEE4CB30-950A-4ED1-94C9-AB8453473E6D</UserSecretsId>
+        <UserSecretsId>SpaceDotNet.Samples.Web</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
