@@ -422,6 +422,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         apiEndpoint.Documentation.ToCSharpDocumentationComment()));
             }
 
+            // Remarks (required permissions)
             if (apiEndpoint.Rights != null && apiEndpoint.Rights.Count > 0)
             {
                 builder.AppendLine($"{indent}/// <remarks>");
@@ -435,7 +436,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     {
                         builder.AppendLine($"{indent}/// <description>{apiRight.Description}</description>");
                     }
-
                     builder.AppendLine($"{indent}/// </item>");
                 }
                 builder.AppendLine($"{indent}/// </list>");
