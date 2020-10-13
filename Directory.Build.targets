@@ -25,10 +25,8 @@
         <IncludeSource>True</IncludeSource>
         <PublishRepositoryUrl>true</PublishRepositoryUrl>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <EmbedUntrackedSources>true</EmbedUntrackedSources>
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    
-        <!-- XML documentation -->
-        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         
         <Product>SpaceDotNet</Product>
     </PropertyGroup>

@@ -2,9 +2,10 @@
 
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
-        <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
         <Description>Utilities to work with SpaceDotNet, the JetBrains Space SDK for .NET, in ASP.NET Core.</Description>
         <PackageTags>JetBrains;JetBrains Space;aspnetcore</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
