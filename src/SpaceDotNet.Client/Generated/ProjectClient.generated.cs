@@ -142,15 +142,23 @@ namespace SpaceDotNet.Client
                 /// Stop execution by ExecutionId.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Stop <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Stop</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task StopAsync(string id, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/automation/graph-executions/{id}/stop", cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<JobExecution> GetGraphExecutionAsync(string id, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<JobExecution>("GET", $"api/http/projects/automation/graph-executions/{id}?$fields={(partial != null ? partial(new Partial<JobExecution>()) : Partial<JobExecution>.Default())}", cancellationToken);
@@ -206,8 +214,12 @@ namespace SpaceDotNet.Client
                 /// Search executions. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<Batch<JobExecution>> GetAllGraphExecutionsAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<Batch<JobExecution>>, Partial<Batch<JobExecution>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<JobExecution>>("GET", $"api/http/projects/{project}/automation/graph-executions?jobId={jobId.ToString()}&branchFilter={branchFilter?.ToString() ?? "null"}&statusFilter={statusFilter?.ToString() ?? "null"}&jobTriggerFilter={jobTriggerFilter?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<JobExecution>>()) : Partial<Batch<JobExecution>>.Default())}", cancellationToken);
@@ -216,8 +228,12 @@ namespace SpaceDotNet.Client
                 /// Search executions. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public IAsyncEnumerable<JobExecution> GetAllGraphExecutionsAsyncEnumerable(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<JobExecution>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobExecution>.Default())), skip, cancellationToken);
@@ -239,8 +255,12 @@ namespace SpaceDotNet.Client
                 /// Start Job. Returns Execution id, see projects/automation/graph-executions/{id}
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Start <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Start</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<LaunchResult> StartAsync(ProjectIdentifier project, string jobId, Branch branch, Func<Partial<LaunchResult>, Partial<LaunchResult>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectAutomationJobsForJobIdStartPostRequest, LaunchResult>("POST", $"api/http/projects/{project}/automation/jobs/{jobId}/start?$fields={(partial != null ? partial(new Partial<LaunchResult>()) : Partial<LaunchResult>.Default())}", 
@@ -253,8 +273,12 @@ namespace SpaceDotNet.Client
                 /// Search jobs. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<Batch<Job>> GetAllJobsAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Batch<Job>>, Partial<Batch<Job>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<Job>>("GET", $"api/http/projects/{project}/automation/jobs?repoFilter={repoFilter.ToString()}&branchFilter={branchFilter.ToString()}&trigger={trigger?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Job>>()) : Partial<Batch<Job>>.Default())}", cancellationToken);
@@ -263,15 +287,23 @@ namespace SpaceDotNet.Client
                 /// Search jobs. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public IAsyncEnumerable<Job> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Job>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Job>.Default())), skip, cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<Job> GetJobAsync(ProjectIdentifier project, string jobId, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Job>("GET", $"api/http/projects/{project}/automation/jobs/{jobId}?$fields={(partial != null ? partial(new Partial<Job>()) : Partial<Job>.Default())}", cancellationToken);
@@ -295,8 +327,13 @@ namespace SpaceDotNet.Client
             /// Create a new project parameter in a parameter bundle
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Modify parameters (Create or edit project parameters)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify parameters</term>
+            /// <description>Create or edit project parameters</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<string> CreateParamAsync(string bundleId, string key, string value, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ProjectsParamsPostRequest, string>("POST", $"api/http/projects/params", 
@@ -311,8 +348,13 @@ namespace SpaceDotNet.Client
             /// List project parameters in a parameter bundle
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * View parameters (View project parameters)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View parameters</term>
+            /// <description>View project parameters</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<Batch<PlainParameterRecord>> GetAllParamsAsync(string bundleId, string? skip = null, int? top = 100, Func<Partial<Batch<PlainParameterRecord>>, Partial<Batch<PlainParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<PlainParameterRecord>>("GET", $"api/http/projects/params?bundleId={bundleId.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PlainParameterRecord>>()) : Partial<Batch<PlainParameterRecord>>.Default())}", cancellationToken);
@@ -321,8 +363,13 @@ namespace SpaceDotNet.Client
             /// List project parameters in a parameter bundle
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * View parameters (View project parameters)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View parameters</term>
+            /// <description>View project parameters</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public IAsyncEnumerable<PlainParameterRecord> GetAllParamsAsyncEnumerable(string bundleId, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllParamsAsync(bundleId: bundleId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
@@ -331,8 +378,13 @@ namespace SpaceDotNet.Client
             /// Update an existing project parameter.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Modify parameters (Create or edit project parameters)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Modify parameters</term>
+            /// <description>Create or edit project parameters</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task UpdateParamAsync(string id, string value, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/params/{id}", 
@@ -345,8 +397,13 @@ namespace SpaceDotNet.Client
             /// Delete an existing project parameter.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Delete parameters (Delete project parameters)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Delete parameters</term>
+            /// <description>Delete project parameters</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task DeleteParamAsync(string id, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/params/{id}", cancellationToken);
@@ -366,8 +423,13 @@ namespace SpaceDotNet.Client
                 /// Create a new project parameter in the default parameter bundle
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Modify parameters (Create or edit project parameters)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Modify parameters</term>
+                /// <description>Create or edit project parameters</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string value, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsParamsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/params/in-default-bundle", 
@@ -559,8 +621,13 @@ namespace SpaceDotNet.Client
             /// Create a new secret in a parameter bundle. Value is base64 encoded bytes of the secret value, possibly after client side encryption. If the secret value bytes are encrypted then the id of the Space public key must be provided
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Create secrets (Create project secrets)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Create secrets</term>
+            /// <description>Create project secrets</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<string> CreateSecretAsync(string bundleId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ProjectsSecretsPostRequest, string>("POST", $"api/http/projects/secrets", 
@@ -576,8 +643,13 @@ namespace SpaceDotNet.Client
             /// List project secrets in a parameter bundle
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * View keys of secrets (View keys of project secrets)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View keys of secrets</term>
+            /// <description>View keys of project secrets</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<Batch<SecretParameterRecord>> GetAllSecretsAsync(string bundleId, string? skip = null, int? top = 100, Func<Partial<Batch<SecretParameterRecord>>, Partial<Batch<SecretParameterRecord>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<SecretParameterRecord>>("GET", $"api/http/projects/secrets?bundleId={bundleId.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<SecretParameterRecord>>()) : Partial<Batch<SecretParameterRecord>>.Default())}", cancellationToken);
@@ -586,8 +658,13 @@ namespace SpaceDotNet.Client
             /// List project secrets in a parameter bundle
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * View keys of secrets (View keys of project secrets)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View keys of secrets</term>
+            /// <description>View keys of project secrets</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public IAsyncEnumerable<SecretParameterRecord> GetAllSecretsAsyncEnumerable(string bundleId, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSecretsAsync(bundleId: bundleId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
@@ -596,8 +673,13 @@ namespace SpaceDotNet.Client
             /// Update an existing project secret.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit secrets (Edit project secrets)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit secrets</term>
+            /// <description>Edit project secrets</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task UpdateSecretAsync(string id, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/secrets/{id}", 
@@ -611,8 +693,13 @@ namespace SpaceDotNet.Client
             /// Delete an existing project secret.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Delete secrets (Delete project secrets)<br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Delete secrets</term>
+            /// <description>Delete project secrets</description>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task DeleteSecretAsync(string id, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/secrets/{id}", cancellationToken);
@@ -632,8 +719,13 @@ namespace SpaceDotNet.Client
                 /// Create a new secret in the default parameter bundle. Value is base64 encoded bytes of the secret value, possibly after client side encryption. If the secret value bytes are encrypted then the id of the Space public key must be provided
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Create secrets (Create project secrets)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Create secrets</term>
+                /// <description>Create project secrets</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<string> CreateInDefaultBundleAsync(string projectId, string key, string valueBase64, string? publicKeyId = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsSecretsInDefaultBundlePostRequest, string>("POST", $"api/http/projects/secrets/in-default-bundle", 
@@ -1380,8 +1472,13 @@ namespace SpaceDotNet.Client
                 }
                 
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit issues (Edit issues that were created by other users)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", 
@@ -1402,8 +1499,13 @@ namespace SpaceDotNet.Client
                 , cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit issues (Edit issues that were created by other users)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task ToggleIssueResolvedAsync(ProjectIdentifier project, string issueId, bool resolved, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/toggle-resolved", 
@@ -1413,29 +1515,49 @@ namespace SpaceDotNet.Client
                 , cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View issues (View issues in a project)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View issues</term>
+                /// <description>View issues in a project</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId.JoinToString("assigneeId", it => it?.ToString())}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString().ToLowerInvariant()}&tags={tags?.JoinToString("tags", it => it.ToString()) ?? "null"}&customFields={customFields?.JoinToString("customFields", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default())}", cancellationToken);
                 
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View issues (View issues in a project)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View issues</term>
+                /// <description>View issues in a project</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View issues (View issues in a project)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View issues</term>
+                /// <description>View issues in a project</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<Issue> GetIssueByNumberAsync(ProjectIdentifier project, int number, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Issue>("GET", $"api/http/projects/{project}/planning/issues/number:{number}?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit issues (Edit issues that were created by other users)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task UpdateIssueAsync(ProjectIdentifier project, string issueId, string title, string status, string? description = null, string? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfo? importInfo = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/{issueId}", 
@@ -1450,8 +1572,13 @@ namespace SpaceDotNet.Client
                 , cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit issues (Edit issues that were created by other users)<br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit issues</term>
+                /// <description>Edit issues that were created by other users</description>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task DeleteIssueAsync(ProjectIdentifier project, string issueId, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}", cancellationToken);
@@ -1468,15 +1595,25 @@ namespace SpaceDotNet.Client
                     }
                     
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * View issues (View issues in a project)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>View issues</term>
+                    /// <description>View issues in a project</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task<List<IssueStatus>> GetAllIssueStatusesAsync(ProjectIdentifier project, Func<Partial<IssueStatus>, Partial<IssueStatus>>? partial = null, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<List<IssueStatus>>("GET", $"api/http/projects/{project}/planning/issues/statuses?$fields={(partial != null ? partial(new Partial<IssueStatus>()) : Partial<IssueStatus>.Default())}", cancellationToken);
                 
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * Manage issues statuses (Manage the list of issue statuses)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Manage issues statuses</term>
+                    /// <description>Manage the list of issue statuses</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task UpdateStatusAsync(ProjectIdentifier project, List<IssueStatusData> statuses, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/statuses", 
@@ -1497,8 +1634,13 @@ namespace SpaceDotNet.Client
                         }
                         
                         /// <remarks>
-                        /// Required permissions:<br/>
-                        /// * View issues (View issues in a project)<br/>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>View issues</term>
+                        /// <description>View issues in a project</description>
+                        /// </item>
+                        /// </list>
                         /// </remarks>
                         public async Task<List<IssueStatusWithUsages>> GetIssueStatusDistributionAsync(ProjectIdentifier project, Func<Partial<IssueStatusWithUsages>, Partial<IssueStatusWithUsages>>? partial = null, CancellationToken cancellationToken = default)
                             => await _connection.RequestResourceAsync<List<IssueStatusWithUsages>>("GET", $"api/http/projects/{project}/planning/issues/statuses/distribution?$fields={(partial != null ? partial(new Partial<IssueStatusWithUsages>()) : Partial<IssueStatusWithUsages>.Default())}", cancellationToken);
@@ -1519,8 +1661,13 @@ namespace SpaceDotNet.Client
                     }
                     
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * Edit issues (Edit issues that were created by other users)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task AddAttachmentsAsync(ProjectIdentifier project, string issueId, List<Attachment> attachments, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/attachments", 
@@ -1530,8 +1677,13 @@ namespace SpaceDotNet.Client
                     , cancellationToken);
                 
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * Edit issues (Edit issues that were created by other users)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task RemoveAttachmentsAsync(ProjectIdentifier project, string issueId, List<string> identities, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/attachments?identities={identities.JoinToString("identities", it => it.ToString())}", cancellationToken);
@@ -1550,15 +1702,25 @@ namespace SpaceDotNet.Client
                     }
                     
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * Edit issues (Edit issues that were created by other users)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task AddIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}", cancellationToken);
                 
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * Edit issues (Edit issues that were created by other users)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task RemoveIssueChecklistAsync(ProjectIdentifier project, string issueId, string checklistId, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/checklists/{checklistId}", cancellationToken);
@@ -1577,8 +1739,13 @@ namespace SpaceDotNet.Client
                     }
                     
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * View issues (View issues in a project)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>View issues</term>
+                    /// <description>View issues in a project</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task<List<string>> ImportIssueCommentHistoryAsync(ProjectIdentifier project, string issueId, List<MessageForImport> comments, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesForIssueIdCommentsImportPostRequest, List<string>>("POST", $"api/http/projects/{project}/planning/issues/{issueId}/comments/import", 
@@ -1601,15 +1768,25 @@ namespace SpaceDotNet.Client
                     }
                     
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * Edit issues (Edit issues that were created by other users)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task AddIssueTagAsync(ProjectIdentifier project, string issueId, string tagId, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}", cancellationToken);
                 
                     /// <remarks>
-                    /// Required permissions:<br/>
-                    /// * Edit issues (Edit issues that were created by other users)<br/>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Edit issues</term>
+                    /// <description>Edit issues that were created by other users</description>
+                    /// </item>
+                    /// </list>
                     /// </remarks>
                     public async Task RemoveIssueTagAsync(ProjectIdentifier project, string issueId, string tagId, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/planning/issues/{issueId}/tags/{tagId}", cancellationToken);

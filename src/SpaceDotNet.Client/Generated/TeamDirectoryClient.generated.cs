@@ -368,8 +368,12 @@ namespace SpaceDotNet.Client
             /// Mark member location's id position on a map.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDLocationMapPoint> CreateLocationMapMemberPointAsync(string memberLocationId, int x, int y, string mapId, Func<Partial<TDLocationMapPoint>, Partial<TDLocationMapPoint>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsPostRequest, TDLocationMapPoint>("POST", $"api/http/team-directory/location-map-member-points?$fields={(partial != null ? partial(new Partial<TDLocationMapPoint>()) : Partial<TDLocationMapPoint>.Default())}", 
@@ -397,8 +401,12 @@ namespace SpaceDotNet.Client
             /// Update member location's position on a map.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDLocationMapPoint> UpdateLocationMapMemberPointAsync(string locationPointId, int? x = null, int? y = null, Func<Partial<TDLocationMapPoint>, Partial<TDLocationMapPoint>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest, TDLocationMapPoint>("PATCH", $"api/http/team-directory/location-map-member-points/{locationPointId}?$fields={(partial != null ? partial(new Partial<TDLocationMapPoint>()) : Partial<TDLocationMapPoint>.Default())}", 
@@ -412,8 +420,12 @@ namespace SpaceDotNet.Client
             /// Delete member location from a map.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task DeleteLocationMapMemberPointAsync(string locationPointId, bool delete, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-map-member-points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
@@ -435,8 +447,12 @@ namespace SpaceDotNet.Client
             /// Create a location.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit locations <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit locations</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDLocation> CreateLocationAsync(string name, string? timezone = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null, int? capacity = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryLocationsPostRequest, TDLocation>("POST", $"api/http/team-directory/locations?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", 
@@ -459,8 +475,12 @@ namespace SpaceDotNet.Client
             /// Restore one or more archived locations.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit locations <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit locations</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<List<TDLocation>> RestoreMultipleAsync(List<string> ids, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryLocationsRestorePostRequest, List<TDLocation>>("POST", $"api/http/team-directory/locations/restore?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", 
@@ -473,8 +493,12 @@ namespace SpaceDotNet.Client
             /// Restore an archived location.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit locations <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit locations</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDLocation> RestoreAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDLocation>("POST", $"api/http/team-directory/locations/{id}/restore?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
@@ -495,8 +519,12 @@ namespace SpaceDotNet.Client
             /// Update a location. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit locations <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit locations</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDLocation> UpdateLocationAsync(string id, string? name = null, string? timezone = null, bool? customWorkdays = null, List<int>? workdays = null, List<string>? phones = null, List<string>? emails = null, List<string>? equipment = null, string? description = null, string? address = null, string? type = null, string? parentId = null, string? mapId = null, int? capacity = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdPatchRequest, TDLocation>("PATCH", $"api/http/team-directory/locations/{id}?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", 
@@ -521,8 +549,12 @@ namespace SpaceDotNet.Client
             /// Archive a location.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit locations <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit locations</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<List<TDLocation>> ArchiveLocationAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<TDLocation>>("DELETE", $"api/http/team-directory/locations/{id}?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
@@ -548,8 +580,12 @@ namespace SpaceDotNet.Client
                 /// Update the map for a location.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit locations <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit locations</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<TDLocationMap> UpdateMapAsync(string id, string mapPictureId, Func<Partial<TDLocationMap>, Partial<TDLocationMap>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TeamDirectoryLocationsForIdMapPatchRequest, TDLocationMap>("PATCH", $"api/http/team-directory/locations/{id}/map?$fields={(partial != null ? partial(new Partial<TDLocationMap>()) : Partial<TDLocationMap>.Default())}", 
@@ -596,8 +632,12 @@ namespace SpaceDotNet.Client
             /// Add a member location, optionally from/until a given date.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMemberLocation> CreateMemberLocationAsync(ProfileIdentifier member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsPostRequest, TDMemberLocation>("POST", $"api/http/team-directory/member-locations?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", 
@@ -632,8 +672,12 @@ namespace SpaceDotNet.Client
             /// Update member location. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMemberLocation> UpdateMemberLocationAsync(string memberLocationId, string? location = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest, TDMemberLocation>("PATCH", $"api/http/team-directory/member-locations/{memberLocationId}?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", 
@@ -648,8 +692,12 @@ namespace SpaceDotNet.Client
             /// Archive/unarchive a member location. Setting delete to true will archive the member location, false will restore it.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task DeleteMemberLocationAsync(string memberLocationId, bool delete = true, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{memberLocationId}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
@@ -696,8 +744,12 @@ namespace SpaceDotNet.Client
             /// Create a team membership.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMembership> CreateMembershipAsync(ProfileIdentifier member, string teamId, string roleId, bool lead = false, bool requiresApproval = false, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMembershipsPostRequest, TDMembership>("POST", $"api/http/team-directory/memberships?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", 
@@ -731,8 +783,12 @@ namespace SpaceDotNet.Client
             /// Update a team membership. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMembership> UpdateMembershipAsync(string membershipId, bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMembershipsForMembershipIdPatchRequest, TDMembership>("PATCH", $"api/http/team-directory/memberships/{membershipId}?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", 
@@ -752,8 +808,12 @@ namespace SpaceDotNet.Client
             /// Archive/unarchive a team membership. Setting delete to true will archive the membership, false will restore it.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task DeleteMembershipAsync(string membershipId, bool delete = true, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
@@ -762,8 +822,12 @@ namespace SpaceDotNet.Client
             /// Revoke a team membership to end at a given date/time.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task RevokeAsync(string membershipId, SpaceTime? till = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}/revoke?till={till?.ToString() ?? "null"}", cancellationToken);
@@ -808,8 +872,12 @@ namespace SpaceDotNet.Client
                 /// Get/search all membership requests. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit team <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit team</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<Batch<Pair<TDMemberProfile, TDMembership>>> GetAllRequestsAsync(string? skip = null, int? top = 100, string? teamId = null, bool? direct = true, Func<Partial<Batch<Pair<TDMemberProfile, TDMembership>>>, Partial<Batch<Pair<TDMemberProfile, TDMembership>>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfile, TDMembership>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Pair<TDMemberProfile, TDMembership>>>()) : Partial<Batch<Pair<TDMemberProfile, TDMembership>>>.Default())}", cancellationToken);
@@ -818,8 +886,12 @@ namespace SpaceDotNet.Client
                 /// Get/search all membership requests. Parameters are applied as 'AND' filters.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit team <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit team</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public IAsyncEnumerable<Pair<TDMemberProfile, TDMembership>> GetAllRequestsAsyncEnumerable(string? skip = null, int? top = 100, string? teamId = null, bool? direct = true, Func<Partial<Pair<TDMemberProfile, TDMembership>>, Partial<Pair<TDMemberProfile, TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllRequestsAsync(top: top, teamId: teamId, direct: direct, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Pair<TDMemberProfile, TDMembership>>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Pair<TDMemberProfile, TDMembership>>.Default())), skip, cancellationToken);
@@ -857,8 +929,12 @@ namespace SpaceDotNet.Client
                 /// Request a team membership to end at a given date/time. Will need approval.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit team <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit team</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task UpdateRequestRevokeAsync(string membershipId, SpaceTime till, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/memberships/{membershipId}/request-revoke", 
@@ -886,8 +962,12 @@ namespace SpaceDotNet.Client
             /// Create a profile.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Add new members <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Add new members</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesPostRequest, TDMemberProfile>("POST", $"api/http/team-directory/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
@@ -946,8 +1026,12 @@ namespace SpaceDotNet.Client
             /// Update a profile. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
@@ -976,8 +1060,12 @@ namespace SpaceDotNet.Client
             /// Reactivate a user profile
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> ReactivateAsync(ProfileIdentifier profile, SpaceDate? joined = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileReactivatePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/reactivate?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
@@ -990,8 +1078,12 @@ namespace SpaceDotNet.Client
             /// Delete a profile.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Superadmin <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Superadmin</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> DeleteProfileAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
@@ -1000,8 +1092,12 @@ namespace SpaceDotNet.Client
             /// Deactivate a user profile
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit member profile <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit member profile</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDMemberProfile> DeactivateAsync(ProfileIdentifier profile, SpaceTime at, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}/deactivate?at={at.ToString()}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
@@ -1021,8 +1117,12 @@ namespace SpaceDotNet.Client
                 /// Get the current authentication sessions for a given profile id.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View and remove authentication sessions <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View and remove authentication sessions</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<List<ESAuthenticationSession>> GetAllAuthenticationSessionsAsync(ProfileIdentifier owner, Func<Partial<ESAuthenticationSession>, Partial<ESAuthenticationSession>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<ESAuthenticationSession>>("GET", $"api/http/team-directory/profiles/authentication-sessions/{owner}?$fields={(partial != null ? partial(new Partial<ESAuthenticationSession>()) : Partial<ESAuthenticationSession>.Default())}", cancellationToken);
@@ -1031,8 +1131,12 @@ namespace SpaceDotNet.Client
                 /// Terminate an existing authentication session. Doing so will close the session, and logout.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * View and remove authentication sessions <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View and remove authentication sessions</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task TerminateOwnAuthenticationSessionAsync(ProfileIdentifier owner, string sessionId, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/authentication-sessions/{owner}/{sessionId}", cancellationToken);
@@ -1124,8 +1228,12 @@ namespace SpaceDotNet.Client
             public partial class WorkingDayClient
             {
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit working days <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit working days</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<TDWorkingDays> AddWorkingDaysAsync(ProfileIdentifier profile, WorkingDaysSpec workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysPostRequest, TDWorkingDays>("POST", $"api/http/team-directory/profiles/{profile}/working-days?$fields={(partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default())}", 
@@ -1143,8 +1251,12 @@ namespace SpaceDotNet.Client
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => QueryWorkingDaysForAProfileAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDWorkingDays>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDWorkingDays>.Default())), skip, cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit working days <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit working days</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<TDWorkingDays> UpdateWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, WorkingDaysSpec workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest, TDWorkingDays>("PATCH", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}?$fields={(partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default())}", 
@@ -1156,8 +1268,12 @@ namespace SpaceDotNet.Client
                 , cancellationToken);
             
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit working days <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit working days</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task DeleteWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}", cancellationToken);
@@ -1562,8 +1678,12 @@ namespace SpaceDotNet.Client
                 /// Update spoken language for a profile. Optionally, firstName and lastName can be specified to add a localized name to the profile.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit languages <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit languages</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task<TDProfileLanguage> CreateSpokenLanguageAsync(ProfileIdentifier profile, string language, string? firstName = null, string? lastName = null, Func<Partial<TDProfileLanguage>, Partial<TDProfileLanguage>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest, TDProfileLanguage>("POST", $"api/http/team-directory/profiles/{profile}/spoken-languages?$fields={(partial != null ? partial(new Partial<TDProfileLanguage>()) : Partial<TDProfileLanguage>.Default())}", 
@@ -1578,8 +1698,12 @@ namespace SpaceDotNet.Client
                 /// Delete spoken language for a profile.
                 /// </summary>
                 /// <remarks>
-                /// Required permissions:<br/>
-                /// * Edit languages <br/>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit languages</term>
+                /// </item>
+                /// </list>
                 /// </remarks>
                 public async Task DeleteSpokenLanguageAsync(ProfileIdentifier profile, string language, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/spoken-languages/{language}", cancellationToken);
@@ -1638,8 +1762,12 @@ namespace SpaceDotNet.Client
             /// Create a role.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit positions <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit positions</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDRole> CreateRoleAsync(string name, string? parentId = null, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryRolesPostRequest, TDRole>("POST", $"api/http/team-directory/roles?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", 
@@ -1653,8 +1781,12 @@ namespace SpaceDotNet.Client
             /// Restore an archived role.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit positions <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit positions</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDRole> RestoreAsync(string id, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDRole>("POST", $"api/http/team-directory/roles/{id}/restore?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
@@ -1675,8 +1807,12 @@ namespace SpaceDotNet.Client
             /// Update a role. Optional parameters will be ignored when null, and updated otherwise.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit positions <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit positions</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDRole> UpdateRoleAsync(string id, string? name = null, string? parentId = null, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryRolesForIdPatchRequest, TDRole>("PATCH", $"api/http/team-directory/roles/{id}?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", 
@@ -1690,8 +1826,12 @@ namespace SpaceDotNet.Client
             /// Archive a role.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit positions <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit positions</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task ArchiveRoleAsync(string id, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/roles/{id}", cancellationToken);
@@ -1732,8 +1872,12 @@ namespace SpaceDotNet.Client
             /// Create a new team.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDTeam> CreateTeamAsync(string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryTeamsPostRequest, TDTeam>("POST", $"api/http/team-directory/teams?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", 
@@ -1751,8 +1895,12 @@ namespace SpaceDotNet.Client
             /// Cancel disbanding a team, and restore its members.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task CancelTeamDisbandingAsync(string id, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/teams/{id}/cancel-disbanding", cancellationToken);
@@ -1761,8 +1909,12 @@ namespace SpaceDotNet.Client
             /// Restore an archived team.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDTeam> RestoreTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDTeam>("POST", $"api/http/team-directory/teams/{id}/restore?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
@@ -1789,8 +1941,12 @@ namespace SpaceDotNet.Client
             /// Update a team.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<TDTeam> UpdateTeamAsync(string id, string name, string? description = null, List<string>? emails = null, string? parentId = null, List<CustomFieldValue>? customFieldValues = null, string? externalId = null, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryTeamsForIdPatchRequest, TDTeam>("PATCH", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", 
@@ -1808,8 +1964,12 @@ namespace SpaceDotNet.Client
             /// Archive a team.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<List<TDTeam>> ArchiveTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<TDTeam>>("DELETE", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
@@ -1818,8 +1978,12 @@ namespace SpaceDotNet.Client
             /// Disband a team.
             /// </summary>
             /// <remarks>
-            /// Required permissions:<br/>
-            /// * Edit team <br/>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Edit team</term>
+            /// </item>
+            /// </list>
             /// </remarks>
             public async Task<List<TDTeam>> DisbandTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<TDTeam>>("DELETE", $"api/http/team-directory/teams/{id}/disband?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
