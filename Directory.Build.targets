@@ -27,6 +27,9 @@
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
     
+        <!-- XML documentation -->
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        
         <Product>SpaceDotNet</Product>
     </PropertyGroup>
 
