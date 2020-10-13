@@ -425,11 +425,20 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             if (apiEndpoint.Rights != null && apiEndpoint.Rights.Count > 0)
             {
                 builder.AppendLine($"{indent}/// <remarks>");
-                builder.AppendLine($"{indent}/// Required permissions:<br/>");
+                builder.AppendLine($"{indent}/// Required permissions:");
+                builder.AppendLine($"{indent}/// <list type=\"bullet\">");
                 foreach (var apiRight in apiEndpoint.Rights)
                 {
-                    builder.AppendLine($"{indent}/// * {apiRight.Title} {(!string.IsNullOrEmpty(apiRight.Description) ? "(" + apiRight.Description + ")" : "")}<br/>");
+                    builder.AppendLine($"{indent}/// <item>");
+                    builder.AppendLine($"{indent}/// <term>{apiRight.Title}</term>");
+                    if (!string.IsNullOrEmpty(apiRight.Description))
+                    {
+                        builder.AppendLine($"{indent}/// <description>{apiRight.Description}</description>");
+                    }
+
+                    builder.AppendLine($"{indent}/// </item>");
                 }
+                builder.AppendLine($"{indent}/// </list>");
                 builder.AppendLine($"{indent}/// </remarks>");
             }
             
