@@ -13,26 +13,26 @@ namespace SpaceDotNet.Samples.App.WebHooks
 {
     public class CateringWebHookHandlerStartupTask : BackgroundService
     {
-        private readonly ServiceClient _serviceClient;
+        private readonly ApplicationClient _applicationClient;
 
-        public CateringWebHookHandlerStartupTask(ServiceClient serviceClient)
+        public CateringWebHookHandlerStartupTask(ApplicationClient applicationClient)
         {
-            _serviceClient = serviceClient;
+            _applicationClient = applicationClient;
         }
         
         /// <summary>
         /// To register menu items in Space, we have to make a call
-        /// to <see cref="ServiceClient.RefreshMenuAsync"/> once in the application's lifetime.
+        /// to <see cref="ApplicationClient.RefreshMenuAsync"/> once in the application's lifetime.
         ///
         /// Space will then reach out to your application and will
         /// invoke <see cref="SpaceWebHookHandler.HandleListMenuExtensionsAsync"/>.
         ///
-        /// Note that ideally this is done just after startup, as <see cref="ServiceClient.RefreshMenuAsync"/>
+        /// Note that ideally this is done just after startup, as <see cref="ApplicationClient.RefreshMenuAsync"/>
         /// is an expensive call that only has to happen when available menu items change.
         /// </summary>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await _serviceClient.RefreshMenuAsync(cancellationToken: stoppingToken);
+            await _applicationClient.RefreshMenuAsync(cancellationToken: stoppingToken);
         }
     }
     

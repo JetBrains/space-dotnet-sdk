@@ -36,6 +36,14 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Create a new authentication module. Settings are specific to the type of authentication module being created.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task<ESAuthModule> CreateAuthModuleAsync(string key, string name, bool enabled, ESAuthModuleSettings settings, Func<Partial<ESAuthModule>, Partial<ESAuthModule>>? partial = null, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync<AuthModulesPostRequest, ESAuthModule>("POST", $"api/http/auth-modules?$fields={(partial != null ? partial(new Partial<ESAuthModule>()) : Partial<ESAuthModule>.Default())}", 
                 new AuthModulesPostRequest { 
@@ -49,6 +57,14 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Define the order of authentication modules. This affects the order of the federated authentication module buttons on the sign-in page.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task ReorderAsync(List<string> order, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("POST", $"api/http/auth-modules/reorder", 
                 new AuthModulesReorderPostRequest { 
@@ -89,6 +105,14 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Update an existing authentication module. Optional parameters will be ignored when not specified, and updated otherwise.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task UpdateAuthModuleAsync(string id, string? key = null, string? name = null, bool? enabled = null, ESAuthModuleSettings? settings = null, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("PATCH", $"api/http/auth-modules/{id}", 
                 new AuthModulesForIdPatchRequest { 
@@ -102,6 +126,14 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Delete an existing authentication module.
         /// </summary>
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
+        /// <term>Manage authentication modules</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
         public async Task DeleteAuthModuleAsync(string id, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("DELETE", $"api/http/auth-modules/{id}", cancellationToken);
     
@@ -187,6 +219,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Retrieve a list of authentication module usage count.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Manage authentication modules</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<AuthModuleUsage>> GetAllUsagesAsync(Func<Partial<AuthModuleUsage>, Partial<AuthModuleUsage>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<AuthModuleUsage>>("GET", $"api/http/auth-modules/usages?$fields={(partial != null ? partial(new Partial<AuthModuleUsage>()) : Partial<AuthModuleUsage>.Default())}", cancellationToken);
         

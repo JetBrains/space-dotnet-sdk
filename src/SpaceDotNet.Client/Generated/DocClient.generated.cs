@@ -132,8 +132,8 @@ namespace SpaceDotNet.Client
                         _connection = connection;
                     }
                     
-                    public async Task UpdateParentAsync(string id, string parentFolderId, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync("PATCH", $"api/http/docs/drafts/folder/{id}/parent", 
+                    public async Task<DocumentFolderRecord> UpdateParentAsync(string id, string parentFolderId, Func<Partial<DocumentFolderRecord>, Partial<DocumentFolderRecord>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<DocsDraftsFolderForIdParentPatchRequest, DocumentFolderRecord>("PATCH", $"api/http/docs/drafts/folder/{id}/parent?$fields={(partial != null ? partial(new Partial<DocumentFolderRecord>()) : Partial<DocumentFolderRecord>.Default())}", 
                             new DocsDraftsFolderForIdParentPatchRequest { 
                                 ParentFolderId = parentFolderId,
                             }

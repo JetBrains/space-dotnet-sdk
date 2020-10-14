@@ -47,6 +47,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create a profile for support.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Superadmin</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<SupportProfile> CreateSupportAsync(Func<Partial<SupportProfile>, Partial<SupportProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<SupportProfile>("POST", $"api/http/administration/support?$fields={(partial != null ? partial(new Partial<SupportProfile>()) : Partial<SupportProfile>.Default())}", cancellationToken);
         

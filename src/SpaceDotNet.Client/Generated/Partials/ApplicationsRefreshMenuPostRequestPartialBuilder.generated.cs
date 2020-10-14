@@ -22,10 +22,13 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DefaultValueHitPartialBuilder
+namespace SpaceDotNet.Client.ApplicationsRefreshMenuPostRequestPartialBuilder
 {
-    public static class DefaultValueHitPartialExtensions
+    public static class ApplicationsRefreshMenuPostRequestPartialExtensions
     {
+        public static Partial<ApplicationsRefreshMenuPostRequest> WithId(this Partial<ApplicationsRefreshMenuPostRequest> it)
+            => it.AddFieldName("id");
+        
     }
     
 }

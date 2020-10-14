@@ -33,24 +33,12 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public MarketApplicationClient MarketApplications => new MarketApplicationClient(_connection);
-        
-        public partial class MarketApplicationClient
-        {
-            private readonly Connection _connection;
-            
-            public MarketApplicationClient(Connection connection)
-            {
-                _connection = connection;
-            }
-            
-            public async Task<Batch<MarketApplicationRecord>> GetAllMarketApplicationsAsync(string? skip = null, int? top = 100, string? term = null, MarketAppSortColumn? sortBy = null, ColumnSortOrder? order = null, Func<Partial<Batch<MarketApplicationRecord>>, Partial<Batch<MarketApplicationRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<MarketApplicationRecord>>("GET", $"api/http/applications/market-applications?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&sortBy={(sortBy ?? MarketAppSortColumn.NAME)?.ToString() ?? "null"}&order={(order ?? ColumnSortOrder.ASC)?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<MarketApplicationRecord>>()) : Partial<Batch<MarketApplicationRecord>>.Default())}", cancellationToken);
-            
-            public IAsyncEnumerable<MarketApplicationRecord> GetAllMarketApplicationsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, MarketAppSortColumn? sortBy = null, ColumnSortOrder? order = null, Func<Partial<MarketApplicationRecord>, Partial<MarketApplicationRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMarketApplicationsAsync(top: top, term: term, sortBy: sortBy, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<MarketApplicationRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<MarketApplicationRecord>.Default())), skip, cancellationToken);
-        
-        }
+        public async Task RefreshMenuAsync(string? id = null, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync("POST", $"api/http/applications/refresh-menu", 
+                new ApplicationsRefreshMenuPostRequest { 
+                    Id = id,
+                }
+        , cancellationToken);
     
     }
     

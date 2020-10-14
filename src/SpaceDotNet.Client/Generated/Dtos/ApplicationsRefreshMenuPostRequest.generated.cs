@@ -24,17 +24,17 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class ServicesRefreshMenuPostRequest
+    public class ApplicationsRefreshMenuPostRequest
          : IPropagatePropertyAccessPath
     {
-        public ServicesRefreshMenuPostRequest() { }
+        public ApplicationsRefreshMenuPostRequest() { }
         
-        public ServicesRefreshMenuPostRequest(string? id = null)
+        public ApplicationsRefreshMenuPostRequest(string? id = null)
         {
             Id = id;
         }
         
-        private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(ServicesRefreshMenuPostRequest), nameof(Id));
+        private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(Id));
         
         [JsonPropertyName("id")]
         public string? Id
