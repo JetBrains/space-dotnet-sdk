@@ -170,7 +170,7 @@ namespace SpaceDotNet.Client
                 /// Get holidays observed in the location(s) of the current profile during the selected period.
                 /// </summary>
                 public async Task<List<PublicHoliday>> GetAllProfileHolidaysAsync(DateTime startDate, DateTime endDate, string profile, bool? workingDays = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&profile={profile.ToString()}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", cancellationToken);
+                    => await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&profile={profile.ToString()}&workingDays={workingDays?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", cancellationToken);
             
             }
         

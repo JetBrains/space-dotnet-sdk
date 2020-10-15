@@ -118,7 +118,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
 
         private class Node
         {
-            public string Prefix { get; set; }
+            public string Prefix { get; set; } = default;
             public List<Node> Children { get; set; } = new List<Node>();
             public ApiDto? Context { get; set; }
         }

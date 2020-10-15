@@ -142,7 +142,7 @@ namespace SpaceDotNet.Client
             /// Get custom fields for a type.
             /// </summary>
             public async Task<List<CustomField>> GetAllFieldsAsync(string typeKey, ExtendedTypeScope scope, bool withArchived = false, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<CustomField>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString().ToLowerInvariant()}&scope={scope.ToString()}&$fields={(partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<List<CustomField>>("GET", $"api/http/custom-fields/{typeKey}/fields?withArchived={withArchived.ToString("l")}&scope={scope.ToString()}&$fields={(partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default())}", cancellationToken);
         
             /// <summary>
             /// Update custom field for a type. Optional parameters will be ignored when not specified, and updated otherwise.

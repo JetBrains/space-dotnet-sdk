@@ -142,7 +142,7 @@ namespace SpaceDotNet.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<UAUserAgreementStatus>> GetAllUserAgreementStatusesAsync(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<Batch<UAUserAgreementStatus>>, Partial<Batch<UAUserAgreementStatus>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<UAUserAgreementStatus>>("GET", $"api/http/administration/user-agreement/status?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&accepted={accepted?.ToString()?.ToLowerInvariant() ?? "null"}&activeProfilesOnly={activeProfilesOnly.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<UAUserAgreementStatus>>()) : Partial<Batch<UAUserAgreementStatus>>.Default())}", cancellationToken);
+                    => await _connection.RequestResourceAsync<Batch<UAUserAgreementStatus>>("GET", $"api/http/administration/user-agreement/status?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&accepted={accepted?.ToString("l") ?? "null"}&activeProfilesOnly={activeProfilesOnly.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<UAUserAgreementStatus>>()) : Partial<Batch<UAUserAgreementStatus>>.Default())}", cancellationToken);
                 
                 /// <remarks>
                 /// Required permissions:

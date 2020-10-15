@@ -129,7 +129,7 @@ namespace SpaceDotNet.Client
                 /// Get/search holidays. Parameters are applied as 'AND' filters.
                 /// </summary>
                 public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(DateTime startDate, DateTime endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/team-directory/calendar-events/holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default())}", cancellationToken);
+                    => await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/team-directory/calendar-events/holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default())}", cancellationToken);
             
             }
         
@@ -223,7 +223,7 @@ namespace SpaceDotNet.Client
             /// Get organization-wide invitation links
             /// </summary>
             public async Task<Batch<InvitationLink>> GetAllInvitationLinksAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<InvitationLink>>, Partial<Batch<InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<InvitationLink>>("GET", $"api/http/team-directory/invitation-links?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<InvitationLink>>()) : Partial<Batch<InvitationLink>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<InvitationLink>>("GET", $"api/http/team-directory/invitation-links?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<InvitationLink>>()) : Partial<Batch<InvitationLink>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get organization-wide invitation links
@@ -280,7 +280,7 @@ namespace SpaceDotNet.Client
             /// Get a list of invitations.
             /// </summary>
             public async Task<Batch<Invitation>> GetAllInvitationsAsync(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Batch<Invitation>>, Partial<Batch<Invitation>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<Invitation>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<Invitation>>()) : Partial<Batch<Invitation>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<Invitation>>("GET", $"api/http/team-directory/invitations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&withDeleted={withDeleted.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<Invitation>>()) : Partial<Batch<Invitation>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get a list of invitations.
@@ -344,13 +344,13 @@ namespace SpaceDotNet.Client
             /// Get all equipment types.
             /// </summary>
             public async Task<List<TDLocationEquipmentType>> GetAllLocationEquipmentTypesAsync(bool withArchived = false, Func<Partial<TDLocationEquipmentType>, Partial<TDLocationEquipmentType>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDLocationEquipmentType>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDLocationEquipmentType>()) : Partial<TDLocationEquipmentType>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<List<TDLocationEquipmentType>>("GET", $"api/http/team-directory/location-equipment-types?withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDLocationEquipmentType>()) : Partial<TDLocationEquipmentType>.Default())}", cancellationToken);
         
             /// <summary>
             /// Archive/restore location equipment type. Setting delete to true will archive the equipment type, false will restore it.
             /// </summary>
             public async Task DeleteLocationEquipmentTypeByNameAsync(string name, bool delete, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-equipment-types/name:{name}?delete={delete.ToString("l")}", cancellationToken);
         
         }
     
@@ -390,7 +390,7 @@ namespace SpaceDotNet.Client
             /// Get members on map for a location id.
             /// </summary>
             public async Task<Batch<TDMemberInLocationMap>> GetAllLocationMapMemberPointsAsync(string locationId, bool includeUnmarked = true, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberInLocationMap>>, Partial<Batch<TDMemberInLocationMap>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMemberInLocationMap>>("GET", $"api/http/team-directory/location-map-member-points?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&locationId={locationId.ToString()}&includeUnmarked={includeUnmarked.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberInLocationMap>>()) : Partial<Batch<TDMemberInLocationMap>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<TDMemberInLocationMap>>("GET", $"api/http/team-directory/location-map-member-points?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&locationId={locationId.ToString()}&includeUnmarked={includeUnmarked.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberInLocationMap>>()) : Partial<Batch<TDMemberInLocationMap>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get members on map for a location id.
@@ -429,7 +429,7 @@ namespace SpaceDotNet.Client
             /// </list>
             /// </remarks>
             public async Task DeleteLocationMapMemberPointAsync(string locationPointId, bool delete, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-map-member-points/{locationPointId}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/location-map-member-points/{locationPointId}?delete={delete.ToString("l")}", cancellationToken);
         
         }
     
@@ -508,7 +508,7 @@ namespace SpaceDotNet.Client
             /// Get/search all locations. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<List<TDLocation>> GetAllLocationsAsync(string query = "", bool withArchived = false, string? type = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDLocation>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<List<TDLocation>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get a location by id.
@@ -655,7 +655,7 @@ namespace SpaceDotNet.Client
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<Batch<TDMemberLocation>> GetAllMemberLocationsAsync(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<TDMemberLocation>>, Partial<Batch<TDMemberLocation>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMemberLocation>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocation>>()) : Partial<Batch<TDMemberLocation>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<TDMemberLocation>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocation>>()) : Partial<Batch<TDMemberLocation>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
@@ -701,7 +701,7 @@ namespace SpaceDotNet.Client
             /// </list>
             /// </remarks>
             public async Task DeleteMemberLocationAsync(string memberLocationId, bool delete = true, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{memberLocationId}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/member-locations/{memberLocationId}?delete={delete.ToString("l")}", cancellationToken);
         
         }
     
@@ -772,7 +772,7 @@ namespace SpaceDotNet.Client
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<Batch<TDMembership>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembership>>, Partial<Batch<TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMembership>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&till={till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMembership>>()) : Partial<Batch<TDMembership>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<TDMembership>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString("l")}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString("l")}&since={since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&till={till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&requiresApproval={requiresApproval?.ToString("l") ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMembership>>()) : Partial<Batch<TDMembership>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
@@ -817,7 +817,7 @@ namespace SpaceDotNet.Client
             /// </list>
             /// </remarks>
             public async Task DeleteMembershipAsync(string membershipId, bool delete = true, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}?delete={delete.ToString("l")}", cancellationToken);
         
             /// <summary>
             /// Revoke a team membership to end at a given date/time.
@@ -881,7 +881,7 @@ namespace SpaceDotNet.Client
                 /// </list>
                 /// </remarks>
                 public async Task<Batch<Pair<TDMemberProfile, TDMembership>>> GetAllRequestsAsync(string? skip = null, int? top = 100, string? teamId = null, bool? direct = true, Func<Partial<Batch<Pair<TDMemberProfile, TDMembership>>>, Partial<Batch<Pair<TDMemberProfile, TDMembership>>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfile, TDMembership>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Pair<TDMemberProfile, TDMembership>>>()) : Partial<Batch<Pair<TDMemberProfile, TDMembership>>>.Default())}", cancellationToken);
+                    => await _connection.RequestResourceAsync<Batch<Pair<TDMemberProfile, TDMembership>>>("GET", $"api/http/team-directory/memberships/requests?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&direct={direct?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Pair<TDMemberProfile, TDMembership>>>()) : Partial<Batch<Pair<TDMemberProfile, TDMembership>>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Get/search all membership requests. Parameters are applied as 'AND' filters.
@@ -997,7 +997,7 @@ namespace SpaceDotNet.Client
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString().ToLowerInvariant()}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString().ToLowerInvariant()}&order={order?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString("l")}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString("l")}&order={order?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
@@ -1009,7 +1009,7 @@ namespace SpaceDotNet.Client
             /// Get profile information by email address.
             /// </summary>
             public async Task<TDMemberProfile> GetProfileByEmailAsync(string email, bool verified = true, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/email:{email}?verified={verified.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/email:{email}?verified={verified.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get profile information
@@ -1796,7 +1796,7 @@ namespace SpaceDotNet.Client
             /// Get/search all roles. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<List<TDRole>> GetAllRolesAsync(string query = "", bool withArchived = false, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<TDRole>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<List<TDRole>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get a role by id.
@@ -1924,7 +1924,7 @@ namespace SpaceDotNet.Client
             /// Get or search all teams. Parameters are applied as 'AND' filters.
             /// </summary>
             public async Task<Batch<TDTeam>> GetAllTeamsAsync(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get or search all teams. Parameters are applied as 'AND' filters.

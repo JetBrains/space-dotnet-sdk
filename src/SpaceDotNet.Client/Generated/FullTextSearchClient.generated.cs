@@ -68,7 +68,7 @@ namespace SpaceDotNet.Client
             /// Perform full-text search in all supported entities.
             /// </summary>
             public async Task<Batch<EntityHit>> GetAllSearchAsync(string query, bool quick = false, List<string>? keys = null, string? skip = null, int? top = 100, EntityFilter? filter = null, Func<Partial<Batch<EntityHit>>, Partial<Batch<EntityHit>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<EntityHit>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&quick={quick.ToString().ToLowerInvariant()}&keys={(keys ?? new List<string>()).JoinToString("keys", it => it.ToString())}&filter={filter?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<EntityHit>>()) : Partial<Batch<EntityHit>>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<Batch<EntityHit>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&quick={quick.ToString("l")}&keys={(keys ?? new List<string>()).JoinToString("keys", it => it.ToString())}&filter={filter?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<EntityHit>>()) : Partial<Batch<EntityHit>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Perform full-text search in all supported entities.

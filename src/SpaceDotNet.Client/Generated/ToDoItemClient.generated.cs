@@ -56,7 +56,7 @@ namespace SpaceDotNet.Client
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
         /// </summary>
         public async Task<Batch<TodoItemRecord>> GetAllToDoItemsAsync(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<Batch<TodoItemRecord>>, Partial<Batch<TodoItemRecord>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString()?.ToLowerInvariant() ?? "null"}&from={from?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TodoItemRecord>>()) : Partial<Batch<TodoItemRecord>>.Default())}", cancellationToken);
+            => await _connection.RequestResourceAsync<Batch<TodoItemRecord>>("GET", $"api/http/todo?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&open={open?.ToString("l") ?? "null"}&from={from?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TodoItemRecord>>()) : Partial<Batch<TodoItemRecord>>.Default())}", cancellationToken);
         
         /// <summary>
         /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.

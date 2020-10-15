@@ -175,7 +175,7 @@ namespace SpaceDotNet.Client
         /// </list>
         /// </remarks>
         public async Task DeleteAbsenceAsync(string id, bool delete = true, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
+            => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/{id}?delete={delete.ToString("l")}", cancellationToken);
     
         /// <summary>
         /// Delete approval for a given absence.
@@ -258,7 +258,7 @@ namespace SpaceDotNet.Client
             /// </list>
             /// </remarks>
             public async Task<List<AbsenceReasonRecord>> GetAllAbsenceReasonsAsync(bool withArchived = false, Func<Partial<AbsenceReasonRecord>, Partial<AbsenceReasonRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default())}", cancellationToken);
+                => await _connection.RequestResourceAsync<List<AbsenceReasonRecord>>("GET", $"api/http/absences/absence-reasons?withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<AbsenceReasonRecord>()) : Partial<AbsenceReasonRecord>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get an absence reason.
@@ -286,7 +286,7 @@ namespace SpaceDotNet.Client
             /// </list>
             /// </remarks>
             public async Task DeleteAbsenceReasonAsync(string id, bool delete = true, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString().ToLowerInvariant()}", cancellationToken);
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/absences/absence-reasons/{id}?delete={delete.ToString("l")}", cancellationToken);
         
         }
     

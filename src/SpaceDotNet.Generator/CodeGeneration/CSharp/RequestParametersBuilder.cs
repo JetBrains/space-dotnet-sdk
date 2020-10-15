@@ -67,11 +67,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     parameterValueBuilder.Append("\", it => it");
 
                     var formatString = "";
-                    var isPrimitiveBoolean = false;
                     if (arrayType.ElementType is ApiFieldType.Primitive primitive)
                     {
-                        isPrimitiveBoolean = primitive.Type.Equals(CSharpType.Boolean.Value, StringComparison.OrdinalIgnoreCase);
-                        
                         var csharpType = primitive.ToCSharpPrimitiveType();
                         if (csharpType.FormatString != null)
                         {
@@ -83,25 +80,14 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                         ? $".ToString({formatString})"
                         : $"?.ToString({formatString})");
         
-                    if (isPrimitiveBoolean)
-                    {
-                        // Boolean needs lowercase value
-                        parameterValueBuilder.Append(!arrayType.ElementType.Nullable
-                            ? ".ToLowerInvariant()"
-                            : "?.ToLowerInvariant()");
-                    }
-        
                     parameterValueBuilder.Append(")");
                 }
                 else
                 {
                     // Anything else can be "ToString()"
                     var formatString = "";
-                    var isPrimitiveBoolean = false;
                     if (apiEndpointParameter.Field.Type is ApiFieldType.Primitive primitive)
                     {
-                        isPrimitiveBoolean = primitive.Type.Equals(CSharpType.Boolean.Value, StringComparison.OrdinalIgnoreCase);
-                        
                         var csharpType = primitive.ToCSharpPrimitiveType();
                         if (csharpType.FormatString != null)
                         {
@@ -112,14 +98,6 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
                     parameterValueBuilder.Append(!apiEndpointParameter.Field.Type.Nullable
                         ? $".ToString({formatString})"
                         : $"?.ToString({formatString})");
-        
-                    if (isPrimitiveBoolean)
-                    {
-                        // Boolean needs lowercase value
-                        parameterValueBuilder.Append(!apiEndpointParameter.Field.Type.Nullable
-                            ? ".ToLowerInvariant()"
-                            : "?.ToLowerInvariant()");
-                    }
                 }
         
                 if (apiEndpointParameter.Field.Type.Nullable)
