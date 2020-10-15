@@ -39,7 +39,7 @@ namespace SpaceDotNet.Common.Json.Serialization.Internal
 
                         if (!string.IsNullOrEmpty(iso) && DateTime.TryParseExact(
                             iso, _expectedDateTimeFormat, CultureInfo.InvariantCulture.DateTimeFormat,
-                            DateTimeStyles.AssumeUniversal, out var dateTime))
+                            DateTimeStyles.AdjustToUniversal, out var dateTime))
                         {
                             returnValue = dateTime;
                         }
