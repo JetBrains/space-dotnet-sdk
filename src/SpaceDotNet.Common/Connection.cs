@@ -133,9 +133,44 @@ namespace SpaceDotNet.Common
             return value;
         }
         
+        /// <summary>
+        /// Requests a resource at a given URL.
+        /// </summary>
+        /// <param name="httpMethod">The HTTP method to use.</param>
+        /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         protected abstract Task RequestResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Requests a resource at a given URL.
+        /// </summary>
+        /// <param name="httpMethod">The HTTP method to use.</param>
+        /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>The requested resource.</returns>
+        /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         protected abstract Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Sends a payload to a resource at a given URL.
+        /// </summary>
+        /// <param name="httpMethod">The HTTP method to use.</param>
+        /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="payload">The payload to send to the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         protected abstract Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken);
+        
+        /// <summary>
+        /// Sends a payload to a resource at a given URL.
+        /// </summary>
+        /// <param name="httpMethod">The HTTP method to use.</param>
+        /// <param name="urlPath">The path to access the resource.</param>
+        /// <param name="payload">The payload to send to the resource.</param>
+        /// <param name="cancellationToken">The cancellation token to cancel operation.</param>
+        /// <returns>The requested resource.</returns>
+        /// <exception cref="ResourceException">Something went wrong accessing the resource.</exception>
         protected abstract Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken);
     }
 }

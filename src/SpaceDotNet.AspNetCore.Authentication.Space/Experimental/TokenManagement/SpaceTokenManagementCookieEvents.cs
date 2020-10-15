@@ -16,8 +16,11 @@ using SpaceDotNet.Common.Json.Serialization;
 
 namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement
 {
+    /// <summary>
+    /// An implementation of <see cref="CookieAuthenticationEvents"/> to handle automatic authentication token refresh with a Space organization.
+    /// </summary>
     /// <remarks>
-    /// Inspired by <a href="https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement">IdentityServer4</a>
+    /// Inspired by <a href="https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement">IdentityServer4</a>.
     /// </remarks>
     public class SpaceTokenManagementCookieEvents : CookieAuthenticationEvents
     {
@@ -30,6 +33,15 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
         
         private static readonly ConcurrentDictionary<string, bool> PendingRefreshTokenRequests = new ConcurrentDictionary<string, bool>();
 
+        /// <summary>
+        /// Creates a new <see cref="SpaceTokenManagementCookieEvents"/> instance.
+        /// </summary>
+        /// <param name="options">The <see cref="SpaceTokenManagementOptions"/> used by the current <see cref="SpaceTokenManagementCookieEvents"/>.</param>
+        /// <param name="spaceOptions">The <see cref="SpaceOptions"/> used by the current <see cref="SpaceTokenManagementCookieEvents"/>.</param>
+        /// <param name="schemeProvider">An <see cref="IAuthenticationSchemeProvider"/> used by the current <see cref="SpaceTokenManagementCookieEvents"/>.</param>
+        /// <param name="httpClientFactory">An <see cref="IHttpClientFactory"/> used by the current <see cref="SpaceTokenManagementCookieEvents"/>.</param>
+        /// <param name="logger">An <see cref="ILogger{T}"/> used by the current <see cref="SpaceTokenManagementCookieEvents"/>.</param>
+        /// <param name="clock">An <see cref="ISystemClock"/> used by the current <see cref="SpaceTokenManagementCookieEvents"/>.</param>
         public SpaceTokenManagementCookieEvents(
             IOptions<SpaceTokenManagementOptions> options,
             IOptionsSnapshot<SpaceOptions> spaceOptions,
@@ -46,6 +58,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
             _clock = clock;
         }
 
+        /// <inheritdoc />
         public override async Task ValidatePrincipal(CookieValidatePrincipalContext context)
         {
             var tokens = context.Properties.GetTokens()?.ToList();

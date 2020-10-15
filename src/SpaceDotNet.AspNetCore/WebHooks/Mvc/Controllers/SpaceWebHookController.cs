@@ -9,6 +9,9 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
 {
+    /// <summary>
+    /// Controller that handles Space application webhook payloads.
+    /// </summary>
     public class SpaceWebHookController : Controller
     {
         private static readonly JsonSerializerOptions JsonSerializerOptions = new JsonSerializerOptions
@@ -20,11 +23,20 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
         
         private readonly IServiceProvider _serviceProvider;
 
+        /// <summary>
+        /// Creates a new <see cref="SpaceWebHookController"/> instance.
+        /// </summary>
+        /// <param name="serviceProvider">An <see cref="IServiceProvider"/> that gives access to registered services.</param>
         public SpaceWebHookController(IServiceProvider serviceProvider)
         {
             _serviceProvider = serviceProvider;
         }
         
+        /// <summary>
+        /// Receive and handle a Space application webhook payload.
+        /// </summary>
+        /// <param name="payload">The <see cref="ApplicationPayload"/> payload to handle.</param>
+        /// <returns>The result provided by the registered <see cref="ISpaceWebHookHandler"/>.</returns>
         [HttpPost]
         public async Task<IActionResult> Receive([FromBody]ApplicationPayload payload)
         {

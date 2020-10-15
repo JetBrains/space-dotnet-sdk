@@ -65,6 +65,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters
             context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceSignature) && 
             context.HttpContext.Request.Headers.ContainsKey(HeaderSpaceTimestamp);
 
+        /// <inheritdoc />
         protected override bool CanReadType(Type type) =>
             typeof(ApplicationPayload).IsAssignableFrom(type);
 

@@ -9,16 +9,27 @@ using System.Text.Json.Serialization;
 
 namespace SpaceDotNet.Common.Json.Serialization
 {
-    // Concept: https://www.mrlacey.com/2019/10/deserializing-generic-interfaces-with.html
+    /// <summary>
+    /// A <see cref="JsonConverter{T}"/> that can (de)serialize a collection of <typeparamref name="TElement"/>.
+    /// </summary>
+    /// <typeparam name="TElement">The type of the element in the (de)serialized collection.</typeparam>
+    /// <remarks>
+    /// Concept: https://www.mrlacey.com/2019/10/deserializing-generic-interfaces-with.html
+    /// </remarks>
     public abstract class ListOfTypeConverter<TElement> : JsonConverter<object>
     {
         private readonly JsonConverter<TElement> _elementConverter;
 
+        /// <summary>
+        /// Creates a new <see cref="ListOfTypeConverter{TElement}"/> instance.
+        /// </summary>
+        /// <param name="elementConverter">A <see cref="JsonConverter{T}"/> instance that can convert a <typeparamref name="TElement"/> instance.</param>
         protected ListOfTypeConverter(JsonConverter<TElement> elementConverter)
         {
             _elementConverter = elementConverter;
         }
         
+        /// <inheritdoc />
         public override bool CanConvert(Type objectType)
         {
             if (objectType.IsGenericType && objectType.Name.Equals(typeof(List<>).Name))
@@ -33,6 +44,7 @@ namespace SpaceDotNet.Common.Json.Serialization
             return false;
         }
         
+        /// <inheritdoc />
         public override object Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
             if (reader.TokenType == JsonTokenType.Null) return null;
@@ -53,7 +65,8 @@ namespace SpaceDotNet.Common.Json.Serialization
 
             return collection;
         }
-
+        
+        /// <inheritdoc />
         public override void Write(Utf8JsonWriter writer, object value, JsonSerializerOptions options)
         {
             if (value == null)

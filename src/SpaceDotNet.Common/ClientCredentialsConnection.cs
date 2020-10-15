@@ -39,6 +39,7 @@ namespace SpaceDotNet.Common
         // ReSharper disable once MemberCanBePrivate.Global
         public string Scope { get; set; } = "**";
 
+        /// <inheritdoc />
         protected override async Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             // Authenticate?

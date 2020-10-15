@@ -25,8 +25,15 @@ namespace SpaceDotNet.Common
         
         private HashSet<string> _fieldNames = new HashSet<string>();
 
+        /// <summary>
+        /// Creates a new <see cref="Partial{T}"/> instance.
+        /// </summary>
         public Partial() : this(null) { }
         
+        /// <summary>
+        /// Creates a new <see cref="Partial{T}"/> instance that has a parent.
+        /// </summary>
+        /// <param name="parent">Parent of the current <see cref="Partial{T}"/>.</param>
         public Partial(PartialBase? parent) : base(typeof(T), parent)
         {
             if (typeof(IClassNameConvertible).IsAssignableFrom(typeof(T)))

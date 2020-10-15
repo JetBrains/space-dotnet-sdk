@@ -11,15 +11,31 @@ using SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// Extension methods to register Space application webhook handlers in an <see cref="IServiceCollection"/>.
+    /// </summary>
     [PublicAPI]
     public static class SpaceAddWebHookExtensions
     {
+        /// <summary>
+        /// Registers a <see cref="ISpaceWebHookHandler"/> in the <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/> to register the <typeparamref name="TWebHookHandler"/> in.</param>
+        /// <typeparam name="TWebHookHandler">The <see cref="ISpaceWebHookHandler"/> that handles application webhook payloads.</typeparam>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
         public static IServiceCollection AddSpaceWebHookHandler<TWebHookHandler>(this IServiceCollection services)
             where TWebHookHandler : class, ISpaceWebHookHandler
         {
             return AddSpaceWebHookHandler<TWebHookHandler>(services, _ => { });
         }
-        
+
+        /// <summary>
+        /// Registers a <see cref="ISpaceWebHookHandler"/> in the <see cref="IServiceCollection"/>.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/> to register the <typeparamref name="TWebHookHandler"/> in.</param>
+        /// <param name="configureOptions">An <see cref="Action{T}"/> that further configures <see cref="SpaceWebHookOptions"/>.</param>
+        /// <typeparam name="TWebHookHandler">The <see cref="ISpaceWebHookHandler"/> that handles application webhook payloads.</typeparam>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
         public static IServiceCollection AddSpaceWebHookHandler<TWebHookHandler>(this IServiceCollection services, Action<SpaceWebHookOptions> configureOptions)
             where TWebHookHandler : class, ISpaceWebHookHandler
         {

@@ -18,13 +18,24 @@ using Base64UrlTextEncoder = Microsoft.AspNetCore.Authentication.Base64UrlTextEn
 
 namespace SpaceDotNet.AspNetCore.Authentication.Space
 {
+    /// <summary>
+    /// A Space authentication handler for ASP.NET Core authentication.
+    /// </summary>
     [UsedImplicitly]
     public class SpaceHandler : OAuthHandler<SpaceOptions>
     {
         private static readonly RandomNumberGenerator CryptoRandom = RandomNumberGenerator.Create();
         
+        /// <summary>
+        /// Creates a new <see cref="SpaceHandler"/> instance.
+        /// </summary>
+        /// <param name="options">Monitors for the <see cref="SpaceOptions"/> configuration of the current <see cref="SpaceHandler"/>.</param>
+        /// <param name="logger">A <see cref="ILoggerFactory"/> for the current <see cref="SpaceHandler"/>.</param>
+        /// <param name="encoder">A <see cref="UrlEncoder"/> for the current <see cref="SpaceHandler"/>.</param>
+        /// <param name="clock">A <see cref="ISystemClock"/> for the current <see cref="SpaceHandler"/>.</param>
         public SpaceHandler(IOptionsMonitor<SpaceOptions> options, ILoggerFactory logger, UrlEncoder encoder, ISystemClock clock) : base(options, logger, encoder, clock) { }
 
+        /// <inheritdoc />
         protected override async Task<AuthenticationTicket> CreateTicketAsync(
             ClaimsIdentity identity,
             AuthenticationProperties properties,
@@ -48,6 +59,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
             return new AuthenticationTicket(context.Principal, context.Properties, Scheme.Name);
         }
 
+        /// <inheritdoc />
         protected override string BuildChallengeUrl(AuthenticationProperties properties, string redirectUri)
         {
             var scopeParameter = properties.GetParameter<ICollection<string>>(OAuthChallengeProperties.ScopeKey);
@@ -85,6 +97,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
             return QueryHelpers.AddQueryString(Options.AuthorizationEndpoint, parameters);
         }
 
+        /// <inheritdoc />
         protected override async Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
         {
             var tokenRequestParameters = new Dictionary<string, string>()

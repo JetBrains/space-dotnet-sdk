@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 
 namespace SpaceDotNet.Common.Types
 {
@@ -7,13 +8,9 @@ namespace SpaceDotNet.Common.Types
     /// </summary>
     public class PartialBase
     {
-        private readonly Type _ownType;
-        private readonly PartialBase? _parent;
-
+        [SuppressMessage("ReSharper", "UnusedParameter.Local", Justification = "Reserved for future use.")]
         internal PartialBase(Type ownType, PartialBase? parent = null)
         {
-            _ownType = ownType;
-            _parent = parent;
         }
     }
 }

@@ -23,19 +23,33 @@ namespace SpaceDotNet.Common.Types
         
         private T _value = default!;
 
+        /// <summary>
+        /// Creates a new <see cref="PropertyValue{T}"/> instance.
+        /// </summary>
+        /// <param name="className">The class name as string.</param>
+        /// <param name="propertyName">The property name as string.</param>
         public PropertyValue(string className, string propertyName)
         {
             _className = className;
             _propertyName = propertyName;
         }
 
+        /// <summary>
+        /// Sets the value for this property.
+        /// </summary>
+        /// <param name="value">The property value.</param>
         [DebuggerHidden]
         public void SetValue(T value)
         {
             _value = value;
             _hasBeenSet = true;
         }
-
+        
+        /// <summary>
+        /// Gets the value for this property.
+        /// </summary>
+        /// <returns>The property value.</returns>
+        /// <exception cref="PropertyNotRequestedException">When property value has not been set, and property validation is enabled. This is typically done using th infrastructure in <see cref="IPropagatePropertyAccessPath"/>.</exception>
         [DebuggerHidden]
         public T GetValue()
         {
@@ -46,6 +60,7 @@ namespace SpaceDotNet.Common.Types
             return _value;
         }
 
+        /// <inheritdoc />
         public void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _accessPath = path;

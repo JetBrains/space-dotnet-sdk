@@ -16,7 +16,14 @@ namespace SpaceDotNet.Common
     public class BearerTokenConnection 
         : Connection
     {
+        /// <summary>
+        /// The <see cref="HttpClient"/> to communicate with a Space organization.
+        /// </summary>
         protected readonly HttpClient HttpClient;
+        
+        /// <summary>
+        /// The <see cref="AuthenticationTokens"/> required to communicate with a Space organization.
+        /// </summary>
         public AuthenticationTokens? AuthenticationTokens { get; protected set; }
 
         /// <summary>
@@ -43,6 +50,7 @@ namespace SpaceDotNet.Common
             HttpClient = httpClient ?? new HttpClient();
         }
 
+        /// <inheritdoc />
         protected override async Task RequestResourceInternalAsync(string httpMethod, string urlPath, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
@@ -63,6 +71,7 @@ namespace SpaceDotNet.Common
             }
         }
 
+        /// <inheritdoc />
         protected override async Task<TResult> RequestResourceInternalAsync<TResult>(string httpMethod, string urlPath, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
@@ -85,6 +94,7 @@ namespace SpaceDotNet.Common
             return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
         }
 
+        /// <inheritdoc />
         protected override async Task RequestResourceInternalAsync<TPayload>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
@@ -106,6 +116,7 @@ namespace SpaceDotNet.Common
             }
         }
         
+        /// <inheritdoc />
         protected override async Task<TResult> RequestResourceInternalAsync<TPayload, TResult>(string httpMethod, string urlPath, TPayload payload, CancellationToken cancellationToken)
         {
             var request = new HttpRequestMessage(new HttpMethod(httpMethod), ServerUrl + urlPath)
@@ -129,6 +140,13 @@ namespace SpaceDotNet.Common
             return await JsonSerializer.DeserializeAsync<TResult>(await response.Content.ReadAsStreamAsync(), JsonSerializerOptions, cancellationToken);
         }
         
+        /// <summary>
+        /// Ensure the request is authenticated, if needed.
+        /// Can be used in derived classes to update authorization headers to communicate with the Space organization.
+        /// </summary>
+        /// <param name="request">The <see cref="HttpRequestMessage"/> to authenticate.</param>
+        /// <param name="cancellationToken">A <see cref="CancellationToken"/> that can be used to cancel the operation.</param>
+        /// <returns>A <see cref="Task"/> that represents the current operation.</returns>
         protected virtual Task EnsureAuthenticatedAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             if (AuthenticationTokens != null && !AuthenticationTokens.HasExpired())

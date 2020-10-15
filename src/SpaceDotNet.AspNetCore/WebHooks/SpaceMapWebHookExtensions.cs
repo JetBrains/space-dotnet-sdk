@@ -7,8 +7,20 @@ using SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Builder
 {
+    /// <summary>
+    /// Extension methods to map Space application webhook handlers on an <see cref="IEndpointRouteBuilder"/>.
+    /// </summary>
     public static class SpaceMapWebHookExtensions
     {
+        /// <summary>
+        /// Map a <typeparamref name="TWebHookHandler"/> to an endpoint <paramref name="path"/>.
+        /// </summary>
+        /// <param name="endpoints">The <see cref="IEndpointRouteBuilder"/> input.</param>
+        /// <param name="path">The URL path to register the <typeparamref name="TWebHookHandler"/> on.</param>
+        /// <typeparam name="TWebHookHandler">The <see cref="ISpaceWebHookHandler"/> that handles application webhook payloads.</typeparam>
+        /// <returns>An <see cref="IEndpointConventionBuilder"/> that can be used to further configure the webhook handler registration.</returns>
+        /// <exception cref="ArgumentNullException">When <paramref name="path"/> is null or empty.</exception>
+        /// <exception cref="InvalidOperationException">When <typeparamref name="TWebHookHandler"/> is not registered in the service provider.</exception>
         public static IEndpointConventionBuilder MapSpaceWebHookHandler<TWebHookHandler>(this IEndpointRouteBuilder endpoints, string path)
             where TWebHookHandler : class, ISpaceWebHookHandler
         {

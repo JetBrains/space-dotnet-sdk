@@ -21,6 +21,7 @@ namespace SpaceDotNet.Common.Types
 
         public DateTime AsDateTime() => new DateTime(Year, Month, Day);
 
+        /// <inheritdoc />
         public override string ToString()
         {
             return AsDateTime().ToString("yyyy-MM-dd");
@@ -31,6 +32,7 @@ namespace SpaceDotNet.Common.Types
             return string.Equals(Iso, other.Iso, StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <inheritdoc />
         public override bool Equals(object? obj)
         {
             if (ReferenceEquals(null, obj)) return false;
@@ -39,21 +41,37 @@ namespace SpaceDotNet.Common.Types
             return Equals((SpaceDate) obj);
         }
 
+        /// <inheritdoc />
         public override int GetHashCode()
         {
             return StringComparer.OrdinalIgnoreCase.GetHashCode(Iso);
         }
 
+        /// <summary>
+        /// Determines whether the specified object instances are considered equal.</summary>
+        /// <param name="left">The first object to compare.</param>
+        /// <param name="right">The second object to compare.</param>
+        /// <returns>
+        /// <see langword="true" /> if the objects are considered equal; otherwise, <see langword="false" />.
+        /// </returns>
         public static bool operator ==(SpaceDate? left, SpaceDate? right)
         {
             return Equals(left, right);
         }
 
+        /// <summary>
+        /// Determines whether the specified object instances are considered unequal.</summary>
+        /// <param name="left">The first object to compare.</param>
+        /// <param name="right">The second object to compare.</param>
+        /// <returns>
+        /// <see langword="true" /> if the objects are considered equal; otherwise, <see langword="false" />.
+        /// </returns>
         public static bool operator !=(SpaceDate? left, SpaceDate? right)
         {
             return !Equals(left, right);
         }
 
+        /// <inheritdoc />
         public int CompareTo(SpaceDate? other)
         {
             if (ReferenceEquals(this, other)) return 0;
@@ -61,6 +79,7 @@ namespace SpaceDotNet.Common.Types
             return string.Compare(Iso, other.Iso, StringComparison.OrdinalIgnoreCase);
         }
 
+        /// <inheritdoc />
         public int CompareTo(object? obj)
         {
             if (ReferenceEquals(null, obj)) return 1;

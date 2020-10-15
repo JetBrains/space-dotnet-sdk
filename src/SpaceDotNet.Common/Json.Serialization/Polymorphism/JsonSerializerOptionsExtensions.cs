@@ -2,8 +2,16 @@ using System.Text.Json;
 
 namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
 {
+    /// <summary>
+    /// Extension methods for <see cref="JsonSerializerOptions"/>.
+    /// </summary>
     public static class JsonSerializerOptionsExtensions
     {
+        /// <summary>
+        /// Registers Space-specific JSON serializer options.
+        /// </summary>
+        /// <param name="options">The <see cref="JsonSerializerOptions"/> to customize.</param>
+        /// <returns>The customized <see cref="JsonSerializerOptions"/>.</returns>
         public static JsonSerializerOptions AddSpaceJsonTypeConverters(this JsonSerializerOptions options)
         {
             options.Converters.Add(new ClassNameInterfaceDtoTypeConverter());

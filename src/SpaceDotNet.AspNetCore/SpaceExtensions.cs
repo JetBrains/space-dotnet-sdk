@@ -8,6 +8,9 @@ using SpaceDotNet.Common;
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
 {
+    /// <summary>
+    /// Space extension methods for <see cref="IServiceCollection"/>.
+    /// </summary>
     [PublicAPI]
     public static class SpaceExtensions
     {

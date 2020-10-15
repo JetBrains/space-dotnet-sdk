@@ -10,16 +10,29 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
 {
+    /// <summary>
+    /// A <see cref="JsonConverter{T}"/> that can (de)serialize an instance of <see cref="IClassNameConvertible"/>.
+    /// </summary>
     public class ClassNameDtoTypeConverter : JsonConverter<IClassNameConvertible>
     {
+        /// <summary>
+        /// The namespace name containing generated classes for SpaceDotNet.
+        /// </summary>
         protected readonly string SpaceDotNetClientNamespace = "SpaceDotNet.Client";
+        
+        /// <summary>
+        /// The assembly name containing generated classes for SpaceDotNet.
+        /// </summary>
+        // ReSharper disable once MemberCanBePrivate.Global
         protected readonly string SpaceDotNetClientAssemblyName = "SpaceDotNet.Client";
         
         private static readonly ConcurrentDictionary<string, Type> TypeMap = new ConcurrentDictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
         
+        /// <inheritdoc />
         public override bool CanConvert(Type objectType) 
             => typeof(IClassNameConvertible).IsAssignableFrom(objectType);
     
+        /// <inheritdoc />
         [CanBeNull]
         public override IClassNameConvertible Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
@@ -54,6 +67,7 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
             return null;
         }
     
+        /// <inheritdoc />
         public override void Write(Utf8JsonWriter writer, IClassNameConvertible value, JsonSerializerOptions options)
         {
             JsonSerializer.Serialize(writer, value, value.GetType(), options);
