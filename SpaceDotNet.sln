@@ -22,6 +22,7 @@ ProjectSection(SolutionItems) = preProject
 	.space.kts = .space.kts
 	package_icon.png = package_icon.png
 	README.md = README.md
+	global.json = global.json
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.AspNetCore.Authentication.Space", "src\SpaceDotNet.AspNetCore.Authentication.Space\SpaceDotNet.AspNetCore.Authentication.Space.csproj", "{5A9D31CA-EC29-469C-B2E9-551151ACD2F0}"

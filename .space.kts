@@ -14,7 +14,11 @@ job("Run NUKE build") {
         mountDir = "/mnt/mySpace"
         workDir = "/mnt/mySpace/work"
         user = "root"
-        entrypoint("/bin/bash")
-        args("./build.sh")
+        
+        shellScript {
+            content = """            
+            	/bin/bash ./build.sh
+            """
+        }
     }
 }
