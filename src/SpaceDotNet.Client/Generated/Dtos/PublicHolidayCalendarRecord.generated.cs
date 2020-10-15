@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public PublicHolidayCalendarRecord() { }
         
-        public PublicHolidayCalendarRecord(string id, bool archived, string name, int eventsCount, TDLocation location, SpaceDate? firstDate = null, SpaceDate? lastDate = null)
+        public PublicHolidayCalendarRecord(string id, bool archived, string name, int eventsCount, TDLocation location, DateTime? firstDate = null, DateTime? lastDate = null)
         {
             Id = id;
             IsArchived = archived;
@@ -70,19 +71,21 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _firstDate = new PropertyValue<SpaceDate?>(nameof(PublicHolidayCalendarRecord), nameof(FirstDate));
+        private PropertyValue<DateTime?> _firstDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(FirstDate));
         
         [JsonPropertyName("firstDate")]
-        public SpaceDate? FirstDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? FirstDate
         {
             get { return _firstDate.GetValue(); }
             set { _firstDate.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _lastDate = new PropertyValue<SpaceDate?>(nameof(PublicHolidayCalendarRecord), nameof(LastDate));
+        private PropertyValue<DateTime?> _lastDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(LastDate));
         
         [JsonPropertyName("lastDate")]
-        public SpaceDate? LastDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? LastDate
         {
             get { return _lastDate.GetValue(); }
             set { _lastDate.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public StickerPackInfo() { }
         
-        public StickerPackInfo(string id, string name, bool favoriteByDefault, bool archived, bool @private, StickerPackInfo pack, List<Sticker> stickers, SpaceTime? addedAt = null)
+        public StickerPackInfo(string id, string name, bool favoriteByDefault, bool archived, bool @private, StickerPackInfo pack, List<Sticker> stickers, DateTime? addedAt = null)
         {
             Id = id;
             Name = name;
@@ -91,10 +92,11 @@ namespace SpaceDotNet.Client
             set { _private.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _addedAt = new PropertyValue<SpaceTime?>(nameof(StickerPackInfo), nameof(AddedAt));
+        private PropertyValue<DateTime?> _addedAt = new PropertyValue<DateTime?>(nameof(StickerPackInfo), nameof(AddedAt));
         
         [JsonPropertyName("addedAt")]
-        public SpaceTime? AddedAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? AddedAt
         {
             get { return _addedAt.GetValue(); }
             set { _addedAt.SetValue(value); }

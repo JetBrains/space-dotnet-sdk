@@ -19,7 +19,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 
             return subject.Type switch
             {
-                ApiFieldType.Primitive primitive when primitive.ToCSharpPrimitiveType() == CSharpType.Bool.Value 
+                ApiFieldType.Primitive primitive when primitive.ToCSharpPrimitiveType() == CSharpType.Bool 
                                                       && !propertyName.StartsWith("Is") 
                                                       && !propertyName.StartsWith("Can")
                     => $"Is{propertyName}",

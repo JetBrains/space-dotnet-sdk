@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public InvitationLink() { }
         
-        public InvitationLink(string id, string name, CPrincipal createdBy, SpaceTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, SpaceTime? expiresAt = null)
+        public InvitationLink(string id, string name, CPrincipal createdBy, DateTime createdAt, int inviteeLimit, int inviteeUsage, bool deleted, DateTime? expiresAt = null)
         {
             Id = id;
             Name = name;
@@ -71,20 +72,22 @@ namespace SpaceDotNet.Client
             set { _createdBy.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _createdAt = new PropertyValue<SpaceTime>(nameof(InvitationLink), nameof(CreatedAt));
+        private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(InvitationLink), nameof(CreatedAt));
         
         [Required]
         [JsonPropertyName("createdAt")]
-        public SpaceTime CreatedAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime CreatedAt
         {
             get { return _createdAt.GetValue(); }
             set { _createdAt.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _expiresAt = new PropertyValue<SpaceTime?>(nameof(InvitationLink), nameof(ExpiresAt));
+        private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(InvitationLink), nameof(ExpiresAt));
         
         [JsonPropertyName("expiresAt")]
-        public SpaceTime? ExpiresAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ExpiresAt
         {
             get { return _expiresAt.GetValue(); }
             set { _expiresAt.SetValue(value); }

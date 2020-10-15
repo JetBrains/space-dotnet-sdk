@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public AbsencesForIdPatchRequest() { }
         
-        public AbsencesForIdPatchRequest(bool available, string? member = null, string? reason = null, string? description = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? icon = null, List<CustomFieldValue>? customFieldValues = null)
+        public AbsencesForIdPatchRequest(bool available, string? member = null, string? reason = null, string? description = null, string? location = null, DateTime? since = null, DateTime? till = null, string? icon = null, List<CustomFieldValue>? customFieldValues = null)
         {
             Member = member;
             Reason = reason;
@@ -78,19 +79,21 @@ namespace SpaceDotNet.Client
             set { _location.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _since = new PropertyValue<SpaceDate?>(nameof(AbsencesForIdPatchRequest), nameof(Since));
+        private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(AbsencesForIdPatchRequest), nameof(Since));
         
         [JsonPropertyName("since")]
-        public SpaceDate? Since
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Since
         {
             get { return _since.GetValue(); }
             set { _since.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _till = new PropertyValue<SpaceDate?>(nameof(AbsencesForIdPatchRequest), nameof(Till));
+        private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(AbsencesForIdPatchRequest), nameof(Till));
         
         [JsonPropertyName("till")]
-        public SpaceDate? Till
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Till
         {
             get { return _till.GetValue(); }
             set { _till.SetValue(value); }

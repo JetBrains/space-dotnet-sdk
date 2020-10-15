@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public Checklist() { }
         
-        public Checklist(string id, bool archived, string name, int totalItemsCount, int doneItemsCount, string? projectId = null, PRProject? project = null, TDMemberProfile? owner = null, PlanItem? root = null, PlanningTag? rootTag = null, string? description = null, SpaceTime? updatedTime = null)
+        public Checklist(string id, bool archived, string name, int totalItemsCount, int doneItemsCount, string? projectId = null, PRProject? project = null, TDMemberProfile? owner = null, PlanItem? root = null, PlanningTag? rootTag = null, string? description = null, DateTime? updatedTime = null)
         {
             Id = id;
             IsArchived = archived;
@@ -149,10 +150,11 @@ namespace SpaceDotNet.Client
             set { _doneItemsCount.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _updatedTime = new PropertyValue<SpaceTime?>(nameof(Checklist), nameof(UpdatedTime));
+        private PropertyValue<DateTime?> _updatedTime = new PropertyValue<DateTime?>(nameof(Checklist), nameof(UpdatedTime));
         
         [JsonPropertyName("updatedTime")]
-        public SpaceTime? UpdatedTime
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? UpdatedTime
         {
             get { return _updatedTime.GetValue(); }
             set { _updatedTime.SetValue(value); }

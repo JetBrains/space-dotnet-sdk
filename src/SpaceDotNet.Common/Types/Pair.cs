@@ -14,14 +14,14 @@ namespace SpaceDotNet.Common.Types
         : IPropagatePropertyAccessPath
     {
         /// <summary>
-        /// The first element in the <see cref="Pair{TFirst,TSecond}"/>.
+        /// Get/set the first element in the <see cref="Pair{TFirst,TSecond}"/>.
         /// </summary>
         [Required]
         [JsonPropertyName("first")]
         public TFirst First { get; set; } = default!;
 
         /// <summary>
-        /// The second element in the <see cref="Pair{TFirst,TSecond}"/>.
+        /// Get/set the second element in the <see cref="Pair{TFirst,TSecond}"/>.
         /// </summary>
         [Required]
         [JsonPropertyName("second")]

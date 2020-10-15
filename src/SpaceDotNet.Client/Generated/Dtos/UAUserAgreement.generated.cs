@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public UAUserAgreement() { }
         
-        public UAUserAgreement(string id, string content, UAVersion version, SpaceTime updated)
+        public UAUserAgreement(string id, string content, UAVersion version, DateTime updated)
         {
             Id = id;
             Content = content;
@@ -67,11 +68,12 @@ namespace SpaceDotNet.Client
             set { _version.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _updated = new PropertyValue<SpaceTime>(nameof(UAUserAgreement), nameof(Updated));
+        private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(UAUserAgreement), nameof(Updated));
         
         [Required]
         [JsonPropertyName("updated")]
-        public SpaceTime Updated
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Updated
         {
             get { return _updated.GetValue(); }
             set { _updated.SetValue(value); }

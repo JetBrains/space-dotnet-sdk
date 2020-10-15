@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public PublicHoliday() { }
         
-        public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, SpaceDate date, bool workingDay, bool? halfDay = null)
+        public PublicHoliday(string id, PublicHolidayCalendarRecord calendar, string name, DateTime date, bool workingDay, bool? halfDay = null)
         {
             Id = id;
             Calendar = calendar;
@@ -69,11 +70,12 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _date = new PropertyValue<SpaceDate>(nameof(PublicHoliday), nameof(Date));
+        private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(PublicHoliday), nameof(Date));
         
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime Date
         {
             get { return _date.GetValue(); }
             set { _date.SetValue(value); }

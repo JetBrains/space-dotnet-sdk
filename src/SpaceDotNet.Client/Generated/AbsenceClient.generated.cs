@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -44,7 +45,7 @@ namespace SpaceDotNet.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AbsenceRecord> CreateAbsenceAsync(string member, string reason, string description, SpaceDate since, SpaceDate till, string icon, bool available = false, string? location = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AbsenceRecord> CreateAbsenceAsync(string member, string reason, string description, DateTime since, DateTime till, string icon, bool available = false, string? location = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync<AbsencesPostRequest, AbsenceRecord>("POST", $"api/http/absences?$fields={(partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default())}", 
                 new AbsencesPostRequest { 
                     Member = member,
@@ -88,8 +89,8 @@ namespace SpaceDotNet.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<Batch<AbsenceRecord>> GetAllAbsencesAsync(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecord>>, Partial<Batch<AbsenceRecord>>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&members={members?.JoinToString("members", it => it.ToString()) ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&viewMode={(viewMode ?? AbsenceListMode.All).ToString()}&reason={reason?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default())}", cancellationToken);
+        public async Task<Batch<AbsenceRecord>> GetAllAbsencesAsync(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<Batch<AbsenceRecord>>, Partial<Batch<AbsenceRecord>>>? partial = null, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync<Batch<AbsenceRecord>>("GET", $"api/http/absences?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&member={member?.ToString() ?? "null"}&members={members?.JoinToString("members", it => it.ToString()) ?? "null"}&location={location?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&viewMode={(viewMode ?? AbsenceListMode.All).ToString()}&reason={reason?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<AbsenceRecord>>()) : Partial<Batch<AbsenceRecord>>.Default())}", cancellationToken);
         
         /// <summary>
         /// Search absences. Parameters are applied as 'AND' filters.
@@ -102,7 +103,7 @@ namespace SpaceDotNet.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public IAsyncEnumerable<AbsenceRecord> GetAllAbsencesAsyncEnumerable(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, SpaceDate? since = null, SpaceDate? till = null, string? reason = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public IAsyncEnumerable<AbsenceRecord> GetAllAbsencesAsyncEnumerable(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllAbsencesAsync(viewMode: viewMode, top: top, member: member, members: members, location: location, team: team, since: since, till: till, reason: reason, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AbsenceRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AbsenceRecord>.Default())), skip, cancellationToken);
     
         /// <summary>
@@ -144,7 +145,7 @@ namespace SpaceDotNet.Client
         /// </item>
         /// </list>
         /// </remarks>
-        public async Task<AbsenceRecord> UpdateAbsenceAsync(string id, bool available, string? member = null, string? reason = null, string? description = null, string? location = null, SpaceDate? since = null, SpaceDate? till = null, string? icon = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
+        public async Task<AbsenceRecord> UpdateAbsenceAsync(string id, bool available, string? member = null, string? reason = null, string? description = null, string? location = null, DateTime? since = null, DateTime? till = null, string? icon = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync<AbsencesForIdPatchRequest, AbsenceRecord>("PATCH", $"api/http/absences/{id}?$fields={(partial != null ? partial(new Partial<AbsenceRecord>()) : Partial<AbsenceRecord>.Default())}", 
                 new AbsencesForIdPatchRequest { 
                     Member = member,

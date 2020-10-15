@@ -29,6 +29,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
             builder.AppendLine($"{indent}// ------------------------------------------------------------------------------");
             builder.AppendLine($"{indent}");
             builder.AppendLine($"{indent}#nullable enable");
+            builder.AppendLine($"{indent}#pragma warning disable CS1591");
             if (FeatureFlags.GenerateInheritorFactoryMethods)
             {
                 builder.AppendLine($"{indent}#pragma warning disable CS0108");

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public FeatureFlag() { }
         
-        public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, SpaceDate? introduced = null)
+        public FeatureFlag(string name, string description, FeatureFlagStatus status, string owner, DateTime? introduced = null)
         {
             Name = name;
             Description = description;
@@ -78,10 +79,11 @@ namespace SpaceDotNet.Client
             set { _owner.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _introduced = new PropertyValue<SpaceDate?>(nameof(FeatureFlag), nameof(Introduced));
+        private PropertyValue<DateTime?> _introduced = new PropertyValue<DateTime?>(nameof(FeatureFlag), nameof(Introduced));
         
         [JsonPropertyName("introduced")]
-        public SpaceDate? Introduced
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Introduced
         {
             get { return _introduced.GetValue(); }
             set { _introduced.SetValue(value); }

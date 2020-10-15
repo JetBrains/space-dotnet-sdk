@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public Invitation() { }
         
-        public Invitation(string id, SpaceTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, bool? revoked = null)
+        public Invitation(string id, DateTime expiresAt, string inviteeEmail, bool inviteeEmailBlocked, CPrincipal inviter, string? inviteeEmailBlockedReason = null, string? inviteeFirstName = null, string? inviteeLastName = null, TDMemberProfile? invitee = null, TDTeam? team = null, TDRole? role = null, bool? revoked = null)
         {
             Id = id;
             ExpiresAt = expiresAt;
@@ -55,11 +56,12 @@ namespace SpaceDotNet.Client
             set { _id.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _expiresAt = new PropertyValue<SpaceTime>(nameof(Invitation), nameof(ExpiresAt));
+        private PropertyValue<DateTime> _expiresAt = new PropertyValue<DateTime>(nameof(Invitation), nameof(ExpiresAt));
         
         [Required]
         [JsonPropertyName("expiresAt")]
-        public SpaceTime ExpiresAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime ExpiresAt
         {
             get { return _expiresAt.GetValue(); }
             set { _expiresAt.SetValue(value); }

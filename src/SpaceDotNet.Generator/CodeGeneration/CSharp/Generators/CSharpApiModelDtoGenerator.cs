@@ -237,6 +237,15 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     builder.AppendLine(apiField.Deprecation.ToCSharpDeprecation());
                 }
                 builder.AppendLine($"{indent}[JsonPropertyName(\"{apiField.Name}\")]");
+
+                if (apiField.Type is ApiFieldType.Primitive apiFieldTypePrimitive)
+                {
+                    var csharpType = apiFieldTypePrimitive.ToCSharpPrimitiveType();
+                    if (csharpType.JsonConverter != null)
+                    {
+                        builder.AppendLine($"{indent}[JsonConverter(typeof({csharpType.JsonConverter.Name}))]");
+                    }
+                }
                 
                 builder.Append($"{indent}public ");
                 builder.Append(apiField.Type.ToCSharpType(_codeGenerationContext));

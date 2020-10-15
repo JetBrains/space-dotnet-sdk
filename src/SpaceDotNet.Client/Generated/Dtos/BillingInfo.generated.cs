@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public BillingInfo() { }
         
-        public BillingInfo(BilledItems billedItems, PlanLimits planLimits, SpaceDate orgCreationDate, Money? overdraft = null)
+        public BillingInfo(BilledItems billedItems, PlanLimits planLimits, DateTime orgCreationDate, Money? overdraft = null)
         {
             BilledItems = billedItems;
             PlanLimits = planLimits;
@@ -57,11 +58,12 @@ namespace SpaceDotNet.Client
             set { _planLimits.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _orgCreationDate = new PropertyValue<SpaceDate>(nameof(BillingInfo), nameof(OrgCreationDate));
+        private PropertyValue<DateTime> _orgCreationDate = new PropertyValue<DateTime>(nameof(BillingInfo), nameof(OrgCreationDate));
         
         [Required]
         [JsonPropertyName("orgCreationDate")]
-        public SpaceDate OrgCreationDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime OrgCreationDate
         {
             get { return _orgCreationDate.GetValue(); }
             set { _orgCreationDate.SetValue(value); }

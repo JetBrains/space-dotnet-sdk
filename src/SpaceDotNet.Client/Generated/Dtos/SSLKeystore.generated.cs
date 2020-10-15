@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public SSLKeystore() { }
         
-        public SSLKeystore(string name, SpaceDate created)
+        public SSLKeystore(string name, DateTime created)
         {
             Name = name;
             Created = created;
@@ -45,11 +46,12 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _created = new PropertyValue<SpaceDate>(nameof(SSLKeystore), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(SSLKeystore), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceDate Created
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

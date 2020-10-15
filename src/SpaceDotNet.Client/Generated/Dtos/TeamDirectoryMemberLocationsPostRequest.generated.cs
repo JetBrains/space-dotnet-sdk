@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMemberLocationsPostRequest() { }
         
-        public TeamDirectoryMemberLocationsPostRequest(ProfileIdentifier member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null)
+        public TeamDirectoryMemberLocationsPostRequest(ProfileIdentifier member, string location, DateTime? since = null, DateTime? till = null, string? previousLocation = null)
         {
             Member = member;
             Location = location;
@@ -58,19 +59,21 @@ namespace SpaceDotNet.Client
             set { _location.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _since = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Since));
+        private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Since));
         
         [JsonPropertyName("since")]
-        public SpaceDate? Since
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Since
         {
             get { return _since.GetValue(); }
             set { _since.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _till = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Till));
+        private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Till));
         
         [JsonPropertyName("till")]
-        public SpaceDate? Till
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Till
         {
             get { return _till.GetValue(); }
             set { _till.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public RepositoryCommitRecord() { }
         
-        public RepositoryCommitRecord(string id, string repositoryId, string repositoryName, string revision, SpaceTime date, string? message = null, string? authorName = null, string? authorEmail = null, string? committerName = null, string? committerEmail = null, TDMemberProfile? authorProfile = null)
+        public RepositoryCommitRecord(string id, string repositoryId, string repositoryName, string revision, DateTime date, string? message = null, string? authorName = null, string? authorEmail = null, string? committerName = null, string? committerEmail = null, TDMemberProfile? authorProfile = null)
         {
             Id = id;
             RepositoryId = repositoryId;
@@ -93,11 +94,12 @@ namespace SpaceDotNet.Client
             set { _message.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _date = new PropertyValue<SpaceTime>(nameof(RepositoryCommitRecord), nameof(Date));
+        private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(RepositoryCommitRecord), nameof(Date));
         
         [Required]
         [JsonPropertyName("date")]
-        public SpaceTime Date
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Date
         {
             get { return _date.GetValue(); }
             set { _date.SetValue(value); }

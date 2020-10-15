@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -31,7 +32,7 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CFConstraint";
         
-        public static DateCFConstraint Date(SpaceDate? min = null, SpaceDate? max = null, string? message = null)
+        public static DateCFConstraint Date(DateTime? min = null, DateTime? max = null, string? message = null)
             => new DateCFConstraint(min: null, max: null, message: null);
         
         public static IntCFConstraint Int(int? min = null, int? max = null, string? message = null)

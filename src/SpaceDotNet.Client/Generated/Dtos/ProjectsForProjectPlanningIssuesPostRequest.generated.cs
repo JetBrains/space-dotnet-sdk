@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, SpaceDate? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
         {
             Title = title;
             Description = description;
@@ -83,10 +84,11 @@ namespace SpaceDotNet.Client
             set { _status.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(DueDate));
+        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DueDate
         {
             get { return _dueDate.GetValue(); }
             set { _dueDate.SetValue(value); }

@@ -14,7 +14,7 @@ namespace SpaceDotNet.Common.Types
     public abstract class Enumeration : IComparable
     {
         /// <summary>
-        /// The value of this <see cref="Enumeration"/>.
+        /// Get the value of this <see cref="Enumeration"/>.
         /// </summary>
         public string Value { get; private set; }
 

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public VcsHostingPassword() { }
         
-        public VcsHostingPassword(string fingerprint, SpaceTime? lastUsed = null)
+        public VcsHostingPassword(string fingerprint, DateTime? lastUsed = null)
         {
             Fingerprint = fingerprint;
             LastUsed = lastUsed;
@@ -45,10 +46,11 @@ namespace SpaceDotNet.Client
             set { _fingerprint.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _lastUsed = new PropertyValue<SpaceTime?>(nameof(VcsHostingPassword), nameof(LastUsed));
+        private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(VcsHostingPassword), nameof(LastUsed));
         
         [JsonPropertyName("lastUsed")]
-        public SpaceTime? LastUsed
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? LastUsed
         {
             get { return _lastUsed.GetValue(); }
             set { _lastUsed.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ExternalArticle() { }
         
-        public ExternalArticle(string title, string content, string authorId, SpaceTime created, List<string>? teams = null, List<string>? locations = null, string? externalId = null, string? externalUrl = null)
+        public ExternalArticle(string title, string content, string authorId, DateTime created, List<string>? teams = null, List<string>? locations = null, string? externalId = null, string? externalUrl = null)
         {
             Title = title;
             Content = content;
@@ -71,11 +72,12 @@ namespace SpaceDotNet.Client
             set { _authorId.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ExternalArticle), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ExternalArticle), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

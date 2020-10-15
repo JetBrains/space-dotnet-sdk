@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TDWorkingDays() { }
         
-        public TDWorkingDays(string id, WorkingDaysSpec workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null)
+        public TDWorkingDays(string id, WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null)
         {
             Id = id;
             DateStart = dateStart;
@@ -47,19 +48,21 @@ namespace SpaceDotNet.Client
             set { _id.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dateStart = new PropertyValue<SpaceDate?>(nameof(TDWorkingDays), nameof(DateStart));
+        private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateStart));
         
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DateStart
         {
             get { return _dateStart.GetValue(); }
             set { _dateStart.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dateEnd = new PropertyValue<SpaceDate?>(nameof(TDWorkingDays), nameof(DateEnd));
+        private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateEnd));
         
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DateEnd
         {
             get { return _dateEnd.GetValue(); }
             set { _dateEnd.SetValue(value); }

@@ -44,17 +44,17 @@ namespace SpaceDotNet.Common
         }
         
         /// <summary>
-        /// The <see cref="T:System.Net.Http.HttpStatusCode" /> that was received from the server.
+        /// Get the <see cref="T:System.Net.Http.HttpStatusCode" /> that was received from the server.
         /// </summary>
         public HttpStatusCode? StatusCode { get; }
         
         /// <summary>
-        /// The HTTP response body which was received from the server.
+        /// Get the HTTP response body which was received from the server.
         /// </summary>
         public string? Response { get; }
 
         /// <summary>
-        /// Error received from Space.
+        /// Get the error received from Space.
         /// </summary>
         public SpaceError? Error { get; set; }
     }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public CertificateInfo() { }
         
-        public CertificateInfo(string certificateType, int version, string serialNumber, string issuedBy, string issuedTo, SpaceTime validFrom, SpaceTime validTo, string algorithm, Fingerprint fingerprint)
+        public CertificateInfo(string certificateType, int version, string serialNumber, string issuedBy, string issuedTo, DateTime validFrom, DateTime validTo, string algorithm, Fingerprint fingerprint)
         {
             CertificateType = certificateType;
             Version = version;
@@ -92,21 +93,23 @@ namespace SpaceDotNet.Client
             set { _issuedTo.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _validFrom = new PropertyValue<SpaceTime>(nameof(CertificateInfo), nameof(ValidFrom));
+        private PropertyValue<DateTime> _validFrom = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidFrom));
         
         [Required]
         [JsonPropertyName("validFrom")]
-        public SpaceTime ValidFrom
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime ValidFrom
         {
             get { return _validFrom.GetValue(); }
             set { _validFrom.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _validTo = new PropertyValue<SpaceTime>(nameof(CertificateInfo), nameof(ValidTo));
+        private PropertyValue<DateTime> _validTo = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidTo));
         
         [Required]
         [JsonPropertyName("validTo")]
-        public SpaceTime ValidTo
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime ValidTo
         {
             get { return _validTo.GetValue(); }
             set { _validTo.SetValue(value); }

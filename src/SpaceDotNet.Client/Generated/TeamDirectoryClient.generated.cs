@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -47,8 +48,8 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get calendar events attached to an article in a specific time period.
             /// </summary>
-            public async Task<List<MeetingRecord>> GetAllCalendarEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
+            public async Task<List<MeetingRecord>> GetAllCalendarEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get a calendar event attached to an article.
@@ -70,8 +71,8 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search absences. Parameters are applied as 'AND' filters.
                 /// </summary>
-                public async Task<List<AbsenceEvent>> GetAllAbsenceEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEvent>, Partial<AbsenceEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default())}", cancellationToken);
+                public async Task<List<AbsenceEvent>> GetAllAbsenceEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEvent>, Partial<AbsenceEvent>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default())}", cancellationToken);
             
             }
         
@@ -89,8 +90,8 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search birthdays. Parameters are applied as 'AND' filters.
                 /// </summary>
-                public async Task<List<BirthdayEvent>> GetAllBirthdayEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
+                public async Task<List<BirthdayEvent>> GetAllBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
             
                 public StarredClient Starred => new StarredClient(_connection);
                 
@@ -106,8 +107,8 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Get/search birthdays in a specific time period for starred profiles.
                     /// </summary>
-                    public async Task<List<BirthdayEvent>> GetAllStarredBirthdayEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
+                    public async Task<List<BirthdayEvent>> GetAllStarredBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
                 
                 }
             
@@ -127,8 +128,8 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search holidays. Parameters are applied as 'AND' filters.
                 /// </summary>
-                public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/team-directory/calendar-events/holidays?startDate={startDate.ToString()}&endDate={endDate.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default())}", cancellationToken);
+                public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(DateTime startDate, DateTime endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/team-directory/calendar-events/holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default())}", cancellationToken);
             
             }
         
@@ -169,8 +170,8 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search membership events. Parameters are applied as 'AND' filters.
                 /// </summary>
-                public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default())}", cancellationToken);
+                public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default())}", cancellationToken);
             
             }
         
@@ -188,8 +189,8 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search non-working day events. Parameters are applied as 'AND' filters.
                 /// </summary>
-                public async Task<List<NonWorkingDaysEvent>> GetAllNonWorkingDaysEventsAsync(SpaceDate dateFrom, SpaceDate dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEvent>, Partial<NonWorkingDaysEvent>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString()}&dateTo={dateTo.ToString()}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default())}", cancellationToken);
+                public async Task<List<NonWorkingDaysEvent>> GetAllNonWorkingDaysEventsAsync(DateTime dateFrom, DateTime dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEvent>, Partial<NonWorkingDaysEvent>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default())}", cancellationToken);
             
             }
         
@@ -209,7 +210,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Create an organization-wide invitation link
             /// </summary>
-            public async Task<Pair<string, InvitationLink>> CreateInvitationLinkAsync(string name, SpaceTime expiresAt, int inviteeLimit, Func<Partial<Pair<string, InvitationLink>>, Partial<Pair<string, InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<Pair<string, InvitationLink>> CreateInvitationLinkAsync(string name, DateTime expiresAt, int inviteeLimit, Func<Partial<Pair<string, InvitationLink>>, Partial<Pair<string, InvitationLink>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryInvitationLinksPostRequest, Pair<string, InvitationLink>>("POST", $"api/http/team-directory/invitation-links?$fields={(partial != null ? partial(new Partial<Pair<string, InvitationLink>>()) : Partial<Pair<string, InvitationLink>>.Default())}", 
                     new TeamDirectoryInvitationLinksPostRequest { 
                         Name = name,
@@ -233,7 +234,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Update an organization-wide invitation link
             /// </summary>
-            public async Task UpdateInvitationLinkAsync(string invitationLinkId, string? name = null, SpaceTime? expiresAt = null, int? inviteeLimit = null, CancellationToken cancellationToken = default)
+            public async Task UpdateInvitationLinkAsync(string invitationLinkId, string? name = null, DateTime? expiresAt = null, int? inviteeLimit = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/invitation-links/{invitationLinkId}", 
                     new TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest { 
                         Name = name,
@@ -639,7 +640,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberLocation> CreateMemberLocationAsync(ProfileIdentifier member, string location, SpaceDate? since = null, SpaceDate? till = null, string? previousLocation = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberLocation> CreateMemberLocationAsync(ProfileIdentifier member, string location, DateTime? since = null, DateTime? till = null, string? previousLocation = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsPostRequest, TDMemberLocation>("POST", $"api/http/team-directory/member-locations?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", 
                     new TeamDirectoryMemberLocationsPostRequest { 
                         Member = member,
@@ -653,13 +654,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDMemberLocation>> GetAllMemberLocationsAsync(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDMemberLocation>>, Partial<Batch<TDMemberLocation>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMemberLocation>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocation>>()) : Partial<Batch<TDMemberLocation>>.Default())}", cancellationToken);
+            public async Task<Batch<TDMemberLocation>> GetAllMemberLocationsAsync(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<TDMemberLocation>>, Partial<Batch<TDMemberLocation>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<TDMemberLocation>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocation>>()) : Partial<Batch<TDMemberLocation>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDMemberLocation> GetAllMemberLocationsAsyncEnumerable(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<TDMemberLocation> GetAllMemberLocationsAsyncEnumerable(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberLocationsAsync(withArchived: withArchived, top: top, profiles: profiles, locations: locations, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberLocation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberLocation>.Default())), skip, cancellationToken);
         
             /// <summary>
@@ -679,7 +680,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberLocation> UpdateMemberLocationAsync(string memberLocationId, string? location = null, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberLocation> UpdateMemberLocationAsync(string memberLocationId, string? location = null, DateTime? since = null, DateTime? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest, TDMemberLocation>("PATCH", $"api/http/team-directory/member-locations/{memberLocationId}?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", 
                     new TeamDirectoryMemberLocationsForMemberLocationIdPatchRequest { 
                         Location = location,
@@ -751,7 +752,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMembership> CreateMembershipAsync(ProfileIdentifier member, string teamId, string roleId, bool lead = false, bool requiresApproval = false, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMembership> CreateMembershipAsync(ProfileIdentifier member, string teamId, string roleId, bool lead = false, bool requiresApproval = false, ProfileIdentifier? manager = null, DateTime? activeSince = null, DateTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMembershipsPostRequest, TDMembership>("POST", $"api/http/team-directory/memberships?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", 
                     new TeamDirectoryMembershipsPostRequest { 
                         Member = member,
@@ -770,13 +771,13 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<TDMembership>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceTime? since = null, SpaceTime? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembership>>, Partial<Batch<TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<TDMembership>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMembership>>()) : Partial<Batch<TDMembership>>.Default())}", cancellationToken);
+            public async Task<Batch<TDMembership>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembership>>, Partial<Batch<TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<TDMembership>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString().ToLowerInvariant()}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString().ToLowerInvariant()}&since={since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&till={till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&requiresApproval={requiresApproval?.ToString()?.ToLowerInvariant() ?? "null"}&withArchived={withArchived.ToString().ToLowerInvariant()}&$fields={(partial != null ? partial(new Partial<Batch<TDMembership>>()) : Partial<Batch<TDMembership>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<TDMembership> GetAllMembershipsAsyncEnumerable(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, SpaceTime? since = null, SpaceTime? till = null, bool? requiresApproval = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<TDMembership> GetAllMembershipsAsyncEnumerable(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMembership>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembership>.Default())), skip, cancellationToken);
         
             /// <summary>
@@ -790,7 +791,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMembership> UpdateMembershipAsync(string membershipId, bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMembership> UpdateMembershipAsync(string membershipId, bool requiresApproval = false, string? teamId = null, string? roleId = null, bool? lead = null, ProfileIdentifier? manager = null, DateTime? activeSince = null, DateTime? activeTill = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryMembershipsForMembershipIdPatchRequest, TDMembership>("PATCH", $"api/http/team-directory/memberships/{membershipId}?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", 
                     new TeamDirectoryMembershipsForMembershipIdPatchRequest { 
                         TeamId = teamId,
@@ -829,8 +830,8 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task RevokeAsync(string membershipId, SpaceTime? till = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}/revoke?till={till?.ToString() ?? "null"}", cancellationToken);
+            public async Task RevokeAsync(string membershipId, DateTime? till = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/memberships/{membershipId}/revoke?till={till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}", cancellationToken);
         
             public ManagerCandidateClient ManagerCandidates => new ManagerCandidateClient(_connection);
             
@@ -936,7 +937,7 @@ namespace SpaceDotNet.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateRequestRevokeAsync(string membershipId, SpaceTime till, CancellationToken cancellationToken = default)
+                public async Task UpdateRequestRevokeAsync(string membershipId, DateTime till, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/memberships/{membershipId}/request-revoke", 
                         new TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest { 
                             Till = till,
@@ -969,7 +970,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> CreateProfileAsync(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesPostRequest, TDMemberProfile>("POST", $"api/http/team-directory/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
                     new TeamDirectoryProfilesPostRequest { 
                         Username = username,
@@ -1033,7 +1034,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, SpaceDate? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> UpdateProfileAsync(ProfileIdentifier profile, string? username = null, string? firstName = null, string? lastName = null, List<string>? emails = null, List<string>? phones = null, DateTime? birthday = null, string? about = null, List<string>? messengers = null, List<string>? links = null, bool? notAMember = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null, List<CustomFieldValue>? customFieldValues = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfilePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
                     new TeamDirectoryProfilesForProfilePatchRequest { 
                         Username = username,
@@ -1067,7 +1068,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberProfile> ReactivateAsync(ProfileIdentifier profile, SpaceDate? joined = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> ReactivateAsync(ProfileIdentifier profile, DateTime? joined = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileReactivatePatchRequest, TDMemberProfile>("PATCH", $"api/http/team-directory/profiles/{profile}/reactivate?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
                     new TeamDirectoryProfilesForProfileReactivatePatchRequest { 
                         Joined = joined,
@@ -1099,8 +1100,8 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<TDMemberProfile> DeactivateAsync(ProfileIdentifier profile, SpaceTime at, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}/deactivate?at={at.ToString()}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+            public async Task<TDMemberProfile> DeactivateAsync(ProfileIdentifier profile, DateTime at, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<TDMemberProfile>("DELETE", $"api/http/team-directory/profiles/{profile}/deactivate?at={at.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
         
             public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
             
@@ -1214,13 +1215,13 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
                 /// </summary>
-                public async Task<Batch<TDProfileWorkingDays>> QueryAllWorkingDaysAsync(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<TDProfileWorkingDays>>, Partial<Batch<TDProfileWorkingDays>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<TDProfileWorkingDays>>("GET", $"api/http/team-directory/profiles/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={(profiles ?? new List<ProfileIdentifier>()).JoinToString("profiles", it => it.ToString())}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDProfileWorkingDays>>()) : Partial<Batch<TDProfileWorkingDays>>.Default())}", cancellationToken);
+                public async Task<Batch<TDProfileWorkingDays>> QueryAllWorkingDaysAsync(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<TDProfileWorkingDays>>, Partial<Batch<TDProfileWorkingDays>>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<Batch<TDProfileWorkingDays>>("GET", $"api/http/team-directory/profiles/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={(profiles ?? new List<ProfileIdentifier>()).JoinToString("profiles", it => it.ToString())}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDProfileWorkingDays>>()) : Partial<Batch<TDProfileWorkingDays>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
                 /// </summary>
-                public IAsyncEnumerable<TDProfileWorkingDays> QueryAllWorkingDaysAsyncEnumerable(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<TDProfileWorkingDays>, Partial<TDProfileWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
+                public IAsyncEnumerable<TDProfileWorkingDays> QueryAllWorkingDaysAsyncEnumerable(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<TDProfileWorkingDays>, Partial<TDProfileWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => QueryAllWorkingDaysAsync(profiles: profiles, top: top, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDProfileWorkingDays>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDProfileWorkingDays>.Default())), skip, cancellationToken);
             
             }
@@ -1235,7 +1236,7 @@ namespace SpaceDotNet.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<TDWorkingDays> AddWorkingDaysAsync(ProfileIdentifier profile, WorkingDaysSpec workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<TDWorkingDays> AddWorkingDaysAsync(ProfileIdentifier profile, WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysPostRequest, TDWorkingDays>("POST", $"api/http/team-directory/profiles/{profile}/working-days?$fields={(partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default())}", 
                         new TeamDirectoryProfilesForProfileWorkingDaysPostRequest { 
                             DateStart = dateStart,
@@ -1258,7 +1259,7 @@ namespace SpaceDotNet.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<TDWorkingDays> UpdateWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, WorkingDaysSpec workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<TDWorkingDays> UpdateWorkingDaysAsync(ProfileIdentifier profile, string workingDaysId, WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest, TDWorkingDays>("PATCH", $"api/http/team-directory/profiles/{profile}/working-days/{workingDaysId}?$fields={(partial != null ? partial(new Partial<TDWorkingDays>()) : Partial<TDWorkingDays>.Default())}", 
                         new TeamDirectoryProfilesForProfileWorkingDaysForWorkingDaysIdPatchRequest { 
                             DateStart = dateStart,

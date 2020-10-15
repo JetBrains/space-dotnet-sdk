@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -84,7 +85,7 @@ namespace SpaceDotNet.Client
                     _connection = connection;
                 }
                 
-                public async Task<BusinessEntityRelation> CreateANewRelationBetweenMemberAndBusinessEntityAsync(ProfileIdentifier memberId, string entityId, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<BusinessEntityRelation>, Partial<BusinessEntityRelation>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<BusinessEntityRelation> CreateANewRelationBetweenMemberAndBusinessEntityAsync(ProfileIdentifier memberId, string entityId, DateTime? since = null, DateTime? till = null, Func<Partial<BusinessEntityRelation>, Partial<BusinessEntityRelation>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<HrmBusinessEntitiesRelationsForMemberIdPostRequest, BusinessEntityRelation>("POST", $"api/http/hrm/business-entities/relations/{memberId}?$fields={(partial != null ? partial(new Partial<BusinessEntityRelation>()) : Partial<BusinessEntityRelation>.Default())}", 
                         new HrmBusinessEntitiesRelationsForMemberIdPostRequest { 
                             EntityId = entityId,
@@ -93,16 +94,16 @@ namespace SpaceDotNet.Client
                         }
                 , cancellationToken);
             
-                public async Task<Batch<BusinessEntityRelation>> ListAllBusinessEntityRelationsAsync(List<ProfileIdentifier>? profile = null, List<string>? businessEntityId = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<Batch<BusinessEntityRelation>>, Partial<Batch<BusinessEntityRelation>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<BusinessEntityRelation>>("GET", $"api/http/hrm/business-entities/relations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profile={(profile ?? new List<ProfileIdentifier>()).JoinToString("profile", it => it.ToString())}&businessEntityId={(businessEntityId ?? new List<string>()).JoinToString("businessEntityId", it => it.ToString())}&since={since?.ToString() ?? "null"}&till={till?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<BusinessEntityRelation>>()) : Partial<Batch<BusinessEntityRelation>>.Default())}", cancellationToken);
+                public async Task<Batch<BusinessEntityRelation>> ListAllBusinessEntityRelationsAsync(List<ProfileIdentifier>? profile = null, List<string>? businessEntityId = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<BusinessEntityRelation>>, Partial<Batch<BusinessEntityRelation>>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<Batch<BusinessEntityRelation>>("GET", $"api/http/hrm/business-entities/relations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profile={(profile ?? new List<ProfileIdentifier>()).JoinToString("profile", it => it.ToString())}&businessEntityId={(businessEntityId ?? new List<string>()).JoinToString("businessEntityId", it => it.ToString())}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<BusinessEntityRelation>>()) : Partial<Batch<BusinessEntityRelation>>.Default())}", cancellationToken);
                 
-                public IAsyncEnumerable<BusinessEntityRelation> ListAllBusinessEntityRelationsAsyncEnumerable(List<ProfileIdentifier>? profile = null, List<string>? businessEntityId = null, string? skip = null, int? top = 100, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<BusinessEntityRelation>, Partial<BusinessEntityRelation>>? partial = null, CancellationToken cancellationToken = default)
+                public IAsyncEnumerable<BusinessEntityRelation> ListAllBusinessEntityRelationsAsyncEnumerable(List<ProfileIdentifier>? profile = null, List<string>? businessEntityId = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<BusinessEntityRelation>, Partial<BusinessEntityRelation>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllBusinessEntityRelationsAsync(profile: profile, businessEntityId: businessEntityId, top: top, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<BusinessEntityRelation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<BusinessEntityRelation>.Default())), skip, cancellationToken);
             
                 public async Task<List<BusinessEntityRelation>> ListMemberBusinessEntityRelationsAsync(ProfileIdentifier memberId, Func<Partial<BusinessEntityRelation>, Partial<BusinessEntityRelation>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<BusinessEntityRelation>>("GET", $"api/http/hrm/business-entities/relations/{memberId}?$fields={(partial != null ? partial(new Partial<BusinessEntityRelation>()) : Partial<BusinessEntityRelation>.Default())}", cancellationToken);
             
-                public async Task<BusinessEntityRelation> UpdateMemberBusinessEntityRelationAsync(string id, ProfileIdentifier memberId, SpaceDate? since = null, SpaceDate? till = null, Func<Partial<BusinessEntityRelation>, Partial<BusinessEntityRelation>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<BusinessEntityRelation> UpdateMemberBusinessEntityRelationAsync(string id, ProfileIdentifier memberId, DateTime? since = null, DateTime? till = null, Func<Partial<BusinessEntityRelation>, Partial<BusinessEntityRelation>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<HrmBusinessEntitiesRelationsForMemberIdForIdPatchRequest, BusinessEntityRelation>("PATCH", $"api/http/hrm/business-entities/relations/{memberId}/{id}?$fields={(partial != null ? partial(new Partial<BusinessEntityRelation>()) : Partial<BusinessEntityRelation>.Default())}", 
                         new HrmBusinessEntitiesRelationsForMemberIdForIdPatchRequest { 
                             Since = since,

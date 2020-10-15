@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TodoItemRecord() { }
         
-        public TodoItemRecord(string id, bool archived, SpaceTime created, SpaceTime updated, TodoItemContent content, string _status, SpaceDate? dueDate = null)
+        public TodoItemRecord(string id, bool archived, DateTime created, DateTime updated, TodoItemContent content, string _status, DateTime? dueDate = null)
         {
             Id = id;
             IsArchived = archived;
@@ -60,21 +61,23 @@ namespace SpaceDotNet.Client
             set { _archived.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(TodoItemRecord), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _updated = new PropertyValue<SpaceTime>(nameof(TodoItemRecord), nameof(Updated));
+        private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Updated));
         
         [Required]
         [JsonPropertyName("updated")]
-        public SpaceTime Updated
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Updated
         {
             get { return _updated.GetValue(); }
             set { _updated.SetValue(value); }
@@ -100,10 +103,11 @@ namespace SpaceDotNet.Client
             set { __status.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(TodoItemRecord), nameof(DueDate));
+        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoItemRecord), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DueDate
         {
             get { return _dueDate.GetValue(); }
             set { _dueDate.SetValue(value); }

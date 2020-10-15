@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,17 +30,18 @@ namespace SpaceDotNet.Client
     {
         public BillingDay() { }
         
-        public BillingDay(SpaceDate date, long count)
+        public BillingDay(DateTime date, long count)
         {
             Date = date;
             Count = count;
         }
         
-        private PropertyValue<SpaceDate> _date = new PropertyValue<SpaceDate>(nameof(BillingDay), nameof(Date));
+        private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(BillingDay), nameof(Date));
         
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime Date
         {
             get { return _date.GetValue(); }
             set { _date.SetValue(value); }

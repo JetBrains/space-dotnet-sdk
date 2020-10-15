@@ -21,17 +21,17 @@ namespace SpaceDotNet.Common
         }
 
         /// <summary>
-        /// The access token value.
+        /// Get the access token value.
         /// </summary>
         public string? AccessToken { get; }
         
         /// <summary>
-        /// The refresh token value.
+        /// Get the refresh token value.
         /// </summary>
         public string? RefreshToken { get; }
         
         /// <summary>
-        /// The expiration time of the current <see cref="AccessToken"/>.
+        /// Get the expiration time of the current <see cref="AccessToken"/>.
         /// </summary>
         public DateTimeOffset? Expires { get; }
 

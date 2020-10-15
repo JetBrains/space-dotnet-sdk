@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, SpaceTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, SpaceTime? created = null, bool? deleted = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, bool? published = null, DocumentFolderRecord? folder = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, DateTime? created = null, bool? deleted = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, bool? published = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -69,20 +70,22 @@ namespace SpaceDotNet.Client
             set { _title.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _modified = new PropertyValue<SpaceTime>(nameof(DRDraft), nameof(Modified));
+        private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(DRDraft), nameof(Modified));
         
         [Required]
         [JsonPropertyName("modified")]
-        public SpaceTime Modified
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Modified
         {
             get { return _modified.GetValue(); }
             set { _modified.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _created = new PropertyValue<SpaceTime?>(nameof(DRDraft), nameof(Created));
+        private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(DRDraft), nameof(Created));
         
         [JsonPropertyName("created")]
-        public SpaceTime? Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

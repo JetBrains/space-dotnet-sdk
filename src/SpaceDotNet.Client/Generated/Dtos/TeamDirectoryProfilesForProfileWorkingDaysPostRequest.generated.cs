@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,26 +30,28 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesForProfileWorkingDaysPostRequest() { }
         
-        public TeamDirectoryProfilesForProfileWorkingDaysPostRequest(WorkingDaysSpec workingDaysSpec, SpaceDate? dateStart = null, SpaceDate? dateEnd = null)
+        public TeamDirectoryProfilesForProfileWorkingDaysPostRequest(WorkingDaysSpec workingDaysSpec, DateTime? dateStart = null, DateTime? dateEnd = null)
         {
             DateStart = dateStart;
             DateEnd = dateEnd;
             WorkingDaysSpec = workingDaysSpec;
         }
         
-        private PropertyValue<SpaceDate?> _dateStart = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateStart));
+        private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateStart));
         
         [JsonPropertyName("dateStart")]
-        public SpaceDate? DateStart
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DateStart
         {
             get { return _dateStart.GetValue(); }
             set { _dateStart.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dateEnd = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateEnd));
+        private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileWorkingDaysPostRequest), nameof(DateEnd));
         
         [JsonPropertyName("dateEnd")]
-        public SpaceDate? DateEnd
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DateEnd
         {
             get { return _dateEnd.GetValue(); }
             set { _dateEnd.SetValue(value); }

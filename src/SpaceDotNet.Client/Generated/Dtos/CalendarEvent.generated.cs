@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarEvent() { }
         
-        public CalendarEvent(bool? calendarEvent = null, SpaceTime? starts = null, SpaceTime? ends = null, ATimeZone? timezone = null, List<TDLocation>? rooms = null, bool? allDay = null)
+        public CalendarEvent(bool? calendarEvent = null, DateTime? starts = null, DateTime? ends = null, ATimeZone? timezone = null, List<TDLocation>? rooms = null, bool? allDay = null)
         {
             IsCalendarEvent = calendarEvent;
             Starts = starts;
@@ -48,19 +49,21 @@ namespace SpaceDotNet.Client
             set { _calendarEvent.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _starts = new PropertyValue<SpaceTime?>(nameof(CalendarEvent), nameof(Starts));
+        private PropertyValue<DateTime?> _starts = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Starts));
         
         [JsonPropertyName("starts")]
-        public SpaceTime? Starts
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Starts
         {
             get { return _starts.GetValue(); }
             set { _starts.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _ends = new PropertyValue<SpaceTime?>(nameof(CalendarEvent), nameof(Ends));
+        private PropertyValue<DateTime?> _ends = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Ends));
         
         [JsonPropertyName("ends")]
-        public SpaceTime? Ends
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Ends
         {
             get { return _ends.GetValue(); }
             set { _ends.SetValue(value); }

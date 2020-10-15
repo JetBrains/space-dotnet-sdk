@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ArticleRecord() { }
         
-        public ArticleRecord(string id, bool archived, string title, SpaceTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, SpaceTime? archivedAt = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, PRProject? project = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, PRProject? project = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
         {
             Id = id;
             IsArchived = archived;
@@ -86,11 +87,12 @@ namespace SpaceDotNet.Client
             set { _title.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ArticleRecord), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ArticleRecord), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }
@@ -125,10 +127,11 @@ namespace SpaceDotNet.Client
             set { _archivedBy.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _archivedAt = new PropertyValue<SpaceTime?>(nameof(ArticleRecord), nameof(ArchivedAt));
+        private PropertyValue<DateTime?> _archivedAt = new PropertyValue<DateTime?>(nameof(ArticleRecord), nameof(ArchivedAt));
         
         [JsonPropertyName("archivedAt")]
-        public SpaceTime? ArchivedAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ArchivedAt
         {
             get { return _archivedAt.GetValue(); }
             set { _archivedAt.SetValue(value); }

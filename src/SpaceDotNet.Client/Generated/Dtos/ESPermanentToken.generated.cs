@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ESPermanentToken() { }
         
-        public ESPermanentToken(string id, string name, TDMemberProfile profile, string scope, SpaceTime created, AccessRecord? lastAccess = null)
+        public ESPermanentToken(string id, string name, TDMemberProfile profile, string scope, DateTime created, AccessRecord? lastAccess = null)
         {
             Id = id;
             Name = name;
@@ -79,11 +80,12 @@ namespace SpaceDotNet.Client
             set { _scope.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ESPermanentToken), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESPermanentToken), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

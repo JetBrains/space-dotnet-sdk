@@ -42,7 +42,7 @@
                 @if (Model.MemberProfile.Birthday != null)
                 {
                     <small>Birthday</small><br/>
-                    @Model.MemberProfile.Birthday.AsDateTime().ToString("yyyy-MM-dd")<br/>
+                    @Model.MemberProfile.Birthday?.ToString("yyyy-MM-dd")<br/>
                 }
                 
                 <small>Languages</small><br/>
@@ -103,10 +103,10 @@
                 <div class="col-12">
                     <h4>Meetings today</h4>
                     <ul class="list-group">
-                        @foreach (var meeting in Model.MeetingsToday.OrderBy(it => it.OccurrenceRule.Start.AsDateTime()))
+                        @foreach (var meeting in Model.MeetingsToday.OrderBy(it => it.OccurrenceRule.Start))
                         {
                             <li class="list-group-item">
-                                <small>@meeting.OccurrenceRule.Start.AsDateTime().ToString("hh:mm tt") - @meeting.OccurrenceRule.End.AsDateTime().ToString("hh:mm tt") (@meeting.OccurrenceRule.Timezone.Id)</small><br/>
+                                <small>@meeting.OccurrenceRule.Start.ToString("hh:mm tt") - @meeting.OccurrenceRule.End.ToString("hh:mm tt") (@meeting.OccurrenceRule.Timezone.Id)</small><br/>
                                 @meeting.Summary
                                 
                                 @if (!string.IsNullOrEmpty(meeting.ConferenceLink))
@@ -131,7 +131,7 @@
                     @foreach (var absence in absences.Take(5))
                     {
                         <li class="list-group-item">
-                            <small>@absence.Since.AsDateTime().ToString("yyyy-MM-dd") - @absence.Till.AsDateTime().ToString("yyyy-MM-dd")</small><br/>
+                            <small>@absence.Since.ToString("yyyy-MM-dd") - @absence.Till.ToString("yyyy-MM-dd")</small><br/>
                             @absence.Description
                         </li>
                     }
@@ -149,11 +149,11 @@
                             @if (membership.Since != null)
                             {
                                 <small>
-                                    @membership.Since.AsDateTime().ToString("yyyy-MM-dd")
+                                    @membership.Since?.ToString("yyyy-MM-dd")
                                     
                                     @if (membership.Till != null)
                                     {
-                                        <text>- @membership.Till?.AsDateTime().ToString("yyyy-MM-dd")</text>
+                                        <text>- @membership.Till?.ToString("yyyy-MM-dd")</text>
                                     }
                                  </small><br/>
                             }

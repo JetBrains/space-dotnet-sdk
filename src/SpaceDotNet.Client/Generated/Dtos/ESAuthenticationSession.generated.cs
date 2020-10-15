@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ESAuthenticationSession() { }
         
-        public ESAuthenticationSession(string id, TDMemberProfile profile, SpaceTime created, SpaceTime expires, bool current, AccessRecord? lastAccess = null)
+        public ESAuthenticationSession(string id, TDMemberProfile profile, DateTime created, DateTime expires, bool current, AccessRecord? lastAccess = null)
         {
             Id = id;
             Profile = profile;
@@ -59,21 +60,23 @@ namespace SpaceDotNet.Client
             set { _profile.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ESAuthenticationSession), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _expires = new PropertyValue<SpaceTime>(nameof(ESAuthenticationSession), nameof(Expires));
+        private PropertyValue<DateTime> _expires = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Expires));
         
         [Required]
         [JsonPropertyName("expires")]
-        public SpaceTime Expires
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Expires
         {
             get { return _expires.GetValue(); }
             set { _expires.SetValue(value); }

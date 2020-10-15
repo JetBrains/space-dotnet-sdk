@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TDLocationMap() { }
         
-        public TDLocationMap(string id, string picture, SpaceTime created, int? width = null, int? height = null)
+        public TDLocationMap(string id, string picture, DateTime created, int? width = null, int? height = null)
         {
             Id = id;
             Picture = picture;
@@ -58,11 +59,12 @@ namespace SpaceDotNet.Client
             set { _picture.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(TDLocationMap), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TDLocationMap), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

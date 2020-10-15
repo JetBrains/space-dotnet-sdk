@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarEventSpec() { }
         
-        public CalendarEventSpec(SpaceTime start, SpaceTime end, bool allDay, ATimeZone timezone, RecurrenceRule? recurrenceRule = null, string? parentId = null, SpaceTime? initialMeetingStart = null, BusyStatus? busyStatus = null, string? nextChainId = null)
+        public CalendarEventSpec(DateTime start, DateTime end, bool allDay, ATimeZone timezone, RecurrenceRule? recurrenceRule = null, string? parentId = null, DateTime? initialMeetingStart = null, BusyStatus? busyStatus = null, string? nextChainId = null)
         {
             Start = start;
             End = end;
@@ -42,21 +43,23 @@ namespace SpaceDotNet.Client
             NextChainId = nextChainId;
         }
         
-        private PropertyValue<SpaceTime> _start = new PropertyValue<SpaceTime>(nameof(CalendarEventSpec), nameof(Start));
+        private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(CalendarEventSpec), nameof(Start));
         
         [Required]
         [JsonPropertyName("start")]
-        public SpaceTime Start
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Start
         {
             get { return _start.GetValue(); }
             set { _start.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _end = new PropertyValue<SpaceTime>(nameof(CalendarEventSpec), nameof(End));
+        private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(CalendarEventSpec), nameof(End));
         
         [Required]
         [JsonPropertyName("end")]
-        public SpaceTime End
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime End
         {
             get { return _end.GetValue(); }
             set { _end.SetValue(value); }
@@ -100,10 +103,11 @@ namespace SpaceDotNet.Client
             set { _parentId.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _initialMeetingStart = new PropertyValue<SpaceTime?>(nameof(CalendarEventSpec), nameof(InitialMeetingStart));
+        private PropertyValue<DateTime?> _initialMeetingStart = new PropertyValue<DateTime?>(nameof(CalendarEventSpec), nameof(InitialMeetingStart));
         
         [JsonPropertyName("initialMeetingStart")]
-        public SpaceTime? InitialMeetingStart
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? InitialMeetingStart
         {
             get { return _initialMeetingStart.GetValue(); }
             set { _initialMeetingStart.SetValue(value); }

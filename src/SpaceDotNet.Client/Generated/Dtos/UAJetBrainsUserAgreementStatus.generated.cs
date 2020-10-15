@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -31,7 +32,7 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "UA_JetBrainsUserAgreementStatus";
         
-        public static UAJetBrainsUserAgreementStatusAccepted Accepted(TDMemberProfile profile, UAVersion version, SpaceTime accepted)
+        public static UAJetBrainsUserAgreementStatusAccepted Accepted(TDMemberProfile profile, UAVersion version, DateTime accepted)
             => new UAJetBrainsUserAgreementStatusAccepted(profile: profile, version: version, accepted: accepted);
         
         public static UAJetBrainsUserAgreementStatusNotAccepted NotAccepted(TDMemberProfile profile)

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -34,7 +35,7 @@ namespace SpaceDotNet.Client
         public static RecurrenceRuleEndsNever Never()
             => new RecurrenceRuleEndsNever();
         
-        public static RecurrenceRuleEndsOnDate OnDate(SpaceDate date)
+        public static RecurrenceRuleEndsOnDate OnDate(DateTime date)
             => new RecurrenceRuleEndsOnDate(date: date);
         
         public static RecurrenceRuleEndsTotalCount TotalCount(int count)

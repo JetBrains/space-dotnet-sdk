@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TDTeam() { }
         
-        public TDTeam(string id, string name, string description, bool archived, Dictionary<string, CFValue> customFields, List<TDMembership> memberships, TDTeam? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, SpaceDate? disbandedAt = null, string? externalId = null)
+        public TDTeam(string id, string name, string description, bool archived, Dictionary<string, CFValue> customFields, List<TDMembership> memberships, TDTeam? parent = null, List<string>? emails = null, string? channelId = null, bool? disbanded = null, DateTime? disbandedAt = null, string? externalId = null)
         {
             Id = id;
             Name = name;
@@ -121,10 +122,11 @@ namespace SpaceDotNet.Client
             set { _disbanded.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _disbandedAt = new PropertyValue<SpaceDate?>(nameof(TDTeam), nameof(DisbandedAt));
+        private PropertyValue<DateTime?> _disbandedAt = new PropertyValue<DateTime?>(nameof(TDTeam), nameof(DisbandedAt));
         
         [JsonPropertyName("disbandedAt")]
-        public SpaceDate? DisbandedAt
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DisbandedAt
         {
             get { return _disbandedAt.GetValue(); }
             set { _disbandedAt.SetValue(value); }

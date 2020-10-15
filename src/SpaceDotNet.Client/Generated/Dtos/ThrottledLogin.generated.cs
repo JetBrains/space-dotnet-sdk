@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ThrottledLogin() { }
         
-        public ThrottledLogin(string id, string login, SpaceTime throttledUntil)
+        public ThrottledLogin(string id, string login, DateTime throttledUntil)
         {
             Id = id;
             Login = login;
@@ -56,11 +57,12 @@ namespace SpaceDotNet.Client
             set { _login.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _throttledUntil = new PropertyValue<SpaceTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
+        private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
         
         [Required]
         [JsonPropertyName("throttledUntil")]
-        public SpaceTime ThrottledUntil
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime ThrottledUntil
         {
             get { return _throttledUntil.GetValue(); }
             set { _throttledUntil.SetValue(value); }

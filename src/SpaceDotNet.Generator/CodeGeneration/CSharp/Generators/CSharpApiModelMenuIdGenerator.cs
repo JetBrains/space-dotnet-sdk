@@ -65,11 +65,11 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 }
                 
                 builder.AppendLine($"{indent}/// <summary>");
-                builder.AppendLine($"{indent}/// The \"{node.Prefix}\" menu.");
+                builder.AppendLine($"{indent}/// Represents the \"{node.Prefix}\" menu.");
                 if (!string.IsNullOrEmpty(expectedPayload) && expectedPayload != CSharpType.Object.Value)
                 {
                     builder.AppendLine($"{indent}///");
-                    builder.AppendLine($"{indent}/// Expected webhook payload: <see cref=\"{expectedPayload}\">.");
+                    builder.AppendLine($"{indent}/// Expected webhook payload: <see cref=\"{expectedPayload}\"/>.");
                 }
                 builder.AppendLine($"{indent}/// </summary>");
                 builder.AppendLine($"{indent}public static readonly MenuId {prefix} = new MenuId(\"{node.Prefix}\");");

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public PRProject() { }
         
-        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, string? description = null, string? icon = null, SpaceTime? latestRepositoryActivity = null)
+        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null)
         {
             Id = id;
             Key = key;
@@ -108,10 +109,11 @@ namespace SpaceDotNet.Client
             set { _icon.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _latestRepositoryActivity = new PropertyValue<SpaceTime?>(nameof(PRProject), nameof(LatestRepositoryActivity));
+        private PropertyValue<DateTime?> _latestRepositoryActivity = new PropertyValue<DateTime?>(nameof(PRProject), nameof(LatestRepositoryActivity));
         
         [JsonPropertyName("latestRepositoryActivity")]
-        public SpaceTime? LatestRepositoryActivity
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? LatestRepositoryActivity
         {
             get { return _latestRepositoryActivity.GetValue(); }
             set { _latestRepositoryActivity.SetValue(value); }

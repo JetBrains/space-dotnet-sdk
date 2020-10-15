@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryInvitationLinksPostRequest() { }
         
-        public TeamDirectoryInvitationLinksPostRequest(string name, SpaceTime expiresAt, int inviteeLimit)
+        public TeamDirectoryInvitationLinksPostRequest(string name, DateTime expiresAt, int inviteeLimit)
         {
             Name = name;
             ExpiresAt = expiresAt;
@@ -46,11 +47,12 @@ namespace SpaceDotNet.Client
             set { _name.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _expiresAt = new PropertyValue<SpaceTime>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(ExpiresAt));
+        private PropertyValue<DateTime> _expiresAt = new PropertyValue<DateTime>(nameof(TeamDirectoryInvitationLinksPostRequest), nameof(ExpiresAt));
         
         [Required]
         [JsonPropertyName("expiresAt")]
-        public SpaceTime ExpiresAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime ExpiresAt
         {
             get { return _expiresAt.GetValue(); }
             set { _expiresAt.SetValue(value); }

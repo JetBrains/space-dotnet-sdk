@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -32,26 +33,28 @@ namespace SpaceDotNet.Client
         
         public DateCFConstraint() { }
         
-        public DateCFConstraint(SpaceDate? min = null, SpaceDate? max = null, string? message = null)
+        public DateCFConstraint(DateTime? min = null, DateTime? max = null, string? message = null)
         {
             Min = min;
             Max = max;
             Message = message;
         }
         
-        private PropertyValue<SpaceDate?> _min = new PropertyValue<SpaceDate?>(nameof(DateCFConstraint), nameof(Min));
+        private PropertyValue<DateTime?> _min = new PropertyValue<DateTime?>(nameof(DateCFConstraint), nameof(Min));
         
         [JsonPropertyName("min")]
-        public SpaceDate? Min
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Min
         {
             get { return _min.GetValue(); }
             set { _min.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _max = new PropertyValue<SpaceDate?>(nameof(DateCFConstraint), nameof(Max));
+        private PropertyValue<DateTime?> _max = new PropertyValue<DateTime?>(nameof(DateCFConstraint), nameof(Max));
         
         [JsonPropertyName("max")]
-        public SpaceDate? Max
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Max
         {
             get { return _max.GetValue(); }
             set { _max.SetValue(value); }

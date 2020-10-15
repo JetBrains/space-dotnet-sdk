@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -75,8 +76,8 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<Batch<ArticleRecord>> GetAllArticlesAsync(string? skip = null, int? top = 100, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default())}", cancellationToken);
+            public async Task<Batch<ArticleRecord>> GetAllArticlesAsync(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<Batch<ArticleRecord>>, Partial<Batch<ArticleRecord>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<ArticleRecord>>("GET", $"api/http/blogs/articles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&dateFrom={dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&dateTo={dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&forProfile={forProfile?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<ArticleRecord>>()) : Partial<Batch<ArticleRecord>>.Default())}", cancellationToken);
             
             /// <remarks>
             /// Required permissions:
@@ -86,7 +87,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public IAsyncEnumerable<ArticleRecord> GetAllArticlesAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<ArticleRecord> GetAllArticlesAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllArticlesAsync(top: top, term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ArticleRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecord>.Default())), skip, cancellationToken);
         
             /// <remarks>
@@ -255,8 +256,8 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<BGStats> GetStatsAsync(SpaceTime? dateFrom = null, SpaceTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString() ?? "null"}&dateTo={dateTo?.ToString() ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default())}", cancellationToken);
+            public async Task<BGStats> GetStatsAsync(DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, Func<Partial<BGStats>, Partial<BGStats>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<BGStats>("GET", $"api/http/blogs/stats?dateFrom={dateFrom?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&dateTo={dateTo?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&authorId={authorId?.ToString() ?? "null"}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BGStats>()) : Partial<BGStats>.Default())}", cancellationToken);
         
         }
     

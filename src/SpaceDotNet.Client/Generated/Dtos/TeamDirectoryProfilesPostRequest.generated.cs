@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesPostRequest() { }
         
-        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, SpaceDate? birthday = null, string? about = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null)
+        public TeamDirectoryProfilesPostRequest(string username, string firstName, string lastName, List<string>? emails = null, List<string>? phones = null, List<string>? messengers = null, List<string>? links = null, bool notAMember = false, List<CustomFieldValue>? customFieldValues = null, DateTime? birthday = null, string? about = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, bool? speaksEnglish = null, string? pictureAttachmentId = null, AvatarCropSquare? avatarCropSquare = null)
         {
             Username = username;
             FirstName = firstName;
@@ -98,10 +99,11 @@ namespace SpaceDotNet.Client
             set { _phones.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _birthday = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Birthday));
+        private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Birthday));
         
         [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Birthday
         {
             get { return _birthday.GetValue(); }
             set { _birthday.SetValue(value); }
@@ -143,28 +145,31 @@ namespace SpaceDotNet.Client
             set { _notAMember.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _joined = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Joined));
+        private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Joined));
         
         [JsonPropertyName("joined")]
-        public SpaceDate? Joined
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Joined
         {
             get { return _joined.GetValue(); }
             set { _joined.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _left = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Left));
+        private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Left));
         
         [JsonPropertyName("left")]
-        public SpaceDate? Left
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Left
         {
             get { return _left.GetValue(); }
             set { _left.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _leftAt = new PropertyValue<SpaceTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(LeftAt));
+        private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(LeftAt));
         
         [JsonPropertyName("leftAt")]
-        public SpaceTime? LeftAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? LeftAt
         {
             get { return _leftAt.GetValue(); }
             set { _leftAt.SetValue(value); }

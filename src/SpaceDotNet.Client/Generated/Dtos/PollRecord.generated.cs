@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public PollRecord() { }
         
-        public PollRecord(string id, TDMemberProfile owner, string question, bool meVote, int countPeople, bool anonymous, bool closed, bool extendable, bool multiChoice, bool ended, List<VoteGroup> votes, SpaceTime? expirationTime = null)
+        public PollRecord(string id, TDMemberProfile owner, string question, bool meVote, int countPeople, bool anonymous, bool closed, bool extendable, bool multiChoice, bool ended, List<VoteGroup> votes, DateTime? expirationTime = null)
         {
             Id = id;
             Owner = owner;
@@ -145,10 +146,11 @@ namespace SpaceDotNet.Client
             set { _ended.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _expirationTime = new PropertyValue<SpaceTime?>(nameof(PollRecord), nameof(ExpirationTime));
+        private PropertyValue<DateTime?> _expirationTime = new PropertyValue<DateTime?>(nameof(PollRecord), nameof(ExpirationTime));
         
         [JsonPropertyName("expirationTime")]
-        public SpaceTime? ExpirationTime
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ExpirationTime
         {
             get { return _expirationTime.GetValue(); }
             set { _expirationTime.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,15 +30,16 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryProfilesForProfileReactivatePatchRequest() { }
         
-        public TeamDirectoryProfilesForProfileReactivatePatchRequest(SpaceDate? joined = null)
+        public TeamDirectoryProfilesForProfileReactivatePatchRequest(DateTime? joined = null)
         {
             Joined = joined;
         }
         
-        private PropertyValue<SpaceDate?> _joined = new PropertyValue<SpaceDate?>(nameof(TeamDirectoryProfilesForProfileReactivatePatchRequest), nameof(Joined));
+        private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesForProfileReactivatePatchRequest), nameof(Joined));
         
         [JsonPropertyName("joined")]
-        public SpaceDate? Joined
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Joined
         {
             get { return _joined.GetValue(); }
             set { _joined.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public BirthdayEvent() { }
         
-        public BirthdayEvent(TDMemberWithTeam profile, SpaceDate birthday)
+        public BirthdayEvent(TDMemberWithTeam profile, DateTime birthday)
         {
             Profile = profile;
             Birthday = birthday;
@@ -45,11 +46,12 @@ namespace SpaceDotNet.Client
             set { _profile.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _birthday = new PropertyValue<SpaceDate>(nameof(BirthdayEvent), nameof(Birthday));
+        private PropertyValue<DateTime> _birthday = new PropertyValue<DateTime>(nameof(BirthdayEvent), nameof(Birthday));
         
         [Required]
         [JsonPropertyName("birthday")]
-        public SpaceDate Birthday
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime Birthday
         {
             get { return _birthday.GetValue(); }
             set { _birthday.SetValue(value); }

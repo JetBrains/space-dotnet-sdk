@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public PRRepositoryInfo() { }
         
-        public PRRepositoryInfo(string name, string description, RepositoryState state, string? id = null, SpaceTime? latestActivity = null, SpaceTime? proxyPushNotification = null, string? initProgress = null, string? readmeName = null, RepositoryActivity? monthlyActivity = null)
+        public PRRepositoryInfo(string name, string description, RepositoryState state, string? id = null, DateTime? latestActivity = null, DateTime? proxyPushNotification = null, string? initProgress = null, string? readmeName = null, RepositoryActivity? monthlyActivity = null)
         {
             Id = id;
             Name = name;
@@ -71,19 +72,21 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _latestActivity = new PropertyValue<SpaceTime?>(nameof(PRRepositoryInfo), nameof(LatestActivity));
+        private PropertyValue<DateTime?> _latestActivity = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(LatestActivity));
         
         [JsonPropertyName("latestActivity")]
-        public SpaceTime? LatestActivity
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? LatestActivity
         {
             get { return _latestActivity.GetValue(); }
             set { _latestActivity.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _proxyPushNotification = new PropertyValue<SpaceTime?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotification));
+        private PropertyValue<DateTime?> _proxyPushNotification = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotification));
         
         [JsonPropertyName("proxyPushNotification")]
-        public SpaceTime? ProxyPushNotification
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ProxyPushNotification
         {
             get { return _proxyPushNotification.GetValue(); }
             set { _proxyPushNotification.SetValue(value); }

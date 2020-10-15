@@ -13,19 +13,20 @@ namespace SpaceDotNet.Common.Types
         : IPropagatePropertyAccessPath
     {
         /// <summary>
-        /// The collection of items in the batch.
+        /// Get the collection of items in the batch.
         /// </summary>
         [JsonPropertyName("data")]
         public List<T>? Data { get; set; }
 
         /// <summary>
+        /// Get the next batch.
         /// When not null, represents the start of the next batch that can be used as a skip parameter to methods returning a batch.
         /// </summary>
         [JsonPropertyName("next")]
         public string? Next { get; set; }
 
         /// <summary>
-        /// The total count of items in all batches of the entire result set.
+        /// Get the total count of items in all batches of the entire result set.
         /// </summary>
         [JsonPropertyName("totalCount")]
         public int? TotalCount { get; set; }

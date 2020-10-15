@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,17 +30,18 @@ namespace SpaceDotNet.Client
     {
         public Estimation() { }
         
-        public Estimation(SpaceTime start, long predictedDuration)
+        public Estimation(DateTime start, long predictedDuration)
         {
             Start = start;
             PredictedDuration = predictedDuration;
         }
         
-        private PropertyValue<SpaceTime> _start = new PropertyValue<SpaceTime>(nameof(Estimation), nameof(Start));
+        private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(Estimation), nameof(Start));
         
         [Required]
         [JsonPropertyName("start")]
-        public SpaceTime Start
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Start
         {
             get { return _start.GetValue(); }
             set { _start.SetValue(value); }

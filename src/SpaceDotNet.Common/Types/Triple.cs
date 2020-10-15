@@ -15,21 +15,21 @@ namespace SpaceDotNet.Common.Types
         : IPropagatePropertyAccessPath
     {
         /// <summary>
-        /// The first element in the <see cref="Triple{TFirst,TSecond,TThird}"/>.
+        /// Get/set the first element in the <see cref="Triple{TFirst,TSecond,TThird}"/>.
         /// </summary>
         [Required]
         [JsonPropertyName("first")]
         public TFirst First { get; set; } = default!;
 
         /// <summary>
-        /// The second element in the <see cref="Triple{TFirst,TSecond,TThird}"/>.
+        /// Get/set the second element in the <see cref="Triple{TFirst,TSecond,TThird}"/>.
         /// </summary>
         [Required]
         [JsonPropertyName("second")]
         public TSecond Second { get; set; } = default!;
 
         /// <summary>
-        /// The third element in the <see cref="Triple{TFirst,TSecond,TThird}"/>.
+        /// Get/set the third element in the <see cref="Triple{TFirst,TSecond,TThird}"/>.
         /// </summary>
         [Required]
         [JsonPropertyName("third")]

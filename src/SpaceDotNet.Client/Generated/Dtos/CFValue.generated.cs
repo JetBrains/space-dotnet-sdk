@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -34,7 +35,7 @@ namespace SpaceDotNet.Client
         public static BooleanCFValue Boolean(bool? value = null)
             => new BooleanCFValue(value: null);
         
-        public static DateCFValue Date(SpaceDate? value = null)
+        public static DateCFValue Date(DateTime? value = null)
             => new DateCFValue(value: null);
         
         public static EnumCFValue Enum(EnumValueData? value = null)

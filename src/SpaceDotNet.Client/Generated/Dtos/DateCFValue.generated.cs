@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -32,15 +33,16 @@ namespace SpaceDotNet.Client
         
         public DateCFValue() { }
         
-        public DateCFValue(SpaceDate? value = null)
+        public DateCFValue(DateTime? value = null)
         {
             Value = value;
         }
         
-        private PropertyValue<SpaceDate?> _value = new PropertyValue<SpaceDate?>(nameof(DateCFValue), nameof(Value));
+        private PropertyValue<DateTime?> _value = new PropertyValue<DateTime?>(nameof(DateCFValue), nameof(Value));
         
         [JsonPropertyName("value")]
-        public SpaceDate? Value
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Value
         {
             get { return _value.GetValue(); }
             set { _value.SetValue(value); }

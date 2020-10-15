@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public AbsenceApproval() { }
         
-        public AbsenceApproval(bool approved, TDMemberProfile approvedBy, SpaceTime approvedAt)
+        public AbsenceApproval(bool approved, TDMemberProfile approvedBy, DateTime approvedAt)
         {
             IsApproved = approved;
             ApprovedBy = approvedBy;
@@ -56,11 +57,12 @@ namespace SpaceDotNet.Client
             set { _approvedBy.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _approvedAt = new PropertyValue<SpaceTime>(nameof(AbsenceApproval), nameof(ApprovedAt));
+        private PropertyValue<DateTime> _approvedAt = new PropertyValue<DateTime>(nameof(AbsenceApproval), nameof(ApprovedAt));
         
         [Required]
         [JsonPropertyName("approvedAt")]
-        public SpaceTime ApprovedAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime ApprovedAt
         {
             get { return _approvedAt.GetValue(); }
             set { _approvedAt.SetValue(value); }

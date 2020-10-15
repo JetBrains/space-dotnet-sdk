@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public AllChannelsListEntry() { }
         
-        public AllChannelsListEntry(string channelId, string name, string description, M2Access access, SpaceTime created, int subscribers, bool subscribed, string? icon = null)
+        public AllChannelsListEntry(string channelId, string name, string description, M2Access access, DateTime created, int subscribers, bool subscribed, string? icon = null)
         {
             ChannelId = channelId;
             Name = name;
@@ -90,11 +91,12 @@ namespace SpaceDotNet.Client
             set { _icon.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(AllChannelsListEntry), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(AllChannelsListEntry), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

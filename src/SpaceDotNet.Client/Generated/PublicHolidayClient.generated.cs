@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -111,7 +112,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Add a holiday to a public holiday calendar, and specify if it is a working day or not.
             /// </summary>
-            public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, SpaceDate date, bool workingDay, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PublicHoliday> CreateHolidayAsync(string calendar, string name, DateTime date, bool workingDay, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<PublicHolidaysHolidaysPostRequest, PublicHoliday>("POST", $"api/http/public-holidays/holidays?$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", 
                     new PublicHolidaysHolidaysPostRequest { 
                         Calendar = calendar,
@@ -125,19 +126,19 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get/search all holidays in a public holiday calendar. Parameters are applied as 'AND' filters.
             /// </summary>
-            public async Task<Batch<PublicHoliday>> GetAllHolidaysAsync(string? skip = null, int? top = 100, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default())}", cancellationToken);
+            public async Task<Batch<PublicHoliday>> GetAllHolidaysAsync(string? skip = null, int? top = 100, string? calendar = null, string? location = null, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&calendar={calendar?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&startDate={startDate?.ToString("yyyy-MM-dd") ?? "null"}&endDate={endDate?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search all holidays in a public holiday calendar. Parameters are applied as 'AND' filters.
             /// </summary>
-            public IAsyncEnumerable<PublicHoliday> GetAllHolidaysAsyncEnumerable(string? skip = null, int? top = 100, string? calendar = null, string? location = null, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+            public IAsyncEnumerable<PublicHoliday> GetAllHolidaysAsyncEnumerable(string? skip = null, int? top = 100, string? calendar = null, string? location = null, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHolidaysAsync(top: top, calendar: calendar, location: location, startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHoliday>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHoliday>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, SpaceDate? date = null, bool? workingDay = null, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PublicHoliday> UpdateHolidayAsync(string id, string? calendar = null, string? name = null, DateTime? date = null, bool? workingDay = null, bool? halfDay = false, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<PublicHolidaysHolidaysForIdPatchRequest, PublicHoliday>("PATCH", $"api/http/public-holidays/holidays/{id}?$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", 
                     new PublicHolidaysHolidaysForIdPatchRequest { 
                         Calendar = calendar,
@@ -168,8 +169,8 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get holidays observed in the location(s) of the current profile during the selected period.
                 /// </summary>
-                public async Task<List<PublicHoliday>> GetAllProfileHolidaysAsync(SpaceDate startDate, SpaceDate endDate, string profile, bool? workingDays = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays?startDate={startDate.ToString()}&endDate={endDate.ToString()}&profile={profile.ToString()}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", cancellationToken);
+                public async Task<List<PublicHoliday>> GetAllProfileHolidaysAsync(DateTime startDate, DateTime endDate, string profile, bool? workingDays = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/profile-holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&profile={profile.ToString()}&workingDays={workingDays?.ToString()?.ToLowerInvariant() ?? "null"}&$fields={(partial != null ? partial(new Partial<PublicHoliday>()) : Partial<PublicHoliday>.Default())}", cancellationToken);
             
             }
         
@@ -187,13 +188,13 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Search related holidays in all public holiday calendars, during the selected period.
                 /// </summary>
-                public async Task<Batch<PublicHoliday>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = 100, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString() ?? "null"}&endDate={endDate?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default())}", cancellationToken);
+                public async Task<Batch<PublicHoliday>> GetAllRelatedHolidaysAsync(string? skip = null, int? top = 100, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<Batch<PublicHoliday>>, Partial<Batch<PublicHoliday>>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<Batch<PublicHoliday>>("GET", $"api/http/public-holidays/holidays/related-holidays?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&startDate={startDate?.ToString("yyyy-MM-dd") ?? "null"}&endDate={endDate?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PublicHoliday>>()) : Partial<Batch<PublicHoliday>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Search related holidays in all public holiday calendars, during the selected period.
                 /// </summary>
-                public IAsyncEnumerable<PublicHoliday> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = 100, SpaceDate? startDate = null, SpaceDate? endDate = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
+                public IAsyncEnumerable<PublicHoliday> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = 100, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllRelatedHolidaysAsync(top: top, startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHoliday>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHoliday>.Default())), skip, cancellationToken);
             
             }

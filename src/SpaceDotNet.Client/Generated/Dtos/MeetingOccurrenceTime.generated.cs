@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,27 +30,29 @@ namespace SpaceDotNet.Client
     {
         public MeetingOccurrenceTime() { }
         
-        public MeetingOccurrenceTime(SpaceTime start, SpaceTime end)
+        public MeetingOccurrenceTime(DateTime start, DateTime end)
         {
             Start = start;
             End = end;
         }
         
-        private PropertyValue<SpaceTime> _start = new PropertyValue<SpaceTime>(nameof(MeetingOccurrenceTime), nameof(Start));
+        private PropertyValue<DateTime> _start = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(Start));
         
         [Required]
         [JsonPropertyName("start")]
-        public SpaceTime Start
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Start
         {
             get { return _start.GetValue(); }
             set { _start.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _end = new PropertyValue<SpaceTime>(nameof(MeetingOccurrenceTime), nameof(End));
+        private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(End));
         
         [Required]
         [JsonPropertyName("end")]
-        public SpaceTime End
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime End
         {
             get { return _end.GetValue(); }
             set { _end.SetValue(value); }

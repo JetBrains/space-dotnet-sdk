@@ -132,7 +132,7 @@ namespace SpaceDotNet.Samples.Web.Pages
                                 .WithText()
                                 .WithTime()))))
                     {
-                        var created = issue.CreationTime.AsDateTime();
+                        var created = issue.CreationTime;
                         var lastUpdated = issue.Channel.LastMessage?.Time.AsDateTime() ?? created;
                         if (lastUpdated < weekStart)
                         {
@@ -176,10 +176,10 @@ namespace SpaceDotNet.Samples.Web.Pages
                         .WithAuthors()
                         .WithParticipants();
 
-                    var reviews1 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, @from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
-                    var reviews2 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
-                    var reviews3 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
-                    var reviews4 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart.AsSpaceDate(), partial: codeReviewPartial).ToListAsync();
+                    var reviews1 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Opened, from: weekStart, partial: codeReviewPartial).ToListAsync();
+                    var reviews2 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.NeedsReview, from: weekStart, partial: codeReviewPartial).ToListAsync();
+                    var reviews3 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.RequiresAuthorAttention, from: weekStart, partial: codeReviewPartial).ToListAsync();
+                    var reviews4 = await _projectClient.CodeReviews.GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier.Id(project.Id), ReviewSorting.LastUpdatedDesc, state: CodeReviewStateFilter.Closed, from: weekStart, partial: codeReviewPartial).ToListAsync();
                     
                     foreach (var review in reviews1.Union(reviews2).Union(reviews3).Union(reviews4))
                     {
@@ -213,7 +213,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             try
             {
                 // Check # of TO-DO items resolved
-                await foreach (var todo in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart.AsSpaceDate(), partial: _ => _
+                await foreach (var todo in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart, partial: _ => _
                     .WithId()
                     .WithContent(content => content
                         .ForInherited<TodoItemContentMdText>(md => md
@@ -233,7 +233,7 @@ namespace SpaceDotNet.Samples.Web.Pages
 
             try
             {
-                await foreach (var meeting in _calendarClient.Meetings.GetAllMeetingsAsyncEnumerable(profiles: new List<string> { MemberProfile.Id }, includePrivate: true, includeArchived: false, includeMeetingInstances: true, startingAfter: weekStart.AsSpaceTime(), endingBefore: weekEnd.AsSpaceTime(), partial: _ => _
+                await foreach (var meeting in _calendarClient.Meetings.GetAllMeetingsAsyncEnumerable(profiles: new List<string> { MemberProfile.Id }, includePrivate: true, includeArchived: false, includeMeetingInstances: true, startingAfter: weekStart, endingBefore: weekEnd, partial: _ => _
                     .WithAllFieldsWildcard()
                     .WithId()
                     .WithSummary()
@@ -242,7 +242,7 @@ namespace SpaceDotNet.Samples.Web.Pages
                 {
                     meetingsThisWeek++;
             
-                    if (meeting.OccurrenceRule.Start.AsDateTime().Date == DateTime.UtcNow.Date)
+                    if (meeting.OccurrenceRule.Start.Date == DateTime.UtcNow.Date)
                     {
                         MeetingsToday.Add(meeting);
                     }

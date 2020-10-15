@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -45,7 +46,7 @@ namespace SpaceDotNet.Client
         public static IssueDescriptionChangedDetails IssueDescriptionChangedDetails(string? oldDescription = null, string? newDescription = null)
             => new IssueDescriptionChangedDetails(oldDescription: null, newDescription: null);
         
-        public static IssueDueDateChangedDetails IssueDueDateChangedDetails(SpaceDate? oldDueDate = null, SpaceDate? newDueDate = null)
+        public static IssueDueDateChangedDetails IssueDueDateChangedDetails(DateTime? oldDueDate = null, DateTime? newDueDate = null)
             => new IssueDueDateChangedDetails(oldDueDate: null, newDueDate: null);
         
         public static IssueMCExtension IssueMCExtension()

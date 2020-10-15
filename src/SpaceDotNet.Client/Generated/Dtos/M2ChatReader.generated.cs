@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public M2ChatReader() { }
         
-        public M2ChatReader(string id, int unreadCounter, M2ChannelContact contact, int totalMessages, List<TDMemberProfile> authors, bool archived, bool @goto, SpaceTime? readTime = null, bool? hasUnread = null, MessageInfo? lastMessage = null, bool? pinned = null, bool? hidden = null, string? pinnedPrevChannelId = null, SpaceTime? subscribedSince = null, bool? subscribed = null, string? parentChannelId = null)
+        public M2ChatReader(string id, int unreadCounter, M2ChannelContact contact, int totalMessages, List<TDMemberProfile> authors, bool archived, bool @goto, DateTime? readTime = null, bool? hasUnread = null, MessageInfo? lastMessage = null, bool? pinned = null, bool? hidden = null, string? pinnedPrevChannelId = null, DateTime? subscribedSince = null, bool? subscribed = null, string? parentChannelId = null)
         {
             Id = id;
             UnreadCounter = unreadCounter;
@@ -69,10 +70,11 @@ namespace SpaceDotNet.Client
             set { _unreadCounter.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _readTime = new PropertyValue<SpaceTime?>(nameof(M2ChatReader), nameof(ReadTime));
+        private PropertyValue<DateTime?> _readTime = new PropertyValue<DateTime?>(nameof(M2ChatReader), nameof(ReadTime));
         
         [JsonPropertyName("readTime")]
-        public SpaceTime? ReadTime
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ReadTime
         {
             get { return _readTime.GetValue(); }
             set { _readTime.SetValue(value); }
@@ -173,10 +175,11 @@ namespace SpaceDotNet.Client
             set { _pinnedPrevChannelId.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _subscribedSince = new PropertyValue<SpaceTime?>(nameof(M2ChatReader), nameof(SubscribedSince));
+        private PropertyValue<DateTime?> _subscribedSince = new PropertyValue<DateTime?>(nameof(M2ChatReader), nameof(SubscribedSince));
         
         [JsonPropertyName("subscribedSince")]
-        public SpaceTime? SubscribedSince
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? SubscribedSince
         {
             get { return _subscribedSince.GetValue(); }
             set { _subscribedSince.SetValue(value); }

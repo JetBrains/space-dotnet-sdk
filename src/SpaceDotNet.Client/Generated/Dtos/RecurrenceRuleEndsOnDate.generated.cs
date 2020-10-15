@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -32,16 +33,17 @@ namespace SpaceDotNet.Client
         
         public RecurrenceRuleEndsOnDate() { }
         
-        public RecurrenceRuleEndsOnDate(SpaceDate date)
+        public RecurrenceRuleEndsOnDate(DateTime date)
         {
             Date = date;
         }
         
-        private PropertyValue<SpaceDate> _date = new PropertyValue<SpaceDate>(nameof(RecurrenceRuleEndsOnDate), nameof(Date));
+        private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(RecurrenceRuleEndsOnDate), nameof(Date));
         
         [Required]
         [JsonPropertyName("date")]
-        public SpaceDate Date
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime Date
         {
             get { return _date.GetValue(); }
             set { _date.SetValue(value); }

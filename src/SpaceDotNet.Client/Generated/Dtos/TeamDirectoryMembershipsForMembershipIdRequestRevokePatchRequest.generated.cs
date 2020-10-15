@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,16 +30,17 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest() { }
         
-        public TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest(SpaceTime till)
+        public TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest(DateTime till)
         {
             Till = till;
         }
         
-        private PropertyValue<SpaceTime> _till = new PropertyValue<SpaceTime>(nameof(TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest), nameof(Till));
+        private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(TeamDirectoryMembershipsForMembershipIdRequestRevokePatchRequest), nameof(Till));
         
         [Required]
         [JsonPropertyName("till")]
-        public SpaceTime Till
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Till
         {
             get { return _till.GetValue(); }
             set { _till.SetValue(value); }

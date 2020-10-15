@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public CalendarsMeetingsForIdPatchRequest() { }
         
-        public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, SpaceTime? targetDate = null)
+        public CalendarsMeetingsForIdPatchRequest(Diff locationsDiff, Diff profilesDiff, Diff externalParticipantsDiff, Diff teamsDiff, bool notifyOnExport = true, RecurrentModification? modificationKind = null, string? summary = null, string? description = null, CalendarEventSpec? occurrenceRule = null, MeetingVisibility? visibility = null, MeetingModificationPreference? modificationPreference = null, MeetingJoiningPreference? joiningPreference = null, string? organizer = null, DateTime? targetDate = null)
         {
             Summary = summary;
             Description = description;
@@ -155,10 +156,11 @@ namespace SpaceDotNet.Client
             set { _organizer.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _targetDate = new PropertyValue<SpaceTime?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TargetDate));
+        private PropertyValue<DateTime?> _targetDate = new PropertyValue<DateTime?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TargetDate));
         
         [JsonPropertyName("targetDate")]
-        public SpaceTime? TargetDate
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? TargetDate
         {
             get { return _targetDate.GetValue(); }
             set { _targetDate.SetValue(value); }

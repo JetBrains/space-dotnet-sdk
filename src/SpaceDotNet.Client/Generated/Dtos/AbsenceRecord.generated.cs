@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public AbsenceRecord() { }
         
-        public AbsenceRecord(string id, bool archived, TDMemberProfile member, string icon, SpaceDate since, SpaceDate till, bool available, Dictionary<string, CFValue> customFields, AbsenceReasonRecord? reason = null, string? description = null, TDLocation? location = null, AbsenceApproval? approval = null)
+        public AbsenceRecord(string id, bool archived, TDMemberProfile member, string icon, DateTime since, DateTime till, bool available, Dictionary<string, CFValue> customFields, AbsenceReasonRecord? reason = null, string? description = null, TDLocation? location = null, AbsenceApproval? approval = null)
         {
             Id = id;
             IsArchived = archived;
@@ -103,21 +104,23 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _since = new PropertyValue<SpaceDate>(nameof(AbsenceRecord), nameof(Since));
+        private PropertyValue<DateTime> _since = new PropertyValue<DateTime>(nameof(AbsenceRecord), nameof(Since));
         
         [Required]
         [JsonPropertyName("since")]
-        public SpaceDate Since
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime Since
         {
             get { return _since.GetValue(); }
             set { _since.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _till = new PropertyValue<SpaceDate>(nameof(AbsenceRecord), nameof(Till));
+        private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(AbsenceRecord), nameof(Till));
         
         [Required]
         [JsonPropertyName("till")]
-        public SpaceDate Till
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime Till
         {
             get { return _till.GetValue(); }
             set { _till.SetValue(value); }

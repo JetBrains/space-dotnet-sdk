@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public Issue() { }
         
-        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, SpaceTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfo? importInfo = null, string? description = null)
+        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -120,11 +121,12 @@ namespace SpaceDotNet.Client
             set { _createdBy.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _creationTime = new PropertyValue<SpaceTime>(nameof(Issue), nameof(CreationTime));
+        private PropertyValue<DateTime> _creationTime = new PropertyValue<DateTime>(nameof(Issue), nameof(CreationTime));
         
         [Required]
         [JsonPropertyName("creationTime")]
-        public SpaceTime CreationTime
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime CreationTime
         {
             get { return _creationTime.GetValue(); }
             set { _creationTime.SetValue(value); }
@@ -149,10 +151,11 @@ namespace SpaceDotNet.Client
             set { _status.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(Issue), nameof(DueDate));
+        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(Issue), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DueDate
         {
             get { return _dueDate.GetValue(); }
             set { _dueDate.SetValue(value); }

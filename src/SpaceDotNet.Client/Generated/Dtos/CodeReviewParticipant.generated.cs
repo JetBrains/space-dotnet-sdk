@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public CodeReviewParticipant() { }
         
-        public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, SpaceTime? addedAt = null)
+        public CodeReviewParticipant(TDMemberProfile user, CodeReviewParticipantRole role, ReviewerState? state = null, bool? theirTurn = null, List<CodeReviewParticipantQualityGateSlot>? qualityGateSlots = null, DateTime? addedAt = null)
         {
             User = user;
             Role = role;
@@ -86,10 +87,11 @@ namespace SpaceDotNet.Client
             set { _qualityGateSlots.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _addedAt = new PropertyValue<SpaceTime?>(nameof(CodeReviewParticipant), nameof(AddedAt));
+        private PropertyValue<DateTime?> _addedAt = new PropertyValue<DateTime?>(nameof(CodeReviewParticipant), nameof(AddedAt));
         
         [JsonPropertyName("addedAt")]
-        public SpaceTime? AddedAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? AddedAt
         {
             get { return _addedAt.GetValue(); }
             set { _addedAt.SetValue(value); }

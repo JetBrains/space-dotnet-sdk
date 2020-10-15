@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TDMembership() { }
         
-        public TDMembership(string id, TDTeam team, TDRole role, bool lead, bool requiresApproval, bool archived, Dictionary<string, CFValue> customFields, TDMemberProfile? member = null, TDMemberProfile? manager = null, SpaceDate? since = null, SpaceDate? till = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, TDMembership? editFor = null, TDMembership? pendingEdit = null, TDMemberProfile? approver = null)
+        public TDMembership(string id, TDTeam team, TDRole role, bool lead, bool requiresApproval, bool archived, Dictionary<string, CFValue> customFields, TDMemberProfile? member = null, TDMemberProfile? manager = null, DateTime? since = null, DateTime? till = null, DateTime? activeSince = null, DateTime? activeTill = null, TDMembership? editFor = null, TDMembership? pendingEdit = null, TDMemberProfile? approver = null)
         {
             Id = id;
             Member = member;
@@ -107,37 +108,41 @@ namespace SpaceDotNet.Client
             set { _manager.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _since = new PropertyValue<SpaceDate?>(nameof(TDMembership), nameof(Since));
+        private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(Since));
         
         [JsonPropertyName("since")]
-        public SpaceDate? Since
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Since
         {
             get { return _since.GetValue(); }
             set { _since.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _till = new PropertyValue<SpaceDate?>(nameof(TDMembership), nameof(Till));
+        private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(Till));
         
         [JsonPropertyName("till")]
-        public SpaceDate? Till
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Till
         {
             get { return _till.GetValue(); }
             set { _till.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _activeSince = new PropertyValue<SpaceTime?>(nameof(TDMembership), nameof(ActiveSince));
+        private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(ActiveSince));
         
         [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ActiveSince
         {
             get { return _activeSince.GetValue(); }
             set { _activeSince.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _activeTill = new PropertyValue<SpaceTime?>(nameof(TDMembership), nameof(ActiveTill));
+        private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(ActiveTill));
         
         [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ActiveTill
         {
             get { return _activeTill.GetValue(); }
             set { _activeTill.SetValue(value); }

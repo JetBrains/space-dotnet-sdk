@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ReactionTypeRecord() { }
         
-        public ReactionTypeRecord(string id, bool archived, ReactionData data, CPrincipal provider, SpaceDate addedAt, int? order = null)
+        public ReactionTypeRecord(string id, bool archived, ReactionData data, CPrincipal provider, DateTime addedAt, int? order = null)
         {
             Id = id;
             IsArchived = archived;
@@ -79,11 +80,12 @@ namespace SpaceDotNet.Client
             set { _provider.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _addedAt = new PropertyValue<SpaceDate>(nameof(ReactionTypeRecord), nameof(AddedAt));
+        private PropertyValue<DateTime> _addedAt = new PropertyValue<DateTime>(nameof(ReactionTypeRecord), nameof(AddedAt));
         
         [Required]
         [JsonPropertyName("addedAt")]
-        public SpaceDate AddedAt
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime AddedAt
         {
             get { return _addedAt.GetValue(); }
             set { _addedAt.SetValue(value); }

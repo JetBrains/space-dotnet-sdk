@@ -26,12 +26,12 @@ namespace SpaceDotNet.Common
         }
         
         /// <summary>
-        /// The Dto type name on which an uninitialized property was accessed.
+        /// Get the Dto type name on which an uninitialized property was accessed.
         /// </summary>
         public string TypeName { get; }
 
         /// <summary>
-        /// The uninitialized property name.
+        /// Get the uninitialized property name.
         /// </summary>
         public string PropertyName { get; }
     }

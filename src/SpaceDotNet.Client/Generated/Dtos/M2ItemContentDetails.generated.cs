@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -39,7 +40,7 @@ namespace SpaceDotNet.Client
         public static M2AbsenceItemDeletedContent M2AbsenceItemDeletedContent(AbsenceRecord absence, TDMemberProfile? by = null)
             => new M2AbsenceItemDeletedContent(absence: absence, by: null);
         
-        public static M2AbsenceItemUpdatedContent M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<SpaceDate>? since = null, Modification<SpaceDate>? till = null, TDMemberProfile? by = null)
+        public static M2AbsenceItemUpdatedContent M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, TDMemberProfile? by = null)
             => new M2AbsenceItemUpdatedContent(absence: absence, reason: null, description: null, since: null, till: null, by: null);
         
         public static M2ChannelArchivedItemDetails M2ChannelArchivedItemDetails()

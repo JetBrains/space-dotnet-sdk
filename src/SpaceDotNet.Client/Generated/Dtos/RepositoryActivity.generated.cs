@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,16 +30,16 @@ namespace SpaceDotNet.Client
     {
         public RepositoryActivity() { }
         
-        public RepositoryActivity(List<Pair<SpaceDate, int>> lastActivity)
+        public RepositoryActivity(List<Pair<DateTime, int>> lastActivity)
         {
             LastActivity = lastActivity;
         }
         
-        private PropertyValue<List<Pair<SpaceDate, int>>> _lastActivity = new PropertyValue<List<Pair<SpaceDate, int>>>(nameof(RepositoryActivity), nameof(LastActivity));
+        private PropertyValue<List<Pair<DateTime, int>>> _lastActivity = new PropertyValue<List<Pair<DateTime, int>>>(nameof(RepositoryActivity), nameof(LastActivity));
         
         [Required]
         [JsonPropertyName("lastActivity")]
-        public List<Pair<SpaceDate, int>> LastActivity
+        public List<Pair<DateTime, int>> LastActivity
         {
             get { return _lastActivity.GetValue(); }
             set { _lastActivity.SetValue(value); }

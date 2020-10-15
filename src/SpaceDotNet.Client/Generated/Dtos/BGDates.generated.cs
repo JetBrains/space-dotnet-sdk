@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,27 +30,29 @@ namespace SpaceDotNet.Client
     {
         public BGDates() { }
         
-        public BGDates(SpaceTime first, SpaceTime last)
+        public BGDates(DateTime first, DateTime last)
         {
             First = first;
             Last = last;
         }
         
-        private PropertyValue<SpaceTime> _first = new PropertyValue<SpaceTime>(nameof(BGDates), nameof(First));
+        private PropertyValue<DateTime> _first = new PropertyValue<DateTime>(nameof(BGDates), nameof(First));
         
         [Required]
         [JsonPropertyName("first")]
-        public SpaceTime First
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime First
         {
             get { return _first.GetValue(); }
             set { _first.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _last = new PropertyValue<SpaceTime>(nameof(BGDates), nameof(Last));
+        private PropertyValue<DateTime> _last = new PropertyValue<DateTime>(nameof(BGDates), nameof(Last));
         
         [Required]
         [JsonPropertyName("last")]
-        public SpaceTime Last
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Last
         {
             get { return _last.GetValue(); }
             set { _last.SetValue(value); }

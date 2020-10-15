@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public CodeReviewDiscussionRecord() { }
         
-        public CodeReviewDiscussionRecord(string id, CodeReviewRecord review, SpaceTime created, M2ChannelRecord channel, bool resolved)
+        public CodeReviewDiscussionRecord(string id, CodeReviewRecord review, DateTime created, M2ChannelRecord channel, bool resolved)
         {
             Id = id;
             Review = review;
@@ -58,11 +59,12 @@ namespace SpaceDotNet.Client
             set { _review.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(CodeReviewDiscussionRecord), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeReviewDiscussionRecord), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,18 +30,19 @@ namespace SpaceDotNet.Client
     {
         public AccessRecord() { }
         
-        public AccessRecord(SpaceTime time, string address, string? userAgent = null)
+        public AccessRecord(DateTime time, string address, string? userAgent = null)
         {
             Time = time;
             Address = address;
             UserAgent = userAgent;
         }
         
-        private PropertyValue<SpaceTime> _time = new PropertyValue<SpaceTime>(nameof(AccessRecord), nameof(Time));
+        private PropertyValue<DateTime> _time = new PropertyValue<DateTime>(nameof(AccessRecord), nameof(Time));
         
         [Required]
         [JsonPropertyName("time")]
-        public SpaceTime Time
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Time
         {
             get { return _time.GetValue(); }
             set { _time.SetValue(value); }

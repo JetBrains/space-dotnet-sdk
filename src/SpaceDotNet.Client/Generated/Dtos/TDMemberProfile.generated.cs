@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TDMemberProfile() { }
         
-        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderRecord folder, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, SpaceDate? joined = null, SpaceDate? left = null, SpaceTime? leftAt = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, SpaceDate? birthday = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null)
+        public TDMemberProfile(string id, string username, TDProfileName name, bool speaksEnglish, List<TDProfileLanguage> languages, bool archived, bool notAMember, List<AbsenceRecord> absences, Dictionary<string, CFValue> customFields, List<TDProfileEmail> emails, DocumentFolderRecord folder, List<PublicHoliday> holidays, List<string> links, List<TDMemberLocation> locations, List<TDMemberProfile> managers, List<TDMembership> membershipHistory, List<TDMembership> memberships, List<string> messengers, bool onboardingRequired, List<string> phones, string? smallAvatar = null, string? avatar = null, string? profilePicture = null, DateTime? joined = null, DateTime? left = null, DateTime? leftAt = null, string? about = null, AvatarCropSquare? avatarCropSquare = null, DateTime? birthday = null, Gender? gender = null, bool? showBannerOnLandingPage = null, bool? showBannerOnProjectPage = null, bool? showBannerOnTeamDirectoryHomePage = null)
         {
             Id = id;
             Username = username;
@@ -163,28 +164,31 @@ namespace SpaceDotNet.Client
             set { _notAMember.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _joined = new PropertyValue<SpaceDate?>(nameof(TDMemberProfile), nameof(Joined));
+        private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Joined));
         
         [JsonPropertyName("joined")]
-        public SpaceDate? Joined
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Joined
         {
             get { return _joined.GetValue(); }
             set { _joined.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _left = new PropertyValue<SpaceDate?>(nameof(TDMemberProfile), nameof(Left));
+        private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Left));
         
         [JsonPropertyName("left")]
-        public SpaceDate? Left
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Left
         {
             get { return _left.GetValue(); }
             set { _left.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _leftAt = new PropertyValue<SpaceTime?>(nameof(TDMemberProfile), nameof(LeftAt));
+        private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(LeftAt));
         
         [JsonPropertyName("leftAt")]
-        public SpaceTime? LeftAt
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? LeftAt
         {
             get { return _leftAt.GetValue(); }
             set { _leftAt.SetValue(value); }
@@ -218,10 +222,11 @@ namespace SpaceDotNet.Client
             set { _avatarCropSquare.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _birthday = new PropertyValue<SpaceDate?>(nameof(TDMemberProfile), nameof(Birthday));
+        private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TDMemberProfile), nameof(Birthday));
         
         [JsonPropertyName("birthday")]
-        public SpaceDate? Birthday
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? Birthday
         {
             get { return _birthday.GetValue(); }
             set { _birthday.SetValue(value); }

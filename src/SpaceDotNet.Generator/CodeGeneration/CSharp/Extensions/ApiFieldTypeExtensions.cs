@@ -7,20 +7,20 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
 {
     public static class ApiFieldTypeExtensions
     {
-        public static string ToCSharpPrimitiveType(this ApiFieldType.Primitive subject) =>
+        public static CSharpType ToCSharpPrimitiveType(this ApiFieldType.Primitive subject) =>
             subject.Type switch
             {
-                "Byte" => CSharpType.Byte.Value,
-                "Short" => CSharpType.Short.Value,
-                "Int" => CSharpType.Int.Value,
-                "Long" => CSharpType.Long.Value,
-                "Float" => CSharpType.Float.Value,
-                "Double" => CSharpType.Double.Value,
-                "Boolean" => CSharpType.Bool.Value,
-                "String" => CSharpType.String.Value,
-                "Date" => CSharpType.SpaceDate.Value,
-                "DateTime" => CSharpType.SpaceTime.Value,
-                _ => CSharpType.Object.Value
+                "Byte" => CSharpType.Byte,
+                "Short" => CSharpType.Short,
+                "Int" => CSharpType.Int,
+                "Long" => CSharpType.Long,
+                "Float" => CSharpType.Float,
+                "Double" => CSharpType.Double,
+                "Boolean" => CSharpType.Bool,
+                "String" => CSharpType.String,
+                "Date" => CSharpType.SpaceDate,
+                "DateTime" => CSharpType.SpaceTime,
+                _ => CSharpType.Object
             };
 
         public static string ToCSharpType(this ApiFieldType apiFieldType, CodeGenerationContext context)
@@ -131,7 +131,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Extensions
                     }
                 
                 case ApiFieldType.Primitive apiFieldTypePrimitive:
-                    return apiFieldTypePrimitive.ToCSharpPrimitiveType()!;
+                    return apiFieldTypePrimitive.ToCSharpPrimitiveType()!.Value;
         
                 case ApiFieldType.Ref apiFieldTypeReference:
                     if (apiFieldTypeReference.DtoRef?.Id != null && context.TryGetDto(apiFieldTypeReference.DtoRef.Id, out var apiReferenceDto))

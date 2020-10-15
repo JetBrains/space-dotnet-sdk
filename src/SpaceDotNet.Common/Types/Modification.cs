@@ -13,14 +13,14 @@ namespace SpaceDotNet.Common.Types
         : IPropagatePropertyAccessPath
     {
         /// <summary>
-        /// The old value of the element.
+        /// Get/set the old value of the element.
         /// </summary>
         [Required]
         [JsonPropertyName("old")]
         public T Old { get; set; } = default!;
         
         /// <summary>
-        /// The new value of the element.
+        /// Get/set the new value of the element.
         /// </summary>
         [Required]
         [JsonPropertyName("new")]

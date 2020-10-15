@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ChannelItemRecord() { }
         
-        public ChannelItemRecord(string text, CPrincipal author, SpaceTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, List<AttachmentInfo>? attachmentsInfos = null, bool? pending = null, SpaceTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null)
+        public ChannelItemRecord(string text, CPrincipal author, DateTime created, long time, string id, bool archived, List<Issue> issues, M2ItemContentDetails? details = null, AllReactionsToItemRecord? reactions = null, M2ChannelRecord? thread = null, ChannelItemRecord? projectedItem = null, List<AttachmentInfo>? attachments = null, List<AttachmentInfo>? attachmentsInfos = null, bool? pending = null, DateTime? edited = null, bool? pinned = null, List<CPrincipal>? suggestedParticipants = null)
         {
             Text = text;
             Details = details;
@@ -79,11 +80,12 @@ namespace SpaceDotNet.Client
             set { _author.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _created = new PropertyValue<SpaceTime>(nameof(ChannelItemRecord), nameof(Created));
+        private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ChannelItemRecord), nameof(Created));
         
         [Required]
         [JsonPropertyName("created")]
-        public SpaceTime Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }
@@ -173,10 +175,11 @@ namespace SpaceDotNet.Client
             set { _archived.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _edited = new PropertyValue<SpaceTime?>(nameof(ChannelItemRecord), nameof(Edited));
+        private PropertyValue<DateTime?> _edited = new PropertyValue<DateTime?>(nameof(ChannelItemRecord), nameof(Edited));
         
         [JsonPropertyName("edited")]
-        public SpaceTime? Edited
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Edited
         {
             get { return _edited.GetValue(); }
             set { _edited.SetValue(value); }

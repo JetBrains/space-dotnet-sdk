@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public MeetingRecord() { }
         
-        public MeetingRecord(string id, bool archived, SpaceTime starts, SpaceTime finishes, bool allDay, List<TDLocation> rooms, List<Participant> participants, ATimeZone? timezone = null, ArticleRecord? article = null)
+        public MeetingRecord(string id, bool archived, DateTime starts, DateTime finishes, bool allDay, List<TDLocation> rooms, List<Participant> participants, ATimeZone? timezone = null, ArticleRecord? article = null)
         {
             Id = id;
             IsArchived = archived;
@@ -62,21 +63,23 @@ namespace SpaceDotNet.Client
             set { _archived.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _starts = new PropertyValue<SpaceTime>(nameof(MeetingRecord), nameof(Starts));
+        private PropertyValue<DateTime> _starts = new PropertyValue<DateTime>(nameof(MeetingRecord), nameof(Starts));
         
         [Required]
         [JsonPropertyName("starts")]
-        public SpaceTime Starts
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Starts
         {
             get { return _starts.GetValue(); }
             set { _starts.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _finishes = new PropertyValue<SpaceTime>(nameof(MeetingRecord), nameof(Finishes));
+        private PropertyValue<DateTime> _finishes = new PropertyValue<DateTime>(nameof(MeetingRecord), nameof(Finishes));
         
         [Required]
         [JsonPropertyName("finishes")]
-        public SpaceTime Finishes
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Finishes
         {
             get { return _finishes.GetValue(); }
             set { _finishes.SetValue(value); }

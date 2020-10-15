@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TeamDirectoryMembershipsPostRequest() { }
         
-        public TeamDirectoryMembershipsPostRequest(ProfileIdentifier member, string teamId, string roleId, bool lead = false, bool requiresApproval = false, ProfileIdentifier? manager = null, SpaceTime? activeSince = null, SpaceTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValue>? customFieldValues = null)
+        public TeamDirectoryMembershipsPostRequest(ProfileIdentifier member, string teamId, string roleId, bool lead = false, bool requiresApproval = false, ProfileIdentifier? manager = null, DateTime? activeSince = null, DateTime? activeTill = null, string? previousMembershipId = null, List<CustomFieldValue>? customFieldValues = null)
         {
             Member = member;
             TeamId = teamId;
@@ -91,19 +92,21 @@ namespace SpaceDotNet.Client
             set { _manager.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _activeSince = new PropertyValue<SpaceTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveSince));
+        private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveSince));
         
         [JsonPropertyName("activeSince")]
-        public SpaceTime? ActiveSince
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ActiveSince
         {
             get { return _activeSince.GetValue(); }
             set { _activeSince.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _activeTill = new PropertyValue<SpaceTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveTill));
+        private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsPostRequest), nameof(ActiveTill));
         
         [JsonPropertyName("activeTill")]
-        public SpaceTime? ActiveTill
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? ActiveTill
         {
             get { return _activeTill.GetValue(); }
             set { _activeTill.SetValue(value); }

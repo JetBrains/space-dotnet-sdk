@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, SpaceTime modified, bool shared, SpaceTime? created = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -73,20 +74,22 @@ namespace SpaceDotNet.Client
             set { _author.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime> _modified = new PropertyValue<SpaceTime>(nameof(DRDraftHeader), nameof(Modified));
+        private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(DRDraftHeader), nameof(Modified));
         
         [Required]
         [JsonPropertyName("modified")]
-        public SpaceTime Modified
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Modified
         {
             get { return _modified.GetValue(); }
             set { _modified.SetValue(value); }
         }
     
-        private PropertyValue<SpaceTime?> _created = new PropertyValue<SpaceTime?>(nameof(DRDraftHeader), nameof(Created));
+        private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(DRDraftHeader), nameof(Created));
         
         [JsonPropertyName("created")]
-        public SpaceTime? Created
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Created
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }

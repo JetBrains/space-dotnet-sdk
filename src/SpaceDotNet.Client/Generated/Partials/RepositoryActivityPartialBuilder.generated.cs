@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,8 +30,8 @@ namespace SpaceDotNet.Client.RepositoryActivityPartialBuilder
         public static Partial<RepositoryActivity> WithLastActivity(this Partial<RepositoryActivity> it)
             => it.AddFieldName("lastActivity");
         
-        public static Partial<RepositoryActivity> WithLastActivity(this Partial<RepositoryActivity> it, Func<Partial<Pair<SpaceDate, int>>, Partial<Pair<SpaceDate, int>>> partialBuilder)
-            => it.AddFieldName("lastActivity", partialBuilder(new Partial<Pair<SpaceDate, int>>(it)));
+        public static Partial<RepositoryActivity> WithLastActivity(this Partial<RepositoryActivity> it, Func<Partial<Pair<DateTime, int>>, Partial<Pair<DateTime, int>>> partialBuilder)
+            => it.AddFieldName("lastActivity", partialBuilder(new Partial<Pair<DateTime, int>>(it)));
         
     }
     

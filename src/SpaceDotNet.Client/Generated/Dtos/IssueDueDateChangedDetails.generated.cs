@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -32,25 +33,27 @@ namespace SpaceDotNet.Client
         
         public IssueDueDateChangedDetails() { }
         
-        public IssueDueDateChangedDetails(SpaceDate? oldDueDate = null, SpaceDate? newDueDate = null)
+        public IssueDueDateChangedDetails(DateTime? oldDueDate = null, DateTime? newDueDate = null)
         {
             OldDueDate = oldDueDate;
             NewDueDate = newDueDate;
         }
         
-        private PropertyValue<SpaceDate?> _oldDueDate = new PropertyValue<SpaceDate?>(nameof(IssueDueDateChangedDetails), nameof(OldDueDate));
+        private PropertyValue<DateTime?> _oldDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(OldDueDate));
         
         [JsonPropertyName("oldDueDate")]
-        public SpaceDate? OldDueDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? OldDueDate
         {
             get { return _oldDueDate.GetValue(); }
             set { _oldDueDate.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _newDueDate = new PropertyValue<SpaceDate?>(nameof(IssueDueDateChangedDetails), nameof(NewDueDate));
+        private PropertyValue<DateTime?> _newDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(NewDueDate));
         
         [JsonPropertyName("newDueDate")]
-        public SpaceDate? NewDueDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? NewDueDate
         {
             get { return _newDueDate.GetValue(); }
             set { _newDueDate.SetValue(value); }

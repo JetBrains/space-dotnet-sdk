@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -32,16 +33,16 @@ namespace SpaceDotNet.Client
         public static class Channel
         {
             /// <summary>
-            /// The "Channel.Attachment" menu.
+            /// Represents the "Channel.Attachment" menu.
             ///
-            /// Expected webhook payload: <see cref="ChannelAttachmentMenuActionContext">.
+            /// Expected webhook payload: <see cref="ChannelAttachmentMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Attachment = new MenuId("Channel.Attachment");
             
             /// <summary>
-            /// The "Channel.Message" menu.
+            /// Represents the "Channel.Message" menu.
             ///
-            /// Expected webhook payload: <see cref="ChannelMessageMenuActionContext">.
+            /// Expected webhook payload: <see cref="ChannelMessageMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Message = new MenuId("Channel.Message");
             
@@ -50,23 +51,23 @@ namespace SpaceDotNet.Client
         public static class Global
         {
             /// <summary>
-            /// The "Global.Add" menu.
+            /// Represents the "Global.Add" menu.
             ///
-            /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+            /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Add = new MenuId("Global.Add");
             
             /// <summary>
-            /// The "Global.Profile" menu.
+            /// Represents the "Global.Profile" menu.
             ///
-            /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+            /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Profile = new MenuId("Global.Profile");
             
             /// <summary>
-            /// The "Global.Sections" menu.
+            /// Represents the "Global.Sections" menu.
             ///
-            /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+            /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Sections = new MenuId("Global.Sections");
             
@@ -75,28 +76,28 @@ namespace SpaceDotNet.Client
         public static class Internal
         {
             /// <summary>
-            /// The "Internal.Samples" menu.
+            /// Represents the "Internal.Samples" menu.
             ///
-            /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+            /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Samples = new MenuId("Internal.Samples");
             
             /// <summary>
-            /// The "Internal.Settings" menu.
+            /// Represents the "Internal.Settings" menu.
             ///
-            /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+            /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Settings = new MenuId("Internal.Settings");
             
             /// <summary>
-            /// The "Internal.Tools" menu.
+            /// Represents the "Internal.Tools" menu.
             ///
-            /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+            /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Tools = new MenuId("Internal.Tools");
             
             /// <summary>
-            /// The "Internal.Ui" menu.
+            /// Represents the "Internal.Ui" menu.
             /// </summary>
             public static readonly MenuId Ui = new MenuId("Internal.Ui");
             
@@ -105,23 +106,23 @@ namespace SpaceDotNet.Client
         public static class Project
         {
             /// <summary>
-            /// The "Project.Settings" menu.
+            /// Represents the "Project.Settings" menu.
             ///
-            /// Expected webhook payload: <see cref="ProjectMenuActionContext">.
+            /// Expected webhook payload: <see cref="ProjectMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Settings = new MenuId("Project.Settings");
             
             /// <summary>
-            /// The "Project.Tools" menu.
+            /// Represents the "Project.Tools" menu.
             ///
-            /// Expected webhook payload: <see cref="ProjectMenuActionContext">.
+            /// Expected webhook payload: <see cref="ProjectMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Tools = new MenuId("Project.Tools");
             
         }
         
         /// <summary>
-        /// The "Repository" menu.
+        /// Represents the "Repository" menu.
         /// </summary>
         public static readonly MenuId Repository = new MenuId("Repository");
         
@@ -130,60 +131,60 @@ namespace SpaceDotNet.Client
             public static class Administration
             {
                 /// <summary>
-                /// The "Sidebar.Administration.Access" menu.
+                /// Represents the "Sidebar.Administration.Access" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Access = new MenuId("Sidebar.Administration.Access");
                 
                 /// <summary>
-                /// The "Sidebar.Administration.Customization" menu.
+                /// Represents the "Sidebar.Administration.Customization" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Customization = new MenuId("Sidebar.Administration.Customization");
                 
                 /// <summary>
-                /// The "Sidebar.Administration.Debug" menu.
+                /// Represents the "Sidebar.Administration.Debug" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Debug = new MenuId("Sidebar.Administration.Debug");
                 
                 /// <summary>
-                /// The "Sidebar.Administration.Extensions" menu.
+                /// Represents the "Sidebar.Administration.Extensions" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Extensions = new MenuId("Sidebar.Administration.Extensions");
                 
                 /// <summary>
-                /// The "Sidebar.Administration.Integrations" menu.
+                /// Represents the "Sidebar.Administration.Integrations" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Integrations = new MenuId("Sidebar.Administration.Integrations");
                 
                 /// <summary>
-                /// The "Sidebar.Administration.Organization" menu.
+                /// Represents the "Sidebar.Administration.Organization" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Organization = new MenuId("Sidebar.Administration.Organization");
                 
                 /// <summary>
-                /// The "Sidebar.Administration.Support" menu.
+                /// Represents the "Sidebar.Administration.Support" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Support = new MenuId("Sidebar.Administration.Support");
                 
             }
             
             /// <summary>
-            /// The "Sidebar.Location" menu.
+            /// Represents the "Sidebar.Location" menu.
             ///
-            /// Expected webhook payload: <see cref="LocationMenuActionContext">.
+            /// Expected webhook payload: <see cref="LocationMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Location = new MenuId("Sidebar.Location");
             
@@ -192,46 +193,46 @@ namespace SpaceDotNet.Client
                 public static class Personal
                 {
                     /// <summary>
-                    /// The "Sidebar.Profile.Personal.Sidebar" menu.
+                    /// Represents the "Sidebar.Profile.Personal.Sidebar" menu.
                     /// </summary>
                     public static readonly MenuId Root = new MenuId("Sidebar.Profile.Personal.Sidebar");
                     
                     /// <summary>
-                    /// The "Sidebar.Profile.Personal.My" menu.
+                    /// Represents the "Sidebar.Profile.Personal.My" menu.
                     ///
-                    /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                    /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                     /// </summary>
                     public static readonly MenuId My = new MenuId("Sidebar.Profile.Personal.My");
                     
                 }
                 
                 /// <summary>
-                /// The "Sidebar.Profile.Schedule" menu.
+                /// Represents the "Sidebar.Profile.Schedule" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Schedule = new MenuId("Sidebar.Profile.Schedule");
                 
                 /// <summary>
-                /// The "Sidebar.Profile.Security" menu.
+                /// Represents the "Sidebar.Profile.Security" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Security = new MenuId("Sidebar.Profile.Security");
                 
                 /// <summary>
-                /// The "Sidebar.Profile.Workspace" menu.
+                /// Represents the "Sidebar.Profile.Workspace" menu.
                 ///
-                /// Expected webhook payload: <see cref="BaseMenuActionContext">.
+                /// Expected webhook payload: <see cref="BaseMenuActionContext"/>.
                 /// </summary>
                 public static readonly MenuId Workspace = new MenuId("Sidebar.Profile.Workspace");
                 
             }
             
             /// <summary>
-            /// The "Sidebar.Team" menu.
+            /// Represents the "Sidebar.Team" menu.
             ///
-            /// Expected webhook payload: <see cref="TeamMenuActionContext">.
+            /// Expected webhook payload: <see cref="TeamMenuActionContext"/>.
             /// </summary>
             public static readonly MenuId Team = new MenuId("Sidebar.Team");
             

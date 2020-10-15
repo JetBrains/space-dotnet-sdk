@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public TodoForIdPatchRequest() { }
         
-        public TodoForIdPatchRequest(string? text = null, SpaceDate? dueDate = null, bool? open = null)
+        public TodoForIdPatchRequest(string? text = null, DateTime? dueDate = null, bool? open = null)
         {
             Text = text;
             DueDate = dueDate;
@@ -45,10 +46,11 @@ namespace SpaceDotNet.Client
             set { _text.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(TodoForIdPatchRequest), nameof(DueDate));
+        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoForIdPatchRequest), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DueDate
         {
             get { return _dueDate.GetValue(); }
             set { _dueDate.SetValue(value); }

@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public SprintRecord() { }
         
-        public SprintRecord(string id, bool archived, BoardRecord board, string name, SprintState state, SpaceDate from, SpaceDate to, bool @default, string? description = null)
+        public SprintRecord(string id, bool archived, BoardRecord board, string name, SprintState state, DateTime from, DateTime to, bool @default, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -92,21 +93,23 @@ namespace SpaceDotNet.Client
             set { _state.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _from = new PropertyValue<SpaceDate>(nameof(SprintRecord), nameof(From));
+        private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(From));
         
         [Required]
         [JsonPropertyName("from")]
-        public SpaceDate From
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime From
         {
             get { return _from.GetValue(); }
             set { _from.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate> _to = new PropertyValue<SpaceDate>(nameof(SprintRecord), nameof(To));
+        private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(To));
         
         [Required]
         [JsonPropertyName("to")]
-        public SpaceDate To
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime To
         {
             get { return _to.GetValue(); }
             set { _to.SetValue(value); }

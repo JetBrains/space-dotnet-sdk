@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -32,7 +33,7 @@ namespace SpaceDotNet.Client
         
         public M2AbsenceItemUpdatedContent() { }
         
-        public M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<SpaceDate>? since = null, Modification<SpaceDate>? till = null, TDMemberProfile? by = null)
+        public M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, TDMemberProfile? by = null)
         {
             Absence = absence;
             Reason = reason;
@@ -70,19 +71,19 @@ namespace SpaceDotNet.Client
             set { _description.SetValue(value); }
         }
     
-        private PropertyValue<Modification<SpaceDate>?> _since = new PropertyValue<Modification<SpaceDate>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Since));
+        private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Since));
         
         [JsonPropertyName("since")]
-        public Modification<SpaceDate>? Since
+        public Modification<DateTime>? Since
         {
             get { return _since.GetValue(); }
             set { _since.SetValue(value); }
         }
     
-        private PropertyValue<Modification<SpaceDate>?> _till = new PropertyValue<Modification<SpaceDate>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Till));
+        private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Till));
         
         [JsonPropertyName("till")]
-        public Modification<SpaceDate>? Till
+        public Modification<DateTime>? Till
         {
             get { return _till.GetValue(); }
             set { _till.SetValue(value); }

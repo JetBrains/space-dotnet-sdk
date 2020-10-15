@@ -8,6 +8,7 @@
 // ------------------------------------------------------------------------------
 
 #nullable enable
+#pragma warning disable CS1591
 #pragma warning disable CS0108
 
 using System;
@@ -29,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest() { }
         
-        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, string? description = null, string? assignee = null, SpaceDate? dueDate = null, ImportedEntityInfo? importInfo = null)
+        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null)
         {
             Title = title;
             Description = description;
@@ -75,10 +76,11 @@ namespace SpaceDotNet.Client
             set { _status.SetValue(value); }
         }
     
-        private PropertyValue<SpaceDate?> _dueDate = new PropertyValue<SpaceDate?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(DueDate));
+        private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(DueDate));
         
         [JsonPropertyName("dueDate")]
-        public SpaceDate? DueDate
+        [JsonConverter(typeof(SpaceDateConverter))]
+        public DateTime? DueDate
         {
             get { return _dueDate.GetValue(); }
             set { _dueDate.SetValue(value); }
