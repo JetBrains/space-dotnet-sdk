@@ -29,7 +29,6 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
             var result = (DateTime)JsonSerializer.Deserialize(inputJsonString, typeof(DateTime), CreateSerializerOptions());
 
             Assert.Equal("2020-10-21", result.ToString("yyyy-MM-dd"));
-            Assert.True(result.Kind == DateTimeKind.Utc);
         }
 
         [Fact]
@@ -41,7 +40,6 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
 
             Assert.NotNull(result);
             Assert.Equal("2020-10-21", result?.ToString("yyyy-MM-dd"));
-            Assert.True(result?.Kind == DateTimeKind.Utc);
         }
     }
 }
