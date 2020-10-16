@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.Command
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.App", "src\SpaceDotNet.Samples.App\SpaceDotNet.Samples.App.csproj", "{AF5AD74B-2C0B-4632-B1F6-217C17B14F87}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.AzureFunctions.App", "src\SpaceDotNet.Samples.AzureFunctions.App\SpaceDotNet.Samples.AzureFunctions.App.csproj", "{10331B3D-1789-405E-99AD-22556D451A71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -79,6 +81,10 @@ Global
 		{AF5AD74B-2C0B-4632-B1F6-217C17B14F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF5AD74B-2C0B-4632-B1F6-217C17B14F87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF5AD74B-2C0B-4632-B1F6-217C17B14F87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10331B3D-1789-405E-99AD-22556D451A71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10331B3D-1789-405E-99AD-22556D451A71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10331B3D-1789-405E-99AD-22556D451A71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10331B3D-1789-405E-99AD-22556D451A71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5DBC15F3-761A-4DC2-8A25-CC36B80186A5} = {7A89F53D-DD8B-49C7-BA81-19861CE84F9E}
@@ -91,5 +97,6 @@ Global
 		{96D76BCD-972C-4F71-8483-D26F9D44AE7B} = {7A89F53D-DD8B-49C7-BA81-19861CE84F9E}
 		{84D67980-E6F0-45C8-B030-392FEB83848B} = {1E220DAF-BE55-4503-9372-FF930F4225BC}
 		{AF5AD74B-2C0B-4632-B1F6-217C17B14F87} = {1E220DAF-BE55-4503-9372-FF930F4225BC}
+		{10331B3D-1789-405E-99AD-22556D451A71} = {1E220DAF-BE55-4503-9372-FF930F4225BC}
 	EndGlobalSection
 EndGlobal

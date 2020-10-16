@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <AzureFunctionsVersion>V3</AzureFunctionsVersion>
+        <UserSecretsId>SpaceDotNet.Samples.AzureFunctions.App</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" />
+        <PackageReference Include="Microsoft.Azure.Functions.Extensions" Version="1.1.0" />
+        <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="3.0.9" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\SpaceDotNet.AspNetCore\SpaceDotNet.AspNetCore.csproj" />
+        <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
+        <ProjectReference Include="..\SpaceDotNet.Common\SpaceDotNet.Common.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Update="host.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+        <None Update="local.settings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+        </None>
+        <None Update="appsettings.json">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </None>
+    </ItemGroup>
+    
+</Project>
