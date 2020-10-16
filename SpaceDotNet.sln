@@ -21,7 +21,6 @@ ProjectSection(SolutionItems) = preProject
 	Directory.Build.targets = Directory.Build.targets
 	.space.kts = .space.kts
 	package_icon.png = package_icon.png
-	README.md = README.md
 	global.json = global.json
 EndProjectSection
 EndProject
@@ -34,6 +33,12 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.CommandLine", "src\SpaceDotNet.Samples.CommandLine\SpaceDotNet.Samples.CommandLine.csproj", "{84D67980-E6F0-45C8-B030-392FEB83848B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpaceDotNet.Samples.App", "src\SpaceDotNet.Samples.App\SpaceDotNet.Samples.App.csproj", "{AF5AD74B-2C0B-4632-B1F6-217C17B14F87}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9346E31D-00BD-4CF6-B7E3-7AB26A9EEB74}"
+ProjectSection(SolutionItems) = preProject
+	README.md = README.md
+	docs\generate-client.md = docs\generate-client.md
+EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
