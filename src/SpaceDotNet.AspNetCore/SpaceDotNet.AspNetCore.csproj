@@ -10,11 +10,10 @@
 
     <ItemGroup>
         <FrameworkReference Include="Microsoft.AspNetCore.App" />
-        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="all" />
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
     </ItemGroup>
-
 </Project>

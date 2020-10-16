@@ -20,9 +20,9 @@
         <!-- Symbols -->
         <IncludeSymbols>True</IncludeSymbols>
         <IncludeSource>True</IncludeSource>
-        <PublishRepositoryUrl>true</PublishRepositoryUrl>
+        <PublishRepositoryUrl>True</PublishRepositoryUrl>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-        <EmbedUntrackedSources>true</EmbedUntrackedSources>
+        <EmbedUntrackedSources>True</EmbedUntrackedSources>
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
         
         <Product>SpaceDotNet</Product>
