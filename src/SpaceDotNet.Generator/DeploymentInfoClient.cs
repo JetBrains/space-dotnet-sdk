@@ -4,7 +4,6 @@ using System;
 using System.Globalization;
 using System.Net.Http;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 
@@ -27,7 +26,7 @@ namespace SpaceDotNet.Generator
             _httpClient = httpClient ?? new HttpClient();
         }
         
-        public async Task<DeploymentInfo> GetDeploymentInfoAsync(CancellationToken cancellationToken = default)
+        public async Task<DeploymentInfo> GetDeploymentInfoAsync()
         {
             var body = await _httpClient.GetStringAsync(_serverUrl + "about");
 
@@ -57,7 +56,7 @@ namespace SpaceDotNet.Generator
             return deploymentInfo;
         }
 
-        private bool TryGetMatch(string input, [RegexPattern]string pattern, string group, out string? value)
+        private static bool TryGetMatch(string input, [RegexPattern]string pattern, string group, out string? value)
         {
             var match = Regex.Match(input, pattern, RegexOptions.Multiline);
             if (match.Success)

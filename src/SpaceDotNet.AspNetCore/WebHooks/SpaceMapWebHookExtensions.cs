@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using SpaceDotNet.AspNetCore.WebHooks;
@@ -10,6 +11,7 @@ namespace Microsoft.AspNetCore.Builder
     /// <summary>
     /// Extension methods to map Space application webhook handlers on an <see cref="IEndpointRouteBuilder"/>.
     /// </summary>
+    [PublicAPI]
     public static class SpaceMapWebHookExtensions
     {
         /// <summary>

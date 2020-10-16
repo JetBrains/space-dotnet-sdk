@@ -72,7 +72,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
                 { "response_type", "code" },
                 { "redirect_uri", redirectUri },
                 { "request_credentials", Options.RequestCredentials.Value },
-                { "access_type", Options.AccessType.Value },
+                { "access_type", Options.AccessType.Value }
             };
 
             if (Options.UsePkce)
@@ -100,13 +100,13 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
         /// <inheritdoc />
         protected override async Task<OAuthTokenResponse> ExchangeCodeAsync(OAuthCodeExchangeContext context)
         {
-            var tokenRequestParameters = new Dictionary<string, string>()
+            var tokenRequestParameters = new Dictionary<string, string>
             {
                 { "client_id", Options.ClientId },
                 { "redirect_uri", context.RedirectUri },
                 { "client_secret", Options.ClientSecret },
                 { "code", context.Code },
-                { "grant_type", "authorization_code" },
+                { "grant_type", "authorization_code" }
             };
 
             // PKCE https://tools.ietf.org/html/rfc7636#section-4.5, see BuildChallengeUrl

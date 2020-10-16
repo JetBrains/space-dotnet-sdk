@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using SpaceDotNet.Common.Json.Serialization;
 
 namespace SpaceDotNet.Common
@@ -13,6 +14,7 @@ namespace SpaceDotNet.Common
     /// <summary>
     /// A class which represents a connection against a Space organization and uses the Client Credentials flow.
     /// </summary>
+    [PublicAPI]
     public class ClientCredentialsConnection 
         : BearerTokenConnection
     {

@@ -18,14 +18,14 @@ namespace SpaceDotNet.Common.Json.Serialization.Polymorphism
         /// <summary>
         /// The namespace name containing generated classes for SpaceDotNet.
         /// </summary>
-        protected readonly string SpaceDotNetClientNamespace = "SpaceDotNet.Client";
-        
+        protected const string SpaceDotNetClientNamespace = "SpaceDotNet.Client";
+
         /// <summary>
         /// The assembly name containing generated classes for SpaceDotNet.
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
-        protected readonly string SpaceDotNetClientAssemblyName = "SpaceDotNet.Client";
-        
+        protected const string SpaceDotNetClientAssemblyName = "SpaceDotNet.Client";
+
         private static readonly ConcurrentDictionary<string, Type> TypeMap = new ConcurrentDictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
         
         /// <inheritdoc />

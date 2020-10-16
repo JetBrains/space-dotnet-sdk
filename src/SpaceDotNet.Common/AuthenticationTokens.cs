@@ -1,10 +1,12 @@
 using System;
+using JetBrains.Annotations;
 
 namespace SpaceDotNet.Common
 {
     /// <summary>
     /// A class that represents authentication tokens.
     /// </summary>
+    [PublicAPI]
     public class AuthenticationTokens
     {
         /// <summary>

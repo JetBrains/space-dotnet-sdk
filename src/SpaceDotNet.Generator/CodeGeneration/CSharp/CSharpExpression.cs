@@ -2,7 +2,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp
 {
     public static class CSharpExpression
     {
-        public static readonly string NullLiteral = "null";
-        public static readonly string DefaultLiteral = "default";
+        public const string NullLiteral = "null";
+        public const string DefaultLiteral = "default";
     }
 }

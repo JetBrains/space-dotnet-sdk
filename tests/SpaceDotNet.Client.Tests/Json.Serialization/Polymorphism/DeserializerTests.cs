@@ -6,7 +6,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization.Polymorphism
 {
     public class DeserializerTests
     {
-        private JsonSerializerOptions CreateSerializerOptions() =>
+        private static JsonSerializerOptions CreateSerializerOptions() =>
             new JsonSerializerOptions
             {
                 MaxDepth = 32,

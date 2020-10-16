@@ -152,12 +152,10 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters
             {
                 return await InputFormatterResult.NoValueAsync();
             }
-            else
-            {
-                Log.JsonInputSuccess(_logger, context.ModelType);
+
+            Log.JsonInputSuccess(_logger, context.ModelType);
                 
-                return await InputFormatterResult.SuccessAsync(model);
-            }
+            return await InputFormatterResult.SuccessAsync(model);
         }
 
         private static string? GetPayloadVerificationTokenValue(ApplicationPayload? payload)

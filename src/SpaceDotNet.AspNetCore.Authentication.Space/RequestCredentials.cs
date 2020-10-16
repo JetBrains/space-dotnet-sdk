@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.AspNetCore.Authentication.Space
@@ -5,6 +6,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space
     /// <summary>
     /// Determines whether the user should be asked to log in.
     /// </summary>
+    [PublicAPI]
     public sealed class RequestCredentials : Enumeration
     {
         private RequestCredentials(string value) : base(value) { }

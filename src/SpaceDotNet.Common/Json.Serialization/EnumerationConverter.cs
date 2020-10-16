@@ -33,12 +33,9 @@ namespace SpaceDotNet.Common.Json.Serialization
         /// <inheritdoc />
         public override Enumeration Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
         {
-            if (reader.TokenType == JsonTokenType.String)
-            {
-                return Enumeration.FromValue(typeToConvert, reader.GetString());
-            }
-
-            return null;
+            return reader.TokenType == JsonTokenType.String 
+                ? Enumeration.FromValue(typeToConvert, reader.GetString())
+                : null;
         }
 
         /// <inheritdoc />

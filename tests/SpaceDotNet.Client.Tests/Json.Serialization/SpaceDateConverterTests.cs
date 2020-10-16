@@ -7,7 +7,7 @@ namespace SpaceDotNet.Client.Tests.Json.Serialization
 {
     public class SpaceDateConverterTests
     {
-        private JsonSerializerOptions CreateSerializerOptions()
+        private static JsonSerializerOptions CreateSerializerOptions()
         {
             var options = new JsonSerializerOptions
             {

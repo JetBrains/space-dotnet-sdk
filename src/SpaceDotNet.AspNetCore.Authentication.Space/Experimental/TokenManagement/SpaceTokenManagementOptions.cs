@@ -1,4 +1,5 @@
 using System;
+using JetBrains.Annotations;
 
 namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManagement
 {
@@ -8,6 +9,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
     /// <remarks>
     /// Inspired by <a href="https://github.com/IdentityServer/IdentityServer4/tree/master/samples/Clients/src/MvcHybridAutomaticRefresh/AutomaticTokenManagement">IdentityServer4</a>.
     /// </remarks>
+    [PublicAPI]
     public class SpaceTokenManagementOptions
     {
         /// <summary>

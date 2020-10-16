@@ -37,7 +37,7 @@ namespace SpaceDotNet.Common.Types
             {
                 valueWithPropertyAccessValidation.SetAccessPath(path, validateHasBeenSet);
             }
-            if (value is IEnumerable<IPropagatePropertyAccessPath> enumerable)
+            else if (value is IEnumerable<IPropagatePropertyAccessPath> enumerable)
             {
                 foreach (var item in enumerable)
                 {

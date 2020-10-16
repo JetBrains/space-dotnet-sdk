@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading;
 using System.Threading.Tasks;
+using JetBrains.Annotations;
 using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Common
@@ -13,6 +14,7 @@ namespace SpaceDotNet.Common
     /// <summary>
     /// A class which represents a connection against a Space organization and uses a bearer token to authenticate.
     /// </summary>
+    [PublicAPI]
     public class BearerTokenConnection 
         : Connection
     {
@@ -234,10 +236,10 @@ namespace SpaceDotNet.Common
                 }
             }
 
-            if (exception == null)
-            {
-                exception = new ResourceException("An error occurred while accessing the resource.", response.StatusCode, response.ReasonPhrase);
-            }
+            exception ??= new ResourceException(
+                "An error occurred while accessing the resource.",
+                response.StatusCode,
+                response.ReasonPhrase);
             
             exception.Error = spaceError;
             

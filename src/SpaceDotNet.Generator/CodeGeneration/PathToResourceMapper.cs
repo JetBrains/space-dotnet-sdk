@@ -17,7 +17,7 @@ namespace SpaceDotNet.Generator.CodeGeneration
             return mapOfPathToResources;
         }
 
-        private void Build(
+        private static void Build(
             Dictionary<string, List<ApiResource>> targetMap, 
             ApiResource apiResource, 
             string currentPath, 

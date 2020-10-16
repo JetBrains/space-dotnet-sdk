@@ -45,7 +45,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
                 || !(t is Type handlerType)
                 || !(_serviceProvider.GetService(handlerType)is ISpaceWebHookHandler handler))
             {
-                return BadRequest($"No registered " + typeof(ISpaceWebHookHandler) + " could be found.");
+                return BadRequest($"No registered {nameof(ISpaceWebHookHandler)} could be found.");
             }
             
             // Handle payload
@@ -56,11 +56,8 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
                     var commands = await handler.HandleListCommandsAsync(listCommandsPayload);
                     PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, commands);
                     
-                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                    if (commands.CommandsItems == null)
-                    {
-                        commands.CommandsItems = new List<CommandDetail>();
-                    }
+                    // ReSharper disable once ConstantNullCoalescingCondition
+                    commands.CommandsItems ??= new List<CommandDetail>();
                     
                     return new JsonResult(commands, JsonSerializerOptions);
                 
@@ -69,11 +66,8 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
                     var menuExtensions = await handler.HandleListMenuExtensionsAsync(listMenuExtensionsPayload);
                     PropagatePropertyAccessPathHelper.SetAccessPathForValue(string.Empty, false, menuExtensions);
                     
-                    // ReSharper disable once ConditionIsAlwaysTrueOrFalse
-                    if (menuExtensions.Extensions == null)
-                    {
-                        menuExtensions.Extensions = new List<MenuExtensionDetail>();
-                    }
+                    // ReSharper disable once ConstantNullCoalescingCondition
+                    menuExtensions.Extensions ??= new List<MenuExtensionDetail>();
                     
                     return new JsonResult(menuExtensions, JsonSerializerOptions);
                 
@@ -93,7 +87,7 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
                     return Ok();
             }
 
-            return BadRequest($"Payload is not supported.");
+            return BadRequest("Payload is not supported.");
         }
     }
 }

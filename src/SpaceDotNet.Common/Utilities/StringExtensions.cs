@@ -59,12 +59,9 @@ namespace SpaceDotNet.Common.Utilities
             }
 
             var indexOf = subject.IndexOf(delimiter, comparisonType);
-            if (indexOf < 0)
-            {
-                return subject;
-            }
-
-            return subject.Substring(0, indexOf);
+            return indexOf < 0 
+                ? subject 
+                : subject.Substring(0, indexOf);
         }
     }
 }
