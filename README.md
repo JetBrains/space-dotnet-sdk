@@ -1,4 +1,4 @@
-# SpaceDotNet
+# SpaceDotNet ![](http://jb.gg/badges/team-flat-square.svg)
 
 The JetBrains Space SDK for .NET is a .NET library to work with the [JetBrains Space](https://jetbrains.com/space/) API. 
 
