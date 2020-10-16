@@ -13,12 +13,9 @@
         <AssemblyVersion>0.0.1</AssemblyVersion>
         <FileVersion>0.0.1</FileVersion>
         <Description>The JetBrains Space SDK for .NET is a .NET library to work with the JetBrains Space API.</Description>
-        <!--        <Authors>JetBrains</Authors>-->
-        <!--        <Company>JetBrains</Company>-->
-        <!--        <Copyright>JetBrains</Copyright>-->
         <Authors>Maarten Balliauw</Authors>
-        <Company>Maarten Balliauw</Company>
-        <Copyright>Maarten Balliauw</Copyright>
+        <Company>JetBrains</Company>
+        <Copyright>Copyright © JetBrains s.r.o. All Rights Reserved.</Copyright>
         
         <!-- Symbols -->
         <IncludeSymbols>True</IncludeSymbols>
