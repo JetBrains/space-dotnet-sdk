@@ -6,7 +6,7 @@ Param(
 
 Write-Output "PowerShell $($PSVersionTable.PSEdition) version $($PSVersionTable.PSVersion)"
 
-Set-StrictMode -Version 2.0; $ErrorActionPreference = "Stop"; $ConfirmPreference = "None"; trap { exit 1 }
+Set-StrictMode -Version 2.0; $ErrorActionPreference = "Stop"; $ConfirmPreference = "None"; trap { Write-Error $_ -ErrorAction Continue; exit 1 }
 $PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
 
 ###########################################################################
@@ -17,7 +17,7 @@ $BuildProjectFile = "$PSScriptRoot\build\_build.csproj"
 $TempDirectory = "$PSScriptRoot\\.tmp"
 
 $DotNetGlobalFile = "$PSScriptRoot\\global.json"
-$DotNetInstallUrl = "https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.ps1"
+$DotNetInstallUrl = "https://dot.net/v1/dotnet-install.ps1"
 $DotNetChannel = "Current"
 
 $env:DOTNET_SKIP_FIRST_TIME_EXPERIENCE = 1
