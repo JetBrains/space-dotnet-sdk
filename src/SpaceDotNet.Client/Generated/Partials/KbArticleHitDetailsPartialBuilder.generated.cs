@@ -23,30 +23,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.FolderHitPartialBuilder
+namespace SpaceDotNet.Client.KbArticleHitDetailsPartialBuilder
 {
-    public static class FolderHitPartialExtensions
+    public static class KbArticleHitDetailsPartialExtensions
     {
-        public static Partial<FolderHit> WithId(this Partial<FolderHit> it)
+        public static Partial<KbArticleHitDetails> WithId(this Partial<KbArticleHitDetails> it)
             => it.AddFieldName("id");
         
-        public static Partial<FolderHit> WithScore(this Partial<FolderHit> it)
-            => it.AddFieldName("score");
-        
-        public static Partial<FolderHit> WithBookRef(this Partial<FolderHit> it)
+        public static Partial<KbArticleHitDetails> WithBookRef(this Partial<KbArticleHitDetails> it)
             => it.AddFieldName("bookRef");
         
-        public static Partial<FolderHit> WithBookRef(this Partial<FolderHit> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+        public static Partial<KbArticleHitDetails> WithBookRef(this Partial<KbArticleHitDetails> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
             => it.AddFieldName("bookRef", partialBuilder(new Partial<KBBook>(it)));
-        
-        public static Partial<FolderHit> WithRef(this Partial<FolderHit> it)
-            => it.AddFieldName("ref");
-        
-        public static Partial<FolderHit> WithRef(this Partial<FolderHit> it, Func<Partial<KBFolder>, Partial<KBFolder>> partialBuilder)
-            => it.AddFieldName("ref", partialBuilder(new Partial<KBFolder>(it)));
-        
-        public static Partial<FolderHit> WithName(this Partial<FolderHit> it)
-            => it.AddFieldName("name");
         
     }
     

@@ -23,26 +23,14 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ArticleHitPartialBuilder
+namespace SpaceDotNet.Client.ArticleHitDetailsPartialBuilder
 {
-    public static class ArticleHitPartialExtensions
+    public static class ArticleHitDetailsPartialExtensions
     {
-        public static Partial<ArticleHit> WithId(this Partial<ArticleHit> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ArticleHit> WithScore(this Partial<ArticleHit> it)
-            => it.AddFieldName("score");
-        
-        public static Partial<ArticleHit> WithTitle(this Partial<ArticleHit> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<ArticleHit> WithBody(this Partial<ArticleHit> it)
-            => it.AddFieldName("body");
-        
-        public static Partial<ArticleHit> WithRef(this Partial<ArticleHit> it)
+        public static Partial<ArticleHitDetails> WithRef(this Partial<ArticleHitDetails> it)
             => it.AddFieldName("ref");
         
-        public static Partial<ArticleHit> WithRef(this Partial<ArticleHit> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
+        public static Partial<ArticleHitDetails> WithRef(this Partial<ArticleHitDetails> it, Func<Partial<ArticleRecord>, Partial<ArticleRecord>> partialBuilder)
             => it.AddFieldName("ref", partialBuilder(new Partial<ArticleRecord>(it)));
         
     }

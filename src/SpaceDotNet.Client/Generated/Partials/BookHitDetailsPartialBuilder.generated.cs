@@ -23,27 +23,15 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BookHitPartialBuilder
+namespace SpaceDotNet.Client.BookHitDetailsPartialBuilder
 {
-    public static class BookHitPartialExtensions
+    public static class BookHitDetailsPartialExtensions
     {
-        public static Partial<BookHit> WithId(this Partial<BookHit> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<BookHit> WithScore(this Partial<BookHit> it)
-            => it.AddFieldName("score");
-        
-        public static Partial<BookHit> WithRef(this Partial<BookHit> it)
+        public static Partial<BookHitDetails> WithRef(this Partial<BookHitDetails> it)
             => it.AddFieldName("ref");
         
-        public static Partial<BookHit> WithRef(this Partial<BookHit> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
+        public static Partial<BookHitDetails> WithRef(this Partial<BookHitDetails> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
             => it.AddFieldName("ref", partialBuilder(new Partial<KBBook>(it)));
-        
-        public static Partial<BookHit> WithTitle(this Partial<BookHit> it)
-            => it.AddFieldName("title");
-        
-        public static Partial<BookHit> WithSummary(this Partial<BookHit> it)
-            => it.AddFieldName("summary");
         
     }
     

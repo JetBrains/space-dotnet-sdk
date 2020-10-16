@@ -25,41 +25,32 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class CustomFieldHit
-         : IPropagatePropertyAccessPath
+    public sealed class ArticleHitDetails
+         : EntityHitDetails, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public CustomFieldHit() { }
+        [JsonPropertyName("className")]
+        public  string? ClassName => "ArticleHitDetails";
         
-        public CustomFieldHit(string name, string value)
+        public ArticleHitDetails() { }
+        
+        public ArticleHitDetails(ArticleRecord @ref)
         {
-            Name = name;
-            Value = value;
+            Ref = @ref;
         }
         
-        private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomFieldHit), nameof(Name));
+        private PropertyValue<ArticleRecord> _ref = new PropertyValue<ArticleRecord>(nameof(ArticleHitDetails), nameof(Ref));
         
         [Required]
-        [JsonPropertyName("name")]
-        public string Name
+        [JsonPropertyName("ref")]
+        public ArticleRecord Ref
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
-        }
-    
-        private PropertyValue<string> _value = new PropertyValue<string>(nameof(CustomFieldHit), nameof(Value));
-        
-        [Required]
-        [JsonPropertyName("value")]
-        public string Value
-        {
-            get { return _value.GetValue(); }
-            set { _value.SetValue(value); }
+            get { return _ref.GetValue(); }
+            set { _ref.SetValue(value); }
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _name.SetAccessPath(path, validateHasBeenSet);
-            _value.SetAccessPath(path, validateHasBeenSet);
+            _ref.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

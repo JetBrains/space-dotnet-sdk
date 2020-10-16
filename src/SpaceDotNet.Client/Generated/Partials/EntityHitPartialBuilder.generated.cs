@@ -27,6 +27,24 @@ namespace SpaceDotNet.Client.EntityHitPartialBuilder
 {
     public static class EntityHitPartialExtensions
     {
+        public static Partial<EntityHit> WithScore(this Partial<EntityHit> it)
+            => it.AddFieldName("score");
+        
+        public static Partial<EntityHit> WithTitle(this Partial<EntityHit> it)
+            => it.AddFieldName("title");
+        
+        public static Partial<EntityHit> WithSnippets(this Partial<EntityHit> it)
+            => it.AddFieldName("snippets");
+        
+        public static Partial<EntityHit> WithSnippets(this Partial<EntityHit> it, Func<Partial<MatchSnippet>, Partial<MatchSnippet>> partialBuilder)
+            => it.AddFieldName("snippets", partialBuilder(new Partial<MatchSnippet>(it)));
+        
+        public static Partial<EntityHit> WithDetails(this Partial<EntityHit> it)
+            => it.AddFieldName("details");
+        
+        public static Partial<EntityHit> WithDetails(this Partial<EntityHit> it, Func<Partial<EntityHitDetails>, Partial<EntityHitDetails>> partialBuilder)
+            => it.AddFieldName("details", partialBuilder(new Partial<EntityHitDetails>(it)));
+        
     }
     
 }

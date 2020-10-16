@@ -23,16 +23,36 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.CustomFieldHitPartialBuilder
+namespace SpaceDotNet.Client
 {
-    public static class CustomFieldHitPartialExtensions
+    public sealed class BookHitDetails
+         : EntityHitDetails, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<CustomFieldHit> WithName(this Partial<CustomFieldHit> it)
-            => it.AddFieldName("name");
+        [JsonPropertyName("className")]
+        public  string? ClassName => "BookHitDetails";
         
-        public static Partial<CustomFieldHit> WithValue(this Partial<CustomFieldHit> it)
-            => it.AddFieldName("value");
+        public BookHitDetails() { }
         
+        public BookHitDetails(KBBook @ref)
+        {
+            Ref = @ref;
+        }
+        
+        private PropertyValue<KBBook> _ref = new PropertyValue<KBBook>(nameof(BookHitDetails), nameof(Ref));
+        
+        [Required]
+        [JsonPropertyName("ref")]
+        public KBBook Ref
+        {
+            get { return _ref.GetValue(); }
+            set { _ref.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _ref.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

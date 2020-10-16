@@ -48,12 +48,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Get calendar events attached to an article in a specific time period.
             /// </summary>
+            [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
             public async Task<List<MeetingRecord>> GetAllCalendarEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<MeetingRecord>>("GET", $"api/http/team-directory/calendar-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get a calendar event attached to an article.
             /// </summary>
+            [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
             public async Task<MeetingRecord> GetCalendarEventAsync(string id, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<MeetingRecord>("GET", $"api/http/team-directory/calendar-events/{id}?$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", cancellationToken);
         
@@ -71,6 +73,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search absences. Parameters are applied as 'AND' filters.
                 /// </summary>
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<AbsenceEvent>> GetAllAbsenceEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<AbsenceEvent>, Partial<AbsenceEvent>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<AbsenceEvent>>("GET", $"api/http/team-directory/calendar-events/absence-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<AbsenceEvent>()) : Partial<AbsenceEvent>.Default())}", cancellationToken);
             
@@ -90,6 +93,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search birthdays. Parameters are applied as 'AND' filters.
                 /// </summary>
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<BirthdayEvent>> GetAllBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
             
@@ -107,6 +111,7 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Get/search birthdays in a specific time period for starred profiles.
                     /// </summary>
+                    [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                     public async Task<List<BirthdayEvent>> GetAllStarredBirthdayEventsAsync(DateTime dateFrom, DateTime dateTo, Func<Partial<BirthdayEvent>, Partial<BirthdayEvent>>? partial = null, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<List<BirthdayEvent>>("GET", $"api/http/team-directory/calendar-events/birthday-events/starred?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&$fields={(partial != null ? partial(new Partial<BirthdayEvent>()) : Partial<BirthdayEvent>.Default())}", cancellationToken);
                 
@@ -128,6 +133,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search holidays. Parameters are applied as 'AND' filters.
                 /// </summary>
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<HolidaysEvent>> GetAllHolidaysAsync(DateTime startDate, DateTime endDate, string? team = null, string? location = null, string? role = null, bool? workingDays = null, Func<Partial<HolidaysEvent>, Partial<HolidaysEvent>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<HolidaysEvent>>("GET", $"api/http/team-directory/calendar-events/holidays?startDate={startDate.ToString("yyyy-MM-dd")}&endDate={endDate.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&workingDays={workingDays?.ToString("l") ?? "null"}&$fields={(partial != null ? partial(new Partial<HolidaysEvent>()) : Partial<HolidaysEvent>.Default())}", cancellationToken);
             
@@ -147,6 +153,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Update RSVP / calendar event participation status for a calendar event attached to an article.
                 /// </summary>
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<MeetingRecord> UpdateMeetingParticipationAsync(string id, EventParticipationStatus newStatus, Func<Partial<MeetingRecord>, Partial<MeetingRecord>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest, MeetingRecord>("PATCH", $"api/http/team-directory/calendar-events/meeting-participations/{id}?$fields={(partial != null ? partial(new Partial<MeetingRecord>()) : Partial<MeetingRecord>.Default())}", 
                         new TeamDirectoryCalendarEventsMeetingParticipationsForIdPatchRequest { 
@@ -170,6 +177,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search membership events. Parameters are applied as 'AND' filters.
                 /// </summary>
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default())}", cancellationToken);
             
@@ -189,6 +197,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get/search non-working day events. Parameters are applied as 'AND' filters.
                 /// </summary>
+                [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<NonWorkingDaysEvent>> GetAllNonWorkingDaysEventsAsync(DateTime dateFrom, DateTime dateTo, string? member = null, string? team = null, string? location = null, string? role = null, Func<Partial<NonWorkingDaysEvent>, Partial<NonWorkingDaysEvent>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<NonWorkingDaysEvent>>("GET", $"api/http/team-directory/calendar-events/non-working-days-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&member={member?.ToString() ?? "null"}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<NonWorkingDaysEvent>()) : Partial<NonWorkingDaysEvent>.Default())}", cancellationToken);
             

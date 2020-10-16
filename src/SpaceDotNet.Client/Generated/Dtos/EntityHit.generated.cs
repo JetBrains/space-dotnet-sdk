@@ -25,38 +25,65 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    [JsonConverter(typeof(ClassNameDtoTypeConverter))]
-    public class EntityHit
-         : IClassNameConvertible, IPropagatePropertyAccessPath
+    public sealed class EntityHit
+         : IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public virtual string? ClassName => "EntityHit";
-        
-        public static ArticleHit ArticleHit(string id, double score, string title, string body, ArticleRecord @ref)
-            => new ArticleHit(id: id, score: score, title: title, body: body, @ref: @ref);
-        
-        public static BookHit BookHit(string id, double score, KBBook @ref, string title, string summary)
-            => new BookHit(id: id, score: score, @ref: @ref, title: title, summary: summary);
-        
-        public static FolderHit FolderHit(string id, double score, KBBook bookRef, KBFolder @ref, string name)
-            => new FolderHit(id: id, score: score, bookRef: bookRef, @ref: @ref, name: name);
-        
-        public static KbArticleHit KbArticleHit(string id, double score, KBBook bookRef, string title, string body)
-            => new KbArticleHit(id: id, score: score, bookRef: bookRef, title: title, body: body);
-        
-        public static MessageHit MessageHit(string id, string parentItemId, double score, M2ChannelRecord channel, M2ChatReader readerRef, ChannelItemRecord @ref, string message, bool threadStarter, string? thread = null)
-            => new MessageHit(id: id, parentItemId: parentItemId, score: score, channel: channel, readerRef: readerRef, @ref: @ref, message: message, threadStarter: threadStarter, thread: null);
-        
-        public static ProfileHit ProfileHit(string id, double score, string firstName, string lastName, string userName, List<string> phones, List<string> emails, List<string> links, List<string> messengers, List<string> internationalNames, bool notAMember, TDMemberProfile @ref, ProfileAbsencesRecord absencesRef, ProfileMembershipRecord membershipRef, ProfileLocationsRecord locationsRef, List<CustomFieldHit> customFields)
-            => new ProfileHit(id: id, score: score, firstName: firstName, lastName: lastName, userName: userName, phones: phones, emails: emails, links: links, messengers: messengers, internationalNames: internationalNames, notAMember: notAMember, @ref: @ref, absencesRef: absencesRef, membershipRef: membershipRef, locationsRef: locationsRef, customFields: customFields);
-        
-        public static ProjectHit ProjectHit(string id, double score, string key, string name, PRProject @ref, string? description = null)
-            => new ProjectHit(id: id, score: score, key: key, name: name, @ref: @ref, description: null);
-        
         public EntityHit() { }
         
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        public EntityHit(double score, string title, List<MatchSnippet> snippets, EntityHitDetails details)
         {
+            Score = score;
+            Title = title;
+            Snippets = snippets;
+            Details = details;
+        }
+        
+        private PropertyValue<double> _score = new PropertyValue<double>(nameof(EntityHit), nameof(Score));
+        
+        [Required]
+        [JsonPropertyName("score")]
+        public double Score
+        {
+            get { return _score.GetValue(); }
+            set { _score.SetValue(value); }
+        }
+    
+        private PropertyValue<string> _title = new PropertyValue<string>(nameof(EntityHit), nameof(Title));
+        
+        [Required]
+        [JsonPropertyName("title")]
+        public string Title
+        {
+            get { return _title.GetValue(); }
+            set { _title.SetValue(value); }
+        }
+    
+        private PropertyValue<List<MatchSnippet>> _snippets = new PropertyValue<List<MatchSnippet>>(nameof(EntityHit), nameof(Snippets));
+        
+        [Required]
+        [JsonPropertyName("snippets")]
+        public List<MatchSnippet> Snippets
+        {
+            get { return _snippets.GetValue(); }
+            set { _snippets.SetValue(value); }
+        }
+    
+        private PropertyValue<EntityHitDetails> _details = new PropertyValue<EntityHitDetails>(nameof(EntityHit), nameof(Details));
+        
+        [Required]
+        [JsonPropertyName("details")]
+        public EntityHitDetails Details
+        {
+            get { return _details.GetValue(); }
+            set { _details.SetValue(value); }
+        }
+    
+        public  void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _score.SetAccessPath(path, validateHasBeenSet);
+            _title.SetAccessPath(path, validateHasBeenSet);
+            _snippets.SetAccessPath(path, validateHasBeenSet);
+            _details.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

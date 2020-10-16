@@ -23,29 +23,14 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.ProjectHitPartialBuilder
+namespace SpaceDotNet.Client.ProjectHitDetailsPartialBuilder
 {
-    public static class ProjectHitPartialExtensions
+    public static class ProjectHitDetailsPartialExtensions
     {
-        public static Partial<ProjectHit> WithId(this Partial<ProjectHit> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<ProjectHit> WithScore(this Partial<ProjectHit> it)
-            => it.AddFieldName("score");
-        
-        public static Partial<ProjectHit> WithKey(this Partial<ProjectHit> it)
-            => it.AddFieldName("key");
-        
-        public static Partial<ProjectHit> WithName(this Partial<ProjectHit> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<ProjectHit> WithDescription(this Partial<ProjectHit> it)
-            => it.AddFieldName("description");
-        
-        public static Partial<ProjectHit> WithRef(this Partial<ProjectHit> it)
+        public static Partial<ProjectHitDetails> WithRef(this Partial<ProjectHitDetails> it)
             => it.AddFieldName("ref");
         
-        public static Partial<ProjectHit> WithRef(this Partial<ProjectHit> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+        public static Partial<ProjectHitDetails> WithRef(this Partial<ProjectHitDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
             => it.AddFieldName("ref", partialBuilder(new Partial<PRProject>(it)));
         
     }
