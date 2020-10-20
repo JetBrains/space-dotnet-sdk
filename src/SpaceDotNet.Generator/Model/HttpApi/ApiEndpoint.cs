@@ -35,6 +35,9 @@ namespace SpaceDotNet.Generator.Model.HttpApi
         [JsonPropertyName("doc")]
         public string? Documentation { get; set; }
         
+        [JsonPropertyName("functionName")]
+        public string? FunctionName { get; set; }
+        
         [JsonPropertyName("rights")]
         // ReSharper disable once CollectionNeverUpdated.Global
         public List<ApiRight>? Rights { get; set; }
