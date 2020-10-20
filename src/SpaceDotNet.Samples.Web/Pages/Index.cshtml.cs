@@ -213,7 +213,7 @@ namespace SpaceDotNet.Samples.Web.Pages
             try
             {
                 // Check # of TO-DO items resolved
-                await foreach (var todo in _todoClient.GetAllToDoItemsAsyncEnumerable(from: weekStart, partial: _ => _
+                await foreach (var todo in _todoClient.GetAllTodoItemsAsyncEnumerable(from: weekStart, partial: _ => _
                     .WithId()
                     .WithContent(content => content
                         .ForInherited<TodoItemContentMdText>(md => md

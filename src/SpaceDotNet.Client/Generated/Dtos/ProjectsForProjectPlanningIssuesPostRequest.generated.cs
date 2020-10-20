@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesPostRequest() { }
         
-        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
+        public ProjectsForProjectPlanningIssuesPostRequest(string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<Attachment>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null)
         {
             Title = title;
             Description = description;
@@ -41,7 +41,6 @@ namespace SpaceDotNet.Client
             Checklists = (checklists ?? new List<string>());
             Sprints = (sprints ?? new List<string>());
             Attachments = (attachments ?? new List<Attachment>());
-            ImportInfo = importInfo;
             FromMessage = fromMessage;
             CustomFields = customFields;
         }
@@ -130,15 +129,6 @@ namespace SpaceDotNet.Client
             set { _attachments.SetValue(value); }
         }
     
-        private PropertyValue<ImportedEntityInfo?> _importInfo = new PropertyValue<ImportedEntityInfo?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(ImportInfo));
-        
-        [JsonPropertyName("importInfo")]
-        public ImportedEntityInfo? ImportInfo
-        {
-            get { return _importInfo.GetValue(); }
-            set { _importInfo.SetValue(value); }
-        }
-    
         private PropertyValue<MessageLink?> _fromMessage = new PropertyValue<MessageLink?>(nameof(ProjectsForProjectPlanningIssuesPostRequest), nameof(FromMessage));
         
         [JsonPropertyName("fromMessage")]
@@ -168,7 +158,6 @@ namespace SpaceDotNet.Client
             _checklists.SetAccessPath(path, validateHasBeenSet);
             _sprints.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);
-            _importInfo.SetAccessPath(path, validateHasBeenSet);
             _fromMessage.SetAccessPath(path, validateHasBeenSet);
             _customFields.SetAccessPath(path, validateHasBeenSet);
         }

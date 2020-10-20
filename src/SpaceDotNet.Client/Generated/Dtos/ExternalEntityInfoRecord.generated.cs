@@ -30,11 +30,12 @@ namespace SpaceDotNet.Client
     {
         public ExternalEntityInfoRecord() { }
         
-        public ExternalEntityInfoRecord(string id, bool archived, ImportTransactionRecord transaction, string? externalId = null, string? externalUrl = null)
+        public ExternalEntityInfoRecord(string id, bool archived, ImportTransactionRecord transaction, string? externalId = null, string? externalName = null, string? externalUrl = null)
         {
             Id = id;
             IsArchived = archived;
             ExternalId = externalId;
+            ExternalName = externalName;
             ExternalUrl = externalUrl;
             Transaction = transaction;
         }
@@ -68,6 +69,15 @@ namespace SpaceDotNet.Client
             set { _externalId.SetValue(value); }
         }
     
+        private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalName));
+        
+        [JsonPropertyName("externalName")]
+        public string? ExternalName
+        {
+            get { return _externalName.GetValue(); }
+            set { _externalName.SetValue(value); }
+        }
+    
         private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalUrl));
         
         [JsonPropertyName("externalUrl")]
@@ -92,6 +102,7 @@ namespace SpaceDotNet.Client
             _id.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
             _externalId.SetAccessPath(path, validateHasBeenSet);
+            _externalName.SetAccessPath(path, validateHasBeenSet);
             _externalUrl.SetAccessPath(path, validateHasBeenSet);
             _transaction.SetAccessPath(path, validateHasBeenSet);
         }

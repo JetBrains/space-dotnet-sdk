@@ -23,18 +23,32 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MoneyPartialBuilder
+namespace SpaceDotNet.Client
 {
-    public static class MoneyPartialExtensions
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class ImportExistsPolicy : IUrlParameter
     {
-        public static Partial<Money> WithAmount(this Partial<Money> it)
-            => it.AddFieldName("amount");
+        public static ImportExistsPolicy Skip
+            => new ImportExistsPolicySkip();
         
-        public static Partial<Money> WithCurrency(this Partial<Money> it)
-            => it.AddFieldName("currency");
+        public static ImportExistsPolicy Update
+            => new ImportExistsPolicyUpdate();
         
-        public static Partial<Money> WithCurrency(this Partial<Money> it, Func<Partial<Currency>, Partial<Currency>> partialBuilder)
-            => it.AddFieldName("currency", partialBuilder(new Partial<Currency>(it)));
+        private class ImportExistsPolicySkip : ImportExistsPolicy
+        {
+            public override string ToString()
+            {
+                return "skip";
+            }
+        }
+        
+        private class ImportExistsPolicyUpdate : ImportExistsPolicy
+        {
+            public override string ToString()
+            {
+                return "update";
+            }
+        }
         
     }
     

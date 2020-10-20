@@ -23,18 +23,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.DraftPublicationDetailsPartialBuilder
+namespace SpaceDotNet.Client.CurrencyPartialBuilder
 {
-    public static class DraftPublicationDetailsPartialExtensions
+    public static class CurrencyPartialExtensions
     {
-        public static Partial<DraftPublicationDetails> WithUsedType(this Partial<DraftPublicationDetails> it)
-            => it.AddFieldName("usedType");
+        public static Partial<Currency> WithCode(this Partial<Currency> it)
+            => it.AddFieldName("code");
         
-        public static Partial<DraftPublicationDetails> WithAllPublicationDetails(this Partial<DraftPublicationDetails> it)
-            => it.AddFieldName("allPublicationDetails");
+        public static Partial<Currency> WithSign(this Partial<Currency> it)
+            => it.AddFieldName("sign");
         
-        public static Partial<DraftPublicationDetails> WithAllPublicationDetails(this Partial<DraftPublicationDetails> it, Func<Partial<PublicationDetails>, Partial<PublicationDetails>> partialBuilder)
-            => it.AddFieldName("allPublicationDetails", partialBuilder(new Partial<PublicationDetails>(it)));
+        public static Partial<Currency> WithIsSignAsPrefix(this Partial<Currency> it)
+            => it.AddFieldName("signAsPrefix");
         
     }
     

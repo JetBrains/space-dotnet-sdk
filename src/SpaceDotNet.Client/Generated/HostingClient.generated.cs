@@ -78,7 +78,7 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<CreateUploadUrlResponse> CreateUploadURLAsync(string siteName, Func<Partial<CreateUploadUrlResponse>, Partial<CreateUploadUrlResponse>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<CreateUploadUrlResponse> CreateUploadUrlAsync(string siteName, Func<Partial<CreateUploadUrlResponse>, Partial<CreateUploadUrlResponse>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<HostingSiteUploadUrlPostRequest, CreateUploadUrlResponse>("POST", $"api/http/hosting/site/upload-url?$fields={(partial != null ? partial(new Partial<CreateUploadUrlResponse>()) : Partial<CreateUploadUrlResponse>.Default())}", 
                     new HostingSiteUploadUrlPostRequest { 
                         SiteName = siteName,

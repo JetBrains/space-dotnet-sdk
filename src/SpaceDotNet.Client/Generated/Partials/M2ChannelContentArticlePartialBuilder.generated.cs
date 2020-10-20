@@ -45,6 +45,12 @@ namespace SpaceDotNet.Client.M2ChannelContentArticlePartialBuilder
         public static Partial<M2ChannelContentArticle> WithDetails(this Partial<M2ChannelContentArticle> it, Func<Partial<ArticleDetailsRecord>, Partial<ArticleDetailsRecord>> partialBuilder)
             => it.AddFieldName("details", partialBuilder(new Partial<ArticleDetailsRecord>(it)));
         
+        public static Partial<M2ChannelContentArticle> WithChannel(this Partial<M2ChannelContentArticle> it)
+            => it.AddFieldName("channel");
+        
+        public static Partial<M2ChannelContentArticle> WithChannel(this Partial<M2ChannelContentArticle> it, Func<Partial<ArticleChannelRecord>, Partial<ArticleChannelRecord>> partialBuilder)
+            => it.AddFieldName("channel", partialBuilder(new Partial<ArticleChannelRecord>(it)));
+        
     }
     
 }

@@ -45,12 +45,6 @@ namespace SpaceDotNet.Client.DRDraftPartialBuilder
         public static Partial<DRDraft> WithIsDeleted(this Partial<DRDraft> it)
             => it.AddFieldName("deleted");
         
-        public static Partial<DRDraft> WithPublicationDetails(this Partial<DRDraft> it)
-            => it.AddFieldName("publicationDetails");
-        
-        public static Partial<DRDraft> WithPublicationDetails(this Partial<DRDraft> it, Func<Partial<DraftPublicationDetails>, Partial<DraftPublicationDetails>> partialBuilder)
-            => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetails>(it)));
-        
         public static Partial<DRDraft> WithPublicationDetails2(this Partial<DRDraft> it)
             => it.AddFieldName("publicationDetails2");
         

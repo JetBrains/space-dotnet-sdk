@@ -81,6 +81,12 @@ namespace SpaceDotNet.Client.IssuePartialBuilder
         public static Partial<Issue> WithImportInfo(this Partial<Issue> it, Func<Partial<ImportedEntityInfo>, Partial<ImportedEntityInfo>> partialBuilder)
             => it.AddFieldName("importInfo", partialBuilder(new Partial<ImportedEntityInfo>(it)));
         
+        public static Partial<Issue> WithExternalEntityInfo(this Partial<Issue> it)
+            => it.AddFieldName("externalEntityInfo");
+        
+        public static Partial<Issue> WithExternalEntityInfo(this Partial<Issue> it, Func<Partial<ExternalEntityInfoRecord>, Partial<ExternalEntityInfoRecord>> partialBuilder)
+            => it.AddFieldName("externalEntityInfo", partialBuilder(new Partial<ExternalEntityInfoRecord>(it)));
+        
         public static Partial<Issue> WithTags(this Partial<Issue> it)
             => it.AddFieldName("tags");
         

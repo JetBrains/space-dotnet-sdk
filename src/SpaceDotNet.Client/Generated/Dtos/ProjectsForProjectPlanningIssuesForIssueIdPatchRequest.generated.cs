@@ -30,14 +30,13 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest() { }
         
-        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null)
+        public ProjectsForProjectPlanningIssuesForIssueIdPatchRequest(string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null)
         {
             Title = title;
             Description = description;
             Assignee = assignee;
             Status = status;
             DueDate = dueDate;
-            ImportInfo = importInfo;
         }
         
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Title));
@@ -86,15 +85,6 @@ namespace SpaceDotNet.Client
             set { _dueDate.SetValue(value); }
         }
     
-        private PropertyValue<ImportedEntityInfo?> _importInfo = new PropertyValue<ImportedEntityInfo?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(ImportInfo));
-        
-        [JsonPropertyName("importInfo")]
-        public ImportedEntityInfo? ImportInfo
-        {
-            get { return _importInfo.GetValue(); }
-            set { _importInfo.SetValue(value); }
-        }
-    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _title.SetAccessPath(path, validateHasBeenSet);
@@ -102,7 +92,6 @@ namespace SpaceDotNet.Client
             _assignee.SetAccessPath(path, validateHasBeenSet);
             _status.SetAccessPath(path, validateHasBeenSet);
             _dueDate.SetAccessPath(path, validateHasBeenSet);
-            _importInfo.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

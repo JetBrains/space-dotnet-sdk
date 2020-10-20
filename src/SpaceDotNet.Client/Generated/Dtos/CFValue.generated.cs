@@ -53,6 +53,9 @@ namespace SpaceDotNet.Client
         public static IntListCFValue IntList(List<int> values)
             => new IntListCFValue(values: values);
         
+        public static PercentCFValue Percent(int? value = null)
+            => new PercentCFValue(value: null);
+        
         public static ProfileCFValue Profile(TDMemberProfile? profile = null)
             => new ProfileCFValue(profile: null);
         

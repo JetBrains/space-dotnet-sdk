@@ -60,12 +60,6 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesPostRequestPartialB
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithAttachments(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
             => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
         
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithImportInfo(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
-            => it.AddFieldName("importInfo");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithImportInfo(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it, Func<Partial<ImportedEntityInfo>, Partial<ImportedEntityInfo>> partialBuilder)
-            => it.AddFieldName("importInfo", partialBuilder(new Partial<ImportedEntityInfo>(it)));
-        
         public static Partial<ProjectsForProjectPlanningIssuesPostRequest> WithFromMessage(this Partial<ProjectsForProjectPlanningIssuesPostRequest> it)
             => it.AddFieldName("fromMessage");
         

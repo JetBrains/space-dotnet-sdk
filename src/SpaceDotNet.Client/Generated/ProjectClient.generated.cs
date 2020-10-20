@@ -1160,6 +1160,14 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Creates a new package repository for a given project id.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Create</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesPostRequest, ProjectPackageRepository>("POST", $"api/http/projects/{project}/packages/repositories?$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", 
                         new ProjectsForProjectPackagesRepositoriesPostRequest { 
@@ -1174,18 +1182,42 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Gets a list of package repositories for a given project id.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<List<ProjectPackageRepository>> GetRepositoriesAsync(ProjectIdentifier project, string? type = null, string? query = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<ProjectPackageRepository>>("GET", $"api/http/projects/{project}/packages/repositories?type={type?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", cancellationToken);
             
                 /// <summary>
                 /// Gets a package repository for a given project id by type and name.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<ProjectPackageRepository> GetRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectPackageRepository>("GET", $"api/http/projects/{project}/packages/repositories/{repository}?$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", cancellationToken);
             
                 /// <summary>
                 /// Updates package repository settings for a given project id.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Admin</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task UpdateRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string? name = null, string? description = null, bool? @public = null, ESPackageRepositorySettings? settings = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/packages/repositories/{repository}", 
                         new ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest { 
@@ -1199,6 +1231,14 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Removes package repository for a given project id.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Admin</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task DeleteRepositoryAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}", cancellationToken);
             
@@ -1216,12 +1256,28 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Gets a list of repository packages for a given project id.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default())}", cancellationToken);
                     
                     /// <summary>
                     /// Gets a list of repository packages for a given project id.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
                 
@@ -1239,24 +1295,56 @@ namespace SpaceDotNet.Client
                         /// <summary>
                         /// Gets a list of repository package versions for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                             => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
                         
                         /// <summary>
                         /// Gets a list of repository package versions for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
                             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
                             => await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}?$fields={(partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default())}", cancellationToken);
                     
                         /// <summary>
                         /// Removes a package version in repository for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Write</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         public async Task DeletePackageVersionAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string packageVersion, CancellationToken cancellationToken = default)
                             => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion}", cancellationToken);
                     
@@ -1269,6 +1357,14 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Gets a list of repository packages for a given project id.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (marked for removal)")]
                     public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default())}", cancellationToken);
@@ -1276,6 +1372,14 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Gets a list of repository packages for a given project id.
                     /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
                     [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (marked for removal)")]
                     public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, type: type, repositoryName: repositoryName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
@@ -1285,6 +1389,14 @@ namespace SpaceDotNet.Client
                         /// <summary>
                         /// Gets a list of repository package versions for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
                         public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                             => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
@@ -1292,6 +1404,14 @@ namespace SpaceDotNet.Client
                         /// <summary>
                         /// Gets a list of repository package versions for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
                         public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
                             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
@@ -1299,6 +1419,14 @@ namespace SpaceDotNet.Client
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (marked for removal)")]
                         public async Task<PackageVersionDetails> GetPackageVersionDetailsAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, Func<Partial<PackageVersionDetails>, Partial<PackageVersionDetails>>? partial = null, CancellationToken cancellationToken = default)
                             => await _connection.RequestResourceAsync<PackageVersionDetails>("GET", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}?$fields={(partial != null ? partial(new Partial<PackageVersionDetails>()) : Partial<PackageVersionDetails>.Default())}", cancellationToken);
@@ -1306,6 +1434,14 @@ namespace SpaceDotNet.Client
                         /// <summary>
                         /// Removes a package version in repository for a given project id.
                         /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Write</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
                         [Obsolete("Use DELETE /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions/version:{packageVersion} (since 2020-09-01) (marked for removal)")]
                         public async Task DeletePackageVersionAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string packageVersion, CancellationToken cancellationToken = default)
                             => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/packages/repositories/type:{type}/repository:{repositoryName}/packages/name:{packageName}/versions/version:{packageVersion}", cancellationToken);
@@ -1328,7 +1464,15 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Gets a package repository URL for a given project id.
                     /// </summary>
-                    public async Task<string> GetRepositoryURLAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<string> GetRepositoryUrlAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<string>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/url", cancellationToken);
                 
                 }
@@ -1349,12 +1493,28 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Executes a package search for a given project id.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search?type={type.ToString()}&query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Executes a package search for a given project id.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
             
@@ -1481,7 +1641,7 @@ namespace SpaceDotNet.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<Attachment>? attachments = null, ImportedEntityInfo? importInfo = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<Issue> CreateIssueAsync(ProjectIdentifier project, string title, string status, List<string>? tags = null, List<string>? checklists = null, List<string>? sprints = null, string? description = null, ProfileIdentifier? assignee = null, DateTime? dueDate = null, List<Attachment>? attachments = null, MessageLink? fromMessage = null, List<CustomFieldValue>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPlanningIssuesPostRequest, Issue>("POST", $"api/http/projects/{project}/planning/issues?$fields={(partial != null ? partial(new Partial<Issue>()) : Partial<Issue>.Default())}", 
                         new ProjectsForProjectPlanningIssuesPostRequest { 
                             Title = title,
@@ -1493,7 +1653,6 @@ namespace SpaceDotNet.Client
                             Checklists = (checklists ?? new List<string>()),
                             Sprints = (sprints ?? new List<string>()),
                             Attachments = (attachments ?? new List<Attachment>()),
-                            ImportInfo = importInfo,
                             FromMessage = fromMessage,
                             CustomFields = customFields,
                         }
@@ -1524,8 +1683,8 @@ namespace SpaceDotNet.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId.JoinToString("assigneeId", it => it?.ToString())}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString("l")}&tags={tags?.JoinToString("tags", it => it.ToString()) ?? "null"}&customFields={customFields?.JoinToString("customFields", it => it.ToString()) ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default())}", cancellationToken);
+                public async Task<Batch<Issue>> GetAllIssuesAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, Func<Partial<Batch<Issue>>, Partial<Batch<Issue>>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<Batch<Issue>>("GET", $"api/http/projects/{project}/planning/issues?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&assigneeId={assigneeId.JoinToString("assigneeId", it => it?.ToString())}&createdByProfileId={createdByProfileId?.ToString() ?? "null"}&statuses={statuses.JoinToString("statuses", it => it.ToString())}&tagId={tagId?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={sorting.ToString()}&descending={descending.ToString("l")}&tags={tags?.JoinToString("tags", it => it.ToString()) ?? "null"}&customFields={customFields?.JoinToString("customFields", it => it.ToString()) ?? "null"}&importTransaction={importTransaction?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Issue>>()) : Partial<Batch<Issue>>.Default())}", cancellationToken);
                 
                 /// <remarks>
                 /// Required permissions:
@@ -1536,8 +1695,8 @@ namespace SpaceDotNet.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
             
                 /// <remarks>
                 /// Required permissions:
@@ -1560,7 +1719,7 @@ namespace SpaceDotNet.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task UpdateIssueAsync(ProjectIdentifier project, string issueId, string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null, CancellationToken cancellationToken = default)
+                public async Task UpdateIssueAsync(ProjectIdentifier project, string issueId, string title, string status, string? description = null, string? assignee = null, DateTime? dueDate = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/issues/{issueId}", 
                         new ProjectsForProjectPlanningIssuesForIssueIdPatchRequest { 
                             Title = title,
@@ -1568,7 +1727,6 @@ namespace SpaceDotNet.Client
                             Assignee = assignee,
                             Status = status,
                             DueDate = dueDate,
-                            ImportInfo = importInfo,
                         }
                 , cancellationToken);
             
@@ -1845,7 +2003,7 @@ namespace SpaceDotNet.Client
                     }
             , cancellationToken);
         
-            public async Task InvokeGarbageCollectionOnRepositoryNotAvailableInMultiOrgModeAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
+            public async Task InvokeGarbageCollectionOnRepositorynotAvailableInMultiorgModeAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/repositories/{repository}/gc", cancellationToken);
         
             public async Task DeleteRepositoryAsync(ProjectIdentifier project, string repository, CancellationToken cancellationToken = default)

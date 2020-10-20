@@ -48,12 +48,6 @@ namespace SpaceDotNet.Client.DRDraftHeaderPartialBuilder
         public static Partial<DRDraftHeader> WithIsShared(this Partial<DRDraftHeader> it)
             => it.AddFieldName("shared");
         
-        public static Partial<DRDraftHeader> WithPublicationDetails(this Partial<DRDraftHeader> it)
-            => it.AddFieldName("publicationDetails");
-        
-        public static Partial<DRDraftHeader> WithPublicationDetails(this Partial<DRDraftHeader> it, Func<Partial<DraftPublicationDetails>, Partial<DraftPublicationDetails>> partialBuilder)
-            => it.AddFieldName("publicationDetails", partialBuilder(new Partial<DraftPublicationDetails>(it)));
-        
         public static Partial<DRDraftHeader> WithPublicationDetails2(this Partial<DRDraftHeader> it)
             => it.AddFieldName("publicationDetails2");
         

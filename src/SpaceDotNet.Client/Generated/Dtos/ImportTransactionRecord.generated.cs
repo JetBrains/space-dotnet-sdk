@@ -30,12 +30,13 @@ namespace SpaceDotNet.Client
     {
         public ImportTransactionRecord() { }
         
-        public ImportTransactionRecord(string id, bool archived, CPrincipal importer, string externalSource)
+        public ImportTransactionRecord(string id, bool archived, CPrincipal importer, string externalSource, DateTime imported)
         {
             Id = id;
             IsArchived = archived;
             Importer = importer;
             ExternalSource = externalSource;
+            Imported = imported;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(Id));
@@ -78,12 +79,24 @@ namespace SpaceDotNet.Client
             set { _externalSource.SetValue(value); }
         }
     
+        private PropertyValue<DateTime> _imported = new PropertyValue<DateTime>(nameof(ImportTransactionRecord), nameof(Imported));
+        
+        [Required]
+        [JsonPropertyName("imported")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Imported
+        {
+            get { return _imported.GetValue(); }
+            set { _imported.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
             _importer.SetAccessPath(path, validateHasBeenSet);
             _externalSource.SetAccessPath(path, validateHasBeenSet);
+            _imported.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -42,6 +42,9 @@ namespace SpaceDotNet.Client.ImportTransactionRecordPartialBuilder
         public static Partial<ImportTransactionRecord> WithExternalSource(this Partial<ImportTransactionRecord> it)
             => it.AddFieldName("externalSource");
         
+        public static Partial<ImportTransactionRecord> WithImported(this Partial<ImportTransactionRecord> it)
+            => it.AddFieldName("imported");
+        
     }
     
 }

@@ -45,7 +45,7 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<DRDraft> CreateDraftAsync(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<DRDraft> CreateDraftAsync(DraftDocumentType? type = null, string? title = null, string? text = null, long? textVersion = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<DocsDraftsPostRequest, DRDraft>("POST", $"api/http/docs/drafts?$fields={(partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default())}", 
                     new DocsDraftsPostRequest { 
                         Title = title,
@@ -53,7 +53,6 @@ namespace SpaceDotNet.Client
                         TextVersion = textVersion,
                         Type = (type ?? DraftDocumentType.WYSIWYG),
                         Folder = folder,
-                        PublicationDetails = publicationDetails,
                         PublicationDetails2 = publicationDetails2,
                     }
             , cancellationToken);
@@ -61,7 +60,7 @@ namespace SpaceDotNet.Client
             public async Task<DRDraft> GetDraftAsync(string id, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<DRDraft>("GET", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default())}", cancellationToken);
         
-            public async Task<DRDraft> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<DRDraft> UpdateDraftAsync(string id, string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, PublicationDetails? publicationDetails2 = null, Func<Partial<DRDraft>, Partial<DRDraft>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<DocsDraftsForIdPatchRequest, DRDraft>("PATCH", $"api/http/docs/drafts/{id}?$fields={(partial != null ? partial(new Partial<DRDraft>()) : Partial<DRDraft>.Default())}", 
                     new DocsDraftsForIdPatchRequest { 
                         Title = title,
@@ -69,7 +68,6 @@ namespace SpaceDotNet.Client
                         TextVersion = textVersion,
                         Type = type,
                         Folder = folder,
-                        PublicationDetails = publicationDetails,
                         PublicationDetails2 = publicationDetails2,
                     }
             , cancellationToken);

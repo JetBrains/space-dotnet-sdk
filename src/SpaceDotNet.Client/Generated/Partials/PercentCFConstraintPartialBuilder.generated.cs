@@ -23,19 +23,10 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MoneyPartialBuilder
+namespace SpaceDotNet.Client.PercentCFConstraintPartialBuilder
 {
-    public static class MoneyPartialExtensions
+    public static class PercentCFConstraintPartialExtensions
     {
-        public static Partial<Money> WithAmount(this Partial<Money> it)
-            => it.AddFieldName("amount");
-        
-        public static Partial<Money> WithCurrency(this Partial<Money> it)
-            => it.AddFieldName("currency");
-        
-        public static Partial<Money> WithCurrency(this Partial<Money> it, Func<Partial<Currency>, Partial<Currency>> partialBuilder)
-            => it.AddFieldName("currency", partialBuilder(new Partial<Currency>(it)));
-        
     }
     
 }

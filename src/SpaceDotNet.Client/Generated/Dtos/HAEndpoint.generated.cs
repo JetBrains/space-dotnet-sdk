@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public HAEndpoint() { }
         
-        public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADeprecation? deprecation = null, List<HARight>? rights = null)
+        public HAEndpoint(HAResource resource, HAMethod method, List<HAParameter> parameters, HAPath path, string displayName, string functionName, HATypeObject? requestBody = null, HAType? responseBody = null, string? doc = null, HADeprecation? deprecation = null, List<HARight>? rights = null)
         {
             Resource = resource;
             Method = method;
@@ -39,6 +39,7 @@ namespace SpaceDotNet.Client
             ResponseBody = responseBody;
             Path = path;
             DisplayName = displayName;
+            FunctionName = functionName;
             Doc = doc;
             Deprecation = deprecation;
             Rights = rights;
@@ -112,6 +113,16 @@ namespace SpaceDotNet.Client
             set { _displayName.SetValue(value); }
         }
     
+        private PropertyValue<string> _functionName = new PropertyValue<string>(nameof(HAEndpoint), nameof(FunctionName));
+        
+        [Required]
+        [JsonPropertyName("functionName")]
+        public string FunctionName
+        {
+            get { return _functionName.GetValue(); }
+            set { _functionName.SetValue(value); }
+        }
+    
         private PropertyValue<string?> _doc = new PropertyValue<string?>(nameof(HAEndpoint), nameof(Doc));
         
         [JsonPropertyName("doc")]
@@ -148,6 +159,7 @@ namespace SpaceDotNet.Client
             _responseBody.SetAccessPath(path, validateHasBeenSet);
             _path.SetAccessPath(path, validateHasBeenSet);
             _displayName.SetAccessPath(path, validateHasBeenSet);
+            _functionName.SetAccessPath(path, validateHasBeenSet);
             _doc.SetAccessPath(path, validateHasBeenSet);
             _deprecation.SetAccessPath(path, validateHasBeenSet);
             _rights.SetAccessPath(path, validateHasBeenSet);

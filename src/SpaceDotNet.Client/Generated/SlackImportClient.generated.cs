@@ -47,7 +47,7 @@ namespace SpaceDotNet.Client
         /// <summary>
         /// Redirect URI for Space Slack App authentication method
         /// </summary>
-        public async Task SlackOAuthRedirectEndpointAsync(string code, string? state = null, CancellationToken cancellationToken = default)
+        public async Task SlackOauthRedirectEndpointAsync(string code, string? state = null, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync("GET", $"api/http/slack-import/oauth?code={code.ToString()}&state={state?.ToString() ?? "null"}", cancellationToken);
     
     }

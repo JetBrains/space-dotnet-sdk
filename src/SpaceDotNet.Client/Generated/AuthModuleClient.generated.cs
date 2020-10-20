@@ -152,7 +152,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// For a username/password combination, test built-in authentication with updated settings.
             /// </summary>
-            public async Task<TDMemberProfile> TestBuiltInSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<TDMemberProfile> TestBuiltinSettingsAsync(ESBuiltinAuthModuleSettings settings, string username, string password, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<AuthModulesTestBuiltInPostRequest, TDMemberProfile>("POST", $"api/http/auth-modules/test/built-in?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", 
                     new AuthModulesTestBuiltInPostRequest { 
                         Settings = settings,
@@ -164,7 +164,7 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// For a username/password combination, test LDAP authentication with updated settings.
             /// </summary>
-            public async Task<ESDefaultProfileLoginDetails> TestLDAPSettingsAsync(ESLdapAuthModuleSettings settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetails>, Partial<ESDefaultProfileLoginDetails>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<ESDefaultProfileLoginDetails> TestLdapSettingsAsync(ESLdapAuthModuleSettings settings, string username, string password, Func<Partial<ESDefaultProfileLoginDetails>, Partial<ESDefaultProfileLoginDetails>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<AuthModulesTestLdapPostRequest, ESDefaultProfileLoginDetails>("POST", $"api/http/auth-modules/test/ldap?$fields={(partial != null ? partial(new Partial<ESDefaultProfileLoginDetails>()) : Partial<ESDefaultProfileLoginDetails>.Default())}", 
                     new AuthModulesTestLdapPostRequest { 
                         Settings = settings,

@@ -66,6 +66,9 @@ namespace SpaceDotNet.Client.HAEndpointPartialBuilder
         public static Partial<HAEndpoint> WithDisplayName(this Partial<HAEndpoint> it)
             => it.AddFieldName("displayName");
         
+        public static Partial<HAEndpoint> WithFunctionName(this Partial<HAEndpoint> it)
+            => it.AddFieldName("functionName");
+        
         public static Partial<HAEndpoint> WithDoc(this Partial<HAEndpoint> it)
             => it.AddFieldName("doc");
         

@@ -27,11 +27,29 @@ namespace SpaceDotNet.Client.IssueImportResultPartialBuilder
 {
     public static class IssueImportResultPartialExtensions
     {
-        public static Partial<IssueImportResult> WithIsSuccess(this Partial<IssueImportResult> it)
-            => it.AddFieldName("success");
-        
         public static Partial<IssueImportResult> WithMessage(this Partial<IssueImportResult> it)
             => it.AddFieldName("message");
+        
+        public static Partial<IssueImportResult> WithCreated(this Partial<IssueImportResult> it)
+            => it.AddFieldName("created");
+        
+        public static Partial<IssueImportResult> WithCreated(this Partial<IssueImportResult> it, Func<Partial<IssueImportResultItem>, Partial<IssueImportResultItem>> partialBuilder)
+            => it.AddFieldName("created", partialBuilder(new Partial<IssueImportResultItem>(it)));
+        
+        public static Partial<IssueImportResult> WithUpdated(this Partial<IssueImportResult> it)
+            => it.AddFieldName("updated");
+        
+        public static Partial<IssueImportResult> WithUpdated(this Partial<IssueImportResult> it, Func<Partial<IssueImportResultItem>, Partial<IssueImportResultItem>> partialBuilder)
+            => it.AddFieldName("updated", partialBuilder(new Partial<IssueImportResultItem>(it)));
+        
+        public static Partial<IssueImportResult> WithSkipped(this Partial<IssueImportResult> it)
+            => it.AddFieldName("skipped");
+        
+        public static Partial<IssueImportResult> WithSkipped(this Partial<IssueImportResult> it, Func<Partial<IssueImportResultItem>, Partial<IssueImportResultItem>> partialBuilder)
+            => it.AddFieldName("skipped", partialBuilder(new Partial<IssueImportResultItem>(it)));
+        
+        public static Partial<IssueImportResult> WithMissingAttributes(this Partial<IssueImportResult> it)
+            => it.AddFieldName("missingAttributes");
         
     }
     

@@ -23,18 +23,21 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MoneyPartialBuilder
+namespace SpaceDotNet.Client.IssueImportResultItemPartialBuilder
 {
-    public static class MoneyPartialExtensions
+    public static class IssueImportResultItemPartialExtensions
     {
-        public static Partial<Money> WithAmount(this Partial<Money> it)
-            => it.AddFieldName("amount");
+        public static Partial<IssueImportResultItem> WithExternalId(this Partial<IssueImportResultItem> it)
+            => it.AddFieldName("externalId");
         
-        public static Partial<Money> WithCurrency(this Partial<Money> it)
-            => it.AddFieldName("currency");
+        public static Partial<IssueImportResultItem> WithIssue(this Partial<IssueImportResultItem> it)
+            => it.AddFieldName("issue");
         
-        public static Partial<Money> WithCurrency(this Partial<Money> it, Func<Partial<Currency>, Partial<Currency>> partialBuilder)
-            => it.AddFieldName("currency", partialBuilder(new Partial<Currency>(it)));
+        public static Partial<IssueImportResultItem> WithIssue(this Partial<IssueImportResultItem> it, Func<Partial<Issue>, Partial<Issue>> partialBuilder)
+            => it.AddFieldName("issue", partialBuilder(new Partial<Issue>(it)));
+        
+        public static Partial<IssueImportResultItem> WithError(this Partial<IssueImportResultItem> it)
+            => it.AddFieldName("error");
         
     }
     

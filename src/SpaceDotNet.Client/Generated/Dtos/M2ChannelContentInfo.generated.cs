@@ -40,8 +40,8 @@ namespace SpaceDotNet.Client
         public static M2ChannelContentApplication M2ChannelContentApplication(ESService service, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentApplication(service: service, notificationDefaults: notificationDefaults);
         
-        public static M2ChannelContentArticle M2ChannelContentArticle(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord? details = null)
-            => new M2ChannelContentArticle(article: article, articleContent: articleContent, details: null);
+        public static M2ChannelContentArticle M2ChannelContentArticle(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord? details = null, ArticleChannelRecord? channel = null)
+            => new M2ChannelContentArticle(article: article, articleContent: articleContent, details: null, channel: null);
         
         public static M2ChannelContentCodeDiscussion M2ChannelContentCodeDiscussion(string codeDiscussionId, ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord? codeDiscussion = null)
             => new M2ChannelContentCodeDiscussion(codeDiscussionId: codeDiscussionId, notificationDefaults: notificationDefaults, codeDiscussion: null);

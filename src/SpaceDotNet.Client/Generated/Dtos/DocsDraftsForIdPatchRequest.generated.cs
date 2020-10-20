@@ -30,14 +30,13 @@ namespace SpaceDotNet.Client
     {
         public DocsDraftsForIdPatchRequest() { }
         
-        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null)
+        public DocsDraftsForIdPatchRequest(string? title = null, string? text = null, long? textVersion = null, DraftDocumentType? type = null, string? folder = null, PublicationDetails? publicationDetails2 = null)
         {
             Title = title;
             Text = text;
             TextVersion = textVersion;
             Type = type;
             Folder = folder;
-            PublicationDetails = publicationDetails;
             PublicationDetails2 = publicationDetails2;
         }
         
@@ -86,15 +85,6 @@ namespace SpaceDotNet.Client
             set { _folder.SetValue(value); }
         }
     
-        private PropertyValue<DraftPublicationDetails?> _publicationDetails = new PropertyValue<DraftPublicationDetails?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails));
-        
-        [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetails? PublicationDetails
-        {
-            get { return _publicationDetails.GetValue(); }
-            set { _publicationDetails.SetValue(value); }
-        }
-    
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocsDraftsForIdPatchRequest), nameof(PublicationDetails2));
         
         [JsonPropertyName("publicationDetails2")]
@@ -111,7 +101,6 @@ namespace SpaceDotNet.Client
             _textVersion.SetAccessPath(path, validateHasBeenSet);
             _type.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
-            _publicationDetails.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
         }
     

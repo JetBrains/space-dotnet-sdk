@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public Issue() { }
         
-        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null, string? description = null)
+        public Issue(string id, bool archived, string projectId, int number, CPrincipal createdBy, DateTime creationTime, IssueStatus status, List<PlanningTag> tags, string title, List<AttachmentInfo> attachments, M2ChannelRecord channel, List<Checklist> checklists, List<SprintRecord> sprints, PRProject? projectRef = null, IssueTracker? trackerRef = null, TDMemberProfile? assignee = null, DateTime? dueDate = null, ImportedEntityInfo? importInfo = null, ExternalEntityInfoRecord? externalEntityInfo = null, string? description = null)
         {
             Id = id;
             IsArchived = archived;
@@ -44,6 +44,7 @@ namespace SpaceDotNet.Client
             Status = status;
             DueDate = dueDate;
             ImportInfo = importInfo;
+            ExternalEntityInfo = externalEntityInfo;
             Tags = tags;
             Title = title;
             Attachments = attachments;
@@ -170,6 +171,15 @@ namespace SpaceDotNet.Client
             set { _importInfo.SetValue(value); }
         }
     
+        private PropertyValue<ExternalEntityInfoRecord?> _externalEntityInfo = new PropertyValue<ExternalEntityInfoRecord?>(nameof(Issue), nameof(ExternalEntityInfo));
+        
+        [JsonPropertyName("externalEntityInfo")]
+        public ExternalEntityInfoRecord? ExternalEntityInfo
+        {
+            get { return _externalEntityInfo.GetValue(); }
+            set { _externalEntityInfo.SetValue(value); }
+        }
+    
         private PropertyValue<List<PlanningTag>> _tags = new PropertyValue<List<PlanningTag>>(nameof(Issue), nameof(Tags));
         
         [Required]
@@ -253,6 +263,7 @@ namespace SpaceDotNet.Client
             _status.SetAccessPath(path, validateHasBeenSet);
             _dueDate.SetAccessPath(path, validateHasBeenSet);
             _importInfo.SetAccessPath(path, validateHasBeenSet);
+            _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);

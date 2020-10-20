@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, DateTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, DateTime? created = null, bool? deleted = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, bool? published = null, DocumentFolderRecord? folder = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, DateTime? created = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, bool? published = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -38,7 +38,6 @@ namespace SpaceDotNet.Client
             Created = created;
             IsShared = shared;
             IsDeleted = deleted;
-            PublicationDetails = publicationDetails;
             PublicationDetails2 = publicationDetails2;
             Author = author;
             IsPublishedFlag = publishedFlag;
@@ -108,15 +107,6 @@ namespace SpaceDotNet.Client
         {
             get { return _deleted.GetValue(); }
             set { _deleted.SetValue(value); }
-        }
-    
-        private PropertyValue<DraftPublicationDetails?> _publicationDetails = new PropertyValue<DraftPublicationDetails?>(nameof(DRDraft), nameof(PublicationDetails));
-        
-        [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetails? PublicationDetails
-        {
-            get { return _publicationDetails.GetValue(); }
-            set { _publicationDetails.SetValue(value); }
         }
     
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DRDraft), nameof(PublicationDetails2));
@@ -213,7 +203,6 @@ namespace SpaceDotNet.Client
             _created.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
-            _publicationDetails.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _publishedFlag.SetAccessPath(path, validateHasBeenSet);

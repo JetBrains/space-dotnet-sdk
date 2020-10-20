@@ -30,27 +30,27 @@ namespace SpaceDotNet.Client
     {
         public Money() { }
         
-        public Money(int value, int currency)
+        public Money(double amount, Currency currency)
         {
-            Value = value;
+            Amount = amount;
             Currency = currency;
         }
         
-        private PropertyValue<int> _value = new PropertyValue<int>(nameof(Money), nameof(Value));
+        private PropertyValue<double> _amount = new PropertyValue<double>(nameof(Money), nameof(Amount));
         
         [Required]
-        [JsonPropertyName("value")]
-        public int Value
+        [JsonPropertyName("amount")]
+        public double Amount
         {
-            get { return _value.GetValue(); }
-            set { _value.SetValue(value); }
+            get { return _amount.GetValue(); }
+            set { _amount.SetValue(value); }
         }
     
-        private PropertyValue<int> _currency = new PropertyValue<int>(nameof(Money), nameof(Currency));
+        private PropertyValue<Currency> _currency = new PropertyValue<Currency>(nameof(Money), nameof(Currency));
         
         [Required]
         [JsonPropertyName("currency")]
-        public int Currency
+        public Currency Currency
         {
             get { return _currency.GetValue(); }
             set { _currency.SetValue(value); }
@@ -58,7 +58,7 @@ namespace SpaceDotNet.Client
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _value.SetAccessPath(path, validateHasBeenSet);
+            _amount.SetAccessPath(path, validateHasBeenSet);
             _currency.SetAccessPath(path, validateHasBeenSet);
         }
     

@@ -38,6 +38,9 @@ namespace SpaceDotNet.Client
         public static IntCFConstraint Int(int? min = null, int? max = null, string? message = null)
             => new IntCFConstraint(min: null, max: null, message: null);
         
+        public static PercentCFConstraint Percent()
+            => new PercentCFConstraint();
+        
         public static StringCFConstraint String(int? min = null, int? max = null, string? pattern = null, string? message = null)
             => new StringCFConstraint(min: null, max: null, pattern: null, message: null);
         

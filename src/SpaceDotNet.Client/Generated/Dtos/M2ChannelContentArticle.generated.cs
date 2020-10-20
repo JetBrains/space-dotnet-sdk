@@ -33,11 +33,12 @@ namespace SpaceDotNet.Client
         
         public M2ChannelContentArticle() { }
         
-        public M2ChannelContentArticle(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord? details = null)
+        public M2ChannelContentArticle(ArticleRecord article, ArticleContentRecord articleContent, ArticleDetailsRecord? details = null, ArticleChannelRecord? channel = null)
         {
             Article = article;
             ArticleContent = articleContent;
             Details = details;
+            Channel = channel;
         }
         
         private PropertyValue<ArticleRecord> _article = new PropertyValue<ArticleRecord>(nameof(M2ChannelContentArticle), nameof(Article));
@@ -69,11 +70,21 @@ namespace SpaceDotNet.Client
             set { _details.SetValue(value); }
         }
     
+        private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(M2ChannelContentArticle), nameof(Channel));
+        
+        [JsonPropertyName("channel")]
+        public ArticleChannelRecord? Channel
+        {
+            get { return _channel.GetValue(); }
+            set { _channel.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _article.SetAccessPath(path, validateHasBeenSet);
             _articleContent.SetAccessPath(path, validateHasBeenSet);
             _details.SetAccessPath(path, validateHasBeenSet);
+            _channel.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -42,12 +42,6 @@ namespace SpaceDotNet.Client.ProjectsForProjectPlanningIssuesForIssueIdPatchRequ
         public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithDueDate(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
             => it.AddFieldName("dueDate");
         
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithImportInfo(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it)
-            => it.AddFieldName("importInfo");
-        
-        public static Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> WithImportInfo(this Partial<ProjectsForProjectPlanningIssuesForIssueIdPatchRequest> it, Func<Partial<ImportedEntityInfo>, Partial<ImportedEntityInfo>> partialBuilder)
-            => it.AddFieldName("importInfo", partialBuilder(new Partial<ImportedEntityInfo>(it)));
-        
     }
     
 }

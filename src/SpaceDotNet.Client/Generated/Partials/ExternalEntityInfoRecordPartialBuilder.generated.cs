@@ -36,6 +36,9 @@ namespace SpaceDotNet.Client.ExternalEntityInfoRecordPartialBuilder
         public static Partial<ExternalEntityInfoRecord> WithExternalId(this Partial<ExternalEntityInfoRecord> it)
             => it.AddFieldName("externalId");
         
+        public static Partial<ExternalEntityInfoRecord> WithExternalName(this Partial<ExternalEntityInfoRecord> it)
+            => it.AddFieldName("externalName");
+        
         public static Partial<ExternalEntityInfoRecord> WithExternalUrl(this Partial<ExternalEntityInfoRecord> it)
             => it.AddFieldName("externalUrl");
         

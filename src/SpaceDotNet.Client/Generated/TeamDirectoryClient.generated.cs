@@ -1167,7 +1167,7 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// Get all OAuth consents for a given profile id.
                 /// </summary>
-                public async Task<List<ESOAuthConsent>> GetAllOAuthConsentsAsync(ProfileIdentifier owner, Func<Partial<ESOAuthConsent>, Partial<ESOAuthConsent>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<List<ESOAuthConsent>> GetAllOauthConsentsAsync(ProfileIdentifier owner, Func<Partial<ESOAuthConsent>, Partial<ESOAuthConsent>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<ESOAuthConsent>>("GET", $"api/http/team-directory/profiles/oauth-consents/{owner}?$fields={(partial != null ? partial(new Partial<ESOAuthConsent>()) : Partial<ESOAuthConsent>.Default())}", cancellationToken);
             
                 public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
@@ -1315,7 +1315,7 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Get two-factor authentication status for a given profile id. The response indicates whether two-factor authentication is active, not active, or not set up yet.
                     /// </summary>
-                    public async Task<TwoFactorAuthenticationStatus> TwoFactorAuthenticationStatusAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<TwoFactorAuthenticationStatus> TwofactorAuthenticationStatusAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationStatus>, Partial<TwoFactorAuthenticationStatus>>? partial = null, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<TwoFactorAuthenticationStatus>("GET", $"api/http/team-directory/profiles/{profile}/2-fa/status?$fields={(partial != null ? partial(new Partial<TwoFactorAuthenticationStatus>()) : Partial<TwoFactorAuthenticationStatus>.Default())}", cancellationToken);
                 
                 }
@@ -1334,13 +1334,13 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Set up two-factor authentication using TOTP (Time-based One-time Password) for a given profile id. The response will return a QR code (base64 encoded) that can be scanned with an app to setup two-factor authentication. The code that the app generates has to be confirmed in Space to enable TOTP.
                     /// </summary>
-                    public async Task<TwoFactorAuthenticationSecret> SetUpTOTPTwoFactorAuthenticationAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationSecret>, Partial<TwoFactorAuthenticationSecret>>? partial = null, CancellationToken cancellationToken = default)
+                    public async Task<TwoFactorAuthenticationSecret> SetUpTotpTwofactorAuthenticationAsync(ProfileIdentifier profile, Func<Partial<TwoFactorAuthenticationSecret>, Partial<TwoFactorAuthenticationSecret>>? partial = null, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync<TwoFactorAuthenticationSecret>("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp?$fields={(partial != null ? partial(new Partial<TwoFactorAuthenticationSecret>()) : Partial<TwoFactorAuthenticationSecret>.Default())}", cancellationToken);
                 
                     /// <summary>
                     /// Confirm two-factor authentication for a given profile id using a TOTP (Time-based One-time Password) code from an app.
                     /// </summary>
-                    public async Task ConfirmTOTPTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, int code, CancellationToken cancellationToken = default)
+                    public async Task ConfirmTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, int code, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("POST", $"api/http/team-directory/profiles/{profile}/2-fa/totp/confirm", 
                             new TeamDirectoryProfilesForProfile2FaTotpConfirmPostRequest { 
                                 Code = code,
@@ -1350,7 +1350,7 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Enable/disable two-factor authentication settings for a given profile id.
                     /// </summary>
-                    public async Task UpdateTOTPTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, CancellationToken cancellationToken = default)
+                    public async Task UpdateTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, bool enabled, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/2-fa/totp", 
                             new TeamDirectoryProfilesForProfile2FaTotpPatchRequest { 
                                 IsEnabled = enabled,
@@ -1360,7 +1360,7 @@ namespace SpaceDotNet.Client
                     /// <summary>
                     /// Remove two-factor authentication settings for a given profile id. Previously generated TOTP (Time-based One-time Password) are rendered invalid.
                     /// </summary>
-                    public async Task DeleteCurrentTOTPTwoFactorAuthenticationSettingsAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                    public async Task DeleteCurrentTotpTwofactorAuthenticationSettingsAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
                         => await _connection.RequestResourceAsync("DELETE", $"api/http/team-directory/profiles/{profile}/2-fa/totp", cancellationToken);
                 
                 }
@@ -1655,10 +1655,10 @@ namespace SpaceDotNet.Client
                 /// <summary>
                 /// This endpoint will return profile information, and Space personalisation data such as projects in the navigation bar, etc.
                 /// </summary>
-                public async Task<SettingsValue> GetProfileSpacePersonalizationDataAsync(ProfileIdentifier profile, Func<Partial<SettingsValue>, Partial<SettingsValue>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<SettingsValue> GetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, Func<Partial<SettingsValue>, Partial<SettingsValue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<SettingsValue>("GET", $"api/http/team-directory/profiles/{profile}/settings?$fields={(partial != null ? partial(new Partial<SettingsValue>()) : Partial<SettingsValue>.Default())}", cancellationToken);
             
-                public async Task SetProfileSpacePersonalizationDataAsync(ProfileIdentifier profile, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, CancellationToken cancellationToken = default)
+                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/settings", 
                         new TeamDirectoryProfilesForProfileSettingsPatchRequest { 
                             ThemeName = themeName,

@@ -23,19 +23,35 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.MoneyPartialBuilder
+namespace SpaceDotNet.Client
 {
-    public static class MoneyPartialExtensions
+    public sealed class PercentCFValue
+         : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<Money> WithAmount(this Partial<Money> it)
-            => it.AddFieldName("amount");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "PercentCFValue";
         
-        public static Partial<Money> WithCurrency(this Partial<Money> it)
-            => it.AddFieldName("currency");
+        public PercentCFValue() { }
         
-        public static Partial<Money> WithCurrency(this Partial<Money> it, Func<Partial<Currency>, Partial<Currency>> partialBuilder)
-            => it.AddFieldName("currency", partialBuilder(new Partial<Currency>(it)));
+        public PercentCFValue(int? value = null)
+        {
+            Value = value;
+        }
         
+        private PropertyValue<int?> _value = new PropertyValue<int?>(nameof(PercentCFValue), nameof(Value));
+        
+        [JsonPropertyName("value")]
+        public int? Value
+        {
+            get { return _value.GetValue(); }
+            set { _value.SetValue(value); }
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _value.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

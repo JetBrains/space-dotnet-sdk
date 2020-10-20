@@ -34,7 +34,7 @@ namespace SpaceDotNet.Client
             _connection = connection;
         }
         
-        public async Task<string> ConvertMarkdownToHTMLAsync(string markdown, CancellationToken cancellationToken = default)
+        public async Task<string> ConvertMarkdownToHtmlAsync(string markdown, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync<BlogsMarkdown2htmlPostRequest, string>("POST", $"api/http/blogs/markdown2html", 
                 new BlogsMarkdown2htmlPostRequest { 
                     Markdown = markdown,

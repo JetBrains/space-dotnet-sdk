@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, DraftPublicationDetails? publicationDetails = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
@@ -38,7 +38,6 @@ namespace SpaceDotNet.Client
             Modified = modified;
             Created = created;
             IsShared = shared;
-            PublicationDetails = publicationDetails;
             PublicationDetails2 = publicationDetails2;
             IsDeleted = deleted;
             Folder = folder;
@@ -105,15 +104,6 @@ namespace SpaceDotNet.Client
             set { _shared.SetValue(value); }
         }
     
-        private PropertyValue<DraftPublicationDetails?> _publicationDetails = new PropertyValue<DraftPublicationDetails?>(nameof(DRDraftHeader), nameof(PublicationDetails));
-        
-        [JsonPropertyName("publicationDetails")]
-        public DraftPublicationDetails? PublicationDetails
-        {
-            get { return _publicationDetails.GetValue(); }
-            set { _publicationDetails.SetValue(value); }
-        }
-    
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DRDraftHeader), nameof(PublicationDetails2));
         
         [JsonPropertyName("publicationDetails2")]
@@ -149,7 +139,6 @@ namespace SpaceDotNet.Client
             _modified.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
-            _publicationDetails.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _folder.SetAccessPath(path, validateHasBeenSet);
