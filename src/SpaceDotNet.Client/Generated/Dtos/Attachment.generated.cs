@@ -31,9 +31,6 @@ namespace SpaceDotNet.Client
         public static DeletedAttachment Deleted(string deletedIdentity)
             => new DeletedAttachment(deletedIdentity: deletedIdentity);
         
-        public static FileAttachment File(string id, long sizeBytes, string filename)
-            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
-        
         public static ProfileLinkPreview ProfileLinkPreview(TDMemberProfile profile)
             => new ProfileLinkPreview(profile: profile);
         

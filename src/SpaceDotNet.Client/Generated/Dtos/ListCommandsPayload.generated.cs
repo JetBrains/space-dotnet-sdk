@@ -33,18 +33,17 @@ namespace SpaceDotNet.Client
         
         public ListCommandsPayload() { }
         
-        public ListCommandsPayload(string accessToken, string? verificationToken = null, string? userId = null)
+        public ListCommandsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null)
         {
             AccessToken = accessToken;
             VerificationToken = verificationToken;
             UserId = userId;
         }
         
-        private PropertyValue<string> _accessToken = new PropertyValue<string>(nameof(ListCommandsPayload), nameof(AccessToken));
+        private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(ListCommandsPayload), nameof(AccessToken));
         
-        [Required]
         [JsonPropertyName("accessToken")]
-        public string AccessToken
+        public string? AccessToken
         {
             get { return _accessToken.GetValue(); }
             set { _accessToken.SetValue(value); }

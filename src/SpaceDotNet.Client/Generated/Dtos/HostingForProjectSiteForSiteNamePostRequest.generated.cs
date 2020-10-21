@@ -25,29 +25,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HostingSitePostRequest
+    public class HostingForProjectSiteForSiteNamePostRequest
          : IPropagatePropertyAccessPath
     {
-        public HostingSitePostRequest() { }
+        public HostingForProjectSiteForSiteNamePostRequest() { }
         
-        public HostingSitePostRequest(string siteName, string versionId, HostingSiteSettings settings)
+        public HostingForProjectSiteForSiteNamePostRequest(string versionId, HostingSiteSettings settings)
         {
-            SiteName = siteName;
             VersionId = versionId;
             Settings = settings;
         }
         
-        private PropertyValue<string> _siteName = new PropertyValue<string>(nameof(HostingSitePostRequest), nameof(SiteName));
-        
-        [Required]
-        [JsonPropertyName("siteName")]
-        public string SiteName
-        {
-            get { return _siteName.GetValue(); }
-            set { _siteName.SetValue(value); }
-        }
-    
-        private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(HostingSitePostRequest), nameof(VersionId));
+        private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(HostingForProjectSiteForSiteNamePostRequest), nameof(VersionId));
         
         [Required]
         [JsonPropertyName("versionId")]
@@ -57,7 +46,7 @@ namespace SpaceDotNet.Client
             set { _versionId.SetValue(value); }
         }
     
-        private PropertyValue<HostingSiteSettings> _settings = new PropertyValue<HostingSiteSettings>(nameof(HostingSitePostRequest), nameof(Settings));
+        private PropertyValue<HostingSiteSettings> _settings = new PropertyValue<HostingSiteSettings>(nameof(HostingForProjectSiteForSiteNamePostRequest), nameof(Settings));
         
         [Required]
         [JsonPropertyName("settings")]
@@ -69,7 +58,6 @@ namespace SpaceDotNet.Client
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _siteName.SetAccessPath(path, validateHasBeenSet);
             _versionId.SetAccessPath(path, validateHasBeenSet);
             _settings.SetAccessPath(path, validateHasBeenSet);
         }

@@ -25,20 +25,20 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class PercentCFValue
+    public sealed class PercentageCFValue
          : CFValue, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         [JsonPropertyName("className")]
-        public override string? ClassName => "PercentCFValue";
+        public override string? ClassName => "PercentageCFValue";
         
-        public PercentCFValue() { }
+        public PercentageCFValue() { }
         
-        public PercentCFValue(int? value = null)
+        public PercentageCFValue(int? value = null)
         {
             Value = value;
         }
         
-        private PropertyValue<int?> _value = new PropertyValue<int?>(nameof(PercentCFValue), nameof(Value));
+        private PropertyValue<int?> _value = new PropertyValue<int?>(nameof(PercentageCFValue), nameof(Value));
         
         [JsonPropertyName("value")]
         public int? Value

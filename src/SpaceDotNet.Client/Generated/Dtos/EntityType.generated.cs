@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public EntityType() { }
         
-        public EntityType(string key, string displayName, string? group = null)
+        public EntityType(string key, string? displayName = null, string? group = null)
         {
             Key = key;
             DisplayName = displayName;
@@ -47,11 +47,10 @@ namespace SpaceDotNet.Client
             set { _key.SetValue(value); }
         }
     
-        private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(EntityType), nameof(DisplayName));
+        private PropertyValue<string?> _displayName = new PropertyValue<string?>(nameof(EntityType), nameof(DisplayName));
         
-        [Required]
         [JsonPropertyName("displayName")]
-        public string DisplayName
+        public string? DisplayName
         {
             get { return _displayName.GetValue(); }
             set { _displayName.SetValue(value); }

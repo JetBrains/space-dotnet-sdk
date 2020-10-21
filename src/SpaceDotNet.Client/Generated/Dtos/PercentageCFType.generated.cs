@@ -25,29 +25,16 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class HostingSiteUploadUrlPostRequest
-         : IPropagatePropertyAccessPath
+    public sealed class PercentageCFType
+         : CFType, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public HostingSiteUploadUrlPostRequest() { }
+        [JsonPropertyName("className")]
+        public override string? ClassName => "PercentageCFType";
         
-        public HostingSiteUploadUrlPostRequest(string siteName)
-        {
-            SiteName = siteName;
-        }
+        public PercentageCFType() { }
         
-        private PropertyValue<string> _siteName = new PropertyValue<string>(nameof(HostingSiteUploadUrlPostRequest), nameof(SiteName));
-        
-        [Required]
-        [JsonPropertyName("siteName")]
-        public string SiteName
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            get { return _siteName.GetValue(); }
-            set { _siteName.SetValue(value); }
-        }
-    
-        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-            _siteName.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

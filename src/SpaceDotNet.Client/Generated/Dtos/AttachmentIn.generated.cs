@@ -25,18 +25,12 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public sealed class PercentCFConstraint
-         : CFConstraint, IClassNameConvertible, IPropagatePropertyAccessPath
+    public interface AttachmentIn
+         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PercentCFConstraint";
+        public static FileAttachment FileAttachment(string id, long sizeBytes, string filename)
+            => new FileAttachment(id: id, sizeBytes: sizeBytes, filename: filename);
         
-        public PercentCFConstraint() { }
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
     
 }

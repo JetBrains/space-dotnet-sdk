@@ -23,11 +23,11 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PercentCFValuePartialBuilder
+namespace SpaceDotNet.Client.PercentageCFValuePartialBuilder
 {
-    public static class PercentCFValuePartialExtensions
+    public static class PercentageCFValuePartialExtensions
     {
-        public static Partial<PercentCFValue> WithValue(this Partial<PercentCFValue> it)
+        public static Partial<PercentageCFValue> WithValue(this Partial<PercentageCFValue> it)
             => it.AddFieldName("value");
         
     }

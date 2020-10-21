@@ -23,20 +23,10 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client
+namespace SpaceDotNet.Client.AttachmentInPartialBuilder
 {
-    public sealed class PercentCFType
-         : CFType, IClassNameConvertible, IPropagatePropertyAccessPath
+    public static class AttachmentInPartialExtensions
     {
-        [JsonPropertyName("className")]
-        public override string? ClassName => "PercentCFType";
-        
-        public PercentCFType() { }
-        
-        public override void SetAccessPath(string path, bool validateHasBeenSet)
-        {
-        }
-    
     }
     
 }

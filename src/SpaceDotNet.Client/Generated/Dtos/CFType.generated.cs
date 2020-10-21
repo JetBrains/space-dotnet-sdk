@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         public static IntListCFType IntList()
             => new IntListCFType();
         
-        public static PercentCFType Percent()
-            => new PercentCFType();
+        public static PercentageCFType Percentage()
+            => new PercentageCFType();
         
         public static ProfileCFType Profile()
             => new ProfileCFType();

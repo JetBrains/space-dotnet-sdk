@@ -23,9 +23,9 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.PercentCFTypePartialBuilder
+namespace SpaceDotNet.Client.PercentageCFConstraintPartialBuilder
 {
-    public static class PercentCFTypePartialExtensions
+    public static class PercentageCFConstraintPartialExtensions
     {
     }
     

@@ -33,18 +33,17 @@ namespace SpaceDotNet.Client
         
         public ListMenuExtensionsPayload() { }
         
-        public ListMenuExtensionsPayload(string accessToken, string? verificationToken = null, string? userId = null)
+        public ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null)
         {
             AccessToken = accessToken;
             VerificationToken = verificationToken;
             UserId = userId;
         }
         
-        private PropertyValue<string> _accessToken = new PropertyValue<string>(nameof(ListMenuExtensionsPayload), nameof(AccessToken));
+        private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(AccessToken));
         
-        [Required]
         [JsonPropertyName("accessToken")]
-        public string AccessToken
+        public string? AccessToken
         {
             get { return _accessToken.GetValue(); }
             set { _accessToken.SetValue(value); }

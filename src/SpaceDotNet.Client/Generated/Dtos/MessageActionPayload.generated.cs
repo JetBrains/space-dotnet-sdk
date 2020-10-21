@@ -33,7 +33,7 @@ namespace SpaceDotNet.Client
         
         public MessageActionPayload() { }
         
-        public MessageActionPayload(string actionId, string actionValue, MessageContext message, string accessToken, string userId, string? verificationToken = null)
+        public MessageActionPayload(string actionId, string actionValue, MessageContext message, string userId, string? accessToken = null, string? verificationToken = null)
         {
             ActionId = actionId;
             ActionValue = actionValue;
@@ -73,11 +73,10 @@ namespace SpaceDotNet.Client
             set { _message.SetValue(value); }
         }
     
-        private PropertyValue<string> _accessToken = new PropertyValue<string>(nameof(MessageActionPayload), nameof(AccessToken));
+        private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(AccessToken));
         
-        [Required]
         [JsonPropertyName("accessToken")]
-        public string AccessToken
+        public string? AccessToken
         {
             get { return _accessToken.GetValue(); }
             set { _accessToken.SetValue(value); }

@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ChatsMessagesSendMessagePostRequest() { }
         
-        public ChatsMessagesSendMessagePostRequest(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<Attachment>? attachments = null, string? externalId = null)
+        public ChatsMessagesSendMessagePostRequest(MessageRecipient recipient, ChatMessage content, bool? unfurlLinks = null, List<AttachmentIn>? attachments = null, string? externalId = null)
         {
             Recipient = recipient;
             Content = content;
@@ -68,10 +68,10 @@ namespace SpaceDotNet.Client
             set { _unfurlLinks.SetValue(value); }
         }
     
-        private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments));
+        private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments));
         
         [JsonPropertyName("attachments")]
-        public List<Attachment>? Attachments
+        public List<AttachmentIn>? Attachments
         {
             get { return _attachments.GetValue(); }
             set { _attachments.SetValue(value); }

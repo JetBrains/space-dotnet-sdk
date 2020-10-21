@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client.ChatsMessagesSendMessagePostRequestPartialBuilder
         public static Partial<ChatsMessagesSendMessagePostRequest> WithAttachments(this Partial<ChatsMessagesSendMessagePostRequest> it)
             => it.AddFieldName("attachments");
         
-        public static Partial<ChatsMessagesSendMessagePostRequest> WithAttachments(this Partial<ChatsMessagesSendMessagePostRequest> it, Func<Partial<Attachment>, Partial<Attachment>> partialBuilder)
-            => it.AddFieldName("attachments", partialBuilder(new Partial<Attachment>(it)));
+        public static Partial<ChatsMessagesSendMessagePostRequest> WithAttachments(this Partial<ChatsMessagesSendMessagePostRequest> it, Func<Partial<AttachmentIn>, Partial<AttachmentIn>> partialBuilder)
+            => it.AddFieldName("attachments", partialBuilder(new Partial<AttachmentIn>(it)));
         
         public static Partial<ChatsMessagesSendMessagePostRequest> WithExternalId(this Partial<ChatsMessagesSendMessagePostRequest> it)
             => it.AddFieldName("externalId");

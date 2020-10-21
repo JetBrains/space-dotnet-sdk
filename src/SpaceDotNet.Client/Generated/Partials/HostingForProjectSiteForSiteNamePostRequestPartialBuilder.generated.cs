@@ -23,20 +23,17 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HostingSitePostRequestPartialBuilder
+namespace SpaceDotNet.Client.HostingForProjectSiteForSiteNamePostRequestPartialBuilder
 {
-    public static class HostingSitePostRequestPartialExtensions
+    public static class HostingForProjectSiteForSiteNamePostRequestPartialExtensions
     {
-        public static Partial<HostingSitePostRequest> WithSiteName(this Partial<HostingSitePostRequest> it)
-            => it.AddFieldName("siteName");
-        
-        public static Partial<HostingSitePostRequest> WithVersionId(this Partial<HostingSitePostRequest> it)
+        public static Partial<HostingForProjectSiteForSiteNamePostRequest> WithVersionId(this Partial<HostingForProjectSiteForSiteNamePostRequest> it)
             => it.AddFieldName("versionId");
         
-        public static Partial<HostingSitePostRequest> WithSettings(this Partial<HostingSitePostRequest> it)
+        public static Partial<HostingForProjectSiteForSiteNamePostRequest> WithSettings(this Partial<HostingForProjectSiteForSiteNamePostRequest> it)
             => it.AddFieldName("settings");
         
-        public static Partial<HostingSitePostRequest> WithSettings(this Partial<HostingSitePostRequest> it, Func<Partial<HostingSiteSettings>, Partial<HostingSiteSettings>> partialBuilder)
+        public static Partial<HostingForProjectSiteForSiteNamePostRequest> WithSettings(this Partial<HostingForProjectSiteForSiteNamePostRequest> it, Func<Partial<HostingSiteSettings>, Partial<HostingSiteSettings>> partialBuilder)
             => it.AddFieldName("settings", partialBuilder(new Partial<HostingSiteSettings>(it)));
         
     }

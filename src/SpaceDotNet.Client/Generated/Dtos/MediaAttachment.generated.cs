@@ -26,7 +26,7 @@ using SpaceDotNet.Common.Types;
 namespace SpaceDotNet.Client
 {
     public interface MediaAttachment
-         : Attachment, IClassNameConvertible, IPropagatePropertyAccessPath
+         : AttachmentIn, IClassNameConvertible, IPropagatePropertyAccessPath
     {
         public static ImageAttachment ImageAttachment(string id, int width, int height, string? name = null, string? previewBytes = null, List<ImageAttachmentVariant>? variants = null)
             => new ImageAttachment(id: id, width: width, height: height, name: null, previewBytes: null, variants: null);

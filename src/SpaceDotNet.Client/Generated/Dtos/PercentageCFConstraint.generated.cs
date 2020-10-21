@@ -23,13 +23,20 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.HostingSiteUploadUrlPostRequestPartialBuilder
+namespace SpaceDotNet.Client
 {
-    public static class HostingSiteUploadUrlPostRequestPartialExtensions
+    public sealed class PercentageCFConstraint
+         : CFConstraint, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<HostingSiteUploadUrlPostRequest> WithSiteName(this Partial<HostingSiteUploadUrlPostRequest> it)
-            => it.AddFieldName("siteName");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "PercentageCFConstraint";
         
+        public PercentageCFConstraint() { }
+        
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+        }
+    
     }
     
 }

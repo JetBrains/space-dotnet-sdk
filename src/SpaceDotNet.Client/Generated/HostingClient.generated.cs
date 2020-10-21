@@ -46,7 +46,7 @@ namespace SpaceDotNet.Client
             }
             
             /// <summary>
-            /// Publish new site or refresh existing. 
+            /// Publish new site or refresh existing.
             /// </summary>
             /// <remarks>
             /// Required permissions:
@@ -57,10 +57,9 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<PublishSite> PublishSiteAsync(string siteName, string versionId, HostingSiteSettings settings, Func<Partial<PublishSite>, Partial<PublishSite>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<HostingSitePostRequest, PublishSite>("POST", $"api/http/hosting/site?$fields={(partial != null ? partial(new Partial<PublishSite>()) : Partial<PublishSite>.Default())}", 
-                    new HostingSitePostRequest { 
-                        SiteName = siteName,
+            public async Task<PublishSite> PublishSiteAsync(ProjectIdentifier project, string siteName, string versionId, HostingSiteSettings settings, Func<Partial<PublishSite>, Partial<PublishSite>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<HostingForProjectSiteForSiteNamePostRequest, PublishSite>("POST", $"api/http/hosting/{project}/site/{siteName}?$fields={(partial != null ? partial(new Partial<PublishSite>()) : Partial<PublishSite>.Default())}", 
+                    new HostingForProjectSiteForSiteNamePostRequest { 
                         VersionId = versionId,
                         Settings = settings,
                     }
@@ -78,12 +77,8 @@ namespace SpaceDotNet.Client
             /// </item>
             /// </list>
             /// </remarks>
-            public async Task<CreateUploadUrlResponse> CreateUploadUrlAsync(string siteName, Func<Partial<CreateUploadUrlResponse>, Partial<CreateUploadUrlResponse>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<HostingSiteUploadUrlPostRequest, CreateUploadUrlResponse>("POST", $"api/http/hosting/site/upload-url?$fields={(partial != null ? partial(new Partial<CreateUploadUrlResponse>()) : Partial<CreateUploadUrlResponse>.Default())}", 
-                    new HostingSiteUploadUrlPostRequest { 
-                        SiteName = siteName,
-                    }
-            , cancellationToken);
+            public async Task<CreateUploadUrlResponse> CreateUploadUrlAsync(ProjectIdentifier project, string siteName, Func<Partial<CreateUploadUrlResponse>, Partial<CreateUploadUrlResponse>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<CreateUploadUrlResponse>("POST", $"api/http/hosting/{project}/site/{siteName}/upload-url?$fields={(partial != null ? partial(new Partial<CreateUploadUrlResponse>()) : Partial<CreateUploadUrlResponse>.Default())}", cancellationToken);
         
         }
     
