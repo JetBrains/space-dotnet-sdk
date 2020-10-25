@@ -30,13 +30,14 @@ namespace SpaceDotNet.Client
     {
         public ArticlePreviewRecord() { }
         
-        public ArticlePreviewRecord(string id, bool archived, List<ArticleMarkdownImage> previewImages, string preview, int? wordsNumber = null)
+        public ArticlePreviewRecord(string id, bool archived, List<ArticleMarkdownImage> previewImages, string preview, int? wordsNumber = null, bool? cut = null)
         {
             Id = id;
             IsArchived = archived;
             PreviewImages = previewImages;
             Preview = preview;
             WordsNumber = wordsNumber;
+            IsCut = cut;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ArticlePreviewRecord), nameof(Id));
@@ -88,6 +89,15 @@ namespace SpaceDotNet.Client
             set { _wordsNumber.SetValue(value); }
         }
     
+        private PropertyValue<bool?> _cut = new PropertyValue<bool?>(nameof(ArticlePreviewRecord), nameof(IsCut));
+        
+        [JsonPropertyName("cut")]
+        public bool? IsCut
+        {
+            get { return _cut.GetValue(); }
+            set { _cut.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -95,6 +105,7 @@ namespace SpaceDotNet.Client
             _previewImages.SetAccessPath(path, validateHasBeenSet);
             _preview.SetAccessPath(path, validateHasBeenSet);
             _wordsNumber.SetAccessPath(path, validateHasBeenSet);
+            _cut.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

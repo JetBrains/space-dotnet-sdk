@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public DocumentFolderRecord() { }
         
-        public DocumentFolderRecord(string id, bool archived, string name, List<DocumentFolderRecord> subfolders, List<DRDraftHeader> documents, TDMemberProfile owner, string alias, DocumentFolderRecord? parent = null)
+        public DocumentFolderRecord(string id, bool archived, string name, List<DocumentFolderRecord> subfolders, List<DRDraftHeader> documents, TDMemberProfile owner, string alias, DocumentFolderRecord? parent = null, DateTime? created = null, CPrincipal? createdBy = null, DateTime? updated = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -40,6 +40,10 @@ namespace SpaceDotNet.Client
             Documents = documents;
             Owner = owner;
             Alias = alias;
+            Created = created;
+            CreatedBy = createdBy;
+            Updated = updated;
+            UpdatedBy = updatedBy;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(DocumentFolderRecord), nameof(Id));
@@ -121,6 +125,44 @@ namespace SpaceDotNet.Client
             set { _alias.SetValue(value); }
         }
     
+        private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(DocumentFolderRecord), nameof(Created));
+        
+        [JsonPropertyName("created")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Created
+        {
+            get { return _created.GetValue(); }
+            set { _created.SetValue(value); }
+        }
+    
+        private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolderRecord), nameof(CreatedBy));
+        
+        [JsonPropertyName("createdBy")]
+        public CPrincipal? CreatedBy
+        {
+            get { return _createdBy.GetValue(); }
+            set { _createdBy.SetValue(value); }
+        }
+    
+        private PropertyValue<DateTime?> _updated = new PropertyValue<DateTime?>(nameof(DocumentFolderRecord), nameof(Updated));
+        
+        [JsonPropertyName("updated")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Updated
+        {
+            get { return _updated.GetValue(); }
+            set { _updated.SetValue(value); }
+        }
+    
+        private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolderRecord), nameof(UpdatedBy));
+        
+        [JsonPropertyName("updatedBy")]
+        public CPrincipal? UpdatedBy
+        {
+            get { return _updatedBy.GetValue(); }
+            set { _updatedBy.SetValue(value); }
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -131,6 +173,10 @@ namespace SpaceDotNet.Client
             _documents.SetAccessPath(path, validateHasBeenSet);
             _owner.SetAccessPath(path, validateHasBeenSet);
             _alias.SetAccessPath(path, validateHasBeenSet);
+            _created.SetAccessPath(path, validateHasBeenSet);
+            _createdBy.SetAccessPath(path, validateHasBeenSet);
+            _updated.SetAccessPath(path, validateHasBeenSet);
+            _updatedBy.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

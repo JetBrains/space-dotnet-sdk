@@ -30,13 +30,14 @@ namespace SpaceDotNet.Client
     {
         public DRDraftHeader() { }
         
-        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
+        public DRDraftHeader(string id, string title, TDMemberProfile author, DateTime modified, bool shared, DateTime? created = null, CPrincipal? modifiedBy = null, PublicationDetails? publicationDetails2 = null, bool? deleted = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
             Author = author;
             Modified = modified;
             Created = created;
+            ModifiedBy = modifiedBy;
             IsShared = shared;
             PublicationDetails2 = publicationDetails2;
             IsDeleted = deleted;
@@ -94,6 +95,15 @@ namespace SpaceDotNet.Client
             set { _created.SetValue(value); }
         }
     
+        private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(DRDraftHeader), nameof(ModifiedBy));
+        
+        [JsonPropertyName("modifiedBy")]
+        public CPrincipal? ModifiedBy
+        {
+            get { return _modifiedBy.GetValue(); }
+            set { _modifiedBy.SetValue(value); }
+        }
+    
         private PropertyValue<bool> _shared = new PropertyValue<bool>(nameof(DRDraftHeader), nameof(IsShared));
         
         [Required]
@@ -138,6 +148,7 @@ namespace SpaceDotNet.Client
             _author.SetAccessPath(path, validateHasBeenSet);
             _modified.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
+            _modifiedBy.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);

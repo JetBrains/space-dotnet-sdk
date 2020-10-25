@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public KBArticle() { }
         
-        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, PublicationItem item, DateTime created, string alias)
+        public KBArticle(string id, bool archived, string title, KBBook book, KBFolder folder, PublicationItem item, DateTime created, string alias, CPrincipal? createdBy = null, DateTime? updated = null, CPrincipal? updatedBy = null)
         {
             Id = id;
             IsArchived = archived;
@@ -39,6 +39,9 @@ namespace SpaceDotNet.Client
             Folder = folder;
             Item = item;
             Created = created;
+            CreatedBy = createdBy;
+            Updated = updated;
+            UpdatedBy = updatedBy;
             Alias = alias;
         }
         
@@ -113,6 +116,34 @@ namespace SpaceDotNet.Client
             set { _created.SetValue(value); }
         }
     
+        private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(CreatedBy));
+        
+        [JsonPropertyName("createdBy")]
+        public CPrincipal? CreatedBy
+        {
+            get { return _createdBy.GetValue(); }
+            set { _createdBy.SetValue(value); }
+        }
+    
+        private PropertyValue<DateTime?> _updated = new PropertyValue<DateTime?>(nameof(KBArticle), nameof(Updated));
+        
+        [JsonPropertyName("updated")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime? Updated
+        {
+            get { return _updated.GetValue(); }
+            set { _updated.SetValue(value); }
+        }
+    
+        private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(UpdatedBy));
+        
+        [JsonPropertyName("updatedBy")]
+        public CPrincipal? UpdatedBy
+        {
+            get { return _updatedBy.GetValue(); }
+            set { _updatedBy.SetValue(value); }
+        }
+    
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBArticle), nameof(Alias));
         
         [Required]
@@ -132,6 +163,9 @@ namespace SpaceDotNet.Client
             _folder.SetAccessPath(path, validateHasBeenSet);
             _item.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
+            _createdBy.SetAccessPath(path, validateHasBeenSet);
+            _updated.SetAccessPath(path, validateHasBeenSet);
+            _updatedBy.SetAccessPath(path, validateHasBeenSet);
             _alias.SetAccessPath(path, validateHasBeenSet);
         }
     

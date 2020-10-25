@@ -45,6 +45,12 @@ namespace SpaceDotNet.Client.DRDraftHeaderPartialBuilder
         public static Partial<DRDraftHeader> WithCreated(this Partial<DRDraftHeader> it)
             => it.AddFieldName("created");
         
+        public static Partial<DRDraftHeader> WithModifiedBy(this Partial<DRDraftHeader> it)
+            => it.AddFieldName("modifiedBy");
+        
+        public static Partial<DRDraftHeader> WithModifiedBy(this Partial<DRDraftHeader> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("modifiedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
         public static Partial<DRDraftHeader> WithIsShared(this Partial<DRDraftHeader> it)
             => it.AddFieldName("shared");
         

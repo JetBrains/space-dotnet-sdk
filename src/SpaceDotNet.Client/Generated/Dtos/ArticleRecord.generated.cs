@@ -30,7 +30,7 @@ namespace SpaceDotNet.Client
     {
         public ArticleRecord() { }
         
-        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, PRProject? project = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
+        public ArticleRecord(string id, bool archived, string title, DateTime created, TDMemberProfile author, List<BGArticleAlias> aliases, M2ChannelRecord channel, M2ChannelContentRecord channelContent, string content, bool editable, string preview, List<ArticleMarkdownImage> previewImages, AllReactionsToItemRecord reactions, TDMemberProfile? archivedBy = null, DateTime? archivedAt = null, bool? cut = null, MeetingRecord? @event = null, ExternalEntityInfoRecord? externalEntityInfo = null, TDLocation? location = null, List<TDLocation>? locations = null, PRProject? project = null, TDTeam? team = null, List<TDTeam>? teams = null, int? wordsNumber = null)
         {
             Id = id;
             IsArchived = archived;
@@ -43,6 +43,7 @@ namespace SpaceDotNet.Client
             Channel = channel;
             ChannelContent = channelContent;
             Content = content;
+            IsCut = cut;
             IsEditable = editable;
             Event = @event;
             ExternalEntityInfo = externalEntityInfo;
@@ -165,6 +166,15 @@ namespace SpaceDotNet.Client
         {
             get { return _content.GetValue(); }
             set { _content.SetValue(value); }
+        }
+    
+        private PropertyValue<bool?> _cut = new PropertyValue<bool?>(nameof(ArticleRecord), nameof(IsCut));
+        
+        [JsonPropertyName("cut")]
+        public bool? IsCut
+        {
+            get { return _cut.GetValue(); }
+            set { _cut.SetValue(value); }
         }
     
         private PropertyValue<bool> _editable = new PropertyValue<bool>(nameof(ArticleRecord), nameof(IsEditable));
@@ -292,6 +302,7 @@ namespace SpaceDotNet.Client
             _channel.SetAccessPath(path, validateHasBeenSet);
             _channelContent.SetAccessPath(path, validateHasBeenSet);
             _content.SetAccessPath(path, validateHasBeenSet);
+            _cut.SetAccessPath(path, validateHasBeenSet);
             _editable.SetAccessPath(path, validateHasBeenSet);
             _event.SetAccessPath(path, validateHasBeenSet);
             _externalEntityInfo.SetAccessPath(path, validateHasBeenSet);

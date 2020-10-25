@@ -45,6 +45,9 @@ namespace SpaceDotNet.Client.ArticlePreviewRecordPartialBuilder
         public static Partial<ArticlePreviewRecord> WithWordsNumber(this Partial<ArticlePreviewRecord> it)
             => it.AddFieldName("wordsNumber");
         
+        public static Partial<ArticlePreviewRecord> WithIsCut(this Partial<ArticlePreviewRecord> it)
+            => it.AddFieldName("cut");
+        
     }
     
 }

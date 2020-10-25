@@ -1520,6 +1520,25 @@ namespace SpaceDotNet.Client
             
             }
         
+            public TypeClient Types => new TypeClient(_connection);
+            
+            public partial class TypeClient
+            {
+                private readonly Connection _connection;
+                
+                public TypeClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                /// <summary>
+                /// Creates a new package repository for a given project id.
+                /// </summary>
+                public async Task<List<PackageType>> GetAllTypesAsync(ProjectIdentifier project, Func<Partial<PackageType>, Partial<PackageType>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<PackageType>>("GET", $"api/http/projects/{project}/packages/types?$fields={(partial != null ? partial(new Partial<PackageType>()) : Partial<PackageType>.Default())}", cancellationToken);
+            
+            }
+        
         }
     
         public PlanningClient Planning => new PlanningClient(_connection);

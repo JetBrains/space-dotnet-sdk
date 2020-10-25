@@ -75,6 +75,24 @@ namespace SpaceDotNet.Client.KBFolderPartialBuilder
         public static Partial<KBFolder> WithAlias(this Partial<KBFolder> it)
             => it.AddFieldName("alias");
         
+        public static Partial<KBFolder> WithCreated(this Partial<KBFolder> it)
+            => it.AddFieldName("created");
+        
+        public static Partial<KBFolder> WithCreatedBy(this Partial<KBFolder> it)
+            => it.AddFieldName("createdBy");
+        
+        public static Partial<KBFolder> WithCreatedBy(this Partial<KBFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<KBFolder> WithUpdated(this Partial<KBFolder> it)
+            => it.AddFieldName("updated");
+        
+        public static Partial<KBFolder> WithUpdatedBy(this Partial<KBFolder> it)
+            => it.AddFieldName("updatedBy");
+        
+        public static Partial<KBFolder> WithUpdatedBy(this Partial<KBFolder> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
     }
     
 }

@@ -30,12 +30,13 @@ namespace SpaceDotNet.Client
     {
         public DRDraft() { }
         
-        public DRDraft(string id, string title, DateTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, DateTime? created = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, bool? published = null, DocumentFolderRecord? folder = null)
+        public DRDraft(string id, string title, DateTime modified, bool shared, bool publishedFlag, int accessOrdinal, List<TDMemberProfile> editors, List<TDTeam> editorsTeams, TextDocument document, DateTime? created = null, CPrincipal? modifiedBy = null, bool? deleted = null, PublicationDetails? publicationDetails2 = null, TDMemberProfile? author = null, bool? published = null, DocumentFolderRecord? folder = null)
         {
             Id = id;
             Title = title;
             Modified = modified;
             Created = created;
+            ModifiedBy = modifiedBy;
             IsShared = shared;
             IsDeleted = deleted;
             PublicationDetails2 = publicationDetails2;
@@ -88,6 +89,15 @@ namespace SpaceDotNet.Client
         {
             get { return _created.GetValue(); }
             set { _created.SetValue(value); }
+        }
+    
+        private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(DRDraft), nameof(ModifiedBy));
+        
+        [JsonPropertyName("modifiedBy")]
+        public CPrincipal? ModifiedBy
+        {
+            get { return _modifiedBy.GetValue(); }
+            set { _modifiedBy.SetValue(value); }
         }
     
         private PropertyValue<bool> _shared = new PropertyValue<bool>(nameof(DRDraft), nameof(IsShared));
@@ -201,6 +211,7 @@ namespace SpaceDotNet.Client
             _title.SetAccessPath(path, validateHasBeenSet);
             _modified.SetAccessPath(path, validateHasBeenSet);
             _created.SetAccessPath(path, validateHasBeenSet);
+            _modifiedBy.SetAccessPath(path, validateHasBeenSet);
             _shared.SetAccessPath(path, validateHasBeenSet);
             _deleted.SetAccessPath(path, validateHasBeenSet);
             _publicationDetails2.SetAccessPath(path, validateHasBeenSet);

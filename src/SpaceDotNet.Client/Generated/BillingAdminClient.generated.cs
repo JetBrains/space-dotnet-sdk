@@ -38,6 +38,23 @@ namespace SpaceDotNet.Client
         /// Required permissions:
         /// <list type="bullet">
         /// <item>
+        /// <term>Update overdrafts</term>
+        /// </item>
+        /// </list>
+        /// </remarks>
+        public async Task SetOverdraftsAsync(int storage, int bandwidth, int ciCredits, CancellationToken cancellationToken = default)
+            => await _connection.RequestResourceAsync("POST", $"api/http/billing-admin/overdrafts", 
+                new BillingAdminOverdraftsPostRequest { 
+                    Storage = storage,
+                    Bandwidth = bandwidth,
+                    CiCredits = ciCredits,
+                }
+        , cancellationToken);
+    
+        /// <remarks>
+        /// Required permissions:
+        /// <list type="bullet">
+        /// <item>
         /// <term>View usage data</term>
         /// </item>
         /// </list>

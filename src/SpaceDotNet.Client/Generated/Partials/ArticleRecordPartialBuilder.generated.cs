@@ -75,6 +75,9 @@ namespace SpaceDotNet.Client.ArticleRecordPartialBuilder
         public static Partial<ArticleRecord> WithContent(this Partial<ArticleRecord> it)
             => it.AddFieldName("content");
         
+        public static Partial<ArticleRecord> WithIsCut(this Partial<ArticleRecord> it)
+            => it.AddFieldName("cut");
+        
         public static Partial<ArticleRecord> WithIsEditable(this Partial<ArticleRecord> it)
             => it.AddFieldName("editable");
         

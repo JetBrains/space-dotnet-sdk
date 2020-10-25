@@ -57,6 +57,21 @@ namespace SpaceDotNet.Client.KBArticlePartialBuilder
         public static Partial<KBArticle> WithCreated(this Partial<KBArticle> it)
             => it.AddFieldName("created");
         
+        public static Partial<KBArticle> WithCreatedBy(this Partial<KBArticle> it)
+            => it.AddFieldName("createdBy");
+        
+        public static Partial<KBArticle> WithCreatedBy(this Partial<KBArticle> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<KBArticle> WithUpdated(this Partial<KBArticle> it)
+            => it.AddFieldName("updated");
+        
+        public static Partial<KBArticle> WithUpdatedBy(this Partial<KBArticle> it)
+            => it.AddFieldName("updatedBy");
+        
+        public static Partial<KBArticle> WithUpdatedBy(this Partial<KBArticle> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
         public static Partial<KBArticle> WithAlias(this Partial<KBArticle> it)
             => it.AddFieldName("alias");
         

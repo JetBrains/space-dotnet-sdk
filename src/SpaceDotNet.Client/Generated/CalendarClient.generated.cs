@@ -209,10 +209,10 @@ namespace SpaceDotNet.Client
                 => await _connection.RequestResourceAsync<MeetingOccurrenceTime>("GET", $"api/http/calendars/meetings/next-occurrence?meetingId={meetingId.ToString()}&since={since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&$fields={(partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default())}", cancellationToken);
         
             /// <summary>
-            /// Search for occurrences of a meeting that start in the provided time interval. Interval limits are inclusive, response is limited by the first 10_000 results.
+            /// Search for occurrences of a meeting that start in the provided time interval. Interval limits are inclusive, response is limited by the first 1_000 results by default.
             /// </summary>
-            public async Task<List<MeetingOccurrenceTime>> GetMeetingOccurrencesForPeriodAsync(string meetingId, DateTime since, DateTime until, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<List<MeetingOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences?meetingId={meetingId.ToString()}&since={since.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&until={until.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&$fields={(partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default())}", cancellationToken);
+            public async Task<List<MeetingOccurrenceTime>> GetMeetingOccurrencesForPeriodAsync(string meetingId, DateTime since, DateTime until, int? limit = null, Func<Partial<MeetingOccurrenceTime>, Partial<MeetingOccurrenceTime>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<List<MeetingOccurrenceTime>>("GET", $"api/http/calendars/meetings/occurrences?meetingId={meetingId.ToString()}&since={since.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&until={until.ToString("yyyy-MM-ddTHH:mm:ss.fffZ")}&limit={limit?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MeetingOccurrenceTime>()) : Partial<MeetingOccurrenceTime>.Default())}", cancellationToken);
         
             public async Task<Meeting> GetMeetingAsync(string id, Func<Partial<Meeting>, Partial<Meeting>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Meeting>("GET", $"api/http/calendars/meetings/{id}?$fields={(partial != null ? partial(new Partial<Meeting>()) : Partial<Meeting>.Default())}", cancellationToken);

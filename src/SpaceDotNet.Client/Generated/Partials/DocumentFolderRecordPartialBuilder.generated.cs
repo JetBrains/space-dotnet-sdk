@@ -69,6 +69,24 @@ namespace SpaceDotNet.Client.DocumentFolderRecordPartialBuilder
         public static Partial<DocumentFolderRecord> WithAlias(this Partial<DocumentFolderRecord> it)
             => it.AddFieldName("alias");
         
+        public static Partial<DocumentFolderRecord> WithCreated(this Partial<DocumentFolderRecord> it)
+            => it.AddFieldName("created");
+        
+        public static Partial<DocumentFolderRecord> WithCreatedBy(this Partial<DocumentFolderRecord> it)
+            => it.AddFieldName("createdBy");
+        
+        public static Partial<DocumentFolderRecord> WithCreatedBy(this Partial<DocumentFolderRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("createdBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
+        public static Partial<DocumentFolderRecord> WithUpdated(this Partial<DocumentFolderRecord> it)
+            => it.AddFieldName("updated");
+        
+        public static Partial<DocumentFolderRecord> WithUpdatedBy(this Partial<DocumentFolderRecord> it)
+            => it.AddFieldName("updatedBy");
+        
+        public static Partial<DocumentFolderRecord> WithUpdatedBy(this Partial<DocumentFolderRecord> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
     }
     
 }
