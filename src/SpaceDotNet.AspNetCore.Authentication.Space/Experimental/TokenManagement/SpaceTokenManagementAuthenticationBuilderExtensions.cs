@@ -27,7 +27,7 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
         public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder, Action<SpaceTokenManagementOptions> configureOptions)
         {
             builder.Services.Configure(configureOptions);
-            return builder.AddSpaceTokenManagement();
+            return builder.AddSpaceTokenManagement(null);
         }
 
         /// <summary>
@@ -36,6 +36,17 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
         /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
         public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder)
+        {
+            return builder.AddSpaceTokenManagement(null);
+        }
+
+        /// <summary>
+        /// Register Space token management.
+        /// </summary>
+        /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
+        /// <param name="fallbackConnectionFactory">A fallback factory that creates a <see cref="Connection"/> when none can be created with the current user tokens.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder, Func<IServiceProvider, Connection>? fallbackConnectionFactory)
         {
             builder.Services.AddHttpClient();
             builder.Services.AddHttpContextAccessor();
@@ -46,8 +57,16 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
             builder.Services.AddSingleton<IConfigureOptions<CookieAuthenticationOptions>, SpaceTokenManagementConfigureCookieOptions>();
 
             builder.Services.AddScoped<BearerTokenConnectionProvider>();
-            builder.Services.AddScoped<Connection, BearerTokenConnection>(provider => 
-                provider.GetService<BearerTokenConnectionProvider>().CreateAsync().GetAwaiter().GetResult()!);
+            // ReSharper disable once RedundantTypeArgumentsOfMethod
+            builder.Services.AddScoped<Connection>(provider =>
+                {
+                    Connection? connection = provider.GetService<BearerTokenConnectionProvider>().CreateAsync().GetAwaiter().GetResult();
+                    if (connection == null && fallbackConnectionFactory != null)
+                    {
+                        connection = fallbackConnectionFactory(provider);
+                    }
+                    return connection!;
+                });
 
             return builder;
         }
