@@ -22,22 +22,37 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
         /// Register Space token management.
         /// </summary>
         /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
-        /// <param name="configureOptions">An <see cref="Action{T}"/> that further configures <see cref="SpaceOptions"/>.</param>
-        /// <returns>A reference to this instance after the operation has completed.</returns>
-        public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder, Action<SpaceTokenManagementOptions> configureOptions)
-        {
-            builder.Services.Configure(configureOptions);
-            return builder.AddSpaceTokenManagement(null);
-        }
-
-        /// <summary>
-        /// Register Space token management.
-        /// </summary>
-        /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
         public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder)
         {
             return builder.AddSpaceTokenManagement(null);
+        }
+        
+        /// <summary>
+        /// Register Space token management.
+        /// </summary>
+        /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
+        /// <param name="configureOptions">An <see cref="Action{T}"/> that further configures <see cref="SpaceOptions"/>.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public static AuthenticationBuilder AddSpaceTokenManagement(
+            this AuthenticationBuilder builder, Action<SpaceTokenManagementOptions> configureOptions)
+        {
+            builder.Services.Configure(configureOptions);
+            return builder.AddSpaceTokenManagement(null);
+        }
+        
+        /// <summary>
+        /// Register Space token management.
+        /// </summary>
+        /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
+        /// <param name="configureOptions">An <see cref="Action{T}"/> that further configures <see cref="SpaceOptions"/>.</param>
+        /// <param name="fallbackConnectionFactory">A fallback factory that creates a <see cref="Connection"/> when none can be created with the current user tokens.</param>
+        /// <returns>A reference to this instance after the operation has completed.</returns>
+        public static AuthenticationBuilder AddSpaceTokenManagement(
+            this AuthenticationBuilder builder, Action<SpaceTokenManagementOptions> configureOptions, Func<IServiceProvider, Connection>? fallbackConnectionFactory)
+        {
+            builder.Services.Configure(configureOptions);
+            return builder.AddSpaceTokenManagement(fallbackConnectionFactory);
         }
 
         /// <summary>
@@ -46,7 +61,8 @@ namespace SpaceDotNet.AspNetCore.Authentication.Space.Experimental.TokenManageme
         /// <param name="builder">The <see cref="AuthenticationBuilder"/> used to register Space token management.</param>
         /// <param name="fallbackConnectionFactory">A fallback factory that creates a <see cref="Connection"/> when none can be created with the current user tokens.</param>
         /// <returns>A reference to this instance after the operation has completed.</returns>
-        public static AuthenticationBuilder AddSpaceTokenManagement(this AuthenticationBuilder builder, Func<IServiceProvider, Connection>? fallbackConnectionFactory)
+        public static AuthenticationBuilder AddSpaceTokenManagement(
+            this AuthenticationBuilder builder, Func<IServiceProvider, Connection>? fallbackConnectionFactory)
         {
             builder.Services.AddHttpClient();
             builder.Services.AddHttpContextAccessor();
