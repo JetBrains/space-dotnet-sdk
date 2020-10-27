@@ -36,7 +36,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
             var builder = new StringBuilder();
             
             // Client class
-            builder.AppendLine($"{indent}public partial class {typeNameForClient}");
+            builder.AppendLine($"{indent}public partial class {typeNameForClient} : ISpaceClient");
             builder.AppendLine($"{indent}{{");
             indent.Increment();
         
