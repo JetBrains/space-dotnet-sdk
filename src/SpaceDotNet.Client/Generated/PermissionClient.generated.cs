@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class PermissionClient
+    public partial class PermissionClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -48,7 +48,7 @@ namespace SpaceDotNet.Client
     
         public SnapshotClient Snapshots => new SnapshotClient(_connection);
         
-        public partial class SnapshotClient
+        public partial class SnapshotClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -71,7 +71,7 @@ namespace SpaceDotNet.Client
         
             public ComparisonClient Comparison => new ComparisonClient(_connection);
             
-            public partial class ComparisonClient
+            public partial class ComparisonClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -87,7 +87,7 @@ namespace SpaceDotNet.Client
         
             public PrincipalClient Principals => new PrincipalClient(_connection);
             
-            public partial class PrincipalClient
+            public partial class PrincipalClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -103,7 +103,7 @@ namespace SpaceDotNet.Client
         
             public RightClient Rights => new RightClient(_connection);
             
-            public partial class RightClient
+            public partial class RightClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 

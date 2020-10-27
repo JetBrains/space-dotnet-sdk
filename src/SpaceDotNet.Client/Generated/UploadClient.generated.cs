@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class UploadClient
+    public partial class UploadClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -50,7 +50,7 @@ namespace SpaceDotNet.Client
     
         public ImageClient Image => new ImageClient(_connection);
         
-        public partial class ImageClient
+        public partial class ImageClient : ISpaceClient
         {
             private readonly Connection _connection;
             

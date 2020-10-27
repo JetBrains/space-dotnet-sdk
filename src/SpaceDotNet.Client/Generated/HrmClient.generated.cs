@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class HrmClient
+    public partial class HrmClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public BusinessEntityClient BusinessEntities => new BusinessEntityClient(_connection);
         
-        public partial class BusinessEntityClient
+        public partial class BusinessEntityClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -76,7 +76,7 @@ namespace SpaceDotNet.Client
         
             public RelationClient Relations => new RelationClient(_connection);
             
-            public partial class RelationClient
+            public partial class RelationClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 

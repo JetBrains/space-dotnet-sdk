@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class UnfurlClient
+    public partial class UnfurlClient : ISpaceClient
     {
         private readonly Connection _connection;
         

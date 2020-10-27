@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class ToDoItemClient
+    public partial class ToDoItemClient : ISpaceClient
     {
         private readonly Connection _connection;
         

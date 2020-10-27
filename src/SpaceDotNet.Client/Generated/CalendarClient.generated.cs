@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class CalendarClient
+    public partial class CalendarClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
         
-        public partial class AbsenceEventClient
+        public partial class AbsenceEventClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -55,7 +55,7 @@ namespace SpaceDotNet.Client
     
         public BirthdayEventClient BirthdayEvents => new BirthdayEventClient(_connection);
         
-        public partial class BirthdayEventClient
+        public partial class BirthdayEventClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -72,7 +72,7 @@ namespace SpaceDotNet.Client
         
             public StarredClient Starred => new StarredClient(_connection);
             
-            public partial class StarredClient
+            public partial class StarredClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -93,7 +93,7 @@ namespace SpaceDotNet.Client
     
         public EventParticipationClient EventParticipations => new EventParticipationClient(_connection);
         
-        public partial class EventParticipationClient
+        public partial class EventParticipationClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -116,7 +116,7 @@ namespace SpaceDotNet.Client
     
         public EventClient Events => new EventClient(_connection);
         
-        public partial class EventClient
+        public partial class EventClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -141,7 +141,7 @@ namespace SpaceDotNet.Client
     
         public HolidayClient Holidays => new HolidayClient(_connection);
         
-        public partial class HolidayClient
+        public partial class HolidayClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -160,7 +160,7 @@ namespace SpaceDotNet.Client
     
         public MeetingClient Meetings => new MeetingClient(_connection);
         
-        public partial class MeetingClient
+        public partial class MeetingClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -247,7 +247,7 @@ namespace SpaceDotNet.Client
     
         public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
         
-        public partial class MembershipEventClient
+        public partial class MembershipEventClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -266,7 +266,7 @@ namespace SpaceDotNet.Client
     
         public NonWorkingDaysEventClient NonWorkingDaysEvents => new NonWorkingDaysEventClient(_connection);
         
-        public partial class NonWorkingDaysEventClient
+        public partial class NonWorkingDaysEventClient : ISpaceClient
         {
             private readonly Connection _connection;
             

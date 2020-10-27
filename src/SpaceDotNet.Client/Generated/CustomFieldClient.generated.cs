@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class CustomFieldClient
+    public partial class CustomFieldClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public ExtendedTypeClient ExtendedTypes => new ExtendedTypeClient(_connection);
         
-        public partial class ExtendedTypeClient
+        public partial class ExtendedTypeClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -55,7 +55,7 @@ namespace SpaceDotNet.Client
     
         public AllValueClient AllValues => new AllValueClient(_connection);
         
-        public partial class AllValueClient
+        public partial class AllValueClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -80,7 +80,7 @@ namespace SpaceDotNet.Client
     
         public FieldClient Fields => new FieldClient(_connection);
         
-        public partial class FieldClient
+        public partial class FieldClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -172,7 +172,7 @@ namespace SpaceDotNet.Client
     
         public ValueClient Values => new ValueClient(_connection);
         
-        public partial class ValueClient
+        public partial class ValueClient : ISpaceClient
         {
             private readonly Connection _connection;
             

@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class BillingAdminClient
+    public partial class BillingAdminClient : ISpaceClient
     {
         private readonly Connection _connection;
         

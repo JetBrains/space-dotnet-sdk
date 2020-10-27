@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class AuthModuleClient
+    public partial class AuthModuleClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -140,7 +140,7 @@ namespace SpaceDotNet.Client
     
         public TestClient Test => new TestClient(_connection);
         
-        public partial class TestClient
+        public partial class TestClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -177,7 +177,7 @@ namespace SpaceDotNet.Client
     
         public ThrottledLoginClient ThrottledLogins => new ThrottledLoginClient(_connection);
         
-        public partial class ThrottledLoginClient
+        public partial class ThrottledLoginClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -208,7 +208,7 @@ namespace SpaceDotNet.Client
     
         public UsageClient Usages => new UsageClient(_connection);
         
-        public partial class UsageClient
+        public partial class UsageClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -235,7 +235,7 @@ namespace SpaceDotNet.Client
     
         public LoginClient Logins => new LoginClient(_connection);
         
-        public partial class LoginClient
+        public partial class LoginClient : ISpaceClient
         {
             private readonly Connection _connection;
             

@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class AdministrationClient
+    public partial class AdministrationClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public SupportClient Support => new SupportClient(_connection);
         
-        public partial class SupportClient
+        public partial class SupportClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -63,7 +63,7 @@ namespace SpaceDotNet.Client
     
         public UserAgreementClient UserAgreement => new UserAgreementClient(_connection);
         
-        public partial class UserAgreementClient
+        public partial class UserAgreementClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -93,7 +93,7 @@ namespace SpaceDotNet.Client
         
             public EnabledClient Enabled => new EnabledClient(_connection);
             
-            public partial class EnabledClient
+            public partial class EnabledClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -124,7 +124,7 @@ namespace SpaceDotNet.Client
         
             public StatuClient Status => new StatuClient(_connection);
             
-            public partial class StatuClient
+            public partial class StatuClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 

@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class BlogClient
+    public partial class BlogClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -43,7 +43,7 @@ namespace SpaceDotNet.Client
     
         public ArticleClient Articles => new ArticleClient(_connection);
         
-        public partial class ArticleClient
+        public partial class ArticleClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -153,7 +153,7 @@ namespace SpaceDotNet.Client
         
             public DraftClient Drafts => new DraftClient(_connection);
             
-            public partial class DraftClient
+            public partial class DraftClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -215,7 +215,7 @@ namespace SpaceDotNet.Client
     
         public DateClient Dates => new DateClient(_connection);
         
-        public partial class DateClient
+        public partial class DateClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -239,7 +239,7 @@ namespace SpaceDotNet.Client
     
         public StatClient Stats => new StatClient(_connection);
         
-        public partial class StatClient
+        public partial class StatClient : ISpaceClient
         {
             private readonly Connection _connection;
             

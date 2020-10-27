@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class DocClient
+    public partial class DocClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public DraftClient Drafts => new DraftClient(_connection);
         
-        public partial class DraftClient
+        public partial class DraftClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -77,7 +77,7 @@ namespace SpaceDotNet.Client
         
             public FolderClient Folder => new FolderClient(_connection);
             
-            public partial class FolderClient
+            public partial class FolderClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -102,7 +102,7 @@ namespace SpaceDotNet.Client
             
                 public NameClient Name => new NameClient(_connection);
                 
-                public partial class NameClient
+                public partial class NameClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -122,7 +122,7 @@ namespace SpaceDotNet.Client
             
                 public ParentClient Parent => new ParentClient(_connection);
                 
-                public partial class ParentClient
+                public partial class ParentClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -144,7 +144,7 @@ namespace SpaceDotNet.Client
         
             public EditorClient Editors => new EditorClient(_connection);
             
-            public partial class EditorClient
+            public partial class EditorClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -155,7 +155,7 @@ namespace SpaceDotNet.Client
                 
                 public ProfileClient Profiles => new ProfileClient(_connection);
                 
-                public partial class ProfileClient
+                public partial class ProfileClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -181,7 +181,7 @@ namespace SpaceDotNet.Client
             
                 public TeamClient Teams => new TeamClient(_connection);
                 
-                public partial class TeamClient
+                public partial class TeamClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     

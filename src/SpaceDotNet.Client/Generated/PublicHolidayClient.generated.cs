@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class PublicHolidayClient
+    public partial class PublicHolidayClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public CalendarClient Calendars => new CalendarClient(_connection);
         
-        public partial class CalendarClient
+        public partial class CalendarClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -100,7 +100,7 @@ namespace SpaceDotNet.Client
     
         public HolidayClient Holidays => new HolidayClient(_connection);
         
-        public partial class HolidayClient
+        public partial class HolidayClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -157,7 +157,7 @@ namespace SpaceDotNet.Client
         
             public ProfileHolidayClient ProfileHolidays => new ProfileHolidayClient(_connection);
             
-            public partial class ProfileHolidayClient
+            public partial class ProfileHolidayClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -176,7 +176,7 @@ namespace SpaceDotNet.Client
         
             public RelatedHolidayClient RelatedHolidays => new RelatedHolidayClient(_connection);
             
-            public partial class RelatedHolidayClient
+            public partial class RelatedHolidayClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 

@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class HTTPAPIModelClient
+    public partial class HTTPAPIModelClient : ISpaceClient
     {
         private readonly Connection _connection;
         

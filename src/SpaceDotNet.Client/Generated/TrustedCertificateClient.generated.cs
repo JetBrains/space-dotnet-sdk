@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class TrustedCertificateClient
+    public partial class TrustedCertificateClient : ISpaceClient
     {
         private readonly Connection _connection;
         

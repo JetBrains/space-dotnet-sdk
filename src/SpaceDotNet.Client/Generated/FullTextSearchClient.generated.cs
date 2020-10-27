@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class FullTextSearchClient
+    public partial class FullTextSearchClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public EntityClient Entities => new EntityClient(_connection);
         
-        public partial class EntityClient
+        public partial class EntityClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -55,7 +55,7 @@ namespace SpaceDotNet.Client
     
         public SearchClient Search => new SearchClient(_connection);
         
-        public partial class SearchClient
+        public partial class SearchClient : ISpaceClient
         {
             private readonly Connection _connection;
             

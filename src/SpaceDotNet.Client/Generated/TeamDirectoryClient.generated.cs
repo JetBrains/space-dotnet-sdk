@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class TeamDirectoryClient
+    public partial class TeamDirectoryClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public CalendarEventClient CalendarEvents => new CalendarEventClient(_connection);
         
-        public partial class CalendarEventClient
+        public partial class CalendarEventClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -61,7 +61,7 @@ namespace SpaceDotNet.Client
         
             public AbsenceEventClient AbsenceEvents => new AbsenceEventClient(_connection);
             
-            public partial class AbsenceEventClient
+            public partial class AbsenceEventClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -81,7 +81,7 @@ namespace SpaceDotNet.Client
         
             public BirthdayEventClient BirthdayEvents => new BirthdayEventClient(_connection);
             
-            public partial class BirthdayEventClient
+            public partial class BirthdayEventClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -99,7 +99,7 @@ namespace SpaceDotNet.Client
             
                 public StarredClient Starred => new StarredClient(_connection);
                 
-                public partial class StarredClient
+                public partial class StarredClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -121,7 +121,7 @@ namespace SpaceDotNet.Client
         
             public HolidayClient Holidays => new HolidayClient(_connection);
             
-            public partial class HolidayClient
+            public partial class HolidayClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -141,7 +141,7 @@ namespace SpaceDotNet.Client
         
             public MeetingParticipationClient MeetingParticipations => new MeetingParticipationClient(_connection);
             
-            public partial class MeetingParticipationClient
+            public partial class MeetingParticipationClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -165,7 +165,7 @@ namespace SpaceDotNet.Client
         
             public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
             
-            public partial class MembershipEventClient
+            public partial class MembershipEventClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -185,7 +185,7 @@ namespace SpaceDotNet.Client
         
             public NonWorkingDaysEventClient NonWorkingDaysEvents => new NonWorkingDaysEventClient(_connection);
             
-            public partial class NonWorkingDaysEventClient
+            public partial class NonWorkingDaysEventClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -207,7 +207,7 @@ namespace SpaceDotNet.Client
     
         public InvitationLinkClient InvitationLinks => new InvitationLinkClient(_connection);
         
-        public partial class InvitationLinkClient
+        public partial class InvitationLinkClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -262,7 +262,7 @@ namespace SpaceDotNet.Client
     
         public InvitationClient Invitations => new InvitationClient(_connection);
         
-        public partial class InvitationClient
+        public partial class InvitationClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -321,7 +321,7 @@ namespace SpaceDotNet.Client
     
         public LanguageClient Languages => new LanguageClient(_connection);
         
-        public partial class LanguageClient
+        public partial class LanguageClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -340,7 +340,7 @@ namespace SpaceDotNet.Client
     
         public LocationEquipmentTypeClient LocationEquipmentTypes => new LocationEquipmentTypeClient(_connection);
         
-        public partial class LocationEquipmentTypeClient
+        public partial class LocationEquipmentTypeClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -365,7 +365,7 @@ namespace SpaceDotNet.Client
     
         public LocationMapMemberPointClient LocationMapMemberPoints => new LocationMapMemberPointClient(_connection);
         
-        public partial class LocationMapMemberPointClient
+        public partial class LocationMapMemberPointClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -444,7 +444,7 @@ namespace SpaceDotNet.Client
     
         public LocationClient Locations => new LocationClient(_connection);
         
-        public partial class LocationClient
+        public partial class LocationClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -571,7 +571,7 @@ namespace SpaceDotNet.Client
         
             public MapClient Map => new MapClient(_connection);
             
-            public partial class MapClient
+            public partial class MapClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -610,7 +610,7 @@ namespace SpaceDotNet.Client
     
         public LocationsWithTimezoneClient LocationsWithTimezone => new LocationsWithTimezoneClient(_connection);
         
-        public partial class LocationsWithTimezoneClient
+        public partial class LocationsWithTimezoneClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -629,7 +629,7 @@ namespace SpaceDotNet.Client
     
         public MemberLocationClient MemberLocations => new MemberLocationClient(_connection);
         
-        public partial class MemberLocationClient
+        public partial class MemberLocationClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -716,7 +716,7 @@ namespace SpaceDotNet.Client
     
         public MembershipEventClient MembershipEvents => new MembershipEventClient(_connection);
         
-        public partial class MembershipEventClient
+        public partial class MembershipEventClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -741,7 +741,7 @@ namespace SpaceDotNet.Client
     
         public MembershipClient Memberships => new MembershipClient(_connection);
         
-        public partial class MembershipClient
+        public partial class MembershipClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -844,7 +844,7 @@ namespace SpaceDotNet.Client
         
             public ManagerCandidateClient ManagerCandidates => new ManagerCandidateClient(_connection);
             
-            public partial class ManagerCandidateClient
+            public partial class ManagerCandidateClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -869,7 +869,7 @@ namespace SpaceDotNet.Client
         
             public RequestClient Requests => new RequestClient(_connection);
             
-            public partial class RequestClient
+            public partial class RequestClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -926,7 +926,7 @@ namespace SpaceDotNet.Client
         
             public RequestRevokeClient RequestRevoke => new RequestRevokeClient(_connection);
             
-            public partial class RequestRevokeClient
+            public partial class RequestRevokeClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -959,7 +959,7 @@ namespace SpaceDotNet.Client
     
         public ProfileClient Profiles => new ProfileClient(_connection);
         
-        public partial class ProfileClient
+        public partial class ProfileClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -1114,7 +1114,7 @@ namespace SpaceDotNet.Client
         
             public AuthenticationSessionClient AuthenticationSessions => new AuthenticationSessionClient(_connection);
             
-            public partial class AuthenticationSessionClient
+            public partial class AuthenticationSessionClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1155,7 +1155,7 @@ namespace SpaceDotNet.Client
         
             public OAuthConsentClient OAuthConsents => new OAuthConsentClient(_connection);
             
-            public partial class OAuthConsentClient
+            public partial class OAuthConsentClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1172,7 +1172,7 @@ namespace SpaceDotNet.Client
             
                 public ApprovedScopeClient ApprovedScopes => new ApprovedScopeClient(_connection);
                 
-                public partial class ApprovedScopeClient
+                public partial class ApprovedScopeClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -1191,7 +1191,7 @@ namespace SpaceDotNet.Client
             
                 public RefreshTokenClient RefreshTokens => new RefreshTokenClient(_connection);
                 
-                public partial class RefreshTokenClient
+                public partial class RefreshTokenClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -1212,7 +1212,7 @@ namespace SpaceDotNet.Client
         
             public WorkingDayClient WorkingDays => new WorkingDayClient(_connection);
             
-            public partial class WorkingDayClient
+            public partial class WorkingDayClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1235,7 +1235,7 @@ namespace SpaceDotNet.Client
             
             }
         
-            public partial class WorkingDayClient
+            public partial class WorkingDayClient : ISpaceClient
             {
                 /// <remarks>
                 /// Required permissions:
@@ -1292,7 +1292,7 @@ namespace SpaceDotNet.Client
         
             public TwoFaClient TwoFa => new TwoFaClient(_connection);
             
-            public partial class TwoFaClient
+            public partial class TwoFaClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1303,7 +1303,7 @@ namespace SpaceDotNet.Client
                 
                 public StatuClient Status => new StatuClient(_connection);
                 
-                public partial class StatuClient
+                public partial class StatuClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -1322,7 +1322,7 @@ namespace SpaceDotNet.Client
             
                 public TotpClient Totp => new TotpClient(_connection);
                 
-                public partial class TotpClient
+                public partial class TotpClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -1369,7 +1369,7 @@ namespace SpaceDotNet.Client
         
             public ApplicationPasswordClient ApplicationPasswords => new ApplicationPasswordClient(_connection);
             
-            public partial class ApplicationPasswordClient
+            public partial class ApplicationPasswordClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1407,7 +1407,7 @@ namespace SpaceDotNet.Client
         
             public ChecklistClient Checklists => new ChecklistClient(_connection);
             
-            public partial class ChecklistClient
+            public partial class ChecklistClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1456,7 +1456,7 @@ namespace SpaceDotNet.Client
             
                 public StarredClient Starred => new StarredClient(_connection);
                 
-                public partial class StarredClient
+                public partial class StarredClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -1472,7 +1472,7 @@ namespace SpaceDotNet.Client
             
                 public FullChecklistTreeClient FullChecklistTree => new FullChecklistTreeClient(_connection);
                 
-                public partial class FullChecklistTreeClient
+                public partial class FullChecklistTreeClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -1490,7 +1490,7 @@ namespace SpaceDotNet.Client
         
             public LeadClient Leads => new LeadClient(_connection);
             
-            public partial class LeadClient
+            public partial class LeadClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1509,7 +1509,7 @@ namespace SpaceDotNet.Client
         
             public NavBarMenuItemClient NavBarMenuItems => new NavBarMenuItemClient(_connection);
             
-            public partial class NavBarMenuItemClient
+            public partial class NavBarMenuItemClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1536,7 +1536,7 @@ namespace SpaceDotNet.Client
         
             public NavBarProjectClient NavBarProjects => new NavBarProjectClient(_connection);
             
-            public partial class NavBarProjectClient
+            public partial class NavBarProjectClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1571,7 +1571,7 @@ namespace SpaceDotNet.Client
         
             public PermanentTokenClient PermanentTokens => new PermanentTokenClient(_connection);
             
-            public partial class PermanentTokenClient
+            public partial class PermanentTokenClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1622,7 +1622,7 @@ namespace SpaceDotNet.Client
             
                 public CurrentClient Current => new CurrentClient(_connection);
                 
-                public partial class CurrentClient
+                public partial class CurrentClient : ISpaceClient
                 {
                     private readonly Connection _connection;
                     
@@ -1643,7 +1643,7 @@ namespace SpaceDotNet.Client
         
             public SettingClient Settings => new SettingClient(_connection);
             
-            public partial class SettingClient
+            public partial class SettingClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1675,7 +1675,7 @@ namespace SpaceDotNet.Client
         
             public SpokenLanguageClient SpokenLanguages => new SpokenLanguageClient(_connection);
             
-            public partial class SpokenLanguageClient
+            public partial class SpokenLanguageClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1722,7 +1722,7 @@ namespace SpaceDotNet.Client
         
             public VcsPasswordClient VcsPassword => new VcsPasswordClient(_connection);
             
-            public partial class VcsPasswordClient
+            public partial class VcsPasswordClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -1759,7 +1759,7 @@ namespace SpaceDotNet.Client
     
         public RoleClient Roles => new RoleClient(_connection);
         
-        public partial class RoleClient
+        public partial class RoleClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -1850,7 +1850,7 @@ namespace SpaceDotNet.Client
     
         public StatClient Stats => new StatClient(_connection);
         
-        public partial class StatClient
+        public partial class StatClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -1869,7 +1869,7 @@ namespace SpaceDotNet.Client
     
         public TeamClient Teams => new TeamClient(_connection);
         
-        public partial class TeamClient
+        public partial class TeamClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -2000,7 +2000,7 @@ namespace SpaceDotNet.Client
         
             public DirectMemberClient DirectMembers => new DirectMemberClient(_connection);
             
-            public partial class DirectMemberClient
+            public partial class DirectMemberClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 

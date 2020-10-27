@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class EmojiClient
+    public partial class EmojiClient : ISpaceClient
     {
         private readonly Connection _connection;
         

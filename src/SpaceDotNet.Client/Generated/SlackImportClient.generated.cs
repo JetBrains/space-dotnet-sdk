@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class SlackImportClient
+    public partial class SlackImportClient : ISpaceClient
     {
         private readonly Connection _connection;
         

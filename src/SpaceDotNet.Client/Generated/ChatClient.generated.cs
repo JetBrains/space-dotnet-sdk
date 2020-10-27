@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class ChatClient
+    public partial class ChatClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public ChannelClient Channels => new ChannelClient(_connection);
         
-        public partial class ChannelClient
+        public partial class ChannelClient : ISpaceClient
         {
             private readonly Connection _connection;
             
@@ -98,7 +98,7 @@ namespace SpaceDotNet.Client
         
             public MessageClient Messages => new MessageClient(_connection);
             
-            public partial class MessageClient
+            public partial class MessageClient : ISpaceClient
             {
                 private readonly Connection _connection;
                 
@@ -124,7 +124,7 @@ namespace SpaceDotNet.Client
     
         public MessageClient Messages => new MessageClient(_connection);
         
-        public partial class MessageClient
+        public partial class MessageClient : ISpaceClient
         {
             private readonly Connection _connection;
             

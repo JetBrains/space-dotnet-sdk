@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class AbsenceClient
+    public partial class AbsenceClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -193,7 +193,7 @@ namespace SpaceDotNet.Client
     
         public AbsenceReasonClient AbsenceReasons => new AbsenceReasonClient(_connection);
         
-        public partial class AbsenceReasonClient
+        public partial class AbsenceReasonClient : ISpaceClient
         {
             private readonly Connection _connection;
             

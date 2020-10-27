@@ -25,7 +25,7 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public partial class HostingClient
+    public partial class HostingClient : ISpaceClient
     {
         private readonly Connection _connection;
         
@@ -36,7 +36,7 @@ namespace SpaceDotNet.Client
         
         public SiteClient Site => new SiteClient(_connection);
         
-        public partial class SiteClient
+        public partial class SiteClient : ISpaceClient
         {
             private readonly Connection _connection;
             
