@@ -37,7 +37,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.TryAdd(new ServiceDescriptor(typeof(Connection), connectionFactory, lifetime));
             return services;
         }
-        
 
         /// <summary>
         /// Registers the Space Client APIs with a <see cref="IServiceCollection"/>.
