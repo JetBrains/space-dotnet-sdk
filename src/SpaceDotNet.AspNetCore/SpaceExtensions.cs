@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common;
+using SpaceDotNet.Common.Types;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection
@@ -67,8 +68,10 @@ namespace Microsoft.Extensions.DependencyInjection
             }
             
             // Add Space ...Client types
+            var spaceClientType = typeof(ISpaceClient);
             var spaceClientAssembly = typeof(TeamDirectoryClient).Assembly;
-            foreach (var type in spaceClientAssembly.GetTypes().Where(t => !t.IsAbstract && t.Name.EndsWith("Client")))
+            foreach (var type in spaceClientAssembly.GetTypes()
+                .Where(it => it.IsClass && !it.IsAbstract && spaceClientType.IsAssignableFrom(it)))
             {
                 services.TryAdd(new ServiceDescriptor(type, type, lifetime));
             }
