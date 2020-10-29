@@ -30,21 +30,30 @@ namespace SpaceDotNet.Client
     {
         public ProjectsForProjectRepositoriesForRepositoryPostRequest() { }
         
-        public ProjectsForProjectRepositoriesForRepositoryPostRequest(string description, bool initialize = true, bool defaultSetup = false)
+        public ProjectsForProjectRepositoriesForRepositoryPostRequest(string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null)
         {
             Description = description;
+            DefaultBranch = defaultBranch;
             IsInitialize = initialize;
             IsDefaultSetup = defaultSetup;
         }
         
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(Description));
         
-        [Required]
         [JsonPropertyName("description")]
         public string Description
         {
             get { return _description.GetValue(); }
             set { _description.SetValue(value); }
+        }
+    
+        private PropertyValue<string?> _defaultBranch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultBranch));
+        
+        [JsonPropertyName("defaultBranch")]
+        public string? DefaultBranch
+        {
+            get { return _defaultBranch.GetValue(); }
+            set { _defaultBranch.SetValue(value); }
         }
     
         private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsInitialize));
@@ -68,6 +77,7 @@ namespace SpaceDotNet.Client
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _description.SetAccessPath(path, validateHasBeenSet);
+            _defaultBranch.SetAccessPath(path, validateHasBeenSet);
             _initialize.SetAccessPath(path, validateHasBeenSet);
             _defaultSetup.SetAccessPath(path, validateHasBeenSet);
         }
