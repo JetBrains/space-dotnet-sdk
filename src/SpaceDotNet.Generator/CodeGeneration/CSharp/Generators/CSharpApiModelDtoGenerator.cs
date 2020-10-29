@@ -259,8 +259,8 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 builder.AppendLine($"{indent}{{");
                 indent.Increment();
                 
-                builder.AppendLine($"{indent}get {{ return {backingFieldNameForField}.GetValue(); }}");
-                builder.AppendLine($"{indent}set {{ {backingFieldNameForField}.SetValue(value); }}");
+                builder.AppendLine($"{indent}get => {backingFieldNameForField}.GetValue();");
+                builder.AppendLine($"{indent}set => {backingFieldNameForField}.SetValue(value);");
 
                 indent.Decrement();
                 builder.AppendLine($"{indent}}}");

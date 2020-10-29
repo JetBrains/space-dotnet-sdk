@@ -121,11 +121,9 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                 case ApiUrlParameterOption.Const constParameter:
                     // ToString() override
                     builder.AppendLine($"{indent}public override string ToString()");
-                    builder.AppendLine($"{indent}{{");
                     indent.Increment();
-                    builder.AppendLine($"{indent}return \"{constParameter.Value.Replace("\"", "\\\"")}\";");
+                    builder.AppendLine($"{indent}=> \"{constParameter.Value.Replace("\"", "\\\"")}\";");
                     indent.Decrement();
-                    builder.AppendLine($"{indent}}}");
                     break;
                 
                 case ApiUrlParameterOption.Var varParameter:
@@ -135,25 +133,21 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                     var urlParameterFieldName = varParameter.Parameter.Name;
                     
                     // Backing field
-                    builder.AppendLine($"{indent}public readonly {valueTypeName} {backingFieldName};");
+                    builder.AppendLine($"{indent}private readonly {valueTypeName} {backingFieldName};");
                     builder.AppendLine($"{indent}");
                     
                     // Constructor
                     builder.AppendLine($"{indent}public {typeNameForUrlParameterOption}({valueTypeName} {variableName})");
-                    builder.AppendLine($"{indent}{{");
                     indent.Increment();
-                    builder.AppendLine($"{indent}{backingFieldName} = {variableName};");
+                    builder.AppendLine($"{indent}=> {backingFieldName} = {variableName};");
                     indent.Decrement();
-                    builder.AppendLine($"{indent}}}");
                     builder.AppendLine($"{indent}");
                     
                     // ToString() override
                     builder.AppendLine($"{indent}public override string ToString()");
-                    builder.AppendLine($"{indent}{{");
                     indent.Increment();
-                    builder.AppendLine($"{indent}return $\"{urlParameterFieldName}:{{{backingFieldName}}}\";");
+                    builder.AppendLine($"{indent}=> $\"{urlParameterFieldName}:{{{backingFieldName}}}\";");
                     indent.Decrement();
-                    builder.AppendLine($"{indent}}}");
                     
                     break;
                 default:
