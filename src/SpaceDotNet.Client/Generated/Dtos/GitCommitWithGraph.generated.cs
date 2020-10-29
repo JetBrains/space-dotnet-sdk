@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repositoryName")]
         public string RepositoryName
         {
-            get { return _repositoryName.GetValue(); }
-            set { _repositoryName.SetValue(value); }
+            get => _repositoryName.GetValue();
+            set => _repositoryName.SetValue(value);
         }
     
         private PropertyValue<GitCommitInfo> _commit = new PropertyValue<GitCommitInfo>(nameof(GitCommitWithGraph), nameof(Commit));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commit")]
         public GitCommitInfo Commit
         {
-            get { return _commit.GetValue(); }
-            set { _commit.SetValue(value); }
+            get => _commit.GetValue();
+            set => _commit.SetValue(value);
         }
     
         private PropertyValue<List<CodeReviewRecord>> _reviews = new PropertyValue<List<CodeReviewRecord>>(nameof(GitCommitWithGraph), nameof(Reviews));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reviews")]
         public List<CodeReviewRecord> Reviews
         {
-            get { return _reviews.GetValue(); }
-            set { _reviews.SetValue(value); }
+            get => _reviews.GetValue();
+            set => _reviews.SetValue(value);
         }
     
         private PropertyValue<GitGraphLayoutLine?> _layout = new PropertyValue<GitGraphLayoutLine?>(nameof(GitCommitWithGraph), nameof(Layout));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("layout")]
         public GitGraphLayoutLine? Layout
         {
-            get { return _layout.GetValue(); }
-            set { _layout.SetValue(value); }
+            get => _layout.GetValue();
+            set => _layout.SetValue(value);
         }
     
         private PropertyValue<bool> _unreachable = new PropertyValue<bool>(nameof(GitCommitWithGraph), nameof(IsUnreachable));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("unreachable")]
         public bool IsUnreachable
         {
-            get { return _unreachable.GetValue(); }
-            set { _unreachable.SetValue(value); }
+            get => _unreachable.GetValue();
+            set => _unreachable.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("settings")]
         public ESBuiltinAuthModuleSettings Settings
         {
-            get { return _settings.GetValue(); }
-            set { _settings.SetValue(value); }
+            get => _settings.GetValue();
+            set => _settings.SetValue(value);
         }
     
         private PropertyValue<string> _username = new PropertyValue<string>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Username));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("username")]
         public string Username
         {
-            get { return _username.GetValue(); }
-            set { _username.SetValue(value); }
+            get => _username.GetValue();
+            set => _username.SetValue(value);
         }
     
         private PropertyValue<string> _password = new PropertyValue<string>(nameof(AuthModulesTestBuiltInPostRequest), nameof(Password));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("password")]
         public string Password
         {
-            get { return _password.GetValue(); }
-            set { _password.SetValue(value); }
+            get => _password.GetValue();
+            set => _password.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

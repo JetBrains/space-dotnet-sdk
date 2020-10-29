@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public MCElement? Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         private PropertyValue<MCText?> _text = new PropertyValue<MCText?>(nameof(MCOutline), nameof(Text));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public MCText? Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

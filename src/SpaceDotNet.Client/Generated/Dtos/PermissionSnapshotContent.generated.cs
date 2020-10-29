@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("entries")]
         public List<PermissionSnapshotEntry> Entries
         {
-            get { return _entries.GetValue(); }
-            set { _entries.SetValue(value); }
+            get => _entries.GetValue();
+            set => _entries.SetValue(value);
         }
     
         private PropertyValue<List<PermissionSnapshotPrincipal>> _principals = new PropertyValue<List<PermissionSnapshotPrincipal>>(nameof(PermissionSnapshotContent), nameof(Principals));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principals")]
         public List<PermissionSnapshotPrincipal> Principals
         {
-            get { return _principals.GetValue(); }
-            set { _principals.SetValue(value); }
+            get => _principals.GetValue();
+            set => _principals.SetValue(value);
         }
     
         private PropertyValue<List<PermissionSnapshotRight>> _rights = new PropertyValue<List<PermissionSnapshotRight>>(nameof(PermissionSnapshotContent), nameof(Rights));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rights")]
         public List<PermissionSnapshotRight> Rights
         {
-            get { return _rights.GetValue(); }
-            set { _rights.SetValue(value); }
+            get => _rights.GetValue();
+            set => _rights.SetValue(value);
         }
     
         private PropertyValue<List<PermissionSnapshotTarget>> _targets = new PropertyValue<List<PermissionSnapshotTarget>>(nameof(PermissionSnapshotContent), nameof(Targets));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targets")]
         public List<PermissionSnapshotTarget> Targets
         {
-            get { return _targets.GetValue(); }
-            set { _targets.SetValue(value); }
+            get => _targets.GetValue();
+            set => _targets.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

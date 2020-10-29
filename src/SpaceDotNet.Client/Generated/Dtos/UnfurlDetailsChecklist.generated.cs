@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("checklist")]
         public Checklist Checklist
         {
-            get { return _checklist.GetValue(); }
-            set { _checklist.SetValue(value); }
+            get => _checklist.GetValue();
+            set => _checklist.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

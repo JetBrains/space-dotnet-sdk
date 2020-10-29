@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("alt")]
         public string Alt
         {
-            get { return _alt.GetValue(); }
-            set { _alt.SetValue(value); }
+            get => _alt.GetValue();
+            set => _alt.SetValue(value);
         }
     
         private PropertyValue<string> _src = new PropertyValue<string>(nameof(ArticleMarkdownImage), nameof(Src));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("src")]
         public string Src
         {
-            get { return _src.GetValue(); }
-            set { _src.SetValue(value); }
+            get => _src.GetValue();
+            set => _src.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

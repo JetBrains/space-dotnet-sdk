@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _member = new PropertyValue<TDMemberProfile?>(nameof(TDMembership), nameof(Member));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("member")]
         public TDMemberProfile? Member
         {
-            get { return _member.GetValue(); }
-            set { _member.SetValue(value); }
+            get => _member.GetValue();
+            set => _member.SetValue(value);
         }
     
         private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(TDMembership), nameof(Team));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("team")]
         public TDTeam Team
         {
-            get { return _team.GetValue(); }
-            set { _team.SetValue(value); }
+            get => _team.GetValue();
+            set => _team.SetValue(value);
         }
     
         private PropertyValue<TDRole> _role = new PropertyValue<TDRole>(nameof(TDMembership), nameof(Role));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("role")]
         public TDRole Role
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
+            get => _role.GetValue();
+            set => _role.SetValue(value);
         }
     
         private PropertyValue<bool> _lead = new PropertyValue<bool>(nameof(TDMembership), nameof(IsLead));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lead")]
         public bool IsLead
         {
-            get { return _lead.GetValue(); }
-            set { _lead.SetValue(value); }
+            get => _lead.GetValue();
+            set => _lead.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _manager = new PropertyValue<TDMemberProfile?>(nameof(TDMembership), nameof(Manager));
@@ -104,8 +104,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("manager")]
         public TDMemberProfile? Manager
         {
-            get { return _manager.GetValue(); }
-            set { _manager.SetValue(value); }
+            get => _manager.GetValue();
+            set => _manager.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(Since));
@@ -114,8 +114,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(Till));
@@ -124,8 +124,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(ActiveSince));
@@ -134,8 +134,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ActiveSince
         {
-            get { return _activeSince.GetValue(); }
-            set { _activeSince.SetValue(value); }
+            get => _activeSince.GetValue();
+            set => _activeSince.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TDMembership), nameof(ActiveTill));
@@ -144,8 +144,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ActiveTill
         {
-            get { return _activeTill.GetValue(); }
-            set { _activeTill.SetValue(value); }
+            get => _activeTill.GetValue();
+            set => _activeTill.SetValue(value);
         }
     
         private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TDMembership), nameof(IsRequiresApproval));
@@ -154,8 +154,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("requiresApproval")]
         public bool IsRequiresApproval
         {
-            get { return _requiresApproval.GetValue(); }
-            set { _requiresApproval.SetValue(value); }
+            get => _requiresApproval.GetValue();
+            set => _requiresApproval.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMembership), nameof(IsArchived));
@@ -164,8 +164,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<TDMembership?> _editFor = new PropertyValue<TDMembership?>(nameof(TDMembership), nameof(EditFor));
@@ -173,8 +173,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("editFor")]
         public TDMembership? EditFor
         {
-            get { return _editFor.GetValue(); }
-            set { _editFor.SetValue(value); }
+            get => _editFor.GetValue();
+            set => _editFor.SetValue(value);
         }
     
         private PropertyValue<TDMembership?> _pendingEdit = new PropertyValue<TDMembership?>(nameof(TDMembership), nameof(PendingEdit));
@@ -182,8 +182,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pendingEdit")]
         public TDMembership? PendingEdit
         {
-            get { return _pendingEdit.GetValue(); }
-            set { _pendingEdit.SetValue(value); }
+            get => _pendingEdit.GetValue();
+            set => _pendingEdit.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _approver = new PropertyValue<TDMemberProfile?>(nameof(TDMembership), nameof(Approver));
@@ -191,8 +191,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("approver")]
         public TDMemberProfile? Approver
         {
-            get { return _approver.GetValue(); }
-            set { _approver.SetValue(value); }
+            get => _approver.GetValue();
+            set => _approver.SetValue(value);
         }
     
         private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDMembership), nameof(CustomFields));
@@ -201,8 +201,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customFields")]
         public Dictionary<string, CFValue> CustomFields
         {
-            get { return _customFields.GetValue(); }
-            set { _customFields.SetValue(value); }
+            get => _customFields.GetValue();
+            set => _customFields.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -40,39 +40,29 @@ namespace SpaceDotNet.Client
         private class ProfileIdentifierMe : ProfileIdentifier
         {
             public override string ToString()
-            {
-                return "me";
-            }
+                => "me";
         }
         
         private class ProfileIdentifierId : ProfileIdentifier
         {
-            public readonly string _id;
+            private readonly string _id;
             
             public ProfileIdentifierId(string id)
-            {
-                _id = id;
-            }
+                => _id = id;
             
             public override string ToString()
-            {
-                return $"id:{_id}";
-            }
+                => $"id:{_id}";
         }
         
         private class ProfileIdentifierUsername : ProfileIdentifier
         {
-            public readonly string _username;
+            private readonly string _username;
             
             public ProfileIdentifierUsername(string username)
-            {
-                _username = username;
-            }
+                => _username = username;
             
             public override string ToString()
-            {
-                return $"username:{_username}";
-            }
+                => $"username:{_username}";
         }
         
     }

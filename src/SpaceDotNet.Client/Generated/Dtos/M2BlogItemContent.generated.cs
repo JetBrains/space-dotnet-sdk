@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("article")]
         public ArticleRecord Article
         {
-            get { return _article.GetValue(); }
-            set { _article.SetValue(value); }
+            get => _article.GetValue();
+            set => _article.SetValue(value);
         }
     
         private PropertyValue<ArticleContentRecord> _articleContent = new PropertyValue<ArticleContentRecord>(nameof(M2BlogItemContent), nameof(ArticleContent));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("articleContent")]
         public ArticleContentRecord ArticleContent
         {
-            get { return _articleContent.GetValue(); }
-            set { _articleContent.SetValue(value); }
+            get => _articleContent.GetValue();
+            set => _articleContent.SetValue(value);
         }
     
         private PropertyValue<ArticleDetailsRecord> _articleDetails = new PropertyValue<ArticleDetailsRecord>(nameof(M2BlogItemContent), nameof(ArticleDetails));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("articleDetails")]
         public ArticleDetailsRecord ArticleDetails
         {
-            get { return _articleDetails.GetValue(); }
-            set { _articleDetails.SetValue(value); }
+            get => _articleDetails.GetValue();
+            set => _articleDetails.SetValue(value);
         }
     
         private PropertyValue<ArticleChannelRecord> _articleChannel = new PropertyValue<ArticleChannelRecord>(nameof(M2BlogItemContent), nameof(ArticleChannel));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("articleChannel")]
         public ArticleChannelRecord ArticleChannel
         {
-            get { return _articleChannel.GetValue(); }
-            set { _articleChannel.SetValue(value); }
+            get => _articleChannel.GetValue();
+            set => _articleChannel.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _version = new PropertyValue<string>(nameof(NpmPackageDependency), nameof(Version));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(NpmPackageDependency), nameof(Type));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public string? Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

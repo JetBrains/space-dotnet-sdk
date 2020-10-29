@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobExecutionId")]
         public string JobExecutionId
         {
-            get { return _jobExecutionId.GetValue(); }
-            set { _jobExecutionId.SetValue(value); }
+            get => _jobExecutionId.GetValue();
+            set => _jobExecutionId.SetValue(value);
         }
     
         private PropertyValue<PRProject> _projectRef = new PropertyValue<PRProject>(nameof(AutomationJobExecutionUnfurlDetails), nameof(ProjectRef));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectRef")]
         public PRProject ProjectRef
         {
-            get { return _projectRef.GetValue(); }
-            set { _projectRef.SetValue(value); }
+            get => _projectRef.GetValue();
+            set => _projectRef.SetValue(value);
         }
     
         private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(AutomationJobExecutionUnfurlDetails), nameof(RepoName));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repoName")]
         public string RepoName
         {
-            get { return _repoName.GetValue(); }
-            set { _repoName.SetValue(value); }
+            get => _repoName.GetValue();
+            set => _repoName.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

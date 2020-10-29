@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ExternalEntityInfoRecord), nameof(IsArchived));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalId));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalId")]
         public string? ExternalId
         {
-            get { return _externalId.GetValue(); }
-            set { _externalId.SetValue(value); }
+            get => _externalId.GetValue();
+            set => _externalId.SetValue(value);
         }
     
         private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalName));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalName")]
         public string? ExternalName
         {
-            get { return _externalName.GetValue(); }
-            set { _externalName.SetValue(value); }
+            get => _externalName.GetValue();
+            set => _externalName.SetValue(value);
         }
     
         private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalEntityInfoRecord), nameof(ExternalUrl));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalUrl")]
         public string? ExternalUrl
         {
-            get { return _externalUrl.GetValue(); }
-            set { _externalUrl.SetValue(value); }
+            get => _externalUrl.GetValue();
+            set => _externalUrl.SetValue(value);
         }
     
         private PropertyValue<ImportTransactionRecord> _transaction = new PropertyValue<ImportTransactionRecord>(nameof(ExternalEntityInfoRecord), nameof(Transaction));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("transaction")]
         public ImportTransactionRecord Transaction
         {
-            get { return _transaction.GetValue(); }
-            set { _transaction.SetValue(value); }
+            get => _transaction.GetValue();
+            set => _transaction.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

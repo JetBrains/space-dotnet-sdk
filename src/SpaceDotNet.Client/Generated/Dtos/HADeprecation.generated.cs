@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<string> _since = new PropertyValue<string>(nameof(HADeprecation), nameof(Since));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("since")]
         public string Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<bool> _forRemoval = new PropertyValue<bool>(nameof(HADeprecation), nameof(IsForRemoval));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("forRemoval")]
         public bool IsForRemoval
         {
-            get { return _forRemoval.GetValue(); }
-            set { _forRemoval.SetValue(value); }
+            get => _forRemoval.GetValue();
+            set => _forRemoval.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

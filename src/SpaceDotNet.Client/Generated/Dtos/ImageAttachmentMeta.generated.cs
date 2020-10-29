@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("variants")]
         public List<ImageAttachmentVariantsMeta> Variants
         {
-            get { return _variants.GetValue(); }
-            set { _variants.SetValue(value); }
+            get => _variants.GetValue();
+            set => _variants.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

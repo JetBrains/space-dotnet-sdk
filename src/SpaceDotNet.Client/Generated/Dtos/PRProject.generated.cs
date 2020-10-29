@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<ProjectKey> _key = new PropertyValue<ProjectKey>(nameof(PRProject), nameof(Key));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public ProjectKey Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRProject), nameof(Name));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(PRProject), nameof(IsPrivate));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("private")]
         public bool IsPrivate
         {
-            get { return _private.GetValue(); }
-            set { _private.SetValue(value); }
+            get => _private.GetValue();
+            set => _private.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PRProject), nameof(Description));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(PRProject), nameof(Icon));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public string? Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _latestRepositoryActivity = new PropertyValue<DateTime?>(nameof(PRProject), nameof(LatestRepositoryActivity));
@@ -115,8 +115,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? LatestRepositoryActivity
         {
-            get { return _latestRepositoryActivity.GetValue(); }
-            set { _latestRepositoryActivity.SetValue(value); }
+            get => _latestRepositoryActivity.GetValue();
+            set => _latestRepositoryActivity.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PRProject), nameof(IsArchived));
@@ -125,8 +125,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _adminProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(AdminProfiles));
@@ -135,8 +135,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("adminProfiles")]
         public List<TDMemberProfile> AdminProfiles
         {
-            get { return _adminProfiles.GetValue(); }
-            set { _adminProfiles.SetValue(value); }
+            get => _adminProfiles.GetValue();
+            set => _adminProfiles.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>> _adminTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(AdminTeams));
@@ -145,8 +145,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("adminTeams")]
         public List<TDTeam> AdminTeams
         {
-            get { return _adminTeams.GetValue(); }
-            set { _adminTeams.SetValue(value); }
+            get => _adminTeams.GetValue();
+            set => _adminTeams.SetValue(value);
         }
     
         private PropertyValue<List<BoardRecord>> _boards = new PropertyValue<List<BoardRecord>>(nameof(PRProject), nameof(Boards));
@@ -155,8 +155,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("boards")]
         public List<BoardRecord> Boards
         {
-            get { return _boards.GetValue(); }
-            set { _boards.SetValue(value); }
+            get => _boards.GetValue();
+            set => _boards.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles));
@@ -165,8 +165,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberProfiles")]
         public List<TDMemberProfile> MemberProfiles
         {
-            get { return _memberProfiles.GetValue(); }
-            set { _memberProfiles.SetValue(value); }
+            get => _memberProfiles.GetValue();
+            set => _memberProfiles.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>> _memberTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(MemberTeams));
@@ -175,8 +175,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberTeams")]
         public List<TDTeam> MemberTeams
         {
-            get { return _memberTeams.GetValue(); }
-            set { _memberTeams.SetValue(value); }
+            get => _memberTeams.GetValue();
+            set => _memberTeams.SetValue(value);
         }
     
         private PropertyValue<List<ProjectPackageRepository>> _packages = new PropertyValue<List<ProjectPackageRepository>>(nameof(PRProject), nameof(Packages));
@@ -185,8 +185,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("packages")]
         public List<ProjectPackageRepository> Packages
         {
-            get { return _packages.GetValue(); }
-            set { _packages.SetValue(value); }
+            get => _packages.GetValue();
+            set => _packages.SetValue(value);
         }
     
         private PropertyValue<List<PRRepositoryInfo>> _repos = new PropertyValue<List<PRRepositoryInfo>>(nameof(PRProject), nameof(Repos));
@@ -195,8 +195,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repos")]
         public List<PRRepositoryInfo> Repos
         {
-            get { return _repos.GetValue(); }
-            set { _repos.SetValue(value); }
+            get => _repos.GetValue();
+            set => _repos.SetValue(value);
         }
     
         private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(PRProject), nameof(Tags));
@@ -205,8 +205,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string> Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         private PropertyValue<List<ProjectIssueTrackerItem>> _trackers = new PropertyValue<List<ProjectIssueTrackerItem>>(nameof(PRProject), nameof(Trackers));
@@ -215,8 +215,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("trackers")]
         public List<ProjectIssueTrackerItem> Trackers
         {
-            get { return _trackers.GetValue(); }
-            set { _trackers.SetValue(value); }
+            get => _trackers.GetValue();
+            set => _trackers.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

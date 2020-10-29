@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileChecklistsForChecklistIdPatchRequest), nameof(Description));
@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

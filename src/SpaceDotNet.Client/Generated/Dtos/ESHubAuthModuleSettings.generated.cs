@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hubUrl")]
         public string HubUrl
         {
-            get { return _hubUrl.GetValue(); }
-            set { _hubUrl.SetValue(value); }
+            get => _hubUrl.GetValue();
+            set => _hubUrl.SetValue(value);
         }
     
         private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(ClientId));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientId")]
         public string ClientId
         {
-            get { return _clientId.GetValue(); }
-            set { _clientId.SetValue(value); }
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESHubAuthModuleSettings), nameof(ClientSecret));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientSecret")]
         public string ClientSecret
         {
-            get { return _clientSecret.GetValue(); }
-            set { _clientSecret.SetValue(value); }
+            get => _clientSecret.GetValue();
+            set => _clientSecret.SetValue(value);
         }
     
         private PropertyValue<bool?> _registerNewUsers = new PropertyValue<bool?>(nameof(ESHubAuthModuleSettings), nameof(IsRegisterNewUsers));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("registerNewUsers")]
         public bool? IsRegisterNewUsers
         {
-            get { return _registerNewUsers.GetValue(); }
-            set { _registerNewUsers.SetValue(value); }
+            get => _registerNewUsers.GetValue();
+            set => _registerNewUsers.SetValue(value);
         }
     
         private PropertyValue<string?> _orgAuthProviderName = new PropertyValue<string?>(nameof(ESHubAuthModuleSettings), nameof(OrgAuthProviderName));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("orgAuthProviderName")]
         public string? OrgAuthProviderName
         {
-            get { return _orgAuthProviderName.GetValue(); }
-            set { _orgAuthProviderName.SetValue(value); }
+            get => _orgAuthProviderName.GetValue();
+            set => _orgAuthProviderName.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _groups = new PropertyValue<List<string>?>(nameof(ESHubAuthModuleSettings), nameof(Groups));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("groups")]
         public List<string>? Groups
         {
-            get { return _groups.GetValue(); }
-            set { _groups.SetValue(value); }
+            get => _groups.GetValue();
+            set => _groups.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

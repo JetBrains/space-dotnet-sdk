@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principals")]
         public List<CPrincipal> Principals
         {
-            get { return _principals.GetValue(); }
-            set { _principals.SetValue(value); }
+            get => _principals.GetValue();
+            set => _principals.SetValue(value);
         }
     
         private PropertyValue<List<string>> _othersDisplayNames = new PropertyValue<List<string>>(nameof(MembersAddedItemDetails), nameof(OthersDisplayNames));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("othersDisplayNames")]
         public List<string> OthersDisplayNames
         {
-            get { return _othersDisplayNames.GetValue(); }
-            set { _othersDisplayNames.SetValue(value); }
+            get => _othersDisplayNames.GetValue();
+            set => _othersDisplayNames.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

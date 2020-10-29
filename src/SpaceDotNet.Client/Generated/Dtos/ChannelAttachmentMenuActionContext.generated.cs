@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("menuId")]
         public string MenuId
         {
-            get { return _menuId.GetValue(); }
-            set { _menuId.SetValue(value); }
+            get => _menuId.GetValue();
+            set => _menuId.SetValue(value);
         }
     
         private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(ChannelAttachmentMenuActionContext), nameof(ChannelId));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelId")]
         public string ChannelId
         {
-            get { return _channelId.GetValue(); }
-            set { _channelId.SetValue(value); }
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

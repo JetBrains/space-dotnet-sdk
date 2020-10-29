@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("service")]
         public ESService Service
         {
-            get { return _service.GetValue(); }
-            set { _service.SetValue(value); }
+            get => _service.GetValue();
+            set => _service.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentApplication), nameof(NotificationDefaults));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

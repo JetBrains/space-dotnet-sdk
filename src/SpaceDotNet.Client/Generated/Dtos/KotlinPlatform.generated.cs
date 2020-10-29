@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<List<string>> _targets = new PropertyValue<List<string>>(nameof(KotlinPlatform), nameof(Targets));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targets")]
         public List<string> Targets
         {
-            get { return _targets.GetValue(); }
-            set { _targets.SetValue(value); }
+            get => _targets.GetValue();
+            set => _targets.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

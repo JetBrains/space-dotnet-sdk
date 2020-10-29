@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorPrincipalId")]
         public string AuthorPrincipalId
         {
-            get { return _authorPrincipalId.GetValue(); }
-            set { _authorPrincipalId.SetValue(value); }
+            get => _authorPrincipalId.GetValue();
+            set => _authorPrincipalId.SetValue(value);
         }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageForImport), nameof(Text));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<long> _createdAtUtc = new PropertyValue<long>(nameof(MessageForImport), nameof(CreatedAtUtc));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdAtUtc")]
         public long CreatedAtUtc
         {
-            get { return _createdAtUtc.GetValue(); }
-            set { _createdAtUtc.SetValue(value); }
+            get => _createdAtUtc.GetValue();
+            set => _createdAtUtc.SetValue(value);
         }
     
         private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(MessageForImport), nameof(Attachments));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<Attachment>? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

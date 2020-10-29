@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("discussion")]
         public CodeReviewDiscussionRecord Discussion
         {
-            get { return _discussion.GetValue(); }
-            set { _discussion.SetValue(value); }
+            get => _discussion.GetValue();
+            set => _discussion.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

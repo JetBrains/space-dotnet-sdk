@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelId")]
         public string ChannelId
         {
-            get { return _channelId.GetValue(); }
-            set { _channelId.SetValue(value); }
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(Name));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(AllChannelsListEntry), nameof(Description));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<M2Access> _access = new PropertyValue<M2Access>(nameof(AllChannelsListEntry), nameof(Access));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("access")]
         public M2Access Access
         {
-            get { return _access.GetValue(); }
-            set { _access.SetValue(value); }
+            get => _access.GetValue();
+            set => _access.SetValue(value);
         }
     
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(AllChannelsListEntry), nameof(Icon));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public string? Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(AllChannelsListEntry), nameof(Created));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<int> _subscribers = new PropertyValue<int>(nameof(AllChannelsListEntry), nameof(Subscribers));
@@ -108,8 +108,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("subscribers")]
         public int Subscribers
         {
-            get { return _subscribers.GetValue(); }
-            set { _subscribers.SetValue(value); }
+            get => _subscribers.GetValue();
+            set => _subscribers.SetValue(value);
         }
     
         private PropertyValue<bool> _subscribed = new PropertyValue<bool>(nameof(AllChannelsListEntry), nameof(IsSubscribed));
@@ -118,8 +118,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("subscribed")]
         public bool IsSubscribed
         {
-            get { return _subscribed.GetValue(); }
-            set { _subscribed.SetValue(value); }
+            get => _subscribed.GetValue();
+            set => _subscribed.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

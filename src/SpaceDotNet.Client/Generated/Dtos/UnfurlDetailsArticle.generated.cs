@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("article")]
         public ArticleRecord Article
         {
-            get { return _article.GetValue(); }
-            set { _article.SetValue(value); }
+            get => _article.GetValue();
+            set => _article.SetValue(value);
         }
     
         private PropertyValue<ArticleContentRecord> _content = new PropertyValue<ArticleContentRecord>(nameof(UnfurlDetailsArticle), nameof(Content));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public ArticleContentRecord Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<ArticleChannelRecord> _channel = new PropertyValue<ArticleChannelRecord>(nameof(UnfurlDetailsArticle), nameof(Channel));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public ArticleChannelRecord Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(UnfurlDetailsArticle), nameof(Details));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public ArticleDetailsRecord? Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

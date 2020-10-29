@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(BusinessEntity), nameof(Name));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(BusinessEntity), nameof(Location));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public TDLocation Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         private PropertyValue<int> _vacationAllowance = new PropertyValue<int>(nameof(BusinessEntity), nameof(VacationAllowance));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("vacationAllowance")]
         public int VacationAllowance
         {
-            get { return _vacationAllowance.GetValue(); }
-            set { _vacationAllowance.SetValue(value); }
+            get => _vacationAllowance.GetValue();
+            set => _vacationAllowance.SetValue(value);
         }
     
         private PropertyValue<int?> _vacationApplicationDeadline = new PropertyValue<int?>(nameof(BusinessEntity), nameof(VacationApplicationDeadline));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("vacationApplicationDeadline")]
         public int? VacationApplicationDeadline
         {
-            get { return _vacationApplicationDeadline.GetValue(); }
-            set { _vacationApplicationDeadline.SetValue(value); }
+            get => _vacationApplicationDeadline.GetValue();
+            set => _vacationApplicationDeadline.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BusinessEntity), nameof(IsArchived));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

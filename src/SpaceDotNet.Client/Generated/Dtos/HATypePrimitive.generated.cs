@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("primitive")]
         public HAPrimitive Primitive
         {
-            get { return _primitive.GetValue(); }
-            set { _primitive.SetValue(value); }
+            get => _primitive.GetValue();
+            set => _primitive.SetValue(value);
         }
     
         private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypePrimitive), nameof(IsNullable));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nullable")]
         public bool IsNullable
         {
-            get { return _nullable.GetValue(); }
-            set { _nullable.SetValue(value); }
+            get => _nullable.GetValue();
+            set => _nullable.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

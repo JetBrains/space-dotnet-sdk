@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeetingRecord), nameof(IsArchived));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<DateTime> _starts = new PropertyValue<DateTime>(nameof(MeetingRecord), nameof(Starts));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Starts
         {
-            get { return _starts.GetValue(); }
-            set { _starts.SetValue(value); }
+            get => _starts.GetValue();
+            set => _starts.SetValue(value);
         }
     
         private PropertyValue<DateTime> _finishes = new PropertyValue<DateTime>(nameof(MeetingRecord), nameof(Finishes));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Finishes
         {
-            get { return _finishes.GetValue(); }
-            set { _finishes.SetValue(value); }
+            get => _finishes.GetValue();
+            set => _finishes.SetValue(value);
         }
     
         private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(MeetingRecord), nameof(Timezone));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("timezone")]
         public ATimeZone? Timezone
         {
-            get { return _timezone.GetValue(); }
-            set { _timezone.SetValue(value); }
+            get => _timezone.GetValue();
+            set => _timezone.SetValue(value);
         }
     
         private PropertyValue<bool> _allDay = new PropertyValue<bool>(nameof(MeetingRecord), nameof(IsAllDay));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("allDay")]
         public bool IsAllDay
         {
-            get { return _allDay.GetValue(); }
-            set { _allDay.SetValue(value); }
+            get => _allDay.GetValue();
+            set => _allDay.SetValue(value);
         }
     
         private PropertyValue<List<TDLocation>> _rooms = new PropertyValue<List<TDLocation>>(nameof(MeetingRecord), nameof(Rooms));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rooms")]
         public List<TDLocation> Rooms
         {
-            get { return _rooms.GetValue(); }
-            set { _rooms.SetValue(value); }
+            get => _rooms.GetValue();
+            set => _rooms.SetValue(value);
         }
     
         private PropertyValue<List<Participant>> _participants = new PropertyValue<List<Participant>>(nameof(MeetingRecord), nameof(Participants));
@@ -120,8 +120,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("participants")]
         public List<Participant> Participants
         {
-            get { return _participants.GetValue(); }
-            set { _participants.SetValue(value); }
+            get => _participants.GetValue();
+            set => _participants.SetValue(value);
         }
     
         private PropertyValue<ArticleRecord?> _article = new PropertyValue<ArticleRecord?>(nameof(MeetingRecord), nameof(Article));
@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("article")]
         public ArticleRecord? Article
         {
-            get { return _article.GetValue(); }
-            set { _article.SetValue(value); }
+            get => _article.GetValue();
+            set => _article.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

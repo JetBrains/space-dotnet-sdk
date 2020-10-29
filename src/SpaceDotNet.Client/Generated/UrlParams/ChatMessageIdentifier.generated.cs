@@ -36,32 +36,24 @@ namespace SpaceDotNet.Client
         
         private class ChatMessageIdentifierInternalId : ChatMessageIdentifier
         {
-            public readonly string _id;
+            private readonly string _id;
             
             public ChatMessageIdentifierInternalId(string id)
-            {
-                _id = id;
-            }
+                => _id = id;
             
             public override string ToString()
-            {
-                return $"id:{_id}";
-            }
+                => $"id:{_id}";
         }
         
         private class ChatMessageIdentifierExternalId : ChatMessageIdentifier
         {
-            public readonly string _externalId;
+            private readonly string _externalId;
             
             public ChatMessageIdentifierExternalId(string externalId)
-            {
-                _externalId = externalId;
-            }
+                => _externalId = externalId;
             
             public override string ToString()
-            {
-                return $"externalId:{_externalId}";
-            }
+                => $"externalId:{_externalId}";
         }
         
     }

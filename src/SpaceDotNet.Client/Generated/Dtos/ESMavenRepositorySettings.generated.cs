@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("enableSnapshots")]
         public bool IsEnableSnapshots
         {
-            get { return _enableSnapshots.GetValue(); }
-            set { _enableSnapshots.SetValue(value); }
+            get => _enableSnapshots.GetValue();
+            set => _enableSnapshots.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

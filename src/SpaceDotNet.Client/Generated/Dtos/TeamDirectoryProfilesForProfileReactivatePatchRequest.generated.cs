@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Joined
         {
-            get { return _joined.GetValue(); }
-            set { _joined.SetValue(value); }
+            get => _joined.GetValue();
+            set => _joined.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pkg")]
         public PackageVersionInfo Pkg
         {
-            get { return _pkg.GetValue(); }
-            set { _pkg.SetValue(value); }
+            get => _pkg.GetValue();
+            set => _pkg.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

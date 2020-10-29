@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("typeCode")]
         public string TypeCode
         {
-            get { return _typeCode.GetValue(); }
-            set { _typeCode.SetValue(value); }
+            get => _typeCode.GetValue();
+            set => _typeCode.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(RightType), nameof(Title));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

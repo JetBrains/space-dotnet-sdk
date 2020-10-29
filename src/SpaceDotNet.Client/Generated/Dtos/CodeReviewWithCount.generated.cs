@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("review")]
         public CodeReviewRecord Review
         {
-            get { return _review.GetValue(); }
-            set { _review.SetValue(value); }
+            get => _review.GetValue();
+            set => _review.SetValue(value);
         }
     
         private PropertyValue<int> _messagesCount = new PropertyValue<int>(nameof(CodeReviewWithCount), nameof(MessagesCount));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messagesCount")]
         public int MessagesCount
         {
-            get { return _messagesCount.GetValue(); }
-            set { _messagesCount.SetValue(value); }
+            get => _messagesCount.GetValue();
+            set => _messagesCount.SetValue(value);
         }
     
         private PropertyValue<List<GitCommitterProfile>> _authors = new PropertyValue<List<GitCommitterProfile>>(nameof(CodeReviewWithCount), nameof(Authors));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authors")]
         public List<GitCommitterProfile> Authors
         {
-            get { return _authors.GetValue(); }
-            set { _authors.SetValue(value); }
+            get => _authors.GetValue();
+            set => _authors.SetValue(value);
         }
     
         private PropertyValue<CodeReviewParticipants> _participants = new PropertyValue<CodeReviewParticipants>(nameof(CodeReviewWithCount), nameof(Participants));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("participants")]
         public CodeReviewParticipants Participants
         {
-            get { return _participants.GetValue(); }
-            set { _participants.SetValue(value); }
+            get => _participants.GetValue();
+            set => _participants.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<Attachment> Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

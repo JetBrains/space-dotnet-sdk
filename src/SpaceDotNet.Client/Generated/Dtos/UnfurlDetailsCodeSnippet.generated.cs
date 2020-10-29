@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("anchor")]
         public CodeSnippetAnchor Anchor
         {
-            get { return _anchor.GetValue(); }
-            set { _anchor.SetValue(value); }
+            get => _anchor.GetValue();
+            set => _anchor.SetValue(value);
         }
     
         private PropertyValue<List<CodeLine>> _lines = new PropertyValue<List<CodeLine>>(nameof(UnfurlDetailsCodeSnippet), nameof(Lines));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lines")]
         public List<CodeLine> Lines
         {
-            get { return _lines.GetValue(); }
-            set { _lines.SetValue(value); }
+            get => _lines.GetValue();
+            set => _lines.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

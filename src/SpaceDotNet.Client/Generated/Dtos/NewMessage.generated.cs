@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<string> _temporaryId = new PropertyValue<string>(nameof(NewMessage), nameof(TemporaryId));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("temporaryId")]
         public string TemporaryId
         {
-            get { return _temporaryId.GetValue(); }
-            set { _temporaryId.SetValue(value); }
+            get => _temporaryId.GetValue();
+            set => _temporaryId.SetValue(value);
         }
     
         private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(NewMessage), nameof(Attachments));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<Attachment>? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(NewMessage), nameof(IsPending));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pending")]
         public bool IsPending
         {
-            get { return _pending.GetValue(); }
-            set { _pending.SetValue(value); }
+            get => _pending.GetValue();
+            set => _pending.SetValue(value);
         }
     
         private PropertyValue<string?> _draftTag = new PropertyValue<string?>(nameof(NewMessage), nameof(DraftTag));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("draftTag")]
         public string? DraftTag
         {
-            get { return _draftTag.GetValue(); }
-            set { _draftTag.SetValue(value); }
+            get => _draftTag.GetValue();
+            set => _draftTag.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

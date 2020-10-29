@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("codeReviewId")]
         public string CodeReviewId
         {
-            get { return _codeReviewId.GetValue(); }
-            set { _codeReviewId.SetValue(value); }
+            get => _codeReviewId.GetValue();
+            set => _codeReviewId.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewFeed), nameof(NotificationDefaults));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         private PropertyValue<CodeReviewRecord?> _codeReview = new PropertyValue<CodeReviewRecord?>(nameof(M2ChannelContentCodeReviewFeed), nameof(CodeReview));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("codeReview")]
         public CodeReviewRecord? CodeReview
         {
-            get { return _codeReview.GetValue(); }
-            set { _codeReview.SetValue(value); }
+            get => _codeReview.GetValue();
+            set => _codeReview.SetValue(value);
         }
     
         private PropertyValue<CodeReviewParticipants?> _participants = new PropertyValue<CodeReviewParticipants?>(nameof(M2ChannelContentCodeReviewFeed), nameof(Participants));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("participants")]
         public CodeReviewParticipants? Participants
         {
-            get { return _participants.GetValue(); }
-            set { _participants.SetValue(value); }
+            get => _participants.GetValue();
+            set => _participants.SetValue(value);
         }
     
         private PropertyValue<CodeReviewPendingMessageCounter?> _pendingMessageCounter = new PropertyValue<CodeReviewPendingMessageCounter?>(nameof(M2ChannelContentCodeReviewFeed), nameof(PendingMessageCounter));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pendingMessageCounter")]
         public CodeReviewPendingMessageCounter? PendingMessageCounter
         {
-            get { return _pendingMessageCounter.GetValue(); }
-            set { _pendingMessageCounter.SetValue(value); }
+            get => _pendingMessageCounter.GetValue();
+            set => _pendingMessageCounter.SetValue(value);
         }
     
         private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(M2ChannelContentCodeReviewFeed), nameof(Project));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public PRProject? Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

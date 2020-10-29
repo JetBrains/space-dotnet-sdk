@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resolved")]
         public bool IsResolved
         {
-            get { return _resolved.GetValue(); }
-            set { _resolved.SetValue(value); }
+            get => _resolved.GetValue();
+            set => _resolved.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

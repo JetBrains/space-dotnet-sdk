@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("calendarEvent")]
         public bool? IsCalendarEvent
         {
-            get { return _calendarEvent.GetValue(); }
-            set { _calendarEvent.SetValue(value); }
+            get => _calendarEvent.GetValue();
+            set => _calendarEvent.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _starts = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Starts));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Starts
         {
-            get { return _starts.GetValue(); }
-            set { _starts.SetValue(value); }
+            get => _starts.GetValue();
+            set => _starts.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _ends = new PropertyValue<DateTime?>(nameof(CalendarEvent), nameof(Ends));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Ends
         {
-            get { return _ends.GetValue(); }
-            set { _ends.SetValue(value); }
+            get => _ends.GetValue();
+            set => _ends.SetValue(value);
         }
     
         private PropertyValue<ATimeZone?> _timezone = new PropertyValue<ATimeZone?>(nameof(CalendarEvent), nameof(Timezone));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("timezone")]
         public ATimeZone? Timezone
         {
-            get { return _timezone.GetValue(); }
-            set { _timezone.SetValue(value); }
+            get => _timezone.GetValue();
+            set => _timezone.SetValue(value);
         }
     
         private PropertyValue<List<TDLocation>?> _rooms = new PropertyValue<List<TDLocation>?>(nameof(CalendarEvent), nameof(Rooms));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rooms")]
         public List<TDLocation>? Rooms
         {
-            get { return _rooms.GetValue(); }
-            set { _rooms.SetValue(value); }
+            get => _rooms.GetValue();
+            set => _rooms.SetValue(value);
         }
     
         private PropertyValue<bool?> _allDay = new PropertyValue<bool?>(nameof(CalendarEvent), nameof(IsAllDay));
@@ -92,8 +92,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("allDay")]
         public bool? IsAllDay
         {
-            get { return _allDay.GetValue(); }
-            set { _allDay.SetValue(value); }
+            get => _allDay.GetValue();
+            set => _allDay.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

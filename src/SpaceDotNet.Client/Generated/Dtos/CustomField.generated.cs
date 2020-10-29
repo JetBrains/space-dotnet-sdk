@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("extendedType")]
         public ExtendedType ExtendedType
         {
-            get { return _extendedType.GetValue(); }
-            set { _extendedType.SetValue(value); }
+            get => _extendedType.GetValue();
+            set => _extendedType.SetValue(value);
         }
     
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CustomField), nameof(Id));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(CustomField), nameof(Name));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomField), nameof(Description));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _key = new PropertyValue<string?>(nameof(CustomField), nameof(Key));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string? Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomField), nameof(Type));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public CFType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomField), nameof(Constraint));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("constraint")]
         public CFConstraint? Constraint
         {
-            get { return _constraint.GetValue(); }
-            set { _constraint.SetValue(value); }
+            get => _constraint.GetValue();
+            set => _constraint.SetValue(value);
         }
     
         private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomField), nameof(IsRequired));
@@ -122,8 +122,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("required")]
         public bool IsRequired
         {
-            get { return _required.GetValue(); }
-            set { _required.SetValue(value); }
+            get => _required.GetValue();
+            set => _required.SetValue(value);
         }
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomField), nameof(IsPrivate));
@@ -132,8 +132,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("private")]
         public bool IsPrivate
         {
-            get { return _private.GetValue(); }
-            set { _private.SetValue(value); }
+            get => _private.GetValue();
+            set => _private.SetValue(value);
         }
     
         private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomField), nameof(Access));
@@ -141,8 +141,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("access")]
         public AccessType? Access
         {
-            get { return _access.GetValue(); }
-            set { _access.SetValue(value); }
+            get => _access.GetValue();
+            set => _access.SetValue(value);
         }
     
         private PropertyValue<CFValue> _defaultValue = new PropertyValue<CFValue>(nameof(CustomField), nameof(DefaultValue));
@@ -151,8 +151,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultValue")]
         public CFValue DefaultValue
         {
-            get { return _defaultValue.GetValue(); }
-            set { _defaultValue.SetValue(value); }
+            get => _defaultValue.GetValue();
+            set => _defaultValue.SetValue(value);
         }
     
         private PropertyValue<int> _order = new PropertyValue<int>(nameof(CustomField), nameof(Order));
@@ -161,8 +161,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("order")]
         public int Order
         {
-            get { return _order.GetValue(); }
-            set { _order.SetValue(value); }
+            get => _order.GetValue();
+            set => _order.SetValue(value);
         }
     
         private PropertyValue<ExtendedTypeScope?> _scope = new PropertyValue<ExtendedTypeScope?>(nameof(CustomField), nameof(Scope));
@@ -170,8 +170,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public ExtendedTypeScope? Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CustomField), nameof(IsArchived));
@@ -180,8 +180,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

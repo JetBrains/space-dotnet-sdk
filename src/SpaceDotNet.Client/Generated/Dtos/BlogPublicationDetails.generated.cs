@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teamId")]
         public TDTeam? TeamId
         {
-            get { return _teamId.GetValue(); }
-            set { _teamId.SetValue(value); }
+            get => _teamId.GetValue();
+            set => _teamId.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(BlogPublicationDetails), nameof(Teams));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<TDTeam>? Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         private PropertyValue<TDLocation?> _locationId = new PropertyValue<TDLocation?>(nameof(BlogPublicationDetails), nameof(LocationId));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locationId")]
         public TDLocation? LocationId
         {
-            get { return _locationId.GetValue(); }
-            set { _locationId.SetValue(value); }
+            get => _locationId.GetValue();
+            set => _locationId.SetValue(value);
         }
     
         private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(BlogPublicationDetails), nameof(Locations));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locations")]
         public List<TDLocation>? Locations
         {
-            get { return _locations.GetValue(); }
-            set { _locations.SetValue(value); }
+            get => _locations.GetValue();
+            set => _locations.SetValue(value);
         }
     
         private PropertyValue<CalendarEvent?> _event = new PropertyValue<CalendarEvent?>(nameof(BlogPublicationDetails), nameof(Event));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("event")]
         public CalendarEvent? Event
         {
-            get { return _event.GetValue(); }
-            set { _event.SetValue(value); }
+            get => _event.GetValue();
+            set => _event.SetValue(value);
         }
     
         private PropertyValue<ArticleRecord?> _article = new PropertyValue<ArticleRecord?>(nameof(BlogPublicationDetails), nameof(Article));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("article")]
         public ArticleRecord? Article
         {
-            get { return _article.GetValue(); }
-            set { _article.SetValue(value); }
+            get => _article.GetValue();
+            set => _article.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(ExpiresAt));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ExpiresAt
         {
-            get { return _expiresAt.GetValue(); }
-            set { _expiresAt.SetValue(value); }
+            get => _expiresAt.GetValue();
+            set => _expiresAt.SetValue(value);
         }
     
         private PropertyValue<int?> _inviteeLimit = new PropertyValue<int?>(nameof(TeamDirectoryInvitationLinksForInvitationLinkIdPatchRequest), nameof(InviteeLimit));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeLimit")]
         public int? InviteeLimit
         {
-            get { return _inviteeLimit.GetValue(); }
-            set { _inviteeLimit.SetValue(value); }
+            get => _inviteeLimit.GetValue();
+            set => _inviteeLimit.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _defaultBranch = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(DefaultBranch));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultBranch")]
         public string? DefaultBranch
         {
-            get { return _defaultBranch.GetValue(); }
-            set { _defaultBranch.SetValue(value); }
+            get => _defaultBranch.GetValue();
+            set => _defaultBranch.SetValue(value);
         }
     
         private PropertyValue<bool> _initialize = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsInitialize));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("initialize")]
         public bool IsInitialize
         {
-            get { return _initialize.GetValue(); }
-            set { _initialize.SetValue(value); }
+            get => _initialize.GetValue();
+            set => _initialize.SetValue(value);
         }
     
         private PropertyValue<bool> _defaultSetup = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryPostRequest), nameof(IsDefaultSetup));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultSetup")]
         public bool IsDefaultSetup
         {
-            get { return _defaultSetup.GetValue(); }
-            set { _defaultSetup.SetValue(value); }
+            get => _defaultSetup.GetValue();
+            set => _defaultSetup.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

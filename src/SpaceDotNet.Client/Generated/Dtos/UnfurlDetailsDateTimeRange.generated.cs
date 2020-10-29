@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("since")]
         public long Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<long> _till = new PropertyValue<long>(nameof(UnfurlDetailsDateTimeRange), nameof(Till));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("till")]
         public long Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTimeRange), nameof(Params));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("params")]
         public DateTimeViewParams? Params
         {
-            get { return _params.GetValue(); }
-            set { _params.SetValue(value); }
+            get => _params.GetValue();
+            set => _params.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeEmail")]
         public string? InviteeEmail
         {
-            get { return _inviteeEmail.GetValue(); }
-            set { _inviteeEmail.SetValue(value); }
+            get => _inviteeEmail.GetValue();
+            set => _inviteeEmail.SetValue(value);
         }
     
         private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeFirstName));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeFirstName")]
         public string? InviteeFirstName
         {
-            get { return _inviteeFirstName.GetValue(); }
-            set { _inviteeFirstName.SetValue(value); }
+            get => _inviteeFirstName.GetValue();
+            set => _inviteeFirstName.SetValue(value);
         }
     
         private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(InviteeLastName));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeLastName")]
         public string? InviteeLastName
         {
-            get { return _inviteeLastName.GetValue(); }
-            set { _inviteeLastName.SetValue(value); }
+            get => _inviteeLastName.GetValue();
+            set => _inviteeLastName.SetValue(value);
         }
     
         private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Team));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("team")]
         public TDTeam? Team
         {
-            get { return _team.GetValue(); }
-            set { _team.SetValue(value); }
+            get => _team.GetValue();
+            set => _team.SetValue(value);
         }
     
         private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(TeamDirectoryInvitationsForIdPatchRequest), nameof(Role));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("role")]
         public TDRole? Role
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
+            get => _role.GetValue();
+            set => _role.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

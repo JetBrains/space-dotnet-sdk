@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revision")]
         public string Revision
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get => _revision.GetValue();
+            set => _revision.SetValue(value);
         }
     
         private PropertyValue<long> _date = new PropertyValue<long>(nameof(RevisionInfo), nameof(Date));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("date")]
         public long Date
         {
-            get { return _date.GetValue(); }
-            set { _date.SetValue(value); }
+            get => _date.GetValue();
+            set => _date.SetValue(value);
         }
     
         private PropertyValue<string> _message = new PropertyValue<string>(nameof(RevisionInfo), nameof(Message));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

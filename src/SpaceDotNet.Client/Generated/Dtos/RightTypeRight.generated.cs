@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rightType")]
         public RightType RightType
         {
-            get { return _rightType.GetValue(); }
-            set { _rightType.SetValue(value); }
+            get => _rightType.GetValue();
+            set => _rightType.SetValue(value);
         }
     
         private PropertyValue<List<FullRightWithoutType>> _rights = new PropertyValue<List<FullRightWithoutType>>(nameof(RightTypeRight), nameof(Rights));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rights")]
         public List<FullRightWithoutType> Rights
         {
-            get { return _rights.GetValue(); }
-            set { _rights.SetValue(value); }
+            get => _rights.GetValue();
+            set => _rights.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

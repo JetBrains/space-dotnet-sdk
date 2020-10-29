@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public string Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

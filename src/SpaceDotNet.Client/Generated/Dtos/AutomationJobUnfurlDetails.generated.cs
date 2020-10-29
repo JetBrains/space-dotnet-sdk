@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobId")]
         public string JobId
         {
-            get { return _jobId.GetValue(); }
-            set { _jobId.SetValue(value); }
+            get => _jobId.GetValue();
+            set => _jobId.SetValue(value);
         }
     
         private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(JobName));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobName")]
         public string JobName
         {
-            get { return _jobName.GetValue(); }
-            set { _jobName.SetValue(value); }
+            get => _jobName.GetValue();
+            set => _jobName.SetValue(value);
         }
     
         private PropertyValue<PRProject> _projectRef = new PropertyValue<PRProject>(nameof(AutomationJobUnfurlDetails), nameof(ProjectRef));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectRef")]
         public PRProject ProjectRef
         {
-            get { return _projectRef.GetValue(); }
-            set { _projectRef.SetValue(value); }
+            get => _projectRef.GetValue();
+            set => _projectRef.SetValue(value);
         }
     
         private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(AutomationJobUnfurlDetails), nameof(RepoName));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repoName")]
         public string RepoName
         {
-            get { return _repoName.GetValue(); }
-            set { _repoName.SetValue(value); }
+            get => _repoName.GetValue();
+            set => _repoName.SetValue(value);
         }
     
         private PropertyValue<ExecutionDisplayStatus?> _jobExecutionDisplayStatusFilter = new PropertyValue<ExecutionDisplayStatus?>(nameof(AutomationJobUnfurlDetails), nameof(JobExecutionDisplayStatusFilter));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobExecutionDisplayStatusFilter")]
         public ExecutionDisplayStatus? JobExecutionDisplayStatusFilter
         {
-            get { return _jobExecutionDisplayStatusFilter.GetValue(); }
-            set { _jobExecutionDisplayStatusFilter.SetValue(value); }
+            get => _jobExecutionDisplayStatusFilter.GetValue();
+            set => _jobExecutionDisplayStatusFilter.SetValue(value);
         }
     
         private PropertyValue<JobTriggerType?> _jobTriggerFilter = new PropertyValue<JobTriggerType?>(nameof(AutomationJobUnfurlDetails), nameof(JobTriggerFilter));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobTriggerFilter")]
         public JobTriggerType? JobTriggerFilter
         {
-            get { return _jobTriggerFilter.GetValue(); }
-            set { _jobTriggerFilter.SetValue(value); }
+            get => _jobTriggerFilter.GetValue();
+            set => _jobTriggerFilter.SetValue(value);
         }
     
         private PropertyValue<Branch?> _branch = new PropertyValue<Branch?>(nameof(AutomationJobUnfurlDetails), nameof(Branch));
@@ -107,8 +107,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branch")]
         public Branch? Branch
         {
-            get { return _branch.GetValue(); }
-            set { _branch.SetValue(value); }
+            get => _branch.GetValue();
+            set => _branch.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

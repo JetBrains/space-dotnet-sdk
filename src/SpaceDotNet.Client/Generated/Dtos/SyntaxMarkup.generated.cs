@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public SyntaxMarkupType? Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<TextRange> _range = new PropertyValue<TextRange>(nameof(SyntaxMarkup), nameof(Range));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("range")]
         public TextRange Range
         {
-            get { return _range.GetValue(); }
-            set { _range.SetValue(value); }
+            get => _range.GetValue();
+            set => _range.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

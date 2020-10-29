@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _picture = new PropertyValue<string>(nameof(TDLocationMap), nameof(Picture));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("picture")]
         public string Picture
         {
-            get { return _picture.GetValue(); }
-            set { _picture.SetValue(value); }
+            get => _picture.GetValue();
+            set => _picture.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TDLocationMap), nameof(Created));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(TDLocationMap), nameof(Width));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("width")]
         public int? Width
         {
-            get { return _width.GetValue(); }
-            set { _width.SetValue(value); }
+            get => _width.GetValue();
+            set => _width.SetValue(value);
         }
     
         private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(TDLocationMap), nameof(Height));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("height")]
         public int? Height
         {
-            get { return _height.GetValue(); }
-            set { _height.SetValue(value); }
+            get => _height.GetValue();
+            set => _height.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

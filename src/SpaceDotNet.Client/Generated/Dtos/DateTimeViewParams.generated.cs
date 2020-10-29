@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("format")]
         public UnfurlDateTimeFormat? Format
         {
-            get { return _format.GetValue(); }
-            set { _format.SetValue(value); }
+            get => _format.GetValue();
+            set => _format.SetValue(value);
         }
     
         private PropertyValue<UnfurlDateTimeStyle?> _style = new PropertyValue<UnfurlDateTimeStyle?>(nameof(DateTimeViewParams), nameof(Style));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public UnfurlDateTimeStyle? Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         private PropertyValue<string?> _template = new PropertyValue<string?>(nameof(DateTimeViewParams), nameof(Template));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("template")]
         public string? Template
         {
-            get { return _template.GetValue(); }
-            set { _template.SetValue(value); }
+            get => _template.GetValue();
+            set => _template.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

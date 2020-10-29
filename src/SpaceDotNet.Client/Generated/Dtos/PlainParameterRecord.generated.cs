@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PlainParameterRecord), nameof(IsArchived));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _bundleId = new PropertyValue<string>(nameof(PlainParameterRecord), nameof(BundleId));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("bundleId")]
         public string BundleId
         {
-            get { return _bundleId.GetValue(); }
-            set { _bundleId.SetValue(value); }
+            get => _bundleId.GetValue();
+            set => _bundleId.SetValue(value);
         }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(PlainParameterRecord), nameof(Key));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(PlainParameterRecord), nameof(Value));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("value")]
         public string Value
         {
-            get { return _value.GetValue(); }
-            set { _value.SetValue(value); }
+            get => _value.GetValue();
+            set => _value.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

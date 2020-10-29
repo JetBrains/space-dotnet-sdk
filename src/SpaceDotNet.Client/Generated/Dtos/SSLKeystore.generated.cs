@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(SSLKeystore), nameof(Created));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

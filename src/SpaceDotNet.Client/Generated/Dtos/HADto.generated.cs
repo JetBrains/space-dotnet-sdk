@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HADto), nameof(Name));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<List<HADtoField>> _fields = new PropertyValue<List<HADtoField>>(nameof(HADto), nameof(Fields));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fields")]
         public List<HADtoField> Fields
         {
-            get { return _fields.GetValue(); }
-            set { _fields.SetValue(value); }
+            get => _fields.GetValue();
+            set => _fields.SetValue(value);
         }
     
         private PropertyValue<HierarchyRole> _hierarchyRole = new PropertyValue<HierarchyRole>(nameof(HADto), nameof(HierarchyRole));
@@ -79,8 +79,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hierarchyRole")]
         public HierarchyRole HierarchyRole
         {
-            get { return _hierarchyRole.GetValue(); }
-            set { _hierarchyRole.SetValue(value); }
+            get => _hierarchyRole.GetValue();
+            set => _hierarchyRole.SetValue(value);
         }
     
         private PropertyValue<HADto?> _extends = new PropertyValue<HADto?>(nameof(HADto), nameof(Extends));
@@ -88,8 +88,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("extends")]
         public HADto? Extends
         {
-            get { return _extends.GetValue(); }
-            set { _extends.SetValue(value); }
+            get => _extends.GetValue();
+            set => _extends.SetValue(value);
         }
     
         private PropertyValue<List<HADto>> _implements = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Implements));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("implements")]
         public List<HADto> Implements
         {
-            get { return _implements.GetValue(); }
-            set { _implements.SetValue(value); }
+            get => _implements.GetValue();
+            set => _implements.SetValue(value);
         }
     
         private PropertyValue<List<HADto>> _inheritors = new PropertyValue<List<HADto>>(nameof(HADto), nameof(Inheritors));
@@ -108,8 +108,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inheritors")]
         public List<HADto> Inheritors
         {
-            get { return _inheritors.GetValue(); }
-            set { _inheritors.SetValue(value); }
+            get => _inheritors.GetValue();
+            set => _inheritors.SetValue(value);
         }
     
         private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HADto), nameof(Deprecation));
@@ -117,8 +117,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deprecation")]
         public HADeprecation? Deprecation
         {
-            get { return _deprecation.GetValue(); }
-            set { _deprecation.SetValue(value); }
+            get => _deprecation.GetValue();
+            set => _deprecation.SetValue(value);
         }
     
         private PropertyValue<bool> _record = new PropertyValue<bool>(nameof(HADto), nameof(IsRecord));
@@ -127,8 +127,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("record")]
         public bool IsRecord
         {
-            get { return _record.GetValue(); }
-            set { _record.SetValue(value); }
+            get => _record.GetValue();
+            set => _record.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

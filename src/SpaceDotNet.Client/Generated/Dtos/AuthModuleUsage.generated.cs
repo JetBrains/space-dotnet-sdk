@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authModule")]
         public ESAuthModule AuthModule
         {
-            get { return _authModule.GetValue(); }
-            set { _authModule.SetValue(value); }
+            get => _authModule.GetValue();
+            set => _authModule.SetValue(value);
         }
     
         private PropertyValue<int> _profiles = new PropertyValue<int>(nameof(AuthModuleUsage), nameof(Profiles));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profiles")]
         public int Profiles
         {
-            get { return _profiles.GetValue(); }
-            set { _profiles.SetValue(value); }
+            get => _profiles.GetValue();
+            set => _profiles.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

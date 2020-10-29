@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<DiffContext?> _diffContext = new PropertyValue<DiffContext?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(DiffContext));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("diffContext")]
         public DiffContext? DiffContext
         {
-            get { return _diffContext.GetValue(); }
-            set { _diffContext.SetValue(value); }
+            get => _diffContext.GetValue();
+            set => _diffContext.SetValue(value);
         }
     
         private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(Filename));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("filename")]
         public string? Filename
         {
-            get { return _filename.GetValue(); }
-            set { _filename.SetValue(value); }
+            get => _filename.GetValue();
+            set => _filename.SetValue(value);
         }
     
         private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(Line));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("line")]
         public int? Line
         {
-            get { return _line.GetValue(); }
-            set { _line.SetValue(value); }
+            get => _line.GetValue();
+            set => _line.SetValue(value);
         }
     
         private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(OldLine));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("oldLine")]
         public int? OldLine
         {
-            get { return _oldLine.GetValue(); }
-            set { _oldLine.SetValue(value); }
+            get => _oldLine.GetValue();
+            set => _oldLine.SetValue(value);
         }
     
         private PropertyValue<bool> _pending = new PropertyValue<bool>(nameof(ProjectsForProjectRepositoriesForRepositoryRevisionsForRevisionCodeDiscussionsPostRequest), nameof(IsPending));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pending")]
         public bool IsPending
         {
-            get { return _pending.GetValue(); }
-            set { _pending.SetValue(value); }
+            get => _pending.GetValue();
+            set => _pending.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("shortInfo")]
         public CodeReviewRecord ShortInfo
         {
-            get { return _shortInfo.GetValue(); }
-            set { _shortInfo.SetValue(value); }
+            get => _shortInfo.GetValue();
+            set => _shortInfo.SetValue(value);
         }
     
         private PropertyValue<List<RevisionsInReview>> _commits = new PropertyValue<List<RevisionsInReview>>(nameof(CodeReviewDetailedInfo), nameof(Commits));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commits")]
         public List<RevisionsInReview> Commits
         {
-            get { return _commits.GetValue(); }
-            set { _commits.SetValue(value); }
+            get => _commits.GetValue();
+            set => _commits.SetValue(value);
         }
     
         private PropertyValue<CodeReviewDiscussionCounter> _discussionCounter = new PropertyValue<CodeReviewDiscussionCounter>(nameof(CodeReviewDetailedInfo), nameof(DiscussionCounter));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("discussionCounter")]
         public CodeReviewDiscussionCounter DiscussionCounter
         {
-            get { return _discussionCounter.GetValue(); }
-            set { _discussionCounter.SetValue(value); }
+            get => _discussionCounter.GetValue();
+            set => _discussionCounter.SetValue(value);
         }
     
         private PropertyValue<List<TrackedBranchesInReview>> _branches = new PropertyValue<List<TrackedBranchesInReview>>(nameof(CodeReviewDetailedInfo), nameof(Branches));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branches")]
         public List<TrackedBranchesInReview> Branches
         {
-            get { return _branches.GetValue(); }
-            set { _branches.SetValue(value); }
+            get => _branches.GetValue();
+            set => _branches.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

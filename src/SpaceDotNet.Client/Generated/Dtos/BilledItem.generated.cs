@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("count")]
         public long Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
     
         private PropertyValue<Money> _price = new PropertyValue<Money>(nameof(BilledItem), nameof(Price));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("price")]
         public Money Price
         {
-            get { return _price.GetValue(); }
-            set { _price.SetValue(value); }
+            get => _price.GetValue();
+            set => _price.SetValue(value);
         }
     
         private PropertyValue<bool> _limited = new PropertyValue<bool>(nameof(BilledItem), nameof(IsLimited));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("limited")]
         public bool IsLimited
         {
-            get { return _limited.GetValue(); }
-            set { _limited.SetValue(value); }
+            get => _limited.GetValue();
+            set => _limited.SetValue(value);
         }
     
         private PropertyValue<bool> _billedPerItem = new PropertyValue<bool>(nameof(BilledItem), nameof(IsBilledPerItem));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("billedPerItem")]
         public bool IsBilledPerItem
         {
-            get { return _billedPerItem.GetValue(); }
-            set { _billedPerItem.SetValue(value); }
+            get => _billedPerItem.GetValue();
+            set => _billedPerItem.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

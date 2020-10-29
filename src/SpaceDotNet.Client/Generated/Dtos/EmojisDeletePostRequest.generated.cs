@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emoji")]
         public string Emoji
         {
-            get { return _emoji.GetValue(); }
-            set { _emoji.SetValue(value); }
+            get => _emoji.GetValue();
+            set => _emoji.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

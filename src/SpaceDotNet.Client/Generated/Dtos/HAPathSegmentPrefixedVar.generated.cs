@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("prefix")]
         public string Prefix
         {
-            get { return _prefix.GetValue(); }
-            set { _prefix.SetValue(value); }
+            get => _prefix.GetValue();
+            set => _prefix.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAPathSegmentPrefixedVar), nameof(Name));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

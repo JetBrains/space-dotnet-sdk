@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("expression")]
         public string Expression
         {
-            get { return _expression.GetValue(); }
-            set { _expression.SetValue(value); }
+            get => _expression.GetValue();
+            set => _expression.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

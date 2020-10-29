@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(MessageInfo), nameof(Text));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<long> _time = new PropertyValue<long>(nameof(MessageInfo), nameof(Time));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("time")]
         public long Time
         {
-            get { return _time.GetValue(); }
-            set { _time.SetValue(value); }
+            get => _time.GetValue();
+            set => _time.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(MessageInfo), nameof(Author));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public CPrincipal Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(MessageInfo), nameof(Attachments));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public string? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

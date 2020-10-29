@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLocationWithTimeZone), nameof(Name));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<ATimeZoneWithOffset> _timezone = new PropertyValue<ATimeZoneWithOffset>(nameof(TDLocationWithTimeZone), nameof(Timezone));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("timezone")]
         public ATimeZoneWithOffset Timezone
         {
-            get { return _timezone.GetValue(); }
-            set { _timezone.SetValue(value); }
+            get => _timezone.GetValue();
+            set => _timezone.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

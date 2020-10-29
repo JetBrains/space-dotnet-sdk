@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _symbol = new PropertyValue<string>(nameof(ReactionData), nameof(Symbol));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("symbol")]
         public string Symbol
         {
-            get { return _symbol.GetValue(); }
-            set { _symbol.SetValue(value); }
+            get => _symbol.GetValue();
+            set => _symbol.SetValue(value);
         }
     
         private PropertyValue<string> _emoji = new PropertyValue<string>(nameof(ReactionData), nameof(Emoji));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emoji")]
         public string Emoji
         {
-            get { return _emoji.GetValue(); }
-            set { _emoji.SetValue(value); }
+            get => _emoji.GetValue();
+            set => _emoji.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

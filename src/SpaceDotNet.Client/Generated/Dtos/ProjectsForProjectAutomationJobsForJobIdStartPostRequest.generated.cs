@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branch")]
         public Branch Branch
         {
-            get { return _branch.GetValue(); }
-            set { _branch.SetValue(value); }
+            get => _branch.GetValue();
+            set => _branch.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

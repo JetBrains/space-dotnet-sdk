@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("os")]
         public string Os
         {
-            get { return _os.GetValue(); }
-            set { _os.SetValue(value); }
+            get => _os.GetValue();
+            set => _os.SetValue(value);
         }
     
         private PropertyValue<string?> _osVersion = new PropertyValue<string?>(nameof(ContainerImagePlatform), nameof(OsVersion));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("osVersion")]
         public string? OsVersion
         {
-            get { return _osVersion.GetValue(); }
-            set { _osVersion.SetValue(value); }
+            get => _osVersion.GetValue();
+            set => _osVersion.SetValue(value);
         }
     
         private PropertyValue<string?> _arch = new PropertyValue<string?>(nameof(ContainerImagePlatform), nameof(Arch));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("arch")]
         public string? Arch
         {
-            get { return _arch.GetValue(); }
-            set { _arch.SetValue(value); }
+            get => _arch.GetValue();
+            set => _arch.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

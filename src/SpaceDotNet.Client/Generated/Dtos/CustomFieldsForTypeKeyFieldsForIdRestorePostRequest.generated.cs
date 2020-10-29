@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public ExtendedTypeScope Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

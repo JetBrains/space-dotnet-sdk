@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("enum")]
         public HAEnum Enum
         {
-            get { return _enum.GetValue(); }
-            set { _enum.SetValue(value); }
+            get => _enum.GetValue();
+            set => _enum.SetValue(value);
         }
     
         private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeEnum), nameof(IsNullable));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nullable")]
         public bool IsNullable
         {
-            get { return _nullable.GetValue(); }
-            set { _nullable.SetValue(value); }
+            get => _nullable.GetValue();
+            set => _nullable.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

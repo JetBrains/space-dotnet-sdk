@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? OldDueDate
         {
-            get { return _oldDueDate.GetValue(); }
-            set { _oldDueDate.SetValue(value); }
+            get => _oldDueDate.GetValue();
+            set => _oldDueDate.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _newDueDate = new PropertyValue<DateTime?>(nameof(IssueDueDateChangedDetails), nameof(NewDueDate));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? NewDueDate
         {
-            get { return _newDueDate.GetValue(); }
-            set { _newDueDate.SetValue(value); }
+            get => _newDueDate.GetValue();
+            set => _newDueDate.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

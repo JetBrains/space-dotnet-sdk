@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ImageAttachmentVariantsMeta), nameof(Name));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<int> _width = new PropertyValue<int>(nameof(ImageAttachmentVariantsMeta), nameof(Width));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("width")]
         public int Width
         {
-            get { return _width.GetValue(); }
-            set { _width.SetValue(value); }
+            get => _width.GetValue();
+            set => _width.SetValue(value);
         }
     
         private PropertyValue<int> _height = new PropertyValue<int>(nameof(ImageAttachmentVariantsMeta), nameof(Height));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("height")]
         public int Height
         {
-            get { return _height.GetValue(); }
-            set { _height.SetValue(value); }
+            get => _height.GetValue();
+            set => _height.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

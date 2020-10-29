@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(InvitationLink), nameof(Name));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _createdBy = new PropertyValue<CPrincipal>(nameof(InvitationLink), nameof(CreatedBy));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdBy")]
         public CPrincipal CreatedBy
         {
-            get { return _createdBy.GetValue(); }
-            set { _createdBy.SetValue(value); }
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
         private PropertyValue<DateTime> _createdAt = new PropertyValue<DateTime>(nameof(InvitationLink), nameof(CreatedAt));
@@ -79,8 +79,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime CreatedAt
         {
-            get { return _createdAt.GetValue(); }
-            set { _createdAt.SetValue(value); }
+            get => _createdAt.GetValue();
+            set => _createdAt.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _expiresAt = new PropertyValue<DateTime?>(nameof(InvitationLink), nameof(ExpiresAt));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ExpiresAt
         {
-            get { return _expiresAt.GetValue(); }
-            set { _expiresAt.SetValue(value); }
+            get => _expiresAt.GetValue();
+            set => _expiresAt.SetValue(value);
         }
     
         private PropertyValue<int> _inviteeLimit = new PropertyValue<int>(nameof(InvitationLink), nameof(InviteeLimit));
@@ -99,8 +99,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeLimit")]
         public int InviteeLimit
         {
-            get { return _inviteeLimit.GetValue(); }
-            set { _inviteeLimit.SetValue(value); }
+            get => _inviteeLimit.GetValue();
+            set => _inviteeLimit.SetValue(value);
         }
     
         private PropertyValue<int> _inviteeUsage = new PropertyValue<int>(nameof(InvitationLink), nameof(InviteeUsage));
@@ -109,8 +109,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeUsage")]
         public int InviteeUsage
         {
-            get { return _inviteeUsage.GetValue(); }
-            set { _inviteeUsage.SetValue(value); }
+            get => _inviteeUsage.GetValue();
+            set => _inviteeUsage.SetValue(value);
         }
     
         private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(InvitationLink), nameof(IsDeleted));
@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deleted")]
         public bool IsDeleted
         {
-            get { return _deleted.GetValue(); }
-            set { _deleted.SetValue(value); }
+            get => _deleted.GetValue();
+            set => _deleted.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

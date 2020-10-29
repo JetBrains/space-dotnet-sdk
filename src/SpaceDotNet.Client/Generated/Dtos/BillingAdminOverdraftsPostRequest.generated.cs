@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("storage")]
         public int Storage
         {
-            get { return _storage.GetValue(); }
-            set { _storage.SetValue(value); }
+            get => _storage.GetValue();
+            set => _storage.SetValue(value);
         }
     
         private PropertyValue<int> _bandwidth = new PropertyValue<int>(nameof(BillingAdminOverdraftsPostRequest), nameof(Bandwidth));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("bandwidth")]
         public int Bandwidth
         {
-            get { return _bandwidth.GetValue(); }
-            set { _bandwidth.SetValue(value); }
+            get => _bandwidth.GetValue();
+            set => _bandwidth.SetValue(value);
         }
     
         private PropertyValue<int> _ciCredits = new PropertyValue<int>(nameof(BillingAdminOverdraftsPostRequest), nameof(CiCredits));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ciCredits")]
         public int CiCredits
         {
-            get { return _ciCredits.GetValue(); }
-            set { _ciCredits.SetValue(value); }
+            get => _ciCredits.GetValue();
+            set => _ciCredits.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

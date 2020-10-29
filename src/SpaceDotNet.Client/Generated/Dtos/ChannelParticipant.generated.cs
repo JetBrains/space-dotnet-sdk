@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principal")]
         public CPrincipal Principal
         {
-            get { return _principal.GetValue(); }
-            set { _principal.SetValue(value); }
+            get => _principal.GetValue();
+            set => _principal.SetValue(value);
         }
     
         private PropertyValue<int> _messageCount = new PropertyValue<int>(nameof(ChannelParticipant), nameof(MessageCount));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messageCount")]
         public int MessageCount
         {
-            get { return _messageCount.GetValue(); }
-            set { _messageCount.SetValue(value); }
+            get => _messageCount.GetValue();
+            set => _messageCount.SetValue(value);
         }
     
         private PropertyValue<int?> _pendingMessageCount = new PropertyValue<int?>(nameof(ChannelParticipant), nameof(PendingMessageCount));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pendingMessageCount")]
         public int? PendingMessageCount
         {
-            get { return _pendingMessageCount.GetValue(); }
-            set { _pendingMessageCount.SetValue(value); }
+            get => _pendingMessageCount.GetValue();
+            set => _pendingMessageCount.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

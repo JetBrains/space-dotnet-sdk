@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("algorithm")]
         public string Algorithm
         {
-            get { return _algorithm.GetValue(); }
-            set { _algorithm.SetValue(value); }
+            get => _algorithm.GetValue();
+            set => _algorithm.SetValue(value);
         }
     
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(MavenChecksum), nameof(Value));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("value")]
         public string Value
         {
-            get { return _value.GetValue(); }
-            set { _value.SetValue(value); }
+            get => _value.GetValue();
+            set => _value.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

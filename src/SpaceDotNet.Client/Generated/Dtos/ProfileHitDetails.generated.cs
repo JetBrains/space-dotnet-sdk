@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ref")]
         public TDMemberProfile Ref
         {
-            get { return _ref.GetValue(); }
-            set { _ref.SetValue(value); }
+            get => _ref.GetValue();
+            set => _ref.SetValue(value);
         }
     
         private PropertyValue<ProfileAbsencesRecord> _absencesRef = new PropertyValue<ProfileAbsencesRecord>(nameof(ProfileHitDetails), nameof(AbsencesRef));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("absencesRef")]
         public ProfileAbsencesRecord AbsencesRef
         {
-            get { return _absencesRef.GetValue(); }
-            set { _absencesRef.SetValue(value); }
+            get => _absencesRef.GetValue();
+            set => _absencesRef.SetValue(value);
         }
     
         private PropertyValue<ProfileMembershipRecord> _membershipRef = new PropertyValue<ProfileMembershipRecord>(nameof(ProfileHitDetails), nameof(MembershipRef));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("membershipRef")]
         public ProfileMembershipRecord MembershipRef
         {
-            get { return _membershipRef.GetValue(); }
-            set { _membershipRef.SetValue(value); }
+            get => _membershipRef.GetValue();
+            set => _membershipRef.SetValue(value);
         }
     
         private PropertyValue<ProfileLocationsRecord> _locationsRef = new PropertyValue<ProfileLocationsRecord>(nameof(ProfileHitDetails), nameof(LocationsRef));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locationsRef")]
         public ProfileLocationsRecord LocationsRef
         {
-            get { return _locationsRef.GetValue(); }
-            set { _locationsRef.SetValue(value); }
+            get => _locationsRef.GetValue();
+            set => _locationsRef.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

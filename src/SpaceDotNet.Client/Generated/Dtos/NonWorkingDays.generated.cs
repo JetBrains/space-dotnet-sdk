@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<DateTime> _till = new PropertyValue<DateTime>(nameof(NonWorkingDays), nameof(Till));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<bool> _startsEarlier = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsStartsEarlier));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("startsEarlier")]
         public bool IsStartsEarlier
         {
-            get { return _startsEarlier.GetValue(); }
-            set { _startsEarlier.SetValue(value); }
+            get => _startsEarlier.GetValue();
+            set => _startsEarlier.SetValue(value);
         }
     
         private PropertyValue<bool> _endsLater = new PropertyValue<bool>(nameof(NonWorkingDays), nameof(IsEndsLater));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("endsLater")]
         public bool IsEndsLater
         {
-            get { return _endsLater.GetValue(); }
-            set { _endsLater.SetValue(value); }
+            get => _endsLater.GetValue();
+            set => _endsLater.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

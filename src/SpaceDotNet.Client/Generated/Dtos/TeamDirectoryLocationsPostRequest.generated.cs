@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _timezone = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Timezone));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("timezone")]
         public string? Timezone
         {
-            get { return _timezone.GetValue(); }
-            set { _timezone.SetValue(value); }
+            get => _timezone.GetValue();
+            set => _timezone.SetValue(value);
         }
     
         private PropertyValue<List<int>?> _workdays = new PropertyValue<List<int>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Workdays));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("workdays")]
         public List<int>? Workdays
         {
-            get { return _workdays.GetValue(); }
-            set { _workdays.SetValue(value); }
+            get => _workdays.GetValue();
+            set => _workdays.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _phones = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Phones));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("phones")]
         public List<string>? Phones
         {
-            get { return _phones.GetValue(); }
-            set { _phones.SetValue(value); }
+            get => _phones.GetValue();
+            set => _phones.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Emails));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emails")]
         public List<string>? Emails
         {
-            get { return _emails.GetValue(); }
-            set { _emails.SetValue(value); }
+            get => _emails.GetValue();
+            set => _emails.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _equipment = new PropertyValue<List<string>?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Equipment));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("equipment")]
         public List<string>? Equipment
         {
-            get { return _equipment.GetValue(); }
-            set { _equipment.SetValue(value); }
+            get => _equipment.GetValue();
+            set => _equipment.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Description));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _address = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Address));
@@ -114,8 +114,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("address")]
         public string? Address
         {
-            get { return _address.GetValue(); }
-            set { _address.SetValue(value); }
+            get => _address.GetValue();
+            set => _address.SetValue(value);
         }
     
         private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Type));
@@ -123,8 +123,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public string? Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryLocationsPostRequest), nameof(ParentId));
@@ -132,8 +132,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentId")]
         public string? ParentId
         {
-            get { return _parentId.GetValue(); }
-            set { _parentId.SetValue(value); }
+            get => _parentId.GetValue();
+            set => _parentId.SetValue(value);
         }
     
         private PropertyValue<int?> _capacity = new PropertyValue<int?>(nameof(TeamDirectoryLocationsPostRequest), nameof(Capacity));
@@ -141,8 +141,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("capacity")]
         public int? Capacity
         {
-            get { return _capacity.GetValue(); }
-            set { _capacity.SetValue(value); }
+            get => _capacity.GetValue();
+            set => _capacity.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

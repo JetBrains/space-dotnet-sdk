@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("filter")]
         public NotificationFilter Filter
         {
-            get { return _filter.GetValue(); }
-            set { _filter.SetValue(value); }
+            get => _filter.GetValue();
+            set => _filter.SetValue(value);
         }
     
         private PropertyValue<bool> _push = new PropertyValue<bool>(nameof(ChannelSpecificDefaults), nameof(IsPush));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("push")]
         public bool IsPush
         {
-            get { return _push.GetValue(); }
-            set { _push.SetValue(value); }
+            get => _push.GetValue();
+            set => _push.SetValue(value);
         }
     
         private PropertyValue<M2EmailNotificationType> _email = new PropertyValue<M2EmailNotificationType>(nameof(ChannelSpecificDefaults), nameof(Email));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("email")]
         public M2EmailNotificationType Email
         {
-            get { return _email.GetValue(); }
-            set { _email.SetValue(value); }
+            get => _email.GetValue();
+            set => _email.SetValue(value);
         }
     
         private PropertyValue<bool?> _threadsSubscribed = new PropertyValue<bool?>(nameof(ChannelSpecificDefaults), nameof(IsThreadsSubscribed));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("threadsSubscribed")]
         public bool? IsThreadsSubscribed
         {
-            get { return _threadsSubscribed.GetValue(); }
-            set { _threadsSubscribed.SetValue(value); }
+            get => _threadsSubscribed.GetValue();
+            set => _threadsSubscribed.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

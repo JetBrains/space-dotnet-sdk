@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("urlParam")]
         public HAUrlParameter UrlParam
         {
-            get { return _urlParam.GetValue(); }
-            set { _urlParam.SetValue(value); }
+            get => _urlParam.GetValue();
+            set => _urlParam.SetValue(value);
         }
     
         private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeUrlParam), nameof(IsNullable));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nullable")]
         public bool IsNullable
         {
-            get { return _nullable.GetValue(); }
-            set { _nullable.SetValue(value); }
+            get => _nullable.GetValue();
+            set => _nullable.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

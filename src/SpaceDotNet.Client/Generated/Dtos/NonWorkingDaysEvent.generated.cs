@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<List<NonWorkingDays>> _days = new PropertyValue<List<NonWorkingDays>>(nameof(NonWorkingDaysEvent), nameof(Days));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("days")]
         public List<NonWorkingDays> Days
         {
-            get { return _days.GetValue(); }
-            set { _days.SetValue(value); }
+            get => _days.GetValue();
+            set => _days.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("member")]
         public ProfileIdentifier Member
         {
-            get { return _member.GetValue(); }
-            set { _member.SetValue(value); }
+            get => _member.GetValue();
+            set => _member.SetValue(value);
         }
     
         private PropertyValue<string> _location = new PropertyValue<string>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Location));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public string Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Since));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(Till));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<string?> _previousLocation = new PropertyValue<string?>(nameof(TeamDirectoryMemberLocationsPostRequest), nameof(PreviousLocation));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("previousLocation")]
         public string? PreviousLocation
         {
-            get { return _previousLocation.GetValue(); }
-            set { _previousLocation.SetValue(value); }
+            get => _previousLocation.GetValue();
+            set => _previousLocation.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

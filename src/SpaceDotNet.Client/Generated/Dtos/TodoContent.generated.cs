@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("originalText")]
         public string OriginalText
         {
-            get { return _originalText.GetValue(); }
-            set { _originalText.SetValue(value); }
+            get => _originalText.GetValue();
+            set => _originalText.SetValue(value);
         }
     
         private PropertyValue<string?> _link = new PropertyValue<string?>(nameof(TodoContent), nameof(Link));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("link")]
         public string? Link
         {
-            get { return _link.GetValue(); }
-            set { _link.SetValue(value); }
+            get => _link.GetValue();
+            set => _link.SetValue(value);
         }
     
         private PropertyValue<TodoItemContentKind?> _kind = new PropertyValue<TodoItemContentKind?>(nameof(TodoContent), nameof(Kind));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("kind")]
         public TodoItemContentKind? Kind
         {
-            get { return _kind.GetValue(); }
-            set { _kind.SetValue(value); }
+            get => _kind.GetValue();
+            set => _kind.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _principal = new PropertyValue<CPrincipal?>(nameof(TodoContent), nameof(Principal));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principal")]
         public CPrincipal? Principal
         {
-            get { return _principal.GetValue(); }
-            set { _principal.SetValue(value); }
+            get => _principal.GetValue();
+            set => _principal.SetValue(value);
         }
     
         private PropertyValue<long?> _time = new PropertyValue<long?>(nameof(TodoContent), nameof(Time));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("time")]
         public long? Time
         {
-            get { return _time.GetValue(); }
-            set { _time.SetValue(value); }
+            get => _time.GetValue();
+            set => _time.SetValue(value);
         }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(TodoContent), nameof(Text));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

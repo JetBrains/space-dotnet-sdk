@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<int> _unreadCounter = new PropertyValue<int>(nameof(M2ChatReader), nameof(UnreadCounter));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("unreadCounter")]
         public int UnreadCounter
         {
-            get { return _unreadCounter.GetValue(); }
-            set { _unreadCounter.SetValue(value); }
+            get => _unreadCounter.GetValue();
+            set => _unreadCounter.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _readTime = new PropertyValue<DateTime?>(nameof(M2ChatReader), nameof(ReadTime));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ReadTime
         {
-            get { return _readTime.GetValue(); }
-            set { _readTime.SetValue(value); }
+            get => _readTime.GetValue();
+            set => _readTime.SetValue(value);
         }
     
         private PropertyValue<bool?> _hasUnread = new PropertyValue<bool?>(nameof(M2ChatReader), nameof(IsHasUnread));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hasUnread")]
         public bool? IsHasUnread
         {
-            get { return _hasUnread.GetValue(); }
-            set { _hasUnread.SetValue(value); }
+            get => _hasUnread.GetValue();
+            set => _hasUnread.SetValue(value);
         }
     
         private PropertyValue<M2ChannelContact> _contact = new PropertyValue<M2ChannelContact>(nameof(M2ChatReader), nameof(Contact));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("contact")]
         public M2ChannelContact Contact
         {
-            get { return _contact.GetValue(); }
-            set { _contact.SetValue(value); }
+            get => _contact.GetValue();
+            set => _contact.SetValue(value);
         }
     
         private PropertyValue<MessageInfo?> _lastMessage = new PropertyValue<MessageInfo?>(nameof(M2ChatReader), nameof(LastMessage));
@@ -104,8 +104,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastMessage")]
         public MessageInfo? LastMessage
         {
-            get { return _lastMessage.GetValue(); }
-            set { _lastMessage.SetValue(value); }
+            get => _lastMessage.GetValue();
+            set => _lastMessage.SetValue(value);
         }
     
         private PropertyValue<int> _totalMessages = new PropertyValue<int>(nameof(M2ChatReader), nameof(TotalMessages));
@@ -114,8 +114,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("totalMessages")]
         public int TotalMessages
         {
-            get { return _totalMessages.GetValue(); }
-            set { _totalMessages.SetValue(value); }
+            get => _totalMessages.GetValue();
+            set => _totalMessages.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _authors = new PropertyValue<List<TDMemberProfile>>(nameof(M2ChatReader), nameof(Authors));
@@ -124,8 +124,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authors")]
         public List<TDMemberProfile> Authors
         {
-            get { return _authors.GetValue(); }
-            set { _authors.SetValue(value); }
+            get => _authors.GetValue();
+            set => _authors.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(M2ChatReader), nameof(IsArchived));
@@ -134,8 +134,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<bool> _goto = new PropertyValue<bool>(nameof(M2ChatReader), nameof(IsGoto));
@@ -144,8 +144,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("goto")]
         public bool IsGoto
         {
-            get { return _goto.GetValue(); }
-            set { _goto.SetValue(value); }
+            get => _goto.GetValue();
+            set => _goto.SetValue(value);
         }
     
         private PropertyValue<bool?> _pinned = new PropertyValue<bool?>(nameof(M2ChatReader), nameof(IsPinned));
@@ -153,8 +153,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pinned")]
         public bool? IsPinned
         {
-            get { return _pinned.GetValue(); }
-            set { _pinned.SetValue(value); }
+            get => _pinned.GetValue();
+            set => _pinned.SetValue(value);
         }
     
         private PropertyValue<bool?> _hidden = new PropertyValue<bool?>(nameof(M2ChatReader), nameof(IsHidden));
@@ -162,8 +162,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hidden")]
         public bool? IsHidden
         {
-            get { return _hidden.GetValue(); }
-            set { _hidden.SetValue(value); }
+            get => _hidden.GetValue();
+            set => _hidden.SetValue(value);
         }
     
         private PropertyValue<string?> _pinnedPrevChannelId = new PropertyValue<string?>(nameof(M2ChatReader), nameof(PinnedPrevChannelId));
@@ -171,8 +171,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pinnedPrevChannelId")]
         public string? PinnedPrevChannelId
         {
-            get { return _pinnedPrevChannelId.GetValue(); }
-            set { _pinnedPrevChannelId.SetValue(value); }
+            get => _pinnedPrevChannelId.GetValue();
+            set => _pinnedPrevChannelId.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _subscribedSince = new PropertyValue<DateTime?>(nameof(M2ChatReader), nameof(SubscribedSince));
@@ -181,8 +181,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? SubscribedSince
         {
-            get { return _subscribedSince.GetValue(); }
-            set { _subscribedSince.SetValue(value); }
+            get => _subscribedSince.GetValue();
+            set => _subscribedSince.SetValue(value);
         }
     
         private PropertyValue<bool?> _subscribed = new PropertyValue<bool?>(nameof(M2ChatReader), nameof(IsSubscribed));
@@ -190,8 +190,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("subscribed")]
         public bool? IsSubscribed
         {
-            get { return _subscribed.GetValue(); }
-            set { _subscribed.SetValue(value); }
+            get => _subscribed.GetValue();
+            set => _subscribed.SetValue(value);
         }
     
         private PropertyValue<string?> _parentChannelId = new PropertyValue<string?>(nameof(M2ChatReader), nameof(ParentChannelId));
@@ -199,8 +199,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentChannelId")]
         public string? ParentChannelId
         {
-            get { return _parentChannelId.GetValue(); }
-            set { _parentChannelId.SetValue(value); }
+            get => _parentChannelId.GetValue();
+            set => _parentChannelId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

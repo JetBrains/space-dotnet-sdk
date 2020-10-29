@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("interval")]
         public int Interval
         {
-            get { return _interval.GetValue(); }
-            set { _interval.SetValue(value); }
+            get => _interval.GetValue();
+            set => _interval.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

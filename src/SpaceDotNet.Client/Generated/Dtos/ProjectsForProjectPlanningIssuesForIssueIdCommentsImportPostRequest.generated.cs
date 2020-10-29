@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("comments")]
         public List<MessageForImport> Comments
         {
-            get { return _comments.GetValue(); }
-            set { _comments.SetValue(value); }
+            get => _comments.GetValue();
+            set => _comments.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

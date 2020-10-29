@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public string Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<ChatMessageIdentifier> _id = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesDeleteMessagePostRequest), nameof(Id));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public ChatMessageIdentifier Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

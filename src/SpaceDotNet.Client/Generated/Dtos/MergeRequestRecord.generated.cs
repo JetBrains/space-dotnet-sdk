@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public ProjectKey Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<int> _number = new PropertyValue<int>(nameof(MergeRequestRecord), nameof(Number));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("number")]
         public int Number
         {
-            get { return _number.GetValue(); }
-            set { _number.SetValue(value); }
+            get => _number.GetValue();
+            set => _number.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(MergeRequestRecord), nameof(Title));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<CodeReviewState> _state = new PropertyValue<CodeReviewState>(nameof(MergeRequestRecord), nameof(State));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public CodeReviewState State
         {
-            get { return _state.GetValue(); }
-            set { _state.SetValue(value); }
+            get => _state.GetValue();
+            set => _state.SetValue(value);
         }
     
         private PropertyValue<bool?> _canBeReopened = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(CanBeReopened));
@@ -92,8 +92,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canBeReopened")]
         public bool? CanBeReopened
         {
-            get { return _canBeReopened.GetValue(); }
-            set { _canBeReopened.SetValue(value); }
+            get => _canBeReopened.GetValue();
+            set => _canBeReopened.SetValue(value);
         }
     
         private PropertyValue<long> _createdAt = new PropertyValue<long>(nameof(MergeRequestRecord), nameof(CreatedAt));
@@ -102,8 +102,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdAt")]
         public long CreatedAt
         {
-            get { return _createdAt.GetValue(); }
-            set { _createdAt.SetValue(value); }
+            get => _createdAt.GetValue();
+            set => _createdAt.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _createdBy = new PropertyValue<TDMemberProfile?>(nameof(MergeRequestRecord), nameof(CreatedBy));
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdBy")]
         public TDMemberProfile? CreatedBy
         {
-            get { return _createdBy.GetValue(); }
-            set { _createdBy.SetValue(value); }
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
         private PropertyValue<bool?> _turnBased = new PropertyValue<bool?>(nameof(MergeRequestRecord), nameof(IsTurnBased));
@@ -120,8 +120,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("turnBased")]
         public bool? IsTurnBased
         {
-            get { return _turnBased.GetValue(); }
-            set { _turnBased.SetValue(value); }
+            get => _turnBased.GetValue();
+            set => _turnBased.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord?> _feedChannel = new PropertyValue<M2ChannelRecord?>(nameof(MergeRequestRecord), nameof(FeedChannel));
@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("feedChannel")]
         public M2ChannelRecord? FeedChannel
         {
-            get { return _feedChannel.GetValue(); }
-            set { _feedChannel.SetValue(value); }
+            get => _feedChannel.GetValue();
+            set => _feedChannel.SetValue(value);
         }
     
         private PropertyValue<List<MergeRequestBranchPair>> _branchPairs = new PropertyValue<List<MergeRequestBranchPair>>(nameof(MergeRequestRecord), nameof(BranchPairs));
@@ -139,8 +139,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branchPairs")]
         public List<MergeRequestBranchPair> BranchPairs
         {
-            get { return _branchPairs.GetValue(); }
-            set { _branchPairs.SetValue(value); }
+            get => _branchPairs.GetValue();
+            set => _branchPairs.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

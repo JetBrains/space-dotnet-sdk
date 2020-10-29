@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string? Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Text));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string? Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<long?> _textVersion = new PropertyValue<long?>(nameof(DocsDraftsPostRequest), nameof(TextVersion));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("textVersion")]
         public long? TextVersion
         {
-            get { return _textVersion.GetValue(); }
-            set { _textVersion.SetValue(value); }
+            get => _textVersion.GetValue();
+            set => _textVersion.SetValue(value);
         }
     
         private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(DocsDraftsPostRequest), nameof(Type));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public DraftDocumentType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string?> _folder = new PropertyValue<string?>(nameof(DocsDraftsPostRequest), nameof(Folder));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("folder")]
         public string? Folder
         {
-            get { return _folder.GetValue(); }
-            set { _folder.SetValue(value); }
+            get => _folder.GetValue();
+            set => _folder.SetValue(value);
         }
     
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DocsDraftsPostRequest), nameof(PublicationDetails2));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("publicationDetails2")]
         public PublicationDetails? PublicationDetails2
         {
-            get { return _publicationDetails2.GetValue(); }
-            set { _publicationDetails2.SetValue(value); }
+            get => _publicationDetails2.GetValue();
+            set => _publicationDetails2.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("users")]
         public BilledItem Users
         {
-            get { return _users.GetValue(); }
-            set { _users.SetValue(value); }
+            get => _users.GetValue();
+            set => _users.SetValue(value);
         }
     
         private PropertyValue<BilledItem> _chatMessages = new PropertyValue<BilledItem>(nameof(BilledItems), nameof(ChatMessages));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("chatMessages")]
         public BilledItem ChatMessages
         {
-            get { return _chatMessages.GetValue(); }
-            set { _chatMessages.SetValue(value); }
+            get => _chatMessages.GetValue();
+            set => _chatMessages.SetValue(value);
         }
     
         private PropertyValue<BilledItem> _apps = new PropertyValue<BilledItem>(nameof(BilledItems), nameof(Apps));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("apps")]
         public BilledItem Apps
         {
-            get { return _apps.GetValue(); }
-            set { _apps.SetValue(value); }
+            get => _apps.GetValue();
+            set => _apps.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

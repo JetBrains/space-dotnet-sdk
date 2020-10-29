@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("action")]
         public string Action
         {
-            get { return _action.GetValue(); }
-            set { _action.SetValue(value); }
+            get => _action.GetValue();
+            set => _action.SetValue(value);
         }
     
         private PropertyValue<bool> _success = new PropertyValue<bool>(nameof(M2MaintenanceActionContent), nameof(IsSuccess));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("success")]
         public bool IsSuccess
         {
-            get { return _success.GetValue(); }
-            set { _success.SetValue(value); }
+            get => _success.GetValue();
+            set => _success.SetValue(value);
         }
     
         private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2MaintenanceActionContent), nameof(Details));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public string Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

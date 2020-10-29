@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public string Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         private PropertyValue<MCOutline?> _outline = new PropertyValue<MCOutline?>(nameof(MCMessage), nameof(Outline));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("outline")]
         public MCOutline? Outline
         {
-            get { return _outline.GetValue(); }
-            set { _outline.SetValue(value); }
+            get => _outline.GetValue();
+            set => _outline.SetValue(value);
         }
     
         private PropertyValue<List<MCElement>> _content = new PropertyValue<List<MCElement>>(nameof(MCMessage), nameof(Content));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public List<MCElement> Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<string?> _serviceId = new PropertyValue<string?>(nameof(MCMessage), nameof(ServiceId));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("serviceId")]
         public string? ServiceId
         {
-            get { return _serviceId.GetValue(); }
-            set { _serviceId.SetValue(value); }
+            get => _serviceId.GetValue();
+            set => _serviceId.SetValue(value);
         }
     
         private PropertyValue<string?> _supplementaryData = new PropertyValue<string?>(nameof(MCMessage), nameof(SupplementaryData));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("supplementaryData")]
         public string? SupplementaryData
         {
-            get { return _supplementaryData.GetValue(); }
-            set { _supplementaryData.SetValue(value); }
+            get => _supplementaryData.GetValue();
+            set => _supplementaryData.SetValue(value);
         }
     
         private PropertyValue<M2ItemContentDetails?> _extension = new PropertyValue<M2ItemContentDetails?>(nameof(MCMessage), nameof(Extension));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("extension")]
         public M2ItemContentDetails? Extension
         {
-            get { return _extension.GetValue(); }
-            set { _extension.SetValue(value); }
+            get => _extension.GetValue();
+            set => _extension.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

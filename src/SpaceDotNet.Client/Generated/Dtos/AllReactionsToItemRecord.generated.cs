@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<List<CertainReactionToItemRecord>> _reactions = new PropertyValue<List<CertainReactionToItemRecord>>(nameof(AllReactionsToItemRecord), nameof(Reactions));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reactions")]
         public List<CertainReactionToItemRecord> Reactions
         {
-            get { return _reactions.GetValue(); }
-            set { _reactions.SetValue(value); }
+            get => _reactions.GetValue();
+            set => _reactions.SetValue(value);
         }
     
         private PropertyValue<List<EmojiReactionRecord>?> _emojiReactions = new PropertyValue<List<EmojiReactionRecord>?>(nameof(AllReactionsToItemRecord), nameof(EmojiReactions));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emojiReactions")]
         public List<EmojiReactionRecord>? EmojiReactions
         {
-            get { return _emojiReactions.GetValue(); }
-            set { _emojiReactions.SetValue(value); }
+            get => _emojiReactions.GetValue();
+            set => _emojiReactions.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

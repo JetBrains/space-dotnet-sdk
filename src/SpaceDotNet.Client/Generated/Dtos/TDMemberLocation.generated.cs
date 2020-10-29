@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(TDMemberLocation), nameof(Location));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public TDLocation Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         private PropertyValue<List<TDLocationMapPoint>?> _locationMapPoints = new PropertyValue<List<TDLocationMapPoint>?>(nameof(TDMemberLocation), nameof(LocationMapPoints));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locationMapPoints")]
         public List<TDLocationMapPoint>? LocationMapPoints
         {
-            get { return _locationMapPoints.GetValue(); }
-            set { _locationMapPoints.SetValue(value); }
+            get => _locationMapPoints.GetValue();
+            set => _locationMapPoints.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(TDMemberLocation), nameof(Since));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(TDMemberLocation), nameof(Till));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(TDMemberLocation), nameof(Member));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("member")]
         public TDMemberProfile Member
         {
-            get { return _member.GetValue(); }
-            set { _member.SetValue(value); }
+            get => _member.GetValue();
+            set => _member.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDMemberLocation), nameof(IsArchived));
@@ -106,8 +106,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

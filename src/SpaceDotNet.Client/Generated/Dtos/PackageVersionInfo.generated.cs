@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public PackageType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(PackageVersionInfo), nameof(Repository));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageVersionInfo), nameof(Name));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _version = new PropertyValue<string>(nameof(PackageVersionInfo), nameof(Version));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(PackageVersionInfo), nameof(Tags));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string>? Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

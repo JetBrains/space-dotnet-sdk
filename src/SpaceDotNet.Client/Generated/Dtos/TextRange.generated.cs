@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("start")]
         public int Start
         {
-            get { return _start.GetValue(); }
-            set { _start.SetValue(value); }
+            get => _start.GetValue();
+            set => _start.SetValue(value);
         }
     
         private PropertyValue<int> _length = new PropertyValue<int>(nameof(TextRange), nameof(Length));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("length")]
         public int Length
         {
-            get { return _length.GetValue(); }
-            set { _length.SetValue(value); }
+            get => _length.GetValue();
+            set => _length.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

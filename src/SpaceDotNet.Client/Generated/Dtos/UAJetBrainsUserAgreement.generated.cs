@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public string Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<UAVersion> _version = new PropertyValue<UAVersion>(nameof(UAJetBrainsUserAgreement), nameof(Version));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public UAVersion Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(UAJetBrainsUserAgreement), nameof(Updated));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Updated
         {
-            get { return _updated.GetValue(); }
-            set { _updated.SetValue(value); }
+            get => _updated.GetValue();
+            set => _updated.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

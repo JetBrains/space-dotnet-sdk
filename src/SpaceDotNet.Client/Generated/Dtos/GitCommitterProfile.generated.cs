@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public string Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<string> _email = new PropertyValue<string>(nameof(GitCommitterProfile), nameof(Email));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("email")]
         public string Email
         {
-            get { return _email.GetValue(); }
-            set { _email.SetValue(value); }
+            get => _email.GetValue();
+            set => _email.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _profile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitterProfile), nameof(Profile));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile? Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

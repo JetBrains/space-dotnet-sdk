@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectKey")]
         public ProjectKey? ProjectKey
         {
-            get { return _projectKey.GetValue(); }
-            set { _projectKey.SetValue(value); }
+            get => _projectKey.GetValue();
+            set => _projectKey.SetValue(value);
         }
     
         private PropertyValue<Issue> _issue = new PropertyValue<Issue>(nameof(M2ChannelIssueInfo), nameof(Issue));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issue")]
         public Issue Issue
         {
-            get { return _issue.GetValue(); }
-            set { _issue.SetValue(value); }
+            get => _issue.GetValue();
+            set => _issue.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelIssueInfo), nameof(NotificationDefaults));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

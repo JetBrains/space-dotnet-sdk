@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BoardRecord), nameof(IsArchived));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardRecord), nameof(Name));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<BoardRecord> _board = new PropertyValue<BoardRecord>(nameof(BoardRecord), nameof(Board));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("board")]
         public BoardRecord Board
         {
-            get { return _board.GetValue(); }
-            set { _board.SetValue(value); }
+            get => _board.GetValue();
+            set => _board.SetValue(value);
         }
     
         private PropertyValue<BoardWidgetData?> _data = new PropertyValue<BoardWidgetData?>(nameof(BoardRecord), nameof(Data));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("data")]
         public BoardWidgetData? Data
         {
-            get { return _data.GetValue(); }
-            set { _data.SetValue(value); }
+            get => _data.GetValue();
+            set => _data.SetValue(value);
         }
     
         private PropertyValue<BoardInfo> _info = new PropertyValue<BoardInfo>(nameof(BoardRecord), nameof(Info));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("info")]
         public BoardInfo Info
         {
-            get { return _info.GetValue(); }
-            set { _info.SetValue(value); }
+            get => _info.GetValue();
+            set => _info.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

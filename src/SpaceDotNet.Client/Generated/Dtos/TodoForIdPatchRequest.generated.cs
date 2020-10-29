@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string? Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoForIdPatchRequest), nameof(DueDate));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? DueDate
         {
-            get { return _dueDate.GetValue(); }
-            set { _dueDate.SetValue(value); }
+            get => _dueDate.GetValue();
+            set => _dueDate.SetValue(value);
         }
     
         private PropertyValue<bool?> _open = new PropertyValue<bool?>(nameof(TodoForIdPatchRequest), nameof(IsOpen));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("open")]
         public bool? IsOpen
         {
-            get { return _open.GetValue(); }
-            set { _open.SetValue(value); }
+            get => _open.GetValue();
+            set => _open.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

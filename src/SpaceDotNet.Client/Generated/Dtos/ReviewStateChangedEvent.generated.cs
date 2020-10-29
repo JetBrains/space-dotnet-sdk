@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public CodeReviewState State
         {
-            get { return _state.GetValue(); }
-            set { _state.SetValue(value); }
+            get => _state.GetValue();
+            set => _state.SetValue(value);
         }
     
         private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewStateChangedEvent), nameof(Review));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("review")]
         public CodeReviewRecord? Review
         {
-            get { return _review.GetValue(); }
-            set { _review.SetValue(value); }
+            get => _review.GetValue();
+            set => _review.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

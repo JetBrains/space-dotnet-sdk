@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string? Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRRepositoryInfo), nameof(Name));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(PRRepositoryInfo), nameof(Description));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _latestActivity = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(LatestActivity));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? LatestActivity
         {
-            get { return _latestActivity.GetValue(); }
-            set { _latestActivity.SetValue(value); }
+            get => _latestActivity.GetValue();
+            set => _latestActivity.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _proxyPushNotification = new PropertyValue<DateTime?>(nameof(PRRepositoryInfo), nameof(ProxyPushNotification));
@@ -88,8 +88,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ProxyPushNotification
         {
-            get { return _proxyPushNotification.GetValue(); }
-            set { _proxyPushNotification.SetValue(value); }
+            get => _proxyPushNotification.GetValue();
+            set => _proxyPushNotification.SetValue(value);
         }
     
         private PropertyValue<RepositoryState> _state = new PropertyValue<RepositoryState>(nameof(PRRepositoryInfo), nameof(State));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public RepositoryState State
         {
-            get { return _state.GetValue(); }
-            set { _state.SetValue(value); }
+            get => _state.GetValue();
+            set => _state.SetValue(value);
         }
     
         private PropertyValue<string?> _initProgress = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(InitProgress));
@@ -107,8 +107,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("initProgress")]
         public string? InitProgress
         {
-            get { return _initProgress.GetValue(); }
-            set { _initProgress.SetValue(value); }
+            get => _initProgress.GetValue();
+            set => _initProgress.SetValue(value);
         }
     
         private PropertyValue<string?> _readmeName = new PropertyValue<string?>(nameof(PRRepositoryInfo), nameof(ReadmeName));
@@ -116,8 +116,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("readmeName")]
         public string? ReadmeName
         {
-            get { return _readmeName.GetValue(); }
-            set { _readmeName.SetValue(value); }
+            get => _readmeName.GetValue();
+            set => _readmeName.SetValue(value);
         }
     
         private PropertyValue<RepositoryActivity?> _monthlyActivity = new PropertyValue<RepositoryActivity?>(nameof(PRRepositoryInfo), nameof(MonthlyActivity));
@@ -125,8 +125,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("monthlyActivity")]
         public RepositoryActivity? MonthlyActivity
         {
-            get { return _monthlyActivity.GetValue(); }
-            set { _monthlyActivity.SetValue(value); }
+            get => _monthlyActivity.GetValue();
+            set => _monthlyActivity.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

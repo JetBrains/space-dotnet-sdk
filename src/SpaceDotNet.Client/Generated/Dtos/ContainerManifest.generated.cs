@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _digest = new PropertyValue<string>(nameof(ContainerManifest), nameof(Digest));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("digest")]
         public string Digest
         {
-            get { return _digest.GetValue(); }
-            set { _digest.SetValue(value); }
+            get => _digest.GetValue();
+            set => _digest.SetValue(value);
         }
     
         private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ContainerManifest), nameof(Tags));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string> Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         private PropertyValue<long> _created = new PropertyValue<long>(nameof(ContainerManifest), nameof(Created));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("created")]
         public long Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<int> _schemaVersion = new PropertyValue<int>(nameof(ContainerManifest), nameof(SchemaVersion));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("schemaVersion")]
         public int SchemaVersion
         {
-            get { return _schemaVersion.GetValue(); }
-            set { _schemaVersion.SetValue(value); }
+            get => _schemaVersion.GetValue();
+            set => _schemaVersion.SetValue(value);
         }
     
         private PropertyValue<string> _mediaType = new PropertyValue<string>(nameof(ContainerManifest), nameof(MediaType));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("mediaType")]
         public string MediaType
         {
-            get { return _mediaType.GetValue(); }
-            set { _mediaType.SetValue(value); }
+            get => _mediaType.GetValue();
+            set => _mediaType.SetValue(value);
         }
     
         private PropertyValue<string> _manifestType = new PropertyValue<string>(nameof(ContainerManifest), nameof(ManifestType));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("manifestType")]
         public string ManifestType
         {
-            get { return _manifestType.GetValue(); }
-            set { _manifestType.SetValue(value); }
+            get => _manifestType.GetValue();
+            set => _manifestType.SetValue(value);
         }
     
         private PropertyValue<long> _totalSize = new PropertyValue<long>(nameof(ContainerManifest), nameof(TotalSize));
@@ -120,8 +120,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("totalSize")]
         public long TotalSize
         {
-            get { return _totalSize.GetValue(); }
-            set { _totalSize.SetValue(value); }
+            get => _totalSize.GetValue();
+            set => _totalSize.SetValue(value);
         }
     
         private PropertyValue<ContainerImage?> _image = new PropertyValue<ContainerImage?>(nameof(ContainerManifest), nameof(Image));
@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("image")]
         public ContainerImage? Image
         {
-            get { return _image.GetValue(); }
-            set { _image.SetValue(value); }
+            get => _image.GetValue();
+            set => _image.SetValue(value);
         }
     
         private PropertyValue<ContainerHelmChart?> _chart = new PropertyValue<ContainerHelmChart?>(nameof(ContainerManifest), nameof(Chart));
@@ -138,8 +138,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("chart")]
         public ContainerHelmChart? Chart
         {
-            get { return _chart.GetValue(); }
-            set { _chart.SetValue(value); }
+            get => _chart.GetValue();
+            set => _chart.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

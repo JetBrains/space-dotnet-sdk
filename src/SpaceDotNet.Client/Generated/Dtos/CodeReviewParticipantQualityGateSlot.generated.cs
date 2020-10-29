@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rule")]
         public List<string> Rule
         {
-            get { return _rule.GetValue(); }
-            set { _rule.SetValue(value); }
+            get => _rule.GetValue();
+            set => _rule.SetValue(value);
         }
     
         private PropertyValue<int> _index = new PropertyValue<int>(nameof(CodeReviewParticipantQualityGateSlot), nameof(Index));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("index")]
         public int Index
         {
-            get { return _index.GetValue(); }
-            set { _index.SetValue(value); }
+            get => _index.GetValue();
+            set => _index.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

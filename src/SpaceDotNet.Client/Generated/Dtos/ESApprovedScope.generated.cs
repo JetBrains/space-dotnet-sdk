@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApprovedScope), nameof(Scope));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public string Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         private PropertyValue<bool> _offlineAllowed = new PropertyValue<bool>(nameof(ESApprovedScope), nameof(IsOfflineAllowed));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("offlineAllowed")]
         public bool IsOfflineAllowed
         {
-            get { return _offlineAllowed.GetValue(); }
-            set { _offlineAllowed.SetValue(value); }
+            get => _offlineAllowed.GetValue();
+            set => _offlineAllowed.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

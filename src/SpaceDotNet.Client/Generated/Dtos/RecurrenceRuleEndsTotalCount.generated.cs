@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("count")]
         public int Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

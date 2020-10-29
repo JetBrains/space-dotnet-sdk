@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("menuId")]
         public string MenuId
         {
-            get { return _menuId.GetValue(); }
-            set { _menuId.SetValue(value); }
+            get => _menuId.GetValue();
+            set => _menuId.SetValue(value);
         }
     
         private PropertyValue<HADto> _context = new PropertyValue<HADto>(nameof(HAMenuId), nameof(Context));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("context")]
         public HADto Context
         {
-            get { return _context.GetValue(); }
-            set { _context.SetValue(value); }
+            get => _context.GetValue();
+            set => _context.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

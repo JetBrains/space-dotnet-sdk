@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Description));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ContainerHelmChart), nameof(Tags));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string>? Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         private PropertyValue<string?> _projectUrl = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(ProjectUrl));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectUrl")]
         public string? ProjectUrl
         {
-            get { return _projectUrl.GetValue(); }
-            set { _projectUrl.SetValue(value); }
+            get => _projectUrl.GetValue();
+            set => _projectUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _sourceUrl = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(SourceUrl));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sourceUrl")]
         public string? SourceUrl
         {
-            get { return _sourceUrl.GetValue(); }
-            set { _sourceUrl.SetValue(value); }
+            get => _sourceUrl.GetValue();
+            set => _sourceUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Version));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string? Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<string?> _apiVersion = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(ApiVersion));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("apiVersion")]
         public string? ApiVersion
         {
-            get { return _apiVersion.GetValue(); }
-            set { _apiVersion.SetValue(value); }
+            get => _apiVersion.GetValue();
+            set => _apiVersion.SetValue(value);
         }
     
         private PropertyValue<string?> _appVersion = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(AppVersion));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("appVersion")]
         public string? AppVersion
         {
-            get { return _appVersion.GetValue(); }
-            set { _appVersion.SetValue(value); }
+            get => _appVersion.GetValue();
+            set => _appVersion.SetValue(value);
         }
     
         private PropertyValue<List<ContainerHelmChartDependency>> _dependencies = new PropertyValue<List<ContainerHelmChartDependency>>(nameof(ContainerHelmChart), nameof(Dependencies));
@@ -122,8 +122,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("dependencies")]
         public List<ContainerHelmChartDependency> Dependencies
         {
-            get { return _dependencies.GetValue(); }
-            set { _dependencies.SetValue(value); }
+            get => _dependencies.GetValue();
+            set => _dependencies.SetValue(value);
         }
     
         private PropertyValue<string?> _type = new PropertyValue<string?>(nameof(ContainerHelmChart), nameof(Type));
@@ -131,8 +131,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public string? Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

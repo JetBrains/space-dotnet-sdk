@@ -36,32 +36,24 @@ namespace SpaceDotNet.Client
         
         private class PackageRepositoryIdentifierId : PackageRepositoryIdentifier
         {
-            public readonly string _id;
+            private readonly string _id;
             
             public PackageRepositoryIdentifierId(string id)
-            {
-                _id = id;
-            }
+                => _id = id;
             
             public override string ToString()
-            {
-                return $"id:{_id}";
-            }
+                => $"id:{_id}";
         }
         
         private class PackageRepositoryIdentifierKey : PackageRepositoryIdentifier
         {
-            public readonly string _key;
+            private readonly string _key;
             
             public PackageRepositoryIdentifierKey(string key)
-            {
-                _key = key;
-            }
+                => _key = key;
             
             public override string ToString()
-            {
-                return $"key:{_key}";
-            }
+                => $"key:{_key}";
         }
         
     }

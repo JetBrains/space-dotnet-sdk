@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tag")]
         public PlanningTag Tag
         {
-            get { return _tag.GetValue(); }
-            set { _tag.SetValue(value); }
+            get => _tag.GetValue();
+            set => _tag.SetValue(value);
         }
     
         private PropertyValue<bool> _strikeThrough = new PropertyValue<bool>(nameof(UnfurlDetailsIssueTag), nameof(IsStrikeThrough));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("strikeThrough")]
         public bool IsStrikeThrough
         {
-            get { return _strikeThrough.GetValue(); }
-            set { _strikeThrough.SetValue(value); }
+            get => _strikeThrough.GetValue();
+            set => _strikeThrough.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

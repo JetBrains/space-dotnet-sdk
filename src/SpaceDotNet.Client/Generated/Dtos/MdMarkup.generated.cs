@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("unfurl")]
         public List<Unfurl> Unfurl
         {
-            get { return _unfurl.GetValue(); }
-            set { _unfurl.SetValue(value); }
+            get => _unfurl.GetValue();
+            set => _unfurl.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

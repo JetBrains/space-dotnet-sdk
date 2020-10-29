@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("record")]
         public ChannelItemRecord Record
         {
-            get { return _record.GetValue(); }
-            set { _record.SetValue(value); }
+            get => _record.GetValue();
+            set => _record.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _parent = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelContentThread), nameof(Parent));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parent")]
         public M2ChannelRecord Parent
         {
-            get { return _parent.GetValue(); }
-            set { _parent.SetValue(value); }
+            get => _parent.GetValue();
+            set => _parent.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

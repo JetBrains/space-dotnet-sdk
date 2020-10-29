@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _commit = new PropertyValue<string>(nameof(RevisionInReview), nameof(Commit));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commit")]
         public string Commit
         {
-            get { return _commit.GetValue(); }
-            set { _commit.SetValue(value); }
+            get => _commit.GetValue();
+            set => _commit.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

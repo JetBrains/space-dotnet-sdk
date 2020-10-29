@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<DateTime> _expiresAt = new PropertyValue<DateTime>(nameof(Invitation), nameof(ExpiresAt));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime ExpiresAt
         {
-            get { return _expiresAt.GetValue(); }
-            set { _expiresAt.SetValue(value); }
+            get => _expiresAt.GetValue();
+            set => _expiresAt.SetValue(value);
         }
     
         private PropertyValue<string> _inviteeEmail = new PropertyValue<string>(nameof(Invitation), nameof(InviteeEmail));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeEmail")]
         public string InviteeEmail
         {
-            get { return _inviteeEmail.GetValue(); }
-            set { _inviteeEmail.SetValue(value); }
+            get => _inviteeEmail.GetValue();
+            set => _inviteeEmail.SetValue(value);
         }
     
         private PropertyValue<bool> _inviteeEmailBlocked = new PropertyValue<bool>(nameof(Invitation), nameof(IsInviteeEmailBlocked));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeEmailBlocked")]
         public bool IsInviteeEmailBlocked
         {
-            get { return _inviteeEmailBlocked.GetValue(); }
-            set { _inviteeEmailBlocked.SetValue(value); }
+            get => _inviteeEmailBlocked.GetValue();
+            set => _inviteeEmailBlocked.SetValue(value);
         }
     
         private PropertyValue<string?> _inviteeEmailBlockedReason = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeEmailBlockedReason));
@@ -92,8 +92,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeEmailBlockedReason")]
         public string? InviteeEmailBlockedReason
         {
-            get { return _inviteeEmailBlockedReason.GetValue(); }
-            set { _inviteeEmailBlockedReason.SetValue(value); }
+            get => _inviteeEmailBlockedReason.GetValue();
+            set => _inviteeEmailBlockedReason.SetValue(value);
         }
     
         private PropertyValue<string?> _inviteeFirstName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeFirstName));
@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeFirstName")]
         public string? InviteeFirstName
         {
-            get { return _inviteeFirstName.GetValue(); }
-            set { _inviteeFirstName.SetValue(value); }
+            get => _inviteeFirstName.GetValue();
+            set => _inviteeFirstName.SetValue(value);
         }
     
         private PropertyValue<string?> _inviteeLastName = new PropertyValue<string?>(nameof(Invitation), nameof(InviteeLastName));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviteeLastName")]
         public string? InviteeLastName
         {
-            get { return _inviteeLastName.GetValue(); }
-            set { _inviteeLastName.SetValue(value); }
+            get => _inviteeLastName.GetValue();
+            set => _inviteeLastName.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _invitee = new PropertyValue<TDMemberProfile?>(nameof(Invitation), nameof(Invitee));
@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("invitee")]
         public TDMemberProfile? Invitee
         {
-            get { return _invitee.GetValue(); }
-            set { _invitee.SetValue(value); }
+            get => _invitee.GetValue();
+            set => _invitee.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _inviter = new PropertyValue<CPrincipal>(nameof(Invitation), nameof(Inviter));
@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inviter")]
         public CPrincipal Inviter
         {
-            get { return _inviter.GetValue(); }
-            set { _inviter.SetValue(value); }
+            get => _inviter.GetValue();
+            set => _inviter.SetValue(value);
         }
     
         private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(Invitation), nameof(Team));
@@ -138,8 +138,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("team")]
         public TDTeam? Team
         {
-            get { return _team.GetValue(); }
-            set { _team.SetValue(value); }
+            get => _team.GetValue();
+            set => _team.SetValue(value);
         }
     
         private PropertyValue<TDRole?> _role = new PropertyValue<TDRole?>(nameof(Invitation), nameof(Role));
@@ -147,8 +147,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("role")]
         public TDRole? Role
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
+            get => _role.GetValue();
+            set => _role.SetValue(value);
         }
     
         private PropertyValue<bool?> _revoked = new PropertyValue<bool?>(nameof(Invitation), nameof(IsRevoked));
@@ -156,8 +156,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revoked")]
         public bool? IsRevoked
         {
-            get { return _revoked.GetValue(); }
-            set { _revoked.SetValue(value); }
+            get => _revoked.GetValue();
+            set => _revoked.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItemChildren), nameof(Children));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("children")]
         public List<PlanItem> Children
         {
-            get { return _children.GetValue(); }
-            set { _children.SetValue(value); }
+            get => _children.GetValue();
+            set => _children.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

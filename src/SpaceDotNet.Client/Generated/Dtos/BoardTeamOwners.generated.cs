@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<TDTeam> Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

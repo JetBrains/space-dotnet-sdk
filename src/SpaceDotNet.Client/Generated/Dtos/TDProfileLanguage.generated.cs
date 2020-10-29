@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public TDProfileName? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<TDLanguage> _language = new PropertyValue<TDLanguage>(nameof(TDProfileLanguage), nameof(Language));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("language")]
         public TDLanguage Language
         {
-            get { return _language.GetValue(); }
-            set { _language.SetValue(value); }
+            get => _language.GetValue();
+            set => _language.SetValue(value);
         }
     
         private PropertyValue<string?> _languageCode = new PropertyValue<string?>(nameof(TDProfileLanguage), nameof(LanguageCode));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("languageCode")]
         public string? LanguageCode
         {
-            get { return _languageCode.GetValue(); }
-            set { _languageCode.SetValue(value); }
+            get => _languageCode.GetValue();
+            set => _languageCode.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("code")]
         public string Code
         {
-            get { return _code.GetValue(); }
-            set { _code.SetValue(value); }
+            get => _code.GetValue();
+            set => _code.SetValue(value);
         }
     
         private PropertyValue<string?> _sign = new PropertyValue<string?>(nameof(Currency), nameof(Sign));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sign")]
         public string? Sign
         {
-            get { return _sign.GetValue(); }
-            set { _sign.SetValue(value); }
+            get => _sign.GetValue();
+            set => _sign.SetValue(value);
         }
     
         private PropertyValue<bool> _signAsPrefix = new PropertyValue<bool>(nameof(Currency), nameof(IsSignAsPrefix));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("signAsPrefix")]
         public bool IsSignAsPrefix
         {
-            get { return _signAsPrefix.GetValue(); }
-            set { _signAsPrefix.SetValue(value); }
+            get => _signAsPrefix.GetValue();
+            set => _signAsPrefix.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

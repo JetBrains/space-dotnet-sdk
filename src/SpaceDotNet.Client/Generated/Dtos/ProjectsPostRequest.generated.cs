@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public ProjectKey Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ProjectsPostRequest), nameof(Name));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsPostRequest), nameof(Description));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(ProjectsPostRequest), nameof(IsPrivate));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("private")]
         public bool IsPrivate
         {
-            get { return _private.GetValue(); }
-            set { _private.SetValue(value); }
+            get => _private.GetValue();
+            set => _private.SetValue(value);
         }
     
         private PropertyValue<List<string>> _tags = new PropertyValue<List<string>>(nameof(ProjectsPostRequest), nameof(Tags));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string> Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("username")]
         public string Username
         {
-            get { return _username.GetValue(); }
-            set { _username.SetValue(value); }
+            get => _username.GetValue();
+            set => _username.SetValue(value);
         }
     
         private PropertyValue<string> _firstName = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(FirstName));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("firstName")]
         public string FirstName
         {
-            get { return _firstName.GetValue(); }
-            set { _firstName.SetValue(value); }
+            get => _firstName.GetValue();
+            set => _firstName.SetValue(value);
         }
     
         private PropertyValue<string> _lastName = new PropertyValue<string>(nameof(TeamDirectoryProfilesPostRequest), nameof(LastName));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastName")]
         public string LastName
         {
-            get { return _lastName.GetValue(); }
-            set { _lastName.SetValue(value); }
+            get => _lastName.GetValue();
+            set => _lastName.SetValue(value);
         }
     
         private PropertyValue<List<string>> _emails = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Emails));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emails")]
         public List<string> Emails
         {
-            get { return _emails.GetValue(); }
-            set { _emails.SetValue(value); }
+            get => _emails.GetValue();
+            set => _emails.SetValue(value);
         }
     
         private PropertyValue<List<string>> _phones = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Phones));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("phones")]
         public List<string> Phones
         {
-            get { return _phones.GetValue(); }
-            set { _phones.SetValue(value); }
+            get => _phones.GetValue();
+            set => _phones.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _birthday = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Birthday));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Birthday
         {
-            get { return _birthday.GetValue(); }
-            set { _birthday.SetValue(value); }
+            get => _birthday.GetValue();
+            set => _birthday.SetValue(value);
         }
     
         private PropertyValue<string?> _about = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(About));
@@ -114,8 +114,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("about")]
         public string? About
         {
-            get { return _about.GetValue(); }
-            set { _about.SetValue(value); }
+            get => _about.GetValue();
+            set => _about.SetValue(value);
         }
     
         private PropertyValue<List<string>> _messengers = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Messengers));
@@ -123,8 +123,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messengers")]
         public List<string> Messengers
         {
-            get { return _messengers.GetValue(); }
-            set { _messengers.SetValue(value); }
+            get => _messengers.GetValue();
+            set => _messengers.SetValue(value);
         }
     
         private PropertyValue<List<string>> _links = new PropertyValue<List<string>>(nameof(TeamDirectoryProfilesPostRequest), nameof(Links));
@@ -132,8 +132,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("links")]
         public List<string> Links
         {
-            get { return _links.GetValue(); }
-            set { _links.SetValue(value); }
+            get => _links.GetValue();
+            set => _links.SetValue(value);
         }
     
         private PropertyValue<bool> _notAMember = new PropertyValue<bool>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsNotAMember));
@@ -141,8 +141,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notAMember")]
         public bool IsNotAMember
         {
-            get { return _notAMember.GetValue(); }
-            set { _notAMember.SetValue(value); }
+            get => _notAMember.GetValue();
+            set => _notAMember.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _joined = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Joined));
@@ -151,8 +151,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Joined
         {
-            get { return _joined.GetValue(); }
-            set { _joined.SetValue(value); }
+            get => _joined.GetValue();
+            set => _joined.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _left = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(Left));
@@ -161,8 +161,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Left
         {
-            get { return _left.GetValue(); }
-            set { _left.SetValue(value); }
+            get => _left.GetValue();
+            set => _left.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _leftAt = new PropertyValue<DateTime?>(nameof(TeamDirectoryProfilesPostRequest), nameof(LeftAt));
@@ -171,8 +171,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? LeftAt
         {
-            get { return _leftAt.GetValue(); }
-            set { _leftAt.SetValue(value); }
+            get => _leftAt.GetValue();
+            set => _leftAt.SetValue(value);
         }
     
         private PropertyValue<bool?> _speaksEnglish = new PropertyValue<bool?>(nameof(TeamDirectoryProfilesPostRequest), nameof(IsSpeaksEnglish));
@@ -180,8 +180,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("speaksEnglish")]
         public bool? IsSpeaksEnglish
         {
-            get { return _speaksEnglish.GetValue(); }
-            set { _speaksEnglish.SetValue(value); }
+            get => _speaksEnglish.GetValue();
+            set => _speaksEnglish.SetValue(value);
         }
     
         private PropertyValue<string?> _pictureAttachmentId = new PropertyValue<string?>(nameof(TeamDirectoryProfilesPostRequest), nameof(PictureAttachmentId));
@@ -189,8 +189,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pictureAttachmentId")]
         public string? PictureAttachmentId
         {
-            get { return _pictureAttachmentId.GetValue(); }
-            set { _pictureAttachmentId.SetValue(value); }
+            get => _pictureAttachmentId.GetValue();
+            set => _pictureAttachmentId.SetValue(value);
         }
     
         private PropertyValue<AvatarCropSquare?> _avatarCropSquare = new PropertyValue<AvatarCropSquare?>(nameof(TeamDirectoryProfilesPostRequest), nameof(AvatarCropSquare));
@@ -198,8 +198,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("avatarCropSquare")]
         public AvatarCropSquare? AvatarCropSquare
         {
-            get { return _avatarCropSquare.GetValue(); }
-            set { _avatarCropSquare.SetValue(value); }
+            get => _avatarCropSquare.GetValue();
+            set => _avatarCropSquare.SetValue(value);
         }
     
         private PropertyValue<List<CustomFieldValue>> _customFieldValues = new PropertyValue<List<CustomFieldValue>>(nameof(TeamDirectoryProfilesPostRequest), nameof(CustomFieldValues));
@@ -207,8 +207,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldValue> CustomFieldValues
         {
-            get { return _customFieldValues.GetValue(); }
-            set { _customFieldValues.SetValue(value); }
+            get => _customFieldValues.GetValue();
+            set => _customFieldValues.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

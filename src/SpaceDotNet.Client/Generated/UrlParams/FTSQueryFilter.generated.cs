@@ -39,47 +39,35 @@ namespace SpaceDotNet.Client
         
         private class FTSQueryFilterChannel : FTSQueryFilter
         {
-            public readonly string _channelId;
+            private readonly string _channelId;
             
             public FTSQueryFilterChannel(string channelId)
-            {
-                _channelId = channelId;
-            }
+                => _channelId = channelId;
             
             public override string ToString()
-            {
-                return $"channelId:{_channelId}";
-            }
+                => $"channelId:{_channelId}";
         }
         
         private class FTSQueryFilterBook : FTSQueryFilter
         {
-            public readonly string _bookId;
+            private readonly string _bookId;
             
             public FTSQueryFilterBook(string bookId)
-            {
-                _bookId = bookId;
-            }
+                => _bookId = bookId;
             
             public override string ToString()
-            {
-                return $"bookId:{_bookId}";
-            }
+                => $"bookId:{_bookId}";
         }
         
         private class FTSQueryFilterProject : FTSQueryFilter
         {
-            public readonly string _projectId;
+            private readonly string _projectId;
             
             public FTSQueryFilterProject(string projectId)
-            {
-                _projectId = projectId;
-            }
+                => _projectId = projectId;
             
             public override string ToString()
-            {
-                return $"projectId:{_projectId}";
-            }
+                => $"projectId:{_projectId}";
         }
         
     }

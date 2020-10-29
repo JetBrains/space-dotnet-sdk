@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public TDLocation Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

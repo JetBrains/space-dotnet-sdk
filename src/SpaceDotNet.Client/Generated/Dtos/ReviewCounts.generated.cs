@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("opened")]
         public int Opened
         {
-            get { return _opened.GetValue(); }
-            set { _opened.SetValue(value); }
+            get => _opened.GetValue();
+            set => _opened.SetValue(value);
         }
     
         private PropertyValue<int> _closed = new PropertyValue<int>(nameof(ReviewCounts), nameof(Closed));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("closed")]
         public int Closed
         {
-            get { return _closed.GetValue(); }
-            set { _closed.SetValue(value); }
+            get => _closed.GetValue();
+            set => _closed.SetValue(value);
         }
     
         private PropertyValue<int> _authoredByMe = new PropertyValue<int>(nameof(ReviewCounts), nameof(AuthoredByMe));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authoredByMe")]
         public int AuthoredByMe
         {
-            get { return _authoredByMe.GetValue(); }
-            set { _authoredByMe.SetValue(value); }
+            get => _authoredByMe.GetValue();
+            set => _authoredByMe.SetValue(value);
         }
     
         private PropertyValue<int> _reviewedByMe = new PropertyValue<int>(nameof(ReviewCounts), nameof(ReviewedByMe));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reviewedByMe")]
         public int ReviewedByMe
         {
-            get { return _reviewedByMe.GetValue(); }
-            set { _reviewedByMe.SetValue(value); }
+            get => _reviewedByMe.GetValue();
+            set => _reviewedByMe.SetValue(value);
         }
     
         private PropertyValue<int> _needsMyAttention = new PropertyValue<int>(nameof(ReviewCounts), nameof(NeedsMyAttention));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("needsMyAttention")]
         public int NeedsMyAttention
         {
-            get { return _needsMyAttention.GetValue(); }
-            set { _needsMyAttention.SetValue(value); }
+            get => _needsMyAttention.GetValue();
+            set => _needsMyAttention.SetValue(value);
         }
     
         private PropertyValue<int> _needsMyReview = new PropertyValue<int>(nameof(ReviewCounts), nameof(NeedsMyReview));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("needsMyReview")]
         public int NeedsMyReview
         {
-            get { return _needsMyReview.GetValue(); }
-            set { _needsMyReview.SetValue(value); }
+            get => _needsMyReview.GetValue();
+            set => _needsMyReview.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

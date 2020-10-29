@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<long?> _created = new PropertyValue<long?>(nameof(ContainerImageLayer), nameof(Created));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("created")]
         public long? Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<string> _statement = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Statement));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("statement")]
         public string Statement
         {
-            get { return _statement.GetValue(); }
-            set { _statement.SetValue(value); }
+            get => _statement.GetValue();
+            set => _statement.SetValue(value);
         }
     
         private PropertyValue<string> _command = new PropertyValue<string>(nameof(ContainerImageLayer), nameof(Command));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("command")]
         public string Command
         {
-            get { return _command.GetValue(); }
-            set { _command.SetValue(value); }
+            get => _command.GetValue();
+            set => _command.SetValue(value);
         }
     
         private PropertyValue<long?> _size = new PropertyValue<long?>(nameof(ContainerImageLayer), nameof(Size));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("size")]
         public long? Size
         {
-            get { return _size.GetValue(); }
-            set { _size.SetValue(value); }
+            get => _size.GetValue();
+            set => _size.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

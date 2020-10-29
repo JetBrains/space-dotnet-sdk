@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _style = new PropertyValue<string>(nameof(MCIcon), nameof(Style));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public string Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

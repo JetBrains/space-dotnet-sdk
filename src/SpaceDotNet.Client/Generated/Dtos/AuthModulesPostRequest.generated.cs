@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(AuthModulesPostRequest), nameof(Name));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(AuthModulesPostRequest), nameof(IsEnabled));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("enabled")]
         public bool IsEnabled
         {
-            get { return _enabled.GetValue(); }
-            set { _enabled.SetValue(value); }
+            get => _enabled.GetValue();
+            set => _enabled.SetValue(value);
         }
     
         private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(AuthModulesPostRequest), nameof(Settings));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("settings")]
         public ESAuthModuleSettings Settings
         {
-            get { return _settings.GetValue(); }
-            set { _settings.SetValue(value); }
+            get => _settings.GetValue();
+            set => _settings.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

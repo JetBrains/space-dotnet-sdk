@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _scope = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileApplicationPasswordsForPasswordIdPatchRequest), nameof(Scope));
@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public string? Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

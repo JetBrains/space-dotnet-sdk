@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(PollRecord), nameof(Owner));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("owner")]
         public TDMemberProfile Owner
         {
-            get { return _owner.GetValue(); }
-            set { _owner.SetValue(value); }
+            get => _owner.GetValue();
+            set => _owner.SetValue(value);
         }
     
         private PropertyValue<string> _question = new PropertyValue<string>(nameof(PollRecord), nameof(Question));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("question")]
         public string Question
         {
-            get { return _question.GetValue(); }
-            set { _question.SetValue(value); }
+            get => _question.GetValue();
+            set => _question.SetValue(value);
         }
     
         private PropertyValue<bool> _meVote = new PropertyValue<bool>(nameof(PollRecord), nameof(IsMeVote));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("meVote")]
         public bool IsMeVote
         {
-            get { return _meVote.GetValue(); }
-            set { _meVote.SetValue(value); }
+            get => _meVote.GetValue();
+            set => _meVote.SetValue(value);
         }
     
         private PropertyValue<int> _countPeople = new PropertyValue<int>(nameof(PollRecord), nameof(CountPeople));
@@ -92,8 +92,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("countPeople")]
         public int CountPeople
         {
-            get { return _countPeople.GetValue(); }
-            set { _countPeople.SetValue(value); }
+            get => _countPeople.GetValue();
+            set => _countPeople.SetValue(value);
         }
     
         private PropertyValue<bool> _anonymous = new PropertyValue<bool>(nameof(PollRecord), nameof(IsAnonymous));
@@ -102,8 +102,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("anonymous")]
         public bool IsAnonymous
         {
-            get { return _anonymous.GetValue(); }
-            set { _anonymous.SetValue(value); }
+            get => _anonymous.GetValue();
+            set => _anonymous.SetValue(value);
         }
     
         private PropertyValue<bool> _closed = new PropertyValue<bool>(nameof(PollRecord), nameof(IsClosed));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("closed")]
         public bool IsClosed
         {
-            get { return _closed.GetValue(); }
-            set { _closed.SetValue(value); }
+            get => _closed.GetValue();
+            set => _closed.SetValue(value);
         }
     
         private PropertyValue<bool> _extendable = new PropertyValue<bool>(nameof(PollRecord), nameof(IsExtendable));
@@ -122,8 +122,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("extendable")]
         public bool IsExtendable
         {
-            get { return _extendable.GetValue(); }
-            set { _extendable.SetValue(value); }
+            get => _extendable.GetValue();
+            set => _extendable.SetValue(value);
         }
     
         private PropertyValue<bool> _multiChoice = new PropertyValue<bool>(nameof(PollRecord), nameof(IsMultiChoice));
@@ -132,8 +132,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("multiChoice")]
         public bool IsMultiChoice
         {
-            get { return _multiChoice.GetValue(); }
-            set { _multiChoice.SetValue(value); }
+            get => _multiChoice.GetValue();
+            set => _multiChoice.SetValue(value);
         }
     
         private PropertyValue<bool> _ended = new PropertyValue<bool>(nameof(PollRecord), nameof(IsEnded));
@@ -142,8 +142,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ended")]
         public bool IsEnded
         {
-            get { return _ended.GetValue(); }
-            set { _ended.SetValue(value); }
+            get => _ended.GetValue();
+            set => _ended.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _expirationTime = new PropertyValue<DateTime?>(nameof(PollRecord), nameof(ExpirationTime));
@@ -152,8 +152,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ExpirationTime
         {
-            get { return _expirationTime.GetValue(); }
-            set { _expirationTime.SetValue(value); }
+            get => _expirationTime.GetValue();
+            set => _expirationTime.SetValue(value);
         }
     
         private PropertyValue<List<VoteGroup>> _votes = new PropertyValue<List<VoteGroup>>(nameof(PollRecord), nameof(Votes));
@@ -162,8 +162,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("votes")]
         public List<VoteGroup> Votes
         {
-            get { return _votes.GetValue(); }
-            set { _votes.SetValue(value); }
+            get => _votes.GetValue();
+            set => _votes.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

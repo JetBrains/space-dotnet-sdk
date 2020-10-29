@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberLocationId")]
         public string MemberLocationId
         {
-            get { return _memberLocationId.GetValue(); }
-            set { _memberLocationId.SetValue(value); }
+            get => _memberLocationId.GetValue();
+            set => _memberLocationId.SetValue(value);
         }
     
         private PropertyValue<int> _x = new PropertyValue<int>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(X));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("x")]
         public int X
         {
-            get { return _x.GetValue(); }
-            set { _x.SetValue(value); }
+            get => _x.GetValue();
+            set => _x.SetValue(value);
         }
     
         private PropertyValue<int> _y = new PropertyValue<int>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(Y));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("y")]
         public int Y
         {
-            get { return _y.GetValue(); }
-            set { _y.SetValue(value); }
+            get => _y.GetValue();
+            set => _y.SetValue(value);
         }
     
         private PropertyValue<string> _mapId = new PropertyValue<string>(nameof(TeamDirectoryLocationMapMemberPointsPostRequest), nameof(MapId));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("mapId")]
         public string MapId
         {
-            get { return _mapId.GetValue(); }
-            set { _mapId.SetValue(value); }
+            get => _mapId.GetValue();
+            set => _mapId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

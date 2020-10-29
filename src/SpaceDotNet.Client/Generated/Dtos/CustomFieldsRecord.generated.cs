@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<List<CustomFieldValue>> _values = new PropertyValue<List<CustomFieldValue>>(nameof(CustomFieldsRecord), nameof(Values));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("values")]
         public List<CustomFieldValue> Values
         {
-            get { return _values.GetValue(); }
-            set { _values.SetValue(value); }
+            get => _values.GetValue();
+            set => _values.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

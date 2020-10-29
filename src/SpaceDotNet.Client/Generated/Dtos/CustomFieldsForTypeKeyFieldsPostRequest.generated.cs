@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Description));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<CFType> _type = new PropertyValue<CFType>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Type));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public CFType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<CFConstraint?> _constraint = new PropertyValue<CFConstraint?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Constraint));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("constraint")]
         public CFConstraint? Constraint
         {
-            get { return _constraint.GetValue(); }
-            set { _constraint.SetValue(value); }
+            get => _constraint.GetValue();
+            set => _constraint.SetValue(value);
         }
     
         private PropertyValue<bool> _required = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsRequired));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("required")]
         public bool IsRequired
         {
-            get { return _required.GetValue(); }
-            set { _required.SetValue(value); }
+            get => _required.GetValue();
+            set => _required.SetValue(value);
         }
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(IsPrivate));
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("private")]
         public bool IsPrivate
         {
-            get { return _private.GetValue(); }
-            set { _private.SetValue(value); }
+            get => _private.GetValue();
+            set => _private.SetValue(value);
         }
     
         private PropertyValue<AccessType?> _access = new PropertyValue<AccessType?>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Access));
@@ -106,8 +106,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("access")]
         public AccessType? Access
         {
-            get { return _access.GetValue(); }
-            set { _access.SetValue(value); }
+            get => _access.GetValue();
+            set => _access.SetValue(value);
         }
     
         private PropertyValue<CFValue> _defaultValue = new PropertyValue<CFValue>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(DefaultValue));
@@ -116,8 +116,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultValue")]
         public CFValue DefaultValue
         {
-            get { return _defaultValue.GetValue(); }
-            set { _defaultValue.SetValue(value); }
+            get => _defaultValue.GetValue();
+            set => _defaultValue.SetValue(value);
         }
     
         private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsPostRequest), nameof(Scope));
@@ -126,8 +126,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public ExtendedTypeScope Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

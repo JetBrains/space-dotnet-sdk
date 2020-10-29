@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("documentId")]
         public string DocumentId
         {
-            get { return _documentId.GetValue(); }
-            set { _documentId.SetValue(value); }
+            get => _documentId.GetValue();
+            set => _documentId.SetValue(value);
         }
     
         private PropertyValue<DraftDocumentType> _documentType = new PropertyValue<DraftDocumentType>(nameof(DocumentPublicationItem), nameof(DocumentType));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("documentType")]
         public DraftDocumentType DocumentType
         {
-            get { return _documentType.GetValue(); }
-            set { _documentType.SetValue(value); }
+            get => _documentType.GetValue();
+            set => _documentType.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

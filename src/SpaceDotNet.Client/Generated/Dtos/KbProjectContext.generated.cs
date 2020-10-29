@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public PRProject Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

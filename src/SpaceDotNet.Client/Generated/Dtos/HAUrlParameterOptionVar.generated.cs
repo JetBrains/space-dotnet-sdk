@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parameter")]
         public HAField Parameter
         {
-            get { return _parameter.GetValue(); }
-            set { _parameter.SetValue(value); }
+            get => _parameter.GetValue();
+            set => _parameter.SetValue(value);
         }
     
         private PropertyValue<bool> _prefixRequired = new PropertyValue<bool>(nameof(HAUrlParameterOptionVar), nameof(IsPrefixRequired));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("prefixRequired")]
         public bool IsPrefixRequired
         {
-            get { return _prefixRequired.GetValue(); }
-            set { _prefixRequired.SetValue(value); }
+            get => _prefixRequired.GetValue();
+            set => _prefixRequired.SetValue(value);
         }
     
         private PropertyValue<string> _optionName = new PropertyValue<string>(nameof(HAUrlParameterOptionVar), nameof(OptionName));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("optionName")]
         public string OptionName
         {
-            get { return _optionName.GetValue(); }
-            set { _optionName.SetValue(value); }
+            get => _optionName.GetValue();
+            set => _optionName.SetValue(value);
         }
     
         private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameterOptionVar), nameof(Deprecation));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deprecation")]
         public HADeprecation? Deprecation
         {
-            get { return _deprecation.GetValue(); }
-            set { _deprecation.SetValue(value); }
+            get => _deprecation.GetValue();
+            set => _deprecation.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

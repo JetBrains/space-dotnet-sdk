@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectId")]
         public string ProjectId
         {
-            get { return _projectId.GetValue(); }
-            set { _projectId.SetValue(value); }
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Key));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _value = new PropertyValue<string>(nameof(ProjectsParamsInDefaultBundlePostRequest), nameof(Value));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("value")]
         public string Value
         {
-            get { return _value.GetValue(); }
-            set { _value.SetValue(value); }
+            get => _value.GetValue();
+            set => _value.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

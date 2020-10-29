@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("amount")]
         public double Amount
         {
-            get { return _amount.GetValue(); }
-            set { _amount.SetValue(value); }
+            get => _amount.GetValue();
+            set => _amount.SetValue(value);
         }
     
         private PropertyValue<Currency> _currency = new PropertyValue<Currency>(nameof(Money), nameof(Currency));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("currency")]
         public Currency Currency
         {
-            get { return _currency.GetValue(); }
-            set { _currency.SetValue(value); }
+            get => _currency.GetValue();
+            set => _currency.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

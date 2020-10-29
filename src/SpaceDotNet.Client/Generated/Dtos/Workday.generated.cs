@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("weekday")]
         public string Weekday
         {
-            get { return _weekday.GetValue(); }
-            set { _weekday.SetValue(value); }
+            get => _weekday.GetValue();
+            set => _weekday.SetValue(value);
         }
     
         private PropertyValue<bool> _working = new PropertyValue<bool>(nameof(Workday), nameof(IsWorking));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("working")]
         public bool IsWorking
         {
-            get { return _working.GetValue(); }
-            set { _working.SetValue(value); }
+            get => _working.GetValue();
+            set => _working.SetValue(value);
         }
     
         private PropertyValue<int> _hours = new PropertyValue<int>(nameof(Workday), nameof(Hours));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hours")]
         public int Hours
         {
-            get { return _hours.GetValue(); }
-            set { _hours.SetValue(value); }
+            get => _hours.GetValue();
+            set => _hours.SetValue(value);
         }
     
         private PropertyValue<int?> _minutes = new PropertyValue<int?>(nameof(Workday), nameof(Minutes));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("minutes")]
         public int? Minutes
         {
-            get { return _minutes.GetValue(); }
-            set { _minutes.SetValue(value); }
+            get => _minutes.GetValue();
+            set => _minutes.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

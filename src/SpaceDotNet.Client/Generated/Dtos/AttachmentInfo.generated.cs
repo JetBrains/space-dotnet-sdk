@@ -40,8 +40,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public Attachment? Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

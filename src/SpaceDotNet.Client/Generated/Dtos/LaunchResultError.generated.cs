@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

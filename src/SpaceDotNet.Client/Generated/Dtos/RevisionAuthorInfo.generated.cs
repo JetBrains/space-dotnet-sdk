@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revisionInfo")]
         public RevisionInfo RevisionInfo
         {
-            get { return _revisionInfo.GetValue(); }
-            set { _revisionInfo.SetValue(value); }
+            get => _revisionInfo.GetValue();
+            set => _revisionInfo.SetValue(value);
         }
     
         private PropertyValue<RevisionAuthor> _author = new PropertyValue<RevisionAuthor>(nameof(RevisionAuthorInfo), nameof(Author));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public RevisionAuthor Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

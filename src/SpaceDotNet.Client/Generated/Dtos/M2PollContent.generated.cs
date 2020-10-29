@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("poll")]
         public PollRecord Poll
         {
-            get { return _poll.GetValue(); }
-            set { _poll.SetValue(value); }
+            get => _poll.GetValue();
+            set => _poll.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

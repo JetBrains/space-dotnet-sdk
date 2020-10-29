@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientService")]
         public ESService ClientService
         {
-            get { return _clientService.GetValue(); }
-            set { _clientService.SetValue(value); }
+            get => _clientService.GetValue();
+            set => _clientService.SetValue(value);
         }
     
         private PropertyValue<List<ESApprovedScope>> _approvedScopes = new PropertyValue<List<ESApprovedScope>>(nameof(ESOAuthConsent), nameof(ApprovedScopes));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("approvedScopes")]
         public List<ESApprovedScope> ApprovedScopes
         {
-            get { return _approvedScopes.GetValue(); }
-            set { _approvedScopes.SetValue(value); }
+            get => _approvedScopes.GetValue();
+            set => _approvedScopes.SetValue(value);
         }
     
         private PropertyValue<List<ESRefreshToken>> _refreshTokens = new PropertyValue<List<ESRefreshToken>>(nameof(ESOAuthConsent), nameof(RefreshTokens));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("refreshTokens")]
         public List<ESRefreshToken> RefreshTokens
         {
-            get { return _refreshTokens.GetValue(); }
-            set { _refreshTokens.SetValue(value); }
+            get => _refreshTokens.GetValue();
+            set => _refreshTokens.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

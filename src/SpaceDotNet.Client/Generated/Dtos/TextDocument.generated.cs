@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<long> _resetCounter = new PropertyValue<long>(nameof(TextDocument), nameof(ResetCounter));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resetCounter")]
         public long ResetCounter
         {
-            get { return _resetCounter.GetValue(); }
-            set { _resetCounter.SetValue(value); }
+            get => _resetCounter.GetValue();
+            set => _resetCounter.SetValue(value);
         }
     
         private PropertyValue<long?> _version = new PropertyValue<long?>(nameof(TextDocument), nameof(Version));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public long? Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<DraftDocumentType> _type = new PropertyValue<DraftDocumentType>(nameof(TextDocument), nameof(Type));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public DraftDocumentType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(TextDocument), nameof(Text));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<string?> _model = new PropertyValue<string?>(nameof(TextDocument), nameof(Model));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("model")]
         public string? Model
         {
-            get { return _model.GetValue(); }
-            set { _model.SetValue(value); }
+            get => _model.GetValue();
+            set => _model.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

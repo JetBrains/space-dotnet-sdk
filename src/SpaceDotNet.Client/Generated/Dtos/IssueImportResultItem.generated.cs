@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalId")]
         public string? ExternalId
         {
-            get { return _externalId.GetValue(); }
-            set { _externalId.SetValue(value); }
+            get => _externalId.GetValue();
+            set => _externalId.SetValue(value);
         }
     
         private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(IssueImportResultItem), nameof(Issue));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issue")]
         public Issue? Issue
         {
-            get { return _issue.GetValue(); }
-            set { _issue.SetValue(value); }
+            get => _issue.GetValue();
+            set => _issue.SetValue(value);
         }
     
         private PropertyValue<string?> _error = new PropertyValue<string?>(nameof(IssueImportResultItem), nameof(Error));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("error")]
         public string? Error
         {
-            get { return _error.GetValue(); }
-            set { _error.SetValue(value); }
+            get => _error.GetValue();
+            set => _error.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

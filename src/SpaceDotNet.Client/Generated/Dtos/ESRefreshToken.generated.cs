@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESRefreshToken), nameof(Scope));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public string Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESRefreshToken), nameof(LastAccess));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastAccess")]
         public AccessRecord? LastAccess
         {
-            get { return _lastAccess.GetValue(); }
-            set { _lastAccess.SetValue(value); }
+            get => _lastAccess.GetValue();
+            set => _lastAccess.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

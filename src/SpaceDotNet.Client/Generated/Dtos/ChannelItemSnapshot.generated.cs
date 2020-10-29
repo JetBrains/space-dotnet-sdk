@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(ChannelItemSnapshot), nameof(ChannelId));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelId")]
         public string? ChannelId
         {
-            get { return _channelId.GetValue(); }
-            set { _channelId.SetValue(value); }
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
         }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChannelItemSnapshot), nameof(Text));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<M2ItemContentDetails?> _details = new PropertyValue<M2ItemContentDetails?>(nameof(ChannelItemSnapshot), nameof(Details));
@@ -79,8 +79,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public M2ItemContentDetails? Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(ChannelItemSnapshot), nameof(Author));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public CPrincipal Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ChannelItemSnapshot), nameof(Created));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemSnapshot), nameof(Time));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("time")]
         public long Time
         {
-            get { return _time.GetValue(); }
-            set { _time.SetValue(value); }
+            get => _time.GetValue();
+            set => _time.SetValue(value);
         }
     
         private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemSnapshot), nameof(Attachments));
@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<AttachmentInfo>? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

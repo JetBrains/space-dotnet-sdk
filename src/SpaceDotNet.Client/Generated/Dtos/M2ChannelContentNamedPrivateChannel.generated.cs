@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2ChannelContentNamedPrivateChannel), nameof(NotificationDefaults));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults? NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         private PropertyValue<bool> _canHaveThreads = new PropertyValue<bool>(nameof(M2ChannelContentNamedPrivateChannel), nameof(CanHaveThreads));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canHaveThreads")]
         public bool CanHaveThreads
         {
-            get { return _canHaveThreads.GetValue(); }
-            set { _canHaveThreads.SetValue(value); }
+            get => _canHaveThreads.GetValue();
+            set => _canHaveThreads.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

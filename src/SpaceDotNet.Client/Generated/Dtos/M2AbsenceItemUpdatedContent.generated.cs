@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("absence")]
         public AbsenceRecord Absence
         {
-            get { return _absence.GetValue(); }
-            set { _absence.SetValue(value); }
+            get => _absence.GetValue();
+            set => _absence.SetValue(value);
         }
     
         private PropertyValue<Modification<AbsenceReasonRecord>?> _reason = new PropertyValue<Modification<AbsenceReasonRecord>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Reason));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reason")]
         public Modification<AbsenceReasonRecord>? Reason
         {
-            get { return _reason.GetValue(); }
-            set { _reason.SetValue(value); }
+            get => _reason.GetValue();
+            set => _reason.SetValue(value);
         }
     
         private PropertyValue<Modification<string>?> _description = new PropertyValue<Modification<string>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Description));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public Modification<string>? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<Modification<DateTime>?> _since = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Since));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("since")]
         public Modification<DateTime>? Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<Modification<DateTime>?> _till = new PropertyValue<Modification<DateTime>?>(nameof(M2AbsenceItemUpdatedContent), nameof(Till));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("till")]
         public Modification<DateTime>? Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _by = new PropertyValue<TDMemberProfile?>(nameof(M2AbsenceItemUpdatedContent), nameof(By));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("by")]
         public TDMemberProfile? By
         {
-            get { return _by.GetValue(); }
-            set { _by.SetValue(value); }
+            get => _by.GetValue();
+            set => _by.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

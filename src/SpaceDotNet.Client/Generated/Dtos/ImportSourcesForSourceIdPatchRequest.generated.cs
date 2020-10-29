@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _importerPrincipal = new PropertyValue<string>(nameof(ImportSourcesForSourceIdPatchRequest), nameof(ImporterPrincipal));
@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("importerPrincipal")]
         public string ImporterPrincipal
         {
-            get { return _importerPrincipal.GetValue(); }
-            set { _importerPrincipal.SetValue(value); }
+            get => _importerPrincipal.GetValue();
+            set => _importerPrincipal.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

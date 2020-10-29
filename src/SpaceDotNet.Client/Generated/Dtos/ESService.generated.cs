@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(ESService), nameof(Owner));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("owner")]
         public TDMemberProfile? Owner
         {
-            get { return _owner.GetValue(); }
-            set { _owner.SetValue(value); }
+            get => _owner.GetValue();
+            set => _owner.SetValue(value);
         }
     
         private PropertyValue<OAuthServiceType> _type = new PropertyValue<OAuthServiceType>(nameof(ESService), nameof(Type));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public OAuthServiceType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESService), nameof(ClientId));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientId")]
         public string ClientId
         {
-            get { return _clientId.GetValue(); }
-            set { _clientId.SetValue(value); }
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESService), nameof(Name));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _redirectURIs = new PropertyValue<string>(nameof(ESService), nameof(RedirectURIs));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("redirectURIs")]
         public string RedirectURIs
         {
-            get { return _redirectURIs.GetValue(); }
-            set { _redirectURIs.SetValue(value); }
+            get => _redirectURIs.GetValue();
+            set => _redirectURIs.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ESService), nameof(IsArchived));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<AccessRecord?> _lastClientCredentialsAccess = new PropertyValue<AccessRecord?>(nameof(ESService), nameof(LastClientCredentialsAccess));
@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastClientCredentialsAccess")]
         public AccessRecord? LastClientCredentialsAccess
         {
-            get { return _lastClientCredentialsAccess.GetValue(); }
-            set { _lastClientCredentialsAccess.SetValue(value); }
+            get => _lastClientCredentialsAccess.GetValue();
+            set => _lastClientCredentialsAccess.SetValue(value);
         }
     
         private PropertyValue<string?> _endpointURI = new PropertyValue<string?>(nameof(ESService), nameof(EndpointURI));
@@ -128,8 +128,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("endpointURI")]
         public string? EndpointURI
         {
-            get { return _endpointURI.GetValue(); }
-            set { _endpointURI.SetValue(value); }
+            get => _endpointURI.GetValue();
+            set => _endpointURI.SetValue(value);
         }
     
         private PropertyValue<bool?> _hasSigningKey = new PropertyValue<bool?>(nameof(ESService), nameof(IsHasSigningKey));
@@ -137,8 +137,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hasSigningKey")]
         public bool? IsHasSigningKey
         {
-            get { return _hasSigningKey.GetValue(); }
-            set { _hasSigningKey.SetValue(value); }
+            get => _hasSigningKey.GetValue();
+            set => _hasSigningKey.SetValue(value);
         }
     
         private PropertyValue<bool?> _hasVerificationToken = new PropertyValue<bool?>(nameof(ESService), nameof(IsHasVerificationToken));
@@ -146,8 +146,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hasVerificationToken")]
         public bool? IsHasVerificationToken
         {
-            get { return _hasVerificationToken.GetValue(); }
-            set { _hasVerificationToken.SetValue(value); }
+            get => _hasVerificationToken.GetValue();
+            set => _hasVerificationToken.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

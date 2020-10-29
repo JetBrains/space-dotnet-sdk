@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("menuId")]
         public string MenuId
         {
-            get { return _menuId.GetValue(); }
-            set { _menuId.SetValue(value); }
+            get => _menuId.GetValue();
+            set => _menuId.SetValue(value);
         }
     
         private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(LocationMenuActionContext), nameof(Location));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public TDLocation Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

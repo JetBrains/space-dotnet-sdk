@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resolved")]
         public int Resolved
         {
-            get { return _resolved.GetValue(); }
-            set { _resolved.SetValue(value); }
+            get => _resolved.GetValue();
+            set => _resolved.SetValue(value);
         }
     
         private PropertyValue<int> _unresolved = new PropertyValue<int>(nameof(Counter), nameof(Unresolved));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("unresolved")]
         public int Unresolved
         {
-            get { return _unresolved.GetValue(); }
-            set { _unresolved.SetValue(value); }
+            get => _unresolved.GetValue();
+            set => _unresolved.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

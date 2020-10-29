@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ESAuthenticationSession), nameof(Profile));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Created));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<DateTime> _expires = new PropertyValue<DateTime>(nameof(ESAuthenticationSession), nameof(Expires));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Expires
         {
-            get { return _expires.GetValue(); }
-            set { _expires.SetValue(value); }
+            get => _expires.GetValue();
+            set => _expires.SetValue(value);
         }
     
         private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESAuthenticationSession), nameof(LastAccess));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastAccess")]
         public AccessRecord? LastAccess
         {
-            get { return _lastAccess.GetValue(); }
-            set { _lastAccess.SetValue(value); }
+            get => _lastAccess.GetValue();
+            set => _lastAccess.SetValue(value);
         }
     
         private PropertyValue<bool> _current = new PropertyValue<bool>(nameof(ESAuthenticationSession), nameof(IsCurrent));
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("current")]
         public bool IsCurrent
         {
-            get { return _current.GetValue(); }
-            set { _current.SetValue(value); }
+            get => _current.GetValue();
+            set => _current.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

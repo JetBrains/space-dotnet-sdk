@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public PackageType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(PackageData), nameof(Repository));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PackageData), nameof(Name));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<long> _versions = new PropertyValue<long>(nameof(PackageData), nameof(Versions));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("versions")]
         public long Versions
         {
-            get { return _versions.GetValue(); }
-            set { _versions.SetValue(value); }
+            get => _versions.GetValue();
+            set => _versions.SetValue(value);
         }
     
         private PropertyValue<long> _updated = new PropertyValue<long>(nameof(PackageData), nameof(Updated));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("updated")]
         public long Updated
         {
-            get { return _updated.GetValue(); }
-            set { _updated.SetValue(value); }
+            get => _updated.GetValue();
+            set => _updated.SetValue(value);
         }
     
         private PropertyValue<string> _lastVersion = new PropertyValue<string>(nameof(PackageData), nameof(LastVersion));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastVersion")]
         public string LastVersion
         {
-            get { return _lastVersion.GetValue(); }
-            set { _lastVersion.SetValue(value); }
+            get => _lastVersion.GetValue();
+            set => _lastVersion.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

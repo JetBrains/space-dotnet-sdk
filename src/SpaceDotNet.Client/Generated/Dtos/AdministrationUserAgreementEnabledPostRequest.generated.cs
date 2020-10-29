@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("enabled")]
         public bool IsEnabled
         {
-            get { return _enabled.GetValue(); }
-            set { _enabled.SetValue(value); }
+            get => _enabled.GetValue();
+            set => _enabled.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

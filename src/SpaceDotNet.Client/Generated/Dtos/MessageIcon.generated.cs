@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public ApiIcon Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageIcon), nameof(Style));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public MessageStyle Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

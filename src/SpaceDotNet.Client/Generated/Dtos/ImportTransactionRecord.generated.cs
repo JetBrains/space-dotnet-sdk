@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ImportTransactionRecord), nameof(IsArchived));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _importer = new PropertyValue<CPrincipal>(nameof(ImportTransactionRecord), nameof(Importer));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("importer")]
         public CPrincipal Importer
         {
-            get { return _importer.GetValue(); }
-            set { _importer.SetValue(value); }
+            get => _importer.GetValue();
+            set => _importer.SetValue(value);
         }
     
         private PropertyValue<string> _externalSource = new PropertyValue<string>(nameof(ImportTransactionRecord), nameof(ExternalSource));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalSource")]
         public string ExternalSource
         {
-            get { return _externalSource.GetValue(); }
-            set { _externalSource.SetValue(value); }
+            get => _externalSource.GetValue();
+            set => _externalSource.SetValue(value);
         }
     
         private PropertyValue<DateTime> _imported = new PropertyValue<DateTime>(nameof(ImportTransactionRecord), nameof(Imported));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Imported
         {
-            get { return _imported.GetValue(); }
-            set { _imported.SetValue(value); }
+            get => _imported.GetValue();
+            set => _imported.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

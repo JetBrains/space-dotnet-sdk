@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public ChatChannel Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

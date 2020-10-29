@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(DRDraftHeader), nameof(Title));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _author = new PropertyValue<TDMemberProfile>(nameof(DRDraftHeader), nameof(Author));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public TDMemberProfile Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(DRDraftHeader), nameof(Modified));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Modified
         {
-            get { return _modified.GetValue(); }
-            set { _modified.SetValue(value); }
+            get => _modified.GetValue();
+            set => _modified.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(DRDraftHeader), nameof(Created));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(DRDraftHeader), nameof(ModifiedBy));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("modifiedBy")]
         public CPrincipal? ModifiedBy
         {
-            get { return _modifiedBy.GetValue(); }
-            set { _modifiedBy.SetValue(value); }
+            get => _modifiedBy.GetValue();
+            set => _modifiedBy.SetValue(value);
         }
     
         private PropertyValue<bool> _shared = new PropertyValue<bool>(nameof(DRDraftHeader), nameof(IsShared));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("shared")]
         public bool IsShared
         {
-            get { return _shared.GetValue(); }
-            set { _shared.SetValue(value); }
+            get => _shared.GetValue();
+            set => _shared.SetValue(value);
         }
     
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DRDraftHeader), nameof(PublicationDetails2));
@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("publicationDetails2")]
         public PublicationDetails? PublicationDetails2
         {
-            get { return _publicationDetails2.GetValue(); }
-            set { _publicationDetails2.SetValue(value); }
+            get => _publicationDetails2.GetValue();
+            set => _publicationDetails2.SetValue(value);
         }
     
         private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(DRDraftHeader), nameof(IsDeleted));
@@ -128,8 +128,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deleted")]
         public bool? IsDeleted
         {
-            get { return _deleted.GetValue(); }
-            set { _deleted.SetValue(value); }
+            get => _deleted.GetValue();
+            set => _deleted.SetValue(value);
         }
     
         private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(DRDraftHeader), nameof(Folder));
@@ -137,8 +137,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("folder")]
         public DocumentFolderRecord? Folder
         {
-            get { return _folder.GetValue(); }
-            set { _folder.SetValue(value); }
+            get => _folder.GetValue();
+            set => _folder.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

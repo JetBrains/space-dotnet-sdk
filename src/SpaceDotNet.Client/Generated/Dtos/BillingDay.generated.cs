@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime Date
         {
-            get { return _date.GetValue(); }
-            set { _date.SetValue(value); }
+            get => _date.GetValue();
+            set => _date.SetValue(value);
         }
     
         private PropertyValue<long> _count = new PropertyValue<long>(nameof(BillingDay), nameof(Count));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("count")]
         public long Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

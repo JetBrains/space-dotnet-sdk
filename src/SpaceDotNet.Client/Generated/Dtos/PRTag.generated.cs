@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<int> _projectCount = new PropertyValue<int>(nameof(PRTag), nameof(ProjectCount));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectCount")]
         public int ProjectCount
         {
-            get { return _projectCount.GetValue(); }
-            set { _projectCount.SetValue(value); }
+            get => _projectCount.GetValue();
+            set => _projectCount.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

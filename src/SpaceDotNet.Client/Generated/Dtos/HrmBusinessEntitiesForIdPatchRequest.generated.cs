@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _locationId = new PropertyValue<string>(nameof(HrmBusinessEntitiesForIdPatchRequest), nameof(LocationId));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locationId")]
         public string LocationId
         {
-            get { return _locationId.GetValue(); }
-            set { _locationId.SetValue(value); }
+            get => _locationId.GetValue();
+            set => _locationId.SetValue(value);
         }
     
         private PropertyValue<int?> _vacationAllowance = new PropertyValue<int?>(nameof(HrmBusinessEntitiesForIdPatchRequest), nameof(VacationAllowance));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("vacationAllowance")]
         public int? VacationAllowance
         {
-            get { return _vacationAllowance.GetValue(); }
-            set { _vacationAllowance.SetValue(value); }
+            get => _vacationAllowance.GetValue();
+            set => _vacationAllowance.SetValue(value);
         }
     
         private PropertyValue<int?> _vacationApplicationDeadline = new PropertyValue<int?>(nameof(HrmBusinessEntitiesForIdPatchRequest), nameof(VacationApplicationDeadline));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("vacationApplicationDeadline")]
         public int? VacationApplicationDeadline
         {
-            get { return _vacationApplicationDeadline.GetValue(); }
-            set { _vacationApplicationDeadline.SetValue(value); }
+            get => _vacationApplicationDeadline.GetValue();
+            set => _vacationApplicationDeadline.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Start
         {
-            get { return _start.GetValue(); }
-            set { _start.SetValue(value); }
+            get => _start.GetValue();
+            set => _start.SetValue(value);
         }
     
         private PropertyValue<long> _predictedDuration = new PropertyValue<long>(nameof(Estimation), nameof(PredictedDuration));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("predictedDuration")]
         public long PredictedDuration
         {
-            get { return _predictedDuration.GetValue(); }
-            set { _predictedDuration.SetValue(value); }
+            get => _predictedDuration.GetValue();
+            set => _predictedDuration.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

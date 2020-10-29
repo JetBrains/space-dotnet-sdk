@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("menuId")]
         public string MenuId
         {
-            get { return _menuId.GetValue(); }
-            set { _menuId.SetValue(value); }
+            get => _menuId.GetValue();
+            set => _menuId.SetValue(value);
         }
     
         private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(ProjectMenuActionContext), nameof(Project));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public PRProject Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

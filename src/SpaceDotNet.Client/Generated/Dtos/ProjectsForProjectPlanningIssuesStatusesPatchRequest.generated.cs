@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("statuses")]
         public List<IssueStatusData> Statuses
         {
-            get { return _statuses.GetValue(); }
-            set { _statuses.SetValue(value); }
+            get => _statuses.GetValue();
+            set => _statuses.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

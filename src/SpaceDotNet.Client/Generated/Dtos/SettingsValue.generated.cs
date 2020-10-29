@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emailNotificationsEnabled")]
         public bool IsEmailNotificationsEnabled
         {
-            get { return _emailNotificationsEnabled.GetValue(); }
-            set { _emailNotificationsEnabled.SetValue(value); }
+            get => _emailNotificationsEnabled.GetValue();
+            set => _emailNotificationsEnabled.SetValue(value);
         }
     
         private PropertyValue<Weekday> _firstDayOfWeek = new PropertyValue<Weekday>(nameof(SettingsValue), nameof(FirstDayOfWeek));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("firstDayOfWeek")]
         public Weekday FirstDayOfWeek
         {
-            get { return _firstDayOfWeek.GetValue(); }
-            set { _firstDayOfWeek.SetValue(value); }
+            get => _firstDayOfWeek.GetValue();
+            set => _firstDayOfWeek.SetValue(value);
         }
     
         private PropertyValue<string?> _themeName = new PropertyValue<string?>(nameof(SettingsValue), nameof(ThemeName));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("themeName")]
         public string? ThemeName
         {
-            get { return _themeName.GetValue(); }
-            set { _themeName.SetValue(value); }
+            get => _themeName.GetValue();
+            set => _themeName.SetValue(value);
         }
     
         private PropertyValue<string?> _calendarView = new PropertyValue<string?>(nameof(SettingsValue), nameof(CalendarView));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("calendarView")]
         public string? CalendarView
         {
-            get { return _calendarView.GetValue(); }
-            set { _calendarView.SetValue(value); }
+            get => _calendarView.GetValue();
+            set => _calendarView.SetValue(value);
         }
     
         private PropertyValue<TDProfileEmail?> _notificationEmail = new PropertyValue<TDProfileEmail?>(nameof(SettingsValue), nameof(NotificationEmail));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationEmail")]
         public TDProfileEmail? NotificationEmail
         {
-            get { return _notificationEmail.GetValue(); }
-            set { _notificationEmail.SetValue(value); }
+            get => _notificationEmail.GetValue();
+            set => _notificationEmail.SetValue(value);
         }
     
         private PropertyValue<DraftDocumentType?> _draftType = new PropertyValue<DraftDocumentType?>(nameof(SettingsValue), nameof(DraftType));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("draftType")]
         public DraftDocumentType? DraftType
         {
-            get { return _draftType.GetValue(); }
-            set { _draftType.SetValue(value); }
+            get => _draftType.GetValue();
+            set => _draftType.SetValue(value);
         }
     
         private PropertyValue<bool?> _todoFilters = new PropertyValue<bool?>(nameof(SettingsValue), nameof(IsTodoFilters));
@@ -102,8 +102,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("todoFilters")]
         public bool? IsTodoFilters
         {
-            get { return _todoFilters.GetValue(); }
-            set { _todoFilters.SetValue(value); }
+            get => _todoFilters.GetValue();
+            set => _todoFilters.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

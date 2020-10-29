@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _branch = new PropertyValue<string>(nameof(ReviewBranchTrackEvent), nameof(Branch));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branch")]
         public string Branch
         {
-            get { return _branch.GetValue(); }
-            set { _branch.SetValue(value); }
+            get => _branch.GetValue();
+            set => _branch.SetValue(value);
         }
     
         private PropertyValue<bool> _track = new PropertyValue<bool>(nameof(ReviewBranchTrackEvent), nameof(IsTrack));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("track")]
         public bool IsTrack
         {
-            get { return _track.GetValue(); }
-            set { _track.SetValue(value); }
+            get => _track.GetValue();
+            set => _track.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

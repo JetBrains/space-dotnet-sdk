@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDRole), nameof(Name));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<TDRole?> _parent = new PropertyValue<TDRole?>(nameof(TDRole), nameof(Parent));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parent")]
         public TDRole? Parent
         {
-            get { return _parent.GetValue(); }
-            set { _parent.SetValue(value); }
+            get => _parent.GetValue();
+            set => _parent.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDRole), nameof(IsArchived));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

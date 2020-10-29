@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("link")]
         public string Link
         {
-            get { return _link.GetValue(); }
-            set { _link.SetValue(value); }
+            get => _link.GetValue();
+            set => _link.SetValue(value);
         }
     
         private PropertyValue<bool> _prefix = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsPrefix));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("prefix")]
         public bool IsPrefix
         {
-            get { return _prefix.GetValue(); }
-            set { _prefix.SetValue(value); }
+            get => _prefix.GetValue();
+            set => _prefix.SetValue(value);
         }
     
         private PropertyValue<bool> _global = new PropertyValue<bool>(nameof(UnfurlsBlockListEntry), nameof(IsGlobal));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("global")]
         public bool IsGlobal
         {
-            get { return _global.GetValue(); }
-            set { _global.SetValue(value); }
+            get => _global.GetValue();
+            set => _global.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

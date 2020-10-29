@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("responsibilityId")]
         public string ResponsibilityId
         {
-            get { return _responsibilityId.GetValue(); }
-            set { _responsibilityId.SetValue(value); }
+            get => _responsibilityId.GetValue();
+            set => _responsibilityId.SetValue(value);
         }
     
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(ResponsibilityRecord), nameof(Summary));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("summary")]
         public string Summary
         {
-            get { return _summary.GetValue(); }
-            set { _summary.SetValue(value); }
+            get => _summary.GetValue();
+            set => _summary.SetValue(value);
         }
     
         private PropertyValue<string?> _notes = new PropertyValue<string?>(nameof(ResponsibilityRecord), nameof(Notes));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notes")]
         public string? Notes
         {
-            get { return _notes.GetValue(); }
-            set { _notes.SetValue(value); }
+            get => _notes.GetValue();
+            set => _notes.SetValue(value);
         }
     
         private PropertyValue<List<AssignedPerson>> _assignedPeople = new PropertyValue<List<AssignedPerson>>(nameof(ResponsibilityRecord), nameof(AssignedPeople));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("assignedPeople")]
         public List<AssignedPerson> AssignedPeople
         {
-            get { return _assignedPeople.GetValue(); }
-            set { _assignedPeople.SetValue(value); }
+            get => _assignedPeople.GetValue();
+            set => _assignedPeople.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

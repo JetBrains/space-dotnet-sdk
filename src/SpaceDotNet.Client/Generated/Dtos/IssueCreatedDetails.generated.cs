@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issue")]
         public Issue? Issue
         {
-            get { return _issue.GetValue(); }
-            set { _issue.SetValue(value); }
+            get => _issue.GetValue();
+            set => _issue.SetValue(value);
         }
     
         private PropertyValue<MessageLink?> _originMessage = new PropertyValue<MessageLink?>(nameof(IssueCreatedDetails), nameof(OriginMessage));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("originMessage")]
         public MessageLink? OriginMessage
         {
-            get { return _originMessage.GetValue(); }
-            set { _originMessage.SetValue(value); }
+            get => _originMessage.GetValue();
+            set => _originMessage.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

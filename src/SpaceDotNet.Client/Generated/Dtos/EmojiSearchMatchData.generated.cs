@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emoji")]
         public string Emoji
         {
-            get { return _emoji.GetValue(); }
-            set { _emoji.SetValue(value); }
+            get => _emoji.GetValue();
+            set => _emoji.SetValue(value);
         }
     
         private PropertyValue<string?> _matched = new PropertyValue<string?>(nameof(EmojiSearchMatchData), nameof(Matched));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("matched")]
         public string? Matched
         {
-            get { return _matched.GetValue(); }
-            set { _matched.SetValue(value); }
+            get => _matched.GetValue();
+            set => _matched.SetValue(value);
         }
     
         private PropertyValue<EmojiSearchMatchType> _matchType = new PropertyValue<EmojiSearchMatchType>(nameof(EmojiSearchMatchData), nameof(MatchType));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("matchType")]
         public EmojiSearchMatchType MatchType
         {
-            get { return _matchType.GetValue(); }
-            set { _matchType.SetValue(value); }
+            get => _matchType.GetValue();
+            set => _matchType.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

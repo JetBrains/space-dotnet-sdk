@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("language")]
         public string Language
         {
-            get { return _language.GetValue(); }
-            set { _language.SetValue(value); }
+            get => _language.GetValue();
+            set => _language.SetValue(value);
         }
     
         private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(FirstName));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("firstName")]
         public string? FirstName
         {
-            get { return _firstName.GetValue(); }
-            set { _firstName.SetValue(value); }
+            get => _firstName.GetValue();
+            set => _firstName.SetValue(value);
         }
     
         private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(TeamDirectoryProfilesForProfileSpokenLanguagesPostRequest), nameof(LastName));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastName")]
         public string? LastName
         {
-            get { return _lastName.GetValue(); }
-            set { _lastName.SetValue(value); }
+            get => _lastName.GetValue();
+            set => _lastName.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

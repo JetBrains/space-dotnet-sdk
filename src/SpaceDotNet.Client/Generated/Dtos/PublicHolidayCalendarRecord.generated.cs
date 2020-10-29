@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PublicHolidayCalendarRecord), nameof(IsArchived));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHolidayCalendarRecord), nameof(Name));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _firstDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(FirstDate));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? FirstDate
         {
-            get { return _firstDate.GetValue(); }
-            set { _firstDate.SetValue(value); }
+            get => _firstDate.GetValue();
+            set => _firstDate.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _lastDate = new PropertyValue<DateTime?>(nameof(PublicHolidayCalendarRecord), nameof(LastDate));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? LastDate
         {
-            get { return _lastDate.GetValue(); }
-            set { _lastDate.SetValue(value); }
+            get => _lastDate.GetValue();
+            set => _lastDate.SetValue(value);
         }
     
         private PropertyValue<int> _eventsCount = new PropertyValue<int>(nameof(PublicHolidayCalendarRecord), nameof(EventsCount));
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("eventsCount")]
         public int EventsCount
         {
-            get { return _eventsCount.GetValue(); }
-            set { _eventsCount.SetValue(value); }
+            get => _eventsCount.GetValue();
+            set => _eventsCount.SetValue(value);
         }
     
         private PropertyValue<TDLocation> _location = new PropertyValue<TDLocation>(nameof(PublicHolidayCalendarRecord), nameof(Location));
@@ -107,8 +107,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public TDLocation Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

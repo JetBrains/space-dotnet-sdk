@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelId")]
         public string ChannelId
         {
-            get { return _channelId.GetValue(); }
-            set { _channelId.SetValue(value); }
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
         }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(Text));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<string> _messageId = new PropertyValue<string>(nameof(ChatsMessagesEditTextMessagePostRequest), nameof(MessageId));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messageId")]
         public string MessageId
         {
-            get { return _messageId.GetValue(); }
-            set { _messageId.SetValue(value); }
+            get => _messageId.GetValue();
+            set => _messageId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

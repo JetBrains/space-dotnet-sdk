@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(IssueStatus), nameof(IsArchived));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(IssueStatus), nameof(Name));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(IssueStatus), nameof(IsResolved));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resolved")]
         public bool IsResolved
         {
-            get { return _resolved.GetValue(); }
-            set { _resolved.SetValue(value); }
+            get => _resolved.GetValue();
+            set => _resolved.SetValue(value);
         }
     
         private PropertyValue<string> _color = new PropertyValue<string>(nameof(IssueStatus), nameof(Color));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("color")]
         public string Color
         {
-            get { return _color.GetValue(); }
-            set { _color.SetValue(value); }
+            get => _color.GetValue();
+            set => _color.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

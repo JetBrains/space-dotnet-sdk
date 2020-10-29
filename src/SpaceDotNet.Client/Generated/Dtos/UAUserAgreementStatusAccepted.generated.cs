@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<UAUserAgreement> _userAgreement = new PropertyValue<UAUserAgreement>(nameof(UAUserAgreementStatusAccepted), nameof(UserAgreement));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userAgreement")]
         public UAUserAgreement UserAgreement
         {
-            get { return _userAgreement.GetValue(); }
-            set { _userAgreement.SetValue(value); }
+            get => _userAgreement.GetValue();
+            set => _userAgreement.SetValue(value);
         }
     
         private PropertyValue<DateTime> _accepted = new PropertyValue<DateTime>(nameof(UAUserAgreementStatusAccepted), nameof(Accepted));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Accepted
         {
-            get { return _accepted.GetValue(); }
-            set { _accepted.SetValue(value); }
+            get => _accepted.GetValue();
+            set => _accepted.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

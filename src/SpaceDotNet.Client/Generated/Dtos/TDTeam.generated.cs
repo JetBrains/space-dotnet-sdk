@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDTeam), nameof(Name));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(TDTeam), nameof(Description));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<TDTeam?> _parent = new PropertyValue<TDTeam?>(nameof(TDTeam), nameof(Parent));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parent")]
         public TDTeam? Parent
         {
-            get { return _parent.GetValue(); }
-            set { _parent.SetValue(value); }
+            get => _parent.GetValue();
+            set => _parent.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TDTeam), nameof(Emails));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emails")]
         public List<string>? Emails
         {
-            get { return _emails.GetValue(); }
-            set { _emails.SetValue(value); }
+            get => _emails.GetValue();
+            set => _emails.SetValue(value);
         }
     
         private PropertyValue<string?> _channelId = new PropertyValue<string?>(nameof(TDTeam), nameof(ChannelId));
@@ -99,8 +99,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelId")]
         public string? ChannelId
         {
-            get { return _channelId.GetValue(); }
-            set { _channelId.SetValue(value); }
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TDTeam), nameof(IsArchived));
@@ -109,8 +109,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<bool?> _disbanded = new PropertyValue<bool?>(nameof(TDTeam), nameof(IsDisbanded));
@@ -118,8 +118,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("disbanded")]
         public bool? IsDisbanded
         {
-            get { return _disbanded.GetValue(); }
-            set { _disbanded.SetValue(value); }
+            get => _disbanded.GetValue();
+            set => _disbanded.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _disbandedAt = new PropertyValue<DateTime?>(nameof(TDTeam), nameof(DisbandedAt));
@@ -128,8 +128,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? DisbandedAt
         {
-            get { return _disbandedAt.GetValue(); }
-            set { _disbandedAt.SetValue(value); }
+            get => _disbandedAt.GetValue();
+            set => _disbandedAt.SetValue(value);
         }
     
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TDTeam), nameof(ExternalId));
@@ -137,8 +137,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalId")]
         public string? ExternalId
         {
-            get { return _externalId.GetValue(); }
-            set { _externalId.SetValue(value); }
+            get => _externalId.GetValue();
+            set => _externalId.SetValue(value);
         }
     
         private PropertyValue<Dictionary<string, CFValue>> _customFields = new PropertyValue<Dictionary<string, CFValue>>(nameof(TDTeam), nameof(CustomFields));
@@ -147,8 +147,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customFields")]
         public Dictionary<string, CFValue> CustomFields
         {
-            get { return _customFields.GetValue(); }
-            set { _customFields.SetValue(value); }
+            get => _customFields.GetValue();
+            set => _customFields.SetValue(value);
         }
     
         private PropertyValue<List<TDMembership>> _memberships = new PropertyValue<List<TDMembership>>(nameof(TDTeam), nameof(Memberships));
@@ -157,8 +157,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberships")]
         public List<TDMembership> Memberships
         {
-            get { return _memberships.GetValue(); }
-            set { _memberships.SetValue(value); }
+            get => _memberships.GetValue();
+            set => _memberships.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

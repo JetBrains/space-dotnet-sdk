@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(SprintRecord), nameof(IsArchived));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<BoardRecord> _board = new PropertyValue<BoardRecord>(nameof(SprintRecord), nameof(Board));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("board")]
         public BoardRecord Board
         {
-            get { return _board.GetValue(); }
-            set { _board.SetValue(value); }
+            get => _board.GetValue();
+            set => _board.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(SprintRecord), nameof(Name));
@@ -79,8 +79,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<SprintState> _state = new PropertyValue<SprintState>(nameof(SprintRecord), nameof(State));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public SprintState State
         {
-            get { return _state.GetValue(); }
-            set { _state.SetValue(value); }
+            get => _state.GetValue();
+            set => _state.SetValue(value);
         }
     
         private PropertyValue<DateTime> _from = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(From));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime From
         {
-            get { return _from.GetValue(); }
-            set { _from.SetValue(value); }
+            get => _from.GetValue();
+            set => _from.SetValue(value);
         }
     
         private PropertyValue<DateTime> _to = new PropertyValue<DateTime>(nameof(SprintRecord), nameof(To));
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime To
         {
-            get { return _to.GetValue(); }
-            set { _to.SetValue(value); }
+            get => _to.GetValue();
+            set => _to.SetValue(value);
         }
     
         private PropertyValue<bool> _default = new PropertyValue<bool>(nameof(SprintRecord), nameof(IsDefault));
@@ -121,8 +121,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("default")]
         public bool IsDefault
         {
-            get { return _default.GetValue(); }
-            set { _default.SetValue(value); }
+            get => _default.GetValue();
+            set => _default.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(SprintRecord), nameof(Description));
@@ -130,8 +130,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

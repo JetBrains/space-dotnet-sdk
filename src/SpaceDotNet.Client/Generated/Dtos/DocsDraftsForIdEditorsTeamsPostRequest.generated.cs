@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teamId")]
         public string TeamId
         {
-            get { return _teamId.GetValue(); }
-            set { _teamId.SetValue(value); }
+            get => _teamId.GetValue();
+            set => _teamId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

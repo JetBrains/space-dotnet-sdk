@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("min")]
         public int? Min
         {
-            get { return _min.GetValue(); }
-            set { _min.SetValue(value); }
+            get => _min.GetValue();
+            set => _min.SetValue(value);
         }
     
         private PropertyValue<int?> _max = new PropertyValue<int?>(nameof(StringCFConstraint), nameof(Max));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("max")]
         public int? Max
         {
-            get { return _max.GetValue(); }
-            set { _max.SetValue(value); }
+            get => _max.GetValue();
+            set => _max.SetValue(value);
         }
     
         private PropertyValue<string?> _pattern = new PropertyValue<string?>(nameof(StringCFConstraint), nameof(Pattern));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pattern")]
         public string? Pattern
         {
-            get { return _pattern.GetValue(); }
-            set { _pattern.SetValue(value); }
+            get => _pattern.GetValue();
+            set => _pattern.SetValue(value);
         }
     
         private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(StringCFConstraint), nameof(Message));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string? Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

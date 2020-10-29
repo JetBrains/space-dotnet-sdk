@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(StickerPackInfo), nameof(Name));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<bool> _favoriteByDefault = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsFavoriteByDefault));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("favoriteByDefault")]
         public bool IsFavoriteByDefault
         {
-            get { return _favoriteByDefault.GetValue(); }
-            set { _favoriteByDefault.SetValue(value); }
+            get => _favoriteByDefault.GetValue();
+            set => _favoriteByDefault.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsArchived));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<bool> _private = new PropertyValue<bool>(nameof(StickerPackInfo), nameof(IsPrivate));
@@ -88,8 +88,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("private")]
         public bool IsPrivate
         {
-            get { return _private.GetValue(); }
-            set { _private.SetValue(value); }
+            get => _private.GetValue();
+            set => _private.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _addedAt = new PropertyValue<DateTime?>(nameof(StickerPackInfo), nameof(AddedAt));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? AddedAt
         {
-            get { return _addedAt.GetValue(); }
-            set { _addedAt.SetValue(value); }
+            get => _addedAt.GetValue();
+            set => _addedAt.SetValue(value);
         }
     
         private PropertyValue<StickerPackInfo> _pack = new PropertyValue<StickerPackInfo>(nameof(StickerPackInfo), nameof(Pack));
@@ -108,8 +108,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pack")]
         public StickerPackInfo Pack
         {
-            get { return _pack.GetValue(); }
-            set { _pack.SetValue(value); }
+            get => _pack.GetValue();
+            set => _pack.SetValue(value);
         }
     
         private PropertyValue<List<Sticker>> _stickers = new PropertyValue<List<Sticker>>(nameof(StickerPackInfo), nameof(Stickers));
@@ -118,8 +118,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("stickers")]
         public List<Sticker> Stickers
         {
-            get { return _stickers.GetValue(); }
-            set { _stickers.SetValue(value); }
+            get => _stickers.GetValue();
+            set => _stickers.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

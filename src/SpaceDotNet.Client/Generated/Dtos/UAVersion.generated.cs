@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("major")]
         public int Major
         {
-            get { return _major.GetValue(); }
-            set { _major.SetValue(value); }
+            get => _major.GetValue();
+            set => _major.SetValue(value);
         }
     
         private PropertyValue<int> _minor = new PropertyValue<int>(nameof(UAVersion), nameof(Minor));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("minor")]
         public int Minor
         {
-            get { return _minor.GetValue(); }
-            set { _minor.SetValue(value); }
+            get => _minor.GetValue();
+            set => _minor.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

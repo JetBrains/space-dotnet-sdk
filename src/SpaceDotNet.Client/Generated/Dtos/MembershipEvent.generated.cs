@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<List<TDMembership>> _membership = new PropertyValue<List<TDMembership>>(nameof(MembershipEvent), nameof(Membership));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("membership")]
         public List<TDMembership> Membership
         {
-            get { return _membership.GetValue(); }
-            set { _membership.SetValue(value); }
+            get => _membership.GetValue();
+            set => _membership.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

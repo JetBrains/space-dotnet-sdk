@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _code = new PropertyValue<string>(nameof(TDLanguage), nameof(Code));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("code")]
         public string Code
         {
-            get { return _code.GetValue(); }
-            set { _code.SetValue(value); }
+            get => _code.GetValue();
+            set => _code.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(TDLanguage), nameof(Name));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _nativeName = new PropertyValue<string>(nameof(TDLanguage), nameof(NativeName));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nativeName")]
         public string NativeName
         {
-            get { return _nativeName.GetValue(); }
-            set { _nativeName.SetValue(value); }
+            get => _nativeName.GetValue();
+            set => _nativeName.SetValue(value);
         }
     
         private PropertyValue<string> _firstNameTitle = new PropertyValue<string>(nameof(TDLanguage), nameof(FirstNameTitle));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("firstNameTitle")]
         public string FirstNameTitle
         {
-            get { return _firstNameTitle.GetValue(); }
-            set { _firstNameTitle.SetValue(value); }
+            get => _firstNameTitle.GetValue();
+            set => _firstNameTitle.SetValue(value);
         }
     
         private PropertyValue<string> _lastNameTitle = new PropertyValue<string>(nameof(TDLanguage), nameof(LastNameTitle));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastNameTitle")]
         public string LastNameTitle
         {
-            get { return _lastNameTitle.GetValue(); }
-            set { _lastNameTitle.SetValue(value); }
+            get => _lastNameTitle.GetValue();
+            set => _lastNameTitle.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

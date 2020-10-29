@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Start
         {
-            get { return _start.GetValue(); }
-            set { _start.SetValue(value); }
+            get => _start.GetValue();
+            set => _start.SetValue(value);
         }
     
         private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(CalendarEventSpec), nameof(End));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime End
         {
-            get { return _end.GetValue(); }
-            set { _end.SetValue(value); }
+            get => _end.GetValue();
+            set => _end.SetValue(value);
         }
     
         private PropertyValue<RecurrenceRule?> _recurrenceRule = new PropertyValue<RecurrenceRule?>(nameof(CalendarEventSpec), nameof(RecurrenceRule));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("recurrenceRule")]
         public RecurrenceRule? RecurrenceRule
         {
-            get { return _recurrenceRule.GetValue(); }
-            set { _recurrenceRule.SetValue(value); }
+            get => _recurrenceRule.GetValue();
+            set => _recurrenceRule.SetValue(value);
         }
     
         private PropertyValue<bool> _allDay = new PropertyValue<bool>(nameof(CalendarEventSpec), nameof(IsAllDay));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("allDay")]
         public bool IsAllDay
         {
-            get { return _allDay.GetValue(); }
-            set { _allDay.SetValue(value); }
+            get => _allDay.GetValue();
+            set => _allDay.SetValue(value);
         }
     
         private PropertyValue<ATimeZone> _timezone = new PropertyValue<ATimeZone>(nameof(CalendarEventSpec), nameof(Timezone));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("timezone")]
         public ATimeZone Timezone
         {
-            get { return _timezone.GetValue(); }
-            set { _timezone.SetValue(value); }
+            get => _timezone.GetValue();
+            set => _timezone.SetValue(value);
         }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(CalendarEventSpec), nameof(ParentId));
@@ -99,8 +99,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentId")]
         public string? ParentId
         {
-            get { return _parentId.GetValue(); }
-            set { _parentId.SetValue(value); }
+            get => _parentId.GetValue();
+            set => _parentId.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _initialMeetingStart = new PropertyValue<DateTime?>(nameof(CalendarEventSpec), nameof(InitialMeetingStart));
@@ -109,8 +109,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? InitialMeetingStart
         {
-            get { return _initialMeetingStart.GetValue(); }
-            set { _initialMeetingStart.SetValue(value); }
+            get => _initialMeetingStart.GetValue();
+            set => _initialMeetingStart.SetValue(value);
         }
     
         private PropertyValue<BusyStatus?> _busyStatus = new PropertyValue<BusyStatus?>(nameof(CalendarEventSpec), nameof(BusyStatus));
@@ -118,8 +118,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("busyStatus")]
         public BusyStatus? BusyStatus
         {
-            get { return _busyStatus.GetValue(); }
-            set { _busyStatus.SetValue(value); }
+            get => _busyStatus.GetValue();
+            set => _busyStatus.SetValue(value);
         }
     
         private PropertyValue<string?> _nextChainId = new PropertyValue<string?>(nameof(CalendarEventSpec), nameof(NextChainId));
@@ -127,8 +127,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nextChainId")]
         public string? NextChainId
         {
-            get { return _nextChainId.GetValue(); }
-            set { _nextChainId.SetValue(value); }
+            get => _nextChainId.GetValue();
+            set => _nextChainId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

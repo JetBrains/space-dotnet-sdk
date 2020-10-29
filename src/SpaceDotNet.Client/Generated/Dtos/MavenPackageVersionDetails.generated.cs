@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public PackageType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Repository));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Name));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _version = new PropertyValue<string>(nameof(MavenPackageVersionDetails), nameof(Version));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(MavenPackageVersionDetails), nameof(Tags));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string>? Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         private PropertyValue<long> _created = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(Created));
@@ -115,8 +115,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("created")]
         public long Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<long?> _accessed = new PropertyValue<long?>(nameof(MavenPackageVersionDetails), nameof(Accessed));
@@ -124,8 +124,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessed")]
         public long? Accessed
         {
-            get { return _accessed.GetValue(); }
-            set { _accessed.SetValue(value); }
+            get => _accessed.GetValue();
+            set => _accessed.SetValue(value);
         }
     
         private PropertyValue<long> _downloads = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(Downloads));
@@ -134,8 +134,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("downloads")]
         public long Downloads
         {
-            get { return _downloads.GetValue(); }
-            set { _downloads.SetValue(value); }
+            get => _downloads.GetValue();
+            set => _downloads.SetValue(value);
         }
     
         private PropertyValue<long> _diskSize = new PropertyValue<long>(nameof(MavenPackageVersionDetails), nameof(DiskSize));
@@ -144,8 +144,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("diskSize")]
         public long DiskSize
         {
-            get { return _diskSize.GetValue(); }
-            set { _diskSize.SetValue(value); }
+            get => _diskSize.GetValue();
+            set => _diskSize.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _author = new PropertyValue<CPrincipal?>(nameof(MavenPackageVersionDetails), nameof(Author));
@@ -153,8 +153,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public CPrincipal? Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<List<CPrincipal>?> _authors = new PropertyValue<List<CPrincipal>?>(nameof(MavenPackageVersionDetails), nameof(Authors));
@@ -162,8 +162,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authors")]
         public List<CPrincipal>? Authors
         {
-            get { return _authors.GetValue(); }
-            set { _authors.SetValue(value); }
+            get => _authors.GetValue();
+            set => _authors.SetValue(value);
         }
     
         private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(MavenPackageVersionDetails), nameof(Metadata));
@@ -171,8 +171,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata
         {
-            get { return _metadata.GetValue(); }
-            set { _metadata.SetValue(value); }
+            get => _metadata.GetValue();
+            set => _metadata.SetValue(value);
         }
     
         private PropertyValue<string?> _packaging = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Packaging));
@@ -180,8 +180,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("packaging")]
         public string? Packaging
         {
-            get { return _packaging.GetValue(); }
-            set { _packaging.SetValue(value); }
+            get => _packaging.GetValue();
+            set => _packaging.SetValue(value);
         }
     
         private PropertyValue<string?> _packageName = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(PackageName));
@@ -189,8 +189,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("packageName")]
         public string? PackageName
         {
-            get { return _packageName.GetValue(); }
-            set { _packageName.SetValue(value); }
+            get => _packageName.GetValue();
+            set => _packageName.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Description));
@@ -198,8 +198,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _url = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(Url));
@@ -207,8 +207,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("url")]
         public string? Url
         {
-            get { return _url.GetValue(); }
-            set { _url.SetValue(value); }
+            get => _url.GetValue();
+            set => _url.SetValue(value);
         }
     
         private PropertyValue<List<string>> _licenses = new PropertyValue<List<string>>(nameof(MavenPackageVersionDetails), nameof(Licenses));
@@ -217,8 +217,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("licenses")]
         public List<string> Licenses
         {
-            get { return _licenses.GetValue(); }
-            set { _licenses.SetValue(value); }
+            get => _licenses.GetValue();
+            set => _licenses.SetValue(value);
         }
     
         private PropertyValue<string?> _scmUrl = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(ScmUrl));
@@ -226,8 +226,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scmUrl")]
         public string? ScmUrl
         {
-            get { return _scmUrl.GetValue(); }
-            set { _scmUrl.SetValue(value); }
+            get => _scmUrl.GetValue();
+            set => _scmUrl.SetValue(value);
         }
     
         private PropertyValue<List<MavenPackageDependency>> _dependencies = new PropertyValue<List<MavenPackageDependency>>(nameof(MavenPackageVersionDetails), nameof(Dependencies));
@@ -236,8 +236,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("dependencies")]
         public List<MavenPackageDependency> Dependencies
         {
-            get { return _dependencies.GetValue(); }
-            set { _dependencies.SetValue(value); }
+            get => _dependencies.GetValue();
+            set => _dependencies.SetValue(value);
         }
     
         private PropertyValue<List<KotlinPlatform>?> _kotlinPlatforms = new PropertyValue<List<KotlinPlatform>?>(nameof(MavenPackageVersionDetails), nameof(KotlinPlatforms));
@@ -245,8 +245,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("kotlinPlatforms")]
         public List<KotlinPlatform>? KotlinPlatforms
         {
-            get { return _kotlinPlatforms.GetValue(); }
-            set { _kotlinPlatforms.SetValue(value); }
+            get => _kotlinPlatforms.GetValue();
+            set => _kotlinPlatforms.SetValue(value);
         }
     
         private PropertyValue<MavenPackageParent?> _parent = new PropertyValue<MavenPackageParent?>(nameof(MavenPackageVersionDetails), nameof(Parent));
@@ -254,8 +254,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parent")]
         public MavenPackageParent? Parent
         {
-            get { return _parent.GetValue(); }
-            set { _parent.SetValue(value); }
+            get => _parent.GetValue();
+            set => _parent.SetValue(value);
         }
     
         private PropertyValue<string?> _pathPrefix = new PropertyValue<string?>(nameof(MavenPackageVersionDetails), nameof(PathPrefix));
@@ -263,8 +263,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pathPrefix")]
         public string? PathPrefix
         {
-            get { return _pathPrefix.GetValue(); }
-            set { _pathPrefix.SetValue(value); }
+            get => _pathPrefix.GetValue();
+            set => _pathPrefix.SetValue(value);
         }
     
         private PropertyValue<List<MavenPackageFile>> _files = new PropertyValue<List<MavenPackageFile>>(nameof(MavenPackageVersionDetails), nameof(Files));
@@ -273,8 +273,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("files")]
         public List<MavenPackageFile> Files
         {
-            get { return _files.GetValue(); }
-            set { _files.SetValue(value); }
+            get => _files.GetValue();
+            set => _files.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(RepositoryInReview), nameof(IsDeleted));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deleted")]
         public bool IsDeleted
         {
-            get { return _deleted.GetValue(); }
-            set { _deleted.SetValue(value); }
+            get => _deleted.GetValue();
+            set => _deleted.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

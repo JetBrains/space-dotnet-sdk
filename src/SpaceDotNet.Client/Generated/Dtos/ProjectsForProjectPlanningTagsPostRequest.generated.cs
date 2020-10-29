@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentTagId")]
         public string? ParentTagId
         {
-            get { return _parentTagId.GetValue(); }
-            set { _parentTagId.SetValue(value); }
+            get => _parentTagId.GetValue();
+            set => _parentTagId.SetValue(value);
         }
     
         private PropertyValue<List<string>> _path = new PropertyValue<List<string>>(nameof(ProjectsForProjectPlanningTagsPostRequest), nameof(Path));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("path")]
         public List<string> Path
         {
-            get { return _path.GetValue(); }
-            set { _path.SetValue(value); }
+            get => _path.GetValue();
+            set => _path.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

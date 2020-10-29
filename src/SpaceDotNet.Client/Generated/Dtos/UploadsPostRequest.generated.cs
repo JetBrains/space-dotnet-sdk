@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("storagePrefix")]
         public string StoragePrefix
         {
-            get { return _storagePrefix.GetValue(); }
-            set { _storagePrefix.SetValue(value); }
+            get => _storagePrefix.GetValue();
+            set => _storagePrefix.SetValue(value);
         }
     
         private PropertyValue<string?> _mediaType = new PropertyValue<string?>(nameof(UploadsPostRequest), nameof(MediaType));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("mediaType")]
         public string? MediaType
         {
-            get { return _mediaType.GetValue(); }
-            set { _mediaType.SetValue(value); }
+            get => _mediaType.GetValue();
+            set => _mediaType.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

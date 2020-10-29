@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultName")]
         public string DefaultName
         {
-            get { return _defaultName.GetValue(); }
-            set { _defaultName.SetValue(value); }
+            get => _defaultName.GetValue();
+            set => _defaultName.SetValue(value);
         }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(M2ChannelContact), nameof(Key));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<M2ChannelContactInfo?> _ext = new PropertyValue<M2ChannelContactInfo?>(nameof(M2ChannelContact), nameof(Ext));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ext")]
         public M2ChannelContactInfo? Ext
         {
-            get { return _ext.GetValue(); }
-            set { _ext.SetValue(value); }
+            get => _ext.GetValue();
+            set => _ext.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

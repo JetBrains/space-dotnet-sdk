@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("versionId")]
         public string VersionId
         {
-            get { return _versionId.GetValue(); }
-            set { _versionId.SetValue(value); }
+            get => _versionId.GetValue();
+            set => _versionId.SetValue(value);
         }
     
         private PropertyValue<HostingSiteSettings> _settings = new PropertyValue<HostingSiteSettings>(nameof(HostingForProjectSiteForSiteNamePostRequest), nameof(Settings));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("settings")]
         public HostingSiteSettings Settings
         {
-            get { return _settings.GetValue(); }
-            set { _settings.SetValue(value); }
+            get => _settings.GetValue();
+            set => _settings.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

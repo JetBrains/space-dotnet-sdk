@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<MessageStyle> _style = new PropertyValue<MessageStyle>(nameof(MessageTag), nameof(Style));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public MessageStyle Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("max")]
         public int Max
         {
-            get { return _max.GetValue(); }
-            set { _max.SetValue(value); }
+            get => _max.GetValue();
+            set => _max.SetValue(value);
         }
     
         private PropertyValue<List<int>> _perColumns = new PropertyValue<List<int>>(nameof(BoardWidgetData), nameof(PerColumns));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("perColumns")]
         public List<int> PerColumns
         {
-            get { return _perColumns.GetValue(); }
-            set { _perColumns.SetValue(value); }
+            get => _perColumns.GetValue();
+            set => _perColumns.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

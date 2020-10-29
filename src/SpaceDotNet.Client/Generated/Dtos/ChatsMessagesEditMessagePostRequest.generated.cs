@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public string Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<ChatMessageIdentifier> _message = new PropertyValue<ChatMessageIdentifier>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Message));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public ChatMessageIdentifier Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesEditMessagePostRequest), nameof(Content));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public ChatMessage Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesEditMessagePostRequest), nameof(IsUnfurlLinks));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("unfurlLinks")]
         public bool? IsUnfurlLinks
         {
-            get { return _unfurlLinks.GetValue(); }
-            set { _unfurlLinks.SetValue(value); }
+            get => _unfurlLinks.GetValue();
+            set => _unfurlLinks.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

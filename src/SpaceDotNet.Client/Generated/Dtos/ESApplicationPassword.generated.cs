@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _profile = new PropertyValue<TDMemberProfile>(nameof(ESApplicationPassword), nameof(Profile));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESApplicationPassword), nameof(Name));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _scope = new PropertyValue<string>(nameof(ESApplicationPassword), nameof(Scope));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public string Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ESApplicationPassword), nameof(Created));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<AccessRecord?> _lastAccess = new PropertyValue<AccessRecord?>(nameof(ESApplicationPassword), nameof(LastAccess));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastAccess")]
         public AccessRecord? LastAccess
         {
-            get { return _lastAccess.GetValue(); }
-            set { _lastAccess.SetValue(value); }
+            get => _lastAccess.GetValue();
+            set => _lastAccess.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

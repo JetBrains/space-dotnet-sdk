@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("editorId")]
         public string EditorId
         {
-            get { return _editorId.GetValue(); }
-            set { _editorId.SetValue(value); }
+            get => _editorId.GetValue();
+            set => _editorId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

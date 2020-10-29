@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targetParentId")]
         public string TargetParentId
         {
-            get { return _targetParentId.GetValue(); }
-            set { _targetParentId.SetValue(value); }
+            get => _targetParentId.GetValue();
+            set => _targetParentId.SetValue(value);
         }
     
         private PropertyValue<string?> _afterItemId = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest), nameof(AfterItemId));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("afterItemId")]
         public string? AfterItemId
         {
-            get { return _afterItemId.GetValue(); }
-            set { _afterItemId.SetValue(value); }
+            get => _afterItemId.GetValue();
+            set => _afterItemId.SetValue(value);
         }
     
         private PropertyValue<string> _tabIndentedLines = new PropertyValue<string>(nameof(ProjectsForProjectPlanningChecklistsForChecklistIdImportPostRequest), nameof(TabIndentedLines));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tabIndentedLines")]
         public string TabIndentedLines
         {
-            get { return _tabIndentedLines.GetValue(); }
-            set { _tabIndentedLines.SetValue(value); }
+            get => _tabIndentedLines.GetValue();
+            set => _tabIndentedLines.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

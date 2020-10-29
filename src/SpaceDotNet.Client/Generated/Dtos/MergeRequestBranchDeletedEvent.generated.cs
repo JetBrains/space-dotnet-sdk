@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _branch = new PropertyValue<string>(nameof(MergeRequestBranchDeletedEvent), nameof(Branch));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branch")]
         public string Branch
         {
-            get { return _branch.GetValue(); }
-            set { _branch.SetValue(value); }
+            get => _branch.GetValue();
+            set => _branch.SetValue(value);
         }
     
         private PropertyValue<MergeRequestBranchType> _branchType = new PropertyValue<MergeRequestBranchType>(nameof(MergeRequestBranchDeletedEvent), nameof(BranchType));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branchType")]
         public MergeRequestBranchType BranchType
         {
-            get { return _branchType.GetValue(); }
-            set { _branchType.SetValue(value); }
+            get => _branchType.GetValue();
+            set => _branchType.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

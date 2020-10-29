@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("approved")]
         public bool IsApproved
         {
-            get { return _approved.GetValue(); }
-            set { _approved.SetValue(value); }
+            get => _approved.GetValue();
+            set => _approved.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _approvedBy = new PropertyValue<TDMemberProfile>(nameof(AbsenceApproval), nameof(ApprovedBy));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("approvedBy")]
         public TDMemberProfile ApprovedBy
         {
-            get { return _approvedBy.GetValue(); }
-            set { _approvedBy.SetValue(value); }
+            get => _approvedBy.GetValue();
+            set => _approvedBy.SetValue(value);
         }
     
         private PropertyValue<DateTime> _approvedAt = new PropertyValue<DateTime>(nameof(AbsenceApproval), nameof(ApprovedAt));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime ApprovedAt
         {
-            get { return _approvedAt.GetValue(); }
-            set { _approvedAt.SetValue(value); }
+            get => _approvedAt.GetValue();
+            set => _approvedAt.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

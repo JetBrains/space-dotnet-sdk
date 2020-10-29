@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _range = new PropertyValue<string>(nameof(NuGetDependency), nameof(Range));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("range")]
         public string Range
         {
-            get { return _range.GetValue(); }
-            set { _range.SetValue(value); }
+            get => _range.GetValue();
+            set => _range.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

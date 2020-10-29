@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("members")]
         public BoardMemberOwners Members
         {
-            get { return _members.GetValue(); }
-            set { _members.SetValue(value); }
+            get => _members.GetValue();
+            set => _members.SetValue(value);
         }
     
         private PropertyValue<BoardTeamOwners> _teams = new PropertyValue<BoardTeamOwners>(nameof(BoardOwners), nameof(Teams));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public BoardTeamOwners Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

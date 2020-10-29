@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("appRef")]
         public ESService AppRef
         {
-            get { return _appRef.GetValue(); }
-            set { _appRef.SetValue(value); }
+            get => _appRef.GetValue();
+            set => _appRef.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("member")]
         public string? Member
         {
-            get { return _member.GetValue(); }
-            set { _member.SetValue(value); }
+            get => _member.GetValue();
+            set => _member.SetValue(value);
         }
     
         private PropertyValue<string?> _reason = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Reason));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reason")]
         public string? Reason
         {
-            get { return _reason.GetValue(); }
-            set { _reason.SetValue(value); }
+            get => _reason.GetValue();
+            set => _reason.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Description));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _location = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Location));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public string? Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(AbsencesForIdPatchRequest), nameof(Since));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(AbsencesForIdPatchRequest), nameof(Till));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<bool> _available = new PropertyValue<bool>(nameof(AbsencesForIdPatchRequest), nameof(IsAvailable));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("available")]
         public bool IsAvailable
         {
-            get { return _available.GetValue(); }
-            set { _available.SetValue(value); }
+            get => _available.GetValue();
+            set => _available.SetValue(value);
         }
     
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(AbsencesForIdPatchRequest), nameof(Icon));
@@ -114,8 +114,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public string? Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(AbsencesForIdPatchRequest), nameof(CustomFieldValues));
@@ -123,8 +123,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldValue>? CustomFieldValues
         {
-            get { return _customFieldValues.GetValue(); }
-            set { _customFieldValues.SetValue(value); }
+            get => _customFieldValues.GetValue();
+            set => _customFieldValues.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

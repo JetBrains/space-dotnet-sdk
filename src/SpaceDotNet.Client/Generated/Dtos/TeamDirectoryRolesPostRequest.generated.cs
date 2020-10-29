@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryRolesPostRequest), nameof(ParentId));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentId")]
         public string? ParentId
         {
-            get { return _parentId.GetValue(); }
-            set { _parentId.SetValue(value); }
+            get => _parentId.GetValue();
+            set => _parentId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

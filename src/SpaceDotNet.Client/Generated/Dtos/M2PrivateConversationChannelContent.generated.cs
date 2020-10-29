@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelId")]
         public string ChannelId
         {
-            get { return _channelId.GetValue(); }
-            set { _channelId.SetValue(value); }
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
         }
     
         private PropertyValue<string?> _subject = new PropertyValue<string?>(nameof(M2PrivateConversationChannelContent), nameof(Subject));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("subject")]
         public string? Subject
         {
-            get { return _subject.GetValue(); }
-            set { _subject.SetValue(value); }
+            get => _subject.GetValue();
+            set => _subject.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _members = new PropertyValue<List<TDMemberProfile>>(nameof(M2PrivateConversationChannelContent), nameof(Members));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("members")]
         public List<TDMemberProfile> Members
         {
-            get { return _members.GetValue(); }
-            set { _members.SetValue(value); }
+            get => _members.GetValue();
+            set => _members.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults?> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults?>(nameof(M2PrivateConversationChannelContent), nameof(NotificationDefaults));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults? NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

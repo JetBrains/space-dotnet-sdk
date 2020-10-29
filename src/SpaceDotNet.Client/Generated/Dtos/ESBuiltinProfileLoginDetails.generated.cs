@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("passwordChangeRequest")]
         public string? PasswordChangeRequest
         {
-            get { return _passwordChangeRequest.GetValue(); }
-            set { _passwordChangeRequest.SetValue(value); }
+            get => _passwordChangeRequest.GetValue();
+            set => _passwordChangeRequest.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ContainerImage), nameof(Description));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ContainerImage), nameof(Tags));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string>? Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         private PropertyValue<string?> _projectUrl = new PropertyValue<string?>(nameof(ContainerImage), nameof(ProjectUrl));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectUrl")]
         public string? ProjectUrl
         {
-            get { return _projectUrl.GetValue(); }
-            set { _projectUrl.SetValue(value); }
+            get => _projectUrl.GetValue();
+            set => _projectUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _sourceUrl = new PropertyValue<string?>(nameof(ContainerImage), nameof(SourceUrl));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sourceUrl")]
         public string? SourceUrl
         {
-            get { return _sourceUrl.GetValue(); }
-            set { _sourceUrl.SetValue(value); }
+            get => _sourceUrl.GetValue();
+            set => _sourceUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(ContainerImage), nameof(Version));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string? Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<ContainerImagePlatform?> _platform = new PropertyValue<ContainerImagePlatform?>(nameof(ContainerImage), nameof(Platform));
@@ -104,8 +104,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("platform")]
         public ContainerImagePlatform? Platform
         {
-            get { return _platform.GetValue(); }
-            set { _platform.SetValue(value); }
+            get => _platform.GetValue();
+            set => _platform.SetValue(value);
         }
     
         private PropertyValue<List<ContainerImageLayer>> _history = new PropertyValue<List<ContainerImageLayer>>(nameof(ContainerImage), nameof(History));
@@ -114,8 +114,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("history")]
         public List<ContainerImageLayer> History
         {
-            get { return _history.GetValue(); }
-            set { _history.SetValue(value); }
+            get => _history.GetValue();
+            set => _history.SetValue(value);
         }
     
         private PropertyValue<List<ContainerManifest>> _children = new PropertyValue<List<ContainerManifest>>(nameof(ContainerImage), nameof(Children));
@@ -124,8 +124,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("children")]
         public List<ContainerManifest> Children
         {
-            get { return _children.GetValue(); }
-            set { _children.SetValue(value); }
+            get => _children.GetValue();
+            set => _children.SetValue(value);
         }
     
         private PropertyValue<ContainerImageConfig?> _config = new PropertyValue<ContainerImageConfig?>(nameof(ContainerImage), nameof(Config));
@@ -133,8 +133,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("config")]
         public ContainerImageConfig? Config
         {
-            get { return _config.GetValue(); }
-            set { _config.SetValue(value); }
+            get => _config.GetValue();
+            set => _config.SetValue(value);
         }
     
         private PropertyValue<ContainerImageAnnotation?> _annotation = new PropertyValue<ContainerImageAnnotation?>(nameof(ContainerImage), nameof(Annotation));
@@ -142,8 +142,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("annotation")]
         public ContainerImageAnnotation? Annotation
         {
-            get { return _annotation.GetValue(); }
-            set { _annotation.SetValue(value); }
+            get => _annotation.GetValue();
+            set => _annotation.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

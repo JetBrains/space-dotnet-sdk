@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public CodeReviewState State
         {
-            get { return _state.GetValue(); }
-            set { _state.SetValue(value); }
+            get => _state.GetValue();
+            set => _state.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

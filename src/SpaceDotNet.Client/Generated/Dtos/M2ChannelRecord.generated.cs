@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<M2ChannelContact> _contact = new PropertyValue<M2ChannelContact>(nameof(M2ChannelRecord), nameof(Contact));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("contact")]
         public M2ChannelContact Contact
         {
-            get { return _contact.GetValue(); }
-            set { _contact.SetValue(value); }
+            get => _contact.GetValue();
+            set => _contact.SetValue(value);
         }
     
         private PropertyValue<int> _totalMessages = new PropertyValue<int>(nameof(M2ChannelRecord), nameof(TotalMessages));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("totalMessages")]
         public int TotalMessages
         {
-            get { return _totalMessages.GetValue(); }
-            set { _totalMessages.SetValue(value); }
+            get => _totalMessages.GetValue();
+            set => _totalMessages.SetValue(value);
         }
     
         private PropertyValue<MessageInfo?> _lastMessage = new PropertyValue<MessageInfo?>(nameof(M2ChannelRecord), nameof(LastMessage));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastMessage")]
         public MessageInfo? LastMessage
         {
-            get { return _lastMessage.GetValue(); }
-            set { _lastMessage.SetValue(value); }
+            get => _lastMessage.GetValue();
+            set => _lastMessage.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>?> _authors = new PropertyValue<List<TDMemberProfile>?>(nameof(M2ChannelRecord), nameof(Authors));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authors")]
         public List<TDMemberProfile>? Authors
         {
-            get { return _authors.GetValue(); }
-            set { _authors.SetValue(value); }
+            get => _authors.GetValue();
+            set => _authors.SetValue(value);
         }
     
         private PropertyValue<List<CPrincipal>?> _commentAuthors = new PropertyValue<List<CPrincipal>?>(nameof(M2ChannelRecord), nameof(CommentAuthors));
@@ -99,8 +99,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commentAuthors")]
         public List<CPrincipal>? CommentAuthors
         {
-            get { return _commentAuthors.GetValue(); }
-            set { _commentAuthors.SetValue(value); }
+            get => _commentAuthors.GetValue();
+            set => _commentAuthors.SetValue(value);
         }
     
         private PropertyValue<List<ChannelParticipant>?> _participants = new PropertyValue<List<ChannelParticipant>?>(nameof(M2ChannelRecord), nameof(Participants));
@@ -108,8 +108,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("participants")]
         public List<ChannelParticipant>? Participants
         {
-            get { return _participants.GetValue(); }
-            set { _participants.SetValue(value); }
+            get => _participants.GetValue();
+            set => _participants.SetValue(value);
         }
     
         private PropertyValue<bool?> _channelArchived = new PropertyValue<bool?>(nameof(M2ChannelRecord), nameof(IsChannelArchived));
@@ -117,8 +117,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelArchived")]
         public bool? IsChannelArchived
         {
-            get { return _channelArchived.GetValue(); }
-            set { _channelArchived.SetValue(value); }
+            get => _channelArchived.GetValue();
+            set => _channelArchived.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(M2ChannelRecord), nameof(IsArchived));
@@ -127,8 +127,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(M2ChannelRecord), nameof(Channel));
@@ -137,8 +137,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public M2ChannelRecord Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<M2ChannelContentInfo?> _content = new PropertyValue<M2ChannelContentInfo?>(nameof(M2ChannelRecord), nameof(Content));
@@ -146,8 +146,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public M2ChannelContentInfo? Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<List<ChannelItemRecord>?> _messages = new PropertyValue<List<ChannelItemRecord>?>(nameof(M2ChannelRecord), nameof(Messages));
@@ -155,8 +155,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messages")]
         public List<ChannelItemRecord>? Messages
         {
-            get { return _messages.GetValue(); }
-            set { _messages.SetValue(value); }
+            get => _messages.GetValue();
+            set => _messages.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

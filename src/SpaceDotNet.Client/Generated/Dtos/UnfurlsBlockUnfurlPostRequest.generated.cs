@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("link")]
         public string Link
         {
-            get { return _link.GetValue(); }
-            set { _link.SetValue(value); }
+            get => _link.GetValue();
+            set => _link.SetValue(value);
         }
     
         private PropertyValue<bool> _wholeHost = new PropertyValue<bool>(nameof(UnfurlsBlockUnfurlPostRequest), nameof(IsWholeHost));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("wholeHost")]
         public bool IsWholeHost
         {
-            get { return _wholeHost.GetValue(); }
-            set { _wholeHost.SetValue(value); }
+            get => _wholeHost.GetValue();
+            set => _wholeHost.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

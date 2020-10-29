@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ESAuthModule), nameof(Key));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(ESAuthModule), nameof(Name));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<int> _ordinal = new PropertyValue<int>(nameof(ESAuthModule), nameof(Ordinal));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ordinal")]
         public int Ordinal
         {
-            get { return _ordinal.GetValue(); }
-            set { _ordinal.SetValue(value); }
+            get => _ordinal.GetValue();
+            set => _ordinal.SetValue(value);
         }
     
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(ESAuthModule), nameof(IsEnabled));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("enabled")]
         public bool IsEnabled
         {
-            get { return _enabled.GetValue(); }
-            set { _enabled.SetValue(value); }
+            get => _enabled.GetValue();
+            set => _enabled.SetValue(value);
         }
     
         private PropertyValue<string?> _iconDataURI = new PropertyValue<string?>(nameof(ESAuthModule), nameof(IconDataURI));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("iconDataURI")]
         public string? IconDataURI
         {
-            get { return _iconDataURI.GetValue(); }
-            set { _iconDataURI.SetValue(value); }
+            get => _iconDataURI.GetValue();
+            set => _iconDataURI.SetValue(value);
         }
     
         private PropertyValue<ESAuthModuleSettings> _settings = new PropertyValue<ESAuthModuleSettings>(nameof(ESAuthModule), nameof(Settings));
@@ -106,8 +106,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("settings")]
         public ESAuthModuleSettings Settings
         {
-            get { return _settings.GetValue(); }
-            set { _settings.SetValue(value); }
+            get => _settings.GetValue();
+            set => _settings.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

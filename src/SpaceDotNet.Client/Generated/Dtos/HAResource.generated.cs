@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<HAPath> _path = new PropertyValue<HAPath>(nameof(HAResource), nameof(Path));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("path")]
         public HAPath Path
         {
-            get { return _path.GetValue(); }
-            set { _path.SetValue(value); }
+            get => _path.GetValue();
+            set => _path.SetValue(value);
         }
     
         private PropertyValue<string> _displaySingular = new PropertyValue<string>(nameof(HAResource), nameof(DisplaySingular));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("displaySingular")]
         public string DisplaySingular
         {
-            get { return _displaySingular.GetValue(); }
-            set { _displaySingular.SetValue(value); }
+            get => _displaySingular.GetValue();
+            set => _displaySingular.SetValue(value);
         }
     
         private PropertyValue<string> _displayPlural = new PropertyValue<string>(nameof(HAResource), nameof(DisplayPlural));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("displayPlural")]
         public string DisplayPlural
         {
-            get { return _displayPlural.GetValue(); }
-            set { _displayPlural.SetValue(value); }
+            get => _displayPlural.GetValue();
+            set => _displayPlural.SetValue(value);
         }
     
         private PropertyValue<HAResource?> _parentResource = new PropertyValue<HAResource?>(nameof(HAResource), nameof(ParentResource));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentResource")]
         public HAResource? ParentResource
         {
-            get { return _parentResource.GetValue(); }
-            set { _parentResource.SetValue(value); }
+            get => _parentResource.GetValue();
+            set => _parentResource.SetValue(value);
         }
     
         private PropertyValue<List<HAEndpoint>> _endpoints = new PropertyValue<List<HAEndpoint>>(nameof(HAResource), nameof(Endpoints));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("endpoints")]
         public List<HAEndpoint> Endpoints
         {
-            get { return _endpoints.GetValue(); }
-            set { _endpoints.SetValue(value); }
+            get => _endpoints.GetValue();
+            set => _endpoints.SetValue(value);
         }
     
         private PropertyValue<List<HAResource>> _nestedResources = new PropertyValue<List<HAResource>>(nameof(HAResource), nameof(NestedResources));
@@ -106,8 +106,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nestedResources")]
         public List<HAResource> NestedResources
         {
-            get { return _nestedResources.GetValue(); }
-            set { _nestedResources.SetValue(value); }
+            get => _nestedResources.GetValue();
+            set => _nestedResources.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

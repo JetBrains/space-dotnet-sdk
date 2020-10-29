@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("addedNames")]
         public List<string>? AddedNames
         {
-            get { return _addedNames.GetValue(); }
-            set { _addedNames.SetValue(value); }
+            get => _addedNames.GetValue();
+            set => _addedNames.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _removedNames = new PropertyValue<List<string>?>(nameof(IssueAttachmentsChangedDetails), nameof(RemovedNames));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("removedNames")]
         public List<string>? RemovedNames
         {
-            get { return _removedNames.GetValue(); }
-            set { _removedNames.SetValue(value); }
+            get => _removedNames.GetValue();
+            set => _removedNames.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

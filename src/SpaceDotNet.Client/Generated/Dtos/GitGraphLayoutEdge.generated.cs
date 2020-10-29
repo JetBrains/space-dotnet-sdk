@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("from")]
         public int From
         {
-            get { return _from.GetValue(); }
-            set { _from.SetValue(value); }
+            get => _from.GetValue();
+            set => _from.SetValue(value);
         }
     
         private PropertyValue<int> _to = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(To));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("to")]
         public int To
         {
-            get { return _to.GetValue(); }
-            set { _to.SetValue(value); }
+            get => _to.GetValue();
+            set => _to.SetValue(value);
         }
     
         private PropertyValue<GitGraphEdgeType> _type = new PropertyValue<GitGraphEdgeType>(nameof(GitGraphLayoutEdge), nameof(Type));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public GitGraphEdgeType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<GitGraphEdgeLineStyle> _style = new PropertyValue<GitGraphEdgeLineStyle>(nameof(GitGraphLayoutEdge), nameof(Style));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public GitGraphEdgeLineStyle Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         private PropertyValue<bool> _hasArrow = new PropertyValue<bool>(nameof(GitGraphLayoutEdge), nameof(IsHasArrow));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hasArrow")]
         public bool IsHasArrow
         {
-            get { return _hasArrow.GetValue(); }
-            set { _hasArrow.SetValue(value); }
+            get => _hasArrow.GetValue();
+            set => _hasArrow.SetValue(value);
         }
     
         private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutEdge), nameof(Color));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("color")]
         public int Color
         {
-            get { return _color.GetValue(); }
-            set { _color.SetValue(value); }
+            get => _color.GetValue();
+            set => _color.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

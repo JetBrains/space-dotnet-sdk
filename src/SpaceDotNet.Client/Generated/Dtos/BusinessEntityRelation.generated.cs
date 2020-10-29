@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _member = new PropertyValue<TDMemberProfile>(nameof(BusinessEntityRelation), nameof(Member));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("member")]
         public TDMemberProfile Member
         {
-            get { return _member.GetValue(); }
-            set { _member.SetValue(value); }
+            get => _member.GetValue();
+            set => _member.SetValue(value);
         }
     
         private PropertyValue<BusinessEntity> _entity = new PropertyValue<BusinessEntity>(nameof(BusinessEntityRelation), nameof(Entity));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("entity")]
         public BusinessEntity Entity
         {
-            get { return _entity.GetValue(); }
-            set { _entity.SetValue(value); }
+            get => _entity.GetValue();
+            set => _entity.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(BusinessEntityRelation), nameof(Since));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(BusinessEntityRelation), nameof(Till));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(BusinessEntityRelation), nameof(IsArchived));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

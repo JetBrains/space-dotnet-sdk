@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ref")]
         public ChannelItemRecord Ref
         {
-            get { return _ref.GetValue(); }
-            set { _ref.SetValue(value); }
+            get => _ref.GetValue();
+            set => _ref.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(MessageHitDetails), nameof(Channel));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public M2ChannelRecord Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<M2ChatReader> _readerRef = new PropertyValue<M2ChatReader>(nameof(MessageHitDetails), nameof(ReaderRef));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("readerRef")]
         public M2ChatReader ReaderRef
         {
-            get { return _readerRef.GetValue(); }
-            set { _readerRef.SetValue(value); }
+            get => _readerRef.GetValue();
+            set => _readerRef.SetValue(value);
         }
     
         private PropertyValue<bool> _threadStarter = new PropertyValue<bool>(nameof(MessageHitDetails), nameof(IsThreadStarter));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("threadStarter")]
         public bool IsThreadStarter
         {
-            get { return _threadStarter.GetValue(); }
-            set { _threadStarter.SetValue(value); }
+            get => _threadStarter.GetValue();
+            set => _threadStarter.SetValue(value);
         }
     
         private PropertyValue<string?> _thread = new PropertyValue<string?>(nameof(MessageHitDetails), nameof(Thread));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("thread")]
         public string? Thread
         {
-            get { return _thread.GetValue(); }
-            set { _thread.SetValue(value); }
+            get => _thread.GetValue();
+            set => _thread.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

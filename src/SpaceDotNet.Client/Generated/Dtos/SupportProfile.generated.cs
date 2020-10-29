@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<bool> _adminPermissionsGranted = new PropertyValue<bool>(nameof(SupportProfile), nameof(IsAdminPermissionsGranted));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("adminPermissionsGranted")]
         public bool IsAdminPermissionsGranted
         {
-            get { return _adminPermissionsGranted.GetValue(); }
-            set { _adminPermissionsGranted.SetValue(value); }
+            get => _adminPermissionsGranted.GetValue();
+            set => _adminPermissionsGranted.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

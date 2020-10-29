@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<long> _created = new PropertyValue<long>(nameof(MavenPackageFile), nameof(Created));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("created")]
         public long Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<long> _length = new PropertyValue<long>(nameof(MavenPackageFile), nameof(Length));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("length")]
         public long Length
         {
-            get { return _length.GetValue(); }
-            set { _length.SetValue(value); }
+            get => _length.GetValue();
+            set => _length.SetValue(value);
         }
     
         private PropertyValue<List<MavenChecksum>> _checksums = new PropertyValue<List<MavenChecksum>>(nameof(MavenPackageFile), nameof(Checksums));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("checksums")]
         public List<MavenChecksum> Checksums
         {
-            get { return _checksums.GetValue(); }
-            set { _checksums.SetValue(value); }
+            get => _checksums.GetValue();
+            set => _checksums.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

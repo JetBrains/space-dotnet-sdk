@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string?> _symbol = new PropertyValue<string?>(nameof(Sticker), nameof(Symbol));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("symbol")]
         public string? Symbol
         {
-            get { return _symbol.GetValue(); }
-            set { _symbol.SetValue(value); }
+            get => _symbol.GetValue();
+            set => _symbol.SetValue(value);
         }
     
         private PropertyValue<string?> _attachmentId = new PropertyValue<string?>(nameof(Sticker), nameof(AttachmentId));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachmentId")]
         public string? AttachmentId
         {
-            get { return _attachmentId.GetValue(); }
-            set { _attachmentId.SetValue(value); }
+            get => _attachmentId.GetValue();
+            set => _attachmentId.SetValue(value);
         }
     
         private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(Sticker), nameof(Width));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("width")]
         public int? Width
         {
-            get { return _width.GetValue(); }
-            set { _width.SetValue(value); }
+            get => _width.GetValue();
+            set => _width.SetValue(value);
         }
     
         private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(Sticker), nameof(Height));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("height")]
         public int? Height
         {
-            get { return _height.GetValue(); }
-            set { _height.SetValue(value); }
+            get => _height.GetValue();
+            set => _height.SetValue(value);
         }
     
         private PropertyValue<List<StickerVariant>?> _variants = new PropertyValue<List<StickerVariant>?>(nameof(Sticker), nameof(Variants));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("variants")]
         public List<StickerVariant>? Variants
         {
-            get { return _variants.GetValue(); }
-            set { _variants.SetValue(value); }
+            get => _variants.GetValue();
+            set => _variants.SetValue(value);
         }
     
         private PropertyValue<bool?> _animated = new PropertyValue<bool?>(nameof(Sticker), nameof(IsAnimated));
@@ -102,8 +102,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("animated")]
         public bool? IsAnimated
         {
-            get { return _animated.GetValue(); }
-            set { _animated.SetValue(value); }
+            get => _animated.GetValue();
+            set => _animated.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Sticker), nameof(IsArchived));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

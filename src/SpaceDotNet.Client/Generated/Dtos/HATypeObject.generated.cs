@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fields")]
         public List<HAField> Fields
         {
-            get { return _fields.GetValue(); }
-            set { _fields.SetValue(value); }
+            get => _fields.GetValue();
+            set => _fields.SetValue(value);
         }
     
         private PropertyValue<HATypeObjectKind> _kind = new PropertyValue<HATypeObjectKind>(nameof(HATypeObject), nameof(Kind));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("kind")]
         public HATypeObjectKind Kind
         {
-            get { return _kind.GetValue(); }
-            set { _kind.SetValue(value); }
+            get => _kind.GetValue();
+            set => _kind.SetValue(value);
         }
     
         private PropertyValue<bool> _nullable = new PropertyValue<bool>(nameof(HATypeObject), nameof(IsNullable));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nullable")]
         public bool IsNullable
         {
-            get { return _nullable.GetValue(); }
-            set { _nullable.SetValue(value); }
+            get => _nullable.GetValue();
+            set => _nullable.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

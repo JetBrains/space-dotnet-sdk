@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleContentRecord), nameof(IsArchived));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _content = new PropertyValue<string>(nameof(ArticleContentRecord), nameof(Content));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public string Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

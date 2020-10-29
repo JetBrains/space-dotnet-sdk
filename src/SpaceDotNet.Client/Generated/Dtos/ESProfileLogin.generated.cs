@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("identifier")]
         public string Identifier
         {
-            get { return _identifier.GetValue(); }
-            set { _identifier.SetValue(value); }
+            get => _identifier.GetValue();
+            set => _identifier.SetValue(value);
         }
     
         private PropertyValue<ESAuthModule> _authModule = new PropertyValue<ESAuthModule>(nameof(ESProfileLogin), nameof(AuthModule));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authModule")]
         public ESAuthModule AuthModule
         {
-            get { return _authModule.GetValue(); }
-            set { _authModule.SetValue(value); }
+            get => _authModule.GetValue();
+            set => _authModule.SetValue(value);
         }
     
         private PropertyValue<ESProfileLoginDetails> _details = new PropertyValue<ESProfileLoginDetails>(nameof(ESProfileLogin), nameof(Details));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public ESProfileLoginDetails Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         private PropertyValue<AccessRecord?> _access = new PropertyValue<AccessRecord?>(nameof(ESProfileLogin), nameof(Access));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("access")]
         public AccessRecord? Access
         {
-            get { return _access.GetValue(); }
-            set { _access.SetValue(value); }
+            get => _access.GetValue();
+            set => _access.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

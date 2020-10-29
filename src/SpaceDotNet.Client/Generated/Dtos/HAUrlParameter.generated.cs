@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(HAUrlParameter), nameof(Name));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<List<HAUrlParameterOption>> _options = new PropertyValue<List<HAUrlParameterOption>>(nameof(HAUrlParameter), nameof(Options));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("options")]
         public List<HAUrlParameterOption> Options
         {
-            get { return _options.GetValue(); }
-            set { _options.SetValue(value); }
+            get => _options.GetValue();
+            set => _options.SetValue(value);
         }
     
         private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAUrlParameter), nameof(Deprecation));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deprecation")]
         public HADeprecation? Deprecation
         {
-            get { return _deprecation.GetValue(); }
-            set { _deprecation.SetValue(value); }
+            get => _deprecation.GetValue();
+            set => _deprecation.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

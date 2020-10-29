@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(VideoAttachment), nameof(Name));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<int?> _width = new PropertyValue<int?>(nameof(VideoAttachment), nameof(Width));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("width")]
         public int? Width
         {
-            get { return _width.GetValue(); }
-            set { _width.SetValue(value); }
+            get => _width.GetValue();
+            set => _width.SetValue(value);
         }
     
         private PropertyValue<int?> _height = new PropertyValue<int?>(nameof(VideoAttachment), nameof(Height));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("height")]
         public int? Height
         {
-            get { return _height.GetValue(); }
-            set { _height.SetValue(value); }
+            get => _height.GetValue();
+            set => _height.SetValue(value);
         }
     
         private PropertyValue<long> _sizeBytes = new PropertyValue<long>(nameof(VideoAttachment), nameof(SizeBytes));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sizeBytes")]
         public long SizeBytes
         {
-            get { return _sizeBytes.GetValue(); }
-            set { _sizeBytes.SetValue(value); }
+            get => _sizeBytes.GetValue();
+            set => _sizeBytes.SetValue(value);
         }
     
         private PropertyValue<string?> _previewBytes = new PropertyValue<string?>(nameof(VideoAttachment), nameof(PreviewBytes));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("previewBytes")]
         public string? PreviewBytes
         {
-            get { return _previewBytes.GetValue(); }
-            set { _previewBytes.SetValue(value); }
+            get => _previewBytes.GetValue();
+            set => _previewBytes.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

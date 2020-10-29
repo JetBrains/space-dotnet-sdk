@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("entityId")]
         public string EntityId
         {
-            get { return _entityId.GetValue(); }
-            set { _entityId.SetValue(value); }
+            get => _entityId.GetValue();
+            set => _entityId.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _since = new PropertyValue<DateTime?>(nameof(HrmBusinessEntitiesRelationsForMemberIdPostRequest), nameof(Since));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Since
         {
-            get { return _since.GetValue(); }
-            set { _since.SetValue(value); }
+            get => _since.GetValue();
+            set => _since.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _till = new PropertyValue<DateTime?>(nameof(HrmBusinessEntitiesRelationsForMemberIdPostRequest), nameof(Till));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Till
         {
-            get { return _till.GetValue(); }
-            set { _till.SetValue(value); }
+            get => _till.GetValue();
+            set => _till.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

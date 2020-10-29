@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lines")]
         public List<InlineDiffLine> Lines
         {
-            get { return _lines.GetValue(); }
-            set { _lines.SetValue(value); }
+            get => _lines.GetValue();
+            set => _lines.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

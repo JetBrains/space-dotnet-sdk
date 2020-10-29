@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsArchived));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Name));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Description));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<bool> _defaultAvailability = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsDefaultAvailability));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultAvailability")]
         public bool IsDefaultAvailability
         {
-            get { return _defaultAvailability.GetValue(); }
-            set { _defaultAvailability.SetValue(value); }
+            get => _defaultAvailability.GetValue();
+            set => _defaultAvailability.SetValue(value);
         }
     
         private PropertyValue<bool> _approvalRequired = new PropertyValue<bool>(nameof(AbsenceReasonRecord), nameof(IsApprovalRequired));
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("approvalRequired")]
         public bool IsApprovalRequired
         {
-            get { return _approvalRequired.GetValue(); }
-            set { _approvalRequired.SetValue(value); }
+            get => _approvalRequired.GetValue();
+            set => _approvalRequired.SetValue(value);
         }
     
         private PropertyValue<string> _icon = new PropertyValue<string>(nameof(AbsenceReasonRecord), nameof(Icon));
@@ -107,8 +107,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public string Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

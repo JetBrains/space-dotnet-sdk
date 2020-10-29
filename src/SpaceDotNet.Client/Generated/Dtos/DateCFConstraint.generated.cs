@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Min
         {
-            get { return _min.GetValue(); }
-            set { _min.SetValue(value); }
+            get => _min.GetValue();
+            set => _min.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _max = new PropertyValue<DateTime?>(nameof(DateCFConstraint), nameof(Max));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Max
         {
-            get { return _max.GetValue(); }
-            set { _max.SetValue(value); }
+            get => _max.GetValue();
+            set => _max.SetValue(value);
         }
     
         private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(DateCFConstraint), nameof(Message));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string? Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

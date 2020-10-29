@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<M2ItemContentDetails?> _details = new PropertyValue<M2ItemContentDetails?>(nameof(ChannelItemRecord), nameof(Details));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public M2ItemContentDetails? Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _author = new PropertyValue<CPrincipal>(nameof(ChannelItemRecord), nameof(Author));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public CPrincipal Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(ChannelItemRecord), nameof(Created));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<long> _time = new PropertyValue<long>(nameof(ChannelItemRecord), nameof(Time));
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("time")]
         public long Time
         {
-            get { return _time.GetValue(); }
-            set { _time.SetValue(value); }
+            get => _time.GetValue();
+            set => _time.SetValue(value);
         }
     
         private PropertyValue<AllReactionsToItemRecord?> _reactions = new PropertyValue<AllReactionsToItemRecord?>(nameof(ChannelItemRecord), nameof(Reactions));
@@ -106,8 +106,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reactions")]
         public AllReactionsToItemRecord? Reactions
         {
-            get { return _reactions.GetValue(); }
-            set { _reactions.SetValue(value); }
+            get => _reactions.GetValue();
+            set => _reactions.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord?> _thread = new PropertyValue<M2ChannelRecord?>(nameof(ChannelItemRecord), nameof(Thread));
@@ -115,8 +115,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("thread")]
         public M2ChannelRecord? Thread
         {
-            get { return _thread.GetValue(); }
-            set { _thread.SetValue(value); }
+            get => _thread.GetValue();
+            set => _thread.SetValue(value);
         }
     
         private PropertyValue<ChannelItemRecord?> _projectedItem = new PropertyValue<ChannelItemRecord?>(nameof(ChannelItemRecord), nameof(ProjectedItem));
@@ -124,8 +124,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectedItem")]
         public ChannelItemRecord? ProjectedItem
         {
-            get { return _projectedItem.GetValue(); }
-            set { _projectedItem.SetValue(value); }
+            get => _projectedItem.GetValue();
+            set => _projectedItem.SetValue(value);
         }
     
         private PropertyValue<List<AttachmentInfo>?> _attachments = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemRecord), nameof(Attachments));
@@ -133,8 +133,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<AttachmentInfo>? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         private PropertyValue<List<AttachmentInfo>?> _attachmentsInfos = new PropertyValue<List<AttachmentInfo>?>(nameof(ChannelItemRecord), nameof(AttachmentsInfos));
@@ -142,8 +142,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachmentsInfos")]
         public List<AttachmentInfo>? AttachmentsInfos
         {
-            get { return _attachmentsInfos.GetValue(); }
-            set { _attachmentsInfos.SetValue(value); }
+            get => _attachmentsInfos.GetValue();
+            set => _attachmentsInfos.SetValue(value);
         }
     
         private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPending));
@@ -151,8 +151,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pending")]
         public bool? IsPending
         {
-            get { return _pending.GetValue(); }
-            set { _pending.SetValue(value); }
+            get => _pending.GetValue();
+            set => _pending.SetValue(value);
         }
     
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ChannelItemRecord), nameof(Id));
@@ -161,8 +161,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ChannelItemRecord), nameof(IsArchived));
@@ -171,8 +171,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _edited = new PropertyValue<DateTime?>(nameof(ChannelItemRecord), nameof(Edited));
@@ -181,8 +181,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Edited
         {
-            get { return _edited.GetValue(); }
-            set { _edited.SetValue(value); }
+            get => _edited.GetValue();
+            set => _edited.SetValue(value);
         }
     
         private PropertyValue<bool?> _pinned = new PropertyValue<bool?>(nameof(ChannelItemRecord), nameof(IsPinned));
@@ -190,8 +190,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pinned")]
         public bool? IsPinned
         {
-            get { return _pinned.GetValue(); }
-            set { _pinned.SetValue(value); }
+            get => _pinned.GetValue();
+            set => _pinned.SetValue(value);
         }
     
         private PropertyValue<List<CPrincipal>?> _suggestedParticipants = new PropertyValue<List<CPrincipal>?>(nameof(ChannelItemRecord), nameof(SuggestedParticipants));
@@ -199,8 +199,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("suggestedParticipants")]
         public List<CPrincipal>? SuggestedParticipants
         {
-            get { return _suggestedParticipants.GetValue(); }
-            set { _suggestedParticipants.SetValue(value); }
+            get => _suggestedParticipants.GetValue();
+            set => _suggestedParticipants.SetValue(value);
         }
     
         private PropertyValue<List<Issue>> _issues = new PropertyValue<List<Issue>>(nameof(ChannelItemRecord), nameof(Issues));
@@ -209,8 +209,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issues")]
         public List<Issue> Issues
         {
-            get { return _issues.GetValue(); }
-            set { _issues.SetValue(value); }
+            get => _issues.GetValue();
+            set => _issues.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

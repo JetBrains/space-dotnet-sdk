@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("segments")]
         public List<HAPathSegment> Segments
         {
-            get { return _segments.GetValue(); }
-            set { _segments.SetValue(value); }
+            get => _segments.GetValue();
+            set => _segments.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commands")]
         public List<CommandDetail> CommandsItems
         {
-            get { return _commands.GetValue(); }
-            set { _commands.SetValue(value); }
+            get => _commands.GetValue();
+            set => _commands.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

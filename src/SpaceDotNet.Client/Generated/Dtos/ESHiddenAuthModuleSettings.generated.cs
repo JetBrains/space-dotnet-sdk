@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("passwordModule")]
         public bool? IsPasswordModule
         {
-            get { return _passwordModule.GetValue(); }
-            set { _passwordModule.SetValue(value); }
+            get => _passwordModule.GetValue();
+            set => _passwordModule.SetValue(value);
         }
     
         private PropertyValue<bool?> _federatedModule = new PropertyValue<bool?>(nameof(ESHiddenAuthModuleSettings), nameof(IsFederatedModule));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("federatedModule")]
         public bool? IsFederatedModule
         {
-            get { return _federatedModule.GetValue(); }
-            set { _federatedModule.SetValue(value); }
+            get => _federatedModule.GetValue();
+            set => _federatedModule.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("member")]
         public TDMemberProfile Member
         {
-            get { return _member.GetValue(); }
-            set { _member.SetValue(value); }
+            get => _member.GetValue();
+            set => _member.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentMember), nameof(NotificationDefaults));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         private PropertyValue<ProfileAbsencesRecord?> _memberAbsences = new PropertyValue<ProfileAbsencesRecord?>(nameof(M2ChannelContentMember), nameof(MemberAbsences));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberAbsences")]
         public ProfileAbsencesRecord? MemberAbsences
         {
-            get { return _memberAbsences.GetValue(); }
-            set { _memberAbsences.SetValue(value); }
+            get => _memberAbsences.GetValue();
+            set => _memberAbsences.SetValue(value);
         }
     
         private PropertyValue<ProfileMembershipRecord?> _memberTeams = new PropertyValue<ProfileMembershipRecord?>(nameof(M2ChannelContentMember), nameof(MemberTeams));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberTeams")]
         public ProfileMembershipRecord? MemberTeams
         {
-            get { return _memberTeams.GetValue(); }
-            set { _memberTeams.SetValue(value); }
+            get => _memberTeams.GetValue();
+            set => _memberTeams.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

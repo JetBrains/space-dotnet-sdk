@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleChannelRecord), nameof(IsArchived));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(ArticleChannelRecord), nameof(Channel));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public M2ChannelRecord Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<M2ChannelContentRecord> _channelContent = new PropertyValue<M2ChannelContentRecord>(nameof(ArticleChannelRecord), nameof(ChannelContent));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelContent")]
         public M2ChannelContentRecord ChannelContent
         {
-            get { return _channelContent.GetValue(); }
-            set { _channelContent.SetValue(value); }
+            get => _channelContent.GetValue();
+            set => _channelContent.SetValue(value);
         }
     
         private PropertyValue<AllReactionsToItemRecord> _reactions = new PropertyValue<AllReactionsToItemRecord>(nameof(ArticleChannelRecord), nameof(Reactions));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reactions")]
         public AllReactionsToItemRecord Reactions
         {
-            get { return _reactions.GetValue(); }
-            set { _reactions.SetValue(value); }
+            get => _reactions.GetValue();
+            set => _reactions.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

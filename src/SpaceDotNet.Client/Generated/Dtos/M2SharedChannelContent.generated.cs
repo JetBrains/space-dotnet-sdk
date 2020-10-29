@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _group = new PropertyValue<string>(nameof(M2SharedChannelContent), nameof(Group));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("group")]
         public string Group
         {
-            get { return _group.GetValue(); }
-            set { _group.SetValue(value); }
+            get => _group.GetValue();
+            set => _group.SetValue(value);
         }
     
         private PropertyValue<M2Access> _access = new PropertyValue<M2Access>(nameof(M2SharedChannelContent), nameof(Access));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("access")]
         public M2Access Access
         {
-            get { return _access.GetValue(); }
-            set { _access.SetValue(value); }
+            get => _access.GetValue();
+            set => _access.SetValue(value);
         }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(M2SharedChannelContent), nameof(Description));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _iconId = new PropertyValue<string?>(nameof(M2SharedChannelContent), nameof(IconId));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("iconId")]
         public string? IconId
         {
-            get { return _iconId.GetValue(); }
-            set { _iconId.SetValue(value); }
+            get => _iconId.GetValue();
+            set => _iconId.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2SharedChannelContent), nameof(NotificationDefaults));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(M2SharedChannelContent), nameof(Teams));
@@ -109,8 +109,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<TDTeam>? Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         private PropertyValue<bool?> _canEdit = new PropertyValue<bool?>(nameof(M2SharedChannelContent), nameof(CanEdit));
@@ -118,8 +118,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canEdit")]
         public bool? CanEdit
         {
-            get { return _canEdit.GetValue(); }
-            set { _canEdit.SetValue(value); }
+            get => _canEdit.GetValue();
+            set => _canEdit.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

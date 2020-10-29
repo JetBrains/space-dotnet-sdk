@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profiles")]
         public List<TDMemberProfile> Profiles
         {
-            get { return _profiles.GetValue(); }
-            set { _profiles.SetValue(value); }
+            get => _profiles.GetValue();
+            set => _profiles.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

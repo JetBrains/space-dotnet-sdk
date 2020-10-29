@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fileUrl")]
         public string? FileUrl
         {
-            get { return _fileUrl.GetValue(); }
-            set { _fileUrl.SetValue(value); }
+            get => _fileUrl.GetValue();
+            set => _fileUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Title));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string? Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<string?> _mimeType = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(MimeType));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("mimeType")]
         public string? MimeType
         {
-            get { return _mimeType.GetValue(); }
-            set { _mimeType.SetValue(value); }
+            get => _mimeType.GetValue();
+            set => _mimeType.SetValue(value);
         }
     
         private PropertyValue<string?> _fileId = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(FileId));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fileId")]
         public string? FileId
         {
-            get { return _fileId.GetValue(); }
-            set { _fileId.SetValue(value); }
+            get => _fileId.GetValue();
+            set => _fileId.SetValue(value);
         }
     
         private PropertyValue<string?> _source = new PropertyValue<string?>(nameof(MeetingAttachment), nameof(Source));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("source")]
         public string? Source
         {
-            get { return _source.GetValue(); }
-            set { _source.SetValue(value); }
+            get => _source.GetValue();
+            set => _source.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

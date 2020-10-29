@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ids")]
         public List<string> Ids
         {
-            get { return _ids.GetValue(); }
-            set { _ids.SetValue(value); }
+            get => _ids.GetValue();
+            set => _ids.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public PackageType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(NuGetPackageVersionDetails), nameof(Repository));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(NuGetPackageVersionDetails), nameof(Name));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _version = new PropertyValue<string>(nameof(NuGetPackageVersionDetails), nameof(Version));
@@ -92,8 +92,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(NuGetPackageVersionDetails), nameof(Tags));
@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string>? Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         private PropertyValue<long> _created = new PropertyValue<long>(nameof(NuGetPackageVersionDetails), nameof(Created));
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("created")]
         public long Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<long?> _accessed = new PropertyValue<long?>(nameof(NuGetPackageVersionDetails), nameof(Accessed));
@@ -120,8 +120,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessed")]
         public long? Accessed
         {
-            get { return _accessed.GetValue(); }
-            set { _accessed.SetValue(value); }
+            get => _accessed.GetValue();
+            set => _accessed.SetValue(value);
         }
     
         private PropertyValue<long> _downloads = new PropertyValue<long>(nameof(NuGetPackageVersionDetails), nameof(Downloads));
@@ -130,8 +130,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("downloads")]
         public long Downloads
         {
-            get { return _downloads.GetValue(); }
-            set { _downloads.SetValue(value); }
+            get => _downloads.GetValue();
+            set => _downloads.SetValue(value);
         }
     
         private PropertyValue<long> _diskSize = new PropertyValue<long>(nameof(NuGetPackageVersionDetails), nameof(DiskSize));
@@ -140,8 +140,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("diskSize")]
         public long DiskSize
         {
-            get { return _diskSize.GetValue(); }
-            set { _diskSize.SetValue(value); }
+            get => _diskSize.GetValue();
+            set => _diskSize.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _author = new PropertyValue<CPrincipal?>(nameof(NuGetPackageVersionDetails), nameof(Author));
@@ -149,8 +149,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public CPrincipal? Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<List<CPrincipal>?> _authors = new PropertyValue<List<CPrincipal>?>(nameof(NuGetPackageVersionDetails), nameof(Authors));
@@ -158,8 +158,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authors")]
         public List<CPrincipal>? Authors
         {
-            get { return _authors.GetValue(); }
-            set { _authors.SetValue(value); }
+            get => _authors.GetValue();
+            set => _authors.SetValue(value);
         }
     
         private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(NuGetPackageVersionDetails), nameof(Metadata));
@@ -167,8 +167,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("metadata")]
         public Dictionary<string, string>? Metadata
         {
-            get { return _metadata.GetValue(); }
-            set { _metadata.SetValue(value); }
+            get => _metadata.GetValue();
+            set => _metadata.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(NuGetPackageVersionDetails), nameof(Description));
@@ -176,8 +176,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _projectUrl = new PropertyValue<string?>(nameof(NuGetPackageVersionDetails), nameof(ProjectUrl));
@@ -185,8 +185,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectUrl")]
         public string? ProjectUrl
         {
-            get { return _projectUrl.GetValue(); }
-            set { _projectUrl.SetValue(value); }
+            get => _projectUrl.GetValue();
+            set => _projectUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _license = new PropertyValue<string?>(nameof(NuGetPackageVersionDetails), nameof(License));
@@ -194,8 +194,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("license")]
         public string? License
         {
-            get { return _license.GetValue(); }
-            set { _license.SetValue(value); }
+            get => _license.GetValue();
+            set => _license.SetValue(value);
         }
     
         private PropertyValue<string?> _licenseUrl = new PropertyValue<string?>(nameof(NuGetPackageVersionDetails), nameof(LicenseUrl));
@@ -203,8 +203,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("licenseUrl")]
         public string? LicenseUrl
         {
-            get { return _licenseUrl.GetValue(); }
-            set { _licenseUrl.SetValue(value); }
+            get => _licenseUrl.GetValue();
+            set => _licenseUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _icon = new PropertyValue<string?>(nameof(NuGetPackageVersionDetails), nameof(Icon));
@@ -212,8 +212,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public string? Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(NuGetPackageVersionDetails), nameof(Title));
@@ -221,8 +221,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string? Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<List<NuGetDependencyGroup>> _dependencies = new PropertyValue<List<NuGetDependencyGroup>>(nameof(NuGetPackageVersionDetails), nameof(Dependencies));
@@ -231,8 +231,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("dependencies")]
         public List<NuGetDependencyGroup> Dependencies
         {
-            get { return _dependencies.GetValue(); }
-            set { _dependencies.SetValue(value); }
+            get => _dependencies.GetValue();
+            set => _dependencies.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

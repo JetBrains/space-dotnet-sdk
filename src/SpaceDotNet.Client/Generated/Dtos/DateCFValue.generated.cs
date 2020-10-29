@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Value
         {
-            get { return _value.GetValue(); }
-            set { _value.SetValue(value); }
+            get => _value.GetValue();
+            set => _value.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

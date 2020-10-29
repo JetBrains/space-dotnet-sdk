@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobSubscription")]
         public JobSubscription JobSubscription
         {
-            get { return _jobSubscription.GetValue(); }
-            set { _jobSubscription.SetValue(value); }
+            get => _jobSubscription.GetValue();
+            set => _jobSubscription.SetValue(value);
         }
     
         private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(M2ChannelAutomationJobFeedInfo), nameof(JobName));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobName")]
         public string JobName
         {
-            get { return _jobName.GetValue(); }
-            set { _jobName.SetValue(value); }
+            get => _jobName.GetValue();
+            set => _jobName.SetValue(value);
         }
     
         private PropertyValue<string?> _repoName = new PropertyValue<string?>(nameof(M2ChannelAutomationJobFeedInfo), nameof(RepoName));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repoName")]
         public string? RepoName
         {
-            get { return _repoName.GetValue(); }
-            set { _repoName.SetValue(value); }
+            get => _repoName.GetValue();
+            set => _repoName.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelAutomationJobFeedInfo), nameof(NotificationDefaults));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("dto")]
         public List<HADto> Dto
         {
-            get { return _dto.GetValue(); }
-            set { _dto.SetValue(value); }
+            get => _dto.GetValue();
+            set => _dto.SetValue(value);
         }
     
         private PropertyValue<List<HAEnum>> _enums = new PropertyValue<List<HAEnum>>(nameof(HAModel), nameof(Enums));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("enums")]
         public List<HAEnum> Enums
         {
-            get { return _enums.GetValue(); }
-            set { _enums.SetValue(value); }
+            get => _enums.GetValue();
+            set => _enums.SetValue(value);
         }
     
         private PropertyValue<List<HAUrlParameter>> _urlParams = new PropertyValue<List<HAUrlParameter>>(nameof(HAModel), nameof(UrlParams));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("urlParams")]
         public List<HAUrlParameter> UrlParams
         {
-            get { return _urlParams.GetValue(); }
-            set { _urlParams.SetValue(value); }
+            get => _urlParams.GetValue();
+            set => _urlParams.SetValue(value);
         }
     
         private PropertyValue<List<HAResource>> _resources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(Resources));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resources")]
         public List<HAResource> Resources
         {
-            get { return _resources.GetValue(); }
-            set { _resources.SetValue(value); }
+            get => _resources.GetValue();
+            set => _resources.SetValue(value);
         }
     
         private PropertyValue<List<HAResource>> _allResources = new PropertyValue<List<HAResource>>(nameof(HAModel), nameof(AllResources));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("allResources")]
         public List<HAResource> AllResources
         {
-            get { return _allResources.GetValue(); }
-            set { _allResources.SetValue(value); }
+            get => _allResources.GetValue();
+            set => _allResources.SetValue(value);
         }
     
         private PropertyValue<List<HAMenuId>> _menuIds = new PropertyValue<List<HAMenuId>>(nameof(HAModel), nameof(MenuIds));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("menuIds")]
         public List<HAMenuId> MenuIds
         {
-            get { return _menuIds.GetValue(); }
-            set { _menuIds.SetValue(value); }
+            get => _menuIds.GetValue();
+            set => _menuIds.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

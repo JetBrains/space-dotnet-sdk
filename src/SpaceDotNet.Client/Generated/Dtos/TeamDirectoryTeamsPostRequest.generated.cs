@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(Description));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _emails = new PropertyValue<List<string>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(Emails));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emails")]
         public List<string>? Emails
         {
-            get { return _emails.GetValue(); }
-            set { _emails.SetValue(value); }
+            get => _emails.GetValue();
+            set => _emails.SetValue(value);
         }
     
         private PropertyValue<string?> _parentId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(ParentId));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentId")]
         public string? ParentId
         {
-            get { return _parentId.GetValue(); }
-            set { _parentId.SetValue(value); }
+            get => _parentId.GetValue();
+            set => _parentId.SetValue(value);
         }
     
         private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(TeamDirectoryTeamsPostRequest), nameof(CustomFieldValues));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldValue>? CustomFieldValues
         {
-            get { return _customFieldValues.GetValue(); }
-            set { _customFieldValues.SetValue(value); }
+            get => _customFieldValues.GetValue();
+            set => _customFieldValues.SetValue(value);
         }
     
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(TeamDirectoryTeamsPostRequest), nameof(ExternalId));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalId")]
         public string? ExternalId
         {
-            get { return _externalId.GetValue(); }
-            set { _externalId.SetValue(value); }
+            get => _externalId.GetValue();
+            set => _externalId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

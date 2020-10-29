@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("service")]
         public ESService Service
         {
-            get { return _service.GetValue(); }
-            set { _service.SetValue(value); }
+            get => _service.GetValue();
+            set => _service.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

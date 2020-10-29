@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("billedItems")]
         public BilledItems BilledItems
         {
-            get { return _billedItems.GetValue(); }
-            set { _billedItems.SetValue(value); }
+            get => _billedItems.GetValue();
+            set => _billedItems.SetValue(value);
         }
     
         private PropertyValue<PlanLimits> _planLimits = new PropertyValue<PlanLimits>(nameof(BillingInfo), nameof(PlanLimits));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("planLimits")]
         public PlanLimits PlanLimits
         {
-            get { return _planLimits.GetValue(); }
-            set { _planLimits.SetValue(value); }
+            get => _planLimits.GetValue();
+            set => _planLimits.SetValue(value);
         }
     
         private PropertyValue<DateTime> _orgCreationDate = new PropertyValue<DateTime>(nameof(BillingInfo), nameof(OrgCreationDate));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime OrgCreationDate
         {
-            get { return _orgCreationDate.GetValue(); }
-            set { _orgCreationDate.SetValue(value); }
+            get => _orgCreationDate.GetValue();
+            set => _orgCreationDate.SetValue(value);
         }
     
         private PropertyValue<Money?> _overdraft = new PropertyValue<Money?>(nameof(BillingInfo), nameof(Overdraft));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("overdraft")]
         public Money? Overdraft
         {
-            get { return _overdraft.GetValue(); }
-            set { _overdraft.SetValue(value); }
+            get => _overdraft.GetValue();
+            set => _overdraft.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

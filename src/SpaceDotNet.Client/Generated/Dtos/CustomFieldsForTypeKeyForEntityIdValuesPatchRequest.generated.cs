@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("values")]
         public List<CustomFieldValue> Values
         {
-            get { return _values.GetValue(); }
-            set { _values.SetValue(value); }
+            get => _values.GetValue();
+            set => _values.SetValue(value);
         }
     
         private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyForEntityIdValuesPatchRequest), nameof(Scope));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public ExtendedTypeScope Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

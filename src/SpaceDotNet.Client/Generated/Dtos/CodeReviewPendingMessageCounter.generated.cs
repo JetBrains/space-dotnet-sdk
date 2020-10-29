@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<int> _count = new PropertyValue<int>(nameof(CodeReviewPendingMessageCounter), nameof(Count));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("count")]
         public int Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewPendingMessageCounter), nameof(IsArchived));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

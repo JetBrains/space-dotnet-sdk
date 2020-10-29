@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teamId")]
         public string TeamId
         {
-            get { return _teamId.GetValue(); }
-            set { _teamId.SetValue(value); }
+            get => _teamId.GetValue();
+            set => _teamId.SetValue(value);
         }
     
         private PropertyValue<string> _externalGroupName = new PropertyValue<string>(nameof(ESTeamMapping), nameof(ExternalGroupName));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalGroupName")]
         public string ExternalGroupName
         {
-            get { return _externalGroupName.GetValue(); }
-            set { _externalGroupName.SetValue(value); }
+            get => _externalGroupName.GetValue();
+            set => _externalGroupName.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

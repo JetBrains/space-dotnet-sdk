@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("url")]
         public string Url
         {
-            get { return _url.GetValue(); }
-            set { _url.SetValue(value); }
+            get => _url.GetValue();
+            set => _url.SetValue(value);
         }
     
         private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(CreateUploadUrlResponse), nameof(VersionId));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("versionId")]
         public string VersionId
         {
-            get { return _versionId.GetValue(); }
-            set { _versionId.SetValue(value); }
+            get => _versionId.GetValue();
+            set => _versionId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

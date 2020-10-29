@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("codeReviewDiscussion")]
         public string CodeReviewDiscussion
         {
-            get { return _codeReviewDiscussion.GetValue(); }
-            set { _codeReviewDiscussion.SetValue(value); }
+            get => _codeReviewDiscussion.GetValue();
+            set => _codeReviewDiscussion.SetValue(value);
         }
     
         private PropertyValue<ChannelSpecificDefaults> _notificationDefaults = new PropertyValue<ChannelSpecificDefaults>(nameof(M2ChannelContentCodeReviewDiscussion), nameof(NotificationDefaults));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notificationDefaults")]
         public ChannelSpecificDefaults NotificationDefaults
         {
-            get { return _notificationDefaults.GetValue(); }
-            set { _notificationDefaults.SetValue(value); }
+            get => _notificationDefaults.GetValue();
+            set => _notificationDefaults.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

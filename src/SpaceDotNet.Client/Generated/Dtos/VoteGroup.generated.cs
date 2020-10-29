@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("variantName")]
         public string VariantName
         {
-            get { return _variantName.GetValue(); }
-            set { _variantName.SetValue(value); }
+            get => _variantName.GetValue();
+            set => _variantName.SetValue(value);
         }
     
         private PropertyValue<int> _count = new PropertyValue<int>(nameof(VoteGroup), nameof(Count));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("count")]
         public int Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
     
         private PropertyValue<bool> _meVote = new PropertyValue<bool>(nameof(VoteGroup), nameof(IsMeVote));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("meVote")]
         public bool IsMeVote
         {
-            get { return _meVote.GetValue(); }
-            set { _meVote.SetValue(value); }
+            get => _meVote.GetValue();
+            set => _meVote.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _lastUsers = new PropertyValue<List<TDMemberProfile>>(nameof(VoteGroup), nameof(LastUsers));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastUsers")]
         public List<TDMemberProfile> LastUsers
         {
-            get { return _lastUsers.GetValue(); }
-            set { _lastUsers.SetValue(value); }
+            get => _lastUsers.GetValue();
+            set => _lastUsers.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _owner = new PropertyValue<TDMemberProfile?>(nameof(VoteGroup), nameof(Owner));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("owner")]
         public TDMemberProfile? Owner
         {
-            get { return _owner.GetValue(); }
-            set { _owner.SetValue(value); }
+            get => _owner.GetValue();
+            set => _owner.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

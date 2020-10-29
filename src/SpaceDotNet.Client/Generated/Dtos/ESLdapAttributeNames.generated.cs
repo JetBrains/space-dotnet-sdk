@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fullNameAttributeName")]
         public string? FullNameAttributeName
         {
-            get { return _fullNameAttributeName.GetValue(); }
-            set { _fullNameAttributeName.SetValue(value); }
+            get => _fullNameAttributeName.GetValue();
+            set => _fullNameAttributeName.SetValue(value);
         }
     
         private PropertyValue<string?> _usernameAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(UsernameAttributeName));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("usernameAttributeName")]
         public string? UsernameAttributeName
         {
-            get { return _usernameAttributeName.GetValue(); }
-            set { _usernameAttributeName.SetValue(value); }
+            get => _usernameAttributeName.GetValue();
+            set => _usernameAttributeName.SetValue(value);
         }
     
         private PropertyValue<string?> _emailAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(EmailAttributeName));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emailAttributeName")]
         public string? EmailAttributeName
         {
-            get { return _emailAttributeName.GetValue(); }
-            set { _emailAttributeName.SetValue(value); }
+            get => _emailAttributeName.GetValue();
+            set => _emailAttributeName.SetValue(value);
         }
     
         private PropertyValue<string?> _groupsAttributeName = new PropertyValue<string?>(nameof(ESLdapAttributeNames), nameof(GroupsAttributeName));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("groupsAttributeName")]
         public string? GroupsAttributeName
         {
-            get { return _groupsAttributeName.GetValue(); }
-            set { _groupsAttributeName.SetValue(value); }
+            get => _groupsAttributeName.GetValue();
+            set => _groupsAttributeName.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

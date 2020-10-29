@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("cause")]
         public M2ObsoleteCause? Cause
         {
-            get { return _cause.GetValue(); }
-            set { _cause.SetValue(value); }
+            get => _cause.GetValue();
+            set => _cause.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

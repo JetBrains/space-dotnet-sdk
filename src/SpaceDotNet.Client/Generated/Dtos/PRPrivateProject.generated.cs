@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public ProjectKey Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PRPrivateProject), nameof(Name));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<bool> _accessAllowed = new PropertyValue<bool>(nameof(PRPrivateProject), nameof(IsAccessAllowed));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessAllowed")]
         public bool IsAccessAllowed
         {
-            get { return _accessAllowed.GetValue(); }
-            set { _accessAllowed.SetValue(value); }
+            get => _accessAllowed.GetValue();
+            set => _accessAllowed.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _admins = new PropertyValue<List<TDMemberProfile>>(nameof(PRPrivateProject), nameof(Admins));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("admins")]
         public List<TDMemberProfile> Admins
         {
-            get { return _admins.GetValue(); }
-            set { _admins.SetValue(value); }
+            get => _admins.GetValue();
+            set => _admins.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

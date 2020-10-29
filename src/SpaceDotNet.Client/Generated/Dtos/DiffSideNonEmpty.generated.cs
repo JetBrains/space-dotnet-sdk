@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revision")]
         public string Revision
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get => _revision.GetValue();
+            set => _revision.SetValue(value);
         }
     
         private PropertyValue<string> _path = new PropertyValue<string>(nameof(DiffSideNonEmpty), nameof(Path));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("path")]
         public string Path
         {
-            get { return _path.GetValue(); }
-            set { _path.SetValue(value); }
+            get => _path.GetValue();
+            set => _path.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ref")]
         public KBBook Ref
         {
-            get { return _ref.GetValue(); }
-            set { _ref.SetValue(value); }
+            get => _ref.GetValue();
+            set => _ref.SetValue(value);
         }
     
         private PropertyValue<string> _contextName = new PropertyValue<string>(nameof(BookHitDetails), nameof(ContextName));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("contextName")]
         public string ContextName
         {
-            get { return _contextName.GetValue(); }
-            set { _contextName.SetValue(value); }
+            get => _contextName.GetValue();
+            set => _contextName.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("totalMembers")]
         public int TotalMembers
         {
-            get { return _totalMembers.GetValue(); }
-            set { _totalMembers.SetValue(value); }
+            get => _totalMembers.GetValue();
+            set => _totalMembers.SetValue(value);
         }
     
         private PropertyValue<List<Pair<TDTeam, int>>> _teams = new PropertyValue<List<Pair<TDTeam, int>>>(nameof(TDStats), nameof(Teams));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<Pair<TDTeam, int>> Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         private PropertyValue<List<Pair<TDRole, int>>> _roles = new PropertyValue<List<Pair<TDRole, int>>>(nameof(TDStats), nameof(Roles));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("roles")]
         public List<Pair<TDRole, int>> Roles
         {
-            get { return _roles.GetValue(); }
-            set { _roles.SetValue(value); }
+            get => _roles.GetValue();
+            set => _roles.SetValue(value);
         }
     
         private PropertyValue<List<Pair<TDLocation, int>>> _locations = new PropertyValue<List<Pair<TDLocation, int>>>(nameof(TDStats), nameof(Locations));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locations")]
         public List<Pair<TDLocation, int>> Locations
         {
-            get { return _locations.GetValue(); }
-            set { _locations.SetValue(value); }
+            get => _locations.GetValue();
+            set => _locations.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

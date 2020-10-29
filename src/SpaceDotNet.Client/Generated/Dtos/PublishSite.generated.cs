@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("siteUrl")]
         public string SiteUrl
         {
-            get { return _siteUrl.GetValue(); }
-            set { _siteUrl.SetValue(value); }
+            get => _siteUrl.GetValue();
+            set => _siteUrl.SetValue(value);
         }
     
         private PropertyValue<SyncFileStats> _fileStats = new PropertyValue<SyncFileStats>(nameof(PublishSite), nameof(FileStats));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fileStats")]
         public SyncFileStats FileStats
         {
-            get { return _fileStats.GetValue(); }
-            set { _fileStats.SetValue(value); }
+            get => _fileStats.GetValue();
+            set => _fileStats.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

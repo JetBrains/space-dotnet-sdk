@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public string Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         private PropertyValue<string> _group = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Group));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("group")]
         public string Group
         {
-            get { return _group.GetValue(); }
-            set { _group.SetValue(value); }
+            get => _group.GetValue();
+            set => _group.SetValue(value);
         }
     
         private PropertyValue<string> _artifact = new PropertyValue<string>(nameof(MavenPackageDependency), nameof(Artifact));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("artifact")]
         public string Artifact
         {
-            get { return _artifact.GetValue(); }
-            set { _artifact.SetValue(value); }
+            get => _artifact.GetValue();
+            set => _artifact.SetValue(value);
         }
     
         private PropertyValue<string?> _version = new PropertyValue<string?>(nameof(MavenPackageDependency), nameof(Version));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string? Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

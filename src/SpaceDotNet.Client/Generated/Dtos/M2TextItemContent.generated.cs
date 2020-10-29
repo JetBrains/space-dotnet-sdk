@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("markdown")]
         public bool? IsMarkdown
         {
-            get { return _markdown.GetValue(); }
-            set { _markdown.SetValue(value); }
+            get => _markdown.GetValue();
+            set => _markdown.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

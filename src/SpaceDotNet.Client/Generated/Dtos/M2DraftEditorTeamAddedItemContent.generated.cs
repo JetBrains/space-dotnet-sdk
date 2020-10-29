@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<TDTeam> _team = new PropertyValue<TDTeam>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Team));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("team")]
         public TDTeam Team
         {
-            get { return _team.GetValue(); }
-            set { _team.SetValue(value); }
+            get => _team.GetValue();
+            set => _team.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(M2DraftEditorTeamAddedItemContent), nameof(Title));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

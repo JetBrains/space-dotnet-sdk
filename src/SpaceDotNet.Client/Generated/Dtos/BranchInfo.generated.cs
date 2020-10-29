@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("head")]
         public string Head
         {
-            get { return _head.GetValue(); }
-            set { _head.SetValue(value); }
+            get => _head.GetValue();
+            set => _head.SetValue(value);
         }
     
         private PropertyValue<string> _ref = new PropertyValue<string>(nameof(BranchInfo), nameof(Ref));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ref")]
         public string Ref
         {
-            get { return _ref.GetValue(); }
-            set { _ref.SetValue(value); }
+            get => _ref.GetValue();
+            set => _ref.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

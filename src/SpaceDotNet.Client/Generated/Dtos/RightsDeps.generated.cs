@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("code")]
         public string Code
         {
-            get { return _code.GetValue(); }
-            set { _code.SetValue(value); }
+            get => _code.GetValue();
+            set => _code.SetValue(value);
         }
     
         private PropertyValue<List<string>> _deps = new PropertyValue<List<string>>(nameof(RightsDeps), nameof(Deps));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deps")]
         public List<string> Deps
         {
-            get { return _deps.GetValue(); }
-            set { _deps.SetValue(value); }
+            get => _deps.GetValue();
+            set => _deps.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("item")]
         public string Item
         {
-            get { return _item.GetValue(); }
-            set { _item.SetValue(value); }
+            get => _item.GetValue();
+            set => _item.SetValue(value);
         }
     
         private PropertyValue<bool> _enabled = new PropertyValue<bool>(nameof(TeamDirectoryProfilesForProfileNavBarMenuItemsPatchRequest), nameof(IsEnabled));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("enabled")]
         public bool IsEnabled
         {
-            get { return _enabled.GetValue(); }
-            set { _enabled.SetValue(value); }
+            get => _enabled.GetValue();
+            set => _enabled.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBBook), nameof(IsArchived));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(KBBook), nameof(Name));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(KBBook), nameof(Summary));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("summary")]
         public string Summary
         {
-            get { return _summary.GetValue(); }
-            set { _summary.SetValue(value); }
+            get => _summary.GetValue();
+            set => _summary.SetValue(value);
         }
     
         private PropertyValue<long> _updated = new PropertyValue<long>(nameof(KBBook), nameof(Updated));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("updated")]
         public long Updated
         {
-            get { return _updated.GetValue(); }
-            set { _updated.SetValue(value); }
+            get => _updated.GetValue();
+            set => _updated.SetValue(value);
         }
     
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBBook), nameof(Alias));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("alias")]
         public string Alias
         {
-            get { return _alias.GetValue(); }
-            set { _alias.SetValue(value); }
+            get => _alias.GetValue();
+            set => _alias.SetValue(value);
         }
     
         private PropertyValue<List<KBBookContext>> _contexts = new PropertyValue<List<KBBookContext>>(nameof(KBBook), nameof(Contexts));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("contexts")]
         public List<KBBookContext> Contexts
         {
-            get { return _contexts.GetValue(); }
-            set { _contexts.SetValue(value); }
+            get => _contexts.GetValue();
+            set => _contexts.SetValue(value);
         }
     
         private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(KBBook), nameof(Locations));
@@ -120,8 +120,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locations")]
         public List<TDLocation> Locations
         {
-            get { return _locations.GetValue(); }
-            set { _locations.SetValue(value); }
+            get => _locations.GetValue();
+            set => _locations.SetValue(value);
         }
     
         private PropertyValue<KBFolder> _rootFolder = new PropertyValue<KBFolder>(nameof(KBBook), nameof(RootFolder));
@@ -130,8 +130,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rootFolder")]
         public KBFolder RootFolder
         {
-            get { return _rootFolder.GetValue(); }
-            set { _rootFolder.SetValue(value); }
+            get => _rootFolder.GetValue();
+            set => _rootFolder.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(KBBook), nameof(Teams));
@@ -140,8 +140,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<TDTeam> Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

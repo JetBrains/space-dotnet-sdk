@@ -40,8 +40,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("role")]
         public string? Role
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
+            get => _role.GetValue();
+            set => _role.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

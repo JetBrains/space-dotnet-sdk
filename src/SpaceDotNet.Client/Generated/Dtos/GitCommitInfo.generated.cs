@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _message = new PropertyValue<string>(nameof(GitCommitInfo), nameof(Message));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<long> _authorDate = new PropertyValue<long>(nameof(GitCommitInfo), nameof(AuthorDate));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorDate")]
         public long AuthorDate
         {
-            get { return _authorDate.GetValue(); }
-            set { _authorDate.SetValue(value); }
+            get => _authorDate.GetValue();
+            set => _authorDate.SetValue(value);
         }
     
         private PropertyValue<long> _commitDate = new PropertyValue<long>(nameof(GitCommitInfo), nameof(CommitDate));
@@ -79,8 +79,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commitDate")]
         public long CommitDate
         {
-            get { return _commitDate.GetValue(); }
-            set { _commitDate.SetValue(value); }
+            get => _commitDate.GetValue();
+            set => _commitDate.SetValue(value);
         }
     
         private PropertyValue<GitAuthorInfo> _author = new PropertyValue<GitAuthorInfo>(nameof(GitCommitInfo), nameof(Author));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public GitAuthorInfo Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<GitAuthorInfo> _committer = new PropertyValue<GitAuthorInfo>(nameof(GitCommitInfo), nameof(Committer));
@@ -99,8 +99,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("committer")]
         public GitAuthorInfo Committer
         {
-            get { return _committer.GetValue(); }
-            set { _committer.SetValue(value); }
+            get => _committer.GetValue();
+            set => _committer.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(GitCommitInfo), nameof(AuthorProfile));
@@ -108,8 +108,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorProfile")]
         public TDMemberProfile? AuthorProfile
         {
-            get { return _authorProfile.GetValue(); }
-            set { _authorProfile.SetValue(value); }
+            get => _authorProfile.GetValue();
+            set => _authorProfile.SetValue(value);
         }
     
         private PropertyValue<List<string>> _parents = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Parents));
@@ -118,8 +118,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parents")]
         public List<string> Parents
         {
-            get { return _parents.GetValue(); }
-            set { _parents.SetValue(value); }
+            get => _parents.GetValue();
+            set => _parents.SetValue(value);
         }
     
         private PropertyValue<List<string>> _heads = new PropertyValue<List<string>>(nameof(GitCommitInfo), nameof(Heads));
@@ -128,8 +128,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("heads")]
         public List<string> Heads
         {
-            get { return _heads.GetValue(); }
-            set { _heads.SetValue(value); }
+            get => _heads.GetValue();
+            set => _heads.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

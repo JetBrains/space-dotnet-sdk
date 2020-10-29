@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("newContent")]
         public string NewContent
         {
-            get { return _newContent.GetValue(); }
-            set { _newContent.SetValue(value); }
+            get => _newContent.GetValue();
+            set => _newContent.SetValue(value);
         }
     
         private PropertyValue<bool> _invalidate = new PropertyValue<bool>(nameof(AdministrationUserAgreementPatchRequest), nameof(IsInvalidate));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("invalidate")]
         public bool IsInvalidate
         {
-            get { return _invalidate.GetValue(); }
-            set { _invalidate.SetValue(value); }
+            get => _invalidate.GetValue();
+            set => _invalidate.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<int> _priority = new PropertyValue<int>(nameof(RightsGroup), nameof(Priority));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("priority")]
         public int Priority
         {
-            get { return _priority.GetValue(); }
-            set { _priority.SetValue(value); }
+            get => _priority.GetValue();
+            set => _priority.SetValue(value);
         }
     
         private PropertyValue<List<Right>> _rights = new PropertyValue<List<Right>>(nameof(RightsGroup), nameof(Rights));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rights")]
         public List<Right> Rights
         {
-            get { return _rights.GetValue(); }
-            set { _rights.SetValue(value); }
+            get => _rights.GetValue();
+            set => _rights.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<CodeReviewParticipantRole?> _role = new PropertyValue<CodeReviewParticipantRole?>(nameof(MeCodeReviewParticipantRecord), nameof(Role));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("role")]
         public CodeReviewParticipantRole? Role
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
+            get => _role.GetValue();
+            set => _role.SetValue(value);
         }
     
         private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(MeCodeReviewParticipantRecord), nameof(IsTheirTurn));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("theirTurn")]
         public bool? IsTheirTurn
         {
-            get { return _theirTurn.GetValue(); }
-            set { _theirTurn.SetValue(value); }
+            get => _theirTurn.GetValue();
+            set => _theirTurn.SetValue(value);
         }
     
         private PropertyValue<ReviewerState?> _reviewerState = new PropertyValue<ReviewerState?>(nameof(MeCodeReviewParticipantRecord), nameof(ReviewerState));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reviewerState")]
         public ReviewerState? ReviewerState
         {
-            get { return _reviewerState.GetValue(); }
-            set { _reviewerState.SetValue(value); }
+            get => _reviewerState.GetValue();
+            set => _reviewerState.SetValue(value);
         }
     
         private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(MeCodeReviewParticipantRecord), nameof(Review));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("review")]
         public CodeReviewRecord Review
         {
-            get { return _review.GetValue(); }
-            set { _review.SetValue(value); }
+            get => _review.GetValue();
+            set => _review.SetValue(value);
         }
     
         private PropertyValue<CodeReviewParticipants> _participants = new PropertyValue<CodeReviewParticipants>(nameof(MeCodeReviewParticipantRecord), nameof(Participants));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("participants")]
         public CodeReviewParticipants Participants
         {
-            get { return _participants.GetValue(); }
-            set { _participants.SetValue(value); }
+            get => _participants.GetValue();
+            set => _participants.SetValue(value);
         }
     
         private PropertyValue<CodeReviewPendingMessageCounter> _pendingCounter = new PropertyValue<CodeReviewPendingMessageCounter>(nameof(MeCodeReviewParticipantRecord), nameof(PendingCounter));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pendingCounter")]
         public CodeReviewPendingMessageCounter PendingCounter
         {
-            get { return _pendingCounter.GetValue(); }
-            set { _pendingCounter.SetValue(value); }
+            get => _pendingCounter.GetValue();
+            set => _pendingCounter.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(MeCodeReviewParticipantRecord), nameof(IsArchived));
@@ -115,8 +115,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

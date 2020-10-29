@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(TodoItemRecord), nameof(IsArchived));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Created));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<DateTime> _updated = new PropertyValue<DateTime>(nameof(TodoItemRecord), nameof(Updated));
@@ -79,8 +79,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Updated
         {
-            get { return _updated.GetValue(); }
-            set { _updated.SetValue(value); }
+            get => _updated.GetValue();
+            set => _updated.SetValue(value);
         }
     
         private PropertyValue<TodoItemContent> _content = new PropertyValue<TodoItemContent>(nameof(TodoItemRecord), nameof(Content));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public TodoItemContent Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<string> __status = new PropertyValue<string>(nameof(TodoItemRecord), nameof(Status));
@@ -99,8 +99,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("_status")]
         public string Status
         {
-            get { return __status.GetValue(); }
-            set { __status.SetValue(value); }
+            get => __status.GetValue();
+            set => __status.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(TodoItemRecord), nameof(DueDate));
@@ -109,8 +109,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? DueDate
         {
-            get { return _dueDate.GetValue(); }
-            set { _dueDate.SetValue(value); }
+            get => _dueDate.GetValue();
+            set => _dueDate.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("header")]
         public string? Header
         {
-            get { return _header.GetValue(); }
-            set { _header.SetValue(value); }
+            get => _header.GetValue();
+            set => _header.SetValue(value);
         }
     
         private PropertyValue<List<MessageElement>> _elements = new PropertyValue<List<MessageElement>>(nameof(MessageSection), nameof(Elements));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("elements")]
         public List<MessageElement> Elements
         {
-            get { return _elements.GetValue(); }
-            set { _elements.SetValue(value); }
+            get => _elements.GetValue();
+            set => _elements.SetValue(value);
         }
     
         private PropertyValue<string?> _footer = new PropertyValue<string?>(nameof(MessageSection), nameof(Footer));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("footer")]
         public string? Footer
         {
-            get { return _footer.GetValue(); }
-            set { _footer.SetValue(value); }
+            get => _footer.GetValue();
+            set => _footer.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

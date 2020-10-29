@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticlePreviewRecord), nameof(IsArchived));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<List<ArticleMarkdownImage>> _previewImages = new PropertyValue<List<ArticleMarkdownImage>>(nameof(ArticlePreviewRecord), nameof(PreviewImages));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("previewImages")]
         public List<ArticleMarkdownImage> PreviewImages
         {
-            get { return _previewImages.GetValue(); }
-            set { _previewImages.SetValue(value); }
+            get => _previewImages.GetValue();
+            set => _previewImages.SetValue(value);
         }
     
         private PropertyValue<string> _preview = new PropertyValue<string>(nameof(ArticlePreviewRecord), nameof(Preview));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("preview")]
         public string Preview
         {
-            get { return _preview.GetValue(); }
-            set { _preview.SetValue(value); }
+            get => _preview.GetValue();
+            set => _preview.SetValue(value);
         }
     
         private PropertyValue<int?> _wordsNumber = new PropertyValue<int?>(nameof(ArticlePreviewRecord), nameof(WordsNumber));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("wordsNumber")]
         public int? WordsNumber
         {
-            get { return _wordsNumber.GetValue(); }
-            set { _wordsNumber.SetValue(value); }
+            get => _wordsNumber.GetValue();
+            set => _wordsNumber.SetValue(value);
         }
     
         private PropertyValue<bool?> _cut = new PropertyValue<bool?>(nameof(ArticlePreviewRecord), nameof(IsCut));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("cut")]
         public bool? IsCut
         {
-            get { return _cut.GetValue(); }
-            set { _cut.SetValue(value); }
+            get => _cut.GetValue();
+            set => _cut.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

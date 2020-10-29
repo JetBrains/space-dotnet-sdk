@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientId")]
         public string ClientId
         {
-            get { return _clientId.GetValue(); }
-            set { _clientId.SetValue(value); }
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGoogleAuthModuleSettings), nameof(ClientSecret));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientSecret")]
         public string ClientSecret
         {
-            get { return _clientSecret.GetValue(); }
-            set { _clientSecret.SetValue(value); }
+            get => _clientSecret.GetValue();
+            set => _clientSecret.SetValue(value);
         }
     
         private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGoogleAuthModuleSettings), nameof(IsRegisterNewUsers));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("registerNewUsers")]
         public bool IsRegisterNewUsers
         {
-            get { return _registerNewUsers.GetValue(); }
-            set { _registerNewUsers.SetValue(value); }
+            get => _registerNewUsers.GetValue();
+            set => _registerNewUsers.SetValue(value);
         }
     
         private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESGoogleAuthModuleSettings), nameof(Domains));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("domains")]
         public List<string> Domains
         {
-            get { return _domains.GetValue(); }
-            set { _domains.SetValue(value); }
+            get => _domains.GetValue();
+            set => _domains.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

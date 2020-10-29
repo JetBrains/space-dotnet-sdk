@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("meeting")]
         public Meeting Meeting
         {
-            get { return _meeting.GetValue(); }
-            set { _meeting.SetValue(value); }
+            get => _meeting.GetValue();
+            set => _meeting.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

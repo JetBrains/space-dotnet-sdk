@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessToken")]
         public string? AccessToken
         {
-            get { return _accessToken.GetValue(); }
-            set { _accessToken.SetValue(value); }
+            get => _accessToken.GetValue();
+            set => _accessToken.SetValue(value);
         }
     
         private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(VerificationToken));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("verificationToken")]
         public string? VerificationToken
         {
-            get { return _verificationToken.GetValue(); }
-            set { _verificationToken.SetValue(value); }
+            get => _verificationToken.GetValue();
+            set => _verificationToken.SetValue(value);
         }
     
         private PropertyValue<string?> _userId = new PropertyValue<string?>(nameof(ListMenuExtensionsPayload), nameof(UserId));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userId")]
         public string? UserId
         {
-            get { return _userId.GetValue(); }
-            set { _userId.SetValue(value); }
+            get => _userId.GetValue();
+            set => _userId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

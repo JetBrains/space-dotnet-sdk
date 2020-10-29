@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("icon")]
         public string Icon
         {
-            get { return _icon.GetValue(); }
-            set { _icon.SetValue(value); }
+            get => _icon.GetValue();
+            set => _icon.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

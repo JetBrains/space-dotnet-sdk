@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("oldTitle")]
         public string OldTitle
         {
-            get { return _oldTitle.GetValue(); }
-            set { _oldTitle.SetValue(value); }
+            get => _oldTitle.GetValue();
+            set => _oldTitle.SetValue(value);
         }
     
         private PropertyValue<string> _newTitle = new PropertyValue<string>(nameof(ReviewTitleChangedEvent), nameof(NewTitle));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("newTitle")]
         public string NewTitle
         {
-            get { return _newTitle.GetValue(); }
-            set { _newTitle.SetValue(value); }
+            get => _newTitle.GetValue();
+            set => _newTitle.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

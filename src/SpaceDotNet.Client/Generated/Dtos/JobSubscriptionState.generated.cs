@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public JobSubscriptionType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<bool> _containsMyCommit = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsContainsMyCommit));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("containsMyCommit")]
         public bool IsContainsMyCommit
         {
-            get { return _containsMyCommit.GetValue(); }
-            set { _containsMyCommit.SetValue(value); }
+            get => _containsMyCommit.GetValue();
+            set => _containsMyCommit.SetValue(value);
         }
     
         private PropertyValue<bool> _runByMe = new PropertyValue<bool>(nameof(JobSubscriptionState), nameof(IsRunByMe));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("runByMe")]
         public bool IsRunByMe
         {
-            get { return _runByMe.GetValue(); }
-            set { _runByMe.SetValue(value); }
+            get => _runByMe.GetValue();
+            set => _runByMe.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

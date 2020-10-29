@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _dateStart = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateStart));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? DateStart
         {
-            get { return _dateStart.GetValue(); }
-            set { _dateStart.SetValue(value); }
+            get => _dateStart.GetValue();
+            set => _dateStart.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _dateEnd = new PropertyValue<DateTime?>(nameof(TDWorkingDays), nameof(DateEnd));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? DateEnd
         {
-            get { return _dateEnd.GetValue(); }
-            set { _dateEnd.SetValue(value); }
+            get => _dateEnd.GetValue();
+            set => _dateEnd.SetValue(value);
         }
     
         private PropertyValue<WorkingDaysSpec> _workingDaysSpec = new PropertyValue<WorkingDaysSpec>(nameof(TDWorkingDays), nameof(WorkingDaysSpec));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("workingDaysSpec")]
         public WorkingDaysSpec WorkingDaysSpec
         {
-            get { return _workingDaysSpec.GetValue(); }
-            set { _workingDaysSpec.SetValue(value); }
+            get => _workingDaysSpec.GetValue();
+            set => _workingDaysSpec.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

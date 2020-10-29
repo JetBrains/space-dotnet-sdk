@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("codeDiscussion")]
         public CodeDiscussionRecord CodeDiscussion
         {
-            get { return _codeDiscussion.GetValue(); }
-            set { _codeDiscussion.SetValue(value); }
+            get => _codeDiscussion.GetValue();
+            set => _codeDiscussion.SetValue(value);
         }
     
         private PropertyValue<CodeReviewRecord> _codeReview = new PropertyValue<CodeReviewRecord>(nameof(CodeDiscussionAddedFeedEvent), nameof(CodeReview));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("codeReview")]
         public CodeReviewRecord CodeReview
         {
-            get { return _codeReview.GetValue(); }
-            set { _codeReview.SetValue(value); }
+            get => _codeReview.GetValue();
+            set => _codeReview.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

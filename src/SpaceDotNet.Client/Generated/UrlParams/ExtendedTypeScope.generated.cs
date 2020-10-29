@@ -37,24 +37,18 @@ namespace SpaceDotNet.Client
         private class ExtendedTypeScopeOrg : ExtendedTypeScope
         {
             public override string ToString()
-            {
-                return "org";
-            }
+                => "org";
         }
         
         private class ExtendedTypeScopeContainer : ExtendedTypeScope
         {
-            public readonly string _containerId;
+            private readonly string _containerId;
             
             public ExtendedTypeScopeContainer(string containerId)
-            {
-                _containerId = containerId;
-            }
+                => _containerId = containerId;
             
             public override string ToString()
-            {
-                return $"containerId:{_containerId}";
-            }
+                => $"containerId:{_containerId}";
         }
         
     }

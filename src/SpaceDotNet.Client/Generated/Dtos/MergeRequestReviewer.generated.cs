@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profileId")]
         public string ProfileId
         {
-            get { return _profileId.GetValue(); }
-            set { _profileId.SetValue(value); }
+            get => _profileId.GetValue();
+            set => _profileId.SetValue(value);
         }
     
         private PropertyValue<CodeReviewParticipantQualityGateSlot?> _qualityGateSlot = new PropertyValue<CodeReviewParticipantQualityGateSlot?>(nameof(MergeRequestReviewer), nameof(QualityGateSlot));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("qualityGateSlot")]
         public CodeReviewParticipantQualityGateSlot? QualityGateSlot
         {
-            get { return _qualityGateSlot.GetValue(); }
-            set { _qualityGateSlot.SetValue(value); }
+            get => _qualityGateSlot.GetValue();
+            set => _qualityGateSlot.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

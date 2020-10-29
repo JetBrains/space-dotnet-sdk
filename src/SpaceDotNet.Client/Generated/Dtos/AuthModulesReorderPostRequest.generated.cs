@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("order")]
         public List<string> Order
         {
-            get { return _order.GetValue(); }
-            set { _order.SetValue(value); }
+            get => _order.GetValue();
+            set => _order.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

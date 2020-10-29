@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principalIndex")]
         public int PrincipalIndex
         {
-            get { return _principalIndex.GetValue(); }
-            set { _principalIndex.SetValue(value); }
+            get => _principalIndex.GetValue();
+            set => _principalIndex.SetValue(value);
         }
     
         private PropertyValue<int> _rightIndex = new PropertyValue<int>(nameof(PermissionComparisonEntry), nameof(RightIndex));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rightIndex")]
         public int RightIndex
         {
-            get { return _rightIndex.GetValue(); }
-            set { _rightIndex.SetValue(value); }
+            get => _rightIndex.GetValue();
+            set => _rightIndex.SetValue(value);
         }
     
         private PropertyValue<bool> _allTargets1 = new PropertyValue<bool>(nameof(PermissionComparisonEntry), nameof(IsAllTargets1));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("allTargets1")]
         public bool IsAllTargets1
         {
-            get { return _allTargets1.GetValue(); }
-            set { _allTargets1.SetValue(value); }
+            get => _allTargets1.GetValue();
+            set => _allTargets1.SetValue(value);
         }
     
         private PropertyValue<List<int>> _targetIndices1 = new PropertyValue<List<int>>(nameof(PermissionComparisonEntry), nameof(TargetIndices1));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targetIndices1")]
         public List<int> TargetIndices1
         {
-            get { return _targetIndices1.GetValue(); }
-            set { _targetIndices1.SetValue(value); }
+            get => _targetIndices1.GetValue();
+            set => _targetIndices1.SetValue(value);
         }
     
         private PropertyValue<bool> _allTargets2 = new PropertyValue<bool>(nameof(PermissionComparisonEntry), nameof(IsAllTargets2));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("allTargets2")]
         public bool IsAllTargets2
         {
-            get { return _allTargets2.GetValue(); }
-            set { _allTargets2.SetValue(value); }
+            get => _allTargets2.GetValue();
+            set => _allTargets2.SetValue(value);
         }
     
         private PropertyValue<List<int>> _targetIndices2 = new PropertyValue<List<int>>(nameof(PermissionComparisonEntry), nameof(TargetIndices2));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targetIndices2")]
         public List<int> TargetIndices2
         {
-            get { return _targetIndices2.GetValue(); }
-            set { _targetIndices2.SetValue(value); }
+            get => _targetIndices2.GetValue();
+            set => _targetIndices2.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

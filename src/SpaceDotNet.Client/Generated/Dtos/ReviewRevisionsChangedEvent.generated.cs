@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commits")]
         public List<RepositoryCommitRecord> Commits
         {
-            get { return _commits.GetValue(); }
-            set { _commits.SetValue(value); }
+            get => _commits.GetValue();
+            set => _commits.SetValue(value);
         }
     
         private PropertyValue<ReviewRevisionsChangedType> _changeType = new PropertyValue<ReviewRevisionsChangedType>(nameof(ReviewRevisionsChangedEvent), nameof(ChangeType));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("changeType")]
         public ReviewRevisionsChangedType ChangeType
         {
-            get { return _changeType.GetValue(); }
-            set { _changeType.SetValue(value); }
+            get => _changeType.GetValue();
+            set => _changeType.SetValue(value);
         }
     
         private PropertyValue<string?> _projectKey = new PropertyValue<string?>(nameof(ReviewRevisionsChangedEvent), nameof(ProjectKey));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectKey")]
         public string? ProjectKey
         {
-            get { return _projectKey.GetValue(); }
-            set { _projectKey.SetValue(value); }
+            get => _projectKey.GetValue();
+            set => _projectKey.SetValue(value);
         }
     
         private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(ReviewRevisionsChangedEvent), nameof(Review));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("review")]
         public CodeReviewRecord? Review
         {
-            get { return _review.GetValue(); }
-            set { _review.SetValue(value); }
+            get => _review.GetValue();
+            set => _review.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

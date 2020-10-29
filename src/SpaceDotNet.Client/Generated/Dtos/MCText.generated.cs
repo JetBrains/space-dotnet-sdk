@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public string Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<bool> _markdown = new PropertyValue<bool>(nameof(MCText), nameof(IsMarkdown));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("markdown")]
         public bool IsMarkdown
         {
-            get { return _markdown.GetValue(); }
-            set { _markdown.SetValue(value); }
+            get => _markdown.GetValue();
+            set => _markdown.SetValue(value);
         }
     
         private PropertyValue<MCElement?> _accessory = new PropertyValue<MCElement?>(nameof(MCText), nameof(Accessory));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessory")]
         public MCElement? Accessory
         {
-            get { return _accessory.GetValue(); }
-            set { _accessory.SetValue(value); }
+            get => _accessory.GetValue();
+            set => _accessory.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

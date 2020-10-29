@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("utcMilliseconds")]
         public long UtcMilliseconds
         {
-            get { return _utcMilliseconds.GetValue(); }
-            set { _utcMilliseconds.SetValue(value); }
+            get => _utcMilliseconds.GetValue();
+            set => _utcMilliseconds.SetValue(value);
         }
     
         private PropertyValue<DateTimeViewParams?> _params = new PropertyValue<DateTimeViewParams?>(nameof(UnfurlDetailsDateTime), nameof(Params));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("params")]
         public DateTimeViewParams? Params
         {
-            get { return _params.GetValue(); }
-            set { _params.SetValue(value); }
+            get => _params.GetValue();
+            set => _params.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

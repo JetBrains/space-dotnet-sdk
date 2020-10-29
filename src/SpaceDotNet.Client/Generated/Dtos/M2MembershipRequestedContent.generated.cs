@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("membership")]
         public TDMembership Membership
         {
-            get { return _membership.GetValue(); }
-            set { _membership.SetValue(value); }
+            get => _membership.GetValue();
+            set => _membership.SetValue(value);
         }
     
         private PropertyValue<bool> _leave = new PropertyValue<bool>(nameof(M2MembershipRequestedContent), nameof(IsLeave));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("leave")]
         public bool IsLeave
         {
-            get { return _leave.GetValue(); }
-            set { _leave.SetValue(value); }
+            get => _leave.GetValue();
+            set => _leave.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("propertyName")]
         public string PropertyName
         {
-            get { return _propertyName.GetValue(); }
-            set { _propertyName.SetValue(value); }
+            get => _propertyName.GetValue();
+            set => _propertyName.SetValue(value);
         }
     
         private PropertyValue<string> _snippet = new PropertyValue<string>(nameof(MatchSnippet), nameof(Snippet));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("snippet")]
         public string Snippet
         {
-            get { return _snippet.GetValue(); }
-            set { _snippet.SetValue(value); }
+            get => _snippet.GetValue();
+            set => _snippet.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

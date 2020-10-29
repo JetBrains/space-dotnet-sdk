@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("summary")]
         public string Summary
         {
-            get { return _summary.GetValue(); }
-            set { _summary.SetValue(value); }
+            get => _summary.GetValue();
+            set => _summary.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CalendarsMeetingsPostRequest), nameof(Description));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<CalendarEventSpec> _occurrenceRule = new PropertyValue<CalendarEventSpec>(nameof(CalendarsMeetingsPostRequest), nameof(OccurrenceRule));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("occurrenceRule")]
         public CalendarEventSpec OccurrenceRule
         {
-            get { return _occurrenceRule.GetValue(); }
-            set { _occurrenceRule.SetValue(value); }
+            get => _occurrenceRule.GetValue();
+            set => _occurrenceRule.SetValue(value);
         }
     
         private PropertyValue<List<string>> _locations = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Locations));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locations")]
         public List<string> Locations
         {
-            get { return _locations.GetValue(); }
-            set { _locations.SetValue(value); }
+            get => _locations.GetValue();
+            set => _locations.SetValue(value);
         }
     
         private PropertyValue<List<string>> _profiles = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Profiles));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profiles")]
         public List<string> Profiles
         {
-            get { return _profiles.GetValue(); }
-            set { _profiles.SetValue(value); }
+            get => _profiles.GetValue();
+            set => _profiles.SetValue(value);
         }
     
         private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(ExternalParticipants));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalParticipants")]
         public List<string> ExternalParticipants
         {
-            get { return _externalParticipants.GetValue(); }
-            set { _externalParticipants.SetValue(value); }
+            get => _externalParticipants.GetValue();
+            set => _externalParticipants.SetValue(value);
         }
     
         private PropertyValue<List<string>> _teams = new PropertyValue<List<string>>(nameof(CalendarsMeetingsPostRequest), nameof(Teams));
@@ -107,8 +107,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<string> Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(CalendarsMeetingsPostRequest), nameof(Visibility));
@@ -116,8 +116,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("visibility")]
         public MeetingVisibility Visibility
         {
-            get { return _visibility.GetValue(); }
-            set { _visibility.SetValue(value); }
+            get => _visibility.GetValue();
+            set => _visibility.SetValue(value);
         }
     
         private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(CalendarsMeetingsPostRequest), nameof(ModificationPreference));
@@ -125,8 +125,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("modificationPreference")]
         public MeetingModificationPreference ModificationPreference
         {
-            get { return _modificationPreference.GetValue(); }
-            set { _modificationPreference.SetValue(value); }
+            get => _modificationPreference.GetValue();
+            set => _modificationPreference.SetValue(value);
         }
     
         private PropertyValue<MeetingJoiningPreference> _joiningPreference = new PropertyValue<MeetingJoiningPreference>(nameof(CalendarsMeetingsPostRequest), nameof(JoiningPreference));
@@ -134,8 +134,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("joiningPreference")]
         public MeetingJoiningPreference JoiningPreference
         {
-            get { return _joiningPreference.GetValue(); }
-            set { _joiningPreference.SetValue(value); }
+            get => _joiningPreference.GetValue();
+            set => _joiningPreference.SetValue(value);
         }
     
         private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsPostRequest), nameof(IsNotifyOnExport));
@@ -143,8 +143,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notifyOnExport")]
         public bool IsNotifyOnExport
         {
-            get { return _notifyOnExport.GetValue(); }
-            set { _notifyOnExport.SetValue(value); }
+            get => _notifyOnExport.GetValue();
+            set => _notifyOnExport.SetValue(value);
         }
     
         private PropertyValue<string?> _organizer = new PropertyValue<string?>(nameof(CalendarsMeetingsPostRequest), nameof(Organizer));
@@ -152,8 +152,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("organizer")]
         public string? Organizer
         {
-            get { return _organizer.GetValue(); }
-            set { _organizer.SetValue(value); }
+            get => _organizer.GetValue();
+            set => _organizer.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

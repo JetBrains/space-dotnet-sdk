@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(DRDraft), nameof(Title));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<DateTime> _modified = new PropertyValue<DateTime>(nameof(DRDraft), nameof(Modified));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Modified
         {
-            get { return _modified.GetValue(); }
-            set { _modified.SetValue(value); }
+            get => _modified.GetValue();
+            set => _modified.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(DRDraft), nameof(Created));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _modifiedBy = new PropertyValue<CPrincipal?>(nameof(DRDraft), nameof(ModifiedBy));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("modifiedBy")]
         public CPrincipal? ModifiedBy
         {
-            get { return _modifiedBy.GetValue(); }
-            set { _modifiedBy.SetValue(value); }
+            get => _modifiedBy.GetValue();
+            set => _modifiedBy.SetValue(value);
         }
     
         private PropertyValue<bool> _shared = new PropertyValue<bool>(nameof(DRDraft), nameof(IsShared));
@@ -106,8 +106,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("shared")]
         public bool IsShared
         {
-            get { return _shared.GetValue(); }
-            set { _shared.SetValue(value); }
+            get => _shared.GetValue();
+            set => _shared.SetValue(value);
         }
     
         private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(DRDraft), nameof(IsDeleted));
@@ -115,8 +115,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deleted")]
         public bool? IsDeleted
         {
-            get { return _deleted.GetValue(); }
-            set { _deleted.SetValue(value); }
+            get => _deleted.GetValue();
+            set => _deleted.SetValue(value);
         }
     
         private PropertyValue<PublicationDetails?> _publicationDetails2 = new PropertyValue<PublicationDetails?>(nameof(DRDraft), nameof(PublicationDetails2));
@@ -124,8 +124,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("publicationDetails2")]
         public PublicationDetails? PublicationDetails2
         {
-            get { return _publicationDetails2.GetValue(); }
-            set { _publicationDetails2.SetValue(value); }
+            get => _publicationDetails2.GetValue();
+            set => _publicationDetails2.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _author = new PropertyValue<TDMemberProfile?>(nameof(DRDraft), nameof(Author));
@@ -133,8 +133,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public TDMemberProfile? Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<bool> _publishedFlag = new PropertyValue<bool>(nameof(DRDraft), nameof(IsPublishedFlag));
@@ -143,8 +143,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("publishedFlag")]
         public bool IsPublishedFlag
         {
-            get { return _publishedFlag.GetValue(); }
-            set { _publishedFlag.SetValue(value); }
+            get => _publishedFlag.GetValue();
+            set => _publishedFlag.SetValue(value);
         }
     
         private PropertyValue<bool?> _published = new PropertyValue<bool?>(nameof(DRDraft), nameof(IsPublished));
@@ -152,8 +152,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("published")]
         public bool? IsPublished
         {
-            get { return _published.GetValue(); }
-            set { _published.SetValue(value); }
+            get => _published.GetValue();
+            set => _published.SetValue(value);
         }
     
         private PropertyValue<DocumentFolderRecord?> _folder = new PropertyValue<DocumentFolderRecord?>(nameof(DRDraft), nameof(Folder));
@@ -161,8 +161,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("folder")]
         public DocumentFolderRecord? Folder
         {
-            get { return _folder.GetValue(); }
-            set { _folder.SetValue(value); }
+            get => _folder.GetValue();
+            set => _folder.SetValue(value);
         }
     
         private PropertyValue<int> _accessOrdinal = new PropertyValue<int>(nameof(DRDraft), nameof(AccessOrdinal));
@@ -171,8 +171,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessOrdinal")]
         public int AccessOrdinal
         {
-            get { return _accessOrdinal.GetValue(); }
-            set { _accessOrdinal.SetValue(value); }
+            get => _accessOrdinal.GetValue();
+            set => _accessOrdinal.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _editors = new PropertyValue<List<TDMemberProfile>>(nameof(DRDraft), nameof(Editors));
@@ -181,8 +181,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("editors")]
         public List<TDMemberProfile> Editors
         {
-            get { return _editors.GetValue(); }
-            set { _editors.SetValue(value); }
+            get => _editors.GetValue();
+            set => _editors.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>> _editorsTeams = new PropertyValue<List<TDTeam>>(nameof(DRDraft), nameof(EditorsTeams));
@@ -191,8 +191,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("editorsTeams")]
         public List<TDTeam> EditorsTeams
         {
-            get { return _editorsTeams.GetValue(); }
-            set { _editorsTeams.SetValue(value); }
+            get => _editorsTeams.GetValue();
+            set => _editorsTeams.SetValue(value);
         }
     
         private PropertyValue<TextDocument> _document = new PropertyValue<TextDocument>(nameof(DRDraft), nameof(Document));
@@ -201,8 +201,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("document")]
         public TextDocument Document
         {
-            get { return _document.GetValue(); }
-            set { _document.SetValue(value); }
+            get => _document.GetValue();
+            set => _document.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

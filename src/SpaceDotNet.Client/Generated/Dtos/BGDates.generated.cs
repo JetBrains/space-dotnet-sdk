@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime First
         {
-            get { return _first.GetValue(); }
-            set { _first.SetValue(value); }
+            get => _first.GetValue();
+            set => _first.SetValue(value);
         }
     
         private PropertyValue<DateTime> _last = new PropertyValue<DateTime>(nameof(BGDates), nameof(Last));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Last
         {
-            get { return _last.GetValue(); }
-            set { _last.SetValue(value); }
+            get => _last.GetValue();
+            set => _last.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

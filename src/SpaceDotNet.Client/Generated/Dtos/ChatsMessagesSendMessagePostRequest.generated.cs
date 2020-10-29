@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("recipient")]
         public MessageRecipient Recipient
         {
-            get { return _recipient.GetValue(); }
-            set { _recipient.SetValue(value); }
+            get => _recipient.GetValue();
+            set => _recipient.SetValue(value);
         }
     
         private PropertyValue<ChatMessage> _content = new PropertyValue<ChatMessage>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Content));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public ChatMessage Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         private PropertyValue<bool?> _unfurlLinks = new PropertyValue<bool?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(IsUnfurlLinks));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("unfurlLinks")]
         public bool? IsUnfurlLinks
         {
-            get { return _unfurlLinks.GetValue(); }
-            set { _unfurlLinks.SetValue(value); }
+            get => _unfurlLinks.GetValue();
+            set => _unfurlLinks.SetValue(value);
         }
     
         private PropertyValue<List<AttachmentIn>?> _attachments = new PropertyValue<List<AttachmentIn>?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(Attachments));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<AttachmentIn>? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(ChatsMessagesSendMessagePostRequest), nameof(ExternalId));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalId")]
         public string? ExternalId
         {
-            get { return _externalId.GetValue(); }
-            set { _externalId.SetValue(value); }
+            get => _externalId.GetValue();
+            set => _externalId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

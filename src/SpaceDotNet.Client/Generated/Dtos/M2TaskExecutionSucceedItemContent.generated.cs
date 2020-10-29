@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("taskExecutionId")]
         public string TaskExecutionId
         {
-            get { return _taskExecutionId.GetValue(); }
-            set { _taskExecutionId.SetValue(value); }
+            get => _taskExecutionId.GetValue();
+            set => _taskExecutionId.SetValue(value);
         }
     
         private PropertyValue<string> _taskExecutionName = new PropertyValue<string>(nameof(M2TaskExecutionSucceedItemContent), nameof(TaskExecutionName));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("taskExecutionName")]
         public string TaskExecutionName
         {
-            get { return _taskExecutionName.GetValue(); }
-            set { _taskExecutionName.SetValue(value); }
+            get => _taskExecutionName.GetValue();
+            set => _taskExecutionName.SetValue(value);
         }
     
         private PropertyValue<string> _repoName = new PropertyValue<string>(nameof(M2TaskExecutionSucceedItemContent), nameof(RepoName));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repoName")]
         public string RepoName
         {
-            get { return _repoName.GetValue(); }
-            set { _repoName.SetValue(value); }
+            get => _repoName.GetValue();
+            set => _repoName.SetValue(value);
         }
     
         private PropertyValue<string> _branchName = new PropertyValue<string>(nameof(M2TaskExecutionSucceedItemContent), nameof(BranchName));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branchName")]
         public string BranchName
         {
-            get { return _branchName.GetValue(); }
-            set { _branchName.SetValue(value); }
+            get => _branchName.GetValue();
+            set => _branchName.SetValue(value);
         }
     
         private PropertyValue<string> _commit = new PropertyValue<string>(nameof(M2TaskExecutionSucceedItemContent), nameof(Commit));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("commit")]
         public string Commit
         {
-            get { return _commit.GetValue(); }
-            set { _commit.SetValue(value); }
+            get => _commit.GetValue();
+            set => _commit.SetValue(value);
         }
     
         private PropertyValue<string> _shortCommitMessage = new PropertyValue<string>(nameof(M2TaskExecutionSucceedItemContent), nameof(ShortCommitMessage));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("shortCommitMessage")]
         public string ShortCommitMessage
         {
-            get { return _shortCommitMessage.GetValue(); }
-            set { _shortCommitMessage.SetValue(value); }
+            get => _shortCommitMessage.GetValue();
+            set => _shortCommitMessage.SetValue(value);
         }
     
         private PropertyValue<ProjectKey> _project = new PropertyValue<ProjectKey>(nameof(M2TaskExecutionSucceedItemContent), nameof(Project));
@@ -113,8 +113,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public ProjectKey Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<long> _finishDateTime = new PropertyValue<long>(nameof(M2TaskExecutionSucceedItemContent), nameof(FinishDateTime));
@@ -123,8 +123,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("finishDateTime")]
         public long FinishDateTime
         {
-            get { return _finishDateTime.GetValue(); }
-            set { _finishDateTime.SetValue(value); }
+            get => _finishDateTime.GetValue();
+            set => _finishDateTime.SetValue(value);
         }
     
         private PropertyValue<string> _triggerInfo = new PropertyValue<string>(nameof(M2TaskExecutionSucceedItemContent), nameof(TriggerInfo));
@@ -133,8 +133,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("triggerInfo")]
         public string TriggerInfo
         {
-            get { return _triggerInfo.GetValue(); }
-            set { _triggerInfo.SetValue(value); }
+            get => _triggerInfo.GetValue();
+            set => _triggerInfo.SetValue(value);
         }
     
         private PropertyValue<string> _details = new PropertyValue<string>(nameof(M2TaskExecutionSucceedItemContent), nameof(Details));
@@ -143,8 +143,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public string Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

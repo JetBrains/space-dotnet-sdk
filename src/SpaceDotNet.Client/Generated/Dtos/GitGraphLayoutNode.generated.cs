@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pos")]
         public int Pos
         {
-            get { return _pos.GetValue(); }
-            set { _pos.SetValue(value); }
+            get => _pos.GetValue();
+            set => _pos.SetValue(value);
         }
     
         private PropertyValue<int> _color = new PropertyValue<int>(nameof(GitGraphLayoutNode), nameof(Color));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("color")]
         public int Color
         {
-            get { return _color.GetValue(); }
-            set { _color.SetValue(value); }
+            get => _color.GetValue();
+            set => _color.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<CodeReviewRecord> _review = new PropertyValue<CodeReviewRecord>(nameof(CodeReviewDiscussionRecord), nameof(Review));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("review")]
         public CodeReviewRecord Review
         {
-            get { return _review.GetValue(); }
-            set { _review.SetValue(value); }
+            get => _review.GetValue();
+            set => _review.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeReviewDiscussionRecord), nameof(Created));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(CodeReviewDiscussionRecord), nameof(Channel));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public M2ChannelRecord Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeReviewDiscussionRecord), nameof(IsResolved));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resolved")]
         public bool IsResolved
         {
-            get { return _resolved.GetValue(); }
-            set { _resolved.SetValue(value); }
+            get => _resolved.GetValue();
+            set => _resolved.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

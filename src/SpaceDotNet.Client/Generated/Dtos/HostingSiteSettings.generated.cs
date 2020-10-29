@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("public")]
         public bool IsPublic
         {
-            get { return _public.GetValue(); }
-            set { _public.SetValue(value); }
+            get => _public.GetValue();
+            set => _public.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

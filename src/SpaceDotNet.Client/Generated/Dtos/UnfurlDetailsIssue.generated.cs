@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issue")]
         public Issue Issue
         {
-            get { return _issue.GetValue(); }
-            set { _issue.SetValue(value); }
+            get => _issue.GetValue();
+            set => _issue.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

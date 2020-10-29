@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("score")]
         public double Score
         {
-            get { return _score.GetValue(); }
-            set { _score.SetValue(value); }
+            get => _score.GetValue();
+            set => _score.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(EntityHit), nameof(Title));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<List<MatchSnippet>> _snippets = new PropertyValue<List<MatchSnippet>>(nameof(EntityHit), nameof(Snippets));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("snippets")]
         public List<MatchSnippet> Snippets
         {
-            get { return _snippets.GetValue(); }
-            set { _snippets.SetValue(value); }
+            get => _snippets.GetValue();
+            set => _snippets.SetValue(value);
         }
     
         private PropertyValue<EntityHitDetails> _details = new PropertyValue<EntityHitDetails>(nameof(EntityHit), nameof(Details));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public EntityHitDetails Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

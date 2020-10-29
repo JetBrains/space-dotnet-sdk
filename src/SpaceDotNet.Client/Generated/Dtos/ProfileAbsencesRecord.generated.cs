@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<List<AbsenceRecord>> _absences = new PropertyValue<List<AbsenceRecord>>(nameof(ProfileAbsencesRecord), nameof(Absences));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("absences")]
         public List<AbsenceRecord> Absences
         {
-            get { return _absences.GetValue(); }
-            set { _absences.SetValue(value); }
+            get => _absences.GetValue();
+            set => _absences.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("weekday")]
         public Weekday Weekday
         {
-            get { return _weekday.GetValue(); }
-            set { _weekday.SetValue(value); }
+            get => _weekday.GetValue();
+            set => _weekday.SetValue(value);
         }
     
         private PropertyValue<int> _shift = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Shift));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("shift")]
         public int Shift
         {
-            get { return _shift.GetValue(); }
-            set { _shift.SetValue(value); }
+            get => _shift.GetValue();
+            set => _shift.SetValue(value);
         }
     
         private PropertyValue<int> _interval = new PropertyValue<int>(nameof(RecurrenceRuleFreqMonthlyOnFirstWeekday), nameof(Interval));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("interval")]
         public int Interval
         {
-            get { return _interval.GetValue(); }
-            set { _interval.SetValue(value); }
+            get => _interval.GetValue();
+            set => _interval.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

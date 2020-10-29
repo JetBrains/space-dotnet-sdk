@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targetFramework")]
         public string? TargetFramework
         {
-            get { return _targetFramework.GetValue(); }
-            set { _targetFramework.SetValue(value); }
+            get => _targetFramework.GetValue();
+            set => _targetFramework.SetValue(value);
         }
     
         private PropertyValue<List<NuGetDependency>?> _dependencies = new PropertyValue<List<NuGetDependency>?>(nameof(NuGetDependencyGroup), nameof(Dependencies));
@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("dependencies")]
         public List<NuGetDependency>? Dependencies
         {
-            get { return _dependencies.GetValue(); }
-            set { _dependencies.SetValue(value); }
+            get => _dependencies.GetValue();
+            set => _dependencies.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Meeting), nameof(IsArchived));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _summary = new PropertyValue<string>(nameof(Meeting), nameof(Summary));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("summary")]
         public string Summary
         {
-            get { return _summary.GetValue(); }
-            set { _summary.SetValue(value); }
+            get => _summary.GetValue();
+            set => _summary.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Meeting), nameof(Description));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<List<TDLocation>> _locations = new PropertyValue<List<TDLocation>>(nameof(Meeting), nameof(Locations));
@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locations")]
         public List<TDLocation> Locations
         {
-            get { return _locations.GetValue(); }
-            set { _locations.SetValue(value); }
+            get => _locations.GetValue();
+            set => _locations.SetValue(value);
         }
     
         private PropertyValue<List<TDMemberProfile>> _profiles = new PropertyValue<List<TDMemberProfile>>(nameof(Meeting), nameof(Profiles));
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profiles")]
         public List<TDMemberProfile> Profiles
         {
-            get { return _profiles.GetValue(); }
-            set { _profiles.SetValue(value); }
+            get => _profiles.GetValue();
+            set => _profiles.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>> _teams = new PropertyValue<List<TDTeam>>(nameof(Meeting), nameof(Teams));
@@ -121,8 +121,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<TDTeam> Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         private PropertyValue<CalendarEventSpec> _occurrenceRule = new PropertyValue<CalendarEventSpec>(nameof(Meeting), nameof(OccurrenceRule));
@@ -131,8 +131,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("occurrenceRule")]
         public CalendarEventSpec OccurrenceRule
         {
-            get { return _occurrenceRule.GetValue(); }
-            set { _occurrenceRule.SetValue(value); }
+            get => _occurrenceRule.GetValue();
+            set => _occurrenceRule.SetValue(value);
         }
     
         private PropertyValue<MeetingOrigin> _origin = new PropertyValue<MeetingOrigin>(nameof(Meeting), nameof(Origin));
@@ -141,8 +141,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("origin")]
         public MeetingOrigin Origin
         {
-            get { return _origin.GetValue(); }
-            set { _origin.SetValue(value); }
+            get => _origin.GetValue();
+            set => _origin.SetValue(value);
         }
     
         private PropertyValue<string?> _conferenceLink = new PropertyValue<string?>(nameof(Meeting), nameof(ConferenceLink));
@@ -150,8 +150,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("conferenceLink")]
         public string? ConferenceLink
         {
-            get { return _conferenceLink.GetValue(); }
-            set { _conferenceLink.SetValue(value); }
+            get => _conferenceLink.GetValue();
+            set => _conferenceLink.SetValue(value);
         }
     
         private PropertyValue<MeetingVisibility> _visibility = new PropertyValue<MeetingVisibility>(nameof(Meeting), nameof(Visibility));
@@ -160,8 +160,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("visibility")]
         public MeetingVisibility Visibility
         {
-            get { return _visibility.GetValue(); }
-            set { _visibility.SetValue(value); }
+            get => _visibility.GetValue();
+            set => _visibility.SetValue(value);
         }
     
         private PropertyValue<MeetingModificationPreference> _modificationPreference = new PropertyValue<MeetingModificationPreference>(nameof(Meeting), nameof(ModificationPreference));
@@ -170,8 +170,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("modificationPreference")]
         public MeetingModificationPreference ModificationPreference
         {
-            get { return _modificationPreference.GetValue(); }
-            set { _modificationPreference.SetValue(value); }
+            get => _modificationPreference.GetValue();
+            set => _modificationPreference.SetValue(value);
         }
     
         private PropertyValue<MeetingJoiningPreference?> _joiningPreference = new PropertyValue<MeetingJoiningPreference?>(nameof(Meeting), nameof(JoiningPreference));
@@ -179,8 +179,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("joiningPreference")]
         public MeetingJoiningPreference? JoiningPreference
         {
-            get { return _joiningPreference.GetValue(); }
-            set { _joiningPreference.SetValue(value); }
+            get => _joiningPreference.GetValue();
+            set => _joiningPreference.SetValue(value);
         }
     
         private PropertyValue<MeetingOrganizer?> _organizer = new PropertyValue<MeetingOrganizer?>(nameof(Meeting), nameof(Organizer));
@@ -188,8 +188,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("organizer")]
         public MeetingOrganizer? Organizer
         {
-            get { return _organizer.GetValue(); }
-            set { _organizer.SetValue(value); }
+            get => _organizer.GetValue();
+            set => _organizer.SetValue(value);
         }
     
         private PropertyValue<long> _etag = new PropertyValue<long>(nameof(Meeting), nameof(Etag));
@@ -198,8 +198,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("etag")]
         public long Etag
         {
-            get { return _etag.GetValue(); }
-            set { _etag.SetValue(value); }
+            get => _etag.GetValue();
+            set => _etag.SetValue(value);
         }
     
         private PropertyValue<bool> _privateDataSubstituted = new PropertyValue<bool>(nameof(Meeting), nameof(IsPrivateDataSubstituted));
@@ -208,8 +208,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("privateDataSubstituted")]
         public bool IsPrivateDataSubstituted
         {
-            get { return _privateDataSubstituted.GetValue(); }
-            set { _privateDataSubstituted.SetValue(value); }
+            get => _privateDataSubstituted.GetValue();
+            set => _privateDataSubstituted.SetValue(value);
         }
     
         private PropertyValue<bool> _canModify = new PropertyValue<bool>(nameof(Meeting), nameof(CanModify));
@@ -218,8 +218,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canModify")]
         public bool CanModify
         {
-            get { return _canModify.GetValue(); }
-            set { _canModify.SetValue(value); }
+            get => _canModify.GetValue();
+            set => _canModify.SetValue(value);
         }
     
         private PropertyValue<bool> _canDelete = new PropertyValue<bool>(nameof(Meeting), nameof(CanDelete));
@@ -228,8 +228,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canDelete")]
         public bool CanDelete
         {
-            get { return _canDelete.GetValue(); }
-            set { _canDelete.SetValue(value); }
+            get => _canDelete.GetValue();
+            set => _canDelete.SetValue(value);
         }
     
         private PropertyValue<bool> _canJoin = new PropertyValue<bool>(nameof(Meeting), nameof(CanJoin));
@@ -238,8 +238,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canJoin")]
         public bool CanJoin
         {
-            get { return _canJoin.GetValue(); }
-            set { _canJoin.SetValue(value); }
+            get => _canJoin.GetValue();
+            set => _canJoin.SetValue(value);
         }
     
         private PropertyValue<List<string>> _externalParticipants = new PropertyValue<List<string>>(nameof(Meeting), nameof(ExternalParticipants));
@@ -248,8 +248,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalParticipants")]
         public List<string> ExternalParticipants
         {
-            get { return _externalParticipants.GetValue(); }
-            set { _externalParticipants.SetValue(value); }
+            get => _externalParticipants.GetValue();
+            set => _externalParticipants.SetValue(value);
         }
     
         private PropertyValue<string?> _linkToExternalSource = new PropertyValue<string?>(nameof(Meeting), nameof(LinkToExternalSource));
@@ -257,8 +257,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("linkToExternalSource")]
         public string? LinkToExternalSource
         {
-            get { return _linkToExternalSource.GetValue(); }
-            set { _linkToExternalSource.SetValue(value); }
+            get => _linkToExternalSource.GetValue();
+            set => _linkToExternalSource.SetValue(value);
         }
     
         private PropertyValue<List<MeetingAttachment>?> _eventAttachments = new PropertyValue<List<MeetingAttachment>?>(nameof(Meeting), nameof(EventAttachments));
@@ -266,8 +266,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("eventAttachments")]
         public List<MeetingAttachment>? EventAttachments
         {
-            get { return _eventAttachments.GetValue(); }
-            set { _eventAttachments.SetValue(value); }
+            get => _eventAttachments.GetValue();
+            set => _eventAttachments.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

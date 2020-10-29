@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<string> _link = new PropertyValue<string>(nameof(Unfurl), nameof(Link));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("link")]
         public string Link
         {
-            get { return _link.GetValue(); }
-            set { _link.SetValue(value); }
+            get => _link.GetValue();
+            set => _link.SetValue(value);
         }
     
         private PropertyValue<string> _text = new PropertyValue<string>(nameof(Unfurl), nameof(Text));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<UnfurlDetails?> _details = new PropertyValue<UnfurlDetails?>(nameof(Unfurl), nameof(Details));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public UnfurlDetails? Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         private PropertyValue<string?> _sitename = new PropertyValue<string?>(nameof(Unfurl), nameof(Sitename));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sitename")]
         public string? Sitename
         {
-            get { return _sitename.GetValue(); }
-            set { _sitename.SetValue(value); }
+            get => _sitename.GetValue();
+            set => _sitename.SetValue(value);
         }
     
         private PropertyValue<string?> _image = new PropertyValue<string?>(nameof(Unfurl), nameof(Image));
@@ -102,8 +102,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("image")]
         public string? Image
         {
-            get { return _image.GetValue(); }
-            set { _image.SetValue(value); }
+            get => _image.GetValue();
+            set => _image.SetValue(value);
         }
     
         private PropertyValue<string?> _imageMime = new PropertyValue<string?>(nameof(Unfurl), nameof(ImageMime));
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("imageMime")]
         public string? ImageMime
         {
-            get { return _imageMime.GetValue(); }
-            set { _imageMime.SetValue(value); }
+            get => _imageMime.GetValue();
+            set => _imageMime.SetValue(value);
         }
     
         private PropertyValue<int?> _imageWidth = new PropertyValue<int?>(nameof(Unfurl), nameof(ImageWidth));
@@ -120,8 +120,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("imageWidth")]
         public int? ImageWidth
         {
-            get { return _imageWidth.GetValue(); }
-            set { _imageWidth.SetValue(value); }
+            get => _imageWidth.GetValue();
+            set => _imageWidth.SetValue(value);
         }
     
         private PropertyValue<int?> _imageHeight = new PropertyValue<int?>(nameof(Unfurl), nameof(ImageHeight));
@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("imageHeight")]
         public int? ImageHeight
         {
-            get { return _imageHeight.GetValue(); }
-            set { _imageHeight.SetValue(value); }
+            get => _imageHeight.GetValue();
+            set => _imageHeight.SetValue(value);
         }
     
         private PropertyValue<string?> _video = new PropertyValue<string?>(nameof(Unfurl), nameof(Video));
@@ -138,8 +138,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("video")]
         public string? Video
         {
-            get { return _video.GetValue(); }
-            set { _video.SetValue(value); }
+            get => _video.GetValue();
+            set => _video.SetValue(value);
         }
     
         private PropertyValue<string?> _videoIFrame = new PropertyValue<string?>(nameof(Unfurl), nameof(VideoIFrame));
@@ -147,8 +147,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("videoIFrame")]
         public string? VideoIFrame
         {
-            get { return _videoIFrame.GetValue(); }
-            set { _videoIFrame.SetValue(value); }
+            get => _videoIFrame.GetValue();
+            set => _videoIFrame.SetValue(value);
         }
     
         private PropertyValue<string?> _videoMime = new PropertyValue<string?>(nameof(Unfurl), nameof(VideoMime));
@@ -156,8 +156,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("videoMime")]
         public string? VideoMime
         {
-            get { return _videoMime.GetValue(); }
-            set { _videoMime.SetValue(value); }
+            get => _videoMime.GetValue();
+            set => _videoMime.SetValue(value);
         }
     
         private PropertyValue<int?> _videoHeight = new PropertyValue<int?>(nameof(Unfurl), nameof(VideoHeight));
@@ -165,8 +165,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("videoHeight")]
         public int? VideoHeight
         {
-            get { return _videoHeight.GetValue(); }
-            set { _videoHeight.SetValue(value); }
+            get => _videoHeight.GetValue();
+            set => _videoHeight.SetValue(value);
         }
     
         private PropertyValue<int?> _videoWidth = new PropertyValue<int?>(nameof(Unfurl), nameof(VideoWidth));
@@ -174,8 +174,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("videoWidth")]
         public int? VideoWidth
         {
-            get { return _videoWidth.GetValue(); }
-            set { _videoWidth.SetValue(value); }
+            get => _videoWidth.GetValue();
+            set => _videoWidth.SetValue(value);
         }
     
         private PropertyValue<string?> _favicon = new PropertyValue<string?>(nameof(Unfurl), nameof(Favicon));
@@ -183,8 +183,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("favicon")]
         public string? Favicon
         {
-            get { return _favicon.GetValue(); }
-            set { _favicon.SetValue(value); }
+            get => _favicon.GetValue();
+            set => _favicon.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("password")]
         public string Password
         {
-            get { return _password.GetValue(); }
-            set { _password.SetValue(value); }
+            get => _password.GetValue();
+            set => _password.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

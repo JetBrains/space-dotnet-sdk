@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("metadata")]
         public ImportMetadata Metadata
         {
-            get { return _metadata.GetValue(); }
-            set { _metadata.SetValue(value); }
+            get => _metadata.GetValue();
+            set => _metadata.SetValue(value);
         }
     
         private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogsArticlesImportPostRequest), nameof(Articles));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("articles")]
         public List<ExternalArticle> Articles
         {
-            get { return _articles.GetValue(); }
-            set { _articles.SetValue(value); }
+            get => _articles.GetValue();
+            set => _articles.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

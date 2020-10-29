@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("owners")]
         public BoardOwners Owners
         {
-            get { return _owners.GetValue(); }
-            set { _owners.SetValue(value); }
+            get => _owners.GetValue();
+            set => _owners.SetValue(value);
         }
     
         private PropertyValue<BoardColumns> _columns = new PropertyValue<BoardColumns>(nameof(BoardInfo), nameof(Columns));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("columns")]
         public BoardColumns Columns
         {
-            get { return _columns.GetValue(); }
-            set { _columns.SetValue(value); }
+            get => _columns.GetValue();
+            set => _columns.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(BoardInfo), nameof(Description));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

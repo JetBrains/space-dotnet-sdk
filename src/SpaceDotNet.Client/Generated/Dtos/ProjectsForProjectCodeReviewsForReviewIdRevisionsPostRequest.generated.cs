@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revisions")]
         public List<RevisionInReview> Revisions
         {
-            get { return _revisions.GetValue(); }
-            set { _revisions.SetValue(value); }
+            get => _revisions.GetValue();
+            set => _revisions.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

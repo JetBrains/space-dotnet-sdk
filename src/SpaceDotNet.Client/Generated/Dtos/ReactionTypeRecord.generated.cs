@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ReactionTypeRecord), nameof(IsArchived));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<ReactionData> _data = new PropertyValue<ReactionData>(nameof(ReactionTypeRecord), nameof(Data));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("data")]
         public ReactionData Data
         {
-            get { return _data.GetValue(); }
-            set { _data.SetValue(value); }
+            get => _data.GetValue();
+            set => _data.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _provider = new PropertyValue<CPrincipal>(nameof(ReactionTypeRecord), nameof(Provider));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("provider")]
         public CPrincipal Provider
         {
-            get { return _provider.GetValue(); }
-            set { _provider.SetValue(value); }
+            get => _provider.GetValue();
+            set => _provider.SetValue(value);
         }
     
         private PropertyValue<DateTime> _addedAt = new PropertyValue<DateTime>(nameof(ReactionTypeRecord), nameof(AddedAt));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime AddedAt
         {
-            get { return _addedAt.GetValue(); }
-            set { _addedAt.SetValue(value); }
+            get => _addedAt.GetValue();
+            set => _addedAt.SetValue(value);
         }
     
         private PropertyValue<int?> _order = new PropertyValue<int?>(nameof(ReactionTypeRecord), nameof(Order));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("order")]
         public int? Order
         {
-            get { return _order.GetValue(); }
-            set { _order.SetValue(value); }
+            get => _order.GetValue();
+            set => _order.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

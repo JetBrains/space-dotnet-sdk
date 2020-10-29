@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("days")]
         public List<Workday> Days
         {
-            get { return _days.GetValue(); }
-            set { _days.SetValue(value); }
+            get => _days.GetValue();
+            set => _days.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

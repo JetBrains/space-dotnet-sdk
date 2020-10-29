@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("calendar")]
         public string Calendar
         {
-            get { return _calendar.GetValue(); }
-            set { _calendar.SetValue(value); }
+            get => _calendar.GetValue();
+            set => _calendar.SetValue(value);
         }
     
         private PropertyValue<string> _attachmentId = new PropertyValue<string>(nameof(PublicHolidaysCalendarsImportPostRequest), nameof(AttachmentId));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachmentId")]
         public string AttachmentId
         {
-            get { return _attachmentId.GetValue(); }
-            set { _attachmentId.SetValue(value); }
+            get => _attachmentId.GetValue();
+            set => _attachmentId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

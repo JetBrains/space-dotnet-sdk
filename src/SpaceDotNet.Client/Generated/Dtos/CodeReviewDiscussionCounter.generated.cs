@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewDiscussionCounter), nameof(ProjectId));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectId")]
         public string ProjectId
         {
-            get { return _projectId.GetValue(); }
-            set { _projectId.SetValue(value); }
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<Counter> _counter = new PropertyValue<Counter>(nameof(CodeReviewDiscussionCounter), nameof(Counter));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("counter")]
         public Counter Counter
         {
-            get { return _counter.GetValue(); }
-            set { _counter.SetValue(value); }
+            get => _counter.GetValue();
+            set => _counter.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

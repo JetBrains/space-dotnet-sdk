@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("uid")]
         public TDMemberProfile Uid
         {
-            get { return _uid.GetValue(); }
-            set { _uid.SetValue(value); }
+            get => _uid.GetValue();
+            set => _uid.SetValue(value);
         }
     
         private PropertyValue<ReviewerChangedType> _changeType = new PropertyValue<ReviewerChangedType>(nameof(ReviewerChangedEvent), nameof(ChangeType));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("changeType")]
         public ReviewerChangedType ChangeType
         {
-            get { return _changeType.GetValue(); }
-            set { _changeType.SetValue(value); }
+            get => _changeType.GetValue();
+            set => _changeType.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principal")]
         public PrincipalIn Principal
         {
-            get { return _principal.GetValue(); }
-            set { _principal.SetValue(value); }
+            get => _principal.GetValue();
+            set => _principal.SetValue(value);
         }
     
         private PropertyValue<string> _uniqueRightCode = new PropertyValue<string>(nameof(PermissionsCheckPermissionPostRequest), nameof(UniqueRightCode));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("uniqueRightCode")]
         public string UniqueRightCode
         {
-            get { return _uniqueRightCode.GetValue(); }
-            set { _uniqueRightCode.SetValue(value); }
+            get => _uniqueRightCode.GetValue();
+            set => _uniqueRightCode.SetValue(value);
         }
     
         private PropertyValue<PermissionTarget> _target = new PropertyValue<PermissionTarget>(nameof(PermissionsCheckPermissionPostRequest), nameof(Target));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("target")]
         public PermissionTarget Target
         {
-            get { return _target.GetValue(); }
-            set { _target.SetValue(value); }
+            get => _target.GetValue();
+            set => _target.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

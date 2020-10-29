@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("x")]
         public int? X
         {
-            get { return _x.GetValue(); }
-            set { _x.SetValue(value); }
+            get => _x.GetValue();
+            set => _x.SetValue(value);
         }
     
         private PropertyValue<int?> _y = new PropertyValue<int?>(nameof(TeamDirectoryLocationMapMemberPointsForLocationPointIdPatchRequest), nameof(Y));
@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("y")]
         public int? Y
         {
-            get { return _y.GetValue(); }
-            set { _y.SetValue(value); }
+            get => _y.GetValue();
+            set => _y.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("code")]
         public string Code
         {
-            get { return _code.GetValue(); }
-            set { _code.SetValue(value); }
+            get => _code.GetValue();
+            set => _code.SetValue(value);
         }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(OIDCDiscoveryError), nameof(Description));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

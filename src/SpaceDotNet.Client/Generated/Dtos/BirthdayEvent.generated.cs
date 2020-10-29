@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberWithTeam Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<DateTime> _birthday = new PropertyValue<DateTime>(nameof(BirthdayEvent), nameof(Birthday));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime Birthday
         {
-            get { return _birthday.GetValue(); }
-            set { _birthday.SetValue(value); }
+            get => _birthday.GetValue();
+            set => _birthday.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

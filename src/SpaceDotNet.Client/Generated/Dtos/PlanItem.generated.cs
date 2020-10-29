@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _checklistId = new PropertyValue<string>(nameof(PlanItem), nameof(ChecklistId));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("checklistId")]
         public string ChecklistId
         {
-            get { return _checklistId.GetValue(); }
-            set { _checklistId.SetValue(value); }
+            get => _checklistId.GetValue();
+            set => _checklistId.SetValue(value);
         }
     
         private PropertyValue<PlanningTag?> _tag = new PropertyValue<PlanningTag?>(nameof(PlanItem), nameof(Tag));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tag")]
         public PlanningTag? Tag
         {
-            get { return _tag.GetValue(); }
-            set { _tag.SetValue(value); }
+            get => _tag.GetValue();
+            set => _tag.SetValue(value);
         }
     
         private PropertyValue<string?> _simpleText = new PropertyValue<string?>(nameof(PlanItem), nameof(SimpleText));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("simpleText")]
         public string? SimpleText
         {
-            get { return _simpleText.GetValue(); }
-            set { _simpleText.SetValue(value); }
+            get => _simpleText.GetValue();
+            set => _simpleText.SetValue(value);
         }
     
         private PropertyValue<bool?> _simpleDone = new PropertyValue<bool?>(nameof(PlanItem), nameof(IsSimpleDone));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("simpleDone")]
         public bool? IsSimpleDone
         {
-            get { return _simpleDone.GetValue(); }
-            set { _simpleDone.SetValue(value); }
+            get => _simpleDone.GetValue();
+            set => _simpleDone.SetValue(value);
         }
     
         private PropertyValue<Issue?> _issue = new PropertyValue<Issue?>(nameof(PlanItem), nameof(Issue));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issue")]
         public Issue? Issue
         {
-            get { return _issue.GetValue(); }
-            set { _issue.SetValue(value); }
+            get => _issue.GetValue();
+            set => _issue.SetValue(value);
         }
     
         private PropertyValue<string?> _issueProblem = new PropertyValue<string?>(nameof(PlanItem), nameof(IssueProblem));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issueProblem")]
         public string? IssueProblem
         {
-            get { return _issueProblem.GetValue(); }
-            set { _issueProblem.SetValue(value); }
+            get => _issueProblem.GetValue();
+            set => _issueProblem.SetValue(value);
         }
     
         private PropertyValue<bool?> _canEditIssue = new PropertyValue<bool?>(nameof(PlanItem), nameof(CanEditIssue));
@@ -114,8 +114,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("canEditIssue")]
         public bool? CanEditIssue
         {
-            get { return _canEditIssue.GetValue(); }
-            set { _canEditIssue.SetValue(value); }
+            get => _canEditIssue.GetValue();
+            set => _canEditIssue.SetValue(value);
         }
     
         private PropertyValue<bool> _hasChildren = new PropertyValue<bool>(nameof(PlanItem), nameof(IsHasChildren));
@@ -124,8 +124,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hasChildren")]
         public bool IsHasChildren
         {
-            get { return _hasChildren.GetValue(); }
-            set { _hasChildren.SetValue(value); }
+            get => _hasChildren.GetValue();
+            set => _hasChildren.SetValue(value);
         }
     
         private PropertyValue<List<PlanItem>> _children = new PropertyValue<List<PlanItem>>(nameof(PlanItem), nameof(Children));
@@ -134,8 +134,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("children")]
         public List<PlanItem> Children
         {
-            get { return _children.GetValue(); }
-            set { _children.SetValue(value); }
+            get => _children.GetValue();
+            set => _children.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

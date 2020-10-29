@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("alias")]
         public string Alias
         {
-            get { return _alias.GetValue(); }
-            set { _alias.SetValue(value); }
+            get => _alias.GetValue();
+            set => _alias.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(BGArticleAlias), nameof(Created));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

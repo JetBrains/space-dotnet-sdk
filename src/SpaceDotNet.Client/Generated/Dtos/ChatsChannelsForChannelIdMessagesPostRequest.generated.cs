@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<string?> _temporaryId = new PropertyValue<string?>(nameof(ChatsChannelsForChannelIdMessagesPostRequest), nameof(TemporaryId));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("temporaryId")]
         public string? TemporaryId
         {
-            get { return _temporaryId.GetValue(); }
-            set { _temporaryId.SetValue(value); }
+            get => _temporaryId.GetValue();
+            set => _temporaryId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

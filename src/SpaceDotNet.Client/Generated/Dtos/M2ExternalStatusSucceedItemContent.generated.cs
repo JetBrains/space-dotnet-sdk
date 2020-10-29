@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectId")]
         public string? ProjectId
         {
-            get { return _projectId.GetValue(); }
-            set { _projectId.SetValue(value); }
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(M2ExternalStatusSucceedItemContent), nameof(Repository));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _branch = new PropertyValue<string>(nameof(M2ExternalStatusSucceedItemContent), nameof(Branch));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branch")]
         public string Branch
         {
-            get { return _branch.GetValue(); }
-            set { _branch.SetValue(value); }
+            get => _branch.GetValue();
+            set => _branch.SetValue(value);
         }
     
         private PropertyValue<RevisionAuthorInfo?> _revisionInfo = new PropertyValue<RevisionAuthorInfo?>(nameof(M2ExternalStatusSucceedItemContent), nameof(RevisionInfo));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revisionInfo")]
         public RevisionAuthorInfo? RevisionInfo
         {
-            get { return _revisionInfo.GetValue(); }
-            set { _revisionInfo.SetValue(value); }
+            get => _revisionInfo.GetValue();
+            set => _revisionInfo.SetValue(value);
         }
     
         private PropertyValue<LastChanges?> _changesInfo = new PropertyValue<LastChanges?>(nameof(M2ExternalStatusSucceedItemContent), nameof(ChangesInfo));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("changesInfo")]
         public LastChanges? ChangesInfo
         {
-            get { return _changesInfo.GetValue(); }
-            set { _changesInfo.SetValue(value); }
+            get => _changesInfo.GetValue();
+            set => _changesInfo.SetValue(value);
         }
     
         private PropertyValue<string> _url = new PropertyValue<string>(nameof(M2ExternalStatusSucceedItemContent), nameof(Url));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("url")]
         public string Url
         {
-            get { return _url.GetValue(); }
-            set { _url.SetValue(value); }
+            get => _url.GetValue();
+            set => _url.SetValue(value);
         }
     
         private PropertyValue<string> _externalServiceName = new PropertyValue<string>(nameof(M2ExternalStatusSucceedItemContent), nameof(ExternalServiceName));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalServiceName")]
         public string ExternalServiceName
         {
-            get { return _externalServiceName.GetValue(); }
-            set { _externalServiceName.SetValue(value); }
+            get => _externalServiceName.GetValue();
+            set => _externalServiceName.SetValue(value);
         }
     
         private PropertyValue<string> _taskName = new PropertyValue<string>(nameof(M2ExternalStatusSucceedItemContent), nameof(TaskName));
@@ -120,8 +120,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("taskName")]
         public string TaskName
         {
-            get { return _taskName.GetValue(); }
-            set { _taskName.SetValue(value); }
+            get => _taskName.GetValue();
+            set => _taskName.SetValue(value);
         }
     
         private PropertyValue<long?> _timestamp = new PropertyValue<long?>(nameof(M2ExternalStatusSucceedItemContent), nameof(Timestamp));
@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("timestamp")]
         public long? Timestamp
         {
-            get { return _timestamp.GetValue(); }
-            set { _timestamp.SetValue(value); }
+            get => _timestamp.GetValue();
+            set => _timestamp.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(M2ExternalStatusSucceedItemContent), nameof(Description));
@@ -138,8 +138,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

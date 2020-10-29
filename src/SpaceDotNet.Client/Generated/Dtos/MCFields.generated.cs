@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fields")]
         public List<Pair<MCElement, MCElement>> Fields
         {
-            get { return _fields.GetValue(); }
-            set { _fields.SetValue(value); }
+            get => _fields.GetValue();
+            set => _fields.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("columns")]
         public List<BoardColumn> Columns
         {
-            get { return _columns.GetValue(); }
-            set { _columns.SetValue(value); }
+            get => _columns.GetValue();
+            set => _columns.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

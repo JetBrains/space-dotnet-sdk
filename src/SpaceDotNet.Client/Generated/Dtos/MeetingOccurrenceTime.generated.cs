@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Start
         {
-            get { return _start.GetValue(); }
-            set { _start.SetValue(value); }
+            get => _start.GetValue();
+            set => _start.SetValue(value);
         }
     
         private PropertyValue<DateTime> _end = new PropertyValue<DateTime>(nameof(MeetingOccurrenceTime), nameof(End));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime End
         {
-            get { return _end.GetValue(); }
-            set { _end.SetValue(value); }
+            get => _end.GetValue();
+            set => _end.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

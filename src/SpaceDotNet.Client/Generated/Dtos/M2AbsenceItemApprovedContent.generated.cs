@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("absence")]
         public AbsenceRecord Absence
         {
-            get { return _absence.GetValue(); }
-            set { _absence.SetValue(value); }
+            get => _absence.GetValue();
+            set => _absence.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _by = new PropertyValue<TDMemberProfile>(nameof(M2AbsenceItemApprovedContent), nameof(By));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("by")]
         public TDMemberProfile By
         {
-            get { return _by.GetValue(); }
-            set { _by.SetValue(value); }
+            get => _by.GetValue();
+            set => _by.SetValue(value);
         }
     
         private PropertyValue<bool> _approve = new PropertyValue<bool>(nameof(M2AbsenceItemApprovedContent), nameof(IsApprove));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("approve")]
         public bool IsApprove
         {
-            get { return _approve.GetValue(); }
-            set { _approve.SetValue(value); }
+            get => _approve.GetValue();
+            set => _approve.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

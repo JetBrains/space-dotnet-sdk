@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revisions")]
         public List<string> Revisions
         {
-            get { return _revisions.GetValue(); }
-            set { _revisions.SetValue(value); }
+            get => _revisions.GetValue();
+            set => _revisions.SetValue(value);
         }
     
         private PropertyValue<string?> _title = new PropertyValue<string?>(nameof(ProjectsForProjectRepositoriesForRepositoryCommitSetReviewsPostRequest), nameof(Title));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string? Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

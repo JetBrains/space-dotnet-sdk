@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(ExtendedType), nameof(DisplayName));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("displayName")]
         public string DisplayName
         {
-            get { return _displayName.GetValue(); }
-            set { _displayName.SetValue(value); }
+            get => _displayName.GetValue();
+            set => _displayName.SetValue(value);
         }
     
         private PropertyValue<string?> _apiClassName = new PropertyValue<string?>(nameof(ExtendedType), nameof(ApiClassName));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("apiClassName")]
         public string? ApiClassName
         {
-            get { return _apiClassName.GetValue(); }
-            set { _apiClassName.SetValue(value); }
+            get => _apiClassName.GetValue();
+            set => _apiClassName.SetValue(value);
         }
     
         private PropertyValue<ExtendedTypeScopeType> _scopeType = new PropertyValue<ExtendedTypeScopeType>(nameof(ExtendedType), nameof(ScopeType));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scopeType")]
         public ExtendedTypeScopeType ScopeType
         {
-            get { return _scopeType.GetValue(); }
-            set { _scopeType.SetValue(value); }
+            get => _scopeType.GetValue();
+            set => _scopeType.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

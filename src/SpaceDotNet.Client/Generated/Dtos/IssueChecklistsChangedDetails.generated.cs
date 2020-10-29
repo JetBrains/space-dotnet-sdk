@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("addedChecklists")]
         public List<Checklist>? AddedChecklists
         {
-            get { return _addedChecklists.GetValue(); }
-            set { _addedChecklists.SetValue(value); }
+            get => _addedChecklists.GetValue();
+            set => _addedChecklists.SetValue(value);
         }
     
         private PropertyValue<List<Checklist>?> _removedChecklists = new PropertyValue<List<Checklist>?>(nameof(IssueChecklistsChangedDetails), nameof(RemovedChecklists));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("removedChecklists")]
         public List<Checklist>? RemovedChecklists
         {
-            get { return _removedChecklists.GetValue(); }
-            set { _removedChecklists.SetValue(value); }
+            get => _removedChecklists.GetValue();
+            set => _removedChecklists.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

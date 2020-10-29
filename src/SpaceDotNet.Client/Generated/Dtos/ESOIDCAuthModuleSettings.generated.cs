@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientId")]
         public string ClientId
         {
-            get { return _clientId.GetValue(); }
-            set { _clientId.SetValue(value); }
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(ClientSecret));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientSecret")]
         public string ClientSecret
         {
-            get { return _clientSecret.GetValue(); }
-            set { _clientSecret.SetValue(value); }
+            get => _clientSecret.GetValue();
+            set => _clientSecret.SetValue(value);
         }
     
         private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESOIDCAuthModuleSettings), nameof(IsRegisterNewUsers));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("registerNewUsers")]
         public bool IsRegisterNewUsers
         {
-            get { return _registerNewUsers.GetValue(); }
-            set { _registerNewUsers.SetValue(value); }
+            get => _registerNewUsers.GetValue();
+            set => _registerNewUsers.SetValue(value);
         }
     
         private PropertyValue<string?> _discoveryUrl = new PropertyValue<string?>(nameof(ESOIDCAuthModuleSettings), nameof(DiscoveryUrl));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("discoveryUrl")]
         public string? DiscoveryUrl
         {
-            get { return _discoveryUrl.GetValue(); }
-            set { _discoveryUrl.SetValue(value); }
+            get => _discoveryUrl.GetValue();
+            set => _discoveryUrl.SetValue(value);
         }
     
         private PropertyValue<string> _issuer = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(Issuer));
@@ -92,8 +92,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issuer")]
         public string Issuer
         {
-            get { return _issuer.GetValue(); }
-            set { _issuer.SetValue(value); }
+            get => _issuer.GetValue();
+            set => _issuer.SetValue(value);
         }
     
         private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(AuthorizationEndpoint));
@@ -102,8 +102,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorizationEndpoint")]
         public string AuthorizationEndpoint
         {
-            get { return _authorizationEndpoint.GetValue(); }
-            set { _authorizationEndpoint.SetValue(value); }
+            get => _authorizationEndpoint.GetValue();
+            set => _authorizationEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _tokenEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(TokenEndpoint));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tokenEndpoint")]
         public string TokenEndpoint
         {
-            get { return _tokenEndpoint.GetValue(); }
-            set { _tokenEndpoint.SetValue(value); }
+            get => _tokenEndpoint.GetValue();
+            set => _tokenEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _tokenKeysEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(TokenKeysEndpoint));
@@ -122,8 +122,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tokenKeysEndpoint")]
         public string TokenKeysEndpoint
         {
-            get { return _tokenKeysEndpoint.GetValue(); }
-            set { _tokenKeysEndpoint.SetValue(value); }
+            get => _tokenKeysEndpoint.GetValue();
+            set => _tokenKeysEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _userInfoEndpoint = new PropertyValue<string>(nameof(ESOIDCAuthModuleSettings), nameof(UserInfoEndpoint));
@@ -132,8 +132,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userInfoEndpoint")]
         public string UserInfoEndpoint
         {
-            get { return _userInfoEndpoint.GetValue(); }
-            set { _userInfoEndpoint.SetValue(value); }
+            get => _userInfoEndpoint.GetValue();
+            set => _userInfoEndpoint.SetValue(value);
         }
     
         private PropertyValue<List<string>> _domains = new PropertyValue<List<string>>(nameof(ESOIDCAuthModuleSettings), nameof(Domains));
@@ -142,8 +142,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("domains")]
         public List<string> Domains
         {
-            get { return _domains.GetValue(); }
-            set { _domains.SetValue(value); }
+            get => _domains.GetValue();
+            set => _domains.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

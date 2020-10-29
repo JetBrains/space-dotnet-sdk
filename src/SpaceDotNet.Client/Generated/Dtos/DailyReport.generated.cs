@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("data")]
         public List<BillingDay> Data
         {
-            get { return _data.GetValue(); }
-            set { _data.SetValue(value); }
+            get => _data.GetValue();
+            set => _data.SetValue(value);
         }
     
         private PropertyValue<long?> _customOverdraftCap = new PropertyValue<long?>(nameof(DailyReport), nameof(CustomOverdraftCap));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customOverdraftCap")]
         public long? CustomOverdraftCap
         {
-            get { return _customOverdraftCap.GetValue(); }
-            set { _customOverdraftCap.SetValue(value); }
+            get => _customOverdraftCap.GetValue();
+            set => _customOverdraftCap.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

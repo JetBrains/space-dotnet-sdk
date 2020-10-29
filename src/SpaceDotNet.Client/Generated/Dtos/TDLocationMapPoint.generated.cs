@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string?> _mapId = new PropertyValue<string?>(nameof(TDLocationMapPoint), nameof(MapId));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("mapId")]
         public string? MapId
         {
-            get { return _mapId.GetValue(); }
-            set { _mapId.SetValue(value); }
+            get => _mapId.GetValue();
+            set => _mapId.SetValue(value);
         }
     
         private PropertyValue<int> _x = new PropertyValue<int>(nameof(TDLocationMapPoint), nameof(X));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("x")]
         public int X
         {
-            get { return _x.GetValue(); }
-            set { _x.SetValue(value); }
+            get => _x.GetValue();
+            set => _x.SetValue(value);
         }
     
         private PropertyValue<int> _y = new PropertyValue<int>(nameof(TDLocationMapPoint), nameof(Y));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("y")]
         public int Y
         {
-            get { return _y.GetValue(); }
-            set { _y.SetValue(value); }
+            get => _y.GetValue();
+            set => _y.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(TDLocationMapPoint), nameof(Created));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<string?> _memberLocation = new PropertyValue<string?>(nameof(TDLocationMapPoint), nameof(MemberLocation));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberLocation")]
         public string? MemberLocation
         {
-            get { return _memberLocation.GetValue(); }
-            set { _memberLocation.SetValue(value); }
+            get => _memberLocation.GetValue();
+            set => _memberLocation.SetValue(value);
         }
     
         private PropertyValue<bool?> _deleted = new PropertyValue<bool?>(nameof(TDLocationMapPoint), nameof(IsDeleted));
@@ -105,8 +105,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deleted")]
         public bool? IsDeleted
         {
-            get { return _deleted.GetValue(); }
-            set { _deleted.SetValue(value); }
+            get => _deleted.GetValue();
+            set => _deleted.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

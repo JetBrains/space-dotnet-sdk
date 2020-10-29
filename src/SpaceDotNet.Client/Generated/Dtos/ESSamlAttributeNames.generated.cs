@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("loginAttributeName")]
         public string? LoginAttributeName
         {
-            get { return _loginAttributeName.GetValue(); }
-            set { _loginAttributeName.SetValue(value); }
+            get => _loginAttributeName.GetValue();
+            set => _loginAttributeName.SetValue(value);
         }
     
         private PropertyValue<string?> _firstNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(FirstNameAttributeName));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("firstNameAttributeName")]
         public string? FirstNameAttributeName
         {
-            get { return _firstNameAttributeName.GetValue(); }
-            set { _firstNameAttributeName.SetValue(value); }
+            get => _firstNameAttributeName.GetValue();
+            set => _firstNameAttributeName.SetValue(value);
         }
     
         private PropertyValue<string?> _lastNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(LastNameAttributeName));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastNameAttributeName")]
         public string? LastNameAttributeName
         {
-            get { return _lastNameAttributeName.GetValue(); }
-            set { _lastNameAttributeName.SetValue(value); }
+            get => _lastNameAttributeName.GetValue();
+            set => _lastNameAttributeName.SetValue(value);
         }
     
         private PropertyValue<string?> _fullNameAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(FullNameAttributeName));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fullNameAttributeName")]
         public string? FullNameAttributeName
         {
-            get { return _fullNameAttributeName.GetValue(); }
-            set { _fullNameAttributeName.SetValue(value); }
+            get => _fullNameAttributeName.GetValue();
+            set => _fullNameAttributeName.SetValue(value);
         }
     
         private PropertyValue<string?> _emailAttributeName = new PropertyValue<string?>(nameof(ESSamlAttributeNames), nameof(EmailAttributeName));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emailAttributeName")]
         public string? EmailAttributeName
         {
-            get { return _emailAttributeName.GetValue(); }
-            set { _emailAttributeName.SetValue(value); }
+            get => _emailAttributeName.GetValue();
+            set => _emailAttributeName.SetValue(value);
         }
     
         private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESSamlAttributeNames), nameof(IsEmailVerified));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emailVerified")]
         public bool IsEmailVerified
         {
-            get { return _emailVerified.GetValue(); }
-            set { _emailVerified.SetValue(value); }
+            get => _emailVerified.GetValue();
+            set => _emailVerified.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

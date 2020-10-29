@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("dataTransfer")]
         public PlanLimit DataTransfer
         {
-            get { return _dataTransfer.GetValue(); }
-            set { _dataTransfer.SetValue(value); }
+            get => _dataTransfer.GetValue();
+            set => _dataTransfer.SetValue(value);
         }
     
         private PropertyValue<PlanLimit> _files = new PropertyValue<PlanLimit>(nameof(TrafficPlanLimit), nameof(Files));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("files")]
         public PlanLimit Files
         {
-            get { return _files.GetValue(); }
-            set { _files.SetValue(value); }
+            get => _files.GetValue();
+            set => _files.SetValue(value);
         }
     
         private PropertyValue<PlanLimit> _packages = new PropertyValue<PlanLimit>(nameof(TrafficPlanLimit), nameof(Packages));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("packages")]
         public PlanLimit Packages
         {
-            get { return _packages.GetValue(); }
-            set { _packages.SetValue(value); }
+            get => _packages.GetValue();
+            set => _packages.SetValue(value);
         }
     
         private PropertyValue<PlanLimit> _git = new PropertyValue<PlanLimit>(nameof(TrafficPlanLimit), nameof(Git));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("git")]
         public PlanLimit Git
         {
-            get { return _git.GetValue(); }
-            set { _git.SetValue(value); }
+            get => _git.GetValue();
+            set => _git.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

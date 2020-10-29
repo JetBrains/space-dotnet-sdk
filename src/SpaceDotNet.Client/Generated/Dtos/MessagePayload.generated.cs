@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public MessageContext Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(MessagePayload), nameof(AccessToken));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessToken")]
         public string? AccessToken
         {
-            get { return _accessToken.GetValue(); }
-            set { _accessToken.SetValue(value); }
+            get => _accessToken.GetValue();
+            set => _accessToken.SetValue(value);
         }
     
         private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessagePayload), nameof(VerificationToken));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("verificationToken")]
         public string? VerificationToken
         {
-            get { return _verificationToken.GetValue(); }
-            set { _verificationToken.SetValue(value); }
+            get => _verificationToken.GetValue();
+            set => _verificationToken.SetValue(value);
         }
     
         private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessagePayload), nameof(UserId));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userId")]
         public string UserId
         {
-            get { return _userId.GetValue(); }
-            set { _userId.SetValue(value); }
+            get => _userId.GetValue();
+            set => _userId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

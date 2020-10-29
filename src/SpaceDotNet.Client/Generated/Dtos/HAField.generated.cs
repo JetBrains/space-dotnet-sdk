@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<HAType> _type = new PropertyValue<HAType>(nameof(HAField), nameof(Type));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public HAType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<HADefaultValue?> _defaultValue = new PropertyValue<HADefaultValue?>(nameof(HAField), nameof(DefaultValue));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultValue")]
         public HADefaultValue? DefaultValue
         {
-            get { return _defaultValue.GetValue(); }
-            set { _defaultValue.SetValue(value); }
+            get => _defaultValue.GetValue();
+            set => _defaultValue.SetValue(value);
         }
     
         private PropertyValue<bool> _optional = new PropertyValue<bool>(nameof(HAField), nameof(IsOptional));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("optional")]
         public bool IsOptional
         {
-            get { return _optional.GetValue(); }
-            set { _optional.SetValue(value); }
+            get => _optional.GetValue();
+            set => _optional.SetValue(value);
         }
     
         private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAField), nameof(Deprecation));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deprecation")]
         public HADeprecation? Deprecation
         {
-            get { return _deprecation.GetValue(); }
-            set { _deprecation.SetValue(value); }
+            get => _deprecation.GetValue();
+            set => _deprecation.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

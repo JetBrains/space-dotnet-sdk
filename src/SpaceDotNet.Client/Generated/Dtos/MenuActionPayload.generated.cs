@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("extensionName")]
         public string ExtensionName
         {
-            get { return _extensionName.GetValue(); }
-            set { _extensionName.SetValue(value); }
+            get => _extensionName.GetValue();
+            set => _extensionName.SetValue(value);
         }
     
         private PropertyValue<MenuActionContext> _context = new PropertyValue<MenuActionContext>(nameof(MenuActionPayload), nameof(Context));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("context")]
         public MenuActionContext Context
         {
-            get { return _context.GetValue(); }
-            set { _context.SetValue(value); }
+            get => _context.GetValue();
+            set => _context.SetValue(value);
         }
     
         private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(AccessToken));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessToken")]
         public string? AccessToken
         {
-            get { return _accessToken.GetValue(); }
-            set { _accessToken.SetValue(value); }
+            get => _accessToken.GetValue();
+            set => _accessToken.SetValue(value);
         }
     
         private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MenuActionPayload), nameof(VerificationToken));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("verificationToken")]
         public string? VerificationToken
         {
-            get { return _verificationToken.GetValue(); }
-            set { _verificationToken.SetValue(value); }
+            get => _verificationToken.GetValue();
+            set => _verificationToken.SetValue(value);
         }
     
         private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MenuActionPayload), nameof(UserId));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userId")]
         public string UserId
         {
-            get { return _userId.GetValue(); }
-            set { _userId.SetValue(value); }
+            get => _userId.GetValue();
+            set => _userId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

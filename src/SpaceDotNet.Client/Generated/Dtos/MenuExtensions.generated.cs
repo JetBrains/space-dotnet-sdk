@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("extensions")]
         public List<MenuExtensionDetail> Extensions
         {
-            get { return _extensions.GetValue(); }
-            set { _extensions.SetValue(value); }
+            get => _extensions.GetValue();
+            set => _extensions.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("subjectId")]
         public string SubjectId
         {
-            get { return _subjectId.GetValue(); }
-            set { _subjectId.SetValue(value); }
+            get => _subjectId.GetValue();
+            set => _subjectId.SetValue(value);
         }
     
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(SubjectResponsibilitiesTable), nameof(Name));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<List<string>> _reusedInProjects = new PropertyValue<List<string>>(nameof(SubjectResponsibilitiesTable), nameof(ReusedInProjects));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reusedInProjects")]
         public List<string> ReusedInProjects
         {
-            get { return _reusedInProjects.GetValue(); }
-            set { _reusedInProjects.SetValue(value); }
+            get => _reusedInProjects.GetValue();
+            set => _reusedInProjects.SetValue(value);
         }
     
         private PropertyValue<List<ResponsibilityRecord>> _responsibilityRecords = new PropertyValue<List<ResponsibilityRecord>>(nameof(SubjectResponsibilitiesTable), nameof(ResponsibilityRecords));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("responsibilityRecords")]
         public List<ResponsibilityRecord> ResponsibilityRecords
         {
-            get { return _responsibilityRecords.GetValue(); }
-            set { _responsibilityRecords.SetValue(value); }
+            get => _responsibilityRecords.GetValue();
+            set => _responsibilityRecords.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

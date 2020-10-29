@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rightCode")]
         public string RightCode
         {
-            get { return _rightCode.GetValue(); }
-            set { _rightCode.SetValue(value); }
+            get => _rightCode.GetValue();
+            set => _rightCode.SetValue(value);
         }
     
         private PropertyValue<string> _targetType = new PropertyValue<string>(nameof(PermissionSnapshotRight), nameof(TargetType));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targetType")]
         public string TargetType
         {
-            get { return _targetType.GetValue(); }
-            set { _targetType.SetValue(value); }
+            get => _targetType.GetValue();
+            set => _targetType.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

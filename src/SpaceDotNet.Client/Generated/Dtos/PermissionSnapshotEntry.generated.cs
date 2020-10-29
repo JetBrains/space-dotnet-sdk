@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principalIndex")]
         public int PrincipalIndex
         {
-            get { return _principalIndex.GetValue(); }
-            set { _principalIndex.SetValue(value); }
+            get => _principalIndex.GetValue();
+            set => _principalIndex.SetValue(value);
         }
     
         private PropertyValue<int> _rightIndex = new PropertyValue<int>(nameof(PermissionSnapshotEntry), nameof(RightIndex));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rightIndex")]
         public int RightIndex
         {
-            get { return _rightIndex.GetValue(); }
-            set { _rightIndex.SetValue(value); }
+            get => _rightIndex.GetValue();
+            set => _rightIndex.SetValue(value);
         }
     
         private PropertyValue<bool> _allTargets = new PropertyValue<bool>(nameof(PermissionSnapshotEntry), nameof(IsAllTargets));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("allTargets")]
         public bool IsAllTargets
         {
-            get { return _allTargets.GetValue(); }
-            set { _allTargets.SetValue(value); }
+            get => _allTargets.GetValue();
+            set => _allTargets.SetValue(value);
         }
     
         private PropertyValue<List<int>> _targetIndices = new PropertyValue<List<int>>(nameof(PermissionSnapshotEntry), nameof(TargetIndices));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targetIndices")]
         public List<int> TargetIndices
         {
-            get { return _targetIndices.GetValue(); }
-            set { _targetIndices.SetValue(value); }
+            get => _targetIndices.GetValue();
+            set => _targetIndices.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

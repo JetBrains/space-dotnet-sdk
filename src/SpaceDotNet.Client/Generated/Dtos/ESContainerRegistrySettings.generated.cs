@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("immutableTags")]
         public bool IsImmutableTags
         {
-            get { return _immutableTags.GetValue(); }
-            set { _immutableTags.SetValue(value); }
+            get => _immutableTags.GetValue();
+            set => _immutableTags.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

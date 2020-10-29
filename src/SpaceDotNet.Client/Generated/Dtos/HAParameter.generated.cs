@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("field")]
         public HAField Field
         {
-            get { return _field.GetValue(); }
-            set { _field.SetValue(value); }
+            get => _field.GetValue();
+            set => _field.SetValue(value);
         }
     
         private PropertyValue<bool> _path = new PropertyValue<bool>(nameof(HAParameter), nameof(IsPath));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("path")]
         public bool IsPath
         {
-            get { return _path.GetValue(); }
-            set { _path.SetValue(value); }
+            get => _path.GetValue();
+            set => _path.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

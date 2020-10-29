@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("unit")]
         public LimitUnit Unit
         {
-            get { return _unit.GetValue(); }
-            set { _unit.SetValue(value); }
+            get => _unit.GetValue();
+            set => _unit.SetValue(value);
         }
     
         private PropertyValue<long> _usage = new PropertyValue<long>(nameof(PlanLimit), nameof(Usage));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("usage")]
         public long Usage
         {
-            get { return _usage.GetValue(); }
-            set { _usage.SetValue(value); }
+            get => _usage.GetValue();
+            set => _usage.SetValue(value);
         }
     
         private PropertyValue<long?> _softCap = new PropertyValue<long?>(nameof(PlanLimit), nameof(SoftCap));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("softCap")]
         public long? SoftCap
         {
-            get { return _softCap.GetValue(); }
-            set { _softCap.SetValue(value); }
+            get => _softCap.GetValue();
+            set => _softCap.SetValue(value);
         }
     
         private PropertyValue<long?> _hardCap = new PropertyValue<long?>(nameof(PlanLimit), nameof(HardCap));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hardCap")]
         public long? HardCap
         {
-            get { return _hardCap.GetValue(); }
-            set { _hardCap.SetValue(value); }
+            get => _hardCap.GetValue();
+            set => _hardCap.SetValue(value);
         }
     
         private PropertyValue<Money?> _overdraftPrice = new PropertyValue<Money?>(nameof(PlanLimit), nameof(OverdraftPrice));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("overdraftPrice")]
         public Money? OverdraftPrice
         {
-            get { return _overdraftPrice.GetValue(); }
-            set { _overdraftPrice.SetValue(value); }
+            get => _overdraftPrice.GetValue();
+            set => _overdraftPrice.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

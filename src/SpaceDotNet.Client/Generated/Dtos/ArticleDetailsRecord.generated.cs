@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(ArticleDetailsRecord), nameof(IsArchived));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<MeetingRecord?> _event = new PropertyValue<MeetingRecord?>(nameof(ArticleDetailsRecord), nameof(Event));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("event")]
         public MeetingRecord? Event
         {
-            get { return _event.GetValue(); }
-            set { _event.SetValue(value); }
+            get => _event.GetValue();
+            set => _event.SetValue(value);
         }
     
         private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(ArticleDetailsRecord), nameof(Team));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("team")]
         public TDTeam? Team
         {
-            get { return _team.GetValue(); }
-            set { _team.SetValue(value); }
+            get => _team.GetValue();
+            set => _team.SetValue(value);
         }
     
         private PropertyValue<PRProject?> _project = new PropertyValue<PRProject?>(nameof(ArticleDetailsRecord), nameof(Project));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public PRProject? Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<TDLocation?> _location = new PropertyValue<TDLocation?>(nameof(ArticleDetailsRecord), nameof(Location));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("location")]
         public TDLocation? Location
         {
-            get { return _location.GetValue(); }
-            set { _location.SetValue(value); }
+            get => _location.GetValue();
+            set => _location.SetValue(value);
         }
     
         private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(ArticleDetailsRecord), nameof(Teams));
@@ -104,8 +104,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teams")]
         public List<TDTeam>? Teams
         {
-            get { return _teams.GetValue(); }
-            set { _teams.SetValue(value); }
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
         }
     
         private PropertyValue<List<TDLocation>?> _locations = new PropertyValue<List<TDLocation>?>(nameof(ArticleDetailsRecord), nameof(Locations));
@@ -113,8 +113,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locations")]
         public List<TDLocation>? Locations
         {
-            get { return _locations.GetValue(); }
-            set { _locations.SetValue(value); }
+            get => _locations.GetValue();
+            set => _locations.SetValue(value);
         }
     
         private PropertyValue<ExternalEntityInfoRecord?> _externalEntityInfo = new PropertyValue<ExternalEntityInfoRecord?>(nameof(ArticleDetailsRecord), nameof(ExternalEntityInfo));
@@ -122,8 +122,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalEntityInfo")]
         public ExternalEntityInfoRecord? ExternalEntityInfo
         {
-            get { return _externalEntityInfo.GetValue(); }
-            set { _externalEntityInfo.SetValue(value); }
+            get => _externalEntityInfo.GetValue();
+            set => _externalEntityInfo.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

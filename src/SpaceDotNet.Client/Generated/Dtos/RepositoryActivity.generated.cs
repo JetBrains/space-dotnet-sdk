@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastActivity")]
         public List<Pair<DateTime, int>> LastActivity
         {
-            get { return _lastActivity.GetValue(); }
-            set { _lastActivity.SetValue(value); }
+            get => _lastActivity.GetValue();
+            set => _lastActivity.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

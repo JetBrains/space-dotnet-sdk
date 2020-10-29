@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(DocumentFolderRecord), nameof(IsArchived));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(DocumentFolderRecord), nameof(Name));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<DocumentFolderRecord?> _parent = new PropertyValue<DocumentFolderRecord?>(nameof(DocumentFolderRecord), nameof(Parent));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parent")]
         public DocumentFolderRecord? Parent
         {
-            get { return _parent.GetValue(); }
-            set { _parent.SetValue(value); }
+            get => _parent.GetValue();
+            set => _parent.SetValue(value);
         }
     
         private PropertyValue<List<DocumentFolderRecord>> _subfolders = new PropertyValue<List<DocumentFolderRecord>>(nameof(DocumentFolderRecord), nameof(Subfolders));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("subfolders")]
         public List<DocumentFolderRecord> Subfolders
         {
-            get { return _subfolders.GetValue(); }
-            set { _subfolders.SetValue(value); }
+            get => _subfolders.GetValue();
+            set => _subfolders.SetValue(value);
         }
     
         private PropertyValue<List<DRDraftHeader>> _documents = new PropertyValue<List<DRDraftHeader>>(nameof(DocumentFolderRecord), nameof(Documents));
@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("documents")]
         public List<DRDraftHeader> Documents
         {
-            get { return _documents.GetValue(); }
-            set { _documents.SetValue(value); }
+            get => _documents.GetValue();
+            set => _documents.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile> _owner = new PropertyValue<TDMemberProfile>(nameof(DocumentFolderRecord), nameof(Owner));
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("owner")]
         public TDMemberProfile Owner
         {
-            get { return _owner.GetValue(); }
-            set { _owner.SetValue(value); }
+            get => _owner.GetValue();
+            set => _owner.SetValue(value);
         }
     
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(DocumentFolderRecord), nameof(Alias));
@@ -121,8 +121,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("alias")]
         public string Alias
         {
-            get { return _alias.GetValue(); }
-            set { _alias.SetValue(value); }
+            get => _alias.GetValue();
+            set => _alias.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _created = new PropertyValue<DateTime?>(nameof(DocumentFolderRecord), nameof(Created));
@@ -131,8 +131,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolderRecord), nameof(CreatedBy));
@@ -140,8 +140,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdBy")]
         public CPrincipal? CreatedBy
         {
-            get { return _createdBy.GetValue(); }
-            set { _createdBy.SetValue(value); }
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _updated = new PropertyValue<DateTime?>(nameof(DocumentFolderRecord), nameof(Updated));
@@ -150,8 +150,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Updated
         {
-            get { return _updated.GetValue(); }
-            set { _updated.SetValue(value); }
+            get => _updated.GetValue();
+            set => _updated.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(DocumentFolderRecord), nameof(UpdatedBy));
@@ -159,8 +159,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("updatedBy")]
         public CPrincipal? UpdatedBy
         {
-            get { return _updatedBy.GetValue(); }
-            set { _updatedBy.SetValue(value); }
+            get => _updatedBy.GetValue();
+            set => _updatedBy.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

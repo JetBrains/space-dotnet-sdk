@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deletedIdentity")]
         public string DeletedIdentity
         {
-            get { return _deletedIdentity.GetValue(); }
-            set { _deletedIdentity.SetValue(value); }
+            get => _deletedIdentity.GetValue();
+            set => _deletedIdentity.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

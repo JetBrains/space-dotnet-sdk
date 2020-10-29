@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _itemId = new PropertyValue<string>(nameof(CertainReactionToItemRecord), nameof(ItemId));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("itemId")]
         public string ItemId
         {
-            get { return _itemId.GetValue(); }
-            set { _itemId.SetValue(value); }
+            get => _itemId.GetValue();
+            set => _itemId.SetValue(value);
         }
     
         private PropertyValue<ReactionTypeRecord> _reaction = new PropertyValue<ReactionTypeRecord>(nameof(CertainReactionToItemRecord), nameof(Reaction));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reaction")]
         public ReactionTypeRecord Reaction
         {
-            get { return _reaction.GetValue(); }
-            set { _reaction.SetValue(value); }
+            get => _reaction.GetValue();
+            set => _reaction.SetValue(value);
         }
     
         private PropertyValue<int> _count = new PropertyValue<int>(nameof(CertainReactionToItemRecord), nameof(Count));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("count")]
         public int Count
         {
-            get { return _count.GetValue(); }
-            set { _count.SetValue(value); }
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
     
         private PropertyValue<bool> _meReacted = new PropertyValue<bool>(nameof(CertainReactionToItemRecord), nameof(IsMeReacted));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("meReacted")]
         public bool IsMeReacted
         {
-            get { return _meReacted.GetValue(); }
-            set { _meReacted.SetValue(value); }
+            get => _meReacted.GetValue();
+            set => _meReacted.SetValue(value);
         }
     
         private PropertyValue<List<CPrincipal>> _principals = new PropertyValue<List<CPrincipal>>(nameof(CertainReactionToItemRecord), nameof(Principals));
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("principals")]
         public List<CPrincipal> Principals
         {
-            get { return _principals.GetValue(); }
-            set { _principals.SetValue(value); }
+            get => _principals.GetValue();
+            set => _principals.SetValue(value);
         }
     
         private PropertyValue<long?> _order = new PropertyValue<long?>(nameof(CertainReactionToItemRecord), nameof(Order));
@@ -106,8 +106,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("order")]
         public long? Order
         {
-            get { return _order.GetValue(); }
-            set { _order.SetValue(value); }
+            get => _order.GetValue();
+            set => _order.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

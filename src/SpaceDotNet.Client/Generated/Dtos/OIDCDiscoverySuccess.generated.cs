@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issuer")]
         public string Issuer
         {
-            get { return _issuer.GetValue(); }
-            set { _issuer.SetValue(value); }
+            get => _issuer.GetValue();
+            set => _issuer.SetValue(value);
         }
     
         private PropertyValue<string> _authorizationEndpoint = new PropertyValue<string>(nameof(OIDCDiscoverySuccess), nameof(AuthorizationEndpoint));
@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorizationEndpoint")]
         public string AuthorizationEndpoint
         {
-            get { return _authorizationEndpoint.GetValue(); }
-            set { _authorizationEndpoint.SetValue(value); }
+            get => _authorizationEndpoint.GetValue();
+            set => _authorizationEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _deviceAuthorizationEndpoint = new PropertyValue<string>(nameof(OIDCDiscoverySuccess), nameof(DeviceAuthorizationEndpoint));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deviceAuthorizationEndpoint")]
         public string DeviceAuthorizationEndpoint
         {
-            get { return _deviceAuthorizationEndpoint.GetValue(); }
-            set { _deviceAuthorizationEndpoint.SetValue(value); }
+            get => _deviceAuthorizationEndpoint.GetValue();
+            set => _deviceAuthorizationEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _tokenEndpoint = new PropertyValue<string>(nameof(OIDCDiscoverySuccess), nameof(TokenEndpoint));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tokenEndpoint")]
         public string TokenEndpoint
         {
-            get { return _tokenEndpoint.GetValue(); }
-            set { _tokenEndpoint.SetValue(value); }
+            get => _tokenEndpoint.GetValue();
+            set => _tokenEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _userinfoEndpoint = new PropertyValue<string>(nameof(OIDCDiscoverySuccess), nameof(UserinfoEndpoint));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userinfoEndpoint")]
         public string UserinfoEndpoint
         {
-            get { return _userinfoEndpoint.GetValue(); }
-            set { _userinfoEndpoint.SetValue(value); }
+            get => _userinfoEndpoint.GetValue();
+            set => _userinfoEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _revocationEndpoint = new PropertyValue<string>(nameof(OIDCDiscoverySuccess), nameof(RevocationEndpoint));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revocationEndpoint")]
         public string RevocationEndpoint
         {
-            get { return _revocationEndpoint.GetValue(); }
-            set { _revocationEndpoint.SetValue(value); }
+            get => _revocationEndpoint.GetValue();
+            set => _revocationEndpoint.SetValue(value);
         }
     
         private PropertyValue<string> _jwksUri = new PropertyValue<string>(nameof(OIDCDiscoverySuccess), nameof(JwksUri));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jwksUri")]
         public string JwksUri
         {
-            get { return _jwksUri.GetValue(); }
-            set { _jwksUri.SetValue(value); }
+            get => _jwksUri.GetValue();
+            set => _jwksUri.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

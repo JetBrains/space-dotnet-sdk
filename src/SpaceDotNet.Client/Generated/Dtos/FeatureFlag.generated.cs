@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _description = new PropertyValue<string>(nameof(FeatureFlag), nameof(Description));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<FeatureFlagStatus> _status = new PropertyValue<FeatureFlagStatus>(nameof(FeatureFlag), nameof(Status));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("status")]
         public FeatureFlagStatus Status
         {
-            get { return _status.GetValue(); }
-            set { _status.SetValue(value); }
+            get => _status.GetValue();
+            set => _status.SetValue(value);
         }
     
         private PropertyValue<string> _owner = new PropertyValue<string>(nameof(FeatureFlag), nameof(Owner));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("owner")]
         public string Owner
         {
-            get { return _owner.GetValue(); }
-            set { _owner.SetValue(value); }
+            get => _owner.GetValue();
+            set => _owner.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _introduced = new PropertyValue<DateTime?>(nameof(FeatureFlag), nameof(Introduced));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? Introduced
         {
-            get { return _introduced.GetValue(); }
-            set { _introduced.SetValue(value); }
+            get => _introduced.GetValue();
+            set => _introduced.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

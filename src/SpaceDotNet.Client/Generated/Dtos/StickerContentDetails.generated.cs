@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sticker")]
         public Sticker Sticker
         {
-            get { return _sticker.GetValue(); }
-            set { _sticker.SetValue(value); }
+            get => _sticker.GetValue();
+            set => _sticker.SetValue(value);
         }
     
         private PropertyValue<StickerPackInfo?> _pack = new PropertyValue<StickerPackInfo?>(nameof(StickerContentDetails), nameof(Pack));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pack")]
         public StickerPackInfo? Pack
         {
-            get { return _pack.GetValue(); }
-            set { _pack.SetValue(value); }
+            get => _pack.GetValue();
+            set => _pack.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("code")]
         public string Code
         {
-            get { return _code.GetValue(); }
-            set { _code.SetValue(value); }
+            get => _code.GetValue();
+            set => _code.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(FullRightWithoutType), nameof(Title));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(FullRightWithoutType), nameof(Description));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<bool> _grantedForUsers = new PropertyValue<bool>(nameof(FullRightWithoutType), nameof(IsGrantedForUsers));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("grantedForUsers")]
         public bool IsGrantedForUsers
         {
-            get { return _grantedForUsers.GetValue(); }
-            set { _grantedForUsers.SetValue(value); }
+            get => _grantedForUsers.GetValue();
+            set => _grantedForUsers.SetValue(value);
         }
     
         private PropertyValue<FeatureFlag?> _featureFlag = new PropertyValue<FeatureFlag?>(nameof(FullRightWithoutType), nameof(FeatureFlag));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("featureFlag")]
         public FeatureFlag? FeatureFlag
         {
-            get { return _featureFlag.GetValue(); }
-            set { _featureFlag.SetValue(value); }
+            get => _featureFlag.GetValue();
+            set => _featureFlag.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

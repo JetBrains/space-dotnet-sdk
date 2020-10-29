@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Time
         {
-            get { return _time.GetValue(); }
-            set { _time.SetValue(value); }
+            get => _time.GetValue();
+            set => _time.SetValue(value);
         }
     
         private PropertyValue<string> _address = new PropertyValue<string>(nameof(AccessRecord), nameof(Address));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("address")]
         public string Address
         {
-            get { return _address.GetValue(); }
-            set { _address.SetValue(value); }
+            get => _address.GetValue();
+            set => _address.SetValue(value);
         }
     
         private PropertyValue<string?> _userAgent = new PropertyValue<string?>(nameof(AccessRecord), nameof(UserAgent));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userAgent")]
         public string? UserAgent
         {
-            get { return _userAgent.GetValue(); }
-            set { _userAgent.SetValue(value); }
+            get => _userAgent.GetValue();
+            set => _userAgent.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("draft")]
         public string Draft
         {
-            get { return _draft.GetValue(); }
-            set { _draft.SetValue(value); }
+            get => _draft.GetValue();
+            set => _draft.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(UnfurlDetailsDraft), nameof(Title));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

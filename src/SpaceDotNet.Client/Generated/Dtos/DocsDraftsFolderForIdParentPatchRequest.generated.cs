@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parentFolderId")]
         public string ParentFolderId
         {
-            get { return _parentFolderId.GetValue(); }
-            set { _parentFolderId.SetValue(value); }
+            get => _parentFolderId.GetValue();
+            set => _parentFolderId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

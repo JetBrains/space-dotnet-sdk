@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teamId")]
         public string? TeamId
         {
-            get { return _teamId.GetValue(); }
-            set { _teamId.SetValue(value); }
+            get => _teamId.GetValue();
+            set => _teamId.SetValue(value);
         }
     
         private PropertyValue<string?> _roleId = new PropertyValue<string?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(RoleId));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("roleId")]
         public string? RoleId
         {
-            get { return _roleId.GetValue(); }
-            set { _roleId.SetValue(value); }
+            get => _roleId.GetValue();
+            set => _roleId.SetValue(value);
         }
     
         private PropertyValue<bool?> _lead = new PropertyValue<bool?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(IsLead));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lead")]
         public bool? IsLead
         {
-            get { return _lead.GetValue(); }
-            set { _lead.SetValue(value); }
+            get => _lead.GetValue();
+            set => _lead.SetValue(value);
         }
     
         private PropertyValue<ProfileIdentifier?> _manager = new PropertyValue<ProfileIdentifier?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(Manager));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("manager")]
         public ProfileIdentifier? Manager
         {
-            get { return _manager.GetValue(); }
-            set { _manager.SetValue(value); }
+            get => _manager.GetValue();
+            set => _manager.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _activeSince = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(ActiveSince));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ActiveSince
         {
-            get { return _activeSince.GetValue(); }
-            set { _activeSince.SetValue(value); }
+            get => _activeSince.GetValue();
+            set => _activeSince.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _activeTill = new PropertyValue<DateTime?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(ActiveTill));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? ActiveTill
         {
-            get { return _activeTill.GetValue(); }
-            set { _activeTill.SetValue(value); }
+            get => _activeTill.GetValue();
+            set => _activeTill.SetValue(value);
         }
     
         private PropertyValue<bool> _requiresApproval = new PropertyValue<bool>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(IsRequiresApproval));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("requiresApproval")]
         public bool IsRequiresApproval
         {
-            get { return _requiresApproval.GetValue(); }
-            set { _requiresApproval.SetValue(value); }
+            get => _requiresApproval.GetValue();
+            set => _requiresApproval.SetValue(value);
         }
     
         private PropertyValue<List<CustomFieldValue>?> _customFieldValues = new PropertyValue<List<CustomFieldValue>?>(nameof(TeamDirectoryMembershipsForMembershipIdPatchRequest), nameof(CustomFieldValues));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customFieldValues")]
         public List<CustomFieldValue>? CustomFieldValues
         {
-            get { return _customFieldValues.GetValue(); }
-            set { _customFieldValues.SetValue(value); }
+            get => _customFieldValues.GetValue();
+            set => _customFieldValues.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

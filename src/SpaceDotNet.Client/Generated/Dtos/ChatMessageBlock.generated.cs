@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public MessageStyle? Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         private PropertyValue<MessageOutline?> _outline = new PropertyValue<MessageOutline?>(nameof(ChatMessageBlock), nameof(Outline));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("outline")]
         public MessageOutline? Outline
         {
-            get { return _outline.GetValue(); }
-            set { _outline.SetValue(value); }
+            get => _outline.GetValue();
+            set => _outline.SetValue(value);
         }
     
         private PropertyValue<List<MessageSectionElement>> _sections = new PropertyValue<List<MessageSectionElement>>(nameof(ChatMessageBlock), nameof(Sections));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sections")]
         public List<MessageSectionElement> Sections
         {
-            get { return _sections.GetValue(); }
-            set { _sections.SetValue(value); }
+            get => _sections.GetValue();
+            set => _sections.SetValue(value);
         }
     
         private PropertyValue<string?> _messageData = new PropertyValue<string?>(nameof(ChatMessageBlock), nameof(MessageData));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messageData")]
         public string? MessageData
         {
-            get { return _messageData.GetValue(); }
-            set { _messageData.SetValue(value); }
+            get => _messageData.GetValue();
+            set => _messageData.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tag")]
         public string Tag
         {
-            get { return _tag.GetValue(); }
-            set { _tag.SetValue(value); }
+            get => _tag.GetValue();
+            set => _tag.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

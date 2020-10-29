@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Description));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<bool?> _public = new PropertyValue<bool?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(IsPublic));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("public")]
         public bool? IsPublic
         {
-            get { return _public.GetValue(); }
-            set { _public.SetValue(value); }
+            get => _public.GetValue();
+            set => _public.SetValue(value);
         }
     
         private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(ProjectsForProjectPackagesRepositoriesForRepositoryPatchRequest), nameof(Settings));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("settings")]
         public ESPackageRepositorySettings? Settings
         {
-            get { return _settings.GetValue(); }
-            set { _settings.SetValue(value); }
+            get => _settings.GetValue();
+            set => _settings.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

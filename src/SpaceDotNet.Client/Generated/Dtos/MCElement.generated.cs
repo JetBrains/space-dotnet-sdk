@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("defaultText")]
         public string DefaultText
         {
-            get { return _defaultText.GetValue(); }
-            set { _defaultText.SetValue(value); }
+            get => _defaultText.GetValue();
+            set => _defaultText.SetValue(value);
         }
     
         private PropertyValue<MCElementDetails?> _details = new PropertyValue<MCElementDetails?>(nameof(MCElement), nameof(Details));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public MCElementDetails? Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

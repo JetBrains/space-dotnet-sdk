@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("codeReview")]
         public string CodeReview
         {
-            get { return _codeReview.GetValue(); }
-            set { _codeReview.SetValue(value); }
+            get => _codeReview.GetValue();
+            set => _codeReview.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

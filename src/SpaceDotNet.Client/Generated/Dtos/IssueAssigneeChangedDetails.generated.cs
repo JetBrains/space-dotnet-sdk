@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("oldAssignee")]
         public TDMemberProfile? OldAssignee
         {
-            get { return _oldAssignee.GetValue(); }
-            set { _oldAssignee.SetValue(value); }
+            get => _oldAssignee.GetValue();
+            set => _oldAssignee.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _newAssignee = new PropertyValue<TDMemberProfile?>(nameof(IssueAssigneeChangedDetails), nameof(NewAssignee));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("newAssignee")]
         public TDMemberProfile? NewAssignee
         {
-            get { return _newAssignee.GetValue(); }
-            set { _newAssignee.SetValue(value); }
+            get => _newAssignee.GetValue();
+            set => _newAssignee.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

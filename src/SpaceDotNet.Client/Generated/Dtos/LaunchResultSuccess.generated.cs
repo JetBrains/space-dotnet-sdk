@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("executionId")]
         public string ExecutionId
         {
-            get { return _executionId.GetValue(); }
-            set { _executionId.SetValue(value); }
+            get => _executionId.GetValue();
+            set => _executionId.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

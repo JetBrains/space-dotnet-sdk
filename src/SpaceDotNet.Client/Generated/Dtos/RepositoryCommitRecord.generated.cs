@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _repositoryId = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(RepositoryId));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repositoryId")]
         public string RepositoryId
         {
-            get { return _repositoryId.GetValue(); }
-            set { _repositoryId.SetValue(value); }
+            get => _repositoryId.GetValue();
+            set => _repositoryId.SetValue(value);
         }
     
         private PropertyValue<string> _repositoryName = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(RepositoryName));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repositoryName")]
         public string RepositoryName
         {
-            get { return _repositoryName.GetValue(); }
-            set { _repositoryName.SetValue(value); }
+            get => _repositoryName.GetValue();
+            set => _repositoryName.SetValue(value);
         }
     
         private PropertyValue<string> _revision = new PropertyValue<string>(nameof(RepositoryCommitRecord), nameof(Revision));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revision")]
         public string Revision
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get => _revision.GetValue();
+            set => _revision.SetValue(value);
         }
     
         private PropertyValue<string?> _message = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(Message));
@@ -90,8 +90,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string? Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(RepositoryCommitRecord), nameof(Date));
@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Date
         {
-            get { return _date.GetValue(); }
-            set { _date.SetValue(value); }
+            get => _date.GetValue();
+            set => _date.SetValue(value);
         }
     
         private PropertyValue<string?> _authorName = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(AuthorName));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorName")]
         public string? AuthorName
         {
-            get { return _authorName.GetValue(); }
-            set { _authorName.SetValue(value); }
+            get => _authorName.GetValue();
+            set => _authorName.SetValue(value);
         }
     
         private PropertyValue<string?> _authorEmail = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(AuthorEmail));
@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorEmail")]
         public string? AuthorEmail
         {
-            get { return _authorEmail.GetValue(); }
-            set { _authorEmail.SetValue(value); }
+            get => _authorEmail.GetValue();
+            set => _authorEmail.SetValue(value);
         }
     
         private PropertyValue<string?> _committerName = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(CommitterName));
@@ -128,8 +128,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("committerName")]
         public string? CommitterName
         {
-            get { return _committerName.GetValue(); }
-            set { _committerName.SetValue(value); }
+            get => _committerName.GetValue();
+            set => _committerName.SetValue(value);
         }
     
         private PropertyValue<string?> _committerEmail = new PropertyValue<string?>(nameof(RepositoryCommitRecord), nameof(CommitterEmail));
@@ -137,8 +137,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("committerEmail")]
         public string? CommitterEmail
         {
-            get { return _committerEmail.GetValue(); }
-            set { _committerEmail.SetValue(value); }
+            get => _committerEmail.GetValue();
+            set => _committerEmail.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _authorProfile = new PropertyValue<TDMemberProfile?>(nameof(RepositoryCommitRecord), nameof(AuthorProfile));
@@ -146,8 +146,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("authorProfile")]
         public TDMemberProfile? AuthorProfile
         {
-            get { return _authorProfile.GetValue(); }
-            set { _authorProfile.SetValue(value); }
+            get => _authorProfile.GetValue();
+            set => _authorProfile.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

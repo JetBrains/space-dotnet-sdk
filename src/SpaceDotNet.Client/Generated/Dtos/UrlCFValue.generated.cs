@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("href")]
         public string? Href
         {
-            get { return _href.GetValue(); }
-            set { _href.SetValue(value); }
+            get => _href.GetValue();
+            set => _href.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

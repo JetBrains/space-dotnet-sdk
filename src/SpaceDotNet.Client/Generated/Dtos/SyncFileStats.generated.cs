@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("newFiles")]
         public int NewFiles
         {
-            get { return _newFiles.GetValue(); }
-            set { _newFiles.SetValue(value); }
+            get => _newFiles.GetValue();
+            set => _newFiles.SetValue(value);
         }
     
         private PropertyValue<int> _changedFiles = new PropertyValue<int>(nameof(SyncFileStats), nameof(ChangedFiles));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("changedFiles")]
         public int ChangedFiles
         {
-            get { return _changedFiles.GetValue(); }
-            set { _changedFiles.SetValue(value); }
+            get => _changedFiles.GetValue();
+            set => _changedFiles.SetValue(value);
         }
     
         private PropertyValue<int> _deletedFiles = new PropertyValue<int>(nameof(SyncFileStats), nameof(DeletedFiles));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deletedFiles")]
         public int DeletedFiles
         {
-            get { return _deletedFiles.GetValue(); }
-            set { _deletedFiles.SetValue(value); }
+            get => _deletedFiles.GetValue();
+            set => _deletedFiles.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

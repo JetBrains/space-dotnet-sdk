@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userName")]
         public string? UserName
         {
-            get { return _userName.GetValue(); }
-            set { _userName.SetValue(value); }
+            get => _userName.GetValue();
+            set => _userName.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _ports = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Ports));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ports")]
         public List<string>? Ports
         {
-            get { return _ports.GetValue(); }
-            set { _ports.SetValue(value); }
+            get => _ports.GetValue();
+            set => _ports.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _volumes = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Volumes));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("volumes")]
         public List<string>? Volumes
         {
-            get { return _volumes.GetValue(); }
-            set { _volumes.SetValue(value); }
+            get => _volumes.GetValue();
+            set => _volumes.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _env = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Env));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("env")]
         public List<string>? Env
         {
-            get { return _env.GetValue(); }
-            set { _env.SetValue(value); }
+            get => _env.GetValue();
+            set => _env.SetValue(value);
         }
     
         private PropertyValue<string?> _workingDir = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(WorkingDir));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("workingDir")]
         public string? WorkingDir
         {
-            get { return _workingDir.GetValue(); }
-            set { _workingDir.SetValue(value); }
+            get => _workingDir.GetValue();
+            set => _workingDir.SetValue(value);
         }
     
         private PropertyValue<string?> _entryPoint = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(EntryPoint));
@@ -92,8 +92,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("entryPoint")]
         public string? EntryPoint
         {
-            get { return _entryPoint.GetValue(); }
-            set { _entryPoint.SetValue(value); }
+            get => _entryPoint.GetValue();
+            set => _entryPoint.SetValue(value);
         }
     
         private PropertyValue<string?> _cmd = new PropertyValue<string?>(nameof(ContainerImageConfig), nameof(Cmd));
@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("cmd")]
         public string? Cmd
         {
-            get { return _cmd.GetValue(); }
-            set { _cmd.SetValue(value); }
+            get => _cmd.GetValue();
+            set => _cmd.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _labels = new PropertyValue<List<string>?>(nameof(ContainerImageConfig), nameof(Labels));
@@ -110,8 +110,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("labels")]
         public List<string>? Labels
         {
-            get { return _labels.GetValue(); }
-            set { _labels.SetValue(value); }
+            get => _labels.GetValue();
+            set => _labels.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

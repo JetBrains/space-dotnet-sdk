@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("src")]
         public string Src
         {
-            get { return _src.GetValue(); }
-            set { _src.SetValue(value); }
+            get => _src.GetValue();
+            set => _src.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

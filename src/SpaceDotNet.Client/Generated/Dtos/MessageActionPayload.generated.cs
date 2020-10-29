@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("actionId")]
         public string ActionId
         {
-            get { return _actionId.GetValue(); }
-            set { _actionId.SetValue(value); }
+            get => _actionId.GetValue();
+            set => _actionId.SetValue(value);
         }
     
         private PropertyValue<string> _actionValue = new PropertyValue<string>(nameof(MessageActionPayload), nameof(ActionValue));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("actionValue")]
         public string ActionValue
         {
-            get { return _actionValue.GetValue(); }
-            set { _actionValue.SetValue(value); }
+            get => _actionValue.GetValue();
+            set => _actionValue.SetValue(value);
         }
     
         private PropertyValue<MessageContext> _message = new PropertyValue<MessageContext>(nameof(MessageActionPayload), nameof(Message));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public MessageContext Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<string?> _accessToken = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(AccessToken));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessToken")]
         public string? AccessToken
         {
-            get { return _accessToken.GetValue(); }
-            set { _accessToken.SetValue(value); }
+            get => _accessToken.GetValue();
+            set => _accessToken.SetValue(value);
         }
     
         private PropertyValue<string?> _verificationToken = new PropertyValue<string?>(nameof(MessageActionPayload), nameof(VerificationToken));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("verificationToken")]
         public string? VerificationToken
         {
-            get { return _verificationToken.GetValue(); }
-            set { _verificationToken.SetValue(value); }
+            get => _verificationToken.GetValue();
+            set => _verificationToken.SetValue(value);
         }
     
         private PropertyValue<string> _userId = new PropertyValue<string>(nameof(MessageActionPayload), nameof(UserId));
@@ -97,8 +97,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("userId")]
         public string UserId
         {
-            get { return _userId.GetValue(); }
-            set { _userId.SetValue(value); }
+            get => _userId.GetValue();
+            set => _userId.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

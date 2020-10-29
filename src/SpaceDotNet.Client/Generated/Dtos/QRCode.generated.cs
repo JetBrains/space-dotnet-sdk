@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("width")]
         public int Width
         {
-            get { return _width.GetValue(); }
-            set { _width.SetValue(value); }
+            get => _width.GetValue();
+            set => _width.SetValue(value);
         }
     
         private PropertyValue<string> _base64Bitmap = new PropertyValue<string>(nameof(QRCode), nameof(Base64Bitmap));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("base64Bitmap")]
         public string Base64Bitmap
         {
-            get { return _base64Bitmap.GetValue(); }
-            set { _base64Bitmap.SetValue(value); }
+            get => _base64Bitmap.GetValue();
+            set => _base64Bitmap.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

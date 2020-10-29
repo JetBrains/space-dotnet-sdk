@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("bundleId")]
         public string BundleId
         {
-            get { return _bundleId.GetValue(); }
-            set { _bundleId.SetValue(value); }
+            get => _bundleId.GetValue();
+            set => _bundleId.SetValue(value);
         }
     
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(ProjectsSecretsPostRequest), nameof(Key));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<string> _valueBase64 = new PropertyValue<string>(nameof(ProjectsSecretsPostRequest), nameof(ValueBase64));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("valueBase64")]
         public string ValueBase64
         {
-            get { return _valueBase64.GetValue(); }
-            set { _valueBase64.SetValue(value); }
+            get => _valueBase64.GetValue();
+            set => _valueBase64.SetValue(value);
         }
     
         private PropertyValue<string?> _publicKeyId = new PropertyValue<string?>(nameof(ProjectsSecretsPostRequest), nameof(PublicKeyId));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("publicKeyId")]
         public string? PublicKeyId
         {
-            get { return _publicKeyId.GetValue(); }
-            set { _publicKeyId.SetValue(value); }
+            get => _publicKeyId.GetValue();
+            set => _publicKeyId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

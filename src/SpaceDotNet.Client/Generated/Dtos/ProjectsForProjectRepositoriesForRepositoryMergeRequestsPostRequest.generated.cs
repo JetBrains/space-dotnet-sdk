@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sourceBranch")]
         public string SourceBranch
         {
-            get { return _sourceBranch.GetValue(); }
-            set { _sourceBranch.SetValue(value); }
+            get => _sourceBranch.GetValue();
+            set => _sourceBranch.SetValue(value);
         }
     
         private PropertyValue<string> _targetBranch = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(TargetBranch));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("targetBranch")]
         public string TargetBranch
         {
-            get { return _targetBranch.GetValue(); }
-            set { _targetBranch.SetValue(value); }
+            get => _targetBranch.GetValue();
+            set => _targetBranch.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Title));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<List<MergeRequestReviewer>?> _reviewers = new PropertyValue<List<MergeRequestReviewer>?>(nameof(ProjectsForProjectRepositoriesForRepositoryMergeRequestsPostRequest), nameof(Reviewers));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reviewers")]
         public List<MergeRequestReviewer>? Reviewers
         {
-            get { return _reviewers.GetValue(); }
-            set { _reviewers.SetValue(value); }
+            get => _reviewers.GetValue();
+            set => _reviewers.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

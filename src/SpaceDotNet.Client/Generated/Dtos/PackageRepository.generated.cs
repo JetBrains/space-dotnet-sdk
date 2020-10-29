@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<PackageType> _type = new PropertyValue<PackageType>(nameof(PackageRepository), nameof(Type));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("type")]
         public PackageType Type
         {
-            get { return _type.GetValue(); }
-            set { _type.SetValue(value); }
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(PackageRepository), nameof(Name));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(PackageRepository), nameof(Description));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<bool> _public = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsPublic));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("public")]
         public bool IsPublic
         {
-            get { return _public.GetValue(); }
-            set { _public.SetValue(value); }
+            get => _public.GetValue();
+            set => _public.SetValue(value);
         }
     
         private PropertyValue<ESPackageRepositorySettings?> _settings = new PropertyValue<ESPackageRepositorySettings?>(nameof(PackageRepository), nameof(Settings));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("settings")]
         public ESPackageRepositorySettings? Settings
         {
-            get { return _settings.GetValue(); }
-            set { _settings.SetValue(value); }
+            get => _settings.GetValue();
+            set => _settings.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(PackageRepository), nameof(IsArchived));
@@ -104,8 +104,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

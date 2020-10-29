@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public PRProject Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<SprintRecord> _sprint = new PropertyValue<SprintRecord>(nameof(UnfurlDetailsSprint), nameof(Sprint));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sprint")]
         public SprintRecord Sprint
         {
-            get { return _sprint.GetValue(); }
-            set { _sprint.SetValue(value); }
+            get => _sprint.GetValue();
+            set => _sprint.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

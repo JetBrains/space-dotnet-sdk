@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public string Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<List<IssueImportResultItem>?> _created = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Created));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("created")]
         public List<IssueImportResultItem>? Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<List<IssueImportResultItem>?> _updated = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Updated));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("updated")]
         public List<IssueImportResultItem>? Updated
         {
-            get { return _updated.GetValue(); }
-            set { _updated.SetValue(value); }
+            get => _updated.GetValue();
+            set => _updated.SetValue(value);
         }
     
         private PropertyValue<List<IssueImportResultItem>?> _skipped = new PropertyValue<List<IssueImportResultItem>?>(nameof(IssueImportResult), nameof(Skipped));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("skipped")]
         public List<IssueImportResultItem>? Skipped
         {
-            get { return _skipped.GetValue(); }
-            set { _skipped.SetValue(value); }
+            get => _skipped.GetValue();
+            set => _skipped.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _missingAttributes = new PropertyValue<List<string>?>(nameof(IssueImportResult), nameof(MissingAttributes));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("missingAttributes")]
         public List<string>? MissingAttributes
         {
-            get { return _missingAttributes.GetValue(); }
-            set { _missingAttributes.SetValue(value); }
+            get => _missingAttributes.GetValue();
+            set => _missingAttributes.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

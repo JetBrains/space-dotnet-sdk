@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<TDMemberLocation> _memberLocation = new PropertyValue<TDMemberLocation>(nameof(TDMemberInLocationMap), nameof(MemberLocation));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("memberLocation")]
         public TDMemberLocation MemberLocation
         {
-            get { return _memberLocation.GetValue(); }
-            set { _memberLocation.SetValue(value); }
+            get => _memberLocation.GetValue();
+            set => _memberLocation.SetValue(value);
         }
     
         private PropertyValue<TDLocationMapPoint?> _locationMapPoint = new PropertyValue<TDLocationMapPoint?>(nameof(TDMemberInLocationMap), nameof(LocationMapPoint));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locationMapPoint")]
         public TDLocationMapPoint? LocationMapPoint
         {
-            get { return _locationMapPoint.GetValue(); }
-            set { _locationMapPoint.SetValue(value); }
+            get => _locationMapPoint.GetValue();
+            set => _locationMapPoint.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

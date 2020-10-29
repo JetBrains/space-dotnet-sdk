@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("githubUrl")]
         public string GithubUrl
         {
-            get { return _githubUrl.GetValue(); }
-            set { _githubUrl.SetValue(value); }
+            get => _githubUrl.GetValue();
+            set => _githubUrl.SetValue(value);
         }
     
         private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(ClientId));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientId")]
         public string ClientId
         {
-            get { return _clientId.GetValue(); }
-            set { _clientId.SetValue(value); }
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESGithubAuthModuleSettings), nameof(ClientSecret));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientSecret")]
         public string ClientSecret
         {
-            get { return _clientSecret.GetValue(); }
-            set { _clientSecret.SetValue(value); }
+            get => _clientSecret.GetValue();
+            set => _clientSecret.SetValue(value);
         }
     
         private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESGithubAuthModuleSettings), nameof(IsRegisterNewUsers));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("registerNewUsers")]
         public bool IsRegisterNewUsers
         {
-            get { return _registerNewUsers.GetValue(); }
-            set { _registerNewUsers.SetValue(value); }
+            get => _registerNewUsers.GetValue();
+            set => _registerNewUsers.SetValue(value);
         }
     
         private PropertyValue<List<string>> _organizations = new PropertyValue<List<string>>(nameof(ESGithubAuthModuleSettings), nameof(Organizations));
@@ -88,8 +88,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("organizations")]
         public List<string> Organizations
         {
-            get { return _organizations.GetValue(); }
-            set { _organizations.SetValue(value); }
+            get => _organizations.GetValue();
+            set => _organizations.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

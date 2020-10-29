@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("newStatus")]
         public EventParticipationStatus NewStatus
         {
-            get { return _newStatus.GetValue(); }
-            set { _newStatus.SetValue(value); }
+            get => _newStatus.GetValue();
+            set => _newStatus.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

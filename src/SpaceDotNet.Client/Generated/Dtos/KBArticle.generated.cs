@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(KBArticle), nameof(IsArchived));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(KBArticle), nameof(Title));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<KBBook> _book = new PropertyValue<KBBook>(nameof(KBArticle), nameof(Book));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("book")]
         public KBBook Book
         {
-            get { return _book.GetValue(); }
-            set { _book.SetValue(value); }
+            get => _book.GetValue();
+            set => _book.SetValue(value);
         }
     
         private PropertyValue<KBFolder> _folder = new PropertyValue<KBFolder>(nameof(KBArticle), nameof(Folder));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("folder")]
         public KBFolder Folder
         {
-            get { return _folder.GetValue(); }
-            set { _folder.SetValue(value); }
+            get => _folder.GetValue();
+            set => _folder.SetValue(value);
         }
     
         private PropertyValue<PublicationItem> _item = new PropertyValue<PublicationItem>(nameof(KBArticle), nameof(Item));
@@ -101,8 +101,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("item")]
         public PublicationItem Item
         {
-            get { return _item.GetValue(); }
-            set { _item.SetValue(value); }
+            get => _item.GetValue();
+            set => _item.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(KBArticle), nameof(Created));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _createdBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(CreatedBy));
@@ -121,8 +121,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdBy")]
         public CPrincipal? CreatedBy
         {
-            get { return _createdBy.GetValue(); }
-            set { _createdBy.SetValue(value); }
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _updated = new PropertyValue<DateTime?>(nameof(KBArticle), nameof(Updated));
@@ -131,8 +131,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? Updated
         {
-            get { return _updated.GetValue(); }
-            set { _updated.SetValue(value); }
+            get => _updated.GetValue();
+            set => _updated.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(KBArticle), nameof(UpdatedBy));
@@ -140,8 +140,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("updatedBy")]
         public CPrincipal? UpdatedBy
         {
-            get { return _updatedBy.GetValue(); }
-            set { _updatedBy.SetValue(value); }
+            get => _updatedBy.GetValue();
+            set => _updatedBy.SetValue(value);
         }
     
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBArticle), nameof(Alias));
@@ -150,8 +150,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("alias")]
         public string Alias
         {
-            get { return _alias.GetValue(); }
-            set { _alias.SetValue(value); }
+            get => _alias.GetValue();
+            set => _alias.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

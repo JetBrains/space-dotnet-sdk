@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profile")]
         public TDMemberProfile? Profile
         {
-            get { return _profile.GetValue(); }
-            set { _profile.SetValue(value); }
+            get => _profile.GetValue();
+            set => _profile.SetValue(value);
         }
     
         private PropertyValue<string?> _role = new PropertyValue<string?>(nameof(AssignedPerson), nameof(Role));
@@ -50,8 +50,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("role")]
         public string? Role
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
+            get => _role.GetValue();
+            set => _role.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

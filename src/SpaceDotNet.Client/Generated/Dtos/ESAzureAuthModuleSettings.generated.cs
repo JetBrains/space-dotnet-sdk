@@ -48,8 +48,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tenantId")]
         public string TenantId
         {
-            get { return _tenantId.GetValue(); }
-            set { _tenantId.SetValue(value); }
+            get => _tenantId.GetValue();
+            set => _tenantId.SetValue(value);
         }
     
         private PropertyValue<string> _clientId = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(ClientId));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientId")]
         public string ClientId
         {
-            get { return _clientId.GetValue(); }
-            set { _clientId.SetValue(value); }
+            get => _clientId.GetValue();
+            set => _clientId.SetValue(value);
         }
     
         private PropertyValue<string> _clientSecret = new PropertyValue<string>(nameof(ESAzureAuthModuleSettings), nameof(ClientSecret));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("clientSecret")]
         public string ClientSecret
         {
-            get { return _clientSecret.GetValue(); }
-            set { _clientSecret.SetValue(value); }
+            get => _clientSecret.GetValue();
+            set => _clientSecret.SetValue(value);
         }
     
         private PropertyValue<bool> _registerNewUsers = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettings), nameof(IsRegisterNewUsers));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("registerNewUsers")]
         public bool IsRegisterNewUsers
         {
-            get { return _registerNewUsers.GetValue(); }
-            set { _registerNewUsers.SetValue(value); }
+            get => _registerNewUsers.GetValue();
+            set => _registerNewUsers.SetValue(value);
         }
     
         private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESAzureAuthModuleSettings), nameof(IsEmailVerified));
@@ -88,8 +88,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emailVerified")]
         public bool IsEmailVerified
         {
-            get { return _emailVerified.GetValue(); }
-            set { _emailVerified.SetValue(value); }
+            get => _emailVerified.GetValue();
+            set => _emailVerified.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

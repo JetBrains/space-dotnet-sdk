@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parent")]
         public M2ChannelRecord Parent
         {
-            get { return _parent.GetValue(); }
-            set { _parent.SetValue(value); }
+            get => _parent.GetValue();
+            set => _parent.SetValue(value);
         }
     
         private PropertyValue<string?> _text = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(Text));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string? Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<string?> _messageId = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(MessageId));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messageId")]
         public string? MessageId
         {
-            get { return _messageId.GetValue(); }
-            set { _messageId.SetValue(value); }
+            get => _messageId.GetValue();
+            set => _messageId.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _author = new PropertyValue<TDMemberProfile?>(nameof(M2ChannelContactThread), nameof(Author));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("author")]
         public TDMemberProfile? Author
         {
-            get { return _author.GetValue(); }
-            set { _author.SetValue(value); }
+            get => _author.GetValue();
+            set => _author.SetValue(value);
         }
     
         private PropertyValue<CPrincipal?> _messageAuthor = new PropertyValue<CPrincipal?>(nameof(M2ChannelContactThread), nameof(MessageAuthor));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messageAuthor")]
         public CPrincipal? MessageAuthor
         {
-            get { return _messageAuthor.GetValue(); }
-            set { _messageAuthor.SetValue(value); }
+            get => _messageAuthor.GetValue();
+            set => _messageAuthor.SetValue(value);
         }
     
         private PropertyValue<string?> _attachments = new PropertyValue<string?>(nameof(M2ChannelContactThread), nameof(Attachments));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public string? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

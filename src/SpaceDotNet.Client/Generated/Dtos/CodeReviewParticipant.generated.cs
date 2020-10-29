@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("user")]
         public TDMemberProfile User
         {
-            get { return _user.GetValue(); }
-            set { _user.SetValue(value); }
+            get => _user.GetValue();
+            set => _user.SetValue(value);
         }
     
         private PropertyValue<CodeReviewParticipantRole> _role = new PropertyValue<CodeReviewParticipantRole>(nameof(CodeReviewParticipant), nameof(Role));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("role")]
         public CodeReviewParticipantRole Role
         {
-            get { return _role.GetValue(); }
-            set { _role.SetValue(value); }
+            get => _role.GetValue();
+            set => _role.SetValue(value);
         }
     
         private PropertyValue<ReviewerState?> _state = new PropertyValue<ReviewerState?>(nameof(CodeReviewParticipant), nameof(State));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public ReviewerState? State
         {
-            get { return _state.GetValue(); }
-            set { _state.SetValue(value); }
+            get => _state.GetValue();
+            set => _state.SetValue(value);
         }
     
         private PropertyValue<bool?> _theirTurn = new PropertyValue<bool?>(nameof(CodeReviewParticipant), nameof(IsTheirTurn));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("theirTurn")]
         public bool? IsTheirTurn
         {
-            get { return _theirTurn.GetValue(); }
-            set { _theirTurn.SetValue(value); }
+            get => _theirTurn.GetValue();
+            set => _theirTurn.SetValue(value);
         }
     
         private PropertyValue<List<CodeReviewParticipantQualityGateSlot>?> _qualityGateSlots = new PropertyValue<List<CodeReviewParticipantQualityGateSlot>?>(nameof(CodeReviewParticipant), nameof(QualityGateSlots));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("qualityGateSlots")]
         public List<CodeReviewParticipantQualityGateSlot>? QualityGateSlots
         {
-            get { return _qualityGateSlots.GetValue(); }
-            set { _qualityGateSlots.SetValue(value); }
+            get => _qualityGateSlots.GetValue();
+            set => _qualityGateSlots.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _addedAt = new PropertyValue<DateTime?>(nameof(CodeReviewParticipant), nameof(AddedAt));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? AddedAt
         {
-            get { return _addedAt.GetValue(); }
-            set { _addedAt.SetValue(value); }
+            get => _addedAt.GetValue();
+            set => _addedAt.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

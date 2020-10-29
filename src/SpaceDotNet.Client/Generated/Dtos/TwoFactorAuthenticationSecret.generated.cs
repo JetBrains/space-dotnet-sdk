@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("secretKey")]
         public string SecretKey
         {
-            get { return _secretKey.GetValue(); }
-            set { _secretKey.SetValue(value); }
+            get => _secretKey.GetValue();
+            set => _secretKey.SetValue(value);
         }
     
         private PropertyValue<QRCode> _qrCode = new PropertyValue<QRCode>(nameof(TwoFactorAuthenticationSecret), nameof(QrCode));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("qrCode")]
         public QRCode QrCode
         {
-            get { return _qrCode.GetValue(); }
-            set { _qrCode.SetValue(value); }
+            get => _qrCode.GetValue();
+            set => _qrCode.SetValue(value);
         }
     
         private PropertyValue<List<int>> _scratchCodes = new PropertyValue<List<int>>(nameof(TwoFactorAuthenticationSecret), nameof(ScratchCodes));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scratchCodes")]
         public List<int> ScratchCodes
         {
-            get { return _scratchCodes.GetValue(); }
-            set { _scratchCodes.SetValue(value); }
+            get => _scratchCodes.GetValue();
+            set => _scratchCodes.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

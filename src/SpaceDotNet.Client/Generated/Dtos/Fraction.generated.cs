@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("numerator")]
         public int Numerator
         {
-            get { return _numerator.GetValue(); }
-            set { _numerator.SetValue(value); }
+            get => _numerator.GetValue();
+            set => _numerator.SetValue(value);
         }
     
         private PropertyValue<int> _denominator = new PropertyValue<int>(nameof(Fraction), nameof(Denominator));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("denominator")]
         public int Denominator
         {
-            get { return _denominator.GetValue(); }
-            set { _denominator.SetValue(value); }
+            get => _denominator.GetValue();
+            set => _denominator.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

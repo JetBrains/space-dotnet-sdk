@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<string> _version = new PropertyValue<string>(nameof(ContainerHelmChartDependency), nameof(Version));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public string Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<string?> _repository = new PropertyValue<string?>(nameof(ContainerHelmChartDependency), nameof(Repository));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string? Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string?> _condition = new PropertyValue<string?>(nameof(ContainerHelmChartDependency), nameof(Condition));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("condition")]
         public string? Condition
         {
-            get { return _condition.GetValue(); }
-            set { _condition.SetValue(value); }
+            get => _condition.GetValue();
+            set => _condition.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _tags = new PropertyValue<List<string>?>(nameof(ContainerHelmChartDependency), nameof(Tags));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<string>? Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

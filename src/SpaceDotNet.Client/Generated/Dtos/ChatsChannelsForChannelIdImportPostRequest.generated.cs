@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messages")]
         public List<MessageForImport> Messages
         {
-            get { return _messages.GetValue(); }
-            set { _messages.SetValue(value); }
+            get => _messages.GetValue();
+            set => _messages.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

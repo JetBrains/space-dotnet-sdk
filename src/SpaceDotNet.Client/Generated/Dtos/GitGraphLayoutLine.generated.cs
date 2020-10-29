@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("nodes")]
         public List<GitGraphLayoutNode> Nodes
         {
-            get { return _nodes.GetValue(); }
-            set { _nodes.SetValue(value); }
+            get => _nodes.GetValue();
+            set => _nodes.SetValue(value);
         }
     
         private PropertyValue<List<GitGraphLayoutEdge>> _edges = new PropertyValue<List<GitGraphLayoutEdge>>(nameof(GitGraphLayoutLine), nameof(Edges));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("edges")]
         public List<GitGraphLayoutEdge> Edges
         {
-            get { return _edges.GetValue(); }
-            set { _edges.SetValue(value); }
+            get => _edges.GetValue();
+            set => _edges.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

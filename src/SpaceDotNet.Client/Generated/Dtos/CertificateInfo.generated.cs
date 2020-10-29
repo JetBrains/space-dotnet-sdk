@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("certificateType")]
         public string CertificateType
         {
-            get { return _certificateType.GetValue(); }
-            set { _certificateType.SetValue(value); }
+            get => _certificateType.GetValue();
+            set => _certificateType.SetValue(value);
         }
     
         private PropertyValue<int> _version = new PropertyValue<int>(nameof(CertificateInfo), nameof(Version));
@@ -59,8 +59,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("version")]
         public int Version
         {
-            get { return _version.GetValue(); }
-            set { _version.SetValue(value); }
+            get => _version.GetValue();
+            set => _version.SetValue(value);
         }
     
         private PropertyValue<string> _serialNumber = new PropertyValue<string>(nameof(CertificateInfo), nameof(SerialNumber));
@@ -69,8 +69,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("serialNumber")]
         public string SerialNumber
         {
-            get { return _serialNumber.GetValue(); }
-            set { _serialNumber.SetValue(value); }
+            get => _serialNumber.GetValue();
+            set => _serialNumber.SetValue(value);
         }
     
         private PropertyValue<string> _issuedBy = new PropertyValue<string>(nameof(CertificateInfo), nameof(IssuedBy));
@@ -79,8 +79,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issuedBy")]
         public string IssuedBy
         {
-            get { return _issuedBy.GetValue(); }
-            set { _issuedBy.SetValue(value); }
+            get => _issuedBy.GetValue();
+            set => _issuedBy.SetValue(value);
         }
     
         private PropertyValue<string> _issuedTo = new PropertyValue<string>(nameof(CertificateInfo), nameof(IssuedTo));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("issuedTo")]
         public string IssuedTo
         {
-            get { return _issuedTo.GetValue(); }
-            set { _issuedTo.SetValue(value); }
+            get => _issuedTo.GetValue();
+            set => _issuedTo.SetValue(value);
         }
     
         private PropertyValue<DateTime> _validFrom = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidFrom));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime ValidFrom
         {
-            get { return _validFrom.GetValue(); }
-            set { _validFrom.SetValue(value); }
+            get => _validFrom.GetValue();
+            set => _validFrom.SetValue(value);
         }
     
         private PropertyValue<DateTime> _validTo = new PropertyValue<DateTime>(nameof(CertificateInfo), nameof(ValidTo));
@@ -111,8 +111,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime ValidTo
         {
-            get { return _validTo.GetValue(); }
-            set { _validTo.SetValue(value); }
+            get => _validTo.GetValue();
+            set => _validTo.SetValue(value);
         }
     
         private PropertyValue<string> _algorithm = new PropertyValue<string>(nameof(CertificateInfo), nameof(Algorithm));
@@ -121,8 +121,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("algorithm")]
         public string Algorithm
         {
-            get { return _algorithm.GetValue(); }
-            set { _algorithm.SetValue(value); }
+            get => _algorithm.GetValue();
+            set => _algorithm.SetValue(value);
         }
     
         private PropertyValue<Fingerprint> _fingerprint = new PropertyValue<Fingerprint>(nameof(CertificateInfo), nameof(Fingerprint));
@@ -131,8 +131,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fingerprint")]
         public Fingerprint Fingerprint
         {
-            get { return _fingerprint.GetValue(); }
-            set { _fingerprint.SetValue(value); }
+            get => _fingerprint.GetValue();
+            set => _fingerprint.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

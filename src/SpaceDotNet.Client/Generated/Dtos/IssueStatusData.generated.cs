@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("existingId")]
         public string? ExistingId
         {
-            get { return _existingId.GetValue(); }
-            set { _existingId.SetValue(value); }
+            get => _existingId.GetValue();
+            set => _existingId.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(IssueStatusData), nameof(Name));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(IssueStatusData), nameof(IsResolved));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resolved")]
         public bool IsResolved
         {
-            get { return _resolved.GetValue(); }
-            set { _resolved.SetValue(value); }
+            get => _resolved.GetValue();
+            set => _resolved.SetValue(value);
         }
     
         private PropertyValue<string> _color = new PropertyValue<string>(nameof(IssueStatusData), nameof(Color));
@@ -74,8 +74,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("color")]
         public string Color
         {
-            get { return _color.GetValue(); }
-            set { _color.SetValue(value); }
+            get => _color.GetValue();
+            set => _color.SetValue(value);
         }
     
         private PropertyValue<IssueStatus?> _originalStatus = new PropertyValue<IssueStatus?>(nameof(IssueStatusData), nameof(OriginalStatus));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("originalStatus")]
         public IssueStatus? OriginalStatus
         {
-            get { return _originalStatus.GetValue(); }
-            set { _originalStatus.SetValue(value); }
+            get => _originalStatus.GetValue();
+            set => _originalStatus.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("displayName")]
         public string DisplayName
         {
-            get { return _displayName.GetValue(); }
-            set { _displayName.SetValue(value); }
+            get => _displayName.GetValue();
+            set => _displayName.SetValue(value);
         }
     
         private PropertyValue<string> _ref = new PropertyValue<string>(nameof(MergeRequestBranch), nameof(Ref));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ref")]
         public string Ref
         {
-            get { return _ref.GetValue(); }
-            set { _ref.SetValue(value); }
+            get => _ref.GetValue();
+            set => _ref.SetValue(value);
         }
     
         private PropertyValue<bool> _deleted = new PropertyValue<bool>(nameof(MergeRequestBranch), nameof(IsDeleted));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deleted")]
         public bool IsDeleted
         {
-            get { return _deleted.GetValue(); }
-            set { _deleted.SetValue(value); }
+            get => _deleted.GetValue();
+            set => _deleted.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

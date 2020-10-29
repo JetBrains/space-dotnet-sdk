@@ -37,17 +37,13 @@ namespace SpaceDotNet.Client
         private class ImportExistsPolicySkip : ImportExistsPolicy
         {
             public override string ToString()
-            {
-                return "skip";
-            }
+                => "skip";
         }
         
         private class ImportExistsPolicyUpdate : ImportExistsPolicy
         {
             public override string ToString()
-            {
-                return "update";
-            }
+                => "update";
         }
         
     }

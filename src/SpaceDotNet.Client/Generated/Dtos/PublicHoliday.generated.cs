@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<PublicHolidayCalendarRecord> _calendar = new PropertyValue<PublicHolidayCalendarRecord>(nameof(PublicHoliday), nameof(Calendar));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("calendar")]
         public PublicHolidayCalendarRecord Calendar
         {
-            get { return _calendar.GetValue(); }
-            set { _calendar.SetValue(value); }
+            get => _calendar.GetValue();
+            set => _calendar.SetValue(value);
         }
     
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(PublicHoliday), nameof(Name));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<DateTime> _date = new PropertyValue<DateTime>(nameof(PublicHoliday), nameof(Date));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime Date
         {
-            get { return _date.GetValue(); }
-            set { _date.SetValue(value); }
+            get => _date.GetValue();
+            set => _date.SetValue(value);
         }
     
         private PropertyValue<bool> _workingDay = new PropertyValue<bool>(nameof(PublicHoliday), nameof(IsWorkingDay));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("workingDay")]
         public bool IsWorkingDay
         {
-            get { return _workingDay.GetValue(); }
-            set { _workingDay.SetValue(value); }
+            get => _workingDay.GetValue();
+            set => _workingDay.SetValue(value);
         }
     
         private PropertyValue<bool?> _halfDay = new PropertyValue<bool?>(nameof(PublicHoliday), nameof(IsHalfDay));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("halfDay")]
         public bool? IsHalfDay
         {
-            get { return _halfDay.GetValue(); }
-            set { _halfDay.SetValue(value); }
+            get => _halfDay.GetValue();
+            set => _halfDay.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

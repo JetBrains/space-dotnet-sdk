@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public ProjectKey Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeDiscussionAnchor), nameof(Repository));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CodeDiscussionAnchor), nameof(Revision));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revision")]
         public string Revision
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get => _revision.GetValue();
+            set => _revision.SetValue(value);
         }
     
         private PropertyValue<string?> _filename = new PropertyValue<string?>(nameof(CodeDiscussionAnchor), nameof(Filename));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("filename")]
         public string? Filename
         {
-            get { return _filename.GetValue(); }
-            set { _filename.SetValue(value); }
+            get => _filename.GetValue();
+            set => _filename.SetValue(value);
         }
     
         private PropertyValue<int?> _line = new PropertyValue<int?>(nameof(CodeDiscussionAnchor), nameof(Line));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("line")]
         public int? Line
         {
-            get { return _line.GetValue(); }
-            set { _line.SetValue(value); }
+            get => _line.GetValue();
+            set => _line.SetValue(value);
         }
     
         private PropertyValue<int?> _oldLine = new PropertyValue<int?>(nameof(CodeDiscussionAnchor), nameof(OldLine));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("oldLine")]
         public int? OldLine
         {
-            get { return _oldLine.GetValue(); }
-            set { _oldLine.SetValue(value); }
+            get => _oldLine.GetValue();
+            set => _oldLine.SetValue(value);
         }
     
         private PropertyValue<InterpolatedLineState?> _interpolatedLineState = new PropertyValue<InterpolatedLineState?>(nameof(CodeDiscussionAnchor), nameof(InterpolatedLineState));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("interpolatedLineState")]
         public InterpolatedLineState? InterpolatedLineState
         {
-            get { return _interpolatedLineState.GetValue(); }
-            set { _interpolatedLineState.SetValue(value); }
+            get => _interpolatedLineState.GetValue();
+            set => _interpolatedLineState.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

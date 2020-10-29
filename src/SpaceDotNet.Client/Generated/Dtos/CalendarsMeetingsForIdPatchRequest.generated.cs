@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("summary")]
         public string? Summary
         {
-            get { return _summary.GetValue(); }
-            set { _summary.SetValue(value); }
+            get => _summary.GetValue();
+            set => _summary.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Description));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<CalendarEventSpec?> _occurrenceRule = new PropertyValue<CalendarEventSpec?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(OccurrenceRule));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("occurrenceRule")]
         public CalendarEventSpec? OccurrenceRule
         {
-            get { return _occurrenceRule.GetValue(); }
-            set { _occurrenceRule.SetValue(value); }
+            get => _occurrenceRule.GetValue();
+            set => _occurrenceRule.SetValue(value);
         }
     
         private PropertyValue<Diff> _locationsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(LocationsDiff));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("locationsDiff")]
         public Diff LocationsDiff
         {
-            get { return _locationsDiff.GetValue(); }
-            set { _locationsDiff.SetValue(value); }
+            get => _locationsDiff.GetValue();
+            set => _locationsDiff.SetValue(value);
         }
     
         private PropertyValue<Diff> _profilesDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ProfilesDiff));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("profilesDiff")]
         public Diff ProfilesDiff
         {
-            get { return _profilesDiff.GetValue(); }
-            set { _profilesDiff.SetValue(value); }
+            get => _profilesDiff.GetValue();
+            set => _profilesDiff.SetValue(value);
         }
     
         private PropertyValue<Diff> _externalParticipantsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ExternalParticipantsDiff));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalParticipantsDiff")]
         public Diff ExternalParticipantsDiff
         {
-            get { return _externalParticipantsDiff.GetValue(); }
-            set { _externalParticipantsDiff.SetValue(value); }
+            get => _externalParticipantsDiff.GetValue();
+            set => _externalParticipantsDiff.SetValue(value);
         }
     
         private PropertyValue<Diff> _teamsDiff = new PropertyValue<Diff>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TeamsDiff));
@@ -107,8 +107,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("teamsDiff")]
         public Diff TeamsDiff
         {
-            get { return _teamsDiff.GetValue(); }
-            set { _teamsDiff.SetValue(value); }
+            get => _teamsDiff.GetValue();
+            set => _teamsDiff.SetValue(value);
         }
     
         private PropertyValue<MeetingVisibility?> _visibility = new PropertyValue<MeetingVisibility?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Visibility));
@@ -116,8 +116,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("visibility")]
         public MeetingVisibility? Visibility
         {
-            get { return _visibility.GetValue(); }
-            set { _visibility.SetValue(value); }
+            get => _visibility.GetValue();
+            set => _visibility.SetValue(value);
         }
     
         private PropertyValue<MeetingModificationPreference?> _modificationPreference = new PropertyValue<MeetingModificationPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationPreference));
@@ -125,8 +125,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("modificationPreference")]
         public MeetingModificationPreference? ModificationPreference
         {
-            get { return _modificationPreference.GetValue(); }
-            set { _modificationPreference.SetValue(value); }
+            get => _modificationPreference.GetValue();
+            set => _modificationPreference.SetValue(value);
         }
     
         private PropertyValue<MeetingJoiningPreference?> _joiningPreference = new PropertyValue<MeetingJoiningPreference?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(JoiningPreference));
@@ -134,8 +134,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("joiningPreference")]
         public MeetingJoiningPreference? JoiningPreference
         {
-            get { return _joiningPreference.GetValue(); }
-            set { _joiningPreference.SetValue(value); }
+            get => _joiningPreference.GetValue();
+            set => _joiningPreference.SetValue(value);
         }
     
         private PropertyValue<bool> _notifyOnExport = new PropertyValue<bool>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(IsNotifyOnExport));
@@ -143,8 +143,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("notifyOnExport")]
         public bool IsNotifyOnExport
         {
-            get { return _notifyOnExport.GetValue(); }
-            set { _notifyOnExport.SetValue(value); }
+            get => _notifyOnExport.GetValue();
+            set => _notifyOnExport.SetValue(value);
         }
     
         private PropertyValue<string?> _organizer = new PropertyValue<string?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(Organizer));
@@ -152,8 +152,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("organizer")]
         public string? Organizer
         {
-            get { return _organizer.GetValue(); }
-            set { _organizer.SetValue(value); }
+            get => _organizer.GetValue();
+            set => _organizer.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _targetDate = new PropertyValue<DateTime?>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(TargetDate));
@@ -162,8 +162,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? TargetDate
         {
-            get { return _targetDate.GetValue(); }
-            set { _targetDate.SetValue(value); }
+            get => _targetDate.GetValue();
+            set => _targetDate.SetValue(value);
         }
     
         private PropertyValue<RecurrentModification> _modificationKind = new PropertyValue<RecurrentModification>(nameof(CalendarsMeetingsForIdPatchRequest), nameof(ModificationKind));
@@ -171,8 +171,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("modificationKind")]
         public RecurrentModification ModificationKind
         {
-            get { return _modificationKind.GetValue(); }
-            set { _modificationKind.SetValue(value); }
+            get => _modificationKind.GetValue();
+            set => _modificationKind.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

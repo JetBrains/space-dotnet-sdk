@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resource")]
         public HAResource Resource
         {
-            get { return _resource.GetValue(); }
-            set { _resource.SetValue(value); }
+            get => _resource.GetValue();
+            set => _resource.SetValue(value);
         }
     
         private PropertyValue<HAMethod> _method = new PropertyValue<HAMethod>(nameof(HAEndpoint), nameof(Method));
@@ -61,8 +61,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("method")]
         public HAMethod Method
         {
-            get { return _method.GetValue(); }
-            set { _method.SetValue(value); }
+            get => _method.GetValue();
+            set => _method.SetValue(value);
         }
     
         private PropertyValue<List<HAParameter>> _parameters = new PropertyValue<List<HAParameter>>(nameof(HAEndpoint), nameof(Parameters));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("parameters")]
         public List<HAParameter> Parameters
         {
-            get { return _parameters.GetValue(); }
-            set { _parameters.SetValue(value); }
+            get => _parameters.GetValue();
+            set => _parameters.SetValue(value);
         }
     
         private PropertyValue<HATypeObject?> _requestBody = new PropertyValue<HATypeObject?>(nameof(HAEndpoint), nameof(RequestBody));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("requestBody")]
         public HATypeObject? RequestBody
         {
-            get { return _requestBody.GetValue(); }
-            set { _requestBody.SetValue(value); }
+            get => _requestBody.GetValue();
+            set => _requestBody.SetValue(value);
         }
     
         private PropertyValue<HAType?> _responseBody = new PropertyValue<HAType?>(nameof(HAEndpoint), nameof(ResponseBody));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("responseBody")]
         public HAType? ResponseBody
         {
-            get { return _responseBody.GetValue(); }
-            set { _responseBody.SetValue(value); }
+            get => _responseBody.GetValue();
+            set => _responseBody.SetValue(value);
         }
     
         private PropertyValue<HAPath> _path = new PropertyValue<HAPath>(nameof(HAEndpoint), nameof(Path));
@@ -99,8 +99,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("path")]
         public HAPath Path
         {
-            get { return _path.GetValue(); }
-            set { _path.SetValue(value); }
+            get => _path.GetValue();
+            set => _path.SetValue(value);
         }
     
         private PropertyValue<string> _displayName = new PropertyValue<string>(nameof(HAEndpoint), nameof(DisplayName));
@@ -109,8 +109,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("displayName")]
         public string DisplayName
         {
-            get { return _displayName.GetValue(); }
-            set { _displayName.SetValue(value); }
+            get => _displayName.GetValue();
+            set => _displayName.SetValue(value);
         }
     
         private PropertyValue<string> _functionName = new PropertyValue<string>(nameof(HAEndpoint), nameof(FunctionName));
@@ -119,8 +119,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("functionName")]
         public string FunctionName
         {
-            get { return _functionName.GetValue(); }
-            set { _functionName.SetValue(value); }
+            get => _functionName.GetValue();
+            set => _functionName.SetValue(value);
         }
     
         private PropertyValue<string?> _doc = new PropertyValue<string?>(nameof(HAEndpoint), nameof(Doc));
@@ -128,8 +128,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("doc")]
         public string? Doc
         {
-            get { return _doc.GetValue(); }
-            set { _doc.SetValue(value); }
+            get => _doc.GetValue();
+            set => _doc.SetValue(value);
         }
     
         private PropertyValue<HADeprecation?> _deprecation = new PropertyValue<HADeprecation?>(nameof(HAEndpoint), nameof(Deprecation));
@@ -137,8 +137,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("deprecation")]
         public HADeprecation? Deprecation
         {
-            get { return _deprecation.GetValue(); }
-            set { _deprecation.SetValue(value); }
+            get => _deprecation.GetValue();
+            set => _deprecation.SetValue(value);
         }
     
         private PropertyValue<List<HARight>?> _rights = new PropertyValue<List<HARight>?>(nameof(HAEndpoint), nameof(Rights));
@@ -146,8 +146,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("rights")]
         public List<HARight>? Rights
         {
-            get { return _rights.GetValue(); }
-            set { _rights.SetValue(value); }
+            get => _rights.GetValue();
+            set => _rights.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

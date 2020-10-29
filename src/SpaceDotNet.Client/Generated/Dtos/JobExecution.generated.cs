@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("executionId")]
         public string ExecutionId
         {
-            get { return _executionId.GetValue(); }
-            set { _executionId.SetValue(value); }
+            get => _executionId.GetValue();
+            set => _executionId.SetValue(value);
         }
     
         private PropertyValue<long> _executionNumber = new PropertyValue<long>(nameof(JobExecution), nameof(ExecutionNumber));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("executionNumber")]
         public long ExecutionNumber
         {
-            get { return _executionNumber.GetValue(); }
-            set { _executionNumber.SetValue(value); }
+            get => _executionNumber.GetValue();
+            set => _executionNumber.SetValue(value);
         }
     
         private PropertyValue<string> _jobId = new PropertyValue<string>(nameof(JobExecution), nameof(JobId));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobId")]
         public string JobId
         {
-            get { return _jobId.GetValue(); }
-            set { _jobId.SetValue(value); }
+            get => _jobId.GetValue();
+            set => _jobId.SetValue(value);
         }
     
         private PropertyValue<string> _jobName = new PropertyValue<string>(nameof(JobExecution), nameof(JobName));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobName")]
         public string JobName
         {
-            get { return _jobName.GetValue(); }
-            set { _jobName.SetValue(value); }
+            get => _jobName.GetValue();
+            set => _jobName.SetValue(value);
         }
     
         private PropertyValue<string> _branch = new PropertyValue<string>(nameof(JobExecution), nameof(Branch));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("branch")]
         public string Branch
         {
-            get { return _branch.GetValue(); }
-            set { _branch.SetValue(value); }
+            get => _branch.GetValue();
+            set => _branch.SetValue(value);
         }
     
         private PropertyValue<ExecutionStatus> _status = new PropertyValue<ExecutionStatus>(nameof(JobExecution), nameof(Status));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("status")]
         public ExecutionStatus Status
         {
-            get { return _status.GetValue(); }
-            set { _status.SetValue(value); }
+            get => _status.GetValue();
+            set => _status.SetValue(value);
         }
     
         private PropertyValue<long> _triggeredTime = new PropertyValue<long>(nameof(JobExecution), nameof(TriggeredTime));
@@ -113,8 +113,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("triggeredTime")]
         public long TriggeredTime
         {
-            get { return _triggeredTime.GetValue(); }
-            set { _triggeredTime.SetValue(value); }
+            get => _triggeredTime.GetValue();
+            set => _triggeredTime.SetValue(value);
         }
     
         private PropertyValue<long?> _startedTime = new PropertyValue<long?>(nameof(JobExecution), nameof(StartedTime));
@@ -122,8 +122,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("startedTime")]
         public long? StartedTime
         {
-            get { return _startedTime.GetValue(); }
-            set { _startedTime.SetValue(value); }
+            get => _startedTime.GetValue();
+            set => _startedTime.SetValue(value);
         }
     
         private PropertyValue<long?> _finishedTime = new PropertyValue<long?>(nameof(JobExecution), nameof(FinishedTime));
@@ -131,8 +131,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("finishedTime")]
         public long? FinishedTime
         {
-            get { return _finishedTime.GetValue(); }
-            set { _finishedTime.SetValue(value); }
+            get => _finishedTime.GetValue();
+            set => _finishedTime.SetValue(value);
         }
     
         private PropertyValue<string> _changesFromExclude = new PropertyValue<string>(nameof(JobExecution), nameof(ChangesFromExclude));
@@ -141,8 +141,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("changesFromExclude")]
         public string ChangesFromExclude
         {
-            get { return _changesFromExclude.GetValue(); }
-            set { _changesFromExclude.SetValue(value); }
+            get => _changesFromExclude.GetValue();
+            set => _changesFromExclude.SetValue(value);
         }
     
         private PropertyValue<int> _changesCount = new PropertyValue<int>(nameof(JobExecution), nameof(ChangesCount));
@@ -151,8 +151,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("changesCount")]
         public int ChangesCount
         {
-            get { return _changesCount.GetValue(); }
-            set { _changesCount.SetValue(value); }
+            get => _changesCount.GetValue();
+            set => _changesCount.SetValue(value);
         }
     
         private PropertyValue<Estimation?> _predictedEndTime = new PropertyValue<Estimation?>(nameof(JobExecution), nameof(PredictedEndTime));
@@ -160,8 +160,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("predictedEndTime")]
         public Estimation? PredictedEndTime
         {
-            get { return _predictedEndTime.GetValue(); }
-            set { _predictedEndTime.SetValue(value); }
+            get => _predictedEndTime.GetValue();
+            set => _predictedEndTime.SetValue(value);
         }
     
         private PropertyValue<List<FailureCondition>> _failureConditions = new PropertyValue<List<FailureCondition>>(nameof(JobExecution), nameof(FailureConditions));
@@ -170,8 +170,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("failureConditions")]
         public List<FailureCondition> FailureConditions
         {
-            get { return _failureConditions.GetValue(); }
-            set { _failureConditions.SetValue(value); }
+            get => _failureConditions.GetValue();
+            set => _failureConditions.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

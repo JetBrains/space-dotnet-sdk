@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messageId")]
         public string MessageId
         {
-            get { return _messageId.GetValue(); }
-            set { _messageId.SetValue(value); }
+            get => _messageId.GetValue();
+            set => _messageId.SetValue(value);
         }
     
         private PropertyValue<string> _channelId = new PropertyValue<string>(nameof(MessageContext), nameof(ChannelId));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channelId")]
         public string ChannelId
         {
-            get { return _channelId.GetValue(); }
-            set { _channelId.SetValue(value); }
+            get => _channelId.GetValue();
+            set => _channelId.SetValue(value);
         }
     
         private PropertyValue<string?> _messageData = new PropertyValue<string?>(nameof(MessageContext), nameof(MessageData));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("messageData")]
         public string? MessageData
         {
-            get { return _messageData.GetValue(); }
-            set { _messageData.SetValue(value); }
+            get => _messageData.GetValue();
+            set => _messageData.SetValue(value);
         }
     
         private PropertyValue<ChatMessage?> _body = new PropertyValue<ChatMessage?>(nameof(MessageContext), nameof(Body));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("body")]
         public ChatMessage? Body
         {
-            get { return _body.GetValue(); }
-            set { _body.SetValue(value); }
+            get => _body.GetValue();
+            set => _body.SetValue(value);
         }
     
         private PropertyValue<List<Attachment>?> _attachments = new PropertyValue<List<Attachment>?>(nameof(MessageContext), nameof(Attachments));
@@ -84,8 +84,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<Attachment>? Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         private PropertyValue<string?> _externalId = new PropertyValue<string?>(nameof(MessageContext), nameof(ExternalId));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalId")]
         public string? ExternalId
         {
-            get { return _externalId.GetValue(); }
-            set { _externalId.SetValue(value); }
+            get => _externalId.GetValue();
+            set => _externalId.SetValue(value);
         }
     
         private PropertyValue<string> _createdTime = new PropertyValue<string>(nameof(MessageContext), nameof(CreatedTime));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdTime")]
         public string CreatedTime
         {
-            get { return _createdTime.GetValue(); }
-            set { _createdTime.SetValue(value); }
+            get => _createdTime.GetValue();
+            set => _createdTime.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

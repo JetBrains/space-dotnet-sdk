@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("message")]
         public MCMessage Message
         {
-            get { return _message.GetValue(); }
-            set { _message.SetValue(value); }
+            get => _message.GetValue();
+            set => _message.SetValue(value);
         }
     
         private PropertyValue<List<AttachmentInfo>?> _inlineUnfurls = new PropertyValue<List<AttachmentInfo>?>(nameof(UnfurlDetailsMC), nameof(InlineUnfurls));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("inlineUnfurls")]
         public List<AttachmentInfo>? InlineUnfurls
         {
-            get { return _inlineUnfurls.GetValue(); }
-            set { _inlineUnfurls.SetValue(value); }
+            get => _inlineUnfurls.GetValue();
+            set => _inlineUnfurls.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("login")]
         public string? Login
         {
-            get { return _login.GetValue(); }
-            set { _login.SetValue(value); }
+            get => _login.GetValue();
+            set => _login.SetValue(value);
         }
     
         private PropertyValue<string?> _hubAuthModuleLogin = new PropertyValue<string?>(nameof(ESHubProfileLoginDetails), nameof(HubAuthModuleLogin));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("hubAuthModuleLogin")]
         public string? HubAuthModuleLogin
         {
-            get { return _hubAuthModuleLogin.GetValue(); }
-            set { _hubAuthModuleLogin.SetValue(value); }
+            get => _hubAuthModuleLogin.GetValue();
+            set => _hubAuthModuleLogin.SetValue(value);
         }
     
         private PropertyValue<string?> _firstName = new PropertyValue<string?>(nameof(ESHubProfileLoginDetails), nameof(FirstName));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("firstName")]
         public string? FirstName
         {
-            get { return _firstName.GetValue(); }
-            set { _firstName.SetValue(value); }
+            get => _firstName.GetValue();
+            set => _firstName.SetValue(value);
         }
     
         private PropertyValue<string?> _lastName = new PropertyValue<string?>(nameof(ESHubProfileLoginDetails), nameof(LastName));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastName")]
         public string? LastName
         {
-            get { return _lastName.GetValue(); }
-            set { _lastName.SetValue(value); }
+            get => _lastName.GetValue();
+            set => _lastName.SetValue(value);
         }
     
         private PropertyValue<string?> _email = new PropertyValue<string?>(nameof(ESHubProfileLoginDetails), nameof(Email));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("email")]
         public string? Email
         {
-            get { return _email.GetValue(); }
-            set { _email.SetValue(value); }
+            get => _email.GetValue();
+            set => _email.SetValue(value);
         }
     
         private PropertyValue<bool> _emailVerified = new PropertyValue<bool>(nameof(ESHubProfileLoginDetails), nameof(IsEmailVerified));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("emailVerified")]
         public bool IsEmailVerified
         {
-            get { return _emailVerified.GetValue(); }
-            set { _emailVerified.SetValue(value); }
+            get => _emailVerified.GetValue();
+            set => _emailVerified.SetValue(value);
         }
     
         private PropertyValue<string?> _avatarUrl = new PropertyValue<string?>(nameof(ESHubProfileLoginDetails), nameof(AvatarUrl));
@@ -104,8 +104,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("avatarUrl")]
         public string? AvatarUrl
         {
-            get { return _avatarUrl.GetValue(); }
-            set { _avatarUrl.SetValue(value); }
+            get => _avatarUrl.GetValue();
+            set => _avatarUrl.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

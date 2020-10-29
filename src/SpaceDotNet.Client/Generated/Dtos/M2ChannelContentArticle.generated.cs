@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("article")]
         public ArticleRecord Article
         {
-            get { return _article.GetValue(); }
-            set { _article.SetValue(value); }
+            get => _article.GetValue();
+            set => _article.SetValue(value);
         }
     
         private PropertyValue<ArticleContentRecord> _articleContent = new PropertyValue<ArticleContentRecord>(nameof(M2ChannelContentArticle), nameof(ArticleContent));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("articleContent")]
         public ArticleContentRecord ArticleContent
         {
-            get { return _articleContent.GetValue(); }
-            set { _articleContent.SetValue(value); }
+            get => _articleContent.GetValue();
+            set => _articleContent.SetValue(value);
         }
     
         private PropertyValue<ArticleDetailsRecord?> _details = new PropertyValue<ArticleDetailsRecord?>(nameof(M2ChannelContentArticle), nameof(Details));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("details")]
         public ArticleDetailsRecord? Details
         {
-            get { return _details.GetValue(); }
-            set { _details.SetValue(value); }
+            get => _details.GetValue();
+            set => _details.SetValue(value);
         }
     
         private PropertyValue<ArticleChannelRecord?> _channel = new PropertyValue<ArticleChannelRecord?>(nameof(M2ChannelContentArticle), nameof(Channel));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public ArticleChannelRecord? Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

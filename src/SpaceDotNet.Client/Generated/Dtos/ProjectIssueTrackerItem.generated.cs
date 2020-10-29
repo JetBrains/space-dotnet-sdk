@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("key")]
         public string Key
         {
-            get { return _key.GetValue(); }
-            set { _key.SetValue(value); }
+            get => _key.GetValue();
+            set => _key.SetValue(value);
         }
     
         private PropertyValue<IssueTracker> _tracker = new PropertyValue<IssueTracker>(nameof(ProjectIssueTrackerItem), nameof(Tracker));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tracker")]
         public IssueTracker Tracker
         {
-            get { return _tracker.GetValue(); }
-            set { _tracker.SetValue(value); }
+            get => _tracker.GetValue();
+            set => _tracker.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

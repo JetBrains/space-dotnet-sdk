@@ -43,8 +43,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _login = new PropertyValue<string>(nameof(ThrottledLogin), nameof(Login));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("login")]
         public string Login
         {
-            get { return _login.GetValue(); }
-            set { _login.SetValue(value); }
+            get => _login.GetValue();
+            set => _login.SetValue(value);
         }
     
         private PropertyValue<DateTime> _throttledUntil = new PropertyValue<DateTime>(nameof(ThrottledLogin), nameof(ThrottledUntil));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime ThrottledUntil
         {
-            get { return _throttledUntil.GetValue(); }
-            set { _throttledUntil.SetValue(value); }
+            get => _throttledUntil.GetValue();
+            set => _throttledUntil.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

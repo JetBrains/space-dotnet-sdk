@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Description));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Assignee));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("assignee")]
         public string? Assignee
         {
-            get { return _assignee.GetValue(); }
-            set { _assignee.SetValue(value); }
+            get => _assignee.GetValue();
+            set => _assignee.SetValue(value);
         }
     
         private PropertyValue<string> _status = new PropertyValue<string>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(Status));
@@ -71,8 +71,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("status")]
         public string Status
         {
-            get { return _status.GetValue(); }
-            set { _status.SetValue(value); }
+            get => _status.GetValue();
+            set => _status.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(ProjectsForProjectPlanningIssuesForIssueIdPatchRequest), nameof(DueDate));
@@ -81,8 +81,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? DueDate
         {
-            get { return _dueDate.GetValue(); }
-            set { _dueDate.SetValue(value); }
+            get => _dueDate.GetValue();
+            set => _dueDate.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

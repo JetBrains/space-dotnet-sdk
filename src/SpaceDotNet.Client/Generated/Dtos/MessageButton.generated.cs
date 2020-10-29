@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<MessageButtonStyle> _style = new PropertyValue<MessageButtonStyle>(nameof(MessageButton), nameof(Style));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("style")]
         public MessageButtonStyle Style
         {
-            get { return _style.GetValue(); }
-            set { _style.SetValue(value); }
+            get => _style.GetValue();
+            set => _style.SetValue(value);
         }
     
         private PropertyValue<MessageAction> _action = new PropertyValue<MessageAction>(nameof(MessageButton), nameof(Action));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("action")]
         public MessageAction Action
         {
-            get { return _action.GetValue(); }
-            set { _action.SetValue(value); }
+            get => _action.GetValue();
+            set => _action.SetValue(value);
         }
     
         private PropertyValue<bool?> _disabled = new PropertyValue<bool?>(nameof(MessageButton), nameof(IsDisabled));
@@ -76,8 +76,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("disabled")]
         public bool? IsDisabled
         {
-            get { return _disabled.GetValue(); }
-            set { _disabled.SetValue(value); }
+            get => _disabled.GetValue();
+            set => _disabled.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

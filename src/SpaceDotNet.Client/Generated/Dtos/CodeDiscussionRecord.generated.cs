@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeDiscussionRecord), nameof(ProjectId));
@@ -62,8 +62,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectId")]
         public string ProjectId
         {
-            get { return _projectId.GetValue(); }
-            set { _projectId.SetValue(value); }
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<CodeDiscussionAnchor> _anchor = new PropertyValue<CodeDiscussionAnchor>(nameof(CodeDiscussionRecord), nameof(Anchor));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("anchor")]
         public CodeDiscussionAnchor Anchor
         {
-            get { return _anchor.GetValue(); }
-            set { _anchor.SetValue(value); }
+            get => _anchor.GetValue();
+            set => _anchor.SetValue(value);
         }
     
         private PropertyValue<DateTime> _created = new PropertyValue<DateTime>(nameof(CodeDiscussionRecord), nameof(Created));
@@ -83,8 +83,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(CodeDiscussionRecord), nameof(Channel));
@@ -93,8 +93,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public M2ChannelRecord Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<bool> _resolved = new PropertyValue<bool>(nameof(CodeDiscussionRecord), nameof(IsResolved));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("resolved")]
         public bool IsResolved
         {
-            get { return _resolved.GetValue(); }
-            set { _resolved.SetValue(value); }
+            get => _resolved.GetValue();
+            set => _resolved.SetValue(value);
         }
     
         private PropertyValue<CodeDiscussionSnippet?> _snippet = new PropertyValue<CodeDiscussionSnippet?>(nameof(CodeDiscussionRecord), nameof(Snippet));
@@ -112,8 +112,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("snippet")]
         public CodeDiscussionSnippet? Snippet
         {
-            get { return _snippet.GetValue(); }
-            set { _snippet.SetValue(value); }
+            get => _snippet.GetValue();
+            set => _snippet.SetValue(value);
         }
     
         private PropertyValue<bool?> _pending = new PropertyValue<bool?>(nameof(CodeDiscussionRecord), nameof(IsPending));
@@ -121,8 +121,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("pending")]
         public bool? IsPending
         {
-            get { return _pending.GetValue(); }
-            set { _pending.SetValue(value); }
+            get => _pending.GetValue();
+            set => _pending.SetValue(value);
         }
     
         private PropertyValue<CodeReviewRecord?> _review = new PropertyValue<CodeReviewRecord?>(nameof(CodeDiscussionRecord), nameof(Review));
@@ -130,8 +130,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("review")]
         public CodeReviewRecord? Review
         {
-            get { return _review.GetValue(); }
-            set { _review.SetValue(value); }
+            get => _review.GetValue();
+            set => _review.SetValue(value);
         }
     
         private PropertyValue<string?> _feedItemId = new PropertyValue<string?>(nameof(CodeDiscussionRecord), nameof(FeedItemId));
@@ -139,8 +139,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("feedItemId")]
         public string? FeedItemId
         {
-            get { return _feedItemId.GetValue(); }
-            set { _feedItemId.SetValue(value); }
+            get => _feedItemId.GetValue();
+            set => _feedItemId.SetValue(value);
         }
     
         private PropertyValue<List<CodeReviewRecord>?> _reviews = new PropertyValue<List<CodeReviewRecord>?>(nameof(CodeDiscussionRecord), nameof(Reviews));
@@ -148,8 +148,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("reviews")]
         public List<CodeReviewRecord>? Reviews
         {
-            get { return _reviews.GetValue(); }
-            set { _reviews.SetValue(value); }
+            get => _reviews.GetValue();
+            set => _reviews.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeDiscussionRecord), nameof(IsArchived));
@@ -158,8 +158,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

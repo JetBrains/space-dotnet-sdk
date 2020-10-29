@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("mapPictureId")]
         public string MapPictureId
         {
-            get { return _mapPictureId.GetValue(); }
-            set { _mapPictureId.SetValue(value); }
+            get => _mapPictureId.GetValue();
+            set => _mapPictureId.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

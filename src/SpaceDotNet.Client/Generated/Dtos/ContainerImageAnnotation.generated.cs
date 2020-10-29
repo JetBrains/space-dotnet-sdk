@@ -46,8 +46,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("created")]
         public long? Created
         {
-            get { return _created.GetValue(); }
-            set { _created.SetValue(value); }
+            get => _created.GetValue();
+            set => _created.SetValue(value);
         }
     
         private PropertyValue<string?> _buildName = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(BuildName));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("buildName")]
         public string? BuildName
         {
-            get { return _buildName.GetValue(); }
-            set { _buildName.SetValue(value); }
+            get => _buildName.GetValue();
+            set => _buildName.SetValue(value);
         }
     
         private PropertyValue<string?> _buildUrl = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(BuildUrl));
@@ -64,8 +64,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("buildUrl")]
         public string? BuildUrl
         {
-            get { return _buildUrl.GetValue(); }
-            set { _buildUrl.SetValue(value); }
+            get => _buildUrl.GetValue();
+            set => _buildUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _revision = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Revision));
@@ -73,8 +73,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revision")]
         public string? Revision
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get => _revision.GetValue();
+            set => _revision.SetValue(value);
         }
     
         private PropertyValue<string?> _vendor = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Vendor));
@@ -82,8 +82,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("vendor")]
         public string? Vendor
         {
-            get { return _vendor.GetValue(); }
-            set { _vendor.SetValue(value); }
+            get => _vendor.GetValue();
+            set => _vendor.SetValue(value);
         }
     
         private PropertyValue<string?> _documentationUrl = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(DocumentationUrl));
@@ -91,8 +91,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("documentationUrl")]
         public string? DocumentationUrl
         {
-            get { return _documentationUrl.GetValue(); }
-            set { _documentationUrl.SetValue(value); }
+            get => _documentationUrl.GetValue();
+            set => _documentationUrl.SetValue(value);
         }
     
         private PropertyValue<string?> _licenses = new PropertyValue<string?>(nameof(ContainerImageAnnotation), nameof(Licenses));
@@ -100,8 +100,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("licenses")]
         public string? Licenses
         {
-            get { return _licenses.GetValue(); }
-            set { _licenses.SetValue(value); }
+            get => _licenses.GetValue();
+            set => _licenses.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

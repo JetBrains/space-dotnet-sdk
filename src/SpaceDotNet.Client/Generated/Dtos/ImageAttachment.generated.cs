@@ -49,8 +49,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string?> _name = new PropertyValue<string?>(nameof(ImageAttachment), nameof(Name));
@@ -58,8 +58,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("name")]
         public string? Name
         {
-            get { return _name.GetValue(); }
-            set { _name.SetValue(value); }
+            get => _name.GetValue();
+            set => _name.SetValue(value);
         }
     
         private PropertyValue<int> _width = new PropertyValue<int>(nameof(ImageAttachment), nameof(Width));
@@ -68,8 +68,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("width")]
         public int Width
         {
-            get { return _width.GetValue(); }
-            set { _width.SetValue(value); }
+            get => _width.GetValue();
+            set => _width.SetValue(value);
         }
     
         private PropertyValue<int> _height = new PropertyValue<int>(nameof(ImageAttachment), nameof(Height));
@@ -78,8 +78,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("height")]
         public int Height
         {
-            get { return _height.GetValue(); }
-            set { _height.SetValue(value); }
+            get => _height.GetValue();
+            set => _height.SetValue(value);
         }
     
         private PropertyValue<string?> _previewBytes = new PropertyValue<string?>(nameof(ImageAttachment), nameof(PreviewBytes));
@@ -87,8 +87,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("previewBytes")]
         public string? PreviewBytes
         {
-            get { return _previewBytes.GetValue(); }
-            set { _previewBytes.SetValue(value); }
+            get => _previewBytes.GetValue();
+            set => _previewBytes.SetValue(value);
         }
     
         private PropertyValue<List<ImageAttachmentVariant>?> _variants = new PropertyValue<List<ImageAttachmentVariant>?>(nameof(ImageAttachment), nameof(Variants));
@@ -96,8 +96,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("variants")]
         public List<ImageAttachmentVariant>? Variants
         {
-            get { return _variants.GetValue(); }
-            set { _variants.SetValue(value); }
+            get => _variants.GetValue();
+            set => _variants.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectKey")]
         public ProjectKey ProjectKey
         {
-            get { return _projectKey.GetValue(); }
-            set { _projectKey.SetValue(value); }
+            get => _projectKey.GetValue();
+            set => _projectKey.SetValue(value);
         }
     
         private PropertyValue<string> _repository = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Repository));
@@ -57,8 +57,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("repository")]
         public string Repository
         {
-            get { return _repository.GetValue(); }
-            set { _repository.SetValue(value); }
+            get => _repository.GetValue();
+            set => _repository.SetValue(value);
         }
     
         private PropertyValue<string> _revision = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Revision));
@@ -67,8 +67,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("revision")]
         public string Revision
         {
-            get { return _revision.GetValue(); }
-            set { _revision.SetValue(value); }
+            get => _revision.GetValue();
+            set => _revision.SetValue(value);
         }
     
         private PropertyValue<string> _filename = new PropertyValue<string>(nameof(CodeSnippetAnchor), nameof(Filename));
@@ -77,8 +77,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("filename")]
         public string Filename
         {
-            get { return _filename.GetValue(); }
-            set { _filename.SetValue(value); }
+            get => _filename.GetValue();
+            set => _filename.SetValue(value);
         }
     
         private PropertyValue<int?> _lineIndex = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineIndex));
@@ -86,8 +86,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lineIndex")]
         public int? LineIndex
         {
-            get { return _lineIndex.GetValue(); }
-            set { _lineIndex.SetValue(value); }
+            get => _lineIndex.GetValue();
+            set => _lineIndex.SetValue(value);
         }
     
         private PropertyValue<int?> _lineStart = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineStart));
@@ -95,8 +95,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lineStart")]
         public int? LineStart
         {
-            get { return _lineStart.GetValue(); }
-            set { _lineStart.SetValue(value); }
+            get => _lineStart.GetValue();
+            set => _lineStart.SetValue(value);
         }
     
         private PropertyValue<int?> _lineEnd = new PropertyValue<int?>(nameof(CodeSnippetAnchor), nameof(LineEnd));
@@ -104,8 +104,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lineEnd")]
         public int? LineEnd
         {
-            get { return _lineEnd.GetValue(); }
-            set { _lineEnd.SetValue(value); }
+            get => _lineEnd.GetValue();
+            set => _lineEnd.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

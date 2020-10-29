@@ -47,8 +47,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("summary")]
         public string Summary
         {
-            get { return _summary.GetValue(); }
-            set { _summary.SetValue(value); }
+            get => _summary.GetValue();
+            set => _summary.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Description));
@@ -56,8 +56,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<string> _status = new PropertyValue<string>(nameof(ExternalIssue), nameof(Status));
@@ -66,8 +66,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("status")]
         public string Status
         {
-            get { return _status.GetValue(); }
-            set { _status.SetValue(value); }
+            get => _status.GetValue();
+            set => _status.SetValue(value);
         }
     
         private PropertyValue<string?> _assignee = new PropertyValue<string?>(nameof(ExternalIssue), nameof(Assignee));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("assignee")]
         public string? Assignee
         {
-            get { return _assignee.GetValue(); }
-            set { _assignee.SetValue(value); }
+            get => _assignee.GetValue();
+            set => _assignee.SetValue(value);
         }
     
         private PropertyValue<string> _externalId = new PropertyValue<string>(nameof(ExternalIssue), nameof(ExternalId));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalId")]
         public string ExternalId
         {
-            get { return _externalId.GetValue(); }
-            set { _externalId.SetValue(value); }
+            get => _externalId.GetValue();
+            set => _externalId.SetValue(value);
         }
     
         private PropertyValue<string?> _externalName = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalName));
@@ -94,8 +94,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalName")]
         public string? ExternalName
         {
-            get { return _externalName.GetValue(); }
-            set { _externalName.SetValue(value); }
+            get => _externalName.GetValue();
+            set => _externalName.SetValue(value);
         }
     
         private PropertyValue<string?> _externalUrl = new PropertyValue<string?>(nameof(ExternalIssue), nameof(ExternalUrl));
@@ -103,8 +103,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalUrl")]
         public string? ExternalUrl
         {
-            get { return _externalUrl.GetValue(); }
-            set { _externalUrl.SetValue(value); }
+            get => _externalUrl.GetValue();
+            set => _externalUrl.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

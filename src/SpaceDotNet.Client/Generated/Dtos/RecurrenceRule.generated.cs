@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("freq")]
         public RecurrenceRuleFreq Freq
         {
-            get { return _freq.GetValue(); }
-            set { _freq.SetValue(value); }
+            get => _freq.GetValue();
+            set => _freq.SetValue(value);
         }
     
         private PropertyValue<RecurrenceRuleEnds> _ends = new PropertyValue<RecurrenceRuleEnds>(nameof(RecurrenceRule), nameof(Ends));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("ends")]
         public RecurrenceRuleEnds Ends
         {
-            get { return _ends.GetValue(); }
-            set { _ends.SetValue(value); }
+            get => _ends.GetValue();
+            set => _ends.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

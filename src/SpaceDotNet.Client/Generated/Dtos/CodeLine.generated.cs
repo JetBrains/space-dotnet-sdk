@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<int?> _index = new PropertyValue<int?>(nameof(CodeLine), nameof(Index));
@@ -53,8 +53,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("index")]
         public int? Index
         {
-            get { return _index.GetValue(); }
-            set { _index.SetValue(value); }
+            get => _index.GetValue();
+            set => _index.SetValue(value);
         }
     
         private PropertyValue<int> _offset = new PropertyValue<int>(nameof(CodeLine), nameof(Offset));
@@ -63,8 +63,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("offset")]
         public int Offset
         {
-            get { return _offset.GetValue(); }
-            set { _offset.SetValue(value); }
+            get => _offset.GetValue();
+            set => _offset.SetValue(value);
         }
     
         private PropertyValue<List<SyntaxMarkup>?> _syntax = new PropertyValue<List<SyntaxMarkup>?>(nameof(CodeLine), nameof(Syntax));
@@ -72,8 +72,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("syntax")]
         public List<SyntaxMarkup>? Syntax
         {
-            get { return _syntax.GetValue(); }
-            set { _syntax.SetValue(value); }
+            get => _syntax.GetValue();
+            set => _syntax.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -60,8 +60,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(Issue), nameof(IsArchived));
@@ -70,8 +70,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(Issue), nameof(ProjectId));
@@ -80,8 +80,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectId")]
         public string ProjectId
         {
-            get { return _projectId.GetValue(); }
-            set { _projectId.SetValue(value); }
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<PRProject?> _projectRef = new PropertyValue<PRProject?>(nameof(Issue), nameof(ProjectRef));
@@ -89,8 +89,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("projectRef")]
         public PRProject? ProjectRef
         {
-            get { return _projectRef.GetValue(); }
-            set { _projectRef.SetValue(value); }
+            get => _projectRef.GetValue();
+            set => _projectRef.SetValue(value);
         }
     
         private PropertyValue<IssueTracker?> _trackerRef = new PropertyValue<IssueTracker?>(nameof(Issue), nameof(TrackerRef));
@@ -98,8 +98,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("trackerRef")]
         public IssueTracker? TrackerRef
         {
-            get { return _trackerRef.GetValue(); }
-            set { _trackerRef.SetValue(value); }
+            get => _trackerRef.GetValue();
+            set => _trackerRef.SetValue(value);
         }
     
         private PropertyValue<int> _number = new PropertyValue<int>(nameof(Issue), nameof(Number));
@@ -108,8 +108,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("number")]
         public int Number
         {
-            get { return _number.GetValue(); }
-            set { _number.SetValue(value); }
+            get => _number.GetValue();
+            set => _number.SetValue(value);
         }
     
         private PropertyValue<CPrincipal> _createdBy = new PropertyValue<CPrincipal>(nameof(Issue), nameof(CreatedBy));
@@ -118,8 +118,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("createdBy")]
         public CPrincipal CreatedBy
         {
-            get { return _createdBy.GetValue(); }
-            set { _createdBy.SetValue(value); }
+            get => _createdBy.GetValue();
+            set => _createdBy.SetValue(value);
         }
     
         private PropertyValue<DateTime> _creationTime = new PropertyValue<DateTime>(nameof(Issue), nameof(CreationTime));
@@ -129,8 +129,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime CreationTime
         {
-            get { return _creationTime.GetValue(); }
-            set { _creationTime.SetValue(value); }
+            get => _creationTime.GetValue();
+            set => _creationTime.SetValue(value);
         }
     
         private PropertyValue<TDMemberProfile?> _assignee = new PropertyValue<TDMemberProfile?>(nameof(Issue), nameof(Assignee));
@@ -138,8 +138,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("assignee")]
         public TDMemberProfile? Assignee
         {
-            get { return _assignee.GetValue(); }
-            set { _assignee.SetValue(value); }
+            get => _assignee.GetValue();
+            set => _assignee.SetValue(value);
         }
     
         private PropertyValue<IssueStatus> _status = new PropertyValue<IssueStatus>(nameof(Issue), nameof(Status));
@@ -148,8 +148,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("status")]
         public IssueStatus Status
         {
-            get { return _status.GetValue(); }
-            set { _status.SetValue(value); }
+            get => _status.GetValue();
+            set => _status.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _dueDate = new PropertyValue<DateTime?>(nameof(Issue), nameof(DueDate));
@@ -158,8 +158,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateConverter))]
         public DateTime? DueDate
         {
-            get { return _dueDate.GetValue(); }
-            set { _dueDate.SetValue(value); }
+            get => _dueDate.GetValue();
+            set => _dueDate.SetValue(value);
         }
     
         private PropertyValue<ImportedEntityInfo?> _importInfo = new PropertyValue<ImportedEntityInfo?>(nameof(Issue), nameof(ImportInfo));
@@ -167,8 +167,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("importInfo")]
         public ImportedEntityInfo? ImportInfo
         {
-            get { return _importInfo.GetValue(); }
-            set { _importInfo.SetValue(value); }
+            get => _importInfo.GetValue();
+            set => _importInfo.SetValue(value);
         }
     
         private PropertyValue<ExternalEntityInfoRecord?> _externalEntityInfo = new PropertyValue<ExternalEntityInfoRecord?>(nameof(Issue), nameof(ExternalEntityInfo));
@@ -176,8 +176,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("externalEntityInfo")]
         public ExternalEntityInfoRecord? ExternalEntityInfo
         {
-            get { return _externalEntityInfo.GetValue(); }
-            set { _externalEntityInfo.SetValue(value); }
+            get => _externalEntityInfo.GetValue();
+            set => _externalEntityInfo.SetValue(value);
         }
     
         private PropertyValue<List<PlanningTag>> _tags = new PropertyValue<List<PlanningTag>>(nameof(Issue), nameof(Tags));
@@ -186,8 +186,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("tags")]
         public List<PlanningTag> Tags
         {
-            get { return _tags.GetValue(); }
-            set { _tags.SetValue(value); }
+            get => _tags.GetValue();
+            set => _tags.SetValue(value);
         }
     
         private PropertyValue<string> _title = new PropertyValue<string>(nameof(Issue), nameof(Title));
@@ -196,8 +196,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("title")]
         public string Title
         {
-            get { return _title.GetValue(); }
-            set { _title.SetValue(value); }
+            get => _title.GetValue();
+            set => _title.SetValue(value);
         }
     
         private PropertyValue<List<AttachmentInfo>> _attachments = new PropertyValue<List<AttachmentInfo>>(nameof(Issue), nameof(Attachments));
@@ -206,8 +206,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("attachments")]
         public List<AttachmentInfo> Attachments
         {
-            get { return _attachments.GetValue(); }
-            set { _attachments.SetValue(value); }
+            get => _attachments.GetValue();
+            set => _attachments.SetValue(value);
         }
     
         private PropertyValue<M2ChannelRecord> _channel = new PropertyValue<M2ChannelRecord>(nameof(Issue), nameof(Channel));
@@ -216,8 +216,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("channel")]
         public M2ChannelRecord Channel
         {
-            get { return _channel.GetValue(); }
-            set { _channel.SetValue(value); }
+            get => _channel.GetValue();
+            set => _channel.SetValue(value);
         }
     
         private PropertyValue<List<Checklist>> _checklists = new PropertyValue<List<Checklist>>(nameof(Issue), nameof(Checklists));
@@ -226,8 +226,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("checklists")]
         public List<Checklist> Checklists
         {
-            get { return _checklists.GetValue(); }
-            set { _checklists.SetValue(value); }
+            get => _checklists.GetValue();
+            set => _checklists.SetValue(value);
         }
     
         private PropertyValue<string?> _description = new PropertyValue<string?>(nameof(Issue), nameof(Description));
@@ -235,8 +235,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("description")]
         public string? Description
         {
-            get { return _description.GetValue(); }
-            set { _description.SetValue(value); }
+            get => _description.GetValue();
+            set => _description.SetValue(value);
         }
     
         private PropertyValue<List<SprintRecord>> _sprints = new PropertyValue<List<SprintRecord>>(nameof(Issue), nameof(Sprints));
@@ -245,8 +245,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("sprints")]
         public List<SprintRecord> Sprints
         {
-            get { return _sprints.GetValue(); }
-            set { _sprints.SetValue(value); }
+            get => _sprints.GetValue();
+            set => _sprints.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("id")]
         public string Id
         {
-            get { return _id.GetValue(); }
-            set { _id.SetValue(value); }
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         private PropertyValue<string> _jobId = new PropertyValue<string>(nameof(JobSubscription), nameof(JobId));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("jobId")]
         public string JobId
         {
-            get { return _jobId.GetValue(); }
-            set { _jobId.SetValue(value); }
+            get => _jobId.GetValue();
+            set => _jobId.SetValue(value);
         }
     
         private PropertyValue<PRProject> _project = new PropertyValue<PRProject>(nameof(JobSubscription), nameof(Project));
@@ -65,8 +65,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("project")]
         public PRProject Project
         {
-            get { return _project.GetValue(); }
-            set { _project.SetValue(value); }
+            get => _project.GetValue();
+            set => _project.SetValue(value);
         }
     
         private PropertyValue<JobSubscriptionState> _state = new PropertyValue<JobSubscriptionState>(nameof(JobSubscription), nameof(State));
@@ -75,8 +75,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("state")]
         public JobSubscriptionState State
         {
-            get { return _state.GetValue(); }
-            set { _state.SetValue(value); }
+            get => _state.GetValue();
+            set => _state.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(JobSubscription), nameof(IsArchived));
@@ -85,8 +85,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("archived")]
         public bool IsArchived
         {
-            get { return _archived.GetValue(); }
-            set { _archived.SetValue(value); }
+            get => _archived.GetValue();
+            set => _archived.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

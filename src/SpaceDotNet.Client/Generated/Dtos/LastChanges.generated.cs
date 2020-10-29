@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("lastChanges")]
         public List<RevisionInfo> LastChangesItems
         {
-            get { return _lastChanges.GetValue(); }
-            set { _lastChanges.SetValue(value); }
+            get => _lastChanges.GetValue();
+            set => _lastChanges.SetValue(value);
         }
     
         private PropertyValue<int> _totalChanges = new PropertyValue<int>(nameof(LastChanges), nameof(TotalChanges));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("totalChanges")]
         public int TotalChanges
         {
-            get { return _totalChanges.GetValue(); }
-            set { _totalChanges.SetValue(value); }
+            get => _totalChanges.GetValue();
+            set => _totalChanges.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

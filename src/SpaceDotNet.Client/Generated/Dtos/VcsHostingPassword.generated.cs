@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("fingerprint")]
         public string Fingerprint
         {
-            get { return _fingerprint.GetValue(); }
-            set { _fingerprint.SetValue(value); }
+            get => _fingerprint.GetValue();
+            set => _fingerprint.SetValue(value);
         }
     
         private PropertyValue<DateTime?> _lastUsed = new PropertyValue<DateTime?>(nameof(VcsHostingPassword), nameof(LastUsed));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonConverter(typeof(SpaceDateTimeConverter))]
         public DateTime? LastUsed
         {
-            get { return _lastUsed.GetValue(); }
-            set { _lastUsed.SetValue(value); }
+            get => _lastUsed.GetValue();
+            set => _lastUsed.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

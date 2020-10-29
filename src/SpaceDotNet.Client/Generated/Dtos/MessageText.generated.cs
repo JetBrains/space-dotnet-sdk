@@ -44,8 +44,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("accessory")]
         public MessageAccessoryElement? Accessory
         {
-            get { return _accessory.GetValue(); }
-            set { _accessory.SetValue(value); }
+            get => _accessory.GetValue();
+            set => _accessory.SetValue(value);
         }
     
         private PropertyValue<string> _content = new PropertyValue<string>(nameof(MessageText), nameof(Content));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("content")]
         public string Content
         {
-            get { return _content.GetValue(); }
-            set { _content.SetValue(value); }
+            get => _content.GetValue();
+            set => _content.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

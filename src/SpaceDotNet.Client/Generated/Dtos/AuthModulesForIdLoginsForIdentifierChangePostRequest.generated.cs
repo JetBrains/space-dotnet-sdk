@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("oldPassword")]
         public string OldPassword
         {
-            get { return _oldPassword.GetValue(); }
-            set { _oldPassword.SetValue(value); }
+            get => _oldPassword.GetValue();
+            set => _oldPassword.SetValue(value);
         }
     
         private PropertyValue<string> _newPassword = new PropertyValue<string>(nameof(AuthModulesForIdLoginsForIdentifierChangePostRequest), nameof(NewPassword));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("newPassword")]
         public string NewPassword
         {
-            get { return _newPassword.GetValue(); }
-            set { _newPassword.SetValue(value); }
+            get => _newPassword.GetValue();
+            set => _newPassword.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

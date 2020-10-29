@@ -41,8 +41,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("left")]
         public DiffSide? Left
         {
-            get { return _left.GetValue(); }
-            set { _left.SetValue(value); }
+            get => _left.GetValue();
+            set => _left.SetValue(value);
         }
     
         private PropertyValue<DiffSide> _right = new PropertyValue<DiffSide>(nameof(DiffContext), nameof(Right));
@@ -51,8 +51,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("right")]
         public DiffSide Right
         {
-            get { return _right.GetValue(); }
-            set { _right.SetValue(value); }
+            get => _right.GetValue();
+            set => _right.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)

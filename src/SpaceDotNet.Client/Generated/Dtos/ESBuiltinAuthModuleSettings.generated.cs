@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("passwordStrengthPolicy")]
         public PasswordStrength PasswordStrengthPolicy
         {
-            get { return _passwordStrengthPolicy.GetValue(); }
-            set { _passwordStrengthPolicy.SetValue(value); }
+            get => _passwordStrengthPolicy.GetValue();
+            set => _passwordStrengthPolicy.SetValue(value);
         }
     
         private PropertyValue<List<string>?> _domains = new PropertyValue<List<string>?>(nameof(ESBuiltinAuthModuleSettings), nameof(Domains));
@@ -54,8 +54,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("domains")]
         public List<string>? Domains
         {
-            get { return _domains.GetValue(); }
-            set { _domains.SetValue(value); }
+            get => _domains.GetValue();
+            set => _domains.SetValue(value);
         }
     
         public override void SetAccessPath(string path, bool validateHasBeenSet)

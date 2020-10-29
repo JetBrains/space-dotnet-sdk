@@ -42,8 +42,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("customFieldOrder")]
         public List<string> CustomFieldOrder
         {
-            get { return _customFieldOrder.GetValue(); }
-            set { _customFieldOrder.SetValue(value); }
+            get => _customFieldOrder.GetValue();
+            set => _customFieldOrder.SetValue(value);
         }
     
         private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsReorderPostRequest), nameof(Scope));
@@ -52,8 +52,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("scope")]
         public ExtendedTypeScope Scope
         {
-            get { return _scope.GetValue(); }
-            set { _scope.SetValue(value); }
+            get => _scope.GetValue();
+            set => _scope.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)

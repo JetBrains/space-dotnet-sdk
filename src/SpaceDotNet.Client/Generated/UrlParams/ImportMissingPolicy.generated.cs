@@ -37,17 +37,13 @@ namespace SpaceDotNet.Client
         private class ImportMissingPolicySkip : ImportMissingPolicy
         {
             public override string ToString()
-            {
-                return "skip";
-            }
+                => "skip";
         }
         
         private class ImportMissingPolicyReplaceWithDefault : ImportMissingPolicy
         {
             public override string ToString()
-            {
-                return "replace-with-default";
-            }
+                => "replace-with-default";
         }
         
     }

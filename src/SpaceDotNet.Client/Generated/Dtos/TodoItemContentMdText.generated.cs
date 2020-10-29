@@ -45,8 +45,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("text")]
         public string Text
         {
-            get { return _text.GetValue(); }
-            set { _text.SetValue(value); }
+            get => _text.GetValue();
+            set => _text.SetValue(value);
         }
     
         private PropertyValue<MdMarkup> _mdMarkup = new PropertyValue<MdMarkup>(nameof(TodoItemContentMdText), nameof(MdMarkup));
@@ -55,8 +55,8 @@ namespace SpaceDotNet.Client
         [JsonPropertyName("mdMarkup")]
         public MdMarkup MdMarkup
         {
-            get { return _mdMarkup.GetValue(); }
-            set { _mdMarkup.SetValue(value); }
+            get => _mdMarkup.GetValue();
+            set => _mdMarkup.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
