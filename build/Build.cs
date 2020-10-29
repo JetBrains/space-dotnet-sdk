@@ -16,7 +16,7 @@ class Build : NukeBuild
     public static int Main () => Execute<Build>(x => x.Package);
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
-    readonly Configuration Configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+    readonly string Configuration = IsLocalBuild ? "Debug" : "Release";
 
     [Parameter("NuGet target (Space)", Name = "JB_SPACE_NUGET_URL")]
     readonly string? NuGetTargetUrlSpace;
@@ -26,7 +26,6 @@ class Build : NukeBuild
     
     [Solution] readonly Solution? Solution;
     [VersionInfo(VersionMajor = 0, VersionMinor = 1)] readonly VersionInfo? VersionInfo;
-    // [GitVersion] readonly GitVersion? GitVersion; // NOTE: Does not work in Space due to sparse checkout
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath TestsDirectory => RootDirectory / "tests";

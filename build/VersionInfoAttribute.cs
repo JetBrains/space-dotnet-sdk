@@ -1,10 +1,12 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using JetBrains.Annotations;
 using Nuke.Common.Execution;
 using Nuke.Common.Tools.Git;
+using Nuke.Common.ValueInjection;
 
-public class VersionInfoAttribute : InjectionAttributeBase
+public class VersionInfoAttribute : ValueInjectionAttributeBase
 {
     public int VersionMajor { get; set; } = 0;
     public int VersionMinor { get; set; } = 1;
