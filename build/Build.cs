@@ -23,12 +23,6 @@ class Build : NukeBuild
 
     [Parameter("NuGet target API key / access token (Space)", Name = "JB_SPACE_CLIENT_TOKEN")]
     readonly string? NuGetTargetApiKeySpace;
-
-    [Parameter("NuGet target (MyGet)", Name = "MYGET_NUGET_URL")]
-    readonly string? NuGetTargetUrlMyGet;
-
-    [Parameter("NuGet target API key / access token (MyGet)", Name = "MYGET_CLIENT_TOKEN")]
-    readonly string? NuGetTargetApiKeyMyGet;
     
     [Solution] readonly Solution? Solution;
     [VersionInfo(VersionMajor = 0, VersionMinor = 1)] readonly VersionInfo? VersionInfo;
@@ -110,25 +104,6 @@ class Build : NukeBuild
             DotNetNuGetPush(_ => _
                     .SetSource(NuGetTargetUrlSpace)
                     .SetApiKey(NuGetTargetApiKeySpace)
-                    .CombineWith(packages, (_, v) => _
-                        .SetTargetPath(v)),
-                degreeOfParallelism: 5,
-                completeOnFailure: true);
-        });
-
-    Target PushPackagesToMyGet => _ => _
-        .TriggeredBy(Package)
-        .OnlyWhenStatic(() =>
-            !string.IsNullOrEmpty(NuGetTargetUrlMyGet) &&
-            !string.IsNullOrEmpty(NuGetTargetApiKeyMyGet))
-        .WhenSkipped(DependencyBehavior.Execute)
-        .Executes(() =>
-        {
-            var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
-            
-            DotNetNuGetPush(_ => _
-                    .SetSource(NuGetTargetUrlMyGet)
-                    .SetApiKey(NuGetTargetApiKeyMyGet)
                     .CombineWith(packages, (_, v) => _
                         .SetTargetPath(v)),
                 degreeOfParallelism: 5,

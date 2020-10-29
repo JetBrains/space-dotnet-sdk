@@ -7,9 +7,6 @@ job("Run NUKE build") {
         
         env.set("JB_SPACE_NUGET_URL", Params("SPACEDOTNET_NUGET_URL"))
         env.set("JB_SPACE_CLIENT_TOKEN", Secrets("SPACEDOTNET_NUGET_APIKEY"))
-        
-        env.set("MYGET_NUGET_URL", Params("SPACEDOTNET_MYGET_URL"))
-        env.set("MYGET_CLIENT_TOKEN", Secrets("SPACEDOTNET_MYGET_APIKEY"))
 
         mountDir = "/mnt/mySpace"
         workDir = "/mnt/mySpace/work"
