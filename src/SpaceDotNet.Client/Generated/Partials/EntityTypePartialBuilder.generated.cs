@@ -33,8 +33,8 @@ namespace SpaceDotNet.Client.EntityTypePartialBuilder
         public static Partial<EntityType> WithDisplayName(this Partial<EntityType> it)
             => it.AddFieldName("displayName");
         
-        public static Partial<EntityType> WithGroupName(this Partial<EntityType> it)
-            => it.AddFieldName("groupName");
+        public static Partial<EntityType> WithGroup(this Partial<EntityType> it)
+            => it.AddFieldName("group");
         
     }
     

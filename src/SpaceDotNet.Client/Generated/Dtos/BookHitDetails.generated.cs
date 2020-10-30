@@ -33,10 +33,9 @@ namespace SpaceDotNet.Client
         
         public BookHitDetails() { }
         
-        public BookHitDetails(KBBook @ref, string contextName)
+        public BookHitDetails(KBBook @ref)
         {
             Ref = @ref;
-            ContextName = contextName;
         }
         
         private PropertyValue<KBBook> _ref = new PropertyValue<KBBook>(nameof(BookHitDetails), nameof(Ref));
@@ -49,20 +48,9 @@ namespace SpaceDotNet.Client
             set => _ref.SetValue(value);
         }
     
-        private PropertyValue<string> _contextName = new PropertyValue<string>(nameof(BookHitDetails), nameof(ContextName));
-        
-        [Required]
-        [JsonPropertyName("contextName")]
-        public string ContextName
-        {
-            get => _contextName.GetValue();
-            set => _contextName.SetValue(value);
-        }
-    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _ref.SetAccessPath(path, validateHasBeenSet);
-            _contextName.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

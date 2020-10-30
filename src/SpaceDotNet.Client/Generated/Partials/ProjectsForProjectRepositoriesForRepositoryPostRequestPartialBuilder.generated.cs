@@ -30,9 +30,6 @@ namespace SpaceDotNet.Client.ProjectsForProjectRepositoriesForRepositoryPostRequ
         public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithDescription(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
             => it.AddFieldName("description");
         
-        public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithDefaultBranch(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
-            => it.AddFieldName("defaultBranch");
-        
         public static Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> WithIsInitialize(this Partial<ProjectsForProjectRepositoriesForRepositoryPostRequest> it)
             => it.AddFieldName("initialize");
         

@@ -2013,11 +2013,10 @@ namespace SpaceDotNet.Client
                 _connection = connection;
             }
             
-            public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description = "", bool initialize = true, bool defaultSetup = false, string? defaultBranch = null, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<PRRepositoryInfo> CreateNewRepositoryAsync(ProjectIdentifier project, string repository, string description, bool initialize = true, bool defaultSetup = false, Func<Partial<PRRepositoryInfo>, Partial<PRRepositoryInfo>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ProjectsForProjectRepositoriesForRepositoryPostRequest, PRRepositoryInfo>("POST", $"api/http/projects/{project}/repositories/{repository}?$fields={(partial != null ? partial(new Partial<PRRepositoryInfo>()) : Partial<PRRepositoryInfo>.Default())}", 
                     new ProjectsForProjectRepositoriesForRepositoryPostRequest { 
                         Description = description,
-                        DefaultBranch = defaultBranch,
                         IsInitialize = initialize,
                         IsDefaultSetup = defaultSetup,
                     }

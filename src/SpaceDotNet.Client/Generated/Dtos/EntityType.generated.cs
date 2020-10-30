@@ -30,11 +30,11 @@ namespace SpaceDotNet.Client
     {
         public EntityType() { }
         
-        public EntityType(string key, string? displayName = null, string? groupName = null)
+        public EntityType(string key, string? displayName = null, string? group = null)
         {
             Key = key;
             DisplayName = displayName;
-            GroupName = groupName;
+            Group = group;
         }
         
         private PropertyValue<string> _key = new PropertyValue<string>(nameof(EntityType), nameof(Key));
@@ -56,20 +56,20 @@ namespace SpaceDotNet.Client
             set => _displayName.SetValue(value);
         }
     
-        private PropertyValue<string?> _groupName = new PropertyValue<string?>(nameof(EntityType), nameof(GroupName));
+        private PropertyValue<string?> _group = new PropertyValue<string?>(nameof(EntityType), nameof(Group));
         
-        [JsonPropertyName("groupName")]
-        public string? GroupName
+        [JsonPropertyName("group")]
+        public string? Group
         {
-            get => _groupName.GetValue();
-            set => _groupName.SetValue(value);
+            get => _group.GetValue();
+            set => _group.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _key.SetAccessPath(path, validateHasBeenSet);
             _displayName.SetAccessPath(path, validateHasBeenSet);
-            _groupName.SetAccessPath(path, validateHasBeenSet);
+            _group.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

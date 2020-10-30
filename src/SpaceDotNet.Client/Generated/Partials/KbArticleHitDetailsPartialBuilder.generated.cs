@@ -36,9 +36,6 @@ namespace SpaceDotNet.Client.KbArticleHitDetailsPartialBuilder
         public static Partial<KbArticleHitDetails> WithBookRef(this Partial<KbArticleHitDetails> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
             => it.AddFieldName("bookRef", partialBuilder(new Partial<KBBook>(it)));
         
-        public static Partial<KbArticleHitDetails> WithContextName(this Partial<KbArticleHitDetails> it)
-            => it.AddFieldName("contextName");
-        
     }
     
 }

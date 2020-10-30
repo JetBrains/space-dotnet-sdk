@@ -30,12 +30,13 @@ namespace SpaceDotNet.Client
     {
         public PlanLimit() { }
         
-        public PlanLimit(LimitUnit unit, long usage, long? softCap = null, long? hardCap = null, Money? overdraftPrice = null)
+        public PlanLimit(LimitUnit unit, long usage, long? softCap = null, long? hardCap = null, long? customOverdraftCap = null, Money? overdraftPrice = null)
         {
             Unit = unit;
             Usage = usage;
             SoftCap = softCap;
             HardCap = hardCap;
+            CustomOverdraftCap = customOverdraftCap;
             OverdraftPrice = overdraftPrice;
         }
         
@@ -77,6 +78,15 @@ namespace SpaceDotNet.Client
             set => _hardCap.SetValue(value);
         }
     
+        private PropertyValue<long?> _customOverdraftCap = new PropertyValue<long?>(nameof(PlanLimit), nameof(CustomOverdraftCap));
+        
+        [JsonPropertyName("customOverdraftCap")]
+        public long? CustomOverdraftCap
+        {
+            get => _customOverdraftCap.GetValue();
+            set => _customOverdraftCap.SetValue(value);
+        }
+    
         private PropertyValue<Money?> _overdraftPrice = new PropertyValue<Money?>(nameof(PlanLimit), nameof(OverdraftPrice));
         
         [JsonPropertyName("overdraftPrice")]
@@ -92,6 +102,7 @@ namespace SpaceDotNet.Client
             _usage.SetAccessPath(path, validateHasBeenSet);
             _softCap.SetAccessPath(path, validateHasBeenSet);
             _hardCap.SetAccessPath(path, validateHasBeenSet);
+            _customOverdraftCap.SetAccessPath(path, validateHasBeenSet);
             _overdraftPrice.SetAccessPath(path, validateHasBeenSet);
         }
     

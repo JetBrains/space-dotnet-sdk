@@ -33,11 +33,10 @@ namespace SpaceDotNet.Client
         
         public KbArticleHitDetails() { }
         
-        public KbArticleHitDetails(string id, KBBook bookRef, string contextName)
+        public KbArticleHitDetails(string id, KBBook bookRef)
         {
             Id = id;
             BookRef = bookRef;
-            ContextName = contextName;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(KbArticleHitDetails), nameof(Id));
@@ -60,21 +59,10 @@ namespace SpaceDotNet.Client
             set => _bookRef.SetValue(value);
         }
     
-        private PropertyValue<string> _contextName = new PropertyValue<string>(nameof(KbArticleHitDetails), nameof(ContextName));
-        
-        [Required]
-        [JsonPropertyName("contextName")]
-        public string ContextName
-        {
-            get => _contextName.GetValue();
-            set => _contextName.SetValue(value);
-        }
-    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _bookRef.SetAccessPath(path, validateHasBeenSet);
-            _contextName.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

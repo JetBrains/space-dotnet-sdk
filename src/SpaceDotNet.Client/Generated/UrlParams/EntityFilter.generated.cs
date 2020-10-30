@@ -25,16 +25,23 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    [JsonConverter(typeof(EnumerationConverter))]
-    public sealed class TodoItemContentKind : Enumeration
+    [JsonConverter(typeof(UrlParameterConverter))]
+    public abstract class EntityFilter : IUrlParameter
     {
-        private TodoItemContentKind(string value) : base(value) { }
+        public static EntityFilter Id(string serialized)
+            => new EntityFilterId(serialized);
         
-        public static readonly TodoItemContentKind NONE = new TodoItemContentKind("NONE");
-        public static readonly TodoItemContentKind REGULAR = new TodoItemContentKind("REGULAR");
-        public static readonly TodoItemContentKind MESSAGE = new TodoItemContentKind("MESSAGE");
-        public static readonly TodoItemContentKind ISSUE = new TodoItemContentKind("ISSUE");
-        public static readonly TodoItemContentKind BLOG = new TodoItemContentKind("BLOG");
+        private class EntityFilterId : EntityFilter
+        {
+            private readonly string _serialized;
+            
+            public EntityFilterId(string serialized)
+                => _serialized = serialized;
+            
+            public override string ToString()
+                => $"serialized:{_serialized}";
+        }
+        
     }
     
 }

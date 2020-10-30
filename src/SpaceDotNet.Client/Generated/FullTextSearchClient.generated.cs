@@ -67,14 +67,14 @@ namespace SpaceDotNet.Client
             /// <summary>
             /// Perform full-text search in all supported entities.
             /// </summary>
-            public async Task<Batch<EntityHit>> GetAllSearchAsync(string query, bool quick = false, List<string>? keys = null, string? skip = null, int? top = 100, FTSQueryFilter? queryFilter = null, Func<Partial<Batch<EntityHit>>, Partial<Batch<EntityHit>>>? partial = null, CancellationToken cancellationToken = default)
-                => await _connection.RequestResourceAsync<Batch<EntityHit>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&quick={quick.ToString("l")}&keys={(keys ?? new List<string>()).JoinToString("keys", it => it.ToString())}&queryFilter={queryFilter?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<EntityHit>>()) : Partial<Batch<EntityHit>>.Default())}", cancellationToken);
+            public async Task<Batch<EntityHit>> GetAllSearchAsync(string query, bool quick = false, List<string>? keys = null, string? skip = null, int? top = 100, EntityFilter? filter = null, Func<Partial<Batch<EntityHit>>, Partial<Batch<EntityHit>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<EntityHit>>("GET", $"api/http/full-text-search/search?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&quick={quick.ToString("l")}&keys={(keys ?? new List<string>()).JoinToString("keys", it => it.ToString())}&filter={filter?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<EntityHit>>()) : Partial<Batch<EntityHit>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Perform full-text search in all supported entities.
             /// </summary>
-            public IAsyncEnumerable<EntityHit> GetAllSearchAsyncEnumerable(string query, bool quick = false, List<string>? keys = null, string? skip = null, int? top = 100, FTSQueryFilter? queryFilter = null, Func<Partial<EntityHit>, Partial<EntityHit>>? partial = null, CancellationToken cancellationToken = default)
-                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSearchAsync(query: query, quick: quick, keys: keys, top: top, queryFilter: queryFilter, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EntityHit>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHit>.Default())), skip, cancellationToken);
+            public IAsyncEnumerable<EntityHit> GetAllSearchAsyncEnumerable(string query, bool quick = false, List<string>? keys = null, string? skip = null, int? top = 100, EntityFilter? filter = null, Func<Partial<EntityHit>, Partial<EntityHit>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSearchAsync(query: query, quick: quick, keys: keys, top: top, filter: filter, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EntityHit>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHit>.Default())), skip, cancellationToken);
         
         }
     
