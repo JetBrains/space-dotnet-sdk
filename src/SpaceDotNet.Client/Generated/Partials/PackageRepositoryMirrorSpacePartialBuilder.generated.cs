@@ -23,18 +23,18 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BoardColumnPartialBuilder
+namespace SpaceDotNet.Client.PackageRepositoryMirrorSpacePartialBuilder
 {
-    public static class BoardColumnPartialExtensions
+    public static class PackageRepositoryMirrorSpacePartialExtensions
     {
-        public static Partial<BoardColumn> WithName(this Partial<BoardColumn> it)
-            => it.AddFieldName("name");
+        public static Partial<PackageRepositoryMirrorSpace> WithId(this Partial<PackageRepositoryMirrorSpace> it)
+            => it.AddFieldName("id");
         
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it)
-            => it.AddFieldName("statuses");
+        public static Partial<PackageRepositoryMirrorSpace> WithRepository(this Partial<PackageRepositoryMirrorSpace> it)
+            => it.AddFieldName("repository");
         
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
-            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatus>(it)));
+        public static Partial<PackageRepositoryMirrorSpace> WithRepository(this Partial<PackageRepositoryMirrorSpace> it, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>> partialBuilder)
+            => it.AddFieldName("repository", partialBuilder(new Partial<ProjectPackageRepository>(it)));
         
     }
     

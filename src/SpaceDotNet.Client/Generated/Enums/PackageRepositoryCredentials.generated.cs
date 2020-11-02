@@ -23,19 +23,17 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BoardColumnPartialBuilder
+namespace SpaceDotNet.Client
 {
-    public static class BoardColumnPartialExtensions
+    [JsonConverter(typeof(EnumerationConverter))]
+    public sealed class PackageRepositoryCredentials : Enumeration
     {
-        public static Partial<BoardColumn> WithName(this Partial<BoardColumn> it)
-            => it.AddFieldName("name");
+        private PackageRepositoryCredentials(string value) : base(value) { }
         
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it)
-            => it.AddFieldName("statuses");
-        
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
-            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatus>(it)));
-        
+        public static readonly PackageRepositoryCredentials ANONYMOUS = new PackageRepositoryCredentials("ANONYMOUS");
+        public static readonly PackageRepositoryCredentials PASSWORD = new PackageRepositoryCredentials("PASSWORD");
+        public static readonly PackageRepositoryCredentials TOKEN = new PackageRepositoryCredentials("TOKEN");
+        public static readonly PackageRepositoryCredentials HEADER = new PackageRepositoryCredentials("HEADER");
     }
     
 }

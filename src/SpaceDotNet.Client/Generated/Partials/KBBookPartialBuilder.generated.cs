@@ -42,6 +42,12 @@ namespace SpaceDotNet.Client.KBBookPartialBuilder
         public static Partial<KBBook> WithUpdated(this Partial<KBBook> it)
             => it.AddFieldName("updated");
         
+        public static Partial<KBBook> WithUpdatedBy(this Partial<KBBook> it)
+            => it.AddFieldName("updatedBy");
+        
+        public static Partial<KBBook> WithUpdatedBy(this Partial<KBBook> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
+            => it.AddFieldName("updatedBy", partialBuilder(new Partial<CPrincipal>(it)));
+        
         public static Partial<KBBook> WithAlias(this Partial<KBBook> it)
             => it.AddFieldName("alias");
         

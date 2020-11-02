@@ -23,19 +23,10 @@ using SpaceDotNet.Common.Json.Serialization;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.Client.BoardColumnPartialBuilder
+namespace SpaceDotNet.Client.PackageRepositoryMirrorPartialBuilder
 {
-    public static class BoardColumnPartialExtensions
+    public static class PackageRepositoryMirrorPartialExtensions
     {
-        public static Partial<BoardColumn> WithName(this Partial<BoardColumn> it)
-            => it.AddFieldName("name");
-        
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it)
-            => it.AddFieldName("statuses");
-        
-        public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
-            => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatus>(it)));
-        
     }
     
 }
