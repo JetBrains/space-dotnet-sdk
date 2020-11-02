@@ -7,10 +7,6 @@ job("Run NUKE build") {
         
         env.set("JB_SPACE_NUGET_URL", Params("SPACEDOTNET_NUGET_URL"))
         env.set("JB_SPACE_CLIENT_TOKEN", Secrets("SPACEDOTNET_NUGET_APIKEY"))
-
-        mountDir = "/mnt/mySpace"
-        workDir = "/mnt/mySpace/work"
-        user = "root"
         
         shellScript {
             content = """            
