@@ -42,9 +42,6 @@ namespace SpaceDotNet.Client.PlanLimitPartialBuilder
         public static Partial<PlanLimit> WithHardCap(this Partial<PlanLimit> it)
             => it.AddFieldName("hardCap");
         
-        public static Partial<PlanLimit> WithCustomOverdraftCap(this Partial<PlanLimit> it)
-            => it.AddFieldName("customOverdraftCap");
-        
         public static Partial<PlanLimit> WithOverdraftPrice(this Partial<PlanLimit> it)
             => it.AddFieldName("overdraftPrice");
         

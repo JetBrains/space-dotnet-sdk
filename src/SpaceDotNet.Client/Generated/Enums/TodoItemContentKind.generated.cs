@@ -35,6 +35,7 @@ namespace SpaceDotNet.Client
         public static readonly TodoItemContentKind MESSAGE = new TodoItemContentKind("MESSAGE");
         public static readonly TodoItemContentKind ISSUE = new TodoItemContentKind("ISSUE");
         public static readonly TodoItemContentKind BLOG = new TodoItemContentKind("BLOG");
+        public static readonly TodoItemContentKind DOCUMENT = new TodoItemContentKind("DOCUMENT");
     }
     
 }

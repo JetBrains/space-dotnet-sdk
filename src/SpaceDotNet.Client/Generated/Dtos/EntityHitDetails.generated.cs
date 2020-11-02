@@ -31,14 +31,14 @@ namespace SpaceDotNet.Client
         public static ArticleHitDetails ArticleHitDetails(ArticleRecord @ref)
             => new ArticleHitDetails(@ref: @ref);
         
-        public static BookHitDetails BookHitDetails(KBBook @ref)
-            => new BookHitDetails(@ref: @ref);
+        public static BookHitDetails BookHitDetails(KBBook @ref, string contextName)
+            => new BookHitDetails(@ref: @ref, contextName: contextName);
         
-        public static FolderHitDetails FolderHitDetails(KBFolder @ref, KBBook bookRef)
-            => new FolderHitDetails(@ref: @ref, bookRef: bookRef);
+        public static FolderHitDetails FolderHitDetails(KBFolder @ref, KBBook bookRef, string contextName)
+            => new FolderHitDetails(@ref: @ref, bookRef: bookRef, contextName: contextName);
         
-        public static KbArticleHitDetails KbArticleHitDetails(string id, KBBook bookRef)
-            => new KbArticleHitDetails(id: id, bookRef: bookRef);
+        public static KbArticleHitDetails KbArticleHitDetails(string id, KBBook bookRef, string contextName)
+            => new KbArticleHitDetails(id: id, bookRef: bookRef, contextName: contextName);
         
         public static MessageHitDetails MessageHitDetails(ChannelItemRecord @ref, M2ChannelRecord channel, M2ChatReader readerRef, bool threadStarter, string? thread = null)
             => new MessageHitDetails(@ref: @ref, channel: channel, readerRef: readerRef, threadStarter: threadStarter, thread: null);
