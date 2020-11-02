@@ -78,13 +78,17 @@ namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
                 
                 // Action?
                 case MessageActionPayload actionPayload:
-                    await handler.HandleMessageActionAsync(actionPayload);
-                    return Ok();
+                    var actionResult = await handler.HandleMessageActionAsync(actionPayload);
+                    return !string.IsNullOrEmpty(actionResult.Message)
+                        ? Content(actionResult.Message, "text/plain") as IActionResult
+                        : Ok();
                 
                 // Menu action?
                 case MenuActionPayload menuActionPayload:
-                    await handler.HandleMenuActionAsync(menuActionPayload);
-                    return Ok();
+                    var menuActionResult = await handler.HandleMenuActionAsync(menuActionPayload);
+                    return !string.IsNullOrEmpty(menuActionResult.Message)
+                        ? Content(menuActionResult.Message, "text/plain") as IActionResult
+                        : Ok();
             }
 
             return BadRequest("Payload is not supported.");

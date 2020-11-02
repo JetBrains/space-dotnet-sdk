@@ -34,12 +34,14 @@ namespace SpaceDotNet.AspNetCore.WebHooks
         /// Handle message action request.
         /// </summary>
         /// <param name="payload">The <see cref="MessageActionPayload"/>.</param>
-        Task HandleMessageActionAsync(MessageActionPayload payload);
+        /// <returns>The result of executing this action. The result message will be displayed in the Space user interface.</returns>
+        Task<ApplicationExecutionResult> HandleMessageActionAsync(MessageActionPayload payload);
         
         /// <summary>
         /// Handle menu action request.
         /// </summary>
         /// <param name="payload">The <see cref="MenuActionPayload"/>.</param>
-        Task HandleMenuActionAsync(MenuActionPayload payload);
+        /// <returns>The result of executing this action. The result message will be displayed in the Space user interface.</returns>
+        Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload);
     }
 }

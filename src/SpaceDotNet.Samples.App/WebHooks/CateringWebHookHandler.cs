@@ -60,13 +60,20 @@ namespace SpaceDotNet.Samples.App.WebHooks
         {
             // TIP: Remove menu items/update menu items by returning a different shape of collection
             // return new MenuExtensions();
-            return new MenuExtensions(new List<MenuExtensionDetail>
+            // return new MenuExtensions(new List<MenuExtensionDetail>
+            // {
+            //     new MenuExtensionDetail(MenuId.Global.Add.Value, "Catering request", "Request catering (demo)")
+            // });
+            return new MenuExtensions
             {
-                new MenuExtensionDetail(MenuId.Global.Add.Value, "Catering request", "Request catering (demo)")
-            });
+                Extensions = new List<MenuExtensionDetail>
+                {
+                    new MenuExtensionDetail(MenuId.Channel.Attachment.Value, "Google Meet", "Creates a new Google Meet and posts the URL into the current channel.")
+                }
+            };
         }
         
-        public override async Task HandleMenuActionAsync(MenuActionPayload payload)
+        public override async Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload)
         {
             var cateringSession = new CateringSession();
             Sessions[payload.UserId] = cateringSession;
@@ -95,6 +102,8 @@ namespace SpaceDotNet.Samples.App.WebHooks
                     },
                     style: MessageStyle.PRIMARY),
                 cateringSession: cateringSession);
+
+            return new ApplicationExecutionResult("Catering request created.");
         }
 
         public override async Task HandleMessageAsync(MessagePayload payload)
@@ -115,7 +124,7 @@ namespace SpaceDotNet.Samples.App.WebHooks
             }
         }
 
-        public override async Task HandleMessageActionAsync(MessageActionPayload payload)
+        public override async Task<ApplicationExecutionResult> HandleMessageActionAsync(MessageActionPayload payload)
         {
             var actionId = Enumeration.FromValue<ActionId>(payload.ActionId);
 
@@ -124,7 +133,7 @@ namespace SpaceDotNet.Samples.App.WebHooks
             // Start session
             if (actionId == ActionId.Skip)
             {
-                return;
+                return new ApplicationExecutionResult("Catering request has been skipped.");
             } 
             else if (cateringSession == null)
             {
@@ -276,6 +285,8 @@ namespace SpaceDotNet.Samples.App.WebHooks
 
                 Sessions.TryRemove(payload.UserId, out _);
             }
+
+            return new ApplicationExecutionResult("Catering choice was received.");
         }
 
         private async Task SendOrEditMessageAsync(

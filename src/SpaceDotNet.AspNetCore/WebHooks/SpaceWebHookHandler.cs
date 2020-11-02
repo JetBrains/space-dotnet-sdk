@@ -21,11 +21,11 @@ namespace SpaceDotNet.AspNetCore.WebHooks
             => Task.CompletedTask;
 
         /// <inheritdoc/>
-        public virtual Task HandleMessageActionAsync(MessageActionPayload payload)
-            => Task.CompletedTask;
+        public virtual Task<ApplicationExecutionResult> HandleMessageActionAsync(MessageActionPayload payload)
+            => Task.FromResult(new ApplicationExecutionResult());
 
         /// <inheritdoc/>
-        public virtual Task HandleMenuActionAsync(MenuActionPayload payload)
-            => Task.CompletedTask;
+        public virtual Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload)
+            => Task.FromResult(new ApplicationExecutionResult());
     }
 }
