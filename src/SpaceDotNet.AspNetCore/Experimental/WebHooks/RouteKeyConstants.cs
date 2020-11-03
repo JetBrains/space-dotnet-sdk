@@ -1,4 +1,4 @@
-namespace SpaceDotNet.AspNetCore.WebHooks
+namespace SpaceDotNet.AspNetCore.Experimental.WebHooks
 {
     internal static class RouteKeyConstants
     {

@@ -1,9 +1,9 @@
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
-using SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters;
+using SpaceDotNet.AspNetCore.Experimental.WebHooks.Mvc.Formatters;
 
-namespace SpaceDotNet.AspNetCore.WebHooks.Mvc
+namespace SpaceDotNet.AspNetCore.Experimental.WebHooks.Mvc
 {
     /// <summary>
     /// An <see cref="IPostConfigureOptions{T}"/> that configures <see cref="MvcOptions"/>.

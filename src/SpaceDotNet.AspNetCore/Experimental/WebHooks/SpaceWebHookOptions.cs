@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace SpaceDotNet.AspNetCore.WebHooks
+namespace SpaceDotNet.AspNetCore.Experimental.WebHooks
 {
     /// <summary>
     /// Configuration options for Space WebHooks integration.

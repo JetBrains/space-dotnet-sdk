@@ -16,4 +16,8 @@
     <ItemGroup>
       <ProjectReference Include="..\SpaceDotNet.Client\SpaceDotNet.Client.csproj" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Experimental" />
+    </ItemGroup>
 </Project>

@@ -12,7 +12,7 @@ using SpaceDotNet.Client;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Formatters
+namespace SpaceDotNet.AspNetCore.Experimental.WebHooks.Mvc.Formatters
 {
     /// <summary>
     /// Space payload input formatter.

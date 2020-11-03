@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using SpaceDotNet.Client;
 
-namespace SpaceDotNet.AspNetCore.WebHooks
+namespace SpaceDotNet.AspNetCore.Experimental.WebHooks
 {
     /// <inheritdoc/>
     public abstract class SpaceWebHookHandler

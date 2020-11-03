@@ -1,6 +1,8 @@
-# SpaceDotNet ![](http://jb.gg/badges/team-flat-square.svg)
+# SpaceDotNet ![](http://jb.gg/badges/incubator-flat-square.svg)
 
 The JetBrains Space SDK for .NET is a .NET library to work with the [JetBrains Space](https://jetbrains.com/space/) API. 
+
+> **Disclaimer:** This is a beta version of the JetBrains Space SDK for .NET. It relies on the Space API, which is still in beta and subject to change. By using the current beta JetBrains Space SDK for .NET, you expressly acknowledge that this version of the beta JetBrains Space SDK for .NET may not be reliable, may not work as intended, and may contain errors. Any use of this beta JetBrains Space SDK for .NET is at your own risk.
 
 ## Overview
 
@@ -352,6 +354,8 @@ There are extension methods for `IServiceCollection`:
 * `AddSpaceClientApi()` — Registers SpaceDotNet [clients](#create-service-client) as transient services. The registration lifetime is transient by default. Note that this method will throw an exception when no `Connection` has been registered.
 
 ### Space Applications webhooks (Experimental)
+
+> **Note:** Space Applications webhooks are under development and are subject to change.
 
 We can build interactive [Space Applications](https://www.jetbrains.com/help/space/applications.html#register-your-client-in-space), that let us extend Space with slash commands and interactive chat messages.
 

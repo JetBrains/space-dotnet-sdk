@@ -2,8 +2,8 @@ using System;
 using JetBrains.Annotations;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
-using SpaceDotNet.AspNetCore.WebHooks;
-using SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers;
+using SpaceDotNet.AspNetCore.Experimental.WebHooks;
+using SpaceDotNet.AspNetCore.Experimental.WebHooks.Mvc.Controllers;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.AspNetCore.Builder

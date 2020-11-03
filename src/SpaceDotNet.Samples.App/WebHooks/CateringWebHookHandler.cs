@@ -5,7 +5,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using JetBrains.Annotations;
 using Microsoft.Extensions.Hosting;
-using SpaceDotNet.AspNetCore.WebHooks;
+using SpaceDotNet.AspNetCore.Experimental.WebHooks;
 using SpaceDotNet.Client;
 using SpaceDotNet.Common.Types;
 
@@ -29,10 +29,16 @@ namespace SpaceDotNet.Samples.App.WebHooks
         ///
         /// Note that ideally this is done just after startup, as <see cref="ApplicationClient.RefreshMenuAsync"/>
         /// is an expensive call that only has to happen when available menu items change.
+        ///
+        /// Currently, menu registrations expire. Therefore, this method re-registers menu items every two hours.
         /// </summary>
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await _applicationClient.RefreshMenuAsync(cancellationToken: stoppingToken);
+            while (!stoppingToken.IsCancellationRequested)
+            {
+                await _applicationClient.RefreshMenuAsync(cancellationToken: stoppingToken);
+                await Task.Delay(TimeSpan.FromHours(2), stoppingToken);
+            }
         }
     }
     

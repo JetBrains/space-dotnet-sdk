@@ -7,7 +7,7 @@ using SpaceDotNet.Client;
 using SpaceDotNet.Common.Json.Serialization.Polymorphism;
 using SpaceDotNet.Common.Types;
 
-namespace SpaceDotNet.AspNetCore.WebHooks.Mvc.Controllers
+namespace SpaceDotNet.AspNetCore.Experimental.WebHooks.Mvc.Controllers
 {
     /// <summary>
     /// Controller that handles Space application webhook payloads.

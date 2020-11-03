@@ -2,7 +2,7 @@ using System.Threading.Tasks;
 using JetBrains.Annotations;
 using SpaceDotNet.Client;
 
-namespace SpaceDotNet.AspNetCore.WebHooks
+namespace SpaceDotNet.AspNetCore.Experimental.WebHooks
 {
     /// <summary>
     /// Handle Space WebHook payloads.
