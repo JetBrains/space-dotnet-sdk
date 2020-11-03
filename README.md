@@ -329,7 +329,7 @@ The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGe
 >
 > ```csharp
 > var numberOfResults = await _todoClient.GetAllToDoItemsCountAsync(
->     from: weekStart.AsSpaceDate(), partial: _ => _.WithTotalCount());
+>     from: weekStart.AsSpaceDate());
 > ```
 > 
 > Alternatively, retrieve only the `TotalCount` property for this batch:
