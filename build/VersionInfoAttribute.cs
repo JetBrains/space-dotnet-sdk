@@ -8,8 +8,8 @@ using Nuke.Common.ValueInjection;
 
 public class VersionInfoAttribute : ValueInjectionAttributeBase
 {
-    public int VersionMajor { get; set; } = 0;
-    public int VersionMinor { get; set; } = 1;
+    public int VersionMajor { get; set; } = 1;
+    public int VersionMinor { get; set; } = 0;
     
     public override object GetValue(MemberInfo member, object instance) =>
         GetFromSpace() ?? GetFromGit() ?? GetFromTime();
@@ -30,8 +30,8 @@ public class VersionInfoAttribute : ValueInjectionAttributeBase
                 $"{VersionMajor}.{VersionMinor}.{executionNumber}.0",
                 $"{VersionMajor}.{VersionMinor}.{executionNumber}.0+Branch.{branch}.Sha.{revision}",
                 IsMainBranch(branch) 
-                    ? $"{VersionMajor}.{VersionMinor}.{executionNumber}"
-                    : $"{VersionMajor}.{VersionMinor}.{executionNumber}-{branch}");
+                    ? $"{VersionMajor}.{VersionMinor}.0-beta.{executionNumber}"
+                    : $"0.1.1337-{branch}.{executionNumber}");
         }
 
         return null;

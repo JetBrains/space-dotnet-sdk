@@ -11,7 +11,7 @@ SpaceDotNet consists of several NuGet packages that can be used to integrate wit
 Typically, `SpaceDotNet.Client` will be used to work with the Space API. It can be installed using any NuGet client, or the `dotnet` command line tool:
 
 ```
-dotnet add package SpaceDotNet.Client
+dotnet add package SpaceDotNet.Client --version 1.0.0-beta.*
 ```
 
 Other (optional) packages are available. These can be installed to satisfy additional integration requirements.

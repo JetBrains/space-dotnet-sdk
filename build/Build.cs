@@ -25,7 +25,7 @@ class Build : NukeBuild
     readonly string? NuGetTargetApiKeySpace;
     
     [Solution] readonly Solution? Solution;
-    [VersionInfo(VersionMajor = 0, VersionMinor = 1)] readonly VersionInfo? VersionInfo;
+    [VersionInfo(VersionMajor = 1, VersionMinor = 0)] readonly VersionInfo? VersionInfo;
 
     AbsolutePath SourceDirectory => RootDirectory / "src";
     AbsolutePath TestsDirectory => RootDirectory / "tests";
