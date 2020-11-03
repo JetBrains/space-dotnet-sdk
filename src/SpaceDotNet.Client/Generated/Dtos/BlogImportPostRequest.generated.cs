@@ -25,18 +25,18 @@ using SpaceDotNet.Common.Types;
 
 namespace SpaceDotNet.Client
 {
-    public class BlogsArticlesImportPostRequest
+    public class BlogImportPostRequest
          : IPropagatePropertyAccessPath
     {
-        public BlogsArticlesImportPostRequest() { }
+        public BlogImportPostRequest() { }
         
-        public BlogsArticlesImportPostRequest(ImportMetadata metadata, List<ExternalArticle> articles)
+        public BlogImportPostRequest(ImportMetadata metadata, List<ExternalArticle> articles)
         {
             Metadata = metadata;
             Articles = articles;
         }
         
-        private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogsArticlesImportPostRequest), nameof(Metadata));
+        private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogImportPostRequest), nameof(Metadata));
         
         [Required]
         [JsonPropertyName("metadata")]
@@ -46,7 +46,7 @@ namespace SpaceDotNet.Client
             set => _metadata.SetValue(value);
         }
     
-        private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogsArticlesImportPostRequest), nameof(Articles));
+        private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogImportPostRequest), nameof(Articles));
         
         [Required]
         [JsonPropertyName("articles")]
