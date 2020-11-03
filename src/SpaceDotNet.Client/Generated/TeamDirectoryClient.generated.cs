@@ -239,6 +239,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<InvitationLink> GetAllInvitationLinksAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<InvitationLink>, Partial<InvitationLink>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationLinksAsync(withDeleted: withDeleted, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<InvitationLink>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<InvitationLink>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get organization-wide invitation links
+            /// </summary>
+            public async Task<int> GetAllInvitationLinksCountAsync(bool withDeleted = false, CancellationToken cancellationToken = default)
+                => (await GetAllInvitationLinksAsync(withDeleted: withDeleted, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update an organization-wide invitation link
@@ -296,6 +302,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<Invitation> GetAllInvitationsAsyncEnumerable(bool withDeleted = false, string? skip = null, int? top = 100, Func<Partial<Invitation>, Partial<Invitation>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllInvitationsAsync(withDeleted: withDeleted, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Invitation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Invitation>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get a list of invitations.
+            /// </summary>
+            public async Task<int> GetAllInvitationsCountAsync(bool withDeleted = false, CancellationToken cancellationToken = default)
+                => (await GetAllInvitationsAsync(withDeleted: withDeleted, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update an invitation. Optional parameters will be ignored when not specified, and updated otherwise.
@@ -406,6 +418,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<TDMemberInLocationMap> GetAllLocationMapMemberPointsAsyncEnumerable(string locationId, bool includeUnmarked = true, string? skip = null, int? top = 100, Func<Partial<TDMemberInLocationMap>, Partial<TDMemberInLocationMap>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllLocationMapMemberPointsAsync(locationId: locationId, includeUnmarked: includeUnmarked, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberInLocationMap>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberInLocationMap>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get members on map for a location id.
+            /// </summary>
+            public async Task<int> GetAllLocationMapMemberPointsCountAsync(string locationId, bool includeUnmarked = true, CancellationToken cancellationToken = default)
+                => (await GetAllLocationMapMemberPointsAsync(locationId: locationId, includeUnmarked: includeUnmarked, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update member location's position on a map.
@@ -671,6 +689,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<TDMemberLocation> GetAllMemberLocationsAsyncEnumerable(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberLocationsAsync(withArchived: withArchived, top: top, profiles: profiles, locations: locations, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberLocation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberLocation>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get/search member locations. Parameters are applied as 'AND' filters.
+            /// </summary>
+            public async Task<int> GetAllMemberLocationsCountAsync(bool withArchived = false, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, CancellationToken cancellationToken = default)
+                => (await GetAllMemberLocationsAsync(withArchived: withArchived, profiles: profiles, locations: locations, since: since, till: till, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Get a member location by its id.
@@ -736,6 +760,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<TDMergedEvent> GetAllMembershipEventsAsyncEnumerable(string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDMergedEvent>, Partial<TDMergedEvent>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipEventsAsync(top: top, teamId: teamId, locationId: locationId, roleId: roleId, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMergedEvent>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMergedEvent>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get/search membership events. Parameters are applied as 'AND' filters.
+            /// </summary>
+            public async Task<int> GetAllMembershipEventsCountAsync(string? teamId = null, string? locationId = null, string? roleId = null, CancellationToken cancellationToken = default)
+                => (await GetAllMembershipEventsAsync(teamId: teamId, locationId: locationId, roleId: roleId, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
         }
     
@@ -788,6 +818,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<TDMembership> GetAllMembershipsAsyncEnumerable(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMembership>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembership>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get/search all team memberships. Parameters are applied as 'AND' filters.
+            /// </summary>
+            public async Task<int> GetAllMembershipsCountAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, CancellationToken cancellationToken = default)
+                => (await GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update a team membership. Optional parameters will be ignored when null, and updated otherwise.
@@ -864,6 +900,12 @@ namespace SpaceDotNet.Client
                 /// </summary>
                 public IAsyncEnumerable<TDMemberProfile> GetManagerCandidateAsyncEnumerable(string term, string? skip = null, int? top = 100, string? teamId = null, string? excludedMemberId = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetManagerCandidateAsync(term: term, top: top, teamId: teamId, excludedMemberId: excludedMemberId, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Query profiles that can be a manager
+                /// </summary>
+                public async Task<int> GetManagerCandidateCountAsync(string term, string? teamId = null, string? excludedMemberId = null, CancellationToken cancellationToken = default)
+                    => (await GetManagerCandidateAsync(term: term, teamId: teamId, excludedMemberId: excludedMemberId, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         
@@ -905,6 +947,20 @@ namespace SpaceDotNet.Client
                 /// </remarks>
                 public IAsyncEnumerable<Pair<TDMemberProfile, TDMembership>> GetAllRequestsAsyncEnumerable(string? skip = null, int? top = 100, string? teamId = null, bool? direct = true, Func<Partial<Pair<TDMemberProfile, TDMembership>>, Partial<Pair<TDMemberProfile, TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllRequestsAsync(top: top, teamId: teamId, direct: direct, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Pair<TDMemberProfile, TDMembership>>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Pair<TDMemberProfile, TDMembership>>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Get/search all membership requests. Parameters are applied as 'AND' filters.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit team</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<int> GetAllRequestsCountAsync(string? teamId = null, bool? direct = true, CancellationToken cancellationToken = default)
+                    => (await GetAllRequestsAsync(teamId: teamId, direct: direct, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 /// <summary>
                 /// Approve/reject a team membership request. Setting approved to true will approve the membership request, false will reject it.
@@ -1013,6 +1069,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, top: top, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get/search all profiles. Parameters are applied as 'AND' filters.
+            /// </summary>
+            public async Task<int> GetAllProfilesCountAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, CancellationToken cancellationToken = default)
+                => (await GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Get profile information by email address.
@@ -1232,6 +1294,12 @@ namespace SpaceDotNet.Client
                 /// </summary>
                 public IAsyncEnumerable<TDProfileWorkingDays> QueryAllWorkingDaysAsyncEnumerable(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<TDProfileWorkingDays>, Partial<TDProfileWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => QueryAllWorkingDaysAsync(profiles: profiles, top: top, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDProfileWorkingDays>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDProfileWorkingDays>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
+                /// </summary>
+                public async Task<int> QueryAllWorkingDaysCountAsync(List<ProfileIdentifier>? profiles = null, DateTime? since = null, DateTime? till = null, CancellationToken cancellationToken = default)
+                    => (await QueryAllWorkingDaysAsync(profiles: profiles, since: since, till: till, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         
@@ -1259,6 +1327,9 @@ namespace SpaceDotNet.Client
                 
                 public IAsyncEnumerable<TDWorkingDays> QueryWorkingDaysForAProfileAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => QueryWorkingDaysForAProfileAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDWorkingDays>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDWorkingDays>.Default())), skip, cancellationToken);
+                
+                public async Task<int> QueryWorkingDaysForAProfileCountAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                    => (await QueryWorkingDaysForAProfileAsync(profile: profile, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 /// <remarks>
                 /// Required permissions:
@@ -1391,6 +1462,9 @@ namespace SpaceDotNet.Client
                 
                 public IAsyncEnumerable<ESApplicationPassword> GetAllApplicationPasswordsAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESApplicationPassword>, Partial<ESApplicationPassword>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllApplicationPasswordsAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESApplicationPassword>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESApplicationPassword>.Default())), skip, cancellationToken);
+                
+                public async Task<int> GetAllApplicationPasswordsCountAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                    => (await GetAllApplicationPasswordsAsync(profile: profile, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 public async Task UpdateApplicationPasswordAsync(ProfileIdentifier profile, string passwordId, string? name = null, string? scope = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/application-passwords/{passwordId}", 
@@ -1602,6 +1676,12 @@ namespace SpaceDotNet.Client
                 /// </summary>
                 public IAsyncEnumerable<ESPermanentToken> GetAllPermanentTokensAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<ESPermanentToken>, Partial<ESPermanentToken>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPermanentTokensAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ESPermanentToken>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ESPermanentToken>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Get personal tokens used to access the current organisation for a given profile id.
+                /// </summary>
+                public async Task<int> GetAllPermanentTokensCountAsync(ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                    => (await GetAllPermanentTokensAsync(profile: profile, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 /// <summary>
                 /// Update an existing personal token used to access the current organisation. The permanent token name and/or scope can be updated.
@@ -1940,6 +2020,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<TDTeam> GetAllTeamsAsyncEnumerable(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTeamsAsync(query: query, withArchived: withArchived, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeam>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Get or search all teams. Parameters are applied as 'AND' filters.
+            /// </summary>
+            public async Task<int> GetAllTeamsCountAsync(string query = "", bool withArchived = false, CancellationToken cancellationToken = default)
+                => (await GetAllTeamsAsync(query: query, withArchived: withArchived, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Get a team by id.
@@ -2020,6 +2106,12 @@ namespace SpaceDotNet.Client
                 /// </summary>
                 public IAsyncEnumerable<TDMemberProfile> GetAllDirectMembersAsyncEnumerable(string id, string query = "", string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllDirectMembersAsync(id: id, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Get or search direct members of a given team.
+                /// </summary>
+                public async Task<int> GetAllDirectMembersCountAsync(string id, string query = "", CancellationToken cancellationToken = default)
+                    => (await GetAllDirectMembersAsync(id: id, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         

@@ -59,6 +59,12 @@ namespace SpaceDotNet.Client
         /// </summary>
         public IAsyncEnumerable<PRProject> GetAllProjectsAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, string? tag = null, bool? starred = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsAsync(top: top, term: term, tag: tag, starred: starred, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+        
+        /// <summary>
+        /// Get/search all projects. Parameters are applied as 'AND' filters.
+        /// </summary>
+        public async Task<int> GetAllProjectsCountAsync(string? term = null, string? tag = null, bool? starred = null, CancellationToken cancellationToken = default)
+            => (await GetAllProjectsAsync(term: term, tag: tag, starred: starred, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
         /// <summary>
         /// Get all projects for a member.
@@ -71,12 +77,21 @@ namespace SpaceDotNet.Client
         /// </summary>
         public IAsyncEnumerable<PRProject> GetAllProjectsByMemberAsyncEnumerable(ProfileIdentifier member, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByMemberAsync(member: member, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+        
+        /// <summary>
+        /// Get all projects for a member.
+        /// </summary>
+        public async Task<int> GetAllProjectsByMemberCountAsync(ProfileIdentifier member, CancellationToken cancellationToken = default)
+            => (await GetAllProjectsByMemberAsync(member: member, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
         public async Task<Batch<PRProject>> GetAllProjectsWithRightAsync(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, Func<Partial<Batch<PRProject>>, Partial<Batch<PRProject>>>? partial = null, CancellationToken cancellationToken = default)
             => await _connection.RequestResourceAsync<Batch<PRProject>>("GET", $"api/http/projects/right-code:{rightCode}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&term={term?.ToString() ?? "null"}&path={path?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PRProject>>()) : Partial<Batch<PRProject>>.Default())}", cancellationToken);
         
         public IAsyncEnumerable<PRProject> GetAllProjectsWithRightAsyncEnumerable(string rightCode, string? skip = null, int? top = 100, string? term = null, string? path = null, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsWithRightAsync(rightCode: rightCode, top: top, term: term, path: path, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+        
+        public async Task<int> GetAllProjectsWithRightCountAsync(string rightCode, string? term = null, string? path = null, CancellationToken cancellationToken = default)
+            => (await GetAllProjectsWithRightAsync(rightCode: rightCode, term: term, path: path, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
         /// <summary>
         /// Get all projects for a team.
@@ -89,6 +104,12 @@ namespace SpaceDotNet.Client
         /// </summary>
         public IAsyncEnumerable<PRProject> GetAllProjectsByTeamAsyncEnumerable(string team, string? skip = null, int? top = 100, Func<Partial<PRProject>, Partial<PRProject>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProjectsByTeamAsync(team: team, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PRProject>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PRProject>.Default())), skip, cancellationToken);
+        
+        /// <summary>
+        /// Get all projects for a team.
+        /// </summary>
+        public async Task<int> GetAllProjectsByTeamCountAsync(string team, CancellationToken cancellationToken = default)
+            => (await GetAllProjectsByTeamAsync(team: team, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
         /// <summary>
         /// Get project by id or project key.
@@ -238,6 +259,20 @@ namespace SpaceDotNet.Client
                 /// </remarks>
                 public IAsyncEnumerable<JobExecution> GetAllGraphExecutionsAsyncEnumerable(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, string? skip = null, int? top = 100, Func<Partial<JobExecution>, Partial<JobExecution>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<JobExecution>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<JobExecution>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Search executions. Parameters are applied as 'AND' filters.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<int> GetAllGraphExecutionsCountAsync(ProjectIdentifier project, string jobId, string? branchFilter = null, ExecutionStatus? statusFilter = null, JobTriggerType? jobTriggerFilter = null, CancellationToken cancellationToken = default)
+                    => (await GetAllGraphExecutionsAsync(project: project, jobId: jobId, branchFilter: branchFilter, statusFilter: statusFilter, jobTriggerFilter: jobTriggerFilter, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         
@@ -297,6 +332,20 @@ namespace SpaceDotNet.Client
                 /// </remarks>
                 public IAsyncEnumerable<Job> GetAllJobsAsyncEnumerable(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, string? skip = null, int? top = 100, Func<Partial<Job>, Partial<Job>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Job>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Job>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Search jobs. Parameters are applied as 'AND' filters.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<int> GetAllJobsCountAsync(ProjectIdentifier project, string repoFilter, string branchFilter, JobTriggerType? trigger = null, CancellationToken cancellationToken = default)
+                    => (await GetAllJobsAsync(project: project, repoFilter: repoFilter, branchFilter: branchFilter, trigger: trigger, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 /// <remarks>
                 /// Required permissions:
@@ -374,6 +423,21 @@ namespace SpaceDotNet.Client
             /// </remarks>
             public IAsyncEnumerable<PlainParameterRecord> GetAllParamsAsyncEnumerable(string bundleId, string? skip = null, int? top = 100, Func<Partial<PlainParameterRecord>, Partial<PlainParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllParamsAsync(bundleId: bundleId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlainParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlainParameterRecord>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// List project parameters in a parameter bundle
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View parameters</term>
+            /// <description>View project parameters</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<int> GetAllParamsCountAsync(string bundleId, CancellationToken cancellationToken = default)
+                => (await GetAllParamsAsync(bundleId: bundleId, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update an existing project parameter.
@@ -669,6 +733,21 @@ namespace SpaceDotNet.Client
             /// </remarks>
             public IAsyncEnumerable<SecretParameterRecord> GetAllSecretsAsyncEnumerable(string bundleId, string? skip = null, int? top = 100, Func<Partial<SecretParameterRecord>, Partial<SecretParameterRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSecretsAsync(bundleId: bundleId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<SecretParameterRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<SecretParameterRecord>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// List project secrets in a parameter bundle
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View keys of secrets</term>
+            /// <description>View keys of project secrets</description>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<int> GetAllSecretsCountAsync(string bundleId, CancellationToken cancellationToken = default)
+                => (await GetAllSecretsAsync(bundleId: bundleId, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update an existing project secret.
@@ -875,6 +954,12 @@ namespace SpaceDotNet.Client
                 /// </summary>
                 public IAsyncEnumerable<TDMemberProfile> GetAllMemberProfilesAsyncEnumerable(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Get project members for a given project key.
+                /// </summary>
+                public async Task<int> GetAllMemberProfilesCountAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, CancellationToken cancellationToken = default)
+                    => (await GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         
@@ -971,6 +1056,12 @@ namespace SpaceDotNet.Client
                 /// </summary>
                 public IAsyncEnumerable<TDMemberProfile> OrganizationProfilesWhoCanViewTheProjectAsyncEnumerable(ProjectIdentifier project, string term, bool meOnTop = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => OrganizationProfilesWhoCanViewTheProjectAsync(project: project, term: term, meOnTop: meOnTop, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Get organization members who can view a project.
+                /// </summary>
+                public async Task<int> OrganizationProfilesWhoCanViewTheProjectCountAsync(ProjectIdentifier project, string term, bool meOnTop = false, CancellationToken cancellationToken = default)
+                    => (await OrganizationProfilesWhoCanViewTheProjectAsync(project: project, term: term, meOnTop: meOnTop, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         
@@ -992,6 +1083,9 @@ namespace SpaceDotNet.Client
             
             public IAsyncEnumerable<CodeReviewWithCount> GetAllCodeReviewsAsyncEnumerable(ProjectIdentifier project, ReviewSorting? sort = null, string? skip = null, int? top = 100, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, Func<Partial<CodeReviewWithCount>, Partial<CodeReviewWithCount>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCodeReviewsAsync(project: project, sort: sort, top: top, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CodeReviewWithCount>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CodeReviewWithCount>.Default())), skip, cancellationToken);
+            
+            public async Task<int> GetAllCodeReviewsCountAsync(ProjectIdentifier project, ReviewSorting? sort = null, CodeReviewStateFilter? state = null, string? text = null, ProfileIdentifier? author = null, DateTime? from = null, DateTime? to = null, ProfileIdentifier? reviewer = null, ReviewType? type = null, CancellationToken cancellationToken = default)
+                => (await GetAllCodeReviewsAsync(project: project, sort: sort, state: state, text: text, author: author, from: from, to: to, reviewer: reviewer, type: type, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             public async Task<ReviewCounts> GetReviewCountsAsync(ProjectIdentifier project, Func<Partial<ReviewCounts>, Partial<ReviewCounts>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<ReviewCounts>("GET", $"api/http/projects/{project}/code-reviews/review-counts?$fields={(partial != null ? partial(new Partial<ReviewCounts>()) : Partial<ReviewCounts>.Default())}", cancellationToken);
@@ -1280,6 +1374,20 @@ namespace SpaceDotNet.Client
                     /// </remarks>
                     public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
+                    
+                    /// <summary>
+                    /// Gets a list of repository packages for a given project id.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    public async Task<int> GetAllPackagesCountAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, CancellationToken cancellationToken = default)
+                        => (await GetAllPackagesAsync(project: project, repository: repository, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
                 
                     public VersionClient Versions => new VersionClient(_connection);
                     
@@ -1319,6 +1427,20 @@ namespace SpaceDotNet.Client
                         /// </remarks>
                         public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
                             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                        
+                        /// <summary>
+                        /// Gets a list of repository package versions for a given project id.
+                        /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
+                        public async Task<int> GetAllPackageVersionsCountAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, CancellationToken cancellationToken = default)
+                            => (await GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
                     
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
@@ -1383,6 +1505,21 @@ namespace SpaceDotNet.Client
                     [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (marked for removal)")]
                     public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
                         => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, type: type, repositoryName: repositoryName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
+                    
+                    /// <summary>
+                    /// Gets a list of repository packages for a given project id.
+                    /// </summary>
+                    /// <remarks>
+                    /// Required permissions:
+                    /// <list type="bullet">
+                    /// <item>
+                    /// <term>Read</term>
+                    /// </item>
+                    /// </list>
+                    /// </remarks>
+                    [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages (since 2020-09-01) (marked for removal)")]
+                    public async Task<int> GetAllPackagesCountAsync(ProjectIdentifier project, string type, string repositoryName, string query, CancellationToken cancellationToken = default)
+                        => (await GetAllPackagesAsync(project: project, type: type, repositoryName: repositoryName, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
                 
                     public partial class VersionClient : ISpaceClient
                     {
@@ -1415,6 +1552,21 @@ namespace SpaceDotNet.Client
                         [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
                         public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
                             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                        
+                        /// <summary>
+                        /// Gets a list of repository package versions for a given project id.
+                        /// </summary>
+                        /// <remarks>
+                        /// Required permissions:
+                        /// <list type="bullet">
+                        /// <item>
+                        /// <term>Read</term>
+                        /// </item>
+                        /// </list>
+                        /// </remarks>
+                        [Obsolete("Use GET /projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions (since 2020-09-01) (marked for removal)")]
+                        public async Task<int> GetAllPackageVersionsCountAsync(ProjectIdentifier project, string type, string repositoryName, string packageName, string query, CancellationToken cancellationToken = default)
+                            => (await GetAllPackageVersionsAsync(project: project, type: type, repositoryName: repositoryName, packageName: packageName, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
                     
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
@@ -1517,6 +1669,20 @@ namespace SpaceDotNet.Client
                 /// </remarks>
                 public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                
+                /// <summary>
+                /// Executes a package search for a given project id.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Read</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<int> FindPackagesInRepositoryCountAsync(ProjectIdentifier project, string type, string query, CancellationToken cancellationToken = default)
+                    => (await FindPackagesInRepositoryAsync(project: project, type: type, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         
@@ -1592,6 +1758,9 @@ namespace SpaceDotNet.Client
                 
                 public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
+                
+                public async Task<int> GetAllChecklistsCountAsync(ProjectIdentifier project, string? query = null, CancellationToken cancellationToken = default)
+                    => (await GetAllChecklistsAsync(project: project, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, string name, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/checklists/{checklistId}", 
@@ -1716,6 +1885,18 @@ namespace SpaceDotNet.Client
                 /// </remarks>
                 public IAsyncEnumerable<Issue> GetAllIssuesAsyncEnumerable(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, string? skip = null, int? top = 100, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, Func<Partial<Issue>, Partial<Issue>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, top: top, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Issue>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Issue>.Default())), skip, cancellationToken);
+                
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View issues</term>
+                /// <description>View issues in a project</description>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<int> GetAllIssuesCountAsync(ProjectIdentifier project, List<ProfileIdentifier> assigneeId, List<string> statuses, IssuesSorting sorting, bool descending, ProfileIdentifier? createdByProfileId = null, string? tagId = null, string? query = null, List<string>? tags = null, List<string>? customFields = null, string? importTransaction = null, CancellationToken cancellationToken = default)
+                    => (await GetAllIssuesAsync(project: project, assigneeId: assigneeId, statuses: statuses, sorting: sorting, descending: descending, createdByProfileId: createdByProfileId, tagId: tagId, query: query, tags: tags, customFields: customFields, importTransaction: importTransaction, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 /// <remarks>
                 /// Required permissions:
@@ -1997,6 +2178,9 @@ namespace SpaceDotNet.Client
                 
                 public IAsyncEnumerable<PlanningTag> GetAllHierarchicalTagsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<PlanningTag>, Partial<PlanningTag>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHierarchicalTagsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PlanningTag>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PlanningTag>.Default())), skip, cancellationToken);
+                
+                public async Task<int> GetAllHierarchicalTagsCountAsync(ProjectIdentifier project, string? query = null, CancellationToken cancellationToken = default)
+                    => (await GetAllHierarchicalTagsAsync(project: project, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         
@@ -2160,6 +2344,9 @@ namespace SpaceDotNet.Client
             
             public IAsyncEnumerable<GitCommitInfo> ListCommitsMatchingQueryAsyncEnumerable(ProjectIdentifier project, string repository, string? skip = null, int? top = 100, string? query = null, Func<Partial<GitCommitInfo>, Partial<GitCommitInfo>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListCommitsMatchingQueryAsync(project: project, repository: repository, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<GitCommitInfo>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<GitCommitInfo>.Default())), skip, cancellationToken);
+            
+            public async Task<int> ListCommitsMatchingQueryCountAsync(ProjectIdentifier project, string repository, string? query = null, CancellationToken cancellationToken = default)
+                => (await ListCommitsMatchingQueryAsync(project: project, repository: repository, query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
         }
     

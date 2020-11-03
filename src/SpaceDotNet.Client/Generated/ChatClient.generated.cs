@@ -83,6 +83,9 @@ namespace SpaceDotNet.Client
             
             public IAsyncEnumerable<AllChannelsListEntry> ListAllChannelsAsyncEnumerable(string query, string? skip = null, int? top = 100, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = null, Func<Partial<AllChannelsListEntry>, Partial<AllChannelsListEntry>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListAllChannelsAsync(query: query, top: top, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AllChannelsListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AllChannelsListEntry>.Default())), skip, cancellationToken);
+            
+            public async Task<int> ListAllChannelsCountAsync(string query, string? quickFilter = null, string? sortColumn = null, ColumnSortOrder? sortOrder = null, CancellationToken cancellationToken = default)
+                => (await ListAllChannelsAsync(query: query, quickFilter: quickFilter, sortColumn: sortColumn, sortOrder: sortOrder, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Delete a channel. No one will be able to view this channel or its threads. This action cannot be undone.

@@ -75,6 +75,12 @@ namespace SpaceDotNet.Client
             /// </summary>
             public IAsyncEnumerable<EntityHit> GetAllSearchAsyncEnumerable(string query, bool quick = false, List<string>? keys = null, string? skip = null, int? top = 100, FTSQueryFilter? queryFilter = null, Func<Partial<EntityHit>, Partial<EntityHit>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllSearchAsync(query: query, quick: quick, keys: keys, top: top, queryFilter: queryFilter, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EntityHit>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EntityHit>.Default())), skip, cancellationToken);
+            
+            /// <summary>
+            /// Perform full-text search in all supported entities.
+            /// </summary>
+            public async Task<int> GetAllSearchCountAsync(string query, bool quick = false, List<string>? keys = null, FTSQueryFilter? queryFilter = null, CancellationToken cancellationToken = default)
+                => (await GetAllSearchAsync(query: query, quick: quick, keys: keys, queryFilter: queryFilter, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
         }
     

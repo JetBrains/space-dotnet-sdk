@@ -22,11 +22,16 @@ namespace SpaceDotNet.Samples.CommandLine
                 Environment.GetEnvironmentVariable("JB_SPACE_CLIENT_SECRET")!,
                 new HttpClient());
             
+            var teamDirectoryClient = new TeamDirectoryClient(connection);
+            
             // User to add to chat later on
             var chatChannelName = "SpaceDotNet";
             
+            // Get number of profiles
+            var totalProfiles = await teamDirectoryClient.Profiles.GetAllProfilesCountAsync();
+            Console.WriteLine($"There are {totalProfiles} profiles in Space.");
+            
             // Get all profiles with their names
-            var teamDirectoryClient = new TeamDirectoryClient(connection);
             await foreach (var profile in teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
                 .WithId()
                 .WithName()))

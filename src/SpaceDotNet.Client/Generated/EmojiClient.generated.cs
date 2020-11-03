@@ -88,6 +88,12 @@ namespace SpaceDotNet.Client
         /// </summary>
         public IAsyncEnumerable<EmojiSearchMatchData> SearchAsyncEnumerable(string query, string? skip = null, int? top = 100, Func<Partial<EmojiSearchMatchData>, Partial<EmojiSearchMatchData>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => SearchAsync(query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EmojiSearchMatchData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EmojiSearchMatchData>.Default())), skip, cancellationToken);
+        
+        /// <summary>
+        /// Search for emoji.
+        /// </summary>
+        public async Task<int> SearchCountAsync(string query, CancellationToken cancellationToken = default)
+            => (await SearchAsync(query: query, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
     }
     

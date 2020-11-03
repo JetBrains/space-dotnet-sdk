@@ -325,7 +325,14 @@ The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGe
 
 > **Tip:** To retrieve the total result count, without any other properties, don't use the `IAsyncEnumerable` overload. 
 >
-> Instead, retrieve just the `TotalCount` property for this batch:
+> Instead, use the overload that retrieves just the total count:
+>
+> ```csharp
+> var numberOfResults = await _todoClient.GetAllToDoItemsCountAsync(
+>     from: weekStart.AsSpaceDate(), partial: _ => _.WithTotalCount());
+> ```
+> 
+> Alternatively, retrieve only the `TotalCount` property for this batch:
 >
 > ```csharp
 > var batch = await _todoClient.GetAllToDoItemsAsync(

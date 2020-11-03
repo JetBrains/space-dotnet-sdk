@@ -253,15 +253,6 @@ namespace SpaceDotNet.Samples.Web.Pages
                 _logger.LogError("An error occurred", ex);
             }
             
-            // Issues
-            // Reviews created
-            // Reviews participated
-            // Meetings
-            // Commits
-            // Documents
-            // Chats
-            // + status (open, in progress, done)
-            
             IssuesCreatedThisWeek = issuesCreatedThisWeek;
             IssuesResolvedThisWeek = issuesResolvedThisWeek;
             ReviewsCreatedThisWeek = reviewsCreatedThisWeek;

@@ -63,6 +63,12 @@ namespace SpaceDotNet.Client
         /// </summary>
         public IAsyncEnumerable<TodoItemRecord> GetAllTodoItemsAsyncEnumerable(string? skip = null, int? top = 100, bool? open = null, DateTime? from = null, DateTime? till = null, Func<Partial<TodoItemRecord>, Partial<TodoItemRecord>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTodoItemsAsync(top: top, open: open, from: from, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TodoItemRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TodoItemRecord>.Default())), skip, cancellationToken);
+        
+        /// <summary>
+        /// Get all To-Do items that match given parameters. Parameters are applied as 'AND' filters.
+        /// </summary>
+        public async Task<int> GetAllTodoItemsCountAsync(bool? open = null, DateTime? from = null, DateTime? till = null, CancellationToken cancellationToken = default)
+            => (await GetAllTodoItemsAsync(open: open, from: from, till: till, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
         /// <summary>
         /// Update an existing To-Do item. Optional parameters will be ignored when not specified, and updated otherwise.
