@@ -1,8 +1,8 @@
 job("Run NUKE build") {
     container("mcr.microsoft.com/dotnet/core/sdk:3.1-bionic") {
         resources {
-            cpu = 2048
-            memory = 2048
+            cpu = 4096
+            memory = 4096
         }
 
         env.set("JB_SPACE_NUGET_URL", Params("SPACEDOTNET_NUGET_URL"))
