@@ -12,7 +12,7 @@ job("Run NUKE build") {
         env.set("JB_SPACE_PUBLIC_CLIENT_TOKEN", Secrets("SPACEDOTNET_PUBLIC_NUGET_APIKEY"))
         
         shellScript {
-            content = """            
+            content = """
             	/bin/bash ./build.sh
             """
         }
