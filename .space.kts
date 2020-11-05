@@ -8,6 +8,9 @@ job("Run NUKE build") {
         env.set("JB_SPACE_NUGET_URL", Params("SPACEDOTNET_NUGET_URL"))
         env.set("JB_SPACE_CLIENT_TOKEN", Secrets("SPACEDOTNET_NUGET_APIKEY"))
         
+        env.set("JB_SPACE_PUBLIC_NUGET_URL", Params("SPACEDOTNET_PUBLIC_NUGET_URL"))
+        env.set("JB_SPACE_PUBLIC_CLIENT_TOKEN", Secrets("SPACEDOTNET_PUBLIC_NUGET_APIKEY"))
+        
         shellScript {
             content = """            
             	/bin/bash ./build.sh

@@ -15,6 +15,7 @@ namespace _build
             GetFromSpace() ?? GetFromGit() ?? GetFromTime();
 
         bool IsMainBranch(string branch) => 
+            string.Equals(branch, "refs/heads/main", StringComparison.OrdinalIgnoreCase) ||
             string.Equals(branch, "main", StringComparison.OrdinalIgnoreCase);
 
         VersionInfo? GetFromSpace()
