@@ -1,0 +1,11 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/.idea.JetBrains.Space.iml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

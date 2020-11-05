@@ -25,7 +25,7 @@
         <EmbedUntrackedSources>True</EmbedUntrackedSources>
         <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
         
-        <Product>SpaceDotNet</Product>
+        <Product>JetBrains.Space</Product>
     </PropertyGroup>
 
     <ItemGroup Condition="$(GeneratePackageOnBuild)">

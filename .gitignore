@@ -204,10 +204,10 @@ fabric.properties
 # Our own folders
 artifacts/
 /.vs
-.idea/.idea.SpaceDotNet/.idea/inspectionProfiles/profiles_settings.xml
-.idea/.idea.SpaceDotNet/.idea/contentModel.xml
-.idea/.idea.SpaceDotNet/.idea/indexLayout.xml
-.idea/.idea.SpaceDotNet/.idea/markdown-navigator.xml
-.idea/.idea.SpaceDotNet/.idea/markdown-navigator-enh.xml
-.idea/.idea.SpaceDotNet/.idea/$CACHE_FILE$
-.idea/.idea.SpaceDotNet/.idea/$PROJECT_FILE$
+.idea/.idea.JetBrains.Space/.idea/inspectionProfiles/profiles_settings.xml
+.idea/.idea.JetBrains.Space/.idea/contentModel.xml
+.idea/.idea.JetBrains.Space/.idea/indexLayout.xml
+.idea/.idea.JetBrains.Space/.idea/markdown-navigator.xml
+.idea/.idea.JetBrains.Space/.idea/markdown-navigator-enh.xml
+.idea/.idea.JetBrains.Space/.idea/$CACHE_FILE$
+.idea/.idea.JetBrains.Space/.idea/$PROJECT_FILE$

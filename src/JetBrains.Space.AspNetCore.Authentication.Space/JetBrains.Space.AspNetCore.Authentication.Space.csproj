@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Description>ASP.NET Core authentication provider for JetBrains Space.</Description>
+        <PackageTags>JetBrains;JetBrains Space;security;authentication;aspnetcore</PackageTags>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="All" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\JetBrains.Space.AspNetCore\JetBrains.Space.AspNetCore.csproj" />
+      <ProjectReference Include="..\JetBrains.Space.Common\JetBrains.Space.Common.csproj" />
+    </ItemGroup>
+
+</Project>

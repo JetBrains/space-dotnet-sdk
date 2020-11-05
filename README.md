@@ -1,4 +1,4 @@
-# SpaceDotNet ![](https://jb.gg/badges/incubator-flat-square.svg)
+# JetBrains.Space ![](https://jb.gg/badges/incubator-flat-square.svg)
 
 The JetBrains Space SDK for .NET is a .NET library to work with the [JetBrains Space](https://jetbrains.com/space/) API. 
 
@@ -6,23 +6,23 @@ The JetBrains Space SDK for .NET is a .NET library to work with the [JetBrains S
 
 ## Overview
 
-SpaceDotNet consists of several NuGet packages that can be used to integrate with [JetBrains Space](https://jetbrains.com/space/).
+JetBrains.Space consists of several NuGet packages that can be used to integrate with [JetBrains Space](https://jetbrains.com/space/).
 
-Typically, `SpaceDotNet.Client` will be used to work with the Space API. It can be installed using any NuGet client, or the `dotnet` command line tool:
+Typically, `JetBrains.Space.Client` will be used to work with the Space API. It can be installed using any NuGet client, or the `dotnet` command line tool:
 
 ```
-dotnet add package SpaceDotNet.Client --version 1.0.0-beta.*
+dotnet add package JetBrains.Space.Client --version 1.0.0-beta.*
 ```
 
 Other (optional) packages are available. These can be installed to satisfy additional integration requirements.
 
-* `SpaceDotNet.Client` — The generated client code to work with the Space API.
-* `SpaceDotNet.AspNetCore` — Helpers for using SpaceDotNet with ASP.NET Core, such as:
-  * An extension method for `IServiceCollection` to register all SpaceDotNet clients as ASP.NET Core services
+* `JetBrains.Space.Client` — The generated client code to work with the Space API.
+* `JetBrains.Space.AspNetCore` — Helpers for using JetBrains.Space with ASP.NET Core, such as:
+  * An extension method for `IServiceCollection` to register all JetBrains.Space clients as ASP.NET Core services
   * Helpers for Space Applications webhooks
-* `SpaceDotNet.AspNetCore.Authentication.Space` — Authentication provider that integrates with ASP.NET Core.
+* `JetBrains.Space.AspNetCore.Authentication.Space` — Authentication provider that integrates with ASP.NET Core.
 
-Let's have a look at how we can start working with `SpaceDotNet.Client`.
+Let's have a look at how we can start working with `JetBrains.Space.Client`.
 
 ## Getting Started
 
@@ -30,7 +30,7 @@ We will need to [register an application](https://www.jetbrains.com/help/space/a
 
 ### Create a Connection
 
-After installing `SpaceDotNet.Client` in our project, we can use the *Client ID* and *Client Secret* of our Service Account to create a `ClientCredentialsConnection` against our Space organization:
+After installing `JetBrains.Space.Client` in our project, we can use the *Client ID* and *Client Secret* of our Service Account to create a `ClientCredentialsConnection` against our Space organization:
 
 ```csharp
 var connection = new ClientCredentialsConnection(
@@ -56,7 +56,7 @@ As an example, the top level *Team Directory* has a client class named `TeamDire
 var teamDirectoryClient = new TeamDirectoryClient(connection);
 ```
 
-> **Tip:** While not required to work with SpaceDotNet, having the [HTTP API Playground](https://www.jetbrains.com/help/space/api.html#api-playground) open will be useful to explore the available APIs and data types while developing.
+> **Tip:** While not required to work with JetBrains.Space, having the [HTTP API Playground](https://www.jetbrains.com/help/space/api.html#api-playground) open will be useful to explore the available APIs and data types while developing.
 
 ### Get Profile by Username 
 
@@ -71,9 +71,9 @@ The `memberProfile` will expose top level properties, such as `Id`, `Username`, 
 
 To retrieve nested properties, check [nested properties](#nested-properties).
 
-## SpaceDotNet.Client
+## JetBrains.Space.Client
 
-The `SpaceDotNet.Client` package provides necessary types to connect to and interact with the Space API.
+The `JetBrains.Space.Client` package provides necessary types to connect to and interact with the Space API.
 
 ### Authentication and Connection
 
@@ -85,15 +85,15 @@ Communication with Space is handled by the `Connection` base class. A connection
 * `BearerTokenConnection` — Uses a bearer token obtained using [other flows](https://www.jetbrains.com/help/space/oauth-2-0-authorization.html), or a [personal token](https://www.jetbrains.com/help/space/personal-tokens.html). This is typically used by applications that act on behalf of a user.
 * `RefreshTokenConnection` — Extends `BearerTokenConnection` and automatically refreshes tokens using the [Refresh Token Flow](https://www.jetbrains.com/help/space/refresh-token.html).
 
-SpaceDotNet does not handle retrieving an access token that can be used with `BearerTokenConnection` or `RefreshTokenConnection`.
+JetBrains.Space does not handle retrieving an access token that can be used with `BearerTokenConnection` or `RefreshTokenConnection`.
 
-> **Tip:** The Space ASP.NET Core authentication provider (in the `SpaceDotNet.AspNetCore.Authentication.Space` package) includes support for the [Implicit Flow](https://www.jetbrains.com/help/space/implicit.html).
+> **Tip:** The Space ASP.NET Core authentication provider (in the `JetBrains.Space.AspNetCore.Authentication.Space` package) includes support for the [Implicit Flow](https://www.jetbrains.com/help/space/implicit.html).
 
 #### Scope
 
 Scope is a mechanism in OAuth 2.0 to limit an application's access to a user's account.
 
-On a `Connection` instance, use the `Scope` property to specify the scope required by an application. By default, SpaceDotNet uses the `**` scope, which requests all available scopes.
+On a `Connection` instance, use the `Scope` property to specify the scope required by an application. By default, JetBrains.Space uses the `**` scope, which requests all available scopes.
 
 More [examples of available scopes](https://www.jetbrains.com/help/space/oauth-2-0-authorization.html) are available in the Space documentation.
 
@@ -117,11 +117,11 @@ Fields can be primitive values (integers, strings, booleans, ...), and actual ty
 
 Being able to retrieve just the information our integration requires, helps in reducing payload size, and results in a better integration performance overall.
 
-In SpaceDotNet, we will need to specify the properties we want to retrieve as well. Let's see how this is done.
+In JetBrains.Space, we will need to specify the properties we want to retrieve as well. Let's see how this is done.
 
 #### Top-level Properties by Default
 
-By default, SpaceDotNet will retrieve all top level properties from the Space API. For example, retrieving a profile from the team directory will retrieve all top level properties, such as `Id`, `Username`, `About`, and more:
+By default, JetBrains.Space will retrieve all top level properties from the Space API. For example, retrieving a profile from the team directory will retrieve all top level properties, such as `Id`, `Username`, `About`, and more:
 
 ```csharp
 var memberProfile = await teamDirectoryClient.Profiles
@@ -149,11 +149,11 @@ var memberProfile = await teamDirectoryClient.Profiles
 All of the builder methods (`With...()`) are extension methods, and should be automatically included by the IDE we are using. For example, the extension methods used in the previous example were automatically included by [Rider](https://www.jetbrains.com/rider/):
 
 ```csharp
-using SpaceDotNet.Client.TDMemberProfilePartialBuilder;
-using SpaceDotNet.Client.TDProfileNamePartialBuilder;
+using JetBrains.Space.Client.TDMemberProfilePartialBuilder;
+using JetBrains.Space.Client.TDProfileNamePartialBuilder;
 ```
 
-SpaceDotNet will help with defining properties to include. Let's say we want to retrieve only the `Id` and `Username` properties for a profile:
+JetBrains.Space will help with defining properties to include. Let's say we want to retrieve only the `Id` and `Username` properties for a profile:
 
 ```csharp
 var memberProfile = await teamDirectoryClient.Profiles
@@ -162,7 +162,7 @@ var memberProfile = await teamDirectoryClient.Profiles
         .WithUsername());
 ```
 
-When we try to access the `Name` property for this profile, which we did not request, SpaceDotNet will throw a `PropertyNotRequestedException` with additional information.
+When we try to access the `Name` property for this profile, which we did not request, JetBrains.Space will throw a `PropertyNotRequestedException` with additional information.
 
 ```csharp
 try
@@ -307,7 +307,7 @@ while (batch.HasNext());
 
 The resulting `batch` will contain one page of results. To retrieve more To-Do items, we will have to make additional API calls. This gets cumbersome rather quickly, which is why API endpoints that return a `Batch<T>` also have an overload that supports `IAsyncEnumerable`.
 
-With the `IAsyncEnumerable` overload for these endpoints, we can iterate over items that are returned. The underlying SpaceDotNet implementation will handle pagination and additional API calls for us. The same example as before, using the `IAsyncEnumerable` overload:
+With the `IAsyncEnumerable` overload for these endpoints, we can iterate over items that are returned. The underlying JetBrains.Space implementation will handle pagination and additional API calls for us. The same example as before, using the `IAsyncEnumerable` overload:
 
 ```csharp
 await foreach (var todo in _todoClient.GetAllTodoItemsAsyncEnumerable(
@@ -342,16 +342,16 @@ The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGe
 > var numberOfResults = batch.TotalCount;
 > ```
 
-## SpaceDotNet.AspNetCore
+## JetBrains.Space.AspNetCore
 
-The `SpaceDotNet.AspNetCore` package provides helpers for using SpaceDotNet with ASP.NET Core.
+The `JetBrains.Space.AspNetCore` package provides helpers for using JetBrains.Space with ASP.NET Core.
 
 ### `IServiceCollection` extension methods
 
 There are extension methods for `IServiceCollection`:
 
 * `AddSpaceConnection()` — Registers a [`Connection`](#authentication-connection) as a service. The registration lifetime is transient by default.
-* `AddSpaceClientApi()` — Registers SpaceDotNet [clients](#create-service-client) as transient services. The registration lifetime is transient by default. Note that this method will throw an exception when no `Connection` has been registered.
+* `AddSpaceClientApi()` — Registers JetBrains.Space [clients](#create-service-client) as transient services. The registration lifetime is transient by default. Note that this method will throw an exception when no `Connection` has been registered.
 
 ### Space Applications webhooks (Experimental)
 
@@ -411,9 +411,9 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 Our application can now be registered in Space using this URL endpoint, for example `https://apps.example.org/space/receive`.
 
-## SpaceDotNet.AspNetCore.Authentication.Space
+## JetBrains.Space.AspNetCore.Authentication.Space
 
-The `SpaceDotNet.AspNetCore.Authentication.Space` package contains an authentication provider that integrates with ASP.NET Core. It can be used to authenticate a web application's users with Space, much like [other external authentication providers](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-3.1).
+The `JetBrains.Space.AspNetCore.Authentication.Space` package contains an authentication provider that integrates with ASP.NET Core. It can be used to authenticate a web application's users with Space, much like [other external authentication providers](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-3.1).
 
 ### Registering Space as an Authentication Provider
 
@@ -485,9 +485,9 @@ An identity constructed by Space provides us with several claims and their value
 * `SpaceClaimTypes.FirstName` / `urn:space:firstName` — The user's first name.
 * `SpaceClaimTypes.LastName` / `urn:space:lastName` — The user's last name.
 
-These claims and their values are available on identities created by SpaceDotNet. When using multiple authentication providers, it may be required to [enrich our application identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/additional-claims?view=aspnetcore-3.1).
+These claims and their values are available on identities created by JetBrains.Space. When using multiple authentication providers, it may be required to [enrich our application identity](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/additional-claims?view=aspnetcore-3.1).
 
-The `SpaceDotNet.Samples.Web` project in the SpaceDotNet repository uses these claims to render user information in the site header, including the user's full name and profile picture:
+The `JetBrains.Space.Samples.Web` project in the JetBrains.Space repository uses these claims to render user information in the site header, including the user's full name and profile picture:
 
 ![Use Space identity claims to personalize the application experience](docs/images/profile-picture-claims.png)
 
@@ -497,7 +497,7 @@ Using these identity properties helps personalize our application's experience.
 
 Some web applications can be considered a "100% Space integration". For example, we may build an application that lets a user authenticate with Space, and then generates a personalized dashboard with data obtained using the Space API.
 
-The `SpaceDotNet.AspNetCore.Authentication.Space` package contains an experimental feature, token management, to assist with authenticating and making sure the current user's identity is used to access the Space APIs. It also handles refresh tokens, when the current access token has expired.
+The `JetBrains.Space.AspNetCore.Authentication.Space` package contains an experimental feature, token management, to assist with authenticating and making sure the current user's identity is used to access the Space APIs. It also handles refresh tokens, when the current access token has expired.
 
 > **Warning:** The functionality described in this section is experimental. It may not work for every setup, depending on how ASP.NET Authentication is configured.
 > The following has to be true to use Space Token Management in an ASP.NET Core application:
@@ -526,8 +526,8 @@ public void ConfigureServices(IServiceCollection services)
 
 Our web application will now authenticate every user using the Space Authentication Provider.
 
-The `AddSpaceTokenManagement()` call registers Space Token Management, and will inject a `Connection` that is authenticated for the current user of our application. Combined with `AddSpaceClientApi()`, which registers the Space API clients with the current service collection, we can now make use of the Space API throughout our application, and let SpaceDotNet handle all authentication needs.
+The `AddSpaceTokenManagement()` call registers Space Token Management, and will inject a `Connection` that is authenticated for the current user of our application. Combined with `AddSpaceClientApi()`, which registers the Space API clients with the current service collection, we can now make use of the Space API throughout our application, and let JetBrains.Space handle all authentication needs.
 
-Have a look at the `SpaceDotNet.Samples.Web` project in the SpaceDotNet repository, which uses this technique to build a personal dashboard:
+Have a look at the `JetBrains.Space.Samples.Web` project in the JetBrains.Space repository, which uses this technique to build a personal dashboard:
 
-![Personal Space dashboard using Token Management and SpaceDotNet](docs/images/dashboard-token-management.png)
+![Personal Space dashboard using Token Management and JetBrains.Space](docs/images/dashboard-token-management.png)
