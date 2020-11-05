@@ -29,19 +29,19 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         public static ListCommandsPayload ListCommandsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null)
-            => new ListCommandsPayload(accessToken: null, verificationToken: null, userId: null);
+            => new ListCommandsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId);
         
         public static ListMenuExtensionsPayload ListMenuExtensionsPayload(string? accessToken = null, string? verificationToken = null, string? userId = null)
-            => new ListMenuExtensionsPayload(accessToken: null, verificationToken: null, userId: null);
+            => new ListMenuExtensionsPayload(accessToken: accessToken, verificationToken: verificationToken, userId: userId);
         
         public static MenuActionPayload MenuActionPayload(string extensionName, MenuActionContext context, string userId, string? accessToken = null, string? verificationToken = null)
-            => new MenuActionPayload(extensionName: extensionName, context: context, userId: userId, accessToken: null, verificationToken: null);
+            => new MenuActionPayload(extensionName: extensionName, context: context, userId: userId, accessToken: accessToken, verificationToken: verificationToken);
         
         public static MessageActionPayload MessageActionPayload(string actionId, string actionValue, MessageContext message, string userId, string? accessToken = null, string? verificationToken = null)
-            => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, userId: userId, accessToken: null, verificationToken: null);
+            => new MessageActionPayload(actionId: actionId, actionValue: actionValue, message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken);
         
         public static MessagePayload MessagePayload(MessageContext message, string userId, string? accessToken = null, string? verificationToken = null)
-            => new MessagePayload(message: message, userId: userId, accessToken: null, verificationToken: null);
+            => new MessagePayload(message: message, userId: userId, accessToken: accessToken, verificationToken: verificationToken);
         
     }
     

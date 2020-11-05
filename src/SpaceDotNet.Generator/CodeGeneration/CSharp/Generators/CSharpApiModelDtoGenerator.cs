@@ -108,7 +108,7 @@ namespace SpaceDotNet.Generator.CodeGeneration.CSharp.Generators
                         
                         builder.AppendLine($"{indent}public static {inheritorTypeName} {inheritorFactoryMethodName}({methodParametersBuilder.BuildMethodParametersList()})");
                         indent.Increment();
-                        builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.BuildMethodCallParameters()});");
+                        builder.AppendLine($"{indent}=> new {inheritorTypeName}({methodParametersBuilder.WithDefaultValueForAllParameters(null).BuildMethodCallParameters()});");
                         indent.Decrement();
                         builder.AppendLine($"{indent}");
                     }

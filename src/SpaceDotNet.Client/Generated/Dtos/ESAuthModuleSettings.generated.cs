@@ -33,7 +33,7 @@ namespace SpaceDotNet.Client
         public virtual string? ClassName => "ES_AuthModuleSettings";
         
         public static ESHiddenAuthModuleSettings ESHiddenAuthModuleSettings(bool? passwordModule = null, bool? federatedModule = null)
-            => new ESHiddenAuthModuleSettings(passwordModule: null, federatedModule: null);
+            => new ESHiddenAuthModuleSettings(passwordModule: passwordModule, federatedModule: federatedModule);
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

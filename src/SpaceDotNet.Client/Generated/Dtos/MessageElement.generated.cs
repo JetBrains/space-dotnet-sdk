@@ -38,7 +38,7 @@ namespace SpaceDotNet.Client
             => new MessageFields(fields: fields);
         
         public static MessageText MessageText(string content, MessageAccessoryElement? accessory = null)
-            => new MessageText(content: content, accessory: null);
+            => new MessageText(content: content, accessory: accessory);
         
     }
     

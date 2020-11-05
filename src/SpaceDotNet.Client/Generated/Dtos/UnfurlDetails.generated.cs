@@ -32,13 +32,13 @@ namespace SpaceDotNet.Client
             => new AutomationJobExecutionUnfurlDetails(jobExecutionId: jobExecutionId, projectRef: projectRef, repoName: repoName);
         
         public static AutomationJobUnfurlDetails AutomationJob(string jobId, string jobName, PRProject projectRef, string repoName, ExecutionDisplayStatus? jobExecutionDisplayStatusFilter = null, JobTriggerType? jobTriggerFilter = null, Branch? branch = null)
-            => new AutomationJobUnfurlDetails(jobId: jobId, jobName: jobName, projectRef: projectRef, repoName: repoName, jobExecutionDisplayStatusFilter: null, jobTriggerFilter: null, branch: null);
+            => new AutomationJobUnfurlDetails(jobId: jobId, jobName: jobName, projectRef: projectRef, repoName: repoName, jobExecutionDisplayStatusFilter: jobExecutionDisplayStatusFilter, jobTriggerFilter: jobTriggerFilter, branch: branch);
         
         public static ChannelItemSnapshot ChannelItemSnapshot(string id, string text, CPrincipal author, DateTime created, long time, string? channelId = null, M2ItemContentDetails? details = null, List<AttachmentInfo>? attachments = null)
-            => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: null, details: null, attachments: null);
+            => new ChannelItemSnapshot(id: id, text: text, author: author, created: created, time: time, channelId: channelId, details: details, attachments: attachments);
         
         public static UnfurlDetailsArticle Article(ArticleRecord article, ArticleContentRecord content, ArticleChannelRecord channel, ArticleDetailsRecord? details = null)
-            => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: null);
+            => new UnfurlDetailsArticle(article: article, content: content, channel: channel, details: details);
         
         public static UnfurlDetailsChecklist Checklist(Checklist checklist)
             => new UnfurlDetailsChecklist(checklist: checklist);
@@ -47,10 +47,10 @@ namespace SpaceDotNet.Client
             => new UnfurlDetailsCodeSnippet(anchor: anchor, lines: lines);
         
         public static UnfurlDetailsDateTime DateTime(long utcMilliseconds, DateTimeViewParams? @params = null)
-            => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds, @params: null);
+            => new UnfurlDetailsDateTime(utcMilliseconds: utcMilliseconds, @params: @params);
         
         public static UnfurlDetailsDateTimeRange DateTimeRange(long since, long till, DateTimeViewParams? @params = null)
-            => new UnfurlDetailsDateTimeRange(since: since, till: till, @params: null);
+            => new UnfurlDetailsDateTimeRange(since: since, till: till, @params: @params);
         
         public static UnfurlDetailsDraft Draft(string draft, string title)
             => new UnfurlDetailsDraft(draft: draft, title: title);
@@ -68,7 +68,7 @@ namespace SpaceDotNet.Client
             => new UnfurlDetailsLocation(location: location);
         
         public static UnfurlDetailsMC MC(MCMessage message, List<AttachmentInfo>? inlineUnfurls = null)
-            => new UnfurlDetailsMC(message: message, inlineUnfurls: null);
+            => new UnfurlDetailsMC(message: message, inlineUnfurls: inlineUnfurls);
         
         public static UnfurlDetailsMeeting Meeting(Meeting meeting)
             => new UnfurlDetailsMeeting(meeting: meeting);

@@ -33,7 +33,7 @@ namespace SpaceDotNet.Client
         public virtual string? ClassName => "ChatMessage";
         
         public static ChatMessageBlock Block(List<MessageSectionElement> sections, MessageStyle? style = null, MessageOutline? outline = null, string? messageData = null)
-            => new ChatMessageBlock(sections: sections, style: null, outline: null, messageData: null);
+            => new ChatMessageBlock(sections: sections, style: style, outline: outline, messageData: messageData);
         
         public static ChatMessageText Text(string text)
             => new ChatMessageText(text: text);

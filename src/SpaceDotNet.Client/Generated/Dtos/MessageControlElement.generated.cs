@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         public static MessageButton MessageButton(string text, MessageButtonStyle style, MessageAction action, bool? disabled = null)
-            => new MessageButton(text: text, style: style, action: action, disabled: null);
+            => new MessageButton(text: text, style: style, action: action, disabled: disabled);
         
     }
     

@@ -29,10 +29,10 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         public static BlogPublicationDetails Blog(TDTeam? teamId = null, List<TDTeam>? teams = null, TDLocation? locationId = null, List<TDLocation>? locations = null, CalendarEvent? @event = null, ArticleRecord? article = null)
-            => new BlogPublicationDetails(teamId: null, teams: null, locationId: null, locations: null, @event: null, article: null);
+            => new BlogPublicationDetails(teamId: teamId, teams: teams, locationId: locationId, locations: locations, @event: @event, article: article);
         
         public static KbPublicationDetails Kb(KBBook? book = null, KBFolder? folder = null, KBArticle? articleId = null)
-            => new KbPublicationDetails(book: null, folder: null, articleId: null);
+            => new KbPublicationDetails(book: book, folder: folder, articleId: articleId);
         
     }
     

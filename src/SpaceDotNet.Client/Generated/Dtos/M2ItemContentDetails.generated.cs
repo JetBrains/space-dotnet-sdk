@@ -35,13 +35,13 @@ namespace SpaceDotNet.Client
             => new M2AbsenceItemApprovedContent(absence: absence, by: by, approve: approve);
         
         public static M2AbsenceItemContent M2AbsenceItemContent(AbsenceRecord absence, TDMemberProfile? by = null)
-            => new M2AbsenceItemContent(absence: absence, by: null);
+            => new M2AbsenceItemContent(absence: absence, by: by);
         
         public static M2AbsenceItemDeletedContent M2AbsenceItemDeletedContent(AbsenceRecord absence, TDMemberProfile? by = null)
-            => new M2AbsenceItemDeletedContent(absence: absence, by: null);
+            => new M2AbsenceItemDeletedContent(absence: absence, by: by);
         
         public static M2AbsenceItemUpdatedContent M2AbsenceItemUpdatedContent(AbsenceRecord absence, Modification<AbsenceReasonRecord>? reason = null, Modification<string>? description = null, Modification<DateTime>? since = null, Modification<DateTime>? till = null, TDMemberProfile? by = null)
-            => new M2AbsenceItemUpdatedContent(absence: absence, reason: null, description: null, since: null, till: null, by: null);
+            => new M2AbsenceItemUpdatedContent(absence: absence, reason: reason, description: description, since: since, till: till, by: by);
         
         public static M2ChannelArchivedItemDetails M2ChannelArchivedItemDetails()
             => new M2ChannelArchivedItemDetails();
@@ -62,10 +62,10 @@ namespace SpaceDotNet.Client
             => new M2DraftEditorTeamAddedItemContent(id: id, team: team, title: title);
         
         public static M2ExternalStatusFailureItemContent M2ExternalStatusFailureItemContent(string repository, string branch, string url, string externalServiceName, string taskName, string? projectId = null, RevisionAuthorInfo? revisionInfo = null, LastChanges? changesInfo = null, long? timestamp = null, string? description = null)
-            => new M2ExternalStatusFailureItemContent(repository: repository, branch: branch, url: url, externalServiceName: externalServiceName, taskName: taskName, projectId: null, revisionInfo: null, changesInfo: null, timestamp: null, description: null);
+            => new M2ExternalStatusFailureItemContent(repository: repository, branch: branch, url: url, externalServiceName: externalServiceName, taskName: taskName, projectId: projectId, revisionInfo: revisionInfo, changesInfo: changesInfo, timestamp: timestamp, description: description);
         
         public static M2ExternalStatusSucceedItemContent M2ExternalStatusSucceedItemContent(string repository, string branch, string url, string externalServiceName, string taskName, string? projectId = null, RevisionAuthorInfo? revisionInfo = null, LastChanges? changesInfo = null, long? timestamp = null, string? description = null)
-            => new M2ExternalStatusSucceedItemContent(repository: repository, branch: branch, url: url, externalServiceName: externalServiceName, taskName: taskName, projectId: null, revisionInfo: null, changesInfo: null, timestamp: null, description: null);
+            => new M2ExternalStatusSucceedItemContent(repository: repository, branch: branch, url: url, externalServiceName: externalServiceName, taskName: taskName, projectId: projectId, revisionInfo: revisionInfo, changesInfo: changesInfo, timestamp: timestamp, description: description);
         
         public static M2MaintenanceActionContent M2MaintenanceActionContent(string action, bool success, string details)
             => new M2MaintenanceActionContent(action: action, success: success, details: details);
@@ -86,13 +86,13 @@ namespace SpaceDotNet.Client
             => new M2TaskExecutionSucceedItemContent(taskExecutionId: taskExecutionId, taskExecutionName: taskExecutionName, repoName: repoName, branchName: branchName, commit: commit, shortCommitMessage: shortCommitMessage, project: project, finishDateTime: finishDateTime, triggerInfo: triggerInfo, details: details);
         
         public static M2TextItemContent M2TextItemContent(bool? markdown = null)
-            => new M2TextItemContent(markdown: null);
+            => new M2TextItemContent(markdown: markdown);
         
         public static M2UserLeftChannel M2UserLeftChannel()
             => new M2UserLeftChannel();
         
         public static MCMessage MCMessage(string style, List<MCElement> content, MCOutline? outline = null, string? serviceId = null, string? supplementaryData = null, M2ItemContentDetails? extension = null)
-            => new MCMessage(style: style, content: content, outline: null, serviceId: null, supplementaryData: null, extension: null);
+            => new MCMessage(style: style, content: content, outline: outline, serviceId: serviceId, supplementaryData: supplementaryData, extension: extension);
         
         public static MCMessageCommonDetails MCMessageCommonDetails()
             => new MCMessageCommonDetails();
@@ -101,7 +101,7 @@ namespace SpaceDotNet.Client
             => new MembersAddedItemDetails(principals: principals, othersDisplayNames: othersDisplayNames);
         
         public static StickerContentDetails StickerContentDetails(Sticker sticker, StickerPackInfo? pack = null)
-            => new StickerContentDetails(sticker: sticker, pack: null);
+            => new StickerContentDetails(sticker: sticker, pack: pack);
         
         public static TeamAddedItemDetails TeamAddedItemDetails(TDTeam team)
             => new TeamAddedItemDetails(team: team);

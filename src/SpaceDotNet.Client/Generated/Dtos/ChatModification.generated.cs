@@ -36,10 +36,10 @@ namespace SpaceDotNet.Client
             => new DeleteMessage(id: id);
         
         public static EditMessage EditMessage(string text, string id, List<Attachment>? attachments = null)
-            => new EditMessage(text: text, id: id, attachments: null);
+            => new EditMessage(text: text, id: id, attachments: attachments);
         
         public static NewMessage NewMessage(string text, string temporaryId, bool pending, List<Attachment>? attachments = null, string? draftTag = null)
-            => new NewMessage(text: text, temporaryId: temporaryId, pending: pending, attachments: null, draftTag: null);
+            => new NewMessage(text: text, temporaryId: temporaryId, pending: pending, attachments: attachments, draftTag: draftTag);
         
         public static PublishMessage PublishMessage(string id)
             => new PublishMessage(id: id);

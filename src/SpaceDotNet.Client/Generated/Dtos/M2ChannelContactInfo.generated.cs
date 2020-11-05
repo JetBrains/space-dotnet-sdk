@@ -29,61 +29,61 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         public static BillingFeedChannel BillingFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
-            => new BillingFeedChannel(notificationDefaults: null);
+            => new BillingFeedChannel(notificationDefaults: notificationDefaults);
         
         public static M2ChannelAutomationJobFeedInfo M2ChannelAutomationJobFeedInfo(JobSubscription jobSubscription, string jobName, ChannelSpecificDefaults notificationDefaults, string? repoName = null)
-            => new M2ChannelAutomationJobFeedInfo(jobSubscription: jobSubscription, jobName: jobName, notificationDefaults: notificationDefaults, repoName: null);
+            => new M2ChannelAutomationJobFeedInfo(jobSubscription: jobSubscription, jobName: jobName, notificationDefaults: notificationDefaults, repoName: repoName);
         
         public static M2ChannelContactArticle M2ChannelContactArticle(ArticleRecord article, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContactArticle(article: article, notificationDefaults: notificationDefaults);
         
         public static M2ChannelContactObsolete M2ChannelContactObsolete(M2ObsoleteCause? cause = null)
-            => new M2ChannelContactObsolete(cause: null);
+            => new M2ChannelContactObsolete(cause: cause);
         
         public static M2ChannelContactQuickInfoDefault M2ChannelContactQuickInfoDefault(string name, string key)
             => new M2ChannelContactQuickInfoDefault(name: name, key: key);
         
         public static M2ChannelContactThread M2ChannelContactThread(M2ChannelRecord parent, string? text = null, string? messageId = null, TDMemberProfile? author = null, CPrincipal? messageAuthor = null, string? attachments = null)
-            => new M2ChannelContactThread(parent: parent, text: null, messageId: null, author: null, messageAuthor: null, attachments: null);
+            => new M2ChannelContactThread(parent: parent, text: text, messageId: messageId, author: author, messageAuthor: messageAuthor, attachments: attachments);
         
         public static M2ChannelContentApplication M2ChannelContentApplication(ESService service, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentApplication(service: service, notificationDefaults: notificationDefaults);
         
         public static M2ChannelContentCodeDiscussion M2ChannelContentCodeDiscussion(string codeDiscussionId, ChannelSpecificDefaults notificationDefaults, CodeDiscussionRecord? codeDiscussion = null)
-            => new M2ChannelContentCodeDiscussion(codeDiscussionId: codeDiscussionId, notificationDefaults: notificationDefaults, codeDiscussion: null);
+            => new M2ChannelContentCodeDiscussion(codeDiscussionId: codeDiscussionId, notificationDefaults: notificationDefaults, codeDiscussion: codeDiscussion);
         
         public static M2ChannelContentCodeReviewDiscussion M2ChannelContentCodeReviewDiscussion(string codeReviewDiscussion, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentCodeReviewDiscussion(codeReviewDiscussion: codeReviewDiscussion, notificationDefaults: notificationDefaults);
         
         public static M2ChannelContentCodeReviewFeed M2ChannelContentCodeReviewFeed(string codeReviewId, ChannelSpecificDefaults notificationDefaults, CodeReviewRecord? codeReview = null, CodeReviewParticipants? participants = null, CodeReviewPendingMessageCounter? pendingMessageCounter = null, PRProject? project = null)
-            => new M2ChannelContentCodeReviewFeed(codeReviewId: codeReviewId, notificationDefaults: notificationDefaults, codeReview: null, participants: null, pendingMessageCounter: null, project: null);
+            => new M2ChannelContentCodeReviewFeed(codeReviewId: codeReviewId, notificationDefaults: notificationDefaults, codeReview: codeReview, participants: participants, pendingMessageCounter: pendingMessageCounter, project: project);
         
         public static M2ChannelContentLocation M2ChannelContentLocation(TDLocation location, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentLocation(location: location, notificationDefaults: notificationDefaults);
         
         public static M2ChannelContentMember M2ChannelContentMember(TDMemberProfile member, ChannelSpecificDefaults notificationDefaults, ProfileAbsencesRecord? memberAbsences = null, ProfileMembershipRecord? memberTeams = null)
-            => new M2ChannelContentMember(member: member, notificationDefaults: notificationDefaults, memberAbsences: null, memberTeams: null);
+            => new M2ChannelContentMember(member: member, notificationDefaults: notificationDefaults, memberAbsences: memberAbsences, memberTeams: memberTeams);
         
         public static M2ChannelContentMention M2ChannelContentMention(ChannelItemRecord record, M2ChannelRecord parent)
             => new M2ChannelContentMention(record: record, parent: parent);
         
         public static M2ChannelContentNamedPrivateChannel M2ChannelContentNamedPrivateChannel(string name, bool canHaveThreads, ChannelSpecificDefaults? notificationDefaults = null)
-            => new M2ChannelContentNamedPrivateChannel(name: name, canHaveThreads: canHaveThreads, notificationDefaults: null);
+            => new M2ChannelContentNamedPrivateChannel(name: name, canHaveThreads: canHaveThreads, notificationDefaults: notificationDefaults);
         
         public static M2ChannelContentTeam M2ChannelContentTeam(TDTeam team, ChannelSpecificDefaults notificationDefaults)
             => new M2ChannelContentTeam(team: team, notificationDefaults: notificationDefaults);
         
         public static M2ChannelIssueInfo M2ChannelIssueInfo(Issue issue, ChannelSpecificDefaults notificationDefaults, ProjectKey? projectKey = null)
-            => new M2ChannelIssueInfo(issue: issue, notificationDefaults: notificationDefaults, projectKey: null);
+            => new M2ChannelIssueInfo(issue: issue, notificationDefaults: notificationDefaults, projectKey: projectKey);
         
         public static M2PrivateConversationChannelContent M2PrivateConversationChannelContent(string channelId, List<TDMemberProfile> members, string? subject = null, ChannelSpecificDefaults? notificationDefaults = null)
-            => new M2PrivateConversationChannelContent(channelId: channelId, members: members, subject: null, notificationDefaults: null);
+            => new M2PrivateConversationChannelContent(channelId: channelId, members: members, subject: subject, notificationDefaults: notificationDefaults);
         
         public static M2SharedChannelContent M2SharedChannelContent(string name, string group, M2Access access, string description, ChannelSpecificDefaults notificationDefaults, string? iconId = null, List<TDTeam>? teams = null, bool? canEdit = null)
-            => new M2SharedChannelContent(name: name, group: group, access: access, description: description, notificationDefaults: notificationDefaults, iconId: null, teams: null, canEdit: null);
+            => new M2SharedChannelContent(name: name, group: group, access: access, description: description, notificationDefaults: notificationDefaults, iconId: iconId, teams: teams, canEdit: canEdit);
         
         public static SpaceNewsFeedChannel SpaceNewsFeedChannel(ChannelSpecificDefaults? notificationDefaults = null)
-            => new SpaceNewsFeedChannel(notificationDefaults: null);
+            => new SpaceNewsFeedChannel(notificationDefaults: notificationDefaults);
         
     }
     

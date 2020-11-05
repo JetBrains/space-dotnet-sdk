@@ -33,43 +33,43 @@ namespace SpaceDotNet.Client
         public virtual string? ClassName => "CFValue";
         
         public static BooleanCFValue Boolean(bool? value = null)
-            => new BooleanCFValue(value: null);
+            => new BooleanCFValue(value: value);
         
         public static DateCFValue Date(DateTime? value = null)
-            => new DateCFValue(value: null);
+            => new DateCFValue(value: value);
         
         public static EnumCFValue Enum(EnumValueData? value = null)
-            => new EnumCFValue(value: null);
+            => new EnumCFValue(value: value);
         
         public static EnumListCFValue EnumList(List<EnumValueData> values)
             => new EnumListCFValue(values: values);
         
         public static FractionCFValue Fraction(Fraction? value = null)
-            => new FractionCFValue(value: null);
+            => new FractionCFValue(value: value);
         
         public static IntCFValue Int(int? value = null)
-            => new IntCFValue(value: null);
+            => new IntCFValue(value: value);
         
         public static IntListCFValue IntList(List<int> values)
             => new IntListCFValue(values: values);
         
         public static PercentageCFValue Percentage(int? value = null)
-            => new PercentageCFValue(value: null);
+            => new PercentageCFValue(value: value);
         
         public static ProfileCFValue Profile(TDMemberProfile? profile = null)
-            => new ProfileCFValue(profile: null);
+            => new ProfileCFValue(profile: profile);
         
         public static ProfileListCFValue ProfileList(List<TDMemberProfile> profiles)
             => new ProfileListCFValue(profiles: profiles);
         
         public static StringCFValue String(string? value = null)
-            => new StringCFValue(value: null);
+            => new StringCFValue(value: value);
         
         public static StringListCFValue StringList(List<string> values)
             => new StringListCFValue(values: values);
         
         public static UrlCFValue Url(string? href = null)
-            => new UrlCFValue(href: null);
+            => new UrlCFValue(href: href);
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

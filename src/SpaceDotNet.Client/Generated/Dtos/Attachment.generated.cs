@@ -35,7 +35,7 @@ namespace SpaceDotNet.Client
             => new ProfileLinkPreview(profile: profile);
         
         public static UnfurlAttachment Unfurl(Unfurl unfurl, string? id = null)
-            => new UnfurlAttachment(unfurl: unfurl, id: null);
+            => new UnfurlAttachment(unfurl: unfurl, id: id);
         
     }
     

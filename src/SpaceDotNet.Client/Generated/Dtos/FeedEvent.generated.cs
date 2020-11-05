@@ -50,10 +50,10 @@ namespace SpaceDotNet.Client
             => new ReviewCompletionStateChangedEvent(state: state);
         
         public static ReviewRevisionsChangedEvent ReviewRevisionsChangedEvent(List<RepositoryCommitRecord> commits, ReviewRevisionsChangedType changeType, string? projectKey = null, CodeReviewRecord? review = null)
-            => new ReviewRevisionsChangedEvent(commits: commits, changeType: changeType, projectKey: null, review: null);
+            => new ReviewRevisionsChangedEvent(commits: commits, changeType: changeType, projectKey: projectKey, review: review);
         
         public static ReviewStateChangedEvent ReviewStateChangedEvent(CodeReviewState state, CodeReviewRecord? review = null)
-            => new ReviewStateChangedEvent(state: state, review: null);
+            => new ReviewStateChangedEvent(state: state, review: review);
         
         public static ReviewTitleChangedEvent ReviewTitleChangedEvent(string oldTitle, string newTitle)
             => new ReviewTitleChangedEvent(oldTitle: oldTitle, newTitle: newTitle);

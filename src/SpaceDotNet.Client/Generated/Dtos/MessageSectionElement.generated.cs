@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
             => new MessageDivider();
         
         public static MessageSection MessageSection(List<MessageElement> elements, string? header = null, string? footer = null)
-            => new MessageSection(elements: elements, header: null, footer: null);
+            => new MessageSection(elements: elements, header: header, footer: footer);
         
     }
     

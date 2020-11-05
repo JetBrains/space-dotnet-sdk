@@ -33,7 +33,7 @@ namespace SpaceDotNet.Client
         public virtual string? ClassName => "PackageRepositoryMirror";
         
         public static PackageRepositoryMirrorExternal External(string id, string url, PackageRepositoryCredentials credentials, string? secretId = null, string? secretValue = null)
-            => new PackageRepositoryMirrorExternal(id: id, url: url, credentials: credentials, secretId: null, secretValue: null);
+            => new PackageRepositoryMirrorExternal(id: id, url: url, credentials: credentials, secretId: secretId, secretValue: secretValue);
         
         public static PackageRepositoryMirrorSpace Space(string id, ProjectPackageRepository repository)
             => new PackageRepositoryMirrorSpace(id: id, repository: repository);

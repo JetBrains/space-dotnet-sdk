@@ -33,16 +33,16 @@ namespace SpaceDotNet.Client
         public virtual string? ClassName => "ES_ProfileLoginDetails";
         
         public static ESBuiltinProfileLoginDetails ESBuiltinProfileLoginDetails(string? passwordChangeRequest = null)
-            => new ESBuiltinProfileLoginDetails(passwordChangeRequest: null);
+            => new ESBuiltinProfileLoginDetails(passwordChangeRequest: passwordChangeRequest);
         
         public static ESDefaultProfileLoginDetails ESDefaultProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null)
-            => new ESDefaultProfileLoginDetails(emailVerified: emailVerified, login: null, firstName: null, lastName: null, email: null, avatarUrl: null);
+            => new ESDefaultProfileLoginDetails(emailVerified: emailVerified, login: login, firstName: firstName, lastName: lastName, email: email, avatarUrl: avatarUrl);
         
         public static ESGithubProfileLoginDetails ESGithubProfileLoginDetails(bool emailVerified, string? login = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null, List<string>? organizations = null)
-            => new ESGithubProfileLoginDetails(emailVerified: emailVerified, login: null, firstName: null, lastName: null, email: null, avatarUrl: null, organizations: null);
+            => new ESGithubProfileLoginDetails(emailVerified: emailVerified, login: login, firstName: firstName, lastName: lastName, email: email, avatarUrl: avatarUrl, organizations: organizations);
         
         public static ESHubProfileLoginDetails ESHubProfileLoginDetails(bool emailVerified, string? login = null, string? hubAuthModuleLogin = null, string? firstName = null, string? lastName = null, string? email = null, string? avatarUrl = null)
-            => new ESHubProfileLoginDetails(emailVerified: emailVerified, login: null, hubAuthModuleLogin: null, firstName: null, lastName: null, email: null, avatarUrl: null);
+            => new ESHubProfileLoginDetails(emailVerified: emailVerified, login: login, hubAuthModuleLogin: hubAuthModuleLogin, firstName: firstName, lastName: lastName, email: email, avatarUrl: avatarUrl);
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

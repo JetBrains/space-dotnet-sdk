@@ -33,10 +33,10 @@ namespace SpaceDotNet.Client
         public virtual string? ClassName => "CodeReviewRecord";
         
         public static CommitSetReviewRecord CommitSetReviewRecord(ProjectKey project, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
-            => new CommitSetReviewRecord(project: project, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: null, createdBy: null, turnBased: null, feedChannel: null);
+            => new CommitSetReviewRecord(project: project, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
         
         public static MergeRequestRecord MergeRequestRecord(ProjectKey project, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
-            => new MergeRequestRecord(project: project, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: null, createdBy: null, turnBased: null, feedChannel: null);
+            => new MergeRequestRecord(project: project, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(Id));
         

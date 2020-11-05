@@ -33,16 +33,16 @@ namespace SpaceDotNet.Client
         public virtual string? ClassName => "CFConstraint";
         
         public static DateCFConstraint Date(DateTime? min = null, DateTime? max = null, string? message = null)
-            => new DateCFConstraint(min: null, max: null, message: null);
+            => new DateCFConstraint(min: min, max: max, message: message);
         
         public static IntCFConstraint Int(int? min = null, int? max = null, string? message = null)
-            => new IntCFConstraint(min: null, max: null, message: null);
+            => new IntCFConstraint(min: min, max: max, message: message);
         
         public static PercentageCFConstraint Percentage()
             => new PercentageCFConstraint();
         
         public static StringCFConstraint String(int? min = null, int? max = null, string? pattern = null, string? message = null)
-            => new StringCFConstraint(min: null, max: null, pattern: null, message: null);
+            => new StringCFConstraint(min: min, max: max, pattern: pattern, message: message);
         
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {

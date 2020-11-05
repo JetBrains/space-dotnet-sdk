@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         public static TodoContent TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null)
-            => new TodoContent(originalText: originalText, text: text, link: null, kind: null, principal: null, time: null);
+            => new TodoContent(originalText: originalText, text: text, link: link, kind: kind, principal: principal, time: time);
         
         public static TodoItemContentMdText MdText(string text, MdMarkup mdMarkup)
             => new TodoItemContentMdText(text: text, mdMarkup: mdMarkup);

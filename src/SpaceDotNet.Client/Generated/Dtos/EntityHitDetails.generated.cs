@@ -32,16 +32,16 @@ namespace SpaceDotNet.Client
             => new ArticleHitDetails(@ref: @ref);
         
         public static BookHitDetails BookHitDetails(KBBook @ref, PRProject? projectRef = null, TDMemberProfile? authorRef = null)
-            => new BookHitDetails(@ref: @ref, projectRef: null, authorRef: null);
+            => new BookHitDetails(@ref: @ref, projectRef: projectRef, authorRef: authorRef);
         
         public static FolderHitDetails FolderHitDetails(KBFolder @ref, KBBook bookRef, PRProject? projectRef = null, TDMemberProfile? authorRef = null)
-            => new FolderHitDetails(@ref: @ref, bookRef: bookRef, projectRef: null, authorRef: null);
+            => new FolderHitDetails(@ref: @ref, bookRef: bookRef, projectRef: projectRef, authorRef: authorRef);
         
         public static KbArticleHitDetails KbArticleHitDetails(string id, KBBook bookRef, PRProject? projectRef = null, TDMemberProfile? authorRef = null)
-            => new KbArticleHitDetails(id: id, bookRef: bookRef, projectRef: null, authorRef: null);
+            => new KbArticleHitDetails(id: id, bookRef: bookRef, projectRef: projectRef, authorRef: authorRef);
         
         public static MessageHitDetails MessageHitDetails(ChannelItemRecord @ref, M2ChannelRecord channel, M2ChatReader readerRef, bool threadStarter, string? thread = null)
-            => new MessageHitDetails(@ref: @ref, channel: channel, readerRef: readerRef, threadStarter: threadStarter, thread: null);
+            => new MessageHitDetails(@ref: @ref, channel: channel, readerRef: readerRef, threadStarter: threadStarter, thread: thread);
         
         public static ProfileHitDetails ProfileHitDetails(TDMemberProfile @ref, ProfileAbsencesRecord absencesRef, ProfileMembershipRecord membershipRef, ProfileLocationsRecord locationsRef)
             => new ProfileHitDetails(@ref: @ref, absencesRef: absencesRef, membershipRef: membershipRef, locationsRef: locationsRef);

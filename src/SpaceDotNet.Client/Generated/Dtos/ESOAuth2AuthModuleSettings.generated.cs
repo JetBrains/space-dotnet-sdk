@@ -41,10 +41,10 @@ namespace SpaceDotNet.Client
             => new ESGoogleAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, domains: domains);
         
         public static ESHubAuthModuleSettings ESHubAuthModuleSettings(string hubUrl, string clientId, string clientSecret, bool? registerNewUsers = null, string? orgAuthProviderName = null, List<string>? groups = null)
-            => new ESHubAuthModuleSettings(hubUrl: hubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: null, orgAuthProviderName: null, groups: null);
+            => new ESHubAuthModuleSettings(hubUrl: hubUrl, clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, orgAuthProviderName: orgAuthProviderName, groups: groups);
         
         public static ESOIDCAuthModuleSettings ESOIDCAuthModuleSettings(string clientId, string clientSecret, bool registerNewUsers, string issuer, string authorizationEndpoint, string tokenEndpoint, string tokenKeysEndpoint, string userInfoEndpoint, List<string> domains, string? discoveryUrl = null)
-            => new ESOIDCAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, issuer: issuer, authorizationEndpoint: authorizationEndpoint, tokenEndpoint: tokenEndpoint, tokenKeysEndpoint: tokenKeysEndpoint, userInfoEndpoint: userInfoEndpoint, domains: domains, discoveryUrl: null);
+            => new ESOIDCAuthModuleSettings(clientId: clientId, clientSecret: clientSecret, registerNewUsers: registerNewUsers, issuer: issuer, authorizationEndpoint: authorizationEndpoint, tokenEndpoint: tokenEndpoint, tokenKeysEndpoint: tokenKeysEndpoint, userInfoEndpoint: userInfoEndpoint, domains: domains, discoveryUrl: discoveryUrl);
         
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {

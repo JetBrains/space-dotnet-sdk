@@ -35,7 +35,7 @@ namespace SpaceDotNet.Client
             => new ChannelAttachmentMenuActionContext(menuId: menuId, channelId: channelId);
         
         public static ChannelMessageMenuActionContext ChannelMessage(string menuId, string messageId, string? channelId = null)
-            => new ChannelMessageMenuActionContext(menuId: menuId, messageId: messageId, channelId: null);
+            => new ChannelMessageMenuActionContext(menuId: menuId, messageId: messageId, channelId: channelId);
         
         public static LocationMenuActionContext Location(string menuId, TDLocation location)
             => new LocationMenuActionContext(menuId: menuId, location: location);

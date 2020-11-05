@@ -29,7 +29,7 @@ namespace SpaceDotNet.Client
          : IClassNameConvertible, IPropagatePropertyAccessPath
     {
         public static MCButton MCButton(string text, string style, MCAction action, bool? disabled = null)
-            => new MCButton(text: text, style: style, action: action, disabled: null);
+            => new MCButton(text: text, style: style, action: action, disabled: disabled);
         
         public static MCDivider MCDivider()
             => new MCDivider();
@@ -47,16 +47,16 @@ namespace SpaceDotNet.Client
             => new MCImage(src: src);
         
         public static MCOutline MCOutline(MCElement? icon = null, MCText? text = null)
-            => new MCOutline(icon: null, text: null);
+            => new MCOutline(icon: icon, text: text);
         
         public static MCSection MCSection(List<MCElement> elements, MCText? header = null, MCText? footer = null)
-            => new MCSection(elements: elements, header: null, footer: null);
+            => new MCSection(elements: elements, header: header, footer: footer);
         
         public static MCTag MCTag(string text, string style)
             => new MCTag(text: text, style: style);
         
         public static MCText MCText(string content, bool markdown, MCElement? accessory = null)
-            => new MCText(content: content, markdown: markdown, accessory: null);
+            => new MCText(content: content, markdown: markdown, accessory: accessory);
         
     }
     

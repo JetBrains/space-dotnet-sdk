@@ -32,7 +32,7 @@ namespace SpaceDotNet.Client
         public override string? ClassName => "ES_PasswordAuthModuleSettings";
         
         public static ESBuiltinAuthModuleSettings ESBuiltinAuthModuleSettings(PasswordStrength passwordStrengthPolicy, List<string>? domains = null)
-            => new ESBuiltinAuthModuleSettings(passwordStrengthPolicy: passwordStrengthPolicy, domains: null);
+            => new ESBuiltinAuthModuleSettings(passwordStrengthPolicy: passwordStrengthPolicy, domains: domains);
         
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
