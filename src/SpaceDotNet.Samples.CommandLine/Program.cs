@@ -27,33 +27,33 @@ namespace SpaceDotNet.Samples.CommandLine
             // User to add to chat later on
             var chatChannelName = "SpaceDotNet";
             
-            // Get number of profiles
-            var totalProfiles = await teamDirectoryClient.Profiles.GetAllProfilesCountAsync();
-            Console.WriteLine($"There are {totalProfiles} profiles in Space.");
-            
-            // Get all profiles with their names
-            await foreach (var profile in teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
-                .WithId()
-                .WithName()))
-            {
-                Console.WriteLine($"{profile.Name.FirstName} {profile.Name.LastName}");
-            }
-            
-            // Get profiles with their Id. Accessing another property (such as name) will throw.
-            var firstProfile = await teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
-                .WithId()).FirstOrDefaultAsync();
-            try
-            {
-                // This will fail...
-                Console.WriteLine($"{firstProfile.Name.FirstName} {firstProfile.Name.LastName}");
-            }
-            catch (PropertyNotRequestedException e)
-            {
-                Console.WriteLine($"The Space API client tells us which partial query should be added to access {e.PropertyName}:");
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine(e.Message);
-                Console.ResetColor();
-            }
+            // // Get number of profiles
+            // var totalProfiles = await teamDirectoryClient.Profiles.GetAllProfilesCountAsync();
+            // Console.WriteLine($"There are {totalProfiles} profiles in Space.");
+            //
+            // // Get all profiles with their names
+            // await foreach (var profile in teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
+            //     .WithId()
+            //     .WithName()))
+            // {
+            //     Console.WriteLine($"{profile.Name.FirstName} {profile.Name.LastName}");
+            // }
+            //
+            // // Get profiles with their Id. Accessing another property (such as name) will throw.
+            // var firstProfile = await teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
+            //     .WithId()).FirstOrDefaultAsync();
+            // try
+            // {
+            //     // This will fail...
+            //     Console.WriteLine($"{firstProfile.Name.FirstName} {firstProfile.Name.LastName}");
+            // }
+            // catch (PropertyNotRequestedException e)
+            // {
+            //     Console.WriteLine($"The Space API client tells us which partial query should be added to access {e.PropertyName}:");
+            //     Console.ForegroundColor = ConsoleColor.Red;
+            //     Console.WriteLine(e.Message);
+            //     Console.ResetColor();
+            // }
             
             // Send chat message?
             var chatClient = new ChatClient(connection);
@@ -78,7 +78,8 @@ namespace SpaceDotNet.Samples.CommandLine
                                 Header = "JetBrains Space",
                                 Elements = new List<MessageElement>
                                 {
-                                    MessageElement.MessageText("JetBrains Space is an Integrated Team Environment."),
+                                    MessageElement.MessageText("JetBrains Space is an Integrated Team Environment.",
+                                        MessageAccessoryElement.MessageIcon(new ApiIcon("space"), MessageStyle.SUCCESS)),
                                     MessageElement.MessageText("Have you tried JetBrains Space?"),
                                     MessageElement.MessageDivider(),
                                     MessageElement.MessageText("Get access at https://www.jetbrains.com/space/")
@@ -86,7 +87,7 @@ namespace SpaceDotNet.Samples.CommandLine
                                 Footer = "Check it out at https://www.jetbrains.com/space/"
                             }
                         },
-                        style: MessageStyle.WARNING),
+                        style: MessageStyle.SUCCESS),
                     unfurlLinks: false);
                 
                 Console.WriteLine($"A chat message has been sent to the channel named \"{chatChannelName}\" in your Space organization.");
