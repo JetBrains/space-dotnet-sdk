@@ -10,8 +10,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
     {
         private class RequestParameter
         {
-            public string Name { get; set; }
-            public string Value { get; set; }
+            public string Name { get; }
+            public string Value { get; }
 
             public RequestParameter(string name, string value)
             {

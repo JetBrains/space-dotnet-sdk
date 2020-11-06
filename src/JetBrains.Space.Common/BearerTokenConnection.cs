@@ -176,64 +176,34 @@ namespace JetBrains.Space.Common
             ResourceException? exception = null;
             if (spaceError != null)
             {
-                switch (spaceError.Error)
+                exception = spaceError.Error switch
                 {
-                    case ErrorCodes.ValidationError: 
-                        exception = new ValidationException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.AuthenticationRequired: 
-                        exception = new AuthenticationRequiredException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.PermissionDenied: 
-                        exception = new PermissionDeniedException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.DuplicatedEntity: 
-                        exception = new DuplicatedEntityException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.RequestError: 
-                        exception = new ResourceException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.NotFound: 
-                        exception = new NotFoundException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.RateLimited: 
-                        exception = new RateLimitedException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.PayloadTooLarge: 
-                        exception = new PayloadTooLargeException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case ErrorCodes.InternalServerError: 
-                        exception = new InternalServerErrorException(spaceError.Description, response.StatusCode, response.ReasonPhrase);
-                        break;
-                }
+                    ErrorCodes.ValidationError => new ValidationException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.AuthenticationRequired => new AuthenticationRequiredException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.PermissionDenied => new PermissionDeniedException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.DuplicatedEntity => new DuplicatedEntityException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.RequestError => new ResourceException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.NotFound => new NotFoundException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.RateLimited => new RateLimitedException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.PayloadTooLarge => new PayloadTooLargeException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    ErrorCodes.InternalServerError => new InternalServerErrorException(spaceError.Description, response.StatusCode, response.ReasonPhrase),
+                    _ => exception
+                };
             }
             else
             {
-                switch (response.StatusCode)
+                exception = response.StatusCode switch
                 {
-                    case HttpStatusCode.BadRequest:
-                        exception = new ResourceException("Bad Request", response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case HttpStatusCode.Unauthorized:
-                        exception = new AuthenticationRequiredException("Unauthorized", response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case HttpStatusCode.Forbidden:
-                        exception = new PermissionDeniedException("Forbidden", response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case HttpStatusCode.NotFound:
-                        exception = new NotFoundException("Not Found", response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case HttpStatusCode.TooManyRequests:
-                        exception = new RateLimitedException("Too Many Requests", response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case HttpStatusCode.RequestEntityTooLarge:
-                    case HttpStatusCode.RequestHeaderFieldsTooLarge:
-                        exception = new PayloadTooLargeException("Bad Request", response.StatusCode, response.ReasonPhrase);
-                        break;
-                    case HttpStatusCode.InternalServerError:
-                        exception = new InternalServerErrorException("Internal Server Error", response.StatusCode, response.ReasonPhrase);
-                        break;
-                }
+                    HttpStatusCode.BadRequest => new ResourceException("Bad Request", response.StatusCode, response.ReasonPhrase),
+                    HttpStatusCode.Unauthorized => new AuthenticationRequiredException("Unauthorized", response.StatusCode, response.ReasonPhrase),
+                    HttpStatusCode.Forbidden => new PermissionDeniedException("Forbidden", response.StatusCode, response.ReasonPhrase),
+                    HttpStatusCode.NotFound => new NotFoundException("Not Found", response.StatusCode, response.ReasonPhrase),
+                    HttpStatusCode.TooManyRequests => new RateLimitedException("Too Many Requests", response.StatusCode, response.ReasonPhrase),
+                    HttpStatusCode.RequestEntityTooLarge => new PayloadTooLargeException("Bad Request", response.StatusCode, response.ReasonPhrase),
+                    HttpStatusCode.RequestHeaderFieldsTooLarge => new PayloadTooLargeException("Bad Request", response.StatusCode, response.ReasonPhrase),
+                    HttpStatusCode.InternalServerError => new InternalServerErrorException("Internal Server Error", response.StatusCode, response.ReasonPhrase),
+                    _ => exception
+                };
             }
 
             exception ??= new ResourceException(

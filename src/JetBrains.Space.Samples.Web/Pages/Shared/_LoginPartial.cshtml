@@ -3,7 +3,7 @@
 @if (User.Identity.IsAuthenticated)
 {
     <li class="nav-item">
-        <img src="@User.Identity.GetClaimValue(SpaceClaimTypes.SmallAvatar)" width="32" height="32" />
+        <img src="@User.Identity.GetClaimValue(SpaceClaimTypes.SmallAvatar)" alt="Profile picture" width="32" height="32" />
         @User.Identity.GetClaimValue(SpaceClaimTypes.FirstName) @User.Identity.GetClaimValue(SpaceClaimTypes.LastName)
     </li>
 }

@@ -9,9 +9,9 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
     {
         private class MethodParameter
         {
-            public string Type { get; set; }
-            public string Name { get; set; }
-            public string? DefaultValue { get; set; }
+            public string Type { get; }
+            public string Name { get; }
+            public string? DefaultValue { get; }
 
             public MethodParameter(string type, string name, string? defaultValue)
             {

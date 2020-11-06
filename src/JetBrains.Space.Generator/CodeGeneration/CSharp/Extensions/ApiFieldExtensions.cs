@@ -37,12 +37,9 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
             var variableName = subject.ToCSharpVariableName();
             var defaultValue = subject.ToCSharpDefaultValueForAssignment(context);
             
-            if (!string.IsNullOrEmpty(defaultValue))
-            {
-                return $"({variableName} ?? {defaultValue})";
-            }
-
-            return variableName;
+            return !string.IsNullOrEmpty(defaultValue) 
+                ? $"({variableName} ?? {defaultValue})" 
+                : variableName;
         }
         
         public static string? ToCSharpDefaultValueForParameterList(this ApiField subject, CodeGenerationContext context)
@@ -101,12 +98,9 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
                 }
             } 
             
-            if (subject.Type.Nullable)
-            {
-                return CSharpExpression.NullLiteral;
-            }
-
-            return null;
+            return subject.Type.Nullable 
+                ? CSharpExpression.NullLiteral 
+                : null;
         }
         
         public static string? ToCSharpDefaultValueForAssignment(this ApiField subject, CodeGenerationContext context)
