@@ -531,3 +531,19 @@ The `AddSpaceTokenManagement()` call registers Space Token Management, and will 
 Have a look at the `JetBrains.Space.Samples.Web` project in the JetBrains.Space repository, which uses this technique to build a personal dashboard:
 
 ![Personal Space dashboard using Token Management and JetBrains.Space](docs/images/dashboard-token-management.png)
+
+## Continuous integration builds NuGet feed
+
+The JetBrains Space SDK for .NET is available on [NuGet.org](https://www.nuget.org/).
+Continuous integration packages are available on [public.jetbrains.space](https://nuget.pkg.jetbrains.space/public/p/space-api-client/nuget/v3/index.json).
+
+To access continuous integration packages, add a file named `NuGet.config` in the same folder as your solution / `.sln` file, with the following contents:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <packageSources>
+    <add key="SpaceDotNet" value="https://nuget.pkg.jetbrains.space/public/p/space-api-client/nuget/v3/index.json" protocolVersion="3" />
+  </packageSources>
+</configuration>
+```
