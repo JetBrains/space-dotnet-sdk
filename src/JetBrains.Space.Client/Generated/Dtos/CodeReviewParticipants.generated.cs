@@ -61,6 +61,7 @@ namespace JetBrains.Space.Client
         private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Reviewers));
         
         [Required]
+        [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
         [JsonPropertyName("reviewers")]
         public List<CodeReviewParticipantRecord> Reviewers
         {
@@ -71,6 +72,7 @@ namespace JetBrains.Space.Client
         private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Authors));
         
         [Required]
+        [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
         [JsonPropertyName("authors")]
         public List<CodeReviewParticipantRecord> Authors
         {
@@ -81,6 +83,7 @@ namespace JetBrains.Space.Client
         private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewParticipants), nameof(Watchers));
         
         [Required]
+        [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
         [JsonPropertyName("watchers")]
         public List<CodeReviewParticipantRecord> Watchers
         {

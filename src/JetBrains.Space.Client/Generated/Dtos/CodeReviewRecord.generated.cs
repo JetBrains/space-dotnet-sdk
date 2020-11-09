@@ -32,11 +32,11 @@ namespace JetBrains.Space.Client
         [JsonPropertyName("className")]
         public virtual string? ClassName => "CodeReviewRecord";
         
-        public static CommitSetReviewRecord CommitSetReviewRecord(ProjectKey project, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
-            => new CommitSetReviewRecord(project: project, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
+        public static CommitSetReviewRecord CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
+            => new CommitSetReviewRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
         
-        public static MergeRequestRecord MergeRequestRecord(ProjectKey project, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
-            => new MergeRequestRecord(project: project, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
+        public static MergeRequestRecord MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
+            => new MergeRequestRecord(project: project, projectId: projectId, number: number, title: title, state: state, createdAt: createdAt, branchPairs: branchPairs, canBeReopened: canBeReopened, createdBy: createdBy, turnBased: turnBased, feedChannel: feedChannel);
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(Id));
         
@@ -51,6 +51,7 @@ namespace JetBrains.Space.Client
         private PropertyValue<List<CodeReviewParticipantRecord>> _authors = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Authors));
         
         [Required]
+        [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
         [JsonPropertyName("authors")]
         public List<CodeReviewParticipantRecord> Authors
         {
@@ -58,24 +59,14 @@ namespace JetBrains.Space.Client
             set => _authors.SetValue(value);
         }
     
-        private PropertyValue<int> _count = new PropertyValue<int>(nameof(CodeReviewRecord), nameof(Count));
+        private PropertyValue<Counter> _discussionCounter = new PropertyValue<Counter>(nameof(CodeReviewRecord), nameof(DiscussionCounter));
         
         [Required]
-        [JsonPropertyName("count")]
-        public int Count
+        [JsonPropertyName("discussionCounter")]
+        public Counter DiscussionCounter
         {
-            get => _count.GetValue();
-            set => _count.SetValue(value);
-        }
-    
-        private PropertyValue<Counter> _counter = new PropertyValue<Counter>(nameof(CodeReviewRecord), nameof(Counter));
-        
-        [Required]
-        [JsonPropertyName("counter")]
-        public Counter Counter
-        {
-            get => _counter.GetValue();
-            set => _counter.SetValue(value);
+            get => _discussionCounter.GetValue();
+            set => _discussionCounter.SetValue(value);
         }
     
         private PropertyValue<List<CodeReviewParticipant>?> _participants = new PropertyValue<List<CodeReviewParticipant>?>(nameof(CodeReviewRecord), nameof(Participants));
@@ -87,19 +78,10 @@ namespace JetBrains.Space.Client
             set => _participants.SetValue(value);
         }
     
-        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewRecord), nameof(ProjectId));
-        
-        [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId
-        {
-            get => _projectId.GetValue();
-            set => _projectId.SetValue(value);
-        }
-    
         private PropertyValue<List<CodeReviewParticipantRecord>> _reviewers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Reviewers));
         
         [Required]
+        [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
         [JsonPropertyName("reviewers")]
         public List<CodeReviewParticipantRecord> Reviewers
         {
@@ -110,6 +92,7 @@ namespace JetBrains.Space.Client
         private PropertyValue<List<CodeReviewParticipantRecord>> _watchers = new PropertyValue<List<CodeReviewParticipantRecord>>(nameof(CodeReviewRecord), nameof(Watchers));
         
         [Required]
+        [Obsolete("Use participants (since 2020-11-03) (marked for removal)")]
         [JsonPropertyName("watchers")]
         public List<CodeReviewParticipantRecord> Watchers
         {
@@ -121,10 +104,8 @@ namespace JetBrains.Space.Client
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);
-            _count.SetAccessPath(path, validateHasBeenSet);
-            _counter.SetAccessPath(path, validateHasBeenSet);
+            _discussionCounter.SetAccessPath(path, validateHasBeenSet);
             _participants.SetAccessPath(path, validateHasBeenSet);
-            _projectId.SetAccessPath(path, validateHasBeenSet);
             _reviewers.SetAccessPath(path, validateHasBeenSet);
             _watchers.SetAccessPath(path, validateHasBeenSet);
         }

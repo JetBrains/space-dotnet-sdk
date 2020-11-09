@@ -23,16 +23,36 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewPendingMessageCounterPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class CodeReviewPendingMessageCounterPartialExtensions
+    public sealed class PackageOriginUrl
+         : PackageOrigin, IClassNameConvertible, IPropagatePropertyAccessPath
     {
-        public static Partial<CodeReviewPendingMessageCounter> WithId(this Partial<CodeReviewPendingMessageCounter> it)
-            => it.AddFieldName("id");
+        [JsonPropertyName("className")]
+        public override string? ClassName => "PackageOrigin.Url";
         
-        public static Partial<CodeReviewPendingMessageCounter> WithIsArchived(this Partial<CodeReviewPendingMessageCounter> it)
-            => it.AddFieldName("archived");
+        public PackageOriginUrl() { }
         
+        public PackageOriginUrl(string url)
+        {
+            Url = url;
+        }
+        
+        private PropertyValue<string> _url = new PropertyValue<string>(nameof(PackageOriginUrl), nameof(Url));
+        
+        [Required]
+        [JsonPropertyName("url")]
+        public string Url
+        {
+            get => _url.GetValue();
+            set => _url.SetValue(value);
+        }
+    
+        public override void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _url.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

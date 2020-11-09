@@ -946,18 +946,42 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get project members for a given project key.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<Batch<TDMemberProfile>> GetAllMemberProfilesAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Get project members for a given project key.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public IAsyncEnumerable<TDMemberProfile> GetAllMemberProfilesAsyncEnumerable(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
                 
                 /// <summary>
                 /// Get project members for a given project key.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<int> GetAllMemberProfilesCountAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, CancellationToken cancellationToken = default)
                     => (await GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             

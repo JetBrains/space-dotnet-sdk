@@ -33,9 +33,10 @@ namespace JetBrains.Space.Client
         
         public MergeRequestRecord() { }
         
-        public MergeRequestRecord(ProjectKey project, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
+        public MergeRequestRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, List<MergeRequestBranchPair> branchPairs, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
         {
             Project = project;
+            ProjectId = projectId;
             Number = number;
             Title = title;
             State = state;
@@ -55,6 +56,16 @@ namespace JetBrains.Space.Client
         {
             get => _project.GetValue();
             set => _project.SetValue(value);
+        }
+    
+        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(MergeRequestRecord), nameof(ProjectId));
+        
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId
+        {
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<int> _number = new PropertyValue<int>(nameof(MergeRequestRecord), nameof(Number));
@@ -146,6 +157,7 @@ namespace JetBrains.Space.Client
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _project.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
             _number.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
             _state.SetAccessPath(path, validateHasBeenSet);

@@ -23,15 +23,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewPendingMessageCounterPartialBuilder
+namespace JetBrains.Space.Client.PackageOriginUrlPartialBuilder
 {
-    public static class CodeReviewPendingMessageCounterPartialExtensions
+    public static class PackageOriginUrlPartialExtensions
     {
-        public static Partial<CodeReviewPendingMessageCounter> WithId(this Partial<CodeReviewPendingMessageCounter> it)
-            => it.AddFieldName("id");
-        
-        public static Partial<CodeReviewPendingMessageCounter> WithIsArchived(this Partial<CodeReviewPendingMessageCounter> it)
-            => it.AddFieldName("archived");
+        public static Partial<PackageOriginUrl> WithUrl(this Partial<PackageOriginUrl> it)
+            => it.AddFieldName("url");
         
     }
     

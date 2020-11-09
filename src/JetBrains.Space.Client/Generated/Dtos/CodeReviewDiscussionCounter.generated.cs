@@ -30,11 +30,10 @@ namespace JetBrains.Space.Client
     {
         public CodeReviewDiscussionCounter() { }
         
-        public CodeReviewDiscussionCounter(string id, string projectId, Counter counter)
+        public CodeReviewDiscussionCounter(string id, Counter discussionCounter)
         {
             Id = id;
-            ProjectId = projectId;
-            Counter = counter;
+            DiscussionCounter = discussionCounter;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(CodeReviewDiscussionCounter), nameof(Id));
@@ -47,31 +46,20 @@ namespace JetBrains.Space.Client
             set => _id.SetValue(value);
         }
     
-        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CodeReviewDiscussionCounter), nameof(ProjectId));
+        private PropertyValue<Counter> _discussionCounter = new PropertyValue<Counter>(nameof(CodeReviewDiscussionCounter), nameof(DiscussionCounter));
         
         [Required]
-        [JsonPropertyName("projectId")]
-        public string ProjectId
+        [JsonPropertyName("discussionCounter")]
+        public Counter DiscussionCounter
         {
-            get => _projectId.GetValue();
-            set => _projectId.SetValue(value);
-        }
-    
-        private PropertyValue<Counter> _counter = new PropertyValue<Counter>(nameof(CodeReviewDiscussionCounter), nameof(Counter));
-        
-        [Required]
-        [JsonPropertyName("counter")]
-        public Counter Counter
-        {
-            get => _counter.GetValue();
-            set => _counter.SetValue(value);
+            get => _discussionCounter.GetValue();
+            set => _discussionCounter.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
-            _projectId.SetAccessPath(path, validateHasBeenSet);
-            _counter.SetAccessPath(path, validateHasBeenSet);
+            _discussionCounter.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

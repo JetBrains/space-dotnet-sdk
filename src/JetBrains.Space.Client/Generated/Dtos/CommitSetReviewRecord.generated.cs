@@ -33,9 +33,10 @@ namespace JetBrains.Space.Client
         
         public CommitSetReviewRecord() { }
         
-        public CommitSetReviewRecord(ProjectKey project, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
+        public CommitSetReviewRecord(ProjectKey project, string projectId, int number, string title, CodeReviewState state, long createdAt, bool? canBeReopened = null, TDMemberProfile? createdBy = null, bool? turnBased = null, M2ChannelRecord? feedChannel = null)
         {
             Project = project;
+            ProjectId = projectId;
             Number = number;
             Title = title;
             State = state;
@@ -54,6 +55,16 @@ namespace JetBrains.Space.Client
         {
             get => _project.GetValue();
             set => _project.SetValue(value);
+        }
+    
+        private PropertyValue<string> _projectId = new PropertyValue<string>(nameof(CommitSetReviewRecord), nameof(ProjectId));
+        
+        [Required]
+        [JsonPropertyName("projectId")]
+        public string ProjectId
+        {
+            get => _projectId.GetValue();
+            set => _projectId.SetValue(value);
         }
     
         private PropertyValue<int> _number = new PropertyValue<int>(nameof(CommitSetReviewRecord), nameof(Number));
@@ -135,6 +146,7 @@ namespace JetBrains.Space.Client
         public override void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _project.SetAccessPath(path, validateHasBeenSet);
+            _projectId.SetAccessPath(path, validateHasBeenSet);
             _number.SetAccessPath(path, validateHasBeenSet);
             _title.SetAccessPath(path, validateHasBeenSet);
             _state.SetAccessPath(path, validateHasBeenSet);

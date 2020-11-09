@@ -23,15 +23,15 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CodeReviewPendingMessageCounterPartialBuilder
+namespace JetBrains.Space.Client.ApplicationsForIdSshKeysPostRequestPartialBuilder
 {
-    public static class CodeReviewPendingMessageCounterPartialExtensions
+    public static class ApplicationsForIdSshKeysPostRequestPartialExtensions
     {
-        public static Partial<CodeReviewPendingMessageCounter> WithId(this Partial<CodeReviewPendingMessageCounter> it)
-            => it.AddFieldName("id");
+        public static Partial<ApplicationsForIdSshKeysPostRequest> WithPublicKey(this Partial<ApplicationsForIdSshKeysPostRequest> it)
+            => it.AddFieldName("publicKey");
         
-        public static Partial<CodeReviewPendingMessageCounter> WithIsArchived(this Partial<CodeReviewPendingMessageCounter> it)
-            => it.AddFieldName("archived");
+        public static Partial<ApplicationsForIdSshKeysPostRequest> WithComment(this Partial<ApplicationsForIdSshKeysPostRequest> it)
+            => it.AddFieldName("comment");
         
     }
     

@@ -25,28 +25,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class ApplicationsRefreshMenuPostRequest
+    public class ApplicationsForIdSshKeysPostRequest
          : IPropagatePropertyAccessPath
     {
-        public ApplicationsRefreshMenuPostRequest() { }
+        public ApplicationsForIdSshKeysPostRequest() { }
         
-        public ApplicationsRefreshMenuPostRequest(string? appId = null)
+        public ApplicationsForIdSshKeysPostRequest(string publicKey, string comment)
         {
-            AppId = appId;
+            PublicKey = publicKey;
+            Comment = comment;
         }
         
-        private PropertyValue<string?> _appId = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(AppId));
+        private PropertyValue<string> _publicKey = new PropertyValue<string>(nameof(ApplicationsForIdSshKeysPostRequest), nameof(PublicKey));
         
-        [JsonPropertyName("appId")]
-        public string? AppId
+        [Required]
+        [JsonPropertyName("publicKey")]
+        public string PublicKey
         {
-            get => _appId.GetValue();
-            set => _appId.SetValue(value);
+            get => _publicKey.GetValue();
+            set => _publicKey.SetValue(value);
+        }
+    
+        private PropertyValue<string> _comment = new PropertyValue<string>(nameof(ApplicationsForIdSshKeysPostRequest), nameof(Comment));
+        
+        [Required]
+        [JsonPropertyName("comment")]
+        public string Comment
+        {
+            get => _comment.GetValue();
+            set => _comment.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _appId.SetAccessPath(path, validateHasBeenSet);
+            _publicKey.SetAccessPath(path, validateHasBeenSet);
+            _comment.SetAccessPath(path, validateHasBeenSet);
         }
     
     }
