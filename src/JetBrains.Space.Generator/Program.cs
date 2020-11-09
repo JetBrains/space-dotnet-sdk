@@ -14,7 +14,7 @@ namespace JetBrains.Space.Generator
     class Program
     {
         // ReSharper disable once UnusedParameter.Local
-        static async Task Main(string[] args)
+        static async Task<int> Main(string[] args)
         {
             var stopwatch = new Stopwatch();
             stopwatch.Start();
@@ -69,6 +69,17 @@ namespace JetBrains.Space.Generator
             Console.WriteLine($"  Number of DTO: {codeGenerationContext.GetDtos().Count()}");
             Console.WriteLine($"  Number of Enums: {codeGenerationContext.GetEnums().Count()}");
             Console.WriteLine($"  Number of Resources (top level): {codeGenerationContext.GetResources().Count()}");
+            
+            // Write version marker
+            if (deploymentInfo.Version == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"ERROR: Version is not available in deployment information.");
+                return -1;
+            }
+            await File.WriteAllTextAsync("../../../../../version-info.txt", deploymentInfo.Version);
+            
+            return 0;
         }
     }
 }

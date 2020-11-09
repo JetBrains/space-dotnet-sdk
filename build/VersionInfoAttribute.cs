@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using Nuke.Common.Tools.Git;
@@ -20,6 +21,10 @@ namespace _build
 
         VersionInfo? GetFromSpace()
         {
+            var versionInfo = File.Exists("version-info.txt")
+                ? File.ReadAllText("version-info.txt")
+                : "ci";
+
             var executionNumber = Environment.GetEnvironmentVariable("JB_SPACE_EXECUTION_NUMBER");
             var branch = Environment.GetEnvironmentVariable("JB_SPACE_GIT_BRANCH")?.Replace("refs/heads/", "").Replace("/", "-");
             var revision = Environment.GetEnvironmentVariable("JB_SPACE_GIT_REVISION");
@@ -31,8 +36,8 @@ namespace _build
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0",
                     $"{VersionMajor}.{VersionMinor}.{executionNumber}.0+Branch.{branch}.Sha.{revision}",
                     IsMainBranch(branch) 
-                        ? $"{VersionMajor}.{VersionMinor}.0-beta.{executionNumber}"
-                        : $"0.1.1337-{branch}.{executionNumber}");
+                        ? $"{VersionMajor}.{VersionMinor}.0-beta.{versionInfo}.{executionNumber}"
+                        : $"0.1.1337-{branch}.{versionInfo}.{executionNumber}");
             }
 
             return null;
