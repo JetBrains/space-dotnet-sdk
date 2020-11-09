@@ -265,14 +265,6 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get/search membership events. Parameters are applied as 'AND' filters.
             /// </summary>
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View memberships</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
             public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/calendars/membership-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default())}", cancellationToken);
         

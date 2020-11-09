@@ -23,19 +23,33 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.HrmBusinessEntitiesRelationsForMemberIdPostRequestPartialBuilder
+namespace JetBrains.Space.Client
 {
-    public static class HrmBusinessEntitiesRelationsForMemberIdPostRequestPartialExtensions
+    public class BlogsMarkdown2htmlPostRequest
+         : IPropagatePropertyAccessPath
     {
-        public static Partial<HrmBusinessEntitiesRelationsForMemberIdPostRequest> WithEntityId(this Partial<HrmBusinessEntitiesRelationsForMemberIdPostRequest> it)
-            => it.AddFieldName("entityId");
+        public BlogsMarkdown2htmlPostRequest() { }
         
-        public static Partial<HrmBusinessEntitiesRelationsForMemberIdPostRequest> WithSince(this Partial<HrmBusinessEntitiesRelationsForMemberIdPostRequest> it)
-            => it.AddFieldName("since");
+        public BlogsMarkdown2htmlPostRequest(string markdown)
+        {
+            Markdown = markdown;
+        }
         
-        public static Partial<HrmBusinessEntitiesRelationsForMemberIdPostRequest> WithTill(this Partial<HrmBusinessEntitiesRelationsForMemberIdPostRequest> it)
-            => it.AddFieldName("till");
+        private PropertyValue<string> _markdown = new PropertyValue<string>(nameof(BlogsMarkdown2htmlPostRequest), nameof(Markdown));
         
+        [Required]
+        [JsonPropertyName("markdown")]
+        public string Markdown
+        {
+            get => _markdown.GetValue();
+            set => _markdown.SetValue(value);
+        }
+    
+        public virtual void SetAccessPath(string path, bool validateHasBeenSet)
+        {
+            _markdown.SetAccessPath(path, validateHasBeenSet);
+        }
+    
     }
     
 }

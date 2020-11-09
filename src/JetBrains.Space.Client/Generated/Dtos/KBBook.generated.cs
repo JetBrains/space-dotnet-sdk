@@ -30,14 +30,13 @@ namespace JetBrains.Space.Client
     {
         public KBBook() { }
         
-        public KBBook(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContext> contexts, List<TDLocation> locations, KBFolder rootFolder, List<TDTeam> teams, CPrincipal? updatedBy = null)
+        public KBBook(string id, bool archived, string name, string summary, long updated, string alias, List<KBBookContext> contexts, List<TDLocation> locations, KBFolder rootFolder, List<TDTeam> teams)
         {
             Id = id;
             IsArchived = archived;
             Name = name;
             Summary = summary;
             Updated = updated;
-            UpdatedBy = updatedBy;
             Alias = alias;
             Contexts = contexts;
             Locations = locations;
@@ -93,15 +92,6 @@ namespace JetBrains.Space.Client
         {
             get => _updated.GetValue();
             set => _updated.SetValue(value);
-        }
-    
-        private PropertyValue<CPrincipal?> _updatedBy = new PropertyValue<CPrincipal?>(nameof(KBBook), nameof(UpdatedBy));
-        
-        [JsonPropertyName("updatedBy")]
-        public CPrincipal? UpdatedBy
-        {
-            get => _updatedBy.GetValue();
-            set => _updatedBy.SetValue(value);
         }
     
         private PropertyValue<string> _alias = new PropertyValue<string>(nameof(KBBook), nameof(Alias));
@@ -161,7 +151,6 @@ namespace JetBrains.Space.Client
             _name.SetAccessPath(path, validateHasBeenSet);
             _summary.SetAccessPath(path, validateHasBeenSet);
             _updated.SetAccessPath(path, validateHasBeenSet);
-            _updatedBy.SetAccessPath(path, validateHasBeenSet);
             _alias.SetAccessPath(path, validateHasBeenSet);
             _contexts.SetAccessPath(path, validateHasBeenSet);
             _locations.SetAccessPath(path, validateHasBeenSet);

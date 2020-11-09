@@ -23,10 +23,16 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PackageRepositoryMirrorPartialBuilder
+namespace JetBrains.Space.Client.BGDatesPartialBuilder
 {
-    public static class PackageRepositoryMirrorPartialExtensions
+    public static class BGDatesPartialExtensions
     {
+        public static Partial<BGDates> WithFirst(this Partial<BGDates> it)
+            => it.AddFieldName("first");
+        
+        public static Partial<BGDates> WithLast(this Partial<BGDates> it)
+            => it.AddFieldName("last");
+        
     }
     
 }

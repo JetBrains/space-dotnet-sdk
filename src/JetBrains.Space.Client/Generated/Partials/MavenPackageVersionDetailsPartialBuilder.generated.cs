@@ -69,12 +69,6 @@ namespace JetBrains.Space.Client.MavenPackageVersionDetailsPartialBuilder
         public static Partial<MavenPackageVersionDetails> WithAuthors(this Partial<MavenPackageVersionDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
             => it.AddFieldName("authors", partialBuilder(new Partial<CPrincipal>(it)));
         
-        public static Partial<MavenPackageVersionDetails> WithOrigin(this Partial<MavenPackageVersionDetails> it)
-            => it.AddFieldName("origin");
-        
-        public static Partial<MavenPackageVersionDetails> WithOrigin(this Partial<MavenPackageVersionDetails> it, Func<Partial<PackageOrigin>, Partial<PackageOrigin>> partialBuilder)
-            => it.AddFieldName("origin", partialBuilder(new Partial<PackageOrigin>(it)));
-        
         public static Partial<MavenPackageVersionDetails> WithMetadata(this Partial<MavenPackageVersionDetails> it)
             => it.AddFieldName("metadata");
         

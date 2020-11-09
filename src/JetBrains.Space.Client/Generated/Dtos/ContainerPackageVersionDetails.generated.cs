@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
         
         public ContainerPackageVersionDetails() { }
         
-        public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, ContainerImage? image = null, ContainerHelmChart? chart = null)
+        public ContainerPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, int schemaVersion, string mediaType, string manifestType, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, Dictionary<string, string>? metadata = null, ContainerImage? image = null, ContainerHelmChart? chart = null)
         {
             Type = type;
             Repository = repository;
@@ -46,7 +46,6 @@ namespace JetBrains.Space.Client
             DiskSize = diskSize;
             Author = author;
             Authors = authors;
-            Origin = origin;
             Metadata = metadata;
             SchemaVersion = schemaVersion;
             MediaType = mediaType;
@@ -161,15 +160,6 @@ namespace JetBrains.Space.Client
             set => _authors.SetValue(value);
         }
     
-        private PropertyValue<PackageOrigin?> _origin = new PropertyValue<PackageOrigin?>(nameof(ContainerPackageVersionDetails), nameof(Origin));
-        
-        [JsonPropertyName("origin")]
-        public PackageOrigin? Origin
-        {
-            get => _origin.GetValue();
-            set => _origin.SetValue(value);
-        }
-    
         private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(ContainerPackageVersionDetails), nameof(Metadata));
         
         [JsonPropertyName("metadata")]
@@ -240,7 +230,6 @@ namespace JetBrains.Space.Client
             _diskSize.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);
-            _origin.SetAccessPath(path, validateHasBeenSet);
             _metadata.SetAccessPath(path, validateHasBeenSet);
             _schemaVersion.SetAccessPath(path, validateHasBeenSet);
             _mediaType.SetAccessPath(path, validateHasBeenSet);

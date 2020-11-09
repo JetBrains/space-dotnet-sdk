@@ -25,41 +25,43 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public sealed class PublishSite
+    public sealed class BGDates
          : IPropagatePropertyAccessPath
     {
-        public PublishSite() { }
+        public BGDates() { }
         
-        public PublishSite(string siteUrl, SyncFileStats fileStats)
+        public BGDates(DateTime first, DateTime last)
         {
-            SiteUrl = siteUrl;
-            FileStats = fileStats;
+            First = first;
+            Last = last;
         }
         
-        private PropertyValue<string> _siteUrl = new PropertyValue<string>(nameof(PublishSite), nameof(SiteUrl));
+        private PropertyValue<DateTime> _first = new PropertyValue<DateTime>(nameof(BGDates), nameof(First));
         
         [Required]
-        [JsonPropertyName("siteUrl")]
-        public string SiteUrl
+        [JsonPropertyName("first")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime First
         {
-            get => _siteUrl.GetValue();
-            set => _siteUrl.SetValue(value);
+            get => _first.GetValue();
+            set => _first.SetValue(value);
         }
     
-        private PropertyValue<SyncFileStats> _fileStats = new PropertyValue<SyncFileStats>(nameof(PublishSite), nameof(FileStats));
+        private PropertyValue<DateTime> _last = new PropertyValue<DateTime>(nameof(BGDates), nameof(Last));
         
         [Required]
-        [JsonPropertyName("fileStats")]
-        public SyncFileStats FileStats
+        [JsonPropertyName("last")]
+        [JsonConverter(typeof(SpaceDateTimeConverter))]
+        public DateTime Last
         {
-            get => _fileStats.GetValue();
-            set => _fileStats.SetValue(value);
+            get => _last.GetValue();
+            set => _last.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _siteUrl.SetAccessPath(path, validateHasBeenSet);
-            _fileStats.SetAccessPath(path, validateHasBeenSet);
+            _first.SetAccessPath(path, validateHasBeenSet);
+            _last.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

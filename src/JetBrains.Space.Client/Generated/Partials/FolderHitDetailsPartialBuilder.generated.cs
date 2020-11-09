@@ -39,17 +39,8 @@ namespace JetBrains.Space.Client.FolderHitDetailsPartialBuilder
         public static Partial<FolderHitDetails> WithBookRef(this Partial<FolderHitDetails> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
             => it.AddFieldName("bookRef", partialBuilder(new Partial<KBBook>(it)));
         
-        public static Partial<FolderHitDetails> WithProjectRef(this Partial<FolderHitDetails> it)
-            => it.AddFieldName("projectRef");
-        
-        public static Partial<FolderHitDetails> WithProjectRef(this Partial<FolderHitDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
-            => it.AddFieldName("projectRef", partialBuilder(new Partial<PRProject>(it)));
-        
-        public static Partial<FolderHitDetails> WithAuthorRef(this Partial<FolderHitDetails> it)
-            => it.AddFieldName("authorRef");
-        
-        public static Partial<FolderHitDetails> WithAuthorRef(this Partial<FolderHitDetails> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
-            => it.AddFieldName("authorRef", partialBuilder(new Partial<TDMemberProfile>(it)));
+        public static Partial<FolderHitDetails> WithContextName(this Partial<FolderHitDetails> it)
+            => it.AddFieldName("contextName");
         
     }
     

@@ -44,9 +44,6 @@ namespace JetBrains.Space.Client
         public static EnumListCFType EnumList(List<EnumValueData> values)
             => new EnumListCFType(values: values);
         
-        public static FractionCFType Fraction()
-            => new FractionCFType();
-        
         public static IntCFType Int()
             => new IntCFType();
         

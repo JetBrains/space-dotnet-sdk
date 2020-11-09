@@ -36,6 +36,9 @@ namespace JetBrains.Space.Client.BoardColumnPartialBuilder
         public static Partial<BoardColumn> WithStatuses(this Partial<BoardColumn> it, Func<Partial<IssueStatus>, Partial<IssueStatus>> partialBuilder)
             => it.AddFieldName("statuses", partialBuilder(new Partial<IssueStatus>(it)));
         
+        public static Partial<BoardColumn> WithIsDefault(this Partial<BoardColumn> it)
+            => it.AddFieldName("default");
+        
     }
     
 }

@@ -23,15 +23,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.PermissionSnapshotRightPartialBuilder
+namespace JetBrains.Space.Client.DRDraftIdPartialBuilder
 {
-    public static class PermissionSnapshotRightPartialExtensions
+    public static class DRDraftIdPartialExtensions
     {
-        public static Partial<PermissionSnapshotRight> WithRightCode(this Partial<PermissionSnapshotRight> it)
-            => it.AddFieldName("rightCode");
-        
-        public static Partial<PermissionSnapshotRight> WithTargetType(this Partial<PermissionSnapshotRight> it)
-            => it.AddFieldName("targetType");
+        public static Partial<DRDraftId> WithId(this Partial<DRDraftId> it)
+            => it.AddFieldName("id");
         
     }
     

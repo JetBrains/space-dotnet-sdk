@@ -23,15 +23,12 @@ using JetBrains.Space.Common.Json.Serialization;
 using JetBrains.Space.Common.Json.Serialization.Polymorphism;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.Client.CreateUploadUrlResponsePartialBuilder
+namespace JetBrains.Space.Client.BlogsMarkdown2htmlPostRequestPartialBuilder
 {
-    public static class CreateUploadUrlResponsePartialExtensions
+    public static class BlogsMarkdown2htmlPostRequestPartialExtensions
     {
-        public static Partial<CreateUploadUrlResponse> WithUrl(this Partial<CreateUploadUrlResponse> it)
-            => it.AddFieldName("url");
-        
-        public static Partial<CreateUploadUrlResponse> WithVersionId(this Partial<CreateUploadUrlResponse> it)
-            => it.AddFieldName("versionId");
+        public static Partial<BlogsMarkdown2htmlPostRequest> WithMarkdown(this Partial<BlogsMarkdown2htmlPostRequest> it)
+            => it.AddFieldName("markdown");
         
     }
     

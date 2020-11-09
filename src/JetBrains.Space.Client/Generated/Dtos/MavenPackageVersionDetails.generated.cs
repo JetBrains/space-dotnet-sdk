@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
         
         public MavenPackageVersionDetails() { }
         
-        public MavenPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, List<string> licenses, List<MavenPackageDependency> dependencies, List<MavenPackageFile> files, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? packaging = null, string? packageName = null, string? description = null, string? url = null, string? scmUrl = null, List<KotlinPlatform>? kotlinPlatforms = null, MavenPackageParent? parent = null, string? pathPrefix = null)
+        public MavenPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, List<string> licenses, List<MavenPackageDependency> dependencies, List<MavenPackageFile> files, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, Dictionary<string, string>? metadata = null, string? packaging = null, string? packageName = null, string? description = null, string? url = null, string? scmUrl = null, List<KotlinPlatform>? kotlinPlatforms = null, MavenPackageParent? parent = null, string? pathPrefix = null)
         {
             Type = type;
             Repository = repository;
@@ -46,7 +46,6 @@ namespace JetBrains.Space.Client
             DiskSize = diskSize;
             Author = author;
             Authors = authors;
-            Origin = origin;
             Metadata = metadata;
             Packaging = packaging;
             PackageName = packageName;
@@ -165,15 +164,6 @@ namespace JetBrains.Space.Client
         {
             get => _authors.GetValue();
             set => _authors.SetValue(value);
-        }
-    
-        private PropertyValue<PackageOrigin?> _origin = new PropertyValue<PackageOrigin?>(nameof(MavenPackageVersionDetails), nameof(Origin));
-        
-        [JsonPropertyName("origin")]
-        public PackageOrigin? Origin
-        {
-            get => _origin.GetValue();
-            set => _origin.SetValue(value);
         }
     
         private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(MavenPackageVersionDetails), nameof(Metadata));
@@ -300,7 +290,6 @@ namespace JetBrains.Space.Client
             _diskSize.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);
-            _origin.SetAccessPath(path, validateHasBeenSet);
             _metadata.SetAccessPath(path, validateHasBeenSet);
             _packaging.SetAccessPath(path, validateHasBeenSet);
             _packageName.SetAccessPath(path, validateHasBeenSet);

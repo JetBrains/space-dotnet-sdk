@@ -69,12 +69,6 @@ namespace JetBrains.Space.Client.NpmPackageVersionDetailsPartialBuilder
         public static Partial<NpmPackageVersionDetails> WithAuthors(this Partial<NpmPackageVersionDetails> it, Func<Partial<CPrincipal>, Partial<CPrincipal>> partialBuilder)
             => it.AddFieldName("authors", partialBuilder(new Partial<CPrincipal>(it)));
         
-        public static Partial<NpmPackageVersionDetails> WithOrigin(this Partial<NpmPackageVersionDetails> it)
-            => it.AddFieldName("origin");
-        
-        public static Partial<NpmPackageVersionDetails> WithOrigin(this Partial<NpmPackageVersionDetails> it, Func<Partial<PackageOrigin>, Partial<PackageOrigin>> partialBuilder)
-            => it.AddFieldName("origin", partialBuilder(new Partial<PackageOrigin>(it)));
-        
         public static Partial<NpmPackageVersionDetails> WithMetadata(this Partial<NpmPackageVersionDetails> it)
             => it.AddFieldName("metadata");
         

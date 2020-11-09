@@ -30,11 +30,14 @@ namespace JetBrains.Space.Client.CodeReviewDiscussionCounterPartialBuilder
         public static Partial<CodeReviewDiscussionCounter> WithId(this Partial<CodeReviewDiscussionCounter> it)
             => it.AddFieldName("id");
         
-        public static Partial<CodeReviewDiscussionCounter> WithDiscussionCounter(this Partial<CodeReviewDiscussionCounter> it)
-            => it.AddFieldName("discussionCounter");
+        public static Partial<CodeReviewDiscussionCounter> WithProjectId(this Partial<CodeReviewDiscussionCounter> it)
+            => it.AddFieldName("projectId");
         
-        public static Partial<CodeReviewDiscussionCounter> WithDiscussionCounter(this Partial<CodeReviewDiscussionCounter> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
-            => it.AddFieldName("discussionCounter", partialBuilder(new Partial<Counter>(it)));
+        public static Partial<CodeReviewDiscussionCounter> WithCounter(this Partial<CodeReviewDiscussionCounter> it)
+            => it.AddFieldName("counter");
+        
+        public static Partial<CodeReviewDiscussionCounter> WithCounter(this Partial<CodeReviewDiscussionCounter> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
+            => it.AddFieldName("counter", partialBuilder(new Partial<Counter>(it)));
         
     }
     

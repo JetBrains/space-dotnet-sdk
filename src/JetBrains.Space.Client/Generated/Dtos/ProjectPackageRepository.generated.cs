@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public ProjectPackageRepository() { }
         
-        public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, List<PackageRepositoryMirror> mirrors, string? description = null)
+        public ProjectPackageRepository(string id, PRProject project, string name, PackageRepository repository, bool archived, string? description = null)
         {
             Id = id;
             Project = project;
@@ -38,7 +38,6 @@ namespace JetBrains.Space.Client
             Description = description;
             Repository = repository;
             IsArchived = archived;
-            Mirrors = mirrors;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(ProjectPackageRepository), nameof(Id));
@@ -100,16 +99,6 @@ namespace JetBrains.Space.Client
             set => _archived.SetValue(value);
         }
     
-        private PropertyValue<List<PackageRepositoryMirror>> _mirrors = new PropertyValue<List<PackageRepositoryMirror>>(nameof(ProjectPackageRepository), nameof(Mirrors));
-        
-        [Required]
-        [JsonPropertyName("mirrors")]
-        public List<PackageRepositoryMirror> Mirrors
-        {
-            get => _mirrors.GetValue();
-            set => _mirrors.SetValue(value);
-        }
-    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -118,7 +107,6 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _repository.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
-            _mirrors.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

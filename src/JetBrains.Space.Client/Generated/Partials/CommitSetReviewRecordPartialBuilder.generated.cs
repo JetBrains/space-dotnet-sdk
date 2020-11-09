@@ -66,41 +66,17 @@ namespace JetBrains.Space.Client.CommitSetReviewRecordPartialBuilder
         public static Partial<CommitSetReviewRecord> WithIsTurnBased(this Partial<CommitSetReviewRecord> it)
             => it.AddFieldName("turnBased");
         
-        public static Partial<CommitSetReviewRecord> WithFeedChannel(this Partial<CommitSetReviewRecord> it)
-            => it.AddFieldName("feedChannel");
-        
-        public static Partial<CommitSetReviewRecord> WithFeedChannel(this Partial<CommitSetReviewRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
-            => it.AddFieldName("feedChannel", partialBuilder(new Partial<M2ChannelRecord>(it)));
-        
-        public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<CommitSetReviewRecord> WithAuthors(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-        public static Partial<CommitSetReviewRecord> WithDiscussionCounter(this Partial<CommitSetReviewRecord> it)
-            => it.AddFieldName("discussionCounter");
-        
-        public static Partial<CommitSetReviewRecord> WithDiscussionCounter(this Partial<CommitSetReviewRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
-            => it.AddFieldName("discussionCounter", partialBuilder(new Partial<Counter>(it)));
-        
         public static Partial<CommitSetReviewRecord> WithParticipants(this Partial<CommitSetReviewRecord> it)
             => it.AddFieldName("participants");
         
         public static Partial<CommitSetReviewRecord> WithParticipants(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
             => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
         
-        public static Partial<CommitSetReviewRecord> WithReviewers(this Partial<CommitSetReviewRecord> it)
-            => it.AddFieldName("reviewers");
+        public static Partial<CommitSetReviewRecord> WithFeedChannel(this Partial<CommitSetReviewRecord> it)
+            => it.AddFieldName("feedChannel");
         
-        public static Partial<CommitSetReviewRecord> WithReviewers(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-        public static Partial<CommitSetReviewRecord> WithWatchers(this Partial<CommitSetReviewRecord> it)
-            => it.AddFieldName("watchers");
-        
-        public static Partial<CommitSetReviewRecord> WithWatchers(this Partial<CommitSetReviewRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
+        public static Partial<CommitSetReviewRecord> WithFeedChannel(this Partial<CommitSetReviewRecord> it, Func<Partial<M2ChannelRecord>, Partial<M2ChannelRecord>> partialBuilder)
+            => it.AddFieldName("feedChannel", partialBuilder(new Partial<M2ChannelRecord>(it)));
         
     }
     

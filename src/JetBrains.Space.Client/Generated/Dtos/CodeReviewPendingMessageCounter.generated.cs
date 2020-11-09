@@ -30,9 +30,10 @@ namespace JetBrains.Space.Client
     {
         public CodeReviewPendingMessageCounter() { }
         
-        public CodeReviewPendingMessageCounter(string id, bool archived)
+        public CodeReviewPendingMessageCounter(string id, int count, bool archived)
         {
             Id = id;
+            Count = count;
             IsArchived = archived;
         }
         
@@ -44,6 +45,16 @@ namespace JetBrains.Space.Client
         {
             get => _id.GetValue();
             set => _id.SetValue(value);
+        }
+    
+        private PropertyValue<int> _count = new PropertyValue<int>(nameof(CodeReviewPendingMessageCounter), nameof(Count));
+        
+        [Required]
+        [JsonPropertyName("count")]
+        public int Count
+        {
+            get => _count.GetValue();
+            set => _count.SetValue(value);
         }
     
         private PropertyValue<bool> _archived = new PropertyValue<bool>(nameof(CodeReviewPendingMessageCounter), nameof(IsArchived));
@@ -59,6 +70,7 @@ namespace JetBrains.Space.Client
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
+            _count.SetAccessPath(path, validateHasBeenSet);
             _archived.SetAccessPath(path, validateHasBeenSet);
         }
     

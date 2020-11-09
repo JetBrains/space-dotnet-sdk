@@ -66,6 +66,12 @@ namespace JetBrains.Space.Client.MergeRequestRecordPartialBuilder
         public static Partial<MergeRequestRecord> WithIsTurnBased(this Partial<MergeRequestRecord> it)
             => it.AddFieldName("turnBased");
         
+        public static Partial<MergeRequestRecord> WithParticipants(this Partial<MergeRequestRecord> it)
+            => it.AddFieldName("participants");
+        
+        public static Partial<MergeRequestRecord> WithParticipants(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
+            => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
+        
         public static Partial<MergeRequestRecord> WithFeedChannel(this Partial<MergeRequestRecord> it)
             => it.AddFieldName("feedChannel");
         
@@ -77,36 +83,6 @@ namespace JetBrains.Space.Client.MergeRequestRecordPartialBuilder
         
         public static Partial<MergeRequestRecord> WithBranchPairs(this Partial<MergeRequestRecord> it, Func<Partial<MergeRequestBranchPair>, Partial<MergeRequestBranchPair>> partialBuilder)
             => it.AddFieldName("branchPairs", partialBuilder(new Partial<MergeRequestBranchPair>(it)));
-        
-        public static Partial<MergeRequestRecord> WithAuthors(this Partial<MergeRequestRecord> it)
-            => it.AddFieldName("authors");
-        
-        public static Partial<MergeRequestRecord> WithAuthors(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("authors", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-        public static Partial<MergeRequestRecord> WithDiscussionCounter(this Partial<MergeRequestRecord> it)
-            => it.AddFieldName("discussionCounter");
-        
-        public static Partial<MergeRequestRecord> WithDiscussionCounter(this Partial<MergeRequestRecord> it, Func<Partial<Counter>, Partial<Counter>> partialBuilder)
-            => it.AddFieldName("discussionCounter", partialBuilder(new Partial<Counter>(it)));
-        
-        public static Partial<MergeRequestRecord> WithParticipants(this Partial<MergeRequestRecord> it)
-            => it.AddFieldName("participants");
-        
-        public static Partial<MergeRequestRecord> WithParticipants(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipant>, Partial<CodeReviewParticipant>> partialBuilder)
-            => it.AddFieldName("participants", partialBuilder(new Partial<CodeReviewParticipant>(it)));
-        
-        public static Partial<MergeRequestRecord> WithReviewers(this Partial<MergeRequestRecord> it)
-            => it.AddFieldName("reviewers");
-        
-        public static Partial<MergeRequestRecord> WithReviewers(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("reviewers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
-        
-        public static Partial<MergeRequestRecord> WithWatchers(this Partial<MergeRequestRecord> it)
-            => it.AddFieldName("watchers");
-        
-        public static Partial<MergeRequestRecord> WithWatchers(this Partial<MergeRequestRecord> it, Func<Partial<CodeReviewParticipantRecord>, Partial<CodeReviewParticipantRecord>> partialBuilder)
-            => it.AddFieldName("watchers", partialBuilder(new Partial<CodeReviewParticipantRecord>(it)));
         
     }
     

@@ -30,23 +30,23 @@ namespace JetBrains.Space.Client
     {
         public ApplicationsRefreshMenuPostRequest() { }
         
-        public ApplicationsRefreshMenuPostRequest(string? appId = null)
+        public ApplicationsRefreshMenuPostRequest(string? id = null)
         {
-            AppId = appId;
+            Id = id;
         }
         
-        private PropertyValue<string?> _appId = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(AppId));
+        private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(ApplicationsRefreshMenuPostRequest), nameof(Id));
         
-        [JsonPropertyName("appId")]
-        public string? AppId
+        [JsonPropertyName("id")]
+        public string? Id
         {
-            get => _appId.GetValue();
-            set => _appId.SetValue(value);
+            get => _id.GetValue();
+            set => _id.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _appId.SetAccessPath(path, validateHasBeenSet);
+            _id.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

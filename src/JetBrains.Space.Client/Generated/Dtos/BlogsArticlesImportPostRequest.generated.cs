@@ -25,41 +25,41 @@ using JetBrains.Space.Common.Types;
 
 namespace JetBrains.Space.Client
 {
-    public class HostingForProjectSiteForSiteNamePostRequest
+    public class BlogsArticlesImportPostRequest
          : IPropagatePropertyAccessPath
     {
-        public HostingForProjectSiteForSiteNamePostRequest() { }
+        public BlogsArticlesImportPostRequest() { }
         
-        public HostingForProjectSiteForSiteNamePostRequest(string versionId, HostingSiteSettings settings)
+        public BlogsArticlesImportPostRequest(ImportMetadata metadata, List<ExternalArticle> articles)
         {
-            VersionId = versionId;
-            Settings = settings;
+            Metadata = metadata;
+            Articles = articles;
         }
         
-        private PropertyValue<string> _versionId = new PropertyValue<string>(nameof(HostingForProjectSiteForSiteNamePostRequest), nameof(VersionId));
+        private PropertyValue<ImportMetadata> _metadata = new PropertyValue<ImportMetadata>(nameof(BlogsArticlesImportPostRequest), nameof(Metadata));
         
         [Required]
-        [JsonPropertyName("versionId")]
-        public string VersionId
+        [JsonPropertyName("metadata")]
+        public ImportMetadata Metadata
         {
-            get => _versionId.GetValue();
-            set => _versionId.SetValue(value);
+            get => _metadata.GetValue();
+            set => _metadata.SetValue(value);
         }
     
-        private PropertyValue<HostingSiteSettings> _settings = new PropertyValue<HostingSiteSettings>(nameof(HostingForProjectSiteForSiteNamePostRequest), nameof(Settings));
+        private PropertyValue<List<ExternalArticle>> _articles = new PropertyValue<List<ExternalArticle>>(nameof(BlogsArticlesImportPostRequest), nameof(Articles));
         
         [Required]
-        [JsonPropertyName("settings")]
-        public HostingSiteSettings Settings
+        [JsonPropertyName("articles")]
+        public List<ExternalArticle> Articles
         {
-            get => _settings.GetValue();
-            set => _settings.SetValue(value);
+            get => _articles.GetValue();
+            set => _articles.SetValue(value);
         }
     
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
-            _versionId.SetAccessPath(path, validateHasBeenSet);
-            _settings.SetAccessPath(path, validateHasBeenSet);
+            _metadata.SetAccessPath(path, validateHasBeenSet);
+            _articles.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

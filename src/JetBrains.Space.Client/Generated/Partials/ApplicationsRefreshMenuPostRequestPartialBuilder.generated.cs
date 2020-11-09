@@ -27,8 +27,8 @@ namespace JetBrains.Space.Client.ApplicationsRefreshMenuPostRequestPartialBuilde
 {
     public static class ApplicationsRefreshMenuPostRequestPartialExtensions
     {
-        public static Partial<ApplicationsRefreshMenuPostRequest> WithAppId(this Partial<ApplicationsRefreshMenuPostRequest> it)
-            => it.AddFieldName("appId");
+        public static Partial<ApplicationsRefreshMenuPostRequest> WithId(this Partial<ApplicationsRefreshMenuPostRequest> it)
+            => it.AddFieldName("id");
         
     }
     
