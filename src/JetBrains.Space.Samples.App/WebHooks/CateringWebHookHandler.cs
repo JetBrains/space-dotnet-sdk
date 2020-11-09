@@ -58,6 +58,7 @@ namespace JetBrains.Space.Samples.App.WebHooks
         {
             return new Commands(new List<CommandDetail>
             {
+                new CommandDetail("new", "Create a new catering request."),
                 new CommandDetail("help", "Get more info about this application.")
             });
         }
@@ -65,28 +66,51 @@ namespace JetBrains.Space.Samples.App.WebHooks
         public override async Task<MenuExtensions> HandleListMenuExtensionsAsync(ListMenuExtensionsPayload payload)
         {
             // TIP: Remove menu items/update menu items by returning a different shape of collection
-            // return new MenuExtensions();
+            return new MenuExtensions();
             // return new MenuExtensions(new List<MenuExtensionDetail>
             // {
             //     new MenuExtensionDetail(MenuId.Global.Add.Value, "Catering request", "Request catering (demo)")
             // });
-            return new MenuExtensions
-            {
-                Extensions = new List<MenuExtensionDetail>
-                {
-                    new MenuExtensionDetail(MenuId.Channel.Attachment.Value, "Google Meet", "Creates a new Google Meet and posts the URL into the current channel.")
-                }
-            };
         }
         
         public override async Task<ApplicationExecutionResult> HandleMenuActionAsync(MenuActionPayload payload)
         {
+            await StartNewSession(payload.UserId);
+            return new ApplicationExecutionResult("Catering request created.");
+        }
+
+        public override async Task HandleMessageAsync(MessagePayload payload)
+        {
+            if (payload.Message.Body is ChatMessageText messageText && !string.IsNullOrEmpty(messageText.Text))
+            {
+                if (messageText.Text.Equals("new", StringComparison.OrdinalIgnoreCase))
+                {
+                    await StartNewSession(payload.UserId);
+                    return;
+                }
+
+                await _chatClient.Messages.SendMessageAsync(
+                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                    content: ChatMessage.Text("You said: " + messageText.Text),
+                    unfurlLinks: false);
+            }
+            else
+            {
+                await _chatClient.Messages.SendMessageAsync(
+                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
+                    content: ChatMessage.Text("You said many things!"),
+                    unfurlLinks: false);
+            }
+        }
+
+        private async Task StartNewSession(string userId)
+        {
             var cateringSession = new CateringSession();
-            Sessions[payload.UserId] = cateringSession;
+            Sessions[userId] = cateringSession;
             
             await SendOrEditMessageAsync(
                 channelId: null,
-                recipient: MessageRecipient.Member(ProfileIdentifier.Id(payload.UserId)),
+                recipient: MessageRecipient.Member(ProfileIdentifier.Id(userId)),
                 content: ChatMessage.Block(
                     outline: new MessageOutline("Anything to eat or drink while we are on our way to Space?"),
                     messageData: "Anything to eat or drink while we are on our way to Space?",
@@ -108,26 +132,6 @@ namespace JetBrains.Space.Samples.App.WebHooks
                     },
                     style: MessageStyle.PRIMARY),
                 cateringSession: cateringSession);
-
-            return new ApplicationExecutionResult("Catering request created.");
-        }
-
-        public override async Task HandleMessageAsync(MessagePayload payload)
-        {
-            if (payload.Message.Body is ChatMessageText messageText && !string.IsNullOrEmpty(messageText.Text))
-            {
-                await _chatClient.Messages.SendMessageAsync(
-                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
-                    content: ChatMessage.Text("You said: " + messageText.Text),
-                    unfurlLinks: false);
-            }
-            else
-            {
-                await _chatClient.Messages.SendMessageAsync(
-                    recipient: MessageRecipient.Channel(ChatChannel.FromId(payload.Message.ChannelId)),
-                    content: ChatMessage.Text("You said many things!"),
-                    unfurlLinks: false);
-            }
         }
 
         public override async Task<ApplicationExecutionResult> HandleMessageActionAsync(MessageActionPayload payload)
