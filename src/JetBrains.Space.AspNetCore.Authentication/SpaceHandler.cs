@@ -16,7 +16,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Base64UrlTextEncoder = Microsoft.AspNetCore.Authentication.Base64UrlTextEncoder;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space
+namespace JetBrains.Space.AspNetCore.Authentication
 {
     /// <summary>
     /// A Space authentication handler for ASP.NET Core authentication.

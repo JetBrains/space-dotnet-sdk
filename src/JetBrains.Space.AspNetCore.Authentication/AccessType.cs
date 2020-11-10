@@ -1,6 +1,6 @@
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space
+namespace JetBrains.Space.AspNetCore.Authentication
 {
     /// <summary>
     /// Indicates whether the application requires access to Space when the user is not online.

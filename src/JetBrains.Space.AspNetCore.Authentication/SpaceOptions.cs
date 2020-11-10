@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.OAuth;
 using Microsoft.AspNetCore.Http;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space
+namespace JetBrains.Space.AspNetCore.Authentication
 {
     /// <summary>
     /// Configuration options for <see cref="SpaceHandler"/>.
@@ -105,7 +105,7 @@ namespace JetBrains.Space.AspNetCore.Authentication.Space
         public RequestCredentials RequestCredentials { get; set; } = RequestCredentials.Default;
         
         /// <summary>
-        /// Gets or sets the access type. Set to <see cref="JetBrains.Space.AspNetCore.Authentication.Space.AccessType.Offline"/> to request a refresh token.
+        /// Gets or sets the access type. Set to <see cref="JetBrains.Space.AspNetCore.Authentication.AccessType.Offline"/> to request a refresh token.
         /// </summary>
         [PublicAPI]
         public AccessType AccessType { get; set; } = AccessType.Online;

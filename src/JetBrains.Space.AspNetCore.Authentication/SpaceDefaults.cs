@@ -1,4 +1,4 @@
-namespace JetBrains.Space.AspNetCore.Authentication.Space
+namespace JetBrains.Space.AspNetCore.Authentication
 {
     /// <summary>
     /// Default values for Space authentication.

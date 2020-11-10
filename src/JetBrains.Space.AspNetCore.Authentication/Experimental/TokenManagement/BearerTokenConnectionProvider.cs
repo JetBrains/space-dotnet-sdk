@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space.Experimental.TokenManagement
+namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
 {
     internal class BearerTokenConnectionProvider
     {

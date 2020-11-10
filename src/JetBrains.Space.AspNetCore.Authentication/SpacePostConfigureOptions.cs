@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using Microsoft.Extensions.Options;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space
+namespace JetBrains.Space.AspNetCore.Authentication
 {
     /// <summary>
     /// An <see cref="IPostConfigureOptions{T}"/> that configures <see cref="SpaceOptions"/>.

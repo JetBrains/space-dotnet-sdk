@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space.Experimental.TokenManagement
+namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
 {
     /// <summary>
     /// Configuration options for use with Space token management.

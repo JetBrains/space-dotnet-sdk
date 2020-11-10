@@ -1,11 +1,11 @@
+using JetBrains.Space.AspNetCore.Authentication;
+using JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using JetBrains.Space.AspNetCore.Authentication.Space;
-using JetBrains.Space.AspNetCore.Authentication.Space.Experimental.TokenManagement;
 
 namespace JetBrains.Space.Samples.Web
 {

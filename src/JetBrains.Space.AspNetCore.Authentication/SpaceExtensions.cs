@@ -1,9 +1,9 @@
 using System;
 using JetBrains.Annotations;
+using JetBrains.Space.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Options;
-using JetBrains.Space.AspNetCore.Authentication.Space;
 
 // ReSharper disable once CheckNamespace
 namespace Microsoft.Extensions.DependencyInjection

@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space.Experimental.TokenManagement
+namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
 {
     /// <summary>
     /// An implementation of <see cref="CookieAuthenticationEvents"/> to handle automatic authentication token refresh with a Space organization.

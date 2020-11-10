@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Options;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space.Experimental.TokenManagement
+namespace JetBrains.Space.AspNetCore.Authentication.Experimental.TokenManagement
 {
     /// <summary>
     /// A class that configures the <see cref="CookieAuthenticationOptions"/> options.

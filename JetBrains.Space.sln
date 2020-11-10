@@ -24,7 +24,7 @@ ProjectSection(SolutionItems) = preProject
 	global.json = global.json
 EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrains.Space.AspNetCore.Authentication.Space", "src\JetBrains.Space.AspNetCore.Authentication.Space\JetBrains.Space.AspNetCore.Authentication.Space.csproj", "{5A9D31CA-EC29-469C-B2E9-551151ACD2F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrains.Space.AspNetCore.Authentication", "src\JetBrains.Space.AspNetCore.Authentication\JetBrains.Space.AspNetCore.Authentication.csproj", "{5A9D31CA-EC29-469C-B2E9-551151ACD2F0}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "_build", "build\_build.csproj", "{B39A23E9-DE2E-48D3-B6BC-40508B399F17}"
 EndProject

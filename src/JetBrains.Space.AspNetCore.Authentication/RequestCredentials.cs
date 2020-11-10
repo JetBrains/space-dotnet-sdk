@@ -1,7 +1,7 @@
 using JetBrains.Annotations;
 using JetBrains.Space.Common.Types;
 
-namespace JetBrains.Space.AspNetCore.Authentication.Space
+namespace JetBrains.Space.AspNetCore.Authentication
 {
     /// <summary>
     /// Determines whether the user should be asked to log in.

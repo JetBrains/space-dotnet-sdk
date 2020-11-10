@@ -20,7 +20,7 @@ Other (optional) packages are available. These can be installed to satisfy addit
 * `JetBrains.Space.AspNetCore` — Helpers for using JetBrains.Space with ASP.NET Core, such as:
   * An extension method for `IServiceCollection` to register all JetBrains.Space clients as ASP.NET Core services
   * Helpers for Space Applications webhooks
-* `JetBrains.Space.AspNetCore.Authentication.Space` — Authentication provider that integrates with ASP.NET Core.
+* `JetBrains.Space.AspNetCore.Authentication` — Authentication provider that integrates with ASP.NET Core.
 
 Let's have a look at how we can start working with `JetBrains.Space.Client`.
 
@@ -87,7 +87,7 @@ Communication with Space is handled by the `Connection` base class. A connection
 
 JetBrains.Space does not handle retrieving an access token that can be used with `BearerTokenConnection` or `RefreshTokenConnection`.
 
-> **Tip:** The Space ASP.NET Core authentication provider (in the `JetBrains.Space.AspNetCore.Authentication.Space` package) includes support for the [Implicit Flow](https://www.jetbrains.com/help/space/implicit.html).
+> **Tip:** The Space ASP.NET Core authentication provider (in the `JetBrains.Space.AspNetCore.Authentication` package) includes support for the [Implicit Flow](https://www.jetbrains.com/help/space/implicit.html).
 
 #### Scope
 
@@ -411,9 +411,9 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 
 Our application can now be registered in Space using this URL endpoint, for example `https://apps.example.org/space/receive`.
 
-## JetBrains.Space.AspNetCore.Authentication.Space
+## JetBrains.Space.AspNetCore.Authentication
 
-The `JetBrains.Space.AspNetCore.Authentication.Space` package contains an authentication provider that integrates with ASP.NET Core. It can be used to authenticate a web application's users with Space, much like [other external authentication providers](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-3.1).
+The `JetBrains.Space.AspNetCore.Authentication` package contains an authentication provider that integrates with ASP.NET Core. It can be used to authenticate a web application's users with Space, much like [other external authentication providers](https://docs.microsoft.com/en-us/aspnet/core/security/authentication/social/?view=aspnetcore-3.1).
 
 ### Registering Space as an Authentication Provider
 
@@ -497,7 +497,7 @@ Using these identity properties helps personalize our application's experience.
 
 Some web applications can be considered a "100% Space integration". For example, we may build an application that lets a user authenticate with Space, and then generates a personalized dashboard with data obtained using the Space API.
 
-The `JetBrains.Space.AspNetCore.Authentication.Space` package contains an experimental feature, token management, to assist with authenticating and making sure the current user's identity is used to access the Space APIs. It also handles refresh tokens, when the current access token has expired.
+The `JetBrains.Space.AspNetCore.Authentication` package contains an experimental feature, token management, to assist with authenticating and making sure the current user's identity is used to access the Space APIs. It also handles refresh tokens, when the current access token has expired.
 
 > **Warning:** The functionality described in this section is experimental. It may not work for every setup, depending on how ASP.NET Authentication is configured.
 > The following has to be true to use Space Token Management in an ASP.NET Core application:
