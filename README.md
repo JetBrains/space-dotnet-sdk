@@ -35,7 +35,7 @@ After installing `JetBrains.Space.Client` in our project, we can use the *Client
 ```csharp
 var connection = new ClientCredentialsConnection(
     organizationUrl,    // i.e. "https://<organization>.jetbrains.space/"
-    clientId",          // from settings/secrets
+    clientId,           // from settings/secrets
     clientSecret,       // from settings/secrets
     new HttpClient());
 ```
