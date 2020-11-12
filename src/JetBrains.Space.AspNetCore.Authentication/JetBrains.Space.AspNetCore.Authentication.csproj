@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <Description>ASP.NET Core authentication provider for JetBrains Space.</Description>
-        <PackageTags>JetBrains;JetBrains Space;security;authentication;aspnetcore</PackageTags>
+        <PackageTags>JetBrains Space API security authentication aspnetcore</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>

@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <Description>Utilities to work with JetBrains.Space, the JetBrains Space SDK for .NET, in ASP.NET Core.</Description>
-        <PackageTags>JetBrains;JetBrains Space;aspnetcore</PackageTags>
+        <PackageTags>JetBrains Space API aspnetcore webhooks applications</PackageTags>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
     </PropertyGroup>
