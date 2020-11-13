@@ -1,8 +1,8 @@
 # JetBrains.Space ![](https://jb.gg/badges/incubator-flat-square.svg)
 
-The JetBrains Space SDK for .NET is a .NET library to work with the [JetBrains Space](https://jetbrains.com/space/) API. 
+The .NET SDK for JetBrains Space is a .NET library to work with the [JetBrains Space](https://jetbrains.com/space/) API. 
 
-> **Disclaimer:** This is a beta version of the JetBrains Space SDK for .NET. It relies on the Space API, which is still in beta and subject to change. By using the current beta JetBrains Space SDK for .NET, you expressly acknowledge that this version of the beta JetBrains Space SDK for .NET may not be reliable, may not work as intended, and may contain errors. Any use of this beta JetBrains Space SDK for .NET is at your own risk.
+> **Disclaimer:** This is a beta version of the .NET SDK for JetBrains Space. It relies on the Space API, which is still in beta and subject to change. By using the current beta .NET SDK for JetBrains Space, you expressly acknowledge that this version of the beta .NET SDK for JetBrains Space may not be reliable, may not work as intended, and may contain errors. Any use of this beta .NET SDK for JetBrains Space is at your own risk.
 
 ## Overview
 
@@ -534,7 +534,7 @@ Have a look at the `JetBrains.Space.Samples.Web` project in the JetBrains.Space 
 
 ## Continuous integration builds NuGet feed
 
-The JetBrains Space SDK for .NET is available on [NuGet.org](https://www.nuget.org/).
+The .NET SDK for JetBrains Space is available on [NuGet.org](https://www.nuget.org/).
 Continuous integration packages are available on [public.jetbrains.space](https://nuget.pkg.jetbrains.space/public/p/space-api-client/nuget/v3/index.json).
 
 To access continuous integration packages, add a file named `NuGet.config` in the same folder as your solution / `.sln` file, with the following contents:
