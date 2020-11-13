@@ -32,6 +32,12 @@ namespace _build
 
         [Parameter("Space (Public) - NuGet target API key / access token", Name = "JB_SPACE_PUBLIC_CLIENT_TOKEN")]
         readonly string? NuGetPublicSpaceTargetApiKey;
+
+        [Parameter("NuGet.org - NuGet target URL", Name = "JB_SPACE_NUGETORG_NUGET_URL")]
+        readonly string? NuGetOrgTargetUrl;
+
+        [Parameter("NuGet.org - NuGet target API key / access token", Name = "JB_SPACE_NUGETORG_CLIENT_TOKEN")]
+        readonly string? NuGetOrgTargetApiKey;
     
         [Solution] readonly Solution? Solution;
         [VersionInfo(VersionMajor = 1, VersionMinor = 0)] readonly VersionInfo? VersionInfo;
@@ -132,6 +138,26 @@ namespace _build
                 DotNetNuGetPush(_ => _
                         .SetSource(NuGetPublicSpaceTargetUrl)
                         .SetApiKey(NuGetPublicSpaceTargetApiKey)
+                        .CombineWith(packages, (_, v) => _
+                            .SetTargetPath(v)),
+                    degreeOfParallelism: 5,
+                    completeOnFailure: true);
+            });
+
+        Target PushPackagesToNuGetOrg => _ => _
+            .TriggeredBy(Package)
+            .OnlyWhenStatic(() =>
+                (Environment.GetEnvironmentVariable("JB_SPACE_GIT_BRANCH") ?? "").Contains("main", StringComparison.OrdinalIgnoreCase) &&
+                !string.IsNullOrEmpty(NuGetOrgTargetUrl) &&
+                !string.IsNullOrEmpty(NuGetOrgTargetApiKey))
+            .WhenSkipped(DependencyBehavior.Execute)
+            .Executes(() =>
+            {
+                var packages = ArtifactsDirectory.GlobFiles("*.nupkg", "*.snupkg");
+            
+                DotNetNuGetPush(_ => _
+                        .SetSource(NuGetOrgTargetUrl)
+                        .SetApiKey(NuGetOrgTargetApiKey)
                         .CombineWith(packages, (_, v) => _
                             .SetTargetPath(v)),
                     degreeOfParallelism: 5,
