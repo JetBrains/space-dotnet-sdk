@@ -543,7 +543,7 @@ To access continuous integration packages, add a file named `NuGet.config` in th
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
-    <add key="SpaceDotNet" value="https://nuget.pkg.jetbrains.space/public/p/space-api-client/nuget/v3/index.json" protocolVersion="3" />
+    <add key="SpaceDotNet" value="https://nuget.pkg.jetbrains.space/public/p/space-sdk/nuget/v3/index.json" protocolVersion="3" />
   </packageSources>
 </configuration>
 ```
