@@ -105,20 +105,6 @@ namespace JetBrains.Space.Client
         /// </remarks>
         public IAsyncEnumerable<AbsenceRecord> GetAllAbsencesAsyncEnumerable(AbsenceListMode? viewMode = null, string? skip = null, int? top = 100, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, Func<Partial<AbsenceRecord>, Partial<AbsenceRecord>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllAbsencesAsync(viewMode: viewMode, top: top, member: member, members: members, location: location, team: team, since: since, till: till, reason: reason, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<AbsenceRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<AbsenceRecord>.Default())), skip, cancellationToken);
-        
-        /// <summary>
-        /// Search absences. Parameters are applied as 'AND' filters.
-        /// </summary>
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View absences</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<int> GetAllAbsencesCountAsync(AbsenceListMode? viewMode = null, string? member = null, List<string>? members = null, string? location = null, string? team = null, DateTime? since = null, DateTime? till = null, string? reason = null, CancellationToken cancellationToken = default)
-            => (await GetAllAbsencesAsync(viewMode: viewMode, member: member, members: members, location: location, team: team, since: since, till: till, reason: reason, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
         /// <summary>
         /// Get absences for a given profile id.

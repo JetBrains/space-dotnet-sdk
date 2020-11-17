@@ -89,17 +89,6 @@ namespace JetBrains.Space.Client
             /// </remarks>
             public IAsyncEnumerable<ArticleRecord> GetAllArticlesAsyncEnumerable(string? skip = null, int? top = 100, string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, Func<Partial<ArticleRecord>, Partial<ArticleRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllArticlesAsync(top: top, term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<ArticleRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<ArticleRecord>.Default())), skip, cancellationToken);
-            
-            /// <remarks>
-            /// Required permissions:
-            /// <list type="bullet">
-            /// <item>
-            /// <term>View articles</term>
-            /// </item>
-            /// </list>
-            /// </remarks>
-            public async Task<int> GetAllArticlesCountAsync(string? term = null, DateTime? dateFrom = null, DateTime? dateTo = null, string? authorId = null, string? teamId = null, string? locationId = null, string? forProfile = null, CancellationToken cancellationToken = default)
-                => (await GetAllArticlesAsync(term: term, dateFrom: dateFrom, dateTo: dateTo, authorId: authorId, teamId: teamId, locationId: locationId, forProfile: forProfile, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <remarks>
             /// Required permissions:

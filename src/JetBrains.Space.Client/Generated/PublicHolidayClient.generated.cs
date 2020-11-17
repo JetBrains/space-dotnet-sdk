@@ -78,12 +78,6 @@ namespace JetBrains.Space.Client
             /// </summary>
             public IAsyncEnumerable<PublicHolidayCalendarRecord> GetAllCalendarsAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<PublicHolidayCalendarRecord>, Partial<PublicHolidayCalendarRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllCalendarsAsync(top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHolidayCalendarRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHolidayCalendarRecord>.Default())), skip, cancellationToken);
-            
-            /// <summary>
-            /// Get all public holiday calendars.
-            /// </summary>
-            public async Task<int> GetAllCalendarsCountAsync(CancellationToken cancellationToken = default)
-                => (await GetAllCalendarsAsync(cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update an existing public holiday calendar.
@@ -140,12 +134,6 @@ namespace JetBrains.Space.Client
             /// </summary>
             public IAsyncEnumerable<PublicHoliday> GetAllHolidaysAsyncEnumerable(string? skip = null, int? top = 100, string? calendar = null, string? location = null, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllHolidaysAsync(top: top, calendar: calendar, location: location, startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHoliday>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHoliday>.Default())), skip, cancellationToken);
-            
-            /// <summary>
-            /// Get/search all holidays in a public holiday calendar. Parameters are applied as 'AND' filters.
-            /// </summary>
-            public async Task<int> GetAllHolidaysCountAsync(string? calendar = null, string? location = null, DateTime? startDate = null, DateTime? endDate = null, CancellationToken cancellationToken = default)
-                => (await GetAllHolidaysAsync(calendar: calendar, location: location, startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
             /// <summary>
             /// Update a holiday in a public holiday calendar. Optional parameters will be ignored when not specified, and updated otherwise.
@@ -208,12 +196,6 @@ namespace JetBrains.Space.Client
                 /// </summary>
                 public IAsyncEnumerable<PublicHoliday> GetAllRelatedHolidaysAsyncEnumerable(string? skip = null, int? top = 100, DateTime? startDate = null, DateTime? endDate = null, Func<Partial<PublicHoliday>, Partial<PublicHoliday>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllRelatedHolidaysAsync(top: top, startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PublicHoliday>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PublicHoliday>.Default())), skip, cancellationToken);
-                
-                /// <summary>
-                /// Search related holidays in all public holiday calendars, during the selected period.
-                /// </summary>
-                public async Task<int> GetAllRelatedHolidaysCountAsync(DateTime? startDate = null, DateTime? endDate = null, CancellationToken cancellationToken = default)
-                    => (await GetAllRelatedHolidaysAsync(startDate: startDate, endDate: endDate, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
             }
         

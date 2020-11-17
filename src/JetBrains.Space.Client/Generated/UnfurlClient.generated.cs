@@ -90,9 +90,6 @@ namespace JetBrains.Space.Client
         
         public IAsyncEnumerable<UnfurlsBlockListEntry> ListBlockedAsyncEnumerable(string? skip = null, int? top = 100, Func<Partial<UnfurlsBlockListEntry>, Partial<UnfurlsBlockListEntry>>? partial = null, CancellationToken cancellationToken = default)
             => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => ListBlockedAsync(top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<UnfurlsBlockListEntry>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UnfurlsBlockListEntry>.Default())), skip, cancellationToken);
-        
-        public async Task<int> ListBlockedCountAsync(CancellationToken cancellationToken = default)
-            => (await ListBlockedAsync(cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
     
     }
     

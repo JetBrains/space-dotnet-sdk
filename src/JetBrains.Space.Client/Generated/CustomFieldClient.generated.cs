@@ -75,12 +75,6 @@ namespace JetBrains.Space.Client
             /// </summary>
             public IAsyncEnumerable<CustomFieldsRecord> GetAllValuesAsyncEnumerable(string typeKey, ExtendedTypeScope scope, string? skip = null, int? top = 100, List<string>? extendedEntityIds = null, Func<Partial<CustomFieldsRecord>, Partial<CustomFieldsRecord>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllValuesAsync(typeKey: typeKey, scope: scope, top: top, extendedEntityIds: extendedEntityIds, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<CustomFieldsRecord>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<CustomFieldsRecord>.Default())), skip, cancellationToken);
-            
-            /// <summary>
-            /// Get all custom field values for a type. Optionally, extendedEntityIds can be used to get data for one or more entity ids.
-            /// </summary>
-            public async Task<int> GetAllValuesCountAsync(string typeKey, ExtendedTypeScope scope, List<string>? extendedEntityIds = null, CancellationToken cancellationToken = default)
-                => (await GetAllValuesAsync(typeKey: typeKey, scope: scope, extendedEntityIds: extendedEntityIds, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
         
         }
     

@@ -154,17 +154,6 @@ namespace JetBrains.Space.Client
                 /// </remarks>
                 public IAsyncEnumerable<UAUserAgreementStatus> GetAllUserAgreementStatusesAsyncEnumerable(string query = "", bool activeProfilesOnly = true, string? skip = null, int? top = 100, bool? accepted = null, Func<Partial<UAUserAgreementStatus>, Partial<UAUserAgreementStatus>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllUserAgreementStatusesAsync(query: query, activeProfilesOnly: activeProfilesOnly, top: top, accepted: accepted, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<UAUserAgreementStatus>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<UAUserAgreementStatus>.Default())), skip, cancellationToken);
-                
-                /// <remarks>
-                /// Required permissions:
-                /// <list type="bullet">
-                /// <item>
-                /// <term>Superadmin</term>
-                /// </item>
-                /// </list>
-                /// </remarks>
-                public async Task<int> GetAllUserAgreementStatusesCountAsync(string query = "", bool activeProfilesOnly = true, bool? accepted = null, CancellationToken cancellationToken = default)
-                    => (await GetAllUserAgreementStatusesAsync(query: query, activeProfilesOnly: activeProfilesOnly, accepted: accepted, cancellationToken: cancellationToken, skip: null, top: 1)).TotalCount.GetValueOrDefault();
             
                 /// <remarks>
                 /// Required permissions:
