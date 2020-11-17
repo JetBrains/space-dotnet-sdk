@@ -11,7 +11,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Extensions
         {
             var classNameForParent = CSharpIdentifier.ForClassOrNamespace(parent.Name);
             var classNameForSubject = CSharpIdentifier.ForClassOrNamespace(subject.Name);
-            var factoryMethodName = classNameForSubject.Replace(classNameForParent, string.Empty);
+            var factoryMethodName = CSharpIdentifier.ForClassOrNamespace(
+                classNameForSubject.Replace(classNameForParent, string.Empty));
 
             return factoryMethodName;
         }

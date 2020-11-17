@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Text;
 using JetBrains.Space.Common.Utilities;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp
@@ -41,6 +42,8 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
             string.Join("", 
                 subject
                     .WithStartingDigitReplaced()
+                    .Replace(" ", "_")
+                    .Replace(":", "_")
                     .Replace("{", "For-")
                     .Replace("}", string.Empty)
                     .Replace("[", string.Empty)

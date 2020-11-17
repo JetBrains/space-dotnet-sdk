@@ -10,8 +10,12 @@ namespace JetBrains.Space.Common.Json.Serialization.Internal
         public static string ForClassOrNamespace(string subject) =>
             string.Join("", 
                 subject
+                    .Replace(" ", "_")
+                    .Replace(":", "_")
                     .Replace("{", "For-")
                     .Replace("}", string.Empty)
+                    .Replace("[", string.Empty)
+                    .Replace("]", string.Empty)
                     .Replace("?", string.Empty)
                     .Replace("'s", string.Empty)
                     .Split(IdentifierSeparators)
