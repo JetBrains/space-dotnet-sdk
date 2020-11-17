@@ -4,14 +4,23 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <Description>Generates the SDK client for the JetBrains Space API.</Description>
+
+        <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="All" />
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Workspaces" Version="3.8.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.3.1" PrivateAssets="All" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\JetBrains.Space.Common\JetBrains.Space.Common.csproj" />
+        <ProjectReference Include="..\JetBrains.Space.Common\JetBrains.Space.Common.csproj" />
     </ItemGroup>
-
+    
+    <Target Name="_AddAnalyzersToOutput">
+        <ItemGroup>
+            <TfmSpecificPackageFile Include="$(OutputPath)\JetBrains.Space.Generator.dll" PackagePath="analyzers/dotnet/cs" />
+        </ItemGroup>
+    </Target>
 </Project>

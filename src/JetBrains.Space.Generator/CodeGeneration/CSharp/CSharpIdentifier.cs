@@ -1,5 +1,4 @@
 using System.Linq;
-using System.Text;
 using JetBrains.Space.Common.Utilities;
 
 namespace JetBrains.Space.Generator.CodeGeneration.CSharp

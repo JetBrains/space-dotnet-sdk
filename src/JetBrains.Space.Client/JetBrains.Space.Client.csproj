@@ -5,14 +5,26 @@
         <Description>Generated SDK client for the JetBrains Space API.</Description>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+        <EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="All" />
+        <PackageReference Include="JetBrains.Annotations" Version="2020.1.0" PrivateAssets="All" />
+        <PackageReference Include="Microsoft.Net.Compilers.Toolset" Version="3.8.0">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\JetBrains.Space.Common\JetBrains.Space.Common.csproj" />
+        <ProjectReference Include="..\JetBrains.Space.Common\JetBrains.Space.Common.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+        <!-- Source generator support -->
+        <ProjectReference Include="..\JetBrains.Space.Common\JetBrains.Space.Common.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+        <ProjectReference Include="..\JetBrains.Space.Generator\JetBrains.Space.Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 
 </Project>
