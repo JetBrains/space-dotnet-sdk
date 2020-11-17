@@ -120,8 +120,6 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
             {
                 builder.AppendLine();
                 builder.AppendLine(GenerateEnumerableMethodForBatchApiEndpoint(apiEndpoint, baseEndpointPath));
-                builder.AppendLine();
-                builder.AppendLine(GenerateCountMethodForBatchApiEndpoint(apiEndpoint, baseEndpointPath));
             }
 
             return builder.ToString();
@@ -401,77 +399,6 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp.Generators
                         .BuildMethodCallParameters());
                 
                 builder.Append("), skip, cancellationToken);");
-                indent.Decrement();
-            }
-            else
-            {
-                builder.AppendLine($"{indent}#warning UNSUPPORTED CASE - " + apiEndpoint.ToCSharpMethodName() + " - " + apiEndpoint.Method.ToHttpMethod() + " " + endpointPath);
-            }
-
-            return builder.ToString();
-        }
-
-        private string GenerateCountMethodForBatchApiEndpoint(ApiEndpoint apiEndpoint, string baseEndpointPath)
-        {
-            var indent = new Indent();
-            var builder = new StringBuilder();
-            
-            var endpointPath = (baseEndpointPath + "/" + apiEndpoint.Path.Segments.ToPath()).TrimEnd('/');
-
-            var methodNameForEndpoint = apiEndpoint.ToCSharpMethodName();
-            
-            var batchDataType = ((ApiFieldType.Object)apiEndpoint.ResponseBody!).GetBatchDataType()!;
-            
-            if (apiEndpoint.ResponseBody != null)
-            {
-                var methodParametersBuilder = new MethodParametersBuilder(_codeGenerationContext)
-                    .WithParametersForApiParameters(apiEndpoint.Parameters);
-                
-                if (apiEndpoint.RequestBody != null)
-                {
-                    if (FeatureFlags.DoNotExposeRequestObjects)
-                    {
-                        methodParametersBuilder = methodParametersBuilder
-                            .WithParametersForApiFields(apiEndpoint.RequestBody.Fields);
-                    }
-                    else
-                    {
-                        methodParametersBuilder = methodParametersBuilder
-                            .WithParameter(
-                                apiEndpoint.ToCSharpRequestBodyClassName(endpointPath)!,
-                                "data");
-                    }
-                }
-
-                methodParametersBuilder = methodParametersBuilder
-                    .WithParameter(CSharpType.CancellationToken.Value,
-                        "cancellationToken",
-                        CSharpExpression.DefaultLiteral);
-
-                builder.Append(
-                    indent.Wrap(GenerateMethodDocumentationForEndpoint(apiEndpoint)));
-                builder.Append($"{indent}public async Task<int>");
-                builder.Append($" {methodNameForEndpoint}CountAsync(");
-                builder.Append(methodParametersBuilder
-                    .WithoutParameter("skip")
-                    .WithoutParameter("top")
-                    .BuildMethodParametersList());
-                builder.AppendLine(")");
-                
-                indent.Increment();
-                builder.Append($"{indent}=> (await {methodNameForEndpoint}Async(");
-
-                var partialTypeForBatch = "Partial<Batch<" + batchDataType.GetBatchElementTypeOrType().ToCSharpType(_codeGenerationContext) + ">>";
-                builder.Append(
-                    methodParametersBuilder
-                        .WithDefaultValueForAllParameters(null)
-                        .WithDefaultValueForParameter("skip", CSharpExpression.NullLiteral)
-                        .WithDefaultValueForParameter("top", "1")
-                        .WithDefaultValueForParameter("partial", $"builder => {partialTypeForBatch}.Default().WithTotalCount())")
-                        .WithDefaultValueForParameter(CSharpType.CancellationToken.Value, "batchCancellationToken")
-                        .BuildMethodCallParameters());
-                
-                builder.Append(")).TotalCount.GetValueOrDefault();");
                 indent.Decrement();
             }
             else

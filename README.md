@@ -260,7 +260,7 @@ We can cast these types, use `switch` expressions on their type, and more.
 
 Many operations in the Space API return a collection of results. To guarantee performance, these responses will be paginated, and can be retrieved in batches.
 
-A batch will always return the total count of items that will be returned after fetching all pages, and contains the data as well:
+A batch contains the data, and may return the total count of items that will be returned after fetching all pages:
 
 ```csharp
 public class Batch<T>
@@ -325,22 +325,15 @@ await foreach (var todo in _todoClient.GetAllTodoItemsAsyncEnumerable(
 
 The [`System.Linq.Async`](https://www.nuget.org/packages/System.Linq.Async) NuGet package may assist in using `IAsyncEnumerable`, with utilities like `FirstOrDefaultAsync()` and more.
 
-> **Tip:** To retrieve the total result count, without any other properties, don't use the `IAsyncEnumerable` overload. 
->
-> Instead, use the overload that retrieves just the total count:
->
-> ```csharp
-> var numberOfResults = await _todoClient.GetAllToDoItemsCountAsync(
->     from: weekStart.AsSpaceDate());
-> ```
-> 
-> Alternatively, retrieve only the `TotalCount` property for this batch:
+> **Tip:** To retrieve the total result count, without any other properties, don't use the `IAsyncEnumerable` overload. Instead of iterating over all results, retrieve only the `TotalCount` property for this batch:
 >
 > ```csharp
 > var batch = await _todoClient.GetAllToDoItemsAsync(
 >     from: weekStart.AsSpaceDate(), partial: _ => _.WithTotalCount());
 > var numberOfResults = batch.TotalCount;
 > ```
+> 
+> **Keep in mind that some endpoints do not return the total count as part of tha batch.** For these cases, iterating over results is the only manner to get the total number of results.
 
 ## JetBrains.Space.AspNetCore
 
