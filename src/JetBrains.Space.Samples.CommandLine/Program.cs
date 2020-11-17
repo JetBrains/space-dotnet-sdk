@@ -27,10 +27,6 @@ namespace JetBrains.Space.Samples.CommandLine
             // User to add to chat later on
             var chatChannelName = "SpaceDotNet";
             
-            // Get number of profiles
-            var totalProfiles = await teamDirectoryClient.Profiles.GetAllProfilesCountAsync();
-            Console.WriteLine($"There are {totalProfiles} profiles in Space.");
-            
             // Get all profiles with their names
             await foreach (var profile in teamDirectoryClient.Profiles.GetAllProfilesAsyncEnumerable("", false, false, partial: _ => _
                 .WithId()
