@@ -111,13 +111,6 @@ namespace JetBrains.Space.Generator.CodeGeneration.CSharp
             return new MethodParametersBuilder(_context, futureParameters);
         }
 
-        public MethodParametersBuilder WithoutParameter(string name)
-        {
-            var futureParameters = new List<MethodParameter>();
-            futureParameters.AddRange(_parameters.Where(it => it.Name != name));
-            return new MethodParametersBuilder(_context, futureParameters);
-        }
-        
         public MethodParametersBuilder WithDefaultValueForAllParameters(string? defaultValue)
         {
             var futureParameters = new List<MethodParameter>();
