@@ -50,6 +50,12 @@ namespace JetBrains.Space.Client
         public static IntListCFValue IntList(List<int> values)
             => new IntListCFValue(values: values);
         
+        public static OpenEnumCFValue OpenEnum(EnumValueData? value = null)
+            => new OpenEnumCFValue(value: value);
+        
+        public static OpenEnumListCFValue OpenEnumList(List<EnumValueData> values)
+            => new OpenEnumListCFValue(values: values);
+        
         public static PercentageCFValue Percentage(int? value = null)
             => new PercentageCFValue(value: value);
         

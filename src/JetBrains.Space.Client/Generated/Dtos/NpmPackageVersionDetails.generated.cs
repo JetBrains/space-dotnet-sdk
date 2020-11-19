@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
         
         public NpmPackageVersionDetails() { }
         
-        public NpmPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, List<NpmPackageDependency> dependencies, List<string> keywords, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, Dictionary<string, string>? metadata = null, string? description = null, string? license = null, string? projectUrl = null, string? repositoryUrl = null, string? repositoryRevision = null, string? readme = null)
+        public NpmPackageVersionDetails(PackageType type, string repository, string name, string version, long created, long downloads, long diskSize, List<NpmPackageDependency> dependencies, List<string> keywords, List<string>? tags = null, long? accessed = null, CPrincipal? author = null, List<CPrincipal>? authors = null, PackageOrigin? origin = null, Dictionary<string, string>? metadata = null, string? description = null, string? license = null, string? projectUrl = null, string? repositoryUrl = null, string? repositoryRevision = null, string? readme = null)
         {
             Type = type;
             Repository = repository;
@@ -46,6 +46,7 @@ namespace JetBrains.Space.Client
             DiskSize = diskSize;
             Author = author;
             Authors = authors;
+            Origin = origin;
             Metadata = metadata;
             Description = description;
             Dependencies = dependencies;
@@ -163,6 +164,15 @@ namespace JetBrains.Space.Client
             set => _authors.SetValue(value);
         }
     
+        private PropertyValue<PackageOrigin?> _origin = new PropertyValue<PackageOrigin?>(nameof(NpmPackageVersionDetails), nameof(Origin));
+        
+        [JsonPropertyName("origin")]
+        public PackageOrigin? Origin
+        {
+            get => _origin.GetValue();
+            set => _origin.SetValue(value);
+        }
+    
         private PropertyValue<Dictionary<string, string>?> _metadata = new PropertyValue<Dictionary<string, string>?>(nameof(NpmPackageVersionDetails), nameof(Metadata));
         
         [JsonPropertyName("metadata")]
@@ -259,6 +269,7 @@ namespace JetBrains.Space.Client
             _diskSize.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _authors.SetAccessPath(path, validateHasBeenSet);
+            _origin.SetAccessPath(path, validateHasBeenSet);
             _metadata.SetAccessPath(path, validateHasBeenSet);
             _description.SetAccessPath(path, validateHasBeenSet);
             _dependencies.SetAccessPath(path, validateHasBeenSet);

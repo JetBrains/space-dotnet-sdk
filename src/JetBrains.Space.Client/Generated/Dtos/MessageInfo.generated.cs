@@ -30,13 +30,14 @@ namespace JetBrains.Space.Client
     {
         public MessageInfo() { }
         
-        public MessageInfo(string id, string text, long time, CPrincipal author, string? attachments = null)
+        public MessageInfo(string id, string text, long time, CPrincipal author, string? attachments = null, bool? inThirdPerson = null)
         {
             Id = id;
             Text = text;
             Time = time;
             Author = author;
             Attachments = attachments;
+            IsInThirdPerson = inThirdPerson;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(MessageInfo), nameof(Id));
@@ -88,6 +89,15 @@ namespace JetBrains.Space.Client
             set => _attachments.SetValue(value);
         }
     
+        private PropertyValue<bool?> _inThirdPerson = new PropertyValue<bool?>(nameof(MessageInfo), nameof(IsInThirdPerson));
+        
+        [JsonPropertyName("inThirdPerson")]
+        public bool? IsInThirdPerson
+        {
+            get => _inThirdPerson.GetValue();
+            set => _inThirdPerson.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
@@ -95,6 +105,7 @@ namespace JetBrains.Space.Client
             _time.SetAccessPath(path, validateHasBeenSet);
             _author.SetAccessPath(path, validateHasBeenSet);
             _attachments.SetAccessPath(path, validateHasBeenSet);
+            _inThirdPerson.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

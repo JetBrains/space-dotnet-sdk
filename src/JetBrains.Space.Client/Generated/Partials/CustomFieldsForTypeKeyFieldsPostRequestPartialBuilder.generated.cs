@@ -63,6 +63,12 @@ namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsPostRequestPartialB
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithDefaultValue(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFValue>, Partial<CFValue>> partialBuilder)
             => it.AddFieldName("defaultValue", partialBuilder(new Partial<CFValue>(it)));
         
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
+            => it.AddFieldName("openEnumValuesModification");
+        
+        public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it, Func<Partial<CFEnumValuesModification>, Partial<CFEnumValuesModification>> partialBuilder)
+            => it.AddFieldName("openEnumValuesModification", partialBuilder(new Partial<CFEnumValuesModification>(it)));
+        
         public static Partial<CustomFieldsForTypeKeyFieldsPostRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsPostRequest> it)
             => it.AddFieldName("scope");
         

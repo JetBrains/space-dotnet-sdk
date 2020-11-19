@@ -31,14 +31,14 @@ namespace JetBrains.Space.Client
         public static ArticleHitDetails ArticleHitDetails(ArticleRecord @ref)
             => new ArticleHitDetails(@ref: @ref);
         
-        public static BookHitDetails BookHitDetails(KBBook @ref, string contextName)
-            => new BookHitDetails(@ref: @ref, contextName: contextName);
+        public static BookHitDetails BookHitDetails(KBBook @ref, PRProject? projectRef = null, TDMemberProfile? authorRef = null)
+            => new BookHitDetails(@ref: @ref, projectRef: projectRef, authorRef: authorRef);
         
-        public static FolderHitDetails FolderHitDetails(KBFolder @ref, KBBook bookRef, string contextName)
-            => new FolderHitDetails(@ref: @ref, bookRef: bookRef, contextName: contextName);
+        public static FolderHitDetails FolderHitDetails(KBFolder @ref, KBBook bookRef, PRProject? projectRef = null, TDMemberProfile? authorRef = null)
+            => new FolderHitDetails(@ref: @ref, bookRef: bookRef, projectRef: projectRef, authorRef: authorRef);
         
-        public static KbArticleHitDetails KbArticleHitDetails(string id, KBBook bookRef, string contextName)
-            => new KbArticleHitDetails(id: id, bookRef: bookRef, contextName: contextName);
+        public static KbArticleHitDetails KbArticleHitDetails(string id, KBBook bookRef, PRProject? projectRef = null, TDMemberProfile? authorRef = null)
+            => new KbArticleHitDetails(id: id, bookRef: bookRef, projectRef: projectRef, authorRef: authorRef);
         
         public static MessageHitDetails MessageHitDetails(ChannelItemRecord @ref, M2ChannelRecord channel, M2ChatReader readerRef, bool threadStarter, string? thread = null)
             => new MessageHitDetails(@ref: @ref, channel: channel, readerRef: readerRef, threadStarter: threadStarter, thread: thread);

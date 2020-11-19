@@ -78,6 +78,42 @@ namespace JetBrains.Space.Client
         
         }
     
+        public EnumValueClient EnumValues => new EnumValueClient(_connection);
+        
+        public partial class EnumValueClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public EnumValueClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Add new option to custom field of `Select from options` type. Options can only be added via this API call if custom field has the `New options can be added on the fly` flag set. Returns saved records.
+            /// </summary>
+            public async Task<List<EnumValueData>> CreateEnumValueAsync(string typeKey, string customFieldId, List<EnumValueData> valuesToAdd, ExtendedTypeScope scope, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest, List<EnumValueData>>("POST", $"api/http/custom-fields/{typeKey}/enum-values/{customFieldId}?$fields={(partial != null ? partial(new Partial<EnumValueData>()) : Partial<EnumValueData>.Default())}", 
+                    new CustomFieldsForTypeKeyEnumValuesForCustomFieldIdPostRequest { 
+                        ValuesToAdd = valuesToAdd,
+                        Scope = scope,
+                    }
+            , cancellationToken);
+        
+            /// <summary>
+            /// Get all types that support custom fields.
+            /// </summary>
+            public async Task<Batch<EnumValueData>> GetAllEnumValuesAsync(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering? ordering = null, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<EnumValueData>>, Partial<Batch<EnumValueData>>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Batch<EnumValueData>>("GET", $"api/http/custom-fields/{typeKey}/enum-values/{customFieldId}?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&ordering={(ordering ?? EnumValueOrdering.NAMEASC).ToString()}&scope={scope.ToString()}&$fields={(partial != null ? partial(new Partial<Batch<EnumValueData>>()) : Partial<Batch<EnumValueData>>.Default())}", cancellationToken);
+            
+            /// <summary>
+            /// Get all types that support custom fields.
+            /// </summary>
+            public IAsyncEnumerable<EnumValueData> GetAllEnumValuesAsyncEnumerable(string typeKey, string customFieldId, ExtendedTypeScope scope, EnumValueOrdering? ordering = null, string? skip = null, int? top = 100, string? query = null, Func<Partial<EnumValueData>, Partial<EnumValueData>>? partial = null, CancellationToken cancellationToken = default)
+                => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllEnumValuesAsync(typeKey: typeKey, customFieldId: customFieldId, ordering: ordering, scope: scope, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<EnumValueData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<EnumValueData>.Default())), skip, cancellationToken);
+        
+        }
+    
         public FieldClient Fields => new FieldClient(_connection);
         
         public partial class FieldClient : ISpaceClient
@@ -92,7 +128,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Create custom field for a type.
             /// </summary>
-            public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
+            public async Task<CustomField> CreateFieldAsync(string typeKey, string name, CFType type, bool required, bool @private, CFValue defaultValue, ExtendedTypeScope scope, string? description = null, CFConstraint? constraint = null, AccessType? access = null, CFEnumValuesModification? openEnumValuesModification = null, Func<Partial<CustomField>, Partial<CustomField>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<CustomFieldsForTypeKeyFieldsPostRequest, CustomField>("POST", $"api/http/custom-fields/{typeKey}/fields?$fields={(partial != null ? partial(new Partial<CustomField>()) : Partial<CustomField>.Default())}", 
                     new CustomFieldsForTypeKeyFieldsPostRequest { 
                         Name = name,
@@ -103,6 +139,7 @@ namespace JetBrains.Space.Client
                         IsPrivate = @private,
                         Access = access,
                         DefaultValue = defaultValue,
+                        OpenEnumValuesModification = openEnumValuesModification,
                         Scope = scope,
                     }
             , cancellationToken);
@@ -147,7 +184,7 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Update custom field for a type. Optional parameters will be ignored when not specified, and updated otherwise.
             /// </summary>
-            public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null, CancellationToken cancellationToken = default)
+            public async Task UpdateFieldAsync(string typeKey, string id, ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync("PATCH", $"api/http/custom-fields/{typeKey}/fields/{id}", 
                     new CustomFieldsForTypeKeyFieldsForIdPatchRequest { 
                         Name = name,
@@ -158,6 +195,7 @@ namespace JetBrains.Space.Client
                         Access = access,
                         DefaultValue = defaultValue,
                         EnumValues = enumValues,
+                        OpenEnumValuesModification = openEnumValuesModification,
                         Scope = scope,
                     }
             , cancellationToken);

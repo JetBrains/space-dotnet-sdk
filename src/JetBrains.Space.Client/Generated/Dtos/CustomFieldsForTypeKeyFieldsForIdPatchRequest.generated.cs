@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public CustomFieldsForTypeKeyFieldsForIdPatchRequest() { }
         
-        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null)
+        public CustomFieldsForTypeKeyFieldsForIdPatchRequest(ExtendedTypeScope scope, string? name = null, string? description = null, CFConstraint? constraint = null, bool? required = null, bool? @private = null, AccessType? access = null, CFValue? defaultValue = null, List<EnumValueData>? enumValues = null, CFEnumValuesModification? openEnumValuesModification = null)
         {
             Name = name;
             Description = description;
@@ -40,6 +40,7 @@ namespace JetBrains.Space.Client
             Access = access;
             DefaultValue = defaultValue;
             EnumValues = enumValues;
+            OpenEnumValuesModification = openEnumValuesModification;
             Scope = scope;
         }
         
@@ -115,6 +116,15 @@ namespace JetBrains.Space.Client
             set => _enumValues.SetValue(value);
         }
     
+        private PropertyValue<CFEnumValuesModification?> _openEnumValuesModification = new PropertyValue<CFEnumValuesModification?>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(OpenEnumValuesModification));
+        
+        [JsonPropertyName("openEnumValuesModification")]
+        public CFEnumValuesModification? OpenEnumValuesModification
+        {
+            get => _openEnumValuesModification.GetValue();
+            set => _openEnumValuesModification.SetValue(value);
+        }
+    
         private PropertyValue<ExtendedTypeScope> _scope = new PropertyValue<ExtendedTypeScope>(nameof(CustomFieldsForTypeKeyFieldsForIdPatchRequest), nameof(Scope));
         
         [Required]
@@ -135,6 +145,7 @@ namespace JetBrains.Space.Client
             _access.SetAccessPath(path, validateHasBeenSet);
             _defaultValue.SetAccessPath(path, validateHasBeenSet);
             _enumValues.SetAccessPath(path, validateHasBeenSet);
+            _openEnumValuesModification.SetAccessPath(path, validateHasBeenSet);
             _scope.SetAccessPath(path, validateHasBeenSet);
         }
     

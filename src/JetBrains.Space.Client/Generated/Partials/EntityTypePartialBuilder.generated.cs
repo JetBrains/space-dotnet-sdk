@@ -33,6 +33,9 @@ namespace JetBrains.Space.Client.EntityTypePartialBuilder
         public static Partial<EntityType> WithDisplayName(this Partial<EntityType> it)
             => it.AddFieldName("displayName");
         
+        public static Partial<EntityType> WithGroupKey(this Partial<EntityType> it)
+            => it.AddFieldName("groupKey");
+        
         public static Partial<EntityType> WithGroupName(this Partial<EntityType> it)
             => it.AddFieldName("groupName");
         

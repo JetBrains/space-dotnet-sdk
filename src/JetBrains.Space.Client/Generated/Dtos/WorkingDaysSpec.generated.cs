@@ -30,9 +30,11 @@ namespace JetBrains.Space.Client
     {
         public WorkingDaysSpec() { }
         
-        public WorkingDaysSpec(List<Workday> days)
+        public WorkingDaysSpec(List<Workday> days, List<WeekDayTimeInterval>? workingHours = null, List<WeekDayTimeInterval>? notificationHours = null)
         {
             Days = days;
+            WorkingHours = workingHours;
+            NotificationHours = notificationHours;
         }
         
         private PropertyValue<List<Workday>> _days = new PropertyValue<List<Workday>>(nameof(WorkingDaysSpec), nameof(Days));
@@ -45,9 +47,29 @@ namespace JetBrains.Space.Client
             set => _days.SetValue(value);
         }
     
+        private PropertyValue<List<WeekDayTimeInterval>?> _workingHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(WorkingHours));
+        
+        [JsonPropertyName("workingHours")]
+        public List<WeekDayTimeInterval>? WorkingHours
+        {
+            get => _workingHours.GetValue();
+            set => _workingHours.SetValue(value);
+        }
+    
+        private PropertyValue<List<WeekDayTimeInterval>?> _notificationHours = new PropertyValue<List<WeekDayTimeInterval>?>(nameof(WorkingDaysSpec), nameof(NotificationHours));
+        
+        [JsonPropertyName("notificationHours")]
+        public List<WeekDayTimeInterval>? NotificationHours
+        {
+            get => _notificationHours.GetValue();
+            set => _notificationHours.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _days.SetAccessPath(path, validateHasBeenSet);
+            _workingHours.SetAccessPath(path, validateHasBeenSet);
+            _notificationHours.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

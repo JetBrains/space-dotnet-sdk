@@ -72,6 +72,18 @@ namespace JetBrains.Space.Client.PRProjectPartialBuilder
         public static Partial<PRProject> WithBoards(this Partial<PRProject> it, Func<Partial<BoardRecord>, Partial<BoardRecord>> partialBuilder)
             => it.AddFieldName("boards", partialBuilder(new Partial<BoardRecord>(it)));
         
+        public static Partial<PRProject> WithCollaboratorsProfiles(this Partial<PRProject> it)
+            => it.AddFieldName("collaboratorsProfiles");
+        
+        public static Partial<PRProject> WithCollaboratorsProfiles(this Partial<PRProject> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+            => it.AddFieldName("collaboratorsProfiles", partialBuilder(new Partial<TDMemberProfile>(it)));
+        
+        public static Partial<PRProject> WithCollaboratorsTeams(this Partial<PRProject> it)
+            => it.AddFieldName("collaboratorsTeams");
+        
+        public static Partial<PRProject> WithCollaboratorsTeams(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+            => it.AddFieldName("collaboratorsTeams", partialBuilder(new Partial<TDTeam>(it)));
+        
         public static Partial<PRProject> WithMemberProfiles(this Partial<PRProject> it)
             => it.AddFieldName("memberProfiles");
         
@@ -83,6 +95,12 @@ namespace JetBrains.Space.Client.PRProjectPartialBuilder
         
         public static Partial<PRProject> WithMemberTeams(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
             => it.AddFieldName("memberTeams", partialBuilder(new Partial<TDTeam>(it)));
+        
+        public static Partial<PRProject> WithMembers(this Partial<PRProject> it)
+            => it.AddFieldName("members");
+        
+        public static Partial<PRProject> WithMembers(this Partial<PRProject> it, Func<Partial<ProjectTeamMemberRecord>, Partial<ProjectTeamMemberRecord>> partialBuilder)
+            => it.AddFieldName("members", partialBuilder(new Partial<ProjectTeamMemberRecord>(it)));
         
         public static Partial<PRProject> WithPackages(this Partial<PRProject> it)
             => it.AddFieldName("packages");
@@ -99,11 +117,29 @@ namespace JetBrains.Space.Client.PRProjectPartialBuilder
         public static Partial<PRProject> WithTags(this Partial<PRProject> it)
             => it.AddFieldName("tags");
         
+        public static Partial<PRProject> WithTeam(this Partial<PRProject> it)
+            => it.AddFieldName("team");
+        
+        public static Partial<PRProject> WithTeam(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+            => it.AddFieldName("team", partialBuilder(new Partial<TDTeam>(it)));
+        
+        public static Partial<PRProject> WithTeams(this Partial<PRProject> it)
+            => it.AddFieldName("teams");
+        
+        public static Partial<PRProject> WithTeams(this Partial<PRProject> it, Func<Partial<TDTeam>, Partial<TDTeam>> partialBuilder)
+            => it.AddFieldName("teams", partialBuilder(new Partial<TDTeam>(it)));
+        
         public static Partial<PRProject> WithTrackers(this Partial<PRProject> it)
             => it.AddFieldName("trackers");
         
         public static Partial<PRProject> WithTrackers(this Partial<PRProject> it, Func<Partial<ProjectIssueTrackerItem>, Partial<ProjectIssueTrackerItem>> partialBuilder)
             => it.AddFieldName("trackers", partialBuilder(new Partial<ProjectIssueTrackerItem>(it)));
+        
+        public static Partial<PRProject> WithType(this Partial<PRProject> it)
+            => it.AddFieldName("type");
+        
+        public static Partial<PRProject> WithType(this Partial<PRProject> it, Func<Partial<ProjectTeamType>, Partial<ProjectTeamType>> partialBuilder)
+            => it.AddFieldName("type", partialBuilder(new Partial<ProjectTeamType>(it)));
         
     }
     

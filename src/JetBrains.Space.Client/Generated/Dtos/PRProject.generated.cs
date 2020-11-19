@@ -30,7 +30,7 @@ namespace JetBrains.Space.Client
     {
         public PRProject() { }
         
-        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null)
+        public PRProject(string id, ProjectKey key, string name, bool @private, bool archived, List<TDMemberProfile> adminProfiles, List<TDTeam> adminTeams, List<BoardRecord> boards, List<TDMemberProfile> collaboratorsProfiles, List<TDTeam> collaboratorsTeams, List<TDMemberProfile> memberProfiles, List<TDTeam> memberTeams, List<ProjectPackageRepository> packages, List<PRRepositoryInfo> repos, List<string> tags, List<ProjectIssueTrackerItem> trackers, ProjectTeamType type, string? description = null, string? icon = null, DateTime? latestRepositoryActivity = null, List<ProjectTeamMemberRecord>? members = null, TDTeam? team = null, List<TDTeam>? teams = null)
         {
             Id = id;
             Key = key;
@@ -43,12 +43,18 @@ namespace JetBrains.Space.Client
             AdminProfiles = adminProfiles;
             AdminTeams = adminTeams;
             Boards = boards;
+            CollaboratorsProfiles = collaboratorsProfiles;
+            CollaboratorsTeams = collaboratorsTeams;
             MemberProfiles = memberProfiles;
             MemberTeams = memberTeams;
+            Members = members;
             Packages = packages;
             Repos = repos;
             Tags = tags;
+            Team = team;
+            Teams = teams;
             Trackers = trackers;
+            Type = type;
         }
         
         private PropertyValue<string> _id = new PropertyValue<string>(nameof(PRProject), nameof(Id));
@@ -159,6 +165,26 @@ namespace JetBrains.Space.Client
             set => _boards.SetValue(value);
         }
     
+        private PropertyValue<List<TDMemberProfile>> _collaboratorsProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(CollaboratorsProfiles));
+        
+        [Required]
+        [JsonPropertyName("collaboratorsProfiles")]
+        public List<TDMemberProfile> CollaboratorsProfiles
+        {
+            get => _collaboratorsProfiles.GetValue();
+            set => _collaboratorsProfiles.SetValue(value);
+        }
+    
+        private PropertyValue<List<TDTeam>> _collaboratorsTeams = new PropertyValue<List<TDTeam>>(nameof(PRProject), nameof(CollaboratorsTeams));
+        
+        [Required]
+        [JsonPropertyName("collaboratorsTeams")]
+        public List<TDTeam> CollaboratorsTeams
+        {
+            get => _collaboratorsTeams.GetValue();
+            set => _collaboratorsTeams.SetValue(value);
+        }
+    
         private PropertyValue<List<TDMemberProfile>> _memberProfiles = new PropertyValue<List<TDMemberProfile>>(nameof(PRProject), nameof(MemberProfiles));
         
         [Required]
@@ -177,6 +203,15 @@ namespace JetBrains.Space.Client
         {
             get => _memberTeams.GetValue();
             set => _memberTeams.SetValue(value);
+        }
+    
+        private PropertyValue<List<ProjectTeamMemberRecord>?> _members = new PropertyValue<List<ProjectTeamMemberRecord>?>(nameof(PRProject), nameof(Members));
+        
+        [JsonPropertyName("members")]
+        public List<ProjectTeamMemberRecord>? Members
+        {
+            get => _members.GetValue();
+            set => _members.SetValue(value);
         }
     
         private PropertyValue<List<ProjectPackageRepository>> _packages = new PropertyValue<List<ProjectPackageRepository>>(nameof(PRProject), nameof(Packages));
@@ -209,6 +244,24 @@ namespace JetBrains.Space.Client
             set => _tags.SetValue(value);
         }
     
+        private PropertyValue<TDTeam?> _team = new PropertyValue<TDTeam?>(nameof(PRProject), nameof(Team));
+        
+        [JsonPropertyName("team")]
+        public TDTeam? Team
+        {
+            get => _team.GetValue();
+            set => _team.SetValue(value);
+        }
+    
+        private PropertyValue<List<TDTeam>?> _teams = new PropertyValue<List<TDTeam>?>(nameof(PRProject), nameof(Teams));
+        
+        [JsonPropertyName("teams")]
+        public List<TDTeam>? Teams
+        {
+            get => _teams.GetValue();
+            set => _teams.SetValue(value);
+        }
+    
         private PropertyValue<List<ProjectIssueTrackerItem>> _trackers = new PropertyValue<List<ProjectIssueTrackerItem>>(nameof(PRProject), nameof(Trackers));
         
         [Required]
@@ -217,6 +270,16 @@ namespace JetBrains.Space.Client
         {
             get => _trackers.GetValue();
             set => _trackers.SetValue(value);
+        }
+    
+        private PropertyValue<ProjectTeamType> _type = new PropertyValue<ProjectTeamType>(nameof(PRProject), nameof(Type));
+        
+        [Required]
+        [JsonPropertyName("type")]
+        public ProjectTeamType Type
+        {
+            get => _type.GetValue();
+            set => _type.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
@@ -232,12 +295,18 @@ namespace JetBrains.Space.Client
             _adminProfiles.SetAccessPath(path, validateHasBeenSet);
             _adminTeams.SetAccessPath(path, validateHasBeenSet);
             _boards.SetAccessPath(path, validateHasBeenSet);
+            _collaboratorsProfiles.SetAccessPath(path, validateHasBeenSet);
+            _collaboratorsTeams.SetAccessPath(path, validateHasBeenSet);
             _memberProfiles.SetAccessPath(path, validateHasBeenSet);
             _memberTeams.SetAccessPath(path, validateHasBeenSet);
+            _members.SetAccessPath(path, validateHasBeenSet);
             _packages.SetAccessPath(path, validateHasBeenSet);
             _repos.SetAccessPath(path, validateHasBeenSet);
             _tags.SetAccessPath(path, validateHasBeenSet);
+            _team.SetAccessPath(path, validateHasBeenSet);
+            _teams.SetAccessPath(path, validateHasBeenSet);
             _trackers.SetAccessPath(path, validateHasBeenSet);
+            _type.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

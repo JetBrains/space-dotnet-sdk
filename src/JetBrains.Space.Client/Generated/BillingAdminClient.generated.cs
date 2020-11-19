@@ -34,66 +34,73 @@ namespace JetBrains.Space.Client
             _connection = connection;
         }
         
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>Update overdrafts</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task SetOverdraftsAsync(int storage, int bandwidth, int ciCredits, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync("POST", $"api/http/billing-admin/overdrafts", 
-                new BillingAdminOverdraftsPostRequest { 
-                    Storage = storage,
-                    Bandwidth = bandwidth,
-                    CiCredits = ciCredits,
-                }
-        , cancellationToken);
+        public OverdraftClient Overdrafts => new OverdraftClient(_connection);
+        
+        public partial class OverdraftClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public OverdraftClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View usage data</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<Overdrafts> GetOverdraftsAsync(Func<Partial<Overdrafts>, Partial<Overdrafts>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<Overdrafts>("GET", $"api/http/billing-admin/overdrafts?$fields={(partial != null ? partial(new Partial<Overdrafts>()) : Partial<Overdrafts>.Default())}", cancellationToken);
+        
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>Update overdrafts</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task SetOverdraftsAsync(int storage, int bandwidth, int ciCredits, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync("PUT", $"api/http/billing-admin/overdrafts", 
+                    new BillingAdminOverdraftsPutRequest { 
+                        Storage = storage,
+                        Bandwidth = bandwidth,
+                        CiCredits = ciCredits,
+                    }
+            , cancellationToken);
+        
+        }
     
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View usage data</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<BillingInfo> GetBillingInfoAsync(string? billingPeriod = null, Func<Partial<BillingInfo>, Partial<BillingInfo>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<BillingInfo>("GET", $"api/http/billing-admin/monthly?billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<BillingInfo>()) : Partial<BillingInfo>.Default())}", cancellationToken);
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View usage data</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<DailyReport> GetBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReport>, Partial<DailyReport>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<DailyReport>("GET", $"api/http/billing-admin/report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReport>()) : Partial<DailyReport>.Default())}", cancellationToken);
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View usage data</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<DailyReport> GetStorageBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReport>, Partial<DailyReport>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<DailyReport>("GET", $"api/http/billing-admin/storage-report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReport>()) : Partial<DailyReport>.Default())}", cancellationToken);
-    
-        /// <remarks>
-        /// Required permissions:
-        /// <list type="bullet">
-        /// <item>
-        /// <term>View usage data</term>
-        /// </item>
-        /// </list>
-        /// </remarks>
-        public async Task<DailyReport> GetTrafficBillingReportAsync(string name, string? billingPeriod = null, Func<Partial<DailyReport>, Partial<DailyReport>>? partial = null, CancellationToken cancellationToken = default)
-            => await _connection.RequestResourceAsync<DailyReport>("GET", $"api/http/billing-admin/traffic-report?name={name.ToString()}&billingPeriod={billingPeriod?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<DailyReport>()) : Partial<DailyReport>.Default())}", cancellationToken);
+        public ReportClient Reports => new ReportClient(_connection);
+        
+        public partial class ReportClient : ISpaceClient
+        {
+            private readonly Connection _connection;
+            
+            public ReportClient(Connection connection)
+            {
+                _connection = connection;
+            }
+            
+            /// <summary>
+            /// Returns a billing report for the given 
+            /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View usage data</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
+            public async Task<BillingReport> GetBillingReportAsync(string billingPeriod, Func<Partial<BillingReport>, Partial<BillingReport>>? partial = null, CancellationToken cancellationToken = default)
+                => await _connection.RequestResourceAsync<BillingReport>("GET", $"api/http/billing-admin/reports/{billingPeriod}?$fields={(partial != null ? partial(new Partial<BillingReport>()) : Partial<BillingReport>.Default())}", cancellationToken);
+        
+        }
     
     }
     

@@ -33,6 +33,12 @@ namespace JetBrains.Space.Client.EnumValueDataPartialBuilder
         public static Partial<EnumValueData> WithValue(this Partial<EnumValueData> it)
             => it.AddFieldName("value");
         
+        public static Partial<EnumValueData> WithPrincipal(this Partial<EnumValueData> it)
+            => it.AddFieldName("principal");
+        
+        public static Partial<EnumValueData> WithPrincipal(this Partial<EnumValueData> it, Func<Partial<CPrincipalDetails>, Partial<CPrincipalDetails>> partialBuilder)
+            => it.AddFieldName("principal", partialBuilder(new Partial<CPrincipalDetails>(it)));
+        
     }
     
 }

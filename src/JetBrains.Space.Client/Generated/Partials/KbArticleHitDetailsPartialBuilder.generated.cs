@@ -36,8 +36,17 @@ namespace JetBrains.Space.Client.KbArticleHitDetailsPartialBuilder
         public static Partial<KbArticleHitDetails> WithBookRef(this Partial<KbArticleHitDetails> it, Func<Partial<KBBook>, Partial<KBBook>> partialBuilder)
             => it.AddFieldName("bookRef", partialBuilder(new Partial<KBBook>(it)));
         
-        public static Partial<KbArticleHitDetails> WithContextName(this Partial<KbArticleHitDetails> it)
-            => it.AddFieldName("contextName");
+        public static Partial<KbArticleHitDetails> WithProjectRef(this Partial<KbArticleHitDetails> it)
+            => it.AddFieldName("projectRef");
+        
+        public static Partial<KbArticleHitDetails> WithProjectRef(this Partial<KbArticleHitDetails> it, Func<Partial<PRProject>, Partial<PRProject>> partialBuilder)
+            => it.AddFieldName("projectRef", partialBuilder(new Partial<PRProject>(it)));
+        
+        public static Partial<KbArticleHitDetails> WithAuthorRef(this Partial<KbArticleHitDetails> it)
+            => it.AddFieldName("authorRef");
+        
+        public static Partial<KbArticleHitDetails> WithAuthorRef(this Partial<KbArticleHitDetails> it, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>> partialBuilder)
+            => it.AddFieldName("authorRef", partialBuilder(new Partial<TDMemberProfile>(it)));
         
     }
     

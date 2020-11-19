@@ -793,6 +793,12 @@ namespace JetBrains.Space.Client
                     _connection = connection;
                 }
                 
+                /// <summary>
+                /// Returns the list of all project administrators
+                /// </summary>
+                public async Task<List<TDMemberProfile>> GetAllAdminsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/admins?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+            
                 public ProfileClient Profiles => new ProfileClient(_connection);
                 
                 public partial class ProfileClient : ISpaceClient
@@ -853,6 +859,74 @@ namespace JetBrains.Space.Client
             
             }
         
+            public CollaboratorClient Collaborators => new CollaboratorClient(_connection);
+            
+            public partial class CollaboratorClient : ISpaceClient
+            {
+                private readonly Connection _connection;
+                
+                public CollaboratorClient(Connection connection)
+                {
+                    _connection = connection;
+                }
+                
+                public async Task<List<TDMemberProfile>> GetAllCollaboratorsProfilesAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+            
+                public ProfileClient Profiles => new ProfileClient(_connection);
+                
+                public partial class ProfileClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public ProfileClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddACollaboratorAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/profiles", 
+                            new ProjectsForProjectAccessCollaboratorsProfilesPostRequest { 
+                                Profile = profile,
+                            }
+                    , cancellationToken);
+                
+                    public async Task<List<TDMemberProfile>> GetAllIndividualCollaboratorsAsync(ProjectIdentifier project, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<List<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/collaborators/profiles?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
+                
+                    public async Task RemoveAnIndividualCollaboratorsAsync(ProjectIdentifier project, ProfileIdentifier profile, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/profiles?profile={profile.ToString()}", cancellationToken);
+                
+                }
+            
+                public TeamClient Teams => new TeamClient(_connection);
+                
+                public partial class TeamClient : ISpaceClient
+                {
+                    private readonly Connection _connection;
+                    
+                    public TeamClient(Connection connection)
+                    {
+                        _connection = connection;
+                    }
+                    
+                    public async Task AddACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("POST", $"api/http/projects/{project}/access/collaborators/teams", 
+                            new ProjectsForProjectAccessCollaboratorsTeamsPostRequest { 
+                                TeamId = teamId,
+                            }
+                    , cancellationToken);
+                
+                    public async Task<List<TDTeam>> GetAllCollaboratorsTeamsAsync(ProjectIdentifier project, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<List<TDTeam>>("GET", $"api/http/projects/{project}/access/collaborators/teams?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
+                
+                    public async Task RemoveACollaboratorsTeamAsync(ProjectIdentifier project, string teamId, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync("DELETE", $"api/http/projects/{project}/access/collaborators/teams?teamId={teamId.ToString()}", cancellationToken);
+                
+                }
+            
+            }
+        
             public MemberProfileClient MemberProfiles => new MemberProfileClient(_connection);
             
             public partial class MemberProfileClient : ISpaceClient
@@ -867,12 +941,28 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get project members for a given project key.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<Batch<TDMemberProfile>> GetAllMemberProfilesAsync(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/projects/{project}/access/member-profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&includingAdmins={includingAdmins.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Get project members for a given project key.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View project data</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public IAsyncEnumerable<TDMemberProfile> GetAllMemberProfilesAsyncEnumerable(ProjectIdentifier project, string query = "", bool includingAdmins = false, string? skip = null, int? top = 100, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberProfilesAsync(project: project, query: query, includingAdmins: includingAdmins, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
             
@@ -1168,7 +1258,7 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
+                public async Task<ProjectPackageRepository> CreateNewRepositoryAsync(ProjectIdentifier project, string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null, PackageRepositoryMirror? mirror = null, Func<Partial<ProjectPackageRepository>, Partial<ProjectPackageRepository>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<ProjectsForProjectPackagesRepositoriesPostRequest, ProjectPackageRepository>("POST", $"api/http/projects/{project}/packages/repositories?$fields={(partial != null ? partial(new Partial<ProjectPackageRepository>()) : Partial<ProjectPackageRepository>.Default())}", 
                         new ProjectsForProjectPackagesRepositoriesPostRequest { 
                             Type = type,
@@ -1176,6 +1266,7 @@ namespace JetBrains.Space.Client
                             Description = description,
                             IsPublic = @public,
                             Settings = settings,
+                            Mirror = mirror,
                         }
                 , cancellationToken);
             
@@ -1264,8 +1355,8 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
-                        => await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default())}", cancellationToken);
+                    public async Task<Batch<PackageData>> GetAllPackagesAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageData>>, Partial<Batch<PackageData>>>? partial = null, CancellationToken cancellationToken = default)
+                        => await _connection.RequestResourceAsync<Batch<PackageData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages?query={query.ToString()}&mirrorId={mirrorId?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageData>>()) : Partial<Batch<PackageData>>.Default())}", cancellationToken);
                     
                     /// <summary>
                     /// Gets a list of repository packages for a given project id.
@@ -1278,8 +1369,8 @@ namespace JetBrains.Space.Client
                     /// </item>
                     /// </list>
                     /// </remarks>
-                    public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
-                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
+                    public IAsyncEnumerable<PackageData> GetAllPackagesAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<PackageData>, Partial<PackageData>>? partial = null, CancellationToken cancellationToken = default)
+                        => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackagesAsync(project: project, repository: repository, query: query, mirrorId: mirrorId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageData>.Default())), skip, cancellationToken);
                 
                     public VersionClient Versions => new VersionClient(_connection);
                     
@@ -1303,8 +1394,8 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                            => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions?query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
+                        public async Task<Batch<PackageVersionData>> GetAllPackageVersionsAsync(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                            => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/repositories/{repository}/packages/name:{packageName}/versions?query={query.ToString()}&mirrorId={mirrorId?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
                         
                         /// <summary>
                         /// Gets a list of repository package versions for a given project id.
@@ -1317,8 +1408,8 @@ namespace JetBrains.Space.Client
                         /// </item>
                         /// </list>
                         /// </remarks>
-                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                        public IAsyncEnumerable<PackageVersionData> GetAllPackageVersionsAsyncEnumerable(ProjectIdentifier project, PackageRepositoryIdentifier repository, string packageName, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                            => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllPackageVersionsAsync(project: project, repository: repository, packageName: packageName, query: query, mirrorId: mirrorId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
                     
                         /// <summary>
                         /// Gets a details for repository package version for a given project id.
@@ -1501,8 +1592,8 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search?type={type.ToString()}&query={query.ToString()}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
+                public async Task<Batch<PackageVersionData>> FindPackagesInRepositoryAsync(ProjectIdentifier project, string type, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<Batch<PackageVersionData>>, Partial<Batch<PackageVersionData>>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<Batch<PackageVersionData>>("GET", $"api/http/projects/{project}/packages/search?type={type.ToString()}&query={query.ToString()}&mirrorId={mirrorId?.ToString() ?? "null"}&$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<PackageVersionData>>()) : Partial<Batch<PackageVersionData>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Executes a package search for a given project id.
@@ -1515,8 +1606,8 @@ namespace JetBrains.Space.Client
                 /// </item>
                 /// </list>
                 /// </remarks>
-                public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<PackageVersionData> FindPackagesInRepositoryAsyncEnumerable(ProjectIdentifier project, string type, string query, string? mirrorId = null, string? skip = null, int? top = 100, Func<Partial<PackageVersionData>, Partial<PackageVersionData>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => FindPackagesInRepositoryAsync(project: project, type: type, query: query, mirrorId: mirrorId, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<PackageVersionData>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<PackageVersionData>.Default())), skip, cancellationToken);
             
             }
         
@@ -1587,11 +1678,11 @@ namespace JetBrains.Space.Client
                         }
                 , cancellationToken);
             
-                public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
-                    => await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default())}", cancellationToken);
+                public async Task<Batch<Checklist>> GetAllChecklistsAsync(ProjectIdentifier project, ChecklistSorting? sorting = null, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Batch<Checklist>>, Partial<Batch<Checklist>>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<Batch<Checklist>>("GET", $"api/http/projects/{project}/planning/checklists?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query?.ToString() ?? "null"}&sorting={(sorting ?? ChecklistSorting.UPDATED).ToString()}&descending={descending.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<Checklist>>()) : Partial<Batch<Checklist>>.Default())}", cancellationToken);
                 
-                public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
-                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
+                public IAsyncEnumerable<Checklist> GetAllChecklistsAsyncEnumerable(ProjectIdentifier project, ChecklistSorting? sorting = null, bool descending = false, string? skip = null, int? top = 100, string? query = null, Func<Partial<Checklist>, Partial<Checklist>>? partial = null, CancellationToken cancellationToken = default)
+                    => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllChecklistsAsync(project: project, sorting: sorting, descending: descending, top: top, query: query, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<Checklist>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<Checklist>.Default())), skip, cancellationToken);
             
                 public async Task UpdateChecklistAsync(ProjectIdentifier project, string checklistId, string name, string? description = null, string? owner = null, string? tag = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/projects/{project}/planning/checklists/{checklistId}", 

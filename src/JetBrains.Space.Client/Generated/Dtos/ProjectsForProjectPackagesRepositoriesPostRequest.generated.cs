@@ -30,13 +30,14 @@ namespace JetBrains.Space.Client
     {
         public ProjectsForProjectPackagesRepositoriesPostRequest() { }
         
-        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null)
+        public ProjectsForProjectPackagesRepositoriesPostRequest(string type, string name, bool @public, ESPackageRepositorySettings settings, string? description = null, PackageRepositoryMirror? mirror = null)
         {
             Type = type;
             Name = name;
             Description = description;
             IsPublic = @public;
             Settings = settings;
+            Mirror = mirror;
         }
         
         private PropertyValue<string> _type = new PropertyValue<string>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Type));
@@ -88,6 +89,15 @@ namespace JetBrains.Space.Client
             set => _settings.SetValue(value);
         }
     
+        private PropertyValue<PackageRepositoryMirror?> _mirror = new PropertyValue<PackageRepositoryMirror?>(nameof(ProjectsForProjectPackagesRepositoriesPostRequest), nameof(Mirror));
+        
+        [JsonPropertyName("mirror")]
+        public PackageRepositoryMirror? Mirror
+        {
+            get => _mirror.GetValue();
+            set => _mirror.SetValue(value);
+        }
+    
         public virtual void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _type.SetAccessPath(path, validateHasBeenSet);
@@ -95,6 +105,7 @@ namespace JetBrains.Space.Client
             _description.SetAccessPath(path, validateHasBeenSet);
             _public.SetAccessPath(path, validateHasBeenSet);
             _settings.SetAccessPath(path, validateHasBeenSet);
+            _mirror.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

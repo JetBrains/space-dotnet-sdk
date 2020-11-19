@@ -45,6 +45,9 @@ namespace JetBrains.Space.Client.MessageInfoPartialBuilder
         public static Partial<MessageInfo> WithAttachments(this Partial<MessageInfo> it)
             => it.AddFieldName("attachments");
         
+        public static Partial<MessageInfo> WithIsInThirdPerson(this Partial<MessageInfo> it)
+            => it.AddFieldName("inThirdPerson");
+        
     }
     
 }

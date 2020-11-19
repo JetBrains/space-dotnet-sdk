@@ -177,6 +177,14 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get/search membership events. Parameters are applied as 'AND' filters.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View memberships</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 [Obsolete("Use endpoints from 'calendars' resource (since 2020-10-14) (marked for removal)")]
                 public async Task<List<MembershipEvent>> GetAllMembershipEventsAsync(DateTime dateFrom, DateTime dateTo, string? team = null, string? location = null, string? role = null, Func<Partial<MembershipEvent>, Partial<MembershipEvent>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<List<MembershipEvent>>("GET", $"api/http/team-directory/calendar-events/membership-events?dateFrom={dateFrom.ToString("yyyy-MM-dd")}&dateTo={dateTo.ToString("yyyy-MM-dd")}&team={team?.ToString() ?? "null"}&location={location?.ToString() ?? "null"}&role={role?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<MembershipEvent>()) : Partial<MembershipEvent>.Default())}", cancellationToken);
@@ -398,12 +406,28 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get members on map for a location id.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View location map points</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<TDMemberInLocationMap>> GetAllLocationMapMemberPointsAsync(string locationId, bool includeUnmarked = true, string? skip = null, int? top = 100, Func<Partial<Batch<TDMemberInLocationMap>>, Partial<Batch<TDMemberInLocationMap>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<TDMemberInLocationMap>>("GET", $"api/http/team-directory/location-map-member-points?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&locationId={locationId.ToString()}&includeUnmarked={includeUnmarked.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberInLocationMap>>()) : Partial<Batch<TDMemberInLocationMap>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get members on map for a location id.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View location map points</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<TDMemberInLocationMap> GetAllLocationMapMemberPointsAsyncEnumerable(string locationId, bool includeUnmarked = true, string? skip = null, int? top = 100, Func<Partial<TDMemberInLocationMap>, Partial<TDMemberInLocationMap>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllLocationMapMemberPointsAsync(locationId: locationId, includeUnmarked: includeUnmarked, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberInLocationMap>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberInLocationMap>.Default())), skip, cancellationToken);
         
@@ -516,12 +540,28 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get/search all locations. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View locations</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<TDLocation>> GetAllLocationsAsync(string query = "", bool withArchived = false, string? type = null, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<TDLocation>>("GET", $"api/http/team-directory/locations?query={query.ToString()}&type={type?.ToString() ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get a location by id.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View locations</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<TDLocation> GetLocationAsync(string id, Func<Partial<TDLocation>, Partial<TDLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDLocation>("GET", $"api/http/team-directory/locations/{id}?$fields={(partial != null ? partial(new Partial<TDLocation>()) : Partial<TDLocation>.Default())}", cancellationToken);
         
@@ -583,6 +623,14 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Get map for a location id.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View locations</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<TDLocationMap> GetMapAsync(string id, Func<Partial<TDLocationMap>, Partial<TDLocationMap>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TDLocationMap>("GET", $"api/http/team-directory/locations/{id}/map?$fields={(partial != null ? partial(new Partial<TDLocationMap>()) : Partial<TDLocationMap>.Default())}", cancellationToken);
             
@@ -622,6 +670,14 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get all locations with their time zone.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View locations</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<TDLocationWithTimeZone>> GetAllLocationsWithTimezoneAsync(Func<Partial<TDLocationWithTimeZone>, Partial<TDLocationWithTimeZone>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<TDLocationWithTimeZone>>("GET", $"api/http/team-directory/locations-with-timezone?$fields={(partial != null ? partial(new Partial<TDLocationWithTimeZone>()) : Partial<TDLocationWithTimeZone>.Default())}", cancellationToken);
         
@@ -663,18 +719,42 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View locations</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<TDMemberLocation>> GetAllMemberLocationsAsync(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<TDMemberLocation>>, Partial<Batch<TDMemberLocation>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<TDMemberLocation>>("GET", $"api/http/team-directory/member-locations?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&locations={locations?.JoinToString("locations", it => it.ToString()) ?? "null"}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberLocation>>()) : Partial<Batch<TDMemberLocation>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search member locations. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View locations</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<TDMemberLocation> GetAllMemberLocationsAsyncEnumerable(bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? locations = null, DateTime? since = null, DateTime? till = null, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMemberLocationsAsync(withArchived: withArchived, top: top, profiles: profiles, locations: locations, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberLocation>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberLocation>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Get a member location by its id.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View locations</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<TDMemberLocation> GetMemberLocationAsync(string memberLocationId, Func<Partial<TDMemberLocation>, Partial<TDMemberLocation>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDMemberLocation>("GET", $"api/http/team-directory/member-locations/{memberLocationId}?$fields={(partial != null ? partial(new Partial<TDMemberLocation>()) : Partial<TDMemberLocation>.Default())}", cancellationToken);
         
@@ -780,12 +860,28 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View memberships</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<TDMembership>> GetAllMembershipsAsync(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<Batch<TDMembership>>, Partial<Batch<TDMembership>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<TDMembership>>("GET", $"api/http/team-directory/memberships?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={profiles?.JoinToString("profiles", it => it.ToString()) ?? "null"}&teams={teams?.JoinToString("teams", it => it.ToString()) ?? "null"}&directTeams={directTeams.ToString("l")}&roles={roles?.JoinToString("roles", it => it.ToString()) ?? "null"}&directRoles={directRoles.ToString("l")}&since={since?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&till={till?.ToString("yyyy-MM-ddTHH:mm:ss.fffZ") ?? "null"}&requiresApproval={requiresApproval?.ToString("l") ?? "null"}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDMembership>>()) : Partial<Batch<TDMembership>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search all team memberships. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View memberships</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<TDMembership> GetAllMembershipsAsyncEnumerable(bool directTeams = false, bool directRoles = false, bool withArchived = false, string? skip = null, int? top = 100, List<ProfileIdentifier>? profiles = null, List<string>? teams = null, List<string>? roles = null, DateTime? since = null, DateTime? till = null, bool? requiresApproval = null, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllMembershipsAsync(directTeams: directTeams, directRoles: directRoles, withArchived: withArchived, top: top, profiles: profiles, teams: teams, roles: roles, since: since, till: till, requiresApproval: requiresApproval, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMembership>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMembership>.Default())), skip, cancellationToken);
         
@@ -909,6 +1005,14 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Approve/reject a team membership request. Setting approved to true will approve the membership request, false will reject it.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit team</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task UpdateRequestAsync(string membershipRequestId, bool approved, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/memberships/requests/{membershipRequestId}", 
                         new TeamDirectoryMembershipsRequestsForMembershipRequestIdPatchRequest { 
@@ -919,6 +1023,14 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Delete a team membership request.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>Edit member profile</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<TDMembership> DeleteRequestAsync(string membershipRequestId, Func<Partial<TDMembership>, Partial<TDMembership>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<TDMembership>("DELETE", $"api/http/team-directory/memberships/requests/{membershipRequestId}?$fields={(partial != null ? partial(new Partial<TDMembership>()) : Partial<TDMembership>.Default())}", cancellationToken);
             
@@ -1005,24 +1117,56 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View member profile</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<TDMemberProfile>> GetAllProfilesAsync(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<Batch<TDMemberProfile>>, Partial<Batch<TDMemberProfile>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<TDMemberProfile>>("GET", $"api/http/team-directory/profiles?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&reportPastMembers={reportPastMembers.ToString("l")}&teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&meOnTop={meOnTop.ToString("l")}&order={order?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDMemberProfile>>()) : Partial<Batch<TDMemberProfile>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get/search all profiles. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View member profile</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<TDMemberProfile> GetAllProfilesAsyncEnumerable(string query = "", bool reportPastMembers = false, bool meOnTop = false, string? skip = null, int? top = 100, string? teamId = null, string? locationId = null, string? roleId = null, ProfileOrder? order = null, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllProfilesAsync(query: query, reportPastMembers: reportPastMembers, meOnTop: meOnTop, top: top, teamId: teamId, locationId: locationId, roleId: roleId, order: order, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDMemberProfile>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDMemberProfile>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Get profile information by email address.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View member profile</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<TDMemberProfile> GetProfileByEmailAsync(string email, bool verified = true, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/email:{email}?verified={verified.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get profile information
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View member profile</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<TDMemberProfile> GetProfileAsync(ProfileIdentifier profile, Func<Partial<TDMemberProfile>, Partial<TDMemberProfile>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDMemberProfile>("GET", $"api/http/team-directory/profiles/{profile}?$fields={(partial != null ? partial(new Partial<TDMemberProfile>()) : Partial<TDMemberProfile>.Default())}", cancellationToken);
         
@@ -1224,12 +1368,28 @@ namespace JetBrains.Space.Client
                 /// <summary>
                 /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View working days</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<Batch<TDProfileWorkingDays>> QueryAllWorkingDaysAsync(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<Batch<TDProfileWorkingDays>>, Partial<Batch<TDProfileWorkingDays>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<TDProfileWorkingDays>>("GET", $"api/http/team-directory/profiles/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&profiles={(profiles ?? new List<ProfileIdentifier>()).JoinToString("profiles", it => it.ToString())}&since={since?.ToString("yyyy-MM-dd") ?? "null"}&till={till?.ToString("yyyy-MM-dd") ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDProfileWorkingDays>>()) : Partial<Batch<TDProfileWorkingDays>>.Default())}", cancellationToken);
                 
                 /// <summary>
                 /// Returns pairs of profiles and their working days. If several working days settings are defined for the same profile then several pairs are returned.
                 /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View working days</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public IAsyncEnumerable<TDProfileWorkingDays> QueryAllWorkingDaysAsyncEnumerable(List<ProfileIdentifier>? profiles = null, string? skip = null, int? top = 100, DateTime? since = null, DateTime? till = null, Func<Partial<TDProfileWorkingDays>, Partial<TDProfileWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => QueryAllWorkingDaysAsync(profiles: profiles, top: top, since: since, till: till, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDProfileWorkingDays>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDProfileWorkingDays>.Default())), skip, cancellationToken);
             
@@ -1241,7 +1401,7 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit working days</term>
+                /// <term>Edit working hours</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -1254,9 +1414,25 @@ namespace JetBrains.Space.Client
                         }
                 , cancellationToken);
             
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View working days</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public async Task<Batch<TDWorkingDays>> QueryWorkingDaysForAProfileAsync(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<Batch<TDWorkingDays>>, Partial<Batch<TDWorkingDays>>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<Batch<TDWorkingDays>>("GET", $"api/http/team-directory/profiles/{profile}/working-days?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<Batch<TDWorkingDays>>()) : Partial<Batch<TDWorkingDays>>.Default())}", cancellationToken);
                 
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View working days</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
                 public IAsyncEnumerable<TDWorkingDays> QueryWorkingDaysForAProfileAsyncEnumerable(ProfileIdentifier profile, string? skip = null, int? top = 100, Func<Partial<TDWorkingDays>, Partial<TDWorkingDays>>? partial = null, CancellationToken cancellationToken = default)
                     => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => QueryWorkingDaysForAProfileAsync(profile: profile, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDWorkingDays>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDWorkingDays>.Default())), skip, cancellationToken);
             
@@ -1264,7 +1440,7 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit working days</term>
+                /// <term>Edit working hours</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -1281,7 +1457,7 @@ namespace JetBrains.Space.Client
                 /// Required permissions:
                 /// <list type="bullet">
                 /// <item>
-                /// <term>Edit working days</term>
+                /// <term>Edit working hours</term>
                 /// </item>
                 /// </list>
                 /// </remarks>
@@ -1658,16 +1834,18 @@ namespace JetBrains.Space.Client
                 public async Task<SettingsValue> GetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, Func<Partial<SettingsValue>, Partial<SettingsValue>>? partial = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync<SettingsValue>("GET", $"api/http/team-directory/profiles/{profile}/settings?$fields={(partial != null ? partial(new Partial<SettingsValue>()) : Partial<SettingsValue>.Default())}", cancellationToken);
             
-                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, CancellationToken cancellationToken = default)
+                public async Task SetProfilesSpacePersonalizationDataAsync(ProfileIdentifier profile, string? themeName = null, Weekday? firstDayOfWeek = null, DraftDocumentType? draftType = null, bool? fontLigaturesEnabled = null, bool? todoFilters = null, string? calendarView = null, bool? emailNotificationsEnabled = null, string? notificationEmail = null, string? preferredLanguage = null, CancellationToken cancellationToken = default)
                     => await _connection.RequestResourceAsync("PATCH", $"api/http/team-directory/profiles/{profile}/settings", 
                         new TeamDirectoryProfilesForProfileSettingsPatchRequest { 
                             ThemeName = themeName,
                             FirstDayOfWeek = firstDayOfWeek,
                             DraftType = draftType,
+                            IsFontLigaturesEnabled = fontLigaturesEnabled,
                             IsTodoFilters = todoFilters,
                             CalendarView = calendarView,
                             IsEmailNotificationsEnabled = emailNotificationsEnabled,
                             NotificationEmail = notificationEmail,
+                            PreferredLanguage = preferredLanguage,
                         }
                 , cancellationToken);
             
@@ -1703,6 +1881,20 @@ namespace JetBrains.Space.Client
                             LastName = lastName,
                         }
                 , cancellationToken);
+            
+                /// <summary>
+                /// Get spoken language of a profile.
+                /// </summary>
+                /// <remarks>
+                /// Required permissions:
+                /// <list type="bullet">
+                /// <item>
+                /// <term>View locations</term>
+                /// </item>
+                /// </list>
+                /// </remarks>
+                public async Task<List<TDProfileLanguage>> GetAllSpokenLanguagesAsync(ProfileIdentifier profile, Func<Partial<TDProfileLanguage>, Partial<TDProfileLanguage>>? partial = null, CancellationToken cancellationToken = default)
+                    => await _connection.RequestResourceAsync<List<TDProfileLanguage>>("GET", $"api/http/team-directory/profiles/{profile}/spoken-languages?$fields={(partial != null ? partial(new Partial<TDProfileLanguage>()) : Partial<TDProfileLanguage>.Default())}", cancellationToken);
             
                 /// <summary>
                 /// Delete spoken language for a profile.
@@ -1804,12 +1996,28 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get/search all roles. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View positions</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<List<TDRole>> GetAllRolesAsync(string query = "", bool withArchived = false, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<List<TDRole>>("GET", $"api/http/team-directory/roles?query={query.ToString()}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
         
             /// <summary>
             /// Get a role by id.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View positions</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<TDRole> GetRoleAsync(string id, Func<Partial<TDRole>, Partial<TDRole>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDRole>("GET", $"api/http/team-directory/roles/{id}?$fields={(partial != null ? partial(new Partial<TDRole>()) : Partial<TDRole>.Default())}", cancellationToken);
         
@@ -1862,6 +2070,20 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get statistics of total members, and members per location, role, and team. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View teams</term>
+            /// </item>
+            /// <item>
+            /// <term>View locations</term>
+            /// </item>
+            /// <item>
+            /// <term>View positions</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<TDStats> GetAllStatsAsync(string? teamId = null, string? locationId = null, string? roleId = null, Func<Partial<TDStats>, Partial<TDStats>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDStats>("GET", $"api/http/team-directory/stats?teamId={teamId?.ToString() ?? "null"}&locationId={locationId?.ToString() ?? "null"}&roleId={roleId?.ToString() ?? "null"}&$fields={(partial != null ? partial(new Partial<TDStats>()) : Partial<TDStats>.Default())}", cancellationToken);
         
@@ -1932,18 +2154,42 @@ namespace JetBrains.Space.Client
             /// <summary>
             /// Get or search all teams. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View teams</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<Batch<TDTeam>> GetAllTeamsAsync(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<Batch<TDTeam>>, Partial<Batch<TDTeam>>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<Batch<TDTeam>>("GET", $"api/http/team-directory/teams?$skip={skip?.ToString() ?? "null"}&$top={top?.ToString() ?? "null"}&query={query.ToString()}&withArchived={withArchived.ToString("l")}&$fields={(partial != null ? partial(new Partial<Batch<TDTeam>>()) : Partial<Batch<TDTeam>>.Default())}", cancellationToken);
             
             /// <summary>
             /// Get or search all teams. Parameters are applied as 'AND' filters.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View teams</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public IAsyncEnumerable<TDTeam> GetAllTeamsAsyncEnumerable(string query = "", bool withArchived = false, string? skip = null, int? top = 100, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => BatchEnumerator.AllItems((batchSkip, batchCancellationToken) => GetAllTeamsAsync(query: query, withArchived: withArchived, top: top, cancellationToken: cancellationToken, skip: batchSkip, partial: builder => Partial<Batch<TDTeam>>.Default().WithNext().WithTotalCount().WithData(partial != null ? partial : _ => Partial<TDTeam>.Default())), skip, cancellationToken);
         
             /// <summary>
             /// Get a team by id.
             /// </summary>
+            /// <remarks>
+            /// Required permissions:
+            /// <list type="bullet">
+            /// <item>
+            /// <term>View teams</term>
+            /// </item>
+            /// </list>
+            /// </remarks>
             public async Task<TDTeam> GetTeamAsync(string id, Func<Partial<TDTeam>, Partial<TDTeam>>? partial = null, CancellationToken cancellationToken = default)
                 => await _connection.RequestResourceAsync<TDTeam>("GET", $"api/http/team-directory/teams/{id}?$fields={(partial != null ? partial(new Partial<TDTeam>()) : Partial<TDTeam>.Default())}", cancellationToken);
         

@@ -30,11 +30,10 @@ namespace JetBrains.Space.Client
     {
         public BoardColumn() { }
         
-        public BoardColumn(string name, List<IssueStatus> statuses, bool? @default = null)
+        public BoardColumn(string name, List<IssueStatus> statuses)
         {
             Name = name;
             Statuses = statuses;
-            IsDefault = @default;
         }
         
         private PropertyValue<string> _name = new PropertyValue<string>(nameof(BoardColumn), nameof(Name));
@@ -57,20 +56,10 @@ namespace JetBrains.Space.Client
             set => _statuses.SetValue(value);
         }
     
-        private PropertyValue<bool?> _default = new PropertyValue<bool?>(nameof(BoardColumn), nameof(IsDefault));
-        
-        [JsonPropertyName("default")]
-        public bool? IsDefault
-        {
-            get => _default.GetValue();
-            set => _default.SetValue(value);
-        }
-    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _name.SetAccessPath(path, validateHasBeenSet);
             _statuses.SetAccessPath(path, validateHasBeenSet);
-            _default.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

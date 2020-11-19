@@ -63,6 +63,12 @@ namespace JetBrains.Space.Client.CustomFieldsForTypeKeyFieldsForIdPatchRequestPa
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithEnumValues(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<EnumValueData>, Partial<EnumValueData>> partialBuilder)
             => it.AddFieldName("enumValues", partialBuilder(new Partial<EnumValueData>(it)));
         
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
+            => it.AddFieldName("openEnumValuesModification");
+        
+        public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithOpenEnumValuesModification(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it, Func<Partial<CFEnumValuesModification>, Partial<CFEnumValuesModification>> partialBuilder)
+            => it.AddFieldName("openEnumValuesModification", partialBuilder(new Partial<CFEnumValuesModification>(it)));
+        
         public static Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> WithScope(this Partial<CustomFieldsForTypeKeyFieldsForIdPatchRequest> it)
             => it.AddFieldName("scope");
         

@@ -30,9 +30,6 @@ namespace JetBrains.Space.Client.CodeReviewPendingMessageCounterPartialBuilder
         public static Partial<CodeReviewPendingMessageCounter> WithId(this Partial<CodeReviewPendingMessageCounter> it)
             => it.AddFieldName("id");
         
-        public static Partial<CodeReviewPendingMessageCounter> WithCount(this Partial<CodeReviewPendingMessageCounter> it)
-            => it.AddFieldName("count");
-        
         public static Partial<CodeReviewPendingMessageCounter> WithIsArchived(this Partial<CodeReviewPendingMessageCounter> it)
             => it.AddFieldName("archived");
         

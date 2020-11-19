@@ -51,6 +51,9 @@ namespace JetBrains.Space.Client.TodoContentPartialBuilder
         public static Partial<TodoContent> WithText(this Partial<TodoContent> it)
             => it.AddFieldName("text");
         
+        public static Partial<TodoContent> WithExtId(this Partial<TodoContent> it)
+            => it.AddFieldName("extId");
+        
     }
     
 }

@@ -30,10 +30,11 @@ namespace JetBrains.Space.Client
     {
         public EnumValueData() { }
         
-        public EnumValueData(string value, string? id = null)
+        public EnumValueData(string value, string? id = null, CPrincipalDetails? principal = null)
         {
             Id = id;
             Value = value;
+            Principal = principal;
         }
         
         private PropertyValue<string?> _id = new PropertyValue<string?>(nameof(EnumValueData), nameof(Id));
@@ -55,10 +56,20 @@ namespace JetBrains.Space.Client
             set => _value.SetValue(value);
         }
     
+        private PropertyValue<CPrincipalDetails?> _principal = new PropertyValue<CPrincipalDetails?>(nameof(EnumValueData), nameof(Principal));
+        
+        [JsonPropertyName("principal")]
+        public CPrincipalDetails? Principal
+        {
+            get => _principal.GetValue();
+            set => _principal.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _id.SetAccessPath(path, validateHasBeenSet);
             _value.SetAccessPath(path, validateHasBeenSet);
+            _principal.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

@@ -30,10 +30,11 @@ namespace JetBrains.Space.Client
     {
         public EntityType() { }
         
-        public EntityType(string key, string? displayName = null, string? groupName = null)
+        public EntityType(string key, string groupKey, string? displayName = null, string? groupName = null)
         {
             Key = key;
             DisplayName = displayName;
+            GroupKey = groupKey;
             GroupName = groupName;
         }
         
@@ -56,6 +57,16 @@ namespace JetBrains.Space.Client
             set => _displayName.SetValue(value);
         }
     
+        private PropertyValue<string> _groupKey = new PropertyValue<string>(nameof(EntityType), nameof(GroupKey));
+        
+        [Required]
+        [JsonPropertyName("groupKey")]
+        public string GroupKey
+        {
+            get => _groupKey.GetValue();
+            set => _groupKey.SetValue(value);
+        }
+    
         private PropertyValue<string?> _groupName = new PropertyValue<string?>(nameof(EntityType), nameof(GroupName));
         
         [JsonPropertyName("groupName")]
@@ -69,6 +80,7 @@ namespace JetBrains.Space.Client
         {
             _key.SetAccessPath(path, validateHasBeenSet);
             _displayName.SetAccessPath(path, validateHasBeenSet);
+            _groupKey.SetAccessPath(path, validateHasBeenSet);
             _groupName.SetAccessPath(path, validateHasBeenSet);
         }
     

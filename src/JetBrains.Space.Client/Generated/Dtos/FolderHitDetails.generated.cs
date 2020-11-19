@@ -33,11 +33,12 @@ namespace JetBrains.Space.Client
         
         public FolderHitDetails() { }
         
-        public FolderHitDetails(KBFolder @ref, KBBook bookRef, string contextName)
+        public FolderHitDetails(KBFolder @ref, KBBook bookRef, PRProject? projectRef = null, TDMemberProfile? authorRef = null)
         {
             Ref = @ref;
             BookRef = bookRef;
-            ContextName = contextName;
+            ProjectRef = projectRef;
+            AuthorRef = authorRef;
         }
         
         private PropertyValue<KBFolder> _ref = new PropertyValue<KBFolder>(nameof(FolderHitDetails), nameof(Ref));
@@ -60,21 +61,30 @@ namespace JetBrains.Space.Client
             set => _bookRef.SetValue(value);
         }
     
-        private PropertyValue<string> _contextName = new PropertyValue<string>(nameof(FolderHitDetails), nameof(ContextName));
+        private PropertyValue<PRProject?> _projectRef = new PropertyValue<PRProject?>(nameof(FolderHitDetails), nameof(ProjectRef));
         
-        [Required]
-        [JsonPropertyName("contextName")]
-        public string ContextName
+        [JsonPropertyName("projectRef")]
+        public PRProject? ProjectRef
         {
-            get => _contextName.GetValue();
-            set => _contextName.SetValue(value);
+            get => _projectRef.GetValue();
+            set => _projectRef.SetValue(value);
+        }
+    
+        private PropertyValue<TDMemberProfile?> _authorRef = new PropertyValue<TDMemberProfile?>(nameof(FolderHitDetails), nameof(AuthorRef));
+        
+        [JsonPropertyName("authorRef")]
+        public TDMemberProfile? AuthorRef
+        {
+            get => _authorRef.GetValue();
+            set => _authorRef.SetValue(value);
         }
     
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _ref.SetAccessPath(path, validateHasBeenSet);
             _bookRef.SetAccessPath(path, validateHasBeenSet);
-            _contextName.SetAccessPath(path, validateHasBeenSet);
+            _projectRef.SetAccessPath(path, validateHasBeenSet);
+            _authorRef.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

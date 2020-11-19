@@ -42,6 +42,9 @@ namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSettingsPatchReq
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithDraftType(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it, Func<Partial<DraftDocumentType>, Partial<DraftDocumentType>> partialBuilder)
             => it.AddFieldName("draftType", partialBuilder(new Partial<DraftDocumentType>(it)));
         
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithIsFontLigaturesEnabled(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
+            => it.AddFieldName("fontLigaturesEnabled");
+        
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithIsTodoFilters(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
             => it.AddFieldName("todoFilters");
         
@@ -53,6 +56,9 @@ namespace JetBrains.Space.Client.TeamDirectoryProfilesForProfileSettingsPatchReq
         
         public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithNotificationEmail(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
             => it.AddFieldName("notificationEmail");
+        
+        public static Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> WithPreferredLanguage(this Partial<TeamDirectoryProfilesForProfileSettingsPatchRequest> it)
+            => it.AddFieldName("preferredLanguage");
         
     }
     

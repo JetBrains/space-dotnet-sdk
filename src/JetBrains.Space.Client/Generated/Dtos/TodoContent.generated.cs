@@ -33,7 +33,7 @@ namespace JetBrains.Space.Client
         
         public TodoContent() { }
         
-        public TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null)
+        public TodoContent(string originalText, string text, string? link = null, TodoItemContentKind? kind = null, CPrincipal? principal = null, long? time = null, string? extId = null)
         {
             OriginalText = originalText;
             Link = link;
@@ -41,6 +41,7 @@ namespace JetBrains.Space.Client
             Principal = principal;
             Time = time;
             Text = text;
+            ExtId = extId;
         }
         
         private PropertyValue<string> _originalText = new PropertyValue<string>(nameof(TodoContent), nameof(OriginalText));
@@ -99,6 +100,15 @@ namespace JetBrains.Space.Client
             set => _text.SetValue(value);
         }
     
+        private PropertyValue<string?> _extId = new PropertyValue<string?>(nameof(TodoContent), nameof(ExtId));
+        
+        [JsonPropertyName("extId")]
+        public string? ExtId
+        {
+            get => _extId.GetValue();
+            set => _extId.SetValue(value);
+        }
+    
         public  void SetAccessPath(string path, bool validateHasBeenSet)
         {
             _originalText.SetAccessPath(path, validateHasBeenSet);
@@ -107,6 +117,7 @@ namespace JetBrains.Space.Client
             _principal.SetAccessPath(path, validateHasBeenSet);
             _time.SetAccessPath(path, validateHasBeenSet);
             _text.SetAccessPath(path, validateHasBeenSet);
+            _extId.SetAccessPath(path, validateHasBeenSet);
         }
     
     }

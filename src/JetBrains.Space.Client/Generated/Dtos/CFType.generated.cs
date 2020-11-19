@@ -50,6 +50,12 @@ namespace JetBrains.Space.Client
         public static IntListCFType IntList()
             => new IntListCFType();
         
+        public static OpenEnumCFType OpenEnum()
+            => new OpenEnumCFType();
+        
+        public static OpenEnumListCFType OpenEnumList()
+            => new OpenEnumListCFType();
+        
         public static PercentageCFType Percentage()
             => new PercentageCFType();
         
