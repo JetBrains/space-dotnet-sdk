@@ -21,12 +21,6 @@ namespace _build
         [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
         readonly string Configuration = IsLocalBuild ? "Debug" : "Release";
 
-        [Parameter("Space - NuGet target URL", Name = "JB_SPACE_NUGET_URL")]
-        readonly string? NuGetSpaceTargetUrl;
-
-        [Parameter("Space - NuGet target API key / access token", Name = "JB_SPACE_CLIENT_TOKEN")]
-        readonly string? NuGetSpaceTargetApiKey;
-
         [Parameter("Space (Public) - NuGet target URL", Name = "JB_SPACE_PUBLIC_NUGET_URL")]
         readonly string? NuGetPublicSpaceTargetUrl;
 
@@ -103,25 +97,6 @@ namespace _build
                         .SetVersion(VersionInfo.NuGetVersion)
                         .SetOutputDirectory(ArtifactsDirectory));
                 }
-            });
-
-        Target PushPackagesToSpace => _ => _
-            .TriggeredBy(Package)
-            .OnlyWhenStatic(() =>
-                !string.IsNullOrEmpty(NuGetSpaceTargetUrl) &&
-                !string.IsNullOrEmpty(NuGetSpaceTargetApiKey))
-            .WhenSkipped(DependencyBehavior.Execute)
-            .Executes(() =>
-            {
-                var packages = ArtifactsDirectory.GlobFiles("*.nupkg");
-            
-                DotNetNuGetPush(_ => _
-                        .SetSource(NuGetSpaceTargetUrl)
-                        .SetApiKey(NuGetSpaceTargetApiKey)
-                        .CombineWith(packages, (_, v) => _
-                            .SetTargetPath(v)),
-                    degreeOfParallelism: 5,
-                    completeOnFailure: true);
             });
 
         Target PushPackagesToPublicSpace => _ => _
