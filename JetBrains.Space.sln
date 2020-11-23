@@ -22,6 +22,7 @@ ProjectSection(SolutionItems) = preProject
 	.space.kts = .space.kts
 	package_icon.png = package_icon.png
 	global.json = global.json
+	version-info.txt = version-info.txt
 EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JetBrains.Space.AspNetCore.Authentication", "src\JetBrains.Space.AspNetCore.Authentication\JetBrains.Space.AspNetCore.Authentication.csproj", "{5A9D31CA-EC29-469C-B2E9-551151ACD2F0}"
